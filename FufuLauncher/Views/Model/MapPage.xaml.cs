@@ -16,25 +16,44 @@ namespace FufuLauncher.Views
     public sealed partial class MapPage : Page
     {
         private Window _hostWindow;
+        private bool _mapInitialized;
 
         public MapPage()
         {
             this.InitializeComponent();
-            InitializeMap();
         }
 
         private async void InitializeMap()
         {
-            await MapWebView.EnsureCoreWebView2Async();
-            await MapWebView.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(@"
-                if (window.location.hostname === 'act.mihoyo.com') {
-                    localStorage.setItem('user-guide-passed', 'true');
-                    localStorage.setItem('async-announcement-hidden-ts', Date.now().toString());  
+            if (_mapInitialized) return;
+            _mapInitialized = true;
+
+            try
+            {
+                await MapWebView.EnsureCoreWebView2Async();
+
+                if (MapWebView.CoreWebView2 == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("MapWebView.CoreWebView2 初始化失败");
+                    _mapInitialized = false;
+                    return;
                 }
-            ");
-            MapWebView.NavigationStarting += MapWebView_NavigationStarting;
-            MapWebView.NavigationCompleted += MapWebView_NavigationCompleted;
-            MapWebView.Source = new Uri(ApiEndpoints.InteractiveMapUrl);
+
+                await MapWebView.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(@"
+                    if (window.location.hostname === 'act.mihoyo.com') {
+                        localStorage.setItem('user-guide-passed', 'true');
+                        localStorage.setItem('async-announcement-hidden-ts', Date.now().toString());  
+                    }
+                ");
+                MapWebView.NavigationStarting += MapWebView_NavigationStarting;
+                MapWebView.NavigationCompleted += MapWebView_NavigationCompleted;
+                MapWebView.Source = new Uri(ApiEndpoints.InteractiveMapUrl);
+            }
+            catch (Exception ex)
+            {
+                _mapInitialized = false;
+                System.Diagnostics.Debug.WriteLine($"MapPage 初始化失败: {ex.Message}");
+            }
         }
 
         private async void MapWebView_NavigationStarting(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs args)
@@ -122,6 +141,8 @@ namespace FufuLauncher.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
+            InitializeMap();
 
             if (e.Parameter is Window window)
             {
