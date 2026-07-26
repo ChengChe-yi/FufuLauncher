@@ -120,10 +120,21 @@ public static class ResourceExtensions
                 dict.TryGetValue(resourceKey, out var result))
                 return result;
 
-            // 2) Fallback: return the first match across all loaded languages
+            // 2) Fallback: prioritized — en-US first, then zh-CN, then others
+            if (culture != "en-US" &&
+                _resources.TryGetValue("en-US", out var enDict) &&
+                enDict.TryGetValue(resourceKey, out var enResult))
+                return enResult;
+
+            if (culture != "zh-CN" &&
+                _resources.TryGetValue("zh-CN", out var zhDict) &&
+                zhDict.TryGetValue(resourceKey, out var zhResult))
+                return zhResult;
+
             foreach (var kv in _resources)
             {
-                if (kv.Value.TryGetValue(resourceKey, out var fb))
+                if (kv.Key != culture && kv.Key != "en-US" && kv.Key != "zh-CN" &&
+                    kv.Value.TryGetValue(resourceKey, out var fb))
                     return fb;
             }
 
