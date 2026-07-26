@@ -62,6 +62,11 @@ chs.InstallingVC=正在部署必要组件 (Visual C++ v14 Redistributable)，请
 chs.InstallFailedVC=必要组件 (Visual C++ v14 Redistributable) 部署未成功。请稍后手动安装环境，主程序将继续安装。
 chs.DownloadFailedVC=无法获取必要组件 (Visual C++ v14 Redistributable)。请检查网络连接状态，或稍后手动完成安装。
 
+chs.DownloadingWebView2=正在获取必要组件 (Microsoft Edge WebView2 运行时)...
+chs.InstallingWebView2=正在部署必要组件 (Microsoft Edge WebView2 运行时)，请稍候...
+chs.InstallFailedWebView2=必要组件 (Microsoft Edge WebView2 运行时) 部署未成功。请稍后手动安装环境，主程序将继续安装。
+chs.DownloadFailedWebView2=无法获取必要组件 (Microsoft Edge WebView2 运行时)。请检查网络连接状态，或稍后手动完成安装。
+
 chs.RuntimeExecFailed=必要组件安装程序无法执行。请稍后手动安装环境，主程序将继续安装。
 
 en.DownloadingDotNet=Retrieving prerequisite (Microsoft .NET 8.0 Desktop Runtime)...
@@ -73,6 +78,11 @@ en.DownloadingVC=Retrieving prerequisite (Visual C++ v14 Redistributable)...
 en.InstallingVC=Deploying prerequisite (Visual C++ v14 Redistributable), please wait...
 en.InstallFailedVC=The deployment of the prerequisite (Visual C++ v14 Redistributable) was unsuccessful. Please install it manually later. The main installation will now continue.
 en.DownloadFailedVC=Unable to retrieve the prerequisite (Visual C++ v14 Redistributable). Please verify your network connection or install it manually later.
+
+en.DownloadingWebView2=Retrieving prerequisite (Microsoft Edge WebView2 Runtime)...
+en.InstallingWebView2=Deploying prerequisite (Microsoft Edge WebView2 Runtime), please wait...
+en.InstallFailedWebView2=The deployment of the prerequisite (Microsoft Edge WebView2 Runtime) was unsuccessful. Please install it manually later. The main installation will now continue.
+en.DownloadFailedWebView2=Unable to retrieve the prerequisite (Microsoft Edge WebView2 Runtime). Please verify your network connection or install it manually later.
 
 en.RuntimeExecFailed=The prerequisite installer failed to execute. Please install it manually later. The main installation will now continue.
 
@@ -159,6 +169,24 @@ begin
   end;
 end;
 
+function GetWebView2Version(var Version: string): Boolean;
+var
+  RegKey: string;
+begin
+  RegKey := 'SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}';
+  Result := RegQueryStringValue(HKLM, RegKey, 'pv', Version);
+  if not Result then
+    Result := RegQueryStringValue(HKCU, RegKey, 'pv', Version);
+  
+  if not Result then
+  begin
+    RegKey := 'SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}';
+    Result := RegQueryStringValue(HKLM, RegKey, 'pv', Version);
+    if not Result then
+      Result := RegQueryStringValue(HKCU, RegKey, 'pv', Version);
+  end;
+end;
+
 function CompareVersionStr(V1, V2: string): Integer;
 var
   P1, P2: Integer;
@@ -189,6 +217,21 @@ begin
     if P1 <= Length(V1) then V1 := Copy(V1, P1 + 1, Length(V1)) else V1 := '';
     if P2 <= Length(V2) then V2 := Copy(V2, P2 + 1, Length(V2)) else V2 := '';
   end;
+end;
+
+function NeedWebView2Update: Boolean;
+var
+  Version: string;
+begin
+  if GetWebView2Version(Version) then
+  begin
+    if CompareVersionStr(Version, '100.0.1185.39') <= 0 then
+      Result := True
+    else
+      Result := False;
+  end
+  else
+    Result := True;
 end;
 
 function GetVersionFromJson(FileName: string): string;
@@ -228,7 +271,7 @@ begin
 
   if CurPageID = wpReady then
   begin
-    if (not IsDotNet8DesktopRuntimeInstalled()) or (not IsVCRedistInstalled()) then
+    if (not IsDotNet8DesktopRuntimeInstalled()) or (not IsVCRedistInstalled()) or NeedWebView2Update() then
     begin
       DownloadPage.Show;
       try
@@ -281,6 +324,32 @@ begin
           except
             if not DownloadPage.AbortedByUser then
               MsgBox(ExpandConstant('{cm:DownloadFailedVC}'), mbError, MB_OK);
+          end;
+        end;
+
+        if NeedWebView2Update() then
+        begin
+          DownloadPage.Clear;
+          DownloadPage.Add('https://go.microsoft.com/fwlink/?linkid=2124701', 'WebView2Setup.exe', '');
+          try
+            DownloadPage.SetText(ExpandConstant('{cm:DownloadingWebView2}'), '');
+            DownloadPage.Download;
+            DownloadPage.SetText(ExpandConstant('{cm:InstallingWebView2}'), '');
+            
+            if Exec(ExpandConstant('{tmp}\WebView2Setup.exe'), '/silent /install', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+            begin
+              if (ResultCode <> 0) and (ResultCode <> 1641) and (ResultCode <> 3010) then
+              begin
+                 MsgBox(ExpandConstant('{cm:InstallFailedWebView2}'), mbError, MB_OK);
+              end;
+            end
+            else
+            begin
+              MsgBox(ExpandConstant('{cm:RuntimeExecFailed}'), mbError, MB_OK);
+            end;
+          except
+            if not DownloadPage.AbortedByUser then
+              MsgBox(ExpandConstant('{cm:DownloadFailedWebView2}'), mbError, MB_OK);
           end;
         end;
       finally
