@@ -55,50 +55,60 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Center"
-                    Spacing="8"
-                    Padding="24,16"
-                    MaxWidth="650"
-                    Visibility="{x:Bind ViewModel.AgreementVisibility, Mode=OneWay}">
+        <Grid Grid.Row="0"
+              HorizontalAlignment="Center"
+              Padding="24,16"
+              MaxWidth="650"
+              Visibility="{x:Bind ViewModel.AgreementVisibility, Mode=OneWay}">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" /> 
+            </Grid.RowDefinitions>
 
-            <Image x:Name="IconImage"
+            <Image Grid.Row="0"
+                   x:Name="IconImage"
                    Source="ms-appx:///Assets/icon.png"
                    Width="52"
                    Height="52"
                    HorizontalAlignment="Center"
-                   Margin="0,0,0,2"
+                   Margin="0,0,0,10"
                    Opacity="0">
                 <Image.RenderTransform>
                     <TranslateTransform x:Name="IconTransform" Y="30" />
                 </Image.RenderTransform>
             </Image>
 
-            <TextBlock x:Name="TitleText"
+            <TextBlock Grid.Row="1"
+                       x:Name="TitleText"
                        Text="{helpers:Loc Key=AgreementPage_Title}"
                        FontSize="20"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
+                       Margin="0,0,0,8"
                        Opacity="0">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="TitleTransform" Y="30" />
                 </TextBlock.RenderTransform>
             </TextBlock>
 
-            <TextBlock x:Name="DescText"
+            <TextBlock Grid.Row="2"
+                       x:Name="DescText"
                        Text="{helpers:Loc Key=AgreementPage_Welcome}"
                        FontSize="12"
                        TextWrapping="Wrap"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
+                       Margin="0,0,0,8"
                        Opacity="0">
                 <TextBlock.RenderTransform>
                     <TranslateTransform x:Name="DescTransform" Y="30" />
                 </TextBlock.RenderTransform>
             </TextBlock>
 
-            <Grid x:Name="AgreementArea" Opacity="0">
+            <Grid Grid.Row="3" x:Name="AgreementArea" Opacity="0">
                 <Grid.RenderTransform>
                     <TranslateTransform x:Name="AgreementTransform" Y="30" />
                 </Grid.RenderTransform>
@@ -113,8 +123,7 @@
                         Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                         BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                         BorderThickness="1"
-                        CornerRadius="6"
-                        Height="220">
+                        CornerRadius="6">
                     <ScrollViewer x:Name="AgreementScrollViewer" Padding="16,12" VerticalScrollBarVisibility="Auto"
                                   ViewChanged="OnAgreementScrollChanged">
                         <TextBlock Text="{x:Bind ViewModel.AgreementText, Mode=OneWay}"
@@ -138,7 +147,7 @@
                            Visibility="{x:Bind ViewModel.HintVisibility, Mode=OneWay}"
                            Margin="28,2,0,0" />
             </Grid>
-        </StackPanel>
+        </Grid>
 
         <StackPanel Grid.Row="0"
                     VerticalAlignment="Center"
