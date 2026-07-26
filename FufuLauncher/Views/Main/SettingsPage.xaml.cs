@@ -2,8 +2,6 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
-using System.Linq;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using FufuLauncher.Helpers;
@@ -510,7 +508,6 @@ public sealed partial class SettingsPage : Page
         }
         catch (System.Runtime.InteropServices.COMException)
         {
-            // Only a single ContentDialog can be open at any time - wait and retry once
             await Task.Delay(300);
             try
             {
@@ -548,12 +545,13 @@ public sealed partial class SettingsPage : Page
 
     private bool _isNavigatingFromMenu;
     private DispatcherTimer? _navLockTimer;
-
+    
     private static readonly string[] _sectionTags =
-        { "AppearanceItem", "HomeTextItem", "LanguageItem", "LaunchConfigItem",
-          "BackgroundItem", "WindowEffectsItem", "StartupSoundItem",
-          "CheckinSettingsItem",
-          "AdvancedOptionsItem", "ScreenshotSettingsItem", "UpdateItem", "AboutItem", "SecurityAuthItem" };
+        { "AppearanceItem", "HomeCardsItem", "WidgetsItem", "NotesItem", "HomeTextItem",
+          "BackgroundItem", "WindowEffectsItem",
+          "LaunchConfigItem", "ScreenshotSettingsItem", "CheckinSettingsItem",
+          "LanguageItem", "WindowBehaviorItem", "StartupSoundItem", "AdvancedOptionsItem", "UpdateItem",
+          "AboutItem", "SecurityAuthItem" };
 
     private void Page_Loaded(object sender, RoutedEventArgs e)
     {
@@ -566,6 +564,236 @@ public sealed partial class SettingsPage : Page
         }
         _isNavigatingFromMenu = false;
     }
+
+    #region 设置项搜索
+
+    private readonly List<SettingsSearchResult> _searchIndex = new();
+    private FrameworkElement? _highlightedRow;
+    private Microsoft.UI.Xaml.Media.Brush? _highlightedRowOriginalBackground;
+    private DispatcherTimer? _highlightTimer;
+    
+    private void BuildSearchIndex()
+    {
+        if (_searchIndex.Count > 0)
+        {
+            return;
+        }
+
+        foreach (var tag in _sectionTags)
+        {
+            if (FindName(tag) is not FrameworkElement section)
+            {
+                continue;
+            }
+
+            var sectionName = GetSectionDisplayName(tag);
+            CollectSearchRows(section, tag, sectionName);
+        }
+    }
+
+    private string GetSectionDisplayName(string tag)
+    {
+        var navItem = SettingsNavigationView.MenuItems
+            .OfType<NavigationViewItem>()
+            .FirstOrDefault(item => item.Tag?.ToString() == tag);
+
+        return navItem?.Content?.ToString() ?? string.Empty;
+    }
+
+    private void CollectSearchRows(DependencyObject node, string sectionTag, string sectionName)
+    {
+        var count = Microsoft.UI.Xaml.Media.VisualTreeHelper.GetChildrenCount(node);
+        for (int i = 0; i < count; i++)
+        {
+            var child = Microsoft.UI.Xaml.Media.VisualTreeHelper.GetChild(node, i);
+
+            if (child is FrameworkElement { Tag: "SettingsRow" } row)
+            {
+                var title = FindRowTitle(row);
+                if (!string.IsNullOrWhiteSpace(title))
+                {
+                    _searchIndex.Add(new SettingsSearchResult
+                    {
+                        Title = title!,
+                        Section = sectionName,
+                        SectionTag = sectionTag,
+                        Element = row
+                    });
+                }
+                continue;
+            }
+
+            CollectSearchRows(child, sectionTag, sectionName);
+        }
+    }
+
+    private static string? FindRowTitle(DependencyObject node)
+    {
+        var count = Microsoft.UI.Xaml.Media.VisualTreeHelper.GetChildrenCount(node);
+        for (int i = 0; i < count; i++)
+        {
+            var child = Microsoft.UI.Xaml.Media.VisualTreeHelper.GetChild(node, i);
+
+            if (child is TextBlock { Tag: "RowTitle" } titleBlock)
+            {
+                return titleBlock.Text;
+            }
+
+            var nested = FindRowTitle(child);
+            if (nested != null)
+            {
+                return nested;
+            }
+        }
+
+        return null;
+    }
+
+    private void SettingsSearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+    {
+        if (args.Reason != AutoSuggestionBoxTextChangeReason.UserInput)
+        {
+            return;
+        }
+
+        try
+        {
+            BuildSearchIndex();
+        }
+        catch
+        {
+            // ignored
+        }
+
+        var query = sender.Text?.Trim();
+        if (string.IsNullOrEmpty(query))
+        {
+            sender.ItemsSource = null;
+            return;
+        }
+
+        sender.ItemsSource = _searchIndex
+            .Where(item => item.Title.Contains(query, StringComparison.OrdinalIgnoreCase)
+                           || item.Section.Contains(query, StringComparison.OrdinalIgnoreCase))
+            .Take(12)
+            .ToList();
+    }
+
+    private void SettingsSearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+    {
+        if (args.SelectedItem is SettingsSearchResult result)
+        {
+            NavigateToSearchResult(result);
+        }
+    }
+
+    private void SettingsSearchBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+    {
+        if (args.ChosenSuggestion is SettingsSearchResult chosen)
+        {
+            NavigateToSearchResult(chosen);
+            return;
+        }
+
+        var query = args.QueryText?.Trim();
+        if (string.IsNullOrEmpty(query))
+        {
+            return;
+        }
+
+        try
+        {
+            BuildSearchIndex();
+        }
+        catch
+        {
+            return;
+        }
+
+        var first = _searchIndex.FirstOrDefault(
+            item => item.Title.Contains(query, StringComparison.OrdinalIgnoreCase));
+
+        if (first != null)
+        {
+            NavigateToSearchResult(first);
+        }
+    }
+
+    private void NavigateToSearchResult(SettingsSearchResult result)
+    {
+        if (result.Element == null)
+        {
+            return;
+        }
+        
+        _isNavigatingFromMenu = true;
+        _navLockTimer?.Stop();
+        _navLockTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(600) };
+        _navLockTimer.Tick += (s, e) =>
+        {
+            ((DispatcherTimer)s).Stop();
+            _isNavigatingFromMenu = false;
+        };
+        _navLockTimer.Start();
+
+        var navItem = SettingsNavigationView.MenuItems
+            .OfType<NavigationViewItem>()
+            .FirstOrDefault(item => item.Tag?.ToString() == result.SectionTag);
+        if (navItem != null && SettingsNavigationView.SelectedItem != navItem)
+        {
+            SettingsNavigationView.SelectedItem = navItem;
+        }
+
+        result.Element.StartBringIntoView(new BringIntoViewOptions
+        {
+            AnimationDesired = true,
+            VerticalAlignmentRatio = 0.2
+        });
+
+        HighlightRow(result.Element);
+    }
+
+    private void HighlightRow(FrameworkElement row)
+    {
+        ClearHighlight();
+
+        if (row is not Panel panel)
+        {
+            return;
+        }
+
+        _highlightedRow = row;
+        _highlightedRowOriginalBackground = panel.Background;
+
+        var color = ActualTheme == ElementTheme.Light
+            ? Windows.UI.Color.FromArgb(0x24, 0x00, 0x00, 0x00)
+            : Windows.UI.Color.FromArgb(0x30, 0xFF, 0xFF, 0xFF);
+        panel.Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(color);
+
+        _highlightTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
+        _highlightTimer.Tick += (s, e) =>
+        {
+            ((DispatcherTimer)s).Stop();
+            ClearHighlight();
+        };
+        _highlightTimer.Start();
+    }
+
+    private void ClearHighlight()
+    {
+        _highlightTimer?.Stop();
+        _highlightTimer = null;
+
+        if (_highlightedRow is Panel previous)
+        {
+            previous.Background = _highlightedRowOriginalBackground;
+        }
+
+        _highlightedRow = null;
+        _highlightedRowOriginalBackground = null;
+    }
+
+    #endregion
 
     private void SettingsNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
@@ -817,4 +1045,32 @@ public sealed partial class SettingsPage : Page
             await settingsService.SaveSettingAsync("InjectionModule", moduleId);
         }
     }
+}
+
+/// <summary>
+/// 设置页顶部搜索框的一条建议：一个设置行的标题、它所属的分区，以及用于跳转的可视化元素。
+/// </summary>
+public sealed class SettingsSearchResult
+{
+    public string Title
+    {
+        get; init;
+    } = string.Empty;
+
+    public string Section
+    {
+        get; init;
+    } = string.Empty;
+
+    public string SectionTag
+    {
+        get; init;
+    } = string.Empty;
+
+    public FrameworkElement? Element
+    {
+        get; init;
+    }
+
+    public override string ToString() => Title;
 }

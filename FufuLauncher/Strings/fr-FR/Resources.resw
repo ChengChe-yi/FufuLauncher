@@ -1415,4 +1415,33 @@ Trace de la pile :
 Rapport : {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Erreur lors de l'écriture de la configuration
 Rapport : {0}</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>Fenêtre et navigation</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>Personnalisation</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>Jeu</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>Application</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>À propos et support</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Rechercher un paramètre…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>Désactiver la fenêtre de captcha du contrôle des risques</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Une fois activé, la fenêtre de captcha du contrôle des risques du compte ne s&apos;affichera plus. Ignorer la vérification peut temporairement empêcher le fonctionnement de fonctions comme les notes.</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>Utiliser un CDN tiers pour les mises à jour</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>Accélère le téléchargement via des nœuds CDN tiers. Désactivez pour télécharger directement depuis GitHub.</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>Découvrez et installez des plugins communautaires pour enrichir le lanceur</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>Plugins</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>Plus d'actions</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>Plugin privé</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>Ajouter un plugin privé (ID de plugin et clé d'accès requis)</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>Privé</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Exécuter le script d'installation Lua en test et consulter le journal</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>Annuler l'installation</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>Essayez une autre catégorie ou modifiez vos mots-clés</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>Réinitialiser les filtres</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>Impossible de joindre la boutique de plugins</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>Catégorie</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>Type de mise à jour</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>Version minimale du lanceur</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0} (la version actuelle {1} est trop ancienne)</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>Visibilité</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>Dépendances</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>À propos de ce plugin</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Téléchargement du script d'installation...</value></data>
 </root>

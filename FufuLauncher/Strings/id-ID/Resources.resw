@@ -1415,4 +1415,33 @@ Stack trace:
 Detail: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Terjadi kesalahan saat menulis konfigurasi.
 Detail: {0}</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>Jendela &amp; Navigasi</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>Personalisasi</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>Game</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>Aplikasi</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>Tentang &amp; Dukungan</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Cari pengaturan…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>Nonaktifkan popup captcha kontrol risiko</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Jika diaktifkan, jendela captcha kontrol risiko akun tidak akan muncul. Melewati verifikasi dapat membuat fitur seperti catatan sementara tidak berfungsi.</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>Gunakan CDN pihak ketiga untuk pembaruan</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>Mempercepat unduhan melalui node CDN pihak ketiga. Nonaktifkan untuk mengunduh langsung dari GitHub.</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>Temukan dan pasang plugin komunitas untuk memperluas peluncur</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>Plugin</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>Tindakan lainnya</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>Plugin privat</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>Tambahkan plugin privat (perlu ID plugin dan kunci akses)</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>Privat</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Jalankan skrip pemasangan Lua dalam mode uji dan lihat lognya</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>Batalkan pemasangan</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>Coba kategori lain, atau ubah kata kunci pencarian</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>Atur ulang filter</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>Tidak dapat menghubungi toko plugin</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>Kategori</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>Jenis pembaruan</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>Versi peluncur minimum</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0} (versi saat ini {1} terlalu lama)</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>Visibilitas</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>Dependensi</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>Tentang plugin ini</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Mengunduh skrip pemasangan...</value></data>
 </root>

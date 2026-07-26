@@ -1415,4 +1415,33 @@ Microsoft 웹사이트로 이동하여 다운로드 및 설치하시겠습니까
 세부 정보: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>설정을 쓰는 중 오류가 발생했습니다.
 세부 정보: {0}</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>창 및 탐색</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>개인 설정</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>게임</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>앱</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>정보 및 지원</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>설정 검색…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>위험 관리 캡차 팝업 비활성화</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>활성화하면 계정 위험 관리 캡차 창이 표시되지 않습니다. 인증을 건너뛰면 실시간 메모 등의 기능이 일시적으로 작동하지 않을 수 있습니다.</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>서드파티 CDN으로 업데이트 다운로드</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>서드파티 CDN 노드를 통해 다운로드를 가속합니다. 끄면 GitHub에서 직접 다운로드합니다.</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>커뮤니티 플러그인을 찾아 설치하여 런처를 확장하세요</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>플러그인 목록</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>추가 작업</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>비공개 플러그인</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>비공개 플러그인 추가 (플러그인 ID와 액세스 키 필요)</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>비공개</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Lua 설치 스크립트를 테스트 실행하고 로그를 확인합니다</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>설치 취소</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>다른 분류를 선택하거나 검색어를 바꿔 보세요</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>필터 초기화</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>플러그인 스토어에 연결할 수 없습니다</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>분류</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>업데이트 방식</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>최소 런처 버전</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0} (현재 {1} 버전이 너무 낮음)</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>공개 범위</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>의존성</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>자세한 소개</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>설치 스크립트 다운로드 중...</value></data>
 </root>

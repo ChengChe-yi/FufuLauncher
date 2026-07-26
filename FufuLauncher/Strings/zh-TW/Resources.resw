@@ -1415,4 +1415,33 @@ If you continue, this warning will be ignored and the preset&apos;s Hash will be
 回饋: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>寫入設定時發生錯誤
 回饋: {0}</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>視窗與導覽</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>個人化</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>遊戲</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>應用程式</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>關於與支援</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>搜尋設定…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>停用風控驗證碼彈出視窗</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>啟用後將不會彈出帳號風控驗證碼視窗。某些情況下略過驗證可能導致便箋等功能暫時無法使用。</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>使用第三方加速節點下載更新</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>透過第三方 CDN 節點加速下載更新。關閉後將直連 GitHub 下載</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>探索並安裝社群外掛，擴充啟動器的功能</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>外掛清單</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>更多操作</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>私密外掛</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>新增私密外掛（需要外掛 ID 與存取金鑰）</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>私密</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>測試執行 Lua 安裝指令碼並檢視記錄</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>取消安裝</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>換個分類，或調整一下搜尋關鍵字試試</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>重設篩選</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>無法連線到外掛商城</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>分類</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>更新方式</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>最低啟動器版本</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0}（目前 {1}，版本過低）</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>可見性</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>相依項目</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>詳細介紹</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>正在下載安裝指令碼...</value></data>
 </root>

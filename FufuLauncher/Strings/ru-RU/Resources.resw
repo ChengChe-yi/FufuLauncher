@@ -1415,4 +1415,33 @@ If you continue, this warning will be ignored and the preset&apos;s Hash will be
 Подробности: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Ошибка записи конфигурации.
 Подробности: {0}</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>Окно и навигация</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>Персонализация</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>Игра</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>Приложение</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>О программе и поддержка</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Поиск параметров…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>Отключить всплывающее окно капчи контроля рисков</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Если включено, окно капчи контроля рисков аккаунта не будет появляться. Пропуск проверки в некоторых случаях может временно нарушить работу таких функций, как заметки.</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>Использовать сторонний CDN для обновлений</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>Ускоряет загрузку через сторонние CDN-узлы. Отключите, чтобы загружать напрямую с GitHub.</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>Находите и устанавливайте плагины сообщества, расширяя возможности лаунчера</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>Плагины</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>Другие действия</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>Приватный плагин</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>Добавить приватный плагин (нужны ID плагина и ключ доступа)</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>Приватный</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Тестовый запуск Lua-скрипта установки с просмотром журнала</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>Отменить установку</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>Попробуйте другую категорию или измените поисковый запрос</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>Сбросить фильтры</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>Не удалось подключиться к магазину плагинов</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>Категория</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>Тип обновления</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>Минимальная версия лаунчера</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0} (текущая {1} слишком старая)</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>Видимость</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>Зависимости</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>Подробное описание</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Загрузка скрипта установки...</value></data>
 </root>

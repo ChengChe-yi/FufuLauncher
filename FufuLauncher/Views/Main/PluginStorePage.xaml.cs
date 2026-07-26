@@ -2,12 +2,14 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using System.ComponentModel;
 using System.Reflection;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
@@ -16,20 +18,27 @@ namespace FufuLauncher.Views;
 public sealed partial class PluginStorePage : Page
 {
     public PluginStoreViewModel ViewModel { get; }
+    
+    public IReadOnlyList<int> SkeletonItems { get; } = new[] { 0, 1, 2, 3, 4, 5 };
 
     private static readonly string CurrentAppVersion =
         Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "1.0.0.0";
+
+    private bool _isSubscribed;
 
     public PluginStorePage()
     {
         ViewModel = App.GetService<PluginStoreViewModel>();
         InitializeComponent();
     }
-
+    
     private async void Page_Loaded(object sender, RoutedEventArgs e)
     {
-        if (FindName("EntranceStoryboard") is Storyboard sb)
-            sb.Begin();
+        EntranceStoryboard.Begin();
+        
+        SyncSortUi();
+        SubscribeViewModel();
+        UpdateLoadingAnimations();
 
         if (ViewModel.Plugins.Count == 0)
         {
@@ -37,30 +46,100 @@ public sealed partial class PluginStorePage : Page
         }
     }
 
-    protected override async void OnNavigatedTo(NavigationEventArgs e)
+    private void Page_Unloaded(object sender, RoutedEventArgs e)
     {
-        base.OnNavigatedTo(e);
-
-        if (ViewModel.Plugins.Count == 0)
-        {
-            await ViewModel.InitializeAsync();
-        }
+        UnsubscribeViewModel();
+        SkeletonPulseStoryboard.Stop();
+        RefreshSpinStoryboard.Stop();
+        ResultsFadeOutStoryboard.Stop();
+        ResultsFadeInStoryboard.Stop();
     }
 
-    private async void OnSearchKeyDown(object sender, KeyRoutedEventArgs e)
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
-        if (e.Key == Windows.System.VirtualKey.Enter)
+        UnsubscribeViewModel();
+        base.OnNavigatedFrom(e);
+    }
+
+    private void SubscribeViewModel()
+    {
+        if (_isSubscribed) return;
+        ViewModel.PropertyChanged += OnViewModelPropertyChanged;
+        _isSubscribed = true;
+    }
+
+    private void UnsubscribeViewModel()
+    {
+        if (!_isSubscribed) return;
+        ViewModel.PropertyChanged -= OnViewModelPropertyChanged;
+        _isSubscribed = false;
+    }
+
+    private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName is nameof(PluginStoreViewModel.IsLoading)
+                           or nameof(PluginStoreViewModel.ShowSkeleton)
+                           or nameof(PluginStoreViewModel.IsRefreshing))
         {
-            await ViewModel.LoadPluginsAsync();
+            UpdateLoadingAnimations();
         }
     }
     
+    private void UpdateLoadingAnimations()
+    {
+        if (ViewModel.ShowSkeleton)
+            SkeletonPulseStoryboard.Begin();
+        else
+            SkeletonPulseStoryboard.Stop();
+
+        if (ViewModel.IsLoading)
+        {
+            RefreshSpinStoryboard.Begin();
+        }
+        else
+        {
+            RefreshSpinStoryboard.Stop();
+            RefreshIconRotate.Angle = 0;
+        }
+
+        if (ViewModel.IsRefreshing)
+        {
+            ResultsFadeOutStoryboard.Begin();
+        }
+        else if (!ViewModel.IsLoading)
+        {
+            ResultsFadeInStoryboard.Begin();
+        }
+    }
+    
+    private void OnContentScrollViewerSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        var horizontalMargin = ContentPanel.Margin.Left + ContentPanel.Margin.Right;
+        var available = e.NewSize.Width - horizontalMargin;
+        
+        ContentPanel.Width = Math.Max(320, Math.Min(ContentPanel.MaxWidth, available));
+    }
+
+    private void SyncSortUi()
+    {
+        var isNewest = string.Equals(ViewModel.SortMode, "newest", StringComparison.OrdinalIgnoreCase);
+        SortNewestItem.IsChecked = isNewest;
+        SortPopularItem.IsChecked = !isNewest;
+        SortLabel.Text = isNewest ? SortNewestItem.Text : SortPopularItem.Text;
+    }
+
+    private async void OnSearchQuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+    {
+        ViewModel.CurrentPage = 1;
+        await ViewModel.LoadPluginsAsync();
+    }
+
     private async void OnUploadPluginClick(object sender, RoutedEventArgs e)
     {
         await Windows.System.Launcher.LaunchUriAsync(new Uri("https://fu1.fun/dev-add"));
     }
 
-    private async void OnAddPrivatePluginClick(object sender, RoutedEventArgs e)
+    private void OnAddPrivatePluginClick(object sender, RoutedEventArgs e)
     {
         ViewModel.AddPrivatePluginCommand.Execute(null);
     }
@@ -75,21 +154,31 @@ public sealed partial class PluginStorePage : Page
         await ViewModel.InitializeAsync();
     }
 
+    private async void OnResetFiltersClick(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SearchText = string.Empty;
+        ViewModel.SelectedCategory = ViewModel.Categories.FirstOrDefault();
+        ViewModel.CurrentPage = 1;
+        await ViewModel.LoadPluginsAsync();
+    }
+
     private async void OnSortClick(object sender, RoutedEventArgs e)
     {
         if (sender is MenuFlyoutItem item && item.Tag is string sortMode)
         {
             SortLabel.Text = item.Text;
             ViewModel.SortMode = sortMode;
+            ViewModel.CurrentPage = 1;
             await ViewModel.LoadPluginsAsync();
         }
     }
 
     private async void OnCategoryClick(object sender, RoutedEventArgs e)
     {
-        if (sender is Button btn && btn.Tag is PluginStoreCategory category)
+        if (sender is ToggleButton btn && btn.Tag is PluginStoreCategory category)
         {
             ViewModel.SelectedCategory = category;
+            ViewModel.CurrentPage = 1;
             await ViewModel.LoadPluginsAsync();
         }
     }
@@ -140,106 +229,102 @@ public sealed partial class PluginStorePage : Page
 
     private async Task ShowPluginDetailDialogAsync(PluginStoreItem item)
     {
-        var infoPanel = new StackPanel { Spacing = 16, Padding = new Thickness(0, 12, 0, 12) };
-        
-        infoPanel.Children.Add(new TextBlock
+        var content = new StackPanel { Spacing = 16, Padding = new Thickness(0, 4, 0, 4) };
+
+        content.Children.Add(BuildDetailHeader(item));
+        content.Children.Add(BuildDetailDivider());
+
+        if (!string.IsNullOrWhiteSpace(item.Description))
         {
-            Text = item.Description,
-            TextWrapping = TextWrapping.Wrap,
-            FontSize = 14,
-            Opacity = 0.9,
-            LineHeight = 22,
-            Margin = new Thickness(0, 0, 0, 8)
-        });
-        
-        infoPanel.Children.Add(CreateInfoRow("版本", item.VersionDisplay));
-        infoPanel.Children.Add(CreateInfoRow("开发者", item.Developer));
-        infoPanel.Children.Add(CreateInfoRow("大小", item.SizeDisplay));
-        infoPanel.Children.Add(CreateInfoRow("下载量", item.DownloadsDisplay));
-        
+            content.Children.Add(new TextBlock
+            {
+                Text = item.Description,
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = 14,
+                Opacity = 0.9,
+                LineHeight = 22
+            });
+        }
+
+        var infoPanel = new StackPanel { Spacing = 10 };
+        infoPanel.Children.Add(CreateInfoRow("PluginStoreVersion".GetLocalized(), item.VersionDisplay));
+        infoPanel.Children.Add(CreateInfoRow("PluginStoreDeveloper".GetLocalized(), item.Developer));
+        infoPanel.Children.Add(CreateInfoRow("PluginStoreSize".GetLocalized(), item.SizeDisplay));
+        infoPanel.Children.Add(CreateInfoRow("PluginStoreDownloads".GetLocalized(), item.DownloadsDisplay));
+
+        if (item.HasCategory)
+        {
+            infoPanel.Children.Add(CreateInfoRow("PluginStoreCategoryLabel".GetLocalized(), item.CategoryDisplay));
+        }
+
         if (item.HasUpdateType)
         {
-            infoPanel.Children.Add(CreateInfoRow("更新类型", item.UpdateTypeDisplay));
+            infoPanel.Children.Add(CreateInfoRow("PluginStoreUpdateType".GetLocalized(), item.UpdateTypeDisplay));
         }
-        
+
         if (!string.IsNullOrWhiteSpace(item.MinAppVersion))
         {
-            var versionSatisfied = IsVersionSatisfied(CurrentAppVersion, item.MinAppVersion);
-            var versionRow = CreateInfoRow("最低启动器版本", $"v{item.MinAppVersion}");
-            if (!versionSatisfied)
+            var versionRow = CreateInfoRow("PluginStoreMinAppVersion".GetLocalized(), $"v{item.MinAppVersion}");
+            if (!IsVersionSatisfied(CurrentAppVersion, item.MinAppVersion)
+                && versionRow.Children[1] is TextBlock valueBlock)
             {
-                var valueBlock = versionRow.Children[1] as TextBlock;
-                if (valueBlock != null)
-                {
-                    valueBlock.Text = $"v{item.MinAppVersion} ⚠ 当前版本 {CurrentAppVersion} 过低";
-                    valueBlock.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.OrangeRed);
-                }
+                valueBlock.Text = string.Format(
+                    "PluginStoreVersionTooLow".GetLocalized(), item.MinAppVersion, CurrentAppVersion);
+                valueBlock.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.OrangeRed);
+                valueBlock.TextWrapping = TextWrapping.Wrap;
+                valueBlock.TextTrimming = TextTrimming.None;
             }
             infoPanel.Children.Add(versionRow);
         }
-        
+
         if (item.IsPrivate)
         {
-            var privateRow = CreateInfoRow("可见性", "私密插件");
-            infoPanel.Children.Add(privateRow);
+            infoPanel.Children.Add(CreateInfoRow(
+                "PluginStoreVisibility".GetLocalized(), "PluginStorePrivatePlugin".GetLocalized()));
         }
-        
+
+        content.Children.Add(infoPanel);
+
         if (item.HasDependencies)
         {
-            infoPanel.Children.Add(new TextBlock
-            {
-                Text = "依赖",
-                FontSize = 14,
-                FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
-                Margin = new Thickness(0, 16, 0, -8)
-            });
+            content.Children.Add(BuildDetailDivider());
+            content.Children.Add(CreateSubHeader("PluginStoreDependencies".GetLocalized()));
 
-            var depsPanel = new StackPanel { Spacing = 8 };
+            var depsPanel = new StackPanel { Spacing = 6 };
             foreach (var dep in item.Dependencies.Where(d => !d.IsEmpty))
             {
-                var depGrid = new Grid();
-                depGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                var depText = new TextBlock
+                depsPanel.Children.Add(new TextBlock
                 {
                     Text = dep.ToString(),
                     FontSize = 13,
                     Opacity = 0.75,
                     TextWrapping = TextWrapping.Wrap
-                };
-                depGrid.Children.Add(depText);
-                depsPanel.Children.Add(depGrid);
+                });
             }
-            infoPanel.Children.Add(depsPanel);
+            content.Children.Add(depsPanel);
         }
-        
+
         if (!string.IsNullOrEmpty(item.LongDescription))
         {
-            infoPanel.Children.Add(new TextBlock
-            {
-                Text = "详细介绍",
-                FontSize = 14,
-                FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
-                Margin = new Thickness(0, 16, 0, -8)
-            });
+            content.Children.Add(BuildDetailDivider());
+            content.Children.Add(CreateSubHeader("PluginStoreLongDescription".GetLocalized()));
 
-            infoPanel.Children.Add(new TextBlock
+            content.Children.Add(new TextBlock
             {
                 Text = item.LongDescription,
                 TextWrapping = TextWrapping.Wrap,
                 FontSize = 13,
                 Opacity = 0.75,
-                LineHeight = 20,
-                Margin = new Thickness(0, 8, 0, 0),
-                MaxHeight = 250
+                LineHeight = 20
             });
         }
 
         var scrollViewer = new ScrollViewer
         {
-            MaxHeight = 500,
-            Content = infoPanel,
-            VerticalScrollBarVisibility = ScrollBarVisibility.Auto
+            MaxHeight = 520,
+            Content = content,
+            VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+            HorizontalScrollMode = ScrollMode.Disabled
         };
 
         var isInstalledOrUpdate = item.State == StorePluginState.Installed || item.State == StorePluginState.UpdateAvailable;
@@ -249,8 +334,10 @@ public sealed partial class PluginStorePage : Page
         {
             Title = item.Name,
             Content = scrollViewer,
-            PrimaryButtonText = isUpdate ? "立即更新" : (isInstalledOrUpdate ? "卸载" : "安装插件"),
-            SecondaryButtonText = "取消",
+            PrimaryButtonText = isUpdate
+                ? "PluginStoreUpdateNow".GetLocalized()
+                : (isInstalledOrUpdate ? "PluginStoreUninstall".GetLocalized() : "PluginStoreInstallPlugin".GetLocalized()),
+            SecondaryButtonText = "PluginStoreCancel".GetLocalized(),
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = XamlRoot
         };
@@ -273,11 +360,91 @@ public sealed partial class PluginStorePage : Page
             }
         }
     }
+    
+    private static Grid BuildDetailHeader(PluginStoreItem item)
+    {
+        var grid = new Grid();
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+        var iconHost = new Border
+        {
+            Width = 56,
+            Height = 56,
+            CornerRadius = new CornerRadius(12),
+            VerticalAlignment = VerticalAlignment.Top,
+            Background = TryGetBrush("CardBackgroundFillColorDefaultBrush")
+        };
+
+        var iconLayers = new Grid();
+        iconLayers.Children.Add(new FontIcon { Glyph = "", FontSize = 22, Opacity = 0.6 });
+        
+        if (!string.IsNullOrWhiteSpace(item.IconUrl)
+            && Uri.TryCreate(item.IconUrl, UriKind.Absolute, out var iconUri))
+        {
+            iconLayers.Children.Add(new Image
+            {
+                Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(iconUri),
+                Stretch = Microsoft.UI.Xaml.Media.Stretch.UniformToFill
+            });
+        }
+
+        iconHost.Child = iconLayers;
+        Grid.SetColumn(iconHost, 0);
+        grid.Children.Add(iconHost);
+
+        var textPanel = new StackPanel
+        {
+            Margin = new Thickness(16, 0, 0, 0),
+            VerticalAlignment = VerticalAlignment.Center,
+            Spacing = 4
+        };
+
+        textPanel.Children.Add(new TextBlock
+        {
+            Text = item.Name,
+            FontSize = 18,
+            FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
+            TextWrapping = TextWrapping.Wrap
+        });
+
+        textPanel.Children.Add(new TextBlock
+        {
+            Text = item.DeveloperVersionDisplay,
+            FontSize = 12,
+            Opacity = 0.6,
+            TextWrapping = TextWrapping.Wrap
+        });
+
+        Grid.SetColumn(textPanel, 1);
+        grid.Children.Add(textPanel);
+
+        return grid;
+    }
+
+    private static Border BuildDetailDivider() => new()
+    {
+        Height = 1,
+        Opacity = 0.5,
+        Background = TryGetBrush("DividerStrokeColorDefaultBrush")
+    };
+    
+    private static Microsoft.UI.Xaml.Media.Brush? TryGetBrush(string key)
+        => Application.Current.Resources.TryGetValue(key, out var value)
+            ? value as Microsoft.UI.Xaml.Media.Brush
+            : null;
+
+    private static TextBlock CreateSubHeader(string text) => new()
+    {
+        Text = text,
+        FontSize = 14,
+        FontWeight = Microsoft.UI.Text.FontWeights.SemiBold
+    };
 
     private static Grid CreateInfoRow(string label, string value)
     {
         var grid = new Grid();
-        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(100) });
+        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(120) });
         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
         var labelBlock = new TextBlock

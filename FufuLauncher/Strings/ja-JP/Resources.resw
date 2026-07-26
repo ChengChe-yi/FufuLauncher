@@ -1415,4 +1415,33 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
 詳細: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>設定の書き込み中にエラーが発生しました。
 詳細: {0}</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>ウィンドウとナビゲーション</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>個人用設定</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>ゲーム</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>アプリ</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>バージョン情報とサポート</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>設定を検索…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>リスク管理の認証コードポップアップを無効化</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>有効にすると、アカウントのリスク管理認証コードウィンドウが表示されなくなります。認証をスキップすると、リアルタイムノートなどの機能が一時的に利用できなくなる場合があります。</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>サードパーティ CDN で更新をダウンロード</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>サードパーティ CDN ノード経由でダウンロードを高速化します。オフにすると GitHub から直接ダウンロードします。</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>コミュニティ製プラグインを見つけて追加し、ランチャーを拡張します</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>プラグイン一覧</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>その他の操作</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>非公開プラグイン</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>非公開プラグインを追加します（プラグイン ID とアクセスキーが必要）</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>非公開</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Lua インストールスクリプトをテスト実行してログを確認します</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>インストールを中止</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>別のカテゴリを選ぶか、検索キーワードを見直してみてください</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>絞り込みをリセット</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>プラグインストアに接続できません</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>カテゴリ</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>更新方式</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>必要なランチャーバージョン</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0}（現在の {1} は古すぎます）</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>公開範囲</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>依存関係</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>詳細情報</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>インストールスクリプトをダウンロード中...</value></data>
 </root>

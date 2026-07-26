@@ -75,8 +75,12 @@ public class StringToImageSourceConverter : IValueConverter
 {
     public object? Convert(object value, Type targetType, object parameter, string language)
     {
-        if (value is string s && !string.IsNullOrWhiteSpace(s))
-            return s;
+        if (value is string s
+            && !string.IsNullOrWhiteSpace(s)
+            && Uri.TryCreate(s, UriKind.Absolute, out var uri))
+        {
+            return new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(uri);
+        }
         return null;
     }
 

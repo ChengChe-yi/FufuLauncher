@@ -1460,4 +1460,29 @@ Do you still want to execute it? (Not recommended)</value></data>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve"><value>Visuals</value></data>
   <data name="DisableCaptchaPopup" xml:space="preserve"><value>Disable Risk Control Captcha Popup</value></data>
   <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>When enabled, the account risk control captcha window will not appear. Skipping verification in some cases may temporarily prevent features like Daily Notes from working.</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>Window &amp; Navigation</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>Personalization</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>Game</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>Application</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>About &amp; Support</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Search settings…</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>Discover and install community plugins to extend the launcher</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>Plugins</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>More actions</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>Private plugin</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>Add a private plugin (requires a plugin ID and access key)</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>Private</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Run the Lua install script in test mode and view the log</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>Cancel install</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>Try another category, or adjust your search keywords</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>Reset filters</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>Can't reach the plugin store</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>Category</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>Update type</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>Minimum launcher version</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0} (current {1} is too old)</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>Visibility</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>Dependencies</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>About this plugin</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Downloading install script...</value></data>
 </root>

@@ -8,58 +8,105 @@
     xmlns:viewModels="using:FufuLauncher.ViewModels"
     xmlns:converters="using:FufuLauncher.Converters"
     xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
     mc:Ignorable="d"
     Background="Transparent"
-    Loaded="Page_Loaded">
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded">
 
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
                     <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#E5FFFFFF" TintColor="#FFFFFF" TintOpacity="0.6" />
-                    <AcrylicBrush x:Key="InstallOverlayBrush" FallbackColor="#D9FFFFFF" TintColor="#FFFFFF" TintOpacity="0.85" />
+                    <SolidColorBrush x:Key="InstallOverlayBrush" Color="#F7FFFFFF" />
                     <SolidColorBrush x:Key="SafeCardBrush" Color="#0A000000" />
                     <SolidColorBrush x:Key="SafeBorderBrush" Color="#1A000000" />
+                    <SolidColorBrush x:Key="SafeHoverBrush" Color="#14000000" />
                     <SolidColorBrush x:Key="SafeTextBrush" Color="#FF000000" />
                     <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#99000000" />
+                    <SolidColorBrush x:Key="SkeletonFillBrush" Color="#1F000000" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Default">
                     <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#CC000000" TintColor="#000000" TintOpacity="0.15" />
-                    <AcrylicBrush x:Key="InstallOverlayBrush" FallbackColor="#D9000000" TintColor="#000000" TintOpacity="0.85" />
+                    <SolidColorBrush x:Key="InstallOverlayBrush" Color="#F21C1C1C" />
                     <SolidColorBrush x:Key="SafeCardBrush" Color="#14FFFFFF" />
                     <SolidColorBrush x:Key="SafeBorderBrush" Color="#20FFFFFF" />
+                    <SolidColorBrush x:Key="SafeHoverBrush" Color="#24FFFFFF" />
                     <SolidColorBrush x:Key="SafeTextBrush" Color="White" />
                     <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#B3FFFFFF" />
+                    <SolidColorBrush x:Key="SkeletonFillBrush" Color="#26FFFFFF" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
-
-            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-            <converters:BoolInverterConverter x:Key="BoolInverterConverter"/>
-            <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter"/>
+            
+            <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
             
             <Storyboard x:Name="EntranceStoryboard">
                 <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
                                  Storyboard.TargetProperty="Opacity"
-                                 From="0" To="1" Duration="0:0:0.5">
+                                 From="0" To="1" Duration="0:0:0.6">
                     <DoubleAnimation.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="4"/>
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation Storyboard.TargetName="RootTranslate"
-                                 Storyboard.TargetProperty="Y"
-                                 From="30" To="0" Duration="0:0:0.6">
-                    <DoubleAnimation.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="6"/>
+                        <CubicEase EasingMode="EaseOut" />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
-            
+
             <Storyboard x:Name="ExitStoryboard">
                 <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
                                  Storyboard.TargetProperty="Opacity"
                                  From="1" To="0" Duration="0:0:0.3">
                     <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseIn"/>
+                        <CubicEase EasingMode="EaseIn" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            
+            <Storyboard x:Name="SkeletonPulseStoryboard" RepeatBehavior="Forever" AutoReverse="True">
+                <DoubleAnimation Storyboard.TargetName="SkeletonHost"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0.85" To="0.35" Duration="0:0:0.9">
+                    <DoubleAnimation.EasingFunction>
+                        <SineEase EasingMode="EaseInOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            
+            <Storyboard x:Name="RefreshSpinStoryboard" RepeatBehavior="Forever">
+                <DoubleAnimation Storyboard.TargetName="RefreshIconRotate"
+                                 Storyboard.TargetProperty="Angle"
+                                 From="0" To="360" Duration="0:0:1" />
+            </Storyboard>
+            
+            <Storyboard x:Name="ResultsFadeOutStoryboard">
+                <DoubleAnimation Storyboard.TargetName="ResultsHost"
+                                 Storyboard.TargetProperty="Opacity"
+                                 To="0" Duration="0:0:0.14">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseIn" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="ResultsTranslate"
+                                 Storyboard.TargetProperty="Y"
+                                 To="8" Duration="0:0:0.14">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseIn" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            
+            <Storyboard x:Name="ResultsFadeInStoryboard">
+                <DoubleAnimation Storyboard.TargetName="ResultsHost"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0" To="1" Duration="0:0:0.36">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="ResultsTranslate"
+                                 Storyboard.TargetProperty="Y"
+                                 From="10" To="0" Duration="0:0:0.42">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
@@ -72,14 +119,6 @@
                 <Setter Property="Padding" Value="24" />
             </Style>
 
-            <Style x:Key="SafePluginCardStyle" TargetType="Grid">
-                <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}"/>
-                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}"/>
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="CornerRadius" Value="14"/>
-                <Setter Property="Padding" Value="0"/>
-            </Style>
-
             <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontWeight" Value="SemiBold" />
@@ -87,373 +126,973 @@
                 <Setter Property="Margin" Value="4,0,0,8" />
                 <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
             </Style>
-            
+
+            <Style x:Key="SectionCaptionStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Foreground" Value="{ThemeResource SafeSecondaryTextBrush}" />
+                <Setter Property="Opacity" Value="0.8" />
+                <Setter Property="Margin" Value="0,0,4,8" />
+                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
+            </Style>
+
             <Style x:Key="StoreInstallButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
-                <Setter Property="CornerRadius" Value="16"/>
-                <Setter Property="Padding" Value="16,6"/>
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="FontWeight" Value="SemiBold"/>
-                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}"/>
-                <Setter Property="MinWidth" Value="72"/>
-                <Setter Property="Height" Value="32"/>
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="Padding" Value="16,6" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
+                <Setter Property="MinWidth" Value="76" />
+                <Setter Property="Height" Value="32" />
             </Style>
 
             <Style x:Key="StoreInstalledButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
-                <Setter Property="CornerRadius" Value="16"/>
-                <Setter Property="Padding" Value="16,6"/>
-                <Setter Property="FontSize" Value="12"/>
-                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}"/>
-                <Setter Property="MinWidth" Value="72"/>
-                <Setter Property="Height" Value="32"/>
-            </Style>
-
-            <Style x:Key="CategoryChipStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="CornerRadius" Value="8"/>
-                <Setter Property="Padding" Value="16,8"/>
-                <Setter Property="FontSize" Value="13"/>
-                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}"/>
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="Padding" Value="16,6" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
+                <Setter Property="MinWidth" Value="76" />
+                <Setter Property="Height" Value="32" />
             </Style>
             
+            <Style x:Key="StoreSubtleButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Background" Value="{ThemeResource SafeCardBrush}" />
+                <Setter Property="Foreground" Value="{ThemeResource SafeTextBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="12,6" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="Height" Value="36" />
+                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
+            </Style>
+
+            <Style x:Key="StoreIconButtonStyle" TargetType="Button" BasedOn="{StaticResource StoreSubtleButtonStyle}">
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Width" Value="36" />
+                <Setter Property="MinWidth" Value="36" />
+            </Style>
+
+            <Style x:Key="StorePagerButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Width" Value="32" />
+                <Setter Property="Height" Value="32" />
+                <Setter Property="MinWidth" Value="32" />
+                <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}" />
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+
+            <Style x:Key="CategoryChipStyle" TargetType="primitives:ToggleButton">
+                <Setter Property="Foreground" Value="{ThemeResource SafeTextBrush}" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
+                <Setter Property="Padding" Value="14,7" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="UseSystemFocusVisuals" Value="True" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="primitives:ToggleButton">
+                            <Grid x:Name="ChipRoot" Background="Transparent" RenderTransformOrigin="0.5,0.5">
+                                <Grid.RenderTransform>
+                                    <ScaleTransform x:Name="ChipScale" ScaleX="1" ScaleY="1" />
+                                </Grid.RenderTransform>
+
+                                <Border x:Name="ChipRest"
+                                        CornerRadius="16"
+                                        Background="{ThemeResource SafeCardBrush}"
+                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                        BorderThickness="1" />
+
+                                <Border x:Name="ChipHover"
+                                        CornerRadius="16"
+                                        Background="{ThemeResource SafeHoverBrush}"
+                                        Opacity="0" />
+
+                                <Border x:Name="ChipAccent"
+                                        CornerRadius="16"
+                                        Background="{ThemeResource AccentFillColorDefaultBrush}"
+                                        Opacity="0" />
+
+                                <ContentPresenter x:Name="ChipContent"
+                                                  Padding="{TemplateBinding Padding}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Foreground="{TemplateBinding Foreground}"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  AutomationProperties.AccessibilityView="Raw" />
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipHover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.2" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipHover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.2" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipHover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="0.95" Duration="0:0:0.1" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="0.95" Duration="0:0:0.1" />
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipRoot" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="Checked">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ChipHover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <BackEase Amplitude="0.4" EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChipContent" Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="CheckedPointerOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="0.85" Duration="0:0:0.2" />
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChipContent" Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="CheckedPressed">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="0.7" Duration="0:0:0.1" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="0.95" Duration="0:0:0.1" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="0.95" Duration="0:0:0.1" />
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChipContent" Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="CheckedDisabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="ChipRoot" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0" />
+                                                <DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="1" Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="PluginCardContainerStyle" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+                <Setter Property="Margin" Value="6" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="MinWidth" Value="0" />
+                <Setter Property="MinHeight" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                <Setter Property="UseSystemFocusVisuals" Value="True" />
+                <Setter Property="FocusVisualMargin" Value="-3" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewItem">
+                            <Grid x:Name="CardRoot" Background="Transparent" RenderTransformOrigin="0.5,0.5">
+                                <Grid.RenderTransform>
+                                    <ScaleTransform x:Name="CardScale" ScaleX="1" ScaleY="1" />
+                                </Grid.RenderTransform>
+
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Stretch" />
+                                
+                                <Border x:Name="CardHighlight"
+                                        CornerRadius="14"
+                                        BorderBrush="{ThemeResource AccentFillColorDefaultBrush}"
+                                        BorderThickness="1"
+                                        IsHitTestVisible="False"
+                                        Opacity="0" />
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CardHighlight" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.25">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.25">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CardHighlight" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleX" To="1.025" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleY" To="1.025" Duration="0:0:0.3">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </VisualState>
+
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="CardHighlight" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1" />
+                                                <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleX" To="0.985" Duration="0:0:0.12">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="CardScale" Storyboard.TargetProperty="ScaleY" To="0.985" Duration="0:0:0.12">
+                                                    <DoubleAnimation.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </DoubleAnimation.EasingFunction>
+                                                </DoubleAnimation>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <Style x:Key="SafePluginCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="14" />
+            </Style>
+            
+            <Style x:Key="MetaChipStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource SafeCardBrush}" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="Padding" Value="6,2" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="MetaTextStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="11" />
+                <Setter Property="Foreground" Value="{ThemeResource SafeSecondaryTextBrush}" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="MaxLines" Value="1" />
+                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
+            </Style>
+
+            <Style x:Key="SkeletonBarStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource SkeletonFillBrush}" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+
             <DataTemplate x:Key="PluginCardTemplate" x:DataType="models:PluginStoreItem">
-                <Grid Width="340" Height="156" Style="{StaticResource SafePluginCardStyle}">
-                    
+                <Border Width="340" Height="188" Style="{StaticResource SafePluginCardStyle}">
+                  <Grid>
+
                     <Grid Padding="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
                         
-                        <Grid Grid.Column="0" Width="64" Height="64" CornerRadius="12" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" VerticalAlignment="Top">
-                            <FontIcon Glyph="&#xE74C;" FontSize="24" Foreground="{ThemeResource SafeSecondaryTextBrush}"/>
-                            <Image Source="{x:Bind IconUrl, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}" Stretch="UniformToFill"/>
-                        </Grid>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <Grid Grid.Column="1" Margin="16,0,0,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>   
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                            <Border Grid.Column="0"
+                                    Width="52" Height="52"
+                                    CornerRadius="12"
+                                    Background="{ThemeResource SafeCardBrush}"
+                                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                    BorderThickness="1"
+                                    VerticalAlignment="Top">
+                                <Grid>
+                                    <FontIcon Glyph="&#xE74C;" FontSize="22" Foreground="{ThemeResource SafeSecondaryTextBrush}" />
+                                    <Image Source="{x:Bind IconUrl, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}" Stretch="UniformToFill" />
+                                </Grid>
+                            </Border>
 
-                            <StackPanel Grid.Row="0">
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}" Style="{StaticResource BodyStrongTextBlockStyle}" MaxLines="1" TextTrimming="CharacterEllipsis"/>
-                                <TextBlock Text="{x:Bind Developer, Mode=OneWay}" FontSize="12" Foreground="{ThemeResource SafeSecondaryTextBrush}" Margin="0,2,0,0" MaxLines="1" TextTrimming="CharacterEllipsis"/>
+                            <StackPanel Grid.Column="1" Margin="14,0,8,0" VerticalAlignment="Center" Spacing="3">
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                                           Foreground="{ThemeResource SafeTextBrush}"
+                                           FontFamily="{StaticResource AppGlobalFont}"
+                                           MaxLines="1"
+                                           TextTrimming="CharacterEllipsis" />
+                                <TextBlock Text="{x:Bind DeveloperVersionDisplay, Mode=OneWay}"
+                                           FontSize="11"
+                                           Foreground="{ThemeResource SafeSecondaryTextBrush}"
+                                           FontFamily="{StaticResource AppGlobalFont}"
+                                           MaxLines="1"
+                                           TextTrimming="CharacterEllipsis" />
                             </StackPanel>
 
-                            <TextBlock Grid.Row="1" Text="{x:Bind Description, Mode=OneWay}" FontSize="12" Foreground="{ThemeResource SafeSecondaryTextBrush}" Opacity="0.8" Margin="0,8,0,0" MaxLines="2" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <Border Grid.Column="2"
+                                    Background="#33FF6B35"
+                                    CornerRadius="4"
+                                    Padding="5,2"
+                                    VerticalAlignment="Top"
+                                    Visibility="{x:Bind IsPrivate, Mode=OneWay}"
+                                    ToolTipService.ToolTip="{helpers:Loc Key=PluginStorePrivatePluginTooltip}">
+                                <StackPanel Orientation="Horizontal" Spacing="3">
+                                    <FontIcon Glyph="&#xE72E;" FontSize="9" Foreground="#FF6B35" VerticalAlignment="Center" />
+                                    <TextBlock Text="{helpers:Loc Key=PluginStorePrivateBadge}"
+                                               FontSize="10"
+                                               Foreground="#FF6B35"
+                                               VerticalAlignment="Center"
+                                               FontFamily="{StaticResource AppGlobalFont}" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        
+                        <TextBlock Grid.Row="1"
+                                   Text="{x:Bind Description, Mode=OneWay}"
+                                   FontSize="12"
+                                   LineHeight="17"
+                                   Foreground="{ThemeResource SafeSecondaryTextBrush}"
+                                   Opacity="0.85"
+                                   Margin="0,12,0,0"
+                                   MaxLines="2"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="Wrap"
+                                   VerticalAlignment="Top"
+                                   FontFamily="{StaticResource AppGlobalFont}" />
+                        
+                        <Rectangle Grid.Row="2" Height="1" Fill="{ThemeResource SafeBorderBrush}" Margin="-16,10,-16,10" />
+                        
+                        <Grid Grid.Row="3" Height="32">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
                             
-                            <Grid Grid.Row="2" Margin="0,12,0,0" Height="32" VerticalAlignment="Bottom">
+                            <Grid Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto" MinWidth="72"/>
+                                    <ColumnDefinition Width="Auto" MaxWidth="78" />
+                                    <ColumnDefinition Width="Auto" MaxWidth="68" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Grid Grid.Column="0" VerticalAlignment="Center" Margin="0,0,12,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" MaxWidth="70"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <Border Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="4" Padding="6,2" VerticalAlignment="Center" Margin="0,0,8,0">
-                                        <TextBlock Text="{x:Bind CategoryDisplay, Mode=OneWay}" FontSize="10" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" MaxLines="1" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
-                                    </Border>
-                                    
-                                    <Border Grid.Column="1" Background="#33FF6B35" CornerRadius="4" Padding="5,2" VerticalAlignment="Center" Margin="0,0,8,0"
-                                            Visibility="{x:Bind IsPrivate, Mode=OneWay}">
-                                        <StackPanel Orientation="Horizontal" Spacing="3">
-                                            <FontIcon Glyph="&#xE72E;" FontSize="9" Foreground="#FF6B35" VerticalAlignment="Center"/>
-                                            <TextBlock Text="Private" FontSize="10" Foreground="#FF6B35" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Border>
-                                    
-                                    <Border Grid.Column="2" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="4" Padding="5,2" VerticalAlignment="Center" Margin="0,0,8,0"
-                                            Visibility="{x:Bind HasUpdateType, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                                        <TextBlock Text="{x:Bind UpdateTypeDisplay, Mode=OneWay}" FontSize="10" Foreground="{ThemeResource SafeSecondaryTextBrush}" VerticalAlignment="Center"/>
-                                    </Border>
-                                    
-                                    <TextBlock Grid.Column="3" Text="{x:Bind SizeDisplay, Mode=OneWay}" FontSize="11" Foreground="{ThemeResource SafeSecondaryTextBrush}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" MaxLines="1"/>
-                                </Grid>
-                                
-                                <Grid Grid.Column="1" VerticalAlignment="Center" Visibility="{x:Bind StateIsInProgress, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert, Mode=OneWay}">
-                                    <Grid.Transitions>
-                                        <TransitionCollection>
-                                            <EntranceThemeTransition FromVerticalOffset="12" IsStaggeringEnabled="False"/>
-                                        </TransitionCollection>
-                                    </Grid.Transitions>
+                                <Border Grid.Column="0"
+                                        Margin="0,0,8,0"
+                                        Style="{StaticResource MetaChipStyle}"
+                                        Visibility="{x:Bind HasCategory, Mode=OneWay}">
+                                    <TextBlock Text="{x:Bind CategoryDisplay, Mode=OneWay}"
+                                               FontSize="10"
+                                               MaxWidth="60"
+                                               MaxLines="1"
+                                               TextTrimming="CharacterEllipsis"
+                                               VerticalAlignment="Center"
+                                               Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                               FontFamily="{StaticResource AppGlobalFont}" />
+                                </Border>
 
-                                    <Button Style="{StaticResource StoreInstallButtonStyle}" 
-                                            Visibility="{x:Bind CanInstall, Mode=OneWay}" 
-                                            Content="{x:Bind ButtonText, Mode=OneWay}" 
-                                            Click="OnInstallButtonClick" 
-                                            Tag="{x:Bind}"/>
-                                    
-                                    <Button Style="{StaticResource StoreInstalledButtonStyle}" 
-                                            Visibility="{x:Bind StateIsInstalled, Mode=OneWay}" 
-                                            Content="{x:Bind ButtonText, Mode=OneWay}" 
-                                            Click="OnInstalledButtonClick" 
-                                            Tag="{x:Bind}"/>
-                                    
-                                    <Button Style="{StaticResource StoreInstallButtonStyle}" 
-                                            Visibility="{x:Bind StateIsUpdateAvailable, Mode=OneWay}" 
-                                            Content="{x:Bind ButtonText, Mode=OneWay}" 
-                                            Click="OnInstallButtonClick" 
-                                            Tag="{x:Bind}">
-                                        <Button.Resources>
-                                            <SolidColorBrush x:Key="AccentButtonBackground" Color="#FF107C10"/>
-                                            <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#FF0E680E"/>
-                                            <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#FF0A4B0A"/>
-                                        </Button.Resources>
-                                    </Button>
-                                </Grid>
+                                <Border Grid.Column="1"
+                                        Margin="0,0,8,0"
+                                        Style="{StaticResource MetaChipStyle}"
+                                        Visibility="{x:Bind HasUpdateType, Mode=OneWay}">
+                                    <TextBlock Text="{x:Bind UpdateTypeDisplay, Mode=OneWay}"
+                                               FontSize="10"
+                                               MaxWidth="48"
+                                               MaxLines="1"
+                                               TextTrimming="CharacterEllipsis"
+                                               VerticalAlignment="Center"
+                                               Foreground="{ThemeResource SafeSecondaryTextBrush}"
+                                               FontFamily="{StaticResource AppGlobalFont}" />
+                                </Border>
+
+                                <StackPanel Grid.Column="2"
+                                            Margin="0,0,8,0"
+                                            Orientation="Horizontal"
+                                            Spacing="4"
+                                            VerticalAlignment="Center"
+                                            ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreDownloads}">
+                                    <FontIcon Glyph="&#xE896;" FontSize="10" Foreground="{ThemeResource SafeSecondaryTextBrush}" VerticalAlignment="Center" />
+                                    <TextBlock Text="{x:Bind DownloadsDisplay, Mode=OneWay}" Style="{StaticResource MetaTextStyle}" />
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="3"
+                                           Text="{x:Bind SizeDisplay, Mode=OneWay}"
+                                           Style="{StaticResource MetaTextStyle}"
+                                           ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreSize}" />
+                            </Grid>
+
+                            <Grid Grid.Column="1" VerticalAlignment="Center">
+                                <Grid.Transitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromVerticalOffset="12" IsStaggeringEnabled="False" />
+                                    </TransitionCollection>
+                                </Grid.Transitions>
+
+                                <Button Style="{StaticResource StoreInstallButtonStyle}"
+                                        Visibility="{x:Bind CanInstall, Mode=OneWay}"
+                                        Content="{x:Bind ButtonText, Mode=OneWay}"
+                                        Click="OnInstallButtonClick"
+                                        Tag="{x:Bind}" />
+
+                                <Button Style="{StaticResource StoreInstalledButtonStyle}"
+                                        Visibility="{x:Bind StateIsInstalled, Mode=OneWay}"
+                                        Content="{x:Bind ButtonText, Mode=OneWay}"
+                                        Click="OnInstalledButtonClick"
+                                        Tag="{x:Bind}" />
+
+                                <Button Style="{StaticResource StoreInstallButtonStyle}"
+                                        Visibility="{x:Bind StateIsUpdateAvailable, Mode=OneWay}"
+                                        Content="{x:Bind ButtonText, Mode=OneWay}"
+                                        Click="OnInstallButtonClick"
+                                        Tag="{x:Bind}">
+                                    <Button.Resources>
+                                        <SolidColorBrush x:Key="AccentButtonBackground" Color="#FF107C10" />
+                                        <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="#FF0E680E" />
+                                        <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="#FF0A4B0A" />
+                                    </Button.Resources>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Grid>
-                    
-                    <Grid Visibility="{x:Bind StateIsInProgress, Mode=OneWay}" CornerRadius="14" Background="{ThemeResource InstallOverlayBrush}">
+                      
+                    <Grid Visibility="{x:Bind StateIsInProgress, Mode=OneWay}"
+                          CornerRadius="14"
+                          Background="{ThemeResource InstallOverlayBrush}">
                         <Grid.Transitions>
                             <TransitionCollection>
-                                <EntranceThemeTransition FromVerticalOffset="12" IsStaggeringEnabled="False"/>
+                                <EntranceThemeTransition FromVerticalOffset="0" IsStaggeringEnabled="False" />
                             </TransitionCollection>
                         </Grid.Transitions>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="6" Width="260" Padding="16">
-                            <TextBlock Text="{x:Bind InstallStatusText, Mode=OneWay}" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SafeTextBrush}" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis"/>
-                            
-                            <TextBlock Text="{x:Bind InstallProgressPercentDisplay, Mode=OneWay}" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
-                            
-                            <ProgressBar Value="{x:Bind InstallProgressPercent, Mode=OneWay}" Maximum="100" Height="6" CornerRadius="3" Foreground="{ThemeResource AccentFillColorDefaultBrush}" HorizontalAlignment="Stretch"/>
-                            
-                            <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="{ThemeResource SafeSecondaryTextBrush}" Opacity="0.8"
-                                       Visibility="{x:Bind HasTotalDownloadSize, Mode=OneWay}">
-                                <Run Text="{x:Bind DownloadSizeProgressDisplay, Mode=OneWay}"/>
-                            </TextBlock>
-                            
-                            <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="{ThemeResource SafeSecondaryTextBrush}" Opacity="0.7"
-                                       Visibility="{x:Bind HasTotalDownloadSize, Mode=OneWay}">
-                                <Run Text="{x:Bind DownloadSpeedDisplay, Mode=OneWay}"/>
-                            </TextBlock>
-                            
-                            <Button Content="取消安装" Style="{StaticResource StoreInstalledButtonStyle}" 
-                                    HorizontalAlignment="Center" Margin="0,8,0,0"
-                                    Click="OnCancelInstallClick" Tag="{x:Bind}">
+
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="6" Width="272" Padding="16">
+                            <TextBlock Text="{x:Bind InstallStatusText, Mode=OneWay}"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="{ThemeResource SafeTextBrush}"
+                                       HorizontalAlignment="Center"
+                                       MaxLines="1"
+                                       TextTrimming="CharacterEllipsis"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <TextBlock Text="{x:Bind InstallProgressPercentDisplay, Mode=OneWay}"
+                                       HorizontalAlignment="Center"
+                                       FontSize="26"
+                                       FontWeight="Bold"
+                                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <ProgressBar Value="{x:Bind InstallProgressPercent, Mode=OneWay}"
+                                         Maximum="100"
+                                         Height="4"
+                                         CornerRadius="2"
+                                         Foreground="{ThemeResource AccentFillColorDefaultBrush}"
+                                         HorizontalAlignment="Stretch" />
+
+                            <StackPanel Orientation="Horizontal"
+                                        Spacing="8"
+                                        HorizontalAlignment="Center"
+                                        Visibility="{x:Bind HasTotalDownloadSize, Mode=OneWay}">
+                                <TextBlock Text="{x:Bind DownloadSizeProgressDisplay, Mode=OneWay}" Style="{StaticResource MetaTextStyle}" />
+                                <TextBlock Text="·" Style="{StaticResource MetaTextStyle}" />
+                                <TextBlock Text="{x:Bind DownloadSpeedDisplay, Mode=OneWay}" Style="{StaticResource MetaTextStyle}" />
+                            </StackPanel>
+
+                            <Button Content="{helpers:Loc Key=PluginStoreCancelInstall}"
+                                    Style="{StaticResource StoreInstalledButtonStyle}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,6,0,0"
+                                    Click="OnCancelInstallClick"
+                                    Tag="{x:Bind}">
                                 <Button.Resources>
-                                    <SolidColorBrush x:Key="ButtonForeground" Color="#E81123"/>
-                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#FF4D4D"/>
-                                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="#CC0000"/>
+                                    <SolidColorBrush x:Key="ButtonForeground" Color="#E81123" />
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#FF4D4D" />
+                                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="#CC0000" />
                                 </Button.Resources>
                             </Button>
                         </StackPanel>
                     </Grid>
-                </Grid>
+                  </Grid>
+                </Border>
+            </DataTemplate>
+
+            <DataTemplate x:Key="SkeletonCardTemplate">
+                <Border Width="340" Height="188" Style="{StaticResource SafePluginCardStyle}">
+                    <Grid Padding="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Width="52" Height="52" CornerRadius="12" Background="{ThemeResource SkeletonFillBrush}" />
+
+                            <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center" Spacing="8">
+                                <Border Style="{StaticResource SkeletonBarStyle}" Height="13" Width="150" />
+                                <Border Style="{StaticResource SkeletonBarStyle}" Height="10" Width="96" />
+                            </StackPanel>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1" Margin="0,16,0,0" Spacing="8" VerticalAlignment="Top">
+                            <Border Style="{StaticResource SkeletonBarStyle}" Height="10" HorizontalAlignment="Stretch" />
+                            <Border Style="{StaticResource SkeletonBarStyle}" Height="10" Width="212" />
+                        </StackPanel>
+
+                        <Grid Grid.Row="2" Height="32">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Border Style="{StaticResource SkeletonBarStyle}" Height="12" Width="120" VerticalAlignment="Center" />
+                            <Border Grid.Column="1" Style="{StaticResource SkeletonBarStyle}" Height="32" Width="76" CornerRadius="16" />
+                        </Grid>
+                    </Grid>
+                </Border>
             </DataTemplate>
 
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid x:Name="RootLayoutGrid" Opacity="0" Padding="0">
+    <Grid x:Name="RootLayoutGrid" Opacity="0" RenderTransformOrigin="0.5,0.5">
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition FromVerticalOffset="40" />
+            </TransitionCollection>
+        </Grid.Transitions>
         <Grid.RenderTransform>
-            <TranslateTransform x:Name="RootTranslate" Y="30"/>
+            <ScaleTransform x:Name="RootLayoutScale" ScaleX="1" ScaleY="1" />
         </Grid.RenderTransform>
 
-        <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
-            
-            <Grid Padding="36,24,36,36" HorizontalAlignment="Stretch">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      SizeChanged="OnContentScrollViewerSizeChanged">
+            <StackPanel x:Name="ContentPanel"
+                        Margin="36,24,36,48"
+                        Spacing="24"
+                        MaxWidth="1060"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
                 
-                <Grid MaxWidth="1100" HorizontalAlignment="Stretch">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    
-                    <TextBlock Grid.Row="0" Text="{helpers:Loc Key=PluginStoreTitle}" Style="{StaticResource TitleTextBlockStyle}" FontFamily="{StaticResource AppGlobalFont}" Margin="0,0,0,24" HorizontalAlignment="Left" />
-                    
-                    <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Spacing="16">
-                        <TextBlock Text="{helpers:Loc Key=PluginStoreDiscover}" Style="{StaticResource SectionHeaderStyle}" />
+                <StackPanel Spacing="4" Margin="0,0,0,12">
+                    <TextBlock Text="{helpers:Loc Key=PluginStoreTitle}"
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               FontFamily="{StaticResource AppGlobalFont}" />
+                    <TextBlock Text="{helpers:Loc Key=PluginStoreSubtitle}"
+                               Style="{StaticResource CaptionTextBlockStyle}"
+                               Opacity="0.65"
+                               FontFamily="{StaticResource AppGlobalFont}" />
+                </StackPanel>
+                
+                <StackPanel>
+                    <TextBlock Text="{helpers:Loc Key=PluginStoreDiscover}" Style="{StaticResource SectionHeaderStyle}" />
+
+                    <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                        <Grid.Shadow>
+                            <ThemeShadow />
+                        </Grid.Shadow>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
                         
-                        <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32" Margin="0,0,0,16" HorizontalAlignment="Stretch">
-                            <Grid.Shadow>
-                                <ThemeShadow/>
-                            </Grid.Shadow>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                            <Grid Grid.Row="0" HorizontalAlignment="Stretch">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" MaxWidth="400"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                            <AutoSuggestBox Grid.Column="0"
+                                            x:Name="SearchBox"
+                                            MaxWidth="420"
+                                            HorizontalAlignment="Left"
+                                            MinWidth="240"
+                                            QueryIcon="Find"
+                                            PlaceholderText="{helpers:Loc Key=PluginStoreSearchPlaceholder}"
+                                            Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            QuerySubmitted="OnSearchQuerySubmitted"
+                                            CornerRadius="8"
+                                            Height="36"
+                                            VerticalAlignment="Center" />
 
-                                <TextBox Grid.Column="0"
-                                         x:Name="SearchBox"
-                                         PlaceholderText="{helpers:Loc Key=PluginStoreSearchPlaceholder}"
-                                         Text="{x:Bind ViewModel.SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         KeyDown="OnSearchKeyDown"
-                                         CornerRadius="8"
-                                         Height="36"
-                                         HorizontalAlignment="Stretch"
-                                         VerticalAlignment="Center">
-                                    <TextBox.Resources>
-                                        <SolidColorBrush x:Key="TextControlBackground" Color="{ThemeResource CardBackgroundFillColorDefault}"/>
-                                    </TextBox.Resources>
-                                </TextBox>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                <Button Style="{StaticResource StoreSubtleButtonStyle}"
+                                        Click="OnUploadPluginClick"
+                                        ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreUploadTooltip}">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <FontIcon Glyph="&#xE898;" FontSize="14" />
+                                        <TextBlock Text="{helpers:Loc Key=PluginStoreUpload}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
 
-                                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right" VerticalAlignment="Center">
-                                    <Button Style="{StaticResource StoreInstallButtonStyle}" 
-                                            Content="私密插件" 
-                                            Click="OnAddPrivatePluginClick"
-                                            ToolTipService.ToolTip="添加私密插件（需要插件ID和访问密钥）"/>
-                                    <Button Style="{StaticResource StoreInstallButtonStyle}" 
-                                            Content="{helpers:Loc Key=PluginStoreLuaTestButton}" 
-                                            Click="OnLuaTestClick"
-                                            ToolTipService.ToolTip="测试执行 Lua 插件安装脚本并查看日志"/>
-                                    <Button Style="{StaticResource StoreInstallButtonStyle}" 
-                                            Content="{helpers:Loc Key=PluginStoreUpload}" 
-                                            Click="OnUploadPluginClick"
-                                            ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreUploadTooltip}"/>
-                                    <Button x:Name="SortButton" Background="Transparent" BorderThickness="0" Padding="12,6">
-                                        <StackPanel Orientation="Horizontal" Spacing="8">
-                                            <FontIcon Glyph="&#xE8CB;" FontSize="14" Foreground="{ThemeResource SafeSecondaryTextBrush}"/>
-                                            <TextBlock x:Name="SortLabel" Text="{helpers:Loc Key=PluginStoreSortPopular}" FontSize="13" Foreground="{ThemeResource SafeTextBrush}"/>
-                                        </StackPanel>
-                                        <Button.Flyout>
-                                            <MenuFlyout>
-                                                <MenuFlyoutItem Text="{helpers:Loc Key=PluginStoreSortPopular}" Click="OnSortClick" Tag="popular"/>
-                                                <MenuFlyoutItem Text="{helpers:Loc Key=PluginStoreSortNewest}" Click="OnSortClick" Tag="newest"/>
-                                            </MenuFlyout>
-                                        </Button.Flyout>
-                                    </Button>
-                                    <Button Background="Transparent" BorderThickness="0" Padding="8,6" Click="OnRefreshClick" ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreRefresh}">
-                                        <FontIcon Glyph="&#xE72C;" FontSize="14" Foreground="{ThemeResource SafeSecondaryTextBrush}"/>
-                                    </Button>
-                                </StackPanel>
-                            </Grid>
+                                <Button Style="{StaticResource StoreIconButtonStyle}"
+                                        ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreMoreActions}">
+                                    <FontIcon Glyph="&#xE712;" FontSize="14" />
+                                    <Button.Flyout>
+                                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                            <MenuFlyoutItem Text="{helpers:Loc Key=PluginStorePrivatePlugin}"
+                                                            Click="OnAddPrivatePluginClick"
+                                                            ToolTipService.ToolTip="{helpers:Loc Key=PluginStorePrivatePluginTooltip}">
+                                                <MenuFlyoutItem.Icon>
+                                                    <FontIcon Glyph="&#xE72E;" />
+                                                </MenuFlyoutItem.Icon>
+                                            </MenuFlyoutItem>
+                                            <MenuFlyoutItem Text="{helpers:Loc Key=PluginStoreLuaTestButton}"
+                                                            Click="OnLuaTestClick"
+                                                            ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreLuaTestTooltip}">
+                                                <MenuFlyoutItem.Icon>
+                                                    <FontIcon Glyph="&#xE943;" />
+                                                </MenuFlyoutItem.Icon>
+                                            </MenuFlyoutItem>
+                                        </MenuFlyout>
+                                    </Button.Flyout>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
 
-                            <Rectangle Grid.Row="1" Height="1" Fill="{ThemeResource SafeBorderBrush}" Margin="-24,16,-24,16" />
-                            
-                            <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                        <Rectangle Grid.Row="1" Height="1" Fill="{ThemeResource SafeBorderBrush}" Margin="-24,16,-24,16" />
+                        
+                        <Grid Grid.Row="2" ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <ScrollViewer Grid.Column="0"
+                                          HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Disabled"
+                                          VerticalAlignment="Center"
+                                          Padding="0,2">
                                 <ItemsControl ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" Spacing="8"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="8" />
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate x:DataType="models:PluginStoreCategory">
-                                            <Button Style="{StaticResource CategoryChipStyle}" Click="OnCategoryClick" Tag="{x:Bind}">
+                                            <primitives:ToggleButton Style="{StaticResource CategoryChipStyle}"
+                                                                     IsChecked="{x:Bind IsSelected, Mode=OneWay}"
+                                                                     Click="OnCategoryClick"
+                                                                     Tag="{x:Bind}">
                                                 <StackPanel Orientation="Horizontal" Spacing="6">
-                                                    <FontIcon Glyph="{x:Bind Icon}" FontSize="14" VerticalAlignment="Center"/>
-                                                    <TextBlock Text="{x:Bind DisplayName}" VerticalAlignment="Center"/>
+                                                    <!--  Glyph 来自服务端数据，必须钉死图标字体，否则未知码位会渲染成方框  -->
+                                                    <FontIcon Glyph="{x:Bind Icon}"
+                                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                              FontSize="13"
+                                                              VerticalAlignment="Center" />
+                                                    <TextBlock Text="{x:Bind DisplayName}" VerticalAlignment="Center" />
                                                 </StackPanel>
-                                            </Button>
+                                            </primitives:ToggleButton>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </ScrollViewer>
-                        </Grid>
-                        
-                        <TextBlock Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}" Foreground="{ThemeResource SafeSecondaryTextBrush}" FontSize="12" Margin="4,0,0,16" />
-                    </StackPanel>
-                    
-                    <GridView Grid.Row="2"
-                              x:Name="PluginGridView"
-                              MinHeight="300"
-                              ItemsSource="{x:Bind ViewModel.Plugins, Mode=OneWay}"
-                              ItemTemplate="{StaticResource PluginCardTemplate}"
-                              SelectionMode="None" 
-                              IsItemClickEnabled="True"
-                              ItemClick="OnPluginItemClick"
-                              Padding="0,0,0,24"
-                              HorizontalAlignment="Stretch"
-                              ScrollViewer.VerticalScrollMode="Disabled"
-                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                              Visibility="{x:Bind ViewModel.IsLoading, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert, Mode=OneWay}">
-                        
-                        <GridView.ItemContainerStyle>
-                            <Style TargetType="GridViewItem">
-                                <Setter Property="Margin" Value="6"/>
-                                <Setter Property="Padding" Value="0"/>
-                                <Setter Property="CornerRadius" Value="14"/>
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="GridViewItem">
-                                            <ContentPresenter Content="{TemplateBinding Content}"
-                                                              ContentTemplate="{TemplateBinding ContentTemplate}"
-                                                              ContentTransitions="{TemplateBinding ContentTransitions}"
-                                                              Margin="{TemplateBinding Padding}"/>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </GridView.ItemContainerStyle>
 
-                        <GridView.ItemContainerTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition IsStaggeringEnabled="True"/>
-                                <RepositionThemeTransition/>
-                            </TransitionCollection>
-                        </GridView.ItemContainerTransitions>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                <Button x:Name="SortButton" Style="{StaticResource StoreSubtleButtonStyle}">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <FontIcon Glyph="&#xE8CB;" FontSize="14" Foreground="{ThemeResource SafeSecondaryTextBrush}" />
+                                        <TextBlock x:Name="SortLabel" Text="{helpers:Loc Key=PluginStoreSortPopular}" VerticalAlignment="Center" />
+                                        <FontIcon Glyph="&#xE70D;" FontSize="10" Foreground="{ThemeResource SafeSecondaryTextBrush}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <Button.Flyout>
+                                        <MenuFlyout Placement="BottomEdgeAlignedRight">
+                                            <RadioMenuFlyoutItem x:Name="SortPopularItem"
+                                                                 Text="{helpers:Loc Key=PluginStoreSortPopular}"
+                                                                 GroupName="PluginStoreSort"
+                                                                 IsChecked="True"
+                                                                 Click="OnSortClick"
+                                                                 Tag="popular" />
+                                            <RadioMenuFlyoutItem x:Name="SortNewestItem"
+                                                                 Text="{helpers:Loc Key=PluginStoreSortNewest}"
+                                                                 GroupName="PluginStoreSort"
+                                                                 Click="OnSortClick"
+                                                                 Tag="newest" />
+                                        </MenuFlyout>
+                                    </Button.Flyout>
+                                </Button>
 
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left"/>
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                    </GridView>
-
-                    <Grid Grid.Row="2" MinHeight="300" Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <StackPanel Spacing="16">
-                            <ProgressRing IsActive="True" Width="48" Height="48"/>
-                            <TextBlock Text="{helpers:Loc Key=PluginStoreSyncing}" Foreground="{ThemeResource SafeSecondaryTextBrush}" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Grid.Row="2" MinHeight="300" Visibility="{x:Bind ViewModel.HasError, Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <StackPanel Spacing="16" HorizontalAlignment="Center" MaxWidth="400">
-                            <FontIcon Glyph="&#xE783;" FontSize="48" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                            <TextBlock Text="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}" Foreground="{ThemeResource SafeSecondaryTextBrush}" TextWrapping="Wrap" HorizontalAlignment="Center"/>
-                            <Button Content="{helpers:Loc Key=PluginStoreRetry}" Click="OnRefreshClick" HorizontalAlignment="Center" Style="{StaticResource StoreInstallButtonStyle}"/>
-                        </StackPanel>
-                    </Grid>
-
-                    <Grid Grid.Row="3" HorizontalAlignment="Center" Margin="0,16,0,0">
-                        <Border Background="{ThemeResource SafeGlassBrush}"
-                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                BorderThickness="1"
-                                CornerRadius="24"
-                                Padding="16,8">
-                            <StackPanel Orientation="Horizontal" Spacing="24" VerticalAlignment="Center">
-                                <Button x:Name="PrevPageBtn" Content="&#xE76B;" FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                        Style="{StaticResource StoreInstalledButtonStyle}" Width="40" MinWidth="40"
-                                        Visibility="{x:Bind ViewModel.CanGoPrev, Mode=OneWay}"
-                                        Click="OnPrevPageClick" ToolTipService.ToolTip="{helpers:Loc Key=PluginStorePrevious}"/>
-
-                                <TextBlock x:Name="PageInfoText"
-                                           Text="{x:Bind ViewModel.PageInfo, Mode=OneWay}"
-                                           Foreground="{ThemeResource SafeTextBrush}"
-                                           VerticalAlignment="Center"
-                                           FontWeight="SemiBold"
-                                           FontSize="13"/>
-
-                                <Button x:Name="NextPageBtn" Content="&#xE76C;" FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                                        Style="{StaticResource StoreInstalledButtonStyle}" Width="40" MinWidth="40"
-                                        Visibility="{x:Bind ViewModel.CanGoNext, Mode=OneWay}"
-                                        Click="OnNextPageClick" ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreNext}"/>
+                                <Button Style="{StaticResource StoreIconButtonStyle}"
+                                        Click="OnRefreshClick"
+                                        ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreRefresh}">
+                                    <FontIcon x:Name="RefreshIcon" Glyph="&#xE72C;" FontSize="14" RenderTransformOrigin="0.5,0.5">
+                                        <FontIcon.RenderTransform>
+                                            <RotateTransform x:Name="RefreshIconRotate" Angle="0" />
+                                        </FontIcon.RenderTransform>
+                                    </FontIcon>
+                                </Button>
                             </StackPanel>
-                        </Border>
+                        </Grid>
                     </Grid>
+                </StackPanel>
+                
+                <StackPanel>
+                    <Grid>
+                        <TextBlock Text="{helpers:Loc Key=PluginStorePluginsSection}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}"
+                                   Style="{StaticResource SectionCaptionStyle}"
+                                   HorizontalAlignment="Right"
+                                   MaxLines="1"
+                                   TextTrimming="CharacterEllipsis" />
+                    </Grid>
+
+                    <Grid x:Name="ResultsHost" MinHeight="320">
+                        <Grid.RenderTransform>
+                            <TranslateTransform x:Name="ResultsTranslate" Y="0" />
+                        </Grid.RenderTransform>
+
+                        <!--  正常网格  -->
+                        <GridView x:Name="PluginGridView"
+                                  Margin="-6,0,-6,0"
+                                  ItemsSource="{x:Bind ViewModel.Plugins, Mode=OneWay}"
+                                  ItemTemplate="{StaticResource PluginCardTemplate}"
+                                  ItemContainerStyle="{StaticResource PluginCardContainerStyle}"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="OnPluginItemClick"
+                                  Padding="0"
+                                  HorizontalAlignment="Stretch"
+                                  ScrollViewer.VerticalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                  Visibility="{x:Bind ViewModel.ShowGrid, Mode=OneWay}">
+
+                            <GridView.ItemContainerTransitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="28" IsStaggeringEnabled="True" />
+                                    <RepositionThemeTransition />
+                                </TransitionCollection>
+                            </GridView.ItemContainerTransitions>
+
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                        
+                        <GridView x:Name="SkeletonHost"
+                                  Margin="-6,0,-6,0"
+                                  ItemsSource="{x:Bind SkeletonItems}"
+                                  ItemTemplate="{StaticResource SkeletonCardTemplate}"
+                                  ItemContainerStyle="{StaticResource PluginCardContainerStyle}"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="False"
+                                  IsHitTestVisible="False"
+                                  IsTabStop="False"
+                                  Padding="0"
+                                  HorizontalAlignment="Stretch"
+                                  ScrollViewer.VerticalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                  Visibility="{x:Bind ViewModel.ShowSkeleton, Mode=OneWay}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                        
+                        <StackPanel Spacing="12"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    MaxWidth="420"
+                                    Visibility="{x:Bind ViewModel.ShowEmpty, Mode=OneWay}">
+                            <StackPanel.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="24" />
+                                </TransitionCollection>
+                            </StackPanel.Transitions>
+
+                            <Border Width="76" Height="76"
+                                    CornerRadius="38"
+                                    Background="{ThemeResource SafeCardBrush}"
+                                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Center">
+                                <FontIcon Glyph="&#xE721;" FontSize="28" Foreground="{ThemeResource SafeSecondaryTextBrush}" />
+                            </Border>
+
+                            <TextBlock Text="{helpers:Loc Key=PluginStoreNoResults}"
+                                       Style="{StaticResource BodyStrongTextBlockStyle}"
+                                       Foreground="{ThemeResource SafeTextBrush}"
+                                       HorizontalAlignment="Center"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <TextBlock Text="{helpers:Loc Key=PluginStoreEmptyHint}"
+                                       FontSize="12"
+                                       Foreground="{ThemeResource SafeSecondaryTextBrush}"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <Button Content="{helpers:Loc Key=PluginStoreResetFilters}"
+                                    Style="{StaticResource StoreSubtleButtonStyle}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,4,0,0"
+                                    Click="OnResetFiltersClick" />
+                        </StackPanel>
+                        
+                        <StackPanel Spacing="12"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    MaxWidth="420"
+                                    Visibility="{x:Bind ViewModel.ShowError, Mode=OneWay}">
+                            <StackPanel.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="24" />
+                                </TransitionCollection>
+                            </StackPanel.Transitions>
+
+                            <Border Width="76" Height="76"
+                                    CornerRadius="38"
+                                    Background="{ThemeResource SafeCardBrush}"
+                                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                    BorderThickness="1"
+                                    HorizontalAlignment="Center">
+                                <FontIcon Glyph="&#xE783;" FontSize="28" Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                            </Border>
+
+                            <TextBlock Text="{helpers:Loc Key=PluginStoreErrorTitle}"
+                                       Style="{StaticResource BodyStrongTextBlockStyle}"
+                                       Foreground="{ThemeResource SafeTextBrush}"
+                                       HorizontalAlignment="Center"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <TextBlock Text="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
+                                       FontSize="12"
+                                       Foreground="{ThemeResource SafeSecondaryTextBrush}"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <Button Content="{helpers:Loc Key=PluginStoreRetry}"
+                                    Style="{StaticResource StoreInstallButtonStyle}"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,4,0,0"
+                                    Click="OnRefreshClick" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+                
+                <Grid HorizontalAlignment="Center" Visibility="{x:Bind ViewModel.ShowPagination, Mode=OneWay}">
+                    <Grid.Transitions>
+                        <TransitionCollection>
+                            <EntranceThemeTransition FromVerticalOffset="20" />
+                        </TransitionCollection>
+                    </Grid.Transitions>
+
+                    <Border Background="{ThemeResource SafeGlassBrush}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            CornerRadius="22"
+                            Padding="6"
+                            Translation="0,0,32">
+                        <Border.Shadow>
+                            <ThemeShadow />
+                        </Border.Shadow>
+
+                        <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                            <Button x:Name="PrevPageBtn"
+                                    Content="&#xE76B;"
+                                    Style="{StaticResource StorePagerButtonStyle}"
+                                    IsEnabled="{x:Bind ViewModel.CanGoPrev, Mode=OneWay}"
+                                    Click="OnPrevPageClick"
+                                    ToolTipService.ToolTip="{helpers:Loc Key=PluginStorePrevious}" />
+
+                            <TextBlock x:Name="PageInfoText"
+                                       Text="{x:Bind ViewModel.PageInfo, Mode=OneWay}"
+                                       Foreground="{ThemeResource SafeTextBrush}"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0"
+                                       MinWidth="52"
+                                       TextAlignment="Center"
+                                       FontWeight="SemiBold"
+                                       FontSize="13"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <Button x:Name="NextPageBtn"
+                                    Content="&#xE76C;"
+                                    Style="{StaticResource StorePagerButtonStyle}"
+                                    IsEnabled="{x:Bind ViewModel.CanGoNext, Mode=OneWay}"
+                                    Click="OnNextPageClick"
+                                    ToolTipService.ToolTip="{helpers:Loc Key=PluginStoreNext}" />
+                        </StackPanel>
+                    </Border>
                 </Grid>
-            </Grid>
+
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

@@ -1508,4 +1508,29 @@
   <data name="PluginStoreCategoryVisuals" xml:space="preserve"><value>视觉美化</value></data>
   <data name="DisableCaptchaPopup" xml:space="preserve"><value>禁用风控验证码弹窗</value></data>
   <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>启用后将不会弹出账户风控验证码窗口。某些情况下跳过验证可能导致便签等功能暂时不可用。</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>窗口与导航</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>个性化</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>游戏</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>应用</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>关于与支持</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>搜索设置…</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>发现并安装社区插件，扩展启动器的能力</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>插件列表</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>更多操作</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>私密插件</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>添加私密插件（需要插件 ID 和访问密钥）</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>私密</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>测试执行 Lua 安装脚本并查看日志</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>取消安装</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>换个分类，或调整一下搜索关键词试试</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>重置筛选</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>无法连接插件商城</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>分类</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>更新方式</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>最低启动器版本</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0}（当前 {1}，版本过低）</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>可见性</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>依赖</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>详细介绍</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>正在下载安装脚本...</value></data>
 </root>

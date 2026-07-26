@@ -39,6 +39,8 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     private int _currentPage = 1;
     private int _totalPages = 1;
     private int _totalPlugins;
+    
+    private bool _hasContent;
 
     private CancellationTokenSource? _installCts;
     
@@ -84,7 +86,20 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     public PluginStoreCategory? SelectedCategory
     {
         get => _selectedCategory;
-        set { _selectedCategory = value; OnPropertyChanged(); }
+        set
+        {
+            _selectedCategory = value;
+            SyncCategorySelection();
+            OnPropertyChanged();
+        }
+    }
+    
+    private void SyncCategorySelection()
+    {
+        foreach (var category in Categories)
+        {
+            category.IsSelected = ReferenceEquals(category, _selectedCategory);
+        }
     }
 
     public string SearchText
@@ -102,19 +117,40 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     public bool IsLoading
     {
         get => _isLoading;
-        set { _isLoading = value; OnPropertyChanged(); }
+        set { _isLoading = value; OnPropertyChanged(); OnPageStateChanged(); }
     }
 
     public bool IsEmpty
     {
         get => _isEmpty;
-        set { _isEmpty = value; OnPropertyChanged(); }
+        set { _isEmpty = value; OnPropertyChanged(); OnPageStateChanged(); }
     }
 
     public bool HasError
     {
         get => _hasError;
-        set { _hasError = value; OnPropertyChanged(); }
+        set { _hasError = value; OnPropertyChanged(); OnPageStateChanged(); }
+    }
+
+    // 页面互斥状态：骨架屏 / 出错 / 空列表 / 正常网格。x:Bind 无法表达复合条件，因此在这里合成。
+    //
+    // 关键点：骨架屏只在“冷启动”（还没有任何内容）时出现。刷新 / 翻页 / 切分类时
+    // _hasContent 为 true，网格继续留在原位并整体压暗，避免内容被整块替换掉造成跳动。
+    public bool ShowSkeleton => IsLoading && !_hasContent;
+    public bool IsRefreshing => IsLoading && _hasContent;
+    public bool ShowError => HasError && !IsLoading;
+    public bool ShowEmpty => IsEmpty && !IsLoading && !HasError;
+    public bool ShowGrid => !HasError && !IsEmpty && (_hasContent || !IsLoading);
+    public bool ShowPagination => ShowGrid && TotalPages > 1;
+
+    private void OnPageStateChanged()
+    {
+        OnPropertyChanged(nameof(ShowSkeleton));
+        OnPropertyChanged(nameof(IsRefreshing));
+        OnPropertyChanged(nameof(ShowError));
+        OnPropertyChanged(nameof(ShowEmpty));
+        OnPropertyChanged(nameof(ShowGrid));
+        OnPropertyChanged(nameof(ShowPagination));
     }
 
     public string ErrorMessage
@@ -138,7 +174,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     public int TotalPages
     {
         get => _totalPages;
-        set { _totalPages = value; OnPropertyChanged(); OnPropertyChanged(nameof(CanGoNext)); OnPropertyChanged(nameof(PageInfo)); }
+        set { _totalPages = value; OnPropertyChanged(); OnPropertyChanged(nameof(CanGoNext)); OnPropertyChanged(nameof(PageInfo)); OnPropertyChanged(nameof(ShowPagination)); }
     }
 
     public int TotalPlugins
@@ -281,6 +317,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
                 ? (int)Math.Ceiling((double)response.Total / 20)
                 : 1;
 
+            _hasContent = Plugins.Count > 0;
             IsEmpty = Plugins.Count == 0;
             if (IsEmpty)
             {
@@ -300,6 +337,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
             HasError = true;
             ErrorMessage = ex.Message;
             StatusMessage = "PluginStoreConnectionFailed".GetLocalized();
+            _hasContent = false;
             IsEmpty = Plugins.Count == 0;
         }
         catch (Exception ex)
@@ -308,6 +346,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
             HasError = true;
             ErrorMessage = "PluginStoreLoadFailed".GetLocalized();
             StatusMessage = "PluginStoreError".GetLocalized();
+            _hasContent = false;
             IsEmpty = Plugins.Count == 0;
         }
         finally
@@ -926,6 +965,8 @@ public class PluginStoreViewModel : INotifyPropertyChanged
                 
                 Plugins.Insert(0, accessResult.Plugin);
                 TotalPlugins++;
+                // 与 IsEmpty 一起维护，否则下次刷新会在已有内容上盖一层骨架屏。
+                _hasContent = true;
                 IsEmpty = false;
                 StatusMessage = string.Format("已添加私密插件: {0}", accessResult.Plugin.Name);
             }

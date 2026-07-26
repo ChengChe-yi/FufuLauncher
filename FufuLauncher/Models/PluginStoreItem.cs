@@ -59,6 +59,7 @@ public class PluginStoreItem : INotifyPropertyChanged
             _developer = value;
             OnPropertyChanged();
             OnPropertyChanged(nameof(HasDeveloper));
+            OnPropertyChanged(nameof(DeveloperVersionDisplay));
         }
     }
 
@@ -80,7 +81,7 @@ public class PluginStoreItem : INotifyPropertyChanged
     public string Version
     {
         get => _version;
-        set { _version = value; OnPropertyChanged(); OnPropertyChanged(nameof(VersionDisplay)); }
+        set { _version = value; OnPropertyChanged(); OnPropertyChanged(nameof(VersionDisplay)); OnPropertyChanged(nameof(DeveloperVersionDisplay)); }
     }
 
     [JsonPropertyName("icon_url")]
@@ -101,7 +102,7 @@ public class PluginStoreItem : INotifyPropertyChanged
     public string Category
     {
         get => _category;
-        set { _category = value; OnPropertyChanged(); OnPropertyChanged(nameof(CategoryDisplay)); }
+        set { _category = value; OnPropertyChanged(); OnPropertyChanged(nameof(CategoryDisplay)); OnPropertyChanged(nameof(HasCategory)); }
     }
 
     private static readonly Dictionary<string, string> CategoryResourceKeys = new(StringComparer.OrdinalIgnoreCase)
@@ -263,6 +264,9 @@ public class PluginStoreItem : INotifyPropertyChanged
             OnPropertyChanged(nameof(CanUninstall));
             OnPropertyChanged(nameof(StateIsInstalled));
             OnPropertyChanged(nameof(StateIsInProgress));
+            // 卡片上的“更新”按钮绑的是这两个属性，漏掉通知会导致状态切换后按钮不刷新。
+            OnPropertyChanged(nameof(StateIsUpdateAvailable));
+            OnPropertyChanged(nameof(StateIsInstalledOrUpdate));
             OnPropertyChanged(nameof(ButtonText));
         }
     }
@@ -359,13 +363,23 @@ public class PluginStoreItem : INotifyPropertyChanged
     public bool IsInstallInProgress
     {
         get => _isInstallInProgress;
-        set { _isInstallInProgress = value; OnPropertyChanged(); OnPropertyChanged(nameof(CanInstall)); }
+        set { _isInstallInProgress = value; OnPropertyChanged(); OnPropertyChanged(nameof(CanInstall)); OnPropertyChanged(nameof(CanUninstall)); }
     }
 
     public bool HasDeveloper => !string.IsNullOrWhiteSpace(Developer);
     public bool HasScreenshots => Screenshots.Count > 0;
+    public bool HasCategory => !string.IsNullOrEmpty(CategoryDisplay);
 
     public string VersionDisplay => string.IsNullOrEmpty(Version) ? "" : $"v{Version}";
+    
+    [JsonIgnore]
+    public string DeveloperVersionDisplay => (HasDeveloper, VersionDisplay) switch
+    {
+        (false, "") => string.Empty,
+        (false, var v) => v,
+        (true, "") => Developer,
+        (true, var v) => $"{Developer} · {v}"
+    };
 
     public string DownloadsDisplay => FormatDownloadCount(Downloads);
 

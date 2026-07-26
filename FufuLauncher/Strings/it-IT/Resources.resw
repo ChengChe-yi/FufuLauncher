@@ -1426,4 +1426,33 @@ Andare al sito Microsoft per scaricarla e installarla?</value></data>
   <data name="Btn_SwitchToBiliServer" xml:space="preserve"><value>Passa al Server Bilibili</value></data>
   <data name="Btn_SwitchToOfficialServer" xml:space="preserve"><value>Passa al Server Ufficiale</value></data>
   <data name="Btn_ConvertBetweenGlobalAndCN" xml:space="preserve"><value>Converti tra Server Globali e CN</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>Finestra e navigazione</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>Personalizzazione</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>Gioco</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>Applicazione</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>Informazioni e supporto</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Cerca impostazioni…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>Disattiva il popup captcha del controllo rischi</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Se attivato, la finestra captcha del controllo rischi dell&apos;account non verrà mostrata. Saltare la verifica può impedire temporaneamente il funzionamento di funzioni come le note.</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>Usa CDN di terze parti per gli aggiornamenti</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>Accelera il download tramite nodi CDN di terze parti. Disattiva per scaricare direttamente da GitHub.</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>Scopri e installa plugin della community per ampliare il launcher</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>Plugin</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>Altre azioni</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>Plugin privato</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>Aggiungi un plugin privato (richiede ID plugin e chiave di accesso)</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>Privato</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Esegui lo script di installazione Lua in modalità test e consulta il log</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>Annulla installazione</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>Prova un'altra categoria oppure modifica le parole chiave</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>Reimposta filtri</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>Impossibile raggiungere lo store dei plugin</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>Categoria</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>Tipo di aggiornamento</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>Versione minima del launcher</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0} (la versione attuale {1} è troppo vecchia)</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>Visibilità</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>Dipendenze</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>Informazioni sul plugin</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Download dello script di installazione...</value></data>
 </root>

@@ -1415,4 +1415,33 @@ Stacktrace:
 Rückmeldung: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Fehler beim Schreiben der Konfiguration
 Rückmeldung: {0}</value></data>
+  <data name="SectionWindowBehavior" xml:space="preserve"><value>Fenster &amp; Navigation</value></data>
+  <data name="SettingsGroupPersonalization" xml:space="preserve"><value>Personalisierung</value></data>
+  <data name="SettingsGroupGame" xml:space="preserve"><value>Spiel</value></data>
+  <data name="SettingsGroupApp" xml:space="preserve"><value>Anwendung</value></data>
+  <data name="SettingsGroupAbout" xml:space="preserve"><value>Info &amp; Support</value></data>
+  <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Einstellungen suchen…</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>Captcha-Popup der Risikokontrolle deaktivieren</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Wenn aktiviert, wird das Captcha-Fenster der Konto-Risikokontrolle nicht mehr angezeigt. Das Überspringen der Verifizierung kann dazu führen, dass Funktionen wie die Notizen vorübergehend nicht verfügbar sind.</value></data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>Updates über Drittanbieter-CDN herunterladen</value></data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>Beschleunigt den Download über Drittanbieter-CDN-Knoten. Deaktivieren, um direkt von GitHub herunterzuladen.</value></data>
+  <data name="PluginStoreSubtitle" xml:space="preserve"><value>Community-Plug-ins entdecken und installieren, um den Launcher zu erweitern</value></data>
+  <data name="PluginStorePluginsSection" xml:space="preserve"><value>Plug-ins</value></data>
+  <data name="PluginStoreMoreActions" xml:space="preserve"><value>Weitere Aktionen</value></data>
+  <data name="PluginStorePrivatePlugin" xml:space="preserve"><value>Privates Plug-in</value></data>
+  <data name="PluginStorePrivatePluginTooltip" xml:space="preserve"><value>Privates Plug-in hinzufügen (Plug-in-ID und Zugriffsschlüssel erforderlich)</value></data>
+  <data name="PluginStorePrivateBadge" xml:space="preserve"><value>Privat</value></data>
+  <data name="PluginStoreLuaTestTooltip" xml:space="preserve"><value>Lua-Installationsskript testweise ausführen und Protokoll anzeigen</value></data>
+  <data name="PluginStoreCancelInstall" xml:space="preserve"><value>Installation abbrechen</value></data>
+  <data name="PluginStoreEmptyHint" xml:space="preserve"><value>Probieren Sie eine andere Kategorie oder passen Sie die Suchbegriffe an</value></data>
+  <data name="PluginStoreResetFilters" xml:space="preserve"><value>Filter zurücksetzen</value></data>
+  <data name="PluginStoreErrorTitle" xml:space="preserve"><value>Plug-in-Store nicht erreichbar</value></data>
+  <data name="PluginStoreCategoryLabel" xml:space="preserve"><value>Kategorie</value></data>
+  <data name="PluginStoreUpdateType" xml:space="preserve"><value>Updatetyp</value></data>
+  <data name="PluginStoreMinAppVersion" xml:space="preserve"><value>Mindestversion des Launchers</value></data>
+  <data name="PluginStoreVersionTooLow" xml:space="preserve"><value>v{0} (aktuell {1} ist zu alt)</value></data>
+  <data name="PluginStoreVisibility" xml:space="preserve"><value>Sichtbarkeit</value></data>
+  <data name="PluginStoreDependencies" xml:space="preserve"><value>Abhängigkeiten</value></data>
+  <data name="PluginStoreLongDescription" xml:space="preserve"><value>Über dieses Plug-in</value></data>
+  <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Installationsskript wird heruntergeladen...</value></data>
 </root>
