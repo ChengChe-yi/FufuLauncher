@@ -81,6 +81,21 @@ public sealed partial class MainWindow : WindowEx
     {
         get;
     }
+    
+    private void SyncPageTheme()
+    {
+        if (Content is FrameworkElement rootElement)
+        {
+            if (ContentFrame.Content is FrameworkElement page)
+            {
+                page.RequestedTheme = rootElement.RequestedTheme;
+            }
+            if (AgreementFrame.Content is FrameworkElement agreementPage)
+            {
+                agreementPage.RequestedTheme = rootElement.RequestedTheme;
+            }
+        }
+    }
     #endregion
     
     #region Initialization
@@ -247,7 +262,11 @@ public sealed partial class MainWindow : WindowEx
 
         if (Content is FrameworkElement rootElement)
         {
-            rootElement.ActualThemeChanged += (_, _) => UpdateBackgroundOverlayTheme();
+            rootElement.ActualThemeChanged += (_, _) => 
+            {
+                UpdateBackgroundOverlayTheme();
+                SyncPageTheme(); 
+            };
         }
 
         WeakReferenceMessenger.Default.Register<ValueChangedMessage<WindowBackdropType>>(this, (_, m) =>
@@ -1243,6 +1262,7 @@ public sealed partial class MainWindow : WindowEx
                 WindowManagerHelper.CenterWindowOnScreen(AppWindow, Width, Height);
                 AgreementFrame.Visibility = Visibility.Visible;
                 AgreementFrame.Navigate(typeof(Views.LanguageSelectionPage));
+                SyncPageTheme();
                 return;
             }
 
@@ -1257,6 +1277,7 @@ public sealed partial class MainWindow : WindowEx
                 WindowManagerHelper.CenterWindowOnScreen(AppWindow, Width, Height);
                 AgreementFrame.Visibility = Visibility.Visible;
                 AgreementFrame.Navigate(typeof(Views.LanguageSelectionPage));
+                SyncPageTheme();
                 return;
             }
 
@@ -1505,6 +1526,7 @@ public sealed partial class MainWindow : WindowEx
         AgreementFrame.Visibility = Visibility.Visible;
         NavigationView.Visibility = Visibility.Collapsed;
         AgreementFrame.Navigate(typeof(Views.AgreementPage));
+        SyncPageTheme();
     }
 
     private async void ShowMainContent()
@@ -1522,6 +1544,8 @@ public sealed partial class MainWindow : WindowEx
         {
             Debug.WriteLine($"MainPage 导航类型转换异常: {ex.Message}");
         }
+
+        SyncPageTheme();
 
         UpdatePageOverlayState(true);
 
@@ -1577,6 +1601,7 @@ public sealed partial class MainWindow : WindowEx
             ShowNotification(new NotificationMessage("HiddenFeatureTitle".GetLocalized(), "HiddenFeatureMessage".GetLocalized(), NotificationType.Warning, 3000));
             NavigationView.SelectedItem = null; 
             ContentFrame.Navigate(typeof(Views.HiddenPage), null, new SuppressNavigationTransitionInfo());
+            SyncPageTheme();
             return;
         }
 
@@ -1613,6 +1638,7 @@ public sealed partial class MainWindow : WindowEx
             try
             {
                 ContentFrame.Navigate(pageType, null, new SuppressNavigationTransitionInfo());
+                SyncPageTheme();
             }
             catch (InvalidCastException ex)
             {

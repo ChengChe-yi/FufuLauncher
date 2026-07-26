@@ -46,7 +46,14 @@ public sealed partial class CommunityPage : Page
         
         CommunityWebView.CoreWebView2.Settings.AreDevToolsEnabled = false;
         
-        CommunityWebView.CoreWebView2.ContextMenuRequested += CoreWebView2_ContextMenuRequested;
+        try
+        {
+            CommunityWebView.CoreWebView2.ContextMenuRequested += CoreWebView2_ContextMenuRequested;
+        }
+        catch (InvalidCastException ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"ContextMenuRequested 事件不支持 (WebView2 版本过旧): {ex.Message}");
+        }
         
         CommunityWebView.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
         

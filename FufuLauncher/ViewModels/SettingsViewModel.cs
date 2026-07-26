@@ -1149,7 +1149,7 @@ namespace FufuLauncher.ViewModels
             var cpuWarningEnabledJson = await _localSettingsService.ReadSettingAsync(ProcessCpuUsageMonitor.IsEnabledSettingKey);
             IsCpuUsageWarningEnabled = cpuWarningEnabledJson == null || Convert.ToBoolean(cpuWarningEnabledJson);
 
-var cpuWarningThresholdJson = await _localSettingsService.ReadSettingAsync(ProcessCpuUsageMonitor.ThresholdSettingKey);
+            var cpuWarningThresholdJson = await _localSettingsService.ReadSettingAsync(ProcessCpuUsageMonitor.ThresholdSettingKey);
             CpuUsageWarningThreshold = cpuWarningThresholdJson != null
                 ? Math.Clamp(Convert.ToDouble(cpuWarningThresholdJson), 5.0, 100.0)
                 : ProcessCpuUsageMonitor.DefaultCpuThreshold;
