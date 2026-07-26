@@ -271,8 +271,82 @@ public class PluginStoreItem : INotifyPropertyChanged
     public int InstallProgress
     {
         get => _installProgress;
-        set { _installProgress = value; OnPropertyChanged(); }
+        set { _installProgress = value; OnPropertyChanged(); OnPropertyChanged(nameof(InstallProgressPercent)); }
     }
+    
+    private double _installProgressPercent;
+
+    [JsonIgnore]
+    public double InstallProgressPercent
+    {
+        get => _installProgressPercent;
+        set { _installProgressPercent = value; OnPropertyChanged(); OnPropertyChanged(nameof(InstallProgressPercentDisplay)); }
+    }
+
+    [JsonIgnore]
+    public string InstallProgressPercentDisplay => $"{InstallProgressPercent:F1}%";
+    
+    private long _downloadedBytes;
+
+    [JsonIgnore]
+    public long DownloadedBytes
+    {
+        get => _downloadedBytes;
+        set
+        {
+            _downloadedBytes = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(DownloadedSizeDisplay));
+            OnPropertyChanged(nameof(DownloadSizeProgressDisplay));
+        }
+    }
+    
+    private long _totalDownloadBytes = -1;
+
+    [JsonIgnore]
+    public long TotalDownloadBytes
+    {
+        get => _totalDownloadBytes;
+        set
+        {
+            _totalDownloadBytes = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(TotalDownloadSizeDisplay));
+            OnPropertyChanged(nameof(HasTotalDownloadSize));
+            OnPropertyChanged(nameof(DownloadSizeProgressDisplay));
+        }
+    }
+    
+    private long _downloadSpeed;
+
+    [JsonIgnore]
+    public long DownloadSpeedBytesPerSecond
+    {
+        get => _downloadSpeed;
+        set { _downloadSpeed = value; OnPropertyChanged(); OnPropertyChanged(nameof(DownloadSpeedDisplay)); }
+    }
+
+    [JsonIgnore]
+    public bool HasTotalDownloadSize => TotalDownloadBytes > 0;
+
+    [JsonIgnore]
+    public string DownloadedSizeDisplay => FormatSizeHuman(DownloadedBytes);
+
+    [JsonIgnore]
+    public string TotalDownloadSizeDisplay => HasTotalDownloadSize ? FormatSizeHuman(TotalDownloadBytes) : "???";
+
+    [JsonIgnore]
+    public string DownloadSpeedDisplay => DownloadSpeedBytesPerSecond switch
+    {
+        <= 0 => "—",
+        >= 1_048_576 => $"{DownloadSpeedBytesPerSecond / 1_048_576.0:F1} MB/s",
+        >= 1_024 => $"{DownloadSpeedBytesPerSecond / 1_024.0:F1} KB/s",
+        _ => $"{DownloadSpeedBytesPerSecond} B/s"
+    };
+    
+    [JsonIgnore]
+    public string DownloadSizeProgressDisplay =>
+        HasTotalDownloadSize ? $"{DownloadedSizeDisplay} / {TotalDownloadSizeDisplay}" : DownloadedSizeDisplay;
 
     [JsonIgnore]
     public string InstallStatusText
@@ -345,6 +419,17 @@ public class PluginStoreItem : INotifyPropertyChanged
         if (bytes >= 1024)
             return $"{bytes / 1024.0:F1} KB";
         return $"{bytes} B";
+    }
+
+    private static string FormatSizeHuman(long bytes)
+    {
+        return bytes switch
+        {
+            >= 1_073_741_824 => $"{bytes / 1_073_741_824.0:F2} GB",
+            >= 1_048_576 => $"{bytes / 1_048_576.0:F1} MB",
+            >= 1_024 => $"{bytes / 1_024.0:F1} KB",
+            _ => $"{bytes} B"
+        };
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

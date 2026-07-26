@@ -4,7 +4,6 @@ Licensed under the MIT License.
 */
 
 using System.Diagnostics;
-using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
@@ -408,8 +407,9 @@ public class PluginStoreService
     }
     
     public async Task DownloadFileAsync(string fileUrl, string destinationPath,
-        IProgress<(int percent, string status)>? progress = null, string? expectedHash = null,
-        string? dlToken = null, string? accessToken = null)
+        IProgress<DownloadProgressInfo>? progress = null, string? expectedHash = null,
+        string? dlToken = null, string? accessToken = null,
+        CancellationToken cancellationToken = default)
     {
         var url = AppendTokens(fileUrl, dlToken, accessToken);
 
@@ -417,7 +417,7 @@ public class PluginStoreService
         {
             Debug.WriteLine($"[PluginStoreService] Downloading file: {url} -> {destinationPath}");
 
-            using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+            using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             
             var contentType = response.Content.Headers.ContentType?.MediaType ?? "";
             if (contentType.Contains("json"))
@@ -438,10 +438,15 @@ public class PluginStoreService
             var buffer = new byte[8192];
             var totalRead = 0L;
             int bytesRead;
+            
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            var lastReportBytes = 0L;
+            var lastReportMs = 0L;
+            const long reportIntervalMs = 200;
 
-            while ((bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+            while ((bytesRead = await contentStream.ReadAsync(buffer, 0, buffer.Length, cancellationToken)) > 0)
             {
-                await fileStream.WriteAsync(buffer, 0, bytesRead);
+                await fileStream.WriteAsync(buffer, 0, bytesRead, cancellationToken);
 
                 if (!string.IsNullOrWhiteSpace(expectedHash))
                 {
@@ -449,11 +454,27 @@ public class PluginStoreService
                 }
 
                 totalRead += bytesRead;
-
-                if (totalBytes > 0 && progress != null)
+                
+                var elapsedMs = stopwatch.ElapsedMilliseconds;
+                if (progress != null && (elapsedMs - lastReportMs >= reportIntervalMs || totalRead == totalBytes))
                 {
-                    var percent = (int)(totalRead * 100 / totalBytes);
-                    progress.Report((percent, string.Format("PluginStoreDownloading".GetLocalized(), percent)));
+                    var deltaBytes = totalRead - lastReportBytes;
+                    var deltaMs = elapsedMs - lastReportMs;
+                    var speed = deltaMs > 0 ? (long)(deltaBytes * 1000.0 / deltaMs) : 0;
+
+                    var percent = totalBytes > 0 ? (double)totalRead / totalBytes * 100.0 : 0.0;
+
+                    progress.Report(new DownloadProgressInfo
+                    {
+                        Percent = Math.Round(percent, 1),
+                        BytesDownloaded = totalRead,
+                        TotalBytes = totalBytes,
+                        SpeedBytesPerSecond = speed,
+                        StatusText = string.Format("PluginStoreDownloading".GetLocalized(), (int)percent)
+                    });
+
+                    lastReportBytes = totalRead;
+                    lastReportMs = elapsedMs;
                 }
             }
 
@@ -482,6 +503,13 @@ public class PluginStoreService
         catch (CaptchaRequiredException) { throw; }
         catch (PrivatePluginAccessException) { throw; }
         catch (HashMismatchException) { throw; }
+        catch (OperationCanceledException)
+        {
+            Debug.WriteLine($"[PluginStoreService] Download cancelled, cleaning up partial file: {destinationPath}");
+            try { File.Delete(destinationPath); }
+            catch (Exception ex) { Debug.WriteLine($"[PluginStoreService] Failed to delete partial file: {ex.Message}"); }
+            throw;
+        }
         catch (HttpRequestException ex) when (ex.InnerException is System.Net.Sockets.SocketException)
         {
             Debug.WriteLine($"[PluginStoreService] Server unreachable during file download: {ex.Message}");

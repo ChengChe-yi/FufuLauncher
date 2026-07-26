@@ -41,8 +41,9 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     private int _totalPlugins;
 
     private CancellationTokenSource? _installCts;
-
-    /// <summary>Current launcher version for min-version checks.</summary>
+    
+    private readonly HashSet<string> _installingPluginIds = new(StringComparer.Ordinal);
+    
     private static readonly string CurrentAppVersion =
         Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "1.0.0.0";
 
@@ -65,6 +66,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
         PrevPageCommand = new RelayCommand(async () => await GoToPageAsync(_currentPage - 1));
         AddPrivatePluginCommand = new RelayCommand(async () => await AddPrivatePluginAsync());
         LuaTestCommand = new RelayCommand(async () => await ExecuteLuaTestAsync());
+        CancelInstallCommand = new RelayCommand<PluginStoreItem>(item => CancelInstall(item!));
     }
 
     public ObservableCollection<PluginStoreItem> Plugins
@@ -159,6 +161,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     public ICommand PrevPageCommand { get; }
     public ICommand AddPrivatePluginCommand { get; }
     public ICommand LuaTestCommand { get; }
+    public ICommand CancelInstallCommand { get; }
 
     public async Task InitializeAsync()
     {
@@ -226,13 +229,49 @@ public class PluginStoreViewModel : INotifyPropertyChanged
                 sort: SortMode,
                 page: CurrentPage,
                 pageSize: 20);
+            
+            var savedInstallingStates = new Dictionary<string, (double percent, string status, long downloaded, long total, long speed)>(StringComparer.Ordinal);
+            if (_installingPluginIds.Count > 0)
+            {
+                foreach (var plugin in Plugins)
+                {
+                    if (_installingPluginIds.Contains(plugin.Id))
+                    {
+                        savedInstallingStates[plugin.Id] = (plugin.InstallProgressPercent, plugin.InstallStatusText,
+                            plugin.DownloadedBytes, plugin.TotalDownloadBytes, plugin.DownloadSpeedBytesPerSecond);
+                    }
+                }
+            }
 
             Plugins.Clear();
             if (response.Plugins != null)
             {
                 foreach (var plugin in response.Plugins)
                 {
-                    UpdateLocalState(plugin);
+                    if (_installingPluginIds.Contains(plugin.Id))
+                    {
+                        plugin.State = StorePluginState.Installing;
+                        plugin.IsInstallInProgress = true;
+                        if (savedInstallingStates.TryGetValue(plugin.Id, out var saved))
+                        {
+                            plugin.InstallProgressPercent = saved.percent;
+                            plugin.InstallProgress = (int)Math.Round(saved.percent);
+                            plugin.InstallStatusText = saved.status;
+                            plugin.DownloadedBytes = saved.downloaded;
+                            plugin.TotalDownloadBytes = saved.total;
+                            plugin.DownloadSpeedBytesPerSecond = saved.speed;
+                        }
+                        else
+                        {
+                            plugin.InstallProgress = 0;
+                            plugin.InstallProgressPercent = 0;
+                            plugin.InstallStatusText = "PluginStoreDownloadingLua".GetLocalized();
+                        }
+                    }
+                    else
+                    {
+                        UpdateLocalState(plugin);
+                    }
                     Plugins.Add(plugin);
                 }
             }
@@ -303,10 +342,18 @@ public class PluginStoreViewModel : INotifyPropertyChanged
         CurrentPage = page;
         await LoadPluginsAsync();
     }
+    
+    private void CancelInstall(PluginStoreItem item)
+    {
+        if (item == null || !item.IsInstallInProgress) return;
 
-    // ──────────────────────────────────────────────
-    //  Install flow with captcha gate + private plugin support
-    // ──────────────────────────────────────────────
+        Debug.WriteLine($"[PluginStoreVM] User cancelled install for plugin: {item.Id}");
+        
+        _installCts?.Cancel();
+
+        item.InstallStatusText = "PluginStoreCancelling".GetLocalized();
+        item.DownloadSpeedBytesPerSecond = 0;
+    }
 
     private async Task InstallPluginAsync(PluginStoreItem item)
     {
@@ -317,6 +364,8 @@ public class PluginStoreViewModel : INotifyPropertyChanged
             _installCts?.Cancel();
             _installCts = new CancellationTokenSource();
 
+            _installingPluginIds.Add(item.Id);
+
             item.State = StorePluginState.Installing;
             item.IsInstallInProgress = true;
             item.InstallProgress = 0;
@@ -326,6 +375,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
             {
                 if (!IsVersionSatisfied(CurrentAppVersion, item.MinAppVersion))
                 {
+                    _installingPluginIds.Remove(item.Id);
                     await ShowMinVersionWarningAsync(item);
                     item.State = StorePluginState.Available;
                     item.InstallProgress = 0;
@@ -339,6 +389,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
                 var accessKey = await ShowPrivateAccessDialogAsync(item);
                 if (string.IsNullOrWhiteSpace(accessKey))
                 {
+                    _installingPluginIds.Remove(item.Id);
                     item.State = StorePluginState.Available;
                     item.InstallProgress = 0;
                     item.InstallStatusText = string.Empty;
@@ -365,6 +416,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"[PluginStoreVM] Private access failed: {ex.Message}");
+                    _installingPluginIds.Remove(item.Id);
                     item.State = StorePluginState.Available;
                     item.InstallProgress = 0;
                     item.InstallStatusText = "PluginStorePrivateAccessDenied".GetLocalized();
@@ -378,6 +430,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
         catch (Exception ex)
         {
             Debug.WriteLine($"[PluginStoreVM] Install error: {ex}");
+            _installingPluginIds.Remove(item.Id);
             item.State = StorePluginState.Available;
             item.InstallProgress = 0;
             item.InstallStatusText = "PluginStoreInstallFailedShort".GetLocalized();
@@ -387,6 +440,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
         }
         finally
         {
+            _installingPluginIds.Remove(item.Id);
             item.IsInstallInProgress = false;
             _installCts?.Dispose();
             _installCts = null;
@@ -418,10 +472,29 @@ public class PluginStoreViewModel : INotifyPropertyChanged
 
                 var pluginDir = Path.Combine(_pluginsDir, item.Id);
                 _luaInstaller.EnsureConfigFileEntry(pluginDir, item.DllFileName);
-
-                item.State = StorePluginState.Installed;
-                item.InstallProgress = 100;
-                item.InstallStatusText = "PluginStoreInstallComplete".GetLocalized();
+                
+                if (_dispatcher != null)
+                {
+                    var capturedItem = item;
+                    _dispatcher.TryEnqueue(async () =>
+                    {
+                        capturedItem.InstallProgress = 100;
+                        capturedItem.InstallProgressPercent = 100.0;
+                        capturedItem.InstallStatusText = "PluginStoreInstallComplete".GetLocalized();
+                        capturedItem.DownloadSpeedBytesPerSecond = 0;
+                        
+                        await Task.Delay(600);
+                        
+                        capturedItem.State = StorePluginState.Installed;
+                    });
+                }
+                else
+                {
+                    item.InstallProgress = 100;
+                    item.InstallProgressPercent = 100.0;
+                    item.InstallStatusText = "PluginStoreInstallComplete".GetLocalized();
+                    item.State = StorePluginState.Installed;
+                }
                 StatusMessage = string.Format("PluginStoreInstallSuccess".GetLocalized(), item.Name);
                 return;
             }
@@ -874,6 +947,8 @@ public class PluginStoreViewModel : INotifyPropertyChanged
 
         try
         {
+            _installingPluginIds.Add(item.Id);
+
             item.IsInstallInProgress = true;
             item.State = StorePluginState.Installing;
             item.InstallStatusText = "PluginStoreUninstalling".GetLocalized();
@@ -982,6 +1057,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
         }
         finally
         {
+            _installingPluginIds.Remove(item.Id);
             item.IsInstallInProgress = false;
         }
     }
@@ -1009,59 +1085,67 @@ public class PluginStoreViewModel : INotifyPropertyChanged
 
         var pluginDir = Path.Combine(_pluginsDir, storeItem.Id);
 
-        if (Directory.Exists(pluginDir))
+        if (!Directory.Exists(pluginDir)) return;
+
+        var configPath = Path.Combine(pluginDir, "config.ini");
+        if (!File.Exists(configPath)) return;
+
+        try
         {
-            var configPath = Path.Combine(pluginDir, "config.ini");
-            if (File.Exists(configPath))
+            var lines = File.ReadAllLines(configPath);
+            string? localVersion = null;
+            string? dllFileName = null;
+            var inGeneral = false;
+
+            foreach (var line in lines)
             {
-                try
+                var trimmed = line.Trim();
+                if (trimmed.StartsWith("[") && trimmed.EndsWith("]"))
                 {
-                    var lines = File.ReadAllLines(configPath);
-                    string? localVersion = null;
-                    var inGeneral = false;
-
-                    foreach (var line in lines)
-                    {
-                        var trimmed = line.Trim();
-                        if (trimmed.StartsWith("[") && trimmed.EndsWith("]"))
-                        {
-                            inGeneral = trimmed.Equals("[General]", StringComparison.OrdinalIgnoreCase);
-                            continue;
-                        }
-                        if (inGeneral && trimmed.StartsWith("Version", StringComparison.OrdinalIgnoreCase))
-                        {
-                            var parts = trimmed.Split('=', 2);
-                            if (parts.Length == 2)
-                                localVersion = parts[1].Trim();
-                            break;
-                        }
-                    }
-
-                    if (!string.IsNullOrEmpty(localVersion))
-                    {
-                        if (localVersion != storeItem.Version)
-                        {
-                            storeItem.State = StorePluginState.UpdateAvailable;
-                        }
-                        else
-                        {
-                            storeItem.State = StorePluginState.Installed;
-                        }
-                    }
-                    else
-                    {
-                        storeItem.State = StorePluginState.Installed;
-                    }
+                    inGeneral = trimmed.Equals("[General]", StringComparison.OrdinalIgnoreCase);
+                    continue;
                 }
-                catch
+                if (!inGeneral) continue;
+
+                var parts = trimmed.Split('=', 2);
+                if (parts.Length != 2) continue;
+
+                var key = parts[0].Trim();
+                var value = parts[1].Trim();
+
+                if (key.Equals("Version", StringComparison.OrdinalIgnoreCase))
                 {
-                    storeItem.State = StorePluginState.Installed;
+                    localVersion = value;
                 }
+                else if (key.Equals("File", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(value))
+                {
+                    dllFileName = value;
+                }
+            }
+            
+            if (!string.IsNullOrEmpty(dllFileName))
+            {
+                var dllPath = Path.Combine(pluginDir, dllFileName);
+                if (!File.Exists(dllPath))
+                {
+                    return;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(localVersion))
+            {
+                storeItem.State = localVersion != storeItem.Version
+                    ? StorePluginState.UpdateAvailable
+                    : StorePluginState.Installed;
             }
             else
             {
                 storeItem.State = StorePluginState.Installed;
             }
+        }
+        catch
+        {
+            // ignored
         }
     }
     
@@ -1089,15 +1173,22 @@ public class PluginStoreViewModel : INotifyPropertyChanged
         return uriBuilder.ToString();
     }
 
-    private void OnInstallProgress(int percent, string status)
+    private void OnInstallProgress(DownloadProgressInfo info)
     {
         _dispatcher?.TryEnqueue(() =>
         {
-            var installing = Plugins.FirstOrDefault(p => p.State == StorePluginState.Installing);
-            if (installing != null)
+            foreach (var id in _installingPluginIds)
             {
-                installing.InstallProgress = percent;
-                installing.InstallStatusText = status;
+                var installing = Plugins.FirstOrDefault(p => p.Id == id);
+                if (installing != null && installing.State == StorePluginState.Installing)
+                {
+                    installing.InstallProgress = (int)Math.Round(info.Percent);
+                    installing.InstallProgressPercent = info.Percent;
+                    installing.InstallStatusText = info.StatusText;
+                    installing.DownloadedBytes = info.BytesDownloaded;
+                    installing.TotalDownloadBytes = info.TotalBytes;
+                    installing.DownloadSpeedBytesPerSecond = info.SpeedBytesPerSecond;
+                }
             }
         });
     }

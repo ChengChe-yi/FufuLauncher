@@ -208,7 +208,7 @@ public partial class App : Application
                     services.AddTransient<CommunityPage>();
                     services.AddSingleton<Services.PluginStoreService>();
                     services.AddSingleton<Services.LuaPluginInstaller>();
-                    services.AddTransient<ViewModels.PluginStoreViewModel>();
+                    services.AddSingleton<ViewModels.PluginStoreViewModel>();
                     services.AddTransient<Views.PluginStorePage>();
 
                     services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));

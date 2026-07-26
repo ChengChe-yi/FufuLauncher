@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
 using FufuLauncher.Helpers;
+using FufuLauncher.Models;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -26,7 +27,7 @@ public class LuaPluginInstaller
     private string? _expectedLuaHash;
     private string? _dlToken;
     private string? _accessToken;
-    public event Action<int, string>? ProgressChanged;
+    public event Action<DownloadProgressInfo>? ProgressChanged;
     public event Action<string>? LogReceived;
     
     public static DispatcherQueue? UIDispatcher { get; set; }
@@ -161,6 +162,12 @@ public class LuaPluginInstaller
             }
             catch (InterpreterException ex)
             {
+                if (ex.InnerException is OperationCanceledException oce)
+                {
+                    Debug.WriteLine($"[LuaInstaller] Lua script cancelled");
+                    LogMessage("脚本执行被取消");
+                    throw oce;
+                }
                 Debug.WriteLine($"[LuaInstaller] Lua error: {ex.Message}");
                 LogMessage($"Lua脚本错误: {ex.Message}");
                 throw new InvalidOperationException(string.Format("PluginStoreLuaScriptFailed".GetLocalized(), ex.Message), ex);
@@ -184,15 +191,17 @@ public class LuaPluginInstaller
             try
             {
                 _storeService.DownloadFileAsync(url, safePath,
-                    new Progress<(int percent, string status)>(p =>
+                    new Progress<DownloadProgressInfo>(p =>
                     {
-                        ReportProgress(5 + p.percent * 70 / 100, p.status);
+                        ReportProgress(5 + p.Percent * 70 / 100, p.StatusText, p.BytesDownloaded, p.TotalBytes, p.SpeedBytesPerSecond);
                     }),
-                    _expectedFileHash, _dlToken, _accessToken).GetAwaiter().GetResult();
+                    _expectedFileHash, _dlToken, _accessToken,
+                    cancellationToken).GetAwaiter().GetResult();
             }
             catch (Exception ex)
             {
                 LogMessage($"下载失败: {ex.Message}");
+                throw;
             }
         });
         
@@ -239,11 +248,12 @@ public class LuaPluginInstaller
                 try
                 {
                     _storeService.DownloadFileAsync(downloadUrl, zipPath,
-                        new Progress<(int percent, string status)>(p =>
+                        new Progress<DownloadProgressInfo>(p =>
                         {
-                            ReportProgress(5 + p.percent * 70 / 100, p.status);
+                            ReportProgress(5 + p.Percent * 70 / 100, p.StatusText, p.BytesDownloaded, p.TotalBytes, p.SpeedBytesPerSecond);
                         }),
-                        _expectedFileHash, _dlToken, _accessToken).GetAwaiter().GetResult();
+                        _expectedFileHash, _dlToken, _accessToken,
+                        cancellationToken).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {
@@ -309,8 +319,9 @@ public class LuaPluginInstaller
 
             if (!File.Exists(safeZipPath))
             {
-                LogMessage($"zip文件不存在: {safeZipPath}");
-                return;
+                var msg = $"zip文件不存在: {safeZipPath}";
+                LogMessage(msg);
+                throw new FileNotFoundException(msg);
             }
 
             if (!Directory.Exists(safeDestDir))
@@ -324,6 +335,7 @@ public class LuaPluginInstaller
             catch (Exception ex)
             {
                 LogMessage($"解压失败: {ex.Message}");
+                throw;
             }
         });
         
@@ -1221,10 +1233,41 @@ public class LuaPluginInstaller
         return dllFile != null ? Path.GetFileName(dllFile) : null;
     }
 
-    private void ReportProgress(int percent, string status)
+    private void ReportProgress(double percent, string status, long bytesDownloaded = 0, long totalBytes = -1, long speed = 0)
     {
-        Debug.WriteLine($"[LuaInstaller] Progress {percent}%: {status}");
-        ProgressChanged?.Invoke(percent, status);
+        var info = new DownloadProgressInfo
+        {
+            Percent = percent,
+            BytesDownloaded = bytesDownloaded,
+            TotalBytes = totalBytes,
+            SpeedBytesPerSecond = speed,
+            StatusText = status
+        };
+        Debug.WriteLine($"[LuaInstaller] Progress {percent:F1}% ({FormatSize(bytesDownloaded)}/{FormatSize(totalBytes)} @ {FormatSpeed(speed)}): {status}");
+        ProgressChanged?.Invoke(info);
+    }
+
+    private static string FormatSize(long bytes)
+    {
+        if (bytes <= 0) return "?";
+        return bytes switch
+        {
+            >= 1_073_741_824 => $"{bytes / 1_073_741_824.0:F2} GB",
+            >= 1_048_576 => $"{bytes / 1_048_576.0:F1} MB",
+            >= 1_024 => $"{bytes / 1_024.0:F1} KB",
+            _ => $"{bytes} B"
+        };
+    }
+
+    private static string FormatSpeed(long bytesPerSecond)
+    {
+        if (bytesPerSecond <= 0) return "?";
+        return bytesPerSecond switch
+        {
+            >= 1_048_576 => $"{bytesPerSecond / 1_048_576.0:F1} MB/s",
+            >= 1_024 => $"{bytesPerSecond / 1_024.0:F1} KB/s",
+            _ => $"{bytesPerSecond} B/s"
+        };
     }
 
     private void LogMessage(string message)

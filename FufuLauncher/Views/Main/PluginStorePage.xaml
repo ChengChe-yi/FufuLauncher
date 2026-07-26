@@ -220,9 +220,32 @@
                                 <EntranceThemeTransition FromVerticalOffset="12" IsStaggeringEnabled="False"/>
                             </TransitionCollection>
                         </Grid.Transitions>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="16" Width="260" Padding="16">
-                            <TextBlock Text="{x:Bind InstallStatusText, Mode=OneWay}" FontSize="15" FontWeight="SemiBold" Foreground="{ThemeResource SafeTextBrush}" HorizontalAlignment="Center"/>
-                            <ProgressBar Value="{x:Bind InstallProgress, Mode=OneWay}" Maximum="100" Height="6" CornerRadius="3" Foreground="{ThemeResource AccentFillColorDefaultBrush}" HorizontalAlignment="Stretch"/>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="6" Width="260" Padding="16">
+                            <TextBlock Text="{x:Bind InstallStatusText, Mode=OneWay}" FontSize="14" FontWeight="SemiBold" Foreground="{ThemeResource SafeTextBrush}" HorizontalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                            
+                            <TextBlock Text="{x:Bind InstallProgressPercentDisplay, Mode=OneWay}" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
+                            
+                            <ProgressBar Value="{x:Bind InstallProgressPercent, Mode=OneWay}" Maximum="100" Height="6" CornerRadius="3" Foreground="{ThemeResource AccentFillColorDefaultBrush}" HorizontalAlignment="Stretch"/>
+                            
+                            <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="{ThemeResource SafeSecondaryTextBrush}" Opacity="0.8"
+                                       Visibility="{x:Bind HasTotalDownloadSize, Mode=OneWay}">
+                                <Run Text="{x:Bind DownloadSizeProgressDisplay, Mode=OneWay}"/>
+                            </TextBlock>
+                            
+                            <TextBlock HorizontalAlignment="Center" FontSize="11" Foreground="{ThemeResource SafeSecondaryTextBrush}" Opacity="0.7"
+                                       Visibility="{x:Bind HasTotalDownloadSize, Mode=OneWay}">
+                                <Run Text="{x:Bind DownloadSpeedDisplay, Mode=OneWay}"/>
+                            </TextBlock>
+                            
+                            <Button Content="取消安装" Style="{StaticResource StoreInstalledButtonStyle}" 
+                                    HorizontalAlignment="Center" Margin="0,8,0,0"
+                                    Click="OnCancelInstallClick" Tag="{x:Bind}">
+                                <Button.Resources>
+                                    <SolidColorBrush x:Key="ButtonForeground" Color="#E81123"/>
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#FF4D4D"/>
+                                    <SolidColorBrush x:Key="ButtonForegroundPressed" Color="#CC0000"/>
+                                </Button.Resources>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </Grid>
