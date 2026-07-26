@@ -1589,6 +1589,14 @@
                         <TextBlock Text="{helpers:Loc Key=SecurityAuthCaption}" Style="{ThemeResource CaptionTextBlockStyle}"
                                    Foreground="{ThemeResource SafeSecondaryTextBrush}" />
 
+                        <ToggleSwitch Header="{helpers:Loc Key=DisableCaptchaPopup}"
+                                      OffContent="{helpers:Loc Key=Enabled}"
+                                      OnContent="{helpers:Loc Key=Disabled}"
+                                      IsOn="{x:Bind ViewModel.IsCaptchaPopupDisabled, Mode=TwoWay}" />
+                        <TextBlock Text="{helpers:Loc Key=DisableCaptchaPopupCaption}"
+                                   Style="{ThemeResource CaptionTextBlockStyle}"
+                                   Opacity="0.7" />
+
                         <Button Content="{helpers:Loc Key=SecurityAuthBtn}"
                                 HorizontalAlignment="Left"
                                 Padding="12,6"

@@ -1506,4 +1506,6 @@
   <data name="PluginStoreCategoryUtility" xml:space="preserve"><value>实用工具</value></data>
   <data name="PluginStoreCategoryGameplay" xml:space="preserve"><value>游戏玩法</value></data>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve"><value>视觉美化</value></data>
+  <data name="DisableCaptchaPopup" xml:space="preserve"><value>禁用风控验证码弹窗</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>启用后将不会弹出账户风控验证码窗口。某些情况下跳过验证可能导致便签等功能暂时不可用。</value></data>
 </root>

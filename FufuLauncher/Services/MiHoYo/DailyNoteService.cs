@@ -70,16 +70,26 @@ public sealed class DailyNoteService
 
             if (retcode == 1034)
             {
-         
-                await _fingerprintService.ResetFingerprintAsync(activeId);
-                deviceFp = await _fingerprintService.GetOrRegisterFingerprintAsync(activeId, cookies);
-
-                GeetestService geetestService = new();
-                string xrpcChallenge = await geetestService.TryVerifyForDailyNoteAsync(cookies);
-                if (!string.IsNullOrEmpty(xrpcChallenge))
+                var localSettingsService = App.GetService<ILocalSettingsService>();
+                var captchaDisabledJson = await localSettingsService.ReadSettingAsync("IsCaptchaPopupDisabled");
+                bool isCaptchaDisabled = captchaDisabledJson != null && Convert.ToBoolean(captchaDisabledJson);
+                
+                if (!isCaptchaDisabled)
                 {
-                    json = await RequestDailyNoteAsync(apiUrl, cookies, xrpcChallenge, deviceFp);
-                    retcode = ParseRetcode(json);
+                    await _fingerprintService.ResetFingerprintAsync(activeId);
+                    deviceFp = await _fingerprintService.GetOrRegisterFingerprintAsync(activeId, cookies);
+
+                    GeetestService geetestService = new();
+                    string xrpcChallenge = await geetestService.TryVerifyForDailyNoteAsync(cookies);
+                    if (!string.IsNullOrEmpty(xrpcChallenge))
+                    {
+                        json = await RequestDailyNoteAsync(apiUrl, cookies, xrpcChallenge, deviceFp);
+                        retcode = ParseRetcode(json);
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("[DailyNoteService] 风控验证码弹窗已被用户禁用，跳过验证");
                 }
             }
 
