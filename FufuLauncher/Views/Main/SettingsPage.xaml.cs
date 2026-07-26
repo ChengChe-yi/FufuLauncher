@@ -1047,9 +1047,6 @@ public sealed partial class SettingsPage : Page
     }
 }
 
-/// <summary>
-/// 设置页顶部搜索框的一条建议：一个设置行的标题、它所属的分区，以及用于跳转的可视化元素。
-/// </summary>
 public sealed class SettingsSearchResult
 {
     public string Title
