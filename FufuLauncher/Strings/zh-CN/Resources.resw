@@ -1533,4 +1533,168 @@
   <data name="PluginStoreDependencies" xml:space="preserve"><value>依赖</value></data>
   <data name="PluginStoreLongDescription" xml:space="preserve"><value>详细介绍</value></data>
   <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>正在下载安装脚本...</value></data>
+  <data name="DataPage_Title" xml:space="preserve"><value>数据中心</value></data>
+  <data name="DataPage_Subtitle" xml:space="preserve"><value>汇总全服榜单，交叉分析成可直接照做的培养与抽卡结论</value></data>
+  <data name="DataPage_TabOverview" xml:space="preserve"><value>总览</value></data>
+  <data name="DataPage_TabCharacters" xml:space="preserve"><value>角色练度</value></data>
+  <data name="DataPage_TabSpiral" xml:space="preserve"><value>深境螺旋</value></data>
+  <data name="DataPage_TabStygian" xml:space="preserve"><value>幽境危战</value></data>
+  <data name="DataPage_TabWish" xml:space="preserve"><value>卡池历史</value></data>
+  <data name="DataPage_TabRerun" xml:space="preserve"><value>复刻间隔</value></data>
+  <data name="DataPage_TabTimeline" xml:space="preserve"><value>活动时间轴</value></data>
+  <data name="DataPage_Refresh" xml:space="preserve"><value>刷新数据</value></data>
+  <data name="DataPage_LastUpdate" xml:space="preserve"><value>更新于 {0}</value></data>
+  <data name="DataPage_Loading" xml:space="preserve"><value>正在汇总全服榜单…</value></data>
+  <data name="DataPage_LoadFailedTitle" xml:space="preserve"><value>数据加载失败</value></data>
+  <data name="DataPage_LoadFailedBody" xml:space="preserve"><value>无法连接统计服务，请检查网络后重试。</value></data>
+  <data name="DataPage_PartialData" xml:space="preserve"><value>有 {0} 份榜单未能加载，当前显示的是部分数据。</value></data>
+  <data name="DataPage_Retry" xml:space="preserve"><value>重试</value></data>
+  <data name="DataPage_NoResult" xml:space="preserve"><value>没有匹配的结果</value></data>
+  <data name="DataPage_ShowMore" xml:space="preserve"><value>显示更多（+{0}）</value></data>
+  <data name="DataPage_ShownCount" xml:space="preserve"><value>已显示 {0} / {1}</value></data>
+  <data name="DataPage_SectionEnvironment" xml:space="preserve"><value>版本环境</value></data>
+  <data name="DataPage_SectionInsight" xml:space="preserve"><value>综合结论</value></data>
+  <data name="DataPage_SectionMovers" xml:space="preserve"><value>强度变化</value></data>
+  <data name="DataPage_SectionTopTier" xml:space="preserve"><value>本期第一梯队</value></data>
+  <data name="DataPage_SectionCurrentBanner" xml:space="preserve"><value>当前可抽</value></data>
+  <data name="DataPage_SectionValuePick" xml:space="preserve"><value>值得投资</value></data>
+  <data name="DataPage_SectionOverdue" xml:space="preserve"><value>久未复刻</value></data>
+  <data name="DataPage_SectionRanking" xml:space="preserve"><value>榜单</value></data>
+  <data name="DataPage_SectionFilter" xml:space="preserve"><value>筛选</value></data>
+  <data name="DataPage_SectionCharacters" xml:space="preserve"><value>角色列表</value></data>
+  <data name="DataPage_SectionBanners" xml:space="preserve"><value>卡池记录</value></data>
+  <data name="DataPage_SectionRerun" xml:space="preserve"><value>复刻间隔</value></data>
+  <data name="DataPage_Risers" xml:space="preserve"><value>使用率上升</value></data>
+  <data name="DataPage_Fallers" xml:space="preserve"><value>使用率下降</value></data>
+  <data name="DataPage_KpiVersion" xml:space="preserve"><value>当前版本</value></data>
+  <data name="DataPage_KpiSample" xml:space="preserve"><value>深渊有效样本</value></data>
+  <data name="DataPage_KpiStygianSample" xml:space="preserve"><value>幽境</value></data>
+  <data name="DataPage_KpiFullStar" xml:space="preserve"><value>满星通关率</value></data>
+  <data name="DataPage_KpiOnceFullStar" xml:space="preserve"><value>一次满星</value></data>
+  <data name="DataPage_KpiRestart" xml:space="preserve"><value>平均重开次数</value></data>
+  <data name="DataPage_KpiCharacterCount" xml:space="preserve"><value>收录角色</value></data>
+  <data name="DataPage_KpiBannerCount" xml:space="preserve"><value>角色卡池</value></data>
+  <data name="DataPage_KpiWeaponBanner" xml:space="preserve"><value>武器卡池 {0} 期</value></data>
+  <data name="DataPage_UnitTimesShort" xml:space="preserve"><value>次</value></data>
+  <data name="DataPage_UnitEntries" xml:space="preserve"><value>共 {0} 条</value></data>
+  <data name="DataPage_SortBy" xml:space="preserve"><value>排序</value></data>
+  <data name="DataPage_StarFilter" xml:space="preserve"><value>星级</value></data>
+  <data name="DataPage_SortHeat" xml:space="preserve"><value>综合评分</value></data>
+  <data name="DataPage_SortAbyss" xml:space="preserve"><value>深渊登场率</value></data>
+  <data name="DataPage_SortValue" xml:space="preserve"><value>抽卡优先级</value></data>
+  <data name="DataPage_SortOwn" xml:space="preserve"><value>拥有率</value></data>
+  <data name="DataPage_SortLevel" xml:space="preserve"><value>平均等级</value></data>
+  <data name="DataPage_SortDamage" xml:space="preserve"><value>核心伤害</value></data>
+  <data name="DataPage_FieldShare" xml:space="preserve"><value>全服出场占比</value></data>
+  <data name="DataPage_SampleFormat" xml:space="preserve"><value>样本 {0}</value></data>
+  <data name="DataPage_ViewDetail" xml:space="preserve"><value>查看综合分析</value></data>
+  <data name="DataPage_CoreDamage" xml:space="preserve"><value>核心伤害</value></data>
+  <data name="DataPage_AbyssPick" xml:space="preserve"><value>深渊登场</value></data>
+  <data name="DataPage_StygianPick" xml:space="preserve"><value>幽境登场</value></data>
+  <data name="DataPage_MetricAvgLevel" xml:space="preserve"><value>平均等级</value></data>
+  <data name="DataPage_MetricAvgConst" xml:space="preserve"><value>平均命座</value></data>
+  <data name="DataPage_MetricSample" xml:space="preserve"><value>统计样本</value></data>
+  <data name="DataPage_MetricTalent" xml:space="preserve"><value>天赋</value></data>
+  <data name="DataPage_ZeroConstellation" xml:space="preserve"><value>零命占比</value></data>
+  <data name="DataPage_ClearTime" xml:space="preserve"><value>平均通关</value></data>
+  <data name="DataPage_ChangeVsLast" xml:space="preserve"><value>环比上期</value></data>
+  <data name="DataPage_DetailTitle" xml:space="preserve"><value>{0} · 综合分析</value></data>
+  <data name="DataPage_DetailWeapons" xml:space="preserve"><value>武器选择分布</value></data>
+  <data name="DataPage_DetailArtifacts" xml:space="preserve"><value>圣遗物搭配分布</value></data>
+  <data name="DataPage_DetailConstellation" xml:space="preserve"><value>命座分布</value></data>
+  <data name="DataPage_DetailTeams" xml:space="preserve"><value>高频队伍</value></data>
+  <data name="DataPage_DetailBanners" xml:space="preserve"><value>卡池与复刻记录</value></data>
+  <data name="DataPage_DetailInsights" xml:space="preserve"><value>结论</value></data>
+  <data name="DataPage_Close" xml:space="preserve"><value>关闭</value></data>
+  <data name="DataPage_ViewTier" xml:space="preserve"><value>强度分级</value></data>
+  <data name="DataPage_ViewRank" xml:space="preserve"><value>使用率排行</value></data>
+  <data name="DataPage_ViewTeam" xml:space="preserve"><value>配队榜</value></data>
+  <data name="DataPage_Version" xml:space="preserve"><value>期数</value></data>
+  <data name="DataPage_RestartDist" xml:space="preserve"><value>重开次数分布</value></data>
+  <data name="DataPage_TierCount" xml:space="preserve"><value>{0} 名</value></data>
+  <data name="DataPage_TeamHasRate" xml:space="preserve"><value>可组建率</value></data>
+  <data name="DataPage_TeamAttendRate" xml:space="preserve"><value>参战率</value></data>
+  <data name="DataPage_TeamCount" xml:space="preserve"><value>使用 {0} 次</value></data>
+  <data name="DataPage_HalfFirst" xml:space="preserve"><value>上半</value></data>
+  <data name="DataPage_HalfMid" xml:space="preserve"><value>中半</value></data>
+  <data name="DataPage_HalfSecond" xml:space="preserve"><value>下半</value></data>
+  <data name="DataPage_MaxInterval" xml:space="preserve"><value>最长间隔</value></data>
+  <data name="DataPage_TierS1Desc" xml:space="preserve"><value>定义了当前环境</value></data>
+  <data name="DataPage_TierSDesc" xml:space="preserve"><value>强度高且广泛使用</value></data>
+  <data name="DataPage_TierADesc" xml:space="preserve"><value>稳定的场合选择</value></data>
+  <data name="DataPage_TierBDesc" xml:space="preserve"><value>偏冷门或依赖配队</value></data>
+  <data name="DataPage_TierCDesc" xml:space="preserve"><value>本期几乎不见登场</value></data>
+  <data name="DataPage_WishCharacters" xml:space="preserve"><value>角色池</value></data>
+  <data name="DataPage_WishWeapons" xml:space="preserve"><value>武器池</value></data>
+  <data name="DataPage_WishOngoing" xml:space="preserve"><value>进行中</value></data>
+  <data name="DataPage_WishUpcoming" xml:space="preserve"><value>即将开始</value></data>
+  <data name="DataPage_WishDaysLeft" xml:space="preserve"><value>剩余 {0} 天</value></data>
+  <data name="DataPage_WishDaysUntil" xml:space="preserve"><value>{0} 天后开始</value></data>
+  <data name="DataPage_WishDaysAgo" xml:space="preserve"><value>{0} 天前</value></data>
+  <data name="DataPage_WishTopRerun" xml:space="preserve"><value>复刻次数最多</value></data>
+  <data name="DataPage_WishTopCompanion" xml:space="preserve"><value>四星陪跑最多</value></data>
+  <data name="DataPage_WishSearchPlaceholder" xml:space="preserve"><value>搜索角色或版本…</value></data>
+  <data name="DataPage_WishUpTimes" xml:space="preserve"><value>{0} 次</value></data>
+  <data name="DataPage_WishSummaryFormat" xml:space="preserve"><value>共 UP {0} 次，最近一次是 {1}（{2} 天前），平均间隔 {3} 天。</value></data>
+  <data name="DataPage_WishSummaryNever" xml:space="preserve"><value>暂无卡池记录。</value></data>
+  <data name="DataPage_RerunChar5" xml:space="preserve"><value>五星角色</value></data>
+  <data name="DataPage_RerunChar4" xml:space="preserve"><value>四星角色</value></data>
+  <data name="DataPage_RerunWeapon5" xml:space="preserve"><value>五星武器</value></data>
+  <data name="DataPage_RerunWeapon4" xml:space="preserve"><value>四星武器</value></data>
+  <data name="DataPage_RerunCategory" xml:space="preserve"><value>分类</value></data>
+  <data name="DataPage_RerunDays" xml:space="preserve"><value>天未复刻</value></data>
+  <data name="DataPage_RerunDaysValue" xml:space="preserve"><value>{0} 天</value></data>
+  <data name="DataPage_RerunUpTimes" xml:space="preserve"><value>历史 UP {0} 次</value></data>
+  <data name="DataPage_RerunMaxGap" xml:space="preserve"><value>{0} 天（{1}）</value></data>
+  <data name="DataPage_RerunMinGap" xml:space="preserve"><value>最短间隔 {0} 天（{1}）</value></data>
+  <data name="DataPage_RerunOverdue" xml:space="preserve"><value>严重超期</value></data>
+  <data name="DataPage_RerunDue" xml:space="preserve"><value>已到期</value></data>
+  <data name="DataPage_RerunSoon" xml:space="preserve"><value>临近</value></data>
+  <data name="DataPage_RerunFresh" xml:space="preserve"><value>刚复刻</value></data>
+  <data name="DataPage_RerunNever" xml:space="preserve"><value>尚未复刻</value></data>
+  <data name="DataPage_RerunForecastOver" xml:space="preserve"><value>已超过平均间隔 {0} 天</value></data>
+  <data name="DataPage_RerunForecastLeft" xml:space="preserve"><value>距平均间隔还有 {0} 天</value></data>
+  <data name="DataPage_RerunSortUrgency" xml:space="preserve"><value>紧迫度</value></data>
+  <data name="DataPage_RerunSortDays" xml:space="preserve"><value>未复刻天数</value></data>
+  <data name="DataPage_RerunSortInterval" xml:space="preserve"><value>平均间隔</value></data>
+  <data name="DataPage_RerunSearchPlaceholder" xml:space="preserve"><value>搜索名称…</value></data>
+  <data name="DataPage_RerunSummaryFormat" xml:space="preserve"><value>已 {0} 天未复刻，历史平均间隔 {1} 天，最长 {2} 天。</value></data>
+  <data name="DataPage_HeadlineTop" xml:space="preserve"><value>第一梯队</value></data>
+  <data name="DataPage_HeadlineValue" xml:space="preserve"><value>高性价比</value></data>
+  <data name="DataPage_HeadlineRising" xml:space="preserve"><value>上升中</value></data>
+  <data name="DataPage_HeadlineFalling" xml:space="preserve"><value>下滑中</value></data>
+  <data name="DataPage_HeadlinePopular" xml:space="preserve"><value>全民角色</value></data>
+  <data name="DataPage_InsightMetaTitle" xml:space="preserve"><value>本期环境</value></data>
+  <data name="DataPage_InsightMetaBody" xml:space="preserve"><value>{0} 的满星通关率为 {1}，平均重开 {2} 次；第一梯队由 {3} 领衔。</value></data>
+  <data name="DataPage_InsightRiseTitle" xml:space="preserve"><value>强度崛起</value></data>
+  <data name="DataPage_InsightRiseBody" xml:space="preserve"><value>{0} 的使用率从 {1} 涨到 {2}，是本期涨幅最大的角色。</value></data>
+  <data name="DataPage_InsightFallTitle" xml:space="preserve"><value>环境退场</value></data>
+  <data name="DataPage_InsightFallBody" xml:space="preserve"><value>{0} 的使用率从 {1} 跌到 {2}，本期明显退场。</value></data>
+  <data name="DataPage_InsightValueTitle" xml:space="preserve"><value>抽卡优先级</value></data>
+  <data name="DataPage_InsightValueBody" xml:space="preserve"><value>{0} 在持有者中的登场率高达 {1}，但全服拥有率只有 {2}——强度高而普及低，优先级最高。</value></data>
+  <data name="DataPage_InsightBenchTitle" xml:space="preserve"><value>已被冷藏</value></data>
+  <data name="DataPage_InsightBenchBody" xml:space="preserve"><value>{0} 的拥有率高达 {1}，但登场率只有 {2}——几乎人人都有，却几乎没人上场。</value></data>
+  <data name="DataPage_InsightNoConstTitle" xml:space="preserve"><value>零命可用</value></data>
+  <data name="DataPage_InsightNoConstBody" xml:space="preserve"><value>{0} 有 {1} 的玩家在零命使用，不需要命座就能发挥。</value></data>
+  <data name="DataPage_InsightConstTitle" xml:space="preserve"><value>吃命座</value></data>
+  <data name="DataPage_InsightConstBody" xml:space="preserve"><value>{0} 只有 {1} 的使用者是零命，登场数据主要来自有命座的玩家。</value></data>
+  <data name="DataPage_InsightWeaponTitle" xml:space="preserve"><value>专武几乎唯一</value></data>
+  <data name="DataPage_InsightWeaponBody" xml:space="preserve"><value>{0} 出现在 {2} 的 {1} 配装中，基本就是默认答案。</value></data>
+  <data name="DataPage_InsightArtifactTitle" xml:space="preserve"><value>圣遗物首选</value></data>
+  <data name="DataPage_InsightArtifactBody" xml:space="preserve"><value>{0} 占据了 {1} 的配装，可以当作基准搭配。</value></data>
+  <data name="DataPage_InsightOverdueTitle" xml:space="preserve"><value>复刻观察</value></data>
+  <data name="DataPage_InsightOverdueBody" xml:space="preserve"><value>{0} 已经 {1} 天没有复刻（历史平均间隔 {2} 天），是最有可能进入下一批复刻的角色。</value></data>
+  <data name="DataPage_InsightTeamTitle" xml:space="preserve"><value>主流配队</value></data>
+  <data name="DataPage_InsightTeamBody" xml:space="preserve"><value>使用率最高的队伍是 {0}，占比 {1}。</value></data>
+  <data name="DataPage_InsightBannerTitle" xml:space="preserve"><value>当前卡池</value></data>
+  <data name="DataPage_InsightBannerBody" xml:space="preserve"><value>正在进行：{0}。{1}</value></data>
+  <data name="DataPage_InsightBannerNone" xml:space="preserve"><value>当前没有进行中的角色卡池。</value></data>
+  <data name="DataPage_BannerAdviceItem" xml:space="preserve"><value>{0}（{1} · 深渊登场 {2}）</value></data>
+  <data name="DataPage_ListSeparator" xml:space="preserve"><value>、</value></data>
+  <data name="DataPage_ClauseSeparator" xml:space="preserve"><value>；</value></data>
+  <data name="DataPage_ExportPdf" xml:space="preserve"><value>导出专业 PDF 分析报告</value></data>
+  <data name="DataPage_ExportPdfFileType" xml:space="preserve"><value>PDF 文档</value></data>
+  <data name="DataPage_Exporting" xml:space="preserve"><value>正在生成 FufuLauncher 数据分析报告…</value></data>
+  <data name="DataPage_Exported" xml:space="preserve"><value>PDF 报告已导出：{0}</value></data>
+  <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF 导出失败：{0}</value></data>
 </root>

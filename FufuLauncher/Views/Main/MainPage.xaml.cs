@@ -736,24 +736,8 @@ private void OnOpenGachaAnalysisClick(object sender, RoutedEventArgs e)
         BannerCurrentScale.ScaleX = 1.015;
         BannerCurrentScale.ScaleY = 1.015;
 
-        RoutedEventHandler imageOpened = null;
-        ExceptionRoutedEventHandler imageFailed = null;
-        imageOpened = (_, _) =>
-        {
-            BannerCurrentImage.ImageOpened -= imageOpened;
-            BannerCurrentImage.ImageFailed -= imageFailed;
-            FadeInInitialBanner();
-        };
-        imageFailed = (_, _) =>
-        {
-            BannerCurrentImage.ImageOpened -= imageOpened;
-            BannerCurrentImage.ImageFailed -= imageFailed;
-            ResetBannerLayers();
-        };
-
-        BannerCurrentImage.ImageOpened += imageOpened;
-        BannerCurrentImage.ImageFailed += imageFailed;
         SetBannerImage(BannerCurrentImage, targetBanner);
+        FadeInInitialBanner();
     }
 
     private void FadeInInitialBanner()
@@ -866,7 +850,7 @@ private void OnOpenGachaAnalysisClick(object sender, RoutedEventArgs e)
     private void SwapBannerLayers(BannerItem displayedBanner)
     {
         BannerCurrentImage.Source = BannerIncomingImage.Source;
-        BannerIncomingImage.Source = null;
+        SetBannerPlaceholder(BannerCurrentImage, BannerIncomingPlaceholder.Visibility == Visibility.Visible);
         _displayedBanner = displayedBanner;
         ResetBannerLayers();
     }
@@ -883,13 +867,34 @@ private void OnOpenGachaAnalysisClick(object sender, RoutedEventArgs e)
         BannerIncomingScale.ScaleY = 1;
     }
 
-    private static void SetBannerImage(Image imageControl, BannerItem banner)
+    private void BannerImage_ImageOpened(object sender, RoutedEventArgs e)
     {
-        if (banner?.Image?.Url == null)
+        if (sender is not Image imageControl) return;
+
+        SetBannerPlaceholder(imageControl, false);
+        if (ReferenceEquals(BannerCurrentImage.Source, BannerIncomingImage.Source))
         {
-            imageControl.Source = null;
-            return;
+            SetBannerPlaceholder(BannerCurrentImage, false);
         }
+    }
+
+    private void BannerImage_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+    {
+        if (sender is not Image imageControl) return;
+
+        SetBannerPlaceholder(imageControl, true);
+        if (ReferenceEquals(BannerCurrentImage.Source, BannerIncomingImage.Source))
+        {
+            SetBannerPlaceholder(BannerCurrentImage, true);
+        }
+    }
+
+    private void SetBannerImage(Image imageControl, BannerItem banner)
+    {
+        SetBannerPlaceholder(imageControl, true);
+        imageControl.Source = null;
+
+        if (string.IsNullOrWhiteSpace(banner?.Image?.Url)) return;
 
         try
         {
@@ -897,8 +902,15 @@ private void OnOpenGachaAnalysisClick(object sender, RoutedEventArgs e)
         }
         catch
         {
-            imageControl.Source = null;
         }
+    }
+
+    private void SetBannerPlaceholder(Image imageControl, bool isVisible)
+    {
+        var placeholder = ReferenceEquals(imageControl, BannerCurrentImage)
+            ? BannerCurrentPlaceholder
+            : BannerIncomingPlaceholder;
+        placeholder.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void BannerButton_Click(object sender, RoutedEventArgs e)

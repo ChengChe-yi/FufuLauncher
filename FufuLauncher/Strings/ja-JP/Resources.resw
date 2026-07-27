@@ -1444,4 +1444,168 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
   <data name="PluginStoreDependencies" xml:space="preserve"><value>依存関係</value></data>
   <data name="PluginStoreLongDescription" xml:space="preserve"><value>詳細情報</value></data>
   <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>インストールスクリプトをダウンロード中...</value></data>
+  <data name="DataPage_Title" xml:space="preserve"><value>データセンター</value></data>
+  <data name="DataPage_Subtitle" xml:space="preserve"><value>全サーバー統計を突き合わせ、育成と祈願の判断材料に落とし込みます</value></data>
+  <data name="DataPage_TabOverview" xml:space="preserve"><value>概要</value></data>
+  <data name="DataPage_TabCharacters" xml:space="preserve"><value>キャラ育成</value></data>
+  <data name="DataPage_TabSpiral" xml:space="preserve"><value>深境螺旋</value></data>
+  <data name="DataPage_TabStygian" xml:space="preserve"><value>幽境の戦い</value></data>
+  <data name="DataPage_TabWish" xml:space="preserve"><value>ガチャ履歴</value></data>
+  <data name="DataPage_TabRerun" xml:space="preserve"><value>復刻間隔</value></data>
+  <data name="DataPage_TabTimeline" xml:space="preserve"><value>イベント年表</value></data>
+  <data name="DataPage_Refresh" xml:space="preserve"><value>データを更新</value></data>
+  <data name="DataPage_LastUpdate" xml:space="preserve"><value>更新 {0}</value></data>
+  <data name="DataPage_Loading" xml:space="preserve"><value>全サーバー統計を集計中…</value></data>
+  <data name="DataPage_LoadFailedTitle" xml:space="preserve"><value>データの読み込みに失敗しました</value></data>
+  <data name="DataPage_LoadFailedBody" xml:space="preserve"><value>統計サービスに接続できません。ネットワークを確認して再試行してください。</value></data>
+  <data name="DataPage_PartialData" xml:space="preserve"><value>{0} 件のデータを取得できず、一部のみ表示しています。</value></data>
+  <data name="DataPage_Retry" xml:space="preserve"><value>再試行</value></data>
+  <data name="DataPage_NoResult" xml:space="preserve"><value>一致する結果がありません</value></data>
+  <data name="DataPage_ShowMore" xml:space="preserve"><value>さらに表示（+{0}）</value></data>
+  <data name="DataPage_ShownCount" xml:space="preserve"><value>{0} / {1} 件を表示</value></data>
+  <data name="DataPage_SectionEnvironment" xml:space="preserve"><value>バージョン概況</value></data>
+  <data name="DataPage_SectionInsight" xml:space="preserve"><value>データからの結論</value></data>
+  <data name="DataPage_SectionMovers" xml:space="preserve"><value>使用率の変動</value></data>
+  <data name="DataPage_SectionTopTier" xml:space="preserve"><value>今期のトップティア</value></data>
+  <data name="DataPage_SectionCurrentBanner" xml:space="preserve"><value>開催中の祈願</value></data>
+  <data name="DataPage_SectionValuePick" xml:space="preserve"><value>抽く価値が高い</value></data>
+  <data name="DataPage_SectionOverdue" xml:space="preserve"><value>復刻から最も遠い</value></data>
+  <data name="DataPage_SectionRanking" xml:space="preserve"><value>ランキング</value></data>
+  <data name="DataPage_SectionFilter" xml:space="preserve"><value>絞り込み</value></data>
+  <data name="DataPage_SectionCharacters" xml:space="preserve"><value>キャラクター一覧</value></data>
+  <data name="DataPage_SectionBanners" xml:space="preserve"><value>祈願履歴</value></data>
+  <data name="DataPage_SectionRerun" xml:space="preserve"><value>復刻間隔</value></data>
+  <data name="DataPage_Risers" xml:space="preserve"><value>使用率が上昇</value></data>
+  <data name="DataPage_Fallers" xml:space="preserve"><value>使用率が下降</value></data>
+  <data name="DataPage_KpiVersion" xml:space="preserve"><value>現在のバージョン</value></data>
+  <data name="DataPage_KpiSample" xml:space="preserve"><value>深淵の有効サンプル</value></data>
+  <data name="DataPage_KpiStygianSample" xml:space="preserve"><value>幽境</value></data>
+  <data name="DataPage_KpiFullStar" xml:space="preserve"><value>フルスター達成率</value></data>
+  <data name="DataPage_KpiOnceFullStar" xml:space="preserve"><value>一発達成</value></data>
+  <data name="DataPage_KpiRestart" xml:space="preserve"><value>平均リトライ回数</value></data>
+  <data name="DataPage_KpiCharacterCount" xml:space="preserve"><value>収録キャラ数</value></data>
+  <data name="DataPage_KpiBannerCount" xml:space="preserve"><value>キャラ祈願</value></data>
+  <data name="DataPage_KpiWeaponBanner" xml:space="preserve"><value>武器祈願 {0} 件</value></data>
+  <data name="DataPage_UnitTimesShort" xml:space="preserve"><value>回</value></data>
+  <data name="DataPage_UnitEntries" xml:space="preserve"><value>{0} 件</value></data>
+  <data name="DataPage_SortBy" xml:space="preserve"><value>並び替え</value></data>
+  <data name="DataPage_StarFilter" xml:space="preserve"><value>レア度</value></data>
+  <data name="DataPage_SortHeat" xml:space="preserve"><value>総合スコア</value></data>
+  <data name="DataPage_SortAbyss" xml:space="preserve"><value>深淵登場率</value></data>
+  <data name="DataPage_SortValue" xml:space="preserve"><value>抽く優先度</value></data>
+  <data name="DataPage_SortOwn" xml:space="preserve"><value>所持率</value></data>
+  <data name="DataPage_SortLevel" xml:space="preserve"><value>平均レベル</value></data>
+  <data name="DataPage_SortDamage" xml:space="preserve"><value>主要ダメージ</value></data>
+  <data name="DataPage_FieldShare" xml:space="preserve"><value>全体出場率</value></data>
+  <data name="DataPage_SampleFormat" xml:space="preserve"><value>サンプル {0}</value></data>
+  <data name="DataPage_ViewDetail" xml:space="preserve"><value>詳細分析を見る</value></data>
+  <data name="DataPage_CoreDamage" xml:space="preserve"><value>主要ダメージ</value></data>
+  <data name="DataPage_AbyssPick" xml:space="preserve"><value>深淵登場</value></data>
+  <data name="DataPage_StygianPick" xml:space="preserve"><value>幽境登場</value></data>
+  <data name="DataPage_MetricAvgLevel" xml:space="preserve"><value>平均レベル</value></data>
+  <data name="DataPage_MetricAvgConst" xml:space="preserve"><value>平均凸数</value></data>
+  <data name="DataPage_MetricSample" xml:space="preserve"><value>統計サンプル</value></data>
+  <data name="DataPage_MetricTalent" xml:space="preserve"><value>天賦</value></data>
+  <data name="DataPage_ZeroConstellation" xml:space="preserve"><value>無凸率</value></data>
+  <data name="DataPage_ClearTime" xml:space="preserve"><value>平均クリア時間</value></data>
+  <data name="DataPage_ChangeVsLast" xml:space="preserve"><value>前期比</value></data>
+  <data name="DataPage_DetailTitle" xml:space="preserve"><value>{0} · 詳細分析</value></data>
+  <data name="DataPage_DetailWeapons" xml:space="preserve"><value>武器選択の分布</value></data>
+  <data name="DataPage_DetailArtifacts" xml:space="preserve"><value>聖遺物構成の分布</value></data>
+  <data name="DataPage_DetailConstellation" xml:space="preserve"><value>凸数の分布</value></data>
+  <data name="DataPage_DetailTeams" xml:space="preserve"><value>よく使われる編成</value></data>
+  <data name="DataPage_DetailBanners" xml:space="preserve"><value>祈願と復刻の履歴</value></data>
+  <data name="DataPage_DetailInsights" xml:space="preserve"><value>要点</value></data>
+  <data name="DataPage_Close" xml:space="preserve"><value>閉じる</value></data>
+  <data name="DataPage_ViewTier" xml:space="preserve"><value>ティア表</value></data>
+  <data name="DataPage_ViewRank" xml:space="preserve"><value>使用率ランキング</value></data>
+  <data name="DataPage_ViewTeam" xml:space="preserve"><value>編成ランキング</value></data>
+  <data name="DataPage_Version" xml:space="preserve"><value>期間</value></data>
+  <data name="DataPage_RestartDist" xml:space="preserve"><value>リトライ回数の分布</value></data>
+  <data name="DataPage_TierCount" xml:space="preserve"><value>{0} 体</value></data>
+  <data name="DataPage_TeamHasRate" xml:space="preserve"><value>編成可能率</value></data>
+  <data name="DataPage_TeamAttendRate" xml:space="preserve"><value>出場率</value></data>
+  <data name="DataPage_TeamCount" xml:space="preserve"><value>{0} 回使用</value></data>
+  <data name="DataPage_HalfFirst" xml:space="preserve"><value>前半</value></data>
+  <data name="DataPage_HalfMid" xml:space="preserve"><value>中盤</value></data>
+  <data name="DataPage_HalfSecond" xml:space="preserve"><value>後半</value></data>
+  <data name="DataPage_MaxInterval" xml:space="preserve"><value>最長間隔</value></data>
+  <data name="DataPage_TierS1Desc" xml:space="preserve"><value>現環境を定義する枠</value></data>
+  <data name="DataPage_TierSDesc" xml:space="preserve"><value>強力で広く使われる</value></data>
+  <data name="DataPage_TierADesc" xml:space="preserve"><value>状況次第で有力</value></data>
+  <data name="DataPage_TierBDesc" xml:space="preserve"><value>ニッチまたは編成依存</value></data>
+  <data name="DataPage_TierCDesc" xml:space="preserve"><value>今期はほぼ見られない</value></data>
+  <data name="DataPage_WishCharacters" xml:space="preserve"><value>キャラ祈願</value></data>
+  <data name="DataPage_WishWeapons" xml:space="preserve"><value>武器祈願</value></data>
+  <data name="DataPage_WishOngoing" xml:space="preserve"><value>開催中</value></data>
+  <data name="DataPage_WishUpcoming" xml:space="preserve"><value>開催予定</value></data>
+  <data name="DataPage_WishDaysLeft" xml:space="preserve"><value>残り {0} 日</value></data>
+  <data name="DataPage_WishDaysUntil" xml:space="preserve"><value>{0} 日後</value></data>
+  <data name="DataPage_WishDaysAgo" xml:space="preserve"><value>{0} 日前</value></data>
+  <data name="DataPage_WishTopRerun" xml:space="preserve"><value>復刻回数が多い</value></data>
+  <data name="DataPage_WishTopCompanion" xml:space="preserve"><value>星4同時登場が多い</value></data>
+  <data name="DataPage_WishSearchPlaceholder" xml:space="preserve"><value>キャラ名・バージョンで検索…</value></data>
+  <data name="DataPage_WishUpTimes" xml:space="preserve"><value>{0} 回</value></data>
+  <data name="DataPage_WishSummaryFormat" xml:space="preserve"><value>計 {0} 回ピックアップ。直近は {1}（{2} 日前）、平均間隔は {3} 日です。</value></data>
+  <data name="DataPage_WishSummaryNever" xml:space="preserve"><value>祈願履歴の記録はありません。</value></data>
+  <data name="DataPage_RerunChar5" xml:space="preserve"><value>星5キャラ</value></data>
+  <data name="DataPage_RerunChar4" xml:space="preserve"><value>星4キャラ</value></data>
+  <data name="DataPage_RerunWeapon5" xml:space="preserve"><value>星5武器</value></data>
+  <data name="DataPage_RerunWeapon4" xml:space="preserve"><value>星4武器</value></data>
+  <data name="DataPage_RerunCategory" xml:space="preserve"><value>分類</value></data>
+  <data name="DataPage_RerunDays" xml:space="preserve"><value>日間復刻なし</value></data>
+  <data name="DataPage_RerunDaysValue" xml:space="preserve"><value>{0} 日</value></data>
+  <data name="DataPage_RerunUpTimes" xml:space="preserve"><value>過去 {0} 回登場</value></data>
+  <data name="DataPage_RerunMaxGap" xml:space="preserve"><value>{0} 日（{1}）</value></data>
+  <data name="DataPage_RerunMinGap" xml:space="preserve"><value>最短間隔 {0} 日（{1}）</value></data>
+  <data name="DataPage_RerunOverdue" xml:space="preserve"><value>大幅に超過</value></data>
+  <data name="DataPage_RerunDue" xml:space="preserve"><value>時期到来</value></data>
+  <data name="DataPage_RerunSoon" xml:space="preserve"><value>接近中</value></data>
+  <data name="DataPage_RerunFresh" xml:space="preserve"><value>復刻直後</value></data>
+  <data name="DataPage_RerunNever" xml:space="preserve"><value>復刻歴なし</value></data>
+  <data name="DataPage_RerunForecastOver" xml:space="preserve"><value>平均間隔を {0} 日超過</value></data>
+  <data name="DataPage_RerunForecastLeft" xml:space="preserve"><value>平均間隔まであと {0} 日</value></data>
+  <data name="DataPage_RerunSortUrgency" xml:space="preserve"><value>超過度</value></data>
+  <data name="DataPage_RerunSortDays" xml:space="preserve"><value>経過日数</value></data>
+  <data name="DataPage_RerunSortInterval" xml:space="preserve"><value>平均間隔</value></data>
+  <data name="DataPage_RerunSearchPlaceholder" xml:space="preserve"><value>名前で検索…</value></data>
+  <data name="DataPage_RerunSummaryFormat" xml:space="preserve"><value>前回から {0} 日経過。過去の平均間隔は {1} 日、最長 {2} 日です。</value></data>
+  <data name="DataPage_HeadlineTop" xml:space="preserve"><value>トップティア</value></data>
+  <data name="DataPage_HeadlineValue" xml:space="preserve"><value>コスパ良好</value></data>
+  <data name="DataPage_HeadlineRising" xml:space="preserve"><value>上昇中</value></data>
+  <data name="DataPage_HeadlineFalling" xml:space="preserve"><value>下降中</value></data>
+  <data name="DataPage_HeadlinePopular" xml:space="preserve"><value>全員が所持</value></data>
+  <data name="DataPage_InsightMetaTitle" xml:space="preserve"><value>今期の環境</value></data>
+  <data name="DataPage_InsightMetaBody" xml:space="preserve"><value>{0} のフルスター達成率は {1}、平均リトライは {2} 回。トップティアは {3} が中心です。</value></data>
+  <data name="DataPage_InsightRiseTitle" xml:space="preserve"><value>上昇中</value></data>
+  <data name="DataPage_InsightRiseBody" xml:space="preserve"><value>{0} の使用率が {1} から {2} へ。今期で最大の伸びです。</value></data>
+  <data name="DataPage_InsightFallTitle" xml:space="preserve"><value>退潮</value></data>
+  <data name="DataPage_InsightFallBody" xml:space="preserve"><value>{0} の使用率が {1} から {2} へ低下。今期は明確に出番が減りました。</value></data>
+  <data name="DataPage_InsightValueTitle" xml:space="preserve"><value>抽く優先度</value></data>
+  <data name="DataPage_InsightValueBody" xml:space="preserve"><value>{0} は所持者の {1} が起用しているのに、所持率は {2} のみ。強力なのに普及していないため、優先度は最高です。</value></data>
+  <data name="DataPage_InsightBenchTitle" xml:space="preserve"><value>ベンチ入り</value></data>
+  <data name="DataPage_InsightBenchBody" xml:space="preserve"><value>{0} は所持率 {1} に対し使用率は {2} のみ。ほぼ全員が持っているのに、ほとんど使われていません。</value></data>
+  <data name="DataPage_InsightNoConstTitle" xml:space="preserve"><value>無凸で機能</value></data>
+  <data name="DataPage_InsightNoConstBody" xml:space="preserve"><value>{0} は {1} のプレイヤーが無凸で運用しており、凸なしでも十分機能します。</value></data>
+  <data name="DataPage_InsightConstTitle" xml:space="preserve"><value>凸依存</value></data>
+  <data name="DataPage_InsightConstBody" xml:space="preserve"><value>{0} を無凸で使っているのは {1} のみ。使用率の多くは凸持ちによるものです。</value></data>
+  <data name="DataPage_InsightWeaponTitle" xml:space="preserve"><value>ほぼ一択の武器</value></data>
+  <data name="DataPage_InsightWeaponBody" xml:space="preserve"><value>{0} は {2} の配装の {1} に採用されており、実質的な既定解です。</value></data>
+  <data name="DataPage_InsightArtifactTitle" xml:space="preserve"><value>聖遺物の第一候補</value></data>
+  <data name="DataPage_InsightArtifactBody" xml:space="preserve"><value>{0} が配装の {1} を占めており、基準構成として扱えます。</value></data>
+  <data name="DataPage_InsightOverdueTitle" xml:space="preserve"><value>復刻ウォッチ</value></data>
+  <data name="DataPage_InsightOverdueBody" xml:space="preserve"><value>{0} は {1} 日間復刻がありません（過去平均 {2} 日）。次の復刻候補として有力です。</value></data>
+  <data name="DataPage_InsightTeamTitle" xml:space="preserve"><value>主流編成</value></data>
+  <data name="DataPage_InsightTeamBody" xml:space="preserve"><value>最も使われている編成は {0}（{1}）です。</value></data>
+  <data name="DataPage_InsightBannerTitle" xml:space="preserve"><value>開催中の祈願</value></data>
+  <data name="DataPage_InsightBannerBody" xml:space="preserve"><value>開催中：{0}。{1}</value></data>
+  <data name="DataPage_InsightBannerNone" xml:space="preserve"><value>開催中のキャラ祈願はありません。</value></data>
+  <data name="DataPage_BannerAdviceItem" xml:space="preserve"><value>{0}（{1}・深淵登場 {2}）</value></data>
+  <data name="DataPage_ListSeparator" xml:space="preserve"><value>、</value></data>
+  <data name="DataPage_ClauseSeparator" xml:space="preserve"><value>。</value></data>
+  <data name="DataPage_ExportPdf" xml:space="preserve"><value>プロフェッショナルPDFレポートをエクスポート</value></data>
+  <data name="DataPage_ExportPdfFileType" xml:space="preserve"><value>PDF ドキュメント</value></data>
+  <data name="DataPage_Exporting" xml:space="preserve"><value>FufuLauncher 分析レポートを作成しています…</value></data>
+  <data name="DataPage_Exported" xml:space="preserve"><value>PDFレポートをエクスポートしました: {0}</value></data>
+  <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDFをエクスポートできませんでした: {0}</value></data>
 </root>

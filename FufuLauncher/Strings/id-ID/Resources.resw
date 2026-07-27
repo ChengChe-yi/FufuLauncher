@@ -1444,4 +1444,168 @@ Detail: {0}</value></data>
   <data name="PluginStoreDependencies" xml:space="preserve"><value>Dependensi</value></data>
   <data name="PluginStoreLongDescription" xml:space="preserve"><value>Tentang plugin ini</value></data>
   <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Mengunduh skrip pemasangan...</value></data>
+  <data name="DataPage_Title" xml:space="preserve"><value>Pusat Data</value></data>
+  <data name="DataPage_Subtitle" xml:space="preserve"><value>Statistik seluruh server yang disilangkan menjadi saran build dan gacha yang siap dipakai</value></data>
+  <data name="DataPage_TabOverview" xml:space="preserve"><value>Ringkasan</value></data>
+  <data name="DataPage_TabCharacters" xml:space="preserve"><value>Karakter</value></data>
+  <data name="DataPage_TabSpiral" xml:space="preserve"><value>Pusaran Abyss</value></data>
+  <data name="DataPage_TabStygian" xml:space="preserve"><value>Serangan Stygian</value></data>
+  <data name="DataPage_TabWish" xml:space="preserve"><value>Banner</value></data>
+  <data name="DataPage_TabRerun" xml:space="preserve"><value>Rerun</value></data>
+  <data name="DataPage_TabTimeline" xml:space="preserve"><value>Garis waktu</value></data>
+  <data name="DataPage_Refresh" xml:space="preserve"><value>Segarkan data</value></data>
+  <data name="DataPage_LastUpdate" xml:space="preserve"><value>diperbarui {0}</value></data>
+  <data name="DataPage_Loading" xml:space="preserve"><value>Menggabungkan statistik server…</value></data>
+  <data name="DataPage_LoadFailedTitle" xml:space="preserve"><value>Gagal memuat data</value></data>
+  <data name="DataPage_LoadFailedBody" xml:space="preserve"><value>Tidak dapat menghubungi layanan statistik. Periksa jaringan lalu coba lagi.</value></data>
+  <data name="DataPage_PartialData" xml:space="preserve"><value>{0} set data gagal dimuat; menampilkan hasil sebagian.</value></data>
+  <data name="DataPage_Retry" xml:space="preserve"><value>Coba lagi</value></data>
+  <data name="DataPage_NoResult" xml:space="preserve"><value>Tidak ada hasil</value></data>
+  <data name="DataPage_ShowMore" xml:space="preserve"><value>Tampilkan lagi (+{0})</value></data>
+  <data name="DataPage_ShownCount" xml:space="preserve"><value>Menampilkan {0} / {1}</value></data>
+  <data name="DataPage_SectionEnvironment" xml:space="preserve"><value>Kondisi versi</value></data>
+  <data name="DataPage_SectionInsight" xml:space="preserve"><value>Kesimpulan dari data</value></data>
+  <data name="DataPage_SectionMovers" xml:space="preserve"><value>Perubahan pemakaian</value></data>
+  <data name="DataPage_SectionTopTier" xml:space="preserve"><value>Tier teratas periode ini</value></data>
+  <data name="DataPage_SectionCurrentBanner" xml:space="preserve"><value>Tersedia sekarang</value></data>
+  <data name="DataPage_SectionValuePick" xml:space="preserve"><value>Layak diincar</value></data>
+  <data name="DataPage_SectionOverdue" xml:space="preserve"><value>Terlama tanpa rerun</value></data>
+  <data name="DataPage_SectionRanking" xml:space="preserve"><value>Peringkat</value></data>
+  <data name="DataPage_SectionFilter" xml:space="preserve"><value>Filter</value></data>
+  <data name="DataPage_SectionCharacters" xml:space="preserve"><value>Daftar karakter</value></data>
+  <data name="DataPage_SectionBanners" xml:space="preserve"><value>Riwayat banner</value></data>
+  <data name="DataPage_SectionRerun" xml:space="preserve"><value>Interval rerun</value></data>
+  <data name="DataPage_Risers" xml:space="preserve"><value>Pemakaian naik</value></data>
+  <data name="DataPage_Fallers" xml:space="preserve"><value>Pemakaian turun</value></data>
+  <data name="DataPage_KpiVersion" xml:space="preserve"><value>Versi saat ini</value></data>
+  <data name="DataPage_KpiSample" xml:space="preserve"><value>Sampel Abyss</value></data>
+  <data name="DataPage_KpiStygianSample" xml:space="preserve"><value>Stygian</value></data>
+  <data name="DataPage_KpiFullStar" xml:space="preserve"><value>Rasio bintang penuh</value></data>
+  <data name="DataPage_KpiOnceFullStar" xml:space="preserve"><value>sekali coba</value></data>
+  <data name="DataPage_KpiRestart" xml:space="preserve"><value>Rata-rata ulang</value></data>
+  <data name="DataPage_KpiCharacterCount" xml:space="preserve"><value>Karakter tercakup</value></data>
+  <data name="DataPage_KpiBannerCount" xml:space="preserve"><value>Banner karakter</value></data>
+  <data name="DataPage_KpiWeaponBanner" xml:space="preserve"><value>{0} banner senjata</value></data>
+  <data name="DataPage_UnitTimesShort" xml:space="preserve"><value>kali</value></data>
+  <data name="DataPage_UnitEntries" xml:space="preserve"><value>{0} entri</value></data>
+  <data name="DataPage_SortBy" xml:space="preserve"><value>Urutkan</value></data>
+  <data name="DataPage_StarFilter" xml:space="preserve"><value>Kelangkaan</value></data>
+  <data name="DataPage_SortHeat" xml:space="preserve"><value>Skor keseluruhan</value></data>
+  <data name="DataPage_SortAbyss" xml:space="preserve"><value>Rasio pemakaian Abyss</value></data>
+  <data name="DataPage_SortValue" xml:space="preserve"><value>Prioritas gacha</value></data>
+  <data name="DataPage_SortOwn" xml:space="preserve"><value>Rasio kepemilikan</value></data>
+  <data name="DataPage_SortLevel" xml:space="preserve"><value>Level rata-rata</value></data>
+  <data name="DataPage_SortDamage" xml:space="preserve"><value>Damage inti</value></data>
+  <data name="DataPage_FieldShare" xml:space="preserve"><value>Porsi seluruh server</value></data>
+  <data name="DataPage_SampleFormat" xml:space="preserve"><value>sampel {0}</value></data>
+  <data name="DataPage_ViewDetail" xml:space="preserve"><value>Analisis lengkap</value></data>
+  <data name="DataPage_CoreDamage" xml:space="preserve"><value>Damage inti</value></data>
+  <data name="DataPage_AbyssPick" xml:space="preserve"><value>Pemakaian Abyss</value></data>
+  <data name="DataPage_StygianPick" xml:space="preserve"><value>Pemakaian Stygian</value></data>
+  <data name="DataPage_MetricAvgLevel" xml:space="preserve"><value>Level rata-rata</value></data>
+  <data name="DataPage_MetricAvgConst" xml:space="preserve"><value>Konstelasi rata-rata</value></data>
+  <data name="DataPage_MetricSample" xml:space="preserve"><value>Ukuran sampel</value></data>
+  <data name="DataPage_MetricTalent" xml:space="preserve"><value>Talenta</value></data>
+  <data name="DataPage_ZeroConstellation" xml:space="preserve"><value>Porsi C0</value></data>
+  <data name="DataPage_ClearTime" xml:space="preserve"><value>Waktu clear</value></data>
+  <data name="DataPage_ChangeVsLast" xml:space="preserve"><value>vs sebelumnya</value></data>
+  <data name="DataPage_DetailTitle" xml:space="preserve"><value>{0} · analisis lengkap</value></data>
+  <data name="DataPage_DetailWeapons" xml:space="preserve"><value>Distribusi senjata</value></data>
+  <data name="DataPage_DetailArtifacts" xml:space="preserve"><value>Distribusi set artifak</value></data>
+  <data name="DataPage_DetailConstellation" xml:space="preserve"><value>Distribusi konstelasi</value></data>
+  <data name="DataPage_DetailTeams" xml:space="preserve"><value>Tim yang sering dipakai</value></data>
+  <data name="DataPage_DetailBanners" xml:space="preserve"><value>Riwayat banner dan rerun</value></data>
+  <data name="DataPage_DetailInsights" xml:space="preserve"><value>Poin utama</value></data>
+  <data name="DataPage_Close" xml:space="preserve"><value>Tutup</value></data>
+  <data name="DataPage_ViewTier" xml:space="preserve"><value>Daftar tier</value></data>
+  <data name="DataPage_ViewRank" xml:space="preserve"><value>Peringkat pemakaian</value></data>
+  <data name="DataPage_ViewTeam" xml:space="preserve"><value>Komposisi tim</value></data>
+  <data name="DataPage_Version" xml:space="preserve"><value>Periode</value></data>
+  <data name="DataPage_RestartDist" xml:space="preserve"><value>Distribusi jumlah ulang</value></data>
+  <data name="DataPage_TierCount" xml:space="preserve"><value>{0} karakter</value></data>
+  <data name="DataPage_TeamHasRate" xml:space="preserve"><value>Bisa dibentuk</value></data>
+  <data name="DataPage_TeamAttendRate" xml:space="preserve"><value>Kehadiran</value></data>
+  <data name="DataPage_TeamCount" xml:space="preserve"><value>dipakai {0} kali</value></data>
+  <data name="DataPage_HalfFirst" xml:space="preserve"><value>Paruh 1</value></data>
+  <data name="DataPage_HalfMid" xml:space="preserve"><value>tengah</value></data>
+  <data name="DataPage_HalfSecond" xml:space="preserve"><value>Paruh 2</value></data>
+  <data name="DataPage_MaxInterval" xml:space="preserve"><value>Interval terpanjang</value></data>
+  <data name="DataPage_TierS1Desc" xml:space="preserve"><value>Menentukan meta saat ini</value></data>
+  <data name="DataPage_TierSDesc" xml:space="preserve"><value>Kuat dan banyak dipakai</value></data>
+  <data name="DataPage_TierADesc" xml:space="preserve"><value>Pilihan situasional yang solid</value></data>
+  <data name="DataPage_TierBDesc" xml:space="preserve"><value>Niche atau bergantung tim</value></data>
+  <data name="DataPage_TierCDesc" xml:space="preserve"><value>Hampir tidak muncul periode ini</value></data>
+  <data name="DataPage_WishCharacters" xml:space="preserve"><value>Banner karakter</value></data>
+  <data name="DataPage_WishWeapons" xml:space="preserve"><value>Banner senjata</value></data>
+  <data name="DataPage_WishOngoing" xml:space="preserve"><value>Berlangsung</value></data>
+  <data name="DataPage_WishUpcoming" xml:space="preserve"><value>Segera</value></data>
+  <data name="DataPage_WishDaysLeft" xml:space="preserve"><value>Sisa {0} hari</value></data>
+  <data name="DataPage_WishDaysUntil" xml:space="preserve"><value>{0} hari lagi</value></data>
+  <data name="DataPage_WishDaysAgo" xml:space="preserve"><value>{0} hari lalu</value></data>
+  <data name="DataPage_WishTopRerun" xml:space="preserve"><value>Rerun terbanyak</value></data>
+  <data name="DataPage_WishTopCompanion" xml:space="preserve"><value>Pendamping 4★ tersering</value></data>
+  <data name="DataPage_WishSearchPlaceholder" xml:space="preserve"><value>Cari karakter atau versi…</value></data>
+  <data name="DataPage_WishUpTimes" xml:space="preserve"><value>{0}×</value></data>
+  <data name="DataPage_WishSummaryFormat" xml:space="preserve"><value>Tampil {0} kali, terakhir di {1} ({2} hari lalu), rata-rata jeda {3} hari.</value></data>
+  <data name="DataPage_WishSummaryNever" xml:space="preserve"><value>Belum ada riwayat banner.</value></data>
+  <data name="DataPage_RerunChar5" xml:space="preserve"><value>Karakter 5★</value></data>
+  <data name="DataPage_RerunChar4" xml:space="preserve"><value>Karakter 4★</value></data>
+  <data name="DataPage_RerunWeapon5" xml:space="preserve"><value>Senjata 5★</value></data>
+  <data name="DataPage_RerunWeapon4" xml:space="preserve"><value>Senjata 4★</value></data>
+  <data name="DataPage_RerunCategory" xml:space="preserve"><value>Kategori</value></data>
+  <data name="DataPage_RerunDays" xml:space="preserve"><value>hari tanpa rerun</value></data>
+  <data name="DataPage_RerunDaysValue" xml:space="preserve"><value>{0} hari</value></data>
+  <data name="DataPage_RerunUpTimes" xml:space="preserve"><value>{0} kemunculan sebelumnya</value></data>
+  <data name="DataPage_RerunMaxGap" xml:space="preserve"><value>{0} hari ({1})</value></data>
+  <data name="DataPage_RerunMinGap" xml:space="preserve"><value>Interval terpendek {0} hari ({1})</value></data>
+  <data name="DataPage_RerunOverdue" xml:space="preserve"><value>Sangat terlambat</value></data>
+  <data name="DataPage_RerunDue" xml:space="preserve"><value>Sudah waktunya</value></data>
+  <data name="DataPage_RerunSoon" xml:space="preserve"><value>Mendekati</value></data>
+  <data name="DataPage_RerunFresh" xml:space="preserve"><value>Baru saja</value></data>
+  <data name="DataPage_RerunNever" xml:space="preserve"><value>Belum pernah rerun</value></data>
+  <data name="DataPage_RerunForecastOver" xml:space="preserve"><value>{0} hari melewati interval rata-rata</value></data>
+  <data name="DataPage_RerunForecastLeft" xml:space="preserve"><value>{0} hari lagi menuju interval rata-rata</value></data>
+  <data name="DataPage_RerunSortUrgency" xml:space="preserve"><value>Tingkat keterlambatan</value></data>
+  <data name="DataPage_RerunSortDays" xml:space="preserve"><value>Hari menunggu</value></data>
+  <data name="DataPage_RerunSortInterval" xml:space="preserve"><value>Interval rata-rata</value></data>
+  <data name="DataPage_RerunSearchPlaceholder" xml:space="preserve"><value>Cari nama…</value></data>
+  <data name="DataPage_RerunSummaryFormat" xml:space="preserve"><value>{0} hari sejak terakhir tampil; rata-rata historis {1} hari, terlama {2} hari.</value></data>
+  <data name="DataPage_HeadlineTop" xml:space="preserve"><value>Tier teratas</value></data>
+  <data name="DataPage_HeadlineValue" xml:space="preserve"><value>Nilai tinggi</value></data>
+  <data name="DataPage_HeadlineRising" xml:space="preserve"><value>Sedang naik</value></data>
+  <data name="DataPage_HeadlineFalling" xml:space="preserve"><value>Sedang turun</value></data>
+  <data name="DataPage_HeadlinePopular" xml:space="preserve"><value>Hampir semua punya</value></data>
+  <data name="DataPage_InsightMetaTitle" xml:space="preserve"><value>Kondisi patch</value></data>
+  <data name="DataPage_InsightMetaBody" xml:space="preserve"><value>Di {0}, rasio bintang penuh {1} dengan rata-rata {2} kali ulang; tier teratas dipimpin {3}.</value></data>
+  <data name="DataPage_InsightRiseTitle" xml:space="preserve"><value>Sedang naik</value></data>
+  <data name="DataPage_InsightRiseBody" xml:space="preserve"><value>{0} naik dari {1} ke {2}, kenaikan terbesar periode ini.</value></data>
+  <data name="DataPage_InsightFallTitle" xml:space="preserve"><value>Menurun</value></data>
+  <data name="DataPage_InsightFallBody" xml:space="preserve"><value>{0} turun dari {1} ke {2}, jelas surut periode ini.</value></data>
+  <data name="DataPage_InsightValueTitle" xml:space="preserve"><value>Prioritas gacha</value></data>
+  <data name="DataPage_InsightValueBody" xml:space="preserve"><value>{0} dipakai oleh {1} pemilik, tetapi hanya {2} akun yang punya — kuat tapi langka, prioritas tertinggi.</value></data>
+  <data name="DataPage_InsightBenchTitle" xml:space="preserve"><value>Duduk di bangku</value></data>
+  <data name="DataPage_InsightBenchBody" xml:space="preserve"><value>{0} ada di {1} akun tetapi hanya {2} yang memakainya — hampir semua punya, hampir tidak ada yang pakai.</value></data>
+  <data name="DataPage_InsightNoConstTitle" xml:space="preserve"><value>Berfungsi di C0</value></data>
+  <data name="DataPage_InsightNoConstBody" xml:space="preserve"><value>{0} dipakai di C0 oleh {1} pemain, jadi konstelasi tidak diperlukan.</value></data>
+  <data name="DataPage_InsightConstTitle" xml:space="preserve"><value>Bergantung konstelasi</value></data>
+  <data name="DataPage_InsightConstBody" xml:space="preserve"><value>Hanya {1} pengguna {0} yang di C0 — angka pemakaian sebagian besar dari pemilik konstelasi.</value></data>
+  <data name="DataPage_InsightWeaponTitle" xml:space="preserve"><value>Senjata utama</value></data>
+  <data name="DataPage_InsightWeaponBody" xml:space="preserve"><value>{0} muncul di {1} build {2} — praktis jadi pilihan bawaan.</value></data>
+  <data name="DataPage_InsightArtifactTitle" xml:space="preserve"><value>Set artifak</value></data>
+  <data name="DataPage_InsightArtifactBody" xml:space="preserve"><value>{0} menyumbang {1} build; jadikan acuan.</value></data>
+  <data name="DataPage_InsightOverdueTitle" xml:space="preserve"><value>Pantauan rerun</value></data>
+  <data name="DataPage_InsightOverdueBody" xml:space="preserve"><value>{0} sudah {1} hari tanpa rerun (rata-rata historis {2} hari), jadi kandidat kuat untuk gelombang berikutnya.</value></data>
+  <data name="DataPage_InsightTeamTitle" xml:space="preserve"><value>Komposisi utama</value></data>
+  <data name="DataPage_InsightTeamBody" xml:space="preserve"><value>Tim yang paling dipakai adalah {0}, sebesar {1}.</value></data>
+  <data name="DataPage_InsightBannerTitle" xml:space="preserve"><value>Banner saat ini</value></data>
+  <data name="DataPage_InsightBannerBody" xml:space="preserve"><value>Berlangsung: {0}. {1}</value></data>
+  <data name="DataPage_InsightBannerNone" xml:space="preserve"><value>Tidak ada banner karakter yang berlangsung.</value></data>
+  <data name="DataPage_BannerAdviceItem" xml:space="preserve"><value>{0} ({1}, pemakaian Abyss {2})</value></data>
+  <data name="DataPage_ListSeparator" xml:space="preserve"><value>, </value></data>
+  <data name="DataPage_ClauseSeparator" xml:space="preserve"><value>; </value></data>
+  <data name="DataPage_ExportPdf" xml:space="preserve"><value>Ekspor laporan PDF profesional</value></data>
+  <data name="DataPage_ExportPdfFileType" xml:space="preserve"><value>Dokumen PDF</value></data>
+  <data name="DataPage_Exporting" xml:space="preserve"><value>Membuat laporan analisis FufuLauncher…</value></data>
+  <data name="DataPage_Exported" xml:space="preserve"><value>Laporan PDF diekspor: {0}</value></data>
+  <data name="DataPage_ExportFailed" xml:space="preserve"><value>Tidak dapat mengekspor PDF: {0}</value></data>
 </root>

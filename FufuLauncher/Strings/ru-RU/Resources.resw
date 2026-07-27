@@ -1444,4 +1444,168 @@ If you continue, this warning will be ignored and the preset&apos;s Hash will be
   <data name="PluginStoreDependencies" xml:space="preserve"><value>Зависимости</value></data>
   <data name="PluginStoreLongDescription" xml:space="preserve"><value>Подробное описание</value></data>
   <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Загрузка скрипта установки...</value></data>
+  <data name="DataPage_Title" xml:space="preserve"><value>Центр данных</value></data>
+  <data name="DataPage_Subtitle" xml:space="preserve"><value>Статистика по всем серверам, сведённая в конкретные советы по прокачке и круткам</value></data>
+  <data name="DataPage_TabOverview" xml:space="preserve"><value>Обзор</value></data>
+  <data name="DataPage_TabCharacters" xml:space="preserve"><value>Персонажи</value></data>
+  <data name="DataPage_TabSpiral" xml:space="preserve"><value>Витая Бездна</value></data>
+  <data name="DataPage_TabStygian" xml:space="preserve"><value>Стигийский натиск</value></data>
+  <data name="DataPage_TabWish" xml:space="preserve"><value>Баннеры</value></data>
+  <data name="DataPage_TabRerun" xml:space="preserve"><value>Повторы</value></data>
+  <data name="DataPage_TabTimeline" xml:space="preserve"><value>Хронология</value></data>
+  <data name="DataPage_Refresh" xml:space="preserve"><value>Обновить данные</value></data>
+  <data name="DataPage_LastUpdate" xml:space="preserve"><value>обновлено {0}</value></data>
+  <data name="DataPage_Loading" xml:space="preserve"><value>Сводим статистику по серверам…</value></data>
+  <data name="DataPage_LoadFailedTitle" xml:space="preserve"><value>Не удалось загрузить данные</value></data>
+  <data name="DataPage_LoadFailedBody" xml:space="preserve"><value>Не удалось связаться со службой статистики. Проверьте сеть и повторите попытку.</value></data>
+  <data name="DataPage_PartialData" xml:space="preserve"><value>Не загружено наборов данных: {0}. Показаны частичные результаты.</value></data>
+  <data name="DataPage_Retry" xml:space="preserve"><value>Повторить</value></data>
+  <data name="DataPage_NoResult" xml:space="preserve"><value>Ничего не найдено</value></data>
+  <data name="DataPage_ShowMore" xml:space="preserve"><value>Показать ещё (+{0})</value></data>
+  <data name="DataPage_ShownCount" xml:space="preserve"><value>Показано {0} / {1}</value></data>
+  <data name="DataPage_SectionEnvironment" xml:space="preserve"><value>Обстановка версии</value></data>
+  <data name="DataPage_SectionInsight" xml:space="preserve"><value>О чём говорят цифры</value></data>
+  <data name="DataPage_SectionMovers" xml:space="preserve"><value>Изменения популярности</value></data>
+  <data name="DataPage_SectionTopTier" xml:space="preserve"><value>Топ-уровень этого периода</value></data>
+  <data name="DataPage_SectionCurrentBanner" xml:space="preserve"><value>Доступно сейчас</value></data>
+  <data name="DataPage_SectionValuePick" xml:space="preserve"><value>Стоит крутить</value></data>
+  <data name="DataPage_SectionOverdue" xml:space="preserve"><value>Дольше всех без повтора</value></data>
+  <data name="DataPage_SectionRanking" xml:space="preserve"><value>Рейтинги</value></data>
+  <data name="DataPage_SectionFilter" xml:space="preserve"><value>Фильтры</value></data>
+  <data name="DataPage_SectionCharacters" xml:space="preserve"><value>Персонажи</value></data>
+  <data name="DataPage_SectionBanners" xml:space="preserve"><value>История баннеров</value></data>
+  <data name="DataPage_SectionRerun" xml:space="preserve"><value>Интервалы повторов</value></data>
+  <data name="DataPage_Risers" xml:space="preserve"><value>Популярность растёт</value></data>
+  <data name="DataPage_Fallers" xml:space="preserve"><value>Популярность падает</value></data>
+  <data name="DataPage_KpiVersion" xml:space="preserve"><value>Текущая версия</value></data>
+  <data name="DataPage_KpiSample" xml:space="preserve"><value>Выборка Бездны</value></data>
+  <data name="DataPage_KpiStygianSample" xml:space="preserve"><value>Стигия</value></data>
+  <data name="DataPage_KpiFullStar" xml:space="preserve"><value>Доля полных звёзд</value></data>
+  <data name="DataPage_KpiOnceFullStar" xml:space="preserve"><value>с первой попытки</value></data>
+  <data name="DataPage_KpiRestart" xml:space="preserve"><value>Среднее число попыток</value></data>
+  <data name="DataPage_KpiCharacterCount" xml:space="preserve"><value>Учтено персонажей</value></data>
+  <data name="DataPage_KpiBannerCount" xml:space="preserve"><value>Баннеры персонажей</value></data>
+  <data name="DataPage_KpiWeaponBanner" xml:space="preserve"><value>Баннеров оружия: {0}</value></data>
+  <data name="DataPage_UnitTimesShort" xml:space="preserve"><value>попыток</value></data>
+  <data name="DataPage_UnitEntries" xml:space="preserve"><value>Записей: {0}</value></data>
+  <data name="DataPage_SortBy" xml:space="preserve"><value>Сортировка</value></data>
+  <data name="DataPage_StarFilter" xml:space="preserve"><value>Редкость</value></data>
+  <data name="DataPage_SortHeat" xml:space="preserve"><value>Общая оценка</value></data>
+  <data name="DataPage_SortAbyss" xml:space="preserve"><value>Частота в Бездне</value></data>
+  <data name="DataPage_SortValue" xml:space="preserve"><value>Приоритет крутки</value></data>
+  <data name="DataPage_SortOwn" xml:space="preserve"><value>Доля владельцев</value></data>
+  <data name="DataPage_SortLevel" xml:space="preserve"><value>Средний уровень</value></data>
+  <data name="DataPage_SortDamage" xml:space="preserve"><value>Основной урон</value></data>
+  <data name="DataPage_FieldShare" xml:space="preserve"><value>Доля по всему серверу</value></data>
+  <data name="DataPage_SampleFormat" xml:space="preserve"><value>выборка {0}</value></data>
+  <data name="DataPage_ViewDetail" xml:space="preserve"><value>Полный анализ</value></data>
+  <data name="DataPage_CoreDamage" xml:space="preserve"><value>Основной урон</value></data>
+  <data name="DataPage_AbyssPick" xml:space="preserve"><value>В Бездне</value></data>
+  <data name="DataPage_StygianPick" xml:space="preserve"><value>В Стигии</value></data>
+  <data name="DataPage_MetricAvgLevel" xml:space="preserve"><value>Средний уровень</value></data>
+  <data name="DataPage_MetricAvgConst" xml:space="preserve"><value>Средние созвездия</value></data>
+  <data name="DataPage_MetricSample" xml:space="preserve"><value>Размер выборки</value></data>
+  <data name="DataPage_MetricTalent" xml:space="preserve"><value>Таланты</value></data>
+  <data name="DataPage_ZeroConstellation" xml:space="preserve"><value>Доля C0</value></data>
+  <data name="DataPage_ClearTime" xml:space="preserve"><value>Время прохождения</value></data>
+  <data name="DataPage_ChangeVsLast" xml:space="preserve"><value>к прошлому</value></data>
+  <data name="DataPage_DetailTitle" xml:space="preserve"><value>{0} · полный анализ</value></data>
+  <data name="DataPage_DetailWeapons" xml:space="preserve"><value>Распределение оружия</value></data>
+  <data name="DataPage_DetailArtifacts" xml:space="preserve"><value>Распределение артефактов</value></data>
+  <data name="DataPage_DetailConstellation" xml:space="preserve"><value>Распределение созвездий</value></data>
+  <data name="DataPage_DetailTeams" xml:space="preserve"><value>Частые команды</value></data>
+  <data name="DataPage_DetailBanners" xml:space="preserve"><value>История баннеров и повторов</value></data>
+  <data name="DataPage_DetailInsights" xml:space="preserve"><value>Выводы</value></data>
+  <data name="DataPage_Close" xml:space="preserve"><value>Закрыть</value></data>
+  <data name="DataPage_ViewTier" xml:space="preserve"><value>Список уровней</value></data>
+  <data name="DataPage_ViewRank" xml:space="preserve"><value>Рейтинг использования</value></data>
+  <data name="DataPage_ViewTeam" xml:space="preserve"><value>Составы команд</value></data>
+  <data name="DataPage_Version" xml:space="preserve"><value>Период</value></data>
+  <data name="DataPage_RestartDist" xml:space="preserve"><value>Распределение попыток</value></data>
+  <data name="DataPage_TierCount" xml:space="preserve"><value>{0} персонажей</value></data>
+  <data name="DataPage_TeamHasRate" xml:space="preserve"><value>Можно собрать</value></data>
+  <data name="DataPage_TeamAttendRate" xml:space="preserve"><value>Участие</value></data>
+  <data name="DataPage_TeamCount" xml:space="preserve"><value>использована {0} раз</value></data>
+  <data name="DataPage_HalfFirst" xml:space="preserve"><value>1-я половина</value></data>
+  <data name="DataPage_HalfMid" xml:space="preserve"><value>середина</value></data>
+  <data name="DataPage_HalfSecond" xml:space="preserve"><value>2-я половина</value></data>
+  <data name="DataPage_MaxInterval" xml:space="preserve"><value>Наибольший интервал</value></data>
+  <data name="DataPage_TierS1Desc" xml:space="preserve"><value>Определяют текущую мету</value></data>
+  <data name="DataPage_TierSDesc" xml:space="preserve"><value>Сильные и востребованные</value></data>
+  <data name="DataPage_TierADesc" xml:space="preserve"><value>Надёжны в отдельных случаях</value></data>
+  <data name="DataPage_TierBDesc" xml:space="preserve"><value>Узкие или зависят от команды</value></data>
+  <data name="DataPage_TierCDesc" xml:space="preserve"><value>В этом периоде почти не встречаются</value></data>
+  <data name="DataPage_WishCharacters" xml:space="preserve"><value>Баннеры персонажей</value></data>
+  <data name="DataPage_WishWeapons" xml:space="preserve"><value>Баннеры оружия</value></data>
+  <data name="DataPage_WishOngoing" xml:space="preserve"><value>Идёт</value></data>
+  <data name="DataPage_WishUpcoming" xml:space="preserve"><value>Скоро</value></data>
+  <data name="DataPage_WishDaysLeft" xml:space="preserve"><value>Осталось {0} дн.</value></data>
+  <data name="DataPage_WishDaysUntil" xml:space="preserve"><value>через {0} дн.</value></data>
+  <data name="DataPage_WishDaysAgo" xml:space="preserve"><value>{0} дн. назад</value></data>
+  <data name="DataPage_WishTopRerun" xml:space="preserve"><value>Больше всего повторов</value></data>
+  <data name="DataPage_WishTopCompanion" xml:space="preserve"><value>Чаще всего в сопровождении (4★)</value></data>
+  <data name="DataPage_WishSearchPlaceholder" xml:space="preserve"><value>Поиск персонажа или версии…</value></data>
+  <data name="DataPage_WishUpTimes" xml:space="preserve"><value>{0}×</value></data>
+  <data name="DataPage_WishSummaryFormat" xml:space="preserve"><value>В центре внимания {0} раз, последний — {1} ({2} дн. назад), средний интервал {3} дн.</value></data>
+  <data name="DataPage_WishSummaryNever" xml:space="preserve"><value>История баннеров отсутствует.</value></data>
+  <data name="DataPage_RerunChar5" xml:space="preserve"><value>Персонажи 5★</value></data>
+  <data name="DataPage_RerunChar4" xml:space="preserve"><value>Персонажи 4★</value></data>
+  <data name="DataPage_RerunWeapon5" xml:space="preserve"><value>Оружие 5★</value></data>
+  <data name="DataPage_RerunWeapon4" xml:space="preserve"><value>Оружие 4★</value></data>
+  <data name="DataPage_RerunCategory" xml:space="preserve"><value>Категория</value></data>
+  <data name="DataPage_RerunDays" xml:space="preserve"><value>дн. без повтора</value></data>
+  <data name="DataPage_RerunDaysValue" xml:space="preserve"><value>{0} дн.</value></data>
+  <data name="DataPage_RerunUpTimes" xml:space="preserve"><value>Появлений в прошлом: {0}</value></data>
+  <data name="DataPage_RerunMaxGap" xml:space="preserve"><value>{0} дн. ({1})</value></data>
+  <data name="DataPage_RerunMinGap" xml:space="preserve"><value>Наименьший интервал {0} дн. ({1})</value></data>
+  <data name="DataPage_RerunOverdue" xml:space="preserve"><value>Сильно задерживается</value></data>
+  <data name="DataPage_RerunDue" xml:space="preserve"><value>Пора</value></data>
+  <data name="DataPage_RerunSoon" xml:space="preserve"><value>Приближается</value></data>
+  <data name="DataPage_RerunFresh" xml:space="preserve"><value>Недавно</value></data>
+  <data name="DataPage_RerunNever" xml:space="preserve"><value>Ещё не повторялся</value></data>
+  <data name="DataPage_RerunForecastOver" xml:space="preserve"><value>На {0} дн. больше среднего интервала</value></data>
+  <data name="DataPage_RerunForecastLeft" xml:space="preserve"><value>До среднего интервала {0} дн.</value></data>
+  <data name="DataPage_RerunSortUrgency" xml:space="preserve"><value>Степень задержки</value></data>
+  <data name="DataPage_RerunSortDays" xml:space="preserve"><value>Дней ожидания</value></data>
+  <data name="DataPage_RerunSortInterval" xml:space="preserve"><value>Средний интервал</value></data>
+  <data name="DataPage_RerunSearchPlaceholder" xml:space="preserve"><value>Поиск по названию…</value></data>
+  <data name="DataPage_RerunSummaryFormat" xml:space="preserve"><value>{0} дн. с последнего появления; исторически в среднем {1} дн., максимум {2} дн.</value></data>
+  <data name="DataPage_HeadlineTop" xml:space="preserve"><value>Топ-уровень</value></data>
+  <data name="DataPage_HeadlineValue" xml:space="preserve"><value>Выгодный выбор</value></data>
+  <data name="DataPage_HeadlineRising" xml:space="preserve"><value>Набирает</value></data>
+  <data name="DataPage_HeadlineFalling" xml:space="preserve"><value>Теряет</value></data>
+  <data name="DataPage_HeadlinePopular" xml:space="preserve"><value>Есть почти у всех</value></data>
+  <data name="DataPage_InsightMetaTitle" xml:space="preserve"><value>Обстановка патча</value></data>
+  <data name="DataPage_InsightMetaBody" xml:space="preserve"><value>В {0} доля полных звёзд — {1}, в среднем {2} попыток; топ-уровень возглавляют {3}.</value></data>
+  <data name="DataPage_InsightRiseTitle" xml:space="preserve"><value>На подъёме</value></data>
+  <data name="DataPage_InsightRiseBody" xml:space="preserve"><value>{0}: с {1} до {2} — крупнейший рост за период.</value></data>
+  <data name="DataPage_InsightFallTitle" xml:space="preserve"><value>Уходит со сцены</value></data>
+  <data name="DataPage_InsightFallBody" xml:space="preserve"><value>{0}: с {1} до {2} — заметно потерял популярность.</value></data>
+  <data name="DataPage_InsightValueTitle" xml:space="preserve"><value>Приоритет крутки</value></data>
+  <data name="DataPage_InsightValueBody" xml:space="preserve"><value>{0} используют {1} владельцев, но персонаж есть лишь у {2} аккаунтов — сильный и редкий, высший приоритет.</value></data>
+  <data name="DataPage_InsightBenchTitle" xml:space="preserve"><value>В запасе</value></data>
+  <data name="DataPage_InsightBenchBody" xml:space="preserve"><value>{0} есть у {1} аккаунтов, но используется лишь в {2} случаев — есть почти у всех, играет почти никто.</value></data>
+  <data name="DataPage_InsightNoConstTitle" xml:space="preserve"><value>Работает на C0</value></data>
+  <data name="DataPage_InsightNoConstBody" xml:space="preserve"><value>{0} на C0 играют {1} игроков — созвездия не нужны.</value></data>
+  <data name="DataPage_InsightConstTitle" xml:space="preserve"><value>Зависит от созвездий</value></data>
+  <data name="DataPage_InsightConstBody" xml:space="preserve"><value>Лишь {1} тех, кто играет за {0}, находятся на C0 — статистику делают владельцы созвездий.</value></data>
+  <data name="DataPage_InsightWeaponTitle" xml:space="preserve"><value>Профильное оружие</value></data>
+  <data name="DataPage_InsightWeaponBody" xml:space="preserve"><value>{0} встречается в {1} сборок {2} — фактически выбор по умолчанию.</value></data>
+  <data name="DataPage_InsightArtifactTitle" xml:space="preserve"><value>Набор артефактов</value></data>
+  <data name="DataPage_InsightArtifactBody" xml:space="preserve"><value>{0} занимает {1} сборок — можно считать эталоном.</value></data>
+  <data name="DataPage_InsightOverdueTitle" xml:space="preserve"><value>Наблюдение за повторами</value></data>
+  <data name="DataPage_InsightOverdueBody" xml:space="preserve"><value>{0} без повтора уже {1} дн. (в среднем {2} дн.) — вероятный кандидат на следующую волну.</value></data>
+  <data name="DataPage_InsightTeamTitle" xml:space="preserve"><value>Основной состав</value></data>
+  <data name="DataPage_InsightTeamBody" xml:space="preserve"><value>Самая частая команда — {0} ({1}).</value></data>
+  <data name="DataPage_InsightBannerTitle" xml:space="preserve"><value>Текущие баннеры</value></data>
+  <data name="DataPage_InsightBannerBody" xml:space="preserve"><value>Сейчас идёт: {0}. {1}</value></data>
+  <data name="DataPage_InsightBannerNone" xml:space="preserve"><value>Сейчас нет активных баннеров персонажей.</value></data>
+  <data name="DataPage_BannerAdviceItem" xml:space="preserve"><value>{0} ({1}, в Бездне {2})</value></data>
+  <data name="DataPage_ListSeparator" xml:space="preserve"><value>, </value></data>
+  <data name="DataPage_ClauseSeparator" xml:space="preserve"><value>; </value></data>
+  <data name="DataPage_ExportPdf" xml:space="preserve"><value>Экспортировать профессиональный PDF-отчёт</value></data>
+  <data name="DataPage_ExportPdfFileType" xml:space="preserve"><value>PDF-документ</value></data>
+  <data name="DataPage_Exporting" xml:space="preserve"><value>Создание аналитического отчёта FufuLauncher…</value></data>
+  <data name="DataPage_Exported" xml:space="preserve"><value>PDF-отчёт экспортирован: {0}</value></data>
+  <data name="DataPage_ExportFailed" xml:space="preserve"><value>Не удалось экспортировать PDF: {0}</value></data>
 </root>

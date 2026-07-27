@@ -25,6 +25,7 @@ using Windows.Media.Core;
 using Windows.Media.Playback;
 using System.Net.Sockets;
 using Sentry;
+using QuestPDF.Infrastructure;
 
 namespace FufuLauncher;
 
@@ -79,6 +80,7 @@ public partial class App : Application
     public App()
     {
         Helpers.AppPaths.EnsureDirectories();
+        QuestPDF.Settings.License = LicenseType.Community;
 
         string userDataFolder = Path.Combine(Helpers.AppPaths.CacheDir, "WebView2Data");
         Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", userDataFolder);
@@ -139,6 +141,8 @@ public partial class App : Application
                     services.AddSingleton<MainViewModel>();
                     services.AddTransient<MainPage>();
                     
+                    services.AddSingleton<GameStatsService>();
+                    services.AddSingleton<IDataCenterPdfReportService, DataCenterPdfReportService>();
                     services.AddTransient<DataViewModel>();
                     services.AddTransient<DataPage>();
                     

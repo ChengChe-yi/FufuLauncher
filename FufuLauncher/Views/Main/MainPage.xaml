@@ -221,12 +221,32 @@
                                         x:Name="BannerCurrentImage"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
+                                        ImageFailed="BannerImage_ImageFailed"
+                                        ImageOpened="BannerImage_ImageOpened"
                                         RenderTransformOrigin="0.5,0.5"
                                         Stretch="Fill">
                                         <Image.RenderTransform>
                                             <ScaleTransform x:Name="BannerCurrentScale" ScaleX="1" ScaleY="1" />
                                         </Image.RenderTransform>
                                     </Image>
+
+                                    <Grid
+                                        x:Name="BannerCurrentPlaceholder"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Background="#20000000"
+                                        IsHitTestVisible="False">
+                                        <Viewbox
+                                            Width="32"
+                                            Height="32"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                            <FontIcon
+                                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                Glyph="&#xEB9F;" />
+                                        </Viewbox>
+                                    </Grid>
 
                                     <Button
                                         Margin="0"
@@ -256,12 +276,32 @@
                                         x:Name="BannerIncomingImage"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
+                                        ImageFailed="BannerImage_ImageFailed"
+                                        ImageOpened="BannerImage_ImageOpened"
                                         RenderTransformOrigin="0.5,0.5"
                                         Stretch="Fill">
                                         <Image.RenderTransform>
                                             <ScaleTransform x:Name="BannerIncomingScale" ScaleX="1" ScaleY="1" />
                                         </Image.RenderTransform>
                                     </Image>
+
+                                    <Grid
+                                        x:Name="BannerIncomingPlaceholder"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        Background="#20000000"
+                                        IsHitTestVisible="False">
+                                        <Viewbox
+                                            Width="32"
+                                            Height="32"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                            <FontIcon
+                                                FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                Glyph="&#xEB9F;" />
+                                        </Viewbox>
+                                    </Grid>
                                 </Grid>
 
                                 <Button

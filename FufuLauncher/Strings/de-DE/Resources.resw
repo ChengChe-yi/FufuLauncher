@@ -1444,4 +1444,168 @@ Rückmeldung: {0}</value></data>
   <data name="PluginStoreDependencies" xml:space="preserve"><value>Abhängigkeiten</value></data>
   <data name="PluginStoreLongDescription" xml:space="preserve"><value>Über dieses Plug-in</value></data>
   <data name="PluginStoreDownloadingLua" xml:space="preserve"><value>Installationsskript wird heruntergeladen...</value></data>
+  <data name="DataPage_Title" xml:space="preserve"><value>Datenzentrum</value></data>
+  <data name="DataPage_Subtitle" xml:space="preserve"><value>Serverweite Statistiken, verknüpft zu konkreten Build- und Wunsch-Empfehlungen</value></data>
+  <data name="DataPage_TabOverview" xml:space="preserve"><value>Übersicht</value></data>
+  <data name="DataPage_TabCharacters" xml:space="preserve"><value>Charaktere</value></data>
+  <data name="DataPage_TabSpiral" xml:space="preserve"><value>Abgrund</value></data>
+  <data name="DataPage_TabStygian" xml:space="preserve"><value>Stygische Prüfung</value></data>
+  <data name="DataPage_TabWish" xml:space="preserve"><value>Banner</value></data>
+  <data name="DataPage_TabRerun" xml:space="preserve"><value>Reruns</value></data>
+  <data name="DataPage_TabTimeline" xml:space="preserve"><value>Zeitleiste</value></data>
+  <data name="DataPage_Refresh" xml:space="preserve"><value>Daten aktualisieren</value></data>
+  <data name="DataPage_LastUpdate" xml:space="preserve"><value>Stand {0}</value></data>
+  <data name="DataPage_Loading" xml:space="preserve"><value>Serverweite Statistiken werden zusammengeführt…</value></data>
+  <data name="DataPage_LoadFailedTitle" xml:space="preserve"><value>Daten konnten nicht geladen werden</value></data>
+  <data name="DataPage_LoadFailedBody" xml:space="preserve"><value>Der Statistikdienst ist nicht erreichbar. Prüfe die Verbindung und versuche es erneut.</value></data>
+  <data name="DataPage_PartialData" xml:space="preserve"><value>{0} Datensätze konnten nicht geladen werden; es werden Teilergebnisse angezeigt.</value></data>
+  <data name="DataPage_Retry" xml:space="preserve"><value>Erneut versuchen</value></data>
+  <data name="DataPage_NoResult" xml:space="preserve"><value>Keine Treffer</value></data>
+  <data name="DataPage_ShowMore" xml:space="preserve"><value>Mehr anzeigen (+{0})</value></data>
+  <data name="DataPage_ShownCount" xml:space="preserve"><value>{0} / {1} angezeigt</value></data>
+  <data name="DataPage_SectionEnvironment" xml:space="preserve"><value>Versionsüberblick</value></data>
+  <data name="DataPage_SectionInsight" xml:space="preserve"><value>Was die Zahlen sagen</value></data>
+  <data name="DataPage_SectionMovers" xml:space="preserve"><value>Nutzungsverschiebungen</value></data>
+  <data name="DataPage_SectionTopTier" xml:space="preserve"><value>Top-Tier dieser Periode</value></data>
+  <data name="DataPage_SectionCurrentBanner" xml:space="preserve"><value>Aktuell verfügbar</value></data>
+  <data name="DataPage_SectionValuePick" xml:space="preserve"><value>Lohnt das Ziehen</value></data>
+  <data name="DataPage_SectionOverdue" xml:space="preserve"><value>Am längsten ohne Rerun</value></data>
+  <data name="DataPage_SectionRanking" xml:space="preserve"><value>Ranglisten</value></data>
+  <data name="DataPage_SectionFilter" xml:space="preserve"><value>Filter</value></data>
+  <data name="DataPage_SectionCharacters" xml:space="preserve"><value>Charaktere</value></data>
+  <data name="DataPage_SectionBanners" xml:space="preserve"><value>Bannerverlauf</value></data>
+  <data name="DataPage_SectionRerun" xml:space="preserve"><value>Rerun-Abstände</value></data>
+  <data name="DataPage_Risers" xml:space="preserve"><value>Nutzung steigt</value></data>
+  <data name="DataPage_Fallers" xml:space="preserve"><value>Nutzung sinkt</value></data>
+  <data name="DataPage_KpiVersion" xml:space="preserve"><value>Aktuelle Version</value></data>
+  <data name="DataPage_KpiSample" xml:space="preserve"><value>Abgrund-Stichprobe</value></data>
+  <data name="DataPage_KpiStygianSample" xml:space="preserve"><value>Stygisch</value></data>
+  <data name="DataPage_KpiFullStar" xml:space="preserve"><value>Vollstern-Quote</value></data>
+  <data name="DataPage_KpiOnceFullStar" xml:space="preserve"><value>beim ersten Versuch</value></data>
+  <data name="DataPage_KpiRestart" xml:space="preserve"><value>Durchschnittliche Neuversuche</value></data>
+  <data name="DataPage_KpiCharacterCount" xml:space="preserve"><value>Erfasste Charaktere</value></data>
+  <data name="DataPage_KpiBannerCount" xml:space="preserve"><value>Charakter-Banner</value></data>
+  <data name="DataPage_KpiWeaponBanner" xml:space="preserve"><value>{0} Waffen-Banner</value></data>
+  <data name="DataPage_UnitTimesShort" xml:space="preserve"><value>Versuche</value></data>
+  <data name="DataPage_UnitEntries" xml:space="preserve"><value>{0} Einträge</value></data>
+  <data name="DataPage_SortBy" xml:space="preserve"><value>Sortieren</value></data>
+  <data name="DataPage_StarFilter" xml:space="preserve"><value>Seltenheit</value></data>
+  <data name="DataPage_SortHeat" xml:space="preserve"><value>Gesamtwertung</value></data>
+  <data name="DataPage_SortAbyss" xml:space="preserve"><value>Abgrund-Einsatzquote</value></data>
+  <data name="DataPage_SortValue" xml:space="preserve"><value>Zieh-Priorität</value></data>
+  <data name="DataPage_SortOwn" xml:space="preserve"><value>Besitzquote</value></data>
+  <data name="DataPage_SortLevel" xml:space="preserve"><value>Durchschnittslevel</value></data>
+  <data name="DataPage_SortDamage" xml:space="preserve"><value>Kernschaden</value></data>
+  <data name="DataPage_FieldShare" xml:space="preserve"><value>Serverweiter Anteil</value></data>
+  <data name="DataPage_SampleFormat" xml:space="preserve"><value>Stichprobe {0}</value></data>
+  <data name="DataPage_ViewDetail" xml:space="preserve"><value>Vollanalyse</value></data>
+  <data name="DataPage_CoreDamage" xml:space="preserve"><value>Kernschaden</value></data>
+  <data name="DataPage_AbyssPick" xml:space="preserve"><value>Abgrund-Einsatz</value></data>
+  <data name="DataPage_StygianPick" xml:space="preserve"><value>Stygischer Einsatz</value></data>
+  <data name="DataPage_MetricAvgLevel" xml:space="preserve"><value>Durchschnittslevel</value></data>
+  <data name="DataPage_MetricAvgConst" xml:space="preserve"><value>Durchschnittliche Konstellation</value></data>
+  <data name="DataPage_MetricSample" xml:space="preserve"><value>Stichprobengröße</value></data>
+  <data name="DataPage_MetricTalent" xml:space="preserve"><value>Talente</value></data>
+  <data name="DataPage_ZeroConstellation" xml:space="preserve"><value>C0-Anteil</value></data>
+  <data name="DataPage_ClearTime" xml:space="preserve"><value>Clear-Zeit</value></data>
+  <data name="DataPage_ChangeVsLast" xml:space="preserve"><value>zur Vorperiode</value></data>
+  <data name="DataPage_DetailTitle" xml:space="preserve"><value>{0} · Vollanalyse</value></data>
+  <data name="DataPage_DetailWeapons" xml:space="preserve"><value>Waffenverteilung</value></data>
+  <data name="DataPage_DetailArtifacts" xml:space="preserve"><value>Artefakt-Set-Verteilung</value></data>
+  <data name="DataPage_DetailConstellation" xml:space="preserve"><value>Konstellationsverteilung</value></data>
+  <data name="DataPage_DetailTeams" xml:space="preserve"><value>Häufige Teams</value></data>
+  <data name="DataPage_DetailBanners" xml:space="preserve"><value>Banner- und Rerun-Verlauf</value></data>
+  <data name="DataPage_DetailInsights" xml:space="preserve"><value>Fazit</value></data>
+  <data name="DataPage_Close" xml:space="preserve"><value>Schließen</value></data>
+  <data name="DataPage_ViewTier" xml:space="preserve"><value>Tier-Liste</value></data>
+  <data name="DataPage_ViewRank" xml:space="preserve"><value>Nutzungsrangliste</value></data>
+  <data name="DataPage_ViewTeam" xml:space="preserve"><value>Team-Kombos</value></data>
+  <data name="DataPage_Version" xml:space="preserve"><value>Periode</value></data>
+  <data name="DataPage_RestartDist" xml:space="preserve"><value>Verteilung der Neuversuche</value></data>
+  <data name="DataPage_TierCount" xml:space="preserve"><value>{0} Charaktere</value></data>
+  <data name="DataPage_TeamHasRate" xml:space="preserve"><value>Aufstellbar</value></data>
+  <data name="DataPage_TeamAttendRate" xml:space="preserve"><value>Teilnahme</value></data>
+  <data name="DataPage_TeamCount" xml:space="preserve"><value>{0}× verwendet</value></data>
+  <data name="DataPage_HalfFirst" xml:space="preserve"><value>1. Hälfte</value></data>
+  <data name="DataPage_HalfMid" xml:space="preserve"><value>Mitte</value></data>
+  <data name="DataPage_HalfSecond" xml:space="preserve"><value>2. Hälfte</value></data>
+  <data name="DataPage_MaxInterval" xml:space="preserve"><value>Längster Abstand</value></data>
+  <data name="DataPage_TierS1Desc" xml:space="preserve"><value>Bestimmt das aktuelle Meta</value></data>
+  <data name="DataPage_TierSDesc" xml:space="preserve"><value>Stark und weit verbreitet</value></data>
+  <data name="DataPage_TierADesc" xml:space="preserve"><value>Solide situative Wahl</value></data>
+  <data name="DataPage_TierBDesc" xml:space="preserve"><value>Nische oder teamabhängig</value></data>
+  <data name="DataPage_TierCDesc" xml:space="preserve"><value>In dieser Periode kaum zu sehen</value></data>
+  <data name="DataPage_WishCharacters" xml:space="preserve"><value>Charakter-Banner</value></data>
+  <data name="DataPage_WishWeapons" xml:space="preserve"><value>Waffen-Banner</value></data>
+  <data name="DataPage_WishOngoing" xml:space="preserve"><value>Aktiv</value></data>
+  <data name="DataPage_WishUpcoming" xml:space="preserve"><value>Bald</value></data>
+  <data name="DataPage_WishDaysLeft" xml:space="preserve"><value>{0} Tage übrig</value></data>
+  <data name="DataPage_WishDaysUntil" xml:space="preserve"><value>in {0} Tagen</value></data>
+  <data name="DataPage_WishDaysAgo" xml:space="preserve"><value>vor {0} Tagen</value></data>
+  <data name="DataPage_WishTopRerun" xml:space="preserve"><value>Meiste Reruns</value></data>
+  <data name="DataPage_WishTopCompanion" xml:space="preserve"><value>Häufigste 4-Sterne-Begleiter</value></data>
+  <data name="DataPage_WishSearchPlaceholder" xml:space="preserve"><value>Charakter oder Version suchen…</value></data>
+  <data name="DataPage_WishUpTimes" xml:space="preserve"><value>{0}×</value></data>
+  <data name="DataPage_WishSummaryFormat" xml:space="preserve"><value>{0}× im Fokus, zuletzt in {1} (vor {2} Tagen), durchschnittlich {3} Tage Abstand.</value></data>
+  <data name="DataPage_WishSummaryNever" xml:space="preserve"><value>Kein Bannerverlauf vorhanden.</value></data>
+  <data name="DataPage_RerunChar5" xml:space="preserve"><value>5-Sterne-Charaktere</value></data>
+  <data name="DataPage_RerunChar4" xml:space="preserve"><value>4-Sterne-Charaktere</value></data>
+  <data name="DataPage_RerunWeapon5" xml:space="preserve"><value>5-Sterne-Waffen</value></data>
+  <data name="DataPage_RerunWeapon4" xml:space="preserve"><value>4-Sterne-Waffen</value></data>
+  <data name="DataPage_RerunCategory" xml:space="preserve"><value>Kategorie</value></data>
+  <data name="DataPage_RerunDays" xml:space="preserve"><value>Tage ohne Rerun</value></data>
+  <data name="DataPage_RerunDaysValue" xml:space="preserve"><value>{0} Tage</value></data>
+  <data name="DataPage_RerunUpTimes" xml:space="preserve"><value>{0} frühere Auftritte</value></data>
+  <data name="DataPage_RerunMaxGap" xml:space="preserve"><value>{0} Tage ({1})</value></data>
+  <data name="DataPage_RerunMinGap" xml:space="preserve"><value>Kürzester Abstand {0} Tage ({1})</value></data>
+  <data name="DataPage_RerunOverdue" xml:space="preserve"><value>Weit überfällig</value></data>
+  <data name="DataPage_RerunDue" xml:space="preserve"><value>Fällig</value></data>
+  <data name="DataPage_RerunSoon" xml:space="preserve"><value>Bald fällig</value></data>
+  <data name="DataPage_RerunFresh" xml:space="preserve"><value>Kürzlich</value></data>
+  <data name="DataPage_RerunNever" xml:space="preserve"><value>Noch kein Rerun</value></data>
+  <data name="DataPage_RerunForecastOver" xml:space="preserve"><value>{0} Tage über dem Durchschnitt</value></data>
+  <data name="DataPage_RerunForecastLeft" xml:space="preserve"><value>Noch {0} Tage bis zum Durchschnitt</value></data>
+  <data name="DataPage_RerunSortUrgency" xml:space="preserve"><value>Überfälligkeit</value></data>
+  <data name="DataPage_RerunSortDays" xml:space="preserve"><value>Wartetage</value></data>
+  <data name="DataPage_RerunSortInterval" xml:space="preserve"><value>Durchschnittsabstand</value></data>
+  <data name="DataPage_RerunSearchPlaceholder" xml:space="preserve"><value>Nach Namen suchen…</value></data>
+  <data name="DataPage_RerunSummaryFormat" xml:space="preserve"><value>{0} Tage seit dem letzten Auftritt; historischer Durchschnitt {1} Tage, längstens {2} Tage.</value></data>
+  <data name="DataPage_HeadlineTop" xml:space="preserve"><value>Top-Tier</value></data>
+  <data name="DataPage_HeadlineValue" xml:space="preserve"><value>Hoher Wert</value></data>
+  <data name="DataPage_HeadlineRising" xml:space="preserve"><value>Im Aufwind</value></data>
+  <data name="DataPage_HeadlineFalling" xml:space="preserve"><value>Im Abstieg</value></data>
+  <data name="DataPage_HeadlinePopular" xml:space="preserve"><value>Fast jeder hat sie</value></data>
+  <data name="DataPage_InsightMetaTitle" xml:space="preserve"><value>Patch-Umfeld</value></data>
+  <data name="DataPage_InsightMetaBody" xml:space="preserve"><value>In {0} liegt die Vollstern-Quote bei {1} mit durchschnittlich {2} Neuversuchen; das Top-Tier führen {3} an.</value></data>
+  <data name="DataPage_InsightRiseTitle" xml:space="preserve"><value>Im Aufwind</value></data>
+  <data name="DataPage_InsightRiseBody" xml:space="preserve"><value>{0} stieg von {1} auf {2} – der größte Zuwachs dieser Periode.</value></data>
+  <data name="DataPage_InsightFallTitle" xml:space="preserve"><value>Auf dem Rückzug</value></data>
+  <data name="DataPage_InsightFallBody" xml:space="preserve"><value>{0} fiel von {1} auf {2} und ist diese Periode klar in Ungnade.</value></data>
+  <data name="DataPage_InsightValueTitle" xml:space="preserve"><value>Zieh-Priorität</value></data>
+  <data name="DataPage_InsightValueBody" xml:space="preserve"><value>{0} wird von {1} der Besitzer eingesetzt, aber nur {2} der Konten haben sie – stark und selten, also höchste Zieh-Priorität.</value></data>
+  <data name="DataPage_InsightBenchTitle" xml:space="preserve"><value>Auf der Bank</value></data>
+  <data name="DataPage_InsightBenchBody" xml:space="preserve"><value>{0} ist auf {1} der Konten, wird aber nur zu {2} eingesetzt – fast jeder hat sie, kaum jemand spielt sie.</value></data>
+  <data name="DataPage_InsightNoConstTitle" xml:space="preserve"><value>Funktioniert auf C0</value></data>
+  <data name="DataPage_InsightNoConstBody" xml:space="preserve"><value>{0} wird von {1} der Spieler auf C0 gespielt – Konstellationen sind nicht nötig.</value></data>
+  <data name="DataPage_InsightConstTitle" xml:space="preserve"><value>Konstellationsabhängig</value></data>
+  <data name="DataPage_InsightConstBody" xml:space="preserve"><value>Nur {1} der {0}-Nutzer spielen C0 – die Nutzungszahlen stammen überwiegend von Konstellationsbesitzern.</value></data>
+  <data name="DataPage_InsightWeaponTitle" xml:space="preserve"><value>Signaturwaffe</value></data>
+  <data name="DataPage_InsightWeaponBody" xml:space="preserve"><value>{0} kommt in {1} der {2}-Builds vor – praktisch die Standardwahl.</value></data>
+  <data name="DataPage_InsightArtifactTitle" xml:space="preserve"><value>Artefakt-Set</value></data>
+  <data name="DataPage_InsightArtifactBody" xml:space="preserve"><value>{0} macht {1} der Builds aus und gilt als Basiskonfiguration.</value></data>
+  <data name="DataPage_InsightOverdueTitle" xml:space="preserve"><value>Rerun-Beobachtung</value></data>
+  <data name="DataPage_InsightOverdueBody" xml:space="preserve"><value>{0} hatte {1} Tage keinen Rerun (historisch {2} Tage) – ein wahrscheinlicher Kandidat für die nächste Runde.</value></data>
+  <data name="DataPage_InsightTeamTitle" xml:space="preserve"><value>Standard-Team</value></data>
+  <data name="DataPage_InsightTeamBody" xml:space="preserve"><value>Das häufigste Team ist {0} mit {1}.</value></data>
+  <data name="DataPage_InsightBannerTitle" xml:space="preserve"><value>Aktuelle Banner</value></data>
+  <data name="DataPage_InsightBannerBody" xml:space="preserve"><value>Aktuell: {0}. {1}</value></data>
+  <data name="DataPage_InsightBannerNone" xml:space="preserve"><value>Derzeit läuft kein Charakter-Banner.</value></data>
+  <data name="DataPage_BannerAdviceItem" xml:space="preserve"><value>{0} ({1}, Abgrund-Einsatz {2})</value></data>
+  <data name="DataPage_ListSeparator" xml:space="preserve"><value>, </value></data>
+  <data name="DataPage_ClauseSeparator" xml:space="preserve"><value>; </value></data>
+  <data name="DataPage_ExportPdf" xml:space="preserve"><value>Professionellen PDF-Bericht exportieren</value></data>
+  <data name="DataPage_ExportPdfFileType" xml:space="preserve"><value>PDF-Dokument</value></data>
+  <data name="DataPage_Exporting" xml:space="preserve"><value>FufuLauncher-Analysebericht wird erstellt…</value></data>
+  <data name="DataPage_Exported" xml:space="preserve"><value>PDF-Bericht exportiert: {0}</value></data>
+  <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF konnte nicht exportiert werden: {0}</value></data>
 </root>
