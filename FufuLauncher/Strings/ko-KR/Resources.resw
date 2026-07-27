@@ -1608,4 +1608,6 @@ Microsoft 웹사이트로 이동하여 다운로드 및 설치하시겠습니까
   <data name="DataPage_Exporting" xml:space="preserve"><value>FufuLauncher 분석 보고서를 만드는 중…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>PDF 보고서를 내보냈습니다: {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF를 내보낼 수 없습니다: {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF 보고서를 내보냈습니다</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDF 내보내기 실패</value></data>
 </root>

@@ -1697,4 +1697,6 @@
   <data name="DataPage_Exporting" xml:space="preserve"><value>正在生成 FufuLauncher 数据分析报告…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>PDF 报告已导出：{0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF 导出失败：{0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF 报告已导出</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDF 导出失败</value></data>
 </root>

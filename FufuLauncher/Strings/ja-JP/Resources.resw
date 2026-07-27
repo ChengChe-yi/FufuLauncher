@@ -1608,4 +1608,6 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
   <data name="DataPage_Exporting" xml:space="preserve"><value>FufuLauncher 分析レポートを作成しています…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>PDFレポートをエクスポートしました: {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDFをエクスポートできませんでした: {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDFレポートをエクスポートしました</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDFのエクスポートに失敗しました</value></data>
 </root>

@@ -1608,4 +1608,6 @@ If you continue, this warning will be ignored and the preset&apos;s Hash will be
   <data name="DataPage_Exporting" xml:space="preserve"><value>Создание аналитического отчёта FufuLauncher…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>PDF-отчёт экспортирован: {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>Не удалось экспортировать PDF: {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF-отчёт экспортирован</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>Не удалось экспортировать PDF</value></data>
 </root>

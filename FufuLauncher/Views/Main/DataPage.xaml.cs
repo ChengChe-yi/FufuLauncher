@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using System.ComponentModel;
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
 using FufuLauncher.ViewModels;
@@ -11,6 +12,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Web.WebView2.Core;
 using Windows.UI;
@@ -21,17 +23,92 @@ public sealed partial class DataPage : Page
 {
     public DataViewModel ViewModel { get; }
 
+    private bool _isSubscribed;
+    private bool _hasShownInitialSkeleton;
+
     public DataPage()
     {
         ViewModel = App.GetService<DataViewModel>();
         InitializeComponent();
-        Loaded += (_, _) => EntranceStoryboard.Begin();
+        Loaded += OnPageLoaded;
+        Unloaded += OnPageUnloaded;
+    }
+
+    private void OnPageLoaded(object sender, RoutedEventArgs e)
+    {
+        EntranceStoryboard.Begin();
+        SubscribeViewModel();
+        UpdateInitialLoadingAnimations();
+    }
+
+    private void OnPageUnloaded(object sender, RoutedEventArgs e)
+    {
+        UnsubscribeViewModel();
+        StopLoadingAnimations();
     }
 
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
         await ViewModel.InitializeAsync();
+    }
+
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        UnsubscribeViewModel();
+        StopLoadingAnimations();
+        base.OnNavigatedFrom(e);
+    }
+
+    private void SubscribeViewModel()
+    {
+        if (_isSubscribed) return;
+        ViewModel.PropertyChanged += OnViewModelPropertyChanged;
+        _isSubscribed = true;
+    }
+
+    private void UnsubscribeViewModel()
+    {
+        if (!_isSubscribed) return;
+        ViewModel.PropertyChanged -= OnViewModelPropertyChanged;
+        _isSubscribed = false;
+    }
+
+    private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName is nameof(DataViewModel.ShowInitialSkeleton) or nameof(DataViewModel.IsLoading))
+        {
+            UpdateInitialLoadingAnimations();
+        }
+    }
+
+    private void UpdateInitialLoadingAnimations()
+    {
+        if (ViewModel.ShowInitialSkeleton)
+        {
+            _hasShownInitialSkeleton = true;
+            DataContentEntranceStoryboard.Stop();
+            DataContentHost.Opacity = 0;
+            DataContentTranslate.Y = 12;
+            SkeletonPulseStoryboard.Begin();
+            return;
+        }
+
+        SkeletonPulseStoryboard.Stop();
+
+        if (_hasShownInitialSkeleton && !ViewModel.IsLoading && !ViewModel.HasError)
+        {
+            DataContentEntranceStoryboard.Begin();
+            _hasShownInitialSkeleton = false;
+        }
+    }
+
+    private void StopLoadingAnimations()
+    {
+        SkeletonPulseStoryboard.Stop();
+        DataContentEntranceStoryboard.Stop();
+        RefreshSpinStoryboard.Stop();
+        RefreshIconRotate.Angle = 0;
     }
 
     private void OnTabClick(object sender, RoutedEventArgs e)

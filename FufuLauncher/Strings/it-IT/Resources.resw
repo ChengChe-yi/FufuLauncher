@@ -1619,4 +1619,6 @@ Andare al sito Microsoft per scaricarla e installarla?</value></data>
   <data name="DataPage_Exporting" xml:space="preserve"><value>Creazione del report di analisi FufuLauncher…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>Report PDF esportato: {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>Impossibile esportare il PDF: {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>Report PDF esportato</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>Esportazione PDF non riuscita</value></data>
 </root>

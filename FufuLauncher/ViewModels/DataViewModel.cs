@@ -7,7 +7,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
+using FufuLauncher.Messages;
 using FufuLauncher.Models.DataCenter;
 using FufuLauncher.Services;
 
@@ -40,6 +42,7 @@ public sealed class DataViewModel : INotifyPropertyChanged
 
     private readonly GameStatsService _stats;
     private readonly IDataCenterPdfReportService _pdfReport;
+    private readonly INotificationService _notificationService;
 
     private RoleAvgResponse? _roleAvg;
     
@@ -57,10 +60,12 @@ public sealed class DataViewModel : INotifyPropertyChanged
     private CancellationTokenSource? _cts;
     private bool _isInitialized;
 
-    public DataViewModel(GameStatsService stats, IDataCenterPdfReportService pdfReport)
+    public DataViewModel(GameStatsService stats, IDataCenterPdfReportService pdfReport,
+        INotificationService notificationService)
     {
         _stats = stats;
         _pdfReport = pdfReport;
+        _notificationService = notificationService;
 
         var rankSortOptions = new List<DcOption>
         {
@@ -147,6 +152,7 @@ public sealed class DataViewModel : INotifyPropertyChanged
             if (_isLoading == value) return;
             _isLoading = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(ShowInitialSkeleton));
             OnPropertyChanged(nameof(CanExportPdf));
         }
     }
@@ -170,6 +176,8 @@ public sealed class DataViewModel : INotifyPropertyChanged
     private bool HasExportableData => OverviewKpis.Count > 0 || _allCharacters.Count > 0 ||
                                       Spiral.Ranks.Count > 0 || Stygian.Ranks.Count > 0;
 
+    public bool ShowInitialSkeleton => IsLoading && !HasExportableData && !HasError;
+
     private bool _hasError;
 
     public bool HasError
@@ -180,6 +188,7 @@ public sealed class DataViewModel : INotifyPropertyChanged
             if (_hasError == value) return;
             _hasError = value;
             OnPropertyChanged();
+            OnPropertyChanged(nameof(ShowInitialSkeleton));
         }
     }
 
@@ -537,11 +546,21 @@ public sealed class DataViewModel : INotifyPropertyChanged
             var snapshot = CreateReportSnapshot(previousStatus);
             await _pdfReport.GenerateAsync(snapshot, path);
             StatusMessage = LF("DataPage_Exported", Path.GetFileName(path));
+            _notificationService.Show(
+                L("DataPage_ExportSuccessTitle"),
+                StatusMessage,
+                NotificationType.Success,
+                4000);
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"[DataViewModel] PDF 导出失败: {ex}");
             StatusMessage = LF("DataPage_ExportFailed", ex.Message);
+            _notificationService.Show(
+                L("DataPage_ExportFailedTitle"),
+                StatusMessage,
+                NotificationType.Error,
+                6000);
         }
         finally
         {

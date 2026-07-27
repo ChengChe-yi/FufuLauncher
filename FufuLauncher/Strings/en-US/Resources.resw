@@ -1649,4 +1649,6 @@ Do you still want to execute it? (Not recommended)</value></data>
   <data name="DataPage_Exporting" xml:space="preserve"><value>Creating the FufuLauncher analysis report…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>PDF report exported: {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>Could not export PDF: {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF report exported</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDF export failed</value></data>
 </root>

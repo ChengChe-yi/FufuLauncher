@@ -1608,4 +1608,6 @@ Detail: {0}</value></data>
   <data name="DataPage_Exporting" xml:space="preserve"><value>Membuat laporan analisis FufuLauncher…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>Laporan PDF diekspor: {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>Tidak dapat mengekspor PDF: {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>Laporan PDF diekspor</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>Gagal mengekspor PDF</value></data>
 </root>

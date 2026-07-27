@@ -1608,4 +1608,6 @@ Rückmeldung: {0}</value></data>
   <data name="DataPage_Exporting" xml:space="preserve"><value>FufuLauncher-Analysebericht wird erstellt…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>PDF-Bericht exportiert: {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF konnte nicht exportiert werden: {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF-Bericht exportiert</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDF-Export fehlgeschlagen</value></data>
 </root>

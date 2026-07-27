@@ -1608,4 +1608,6 @@ Rapport : {0}</value></data>
   <data name="DataPage_Exporting" xml:space="preserve"><value>Création du rapport d’analyse FufuLauncher…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>Rapport PDF exporté : {0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>Impossible d’exporter le PDF : {0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>Rapport PDF exporté</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>Échec de l’exportation du PDF</value></data>
 </root>

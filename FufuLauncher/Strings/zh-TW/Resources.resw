@@ -1608,4 +1608,6 @@ If you continue, this warning will be ignored and the preset&apos;s Hash will be
   <data name="DataPage_Exporting" xml:space="preserve"><value>正在產生 FufuLauncher 資料分析報告…</value></data>
   <data name="DataPage_Exported" xml:space="preserve"><value>PDF 報告已匯出：{0}</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF 匯出失敗：{0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF 報告已匯出</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDF 匯出失敗</value></data>
 </root>

@@ -23,6 +23,7 @@
                     <SolidColorBrush x:Key="SafeTextBrush" Color="#FF000000" />
                     <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#99000000" />
                     <SolidColorBrush x:Key="SafeTrackBrush" Color="#14000000" />
+                    <SolidColorBrush x:Key="SkeletonFillBrush" Color="#16000000" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Default">
                     <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#CC000000" TintColor="#000000"
@@ -33,6 +34,7 @@
                     <SolidColorBrush x:Key="SafeTextBrush" Color="White" />
                     <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#B3FFFFFF" />
                     <SolidColorBrush x:Key="SafeTrackBrush" Color="#1FFFFFFF" />
+                    <SolidColorBrush x:Key="SkeletonFillBrush" Color="#26FFFFFF" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Dark">
                     <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#CC000000" TintColor="#000000"
@@ -43,6 +45,7 @@
                     <SolidColorBrush x:Key="SafeTextBrush" Color="White" />
                     <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#B3FFFFFF" />
                     <SolidColorBrush x:Key="SafeTrackBrush" Color="#1FFFFFFF" />
+                    <SolidColorBrush x:Key="SkeletonFillBrush" Color="#26FFFFFF" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
@@ -54,6 +57,38 @@
                 <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
                                  Storyboard.TargetProperty="Opacity"
                                  From="0" To="1" Duration="0:0:0.6">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="RootLayoutTranslate"
+                                 Storyboard.TargetProperty="Y"
+                                 From="18" To="0" Duration="0:0:0.6">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="SkeletonPulseStoryboard" RepeatBehavior="Forever" AutoReverse="True">
+                <DoubleAnimation Storyboard.TargetName="InitialSkeletonContent"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0.92" To="0.56" Duration="0:0:0.95">
+                    <DoubleAnimation.EasingFunction>
+                        <SineEase EasingMode="EaseInOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="DataContentEntranceStoryboard">
+                <DoubleAnimation Storyboard.TargetName="DataContentHost"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0" To="1" Duration="0:0:0.36">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="DataContentTranslate"
+                                 Storyboard.TargetProperty="Y"
+                                 From="12" To="0" Duration="0:0:0.36">
                     <DoubleAnimation.EasingFunction>
                         <CubicEase EasingMode="EaseOut" />
                     </DoubleAnimation.EasingFunction>
@@ -74,8 +109,7 @@
                                  Storyboard.TargetProperty="Angle"
                                  From="0" To="360" Duration="0:0:1" />
             </Storyboard>
-
-            <!--  与 OtherPage / PluginStorePage 保持一致的卡片与分节标题  -->
+            
             <Style x:Key="SettingsCardStyle" TargetType="Grid">
                 <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}" />
                 <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -133,7 +167,19 @@
                 <Setter Property="MinWidth" Value="36" />
             </Style>
 
-            <!--  顶部标签 / 子视图切换用的胶囊按钮，取自 PluginStorePage 的分类芯片  -->
+            <Style x:Key="SkeletonBarStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource SkeletonFillBrush}" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+
+            <Style x:Key="SkeletonCardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="Padding" Value="20" />
+            </Style>
+            
             <Style x:Key="DcChipStyle" TargetType="primitives:ToggleButton">
                 <Setter Property="Foreground" Value="{ThemeResource SafeTextBrush}" />
                 <Setter Property="FontSize" Value="13" />
@@ -1040,8 +1086,6 @@
                 </Border>
             </DataTemplate>
 
-            <!--  ========================= 深渊 / 幽境共用板块 =========================  -->
-
             <DataTemplate x:Key="AbyssSectionTemplate" x:DataType="vm:DcAbyssSection">
                 <StackPanel Spacing="24">
 
@@ -1266,8 +1310,6 @@
                 </StackPanel>
             </DataTemplate>
 
-            <!--  ========================= 角色综合分析弹窗 =========================  -->
-
             <DataTemplate x:Key="CharacterDetailTemplate" x:DataType="vm:DcCharacterDetail">
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                               MaxHeight="620">
@@ -1427,6 +1469,9 @@
     </Page.Resources>
 
     <Grid x:Name="RootLayoutGrid" Opacity="0">
+        <Grid.RenderTransform>
+            <TranslateTransform x:Name="RootLayoutTranslate" Y="18" />
+        </Grid.RenderTransform>
         <Grid.Transitions>
             <TransitionCollection>
                 <EntranceThemeTransition FromVerticalOffset="40" />
@@ -1436,8 +1481,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <!--  ==================== 固定头部：标题 + 标签栏 ====================  -->
+        
         <StackPanel Grid.Row="0" Margin="36,24,36,0" MaxWidth="1060" HorizontalAlignment="Center" Spacing="16">
             <StackPanel Spacing="4">
                 <TextBlock Text="{helpers:Loc Key=DataPage_Title}"
@@ -1591,12 +1635,15 @@
                 </Grid>
             </Grid>
         </StackPanel>
-
-        <!--  ==================== 内容区 ====================  -->
+        
         <Grid Grid.Row="1">
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+            <ScrollViewer x:Name="DataContentHost"
+                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                           Visibility="{x:Bind ViewModel.IsScrollContentVisible, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                <ScrollViewer.RenderTransform>
+                    <TranslateTransform x:Name="DataContentTranslate" Y="0" />
+                </ScrollViewer.RenderTransform>
                 <Grid Margin="36,24,36,48" MaxWidth="1060" HorizontalAlignment="Center" VerticalAlignment="Top">
                     
                     <StackPanel Spacing="24"
@@ -2102,23 +2149,103 @@
                 </Border>
             </Grid>
             
-            <Grid Background="{ThemeResource SafeHoverBrush}"
-                  Visibility="{x:Bind ViewModel.IsLoading, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                <Border CornerRadius="14" Padding="28,24" HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Background="{ThemeResource SafeGlassBrush}"
-                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                        BorderThickness="1" Translation="0,0,48">
-                    <Border.Shadow>
-                        <ThemeShadow />
-                    </Border.Shadow>
-                    <StackPanel Spacing="12" HorizontalAlignment="Center">
-                        <ProgressRing IsActive="True" Width="42" Height="42" HorizontalAlignment="Center" />
-                        <TextBlock Text="{helpers:Loc Key=DataPage_Loading}"
-                                   HorizontalAlignment="Center" FontSize="13"
-                                   FontFamily="{StaticResource AppGlobalFont}"
-                                   Foreground="{ThemeResource SafeTextBrush}" />
+            <Grid x:Name="InitialSkeletonHost"
+                  IsHitTestVisible="False"
+                  IsTabStop="False"
+                  Visibility="{x:Bind ViewModel.ShowInitialSkeleton, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel x:Name="InitialSkeletonContent" Margin="36,24,36,48" MaxWidth="1060"
+                                HorizontalAlignment="Center" VerticalAlignment="Top" Spacing="24">
+                        <StackPanel Spacing="6">
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <ProgressRing IsActive="True" Width="18" Height="18" />
+                                <TextBlock Text="{helpers:Loc Key=DataPage_Loading}"
+                                           FontSize="13" FontWeight="SemiBold"
+                                           FontFamily="{StaticResource AppGlobalFont}"
+                                           Foreground="{ThemeResource SafeTextBrush}" />
+                            </StackPanel>
+                            <Border Style="{StaticResource SkeletonBarStyle}" Width="260" Height="10" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="10">
+                            <Border Style="{StaticResource SkeletonBarStyle}" Width="108" Height="12" />
+                            <Grid ColumnSpacing="12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" Style="{StaticResource SkeletonCardStyle}" Height="116">
+                                    <StackPanel Spacing="14">
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="68" Height="10" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="106" Height="28" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="86" Height="8" />
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="1" Style="{StaticResource SkeletonCardStyle}" Height="116">
+                                    <StackPanel Spacing="14">
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="76" Height="10" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="94" Height="28" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="112" Height="8" />
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="2" Style="{StaticResource SkeletonCardStyle}" Height="116">
+                                    <StackPanel Spacing="14">
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="60" Height="10" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="116" Height="28" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="72" Height="8" />
+                                    </StackPanel>
+                                </Border>
+                                <Border Grid.Column="3" Style="{StaticResource SkeletonCardStyle}" Height="116">
+                                    <StackPanel Spacing="14">
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="80" Height="10" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="98" Height="28" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Width="96" Height="8" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+
+                        <Grid ColumnSpacing="16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.35*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Spacing="10">
+                                <Border Style="{StaticResource SkeletonBarStyle}" Width="120" Height="12" />
+                                <Border Style="{StaticResource SkeletonCardStyle}" Height="230">
+                                    <Grid>
+                                        <StackPanel Spacing="16" VerticalAlignment="Top">
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="180" Height="13" />
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="260" Height="9" />
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="220" Height="9" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Spacing="12" VerticalAlignment="Bottom">
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="54" Height="72" />
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="54" Height="110" />
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="54" Height="88" />
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="54" Height="142" />
+                                            <Border Style="{StaticResource SkeletonBarStyle}" Width="54" Height="98" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="10">
+                                <Border Style="{StaticResource SkeletonBarStyle}" Width="104" Height="12" />
+                                <Border Style="{StaticResource SkeletonCardStyle}" Height="230">
+                                    <StackPanel Spacing="18">
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Height="12" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Height="12" Width="250" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Height="12" Width="208" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Height="12" Width="232" />
+                                        <Border Style="{StaticResource SkeletonBarStyle}" Height="12" Width="182" />
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
                     </StackPanel>
-                </Border>
+                </ScrollViewer>
             </Grid>
             
             <StackPanel Spacing="12" MaxWidth="420" HorizontalAlignment="Center" VerticalAlignment="Center"
