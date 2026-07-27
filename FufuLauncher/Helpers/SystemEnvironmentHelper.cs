@@ -7,10 +7,13 @@ using System.Linq;
 using System.Management;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using System.Text.RegularExpressions;
 using Microsoft.Win32;
 
 namespace FufuLauncher.Helpers
 {
+    public readonly record struct GpuInfo(string Name, string Vendor, string Family, string Series);
+
     public static class SystemEnvironmentHelper
     {
         [DllImport("advapi32.dll", SetLastError = true)]
@@ -225,6 +228,92 @@ namespace FufuLauncher.Helpers
                 return "Intel";
 
             return "Unknown";
+        }
+        
+        private static readonly string[] KnownFamilies =
+        {
+            // NVIDIA
+            "RTX", "GTX", "Quadro", "Tesla",
+            // AMD
+            "Radeon Pro", "RX", "Pro",
+            // Intel
+            "Arc", "Iris Xe", "Iris", "UHD", "HD", "Xe"
+        };
+        
+        private static readonly Regex NvidiaSeriesRegex = new(
+            @"(?:RTX|GTX|Quadro|Tesla)\s+(\d{4})",
+            RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        private static readonly Regex AmdRxSeriesRegex = new(
+            @"RX\s+(\d{4})",
+            RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        private static readonly Regex IntelArcSeriesRegex = new(
+            @"Arc\s+(A\d{3})",
+            RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+        private static readonly Regex IntelUhdSeriesRegex = new(
+            @"(?:UHD|HD)\s*(?:Graphics\s*)?(\d{3,4})",
+            RegexOptions.IgnoreCase | RegexOptions.Compiled);
+        
+        public static GpuInfo GetGpuInfo()
+        {
+            var name = GetGpuName();
+            var vendor = GetGpuVendor();
+            return new GpuInfo(name, vendor, ParseFamily(name), ParseSeries(name));
+        }
+
+        private static string ParseFamily(string name)
+        {
+            if (string.IsNullOrEmpty(name) || name == "Unknown")
+                return "Unknown";
+
+            foreach (var family in KnownFamilies)
+            {
+                if (name.Contains(family, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (family.Equals("Radeon Pro", StringComparison.OrdinalIgnoreCase))
+                        return "Pro";
+                    if (family.Equals("Iris Xe", StringComparison.OrdinalIgnoreCase))
+                        return "Iris";
+                    return family;
+                }
+            }
+            return "Unknown";
+        }
+
+        private static string ParseSeries(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+                return string.Empty;
+            
+            var m = NvidiaSeriesRegex.Match(name);
+            if (m.Success)
+            {
+                var digits = m.Groups[1].Value;
+                return digits.Substring(0, 2);
+            }
+            
+            m = AmdRxSeriesRegex.Match(name);
+            if (m.Success)
+            {
+                var digits = m.Groups[1].Value;
+                return digits.Substring(0, 1) + "000";
+            }
+            
+            m = IntelArcSeriesRegex.Match(name);
+            if (m.Success)
+            {
+                return m.Groups[1].Value;
+            }
+            
+            m = IntelUhdSeriesRegex.Match(name);
+            if (m.Success)
+            {
+                return m.Groups[1].Value;
+            }
+
+            return string.Empty;
         }
         
         public static string GetCpuName()
