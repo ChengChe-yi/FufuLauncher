@@ -36,6 +36,8 @@ OutputBaseFilename={#AppName}_Setup_v{#AppVersion}
 Compression=lzma2/ultra64
 SolidCompression=yes
 LZMAUseSeparateProcess=yes
+LZMADictionarySize=1048576
+LZMANumFastBytes=273
 
 WizardStyle=modern
 WizardSizePercent=110

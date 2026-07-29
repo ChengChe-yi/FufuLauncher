@@ -12,11 +12,14 @@ public sealed partial class BackpackViewModel
 
     public void RebuildOverview()
     {
-        EnsureAllBrowseDataLoaded();
-        RebuildKpis();
-        RebuildInsights();
-        RebuildCultivation();
-        RebuildCooking();
+        InvokeOnUiThread(() =>
+        {
+            EnsureAllBrowseDataLoaded();
+            RebuildKpis();
+            RebuildInsights();
+            RebuildCultivation();
+            RebuildCooking();
+        });
     }
 
     private void RebuildKpis()

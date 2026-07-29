@@ -55,7 +55,7 @@ public sealed partial class BackpackViewModel : ObservableObject
         if (tab == BackpackTab.Overview)
             RebuildOverview();
         else
-            ApplyBrowse();
+            InvokeOnUiThread(ApplyBrowse);
     }
     
     public string PageTitle => BackpackLocalization.Get("NavTitle");
@@ -179,7 +179,7 @@ public sealed partial class BackpackViewModel : ObservableObject
         if (page > TotalPages) page = TotalPages;
         if (page == CurrentPage) return;
         CurrentPage = page;
-        ApplyBrowse();
+        InvokeOnUiThread(ApplyBrowse);
     }
 
     public void NextPage() => GoToPage(CurrentPage + 1);
@@ -224,5 +224,12 @@ public sealed partial class BackpackViewModel : ObservableObject
     {
         foreach (var e in _weaponMeta.GetDefaultEntries())
             Weapons.Add(new WeaponViewModel(e, _weaponMeta));
+    }
+    
+    private void InvokeOnUiThread(Action action)
+    {
+        if (_dispatcher is null) { action(); return; }
+        if (_dispatcher.HasThreadAccess) { action(); return; }
+        _dispatcher.TryEnqueue(DispatcherQueuePriority.Normal, () => action());
     }
 }

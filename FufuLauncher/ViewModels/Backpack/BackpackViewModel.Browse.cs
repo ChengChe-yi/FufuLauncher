@@ -84,11 +84,11 @@ public sealed partial class BackpackViewModel
     public Visibility GadgetsVisibility => (TotalGadgetCount > 0).ToVisibility();
     public Visibility AssetsVisibility => (TotalAssetCount > 0).ToVisibility();
 
-    partial void OnSearchTextChanged(string value) { CurrentPage = 1; ApplyBrowse(); }
-    partial void OnSelectedCategoryChanged(string value) { CurrentPage = 1; ApplyBrowse(); }
-    partial void OnSelectedSubcategoryChanged(string value) { CurrentPage = 1; ApplyBrowse(); }
-    partial void OnSelectedFilterChanged(string value) { CurrentPage = 1; ApplyBrowse(); }
-    partial void OnSelectedSortChanged(string value) { CurrentPage = 1; ApplyBrowse(); }
+    partial void OnSearchTextChanged(string value) { CurrentPage = 1; InvokeOnUiThread(ApplyBrowse); }
+    partial void OnSelectedCategoryChanged(string value) { CurrentPage = 1; InvokeOnUiThread(ApplyBrowse); }
+    partial void OnSelectedSubcategoryChanged(string value) { CurrentPage = 1; InvokeOnUiThread(ApplyBrowse); }
+    partial void OnSelectedFilterChanged(string value) { CurrentPage = 1; InvokeOnUiThread(ApplyBrowse); }
+    partial void OnSelectedSortChanged(string value) { CurrentPage = 1; InvokeOnUiThread(ApplyBrowse); }
 
     public void SetSearch(string? search) => SearchText = search?.Trim() ?? string.Empty;
 
@@ -129,7 +129,7 @@ public sealed partial class BackpackViewModel
     public void RefreshBrowse()
     {
         CurrentPage = 1;
-        ApplyBrowse();
+        InvokeOnUiThread(ApplyBrowse);
     }
 
     // Re-entrancy guard for ApplyBrowse. Setting SelectedCategory below fires
