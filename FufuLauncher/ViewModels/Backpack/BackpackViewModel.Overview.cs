@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
@@ -22,9 +23,20 @@ public sealed partial class BackpackViewModel
         });
     }
 
+    private static void SafeClear<T>(ObservableCollection<T> collection)
+    {
+        if (collection.Count == 0) return;
+        try
+        {
+            collection.Clear();
+        }
+        catch (COMException)
+        {}
+    }
+
     private void RebuildKpis()
     {
-        OverviewKpis.Clear();
+        SafeClear(OverviewKpis);
 
         var totalWeapons = Weapons.Count;
         var ownedWeapons = Weapons.Count(w => w.HasInstance);
@@ -58,43 +70,43 @@ public sealed partial class BackpackViewModel
 
     private void RebuildInsights()
     {
-        OverviewInsights.Clear();
-        
+        SafeClear(OverviewInsights);
+
         var maxRefine = Weapons.Count(w => w.HasInstance && w.Source.Rank == 5 && w.Source.Refine >= 5);
         if (maxRefine > 0)
             OverviewInsights.Add(new("\uE735", BackpackLocalization.Get("InsightMaxRefine.Title"), string.Format(BackpackLocalization.Get("InsightMaxRefine.Body"), maxRefine), "star5"));
-        
+
         var maxLevelArtifacts = Artifacts.Count(a => a.HasInstance && a.Source.Level == 20 && a.Source.Rank == 5);
         if (maxLevelArtifacts > 0)
             OverviewInsights.Add(new("\uE945", BackpackLocalization.Get("InsightMaxLevel.Title"), string.Format(BackpackLocalization.Get("InsightMaxLevel.Body"), maxLevelArtifacts), "accent"));
-        
+
         var readyCount = FoodGroups.Sum(g => g.Items.Count(f => f.IsCookable));
         if (readyCount > 0)
             OverviewInsights.Add(new("\uE8B7", BackpackLocalization.Get("InsightIngredientsReady.Title"), string.Format(BackpackLocalization.Get("InsightIngredientsReady.Body"), readyCount), "up"));
-        
+
         var emptyGroups = MaterialGroups.Where(g => g.Items.All(m => m.CountValue == 0)).ToList();
         if (emptyGroups.Count > 0)
             OverviewInsights.Add(new("\uEA39", BackpackLocalization.Get("InsightEmptyCategories.Title"),
                 string.Format(BackpackLocalization.Get("InsightEmptyCategories.Body"), emptyGroups.Count, string.Join(", ", emptyGroups.Take(3).Select(g => g.Header)) + (emptyGroups.Count > 3 ? "..." : string.Empty)),
                 "down"));
-        
+
         var catalogOnlyWeapons = Weapons.Count(w => !w.HasInstance);
         if (catalogOnlyWeapons > 0)
             OverviewInsights.Add(new("\uE7AD", BackpackLocalization.Get("InsightCatalogWeapons.Title"),
                 string.Format(BackpackLocalization.Get("InsightCatalogWeapons.Body"), catalogOnlyWeapons), "muted"));
-        
+
         var lowStock = MaterialGroups.SelectMany(g => g.Items)
             .Count(m => m.CountValue > 0 && m.CountValue < 5);
         if (lowStock > 0)
             OverviewInsights.Add(new("\uE7BA", BackpackLocalization.Get("InsightLowStock.Title"), string.Format(BackpackLocalization.Get("InsightLowStock.Body"), lowStock), "down"));
-        
+
         if (OverviewInsights.Count == 0)
             OverviewInsights.Add(new("\uE8FB", BackpackLocalization.Get("InsightEmpty.Title"), BackpackLocalization.Get("InsightEmpty.Body"), "muted"));
     }
 
     private void RebuildCultivation()
     {
-        CultivationPlan.Clear();
+        SafeClear(CultivationPlan);
         
         var cultivationGroups = new[] { "MatTabCharAscension", "MatTabWeaponAscension", "MatTabTalent" };
         foreach (var group in MaterialGroups)
@@ -137,7 +149,7 @@ public sealed partial class BackpackViewModel
 
     private void RebuildCooking()
     {
-        CookingItems.Clear();
+        SafeClear(CookingItems);
 
         var allFoods = FoodGroups.SelectMany(g => g.Items).ToList();
         var half = Math.Max(0, BackpackViewModel.PageSize / 2);

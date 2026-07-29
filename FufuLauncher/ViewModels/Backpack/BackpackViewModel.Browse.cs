@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
@@ -400,7 +401,7 @@ public sealed partial class BackpackViewModel
 
     private static void ReplaceChips(ObservableCollection<BackpackBrowseChip> target, IEnumerable<BackpackBrowseChip> chips)
     {
-        target.Clear();
+        SafeClear(target);
         foreach (var chip in chips) target.Add(chip);
     }
 
@@ -429,7 +430,7 @@ public sealed partial class BackpackViewModel
 
     private static void Replace<T>(ObservableCollection<T> target, IEnumerable<T> items)
     {
-        target.Clear();
+        SafeClear(target);
         foreach (var item in items) target.Add(item);
     }
     
@@ -447,7 +448,7 @@ public sealed partial class BackpackViewModel
         IList<GroupViewModel<TItem>> allGroups,
         int page)
     {
-        target.Clear();
+        SafeClear(target);
         if (allGroups.Count == 0) return;
 
         var skip = Math.Max(0, (page - 1) * PageSize);
