@@ -25,8 +25,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="KpiTileTemplate">
-            <Border Style="{StaticResource BackpackKpiCardStyle}" Translation="0,0,16">
-                <Border.Shadow><ThemeShadow /></Border.Shadow>
+            <Border Style="{StaticResource BackpackKpiCardStyle}">
                 <Grid RowSpacing="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -414,7 +413,6 @@
                             <TextBlock Text="{helpers:Loc Key=Backpack_SectionOverviewKpi}" Style="{StaticResource BackpackSectionHeaderStyle}" />
                             <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="18" Translation="0,0,32">
                                 <Grid.Shadow><ThemeShadow /></Grid.Shadow>
-                                <Grid.ChildrenTransitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="30" /></TransitionCollection></Grid.ChildrenTransitions>
                                 <ItemsRepeater ItemsSource="{x:Bind ViewModel.OverviewKpis, Mode=OneWay}" ItemTemplate="{StaticResource KpiTileTemplate}">
                                     <ItemsRepeater.Layout><UniformGridLayout MinItemWidth="186" MinColumnSpacing="12" MinRowSpacing="12" ItemsStretch="Fill" /></ItemsRepeater.Layout>
                                 </ItemsRepeater>

@@ -1483,10 +1483,6 @@ private void QuickSwitchPreset(PresetModel targetPreset)
 
                 var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(roleId, server, cookies);
 
-
-
-
-
                 await UpdateUI(() =>
                 {
                     CurrentResin = dailyNoteData.CurrentResin;
