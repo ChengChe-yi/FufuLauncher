@@ -1,0 +1,23 @@
+[
+    {
+        "id": 104001,
+        "name": "流浪者的经验",
+        "type": "characterEXPMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104001"
+    },
+    {
+        "id": 104002,
+        "name": "冒险家的经验",
+        "type": "characterEXPMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104002"
+    },
+    {
+        "id": 104003,
+        "name": "大英雄的经验",
+        "type": "characterEXPMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104003"
+    }
+]

@@ -1,0 +1,86 @@
+﻿[
+  {
+    "id": 111023,
+    "name": "果酿饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111023"
+  },
+  {
+    "id": 111024,
+    "name": "赤糜饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111024"
+  },
+  {
+    "id": 111025,
+    "name": "蠕虫假饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111025"
+  },
+  {
+    "id": 111026,
+    "name": "飞蝇假饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111026"
+  },
+  {
+    "id": 111027,
+    "name": "荧草饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111027"
+  },
+  {
+    "id": 111028,
+    "name": "甘露饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111028"
+  },
+  {
+    "id": 111030,
+    "name": "酸桔饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111030"
+  },
+  {
+    "id": 111031,
+    "name": "维护机关频闪诱饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111031"
+  },
+  {
+    "id": 111033,
+    "name": "澄晶果粒饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111033"
+  },
+  {
+    "id": 111034,
+    "name": "温火饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111034"
+  },
+  {
+    "id": 111035,
+    "name": "槲梭饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111035"
+  },
+  {
+    "id": 111036,
+    "name": "清白饵",
+    "type": "fishingBait",
+    "rank": 2,
+    "icon": "UI_ItemIcon_111036"
+  }
+]

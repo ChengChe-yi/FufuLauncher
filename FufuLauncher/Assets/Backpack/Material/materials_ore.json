@@ -1,0 +1,58 @@
+﻿[
+  {
+    "id": 101001,
+    "name": "铁块",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101001"
+  },
+  {
+    "id": 101002,
+    "name": "白铁块",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101002"
+  },
+  {
+    "id": 101003,
+    "name": "水晶块",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101003"
+  },
+  {
+    "id": 101004,
+    "name": "魔晶块",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101004"
+  },
+  {
+    "id": 101006,
+    "name": "星银矿石",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101006"
+  },
+  {
+    "id": 101008,
+    "name": "紫晶块",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101008"
+  },
+  {
+    "id": 101009,
+    "name": "萃凝晶",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101009"
+  },
+  {
+    "id": 101010,
+    "name": "虹滴晶",
+    "type": "oreMaterial",
+    "rank": 0,
+    "icon": "UI_ItemIcon_101258"
+  }
+]

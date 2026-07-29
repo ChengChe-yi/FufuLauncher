@@ -1,0 +1,279 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#FFFFFF" TintOpacity="0.64" FallbackColor="#F2FFFFFF" />
+            <SolidColorBrush x:Key="BackpackCardBrush" Color="#0A000000" />
+            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#CCFFFFFF" />
+            <SolidColorBrush x:Key="BackpackHoverBrush" Color="#12000000" />
+            <SolidColorBrush x:Key="BackpackMutedBrush" Color="#0D000000" />
+            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#1A000000" />
+            <SolidColorBrush x:Key="BackpackTextBrush" Color="#FF000000" />
+            <SolidColorBrush x:Key="BackpackSecondaryTextBrush" Color="#99000000" />
+            <SolidColorBrush x:Key="BackpackTrackBrush" Color="#14000000" />
+            <SolidColorBrush x:Key="BackpackSkeletonBrush" Color="#16000000" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Default">
+            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#000000" TintOpacity="0.2" FallbackColor="#D9161616" />
+            <SolidColorBrush x:Key="BackpackCardBrush" Color="#18FFFFFF" />
+            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#CC1A1A1A" />
+            <SolidColorBrush x:Key="BackpackHoverBrush" Color="#26FFFFFF" />
+            <SolidColorBrush x:Key="BackpackMutedBrush" Color="#14FFFFFF" />
+            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#20FFFFFF" />
+            <SolidColorBrush x:Key="BackpackTextBrush" Color="White" />
+            <SolidColorBrush x:Key="BackpackSecondaryTextBrush" Color="#B3FFFFFF" />
+            <SolidColorBrush x:Key="BackpackTrackBrush" Color="#1FFFFFFF" />
+            <SolidColorBrush x:Key="BackpackSkeletonBrush" Color="#26FFFFFF" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#000000" TintOpacity="0.2" FallbackColor="#D9161616" />
+            <SolidColorBrush x:Key="BackpackCardBrush" Color="#18FFFFFF" />
+            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#CC1A1A1A" />
+            <SolidColorBrush x:Key="BackpackHoverBrush" Color="#26FFFFFF" />
+            <SolidColorBrush x:Key="BackpackMutedBrush" Color="#14FFFFFF" />
+            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#20FFFFFF" />
+            <SolidColorBrush x:Key="BackpackTextBrush" Color="White" />
+            <SolidColorBrush x:Key="BackpackSecondaryTextBrush" Color="#B3FFFFFF" />
+            <SolidColorBrush x:Key="BackpackTrackBrush" Color="#1FFFFFFF" />
+            <SolidColorBrush x:Key="BackpackSkeletonBrush" Color="#26FFFFFF" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+    
+    <SolidColorBrush x:Key="WeaponGoldBrush" Color="#FFD780" />
+    <SolidColorBrush x:Key="BackpackGreenBrush" Color="#2FBF6B" />
+    <SolidColorBrush x:Key="BackpackOrangeBrush" Color="#FF9F45" />
+    <SolidColorBrush x:Key="BackpackRedBrush" Color="#E15C62" />
+    <SolidColorBrush x:Key="BackpackBlueBrush" Color="#4DABF7" />
+    <SolidColorBrush x:Key="BackpackPurpleBrush" Color="#AE84E0" />
+
+    <Style x:Key="BackpackSectionCardStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{ThemeResource BackpackGlassBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Padding" Value="24" />
+    </Style>
+
+    <Style x:Key="BackpackHeroCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackSurfaceBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+    </Style>
+
+    <Style x:Key="BackpackControlCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackGlassBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="MinWidth" Value="980" />
+    </Style>
+
+    <Style x:Key="BackpackPathNoticeStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackMutedBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+    </Style>
+
+    <Style x:Key="BackpackKpiCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackCardBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="Padding" Value="14,12" />
+        <Setter Property="MinHeight" Value="92" />
+    </Style>
+
+    <Style x:Key="BackpackKpiValueStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="{ThemeResource BackpackTextBrush}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="MaxLines" Value="1" />
+    </Style>
+
+    <Style x:Key="BackpackKpiLabelStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Foreground" Value="{ThemeResource BackpackSecondaryTextBrush}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="MaxLines" Value="1" />
+    </Style>
+
+    <Style x:Key="BackpackGridCardStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{ThemeResource BackpackCardBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+    </Style>
+
+    <Style x:Key="BackpackInventoryCardStyle" TargetType="Grid" BasedOn="{StaticResource BackpackGridCardStyle}">
+        <Setter Property="Padding" Value="14" />
+    </Style>
+
+    <Style x:Key="BackpackDetailCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackCardBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="16" />
+    </Style>
+
+    <Style x:Key="BackpackDetailStatStyle" TargetType="Border" BasedOn="{StaticResource BackpackDetailCardStyle}">
+        <Setter Property="Padding" Value="12,10" />
+        <Setter Property="MinHeight" Value="68" />
+    </Style>
+
+    <Style x:Key="BackpackItemCardStyle" TargetType="Grid" BasedOn="{StaticResource BackpackInventoryCardStyle}" />
+    
+    <Style x:Key="BackpackGridItemStyle" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+    </Style>
+
+    <Style x:Key="BackpackSectionHeaderStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{ThemeResource BackpackSecondaryTextBrush}" />
+        <Setter Property="Margin" Value="4,0,0,8" />
+    </Style>
+
+    <Style x:Key="BackpackGroupHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyStrongTextBlockStyle}">
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+
+    <Style x:Key="BackpackValueStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{ThemeResource BackpackTextBrush}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="MaxLines" Value="1" />
+    </Style>
+
+    <Style x:Key="BackpackLabelStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="Foreground" Value="{ThemeResource BackpackSecondaryTextBrush}" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+
+    <Style x:Key="BackpackCaptionStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="{ThemeResource BackpackSecondaryTextBrush}" />
+        <Setter Property="Opacity" Value="0.8" />
+    </Style>
+
+    <Style x:Key="BackpackToolButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Background" Value="{ThemeResource BackpackCardBrush}" />
+        <Setter Property="Foreground" Value="{ThemeResource BackpackTextBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="FontSize" Value="13" />
+    </Style>
+
+    <Style x:Key="BackpackAccentButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="Padding" Value="16,7" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="FontSize" Value="13" />
+    </Style>
+
+    <Style x:Key="BackpackIconButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+        <Setter Property="Width" Value="36" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="MinWidth" Value="36" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style x:Key="BackpackCountBadgeStyle" TargetType="Border">
+        <Setter Property="MinWidth" Value="42" />
+        <Setter Property="Padding" Value="9,4" />
+        <Setter Property="Background" Value="{ThemeResource BackpackMutedBrush}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="BackpackEmptyIconStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackMutedBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="36" />
+    </Style>
+
+    <Style x:Key="BackpackSkeletonBarStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackSkeletonBrush}" />
+        <Setter Property="CornerRadius" Value="5" />
+    </Style>
+
+    <Style x:Key="BackpackSkeletonCardStyle" TargetType="Border">
+        <Setter Property="Background" Value="{ThemeResource BackpackGlassBrush}" />
+        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="14" />
+        <Setter Property="Padding" Value="20" />
+    </Style>
+    
+    <Style x:Key="BackpackMiniBarStyle" TargetType="ProgressBar">
+        <Setter Property="Height" Value="4" />
+        <Setter Property="MinHeight" Value="4" />
+        <Setter Property="CornerRadius" Value="2" />
+        <Setter Property="Maximum" Value="100" />
+        <Setter Property="Background" Value="{ThemeResource BackpackTrackBrush}" />
+    </Style>
+
+    <Style x:Key="BackpackTabChipStyle" TargetType="ToggleButton">
+        <Setter Property="Foreground" Value="{ThemeResource BackpackTextBrush}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Padding" Value="14,7" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="UseSystemFocusVisuals" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid x:Name="ChipRoot" RenderTransformOrigin="0.5,0.5">
+                        <Grid.RenderTransform><ScaleTransform x:Name="ChipScale" ScaleX="1" ScaleY="1" /></Grid.RenderTransform>
+                        <Border x:Name="ChipRest" Background="{ThemeResource BackpackCardBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="16" />
+                        <Border x:Name="ChipHover" Background="{ThemeResource BackpackHoverBrush}" CornerRadius="16" Opacity="0" />
+                        <Border x:Name="ChipAccent" Background="{ThemeResource AccentFillColorDefaultBrush}" CornerRadius="16" Opacity="0" />
+                        <ContentPresenter x:Name="ChipContent" Padding="{TemplateBinding Padding}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"><Storyboard><DoubleAnimation Storyboard.TargetName="ChipHover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.16" /><DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.16" /><DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.16" /></Storyboard></VisualState>
+                                <VisualState x:Name="PointerOver"><Storyboard><DoubleAnimation Storyboard.TargetName="ChipHover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.16" /></Storyboard></VisualState>
+                                <VisualState x:Name="Pressed"><Storyboard><DoubleAnimation Storyboard.TargetName="ChipHover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1" /><DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="0.96" Duration="0:0:0.1" /><DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="0.96" Duration="0:0:0.1" /></Storyboard></VisualState>
+                                <VisualState x:Name="Disabled"><Storyboard><DoubleAnimation Storyboard.TargetName="ChipRoot" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0" /></Storyboard></VisualState>
+                                <VisualState x:Name="Checked"><Storyboard><DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.2" /><ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChipContent" Storyboard.TargetProperty="Foreground"><DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" /></ObjectAnimationUsingKeyFrames></Storyboard></VisualState>
+                                <VisualState x:Name="CheckedPointerOver"><Storyboard><DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="0.84" Duration="0:0:0.16" /><ObjectAnimationUsingKeyFrames Storyboard.TargetName="ChipContent" Storyboard.TargetProperty="Foreground"><DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextOnAccentFillColorPrimaryBrush}" /></ObjectAnimationUsingKeyFrames></Storyboard></VisualState>
+                                <VisualState x:Name="CheckedPressed"><Storyboard><DoubleAnimation Storyboard.TargetName="ChipAccent" Storyboard.TargetProperty="Opacity" To="0.72" Duration="0:0:0.1" /><DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleX" To="0.96" Duration="0:0:0.1" /><DoubleAnimation Storyboard.TargetName="ChipScale" Storyboard.TargetProperty="ScaleY" To="0.96" Duration="0:0:0.1" /></Storyboard></VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="BackpackFilterChipStyle" TargetType="ToggleButton" BasedOn="{StaticResource BackpackTabChipStyle}">
+        <Setter Property="Padding" Value="12,6" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+    
+    <Style x:Key="BackpackPageCardStyle" TargetType="Border" BasedOn="{StaticResource BackpackHeroCardStyle}" />
+    <Style x:Key="BackpackCategoryChipStyle" TargetType="ToggleButton" BasedOn="{StaticResource BackpackTabChipStyle}" />
+    <Style x:Key="BackpackSubcategoryChipStyle" TargetType="ToggleButton" BasedOn="{StaticResource BackpackFilterChipStyle}" />
+
+</ResourceDictionary>

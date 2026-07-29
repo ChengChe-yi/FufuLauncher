@@ -1621,4 +1621,223 @@ Andare al sito Microsoft per scaricarla e installarla?</value></data>
   <data name="DataPage_ExportFailed" xml:space="preserve"><value>Impossibile esportare il PDF: {0}</value></data>
   <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>Report PDF esportato</value></data>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>Esportazione PDF non riuscita</value></data>
+  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
+    <value>Weapons</value>
+  </data>
+  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
+    <value>Artifacts</value>
+  </data>
+  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
+    <value>Materials</value>
+  </data>
+  <data name="Backpack_TabFood.Header" xml:space="preserve">
+    <value>Food</value>
+  </data>
+  <data name="Backpack_StatusWaiting" xml:space="preserve">
+    <value>Waiting for data…</value>
+  </data>
+  <data name="Backpack_StatusReceived" xml:space="preserve">
+    <value>Received</value>
+  </data>
+  <data name="Backpack_StatusLaunching" xml:space="preserve">
+    <value>Launching…</value>
+  </data>
+  <data name="Backpack_StatusLaunched" xml:space="preserve">
+    <value>Game launched, waiting for data…</value>
+  </data>
+  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
+    <value>Select Game Path</value>
+  </data>
+  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
+    <value>Kill Process</value>
+  </data>
+  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
+    <value>Sync Backpack</value>
+  </data>
+  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
+    <value>Sync Backpack</value>
+  </data>
+  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
+    <value>Game launched, waiting for backpack data…</value>
+  </data>
+  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Backpack_Locked" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="Backpack_SlotFlower" xml:space="preserve">
+    <value>Flower of Life</value>
+  </data>
+  <data name="Backpack_SlotPlume" xml:space="preserve">
+    <value>Plume of Death</value>
+  </data>
+  <data name="Backpack_SlotSands" xml:space="preserve">
+    <value>Sands of Eon</value>
+  </data>
+  <data name="Backpack_SlotGoblet" xml:space="preserve">
+    <value>Goblet of Eonothem</value>
+  </data>
+  <data name="Backpack_SlotCirclet" xml:space="preserve">
+    <value>Circlet of Logos</value>
+  </data>
+  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
+    <value>Invalid path. Please select YuanShen.exe (CN server only).</value>
+  </data>
+  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
+    <value>Select Game Path</value>
+  </data>
+  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
+    <value>Click an entry below to switch to that path</value>
+  </data>
+  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
+    <value>Game Path</value>
+  </data>
+  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
+    <value>Select YuanShen.exe (CN only), not launcher.exe</value>
+  </data>
+  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
+    <value>Base ATK</value>
+  </data>
+  <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
+    <value>Failed to resolve current process path</value>
+  </data>
+  <data name="Backpack_ErrElevationCancelled" xml:space="preserve">
+    <value>Elevation was cancelled by the user</value>
+  </data>
+  <data name="Backpack_ErrHelperStartFailed" xml:space="preserve">
+    <value>Failed to start the injection helper</value>
+  </data>
+  <data name="Backpack_ErrInvalidConfig" xml:space="preserve">
+    <value>Invalid configuration file</value>
+  </data>
+  <data name="Backpack_ErrGameCreateFailed" xml:space="preserve">
+    <value>Failed to create game process</value>
+  </data>
+  <data name="Backpack_ErrDllInjFailed" xml:space="preserve">
+    <value>DLL injection failed</value>
+  </data>
+  <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
+    <value>Injection helper exited with code {0}</value>
+  </data>
+  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
+    <value>Char Ascension</value>
+  </data>
+  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
+    <value>Weapon Ascension</value>
+  </data>
+  <data name="Backpack_MatTabTalent" xml:space="preserve">
+    <value>Talent Materials</value>
+  </data>
+  <data name="Backpack_MatTabCharExp" xml:space="preserve">
+    <value>Char EXP</value>
+  </data>
+  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
+    <value>Weapon Enhancement</value>
+  </data>
+  <data name="Backpack_MatTabRefine" xml:space="preserve">
+    <value>Refinement</value>
+  </data>
+  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
+    <value>Local Specialty</value>
+  </data>
+  <data name="Backpack_MatTabIngredient" xml:space="preserve">
+    <value>Ingredients</value>
+  </data>
+  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
+    <value>Recovery</value>
+  </data>
+  <data name="Backpack_FoodTabAttack" xml:space="preserve">
+    <value>Attack</value>
+  </data>
+  <data name="Backpack_FoodTabDefense" xml:space="preserve">
+    <value>Defense</value>
+  </data>
+  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
+    <value>Adventure</value>
+  </data>
+  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
+    <value>Special Recovery</value>
+  </data>
+  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
+    <value>Special Attack</value>
+  </data>
+  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
+    <value>Special Defense</value>
+  </data>
+  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
+    <value>Special Adventure</value>
+  </data>
+  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
+    <value>Arlecchino Specials</value>
+  </data>
+  <data name="Backpack_FoodTabSweet" xml:space="preserve">
+    <value>Sweet Flowers</value>
+  </data>
+  <data name="Backpack_MatTabCommon" xml:space="preserve">
+    <value>Materials</value>
+  </data>
+  <data name="Backpack_MatTabOre" xml:space="preserve">
+    <value>Ores</value>
+  </data>
+  <data name="Backpack_MatTabFish" xml:space="preserve">
+    <value>Fish</value>
+  </data>
+  <data name="Backpack_MatTabBait" xml:space="preserve">
+    <value>Fishing Bait</value>
+  </data>
+  <data name="Backpack_TabGadget.Header" xml:space="preserve">
+    <value>Gadgets</value>
+  </data>
+  <data name="Backpack_TabAsset.Header" xml:space="preserve">
+    <value>Assets</value>
+  </data>
+  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
+    <value>Rare Currency</value>
+  </data>
+  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
+    <value>Imaginarium Theater</value>
+  </data>
+  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
+    <value>Gadgets</value>
+  </data>
+  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
+    <value>Consumables</value>
+  </data>
+  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
+    <value>Quest Items</value>
+  </data>
+  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
+    <value>Precious</value>
+  </data>
+  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
+    <value>Imaginarium Theater</value>
+  </data>
+  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
+    <value>Adventure</value>
+  </data>
+  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
+    <value>Nation Emblems</value>
+  </data>
+  <data name="Backpack_GadgetTabWish" xml:space="preserve">
+    <value>Wish Items</value>
+  </data>
+  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
+    <value>Starglitter</value>
+  </data>
+  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
+    <value>Stardust</value>
+  </data>
+  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
+    <value>Rare Currency</value>
+  </data>
+  <data name="Backpack_NavTitle" xml:space="preserve">
+    <value>Backpack Browser</value>
+  </data>
+  <data name="Backpack_ErrX64Required" xml:space="preserve">
+    <value>Backpack synchronization requires the x64 build.</value>
+  </data>
+  <data name="Backpack_ErrDllMissing" xml:space="preserve">
+    <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
+  </data>
 </root>

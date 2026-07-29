@@ -1,0 +1,5654 @@
+﻿[
+  {
+    "id": 108122,
+    "name": "奇怪的仙跳墙",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 5,
+    "icon": "UI_ItemIcon_108123",
+    "recipe": "adeptus_temptation",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 4
+      },
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108123,
+    "name": "仙跳墙",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 5,
+    "icon": "UI_ItemIcon_108123",
+    "recipe": "adeptus_temptation",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 4
+      },
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108124,
+    "name": "美味的仙跳墙",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 5,
+    "icon": "UI_ItemIcon_108123",
+    "recipe": "adeptus_temptation",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 4
+      },
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108167,
+    "name": "奇怪的冒险家蛋堡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108168",
+    "recipe": "adventurers_breakfast_sandwich",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108168,
+    "name": "冒险家蛋堡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108168",
+    "recipe": "adventurers_breakfast_sandwich",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108169,
+    "name": "美味的冒险家蛋堡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108168",
+    "recipe": "adventurers_breakfast_sandwich",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108080,
+    "name": "奇怪的杏仁豆腐",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_100428",
+    "recipe": "almond_tofu",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 100089,
+        "name": "杏仁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108081,
+    "name": "杏仁豆腐",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_100428",
+    "recipe": "almond_tofu",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 100089,
+        "name": "杏仁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108082,
+    "name": "美味的杏仁豆腐",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_100428",
+    "recipe": "almond_tofu",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 100089,
+        "name": "杏仁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108451,
+    "name": "奇怪的千层酥酥",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108452",
+    "recipe": "baklava",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101221,
+        "name": "枣椰",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108452,
+    "name": "千层酥酥",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108452",
+    "recipe": "baklava",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101221,
+        "name": "枣椰",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108453,
+    "name": "美味的千层酥酥",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108452",
+    "recipe": "baklava",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101221,
+        "name": "枣椰",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108742,
+    "name": "奇怪的火焰炖肉",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108743",
+    "recipe": "blazed_meat_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108743,
+    "name": "火焰炖肉",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108743",
+    "recipe": "blazed_meat_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108744,
+    "name": "美味的火焰炖肉",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108743",
+    "recipe": "blazed_meat_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108608,
+    "name": "奇怪的膨膨泡芙",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108609",
+    "recipe": "blubber_profiterole",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108609,
+    "name": "膨膨泡芙",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108609",
+    "recipe": "blubber_profiterole",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108610,
+    "name": "美味的膨膨泡芙",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108609",
+    "recipe": "blubber_profiterole",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108366,
+    "name": "奇怪的丰年有余",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108367",
+    "recipe": "bountiful_year",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 4
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108367,
+    "name": "丰年有余",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108367",
+    "recipe": "bountiful_year",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 4
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108368,
+    "name": "美味的丰年有余",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108367",
+    "recipe": "bountiful_year",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 4
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108309,
+    "name": "奇怪的红烩兽肉",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108310",
+    "recipe": "braised_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108310,
+    "name": "红烩兽肉",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108310",
+    "recipe": "braised_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108311,
+    "name": "美味的红烩兽肉",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108310",
+    "recipe": "braised_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108642,
+    "name": "奇怪的红烧肉圆",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108643",
+    "recipe": "braised_meatball",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108643,
+    "name": "红烧肉圆",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108643",
+    "recipe": "braised_meatball",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108644,
+    "name": "美味的红烧肉圆",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108643",
+    "recipe": "braised_meatball",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108391,
+    "name": "奇怪的黄油鸡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108392",
+    "recipe": "butter_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108392,
+    "name": "黄油鸡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108392",
+    "recipe": "butter_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108393,
+    "name": "美味的黄油鸡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108392",
+    "recipe": "butter_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108806,
+    "name": "奇怪的酪烤菇菇串",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108798",
+    "recipe": "cheesy_mushroom_skewer",
+    "ingredients": [
+      {
+        "id": 101256,
+        "name": "红果果菇",
+        "amount": 2
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108807,
+    "name": "酪烤菇菇串",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108798",
+    "recipe": "cheesy_mushroom_skewer",
+    "ingredients": [
+      {
+        "id": 101256,
+        "name": "红果果菇",
+        "amount": 2
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108808,
+    "name": "美味的酪烤菇菇串",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108798",
+    "recipe": "cheesy_mushroom_skewer",
+    "ingredients": [
+      {
+        "id": 101256,
+        "name": "红果果菇",
+        "amount": 2
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108246,
+    "name": "奇怪的鸡豆花",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108247",
+    "recipe": "chicken_tofu_pudding",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108247,
+    "name": "鸡豆花",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108247",
+    "recipe": "chicken_tofu_pudding",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108248,
+    "name": "美味的鸡豆花",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108247",
+    "recipe": "chicken_tofu_pudding",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108059,
+    "name": "奇怪的冷肉拼盘",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108060",
+    "recipe": "cold_cut_platter",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108060,
+    "name": "冷肉拼盘",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108060",
+    "recipe": "cold_cut_platter",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108061,
+    "name": "美味的冷肉拼盘",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108060",
+    "recipe": "cold_cut_platter",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108131,
+    "name": "奇怪的来来菜",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108132",
+    "recipe": "come_and_get_it",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108132,
+    "name": "来来菜",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108132",
+    "recipe": "come_and_get_it",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108133,
+    "name": "美味的来来菜",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108132",
+    "recipe": "come_and_get_it",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108591,
+    "name": "奇怪的百味一缕",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108592",
+    "recipe": "consomm",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108592,
+    "name": "百味一缕",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108592",
+    "recipe": "consomm",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108593,
+    "name": "美味的百味一缕",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108592",
+    "recipe": "consomm",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108294,
+    "name": "奇怪的蟹黄壳壳烧",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108295",
+    "recipe": "crab_roe_kourayaki",
+    "ingredients": [
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 1
+      },
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108295,
+    "name": "蟹黄壳壳烧",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108295",
+    "recipe": "crab_roe_kourayaki",
+    "ingredients": [
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 1
+      },
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108296,
+    "name": "美味的蟹黄壳壳烧",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108295",
+    "recipe": "crab_roe_kourayaki",
+    "ingredients": [
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 1
+      },
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108882,
+    "name": "奇怪的脆脆烤肉",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108830",
+    "recipe": "crispy_roast",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108883,
+    "name": "脆脆烤肉",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108830",
+    "recipe": "crispy_roast",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108884,
+    "name": "美味的脆脆烤肉",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108830",
+    "recipe": "crispy_roast",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108182,
+    "name": "奇怪的干锅腊肉",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108183",
+    "recipe": "cured_pork_dry_hotpot",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108183,
+    "name": "干锅腊肉",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108183",
+    "recipe": "cured_pork_dry_hotpot",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108184,
+    "name": "美味的干锅腊肉",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108183",
+    "recipe": "cured_pork_dry_hotpot",
+    "ingredients": [
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108639,
+    "name": "奇怪的油爆双脆",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108640",
+    "recipe": "deepfried_doublecrisp",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108640,
+    "name": "油爆双脆",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108640",
+    "recipe": "deepfried_doublecrisp",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108641,
+    "name": "美味的油爆双脆",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108640",
+    "recipe": "deepfried_doublecrisp",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108369,
+    "name": "奇怪的龙须面",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108370",
+    "recipe": "dragon_beard_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108370,
+    "name": "龙须面",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108370",
+    "recipe": "dragon_beard_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108371,
+    "name": "美味的龙须面",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108370",
+    "recipe": "dragon_beard_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108943,
+    "name": "奇怪的篝火边的欢腾",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108860",
+    "recipe": "fireside_merriment",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108944,
+    "name": "篝火边的欢腾",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108860",
+    "recipe": "fireside_merriment",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108945,
+    "name": "美味的篝火边的欢腾",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108860",
+    "recipe": "fireside_merriment",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108554,
+    "name": "奇怪的水乡肉冻",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108555",
+    "recipe": "fontaine_aspic",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108555,
+    "name": "水乡肉冻",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108555",
+    "recipe": "fontaine_aspic",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108556,
+    "name": "美味的水乡肉冻",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108555",
+    "recipe": "fontaine_aspic",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108621,
+    "name": "奇怪的千灵慕斯",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108622",
+    "recipe": "fontinalia_mousse",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108622,
+    "name": "千灵慕斯",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108622",
+    "recipe": "fontinalia_mousse",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108623,
+    "name": "美味的千灵慕斯",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108622",
+    "recipe": "fontinalia_mousse",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108241,
+    "name": "奇怪的香浓土豆泥",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108242",
+    "recipe": "fragrant_mashed_potatoes",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 6
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 4
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108242,
+    "name": "香浓土豆泥",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108242",
+    "recipe": "fragrant_mashed_potatoes",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 6
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 4
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108243,
+    "name": "美味的香浓土豆泥",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108242",
+    "recipe": "fragrant_mashed_potatoes",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 6
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 4
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108680,
+    "name": "奇怪的奶油炖鸡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108681",
+    "recipe": "fricassee_de_poulet",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108681,
+    "name": "奶油炖鸡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108681",
+    "recipe": "fricassee_de_poulet",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108682,
+    "name": "美味的奶油炖鸡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108681",
+    "recipe": "fricassee_de_poulet",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108025,
+    "name": "奇怪的炸萝卜丸子",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108026",
+    "recipe": "fried_radish_balls",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108026,
+    "name": "炸萝卜丸子",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108026",
+    "recipe": "fried_radish_balls",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108027,
+    "name": "美味的炸萝卜丸子",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108026",
+    "recipe": "fried_radish_balls",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108567,
+    "name": "奇怪的双果清露",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108568",
+    "recipe": "fruity_duet",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108568,
+    "name": "双果清露",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108568",
+    "recipe": "fruity_duet",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108569,
+    "name": "美味的双果清露",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108568",
+    "recipe": "fruity_duet",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108521,
+    "name": "奇怪的蒜香面包棍",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108522",
+    "recipe": "garlic_baguette",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108522,
+    "name": "蒜香面包棍",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108522",
+    "recipe": "garlic_baguette",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108523,
+    "name": "美味的蒜香面包棍",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108522",
+    "recipe": "garlic_baguette",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108748,
+    "name": "奇怪的苹果金条条",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108749",
+    "recipe": "golden_apple_pastry",
+    "ingredients": [
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108749,
+    "name": "苹果金条条",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108749",
+    "recipe": "golden_apple_pastry",
+    "ingredients": [
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108750,
+    "name": "美味的苹果金条条",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108749",
+    "recipe": "golden_apple_pastry",
+    "ingredients": [
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108235,
+    "name": "奇怪的大黄金吮指鸡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108236",
+    "recipe": "golden_fried_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 4
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108236,
+    "name": "大黄金吮指鸡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108236",
+    "recipe": "golden_fried_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 4
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108237,
+    "name": "美味的大黄金吮指鸡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108236",
+    "recipe": "golden_fried_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 4
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108279,
+    "name": "奇怪的渡来禽肉",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108280",
+    "recipe": "imported_poultry",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108280,
+    "name": "渡来禽肉",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108280",
+    "recipe": "imported_poultry",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108281,
+    "name": "美味的渡来禽肉",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108280",
+    "recipe": "imported_poultry",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108068,
+    "name": "奇怪的翡玉什锦袋",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108069",
+    "recipe": "jade_parcels",
+    "ingredients": [
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 3
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108069,
+    "name": "翡玉什锦袋",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108069",
+    "recipe": "jade_parcels",
+    "ingredients": [
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 3
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108070,
+    "name": "美味的翡玉什锦袋",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108069",
+    "recipe": "jade_parcels",
+    "ingredients": [
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 3
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108083,
+    "name": "奇怪的香嫩椒椒鸡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108084",
+    "recipe": "jueyun_chili_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108084,
+    "name": "香嫩椒椒鸡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108084",
+    "recipe": "jueyun_chili_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108085,
+    "name": "美味的香嫩椒椒鸡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108084",
+    "recipe": "jueyun_chili_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108210,
+    "name": "奇怪的绝云锅巴",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108211",
+    "recipe": "jueyun_guoba",
+    "ingredients": [
+      {
+        "id": 100032,
+        "name": "马尾",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108211,
+    "name": "绝云锅巴",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108211",
+    "recipe": "jueyun_guoba",
+    "ingredients": [
+      {
+        "id": 100032,
+        "name": "马尾",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108212,
+    "name": "美味的绝云锅巴",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108211",
+    "recipe": "jueyun_guoba",
+    "ingredients": [
+      {
+        "id": 100032,
+        "name": "马尾",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108381,
+    "name": "奇怪的炸肉排三明治",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108382",
+    "recipe": "katsu_sandwich",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108382,
+    "name": "炸肉排三明治",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108382",
+    "recipe": "katsu_sandwich",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108383,
+    "name": "美味的炸肉排三明治",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108382",
+    "recipe": "katsu_sandwich",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108778,
+    "name": "奇怪的炎岩之颂",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108779",
+    "recipe": "magmic_ode",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108779,
+    "name": "炎岩之颂",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108779",
+    "recipe": "magmic_ode",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108780,
+    "name": "美味的炎岩之颂",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108779",
+    "recipe": "magmic_ode",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108400,
+    "name": "奇怪的马萨拉芝士球",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108401",
+    "recipe": "masala_cheese_balls",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108401,
+    "name": "马萨拉芝士球",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108401",
+    "recipe": "masala_cheese_balls",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108402,
+    "name": "美味的马萨拉芝士球",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108401",
+    "recipe": "masala_cheese_balls",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108829,
+    "name": "奇怪的肉肉盛宴餐",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108811",
+    "recipe": "meatlovers_feast",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 5
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100098,
+        "name": "咖啡豆",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108830,
+    "name": "肉肉盛宴餐",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108811",
+    "recipe": "meatlovers_feast",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 5
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100098,
+        "name": "咖啡豆",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108831,
+    "name": "美味的肉肉盛宴餐",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108811",
+    "recipe": "meatlovers_feast",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 5
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100098,
+        "name": "咖啡豆",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108439,
+    "name": "奇怪的肉肉烤蘑菇披萨",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108440",
+    "recipe": "meat_lovers_mushroom_pizza",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108440,
+    "name": "肉肉烤蘑菇披萨",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108440",
+    "recipe": "meat_lovers_mushroom_pizza",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108441,
+    "name": "美味的肉肉烤蘑菇披萨",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108440",
+    "recipe": "meat_lovers_mushroom_pizza",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108228,
+    "name": "奇怪的凉拌薄荷",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108229",
+    "recipe": "mint_salad",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 4
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108229,
+    "name": "凉拌薄荷",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108229",
+    "recipe": "mint_salad",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 4
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108230,
+    "name": "美味的凉拌薄荷",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108229",
+    "recipe": "mint_salad",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 4
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108333,
+    "name": "奇怪的多多烧",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108334",
+    "recipe": "moreandmore",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 2
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108334,
+    "name": "多多烧",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108334",
+    "recipe": "moreandmore",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 2
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108335,
+    "name": "美味的多多烧",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108334",
+    "recipe": "moreandmore",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 2
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108843,
+    "name": "奇怪的娜娜丝梨饼",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108817",
+    "recipe": "nanas_cake",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108844,
+    "name": "娜娜丝梨饼",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108817",
+    "recipe": "nanas_cake",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108845,
+    "name": "美味的娜娜丝梨饼",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108817",
+    "recipe": "nanas_cake",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108832,
+    "name": "奇怪的九果甘露饮",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108812",
+    "recipe": "ninefruit_nectar",
+    "ingredients": [
+      {
+        "id": 101218,
+        "name": "墩墩桃",
+        "amount": 2
+      },
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 2
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108833,
+    "name": "九果甘露饮",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108812",
+    "recipe": "ninefruit_nectar",
+    "ingredients": [
+      {
+        "id": 101218,
+        "name": "墩墩桃",
+        "amount": 2
+      },
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 2
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108834,
+    "name": "美味的九果甘露饮",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108812",
+    "recipe": "ninefruit_nectar",
+    "ingredients": [
+      {
+        "id": 101218,
+        "name": "墩墩桃",
+        "amount": 2
+      },
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 2
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108879,
+    "name": "奇怪的挪德卡莱热狗",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108829",
+    "recipe": "nodkrai_hot_dog",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108880,
+    "name": "挪德卡莱热狗",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108829",
+    "recipe": "nodkrai_hot_dog",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108881,
+    "name": "美味的挪德卡莱热狗",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108829",
+    "recipe": "nodkrai_hot_dog",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      },
+      {
+        "id": 110011,
+        "name": "香肠",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108557,
+    "name": "奇怪的果果软糖",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108558",
+    "recipe": "pate_de_fruit",
+    "ingredients": [
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108558,
+    "name": "果果软糖",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108558",
+    "recipe": "pate_de_fruit",
+    "ingredients": [
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108559,
+    "name": "美味的果果软糖",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108558",
+    "recipe": "pate_de_fruit",
+    "ingredients": [
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108814,
+    "name": "奇怪的德波小蛋糕·改良型",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108802",
+    "recipe": "petit_gateau_debord_revised_version",
+    "ingredients": [
+      {
+        "id": 101233,
+        "name": "海露花",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108815,
+    "name": "德波小蛋糕·改良型",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108802",
+    "recipe": "petit_gateau_debord_revised_version",
+    "ingredients": [
+      {
+        "id": 101233,
+        "name": "海露花",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108816,
+    "name": "美味的德波小蛋糕·改良型",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108802",
+    "recipe": "petit_gateau_debord_revised_version",
+    "ingredients": [
+      {
+        "id": 101233,
+        "name": "海露花",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108055,
+    "name": "奇怪的「堆高高」",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108056",
+    "recipe": "pile_em_up",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100055,
+        "name": "小灯草",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108056,
+    "name": "「堆高高」",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108056",
+    "recipe": "pile_em_up",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100055,
+        "name": "小灯草",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108057,
+    "name": "美味的「堆高高」",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108056",
+    "recipe": "pile_em_up",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100055,
+        "name": "小灯草",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108128,
+    "name": "奇怪的轻策农家菜",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108129",
+    "recipe": "qingce_stir_fry",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108129,
+    "name": "轻策农家菜",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108129",
+    "recipe": "qingce_stir_fry",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108130,
+    "name": "美味的轻策农家菜",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108129",
+    "recipe": "qingce_stir_fry",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108342,
+    "name": "奇怪的鲜鱼炖萝卜",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108343",
+    "recipe": "radish_and_fish_stew",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108343,
+    "name": "鲜鱼炖萝卜",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108343",
+    "recipe": "radish_and_fish_stew",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108344,
+    "name": "美味的鲜鱼炖萝卜",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108343",
+    "recipe": "radish_and_fish_stew",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108258,
+    "name": "奇怪的刺身拼盘",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108259",
+    "recipe": "sashimi_platter",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 4
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108259,
+    "name": "刺身拼盘",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108259",
+    "recipe": "sashimi_platter",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 4
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108260,
+    "name": "美味的刺身拼盘",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108259",
+    "recipe": "sashimi_platter",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100073,
+        "name": "螃蟹",
+        "amount": 4
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108028,
+    "name": "奇怪的满足沙拉",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108029",
+    "recipe": "satisfying_salad",
+    "ingredients": [
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108029,
+    "name": "满足沙拉",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108029",
+    "recipe": "satisfying_salad",
+    "ingredients": [
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108030,
+    "name": "美味的满足沙拉",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108029",
+    "recipe": "satisfying_salad",
+    "ingredients": [
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108052,
+    "name": "奇怪的黄油松茸",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108053",
+    "recipe": "sauted_matsutake",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100020,
+        "name": "松果",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108053,
+    "name": "黄油松茸",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108053",
+    "recipe": "sauted_matsutake",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100020,
+        "name": "松果",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108054,
+    "name": "美味的黄油松茸",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108053",
+    "recipe": "sauted_matsutake",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100020,
+        "name": "松果",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108394,
+    "name": "奇怪的烤肉卷",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108395",
+    "recipe": "shawarma_wrap",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108395,
+    "name": "烤肉卷",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108395",
+    "recipe": "shawarma_wrap",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108396,
+    "name": "美味的烤肉卷",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108395",
+    "recipe": "shawarma_wrap",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108721,
+    "name": "奇怪的酸汁腌鱼",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108722",
+    "recipe": "sour_sauce_ceviche",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108722,
+    "name": "酸汁腌鱼",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108722",
+    "recipe": "sour_sauce_ceviche",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108723,
+    "name": "美味的酸汁腌鱼",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108722",
+    "recipe": "sour_sauce_ceviche",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108191,
+    "name": "奇怪的岩港三鲜",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108192",
+    "recipe": "stone_harbor_delicacies",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108192,
+    "name": "岩港三鲜",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108192",
+    "recipe": "stone_harbor_delicacies",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108193,
+    "name": "美味的岩港三鲜",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108192",
+    "recipe": "stone_harbor_delicacies",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108442,
+    "name": "奇怪的日落莓莓茶",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108443",
+    "recipe": "sunset_berry_tea",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 3
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108443,
+    "name": "日落莓莓茶",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108443",
+    "recipe": "sunset_berry_tea",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 3
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108444,
+    "name": "美味的日落莓莓茶",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108443",
+    "recipe": "sunset_berry_tea",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 3
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108495,
+    "name": "奇怪的超级至尊披萨",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108496",
+    "recipe": "super_magnificent_pizza",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108496,
+    "name": "超级至尊披萨",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108496",
+    "recipe": "super_magnificent_pizza",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108497,
+    "name": "美味的超级至尊披萨",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108496",
+    "recipe": "super_magnificent_pizza",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108427,
+    "name": "奇怪的唐杜尔烤鸡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108428",
+    "recipe": "tandoori_roast_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 101213,
+        "name": "树王圣体菇",
+        "amount": 2
+      },
+      {
+        "id": 101214,
+        "name": "帕蒂沙兰",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108428,
+    "name": "唐杜尔烤鸡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108428",
+    "recipe": "tandoori_roast_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 101213,
+        "name": "树王圣体菇",
+        "amount": 2
+      },
+      {
+        "id": 101214,
+        "name": "帕蒂沙兰",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108429,
+    "name": "美味的唐杜尔烤鸡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108428",
+    "recipe": "tandoori_roast_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 101213,
+        "name": "树王圣体菇",
+        "amount": 2
+      },
+      {
+        "id": 101214,
+        "name": "帕蒂沙兰",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108852,
+    "name": "奇怪的厚切决斗者汉堡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108820",
+    "recipe": "thickcut_duelists_burger",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108853,
+    "name": "厚切决斗者汉堡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108820",
+    "recipe": "thickcut_duelists_burger",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108854,
+    "name": "美味的厚切决斗者汉堡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108820",
+    "recipe": "thickcut_duelists_burger",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108158,
+    "name": "奇怪的天枢肉",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108159",
+    "recipe": "tianshu_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108159,
+    "name": "天枢肉",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108159",
+    "recipe": "tianshu_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108160,
+    "name": "美味的天枢肉",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108159",
+    "recipe": "tianshu_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108588,
+    "name": "奇怪的纳博内番茄盅",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108589",
+    "recipe": "tomates_narbonnaises",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108589,
+    "name": "纳博内番茄盅",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108589",
+    "recipe": "tomates_narbonnaises",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108590,
+    "name": "美味的纳博内番茄盅",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108589",
+    "recipe": "tomates_narbonnaises",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108627,
+    "name": "奇怪的繁弦急管",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108628",
+    "recipe": "trembling_strings_and_rushing_reeds",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108628,
+    "name": "繁弦急管",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108628",
+    "recipe": "trembling_strings_and_rushing_reeds",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108629,
+    "name": "美味的繁弦急管",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108628",
+    "recipe": "trembling_strings_and_rushing_reeds",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108273,
+    "name": "奇怪的串串三味",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108274",
+    "recipe": "triflavored_skewer",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108274,
+    "name": "串串三味",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108274",
+    "recipe": "triflavored_skewer",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108275,
+    "name": "美味的串串三味",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108274",
+    "recipe": "triflavored_skewer",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108542,
+    "name": "奇怪的韦西鸡",
+    "type": "攻击类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108543",
+    "recipe": "vessie_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 3
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108543,
+    "name": "韦西鸡",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108543",
+    "recipe": "vessie_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 3
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108544,
+    "name": "美味的韦西鸡",
+    "type": "攻击类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108543",
+    "recipe": "vessie_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 3
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108149,
+    "name": "冰钩钩果汁",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108149",
+    "ingredients": []
+  },
+  {
+    "id": 108150,
+    "name": "树莓薄荷饮",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108150",
+    "ingredients": []
+  },
+  {
+    "id": 108216,
+    "name": "海灯节特色炸萝卜丸子",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_Recipe_4002",
+    "ingredients": []
+  },
+  {
+    "id": 108220,
+    "name": "海灯节特色来来菜",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108132",
+    "ingredients": []
+  },
+  {
+    "id": 108488,
+    "name": "鳄鱼肉干",
+    "type": "攻击类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_120085",
+    "ingredients": []
+  }
+]

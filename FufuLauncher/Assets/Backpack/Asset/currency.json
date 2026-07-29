@@ -1,0 +1,50 @@
+﻿[
+  {
+    "id": 201,
+    "name": "原石",
+    "type": "rareCurrency",
+    "rank": 5,
+    "icon": "UI_ItemIcon_201",
+    "propId": 10015
+  },
+  {
+    "id": 203,
+    "name": "创世结晶",
+    "type": "rareCurrency",
+    "rank": 5,
+    "icon": "UI_ItemIcon_203",
+    "propId": 10025
+  },
+  {
+    "id": 206,
+    "name": "玩具勋章",
+    "type": "rareCurrency",
+    "rank": 4,
+    "icon": "UI_ItemIcon_206",
+    "propId": 10053
+  },
+  {
+    "id": 207,
+    "name": "千音币",
+    "type": "rareCurrency",
+    "rank": 4,
+    "icon": "UI_ItemIcon_207",
+    "propId": 10058
+  },
+  {
+    "id": 202,
+    "name": "摩拉",
+    "type": "rareCurrency",
+    "rank": 3,
+    "icon": "UI_ItemIcon_202",
+    "propId": 10016
+  },
+  {
+    "id": 204,
+    "name": "洞天宝钱",
+    "type": "rareCurrency",
+    "rank": 3,
+    "icon": "UI_ItemIcon_204",
+    "propId": 10042
+  }
+]

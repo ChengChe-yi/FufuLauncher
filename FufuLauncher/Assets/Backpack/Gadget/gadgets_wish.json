@@ -1,0 +1,16 @@
+﻿[
+  {
+    "id": 223,
+    "name": "纠缠之缘",
+    "type": "wishItem",
+    "rank": 5,
+    "icon": "UI_ItemIcon_223"
+  },
+  {
+    "id": 224,
+    "name": "相遇之缘",
+    "type": "wishItem",
+    "rank": 5,
+    "icon": "UI_ItemIcon_224"
+  }
+]

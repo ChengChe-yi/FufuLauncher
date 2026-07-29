@@ -1,0 +1,167 @@
+[
+  {
+    "id": 108900,
+    "name": "糖雕・凛角鹿",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108836",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108901,
+    "name": "糖雕・帔髦獾",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108837",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108902,
+    "name": "糖雕・双辉长翎鹮",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108838",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108903,
+    "name": "糖雕・海崖鹦",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108839",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108904,
+    "name": "糖雕・霜鳍鲸",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108840",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108905,
+    "name": "糖雕・伊涅芙",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108841",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108906,
+    "name": "糖雕・菈乌玛",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108843",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108907,
+    "name": "糖雕・爱诺",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108842",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108908,
+    "name": "糖雕・菲林斯",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108844",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108919,
+    "name": "糖雕・奈芙尔",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108851",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108929,
+    "name": "糖雕・雅珂达",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108855",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108930,
+    "name": "糖雕・月灵",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108856",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108952,
+    "name": "糖雕・哥伦比娅",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108865",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108953,
+    "name": "糖雕・叶洛亚",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108866",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  },
+  {
+    "id": 108966,
+    "name": "糖雕・莉奈娅",
+    "type": "糖雕",
+    "variant": "sweet",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108874",
+    "recipe": null,
+    "ingredients": [],
+    "character": null
+  }
+]

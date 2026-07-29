@@ -41,8 +41,7 @@ public class AccountManager
     public async Task InitializeAsync()
     {
         await LoadAccountListAsync();
-
-        // 检查并迁移旧账号数据
+        
         if (HasLegacyAccounts())
         {
             await MigrateLegacyAccountsAsync();

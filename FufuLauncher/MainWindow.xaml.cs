@@ -821,6 +821,7 @@ public sealed partial class MainWindow : WindowEx
         // 通知 ViewModel 取消后台任务
         try { App.GetService<MainViewModel>()?.Cleanup(); } catch { }
         try { App.GetService<ControlPanelModel>()?.Cleanup(); } catch { }
+        try { Services.Backpack.BackpackRuntimeService.Current?.Dispose(); } catch { }
 
         DisposeGlobalBackgroundPlayer();
         GlobalBackgroundImage.Source = null;
@@ -1618,6 +1619,7 @@ public sealed partial class MainWindow : WindowEx
             "FufuLauncher.ViewModels.PluginStoreViewModel" => typeof(Views.PluginStorePage),
             "FufuLauncher.ViewModels.DataViewModel" => typeof(Views.DataPage),
             "FufuLauncher.ViewModels.PluginSettingsViewModel" => typeof(Views.PluginSettingsPage),
+            "FufuLauncher.ViewModels.BackpackViewModel" => typeof(Views.BackpackPage),
             "FufuLauncher.ViewModels.HelpViewModel" => typeof(Views.HelpPage),
             "FufuLauncher.ViewModels.CommunityViewModel" => typeof(Views.CommunityPage),
             _ => null
@@ -1759,7 +1761,7 @@ public sealed partial class MainWindow : WindowEx
         {
             "MainViewModel", "PluginSettingsViewModel", "ControlPanelModel",
             "BlankViewModel", "AccountViewModel", "OtherViewModel",
-            "PluginViewModel", "DataViewModel", "HelpViewModel",
+            "PluginViewModel", "DataViewModel", "BackpackViewModel", "HelpViewModel",
             "CommunityViewModel", "CalculatorViewModel", "SettingsViewModel"
         };
 

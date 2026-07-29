@@ -1,0 +1,373 @@
+﻿[
+  {
+    "id": 131000,
+    "name": "花鳉",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131000"
+  },
+  {
+    "id": 131001,
+    "name": "琉璃花鳉",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131001"
+  },
+  {
+    "id": 131002,
+    "name": "甜甜花鳉",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131002"
+  },
+  {
+    "id": 131003,
+    "name": "蓝染花鳉",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131003"
+  },
+  {
+    "id": 131004,
+    "name": "擒霞客",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131004"
+  },
+  {
+    "id": 131005,
+    "name": "水晶宴",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131005"
+  },
+  {
+    "id": 131006,
+    "name": "肺棘鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131006"
+  },
+  {
+    "id": 131007,
+    "name": "斗棘鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131007"
+  },
+  {
+    "id": 131008,
+    "name": "鸩棘鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131008"
+  },
+  {
+    "id": 131009,
+    "name": "赤魔王",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131009"
+  },
+  {
+    "id": 131010,
+    "name": "雪中君",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131010"
+  },
+  {
+    "id": 131011,
+    "name": "金赤假龙",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131011"
+  },
+  {
+    "id": 131012,
+    "name": "锖假龙",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131012"
+  },
+  {
+    "id": 131013,
+    "name": "流纹褐蝶鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131013"
+  },
+  {
+    "id": 131014,
+    "name": "流纹京紫蝶鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131014"
+  },
+  {
+    "id": 131015,
+    "name": "流纹茶蝶鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131015"
+  },
+  {
+    "id": 131016,
+    "name": "长生仙",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131016"
+  },
+  {
+    "id": 131017,
+    "name": "雷鸣仙",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131017"
+  },
+  {
+    "id": 131019,
+    "name": "炮鲀",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131019"
+  },
+  {
+    "id": 131020,
+    "name": "苦炮鲀",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131020"
+  },
+  {
+    "id": 131021,
+    "name": "迪芙妲鳐",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131021"
+  },
+  {
+    "id": 131022,
+    "name": "佛玛洛鳐",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131022"
+  },
+  {
+    "id": 131023,
+    "name": "真果角鲀",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131023"
+  },
+  {
+    "id": 131024,
+    "name": "沉波蜜桃",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131024"
+  },
+  {
+    "id": 131025,
+    "name": "吹沙角鲀",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131025"
+  },
+  {
+    "id": 131026,
+    "name": "暮云角鲀",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131026"
+  },
+  {
+    "id": 131027,
+    "name": "青金斧枪鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131027"
+  },
+  {
+    "id": 131028,
+    "name": "翡玉斧枪鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131028"
+  },
+  {
+    "id": 131029,
+    "name": "海涛斧枪鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131029"
+  },
+  {
+    "id": 131030,
+    "name": "波波心羽鲈",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131030"
+  },
+  {
+    "id": 131031,
+    "name": "烘烘心羽鲈",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131031"
+  },
+  {
+    "id": 131032,
+    "name": "维护机关·初始能力型",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131032"
+  },
+  {
+    "id": 131033,
+    "name": "维护机关·水域清理者",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131033"
+  },
+  {
+    "id": 131034,
+    "name": "维护机关·态势控制者",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131034"
+  },
+  {
+    "id": 131035,
+    "name": "维护机关·白金典藏型",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131035"
+  },
+  {
+    "id": 131036,
+    "name": "维护机关·澄金领队型",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131036"
+  },
+  {
+    "id": 131037,
+    "name": "玉玉心羽鲈",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131037"
+  },
+  {
+    "id": 131038,
+    "name": "繁花斗士急流鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131038"
+  },
+  {
+    "id": 131039,
+    "name": "深潜斗士急流鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131039"
+  },
+  {
+    "id": 131040,
+    "name": "炽岩斗士急流鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131040"
+  },
+  {
+    "id": 131041,
+    "name": "青浪翻车鲀",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131041"
+  },
+  {
+    "id": 131042,
+    "name": "晚霞翻车鲀",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131042"
+  },
+  {
+    "id": 131043,
+    "name": "拟似燃素独角鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131043"
+  },
+  {
+    "id": 131044,
+    "name": "伪装鲨鲨独角鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131044"
+  },
+  {
+    "id": 131045,
+    "name": "秘源机关·巡戒使",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131045"
+  },
+  {
+    "id": 131046,
+    "name": "无奇巨斧鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131046"
+  },
+  {
+    "id": 131047,
+    "name": "冷冽巨斧鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131047"
+  },
+  {
+    "id": 131048,
+    "name": "炽铁巨斧鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131048"
+  },
+  {
+    "id": 131049,
+    "name": "素素凶凶鲨",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131049"
+  },
+  {
+    "id": 131050,
+    "name": "虹光凶凶鲨",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131050"
+  },
+  {
+    "id": 131051,
+    "name": "蓝昼明眼鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131051"
+  },
+  {
+    "id": 131052,
+    "name": "夜色明眼鱼",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131052"
+  },
+  {
+    "id": 131053,
+    "name": "綦假龙",
+    "type": "fish",
+    "rank": 3,
+    "icon": "UI_ItemIcon_131053"
+  }
+]

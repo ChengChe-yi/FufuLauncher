@@ -1,0 +1,618 @@
+<Page
+    x:Class="FufuLauncher.Views.BackpackPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
+    xmlns:local="using:FufuLauncher.Views"
+    xmlns:vm="using:FufuLauncher.ViewModels"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    Background="Transparent">
+
+    <Page.Resources>
+        <Style x:Key="BackpackPagerButtonStyle" TargetType="Button" BasedOn="{StaticResource BackpackToolButtonStyle}">
+            <Setter Property="MinHeight" Value="30" />
+            <Setter Property="MinWidth" Value="30" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <DataTemplate x:Key="BackpackPagerTemplate">
+            <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center" Visibility="{Binding PagerVisibility}">
+                <Button Style="{StaticResource BackpackPagerButtonStyle}" Click="OnPreviousPageClick" IsEnabled="{Binding CanPreviousPage}"><FontIcon Glyph="&#xE72B;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="12" /></Button>
+                <TextBlock Text="{Binding PageCounterText}" VerticalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" />
+                <Button Style="{StaticResource BackpackPagerButtonStyle}" Click="OnNextPageClick" IsEnabled="{Binding CanNextPage}"><FontIcon Glyph="&#xE76C;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="12" /></Button>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="KpiTileTemplate">
+            <Border Style="{StaticResource BackpackKpiCardStyle}">
+                <Grid RowSpacing="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid ColumnSpacing="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Glyph="{Binding Glyph}" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Label}" Style="{StaticResource BackpackKpiLabelStyle}" VerticalAlignment="Center" />
+                    </Grid>
+                    <TextBlock Grid.Row="1" Text="{Binding Value}" Style="{StaticResource BackpackKpiValueStyle}" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="InsightTemplate">
+            <Grid ColumnSpacing="12" Margin="0,0,0,14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Width="3" RadiusX="2" RadiusY="2" Fill="{ThemeResource AccentFillColorDefaultBrush}" />
+                <FontIcon Grid.Column="1" Glyph="{Binding Glyph}" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="14" Foreground="{ThemeResource AccentFillColorDefaultBrush}" VerticalAlignment="Top" Margin="0,2,0,0" />
+                <StackPanel Grid.Column="2" Spacing="3">
+                    <TextBlock Text="{Binding Title}" Style="{StaticResource BackpackValueStyle}" />
+                    <TextBlock Text="{Binding Body}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="18" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CultivationPlanTemplate">
+            <Grid Margin="0,0,0,12" RowSpacing="6">
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource BackpackValueStyle}" />
+                    <TextBlock Grid.Column="1" Text="{Binding OwnedText}" Style="{StaticResource BackpackCaptionStyle}" />
+                </Grid>
+                <ProgressBar Grid.Row="1" Value="{Binding Progress}" Style="{StaticResource BackpackMiniBarStyle}" Foreground="{ThemeResource AccentFillColorDefaultBrush}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CookingTemplate">
+            <Grid ColumnSpacing="10" Margin="0,0,0,12">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <Grid Width="36" Height="36" CornerRadius="9" VerticalAlignment="Top">
+                    <Image Source="{Binding QualitySource}" Stretch="Fill" />
+                    <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                    <local:DeferredImage Width="32" Height="32" SourceUri="{Binding IconUri}" DecodePixelWidth="40" />
+                    <Border Background="{ThemeResource BackpackMutedBrush}" CornerRadius="9" Visibility="{Binding IconUri, Converter={StaticResource NullToVisibilityConverter}, ConverterParameter=inverse}">
+                        <FontIcon Glyph="&#xE8B7;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                    </Border>
+                </Grid>
+                <StackPanel Grid.Column="1" Spacing="2">
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource BackpackValueStyle}" ToolTipService.ToolTip="{Binding Name}" />
+                    <TextBlock Text="{Binding MissingText}" Style="{StaticResource BackpackCaptionStyle}" TextTrimming="CharacterEllipsis" MaxLines="1" ToolTipService.ToolTip="{Binding MissingText}" />
+                </StackPanel>
+                <Border Grid.Column="2" Padding="7,3" CornerRadius="6" Background="{ThemeResource BackpackMutedBrush}" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Status}" Style="{StaticResource BackpackLabelStyle}" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="WeaponDetailTemplate" x:DataType="vm:WeaponViewModel">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MaxHeight="620">
+                <StackPanel Width="680" Spacing="20">
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <Grid Width="76" Height="76" CornerRadius="14">
+                            <Image Source="{x:Bind QualitySource}" Stretch="Fill" />
+                            <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                            <local:DeferredImage Width="68" Height="68" SourceUri="{x:Bind IconUri}" DecodePixelWidth="80" />
+                        </Grid>
+                        <StackPanel Grid.Column="1" Spacing="5" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind Source.Name}" Style="{StaticResource BackpackKpiValueStyle}" TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{x:Bind TypeRankDisplay}" Style="{StaticResource BackpackCaptionStyle}" />
+                            <TextBlock Text="{x:Bind PassiveName}" Style="{StaticResource BackpackValueStyle}" Visibility="{x:Bind PassiveVisibility}" />
+                        </StackPanel>
+                        <Border Grid.Column="2" Style="{StaticResource BackpackDetailStatStyle}" VerticalAlignment="Center">
+                            <StackPanel Spacing="2"><TextBlock Text="{x:Bind RankDisplay}" Foreground="{StaticResource WeaponGoldBrush}" Style="{StaticResource BackpackValueStyle}" HorizontalAlignment="Center" /><TextBlock Text="{helpers:Loc Key=Backpack_DetailWeaponRank}" Style="{StaticResource BackpackLabelStyle}" HorizontalAlignment="Center" /></StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Grid ColumnSpacing="12" Visibility="{x:Bind HasInstanceVisibility}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource BackpackDetailStatStyle}"><StackPanel Spacing="3"><TextBlock Text="{helpers:Loc Key=Backpack_DetailLevel}" Style="{StaticResource BackpackLabelStyle}" /><TextBlock Text="{x:Bind LevelFull}" Style="{StaticResource BackpackValueStyle}" /></StackPanel></Border>
+                        <Border Grid.Column="1" Style="{StaticResource BackpackDetailStatStyle}"><StackPanel Spacing="3"><TextBlock Text="{helpers:Loc Key=Backpack_DetailRefine}" Style="{StaticResource BackpackLabelStyle}" /><TextBlock Text="{x:Bind RefineLabel}" Style="{StaticResource BackpackValueStyle}" /></StackPanel></Border>
+                        <Border Grid.Column="2" Style="{StaticResource BackpackDetailStatStyle}"><StackPanel Spacing="3"><TextBlock Text="{helpers:Loc Key=Backpack_DetailBaseAtk}" Style="{StaticResource BackpackLabelStyle}" /><TextBlock Text="{x:Bind AtkDisplay}" Style="{StaticResource BackpackValueStyle}" /></StackPanel></Border>
+                    </Grid>
+
+                    <Border Style="{StaticResource BackpackDetailCardStyle}" Visibility="{x:Bind SubVisibility}">
+                        <StackPanel Spacing="5"><TextBlock Text="{helpers:Loc Key=Backpack_DetailSubStat}" Style="{StaticResource BackpackLabelStyle}" /><TextBlock Text="{x:Bind SubDisplay}" Style="{StaticResource BackpackValueStyle}" /></StackPanel>
+                    </Border>
+
+                    <StackPanel Spacing="10" Visibility="{x:Bind PassiveVisibility}">
+                        <TextBlock Text="{helpers:Loc Key=Backpack_DetailSkill}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                        <Border Style="{StaticResource BackpackDetailCardStyle}">
+                            <StackPanel Spacing="8"><TextBlock Text="{x:Bind PassiveName}" Style="{StaticResource BackpackValueStyle}" /><TextBlock Text="{x:Bind SkillDesc}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" Visibility="{x:Bind PassiveVisibility}" /></StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Spacing="10" Visibility="{x:Bind FlavorVisibility}">
+                        <TextBlock Text="{helpers:Loc Key=Backpack_DetailLore}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                        <Border Style="{StaticResource BackpackDetailCardStyle}"><TextBlock Text="{x:Bind FlavorText}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="18" /></Border>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ArtifactDetailTemplate" x:DataType="vm:ArtifactViewModel">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MaxHeight="620">
+                <StackPanel Width="680" Spacing="20">
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <Grid Width="76" Height="76" CornerRadius="14">
+                            <Image Source="{x:Bind QualitySource}" Stretch="Fill" />
+                            <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                            <local:DeferredImage Width="68" Height="68" SourceUri="{x:Bind IconUri}" DecodePixelWidth="80" />
+                        </Grid>
+                        <StackPanel Grid.Column="1" Spacing="5" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind Source.SetName}" Style="{StaticResource BackpackKpiValueStyle}" TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{x:Bind Source.Name}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MaxLines="2" />
+                            <TextBlock Text="{x:Bind SlotRankEquipped}" Style="{StaticResource BackpackCaptionStyle}" />
+                        </StackPanel>
+                        <Border Grid.Column="2" Style="{StaticResource BackpackDetailStatStyle}" VerticalAlignment="Center" Visibility="{x:Bind HasInstanceVisibility}">
+                            <StackPanel Spacing="2"><TextBlock Text="{x:Bind Level}" Style="{StaticResource BackpackKpiValueStyle}" HorizontalAlignment="Center" /><TextBlock Text="{helpers:Loc Key=Backpack_DetailEnhanceLevel}" Style="{StaticResource BackpackLabelStyle}" HorizontalAlignment="Center" /></StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Border Style="{StaticResource BackpackDetailCardStyle}">
+                        <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <StackPanel Spacing="3"><TextBlock Text="{helpers:Loc Key=Backpack_DetailMainStat}" Style="{StaticResource BackpackLabelStyle}" /><TextBlock Text="{x:Bind Source.MainStat.Type}" Style="{StaticResource BackpackValueStyle}" /></StackPanel>
+                            <TextBlock Grid.Column="1" Text="{x:Bind MainStatValueDisplay}" Style="{StaticResource BackpackValueStyle}" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+
+                    <StackPanel Spacing="10" Visibility="{x:Bind HasInstanceVisibility}">
+                        <TextBlock Text="{helpers:Loc Key=Backpack_DetailSubStats}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                        <Border Style="{StaticResource BackpackDetailCardStyle}">
+                            <ItemsRepeater ItemsSource="{x:Bind SubStatItems}">
+                                <ItemsRepeater.ItemTemplate><DataTemplate x:DataType="vm:SubStatItemViewModel"><Grid ColumnSpacing="10" Margin="0,4"><Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><Image Width="20" Height="20" Source="{x:Bind BadgeSource}" VerticalAlignment="Center" Visibility="Collapsed" /><TextBlock Grid.Column="1" Text="{x:Bind Name}" Style="{StaticResource BackpackCaptionStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" /><TextBlock Grid.Column="2" Text="{x:Bind ValueDisplay}" Style="{StaticResource BackpackValueStyle}" VerticalAlignment="Center" /></Grid></DataTemplate></ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Spacing="10" Visibility="{x:Bind HasAnyBonusVisibility}">
+                        <TextBlock Text="{helpers:Loc Key=Backpack_DetailSetBonus}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                        <Border Style="{StaticResource BackpackDetailCardStyle}">
+                            <TextBlock Text="{x:Bind BonusText}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="18" />
+                        </Border>
+                    </StackPanel>
+
+                    <Border Style="{StaticResource BackpackDetailCardStyle}"
+                            Visibility="{x:Bind HasInstanceVisibility, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}">
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="{helpers:Loc Key=Backpack_DetailCodexTitle}" Style="{StaticResource BackpackLabelStyle}" />
+                            <TextBlock Text="{helpers:Loc Key=Backpack_DetailCodexBody}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="18" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FoodDetailTemplate" x:DataType="vm:FoodViewModel">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MaxHeight="620">
+                <StackPanel Width="680" Spacing="20">
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                        <Grid Width="76" Height="76" CornerRadius="14">
+                            <Image Source="{x:Bind QualitySource}" Stretch="Fill" />
+                            <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                            <local:DeferredImage Width="68" Height="68" SourceUri="{x:Bind IconUri}" DecodePixelWidth="80" />
+                        </Grid>
+                        <StackPanel Grid.Column="1" Spacing="5" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind Name}" Style="{StaticResource BackpackKpiValueStyle}" TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{x:Bind VariantLabel}" Foreground="{x:Bind VariantForeground}" Style="{StaticResource BackpackValueStyle}" />
+                            <TextBlock Text="{x:Bind Character}" Style="{StaticResource BackpackCaptionStyle}" Visibility="{x:Bind CharacterVisibility}" />
+                        </StackPanel>
+                        <Border Grid.Column="2" Style="{StaticResource BackpackDetailStatStyle}" VerticalAlignment="Center">
+                            <StackPanel Spacing="2"><TextBlock Text="{x:Bind Count}" Style="{StaticResource BackpackKpiValueStyle}" HorizontalAlignment="Center" /><TextBlock Text="持有数量" Style="{StaticResource BackpackLabelStyle}" HorizontalAlignment="Center" /></StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <Border Style="{StaticResource BackpackDetailCardStyle}">
+                        <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><StackPanel Spacing="3"><TextBlock Text="{helpers:Loc Key=Backpack_DetailCookState}" Style="{StaticResource BackpackLabelStyle}" /><TextBlock Text="{helpers:Loc Key=Backpack_DetailCookReady}" Style="{StaticResource BackpackValueStyle}" Visibility="{x:Bind IsCookable, Converter={StaticResource BoolToVisibilityConverter}}" /><TextBlock Text="{helpers:Loc Key=Backpack_DetailCookMissing}" Style="{StaticResource BackpackValueStyle}" Visibility="{x:Bind IsCookable, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Invert}" /></StackPanel><FontIcon Grid.Column="1" Glyph="&#xE73E;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="20" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Center" Visibility="Collapsed" /></Grid>
+                    </Border>
+
+                    <StackPanel Spacing="10">
+                        <TextBlock Text="{helpers:Loc Key=Backpack_DetailIngredients}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                        <Border Style="{StaticResource BackpackDetailCardStyle}">
+                            <ItemsRepeater ItemsSource="{x:Bind Ingredients}">
+                                <ItemsRepeater.ItemTemplate><DataTemplate x:DataType="vm:IngredientViewModel"><Grid ColumnSpacing="10" Margin="0,4"><Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><local:DeferredImage Width="32" Height="32" SourceUri="{x:Bind IconUri}" DecodePixelWidth="40" Visibility="Collapsed" /><TextBlock Grid.Column="1" Text="{x:Bind Name}" Style="{StaticResource BackpackValueStyle}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" /><Border Grid.Column="2" Padding="8,4" Background="{ThemeResource BackpackMutedBrush}" CornerRadius="6" VerticalAlignment="Center"><TextBlock Text="{x:Bind HeldText}" Style="{StaticResource BackpackCaptionStyle}" /></Border></Grid></DataTemplate></ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SimpleItemDetailTemplate" x:DataType="vm:SimpleItemViewModel">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" MaxHeight="420">
+                <StackPanel Width="360" Spacing="16">
+                    <Grid ColumnSpacing="14">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                        <Grid Width="64" Height="64" CornerRadius="12">
+                            <Image Source="{x:Bind QualitySource}" Stretch="Fill" />
+                            <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                            <local:DeferredImage Width="58" Height="58" SourceUri="{x:Bind IconUri}" DecodePixelWidth="68" />
+                        </Grid>
+                        <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind Name}" Style="{StaticResource BackpackKpiValueStyle}" TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{helpers:Loc Key=Backpack_DetailInventoryItem}" Style="{StaticResource BackpackCaptionStyle}" />
+                        </StackPanel>
+                    </Grid>
+                    <Border Style="{StaticResource BackpackDetailCardStyle}">
+                        <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <StackPanel Spacing="3"><TextBlock Text="{helpers:Loc Key=Backpack_DetailCountLabel}" Style="{StaticResource BackpackLabelStyle}" /><TextBlock Text="{helpers:Loc Key=Backpack_DetailCountBody}" Style="{StaticResource BackpackCaptionStyle}" /></StackPanel>
+                            <TextBlock Grid.Column="1" Text="{x:Bind Count}" Style="{StaticResource BackpackKpiValueStyle}" />
+                        </Grid>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SimpleItemCardTemplate">
+            <Grid Style="{StaticResource BackpackInventoryCardStyle}" ColumnSpacing="12" HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <Grid Width="50" Height="50" CornerRadius="10">
+                    <Image Source="{Binding QualitySource}" Stretch="Fill" />
+                    <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                    <local:DeferredImage Width="44" Height="44" SourceUri="{Binding IconUri}" DecodePixelWidth="52" />
+                </Grid>
+                <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Name}" Style="{StaticResource BackpackValueStyle}" ToolTipService.ToolTip="{Binding Name}" />
+                    <TextBlock Text="{helpers:Loc Key=Backpack_DetailStockItem}" Style="{StaticResource BackpackCaptionStyle}" MaxLines="1" />
+                </StackPanel>
+                <Border Grid.Column="2" Style="{StaticResource BackpackCountBadgeStyle}"><TextBlock Text="{Binding Count}" Style="{StaticResource BackpackValueStyle}" /></Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FoodCardTemplate">
+            <Grid Style="{StaticResource BackpackInventoryCardStyle}" RowSpacing="10" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <Grid Width="52" Height="52" CornerRadius="10">
+                        <Image Source="{Binding QualitySource}" Stretch="Fill" />
+                        <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                        <local:DeferredImage Width="46" Height="46" SourceUri="{Binding IconUri}" DecodePixelWidth="54" />
+                    </Grid>
+                    <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource BackpackValueStyle}" ToolTipService.ToolTip="{Binding Name}" />
+                        <TextBlock Text="{Binding VariantLabel}" Foreground="{Binding VariantForeground}" Style="{StaticResource BackpackCaptionStyle}" MaxLines="1" />
+                    </StackPanel>
+                    <Border Grid.Column="2" Style="{StaticResource BackpackCountBadgeStyle}"><TextBlock Text="{Binding Count}" Style="{StaticResource BackpackValueStyle}" /></Border>
+                </Grid>
+                <ItemsRepeater Grid.Row="1" ItemsSource="{Binding Ingredients}">
+                    <ItemsRepeater.Layout><StackLayout Orientation="Horizontal" Spacing="5" /></ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate><DataTemplate><Border Padding="6,3" CornerRadius="7" Background="{ThemeResource BackpackMutedBrush}" ToolTipService.ToolTip="{Binding Name}"><TextBlock Text="{Binding HeldText}" Style="{StaticResource BackpackCaptionStyle}" MaxLines="1" /></Border></DataTemplate></ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="WeaponCardTemplate" x:DataType="vm:WeaponViewModel">
+            <Grid Style="{StaticResource BackpackInventoryCardStyle}" RowSpacing="10" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <Grid Width="58" Height="58" CornerRadius="10">
+                        <Image Source="{x:Bind QualitySource}" Stretch="Fill" />
+                        <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                        <local:DeferredImage Width="52" Height="52" SourceUri="{x:Bind IconUri}" DecodePixelWidth="60" />
+                    </Grid>
+                    <StackPanel Grid.Column="1" Spacing="3" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Bind Source.Name}" Style="{StaticResource BackpackValueStyle}" ToolTipService.ToolTip="{x:Bind Source.Name}" />
+                        <TextBlock Text="{x:Bind Source.Type}" Style="{StaticResource BackpackCaptionStyle}" />
+                        <TextBlock Text="{x:Bind RankDisplay}" Foreground="{StaticResource WeaponGoldBrush}" Style="{StaticResource CaptionTextBlockStyle}" />
+                    </StackPanel>
+                    <FontIcon Grid.Column="2" Glyph="&#xE70D;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="14" VerticalAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </Grid>
+                <Grid Grid.Row="1" ColumnSpacing="8" Visibility="{x:Bind HasInstanceVisibility}">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                    <Border Padding="8,5" Background="{ThemeResource BackpackMutedBrush}" CornerRadius="8"><TextBlock Text="{x:Bind LevelFull}" Style="{StaticResource CaptionTextBlockStyle}" /></Border>
+                    <Border Grid.Column="1" Padding="8,5" Background="{ThemeResource BackpackMutedBrush}" CornerRadius="8"><TextBlock Text="{x:Bind Refine}" Style="{StaticResource CaptionTextBlockStyle}" /></Border>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ArtifactCardTemplate" x:DataType="vm:ArtifactViewModel">
+            <Grid Style="{StaticResource BackpackInventoryCardStyle}" RowSpacing="9" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                <Grid ColumnSpacing="11">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <Grid Width="54" Height="54" CornerRadius="9">
+                        <Image Source="{x:Bind QualitySource}" Stretch="Fill" />
+                        <Image Source="ms-appx:///Assets/Backpack/Quality/UI_ImgSign_ItemIcon.png" Stretch="Fill" />
+                        <local:DeferredImage Width="48" Height="48" SourceUri="{x:Bind IconUri}" DecodePixelWidth="56" />
+                    </Grid>
+                    <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Bind Source.SetName}" Style="{StaticResource BackpackValueStyle}" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Text="{x:Bind Source.Name}" Style="{StaticResource BackpackCaptionStyle}" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                    <Border Grid.Column="2" Style="{StaticResource BackpackCountBadgeStyle}" Visibility="{x:Bind HasInstanceVisibility}"><TextBlock Text="{x:Bind Level}" Style="{StaticResource BackpackValueStyle}" /></Border>
+                </Grid>
+                <Grid Grid.Row="1" ColumnSpacing="8">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <TextBlock Text="{x:Bind SlotRankEquipped}" Style="{StaticResource BackpackCaptionStyle}" TextTrimming="CharacterEllipsis" MaxLines="1" ToolTipService.ToolTip="{x:Bind SlotRankEquipped}" />
+                    <TextBlock Grid.Column="1" Text="{x:Bind MainStatValueDisplay}" Style="{StaticResource BackpackValueStyle}" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
+        <Storyboard x:Name="EntranceStoryboard">
+            <DoubleAnimation Storyboard.TargetName="RootLayoutGrid" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.55"><DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut" /></DoubleAnimation.EasingFunction></DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="RootLayoutTranslate" Storyboard.TargetProperty="Y" From="18" To="0" Duration="0:0:0.55"><DoubleAnimation.EasingFunction><CubicEase EasingMode="EaseOut" /></DoubleAnimation.EasingFunction></DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid x:Name="RootLayoutGrid" Opacity="0">
+        <Grid.RenderTransform><TranslateTransform x:Name="RootLayoutTranslate" Y="18" /></Grid.RenderTransform>
+        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="36,24,36,0" MaxWidth="1060" HorizontalAlignment="Center" Spacing="16">
+            <StackPanel Spacing="4">
+                <TextBlock Text="{x:Bind ViewModel.PageTitle}" Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="{helpers:Loc Key=Backpack_PageSubtitle}" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.65" />
+            </StackPanel>
+
+            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="16" Translation="0,0,32">
+                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Padding="0,2">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsOverview, Mode=OneWay}" Click="OnTabClick" Tag="0"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE80F;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabOverview}" /></StackPanel></ToggleButton>
+                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsWeapons, Mode=OneWay}" Click="OnTabClick" Tag="1"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE7AD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabWeapon.Header}" /></StackPanel></ToggleButton>
+                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsArtifacts, Mode=OneWay}" Click="OnTabClick" Tag="2"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xECA5;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabArtifact.Header}" /></StackPanel></ToggleButton>
+                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsMaterials, Mode=OneWay}" Click="OnTabClick" Tag="3"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE8FD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabMaterial.Header}" /></StackPanel></ToggleButton>
+                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsFood, Mode=OneWay}" Click="OnTabClick" Tag="4"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE8B7;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabFood.Header}" /></StackPanel></ToggleButton>
+                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsGadgets, Mode=OneWay}" Click="OnTabClick" Tag="5"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE950;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabGadget.Header}" /></StackPanel></ToggleButton>
+                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsAssets, Mode=OneWay}" Click="OnTabClick" Tag="6"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE734;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabAsset.Header}" /></StackPanel></ToggleButton>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <Button Grid.Column="1" Style="{StaticResource BackpackIconButtonStyle}" Click="OnOpenGameSettings" ToolTipService.ToolTip="游戏设置"><FontIcon Glyph="&#xE713;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
+                    <Button Grid.Column="2" Style="{StaticResource BackpackIconButtonStyle}" IsEnabled="{x:Bind ViewModel.IsGameRunning, Mode=OneWay}" Click="OnKillGame" ToolTipService.ToolTip="结束同步进程"><FontIcon Glyph="&#xE733;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
+                    <Button Grid.Column="3" Style="{StaticResource BackpackAccentButtonStyle}" IsEnabled="{x:Bind ViewModel.CanLaunch, Mode=OneWay}" Click="OnSyncBag"><StackPanel Orientation="Horizontal" Spacing="8"><ProgressRing Width="15" Height="15" IsActive="{x:Bind ViewModel.IsLaunching, Mode=OneWay}" Visibility="{x:Bind ViewModel.ProgressRingVisibility, Mode=OneWay}" /><FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" Visibility="{x:Bind ViewModel.SyncIconVisibility, Mode=OneWay}" /><TextBlock Text="{x:Bind ViewModel.SyncBagLabel}" /></StackPanel></Button>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,12,0,0">
+                    <TextBlock Text="{helpers:Loc Key=Backpack_LocalOnlyDisclaimer}" Style="{StaticResource BackpackLabelStyle}" VerticalAlignment="Center" MaxLines="1" />
+                </Grid>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Width="1060" Margin="36,24,36,48" Spacing="24" HorizontalAlignment="Center">
+                    <Border Padding="18" Style="{StaticResource BackpackPathNoticeStyle}" Visibility="{x:Bind ViewModel.GlobalPathRequiredVisibility, Mode=OneWay}">
+                        <Grid ColumnSpacing="14"><Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                            <FontIcon Glyph="&#xEA39;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="23" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Center" />
+                            <StackPanel Grid.Column="1" Spacing="3"><TextBlock Text="{helpers:Loc Key=Backpack_PathNoticeTitle}" Style="{StaticResource BodyStrongTextBlockStyle}" /><TextBlock Text="{helpers:Loc Key=Backpack_PathNoticeBody}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" /></StackPanel>
+                            <Button Grid.Column="2" Content="{helpers:Loc Key=Backpack_OpenSettings}" Style="{StaticResource BackpackToolButtonStyle}" Click="OnOpenGameSettings" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+
+                    <StackPanel Spacing="24" Visibility="{x:Bind ViewModel.OverviewVisibility, Mode=OneWay}">
+                        <StackPanel.Transitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="24" /></TransitionCollection></StackPanel.Transitions>
+                        <StackPanel Spacing="10">
+                            <TextBlock Text="{helpers:Loc Key=Backpack_UsageTitle}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="22" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <StackPanel Spacing="10">
+                                    <TextBlock Text="{helpers:Loc Key=Backpack_UsageStep1}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="18" />
+                                    <TextBlock Text="{helpers:Loc Key=Backpack_UsageStep2}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="18" />
+                                    <TextBlock Text="{helpers:Loc Key=Backpack_UsageStep3}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="18" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Text="{helpers:Loc Key=Backpack_SectionOverviewKpi}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="18" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <ItemsRepeater ItemsSource="{x:Bind ViewModel.OverviewKpis, Mode=OneWay}" ItemTemplate="{StaticResource KpiTileTemplate}">
+                                    <ItemsRepeater.Layout><UniformGridLayout MinItemWidth="186" MinColumnSpacing="12" MinRowSpacing="12" ItemsStretch="Fill" /></ItemsRepeater.Layout>
+                                </ItemsRepeater>
+                            </Grid>
+                        </StackPanel>
+
+                        <Grid ColumnSpacing="16">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                            <StackPanel Spacing="10">
+                                <TextBlock Text="{helpers:Loc Key=Backpack_SectionInsights}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                                <Grid Style="{StaticResource BackpackSectionCardStyle}" Translation="0,0,32"><Grid.Shadow><ThemeShadow /></Grid.Shadow><ItemsControl ItemsSource="{x:Bind ViewModel.OverviewInsights, Mode=OneWay}" ItemTemplate="{StaticResource InsightTemplate}" /></Grid>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Spacing="10">
+                                <TextBlock Text="{helpers:Loc Key=Backpack_SectionCultivation}" Style="{StaticResource BackpackSectionHeaderStyle}" />
+                                <Grid Style="{StaticResource BackpackSectionCardStyle}" Translation="0,0,32"><Grid.Shadow><ThemeShadow /></Grid.Shadow><ItemsControl ItemsSource="{x:Bind ViewModel.CultivationPlan, Mode=OneWay}" ItemTemplate="{StaticResource CultivationPlanTemplate}" /></Grid>
+                            </StackPanel>
+                        </Grid>
+
+                        <StackPanel>
+                            <Grid ColumnSpacing="12">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                <TextBlock Text="{helpers:Loc Key=Backpack_CookHeader}" Style="{StaticResource BackpackSectionHeaderStyle}" TextTrimming="CharacterEllipsis" MaxLines="1" />
+                                <TextBlock Grid.Column="1" Text="{helpers:Loc Key=Backpack_CookSubheader}" Style="{StaticResource BackpackCaptionStyle}" VerticalAlignment="Center" />
+                            </Grid>
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Translation="0,0,32"><Grid.Shadow><ThemeShadow /></Grid.Shadow><ItemsControl ItemsSource="{x:Bind ViewModel.CookingItems, Mode=OneWay}" ItemTemplate="{StaticResource CookingTemplate}" /></Grid>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Spacing="18" Visibility="{x:Bind ViewModel.BrowseVisibility, Mode=OneWay}">
+                        <StackPanel.Transitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="24" /></TransitionCollection></StackPanel.Transitions>
+                        <Border Padding="18" Style="{StaticResource BackpackControlCardStyle}" Translation="0,0,32">
+                            <Border.Shadow><ThemeShadow /></Border.Shadow>
+                            <StackPanel Spacing="14">
+                                <Grid ColumnSpacing="12">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                    <StackPanel Spacing="2"><TextBlock Text="{helpers:Loc Key=Backpack_BrowseTitle}" Style="{StaticResource BodyStrongTextBlockStyle}" /><TextBlock Text="{helpers:Loc Key=Backpack_BrowseCaption}" Style="{StaticResource BackpackCaptionStyle}" MaxLines="2" TextWrapping="Wrap" /></StackPanel>
+                                    <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.ResultSummary, Mode=OneWay}" VerticalAlignment="Center" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                </Grid>
+                                <Grid ColumnSpacing="10"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><AutoSuggestBox x:Name="SearchBox" QueryIcon="Find" PlaceholderText="{helpers:Loc Key=Backpack_BrowseSearchPlaceholder}" Height="38" TextChanged="OnSearchTextChanged" /><Button Grid.Column="1" Style="{StaticResource BackpackToolButtonStyle}" Click="OnResetBrowse"><StackPanel Orientation="Horizontal" Spacing="7"><FontIcon Glyph="&#xE72C;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /><TextBlock Text="{helpers:Loc Key=Backpack_BrowseReset}" /></StackPanel></Button></Grid>
+                                <Rectangle Height="1" Fill="{ThemeResource BackpackBorderBrush}" />
+                                <StackPanel Spacing="7" Visibility="{x:Bind ViewModel.SubcategoryVisibility, Mode=OneWay}"><TextBlock Text="{helpers:Loc Key=Backpack_BrowseSubcategory}" Style="{StaticResource BackpackCaptionStyle}" /><ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Padding="0,2"><ItemsControl ItemsSource="{x:Bind ViewModel.SubcategoryOptions, Mode=OneWay}"><ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" Spacing="7" /></ItemsPanelTemplate></ItemsControl.ItemsPanel><ItemsControl.ItemTemplate><DataTemplate x:DataType="vm:BackpackBrowseChip"><ToggleButton Style="{StaticResource BackpackFilterChipStyle}" IsChecked="{x:Bind IsSelected, Mode=OneWay}" Tag="{x:Bind}" Click="OnSubcategoryChipClick"><TextBlock Text="{x:Bind Label}" /></ToggleButton></DataTemplate></ItemsControl.ItemTemplate></ItemsControl></ScrollViewer></StackPanel>
+                                <Grid ColumnSpacing="18"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                                    <StackPanel Spacing="7"><TextBlock Text="{helpers:Loc Key=Backpack_BrowseFilter}" Style="{StaticResource BackpackCaptionStyle}" /><ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Padding="0,2"><ItemsControl ItemsSource="{x:Bind ViewModel.FilterOptions, Mode=OneWay}"><ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" Spacing="7" /></ItemsPanelTemplate></ItemsControl.ItemsPanel><ItemsControl.ItemTemplate><DataTemplate x:DataType="vm:BackpackBrowseChip"><ToggleButton Style="{StaticResource BackpackFilterChipStyle}" IsChecked="{x:Bind IsSelected, Mode=OneWay}" Tag="{x:Bind}" Click="OnFilterChipClick"><TextBlock Text="{x:Bind Label}" /></ToggleButton></DataTemplate></ItemsControl.ItemTemplate></ItemsControl></ScrollViewer></StackPanel>
+                                    <StackPanel Grid.Column="1" Spacing="7"><TextBlock Text="{helpers:Loc Key=Backpack_BrowseSort}" Style="{StaticResource BackpackCaptionStyle}" /><ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Padding="0,2"><ItemsControl ItemsSource="{x:Bind ViewModel.SortOptions, Mode=OneWay}"><ItemsControl.ItemsPanel><ItemsPanelTemplate><StackPanel Orientation="Horizontal" Spacing="7" /></ItemsPanelTemplate></ItemsControl.ItemsPanel><ItemsControl.ItemTemplate><DataTemplate x:DataType="vm:BackpackBrowseChip"><ToggleButton Style="{StaticResource BackpackFilterChipStyle}" IsChecked="{x:Bind IsSelected, Mode=OneWay}" Tag="{x:Bind}" Click="OnSortChipClick"><TextBlock Text="{x:Bind Label}" /></ToggleButton></DataTemplate></ItemsControl.ItemTemplate></ItemsControl></ScrollViewer></StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <StackPanel Spacing="10" Visibility="{x:Bind ViewModel.WeaponsVisibility, Mode=OneWay}">
+                            <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" Spacing="9"><FontIcon Glyph="&#xE7AD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="18" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" /><TextBlock Text="{helpers:Loc Key=Backpack_TabWeapon.Header}" Style="{StaticResource BackpackSectionHeaderStyle}" /></StackPanel><TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DisplayWeapons.Count, Mode=OneWay}" VerticalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><ContentControl Grid.Column="2" Content="{x:Bind ViewModel, Mode=OneWay}" ContentTemplate="{StaticResource BackpackPagerTemplate}" /></Grid>
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="14" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <controls:GridView ItemsSource="{x:Bind ViewModel.DisplayWeapons, Mode=OneWay}"
+                                                   ItemTemplate="{StaticResource WeaponCardTemplate}"
+                                                   ItemContainerStyle="{StaticResource BackpackGridItemStyle}"
+                                                   SelectionMode="None" IsItemClickEnabled="True"
+                                                   ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
+                                                   ScrollViewer.VerticalScrollMode="Disabled"
+                                                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="4" ItemWidth="280" ItemHeight="170" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
+                                </controls:GridView>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Spacing="10" Visibility="{x:Bind ViewModel.ArtifactsVisibility, Mode=OneWay}">
+                            <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" Spacing="9"><FontIcon Glyph="&#xECA5;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="18" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" /><TextBlock Text="{helpers:Loc Key=Backpack_TabArtifact.Header}" Style="{StaticResource BackpackSectionHeaderStyle}" /></StackPanel><TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DisplayArtifacts.Count, Mode=OneWay}" VerticalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><ContentControl Grid.Column="2" Content="{x:Bind ViewModel, Mode=OneWay}" ContentTemplate="{StaticResource BackpackPagerTemplate}" /></Grid>
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="14" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <controls:GridView ItemsSource="{x:Bind ViewModel.DisplayArtifacts, Mode=OneWay}"
+                                                   ItemTemplate="{StaticResource ArtifactCardTemplate}"
+                                                   ItemContainerStyle="{StaticResource BackpackGridItemStyle}"
+                                                   SelectionMode="None" IsItemClickEnabled="True"
+                                                   ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
+                                                   ScrollViewer.VerticalScrollMode="Disabled"
+                                                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="4" ItemWidth="280" ItemHeight="170" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
+                                </controls:GridView>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Spacing="10" Visibility="{x:Bind ViewModel.MaterialsVisibility, Mode=OneWay}">
+                            <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" Spacing="9"><FontIcon Glyph="&#xE8FD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="18" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" /><TextBlock Text="{helpers:Loc Key=Backpack_TabMaterial.Header}" Style="{StaticResource BackpackSectionHeaderStyle}" /></StackPanel><TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DisplayMaterialGroups.Count, Mode=OneWay}" VerticalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><ContentControl Grid.Column="2" Content="{x:Bind ViewModel, Mode=OneWay}" ContentTemplate="{StaticResource BackpackPagerTemplate}" /></Grid>
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="14" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <ItemsRepeater ItemsSource="{x:Bind ViewModel.DisplayMaterialGroups, Mode=OneWay}">
+                                    <ItemsRepeater.Layout><StackLayout Orientation="Vertical" Spacing="22" /></ItemsRepeater.Layout>
+                                    <ItemsRepeater.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Spacing="10">
+                                                <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Header}" Style="{StaticResource BackpackGroupHeaderStyle}" TextTrimming="CharacterEllipsis" MaxLines="1" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Items.Count}" Style="{StaticResource BackpackCaptionStyle}" VerticalAlignment="Center" />
+                                                </Grid>
+                                                <controls:GridView ItemsSource="{Binding Items}"
+                                                                   ItemTemplate="{StaticResource SimpleItemCardTemplate}"
+                                                                   ItemContainerStyle="{StaticResource BackpackGridItemStyle}"
+                                                                   SelectionMode="None" IsItemClickEnabled="True"
+                                                                   ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
+                                                                   ScrollViewer.VerticalScrollMode="Disabled"
+                                                                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="6" ItemWidth="240" ItemHeight="100" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
+                                                </controls:GridView>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsRepeater.ItemTemplate>
+                                </ItemsRepeater>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Spacing="10" Visibility="{x:Bind ViewModel.FoodVisibility, Mode=OneWay}">
+                            <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" Spacing="9"><FontIcon Glyph="&#xE8B7;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="18" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" /><TextBlock Text="{helpers:Loc Key=Backpack_TabFood.Header}" Style="{StaticResource BackpackSectionHeaderStyle}" /></StackPanel><TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DisplayFoodGroups.Count, Mode=OneWay}" VerticalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><ContentControl Grid.Column="2" Content="{x:Bind ViewModel, Mode=OneWay}" ContentTemplate="{StaticResource BackpackPagerTemplate}" /></Grid>
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="14" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <ItemsRepeater ItemsSource="{x:Bind ViewModel.DisplayFoodGroups, Mode=OneWay}">
+                                    <ItemsRepeater.Layout><StackLayout Orientation="Vertical" Spacing="22" /></ItemsRepeater.Layout>
+                                    <ItemsRepeater.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Spacing="10">
+                                                <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Header}" Style="{StaticResource BackpackGroupHeaderStyle}" TextTrimming="CharacterEllipsis" MaxLines="1" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Items.Count}" Style="{StaticResource BackpackCaptionStyle}" VerticalAlignment="Center" />
+                                                </Grid>
+                                                <controls:GridView ItemsSource="{Binding Items}"
+                                                                   ItemTemplate="{StaticResource FoodCardTemplate}"
+                                                                   ItemContainerStyle="{StaticResource BackpackGridItemStyle}"
+                                                                   SelectionMode="None" IsItemClickEnabled="True"
+                                                                   ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
+                                                                   ScrollViewer.VerticalScrollMode="Disabled"
+                                                                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="5" ItemWidth="300" ItemHeight="160" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
+                                                </controls:GridView>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsRepeater.ItemTemplate>
+                                </ItemsRepeater>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Spacing="10" Visibility="{x:Bind ViewModel.GadgetsVisibility, Mode=OneWay}">
+                            <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" Spacing="9"><FontIcon Glyph="&#xE950;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="18" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" /><TextBlock Text="{helpers:Loc Key=Backpack_TabGadget.Header}" Style="{StaticResource BackpackSectionHeaderStyle}" /></StackPanel><TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DisplayGadgetGroups.Count, Mode=OneWay}" VerticalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><ContentControl Grid.Column="2" Content="{x:Bind ViewModel, Mode=OneWay}" ContentTemplate="{StaticResource BackpackPagerTemplate}" /></Grid>
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="14" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <ItemsRepeater ItemsSource="{x:Bind ViewModel.DisplayGadgetGroups, Mode=OneWay}">
+                                    <ItemsRepeater.Layout><StackLayout Orientation="Vertical" Spacing="22" /></ItemsRepeater.Layout>
+                                    <ItemsRepeater.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Spacing="10">
+                                                <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Header}" Style="{StaticResource BackpackGroupHeaderStyle}" TextTrimming="CharacterEllipsis" MaxLines="1" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Items.Count}" Style="{StaticResource BackpackCaptionStyle}" VerticalAlignment="Center" />
+                                                </Grid>
+                                                <controls:GridView ItemsSource="{Binding Items}"
+                                                                   ItemTemplate="{StaticResource SimpleItemCardTemplate}"
+                                                                   ItemContainerStyle="{StaticResource BackpackGridItemStyle}"
+                                                                   SelectionMode="None" IsItemClickEnabled="True"
+                                                                   ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
+                                                                   ScrollViewer.VerticalScrollMode="Disabled"
+                                                                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="6" ItemWidth="240" ItemHeight="100" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
+                                                </controls:GridView>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsRepeater.ItemTemplate>
+                                </ItemsRepeater>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Spacing="10" Visibility="{x:Bind ViewModel.AssetsVisibility, Mode=OneWay}">
+                            <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions><StackPanel Orientation="Horizontal" Spacing="9"><FontIcon Glyph="&#xE734;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="18" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" /><TextBlock Text="{helpers:Loc Key=Backpack_TabAsset.Header}" Style="{StaticResource BackpackSectionHeaderStyle}" /></StackPanel><TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DisplayAssetGroups.Count, Mode=OneWay}" VerticalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><ContentControl Grid.Column="2" Content="{x:Bind ViewModel, Mode=OneWay}" ContentTemplate="{StaticResource BackpackPagerTemplate}" /></Grid>
+                            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="14" Translation="0,0,32">
+                                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <ItemsRepeater ItemsSource="{x:Bind ViewModel.DisplayAssetGroups, Mode=OneWay}">
+                                    <ItemsRepeater.Layout><StackLayout Orientation="Vertical" Spacing="22" /></ItemsRepeater.Layout>
+                                    <ItemsRepeater.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Spacing="10">
+                                                <Grid ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Header}" Style="{StaticResource BackpackGroupHeaderStyle}" TextTrimming="CharacterEllipsis" MaxLines="1" />
+                                                <TextBlock Grid.Column="1" Text="{Binding Items.Count}" Style="{StaticResource BackpackCaptionStyle}" VerticalAlignment="Center" />
+                                                </Grid>
+                                                <controls:GridView ItemsSource="{Binding Items}"
+                                                                   ItemTemplate="{StaticResource SimpleItemCardTemplate}"
+                                                                   ItemContainerStyle="{StaticResource BackpackGridItemStyle}"
+                                                                   SelectionMode="None" IsItemClickEnabled="True"
+                                                                   ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
+                                                                   ScrollViewer.VerticalScrollMode="Disabled"
+                                                                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="6" ItemWidth="240" ItemHeight="100" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
+                                                </controls:GridView>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsRepeater.ItemTemplate>
+                                </ItemsRepeater>
+                            </Grid>
+                        </StackPanel>
+
+                        <StackPanel Spacing="10" HorizontalAlignment="Center" Margin="0,44,0,0" Visibility="{x:Bind ViewModel.HasNoResultsVisibility, Mode=OneWay}"><Border Width="72" Height="72" Style="{StaticResource BackpackEmptyIconStyle}"><FontIcon Glyph="&#xE721;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border><TextBlock Text="{helpers:Loc Key=Backpack_EmptyTitle}" HorizontalAlignment="Center" Style="{StaticResource BodyStrongTextBlockStyle}" /><TextBlock Text="{helpers:Loc Key=Backpack_EmptyBody}" HorizontalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><Button Content="{helpers:Loc Key=Backpack_EmptyClearBtn}" HorizontalAlignment="Center" Style="{StaticResource BackpackToolButtonStyle}" Click="OnResetBrowse" /></StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

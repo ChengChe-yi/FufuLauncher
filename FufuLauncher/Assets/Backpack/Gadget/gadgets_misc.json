@@ -1,0 +1,835 @@
+﻿[
+  {
+    "id": 120444,
+    "name": "「歌剧院交换魔术」案件记录册",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_120444"
+  },
+  {
+    "id": 120445,
+    "name": "「水与失踪者」案件记录册",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_120445"
+  },
+  {
+    "id": 120591,
+    "name": "托萝莎的探案笔记",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_120591"
+  },
+  {
+    "id": 120604,
+    "name": "旅行者的专题采访手册",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_120604"
+  },
+  {
+    "id": 120614,
+    "name": "梅洛彼得堡线索记录册",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_120614"
+  },
+  {
+    "id": 121231,
+    "name": "悠悠纪念册",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121231"
+  },
+  {
+    "id": 121462,
+    "name": "灵气散尽的某物",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121462"
+  },
+  {
+    "id": 200005,
+    "name": "节庆霄灯",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200005"
+  },
+  {
+    "id": 200006,
+    "name": "节礼霄灯",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200006"
+  },
+  {
+    "id": 200007,
+    "name": "霄灯飞阵谱",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200007"
+  },
+  {
+    "id": 220003,
+    "name": "岩之寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220003"
+  },
+  {
+    "id": 220004,
+    "name": "捕风瓶",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220004"
+  },
+  {
+    "id": 220008,
+    "name": "叁零式·便携营养袋",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220008"
+  },
+  {
+    "id": 220009,
+    "name": "风之寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220009"
+  },
+  {
+    "id": 220013,
+    "name": "「寻宝仙灵」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220013"
+  },
+  {
+    "id": 220014,
+    "name": "迷你仙灵·露草",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220014"
+  },
+  {
+    "id": 220015,
+    "name": "迷你仙灵·薄红",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220015"
+  },
+  {
+    "id": 220016,
+    "name": "迷你仙灵·郁金",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220016"
+  },
+  {
+    "id": 220018,
+    "name": "留影机",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220018"
+  },
+  {
+    "id": 220019,
+    "name": "奇特的「留影机」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220019"
+  },
+  {
+    "id": 220020,
+    "name": "特制的「留影机」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220020"
+  },
+  {
+    "id": 220021,
+    "name": "参量质变仪",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220021"
+  },
+  {
+    "id": 220022,
+    "name": "好奇的嫣朵拉",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220022"
+  },
+  {
+    "id": 220023,
+    "name": "嫣朵拉",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220023"
+  },
+  {
+    "id": 220024,
+    "name": "风花节纪念气球",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220024"
+  },
+  {
+    "id": 220025,
+    "name": "风物之诗琴",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220025"
+  },
+  {
+    "id": 220026,
+    "name": "尘歌壶",
+    "type": "gadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_220026"
+  },
+  {
+    "id": 220027,
+    "name": "风佑之羽球",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220027"
+  },
+  {
+    "id": 220028,
+    "name": "浪船修理工具箱",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220028"
+  },
+  {
+    "id": 220033,
+    "name": "化种匣",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220033"
+  },
+  {
+    "id": 220034,
+    "name": "雷之寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220034"
+  },
+  {
+    "id": 220035,
+    "name": "红羽团扇",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220035"
+  },
+  {
+    "id": 220036,
+    "name": "「留念镜」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220036"
+  },
+  {
+    "id": 220037,
+    "name": "「寻宝仙灵」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220013"
+  },
+  {
+    "id": 220038,
+    "name": "迷你仙灵·紫苑",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220038"
+  },
+  {
+    "id": 220039,
+    "name": "奇特的羽毛",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_100950"
+  },
+  {
+    "id": 220040,
+    "name": "奇特的羽毛",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_100950"
+  },
+  {
+    "id": 220042,
+    "name": "阿叶夏混沌勘探器",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220042"
+  },
+  {
+    "id": 220044,
+    "name": "镜花之琴",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220044"
+  },
+  {
+    "id": 220045,
+    "name": "「式小将」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220045"
+  },
+  {
+    "id": 220046,
+    "name": "「四方之网」",
+    "type": "gadget",
+    "rank": 3,
+    "icon": "UI_ItemIcon_220046"
+  },
+  {
+    "id": 220047,
+    "name": "「烟花筒」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220047"
+  },
+  {
+    "id": 220048,
+    "name": "流明石触媒",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220048_01"
+  },
+  {
+    "id": 220049,
+    "name": "睦疏之匣",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220049"
+  },
+  {
+    "id": 220051,
+    "name": "荒泷·盛世豪鼓",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220051"
+  },
+  {
+    "id": 220052,
+    "name": "素材收集器",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220052"
+  },
+  {
+    "id": 220053,
+    "name": "「苦舍桓」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220053"
+  },
+  {
+    "id": 220055,
+    "name": "「森林书」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220055"
+  },
+  {
+    "id": 220056,
+    "name": "秘典之盒",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220056"
+  },
+  {
+    "id": 220058,
+    "name": "草之寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220058"
+  },
+  {
+    "id": 220059,
+    "name": "「王树瑞佑」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220059"
+  },
+  {
+    "id": 220060,
+    "name": "试验型超燃灯",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220060"
+  },
+  {
+    "id": 220061,
+    "name": "「寻宝仙灵」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220013"
+  },
+  {
+    "id": 220062,
+    "name": "迷你仙灵·苔绿",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220062"
+  },
+  {
+    "id": 220063,
+    "name": "精致的「留影机」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220063"
+  },
+  {
+    "id": 220064,
+    "name": "芭努的智慧",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220042"
+  },
+  {
+    "id": 220065,
+    "name": "鱼线稳定器",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220065"
+  },
+  {
+    "id": 220066,
+    "name": "老旧的诗琴",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220066"
+  },
+  {
+    "id": 220067,
+    "name": "蹦蹦庆典拉炮",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220067"
+  },
+  {
+    "id": 220069,
+    "name": "赤沙石板",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220069a"
+  },
+  {
+    "id": 220070,
+    "name": "「清冽水沫留影机」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220070"
+  },
+  {
+    "id": 220071,
+    "name": "「苦舍桓」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220071"
+  },
+  {
+    "id": 220072,
+    "name": "魔瓶镇灵·利露帕尔",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220072_01"
+  },
+  {
+    "id": 220073,
+    "name": "「意智宝珠」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220073"
+  },
+  {
+    "id": 220074,
+    "name": "缥锦机关·留云",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220074"
+  },
+  {
+    "id": 220075,
+    "name": "野踪罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220075"
+  },
+  {
+    "id": 220076,
+    "name": "斯露莎",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220076"
+  },
+  {
+    "id": 220077,
+    "name": "「留影机·风花」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220077"
+  },
+  {
+    "id": 220078,
+    "name": "绮筵之鼓",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220051"
+  },
+  {
+    "id": 220079,
+    "name": "斯露莎",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220079"
+  },
+  {
+    "id": 220080,
+    "name": "寻物锚针",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220080"
+  },
+  {
+    "id": 220082,
+    "name": "流悦晶石",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220082"
+  },
+  {
+    "id": 220083,
+    "name": "酣悦晶石",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220083"
+  },
+  {
+    "id": 220084,
+    "name": "柔柔小章",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220084"
+  },
+  {
+    "id": 220085,
+    "name": "铭随流镜",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220085"
+  },
+  {
+    "id": 220087,
+    "name": "水之寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220087"
+  },
+  {
+    "id": 220088,
+    "name": "晶蝶诱捕装置",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220088"
+  },
+  {
+    "id": 220089,
+    "name": "借动式鼓风装置",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220089"
+  },
+  {
+    "id": 220090,
+    "name": "布列松的特别「留影机」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220090"
+  },
+  {
+    "id": 220091,
+    "name": "便携式空气动力胶质泡生发器",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220091"
+  },
+  {
+    "id": 220093,
+    "name": "「特殊分析变焦镜头」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220093"
+  },
+  {
+    "id": 220094,
+    "name": "图形样本留影机",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220094"
+  },
+  {
+    "id": 220095,
+    "name": "「寻宝仙灵」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220095"
+  },
+  {
+    "id": 220096,
+    "name": "迷你仙灵·璨光",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220096"
+  },
+  {
+    "id": 220097,
+    "name": "晚风圆号",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220097"
+  },
+  {
+    "id": 220098,
+    "name": "「命运示数器」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220098"
+  },
+  {
+    "id": 220099,
+    "name": "轻愉信笺",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220099"
+  },
+  {
+    "id": 220100,
+    "name": "欢跃信笺",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220100"
+  },
+  {
+    "id": 220101,
+    "name": "「叶莲娜」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220101"
+  },
+  {
+    "id": 220102,
+    "name": "朝雾的枫丹专用留影机",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220102"
+  },
+  {
+    "id": 220104,
+    "name": "火之寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220104"
+  },
+  {
+    "id": 220105,
+    "name": "初诞灵焰",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220105"
+  },
+  {
+    "id": 220106,
+    "name": "砰砰爆发箱",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220106"
+  },
+  {
+    "id": 220107,
+    "name": "「涂鸦留影机」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220107"
+  },
+  {
+    "id": 220108,
+    "name": "派蒙的留影机",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220108"
+  },
+  {
+    "id": 220109,
+    "name": "圣言自明机",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220109"
+  },
+  {
+    "id": 220110,
+    "name": "千音雅集",
+    "type": "gadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_220110"
+  },
+  {
+    "id": 220111,
+    "name": "聚聚鼓",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220111"
+  },
+  {
+    "id": 220112,
+    "name": "悠可琴",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220112"
+  },
+  {
+    "id": 220113,
+    "name": "铭随流镜",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220085"
+  },
+  {
+    "id": 220114,
+    "name": "综像勘录仪",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220114"
+  },
+  {
+    "id": 220115,
+    "name": "新式终端浮叶型",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220115"
+  },
+  {
+    "id": 220116,
+    "name": "「余音」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220116"
+  },
+  {
+    "id": 220117,
+    "name": "跃律琴",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220117"
+  },
+  {
+    "id": 220118,
+    "name": "派蒙的留影机",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220108"
+  },
+  {
+    "id": 220120,
+    "name": "尤约拉猫",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220120"
+  },
+  {
+    "id": 220121,
+    "name": "旋翼浮空憩榻",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220121"
+  },
+  {
+    "id": 220122,
+    "name": "「回忆捕手留影机」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220090"
+  },
+  {
+    "id": 220123,
+    "name": "月之寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220123"
+  },
+  {
+    "id": 220124,
+    "name": "游逸旅账",
+    "type": "gadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_220124"
+  },
+  {
+    "id": 220125,
+    "name": "月谕之匣",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220125"
+  },
+  {
+    "id": 220126,
+    "name": "小魔女辞典",
+    "type": "gadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_220126"
+  },
+  {
+    "id": 220127,
+    "name": "「青玄乘阳华盖」",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220127"
+  },
+  {
+    "id": 220128,
+    "name": "寻迹留影机",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220108"
+  },
+  {
+    "id": 220129,
+    "name": "谐律键琴",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220129"
+  },
+  {
+    "id": 220130,
+    "name": "切片辖域寻宝罗盘",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220130"
+  },
+  {
+    "id": 220131,
+    "name": "莉奈娅的博物图鉴",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220131"
+  },
+  {
+    "id": 220132,
+    "name": "桑多涅的便携式茶桌",
+    "type": "gadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_220132"
+  },
+  {
+    "id": 220134,
+    "name": "魔女的谕示匣",
+    "type": "gadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_220134"
+  }
+]

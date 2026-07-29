@@ -1,0 +1,541 @@
+[
+    {
+        "id": 104101,
+        "name": "璀璨原钻碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104101"
+    },
+    {
+        "id": 104102,
+        "name": "璀璨原钻断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104102"
+    },
+    {
+        "id": 104103,
+        "name": "璀璨原钻块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104103"
+    },
+    {
+        "id": 104104,
+        "name": "璀璨原钻",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104104"
+    },
+    {
+        "id": 104111,
+        "name": "燃愿玛瑙碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104111"
+    },
+    {
+        "id": 104112,
+        "name": "燃愿玛瑙断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104112"
+    },
+    {
+        "id": 104113,
+        "name": "燃愿玛瑙块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104113"
+    },
+    {
+        "id": 104114,
+        "name": "燃愿玛瑙",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104114"
+    },
+    {
+        "id": 104121,
+        "name": "涤净青金碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104121"
+    },
+    {
+        "id": 104122,
+        "name": "涤净青金断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104122"
+    },
+    {
+        "id": 104123,
+        "name": "涤净青金块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104123"
+    },
+    {
+        "id": 104124,
+        "name": "涤净青金",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104124"
+    },
+    {
+        "id": 104131,
+        "name": "生长碧翡碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104131"
+    },
+    {
+        "id": 104132,
+        "name": "生长碧翡断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104132"
+    },
+    {
+        "id": 104133,
+        "name": "生长碧翡块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104133"
+    },
+    {
+        "id": 104134,
+        "name": "生长碧翡",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104134"
+    },
+    {
+        "id": 104141,
+        "name": "最胜紫晶碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104141"
+    },
+    {
+        "id": 104142,
+        "name": "最胜紫晶断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104142"
+    },
+    {
+        "id": 104143,
+        "name": "最胜紫晶块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104143"
+    },
+    {
+        "id": 104144,
+        "name": "最胜紫晶",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104144"
+    },
+    {
+        "id": 104151,
+        "name": "自在松石碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104151"
+    },
+    {
+        "id": 104152,
+        "name": "自在松石断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104152"
+    },
+    {
+        "id": 104153,
+        "name": "自在松石块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104153"
+    },
+    {
+        "id": 104154,
+        "name": "自在松石",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104154"
+    },
+    {
+        "id": 104161,
+        "name": "哀叙冰玉碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104161"
+    },
+    {
+        "id": 104162,
+        "name": "哀叙冰玉断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104162"
+    },
+    {
+        "id": 104163,
+        "name": "哀叙冰玉块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104163"
+    },
+    {
+        "id": 104164,
+        "name": "哀叙冰玉",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104164"
+    },
+    {
+        "id": 104171,
+        "name": "坚牢黄玉碎屑",
+        "type": "characterAscensionMaterial",
+        "rank": 2,
+        "icon": "UI_ItemIcon_104171"
+    },
+    {
+        "id": 104172,
+        "name": "坚牢黄玉断片",
+        "type": "characterAscensionMaterial",
+        "rank": 3,
+        "icon": "UI_ItemIcon_104172"
+    },
+    {
+        "id": 104173,
+        "name": "坚牢黄玉块",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_104173"
+    },
+    {
+        "id": 104174,
+        "name": "坚牢黄玉",
+        "type": "characterAscensionMaterial",
+        "rank": 5,
+        "icon": "UI_ItemIcon_104174"
+    },
+    {
+        "id": 113001,
+        "name": "飓风之种",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113001"
+    },
+    {
+        "id": 113002,
+        "name": "雷光棱镜",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113002"
+    },
+    {
+        "id": 113009,
+        "name": "玄岩之塔",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113009"
+    },
+    {
+        "id": 113010,
+        "name": "极寒之核",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113010"
+    },
+    {
+        "id": 113011,
+        "name": "常燃火种",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113011"
+    },
+    {
+        "id": 113012,
+        "name": "净水之心",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113012"
+    },
+    {
+        "id": 113016,
+        "name": "未熟之玉",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113016"
+    },
+    {
+        "id": 113020,
+        "name": "晶凝之华",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113020"
+    },
+    {
+        "id": 113022,
+        "name": "魔偶机心",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113022"
+    },
+    {
+        "id": 113023,
+        "name": "恒常机关之心",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113023"
+    },
+    {
+        "id": 113024,
+        "name": "阴燃之珠",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113024"
+    },
+    {
+        "id": 113028,
+        "name": "排异之露",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113028"
+    },
+    {
+        "id": 113029,
+        "name": "雷霆数珠",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113029"
+    },
+    {
+        "id": 113030,
+        "name": "兽境王器",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113030"
+    },
+    {
+        "id": 113031,
+        "name": "龙嗣伪鳍",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113031"
+    },
+    {
+        "id": 113035,
+        "name": "符纹之齿",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113035"
+    },
+    {
+        "id": 113036,
+        "name": "蕈王钩喙",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113036"
+    },
+    {
+        "id": 113037,
+        "name": "藏雷野实",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113037"
+    },
+    {
+        "id": 113038,
+        "name": "永续机芯",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113038"
+    },
+    {
+        "id": 113039,
+        "name": "导光四面体",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113039"
+    },
+    {
+        "id": 113040,
+        "name": "灭诤草蔓",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113040"
+    },
+    {
+        "id": 113044,
+        "name": "苍砾蕊羽",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113044"
+    },
+    {
+        "id": 113045,
+        "name": "常暗圆环",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113045"
+    },
+    {
+        "id": 113049,
+        "name": "奇械发条备件·歌裴莉娅",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113049"
+    },
+    {
+        "id": 113050,
+        "name": "奇械发条备件·科培琉司",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113050"
+    },
+    {
+        "id": 113051,
+        "name": "帝皇的决断",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113051"
+    },
+    {
+        "id": 113052,
+        "name": "「图比昂装置」",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113052"
+    },
+    {
+        "id": 113053,
+        "name": "原海麟角",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113053"
+    },
+    {
+        "id": 113057,
+        "name": "未能达成超越之水",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113057"
+    },
+    {
+        "id": 113058,
+        "name": "凝云鳞甲",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113058"
+    },
+    {
+        "id": 113059,
+        "name": "金色旋律的断章",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113059"
+    },
+    {
+        "id": 113064,
+        "name": "受祝所缚之印",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113064"
+    },
+    {
+        "id": 113065,
+        "name": "过熟的火榴果",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113065"
+    },
+    {
+        "id": 113066,
+        "name": "秘刻金纹的源核",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113066"
+    },
+    {
+        "id": 113067,
+        "name": "深邃纠缠的凝视",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113067"
+    },
+    {
+        "id": 113071,
+        "name": "谜土的护符",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113071"
+    },
+    {
+        "id": 113072,
+        "name": "龙像的无智核",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113072"
+    },
+    {
+        "id": 113076,
+        "name": "秘源积气喉",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113076"
+    },
+    {
+        "id": 113077,
+        "name": "精密型月矩力冲鸭模具",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113077"
+    },
+    {
+        "id": 113078,
+        "name": "承光的鳞羽",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113078"
+    },
+    {
+        "id": 113079,
+        "name": "漫光的辉角",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113079"
+    },
+    {
+        "id": 113080,
+        "name": "循环式军用月矩核心",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113080"
+    },
+    {
+        "id": 113084,
+        "name": "魇翼枯骸",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113084"
+    },
+    {
+        "id": 113085,
+        "name": "棱光的断尾",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113085"
+    },
+    {
+        "id": 113086,
+        "name": "堕天的落羽",
+        "type": "characterAscensionMaterial",
+        "rank": 4,
+        "icon": "UI_ItemIcon_113086"
+    }
+]

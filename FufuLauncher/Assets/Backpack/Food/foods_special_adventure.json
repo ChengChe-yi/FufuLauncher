@@ -1,0 +1,560 @@
+[
+  {
+    "id": 108468,
+    "name": "关怀备至",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108468",
+    "recipe": "aaru_mixed_rice",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      }
+    ],
+    "character": "坎蒂丝"
+  },
+  {
+    "id": 108113,
+    "name": "真·风神杂烩菜",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108113",
+    "recipe": "barbatos_ratatouille",
+    "ingredients": [
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 4
+      }
+    ],
+    "character": "温迪"
+  },
+  {
+    "id": 108793,
+    "name": "「一梦治愈」",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108793",
+    "recipe": "bathhouse_manjuu",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ],
+    "character": "梦见月瑞希"
+  },
+  {
+    "id": 108678,
+    "name": "「猎获」",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108678",
+    "recipe": "bulle_sauce_duck_breast",
+    "ingredients": [
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      }
+    ],
+    "character": "克洛琳德"
+  },
+  {
+    "id": 108760,
+    "name": "果味奶糖",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108760",
+    "recipe": "chocolate",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 4
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ],
+    "character": "希诺宁"
+  },
+  {
+    "id": 108040,
+    "name": "辣味时蔬烩肉",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108040",
+    "recipe": "cream_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 1
+      }
+    ],
+    "character": "芭芭拉"
+  },
+  {
+    "id": 108612,
+    "name": "独家秘闻・美食专栏",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108612",
+    "recipe": "fish_and_chips",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ],
+    "character": "夏洛蒂"
+  },
+  {
+    "id": 108976,
+    "name": "「茶会多重奏」",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108880",
+    "recipe": "fruity_trio",
+    "ingredients": [
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 2
+      },
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ],
+    "character": "桑多涅"
+  },
+  {
+    "id": 108965,
+    "name": "「树荫下的虹彩」",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108873",
+    "recipe": "lakkaberry_pie",
+    "ingredients": [
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 3
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 110016,
+        "name": "黑麦粉",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ],
+    "character": "莉奈娅"
+  },
+  {
+    "id": 108373,
+    "name": "云遮玉",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108373",
+    "recipe": "lotus_seed_and_bird_egg_soup",
+    "ingredients": [
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ],
+    "character": "云堇"
+  },
+  {
+    "id": 108144,
+    "name": "山珍凉卤面",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108144",
+    "recipe": "noodles_with_mountain_delicacies",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      }
+    ],
+    "character": "重云"
+  },
+  {
+    "id": 108958,
+    "name": "「酣畅」",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108870",
+    "recipe": "northern_smoked_chicken",
+    "ingredients": [
+      {
+        "id": 110003,
+        "name": "熏禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ],
+    "character": "法尔伽"
+  },
+  {
+    "id": 108388,
+    "name": "蛋包饭圆舞曲",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108388",
+    "recipe": "omelette_rice",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 4
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ],
+    "character": "久岐忍"
+  },
+  {
+    "id": 108466,
+    "name": "婆娑一舞",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108466",
+    "recipe": "padisarah_pudding",
+    "ingredients": [
+      {
+        "id": 101214,
+        "name": "帕蒂沙兰",
+        "amount": 2
+      },
+      {
+        "id": 101219,
+        "name": "须弥蔷薇",
+        "amount": 1
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ],
+    "character": "妮露"
+  },
+  {
+    "id": 108788,
+    "name": "玉剪着花",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108788",
+    "recipe": "qingxin_flower_cake",
+    "ingredients": [
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ],
+    "character": "蓝砚"
+  },
+  {
+    "id": 108620,
+    "name": "「选你喜欢的！」",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108620",
+    "recipe": "rainbow_macarons",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100089,
+        "name": "杏仁",
+        "amount": 2
+      },
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 1
+      }
+    ],
+    "character": "娜维娅"
+  },
+  {
+    "id": 108973,
+    "name": "转转特调",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108877",
+    "recipe": "roulette_special",
+    "ingredients": [
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 3
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 101262,
+        "name": "宿影花",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ],
+    "character": "布伦妮"
+  },
+  {
+    "id": 108974,
+    "name": "「镂金的宝箱」",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108878",
+    "recipe": "stuffed_tofu_with_minced_meat",
+    "ingredients": [
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 4
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ],
+    "character": "尼可"
+  },
+  {
+    "id": 108777,
+    "name": "歇止一刻",
+    "type": "冒险类料理",
+    "variant": "special",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108777",
+    "recipe": "surf_turf_and_perch",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      }
+    ],
+    "character": "恰斯卡"
+  }
+]

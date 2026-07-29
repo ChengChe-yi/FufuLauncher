@@ -10,6 +10,7 @@
         <PublishProfile>Properties\PublishProfiles\win-$(Platform).pubxml</PublishProfile>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <LangVersion>preview</LangVersion>
         <UseWinUI>true</UseWinUI>
 
         <EnableMsixTooling>true</EnableMsixTooling>
@@ -132,8 +133,11 @@
         <Content Include="Assets\Flags\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Include="Assets\Backpack\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
-
+    
     <ItemGroup>
         <Compile Remove="Models\GameConfig.cs" />
         <Compile Update="Views\Model\BrowserConfig.cs">

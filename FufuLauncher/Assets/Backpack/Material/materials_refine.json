@@ -1,0 +1,184 @@
+﻿[
+  {
+    "id": 200103,
+    "name": "腐殖龙髓",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200103"
+  },
+  {
+    "id": 200104,
+    "name": "「看得见的风」",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200104"
+  },
+  {
+    "id": 200105,
+    "name": "「童真的断篇」",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200105"
+  },
+  {
+    "id": 200106,
+    "name": "海皇香脂",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200106"
+  },
+  {
+    "id": 200107,
+    "name": "赤穗酒枡",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200107"
+  },
+  {
+    "id": 200108,
+    "name": "「溶媒」",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200108"
+  },
+  {
+    "id": 200109,
+    "name": "明目之油膏",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200109"
+  },
+  {
+    "id": 200110,
+    "name": "霞色宝珠",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200110"
+  },
+  {
+    "id": 200111,
+    "name": "原海鱼油",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200111"
+  },
+  {
+    "id": 200112,
+    "name": "迁风的苍翎",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200112"
+  },
+  {
+    "id": 200113,
+    "name": "若狭的藁末",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200113"
+  },
+  {
+    "id": 200114,
+    "name": "「不凋的绢华」",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200114"
+  },
+  {
+    "id": 200115,
+    "name": "凝恒的脂蜡",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200115"
+  },
+  {
+    "id": 200116,
+    "name": "马腾斯万能护养剂",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200116"
+  },
+  {
+    "id": 200117,
+    "name": "蒲公英书签",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200117"
+  },
+  {
+    "id": 200118,
+    "name": "涌现的圣杯",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200118"
+  },
+  {
+    "id": 200119,
+    "name": "「超级无敌闪亮亮魔晶」",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200119"
+  },
+  {
+    "id": 200120,
+    "name": "「大地之王」",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200120"
+  },
+  {
+    "id": 200121,
+    "name": "衡仪机枢",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200121"
+  },
+  {
+    "id": 200122,
+    "name": "「凝静的海色」",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200122"
+  },
+  {
+    "id": 200123,
+    "name": "纺灵之梭",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200123"
+  },
+  {
+    "id": 200124,
+    "name": "灼幽的磷焰",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200124"
+  },
+  {
+    "id": 200125,
+    "name": "强弓校调工具组",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200125"
+  },
+  {
+    "id": 200126,
+    "name": "漫行者的晶髓",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200126"
+  },
+  {
+    "id": 200127,
+    "name": "金色弦丝",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200127"
+  },
+  {
+    "id": 200128,
+    "name": "练心",
+    "type": "refinementMaterial",
+    "rank": 4,
+    "icon": "UI_ItemIcon_200128"
+  }
+]

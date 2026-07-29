@@ -1,0 +1,9512 @@
+﻿[
+  {
+    "id": 108152,
+    "name": "奇怪的腌笃鲜",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108153",
+    "recipe": "bamboo_shoot_soup",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108153,
+    "name": "腌笃鲜",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108153",
+    "recipe": "bamboo_shoot_soup",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108154,
+    "name": "美味的腌笃鲜",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108153",
+    "recipe": "bamboo_shoot_soup",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 2
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108576,
+    "name": "奇怪的香烤肋排",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108577",
+    "recipe": "barbeque_ribs",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108577,
+    "name": "香烤肋排",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108577",
+    "recipe": "barbeque_ribs",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108578,
+    "name": "美味的香烤肋排",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108577",
+    "recipe": "barbeque_ribs",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108873,
+    "name": "奇怪的浆果煎肉",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108827",
+    "recipe": "berries_and_fried_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 1
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108874,
+    "name": "浆果煎肉",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108827",
+    "recipe": "berries_and_fried_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 1
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108875,
+    "name": "美味的浆果煎肉",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108827",
+    "recipe": "berries_and_fried_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 1
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108348,
+    "name": "奇怪的树莓水馒头",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108349",
+    "recipe": "berry_mizu_manjuu",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108349,
+    "name": "树莓水馒头",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108349",
+    "recipe": "berry_mizu_manjuu",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108350,
+    "name": "美味的树莓水馒头",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108349",
+    "recipe": "berry_mizu_manjuu",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108324,
+    "name": "奇怪的鸟蛋寿司",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108325",
+    "recipe": "bird_egg_sushi",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108325,
+    "name": "鸟蛋寿司",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108325",
+    "recipe": "bird_egg_sushi",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108326,
+    "name": "美味的鸟蛋寿司",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108325",
+    "recipe": "bird_egg_sushi",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108074,
+    "name": "奇怪的水煮黑背鲈",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108075",
+    "recipe": "blackback_perch_stew",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108075,
+    "name": "水煮黑背鲈",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108075",
+    "recipe": "blackback_perch_stew",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108076,
+    "name": "美味的水煮黑背鲈",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108075",
+    "recipe": "blackback_perch_stew",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      },
+      {
+        "id": 100034,
+        "name": "琉璃袋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108670,
+    "name": "奇怪的泡泡舒芙蕾",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108671",
+    "recipe": "bulle_souffle",
+    "ingredients": [
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108671,
+    "name": "泡泡舒芙蕾",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108671",
+    "recipe": "bulle_souffle",
+    "ingredients": [
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108672,
+    "name": "美味的泡泡舒芙蕾",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108671",
+    "recipe": "bulle_souffle",
+    "ingredients": [
+      {
+        "id": 101230,
+        "name": "泡泡桔",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108448,
+    "name": "奇怪的椰炭饼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108449",
+    "recipe": "charcoalbaked_ajilenakh_cake",
+    "ingredients": [
+      {
+        "id": 101221,
+        "name": "枣椰",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108449,
+    "name": "椰炭饼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108449",
+    "recipe": "charcoalbaked_ajilenakh_cake",
+    "ingredients": [
+      {
+        "id": 101221,
+        "name": "枣椰",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108450,
+    "name": "美味的椰炭饼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108449",
+    "recipe": "charcoalbaked_ajilenakh_cake",
+    "ingredients": [
+      {
+        "id": 101221,
+        "name": "枣椰",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108660,
+    "name": "奇怪的沉玉茶露",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108661",
+    "recipe": "chenyu_brew",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108661,
+    "name": "沉玉茶露",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108661",
+    "recipe": "chenyu_brew",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108662,
+    "name": "美味的沉玉茶露",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108661",
+    "recipe": "chenyu_brew",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108011,
+    "name": "奇怪的野菇鸡肉串",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108012",
+    "recipe": "chickenmushroom_skewer",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108012,
+    "name": "野菇鸡肉串",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108012",
+    "recipe": "chickenmushroom_skewer",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108013,
+    "name": "美味的野菇鸡肉串",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108012",
+    "recipe": "chickenmushroom_skewer",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108579,
+    "name": "奇怪的咖啡芭芭露",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108580",
+    "recipe": "coffee_bavarois",
+    "ingredients": [
+      {
+        "id": 100098,
+        "name": "咖啡豆",
+        "amount": 4
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108580,
+    "name": "咖啡芭芭露",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108580",
+    "recipe": "coffee_bavarois",
+    "ingredients": [
+      {
+        "id": 100098,
+        "name": "咖啡豆",
+        "amount": 4
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108581,
+    "name": "美味的咖啡芭芭露",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108580",
+    "recipe": "coffee_bavarois",
+    "ingredients": [
+      {
+        "id": 100098,
+        "name": "咖啡豆",
+        "amount": 4
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108065,
+    "name": "奇怪的蟹黄火腿焗时蔬",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108066",
+    "recipe": "crab_ham_veggie_bake",
+    "ingredients": [
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108066,
+    "name": "蟹黄火腿焗时蔬",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108066",
+    "recipe": "crab_ham_veggie_bake",
+    "ingredients": [
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108067,
+    "name": "美味的蟹黄火腿焗时蔬",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108066",
+    "recipe": "crab_ham_veggie_bake",
+    "ingredients": [
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      },
+      {
+        "id": 110005,
+        "name": "火腿",
+        "amount": 1
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108176,
+    "name": "奇怪的蟹黄豆腐",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108177",
+    "recipe": "crab_roe_tofu",
+    "ingredients": [
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      },
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108177,
+    "name": "蟹黄豆腐",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108177",
+    "recipe": "crab_roe_tofu",
+    "ingredients": [
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      },
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108178,
+    "name": "美味的蟹黄豆腐",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108177",
+    "recipe": "crab_roe_tofu",
+    "ingredients": [
+      {
+        "id": 100074,
+        "name": "蟹黄",
+        "amount": 1
+      },
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108518,
+    "name": "奇怪的奶油蘑菇汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108519",
+    "recipe": "cream_of_mushroom_soup",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108519,
+    "name": "奶油蘑菇汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108519",
+    "recipe": "cream_of_mushroom_soup",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108520,
+    "name": "美味的奶油蘑菇汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108519",
+    "recipe": "cream_of_mushroom_soup",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108222,
+    "name": "奇怪的鲜虾脆薯盏",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108223",
+    "recipe": "crispy_potato_shrimp_platter",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108223,
+    "name": "鲜虾脆薯盏",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108223",
+    "recipe": "crispy_potato_shrimp_platter",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108224,
+    "name": "美味的鲜虾脆薯盏",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108223",
+    "recipe": "crispy_potato_shrimp_platter",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 4
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 3
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108104,
+    "name": "奇怪的水晶虾",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108105",
+    "recipe": "crystal_shrimp",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108105,
+    "name": "水晶虾",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108105",
+    "recipe": "crystal_shrimp",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108106,
+    "name": "美味的水晶虾",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108105",
+    "recipe": "crystal_shrimp",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108730,
+    "name": "奇怪的粒果杯",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108731",
+    "recipe": "cup_o_grainfruit",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108731,
+    "name": "粒果杯",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108731",
+    "recipe": "cup_o_grainfruit",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108732,
+    "name": "美味的粒果杯",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108731",
+    "recipe": "cup_o_grainfruit",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108424,
+    "name": "奇怪的咖喱虾",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108425",
+    "recipe": "curry_shrimp",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108425,
+    "name": "咖喱虾",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108425",
+    "recipe": "curry_shrimp",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108426,
+    "name": "美味的咖喱虾",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108425",
+    "recipe": "curry_shrimp",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108751,
+    "name": "奇怪的奇旅馔匣",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108752",
+    "recipe": "delights_of_wondrous_wanderings",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108752,
+    "name": "奇旅馔匣",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108752",
+    "recipe": "delights_of_wondrous_wanderings",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108753,
+    "name": "美味的奇旅馔匣",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108752",
+    "recipe": "delights_of_wondrous_wanderings",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108826,
+    "name": "奇怪的455特饮",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108810",
+    "recipe": "drink_455",
+    "ingredients": [
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108827,
+    "name": "455特饮",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108810",
+    "recipe": "drink_455",
+    "ingredients": [
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108828,
+    "name": "美味的455特饮",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108810",
+    "recipe": "drink_455",
+    "ingredients": [
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108267,
+    "name": "奇怪的干烧香鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108268",
+    "recipe": "drybraised_salted_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108268,
+    "name": "干烧香鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108268",
+    "recipe": "drybraised_salted_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108269,
+    "name": "美味的干烧香鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108268",
+    "recipe": "drybraised_salted_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108512,
+    "name": "奇怪的油封鸭腿",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108513",
+    "recipe": "duck_confit",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108513,
+    "name": "油封鸭腿",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108513",
+    "recipe": "duck_confit",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108514,
+    "name": "美味的油封鸭腿",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108513",
+    "recipe": "duck_confit",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108264,
+    "name": "奇怪的鸟蛋烧",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108265",
+    "recipe": "egg_roll",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108265,
+    "name": "鸟蛋烧",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108265",
+    "recipe": "egg_roll",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108266,
+    "name": "美味的鸟蛋烧",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108265",
+    "recipe": "egg_roll",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108503,
+    "name": "奇怪的脆饼珐提",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108504",
+    "recipe": "fatteh",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108504,
+    "name": "脆饼珐提",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108504",
+    "recipe": "fatteh",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108505,
+    "name": "美味的脆饼珐提",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108504",
+    "recipe": "fatteh",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108648,
+    "name": "奇怪的茶好月圆",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108649",
+    "recipe": "fine_tea_full_moon",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108649,
+    "name": "茶好月圆",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108649",
+    "recipe": "fine_tea_full_moon",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108650,
+    "name": "美味的茶好月圆",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108649",
+    "recipe": "fine_tea_full_moon",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108433,
+    "name": "奇怪的奶酱鲜鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108434",
+    "recipe": "fish_with_cream_sauce",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108434,
+    "name": "奶酱鲜鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108434",
+    "recipe": "fish_with_cream_sauce",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108435,
+    "name": "美味的奶酱鲜鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108434",
+    "recipe": "fish_with_cream_sauce",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108015,
+    "name": "奇怪的火火肉酱面",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108016",
+    "recipe": "flaming_red_bolognese",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108016,
+    "name": "火火肉酱面",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108016",
+    "recipe": "flaming_red_bolognese",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108017,
+    "name": "美味的火火肉酱面",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108016",
+    "recipe": "flaming_red_bolognese",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108712,
+    "name": "奇怪的多彩之森",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108713",
+    "recipe": "forest_of_color",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108713,
+    "name": "多彩之森",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108713",
+    "recipe": "forest_of_color",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108714,
+    "name": "美味的多彩之森",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108713",
+    "recipe": "forest_of_color",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108797,
+    "name": "奇怪的沃陆果饮",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108795",
+    "recipe": "fruits_aplenty",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 3
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 101249,
+        "name": "青蜜莓",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108798,
+    "name": "沃陆果饮",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108795",
+    "recipe": "fruits_aplenty",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 3
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 101249,
+        "name": "青蜜莓",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108799,
+    "name": "美味的沃陆果饮",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108795",
+    "recipe": "fruits_aplenty",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 3
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 101249,
+        "name": "青蜜莓",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108570,
+    "name": "奇怪的果果仙酪",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108571",
+    "recipe": "fruity_smoothie",
+    "ingredients": [
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108571,
+    "name": "果果仙酪",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108571",
+    "recipe": "fruity_smoothie",
+    "ingredients": [
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108572,
+    "name": "美味的果果仙酪",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108571",
+    "recipe": "fruity_smoothie",
+    "ingredients": [
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108870,
+    "name": "奇怪的双果卷",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108826",
+    "recipe": "fruit_tandem_turnovers",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 2
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108871,
+    "name": "双果卷",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108826",
+    "recipe": "fruit_tandem_turnovers",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 2
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108872,
+    "name": "美味的双果卷",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108826",
+    "recipe": "fruit_tandem_turnovers",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 2
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108179,
+    "name": "奇怪的明月蛋",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108180",
+    "recipe": "fullmoon_egg",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108180,
+    "name": "明月蛋",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108180",
+    "recipe": "fullmoon_egg",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108181,
+    "name": "美味的明月蛋",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108180",
+    "recipe": "fullmoon_egg",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108700,
+    "name": "奇怪的宝石闪闪",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108701",
+    "recipe": "glittering_gemstones",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 1
+      },
+      {
+        "id": 101245,
+        "name": "澄晶实",
+        "amount": 1
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108701,
+    "name": "宝石闪闪",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108701",
+    "recipe": "glittering_gemstones",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 1
+      },
+      {
+        "id": 101245,
+        "name": "澄晶实",
+        "amount": 1
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108702,
+    "name": "美味的宝石闪闪",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108701",
+    "recipe": "glittering_gemstones",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 1
+      },
+      {
+        "id": 101245,
+        "name": "澄晶实",
+        "amount": 1
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108955,
+    "name": "奇怪的淬金冷玉",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108869",
+    "recipe": "goldentempered_jade",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108956,
+    "name": "淬金冷玉",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108869",
+    "recipe": "goldentempered_jade",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108957,
+    "name": "美味的淬金冷玉",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108869",
+    "recipe": "goldentempered_jade",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108238,
+    "name": "奇怪的脆脆鸡腿堡",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108239",
+    "recipe": "golden_chicken_burger",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108239,
+    "name": "脆脆鸡腿堡",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108239",
+    "recipe": "golden_chicken_burger",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108240,
+    "name": "美味的脆脆鸡腿堡",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108239",
+    "recipe": "golden_chicken_burger",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108125,
+    "name": "奇怪的金丝虾球",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108126",
+    "recipe": "golden_shrimp_balls",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 5
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108126,
+    "name": "金丝虾球",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108126",
+    "recipe": "golden_shrimp_balls",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 5
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108127,
+    "name": "美味的金丝虾球",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108126",
+    "recipe": "golden_shrimp_balls",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 5
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108736,
+    "name": "奇怪的粒果片片",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108737",
+    "recipe": "grainfruit_chips",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108737,
+    "name": "粒果片片",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108737",
+    "recipe": "grainfruit_chips",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108738,
+    "name": "美味的粒果片片",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108737",
+    "recipe": "grainfruit_chips",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108733,
+    "name": "奇怪的粒果肉汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108734",
+    "recipe": "grainfruit_meat_soup",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108734,
+    "name": "粒果肉汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108734",
+    "recipe": "grainfruit_meat_soup",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108735,
+    "name": "美味的粒果肉汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108734",
+    "recipe": "grainfruit_meat_soup",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108715,
+    "name": "奇怪的薄荷酱烤鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108716",
+    "recipe": "grilled_fish_in_mint_sauce",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108716,
+    "name": "薄荷酱烤鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108716",
+    "recipe": "grilled_fish_in_mint_sauce",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108717,
+    "name": "美味的薄荷酱烤鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108716",
+    "recipe": "grilled_fish_in_mint_sauce",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108107,
+    "name": "奇怪的烤吃虎鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108108",
+    "recipe": "grilled_tiger_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108108,
+    "name": "烤吃虎鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108108",
+    "recipe": "grilled_tiger_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108109,
+    "name": "美味的烤吃虎鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108108",
+    "recipe": "grilled_tiger_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108336,
+    "name": "奇怪的蒲烧鳗肉",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108337",
+    "recipe": "grilled_unagi_fillet",
+    "ingredients": [
+      {
+        "id": 100095,
+        "name": "鳗肉",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108337,
+    "name": "蒲烧鳗肉",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108337",
+    "recipe": "grilled_unagi_fillet",
+    "ingredients": [
+      {
+        "id": 100095,
+        "name": "鳗肉",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108338,
+    "name": "美味的蒲烧鳗肉",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108337",
+    "recipe": "grilled_unagi_fillet",
+    "ingredients": [
+      {
+        "id": 100095,
+        "name": "鳗肉",
+        "amount": 3
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108811,
+    "name": "奇怪的丰稔之赐",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108801",
+    "recipe": "harvests_boon",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108812,
+    "name": "丰稔之赐",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108801",
+    "recipe": "harvests_boon",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108813,
+    "name": "美味的丰稔之赐",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108801",
+    "recipe": "harvests_boon",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108645,
+    "name": "奇怪的蜜汁叉烧",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108646",
+    "recipe": "honey_char_siu",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108646,
+    "name": "蜜汁叉烧",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108646",
+    "recipe": "honey_char_siu",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108647,
+    "name": "美味的蜜汁叉烧",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108646",
+    "recipe": "honey_char_siu",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108703,
+    "name": "奇怪的温泉时光",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108704",
+    "recipe": "hot_spring_oclock",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108704,
+    "name": "温泉时光",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108704",
+    "recipe": "hot_spring_oclock",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108705,
+    "name": "美味的温泉时光",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108704",
+    "recipe": "hot_spring_oclock",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108630,
+    "name": "奇怪的知足常乐",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108631",
+    "recipe": "humbly_enough",
+    "ingredients": [
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108631,
+    "name": "知足常乐",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108631",
+    "recipe": "humbly_enough",
+    "ingredients": [
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108632,
+    "name": "美味的知足常乐",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108631",
+    "recipe": "humbly_enough",
+    "ingredients": [
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 2
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108548,
+    "name": "奇怪的浮露白霜",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108549",
+    "recipe": "ile_flottante",
+    "ingredients": [
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108549,
+    "name": "浮露白霜",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108549",
+    "recipe": "ile_flottante",
+    "ingredients": [
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108550,
+    "name": "美味的浮露白霜",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108549",
+    "recipe": "ile_flottante",
+    "ingredients": [
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108318,
+    "name": "奇怪的活力喵饭",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108319",
+    "recipe": "invigorating_kitty_meal",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108319,
+    "name": "活力喵饭",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108319",
+    "recipe": "invigorating_kitty_meal",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108320,
+    "name": "美味的活力喵饭",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108319",
+    "recipe": "invigorating_kitty_meal",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108651,
+    "name": "奇怪的玉纹茶叶蛋",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108652",
+    "recipe": "jadevein_tea_eggs",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108652,
+    "name": "玉纹茶叶蛋",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108652",
+    "recipe": "jadevein_tea_eggs",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108653,
+    "name": "美味的玉纹茶叶蛋",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108652",
+    "recipe": "jadevein_tea_eggs",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 1
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108285,
+    "name": "奇怪的绀田煮",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108286",
+    "recipe": "konda_cuisine",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108286,
+    "name": "绀田煮",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108286",
+    "recipe": "konda_cuisine",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108287,
+    "name": "美味的绀田煮",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108286",
+    "recipe": "konda_cuisine",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 3
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 101211,
+        "name": "堇瓜",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108885,
+    "name": "奇怪的白灵果酿鸡",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108831",
+    "recipe": "lakkaberry_madame",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 1
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108886,
+    "name": "白灵果酿鸡",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108831",
+    "recipe": "lakkaberry_madame",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 1
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108887,
+    "name": "美味的白灵果酿鸡",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108831",
+    "recipe": "lakkaberry_madame",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 1
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108421,
+    "name": "奇怪的兰巴德鱼卷",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108422",
+    "recipe": "lambad_fish_roll",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 101219,
+        "name": "须弥蔷薇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108422,
+    "name": "兰巴德鱼卷",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108422",
+    "recipe": "lambad_fish_roll",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 101219,
+        "name": "须弥蔷薇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108423,
+    "name": "美味的兰巴德鱼卷",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108422",
+    "recipe": "lambad_fish_roll",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 101219,
+        "name": "须弥蔷薇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108527,
+    "name": "奇怪的肉酱千层面",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108528",
+    "recipe": "lasagna",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108528,
+    "name": "肉酱千层面",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108528",
+    "recipe": "lasagna",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108529,
+    "name": "美味的肉酱千层面",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108528",
+    "recipe": "lasagna",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108912,
+    "name": "奇怪的奶油鲑鱼汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108846",
+    "recipe": "lohikeitto",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 1
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108913,
+    "name": "奶油鲑鱼汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108846",
+    "recipe": "lohikeitto",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 1
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108914,
+    "name": "美味的奶油鲑鱼汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108846",
+    "recipe": "lohikeitto",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 1
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108931,
+    "name": "奇怪的穰穰瑞雪糕",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108857",
+    "recipe": "lucky_snow_delight",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 3
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108932,
+    "name": "穰穰瑞雪糕",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108857",
+    "recipe": "lucky_snow_delight",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 3
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108933,
+    "name": "美味的穰穰瑞雪糕",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108857",
+    "recipe": "lucky_snow_delight",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 3
+      },
+      {
+        "id": 100031,
+        "name": "清心",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108803,
+    "name": "奇怪的乌乌黑蛋",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108797",
+    "recipe": "magma_eggs",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108804,
+    "name": "乌乌黑蛋",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108797",
+    "recipe": "magma_eggs",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108805,
+    "name": "美味的乌乌黑蛋",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108797",
+    "recipe": "magma_eggs",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108089,
+    "name": "奇怪的松茸酿肉卷",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108090",
+    "recipe": "matsutake_meat_rolls",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108090,
+    "name": "松茸酿肉卷",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108090",
+    "recipe": "matsutake_meat_rolls",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108091,
+    "name": "美味的松茸酿肉卷",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108090",
+    "recipe": "matsutake_meat_rolls",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108665,
+    "name": "奇怪的肉满满寿司",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108666",
+    "recipe": "megameaty_sushi",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108666,
+    "name": "肉满满寿司",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108666",
+    "recipe": "megameaty_sushi",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108667,
+    "name": "美味的肉满满寿司",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108666",
+    "recipe": "megameaty_sushi",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      },
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108867,
+    "name": "奇怪的夏槲蛋糕",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108825",
+    "recipe": "midsommar_torte",
+    "ingredients": [
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108868,
+    "name": "夏槲蛋糕",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108825",
+    "recipe": "midsommar_torte",
+    "ingredients": [
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108869,
+    "name": "美味的夏槲蛋糕",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108825",
+    "recipe": "midsommar_torte",
+    "ingredients": [
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108445,
+    "name": "奇怪的奶香菌菇脆塔",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108446",
+    "recipe": "milky_mushroom_crisp_tower",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108446,
+    "name": "奶香菌菇脆塔",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108446",
+    "recipe": "milky_mushroom_crisp_tower",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108447,
+    "name": "美味的奶香菌菇脆塔",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108446",
+    "recipe": "milky_mushroom_crisp_tower",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 4
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 110002,
+        "name": "奶油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108840,
+    "name": "奇怪的小小阿夏包",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108816",
+    "recipe": "mini_asha_pockets",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108841,
+    "name": "小小阿夏包",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108816",
+    "recipe": "mini_asha_pockets",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108842,
+    "name": "美味的小小阿夏包",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108816",
+    "recipe": "mini_asha_pockets",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 1
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108412,
+    "name": "奇怪的薄荷豆汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108413",
+    "recipe": "minty_bean_soup",
+    "ingredients": [
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108413,
+    "name": "薄荷豆汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108413",
+    "recipe": "minty_bean_soup",
+    "ingredients": [
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108414,
+    "name": "美味的薄荷豆汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108413",
+    "recipe": "minty_bean_soup",
+    "ingredients": [
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108970,
+    "name": "奇怪的薄荷泡泡糖",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108876",
+    "recipe": "mint_bubblegum",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 100022,
+        "name": "落落莓",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108971,
+    "name": "薄荷泡泡糖",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108876",
+    "recipe": "mint_bubblegum",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 100022,
+        "name": "落落莓",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108972,
+    "name": "美味的薄荷泡泡糖",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108876",
+    "recipe": "mint_bubblegum",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 100022,
+        "name": "落落莓",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108225,
+    "name": "奇怪的薄荷果冻",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108226",
+    "recipe": "mint_jelly",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108226,
+    "name": "薄荷果冻",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108226",
+    "recipe": "mint_jelly",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108227,
+    "name": "美味的薄荷果冻",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108226",
+    "recipe": "mint_jelly",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108276,
+    "name": "奇怪的味噌汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108277",
+    "recipe": "miso_soup",
+    "ingredients": [
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108277,
+    "name": "味噌汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108277",
+    "recipe": "miso_soup",
+    "ingredients": [
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108278,
+    "name": "美味的味噌汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108277",
+    "recipe": "miso_soup",
+    "ingredients": [
+      {
+        "id": 100088,
+        "name": "豆腐",
+        "amount": 1
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108291,
+    "name": "奇怪的什锦炒面",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108292",
+    "recipe": "mixed_yakisoba",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108292,
+    "name": "什锦炒面",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108292",
+    "recipe": "mixed_yakisoba",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108293,
+    "name": "美味的什锦炒面",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108292",
+    "recipe": "mixed_yakisoba",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108095,
+    "name": "奇怪的蒙德烤鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108096",
+    "recipe": "mondstadt_grilled_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108096,
+    "name": "蒙德烤鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108096",
+    "recipe": "mondstadt_grilled_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108097,
+    "name": "美味的蒙德烤鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108096",
+    "recipe": "mondstadt_grilled_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108045,
+    "name": "奇怪的蒙德土豆饼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108046",
+    "recipe": "mondstadt_hash_brown",
+    "ingredients": [
+      {
+        "id": 100020,
+        "name": "松果",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108046,
+    "name": "蒙德土豆饼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108046",
+    "recipe": "mondstadt_hash_brown",
+    "ingredients": [
+      {
+        "id": 100020,
+        "name": "松果",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108047,
+    "name": "美味的蒙德土豆饼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108046",
+    "recipe": "mondstadt_hash_brown",
+    "ingredients": [
+      {
+        "id": 100020,
+        "name": "松果",
+        "amount": 2
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108092,
+    "name": "奇怪的摩拉肉",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108093",
+    "recipe": "mora_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108093,
+    "name": "摩拉肉",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108093",
+    "recipe": "mora_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108094,
+    "name": "美味的摩拉肉",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108093",
+    "recipe": "mora_meat",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108946,
+    "name": "奇怪的蘑幻之菇",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108861",
+    "recipe": "mushroom_phantasm",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110016,
+        "name": "黑麦粉",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108947,
+    "name": "蘑幻之菇",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108861",
+    "recipe": "mushroom_phantasm",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110016,
+        "name": "黑麦粉",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108948,
+    "name": "美味的蘑幻之菇",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108861",
+    "recipe": "mushroom_phantasm",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 3
+      },
+      {
+        "id": 110016,
+        "name": "黑麦粉",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108041,
+    "name": "奇怪的烤蘑菇披萨",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108042",
+    "recipe": "mushroom_pizza",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108042,
+    "name": "烤蘑菇披萨",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108042",
+    "recipe": "mushroom_pizza",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108043,
+    "name": "美味的烤蘑菇披萨",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108042",
+    "recipe": "mushroom_pizza",
+    "ingredients": [
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108770,
+    "name": "奇怪的奇瑰之汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108771",
+    "recipe": "mystique_soup",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108771,
+    "name": "奇瑰之汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108771",
+    "recipe": "mystique_soup",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108772,
+    "name": "美味的奇瑰之汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108771",
+    "recipe": "mystique_soup",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108170,
+    "name": "奇怪的北地苹果焖肉",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108171",
+    "recipe": "northern_apple_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108171,
+    "name": "北地苹果焖肉",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108171",
+    "recipe": "northern_apple_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108172,
+    "name": "美味的北地苹果焖肉",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108171",
+    "recipe": "northern_apple_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100001,
+        "name": "苹果",
+        "amount": 3
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108255,
+    "name": "奇怪的饭团",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108256",
+    "recipe": "onigiri",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108256,
+    "name": "饭团",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108256",
+    "recipe": "onigiri",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108257,
+    "name": "美味的饭团",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108256",
+    "recipe": "onigiri",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108409,
+    "name": "奇怪的绿汁脆球",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108410",
+    "recipe": "panipuri",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108410,
+    "name": "绿汁脆球",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108410",
+    "recipe": "panipuri",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108411,
+    "name": "美味的绿汁脆球",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108410",
+    "recipe": "panipuri",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 100096,
+        "name": "秃秃豆",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108406,
+    "name": "奇怪的口袋饼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108407",
+    "recipe": "pita_pocket",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108407,
+    "name": "口袋饼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108407",
+    "recipe": "pita_pocket",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108408,
+    "name": "美味的口袋饼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108407",
+    "recipe": "pita_pocket",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108530,
+    "name": "奇怪的鱼鱼咏唱派",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108531",
+    "recipe": "poissonchant_pie",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108531,
+    "name": "鱼鱼咏唱派",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108531",
+    "recipe": "poissonchant_pie",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108532,
+    "name": "美味的鱼鱼咏唱派",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108531",
+    "recipe": "poissonchant_pie",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110010,
+        "name": "培根",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108551,
+    "name": "奇怪的白淞鲜汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108552",
+    "recipe": "poisson_seafood_soup",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108552,
+    "name": "白淞鲜汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108552",
+    "recipe": "poisson_seafood_soup",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108553,
+    "name": "美味的白淞鲜汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108552",
+    "recipe": "poisson_seafood_soup",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108430,
+    "name": "奇怪的土豆船",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108431",
+    "recipe": "potato_boat",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 101213,
+        "name": "树王圣体菇",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108431,
+    "name": "土豆船",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108431",
+    "recipe": "potato_boat",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 101213,
+        "name": "树王圣体菇",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108432,
+    "name": "美味的土豆船",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108431",
+    "recipe": "potato_boat",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 101213,
+        "name": "树王圣体菇",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108800,
+    "name": "奇怪的粒果膨膨棒",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108796",
+    "recipe": "puffed_grainfruit_bars",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108801,
+    "name": "粒果膨膨棒",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108796",
+    "recipe": "puffed_grainfruit_bars",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108802,
+    "name": "美味的粒果膨膨棒",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108796",
+    "recipe": "puffed_grainfruit_bars",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108706,
+    "name": "奇怪的咚咚嘭嘭",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108707",
+    "recipe": "puff_pops",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108707,
+    "name": "咚咚嘭嘭",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108707",
+    "recipe": "puff_pops",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108708,
+    "name": "美味的咚咚嘭嘭",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108707",
+    "recipe": "puff_pops",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      },
+      {
+        "id": 100077,
+        "name": "胡椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108019,
+    "name": "奇怪的萝卜时蔬汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108020",
+    "recipe": "radish_veggie_soup",
+    "ingredients": [
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108020,
+    "name": "萝卜时蔬汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108020",
+    "recipe": "radish_veggie_soup",
+    "ingredients": [
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108021,
+    "name": "美味的萝卜时蔬汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108020",
+    "recipe": "radish_veggie_soup",
+    "ingredients": [
+      {
+        "id": 100014,
+        "name": "白萝卜",
+        "amount": 1
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108197,
+    "name": "奇怪的米窝窝",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108198",
+    "recipe": "rice_buns",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      },
+      {
+        "id": 100032,
+        "name": "马尾",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108198,
+    "name": "米窝窝",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108198",
+    "recipe": "rice_buns",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      },
+      {
+        "id": 100032,
+        "name": "马尾",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108199,
+    "name": "美味的米窝窝",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108198",
+    "recipe": "rice_buns",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      },
+      {
+        "id": 100032,
+        "name": "马尾",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108470,
+    "name": "奇怪的蔷薇奶糊",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108471",
+    "recipe": "rose_custard",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 101219,
+        "name": "须弥蔷薇",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108471,
+    "name": "蔷薇奶糊",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108471",
+    "recipe": "rose_custard",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 101219,
+        "name": "须弥蔷薇",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108472,
+    "name": "美味的蔷薇奶糊",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108471",
+    "recipe": "rose_custard",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 101219,
+        "name": "须弥蔷薇",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108480,
+    "name": "奇怪的萨布兹炖肉",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108481",
+    "recipe": "sabz_meat_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108481,
+    "name": "萨布兹炖肉",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108481",
+    "recipe": "sabz_meat_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108482,
+    "name": "美味的萨布兹炖肉",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108481",
+    "recipe": "sabz_meat_stew",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108282,
+    "name": "奇怪的绯樱饼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108283",
+    "recipe": "sakura_mochi",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108283,
+    "name": "绯樱饼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108283",
+    "recipe": "sakura_mochi",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108284,
+    "name": "美味的绯樱饼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108283",
+    "recipe": "sakura_mochi",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108475,
+    "name": "奇怪的萨巴桑炸角",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108476",
+    "recipe": "samosa",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108476,
+    "name": "萨巴桑炸角",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108476",
+    "recipe": "samosa",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108477,
+    "name": "美味的萨巴桑炸角",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108476",
+    "recipe": "samosa",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108709,
+    "name": "奇怪的龙龙饼干",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108710",
+    "recipe": "saurus_crackers",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 3
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108710,
+    "name": "龙龙饼干",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108710",
+    "recipe": "saurus_crackers",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 3
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108711,
+    "name": "美味的龙龙饼干",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108710",
+    "recipe": "saurus_crackers",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 3
+      },
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 2
+      },
+      {
+        "id": 110004,
+        "name": "黄油",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108483,
+    "name": "奇怪的秘香肉团",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108484",
+    "recipe": "scented_meat_balls",
+    "ingredients": [
+      {
+        "id": 100097,
+        "name": "神秘的肉",
+        "amount": 3
+      },
+      {
+        "id": 100017,
+        "name": "小麦",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108484,
+    "name": "秘香肉团",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108484",
+    "recipe": "scented_meat_balls",
+    "ingredients": [
+      {
+        "id": 100097,
+        "name": "神秘的肉",
+        "amount": 3
+      },
+      {
+        "id": 100017,
+        "name": "小麦",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108485,
+    "name": "美味的秘香肉团",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108484",
+    "recipe": "scented_meat_balls",
+    "ingredients": [
+      {
+        "id": 100097,
+        "name": "神秘的肉",
+        "amount": 3
+      },
+      {
+        "id": 100017,
+        "name": "小麦",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108773,
+    "name": "奇怪的纵声欢唱",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108774",
+    "recipe": "sing_your_heart_out",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108774,
+    "name": "纵声欢唱",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108774",
+    "recipe": "sing_your_heart_out",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108775,
+    "name": "美味的纵声欢唱",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108774",
+    "recipe": "sing_your_heart_out",
+    "ingredients": [
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 1
+      },
+      {
+        "id": 101251,
+        "name": "烬芯花",
+        "amount": 1
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      },
+      {
+        "id": 110008,
+        "name": "果酱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108861,
+    "name": "奇怪的烟熏鱼排",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108823",
+    "recipe": "smoked_fish_steak",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108862,
+    "name": "烟熏鱼排",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108823",
+    "recipe": "smoked_fish_steak",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108863,
+    "name": "美味的烟熏鱼排",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108823",
+    "recipe": "smoked_fish_steak",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108351,
+    "name": "奇怪的荞麦面",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108352",
+    "recipe": "soba_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108352,
+    "name": "荞麦面",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108352",
+    "recipe": "soba_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108353,
+    "name": "美味的荞麦面",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108352",
+    "recipe": "soba_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108926,
+    "name": "奇怪的香辛炸鸡块",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108854",
+    "recipe": "spiced_fried_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108927,
+    "name": "香辛炸鸡块",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108854",
+    "recipe": "spiced_fried_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108928,
+    "name": "美味的香辛炸鸡块",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 4,
+    "icon": "UI_ItemIcon_108854",
+    "recipe": "spiced_fried_chicken",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 110014,
+        "name": "香辛料",
+        "amount": 2
+      },
+      {
+        "id": 100016,
+        "name": "薄荷",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108077,
+    "name": "奇怪的松鼠鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108078",
+    "recipe": "squirrel_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108078,
+    "name": "松鼠鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108078",
+    "recipe": "squirrel_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108079,
+    "name": "美味的松鼠鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108078",
+    "recipe": "squirrel_fish",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 4
+      },
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 2
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108007,
+    "name": "奇怪的烤肉排",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108008",
+    "recipe": "steak",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108008,
+    "name": "烤肉排",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108008",
+    "recipe": "steak",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108009,
+    "name": "美味的烤肉排",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108008",
+    "recipe": "steak",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108539,
+    "name": "奇怪的生肉塔塔",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108540",
+    "recipe": "steak_tartare",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108540,
+    "name": "生肉塔塔",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108540",
+    "recipe": "steak_tartare",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108541,
+    "name": "美味的生肉塔塔",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108540",
+    "recipe": "steak_tartare",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 101231,
+        "name": "茉洁草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108098,
+    "name": "奇怪的爆炒肉片",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108099",
+    "recipe": "stirfried_filet",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108099,
+    "name": "爆炒肉片",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108099",
+    "recipe": "stirfried_filet",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108100,
+    "name": "美味的爆炒肉片",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108099",
+    "recipe": "stirfried_filet",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 1
+      },
+      {
+        "id": 100027,
+        "name": "绝云椒椒",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108185,
+    "name": "奇怪的干炒鱼河",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108186",
+    "recipe": "stirfried_fish_noodles",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108186,
+    "name": "干炒鱼河",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108186",
+    "recipe": "stirfried_fish_noodles",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108187,
+    "name": "美味的干炒鱼河",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108186",
+    "recipe": "stirfried_fish_noodles",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108727,
+    "name": "奇怪的夹心土豆泥",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108728",
+    "recipe": "stuffed_n_mashed_potatoes",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108728,
+    "name": "夹心土豆泥",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108728",
+    "recipe": "stuffed_n_mashed_potatoes",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108729,
+    "name": "美味的夹心土豆泥",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108728",
+    "recipe": "stuffed_n_mashed_potatoes",
+    "ingredients": [
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 4
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108031,
+    "name": "奇怪的甜甜花酿鸡",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108032",
+    "recipe": "sweet_madame",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100012,
+        "name": "甜甜花",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108032,
+    "name": "甜甜花酿鸡",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108032",
+    "recipe": "sweet_madame",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100012,
+        "name": "甜甜花",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108033,
+    "name": "美味的甜甜花酿鸡",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108032",
+    "recipe": "sweet_madame",
+    "ingredients": [
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100012,
+        "name": "甜甜花",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108321,
+    "name": "奇怪的甜虾寿司",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108322",
+    "recipe": "sweet_shrimp_sushi",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108322,
+    "name": "甜虾寿司",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108322",
+    "recipe": "sweet_shrimp_sushi",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108323,
+    "name": "美味的甜虾寿司",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108322",
+    "recipe": "sweet_shrimp_sushi",
+    "ingredients": [
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108418,
+    "name": "奇怪的米圆塔",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108419",
+    "recipe": "tahchin",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 101214,
+        "name": "帕蒂沙兰",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108419,
+    "name": "米圆塔",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108419",
+    "recipe": "tahchin",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 101214,
+        "name": "帕蒂沙兰",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108420,
+    "name": "美味的米圆塔",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108419",
+    "recipe": "tahchin",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 2
+      },
+      {
+        "id": 101214,
+        "name": "帕蒂沙兰",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108330,
+    "name": "奇怪的日落鲷鱼烧",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108331",
+    "recipe": "taiyaki",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108331,
+    "name": "日落鲷鱼烧",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108331",
+    "recipe": "taiyaki",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108332,
+    "name": "美味的日落鲷鱼烧",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108331",
+    "recipe": "taiyaki",
+    "ingredients": [
+      {
+        "id": 100002,
+        "name": "日落果",
+        "amount": 3
+      },
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108536,
+    "name": "奇怪的塔塞斯杂烩",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108537",
+    "recipe": "tasses_ragout",
+    "ingredients": [
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108537,
+    "name": "塔塞斯杂烩",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108537",
+    "recipe": "tasses_ragout",
+    "ingredients": [
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108538,
+    "name": "美味的塔塞斯杂烩",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108537",
+    "recipe": "tasses_ragout",
+    "ingredients": [
+      {
+        "id": 100079,
+        "name": "番茄",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 3
+      },
+      {
+        "id": 100075,
+        "name": "盐",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108718,
+    "name": "奇怪的塔塔可",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108719",
+    "recipe": "tatacos",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108719,
+    "name": "塔塔可",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108719",
+    "recipe": "tatacos",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108720,
+    "name": "美味的塔塔可",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108719",
+    "recipe": "tatacos",
+    "ingredients": [
+      {
+        "id": 101243,
+        "name": "颗粒果",
+        "amount": 3
+      },
+      {
+        "id": 100093,
+        "name": "虾仁",
+        "amount": 2
+      },
+      {
+        "id": 110009,
+        "name": "奶酪",
+        "amount": 2
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108654,
+    "name": "奇怪的茶熏乳鸽",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108655",
+    "recipe": "teasmoked_squab",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108655,
+    "name": "茶熏乳鸽",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108655",
+    "recipe": "teasmoked_squab",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108656,
+    "name": "美味的茶熏乳鸽",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108655",
+    "recipe": "teasmoked_squab",
+    "ingredients": [
+      {
+        "id": 101242,
+        "name": "沉玉仙茗",
+        "amount": 2
+      },
+      {
+        "id": 100064,
+        "name": "禽肉",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108022,
+    "name": "奇怪的庄园烤松饼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108023",
+    "recipe": "tea_break_pancake",
+    "ingredients": [
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108023,
+    "name": "庄园烤松饼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108023",
+    "recipe": "tea_break_pancake",
+    "ingredients": [
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108024,
+    "name": "美味的庄园烤松饼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108023",
+    "recipe": "tea_break_pancake",
+    "ingredients": [
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 3
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108004,
+    "name": "奇怪的提瓦特煎蛋",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108005",
+    "recipe": "teyvat_fried_egg",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108005,
+    "name": "提瓦特煎蛋",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108005",
+    "recipe": "teyvat_fried_egg",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108006,
+    "name": "美味的提瓦特煎蛋",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108005",
+    "recipe": "teyvat_fried_egg",
+    "ingredients": [
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108858,
+    "name": "奇怪的今日收获",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108822",
+    "recipe": "todays_boon",
+    "ingredients": [
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 2
+      },
+      {
+        "id": 101262,
+        "name": "宿影花",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108859,
+    "name": "今日收获",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108822",
+    "recipe": "todays_boon",
+    "ingredients": [
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 2
+      },
+      {
+        "id": 101262,
+        "name": "宿影花",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108860,
+    "name": "美味的今日收获",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108822",
+    "recipe": "todays_boon",
+    "ingredients": [
+      {
+        "id": 101265,
+        "name": "夏槲果",
+        "amount": 3
+      },
+      {
+        "id": 101264,
+        "name": "白灵果",
+        "amount": 2
+      },
+      {
+        "id": 101262,
+        "name": "宿影花",
+        "amount": 2
+      },
+      {
+        "id": 100011,
+        "name": "蘑菇",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108261,
+    "name": "奇怪的兽骨拉面",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108262",
+    "recipe": "tonkotsu_ramen",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108262,
+    "name": "兽骨拉面",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108262",
+    "recipe": "tonkotsu_ramen",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108263,
+    "name": "美味的兽骨拉面",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108262",
+    "recipe": "tonkotsu_ramen",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 4
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 100091,
+        "name": "竹笋",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108252,
+    "name": "奇怪的三彩团子",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108253",
+    "recipe": "tricolor_dango",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108253,
+    "name": "三彩团子",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108253",
+    "recipe": "tricolor_dango",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108254,
+    "name": "美味的三彩团子",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108253",
+    "recipe": "tricolor_dango",
+    "ingredients": [
+      {
+        "id": 100078,
+        "name": "牛奶",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      },
+      {
+        "id": 101202,
+        "name": "绯樱绣球",
+        "amount": 2
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108585,
+    "name": "奇怪的港湾牛肚",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108586",
+    "recipe": "tripes_du_port",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108586,
+    "name": "港湾牛肚",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108586",
+    "recipe": "tripes_du_port",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108587,
+    "name": "美味的港湾牛肚",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108586",
+    "recipe": "tripes_du_port",
+    "ingredients": [
+      {
+        "id": 100061,
+        "name": "兽肉",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 3
+      },
+      {
+        "id": 100076,
+        "name": "洋葱",
+        "amount": 2
+      },
+      {
+        "id": 100099,
+        "name": "发酵果实汁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108573,
+    "name": "奇怪的杏仁鳟鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108574",
+    "recipe": "trout_amandine",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100089,
+        "name": "杏仁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108574,
+    "name": "杏仁鳟鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108574",
+    "recipe": "trout_amandine",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100089,
+        "name": "杏仁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108575,
+    "name": "美味的杏仁鳟鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108574",
+    "recipe": "trout_amandine",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      },
+      {
+        "id": 100089,
+        "name": "杏仁",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108249,
+    "name": "奇怪的金枪鱼寿司",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108250",
+    "recipe": "tuna_sushi",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108250,
+    "name": "金枪鱼寿司",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108250",
+    "recipe": "tuna_sushi",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108251,
+    "name": "美味的金枪鱼寿司",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108250",
+    "recipe": "tuna_sushi",
+    "ingredients": [
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 3
+      },
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": 108377,
+    "name": "奇怪的乌冬面",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108378",
+    "recipe": "udon_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108378,
+    "name": "乌冬面",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108378",
+    "recipe": "udon_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108379,
+    "name": "美味的乌冬面",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108378",
+    "recipe": "udon_noodles",
+    "ingredients": [
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 3
+      },
+      {
+        "id": 101210,
+        "name": "海草",
+        "amount": 1
+      },
+      {
+        "id": 100084,
+        "name": "鱼肉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108201,
+    "name": "奇怪的四方和平",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108202",
+    "recipe": "universal_peace",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 2
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108202,
+    "name": "四方和平",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108202",
+    "recipe": "universal_peace",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 2
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108203,
+    "name": "美味的四方和平",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108202",
+    "recipe": "universal_peace",
+    "ingredients": [
+      {
+        "id": 100092,
+        "name": "稻米",
+        "amount": 4
+      },
+      {
+        "id": 100026,
+        "name": "莲蓬",
+        "amount": 2
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 2
+      },
+      {
+        "id": 100051,
+        "name": "树莓",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108188,
+    "name": "奇怪的素鲍鱼",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108189",
+    "recipe": "vegetarian_abalone",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108189,
+    "name": "素鲍鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108189",
+    "recipe": "vegetarian_abalone",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108190,
+    "name": "美味的素鲍鱼",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108189",
+    "recipe": "vegetarian_abalone",
+    "ingredients": [
+      {
+        "id": 100063,
+        "name": "松茸",
+        "amount": 2
+      },
+      {
+        "id": 100015,
+        "name": "金鱼草",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108940,
+    "name": "奇怪的蔬菜罐罐汤",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108859",
+    "recipe": "veggie_pot_soup",
+    "ingredients": [
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 3
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108941,
+    "name": "蔬菜罐罐汤",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108859",
+    "recipe": "veggie_pot_soup",
+    "ingredients": [
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 3
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108942,
+    "name": "美味的蔬菜罐罐汤",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108859",
+    "recipe": "veggie_pot_soup",
+    "ingredients": [
+      {
+        "id": 100018,
+        "name": "卷心菜",
+        "amount": 3
+      },
+      {
+        "id": 100013,
+        "name": "胡萝卜",
+        "amount": 3
+      },
+      {
+        "id": 100080,
+        "name": "土豆",
+        "amount": 2
+      },
+      {
+        "id": 110015,
+        "name": "酸奶油",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "id": 108764,
+    "name": "奇怪的火山蛋糕",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108765",
+    "recipe": "volcano_cake",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108765,
+    "name": "火山蛋糕",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108765",
+    "recipe": "volcano_cake",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108766,
+    "name": "美味的火山蛋糕",
+    "type": "恢复类料理",
+    "variant": "delicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108765",
+    "recipe": "volcano_cake",
+    "ingredients": [
+      {
+        "id": 101246,
+        "name": "苦种",
+        "amount": 2
+      },
+      {
+        "id": 110006,
+        "name": "糖",
+        "amount": 2
+      },
+      {
+        "id": 100062,
+        "name": "鸟蛋",
+        "amount": 1
+      },
+      {
+        "id": 110001,
+        "name": "面粉",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "id": 108147,
+    "name": "圣水",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108147",
+    "ingredients": []
+  },
+  {
+    "id": 108148,
+    "name": "大碗茶",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108148",
+    "ingredients": []
+  },
+  {
+    "id": 108151,
+    "name": "苹果酿",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108151",
+    "ingredients": []
+  },
+  {
+    "id": 108215,
+    "name": "海灯节特色烤吃虎鱼",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 1,
+    "icon": "UI_ItemIcon_108108",
+    "ingredients": []
+  },
+  {
+    "id": 108304,
+    "name": "特制风味烤蘑菇披萨",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108304",
+    "ingredients": []
+  },
+  {
+    "id": 108305,
+    "name": "团子牛奶",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_101514",
+    "ingredients": []
+  },
+  {
+    "id": 108469,
+    "name": "气泡酸莓汁",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108469",
+    "ingredients": []
+  },
+  {
+    "id": 108669,
+    "name": "摇滚团子牛奶",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_101514",
+    "ingredients": []
+  },
+  {
+    "id": 108690,
+    "name": "魔术特调",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108690",
+    "ingredients": []
+  },
+  {
+    "id": 108915,
+    "name": "「皮拉米达的夜莺」",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108847",
+    "ingredients": []
+  },
+  {
+    "id": 108917,
+    "name": "野浆果之路",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 2,
+    "icon": "UI_ItemIcon_108849",
+    "ingredients": []
+  },
+  {
+    "id": 108954,
+    "name": "如同焦炭的蘑幻之菇",
+    "type": "恢复类料理",
+    "variant": "suspicious",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108867",
+    "ingredients": []
+  },
+  {
+    "id": 108983,
+    "name": "茶会序曲・花草香茶",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108883",
+    "ingredients": []
+  },
+  {
+    "id": 108984,
+    "name": "茶会序曲・拉花咖啡",
+    "type": "恢复类料理",
+    "variant": "normal",
+    "rank": 3,
+    "icon": "UI_ItemIcon_108884",
+    "ingredients": []
+  }
+]

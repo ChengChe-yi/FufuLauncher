@@ -1,0 +1,275 @@
+﻿[
+  {
+    "id": 120859,
+    "name": "明黄曜石环",
+    "type": "adventureGadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_120859"
+  },
+  {
+    "id": 120913,
+    "name": "翠青曜石环",
+    "type": "adventureGadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_120913"
+  },
+  {
+    "id": 120915,
+    "name": "湛蓝曜石环",
+    "type": "adventureGadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_120915"
+  },
+  {
+    "id": 121104,
+    "name": "幽紫曜石环",
+    "type": "adventureGadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_121104"
+  },
+  {
+    "id": 121106,
+    "name": "灼赤曜石环",
+    "type": "adventureGadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_121106"
+  },
+  {
+    "id": 121108,
+    "name": "青绛曜石环",
+    "type": "adventureGadget",
+    "rank": 5,
+    "icon": "UI_ItemIcon_121108"
+  },
+  {
+    "id": 121283,
+    "name": "恒月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121283"
+  },
+  {
+    "id": 121284,
+    "name": "恒月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121284"
+  },
+  {
+    "id": 121285,
+    "name": "恒月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121285"
+  },
+  {
+    "id": 121450,
+    "name": "虹月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121450"
+  },
+  {
+    "id": 121451,
+    "name": "虹月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121451"
+  },
+  {
+    "id": 121452,
+    "name": "虹月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121452"
+  },
+  {
+    "id": 121601,
+    "name": "古蒙德宗室之印",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121601"
+  },
+  {
+    "id": 121602,
+    "name": "切片辖域管控模块·零质点",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121602"
+  },
+  {
+    "id": 121603,
+    "name": "霜月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121603"
+  },
+  {
+    "id": 121604,
+    "name": "霜月印磐",
+    "type": "adventureGadget",
+    "rank": 4,
+    "icon": "UI_ItemIcon_121604"
+  },
+  {
+    "id": 101644,
+    "name": "流明石原矿",
+    "type": "adventureGadget",
+    "rank": 3,
+    "icon": "UI_ItemIcon_101644"
+  },
+  {
+    "id": 107034,
+    "name": "摹忆因子",
+    "type": "adventureGadget",
+    "rank": 3,
+    "icon": "UI_ItemIcon_107034"
+  },
+  {
+    "id": 107001,
+    "name": "散失的风神瞳",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107001"
+  },
+  {
+    "id": 107002,
+    "name": "元素晶尘",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107002"
+  },
+  {
+    "id": 107003,
+    "name": "散失的岩神瞳",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107003"
+  },
+  {
+    "id": 107006,
+    "name": "蒙德地灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107006"
+  },
+  {
+    "id": 107007,
+    "name": "璃月地灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107007"
+  },
+  {
+    "id": 107008,
+    "name": "稻妻地灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107008"
+  },
+  {
+    "id": 107010,
+    "name": "绯红玉髓",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107010"
+  },
+  {
+    "id": 107011,
+    "name": "绯红玉髓（纯表现）",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107010"
+  },
+  {
+    "id": 107014,
+    "name": "散失的雷神瞳",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107014"
+  },
+  {
+    "id": 107015,
+    "name": "逐月符",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107015"
+  },
+  {
+    "id": 107016,
+    "name": "流明晶石",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107016"
+  },
+  {
+    "id": 107017,
+    "name": "散失的草神瞳",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107017"
+  },
+  {
+    "id": 107018,
+    "name": "须弥地灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107018"
+  },
+  {
+    "id": 107023,
+    "name": "散失的水神瞳",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107023"
+  },
+  {
+    "id": 107025,
+    "name": "枫丹地灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107025"
+  },
+  {
+    "id": 107026,
+    "name": "苍灵鲤",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107026"
+  },
+  {
+    "id": 107027,
+    "name": "纳塔地灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107027"
+  },
+  {
+    "id": 107028,
+    "name": "散失的火神瞳",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107028"
+  },
+  {
+    "id": 107030,
+    "name": "散失的月神瞳",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107030"
+  },
+  {
+    "id": 107031,
+    "name": "边域地灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107031"
+  },
+  {
+    "id": 107032,
+    "name": "月灵龛之钥",
+    "type": "adventureGadget",
+    "rank": 0,
+    "icon": "UI_ItemIcon_107032"
+  }
+]
