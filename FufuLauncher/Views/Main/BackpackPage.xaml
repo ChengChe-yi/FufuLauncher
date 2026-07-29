@@ -25,7 +25,8 @@
         </DataTemplate>
 
         <DataTemplate x:Key="KpiTileTemplate">
-            <Border Style="{StaticResource BackpackKpiCardStyle}">
+            <Border Style="{StaticResource BackpackKpiCardStyle}" Translation="0,0,16">
+                <Border.Shadow><ThemeShadow /></Border.Shadow>
                 <Grid RowSpacing="3">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -396,7 +397,7 @@
                     </Border>
 
                     <StackPanel Spacing="24" Visibility="{x:Bind ViewModel.OverviewVisibility, Mode=OneWay}">
-                        <StackPanel.Transitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="24" /></TransitionCollection></StackPanel.Transitions>
+                        <StackPanel.Transitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="24" /><RepositionThemeTransition /></TransitionCollection></StackPanel.Transitions>
                         <StackPanel Spacing="10">
                             <TextBlock Text="{helpers:Loc Key=Backpack_UsageTitle}" Style="{StaticResource BackpackSectionHeaderStyle}" />
                             <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="22" Translation="0,0,32">
@@ -413,6 +414,7 @@
                             <TextBlock Text="{helpers:Loc Key=Backpack_SectionOverviewKpi}" Style="{StaticResource BackpackSectionHeaderStyle}" />
                             <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="18" Translation="0,0,32">
                                 <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                                <Grid.ChildrenTransitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="30" /></TransitionCollection></Grid.ChildrenTransitions>
                                 <ItemsRepeater ItemsSource="{x:Bind ViewModel.OverviewKpis, Mode=OneWay}" ItemTemplate="{StaticResource KpiTileTemplate}">
                                     <ItemsRepeater.Layout><UniformGridLayout MinItemWidth="186" MinColumnSpacing="12" MinRowSpacing="12" ItemsStretch="Fill" /></ItemsRepeater.Layout>
                                 </ItemsRepeater>
@@ -442,7 +444,7 @@
                     </StackPanel>
 
                     <StackPanel Spacing="18" Visibility="{x:Bind ViewModel.BrowseVisibility, Mode=OneWay}">
-                        <StackPanel.Transitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="24" /></TransitionCollection></StackPanel.Transitions>
+                        <StackPanel.Transitions><TransitionCollection><EntranceThemeTransition FromVerticalOffset="24" /><RepositionThemeTransition /></TransitionCollection></StackPanel.Transitions>
                         <Border Padding="18" Style="{StaticResource BackpackControlCardStyle}" Translation="0,0,32">
                             <Border.Shadow><ThemeShadow /></Border.Shadow>
                             <StackPanel Spacing="14">
@@ -472,6 +474,7 @@
                                                    ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
                                                    ScrollViewer.VerticalScrollMode="Disabled"
                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <controls:GridView.ItemContainerTransitions><TransitionCollection><AddDeleteThemeTransition /><RepositionThemeTransition /><EntranceThemeTransition FromVerticalOffset="40" /></TransitionCollection></controls:GridView.ItemContainerTransitions>
                                     <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="4" ItemWidth="280" ItemHeight="170" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
                                 </controls:GridView>
                             </Grid>
@@ -488,6 +491,7 @@
                                                    ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
                                                    ScrollViewer.VerticalScrollMode="Disabled"
                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    <controls:GridView.ItemContainerTransitions><TransitionCollection><AddDeleteThemeTransition /><RepositionThemeTransition /><EntranceThemeTransition FromVerticalOffset="40" /></TransitionCollection></controls:GridView.ItemContainerTransitions>
                                     <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="4" ItemWidth="280" ItemHeight="170" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
                                 </controls:GridView>
                             </Grid>
@@ -513,6 +517,7 @@
                                                                    ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
                                                                    ScrollViewer.VerticalScrollMode="Disabled"
                                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemContainerTransitions><TransitionCollection><AddDeleteThemeTransition /><RepositionThemeTransition /><EntranceThemeTransition FromVerticalOffset="40" /></TransitionCollection></controls:GridView.ItemContainerTransitions>
                                                     <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="6" ItemWidth="240" ItemHeight="100" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
                                                 </controls:GridView>
                                             </StackPanel>
@@ -542,6 +547,7 @@
                                                                    ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
                                                                    ScrollViewer.VerticalScrollMode="Disabled"
                                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemContainerTransitions><TransitionCollection><AddDeleteThemeTransition /><RepositionThemeTransition /><EntranceThemeTransition FromVerticalOffset="40" /></TransitionCollection></controls:GridView.ItemContainerTransitions>
                                                     <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="5" ItemWidth="300" ItemHeight="160" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
                                                 </controls:GridView>
                                             </StackPanel>
@@ -571,6 +577,7 @@
                                                                    ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
                                                                    ScrollViewer.VerticalScrollMode="Disabled"
                                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemContainerTransitions><TransitionCollection><AddDeleteThemeTransition /><RepositionThemeTransition /><EntranceThemeTransition FromVerticalOffset="40" /></TransitionCollection></controls:GridView.ItemContainerTransitions>
                                                     <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="6" ItemWidth="240" ItemHeight="100" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
                                                 </controls:GridView>
                                             </StackPanel>
@@ -600,6 +607,7 @@
                                                                    ItemClick="OnInventoryItemClick" Padding="0" Margin="-5,0,-5,0"
                                                                    ScrollViewer.VerticalScrollMode="Disabled"
                                                                    ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                                    <controls:GridView.ItemContainerTransitions><TransitionCollection><AddDeleteThemeTransition /><RepositionThemeTransition /><EntranceThemeTransition FromVerticalOffset="40" /></TransitionCollection></controls:GridView.ItemContainerTransitions>
                                                     <controls:GridView.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="6" ItemWidth="240" ItemHeight="100" /></ItemsPanelTemplate></controls:GridView.ItemsPanel>
                                                 </controls:GridView>
                                             </StackPanel>

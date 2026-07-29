@@ -4,36 +4,36 @@
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Light">
-            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#FFFFFF" TintOpacity="0.64" FallbackColor="#F2FFFFFF" />
-            <SolidColorBrush x:Key="BackpackCardBrush" Color="#0A000000" />
-            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#CCFFFFFF" />
+            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#FFFFFF" TintOpacity="0.55" FallbackColor="#EAFFFFFF" />
+            <SolidColorBrush x:Key="BackpackCardBrush" Color="#08000000" />
+            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#E6FFFFFF" />
             <SolidColorBrush x:Key="BackpackHoverBrush" Color="#12000000" />
             <SolidColorBrush x:Key="BackpackMutedBrush" Color="#0D000000" />
-            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#1A000000" />
+            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#14000000" />
             <SolidColorBrush x:Key="BackpackTextBrush" Color="#FF000000" />
             <SolidColorBrush x:Key="BackpackSecondaryTextBrush" Color="#99000000" />
             <SolidColorBrush x:Key="BackpackTrackBrush" Color="#14000000" />
             <SolidColorBrush x:Key="BackpackSkeletonBrush" Color="#16000000" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Default">
-            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#000000" TintOpacity="0.2" FallbackColor="#D9161616" />
-            <SolidColorBrush x:Key="BackpackCardBrush" Color="#18FFFFFF" />
-            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#CC1A1A1A" />
+            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#000000" TintOpacity="0.15" FallbackColor="#D4161616" />
+            <SolidColorBrush x:Key="BackpackCardBrush" Color="#12FFFFFF" />
+            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#E61A1A1A" />
             <SolidColorBrush x:Key="BackpackHoverBrush" Color="#26FFFFFF" />
             <SolidColorBrush x:Key="BackpackMutedBrush" Color="#14FFFFFF" />
-            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#20FFFFFF" />
+            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#18FFFFFF" />
             <SolidColorBrush x:Key="BackpackTextBrush" Color="White" />
             <SolidColorBrush x:Key="BackpackSecondaryTextBrush" Color="#B3FFFFFF" />
             <SolidColorBrush x:Key="BackpackTrackBrush" Color="#1FFFFFFF" />
             <SolidColorBrush x:Key="BackpackSkeletonBrush" Color="#26FFFFFF" />
         </ResourceDictionary>
         <ResourceDictionary x:Key="Dark">
-            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#000000" TintOpacity="0.2" FallbackColor="#D9161616" />
-            <SolidColorBrush x:Key="BackpackCardBrush" Color="#18FFFFFF" />
-            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#CC1A1A1A" />
+            <AcrylicBrush x:Key="BackpackGlassBrush" TintColor="#000000" TintOpacity="0.15" FallbackColor="#D4161616" />
+            <SolidColorBrush x:Key="BackpackCardBrush" Color="#12FFFFFF" />
+            <SolidColorBrush x:Key="BackpackSurfaceBrush" Color="#E61A1A1A" />
             <SolidColorBrush x:Key="BackpackHoverBrush" Color="#26FFFFFF" />
             <SolidColorBrush x:Key="BackpackMutedBrush" Color="#14FFFFFF" />
-            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#20FFFFFF" />
+            <SolidColorBrush x:Key="BackpackBorderBrush" Color="#18FFFFFF" />
             <SolidColorBrush x:Key="BackpackTextBrush" Color="White" />
             <SolidColorBrush x:Key="BackpackSecondaryTextBrush" Color="#B3FFFFFF" />
             <SolidColorBrush x:Key="BackpackTrackBrush" Color="#1FFFFFFF" />
@@ -112,6 +112,7 @@
 
     <Style x:Key="BackpackInventoryCardStyle" TargetType="Grid" BasedOn="{StaticResource BackpackGridCardStyle}">
         <Setter Property="Padding" Value="14" />
+        <Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
     </Style>
 
     <Style x:Key="BackpackDetailCardStyle" TargetType="Border">
