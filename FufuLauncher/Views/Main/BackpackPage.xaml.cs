@@ -40,7 +40,11 @@ public sealed partial class BackpackPage : Page
 
         await _runtime.InitializeAsync();
         ViewModel.RefreshBrowse();
-        ViewModel.RebuildOverview();
+        
+        ViewModel.Dispatcher.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, () =>
+        {
+            ViewModel.RebuildOverview();
+        });
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)

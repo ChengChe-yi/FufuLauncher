@@ -15,6 +15,8 @@ public sealed partial class BackpackViewModel : ObservableObject
     public const int PageSize = 12;
     public const int GroupsPerPage = 3;
     private readonly DispatcherQueue      _dispatcher;
+
+    public DispatcherQueue Dispatcher => _dispatcher;
     private readonly MaterialMetaService  _materialMeta;
     private readonly FoodMetaService      _foodMeta;
     private readonly WeaponMetaService    _weaponMeta;
