@@ -350,43 +350,39 @@
 
     <Grid x:Name="RootLayoutGrid" Opacity="0">
         <Grid.RenderTransform><TranslateTransform x:Name="RootLayoutTranslate" Y="18" /></Grid.RenderTransform>
-        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Margin="36,24,36,0" MaxWidth="1060" HorizontalAlignment="Center" Spacing="16">
-            <StackPanel Spacing="4">
-                <TextBlock Text="{x:Bind ViewModel.PageTitle}" Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="{helpers:Loc Key=Backpack_PageSubtitle}" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.65" />
-            </StackPanel>
-
-            <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="16" Translation="0,0,32">
-                <Grid.Shadow><ThemeShadow /></Grid.Shadow>
-                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
-                <Grid ColumnSpacing="10">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Padding="0,2">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsOverview, Mode=OneWay}" Click="OnTabClick" Tag="0"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE80F;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabOverview}" /></StackPanel></ToggleButton>
-                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsWeapons, Mode=OneWay}" Click="OnTabClick" Tag="1"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE7AD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabWeapon.Header}" /></StackPanel></ToggleButton>
-                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsArtifacts, Mode=OneWay}" Click="OnTabClick" Tag="2"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xECA5;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabArtifact.Header}" /></StackPanel></ToggleButton>
-                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsMaterials, Mode=OneWay}" Click="OnTabClick" Tag="3"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE8FD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabMaterial.Header}" /></StackPanel></ToggleButton>
-                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsFood, Mode=OneWay}" Click="OnTabClick" Tag="4"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE8B7;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabFood.Header}" /></StackPanel></ToggleButton>
-                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsGadgets, Mode=OneWay}" Click="OnTabClick" Tag="5"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE950;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabGadget.Header}" /></StackPanel></ToggleButton>
-                            <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsAssets, Mode=OneWay}" Click="OnTabClick" Tag="6"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE734;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabAsset.Header}" /></StackPanel></ToggleButton>
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Button Grid.Column="1" Style="{StaticResource BackpackIconButtonStyle}" Click="OnOpenGameSettings" ToolTipService.ToolTip="游戏设置"><FontIcon Glyph="&#xE713;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
-                    <Button Grid.Column="2" Style="{StaticResource BackpackIconButtonStyle}" IsEnabled="{x:Bind ViewModel.IsGameRunning, Mode=OneWay}" Click="OnKillGame" ToolTipService.ToolTip="结束同步进程"><FontIcon Glyph="&#xE733;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
-                    <Button Grid.Column="3" Style="{StaticResource BackpackAccentButtonStyle}" IsEnabled="{x:Bind ViewModel.CanLaunch, Mode=OneWay}" Click="OnSyncBag"><StackPanel Orientation="Horizontal" Spacing="8"><ProgressRing Width="15" Height="15" IsActive="{x:Bind ViewModel.IsLaunching, Mode=OneWay}" Visibility="{x:Bind ViewModel.ProgressRingVisibility, Mode=OneWay}" /><FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" Visibility="{x:Bind ViewModel.SyncIconVisibility, Mode=OneWay}" /><TextBlock Text="{x:Bind ViewModel.SyncBagLabel}" /></StackPanel></Button>
-                </Grid>
-                <Grid Grid.Row="1" Margin="0,12,0,0">
-                    <TextBlock Text="{helpers:Loc Key=Backpack_LocalOnlyDisclaimer}" Style="{StaticResource BackpackLabelStyle}" VerticalAlignment="Center" MaxLines="1" />
-                </Grid>
-            </Grid>
-        </StackPanel>
-
-        <Grid Grid.Row="1">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <StackPanel Width="1060" Margin="36,24,36,48" Spacing="24" HorizontalAlignment="Center">
+                    <StackPanel MaxWidth="1060" HorizontalAlignment="Center" Spacing="16">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="{x:Bind ViewModel.PageTitle}" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Text="{helpers:Loc Key=Backpack_PageSubtitle}" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.65" />
+                        </StackPanel>
+
+                        <Grid Style="{StaticResource BackpackSectionCardStyle}" Padding="16" Translation="0,0,32">
+                            <Grid.Shadow><ThemeShadow /></Grid.Shadow>
+                            <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                            <Grid ColumnSpacing="10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Padding="0,2">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsOverview, Mode=OneWay}" Click="OnTabClick" Tag="0"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE80F;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabOverview}" /></StackPanel></ToggleButton>
+                                        <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsWeapons, Mode=OneWay}" Click="OnTabClick" Tag="1"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE7AD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabWeapon.Header}" /></StackPanel></ToggleButton>
+                                        <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsArtifacts, Mode=OneWay}" Click="OnTabClick" Tag="2"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xECA5;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabArtifact.Header}" /></StackPanel></ToggleButton>
+                                        <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsMaterials, Mode=OneWay}" Click="OnTabClick" Tag="3"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE8FD;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabMaterial.Header}" /></StackPanel></ToggleButton>
+                                        <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsFood, Mode=OneWay}" Click="OnTabClick" Tag="4"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE8B7;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabFood.Header}" /></StackPanel></ToggleButton>
+                                        <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsGadgets, Mode=OneWay}" Click="OnTabClick" Tag="5"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE950;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabGadget.Header}" /></StackPanel></ToggleButton>
+                                        <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsAssets, Mode=OneWay}" Click="OnTabClick" Tag="6"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE734;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabAsset.Header}" /></StackPanel></ToggleButton>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <Button Grid.Column="1" Style="{StaticResource BackpackIconButtonStyle}" Click="OnOpenGameSettings" ToolTipService.ToolTip="游戏设置"><FontIcon Glyph="&#xE713;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
+                                <Button Grid.Column="2" Style="{StaticResource BackpackIconButtonStyle}" IsEnabled="{x:Bind ViewModel.IsGameRunning, Mode=OneWay}" Click="OnKillGame" ToolTipService.ToolTip="结束同步进程"><FontIcon Glyph="&#xE733;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
+                                <Button Grid.Column="3" Style="{StaticResource BackpackAccentButtonStyle}" IsEnabled="{x:Bind ViewModel.CanLaunch, Mode=OneWay}" Click="OnSyncBag"><StackPanel Orientation="Horizontal" Spacing="8"><ProgressRing Width="15" Height="15" IsActive="{x:Bind ViewModel.IsLaunching, Mode=OneWay}" Visibility="{x:Bind ViewModel.ProgressRingVisibility, Mode=OneWay}" /><FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" Visibility="{x:Bind ViewModel.SyncIconVisibility, Mode=OneWay}" /><TextBlock Text="{x:Bind ViewModel.SyncBagLabel}" /></StackPanel></Button>
+                            </Grid>
+                            <Grid Grid.Row="1" Margin="0,12,0,0">
+                                <TextBlock Text="{helpers:Loc Key=Backpack_LocalOnlyDisclaimer}" Style="{StaticResource BackpackLabelStyle}" VerticalAlignment="Center" MaxLines="1" />
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
                     <Border Padding="18" Style="{StaticResource BackpackPathNoticeStyle}" Visibility="{x:Bind ViewModel.GlobalPathRequiredVisibility, Mode=OneWay}">
                         <Grid ColumnSpacing="14"><Grid.ColumnDefinitions><ColumnDefinition Width="Auto" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                             <FontIcon Glyph="&#xEA39;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="23" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Center" />
@@ -612,7 +608,6 @@
                         <StackPanel Spacing="10" HorizontalAlignment="Center" Margin="0,44,0,0" Visibility="{x:Bind ViewModel.HasNoResultsVisibility, Mode=OneWay}"><Border Width="72" Height="72" Style="{StaticResource BackpackEmptyIconStyle}"><FontIcon Glyph="&#xE721;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" /></Border><TextBlock Text="{helpers:Loc Key=Backpack_EmptyTitle}" HorizontalAlignment="Center" Style="{StaticResource BodyStrongTextBlockStyle}" /><TextBlock Text="{helpers:Loc Key=Backpack_EmptyBody}" HorizontalAlignment="Center" Style="{StaticResource BackpackCaptionStyle}" /><Button Content="{helpers:Loc Key=Backpack_EmptyClearBtn}" HorizontalAlignment="Center" Style="{StaticResource BackpackToolButtonStyle}" Click="OnResetBrowse" /></StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </ScrollViewer>
-        </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>
