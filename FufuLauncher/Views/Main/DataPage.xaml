@@ -1477,12 +1477,16 @@
                 <EntranceThemeTransition FromVerticalOffset="40" />
             </TransitionCollection>
         </Grid.Transitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Margin="36,24,36,0" MaxWidth="1060" HorizontalAlignment="Center" Spacing="16">
+        <Grid>
+            <ScrollViewer x:Name="DataContentHost"
+                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                          Visibility="{x:Bind ViewModel.IsScrollContentVisible, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                <ScrollViewer.RenderTransform>
+                    <TranslateTransform x:Name="DataContentTranslate" Y="0" />
+                </ScrollViewer.RenderTransform>
+                <StackPanel Margin="36,24,36,48" MaxWidth="1060"
+                            HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <StackPanel Spacing="16">
             <StackPanel Spacing="4">
                 <TextBlock Text="{helpers:Loc Key=DataPage_Title}"
                            Style="{StaticResource TitleTextBlockStyle}"
@@ -1634,17 +1638,9 @@
                                VerticalAlignment="Center" MaxLines="1" HorizontalAlignment="Right" />
                 </Grid>
             </Grid>
-        </StackPanel>
-        
-        <Grid Grid.Row="1">
+                    </StackPanel>
 
-            <ScrollViewer x:Name="DataContentHost"
-                          VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
-                          Visibility="{x:Bind ViewModel.IsScrollContentVisible, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                <ScrollViewer.RenderTransform>
-                    <TranslateTransform x:Name="DataContentTranslate" Y="0" />
-                </ScrollViewer.RenderTransform>
-                <Grid Margin="36,24,36,48" MaxWidth="1060" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Grid Margin="0,24,0,0">
                     
                     <StackPanel Spacing="24"
                                 Visibility="{x:Bind ViewModel.IsOverview, Mode=OneWay, Converter={StaticResource BoolToVis}}">
@@ -2125,7 +2121,8 @@
                                        Visibility="{x:Bind ViewModel.RerunHasNone, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
                         </StackPanel>
                     </StackPanel>
-                </Grid>
+                    </Grid>
+                </StackPanel>
             </ScrollViewer>
             
             <Grid Margin="36,24,36,24"
