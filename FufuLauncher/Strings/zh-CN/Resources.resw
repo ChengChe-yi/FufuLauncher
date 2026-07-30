@@ -1697,13 +1697,13 @@
   <data name="DataPage_BannerAdviceItem" xml:space="preserve"><value>{0}（{1} · 深渊登场 {2}）</value></data>
   <data name="DataPage_ListSeparator" xml:space="preserve"><value>、</value></data>
   <data name="DataPage_ClauseSeparator" xml:space="preserve"><value>；</value></data>
-  <data name="DataPage_ExportPdf" xml:space="preserve"><value>导出专业 PDF 分析报告</value></data>
-  <data name="DataPage_ExportPdfFileType" xml:space="preserve"><value>PDF 文档</value></data>
-  <data name="DataPage_Exporting" xml:space="preserve"><value>正在生成 FufuLauncher 数据分析报告…</value></data>
-  <data name="DataPage_Exported" xml:space="preserve"><value>PDF 报告已导出：{0}</value></data>
-  <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF 导出失败：{0}</value></data>
-  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF 报告已导出</value></data>
-  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDF 导出失败</value></data>
+  <data name="DataPage_ExportPdf" xml:space="preserve"><value>导出PDF分析报告</value></data>
+  <data name="DataPage_ExportPdfFileType" xml:space="preserve"><value>PDF文档</value></data>
+  <data name="DataPage_Exporting" xml:space="preserve"><value>正在生成FufuLauncher数据分析报告…</value></data>
+  <data name="DataPage_Exported" xml:space="preserve"><value>PDF报告已导出：{0}</value></data>
+  <data name="DataPage_ExportFailed" xml:space="preserve"><value>PDF导出失败：{0}</value></data>
+  <data name="DataPage_ExportSuccessTitle" xml:space="preserve"><value>PDF报告已导出</value></data>
+  <data name="DataPage_ExportFailedTitle" xml:space="preserve"><value>PDF导出失败</value></data>
   <data name="Backpack_TabWeapon.Header" xml:space="preserve">
     <value>武器</value>
   </data>
