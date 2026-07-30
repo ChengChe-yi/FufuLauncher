@@ -345,9 +345,6 @@ public class AccountManager
 
         try
         {
-            var backupDir = Path.Combine(DataDir, "legacy_accounts_backup");
-            Directory.CreateDirectory(backupDir);
-
             var subAccountFiles = new List<string>();
             if (Directory.Exists(DataDir))
             {
@@ -366,6 +363,7 @@ public class AccountManager
             bool hasOnlyMainConfig = subAccountFiles.Count == 0;
 
             var processed = new HashSet<string>();
+            var migratedConfigFiles = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             int migratedCount = 0;
 
             foreach (var configFile in subAccountFiles)
@@ -397,15 +395,19 @@ public class AccountManager
                         continue;
 
                     if (processed.Contains(stuid))
+                    {
+                        migratedConfigFiles.Add(configFile);
                         continue;
+                    }
 
                     string serverType = DetermineServerTypeByFileName(fileName);
                     string accountId = $"{serverType}_{stuid}";
 
                     if (_accountList.Accounts.Any(a => a.Id == accountId))
                     {
-                        System.Diagnostics.Debug.WriteLine($"[AccountManager] 账号 {accountId} 已存在，跳过迁移");
+                        System.Diagnostics.Debug.WriteLine($"[AccountManager] 账号 {accountId} 已存在，确认迁移完成");
                         processed.Add(stuid);
+                        migratedConfigFiles.Add(configFile);
                         continue;
                     }
 
@@ -428,6 +430,7 @@ public class AccountManager
 
                     _accountList.Accounts.Add(entry);
                     processed.Add(stuid);
+                    migratedConfigFiles.Add(configFile);
                     migratedCount++;
 
                     // 迁移云游戏凭证到 LocalSettings
@@ -461,8 +464,13 @@ public class AccountManager
                 await SaveAccountListAsync();
                 System.Diagnostics.Debug.WriteLine(
                     $"[AccountManager] 迁移完成，共迁移 {migratedCount} 个账号");
+            }
 
-                await MigrateActiveAccountAsync();
+            if (migratedCount > 0 || migratedConfigFiles.Count > 0)
+            {
+                var activeConfigFile = await MigrateActiveAccountAsync();
+                if (activeConfigFile != null)
+                    migratedConfigFiles.Add(activeConfigFile);
             }
             else if (hasOnlyMainConfig)
             {
@@ -522,8 +530,9 @@ public class AccountManager
                                 };
 
                                 _accountList.Accounts.Add(entry);
-                                await SetActiveAccountIdAsync(accountId);
                                 await SaveAccountListAsync();
+                                await SetActiveAccountIdAsync(accountId);
+                                migratedConfigFiles.Add(mainConfigPath);
                                 migratedCount = 1;
 
                                 // 迁移云游戏凭证
@@ -561,28 +570,23 @@ public class AccountManager
                 System.Diagnostics.Debug.WriteLine("[AccountManager] 未找到需要迁移的账号");
             }
 
-            var allConfigFiles = Directory.GetFiles(DataDir, "config*.json")
-                .Where(f => !Path.GetFileName(f).Equals("accounts.json", StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            foreach (var file in allConfigFiles)
+            foreach (var file in migratedConfigFiles)
             {
                 try
                 {
-                    var backupFile = Path.Combine(backupDir, Path.GetFileName(file));
-                    if (File.Exists(backupFile))
-                        File.Delete(backupFile);
-                    File.Move(file, backupFile);
+                    File.Delete(file);
+                    System.Diagnostics.Debug.WriteLine(
+                        $"[AccountManager] 已清除已迁移的旧配置: {Path.GetFileName(file)}");
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine(
-                        $"[AccountManager] 移动文件 {file} 失败: {ex.Message}");
+                        $"[AccountManager] 清除旧配置 {file} 失败: {ex.Message}");
                 }
             }
 
             System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 迁移流程结束，旧配置文件已移动到 legacy_accounts_backup/");
+                $"[AccountManager] 迁移流程结束，共迁移 {migratedCount} 个账号");
         }
         catch (Exception ex)
         {
@@ -590,7 +594,7 @@ public class AccountManager
         }
     }
 
-    private async Task MigrateActiveAccountAsync()
+    private async Task<string?> MigrateActiveAccountAsync()
     {
         try
         {
@@ -609,14 +613,14 @@ public class AccountManager
                 : Path.Combine(DataDir, "config.json");
 
             if (!File.Exists(mainConfigPath))
-                return;
+                return null;
 
             var json = await File.ReadAllTextAsync(mainConfigPath);
             var config = JsonSerializer.Deserialize<Config>(json,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             if (config?.Account == null || string.IsNullOrWhiteSpace(config.Account.Stuid))
-                return;
+                return null;
 
             string stuid = config.Account.Stuid;
             string serverType = isInternationalAccount ? "os" : "cn";
@@ -627,17 +631,18 @@ public class AccountManager
                 await SetActiveAccountIdAsync(accountId);
                 System.Diagnostics.Debug.WriteLine(
                     $"[AccountManager] 已迁移活跃账号: {accountId}");
+                return mainConfigPath;
             }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] 旧活跃账号 {accountId} 不在迁移列表中，使用默认账号");
-            }
+
+            System.Diagnostics.Debug.WriteLine(
+                $"[AccountManager] 旧活跃账号 {accountId} 不在迁移列表中，使用默认账号");
+            return null;
         }
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine(
                 $"[AccountManager] 迁移活跃账号失败: {ex.Message}");
+            return null;
         }
     }
 
