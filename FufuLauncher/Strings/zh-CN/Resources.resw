@@ -1058,6 +1058,11 @@
   <data name="WishBannerImage" xml:space="preserve"><value> 卡池图片</value></data>
   <data name="HelpPage_SearchResults" xml:space="preserve"><value>找到 {0} 个结果，点击条目打开</value></data>
   <data name="HelpPage_NoResults" xml:space="preserve"><value>未找到匹配的文档</value></data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve"><value>翻译</value></data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve"><value>查看原文</value></data>
+  <data name="HelpPage_Translating" xml:space="preserve"><value>翻译中 ({0}/{1})...</value></data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve"><value>翻译失败</value></data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve"><value>翻译完成</value></data>
   <data name="Success" xml:space="preserve"><value>成功</value></data>
   <data name="Failure" xml:space="preserve"><value>失败</value></data>
   <data name="Settings_Disclaimer" xml:space="preserve"><value>声明</value></data>

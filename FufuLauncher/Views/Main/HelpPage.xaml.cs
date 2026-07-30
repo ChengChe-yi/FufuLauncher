@@ -159,6 +159,12 @@ public sealed partial class HelpPage : Page
         }
     }
 
+    private void TranslateToggleButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel.ToggleTranslationCommand.CanExecute(null))
+            ViewModel.ToggleTranslationCommand.Execute(null);
+    }
+
     private async void HelpMarkdown_LinkClicked(object sender, LinkClickedEventArgs e)
     {
         var link = e.Link?.Trim();

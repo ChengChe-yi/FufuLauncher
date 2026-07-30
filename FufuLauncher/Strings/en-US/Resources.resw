@@ -1011,6 +1011,11 @@ Go to the Microsoft website to download and install it?</value></data>
   <data name="WishBannerImage" xml:space="preserve"><value> Wish Banner Image</value></data>
   <data name="HelpPage_SearchResults" xml:space="preserve"><value>Found {0} results, click to open</value></data>
   <data name="HelpPage_NoResults" xml:space="preserve"><value>No matching documents found</value></data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve"><value>Translate</value></data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve"><value>Show Original</value></data>
+  <data name="HelpPage_Translating" xml:space="preserve"><value>Translating ({0}/{1})...</value></data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve"><value>Translation Failed</value></data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve"><value>Translation Complete</value></data>
   <data name="Success" xml:space="preserve"><value>Success</value></data>
   <data name="Failure" xml:space="preserve"><value>Failure</value></data>
   <data name="Settings_Disclaimer" xml:space="preserve"><value>Disclaimer</value></data>

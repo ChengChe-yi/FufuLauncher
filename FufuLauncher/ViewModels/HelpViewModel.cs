@@ -6,7 +6,10 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
@@ -34,6 +37,25 @@ public partial class HelpViewModel : ObservableObject
     public readonly Dictionary<DocItem, string> PreloadedContents = new();
 
     private static readonly Regex s_whitespaceCollapse = new(@"\s+", RegexOptions.Compiled);
+    
+    private string _originalContent = string.Empty;
+    private string _translatedContent = string.Empty;
+    private CancellationTokenSource? _translationCts;
+
+    [ObservableProperty]
+    private bool _isTranslating;
+
+    [ObservableProperty]
+    private bool _isTranslated;
+
+    [ObservableProperty]
+    private string _translationProgress = string.Empty;
+
+    [ObservableProperty]
+    private bool _showTranslateButton;
+
+    [ObservableProperty]
+    private string _translateButtonText = string.Empty;
 
     private static string CollapseForPreview(string text, int maxLen)
     {
@@ -136,10 +158,27 @@ public partial class HelpViewModel : ObservableObject
         var encoded = string.Join("/", dirPart.Split('/').Select(Uri.EscapeDataString));
         return $"{ContentBaseUrl}/{encoded}/";
     }
+    
+    private static bool NeedsTranslation()
+    {
+        var culture = ResourceExtensions.CurrentCulture;
+        if (string.IsNullOrEmpty(culture))
+            return false;
+        return culture != "zh-CN" && culture != "zh-TW";
+    }
+
+    private void UpdateTranslateButtonState()
+    {
+        ShowTranslateButton = NeedsTranslation();
+        TranslateButtonText = IsTranslated
+            ? "HelpPage_ShowOriginalBtn".GetLocalized()
+            : "HelpPage_TranslateBtn".GetLocalized();
+    }
 
     public async Task InitializeAsync()
     {
         IsLoading = true;
+        UpdateTranslateButtonState();
         try
         {
             var json = await _httpClient.GetStringAsync(ConfigUrl);
@@ -198,6 +237,11 @@ public partial class HelpViewModel : ObservableObject
 
     public async Task LoadDocumentAsync(DocItem item)
     {
+        CancelTranslation();
+        IsTranslated = false;
+        _translatedContent = string.Empty;
+        TranslationProgress = string.Empty;
+
         IsLoading = true;
         MarkdownUriPrefix = GetMarkdownDirectoryPrefix(item.File);
         CurrentTitle = item.Title;
@@ -214,8 +258,10 @@ public partial class HelpViewModel : ObservableObject
             if (response.IsSuccessStatusCode)
             {
                 var raw = await response.Content.ReadAsStringAsync();
-                MarkdownContent = NormalizeMarkdownForWinUi(raw);
-                PreloadedContents[item] = MarkdownContent;
+                var content = NormalizeMarkdownForWinUi(raw);
+                MarkdownContent = content;
+                _originalContent = content;
+                PreloadedContents[item] = content;
 
                 if (response.Content.Headers.LastModified.HasValue)
                 {
@@ -225,21 +271,129 @@ public partial class HelpViewModel : ObservableObject
                 {
                     CurrentDate = "最后修改: 未知";
                 }
+                
+                UpdateTranslateButtonState();
+                
+                if (NeedsTranslation())
+                {
+                    _ = TranslateDocumentAsync();
+                }
             }
             else
             {
                 MarkdownContent = $"无法获取文档内容 (HTTP {response.StatusCode})";
                 CurrentDate = "";
+                _originalContent = string.Empty;
             }
         }
         catch (Exception ex)
         {
             MarkdownContent = $"文档加载发生异常: {ex.Message}";
             CurrentDate = "";
+            _originalContent = string.Empty;
         }
         finally
         {
             IsLoading = false;
+        }
+    }
+    
+    private async Task TranslateDocumentAsync()
+    {
+        if (string.IsNullOrEmpty(_originalContent))
+            return;
+
+        var culture = ResourceExtensions.CurrentCulture;
+        if (string.IsNullOrEmpty(culture))
+            return;
+
+        CancelTranslation();
+        _translationCts = new CancellationTokenSource();
+        var ct = _translationCts.Token;
+
+        IsTranslating = true;
+        TranslationProgress = string.Format("HelpPage_Translating".GetLocalized(), 0, "...");
+
+        try
+        {
+            var result = await TranslationService.Instance.TranslateMarkdownAsync(
+                _originalContent,
+                culture,
+                onProgress: (completed, total, currentText) =>
+                {
+                    App.MainWindow?.DispatcherQueue?.TryEnqueue(() =>
+                    {
+                        TranslationProgress = string.Format("HelpPage_Translating".GetLocalized(), completed, total);
+                        MarkdownContent = currentText;
+                    });
+                },
+                ct: ct);
+
+            if (!ct.IsCancellationRequested)
+            {
+                _translatedContent = result;
+                MarkdownContent = result;
+                IsTranslated = true;
+                TranslationProgress = "HelpPage_TranslateComplete".GetLocalized();
+                UpdateTranslateButtonState();
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            TranslationProgress = string.Empty;
+        }
+        catch (Exception)
+        {
+            TranslationProgress = "HelpPage_TranslateFailed".GetLocalized();
+        }
+        finally
+        {
+            IsTranslating = false;
+        }
+    }
+    
+    [RelayCommand]
+    private async Task ToggleTranslationAsync()
+    {
+        if (IsTranslating)
+        {
+            CancelTranslation();
+            MarkdownContent = _originalContent;
+            IsTranslated = false;
+            IsTranslating = false;
+            TranslationProgress = string.Empty;
+            UpdateTranslateButtonState();
+            return;
+        }
+
+        if (IsTranslated)
+        {
+            MarkdownContent = _originalContent;
+            IsTranslated = false;
+            UpdateTranslateButtonState();
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(_translatedContent))
+            {
+                MarkdownContent = _translatedContent;
+                IsTranslated = true;
+                UpdateTranslateButtonState();
+            }
+            else
+            {
+                await TranslateDocumentAsync();
+            }
+        }
+    }
+    
+    private void CancelTranslation()
+    {
+        if (_translationCts != null)
+        {
+            _translationCts.Cancel();
+            _translationCts.Dispose();
+            _translationCts = null;
         }
     }
 }
