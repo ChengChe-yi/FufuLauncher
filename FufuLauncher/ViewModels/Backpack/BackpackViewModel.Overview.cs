@@ -35,13 +35,39 @@ public sealed partial class BackpackViewModel
             collection.Clear();
         }
         catch (COMException)
-        {}
+        {
+            while (collection.Count > 0)
+            {
+                try { collection.RemoveAt(collection.Count - 1); }
+                catch (COMException) { break; }
+            }
+        }
+    }
+
+    private static void SafeReplaceAll<T>(ObservableCollection<T> collection, List<T> items)
+    {
+        try
+        {
+            collection.Clear();
+        }
+        catch (COMException)
+        {
+            while (collection.Count > 0)
+            {
+                try { collection.RemoveAt(collection.Count - 1); }
+                catch (COMException) { break; }
+            }
+        }
+
+        foreach (var item in items)
+        {
+            try { collection.Add(item); }
+            catch (COMException) { break; }
+        }
     }
 
     private void RebuildKpis()
     {
-        SafeClear(OverviewKpis);
-
         var totalWeapons = Weapons.Count;
         var ownedWeapons = Weapons.Count(w => w.HasInstance);
         var fiveStarWeapons = Weapons.Count(w => w.HasInstance && w.Source.Rank == 5);
@@ -64,54 +90,61 @@ public sealed partial class BackpackViewModel
             ownedMaterials += group.Items.Count(m => m.CountValue > 0);
         }
 
-        OverviewKpis.Add(new("\uE7AD", $"{ownedWeapons}", BackpackLocalization.Get("KpiOwnedWeapons"), "accent"));
-        OverviewKpis.Add(new("\uECA5", $"{lockedArtifacts}", BackpackLocalization.Get("KpiLockedArtifacts"), "accent"));
-        OverviewKpis.Add(new("\uE8B7", $"{cookableCount}", BackpackLocalization.Get("KpiCookableFood"), cookableCount > 0 ? "up" : "muted"));
-        OverviewKpis.Add(new("\uE8FD", $"{ownedMaterials}/{totalMaterials}", BackpackLocalization.Get("KpiMaterialTypes"), "accent"));
-        OverviewKpis.Add(new("\uE734", $"{fiveStarWeapons}", BackpackLocalization.Get("KpiFiveStarWeapons"), "star5"));
-        OverviewKpis.Add(new("\uECA5", $"{totalArtifacts}", BackpackLocalization.Get("KpiTotalArtifacts"), "muted"));
+        var items = new List<BackpackKpiItem>
+        {
+            new("\uE7AD", $"{ownedWeapons}", BackpackLocalization.Get("KpiOwnedWeapons"), "accent"),
+            new("\uECA5", $"{lockedArtifacts}", BackpackLocalization.Get("KpiLockedArtifacts"), "accent"),
+            new("\uE8B7", $"{cookableCount}", BackpackLocalization.Get("KpiCookableFood"), cookableCount > 0 ? "up" : "muted"),
+            new("\uE8FD", $"{ownedMaterials}/{totalMaterials}", BackpackLocalization.Get("KpiMaterialTypes"), "accent"),
+            new("\uE734", $"{fiveStarWeapons}", BackpackLocalization.Get("KpiFiveStarWeapons"), "star5"),
+            new("\uECA5", $"{totalArtifacts}", BackpackLocalization.Get("KpiTotalArtifacts"), "muted"),
+        };
+
+        SafeReplaceAll(OverviewKpis, items);
     }
 
     private void RebuildInsights()
     {
-        SafeClear(OverviewInsights);
+        var items = new List<BackpackInsightItem>();
 
         var maxRefine = Weapons.Count(w => w.HasInstance && w.Source.Rank == 5 && w.Source.Refine >= 5);
         if (maxRefine > 0)
-            OverviewInsights.Add(new("\uE735", BackpackLocalization.Get("InsightMaxRefine.Title"), string.Format(BackpackLocalization.Get("InsightMaxRefine.Body"), maxRefine), "star5"));
+            items.Add(new("\uE735", BackpackLocalization.Get("InsightMaxRefine.Title"), string.Format(BackpackLocalization.Get("InsightMaxRefine.Body"), maxRefine), "star5"));
 
         var maxLevelArtifacts = Artifacts.Count(a => a.HasInstance && a.Source.Level == 20 && a.Source.Rank == 5);
         if (maxLevelArtifacts > 0)
-            OverviewInsights.Add(new("\uE945", BackpackLocalization.Get("InsightMaxLevel.Title"), string.Format(BackpackLocalization.Get("InsightMaxLevel.Body"), maxLevelArtifacts), "accent"));
+            items.Add(new("\uE945", BackpackLocalization.Get("InsightMaxLevel.Title"), string.Format(BackpackLocalization.Get("InsightMaxLevel.Body"), maxLevelArtifacts), "accent"));
 
         var readyCount = FoodGroups.Sum(g => g.Items.Count(f => f.IsCookable));
         if (readyCount > 0)
-            OverviewInsights.Add(new("\uE8B7", BackpackLocalization.Get("InsightIngredientsReady.Title"), string.Format(BackpackLocalization.Get("InsightIngredientsReady.Body"), readyCount), "up"));
+            items.Add(new("\uE8B7", BackpackLocalization.Get("InsightIngredientsReady.Title"), string.Format(BackpackLocalization.Get("InsightIngredientsReady.Body"), readyCount), "up"));
 
         var emptyGroups = MaterialGroups.Where(g => g.Items.All(m => m.CountValue == 0)).ToList();
         if (emptyGroups.Count > 0)
-            OverviewInsights.Add(new("\uEA39", BackpackLocalization.Get("InsightEmptyCategories.Title"),
+            items.Add(new("\uEA39", BackpackLocalization.Get("InsightEmptyCategories.Title"),
                 string.Format(BackpackLocalization.Get("InsightEmptyCategories.Body"), emptyGroups.Count, string.Join(", ", emptyGroups.Take(3).Select(g => g.Header)) + (emptyGroups.Count > 3 ? "..." : string.Empty)),
                 "down"));
 
         var catalogOnlyWeapons = Weapons.Count(w => !w.HasInstance);
         if (catalogOnlyWeapons > 0)
-            OverviewInsights.Add(new("\uE7AD", BackpackLocalization.Get("InsightCatalogWeapons.Title"),
+            items.Add(new("\uE7AD", BackpackLocalization.Get("InsightCatalogWeapons.Title"),
                 string.Format(BackpackLocalization.Get("InsightCatalogWeapons.Body"), catalogOnlyWeapons), "muted"));
 
         var lowStock = MaterialGroups.SelectMany(g => g.Items)
             .Count(m => m.CountValue > 0 && m.CountValue < 5);
         if (lowStock > 0)
-            OverviewInsights.Add(new("\uE7BA", BackpackLocalization.Get("InsightLowStock.Title"), string.Format(BackpackLocalization.Get("InsightLowStock.Body"), lowStock), "down"));
+            items.Add(new("\uE7BA", BackpackLocalization.Get("InsightLowStock.Title"), string.Format(BackpackLocalization.Get("InsightLowStock.Body"), lowStock), "down"));
 
-        if (OverviewInsights.Count == 0)
-            OverviewInsights.Add(new("\uE8FB", BackpackLocalization.Get("InsightEmpty.Title"), BackpackLocalization.Get("InsightEmpty.Body"), "muted"));
+        if (items.Count == 0)
+            items.Add(new("\uE8FB", BackpackLocalization.Get("InsightEmpty.Title"), BackpackLocalization.Get("InsightEmpty.Body"), "muted"));
+
+        SafeReplaceAll(OverviewInsights, items);
     }
 
     private void RebuildCultivation()
     {
-        SafeClear(CultivationPlan);
-        
+        var items = new List<BackpackPlanItem>();
+
         var cultivationGroups = new[] { "MatTabCharAscension", "MatTabWeaponAscension", "MatTabTalent" };
         foreach (var group in MaterialGroups)
         {
@@ -121,7 +154,7 @@ public sealed partial class BackpackViewModel
             var owned = group.Items.Count(m => m.CountValue > 0);
             var progress = (double)owned / total * 100;
             var color = progress >= 80 ? "up" : progress >= 40 ? "accent" : "down";
-            CultivationPlan.Add(new(group.Header, $"{owned}/{total}", progress, color));
+            items.Add(new(group.Header, $"{owned}/{total}", progress, color));
         }
         
         var localGroup = MaterialGroups.FirstOrDefault(g => g.Key == "MatTabLocalSpecialty");
@@ -132,7 +165,7 @@ public sealed partial class BackpackViewModel
             if (total > 0)
             {
                 var progress = (double)owned / total * 100;
-                CultivationPlan.Add(new(localGroup.Header, $"{owned}/{total}", progress,
+                items.Add(new(localGroup.Header, $"{owned}/{total}", progress,
                     progress >= 60 ? "up" : "accent"));
             }
         }
@@ -145,15 +178,17 @@ public sealed partial class BackpackViewModel
             {
                 var owned = highTier.Count(m => m.CountValue > 0);
                 var progress = (double)owned / highTier.Count * 100;
-                CultivationPlan.Add(new(BackpackLocalization.Get("PlanHighTierTalent"), $"{owned}/{highTier.Count}", progress,
+                items.Add(new(BackpackLocalization.Get("PlanHighTierTalent"), $"{owned}/{highTier.Count}", progress,
                     progress >= 50 ? "accent" : "down"));
             }
         }
+
+        SafeReplaceAll(CultivationPlan, items);
     }
 
     private void RebuildCooking()
     {
-        SafeClear(CookingItems);
+        var items = new List<BackpackCookingItem>();
 
         var allFoods = FoodGroups.SelectMany(g => g.Items).ToList();
         var half = Math.Max(0, BackpackViewModel.PageSize / 2);
@@ -161,7 +196,7 @@ public sealed partial class BackpackViewModel
         var cookable = allFoods.Where(f => f.IsCookable).Take(half).ToList();
         foreach (var food in cookable)
         {
-            CookingItems.Add(new(food.Name, BackpackLocalization.Get("CookReady"), food.IngredientsText, true, "up", food.IconUri, food.QualitySource));
+            items.Add(new(food.Name, BackpackLocalization.Get("CookReady"), food.IngredientsText, true, "up", food.IconUri, food.QualitySource));
         }
         
         var almostCookable = allFoods
@@ -170,14 +205,16 @@ public sealed partial class BackpackViewModel
         foreach (var food in almostCookable)
         {
             var missing = food.Ingredients.First(i => !i.IsEnough);
-            CookingItems.Add(new(food.Name, BackpackLocalization.Get("CookAlmost"),
+            items.Add(new(food.Name, BackpackLocalization.Get("CookAlmost"),
                 string.Format(BackpackLocalization.Get("CookAlmostBody"), missing.Name, missing.HeldText),
                 false, "soon", food.IconUri, food.QualitySource));
         }
         
-        if (CookingItems.Count == 0)
+        if (items.Count == 0)
         {
-            CookingItems.Add(new(BackpackLocalization.Get("CookEmptyName"), BackpackLocalization.Get("CookEmptyStatus"), BackpackLocalization.Get("CookEmptyBody"), false, "muted"));
+            items.Add(new(BackpackLocalization.Get("CookEmptyName"), BackpackLocalization.Get("CookEmptyStatus"), BackpackLocalization.Get("CookEmptyBody"), false, "muted"));
         }
+
+        SafeReplaceAll(CookingItems, items);
     }
 }
