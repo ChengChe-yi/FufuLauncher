@@ -1,5 +1,8 @@
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using FufuLauncher.Models.Backpack;
-using FufuLauncher.Services.Backpack;
 
 namespace FufuLauncher.ViewModels;
 

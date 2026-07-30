@@ -1,8 +1,10 @@
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
-using System.Net.Http;
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml.Media.Imaging;
 

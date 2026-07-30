@@ -1,16 +1,21 @@
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+ky3-backpack
+*/
+using FufuLauncher.Constants;
 using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FufuLauncher.Services.Backpack;
 
 internal static class StaticResources
 {
-    private const string Base = "http://8.134.75.17/static/raw/";
     private static readonly Dictionary<int, BitmapImage> _qualityImages = [];
     private static readonly Dictionary<int, BitmapImage> _badgeImages = [];
 
-    public static Uri WeaponIcon(string icon)   => new($"{Base}EquipIcon/{icon}.png");
-    public static Uri ArtifactIcon(string icon) => new($"{Base}RelicIcon/{icon}.png");
-    public static Uri MaterialIcon(string icon) => new($"{Base}ItemIcon/{icon}.png");
+    public static Uri WeaponIcon(string icon)   => new($"{ApiEndpoints.BackpackWeaponIconUrl}{icon}.png");
+    public static Uri ArtifactIcon(string icon) => new($"{ApiEndpoints.BackpackArtifactIconUrl}{icon}.png");
+    public static Uri MaterialIcon(string icon) => new($"{ApiEndpoints.BackpackMaterialIconUrl}{icon}.png");
 
     public static Uri QualityIcon(int rank)
     {

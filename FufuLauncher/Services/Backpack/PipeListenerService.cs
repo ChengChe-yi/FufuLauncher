@@ -1,3 +1,8 @@
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+ky3-backpack
+*/
 using System.IO.Pipes;
 using System.Text;
 

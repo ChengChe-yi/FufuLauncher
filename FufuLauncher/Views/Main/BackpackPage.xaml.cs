@@ -1,3 +1,7 @@
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using System.ComponentModel;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services.Backpack;
@@ -5,7 +9,6 @@ using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Input;
 
 namespace FufuLauncher.Views;
 

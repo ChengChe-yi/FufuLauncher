@@ -1,3 +1,7 @@
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.Backpack;
 using FufuLauncher.Services.Backpack;
@@ -64,7 +68,7 @@ public sealed partial class ArtifactViewModel : ObservableObject
             MainStatValueDisplay = string.Empty;
         }
 
-        var slotParts = new System.Collections.Generic.List<string> { entry.Slot, RankDisplay };
+        var slotParts = new List<string> { entry.Slot, RankDisplay };
         if (hasInstance && entry.Locked) slotParts.Add(BackpackLocalization.Get("Locked"));
         SlotRankEquipped = string.Join("  ", slotParts);
 

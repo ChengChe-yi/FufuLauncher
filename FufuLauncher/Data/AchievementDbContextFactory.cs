@@ -1,4 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace FufuLauncher.Data;

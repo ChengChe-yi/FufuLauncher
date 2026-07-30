@@ -1,4 +1,7 @@
-using System.ComponentModel.DataAnnotations;
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FufuLauncher.Data.Entities;

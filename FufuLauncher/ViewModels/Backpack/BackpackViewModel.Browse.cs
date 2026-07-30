@@ -1,5 +1,8 @@
+/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using System.Collections.ObjectModel;
-using System.Runtime.InteropServices;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
