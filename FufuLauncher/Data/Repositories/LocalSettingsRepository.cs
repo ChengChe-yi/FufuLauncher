@@ -119,25 +119,18 @@ public class LocalSettingsRepository
 
     public async Task UpsertSettingAsync(string key, string value)
     {
-        try
+        using var context = CreateContext();
+        var existing = await context.Settings.FindAsync(key);
+        if (existing != null)
         {
-            using var context = CreateContext();
-            var existing = await context.Settings.FindAsync(key);
-            if (existing != null)
-            {
-                existing.Value = value;
-            }
-            else
-            {
-                context.Settings.Add(new SettingEntity { Key = key, Value = value });
-            }
-            await context.SaveChangesAsync();
-            Debug.WriteLine($"LocalSettingsRepository: 已保存 '{key}'");
+            existing.Value = value;
         }
-        catch (Exception ex)
+        else
         {
-            Debug.WriteLine($"LocalSettingsRepository: 保存设置失败 - {ex.Message}");
+            context.Settings.Add(new SettingEntity { Key = key, Value = value });
         }
+        await context.SaveChangesAsync();
+        Debug.WriteLine($"LocalSettingsRepository: 已保存 '{key}'");
     }
 
     public async Task DeleteSettingAsync(string key)

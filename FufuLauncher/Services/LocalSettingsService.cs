@@ -9,6 +9,7 @@ using FufuLauncher.Contracts.Services;
 using FufuLauncher.Data.Repositories;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
+using Sentry;
 
 namespace FufuLauncher.Services
 {
@@ -165,7 +166,24 @@ namespace FufuLauncher.Services
 
             Debug.WriteLine($"LocalSettingsService: 保存{key}");
 
-            await _repository.UpsertSettingAsync(key, json);
+            try
+            {
+                await _repository.UpsertSettingAsync(key, json);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"LocalSettingsService: 保存设置失败 - {ex.Message}");
+                SentrySdk.CaptureException(ex, scope =>
+                {
+                    scope.SetTag("source", "LocalSettingsService");
+                    scope.SetTag("settingKey", key);
+                });
+                WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                    "Settings_ConfigSaveFailed".GetLocalized(),
+                    string.Format("Settings_ConfigSaveFailedMsg".GetLocalized(), ex.Message),
+                    NotificationType.Error,
+                    5000));
+            }
         }
 
         public async Task RemoveSettingAsync(string key)
