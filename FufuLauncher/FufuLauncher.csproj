@@ -147,6 +147,7 @@
 
     <ItemGroup>
       <Folder Include="Plugins\Avatar\" />
+      <Folder Include="Services\UID\" />
     </ItemGroup>
 
     <Target Name="RemoveUnwantedRuntimesFolders" AfterTargets="Build;Publish" Condition="Exists('$(OutDir)runtimes')">

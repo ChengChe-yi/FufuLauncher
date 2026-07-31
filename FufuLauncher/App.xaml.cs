@@ -186,6 +186,7 @@ public partial class App : Application
                     services.AddSingleton<ControlPanelModel>();
                     services.AddTransient<PanelPage>();
                     services.AddSingleton<IUserInfoService, UserInfoService>();
+                    services.AddSingleton<IUidLookupService, Services.UID.UidLookupService>();
 
                     services.AddSingleton<AccountManager>();
 
@@ -390,6 +391,19 @@ public partial class App : Application
             _mainDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
 
             _ = Task.Run(() => LaunchLocalUpdater());
+
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    var uidService = GetService<IUidLookupService>();
+                    await uidService.LoadAndWriteUidsAsync();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[UidLookup] 静默写入失败: {ex.Message}");
+                }
+            });
 
             await VerifyResourceFilesAsync();
 
