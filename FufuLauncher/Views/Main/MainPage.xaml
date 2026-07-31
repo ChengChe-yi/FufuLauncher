@@ -124,7 +124,7 @@
                             Grid.Column="0"
                             Margin="0,0,8,0"
                             FontSize="13"
-                            Foreground="{Binding ElementName=MainPageRoot, Path=ViewModel.GameNewsCardTextBrush}"
+                            Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                             MaxLines="1"
                             Text="{Binding Title}"
                             TextTrimming="CharacterEllipsis" />
@@ -132,7 +132,7 @@
                             Grid.Column="1"
                             VerticalAlignment="Center"
                             FontSize="12"
-                            Foreground="{Binding ElementName=MainPageRoot, Path=ViewModel.GameNewsCardTextBrush}"
+                            Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                             Opacity="0.5"
                             Text="{Binding Date}" />
                     </Grid>
@@ -569,7 +569,7 @@
                                 Command="{Binding ExecuteCheckinCommand}"
                                 Content="{Binding CheckinButtonText}"
                                 CornerRadius="4"
-                                Foreground="{Binding GameCheckinTextBrush, Mode=OneWay}"
+                                Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                 IsEnabled="{Binding IsCheckinButtonEnabled, Mode=OneWay}" />
                         </Grid>
                     </Grid>
