@@ -54,7 +54,7 @@ namespace FufuLauncher.Services
 
         public async Task SetRequestedThemeAsync()
         {
-            if (App.MainWindow.Content is FrameworkElement rootElement)
+            if (App.MainWindow?.Content is FrameworkElement rootElement)
             {
                 if (rootElement is Panel rootPanel && rootElement.ActualWidth > 0 && rootElement.ActualHeight > 0)
                 {
