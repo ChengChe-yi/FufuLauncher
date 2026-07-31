@@ -479,7 +479,7 @@
                                     ToolTipService.ToolTip="{helpers:Loc Key=Home_RefreshToken}">
                                     <FontIcon
                                         FontSize="11"
-                                        Foreground="{Binding GameCheckinTextBrush, Mode=OneWay}"
+                                        Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                         Glyph="&#xE72C;" />
                                 </Button>
                                 <Button
@@ -495,7 +495,7 @@
                                     ToolTipService.ToolTip="{helpers:Loc Key=Home_GoToCheckinConfig}">
                                     <FontIcon
                                         FontSize="11"
-                                        Foreground="{Binding GameCheckinTextBrush, Mode=OneWay}"
+                                        Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                         Glyph="&#xE713;" />
                                 </Button>
                                 <Border
@@ -508,7 +508,7 @@
                                     ToolTipService.ToolTip="{Binding CheckinStateTooltip, Mode=OneWay}">
                                     <FontIcon
                                         FontSize="12"
-                                        Foreground="{Binding CheckinStateBrush, Mode=OneWay}"
+                                        Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                         Glyph="{Binding CheckinStateGlyph, Mode=OneWay}" />
                                 </Border>
                             </Grid>
