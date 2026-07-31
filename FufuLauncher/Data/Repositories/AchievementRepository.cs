@@ -20,6 +20,16 @@ public class AchievementRepository
     {
         _overridePath = newDbPath;
     }
+    
+    public void InvalidateMigrationCache(string dbPath)
+    {
+        _migratedPaths.TryRemove(dbPath, out _);
+    }
+    
+    public static void ClearConnectionPool()
+    {
+        SqliteConnection.ClearAllPools();
+    }
 
     private static readonly object _migrateLock = new();
     private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, bool> _migratedPaths

@@ -26,7 +26,7 @@ public class AchievementDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite($"Data Source={_dbPath}");
+        optionsBuilder.UseSqlite($"Data Source={_dbPath};Pooling=False");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

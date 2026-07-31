@@ -12,6 +12,7 @@ using System.Text.Json.Serialization;
 using FufuLauncher.Data.Entities;
 using FufuLauncher.Data.Repositories;
 using FufuLauncher.Helpers;
+using Microsoft.Data.Sqlite;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -307,6 +308,7 @@ public sealed partial class AchievementWindow : Window
             SaveData(); 
             
             _achievementRepo.ChangeDatabase(_workFilePath);
+            SqliteConnection.ClearAllPools();
             
             string targetPath = Path.Combine(_archivesDir, $"{nameResult}.db");
             File.Copy(_workFilePath, targetPath, true);
@@ -319,6 +321,7 @@ public sealed partial class AchievementWindow : Window
             SaveData();
             
             _achievementRepo.ChangeDatabase(_workFilePath);
+            SqliteConnection.ClearAllPools();
             
             string currentBackupPath = Path.Combine(_archivesDir, $"{CurrentProfileName}.db");
             File.Copy(_workFilePath, currentBackupPath, true);
@@ -505,6 +508,10 @@ public sealed partial class AchievementWindow : Window
             ViewModel.StatusMessage = "AchievementWindow_SwitchingProfile".GetLocalized();
             
             _achievementRepo.ChangeDatabase(_workFilePath);
+            
+            // 释放连接池中的文件句柄，并清除迁移缓存，防止文件被占用
+            SqliteConnection.ClearAllPools();
+            _achievementRepo.InvalidateMigrationCache(_workFilePath);
             
             if (isNew)
             {
