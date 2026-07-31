@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -15,7 +15,7 @@
   <data name="Avatar_LoadFail_Title" xml:space="preserve"><value>Load Failed</value></data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve"><value>Save Failed</value></data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve"><value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value></data>
-  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don&apos;t show this warning again</value></data>
+  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don't show this warning again</value></data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve"><value>Compatibility Warning</value></data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve"><value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value></data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve"><value>Repair Failed</value></data>
@@ -60,10 +60,10 @@ Recommendations:
   <data name="Preset_Create_Placeholder" xml:space="preserve"><value>Enter new preset name</value></data>
   <data name="Preset_Create_Title" xml:space="preserve"><value>Create New Preset</value></data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve"><value>Confirm Delete</value></data>
-  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset &quot;{0}&quot;? This action cannot be undone!</value></data>
+  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value></data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve"><value>Lock reason: {0}
 
-If you continue, this warning will be ignored and the preset&apos;s Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
+If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
   <data name="Preset_Locked_Continue" xml:space="preserve"><value>Continue and Unlock</value></data>
   <data name="Preset_Locked_Title" xml:space="preserve"><value>Configuration Preset Locked</value></data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve"><value>Confirm Reset</value></data>
@@ -505,7 +505,7 @@ Anda harus memulai ulang game agar perubahan berlaku!</value></data>
   <data name="Btn_GotIt" xml:space="preserve"><value>Mengerti</value></data>
   <data name="Err_SwitchFailed_Format" xml:space="preserve"><value>Pergantian gagal: {0}</value></data>
   <data name="Title_ConfirmDelete" xml:space="preserve"><value>Konfirmasi Hapus</value></data>
-  <data name="Msg_DeleteAccountConfirm_Format" xml:space="preserve"><value>Hapus akun &apos;{0}&apos;?</value></data>
+  <data name="Msg_DeleteAccountConfirm_Format" xml:space="preserve"><value>Hapus akun '{0}'?</value></data>
   <data name="Err_DeleteFailed_Format" xml:space="preserve"><value>Penghapusan gagal: {0}</value></data>
   <data name="Title_OperationFailed" xml:space="preserve"><value>Operasi Gagal</value></data>
   <data name="NavHome" xml:space="preserve"><value>Beranda</value></data>
@@ -660,8 +660,8 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value></data>
   <data name="Account_TotalTime" xml:space="preserve"><value>Total Waktu</value></data>
   <data name="Account_DailyAvg" xml:space="preserve"><value>Rata-rata Harian</value></data>
   <data name="Account_NoRecentRecords_Format" xml:space="preserve"><value>Tidak ada catatan game selama {0} hari terakhir</value></data>
-  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Hapus akun &quot;{0}&quot;? Ini akan menghapus semua data terkait termasuk kredensial, riwayat wish, dan kredensial cloud gaming. Ini tidak dapat dibatalkan.</value></data>
-  <data name="Account_DeleteComplete" xml:space="preserve"><value>Akun &quot;{0}&quot; dihapus.</value></data>
+  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Hapus akun "{0}"? Ini akan menghapus semua data terkait termasuk kredensial, riwayat wish, dan kredensial cloud gaming. Ini tidak dapat dibatalkan.</value></data>
+  <data name="Account_DeleteComplete" xml:space="preserve"><value>Akun "{0}" dihapus.</value></data>
   <data name="Account_DeleteException" xml:space="preserve"><value>Kesalahan penghapusan akun</value></data>
   <data name="Account_DeleteBtn" xml:space="preserve"><value>Hapus</value></data>
   <data name="Account_CheckingIn" xml:space="preserve"><value>Sedang check-in...</value></data>
@@ -864,7 +864,8 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value></data>
   <data name="GenshinData_Mom" xml:space="preserve"><value>MoM </value></data>
   <data name="GenshinData_LastMonth" xml:space="preserve"><value>(Bulan lalu </value></data>
   <data name="GenshinData_MoraEarned" xml:space="preserve"><value>Mora Diperoleh</value></data>
-  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Data harian biasanya diperbarui keesokan paginya&#x0a;• Tingkat pendapatan dihitung berdasarkan efisiensi perolehan primogem</value></data>
+  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Data harian biasanya diperbarui keesokan paginya
+• Tingkat pendapatan dihitung berdasarkan efisiensi perolehan primogem</value></data>
   <data name="GenshinData_MonthlySourceAnalysis" xml:space="preserve"><value>Analisis Sumber Primogem Bulanan</value></data>
   <data name="GenshinData_Total" xml:space="preserve"><value>Total</value></data>
   <data name="DataPage_SearchRole" xml:space="preserve"><value>Cari karakter...</value></data>
@@ -1026,10 +1027,14 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value></data>
   <data name="GachaAnalysis_DeleteRecords" xml:space="preserve"><value>Hapus Catatan</value></data>
   <data name="GachaAnalysis_PullsUnit" xml:space="preserve"><value> Pull</value></data>
   <data name="GachaAnalysis_ImportHint" xml:space="preserve"><value>Pilih metode untuk mengimpor catatan wish Anda dan mulai menganalisis data gacha Anda</value></data>
-  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Dapatkan catatan langsung melalui&#x0a;akun MiYouShe yang login</value></data>
+  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Dapatkan catatan langsung melalui
+akun MiYouShe yang login</value></data>
   <data name="GachaAnalysis_Recommended" xml:space="preserve"><value>Direkomendasikan</value></data>
-  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Tempel tautan analisis gacha&#x0a;untuk mengambil catatan dari API</value></data>
-  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Impor catatan dari file JSON&#x0a;format UIGF standar&#x0a;UIGF v4.x/3.0/2.x</value></data>
+  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Tempel tautan analisis gacha
+untuk mengambil catatan dari API</value></data>
+  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Impor catatan dari file JSON
+format UIGF standar
+UIGF v4.x/3.0/2.x</value></data>
   <data name="GachaAnalysis_IncrementalUpdate" xml:space="preserve"><value>Pembaruan Inkremental (Direkomendasikan)</value></data>
   <data name="GachaAnalysis_FullUpdate" xml:space="preserve"><value>Pembaruan Penuh</value></data>
   <data name="GachaAnalysis_Characters" xml:space="preserve"><value>Karakter</value></data>
@@ -1362,7 +1367,7 @@ File yang dicari:
   <data name="Element_Hydro" xml:space="preserve"><value>Hydro</value></data>
   <data name="Element_Cryo" xml:space="preserve"><value>Cryo</value></data>
   <data name="Download_Connecting" xml:space="preserve"><value>Menghubungkan ke server Mihoyo...</value></data>
-  <data name="Download_VoiceOnly" xml:space="preserve"><value>>> Melewati game dasar, hanya mode voice pack</value></data>
+  <data name="Download_VoiceOnly" xml:space="preserve"><value>&gt;&gt; Melewati game dasar, hanya mode voice pack</value></data>
   <data name="Download_FetchingManifest" xml:space="preserve"><value>Mengambil file manifes: {0}...</value></data>
   <data name="Download_ManifestFailed" xml:space="preserve"><value>Unduhan manifes gagal: {0}</value></data>
   <data name="Download_TaskStart" xml:space="preserve"><value>Verifikasi/Unduhan dimulai. Total: {0} file, {1}</value></data>
@@ -1410,7 +1415,7 @@ Stack trace:
   <data name="Program_InjectionFailed" xml:space="preserve"><value>Peluncuran injeksi gagal: {0} (kode: {1})</value></data>
   <data name="Program_InjectionException" xml:space="preserve"><value>Exception proses injeksi: {0}</value></data>
   <data name="Program_ErrorTitle" xml:space="preserve"><value>Kesalahan FufuLauncher</value></data>
-  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Akses ditolak. Harap periksa apakah file atau folder diatur ke &quot;read-only&quot;, atau coba jalankan launcher sebagai administrator.</value></data>
+  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Akses ditolak. Harap periksa apakah file atau folder diatur ke "read-only", atau coba jalankan launcher sebagai administrator.</value></data>
   <data name="IniFile_WriteFailed" xml:space="preserve"><value>Penulisan gagal: file mungkin sedang digunakan oleh game atau program lain.
 Detail: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Terjadi kesalahan saat menulis konfigurasi.
@@ -1829,4 +1834,4 @@ Detail: {0}</value></data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
   </data>
-</root>
+<data name="Checkin_SignNow" xml:space="preserve"><value>Check-in Sekarang</value></data><data name="Checkin_LoadingStatus" xml:space="preserve"><value>Memuat status...</value></data><data name="Checkin_NotLoggedIn" xml:space="preserve"><value>Belum masuk</value></data><data name="Checkin_PleaseLogin" xml:space="preserve"><value>Silakan masuk terlebih dahulu</value></data><data name="Checkin_CredentialFailed" xml:space="preserve"><value>Gagal memuat kredensial</value></data><data name="Checkin_CredentialUnavailable" xml:space="preserve"><value>Tidak dapat mengambil kredensial</value></data><data name="Checkin_CheckingIn" xml:space="preserve"><value>Sedang check-in...</value></data><data name="Checkin_Executing" xml:space="preserve"><value>Menjalankan check-in...</value></data><data name="Checkin_Complete" xml:space="preserve"><value>Check-in selesai</value></data><data name="Checkin_PartialFailed" xml:space="preserve"><value>Check-in sebagian gagal</value></data><data name="Checkin_LoadFailed" xml:space="preserve"><value>Gagal memuat</value></data><data name="Checkin_ExecuteFailed" xml:space="preserve"><value>Eksekusi gagal</value></data></root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -39,9 +39,9 @@
   <data name="Account_DailyAvg" xml:space="preserve"><value>Media Giornaliera</value></data>
   <data name="Account_DailyCheckin" xml:space="preserve"><value>Check-in Giornaliero</value></data>
   <data name="Account_DeleteAccount" xml:space="preserve"><value>Elimina Account</value></data>
-  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Eliminare l'account &quot;{0}&quot;? Verranno cancellati tutti i dati associati, incluse credenziali, cronologia desideri e credenziali di cloud gaming. Questa azione è irreversibile.</value></data>
+  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Eliminare l'account "{0}"? Verranno cancellati tutti i dati associati, incluse credenziali, cronologia desideri e credenziali di cloud gaming. Questa azione è irreversibile.</value></data>
   <data name="Account_DeleteBtn" xml:space="preserve"><value>Elimina</value></data>
-  <data name="Account_DeleteComplete" xml:space="preserve"><value>Account &quot;{0}&quot; eliminato.</value></data>
+  <data name="Account_DeleteComplete" xml:space="preserve"><value>Account "{0}" eliminato.</value></data>
   <data name="Account_DeleteCurrent" xml:space="preserve"><value>Elimina Account Corrente</value></data>
   <data name="Account_DeleteCurrentConfirm_Format" xml:space="preserve"><value>Sei sicuro di voler eliminare l'account corrente {0} ({1})? Verranno cancellati tutti i dati associati. Questa azione è irreversibile.</value></data>
   <data name="Account_DeleteException" xml:space="preserve"><value>Errore eliminazione account</value></data>
@@ -524,7 +524,7 @@ Stack trace:
   <data name="Download_TaskStart" xml:space="preserve"><value>Verifica/Download avviato. Totale: {0} file, {1}</value></data>
   <data name="Download_UserCancelled" xml:space="preserve"><value>Utente ha annullato.</value></data>
   <data name="Download_VerifyFailed" xml:space="preserve"><value>[Verifica Fallita] {0} (Server:{1} vs Locale:{2})</value></data>
-  <data name="Download_VoiceOnly" xml:space="preserve"><value>>> Saltando gioco base, solo modalità pacchetto vocale</value></data>
+  <data name="Download_VoiceOnly" xml:space="preserve"><value>&gt;&gt; Saltando gioco base, solo modalità pacchetto vocale</value></data>
   <data name="EditConfigTooltip" xml:space="preserve"><value>Modifica File di Configurazione</value></data>
   <data name="Element_Anemo" xml:space="preserve"><value>Anemo</value></data>
   <data name="Element_Cryo" xml:space="preserve"><value>Cryo</value></data>
@@ -589,7 +589,7 @@ Conferma di aver selezionato la directory di installazione contenente l'eseguibi
   <data name="FpsMonitorTitle" xml:space="preserve"><value>Monitor FPS In-Game</value></data>
   <data name="FpsPluginEnabledLabel" xml:space="preserve"><value>Plugin FPS Abilitato</value></data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve"><value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value></data>
-  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don&apos;t show this warning again</value></data>
+  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don't show this warning again</value></data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve"><value>Compatibility Warning</value></data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve"><value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value></data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve"><value>Repair Failed</value></data>
@@ -851,7 +851,7 @@ CaptureApp
   <data name="IdentifyMonitors" xml:space="preserve"><value>Identifica Monitor</value></data>
   <data name="IgnoreWarning" xml:space="preserve"><value>Ignora Avviso</value></data>
   <data name="ImportBtn" xml:space="preserve"><value>Importa</value></data>
-  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Accesso negato. Verifica se il file o la cartella è impostato su &quot;sola lettura&quot;, o prova a eseguire il launcher come amministratore.</value></data>
+  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Accesso negato. Verifica se il file o la cartella è impostato su "sola lettura", o prova a eseguire il launcher come amministratore.</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Si è verificato un errore durante la scrittura della configurazione.
 Dettagli: {0}</value></data>
   <data name="IniFile_WriteFailed" xml:space="preserve"><value>Scrittura fallita: il file potrebbe essere in uso dal gioco o da un altro programma.
@@ -1173,10 +1173,10 @@ Recommendations:
   <data name="Preset_Create_Placeholder" xml:space="preserve"><value>Enter new preset name</value></data>
   <data name="Preset_Create_Title" xml:space="preserve"><value>Create New Preset</value></data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve"><value>Confirm Delete</value></data>
-  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset &quot;{0}&quot;? This action cannot be undone!</value></data>
+  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value></data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve"><value>Lock reason: {0}
 
-If you continue, this warning will be ignored and the preset&apos;s Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
+If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
   <data name="Preset_Locked_Continue" xml:space="preserve"><value>Continue and Unlock</value></data>
   <data name="Preset_Locked_Title" xml:space="preserve"><value>Configuration Preset Locked</value></data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve"><value>Confirm Reset</value></data>
@@ -1433,7 +1433,7 @@ Andare al sito Microsoft per scaricarla e installarla?</value></data>
   <data name="SettingsGroupAbout" xml:space="preserve"><value>Informazioni e supporto</value></data>
   <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Cerca impostazioni…</value></data>
   <data name="DisableCaptchaPopup" xml:space="preserve"><value>Disattiva il popup captcha del controllo rischi</value></data>
-  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Se attivato, la finestra captcha del controllo rischi dell&apos;account non verrà mostrata. Saltare la verifica può impedire temporaneamente il funzionamento di funzioni come le note.</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Se attivato, la finestra captcha del controllo rischi dell'account non verrà mostrata. Saltare la verifica può impedire temporaneamente il funzionamento di funzioni come le note.</value></data>
   <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>Usa CDN di terze parti per gli aggiornamenti</value></data>
   <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>Accelera il download tramite nodi CDN di terze parti. Disattiva per scaricare direttamente da GitHub.</value></data>
   <data name="PluginStoreSubtitle" xml:space="preserve"><value>Scopri e installa plugin della community per ampliare il launcher</value></data>
@@ -1840,4 +1840,4 @@ Andare al sito Microsoft per scaricarla e installarla?</value></data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
   </data>
-</root>
+<data name="Checkin_SignNow" xml:space="preserve"><value>Registrati ora</value></data><data name="Checkin_LoadingStatus" xml:space="preserve"><value>Caricamento stato...</value></data><data name="Checkin_NotLoggedIn" xml:space="preserve"><value>Non connesso</value></data><data name="Checkin_PleaseLogin" xml:space="preserve"><value>Effettua prima il login</value></data><data name="Checkin_CredentialFailed" xml:space="preserve"><value>Caricamento credenziali fallito</value></data><data name="Checkin_CredentialUnavailable" xml:space="preserve"><value>Impossibile ottenere le credenziali</value></data><data name="Checkin_CheckingIn" xml:space="preserve"><value>Registrazione...</value></data><data name="Checkin_Executing" xml:space="preserve"><value>Registrazione in corso...</value></data><data name="Checkin_Complete" xml:space="preserve"><value>Registrazione completata</value></data><data name="Checkin_PartialFailed" xml:space="preserve"><value>Registrazione parzialmente fallita</value></data><data name="Checkin_LoadFailed" xml:space="preserve"><value>Caricamento fallito</value></data><data name="Checkin_ExecuteFailed" xml:space="preserve"><value>Esecuzione fallita</value></data></root>

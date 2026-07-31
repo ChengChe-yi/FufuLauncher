@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -15,7 +15,7 @@
   <data name="Avatar_LoadFail_Title" xml:space="preserve"><value>Load Failed</value></data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve"><value>Save Failed</value></data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve"><value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value></data>
-  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don&apos;t show this warning again</value></data>
+  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don't show this warning again</value></data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve"><value>Compatibility Warning</value></data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve"><value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value></data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve"><value>Repair Failed</value></data>
@@ -60,10 +60,10 @@ Recommendations:
   <data name="Preset_Create_Placeholder" xml:space="preserve"><value>Enter new preset name</value></data>
   <data name="Preset_Create_Title" xml:space="preserve"><value>Create New Preset</value></data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve"><value>Confirm Delete</value></data>
-  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset &quot;{0}&quot;? This action cannot be undone!</value></data>
+  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value></data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve"><value>Lock reason: {0}
 
-If you continue, this warning will be ignored and the preset&apos;s Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
+If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
   <data name="Preset_Locked_Continue" xml:space="preserve"><value>Continue and Unlock</value></data>
   <data name="Preset_Locked_Title" xml:space="preserve"><value>Configuration Preset Locked</value></data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve"><value>Confirm Reset</value></data>
@@ -298,7 +298,7 @@ If you continue, this warning will be ignored and the preset&apos;s Hash will be
   <data name="PluginSettingsLabel" xml:space="preserve"><value>Plugin-Einstellungen</value></data>
   <data name="EmptyPluginLibrary" xml:space="preserve"><value>Die Plugin-Bibliothek ist leer</value></data>
   <data name="PluginSafetyDisclaimer" xml:space="preserve"><value>Bitte prüfe die Sicherheit der Plugins selbst. Der Entwickler übernimmt keine Verantwortung für Schäden, die durch die Verwendung von Plugins entstehen.</value></data>
-  <data name="DiagnosticsHint" xml:space="preserve"><value>Bei Problemen klicke zuerst auf „Computer diagnostizieren&quot;.</value></data>
+  <data name="DiagnosticsHint" xml:space="preserve"><value>Bei Problemen klicke zuerst auf „Computer diagnostizieren".</value></data>
   <data name="DiagnosticsBtn" xml:space="preserve"><value>Computer diagnostizieren</value></data>
   <data name="ViewHelpTooltip" xml:space="preserve"><value>Hilfe anzeigen</value></data>
   <data name="GifInvalidError" xml:space="preserve"><value>Die konfigurierte URL ist kein gültiges GIF-Format</value></data>
@@ -660,8 +660,8 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value></data>
   <data name="Account_TotalTime" xml:space="preserve"><value>Gesamtzeit</value></data>
   <data name="Account_DailyAvg" xml:space="preserve"><value>Täglicher Durchschnitt</value></data>
   <data name="Account_NoRecentRecords_Format" xml:space="preserve"><value>Keine Spielaufzeichnungen der letzten {0} Tage</value></data>
-  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Konto &quot;{0}&quot; löschen? Dies löscht alle zugehörigen Daten, einschließlich Anmeldedaten, Wunschverlauf und Cloud-Spiel-Daten – unwiderruflich.</value></data>
-  <data name="Account_DeleteComplete" xml:space="preserve"><value>Konto &quot;{0}&quot; erfolgreich gelöscht</value></data>
+  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Konto "{0}" löschen? Dies löscht alle zugehörigen Daten, einschließlich Anmeldedaten, Wunschverlauf und Cloud-Spiel-Daten – unwiderruflich.</value></data>
+  <data name="Account_DeleteComplete" xml:space="preserve"><value>Konto "{0}" erfolgreich gelöscht</value></data>
   <data name="Account_DeleteException" xml:space="preserve"><value>Fehler beim Löschen des Kontos</value></data>
   <data name="Account_DeleteBtn" xml:space="preserve"><value>Löschen</value></data>
   <data name="Account_CheckingIn" xml:space="preserve"><value>Check-in läuft...</value></data>
@@ -864,7 +864,8 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value></data>
   <data name="GenshinData_Mom" xml:space="preserve"><value>Vergleich zum Vormonat</value></data>
   <data name="GenshinData_LastMonth" xml:space="preserve"><value>(Vormonat</value></data>
   <data name="GenshinData_MoraEarned" xml:space="preserve"><value>Mora erhalten</value></data>
-  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Tägliche Daten werden normalerweise am nächsten Morgen aktualisiert&#x0a;• Die Einkommensstufe basiert auf der Urgestein-Beschaffungseffizienz</value></data>
+  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Tägliche Daten werden normalerweise am nächsten Morgen aktualisiert
+• Die Einkommensstufe basiert auf der Urgestein-Beschaffungseffizienz</value></data>
   <data name="GenshinData_MonthlySourceAnalysis" xml:space="preserve"><value>Monatliche Urgestein-Quellenanalyse</value></data>
   <data name="GenshinData_Total" xml:space="preserve"><value>Gesamt</value></data>
   <data name="DataPage_SearchRole" xml:space="preserve"><value>Charakter suchen...</value></data>
@@ -1026,10 +1027,14 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value></data>
   <data name="GachaAnalysis_DeleteRecords" xml:space="preserve"><value>Aufzeichnungen löschen</value></data>
   <data name="GachaAnalysis_PullsUnit" xml:space="preserve"><value> Zieh.</value></data>
   <data name="GachaAnalysis_ImportHint" xml:space="preserve"><value>Wähle eine Methode zum Importieren deiner Wunschhistorie, um mit der Analyse zu beginnen.</value></data>
-  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Wunschhistorie direkt über das aktuell&#x0a;angemeldete MiHoYo-Konto abrufen</value></data>
+  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Wunschhistorie direkt über das aktuell
+angemeldete MiHoYo-Konto abrufen</value></data>
   <data name="GachaAnalysis_Recommended" xml:space="preserve"><value>Empfohlen</value></data>
-  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Wunschverlauf-Link einf�gen&#x0a;und Aufzeichnungen per API abrufen</value></data>
-  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Aufzeichnungen aus einer UIGF-&#x0a;JSON-Datei importieren&#x0a;UIGF v4.x/3.0/2.x</value></data>
+  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Wunschverlauf-Link einf�gen
+und Aufzeichnungen per API abrufen</value></data>
+  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Aufzeichnungen aus einer UIGF-
+JSON-Datei importieren
+UIGF v4.x/3.0/2.x</value></data>
   <data name="GachaAnalysis_IncrementalUpdate" xml:space="preserve"><value>Inkrementelles Update (empfohlen)</value></data>
   <data name="GachaAnalysis_FullUpdate" xml:space="preserve"><value>Vollständiges Update</value></data>
   <data name="GachaAnalysis_Characters" xml:space="preserve"><value>Charaktere</value></data>
@@ -1410,7 +1415,7 @@ Stacktrace:
   <data name="Program_InjectionFailed" xml:space="preserve"><value>Injektionsstart fehlgeschlagen: {0} (Code: {1})</value></data>
   <data name="Program_InjectionException" xml:space="preserve"><value>Fehler im Injektionsprozess: {0}</value></data>
   <data name="Program_ErrorTitle" xml:space="preserve"><value>FufuLauncher Fehler</value></data>
-  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Zugriff verweigert. Bitte überprüfe, ob die Datei oder der Ordner als „schreibgeschützt&quot; markiert ist, oder versuche, den Launcher als Administrator auszuführen.</value></data>
+  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Zugriff verweigert. Bitte überprüfe, ob die Datei oder der Ordner als „schreibgeschützt" markiert ist, oder versuche, den Launcher als Administrator auszuführen.</value></data>
   <data name="IniFile_WriteFailed" xml:space="preserve"><value>Schreiben fehlgeschlagen: Die Datei wird möglicherweise vom Spiel oder einem anderen Programm verwendet.
 Rückmeldung: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Fehler beim Schreiben der Konfiguration
@@ -1829,4 +1834,4 @@ Rückmeldung: {0}</value></data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
   </data>
-</root>
+<data name="Checkin_SignNow" xml:space="preserve"><value>Jetzt einchecken</value></data><data name="Checkin_LoadingStatus" xml:space="preserve"><value>Status wird geladen...</value></data><data name="Checkin_NotLoggedIn" xml:space="preserve"><value>Nicht angemeldet</value></data><data name="Checkin_PleaseLogin" xml:space="preserve"><value>Bitte zuerst anmelden</value></data><data name="Checkin_CredentialFailed" xml:space="preserve"><value>Anmeldedaten konnten nicht geladen werden</value></data><data name="Checkin_CredentialUnavailable" xml:space="preserve"><value>Anmeldedaten nicht verfügbar</value></data><data name="Checkin_CheckingIn" xml:space="preserve"><value>Einchecken...</value></data><data name="Checkin_Executing" xml:space="preserve"><value>Check-in wird ausgeführt...</value></data><data name="Checkin_Complete" xml:space="preserve"><value>Check-in abgeschlossen</value></data><data name="Checkin_PartialFailed" xml:space="preserve"><value>Check-in teilweise fehlgeschlagen</value></data><data name="Checkin_LoadFailed" xml:space="preserve"><value>Laden fehlgeschlagen</value></data><data name="Checkin_ExecuteFailed" xml:space="preserve"><value>Ausführung fehlgeschlagen</value></data></root>

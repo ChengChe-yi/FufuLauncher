@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -15,7 +15,7 @@
   <data name="Avatar_LoadFail_Title" xml:space="preserve"><value>Load Failed</value></data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve"><value>Save Failed</value></data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve"><value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value></data>
-  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don&apos;t show this warning again</value></data>
+  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don't show this warning again</value></data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve"><value>Compatibility Warning</value></data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve"><value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value></data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve"><value>Repair Failed</value></data>
@@ -60,10 +60,10 @@ Recommendations:
   <data name="Preset_Create_Placeholder" xml:space="preserve"><value>Enter new preset name</value></data>
   <data name="Preset_Create_Title" xml:space="preserve"><value>Create New Preset</value></data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve"><value>Confirm Delete</value></data>
-  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset &quot;{0}&quot;? This action cannot be undone!</value></data>
+  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value></data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve"><value>Lock reason: {0}
 
-If you continue, this warning will be ignored and the preset&apos;s Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
+If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
   <data name="Preset_Locked_Continue" xml:space="preserve"><value>Continue and Unlock</value></data>
   <data name="Preset_Locked_Title" xml:space="preserve"><value>Configuration Preset Locked</value></data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve"><value>Confirm Reset</value></data>
@@ -505,7 +505,7 @@ Você deve reiniciar o jogo para que isso tenha efeito!</value></data>
   <data name="Btn_GotIt" xml:space="preserve"><value>Entendi</value></data>
   <data name="Err_SwitchFailed_Format" xml:space="preserve"><value>Falha na troca: {0}</value></data>
   <data name="Title_ConfirmDelete" xml:space="preserve"><value>Confirmar exclusão</value></data>
-  <data name="Msg_DeleteAccountConfirm_Format" xml:space="preserve"><value>Excluir conta &apos;{0}&apos;?</value></data>
+  <data name="Msg_DeleteAccountConfirm_Format" xml:space="preserve"><value>Excluir conta '{0}'?</value></data>
   <data name="Err_DeleteFailed_Format" xml:space="preserve"><value>Falha ao excluir: {0}</value></data>
   <data name="Title_OperationFailed" xml:space="preserve"><value>Operação falhou</value></data>
   <data name="NavHome" xml:space="preserve"><value>Início</value></data>
@@ -660,8 +660,8 @@ Ir para o site da Microsoft para baixar e instalar?</value></data>
   <data name="Account_TotalTime" xml:space="preserve"><value>Tempo total</value></data>
   <data name="Account_DailyAvg" xml:space="preserve"><value>Média diária</value></data>
   <data name="Account_NoRecentRecords_Format" xml:space="preserve"><value>Sem registros de jogo nos últimos {0} dias</value></data>
-  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Excluir conta &quot;{0}&quot;? Isso excluirá todos os dados relacionados, incluindo credenciais, histórico de desejos e credenciais de cloud gaming. Isso não pode ser desfeito.</value></data>
-  <data name="Account_DeleteComplete" xml:space="preserve"><value>Conta &quot;{0}&quot; excluída.</value></data>
+  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Excluir conta "{0}"? Isso excluirá todos os dados relacionados, incluindo credenciais, histórico de desejos e credenciais de cloud gaming. Isso não pode ser desfeito.</value></data>
+  <data name="Account_DeleteComplete" xml:space="preserve"><value>Conta "{0}" excluída.</value></data>
   <data name="Account_DeleteException" xml:space="preserve"><value>Erro ao excluir conta</value></data>
   <data name="Account_DeleteBtn" xml:space="preserve"><value>Excluir</value></data>
   <data name="Account_CheckingIn" xml:space="preserve"><value>Fazendo check-in...</value></data>
@@ -864,7 +864,8 @@ Ir para o site da Microsoft para baixar e instalar?</value></data>
   <data name="GenshinData_Mom" xml:space="preserve"><value>Vs mês anterior </value></data>
   <data name="GenshinData_LastMonth" xml:space="preserve"><value>(Mês passado </value></data>
   <data name="GenshinData_MoraEarned" xml:space="preserve"><value>Mora ganha</value></data>
-  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Os dados diários geralmente são atualizados na manhã seguinte&#x0a;• O nível de renda é calculado com base na eficiência de ganho de primogemas</value></data>
+  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Os dados diários geralmente são atualizados na manhã seguinte
+• O nível de renda é calculado com base na eficiência de ganho de primogemas</value></data>
   <data name="GenshinData_MonthlySourceAnalysis" xml:space="preserve"><value>Análise mensal de fontes de primogemas</value></data>
   <data name="GenshinData_Total" xml:space="preserve"><value>Total</value></data>
   <data name="DataPage_SearchRole" xml:space="preserve"><value>Pesquisar personagens...</value></data>
@@ -1026,10 +1027,14 @@ Ir para o site da Microsoft para baixar e instalar?</value></data>
   <data name="GachaAnalysis_DeleteRecords" xml:space="preserve"><value>Excluir registros</value></data>
   <data name="GachaAnalysis_PullsUnit" xml:space="preserve"><value> Tiragens</value></data>
   <data name="GachaAnalysis_ImportHint" xml:space="preserve"><value>Escolha um método para importar seus registros de desejos e começar a analisar seus dados de gacha</value></data>
-  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Obtenha registros diretamente pela sua&#x0a;conta MiYouShe conectada</value></data>
+  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Obtenha registros diretamente pela sua
+conta MiYouShe conectada</value></data>
   <data name="GachaAnalysis_Recommended" xml:space="preserve"><value>Recomendado</value></data>
-  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Cole o link de análise de gacha&#x0a;para buscar registros da API</value></data>
-  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Importe registros de um arquivo&#x0a;JSON no formato UIGF padrão&#x0a;UIGF v4.x/3.0/2.x</value></data>
+  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Cole o link de análise de gacha
+para buscar registros da API</value></data>
+  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Importe registros de um arquivo
+JSON no formato UIGF padrão
+UIGF v4.x/3.0/2.x</value></data>
   <data name="GachaAnalysis_IncrementalUpdate" xml:space="preserve"><value>Atualização incremental (Recomendado)</value></data>
   <data name="GachaAnalysis_FullUpdate" xml:space="preserve"><value>Atualização completa</value></data>
   <data name="GachaAnalysis_Characters" xml:space="preserve"><value>Personagens</value></data>
@@ -1362,7 +1367,7 @@ Arquivos pesquisados:
   <data name="Element_Hydro" xml:space="preserve"><value>Hydro</value></data>
   <data name="Element_Cryo" xml:space="preserve"><value>Cryo</value></data>
   <data name="Download_Connecting" xml:space="preserve"><value>Conectando aos servidores Mihoyo...</value></data>
-  <data name="Download_VoiceOnly" xml:space="preserve"><value>>> Pulando jogo base, apenas modo pacote de voz</value></data>
+  <data name="Download_VoiceOnly" xml:space="preserve"><value>&gt;&gt; Pulando jogo base, apenas modo pacote de voz</value></data>
   <data name="Download_FetchingManifest" xml:space="preserve"><value>Buscando arquivo de manifesto: {0}...</value></data>
   <data name="Download_ManifestFailed" xml:space="preserve"><value>Falha no download do manifesto: {0}</value></data>
   <data name="Download_TaskStart" xml:space="preserve"><value>Verificação/Download iniciado. Total: {0} arquivos, {1}</value></data>
@@ -1410,7 +1415,7 @@ Rastreamento de pilha:
   <data name="Program_InjectionFailed" xml:space="preserve"><value>Falha na inicialização da injeção: {0} (código: {1})</value></data>
   <data name="Program_InjectionException" xml:space="preserve"><value>Exceção no processo de injeção: {0}</value></data>
   <data name="Program_ErrorTitle" xml:space="preserve"><value>Erro do FufuLauncher</value></data>
-  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Acesso negado. Verifique se o arquivo ou pasta está definido como &quot;somente leitura&quot; ou tente executar o launcher como administrador.</value></data>
+  <data name="IniFile_AccessDenied" xml:space="preserve"><value>Acesso negado. Verifique se o arquivo ou pasta está definido como "somente leitura" ou tente executar o launcher como administrador.</value></data>
   <data name="IniFile_WriteFailed" xml:space="preserve"><value>Falha na gravação: o arquivo pode estar em uso pelo jogo ou outro programa.
 Detalhes: {0}</value></data>
   <data name="IniFile_WriteError" xml:space="preserve"><value>Ocorreu um erro ao gravar a configuração.
@@ -1829,4 +1834,4 @@ Detalhes: {0}</value></data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
   </data>
-</root>
+<data name="Checkin_SignNow" xml:space="preserve"><value>Fazer check-in agora</value></data><data name="Checkin_LoadingStatus" xml:space="preserve"><value>Carregando status...</value></data><data name="Checkin_NotLoggedIn" xml:space="preserve"><value>Não conectado</value></data><data name="Checkin_PleaseLogin" xml:space="preserve"><value>Faça login primeiro</value></data><data name="Checkin_CredentialFailed" xml:space="preserve"><value>Falha ao carregar credenciais</value></data><data name="Checkin_CredentialUnavailable" xml:space="preserve"><value>Não foi possível obter as credenciais</value></data><data name="Checkin_CheckingIn" xml:space="preserve"><value>Fazendo check-in...</value></data><data name="Checkin_Executing" xml:space="preserve"><value>Realizando check-in...</value></data><data name="Checkin_Complete" xml:space="preserve"><value>Check-in concluído</value></data><data name="Checkin_PartialFailed" xml:space="preserve"><value>Check-in parcialmente falhou</value></data><data name="Checkin_LoadFailed" xml:space="preserve"><value>Falha ao carregar</value></data><data name="Checkin_ExecuteFailed" xml:space="preserve"><value>Falha na execução</value></data></root>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -15,7 +15,7 @@
   <data name="Avatar_LoadFail_Title" xml:space="preserve"><value>Load Failed</value></data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve"><value>Save Failed</value></data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve"><value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value></data>
-  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don&apos;t show this warning again</value></data>
+  <data name="Fps_CompatWarning_DontShow" xml:space="preserve"><value>Don't show this warning again</value></data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve"><value>Compatibility Warning</value></data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve"><value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value></data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve"><value>Repair Failed</value></data>
@@ -60,10 +60,10 @@ Recommendations:
   <data name="Preset_Create_Placeholder" xml:space="preserve"><value>Enter new preset name</value></data>
   <data name="Preset_Create_Title" xml:space="preserve"><value>Create New Preset</value></data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve"><value>Confirm Delete</value></data>
-  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset &quot;{0}&quot;? This action cannot be undone!</value></data>
+  <data name="Preset_Delete_Confirm_Format" xml:space="preserve"><value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value></data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve"><value>Lock reason: {0}
 
-If you continue, this warning will be ignored and the preset&apos;s Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
+If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value></data>
   <data name="Preset_Locked_Continue" xml:space="preserve"><value>Continue and Unlock</value></data>
   <data name="Preset_Locked_Title" xml:space="preserve"><value>Configuration Preset Locked</value></data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve"><value>Confirm Reset</value></data>
@@ -660,8 +660,8 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="Account_TotalTime" xml:space="preserve"><value>Temps total</value></data>
   <data name="Account_DailyAvg" xml:space="preserve"><value>Moyenne quotidienne</value></data>
   <data name="Account_NoRecentRecords_Format" xml:space="preserve"><value>Aucune donnée de jeu sur les {0} derniers jours</value></data>
-  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Supprimer le compte &quot;{0}&quot; ? Cette action supprimera toutes les données associées, y compris les identifiants, l'historique des vœux et les identifiants cloud gaming, et est irréversible.</value></data>
-  <data name="Account_DeleteComplete" xml:space="preserve"><value>Compte &quot;{0}&quot; supprimé</value></data>
+  <data name="Account_DeleteAccountConfirm_Format" xml:space="preserve"><value>Supprimer le compte "{0}" ? Cette action supprimera toutes les données associées, y compris les identifiants, l'historique des vœux et les identifiants cloud gaming, et est irréversible.</value></data>
+  <data name="Account_DeleteComplete" xml:space="preserve"><value>Compte "{0}" supprimé</value></data>
   <data name="Account_DeleteException" xml:space="preserve"><value>Exception lors de la suppression du compte</value></data>
   <data name="Account_DeleteBtn" xml:space="preserve"><value>Supprimer</value></data>
   <data name="Account_CheckingIn" xml:space="preserve"><value>Check-in en cours...</value></data>
@@ -864,7 +864,8 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="GenshinData_Mom" xml:space="preserve"><value>Évolution</value></data>
   <data name="GenshinData_LastMonth" xml:space="preserve"><value>(Mois précédent</value></data>
   <data name="GenshinData_MoraEarned" xml:space="preserve"><value>Moras obtenus</value></data>
-  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Les données quotidiennes sont généralement mises à jour le lendemain matin&#x0a;• Le niveau de revenu est calculé en fonction de l'efficacité d'obtention de primo-gemmes</value></data>
+  <data name="GenshinData_DataNote" xml:space="preserve"><value>• Les données quotidiennes sont généralement mises à jour le lendemain matin
+• Le niveau de revenu est calculé en fonction de l'efficacité d'obtention de primo-gemmes</value></data>
   <data name="GenshinData_MonthlySourceAnalysis" xml:space="preserve"><value>Analyse mensuelle des sources de primo-gemmes</value></data>
   <data name="GenshinData_Total" xml:space="preserve"><value>Total</value></data>
   <data name="DataPage_SearchRole" xml:space="preserve"><value>Rechercher un personnage...</value></data>
@@ -1026,10 +1027,13 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="GachaAnalysis_DeleteRecords" xml:space="preserve"><value>Supprimer l'historique</value></data>
   <data name="GachaAnalysis_PullsUnit" xml:space="preserve"><value> tirages</value></data>
   <data name="GachaAnalysis_ImportHint" xml:space="preserve"><value>Choisissez une méthode pour importer votre historique de vœux et commencer l'analyse</value></data>
-  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Obtenir directement l'historique via le&#x0a;compte Hoyolab connecté</value></data>
+  <data name="GachaAnalysis_MiyousheDesc" xml:space="preserve"><value>Obtenir directement l'historique via le
+compte Hoyolab connecté</value></data>
   <data name="GachaAnalysis_Recommended" xml:space="preserve"><value>Recommandé</value></data>
-  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Coller le lien d'analyse des vœux&#x0a;pour récupérer l'historique depuis l'API</value></data>
-  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Importer l'historique depuis un fichier JSON au format standard UIGF&#x0a;UIGF v4.x/3.0/2.x</value></data>
+  <data name="GachaAnalysis_UrlDesc" xml:space="preserve"><value>Coller le lien d'analyse des vœux
+pour récupérer l'historique depuis l'API</value></data>
+  <data name="GachaAnalysis_UigfDesc" xml:space="preserve"><value>Importer l'historique depuis un fichier JSON au format standard UIGF
+UIGF v4.x/3.0/2.x</value></data>
   <data name="GachaAnalysis_IncrementalUpdate" xml:space="preserve"><value>Mise à jour incrémentielle (recommandé)</value></data>
   <data name="GachaAnalysis_FullUpdate" xml:space="preserve"><value>Mise à jour complète</value></data>
   <data name="GachaAnalysis_Characters" xml:space="preserve"><value>Personnages</value></data>
@@ -1422,7 +1426,7 @@ Rapport : {0}</value></data>
   <data name="SettingsGroupAbout" xml:space="preserve"><value>À propos et support</value></data>
   <data name="SettingsSearchPlaceholder" xml:space="preserve"><value>Rechercher un paramètre…</value></data>
   <data name="DisableCaptchaPopup" xml:space="preserve"><value>Désactiver la fenêtre de captcha du contrôle des risques</value></data>
-  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Une fois activé, la fenêtre de captcha du contrôle des risques du compte ne s&apos;affichera plus. Ignorer la vérification peut temporairement empêcher le fonctionnement de fonctions comme les notes.</value></data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve"><value>Une fois activé, la fenêtre de captcha du contrôle des risques du compte ne s'affichera plus. Ignorer la vérification peut temporairement empêcher le fonctionnement de fonctions comme les notes.</value></data>
   <data name="UseThirdPartyCDNTitle" xml:space="preserve"><value>Utiliser un CDN tiers pour les mises à jour</value></data>
   <data name="UseThirdPartyCDNCaption" xml:space="preserve"><value>Accélère le téléchargement via des nœuds CDN tiers. Désactivez pour télécharger directement depuis GitHub.</value></data>
   <data name="PluginStoreSubtitle" xml:space="preserve"><value>Découvrez et installez des plugins communautaires pour enrichir le lanceur</value></data>
@@ -1829,4 +1833,4 @@ Rapport : {0}</value></data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
   </data>
-</root>
+<data name="Checkin_SignNow" xml:space="preserve"><value>S’enregistrer</value></data><data name="Checkin_LoadingStatus" xml:space="preserve"><value>Chargement du statut...</value></data><data name="Checkin_NotLoggedIn" xml:space="preserve"><value>Non connecté</value></data><data name="Checkin_PleaseLogin" xml:space="preserve"><value>Veuillez vous connecter</value></data><data name="Checkin_CredentialFailed" xml:space="preserve"><value>Échec du chargement des identifiants</value></data><data name="Checkin_CredentialUnavailable" xml:space="preserve"><value>Impossible de récupérer les identifiants</value></data><data name="Checkin_CheckingIn" xml:space="preserve"><value>Enregistrement...</value></data><data name="Checkin_Executing" xml:space="preserve"><value>Enregistrement en cours...</value></data><data name="Checkin_Complete" xml:space="preserve"><value>Enregistrement terminé</value></data><data name="Checkin_PartialFailed" xml:space="preserve"><value>Enregistrement partiellement échoué</value></data><data name="Checkin_LoadFailed" xml:space="preserve"><value>Échec du chargement</value></data><data name="Checkin_ExecuteFailed" xml:space="preserve"><value>Échec de l’exécution</value></data></root>

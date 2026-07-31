@@ -131,9 +131,9 @@ namespace FufuLauncher.ViewModels
             OnPropertyChanged(nameof(VideoVisibility));
         }
 
-        [ObservableProperty] private string _checkinStatusText = "正在加载状态...";
+        [ObservableProperty] private string _checkinStatusText = "Checkin_LoadingStatus".GetLocalized();
         [ObservableProperty] private bool _isCheckinButtonEnabled = true;
-        [ObservableProperty] private string _checkinButtonText = "立即签到";
+        [ObservableProperty] private string _checkinButtonText = "Checkin_SignNow".GetLocalized();
         [ObservableProperty] private string _checkinSummary = "";
         
         [ObservableProperty] private string _checkinStateGlyph = "\uE730";
@@ -963,7 +963,7 @@ private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFa
             }
 
             IsCheckinButtonEnabled = true;
-            CheckinButtonText = "立即签到";
+            CheckinButtonText = "Checkin_SignNow".GetLocalized();
         }
 
         private async Task LoadCheckinStatusAsync()
@@ -983,8 +983,8 @@ private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFa
                 var activeId = accountManager.ActiveAccountId;
                 if (activeId == null)
                 {
-                    CheckinStatusText = "未登录";
-                    CheckinSummary = "请先登录账户";
+                    CheckinStatusText = "Checkin_NotLoggedIn".GetLocalized();
+                    CheckinSummary = "Checkin_PleaseLogin".GetLocalized();
                     UpdateCheckinIconState("Fail");
                     return;
                 }
@@ -993,8 +993,8 @@ private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFa
                 var entry = accountManager.GetActiveAccountEntry();
                 if (cookies == null || entry == null)
                 {
-                    CheckinStatusText = "凭证加载失败";
-                    CheckinSummary = "无法获取账户凭证";
+                    CheckinStatusText = "Checkin_CredentialFailed".GetLocalized();
+                    CheckinSummary = "Checkin_CredentialUnavailable".GetLocalized();
                     UpdateCheckinIconState("Fail");
                     return;
                 }
@@ -1022,7 +1022,7 @@ private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFa
             }
             catch (Exception ex)
             {
-                CheckinStatusText = "加载失败";
+                CheckinStatusText = "Checkin_LoadFailed".GetLocalized();
                 CheckinSummary = ex.Message;
                 UpdateCheckinIconState("Fail");
             }
@@ -1033,9 +1033,9 @@ private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFa
         private async Task ExecuteCheckinAsync()
         {
             IsCheckinButtonEnabled = false;
-            CheckinButtonText = "签到中...";
-            CheckinStatusText = "签到中...";
-            CheckinSummary = "正在执行签到任务...";
+            CheckinButtonText = "Checkin_CheckingIn".GetLocalized();
+            CheckinStatusText = "Checkin_CheckingIn".GetLocalized();
+            CheckinSummary = "Checkin_Executing".GetLocalized();
 
             //await RefreshSettingsAsync();
 
@@ -1045,31 +1045,31 @@ private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFa
                 {
                     _dispatcherQueue.TryEnqueue(() =>
                     {
-                        CheckinButtonText = "签到中...";
+                        CheckinButtonText = "Checkin_CheckingIn".GetLocalized();
                         CheckinSummary = msg;
                     });
                 });
 
                 var unifiedResult = await _unifiedCheckinService.ExecuteAllCheckinsAsync(progress);
 
-                CheckinStatusText = unifiedResult.OverallSuccess ? "签到完成" : "签到部分失败";
+                CheckinStatusText = unifiedResult.OverallSuccess ? "Checkin_Complete".GetLocalized() : "Checkin_PartialFailed".GetLocalized();
                 CheckinSummary = unifiedResult.SummaryMessage;
                 UpdateCheckinIconState(unifiedResult.OverallSuccess ? "已签到" : "Fail");
 
                 var notificationTitle = unifiedResult.NotificationType switch
                 {
-                    NotificationType.Success => "签到完成",
-                    NotificationType.Warning => "签到部分失败",
-                    _ => "签到失败"
+                    NotificationType.Success => "Checkin_Complete".GetLocalized(),
+                    NotificationType.Warning => "Checkin_PartialFailed".GetLocalized(),
+                    _ => "Account_CheckinFailed".GetLocalized()
                 };
                 _notificationService.Show(notificationTitle, unifiedResult.GetDetailedSummary(), unifiedResult.NotificationType, 5000);
             }
             catch (Exception ex)
             {
-                CheckinStatusText = "执行失败";
+                CheckinStatusText = "Checkin_ExecuteFailed".GetLocalized();
                 CheckinSummary = ex.Message;
                 UpdateCheckinIconState("Fail");
-                _notificationService.Show("签到异常", ex.Message, NotificationType.Error, 3000);
+                _notificationService.Show("Account_CheckinException".GetLocalized(), ex.Message, NotificationType.Error, 3000);
             }
             finally
             {
