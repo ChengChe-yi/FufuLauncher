@@ -1757,6 +1757,15 @@ namespace FufuLauncher.ViewModels
                 // Use ResourceExtensions.SetLanguage to control MRT via ResourceContext instead.
                 Helpers.ResourceExtensions.SetLanguage(
                     language == AppLanguage.Default ? null : culture);
+                
+                if (language == AppLanguage.zhCN)
+                {
+                    SelectedServer = ServerType.CN;
+                }
+                else if (language != AppLanguage.Default)
+                {
+                    SelectedServer = ServerType.OS;
+                }
 
                 var dialog = new ContentDialog
                 {

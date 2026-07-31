@@ -255,7 +255,7 @@ public async Task<LaunchResult> LaunchGameAsync()
 
                     if (injectionModule == "EXE")
                     {
-                        gameStarted = await LaunchViaExeModuleAsync(gameExePath, logBuilder);
+                        gameStarted = await LaunchViaExeModuleAsync(gameExePath, arguments, logBuilder);
                     }
                     else
                     {
@@ -476,7 +476,7 @@ public async Task<LaunchResult> LaunchGameAsync()
             }
         }
 
-        private async Task<bool> LaunchViaExeModuleAsync(string gameExePath, StringBuilder log)
+        private async Task<bool> LaunchViaExeModuleAsync(string gameExePath, string arguments, StringBuilder log)
         {
             try
             {
@@ -490,11 +490,18 @@ public async Task<LaunchResult> LaunchGameAsync()
                 log.AppendLine($"[EXE注入] 使用 Launcher_2.exe 注入模式");
                 log.AppendLine($"[EXE注入] 路径: {launcher2Path}");
                 log.AppendLine($"[EXE注入] 游戏: {gameExePath}");
+                log.AppendLine($"[EXE注入] 启动参数: {arguments}");
+
+                var launchArgs = QuoteArgument(gameExePath);
+                if (!string.IsNullOrWhiteSpace(arguments))
+                {
+                    launchArgs += " " + arguments;
+                }
 
                 var psi = new ProcessStartInfo
                 {
                     FileName = launcher2Path,
-                    Arguments = QuoteArgument(gameExePath),
+                    Arguments = launchArgs,
                     UseShellExecute = true,
                     Verb = "runas",
                     WorkingDirectory = Path.GetDirectoryName(launcher2Path)

@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 
 namespace FufuLauncher.Services.Background
@@ -36,6 +37,12 @@ namespace FufuLauncher.Services.Background
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
         }
 
+        private static string GetApiLanguage()
+        {
+            var culture = ResourceExtensions.CurrentCulture;
+            return string.IsNullOrEmpty(culture) ? "zh-cn" : culture.ToLowerInvariant();
+        }
+
         private string ComputeMD5(string input)
         {
             using (var md5 = MD5.Create())
@@ -60,7 +67,7 @@ namespace FufuLauncher.Services.Background
             return server switch
             {
                 ServerType.CN => ApiEndpoints.BackgroundCnApi,
-                ServerType.OS => ApiEndpoints.BackgroundOsApi,
+                ServerType.OS => ApiEndpoints.BackgroundOsApi.Replace("language=zh-cn", $"language={GetApiLanguage()}"),
                 _ => ApiEndpoints.BackgroundCnApi
             };
         }

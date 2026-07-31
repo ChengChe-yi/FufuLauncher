@@ -10,6 +10,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using FufuLauncher.Models;
 using FufuLauncher.Constants;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -65,6 +66,12 @@ namespace FufuLauncher.Services.Background
 
         public BackgroundRenderer()
         {
+        }
+
+        private static string GetApiLanguage()
+        {
+            var culture = ResourceExtensions.CurrentCulture;
+            return string.IsNullOrEmpty(culture) ? "zh-cn" : culture.ToLowerInvariant();
         }
 
         public async Task<BackgroundRenderResult> GetBackgroundAsync(ServerType server, bool preferVideo)
@@ -185,7 +192,7 @@ namespace FufuLauncher.Services.Background
             return server switch
             {
                 ServerType.CN => ApiEndpoints.BackgroundCnApi,
-                ServerType.OS => ApiEndpoints.BackgroundOsApi,
+                ServerType.OS => ApiEndpoints.BackgroundOsApi.Replace("language=zh-cn", $"language={GetApiLanguage()}"),
                 _ => ApiEndpoints.BackgroundCnApi
             };
         }

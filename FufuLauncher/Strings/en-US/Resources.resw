@@ -5445,4 +5445,4 @@ Do you still want to execute it? (Not recommended)</value>
   <data name="Checkin_CheckingIn" xml:space="preserve">
     <value>Checking in...</value>
   </data>
-</root>
+<data name="Checkin_AccountLabel" xml:space="preserve"><value>Account: {0}</value></data></root>

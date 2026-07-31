@@ -5589,4 +5589,4 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Checkin_CheckingIn" xml:space="preserve">
     <value>签到中...</value>
   </data>
-</root>
+<data name="Checkin_AccountLabel" xml:space="preserve"><value>账号: {0}</value></data></root>

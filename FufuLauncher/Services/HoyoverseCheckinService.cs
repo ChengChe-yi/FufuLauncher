@@ -116,7 +116,7 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
         var isSignData = await genshin.IsSignAsync(cnAccount.Region, cnAccount.GameUid, false);
         if (isSignData == null)
             return ("Checkin_GetStatusFailed".GetLocalized(), GameCheckin.LastApiError);
-        return (isSignData.IsSign == true ? "Checkin_SignedToday".GetLocalized() : "Checkin_UnsignedToday".GetLocalized(), $"账号: {cnAccount.Nickname}");
+        return (isSignData.IsSign == true ? "Checkin_SignedToday".GetLocalized() : "Checkin_UnsignedToday".GetLocalized(), string.Format("Checkin_AccountLabel".GetLocalized(), cnAccount.Nickname));
     }
 
     public async Task<(bool success, string message)> ExecuteCheckinAsync(string targetUid, Dictionary<string, string> cookies, string serverType)
@@ -151,7 +151,6 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
     {
         if (serverType == "os")
         {
-            // 未实现 HoYoLAB 签到日历
             return null;
         }
         //if (serverType == "os")
