@@ -405,7 +405,11 @@ public sealed partial class BackpackViewModel
     private static void ReplaceChips(ObservableCollection<BackpackBrowseChip> target, IEnumerable<BackpackBrowseChip> chips)
     {
         SafeClear(target);
-        foreach (var chip in chips) target.Add(chip);
+        foreach (var chip in chips)
+        {
+            try { target.Add(chip); }
+            catch (System.Runtime.InteropServices.COMException) { break; }
+        }
     }
 
     private static void SyncSelection(IEnumerable<BackpackBrowseChip> chips, string selectedKey)
@@ -434,7 +438,11 @@ public sealed partial class BackpackViewModel
     private static void Replace<T>(ObservableCollection<T> target, IEnumerable<T> items)
     {
         SafeClear(target);
-        foreach (var item in items) target.Add(item);
+        foreach (var item in items)
+        {
+            try { target.Add(item); }
+            catch (System.Runtime.InteropServices.COMException) { break; }
+        }
     }
     
     public static IEnumerable<T> Paginate<T>(IList<T> source, int page)
@@ -468,7 +476,10 @@ public sealed partial class BackpackViewModel
                 remaining--;
             }
             if (bucket.Count > 0)
-                target.Add(new GroupViewModel<TItem>(group.Key, group.Header, bucket));
+            {
+                try { target.Add(new GroupViewModel<TItem>(group.Key, group.Header, bucket)); }
+                catch (System.Runtime.InteropServices.COMException) { break; }
+            }
         }
     }
 }
