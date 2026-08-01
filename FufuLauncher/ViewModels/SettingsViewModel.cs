@@ -1744,11 +1744,11 @@ namespace FufuLauncher.ViewModels
                 Debug.WriteLine($"[SettingsVM] ApplyLanguageChangeAsync: culture='{culture}'");
                 ResourceExtensions.SetLanguage(culture);
                 
-                if (language == AppLanguage.zhCN)
+                if (language == AppLanguage.zhCN || language == AppLanguage.Default)
                 {
                     SelectedServer = ServerType.CN;
                 }
-                else if (language != AppLanguage.Default)
+                else
                 {
                     SelectedServer = ServerType.OS;
                 }
