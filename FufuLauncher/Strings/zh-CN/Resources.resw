@@ -246,6 +246,24 @@
   <data name="MinWindowSizeLimitTitle" xml:space="preserve">
     <value>窗口最小大小限制</value>
   </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>通知弹窗位置</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>设置通知弹窗在窗口中的显示位置</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>右下角</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>右上角</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>左上角</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>左下角</value>
+  </data>
   <data name="GameNewsTextColorTitle" xml:space="preserve">
     <value>游戏资讯卡片文字颜色与透明度</value>
   </data>

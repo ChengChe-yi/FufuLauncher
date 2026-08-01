@@ -246,6 +246,24 @@
   <data name="MinWindowSizeLimitTitle" xml:space="preserve">
     <value>Minimum Window Size Limit</value>
   </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>Notification Position</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>Set where notifications appear in the window</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>Bottom Right</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>Top Right</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>Top Left</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>Bottom Left</value>
+  </data>
   <data name="GameNewsTextColorTitle" xml:space="preserve">
     <value>Game News Card Text Color &amp; Opacity</value>
   </data>

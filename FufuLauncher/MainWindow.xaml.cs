@@ -2,7 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
-  using System.Diagnostics;
+using System.Diagnostics;
 using System.Numerics;
 using Windows.Foundation;
 using CommunityToolkit.Mvvm.Input;
@@ -50,6 +50,7 @@ public sealed partial class MainWindow : WindowEx
     private bool _isPageOverlaySemiTransparent;
     private double _pageOverlayTargetOpacity = 1.0;
     private bool _isHamburgerButtonEnabled;
+    private NotificationPosition _notificationPosition;
 
     private bool _isVideoBackground;
     
@@ -126,10 +127,10 @@ public sealed partial class MainWindow : WindowEx
         }
         catch (Exception ex) when (ex is Microsoft.UI.Xaml.Markup.XamlParseException || ex is System.IO.FileNotFoundException)
         {
-            System.Diagnostics.Debug.WriteLine($"XAML解析失败: {ex.Message}");
+            Debug.WriteLine($"XAML解析失败: {ex.Message}");
             if (ex.InnerException != null)
             {
-                System.Diagnostics.Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
+                Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
             }
             // Retry once - XAML parse can fail transiently when assemblies are still loading from single-file extraction
             try
@@ -138,16 +139,16 @@ public sealed partial class MainWindow : WindowEx
             }
             catch (Exception retryEx)
             {
-                System.Diagnostics.Debug.WriteLine($"XAML解析重试仍失败: {retryEx.Message}");
+                Debug.WriteLine($"XAML解析重试仍失败: {retryEx.Message}");
                 throw;
             }
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"XAML解析失败: {ex.Message}");
+            Debug.WriteLine($"XAML解析失败: {ex.Message}");
             if (ex.InnerException != null)
             {
-                System.Diagnostics.Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
+                Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
             }
             throw; 
         }
@@ -277,6 +278,11 @@ public sealed partial class MainWindow : WindowEx
         WeakReferenceMessenger.Default.Register<NotificationMessage>(this, (_, m) =>
         {
             dispatcherQueue.TryEnqueue(() => ShowNotification(m));
+        });
+
+        WeakReferenceMessenger.Default.Register<ValueChangedMessage<NotificationPosition>>(this, (_, m) =>
+        {
+            dispatcherQueue.TryEnqueue(() => ApplyNotificationPosition(m.Value));
         });
 
         WeakReferenceMessenger.Default.Register<BackgroundRefreshMessage>(this, (_, _) =>
@@ -414,10 +420,18 @@ public sealed partial class MainWindow : WindowEx
 
     private void NavigationView_PaneOpened(NavigationView sender, object args)
     {
+        if (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft)
+        {
+            ApplyNotificationPosition(_notificationPosition);
+        }
     }
 
     private void NavigationView_PaneClosed(NavigationView sender, object args)
     {
+        if (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft)
+        {
+            ApplyNotificationPosition(_notificationPosition);
+        }
     }
     
     #endregion
@@ -1402,6 +1416,7 @@ public sealed partial class MainWindow : WindowEx
             await LoadGlobalBackgroundAsync();
             await LoadMinimizeToTraySettingAsync();
             await LoadMinWindowSizeLimitSettingAsync();
+            await LoadNotificationPositionAsync();
             await LoadNavItemVisibilityAsync();
             ShowMainContent();
             
@@ -1511,6 +1526,54 @@ public sealed partial class MainWindow : WindowEx
         {
             MinWidth = 0;
             MinHeight = 0;
+        }
+    }
+
+    private async Task LoadNotificationPositionAsync()
+    {
+        try
+        {
+            var value = await _localSettingsService.ReadSettingAsync("NotificationPosition");
+            var position = value != null
+                ? (NotificationPosition)Convert.ToInt32(value)
+                : NotificationPosition.BottomRight;
+            ApplyNotificationPosition(position);
+        }
+        catch { ApplyNotificationPosition(NotificationPosition.BottomRight); }
+    }
+
+    private void ApplyNotificationPosition(NotificationPosition position)
+    {
+        _notificationPosition = position;
+        
+        var navPaneWidth = NavigationView.IsPaneOpen
+            ? NavigationView.OpenPaneLength
+            : NavigationView.CompactPaneLength;
+        var leftMargin = navPaneWidth + 24;
+
+        switch (position)
+        {
+            case NotificationPosition.TopRight:
+                NotificationContainer.HorizontalAlignment = HorizontalAlignment.Right;
+                NotificationContainer.VerticalAlignment = VerticalAlignment.Top;
+                NotificationContainer.Margin = new Thickness(0, 48, 24, 0);
+                break;
+            case NotificationPosition.TopLeft:
+                NotificationContainer.HorizontalAlignment = HorizontalAlignment.Left;
+                NotificationContainer.VerticalAlignment = VerticalAlignment.Top;
+                NotificationContainer.Margin = new Thickness(leftMargin, 48, 0, 0);
+                break;
+            case NotificationPosition.BottomLeft:
+                NotificationContainer.HorizontalAlignment = HorizontalAlignment.Left;
+                NotificationContainer.VerticalAlignment = VerticalAlignment.Bottom;
+                NotificationContainer.Margin = new Thickness(leftMargin, 0, 0, 24);
+                break;
+            case NotificationPosition.BottomRight:
+            default:
+                NotificationContainer.HorizontalAlignment = HorizontalAlignment.Right;
+                NotificationContainer.VerticalAlignment = VerticalAlignment.Bottom;
+                NotificationContainer.Margin = new Thickness(0, 0, 24, 24);
+                break;
         }
     }
 
@@ -1931,6 +1994,7 @@ public sealed partial class MainWindow : WindowEx
 
     private InfoBar CreateInfoBar(NotificationMessage message)
     {
+        var slideOffset = (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft) ? -380 : 380;
         var infoBar = new InfoBar
         {
             Title = message.Title,
@@ -1940,7 +2004,7 @@ public sealed partial class MainWindow : WindowEx
             IsClosable = true,
             Margin = new Thickness(0, 0, 0, 8),
             Width = 360,
-            RenderTransform = new TranslateTransform { X = 380 },
+            RenderTransform = new TranslateTransform { X = slideOffset },
             Opacity = 0
         };
 
@@ -1976,9 +2040,10 @@ public sealed partial class MainWindow : WindowEx
 
     private void PlayEntranceAnimation(FrameworkElement element)
     {
+        var slideOffset = (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft) ? -380 : 380;
         var transformAnim = new DoubleAnimation
         {
-            From = 380,
+            From = slideOffset,
             To = 0,
             Duration = new Duration(TimeSpan.FromMilliseconds(300)),
             EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
@@ -2010,10 +2075,11 @@ public sealed partial class MainWindow : WindowEx
             Debug.WriteLine("[RedeemCodes] 已将关闭状态写入数据库");
         }
         
+        var slideOffset = (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft) ? -380 : 380;
         var transformAnim = new DoubleAnimation
         {
             From = 0,
-            To = 380,
+            To = slideOffset,
             Duration = new Duration(TimeSpan.FromMilliseconds(300)),
             EasingFunction = new CircleEase { EasingMode = EasingMode.EaseIn }
         };
@@ -2081,10 +2147,36 @@ public sealed partial class MainWindow : WindowEx
             Debug.WriteLine($"一键清除通知异常: {ex.Message}");
         }
     }
+
+    private async void NotificationSettings_Click(object sender, RoutedEventArgs e)
+    {
+        var settingsNavItem = GetAllNavItems()
+            .FirstOrDefault(i => i.Tag?.ToString() == "FufuLauncher.ViewModels.SettingsViewModel");
+        if (settingsNavItem != null)
+        {
+            NavigationView.SelectedItem = settingsNavItem;
+        }
+        
+        NavigateToPage("FufuLauncher.ViewModels.SettingsViewModel");
+        
+        await Task.Delay(500);
+
+        if (ContentFrame.Content is Views.SettingsPage settingsPage)
+        {
+            await settingsPage.NavigateToNotificationPositionAsync();
+        }
+    }
     
     private void PlayContainerEntranceAnimation()
     {
-        NotificationContainer.RenderTransformOrigin = new Point(1, 1);
+        var origin = _notificationPosition switch
+        {
+            NotificationPosition.TopRight => new Point(1, 0),
+            NotificationPosition.TopLeft => new Point(0, 0),
+            NotificationPosition.BottomLeft => new Point(0, 1),
+            _ => new Point(1, 1)
+        };
+        NotificationContainer.RenderTransformOrigin = origin;
         var scaleTransform = new ScaleTransform { ScaleX = 0.8, ScaleY = 0.8 };
         NotificationContainer.RenderTransform = scaleTransform;
         NotificationContainer.Opacity = 0;
@@ -2131,6 +2223,15 @@ public sealed partial class MainWindow : WindowEx
         if (NotificationContainer.Tag is string state && state == "Closing") return;
         
         NotificationContainer.Tag = "Closing";
+
+        var origin = _notificationPosition switch
+        {
+            NotificationPosition.TopRight => new Point(1, 0),
+            NotificationPosition.TopLeft => new Point(0, 0),
+            NotificationPosition.BottomLeft => new Point(0, 1),
+            _ => new Point(1, 1)
+        };
+        NotificationContainer.RenderTransformOrigin = origin;
 
         if (!(NotificationContainer.RenderTransform is ScaleTransform scaleTransform))
         {

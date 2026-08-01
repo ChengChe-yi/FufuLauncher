@@ -973,6 +973,25 @@ public sealed partial class SettingsPage : Page
         }
     }
 
+    public async Task NavigateToNotificationPositionAsync()
+    {
+        var windowBehaviorNavItem = SettingsNavigationView.MenuItems
+            .OfType<NavigationViewItem>()
+            .FirstOrDefault(item => item.Tag?.ToString() == "WindowBehaviorItem");
+
+        if (windowBehaviorNavItem != null)
+        {
+            SettingsNavigationView.SelectedItem = windowBehaviorNavItem;
+        }
+
+        await Task.Delay(120);
+
+        if (NotificationPositionSettingRow != null)
+        {
+            BringElementIntoView(NotificationPositionSettingRow);
+        }
+    }
+
     private bool _isRecordingHotkey;
 
     private void OnScreenshotHotkeyButtonClick(object sender, RoutedEventArgs e)

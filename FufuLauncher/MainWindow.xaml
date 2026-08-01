@@ -308,15 +308,27 @@
                                    VerticalAlignment="Center"
                                    Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
                 
-                        <Button Content="{helpers:Loc Key=ClearAllBtn}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                FontSize="12"
-                                Padding="8,4"
-                                Click="ClearAllNotifications_Click"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="4">
+                            <Button ToolTipService.ToolTip="{helpers:Loc Key=NotificationPositionTitle}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Padding="6,4"
+                                    Click="NotificationSettings_Click">
+                                <FontIcon Glyph="&#xE713;" FontSize="14"
+                                          Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                            </Button>
+                            <Button Content="{helpers:Loc Key=ClearAllBtn}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    FontSize="12"
+                                    Padding="8,4"
+                                    Click="ClearAllNotifications_Click"/>
+                        </StackPanel>
                     </Grid>
 
                     <ScrollViewer Grid.Row="1" 

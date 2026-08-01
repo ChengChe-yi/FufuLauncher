@@ -25,12 +25,14 @@ public class EnumToBooleanConverter : IValueConverter
             }
             if (value is int intValue)
             {
-                try
+                foreach (var enumType in _knownEnumTypes)
                 {
-                    var enumValue = Enum.Parse(typeof(WindowBackdropType), enumString);
-                    return (int)enumValue == intValue;
+                    if (Enum.TryParse(enumType, enumString, out var result))
+                    {
+                        return (int)result == intValue;
+                    }
                 }
-                catch { return false; }
+                return false;
             }
         }
         return false;
@@ -49,8 +51,13 @@ public class EnumToBooleanConverter : IValueConverter
 
                 if (targetType == typeof(int) || targetType == typeof(object))
                 {
-                    var enumValue = Enum.Parse(typeof(WindowBackdropType), enumString);
-                    return (int)enumValue;
+                    foreach (var enumType in _knownEnumTypes)
+                    {
+                        if (Enum.TryParse(enumType, enumString, out var result))
+                        {
+                            return (int)result;
+                        }
+                    }
                 }
             }
             catch
@@ -60,4 +67,10 @@ public class EnumToBooleanConverter : IValueConverter
         }
         return DependencyProperty.UnsetValue;
     }
+
+    private static readonly Type[] _knownEnumTypes = new[]
+    {
+        typeof(WindowBackdropType),
+        typeof(NotificationPosition)
+    };
 }

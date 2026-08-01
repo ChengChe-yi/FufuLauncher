@@ -33,6 +33,13 @@ namespace FufuLauncher.ViewModels
         Acrylic = 1,
         Mica = 2
     }
+    public enum NotificationPosition
+    {
+        BottomRight = 0,
+        TopRight = 1,
+        TopLeft = 2,
+        BottomLeft = 3
+    }
     public enum AppLanguage
     {
         Default = 0,
@@ -119,6 +126,7 @@ namespace FufuLauncher.ViewModels
         [ObservableProperty] private double _contentFrameBackgroundOpacity = 0.5;
         [ObservableProperty] private bool _isSaveWindowSizeEnabled;
         [ObservableProperty] private bool _isMinWindowSizeLimitEnabled = true;
+        [ObservableProperty] private NotificationPosition _notificationPosition;
         [ObservableProperty] private double _globalBackgroundImageOpacity = 1.0;
         [ObservableProperty] private bool _isAcrylicOverlayEnabled;
         [ObservableProperty] private bool _isPageOverlaySemiTransparentEnabled;
@@ -1128,6 +1136,11 @@ namespace FufuLauncher.ViewModels
                 CurrentWindowBackdrop = WindowBackdropType.Acrylic;
             }
 
+            var notifPosJson = await _localSettingsService.ReadSettingAsync("NotificationPosition");
+            NotificationPosition = notifPosJson != null
+                ? (NotificationPosition)Convert.ToInt32(notifPosJson)
+                : NotificationPosition.BottomRight;
+
             var appThemeColorJson = await _localSettingsService.ReadSettingAsync("AppThemeColor");
             if (appThemeColorJson != null)
             {
@@ -1576,6 +1589,14 @@ namespace FufuLauncher.ViewModels
                 WeakReferenceMessenger.Default.Send(new ValueChangedMessage<WindowBackdropType>(value));
             }
         }
+
+        partial void OnNotificationPositionChanged(NotificationPosition value)
+        {
+            if (_isInitializing) return;
+            _ = _localSettingsService.SaveSettingAsync("NotificationPosition", (int)value);
+            WeakReferenceMessenger.Default.Send(new ValueChangedMessage<NotificationPosition>(value));
+        }
+
         private async Task SelectStartupSoundAsync()
         {
             try
