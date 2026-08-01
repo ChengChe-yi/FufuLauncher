@@ -80,7 +80,6 @@ namespace FufuLauncher.Constants
         public const string MicrosoftNetworkCheckUrl = "https://www.microsoft.com";
         public const string VcRedistDownloadUrl = "https://aka.ms/vc14/vc_redist.x64.exe";
         public const string TelegramContactUrl = "https://t.me/Adimisra6717";
-        public const string GithubWorkflowsApiUrl = "https://api.github.com/repos/CodeCubist/FufuLauncher/actions/workflows";
         public const string PaimonTimelineUrl = "https://paimon.moe/timeline";
         public const string PluginStoreBaseUrl = "https://fu1.fun";
         public const string PluginStoreApiPrefix = "/api/v1/plugins";

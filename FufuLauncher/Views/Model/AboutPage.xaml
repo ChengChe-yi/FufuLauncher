@@ -29,7 +29,6 @@
                 <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="16">
                     <Image Source="/Assets/WindowIcon.ico" Width="80" Height="80" HorizontalAlignment="Left"/>
                     <TextBlock Text="FufuLauncher" FontSize="28" FontWeight="Bold"/> <TextBlock x:Name="VersionText" Text="Version ..." FontSize="14" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                    <HyperlinkButton x:Name="GetBuildFormActionsToggle" Content="{helpers:Loc Key=AboutPage_GetBuildFromActions}" Padding="0" Margin="0" HorizontalAlignment="Left" Click="GetBuildFormActions"/>
                 </StackPanel>
 
                 <Grid Grid.Column="1"> <Grid.RowDefinitions>
