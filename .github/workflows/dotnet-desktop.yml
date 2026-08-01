@@ -137,6 +137,19 @@ jobs:
         Set-Content -Path $hashFile -Value @($line1, $line2, $line3)
         Write-Host "Updated hash.txt with signed file hashes"
 
+    - name: Package Portable ZIP (Green Version)
+      shell: pwsh
+      run: |
+        $outputDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0"
+        $zipPath = "FufuLauncher-Portable.zip"
+        Compress-Archive -Path "$outputDir\*" -DestinationPath $zipPath -Force
+
+    - name: Upload Portable ZIP Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: FufuLauncher-Portable
+        path: FufuLauncher-Portable.zip
+
     - name: Compile Inno Setup Script
       run: '& "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" FufuLauncher.Installer\setup.iss'
 
