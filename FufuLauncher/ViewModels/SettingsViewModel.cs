@@ -40,24 +40,6 @@ namespace FufuLauncher.ViewModels
         TopLeft = 2,
         BottomLeft = 3
     }
-    public enum AppLanguage
-    {
-        Default = 0,
-        zhCN = 1,
-        zhTW = 2,
-        enUS = 3,
-        fr = 4,
-        de = 5,
-        ru = 6,
-        ja = 7,
-        es = 8,
-        ko = 9,
-        it = 10,
-        id = 11,
-        pt = 12,
-        esMX = 13
-    }
-
     public enum WindowModeType
     {
         Normal,
@@ -1755,29 +1737,12 @@ namespace FufuLauncher.ViewModels
                 Debug.WriteLine($"[SettingsVM] ApplyLanguageChangeAsync: language={language}, enumValue={(int)language}");
 
                 await _localSettingsService.SaveSettingAsync("AppLanguage", (int)language);
-                var culture = language switch
-                {
-                    AppLanguage.zhCN => "zh-CN",
-                    AppLanguage.zhTW => "zh-TW",
-                    AppLanguage.enUS => "en-US",
-                    AppLanguage.fr => "fr-FR",
-                    AppLanguage.de => "de-DE",
-                    AppLanguage.ru => "ru-RU",
-                    AppLanguage.ja => "ja-JP",
-                    AppLanguage.es => "es-ES",
-                    AppLanguage.ko => "ko-KR",
-                    AppLanguage.it => "it-IT",
-                    AppLanguage.id => "id-ID",
-                    AppLanguage.pt => "pt-BR",
-                    _ => Windows.System.UserProfile.GlobalizationPreferences.Languages.FirstOrDefault() ?? "zh-CN"
-                };
+                var culture = LanguagePreferenceResolver.Resolve(
+                    language,
+                    Windows.System.UserProfile.GlobalizationPreferences.Languages);
 
                 Debug.WriteLine($"[SettingsVM] ApplyLanguageChangeAsync: culture='{culture}'");
-
-                // PrimaryLanguageOverride is NOT available for unpackaged apps.
-                // Use ResourceExtensions.SetLanguage to control MRT via ResourceContext instead.
-                Helpers.ResourceExtensions.SetLanguage(
-                    language == AppLanguage.Default ? null : culture);
+                ResourceExtensions.SetLanguage(culture);
                 
                 if (language == AppLanguage.zhCN)
                 {

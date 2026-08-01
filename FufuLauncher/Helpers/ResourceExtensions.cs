@@ -15,7 +15,7 @@ public static class ResourceExtensions
     private static bool _loaded;
 
     /// <summary>
-    /// Gets the currently active culture name (e.g., "zh-CN", "en-US"), or null if not set.
+    /// Gets the currently active effective culture name (e.g., "zh-CN", "en-US").
     /// </summary>
     public static string? CurrentCulture
     {
@@ -23,8 +23,8 @@ public static class ResourceExtensions
     }
 
     /// <summary>
-    /// Sets the language for resource resolution.
-    /// Pass null or empty to use the system default (first available).
+    /// Sets the effective language for resource resolution.
+    /// Callers in default-language mode must resolve a supported system culture first.
     /// </summary>
     public static void SetLanguage(string? culture)
     {
@@ -120,20 +120,20 @@ public static class ResourceExtensions
                 dict.TryGetValue(resourceKey, out var result))
                 return result;
 
-            // 2) Fallback: prioritized — en-US first, then zh-CN, then others
-            if (culture != "en-US" &&
-                _resources.TryGetValue("en-US", out var enDict) &&
-                enDict.TryGetValue(resourceKey, out var enResult))
-                return enResult;
-
+            // 2) A missing translation falls back to the complete Chinese resource set.
             if (culture != "zh-CN" &&
                 _resources.TryGetValue("zh-CN", out var zhDict) &&
                 zhDict.TryGetValue(resourceKey, out var zhResult))
                 return zhResult;
 
+            if (culture != "en-US" &&
+                _resources.TryGetValue("en-US", out var enDict) &&
+                enDict.TryGetValue(resourceKey, out var enResult))
+                return enResult;
+
             foreach (var kv in _resources)
             {
-                if (kv.Key != culture && kv.Key != "en-US" && kv.Key != "zh-CN" &&
+                if (kv.Key != culture && kv.Key != "zh-CN" && kv.Key != "en-US" &&
                     kv.Value.TryGetValue(resourceKey, out var fb))
                     return fb;
             }

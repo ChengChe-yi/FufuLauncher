@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Constants;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -60,12 +61,10 @@ namespace FufuLauncher.ViewModels
         {
             get
             {
-                var lang = App.FirstRunSelectedLanguage;
-                
-                return lang switch
+                return ResourceExtensions.CurrentCulture switch
                 {
-                    AppLanguage.zhCN => AgreementTextSc,
-                    AppLanguage.zhTW => AgreementTextTc,
+                    "zh-CN" => AgreementTextSc,
+                    "zh-TW" => AgreementTextTc,
                     _ => AgreementTextEn
                 };
             }

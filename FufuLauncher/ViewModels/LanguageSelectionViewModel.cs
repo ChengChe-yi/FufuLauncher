@@ -123,30 +123,14 @@ namespace FufuLauncher.ViewModels
                 
                 await _localSettingsService.SaveSettingAsync("AppLanguage", (int)language);
 
-                var culture = language switch
-                {
-                    AppLanguage.zhCN => "zh-CN",
-                    AppLanguage.zhTW => "zh-TW",
-                    AppLanguage.enUS => "en-US",
-                    AppLanguage.fr => "fr-FR",
-                    AppLanguage.de => "de-DE",
-                    AppLanguage.ru => "ru-RU",
-                    AppLanguage.ja => "ja-JP",
-                    AppLanguage.es => "es-ES",
-                    AppLanguage.ko => "ko-KR",
-                    AppLanguage.it => "it-IT",
-                    AppLanguage.id => "id-ID",
-                    AppLanguage.pt => "pt-BR",
-                    AppLanguage.esMX => "es-MX",
-                    _ => (string?)null
-                };
+                var culture = LanguagePreferenceResolver.Resolve(
+                    language,
+                    Windows.System.UserProfile.GlobalizationPreferences.Languages);
+                ResourceExtensions.SetLanguage(culture);
 
-                ResourceExtensions.SetLanguage(
-                    language == AppLanguage.Default ? null : culture);
-                
                 App.FirstRunSelectedLanguage = language;
 
-                Debug.WriteLine($"[LangSelect] Language confirmed: {language}, culture='{culture ?? "null"}'");
+                Debug.WriteLine($"[LangSelect] Language confirmed: {language}, culture='{culture}'");
             }
             catch (Exception ex)
             {

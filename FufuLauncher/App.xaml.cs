@@ -4,7 +4,6 @@ Licensed under the MIT License.
 */
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Text.Json;
 using FufuLauncher.Activation;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
@@ -660,36 +659,15 @@ public partial class App : Application
 
             Debug.WriteLine($"[App] ApplyLanguageSettingAsync: raw value='{languageValue}' (type={languageValue?.GetType().Name ?? "null"})");
 
-            if (languageValue != null && int.TryParse(languageValue.ToString(), out int languageCode))
-            {
-                var language = (AppLanguage)languageCode;
-                string culture = language switch
-                {
-                    AppLanguage.zhCN => "zh-CN",
-                    AppLanguage.zhTW => "zh-TW",
-                    AppLanguage.enUS => "en-US",
-                    AppLanguage.fr => "fr-FR",
-                    AppLanguage.de => "de-DE",
-                    AppLanguage.ru => "ru-RU",
-                    AppLanguage.ja => "ja-JP",
-                    AppLanguage.es => "es-ES",
-                    AppLanguage.esMX => "es-MX",
-                    AppLanguage.ko => "ko-KR",
-                    AppLanguage.it => "it-IT",
-                    AppLanguage.id => "id-ID",
-                    AppLanguage.pt => "pt-BR",
-                    _ => Windows.System.UserProfile.GlobalizationPreferences.Languages.FirstOrDefault() ?? "zh-CN"
-                };
+            var language = languageValue != null && int.TryParse(languageValue.ToString(), out var languageCode)
+                ? (AppLanguage)languageCode
+                : AppLanguage.Default;
+            var culture = LanguagePreferenceResolver.Resolve(
+                language,
+                Windows.System.UserProfile.GlobalizationPreferences.Languages);
 
-                Debug.WriteLine($"[App] ApplyLanguageSettingAsync: language={language}, culture='{culture}'");
-                
-                Helpers.ResourceExtensions.SetLanguage(
-                    language == AppLanguage.Default ? null : culture);
-            }
-            else
-            {
-                Debug.WriteLine($"[App] ApplyLanguageSettingAsync: skipped (languageValue is null or unparseable)");
-            }
+            Debug.WriteLine($"[App] ApplyLanguageSettingAsync: language={language}, culture='{culture}'");
+            ResourceExtensions.SetLanguage(culture);
         }
         catch (Exception ex)
         {
@@ -705,27 +683,12 @@ public partial class App : Application
 
             if (languageValue != null)
             {
-                var languageCode = JsonSerializer.Deserialize<int>(languageValue.ToString() ?? string.Empty);
-                var language = (AppLanguage)languageCode;
+                if (!int.TryParse(languageValue.ToString(), out var languageCode))
+                    return;
 
-                var culture = language switch
-                {
-                    AppLanguage.zhCN => "zh-CN",
-                    AppLanguage.zhTW => "zh-TW",
-                    AppLanguage.enUS => "en-US",
-                    AppLanguage.fr => "fr-FR",
-                    AppLanguage.de => "de-DE",
-                    AppLanguage.ru => "ru-RU",
-                    AppLanguage.ja => "ja-JP",
-                    AppLanguage.es => "es-ES",
-                    AppLanguage.esMX => "es-MX",
-                    AppLanguage.ko => "ko-KR",
-                    AppLanguage.it => "it-IT",
-                    AppLanguage.id => "id-ID",
-                    AppLanguage.pt => "pt-BR",
-                    _ => Windows.System.UserProfile.GlobalizationPreferences.Languages.FirstOrDefault() ?? "zh-CN"
-                };
-
+                var culture = LanguagePreferenceResolver.Resolve(
+                    (AppLanguage)languageCode,
+                    Windows.System.UserProfile.GlobalizationPreferences.Languages);
                 Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture;
             }
         }
