@@ -6,9 +6,13 @@ using Windows.Foundation;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media.Imaging;
 using FufuLauncher.Helpers;
 using Windows.Media.Core;
+using Windows.Media.Editing;
 using Windows.Media.Playback;
+using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace FufuLauncher.Views;
 
@@ -48,6 +52,7 @@ public sealed partial class EasterEggPage : Page
     private MediaPlayer? _musicPlayer;
     private MediaPlayer? _videoPlayer;
     private TypedEventHandler<MediaPlayer, object>? _mediaOpenedHandler;
+    private TypedEventHandler<MediaPlayer, MediaPlayerFailedEventArgs>? _mediaFailedHandler;
     private int _currentWelcomeIndex = 0;
     private int _charIndex = 0;
     private bool _isDeleting = false;
@@ -107,6 +112,13 @@ public sealed partial class EasterEggPage : Page
                     });
                 };
                 _videoPlayer.MediaOpened += _mediaOpenedHandler;
+
+                _mediaFailedHandler = (_, args) =>
+                {
+                    System.Diagnostics.Debug.WriteLine($"视频播放失败: {args.ErrorMessage}");
+                    DispatcherQueue.TryEnqueue(() => ShowVideoFallbackFrame(videoPath));
+                };
+                _videoPlayer.MediaFailed += _mediaFailedHandler;
 
                 _videoPlayer.Play();
             }
@@ -205,6 +217,35 @@ public sealed partial class EasterEggPage : Page
         storyboard.Begin();
     }
 
+    private async void ShowVideoFallbackFrame(string videoPath)
+    {
+        try
+        {
+            var file = await StorageFile.GetFileFromPathAsync(videoPath);
+            var clip = await MediaClip.CreateFromFileAsync(file);
+            var composition = new MediaComposition();
+            composition.Clips.Add(clip);
+
+            var duration = clip.OriginalDuration;
+            var random = new Random();
+            var randomTime = TimeSpan.FromMilliseconds(random.NextDouble() * duration.TotalMilliseconds);
+
+            var thumbnail = await composition.GetThumbnailAsync(
+                randomTime, 1920, 1080, VideoFramePrecision.NearestKeyFrame);
+
+            var bitmap = new BitmapImage();
+            await bitmap.SetSourceAsync(thumbnail);
+
+            BgVideoPlayer.Visibility = Visibility.Collapsed;
+            BgFallbackImage.Source = bitmap;
+            BgFallbackImage.Visibility = Visibility.Visible;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"提取视频帧失败: {ex.Message}");
+        }
+    }
+
     public void Cleanup()
     {
         if (_cleaned) return;
@@ -224,6 +265,12 @@ public sealed partial class EasterEggPage : Page
             {
                 videoPlayer.MediaOpened -= _mediaOpenedHandler;
                 _mediaOpenedHandler = null;
+            }
+
+            if (videoPlayer != null && _mediaFailedHandler != null)
+            {
+                videoPlayer.MediaFailed -= _mediaFailedHandler;
+                _mediaFailedHandler = null;
             }
 
             if (BgVideoPlayer != null)

@@ -21,6 +21,12 @@
                             AreTransportControlsEnabled="False"
                             AutoPlay="False" />
 
+        <Image x:Name="BgFallbackImage"
+               Stretch="UniformToFill"
+               HorizontalAlignment="Stretch"
+               VerticalAlignment="Stretch"
+               Visibility="Collapsed" />
+
         <Grid Background="Black" Opacity="0.5" />
 
         <Grid x:Name="AppTitleBar"
