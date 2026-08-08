@@ -918,6 +918,28 @@ public sealed partial class SettingsPage : Page
             cloudWindow.Activate();
         }
     }
+    private async void OnRemoveCloudCredentialClick(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button && button.Tag is string uid)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "RemoveCloudCredentialConfirmTitle".GetLocalized(),
+                Content = "RemoveCloudCredentialConfirmContent".GetLocalized(),
+                PrimaryButtonText = "DeleteLabel".GetLocalized(),
+                CloseButtonText = "CancelBtn".GetLocalized(),
+                DefaultButton = ContentDialogButton.Close,
+                XamlRoot = this.XamlRoot
+            };
+
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                await ViewModel.RemoveCloudCredentialAsync(uid);
+            }
+        }
+    }
+
     private void BringElementIntoView(FrameworkElement element)
     {
         if (element == null) return;

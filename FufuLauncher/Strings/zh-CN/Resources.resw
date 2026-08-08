@@ -5577,4 +5577,14 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Checkin_CheckingIn" xml:space="preserve">
     <value>签到中...</value>
   </data>
-<data name="Checkin_AccountLabel" xml:space="preserve"><value>账号: {0}</value></data></root>
+<data name="Checkin_AccountLabel" xml:space="preserve"><value>账号: {0}</value></data>
+  <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
+    <value>移除云游戏凭证</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmTitle" xml:space="preserve">
+    <value>移除云游戏凭证</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
+    <value>确定要移除该账户的云游戏签到凭证吗？</value>
+  </data>
+</root>

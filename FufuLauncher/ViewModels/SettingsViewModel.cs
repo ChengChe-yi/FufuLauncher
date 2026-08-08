@@ -1525,6 +1525,27 @@ namespace FufuLauncher.ViewModels
             }
         }
 
+        public async Task RemoveCloudCredentialAsync(string uid)
+        {
+            try
+            {
+                string key = $"CloudComboToken_{uid}";
+                await _localSettingsService.RemoveSettingAsync(key);
+
+                var account = CheckinAccounts?.FirstOrDefault(a => a.Uid == uid);
+                if (account != null)
+                {
+                    account.HasCloudCredential = false;
+                }
+
+                WeakReferenceMessenger.Default.Send(new CloudCredentialUpdatedMessage(uid));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"移除云游戏凭证失败: {ex.Message}");
+            }
+        }
+
         private async Task ResetGameExeNameAsync()
         {
             CustomGameExeName = string.Empty;

@@ -175,7 +175,15 @@ public class CloudGameCheckinService : ICloudGameCheckinService
 
     private static int TryGetInt(JsonElement element, string propertyName)
     {
-        try { return element.GetProperty(propertyName).GetInt32(); }
+        try
+        {
+            var prop = element.GetProperty(propertyName);
+            if (prop.ValueKind == JsonValueKind.Number)
+                return prop.GetInt32();
+            if (prop.ValueKind == JsonValueKind.String && int.TryParse(prop.GetString(), out var result))
+                return result;
+            return 0;
+        }
         catch { return 0; }
     }
 

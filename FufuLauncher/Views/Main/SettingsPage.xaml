@@ -1728,24 +1728,37 @@
                                                                 <TextBlock Text="{Binding Nickname}" FontSize="14" />
                                                                 <TextBlock Text="{Binding Uid}" FontSize="12" Opacity="0.7" />
                                                             </StackPanel>
-                                                            <Button Grid.Column="2"
-                                                                    Click="OnCloudCredentialClick"
-                                                                    Tag="{Binding Uid}"
-                                                                    Padding="8" CornerRadius="6"
-                                                                    Background="Transparent"
-                                                                    BorderThickness="0">
-                                                                <ToolTipService.ToolTip>
-                                                                    <ToolTip Content="{helpers:Loc Key=AddCloudCredentialTooltip}" />
-                                                                </ToolTipService.ToolTip>
-                                                                <Grid>
-                                                                    <FontIcon Glyph="&#xE753;" FontSize="14"
-                                                                              Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                                              Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
-                                                                    <FontIcon Glyph="&#xE753;" FontSize="14"
-                                                                              Foreground="{ThemeResource SystemAccentColor}"
-                                                                              Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                                                </Grid>
-                                                            </Button>
+                                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                                                                <Button Click="OnCloudCredentialClick"
+                                                                        Tag="{Binding Uid}"
+                                                                        Padding="8" CornerRadius="6"
+                                                                        Background="Transparent"
+                                                                        BorderThickness="0">
+                                                                    <ToolTipService.ToolTip>
+                                                                        <ToolTip Content="{helpers:Loc Key=AddCloudCredentialTooltip}" />
+                                                                    </ToolTipService.ToolTip>
+                                                                    <Grid>
+                                                                        <FontIcon Glyph="&#xE753;" FontSize="14"
+                                                                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                                                  Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
+                                                                        <FontIcon Glyph="&#xE753;" FontSize="14"
+                                                                                  Foreground="{ThemeResource SystemAccentColor}"
+                                                                                  Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                                    </Grid>
+                                                                </Button>
+                                                                <Button Click="OnRemoveCloudCredentialClick"
+                                                                        Tag="{Binding Uid}"
+                                                                        Padding="8" CornerRadius="6"
+                                                                        Background="Transparent"
+                                                                        BorderThickness="0"
+                                                                        Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                                    <ToolTipService.ToolTip>
+                                                                        <ToolTip Content="{helpers:Loc Key=RemoveCloudCredentialTooltip}" />
+                                                                    </ToolTipService.ToolTip>
+                                                                    <FontIcon Glyph="&#xE74D;" FontSize="14"
+                                                                              Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                                                </Button>
+                                                            </StackPanel>
                                                         </Grid>
                                                     </DataTemplate>
                                                 </ListView.ItemTemplate>

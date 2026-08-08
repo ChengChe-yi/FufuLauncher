@@ -5463,4 +5463,14 @@ Do you still want to execute it? (Not recommended)</value>
   <data name="Checkin_CheckingIn" xml:space="preserve">
     <value>Checking in...</value>
   </data>
-<data name="Checkin_AccountLabel" xml:space="preserve"><value>Account: {0}</value></data></root>
+<data name="Checkin_AccountLabel" xml:space="preserve"><value>Account: {0}</value></data>
+  <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
+    <value>Remove Cloud Gaming Credential</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmTitle" xml:space="preserve">
+    <value>Remove Cloud Gaming Credential</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
+    <value>Are you sure you want to remove the cloud gaming credential for this account?</value>
+  </data>
+</root>
