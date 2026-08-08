@@ -99,16 +99,25 @@ public class AccountManager
             .Select(g => g.Last())
             .ToList();
 
-        // 旧版 accounts.json 没有 CookieVersion/UpdatedAt，补齐默认值，保证后续读写一致
+        // 旧版 accounts.json 没有 CookieVersion/UpdatedAt：
+        // CookieVersion <= 0 视为遗留账号，先就地迁移 cookie 文件格式，再统一标记为当前版本。
+        bool metadataChanged = false;
         foreach (var account in normalizedAccounts)
         {
             if (account.CookieVersion <= 0)
+            {
+                await MigrateLegacyCookieFileAsync(account);
                 account.CookieVersion = CookieFileVersion;
+                metadataChanged = true;
+            }
             if (account.UpdatedAt == default)
+            {
                 account.UpdatedAt = account.LastLoginTime == default ? DateTime.Now : account.LastLoginTime;
+                metadataChanged = true;
+            }
         }
 
-        if (normalizedAccounts.Count != _accountList.Accounts.Count)
+        if (normalizedAccounts.Count != _accountList.Accounts.Count || metadataChanged)
         {
             _accountList.Accounts = normalizedAccounts;
             await SaveAccountListAsync();
@@ -245,6 +254,55 @@ public class AccountManager
             System.Diagnostics.Debug.WriteLine(
                 $"[AccountManager] Cookie 文件解析失败: {ex.Message}");
             return null;
+        }
+    }
+
+    /// <summary>
+    /// 将遗留格式（扁平字典 / 早期 values 信封）的 Cookie 文件就地迁移为当前 { cookies: {...} } 格式。
+    /// 已是当前格式则原样跳过（保留 fingerprint 段）。
+    /// </summary>
+    private async Task MigrateLegacyCookieFileAsync(AccountEntry account)
+    {
+        if (string.IsNullOrEmpty(account.CookieFilePath))
+            return;
+
+        string path = Path.Combine(CookiesDir, account.CookieFilePath);
+        if (!File.Exists(path))
+            return;
+
+        try
+        {
+            var json = await File.ReadAllTextAsync(path);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            if (root.ValueKind != JsonValueKind.Object)
+                return;
+
+            // 已是当前格式（cookies 分组，可能含 fingerprint 段）→ 无需迁移
+            if (TryGetPropertyIgnoreCase(root, "cookies", out var cookiesProp)
+                && cookiesProp.ValueKind == JsonValueKind.Object)
+                return;
+
+            Dictionary<string, string> cookies;
+            if (TryGetPropertyIgnoreCase(root, "values", out var valuesProp)
+                && valuesProp.ValueKind == JsonValueKind.Object)
+            {
+                cookies = ReadStringDictionary(valuesProp);
+            }
+            else
+            {
+                cookies = JsonSerializer.Deserialize<Dictionary<string, string>>(json)
+                          ?? new Dictionary<string, string>();
+            }
+
+            await WriteCookieFileAsync(path, cookies);
+            System.Diagnostics.Debug.WriteLine(
+                $"[AccountManager] 已迁移遗留 Cookie 文件: {account.CookieFilePath}");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(
+                $"[AccountManager] Cookie 文件迁移失败 {account.CookieFilePath}: {ex.Message}");
         }
     }
 
