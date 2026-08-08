@@ -10,6 +10,15 @@ using MihoyoBBS;
 
 namespace FufuLauncher.Services;
 
+/// <summary>
+/// 单个账号的 Cookie 文件内容：只存 cookie 分组，
+/// 账号级元数据（版本、更新时间、服务器等）存放在 accounts.json 的 AccountEntry 中。
+/// 后续可在此结构上扩展设备指纹等字段。
+/// </summary>
+public sealed record AccountCookieFile(
+    [property: System.Text.Json.Serialization.JsonPropertyName("cookies")]
+    Dictionary<string, string> Cookies);
+
 public class AccountManager
 {
 
@@ -17,6 +26,7 @@ public class AccountManager
     private string CookiesDir => Path.Combine(DataDir, "cookies");
     private string AccountsFilePath => Path.Combine(DataDir, "accounts.json");
     private readonly SemaphoreSlim _lock = new(1, 1);
+    private const int CookieFileVersion = 1;
 
     private AccountList _accountList;
     private string? _activeAccountId;
@@ -89,6 +99,15 @@ public class AccountManager
             .Select(g => g.Last())
             .ToList();
 
+        // 旧版 accounts.json 没有 CookieVersion/UpdatedAt，补齐默认值，保证后续读写一致
+        foreach (var account in normalizedAccounts)
+        {
+            if (account.CookieVersion <= 0)
+                account.CookieVersion = CookieFileVersion;
+            if (account.UpdatedAt == default)
+                account.UpdatedAt = account.LastLoginTime == default ? DateTime.Now : account.LastLoginTime;
+        }
+
         if (normalizedAccounts.Count != _accountList.Accounts.Count)
         {
             _accountList.Accounts = normalizedAccounts;
@@ -143,9 +162,10 @@ public class AccountManager
             if (existingEntry != null)
             {
                 string existingCookiePath = Path.Combine(CookiesDir, existingEntry.CookieFilePath);
-                var existingCookiesJson = JsonSerializer.Serialize(cookies);
-                await File.WriteAllTextAsync(existingCookiePath, existingCookiesJson);
+                await WriteCookieFileAsync(existingCookiePath, cookies);
                 existingEntry.LastLoginTime = DateTime.Now;
+                existingEntry.CookieVersion = CookieFileVersion;
+                existingEntry.UpdatedAt = DateTime.Now;
                 if (!string.IsNullOrWhiteSpace(nickname))
                     existingEntry.Nickname = nickname;
                 await SaveAccountListAsync();
@@ -154,8 +174,7 @@ public class AccountManager
 
             string cookieFileName = $"{id}.json";
             string cookiePath = Path.Combine(CookiesDir, cookieFileName);
-            var cookieJson = JsonSerializer.Serialize(cookies);
-            await File.WriteAllTextAsync(cookiePath, cookieJson);
+            await WriteCookieFileAsync(cookiePath, cookies);
 
             var entry = new AccountEntry
             {
@@ -164,7 +183,9 @@ public class AccountManager
                 Nickname = nickname,
                 ServerType = serverType,
                 CookieFilePath = cookieFileName,
-                LastLoginTime = DateTime.Now
+                LastLoginTime = DateTime.Now,
+                CookieVersion = CookieFileVersion,
+                UpdatedAt = DateTime.Now
             };
 
             _accountList.Accounts.Add(entry);
@@ -178,6 +199,79 @@ public class AccountManager
     }
 
 
+    /// <summary>
+    /// 写入账号 Cookie 文件：只包含 cookie 分组，账号元数据不落盘于此。
+    /// </summary>
+    private async Task WriteCookieFileAsync(string path, Dictionary<string, string> cookies)
+    {
+        var file = new AccountCookieFile(cookies);
+        var json = JsonSerializer.Serialize(file, new JsonSerializerOptions { WriteIndented = true });
+        await File.WriteAllTextAsync(path, json);
+    }
+
+    /// <summary>
+    /// 读取账号 Cookie 文件：优先解析 cookies 分组结构，
+    /// 兼容旧版扁平字典及早期信封格式（values 字段）。
+    /// </summary>
+    private async Task<Dictionary<string, string>?> ReadCookieValuesAsync(string path)
+    {
+        try
+        {
+            var json = await File.ReadAllTextAsync(path);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            if (root.ValueKind != JsonValueKind.Object)
+                return JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+
+            // 当前格式：{ "cookies": { ... } }（大小写不敏感，兼容历史大写写法）
+            if (TryGetPropertyIgnoreCase(root, "cookies", out var cookiesProp)
+                && cookiesProp.ValueKind == JsonValueKind.Object)
+            {
+                return ReadStringDictionary(cookiesProp);
+            }
+
+            // 早期信封格式：{ "values": { ... } }
+            if (TryGetPropertyIgnoreCase(root, "values", out var valuesProp)
+                && valuesProp.ValueKind == JsonValueKind.Object)
+            {
+                return ReadStringDictionary(valuesProp);
+            }
+
+            // 旧格式：扁平字典
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+        }
+        catch (JsonException ex)
+        {
+            System.Diagnostics.Debug.WriteLine(
+                $"[AccountManager] Cookie 文件解析失败: {ex.Message}");
+            return null;
+        }
+    }
+
+    private static bool TryGetPropertyIgnoreCase(JsonElement obj, string propertyName, out JsonElement value)
+    {
+        foreach (var prop in obj.EnumerateObject())
+        {
+            if (string.Equals(prop.Name, propertyName, StringComparison.OrdinalIgnoreCase))
+            {
+                value = prop.Value;
+                return true;
+            }
+        }
+        value = default;
+        return false;
+    }
+
+    private static Dictionary<string, string> ReadStringDictionary(JsonElement obj)
+    {
+        var dict = new Dictionary<string, string>();
+        foreach (var prop in obj.EnumerateObject())
+        {
+            dict[prop.Name] = prop.Value.GetString() ?? string.Empty;
+        }
+        return dict;
+    }
+
     public async Task<Dictionary<string, string>> LoadCookiesAsync(string accountId)
     {
         var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
@@ -186,17 +280,7 @@ public class AccountManager
         string path = Path.Combine(CookiesDir, entry.CookieFilePath);
         if (!File.Exists(path)) return null;
 
-        try
-        {
-            var json = await File.ReadAllTextAsync(path);
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(json);
-        }
-        catch (JsonException ex)
-        {
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] Cookie 文件解析失败 ({entry.CookieFilePath}): {ex.Message}");
-            return null;
-        }
+        return await ReadCookieValuesAsync(path);
     }
 
 
@@ -286,8 +370,10 @@ public class AccountManager
             if (entry == null) return;
 
             string cookiePath = Path.Combine(CookiesDir, entry.CookieFilePath);
-            var json = JsonSerializer.Serialize(newCookies);
-            await File.WriteAllTextAsync(cookiePath, json);
+            await WriteCookieFileAsync(cookiePath, newCookies);
+            entry.CookieVersion = CookieFileVersion;
+            entry.UpdatedAt = DateTime.Now;
+            await SaveAccountListAsync();
         }
         finally
         {
@@ -413,8 +499,7 @@ public class AccountManager
 
                     string cookieFileName = $"{accountId}.json";
                     string cookiePath = Path.Combine(CookiesDir, cookieFileName);
-                    var cookieJson = JsonSerializer.Serialize(cookieDict);
-                    await File.WriteAllTextAsync(cookiePath, cookieJson);
+                    await WriteCookieFileAsync(cookiePath, cookieDict);
 
                     var entry = new AccountEntry
                     {
@@ -425,7 +510,9 @@ public class AccountManager
                         Nickname = config.Display?.Nickname ?? "",
                         AvatarUrl = config.Display?.AvatarUrl ?? "",
                         GameUid = config.Display?.GameUid ?? "",
-                        LastLoginTime = DateTime.Now
+                        LastLoginTime = DateTime.Now,
+                        CookieVersion = CookieFileVersion,
+                        UpdatedAt = DateTime.Now
                     };
 
                     _accountList.Accounts.Add(entry);
@@ -515,7 +602,7 @@ public class AccountManager
 
                                 string cookieFileName = $"{accountId}.json";
                                 string cookiePath = Path.Combine(CookiesDir, cookieFileName);
-                                await File.WriteAllTextAsync(cookiePath, JsonSerializer.Serialize(cookieDict));
+                                await WriteCookieFileAsync(cookiePath, cookieDict);
 
                                 var entry = new AccountEntry
                                 {
@@ -526,7 +613,9 @@ public class AccountManager
                                     Nickname = config.Display?.Nickname ?? "",
                                     AvatarUrl = config.Display?.AvatarUrl ?? "",
                                     GameUid = config.Display?.GameUid ?? "",
-                                    LastLoginTime = DateTime.Now
+                                    LastLoginTime = DateTime.Now,
+                                    CookieVersion = CookieFileVersion,
+                                    UpdatedAt = DateTime.Now
                                 };
 
                                 _accountList.Accounts.Add(entry);
