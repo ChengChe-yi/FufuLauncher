@@ -100,15 +100,19 @@ public class AccountManager
             .ToList();
 
         // 旧版 accounts.json 没有 CookieVersion/UpdatedAt：
-        // CookieVersion <= 0 视为遗留账号，先就地迁移 cookie 文件格式，再统一标记为当前版本。
+        // CookieVersion <= 0 视为遗留账号，先就地迁移 cookie 文件格式；
+        // 迁移成功才标记为当前版本，失败/跳过保持 0（下次启动可重试）。
         bool metadataChanged = false;
         foreach (var account in normalizedAccounts)
         {
             if (account.CookieVersion <= 0)
             {
-                await MigrateLegacyCookieFileAsync(account);
-                account.CookieVersion = CookieFileVersion;
-                metadataChanged = true;
+                bool migrated = await MigrateLegacyCookieFileAsync(account);
+                if (migrated)
+                {
+                    account.CookieVersion = CookieFileVersion;
+                    metadataChanged = true;
+                }
             }
             if (account.UpdatedAt == default)
             {
@@ -260,15 +264,16 @@ public class AccountManager
     /// <summary>
     /// 将遗留格式（扁平字典 / 早期 values 信封）的 Cookie 文件就地迁移为当前 { cookies: {...} } 格式。
     /// 已是当前格式则原样跳过（保留 fingerprint 段）。
+    /// 返回 true 表示格式已就绪（已迁移或原本就是当前格式）；返回 false 表示跳过/失败，调用方应保持 CookieVersion 为 0 以便重试。
     /// </summary>
-    private async Task MigrateLegacyCookieFileAsync(AccountEntry account)
+    private async Task<bool> MigrateLegacyCookieFileAsync(AccountEntry account)
     {
         if (string.IsNullOrEmpty(account.CookieFilePath))
-            return;
+            return false;
 
         string path = Path.Combine(CookiesDir, account.CookieFilePath);
         if (!File.Exists(path))
-            return;
+            return false;
 
         try
         {
