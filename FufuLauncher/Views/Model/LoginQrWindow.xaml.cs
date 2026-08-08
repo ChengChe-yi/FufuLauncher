@@ -56,6 +56,7 @@ public sealed partial class LoginQrWindow : Window
     #region 字段、常量、构造函数
     private const string Salt = "dDIQHbKOdaPaLuvQKVzUzqdeCaxjtaPV";
     private const string SaltGame = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
+    private const string SaltProd = "JwYDpKvLj6MrMqqYU6jTKF17KNO2PXoS";
     private readonly string _deviceId;
     private readonly string _deviceFp;
     private HttpClient _httpClient;
@@ -873,10 +874,16 @@ public sealed partial class LoginQrWindow : Window
                 ["ltuid"] = aid
             };
 
-            string cookieToken = await GetCookieAccountInfoBySTokenAsync(stoken);
+            string cookieToken = await GetCookieAccountInfoBySTokenAsync(stoken, mid, aid);
             if (!string.IsNullOrEmpty(cookieToken))
             {
                 finalCookies["cookie_token"] = cookieToken;
+            }
+
+            string ltoken = await GetLTokenBySTokenAsync(stoken, mid, aid);
+            if (!string.IsNullOrEmpty(ltoken))
+            {
+                finalCookies["ltoken"] = ltoken;
             }
 
             string webTicket = await CreateWebQrCodeAsync();
@@ -939,9 +946,16 @@ public sealed partial class LoginQrWindow : Window
         string aid = dataNode["user_info"]?["aid"]?.GetValue<string>() ?? "";
 
         var tokens = dataNode["tokens"]?.AsArray();
-        if (tokens != null && tokens.Count > 0)
+        if (tokens != null)
         {
-            stoken = tokens[0]["token"]?.GetValue<string>();
+            foreach (var tokenItem in tokens)
+            {
+                if (tokenItem?["token_type"]?.GetValue<int>() == 1)
+                {
+                    stoken = tokenItem["token"]?.GetValue<string>();
+                    break;
+                }
+            }
         }
 
         if (string.IsNullOrEmpty(stoken) || string.IsNullOrEmpty(mid))
@@ -1388,20 +1402,75 @@ public sealed partial class LoginQrWindow : Window
         this.Activate();
         return _loginTcs.Task;
     }
-    private async Task<string> GetCookieAccountInfoBySTokenAsync(string stoken)
+    private async Task<string> GetCookieAccountInfoBySTokenAsync(string stoken, string mid, string aid)
     {
-        string url = $"{ApiEndpoints.GetCookieAccountInfoBySTokenUrl}?stoken={stoken}";
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-        AddCommonHeaders(request, "", $"stoken={stoken}", "2", "bll8iq97cem8", "2.20.1", "", "https://user.mihoyo.com/");
+        var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.GetCookieAccountInfoBySTokenUrl);
+        AddPassportAuthHeaders(request, "", $"mid={mid}; stoken={stoken}; stuid={aid}", true);
 
         try
         {
             var response = await _httpClient.SendAsync(request);
             var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
-            if (result["retcode"]?.GetValue<int>() == 0) return result["data"]?["cookie_token"]?.GetValue<string>() ?? "";
+            int retcode = result["retcode"]?.GetValue<int>() ?? -1;
+            if (retcode == 0) return result["data"]?["cookie_token"]?.GetValue<string>() ?? "";
+            Debug.WriteLine($"[LoginQrWindow] getCookieAccountInfoBySToken 失败: HTTP={(int)response.StatusCode}, retcode={retcode}, message={result["message"]?.GetValue<string>()}");
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[LoginQrWindow] getCookieAccountInfoBySToken 异常: {ex.Message}");
+        }
         return "";
+    }
+
+    private async Task<string> GetLTokenBySTokenAsync(string stoken, string mid, string aid)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.GetLTokenBySTokenUrl);
+        AddPassportAuthHeaders(request, "", $"mid={mid}; stoken={stoken}; stuid={aid}", true);
+
+        try
+        {
+            var response = await _httpClient.SendAsync(request);
+            var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
+            int retcode = result["retcode"]?.GetValue<int>() ?? -1;
+            if (retcode == 0) return result["data"]?["ltoken"]?.GetValue<string>() ?? "";
+            Debug.WriteLine($"[LoginQrWindow] getLTokenBySToken 失败: HTTP={(int)response.StatusCode}, retcode={retcode}, message={result["message"]?.GetValue<string>()}");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[LoginQrWindow] getLTokenBySToken 异常: {ex.Message}");
+        }
+        return "";
+    }
+
+    private void AddPassportAuthHeaders(HttpRequestMessage request, string body, string cookie, bool sign)
+    {
+        request.Headers.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) miHoYoBBS/2.90.1");
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("Accept-Language", "zh-cn");
+        if (!string.IsNullOrEmpty(cookie)) request.Headers.TryAddWithoutValidation("Cookie", cookie);
+        request.Headers.TryAddWithoutValidation("x-rpc-aigis", "");
+        request.Headers.TryAddWithoutValidation("x-rpc-app_id", "bll8iq97cem8");
+        request.Headers.TryAddWithoutValidation("x-rpc-app_version", "2.90.1");
+        request.Headers.TryAddWithoutValidation("x-rpc-client_type", "2");
+        request.Headers.TryAddWithoutValidation("x-rpc-device_id", _deviceId);
+        request.Headers.TryAddWithoutValidation("x-rpc-device_name", "");
+        request.Headers.TryAddWithoutValidation("x-rpc-game_biz", "bbs_cn");
+        request.Headers.TryAddWithoutValidation("x-rpc-sdk_version", "2.16.0");
+        if (sign) request.Headers.TryAddWithoutValidation("DS", GenerateDSWithSalt(body, "", SaltProd));
+    }
+
+    private string GenerateDSWithSalt(string body, string query, string salt)
+    {
+        long t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        string r = GenerateRandomString(6, "abcdefghijklmnopqrstuvwxyz0123456789");
+
+        string b = string.IsNullOrEmpty(body) ? "" : body;
+        string q = string.IsNullOrEmpty(query) ? "" : query;
+
+        string signStr = $"salt={salt}&t={t}&r={r}&b={b}&q={q}";
+        string sign = CreateMD5(signStr);
+
+        return $"{t},{r},{sign}";
     }
 
     private void AddCommonHeaders(HttpRequestMessage request, string body, string query, string clientType, string appId, string sdkVersion, string cookie = "", string referer = "")

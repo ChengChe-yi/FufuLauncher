@@ -52,6 +52,7 @@ namespace FufuLauncher.Constants
         public const string Hk4eQrCodeQueryUrl = "https://hk4e-sdk.mihoyo.com/hk4e_cn/combo/panda/qrcode/query";
         public const string GetTokenByGameTokenUrl = "https://api-takumi.mihoyo.com/account/ma-cn-session/app/getTokenByGameToken";
         public const string GetCookieAccountInfoBySTokenUrl = "https://passport-api.mihoyo.com/account/auth/api/getCookieAccountInfoBySToken";
+        public const string GetLTokenBySTokenUrl = "https://passport-api.mihoyo.com/account/auth/api/getLTokenBySToken";
         public const string UserMihoyoLoginPlatformUrl = "https://user.mihoyo.com/login-platform/index.html";
         public const string SeelieAchievementsUrl = "https://seelie.me/achievements";
         public const string HypCnApi = "https://hyp-api.mihoyo.com/hyp/hyp-connect/api";
