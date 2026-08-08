@@ -59,6 +59,7 @@ namespace Updater
         
         private string _targetExeUrl;
         private string _fileName;
+        private string _expectedSha256;
         private List<MirrorInfo> _mirrors = new();
         private DownloadService _downloader;
         private Stopwatch _uiUpdateTimer = new();
@@ -237,6 +238,13 @@ namespace Updater
                 _targetExeUrl = targetAsset["browser_download_url"].ToString();
                 _fileName = targetAsset["name"].ToString();
 
+                // 从 GitHub API 的 asset 元数据中提取 SHA-256 哈希（格式: "sha256:xxxxx"）
+                string digest = targetAsset["digest"]?.ToString();
+                if (!string.IsNullOrEmpty(digest) && digest.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
+                {
+                    _expectedSha256 = digest.Substring("sha256:".Length);
+                }
+
                 if (_useThirdPartyCDN)
                 {
                     SubtitleText.Text = "节点联通性校验...";
@@ -369,6 +377,32 @@ namespace Updater
                 return sb.ToString();
             }
         }
+        
+        private bool VerifyFileSha256(string filePath)
+        {
+            if (string.IsNullOrEmpty(_expectedSha256))
+            {
+                return true;
+            }
+
+            try
+            {
+                using var stream = File.OpenRead(filePath);
+                byte[] hashBytes = SHA256.HashData(stream);
+                StringBuilder sb = new();
+                foreach (var b in hashBytes)
+                {
+                    sb.Append(b.ToString("x2"));
+                }
+                string actualHash = sb.ToString();
+
+                return string.Equals(actualHash, _expectedSha256, StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
@@ -469,6 +503,22 @@ namespace Updater
                     }
                     else
                     {
+                        DownloadMainText.Text = "正在校验文件完整性";
+
+                        if (!VerifyFileSha256(savePath))
+                        {
+                            try { File.Delete(savePath); } catch { }
+
+                            MessageBox.Show(
+                                "下载的文件SHA-256校验失败，文件可能在传输过程中被损坏或篡改\n\n已自动删除该文件，请更换其他节点重新下载",
+                                "文件完整性校验失败",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+
+                            ResetToSelectionUI();
+                            return;
+                        }
+
                         DownloadMainText.Text = "正在启动安装...";
                         
                         ProcessStartInfo psi = new()
