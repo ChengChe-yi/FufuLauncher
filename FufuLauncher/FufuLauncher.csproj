@@ -146,6 +146,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Constants\MiHoYo\" />
       <Folder Include="Plugins\Avatar\" />
       <Folder Include="Services\UID\" />
     </ItemGroup>
