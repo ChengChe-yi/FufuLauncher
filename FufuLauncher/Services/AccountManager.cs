@@ -267,6 +267,11 @@ public class AccountManager
         var dict = new Dictionary<string, string>();
         foreach (var prop in obj.EnumerateObject())
         {
+            // 只接受字符串值；数字/布尔/对象/数组等异常数据直接跳过，
+            // 避免 GetString() 抛 InvalidOperationException 冒泡到上层。
+            if (prop.Value.ValueKind != JsonValueKind.String)
+                continue;
+
             dict[prop.Name] = prop.Value.GetString() ?? string.Empty;
         }
         return dict;

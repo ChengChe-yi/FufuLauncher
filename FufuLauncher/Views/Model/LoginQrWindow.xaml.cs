@@ -1404,12 +1404,12 @@ public sealed partial class LoginQrWindow : Window
     }
     private async Task<string> GetCookieAccountInfoBySTokenAsync(string stoken, string mid, string aid)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.GetCookieAccountInfoBySTokenUrl);
+        using var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.GetCookieAccountInfoBySTokenUrl);
         AddPassportAuthHeaders(request, "", $"mid={mid}; stoken={stoken}; stuid={aid}", true);
 
         try
         {
-            var response = await _httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
             var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
             int retcode = result["retcode"]?.GetValue<int>() ?? -1;
             if (retcode == 0) return result["data"]?["cookie_token"]?.GetValue<string>() ?? "";
@@ -1424,12 +1424,12 @@ public sealed partial class LoginQrWindow : Window
 
     private async Task<string> GetLTokenBySTokenAsync(string stoken, string mid, string aid)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.GetLTokenBySTokenUrl);
+        using var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.GetLTokenBySTokenUrl);
         AddPassportAuthHeaders(request, "", $"mid={mid}; stoken={stoken}; stuid={aid}", true);
 
         try
         {
-            var response = await _httpClient.SendAsync(request);
+            using var response = await _httpClient.SendAsync(request);
             var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
             int retcode = result["retcode"]?.GetValue<int>() ?? -1;
             if (retcode == 0) return result["data"]?["ltoken"]?.GetValue<string>() ?? "";
