@@ -281,12 +281,12 @@ public class AccountManager
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
             if (root.ValueKind != JsonValueKind.Object)
-                return;
+                return false;
 
             // 已是当前格式（cookies 分组，可能含 fingerprint 段）→ 无需迁移
             if (TryGetPropertyIgnoreCase(root, "cookies", out var cookiesProp)
                 && cookiesProp.ValueKind == JsonValueKind.Object)
-                return;
+                return false;
 
             Dictionary<string, string> cookies;
             if (TryGetPropertyIgnoreCase(root, "values", out var valuesProp)
@@ -303,11 +303,13 @@ public class AccountManager
             await WriteCookieFileAsync(path, cookies);
             System.Diagnostics.Debug.WriteLine(
                 $"[AccountManager] 已迁移遗留 Cookie 文件: {account.CookieFilePath}");
+            return true;
         }
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine(
                 $"[AccountManager] Cookie 文件迁移失败 {account.CookieFilePath}: {ex.Message}");
+            return false;
         }
     }
 
