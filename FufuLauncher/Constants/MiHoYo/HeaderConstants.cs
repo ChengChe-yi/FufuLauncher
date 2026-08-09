@@ -30,6 +30,8 @@ public static class HeaderNames
     public const string RpcToolVerison = "x-rpc-tool_verison";
     public const string RpcPage = "x-rpc-page";
     public const string RpcChallenge = "x-rpc-challenge";
+    public const string RpcChallengeGame = "x-rpc-challenge_game";
+    public const string RpcChallengePath = "x-rpc-challenge_path";
     public const string RpcDeviceName = "x-rpc-device_name";
 
     /// <summary>标准头。</summary>

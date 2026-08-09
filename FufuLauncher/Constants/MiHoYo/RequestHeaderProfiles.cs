@@ -74,10 +74,10 @@ public sealed record HeaderProfile(
 /// </summary>
 public static class RequestHeaderProfiles
 {
-    /// <summary>Passport App 扫码 — MobileCn293 + OkHttp + Login + bbs_cn + Passport。</summary>
+    /// <summary>Passport App 扫码 — MobileCnLogin + OkHttp + Login + bbs_cn + Passport。</summary>
     public static readonly HeaderProfile PassportAppQr = new(
         HeaderProfileKind.PassportAppQr,
-        HeaderVersions.MobileCn293,
+        HeaderVersions.MobileCnLogin,
         UserAgents.OkHttp,
         ClientTypes.Login,
         GameBizValues.BbsCn,
