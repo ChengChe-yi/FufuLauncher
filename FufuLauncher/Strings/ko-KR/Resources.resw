@@ -5009,4 +5009,675 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Checkin_AccountLabel" xml:space="preserve">
     <value>계정: {0}</value>
   </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>알림 팝업 위치</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>창에서 알림 팝업이 표시될 위치를 설정합니다</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>오른쪽 하단</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>오른쪽 상단</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>왼쪽 상단</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>왼쪽 하단</value>
+  </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>미유사/HoyoLAB 계정으로 게임에 직접 로그인</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>게임 시작 시 현재 선택된 미유사 또는 HoyoLAB 계정으로 게임에 직접 진입하며, 게임 내에서 계정과 비밀번호를 다시 입력할 필요가 없습니다.</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>사용할 수 없음</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>먼저 계정 설정에서 미유사 또는 HoyoLAB 계정에 로그인해 주세요.</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>계정 로그인이 만료되었습니다</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>이 기능을 사용하려면 먼저 현재 계정을 다시 로그인해야 합니다.</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>게임이 선택되지 않음</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>먼저 메인 페이지에서 게임 설치 경로를 선택해 주세요.</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>사용 설정됨</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>다음 게임 시작 시 미유사/HoyoLAB 계정으로 게임에 직접 진입하며, 계정과 비밀번호를 다시 입력할 필요가 없습니다.</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>사용 설정 실패</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>현재 계정으로는 일시적으로 이 기능을 사용할 수 없습니다. 계정 로그인 상태를 확인한 후 다시 시도해 주세요.</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>일시적으로 사용 불가</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>네트워크 또는 서비스에 문제가 있습니다. 잠시 후 다시 시도해 주세요.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>계정과 서버가 일치하지 않음</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>현재 선택된 HoyoLAB 글로벌 서버 계정으로는 중국 서버 게임을 시작할 수 없습니다. 해당 지역 계정으로 전환해 주세요.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>현재 선택된 미유사 중국 서버 계정으로는 글로벌 서버 게임을 시작할 수 없습니다. 해당 지역 계정으로 전환해 주세요.</value>
+  </data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve">
+    <value>번역</value>
+  </data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve">
+    <value>원문 보기</value>
+  </data>
+  <data name="HelpPage_Translating" xml:space="preserve">
+    <value>번역 중 ({0}/{1})...</value>
+  </data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve">
+    <value>번역 실패</value>
+  </data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve">
+    <value>번역 완료</value>
+  </data>
+  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
+    <value>시작 시 FPS 자동 비활성화 끄기</value>
+  </data>
+  <data name="PluginStoreTitle" xml:space="preserve">
+    <value>플러그인 스토어</value>
+  </data>
+  <data name="PluginStoreSearch" xml:space="preserve">
+    <value>플러그인 검색...</value>
+  </data>
+  <data name="PluginStoreInstall" xml:space="preserve">
+    <value>설치</value>
+  </data>
+  <data name="PluginStoreInstalled" xml:space="preserve">
+    <value>설치됨</value>
+  </data>
+  <data name="PluginStoreUpdate" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="PluginStoreUninstall" xml:space="preserve">
+    <value>제거</value>
+  </data>
+  <data name="PluginStoreInstalling" xml:space="preserve">
+    <value>설치 중...</value>
+  </data>
+  <data name="PluginStoreRating" xml:space="preserve">
+    <value>평점</value>
+  </data>
+  <data name="PluginStoreDownloads" xml:space="preserve">
+    <value>다운로드</value>
+  </data>
+  <data name="PluginStoreSize" xml:space="preserve">
+    <value>크기</value>
+  </data>
+  <data name="PluginStoreVersion" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="PluginStoreNoResults" xml:space="preserve">
+    <value>플러그인을 찾을 수 없습니다</value>
+  </data>
+  <data name="PluginStoreError" xml:space="preserve">
+    <value>불러오기 실패</value>
+  </data>
+  <data name="PluginStoreLoading" xml:space="preserve">
+    <value>불러오는 중...</value>
+  </data>
+  <data name="PluginStoreRetry" xml:space="preserve">
+    <value>다시 시도</value>
+  </data>
+  <data name="PluginStorePrevious" xml:space="preserve">
+    <value>이전 페이지</value>
+  </data>
+  <data name="PluginStoreNext" xml:space="preserve">
+    <value>다음 페이지</value>
+  </data>
+  <data name="PluginStoreAll" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="PluginStoreSortPopular" xml:space="preserve">
+    <value>인기</value>
+  </data>
+  <data name="PluginStoreSortNewest" xml:space="preserve">
+    <value>최신</value>
+  </data>
+  <data name="PluginStoreSortRating" xml:space="preserve">
+    <value>평점 높은 순</value>
+  </data>
+  <data name="PluginStoreInstallSuccess" xml:space="preserve">
+    <value>설치 완료: {0}</value>
+  </data>
+  <data name="PluginStoreInstallFailed" xml:space="preserve">
+    <value>설치 실패: {0}</value>
+  </data>
+  <data name="PluginStoreUninstallSuccess" xml:space="preserve">
+    <value>제거 완료: {0}</value>
+  </data>
+  <data name="PluginStoreVerifying" xml:space="preserve">
+    <value>확인 중...</value>
+  </data>
+  <data name="PluginStoreHashMismatch" xml:space="preserve">
+    <value>파일 무결성 검증에 실패했습니다. 다운로드한 파일이 손상되었거나 변조되었을 수 있습니다</value>
+  </data>
+  <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
+    <value>설치 스크립트 무결성 검증 실패</value>
+  </data>
+  <data name="PluginStoreSecurityBlocked" xml:space="preserve">
+    <value>설치가 차단되었습니다: {0}</value>
+  </data>
+  <data name="PluginStoreSecurityBlockedShort" xml:space="preserve">
+    <value>보안 차단</value>
+  </data>
+  <data name="PluginStorePathTraversal" xml:space="preserve">
+    <value>보안: 경로 조작 시도가 차단되었습니다</value>
+  </data>
+  <data name="PluginStoreHashVerified" xml:space="preserve">
+    <value>무결성 검증 통과</value>
+  </data>
+  <data name="PluginStoreDiscover" xml:space="preserve">
+    <value>탐색 및 발견</value>
+  </data>
+  <data name="PluginStoreSearchPlaceholder" xml:space="preserve">
+    <value>플러그인 이름 또는 키워드 검색...</value>
+  </data>
+  <data name="PluginStoreRefresh" xml:space="preserve">
+    <value>새로 고침</value>
+  </data>
+  <data name="PluginStoreSyncing" xml:space="preserve">
+    <value>플러그인 목록 동기화 중...</value>
+  </data>
+  <data name="PluginStoreDeveloper" xml:space="preserve">
+    <value>개발 제공</value>
+  </data>
+  <data name="PluginStoreDetails" xml:space="preserve">
+    <value>기능 상세</value>
+  </data>
+  <data name="PluginStoreUpdateNow" xml:space="preserve">
+    <value>지금 업데이트</value>
+  </data>
+  <data name="PluginStoreInstallPlugin" xml:space="preserve">
+    <value>이 플러그인 설치</value>
+  </data>
+  <data name="PluginStoreCancel" xml:space="preserve">
+    <value>취소하고 돌아가기</value>
+  </data>
+  <data name="PluginStoreNoMatch" xml:space="preserve">
+    <value>일치하는 플러그인을 찾을 수 없습니다</value>
+  </data>
+  <data name="PluginStoreNoAvailable" xml:space="preserve">
+    <value>사용 가능한 플러그인이 없습니다</value>
+  </data>
+  <data name="PluginStoreTotalPlugins" xml:space="preserve">
+    <value>총 {0}개의 플러그인</value>
+  </data>
+  <data name="PluginStoreConnectionFailed" xml:space="preserve">
+    <value>연결 실패</value>
+  </data>
+  <data name="PluginStoreLoadFailed" xml:space="preserve">
+    <value>플러그인 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요</value>
+  </data>
+  <data name="PluginStoreInstallComplete" xml:space="preserve">
+    <value>설치 완료</value>
+  </data>
+  <data name="PluginStoreHashFailed" xml:space="preserve">
+    <value>검증 실패</value>
+  </data>
+  <data name="PluginStoreCancelled" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="PluginStoreInstallFailedShort" xml:space="preserve">
+    <value>설치 실패</value>
+  </data>
+  <data name="PluginStoreUninstalling" xml:space="preserve">
+    <value>제거 중...</value>
+  </data>
+  <data name="PluginStoreUninstallComplete" xml:space="preserve">
+    <value>제거 완료</value>
+  </data>
+  <data name="PluginStoreUninstallFailed" xml:space="preserve">
+    <value>제거 실패</value>
+  </data>
+  <data name="PluginStoreServerUnreachable" xml:space="preserve">
+    <value>플러그인 스토어 서버에 연결할 수 없습니다. 네트워크 또는 서버 상태를 확인해 주세요</value>
+  </data>
+  <data name="PluginStoreServerTimeout" xml:space="preserve">
+    <value>플러그인 스토어 연결 시간 초과. 잠시 후 다시 시도해 주세요</value>
+  </data>
+  <data name="PluginStoreLoadListFailed" xml:space="preserve">
+    <value>플러그인 목록 불러오기 실패: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
+    <value>설치 스크립트를 다운로드할 수 없습니다. 서버를 사용할 수 없습니다</value>
+  </data>
+  <data name="PluginStoreDownloadLuaError" xml:space="preserve">
+    <value>설치 스크립트 다운로드 실패: {0}</value>
+  </data>
+  <data name="PluginStoreDownloading" xml:space="preserve">
+    <value>다운로드 중 {0}%</value>
+  </data>
+  <data name="PluginStoreDownloadFileFailed" xml:space="preserve">
+    <value>플러그인 파일을 다운로드할 수 없습니다. 서버를 사용할 수 없습니다</value>
+  </data>
+  <data name="PluginStoreDownloadFileError" xml:space="preserve">
+    <value>플러그인 파일 다운로드 실패: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadCountWan" xml:space="preserve">
+    <value>{0:F1}만</value>
+  </data>
+  <data name="PluginStoreDownloadCountK" xml:space="preserve">
+    <value>{0:F1}천</value>
+  </data>
+  <data name="PluginStoreScriptDownloading" xml:space="preserve">
+    <value>설치 스크립트 다운로드 중...</value>
+  </data>
+  <data name="PluginStoreScriptScanning" xml:space="preserve">
+    <value>스캔 중...</value>
+  </data>
+  <data name="PluginStoreScriptExecuting" xml:space="preserve">
+    <value>설치 스크립트 실행 중...</value>
+  </data>
+  <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
+    <value>Lua 스크립트가 보안 검증을 통과하지 못했습니다.</value>
+  </data>
+  <data name="PluginStoreLuaScriptError" xml:space="preserve">
+    <value>Lua 스크립트 오류: {0}</value>
+  </data>
+  <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
+    <value>Lua 스크립트 실행 실패: {0}</value>
+  </data>
+  <data name="PluginStoreDialogClose" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
+    <value>보안: {0} 작업에 빈 경로가 전달되었습니다.</value>
+  </data>
+  <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
+    <value>보안: 잘못된 경로 ({0}): {1}</value>
+  </data>
+  <data name="PluginStoreSecurityOutsideDir" xml:space="preserve">
+    <value>보안: 경로는 플러그인 디렉터리 내에 있어야 합니다 ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
+    <value>스크립트에 금지된 작업이 포함되어 있습니다 ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
+    <value>경로 조작 시도</value>
+  </data>
+  <data name="PluginStoreSecurityScriptTooLarge" xml:space="preserve">
+    <value>스크립트가 너무 큼</value>
+  </data>
+  <data name="PluginStoreUpload" xml:space="preserve">
+    <value>플러그인 업로드</value>
+  </data>
+  <data name="PluginStoreUploadTooltip" xml:space="preserve">
+    <value>GitHub로 이동하여 플러그인 제출</value>
+  </data>
+  <data name="PluginStoreLuaTestButton" xml:space="preserve">
+    <value>Lua 테스트</value>
+  </data>
+  <data name="PluginStoreLuaTestTitle" xml:space="preserve">
+    <value>Lua 플러그인 설치 스크립트 테스트</value>
+  </data>
+  <data name="PluginStoreLuaTestDescription" xml:space="preserve">
+    <value>아래에 Lua 플러그인 설치 스크립트를 입력하고 테스트 실행을 클릭하여 스크립트를 검증하세요. 스크립트는 샌드박스 환경에서 실행되며 모든 파일 작업은 Plugins 디렉터리 내로 제한됩니다.</value>
+  </data>
+  <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
+    <value>-- 여기에 Lua 플러그인 설치 스크립트를 입력하세요
+-- 사용 가능한 API: install.download(), install.extract(), install.download_plugin(id) 등
+-- 자세한 내용은 Lua 플러그인 개발 가이드를 참조하세요</value>
+  </data>
+  <data name="PluginStoreLuaTestRun" xml:space="preserve">
+    <value>테스트 실행</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityWarning" xml:space="preserve">
+    <value>보안 경고</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
+    <value>스크립트가 보안 검증을 통과하지 못했습니다: {0}
+
+그래도 실행하시겠습니까? (권장하지 않음)</value>
+  </data>
+  <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
+    <value>Lua 스크립트 실행 중...</value>
+  </data>
+  <data name="PluginStoreLuaTestSuccess" xml:space="preserve">
+    <value>Lua 스크립트 실행 성공</value>
+  </data>
+  <data name="PluginStoreLuaTestFailed" xml:space="preserve">
+    <value>Lua 스크립트 실행 실패</value>
+  </data>
+  <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
+    <value>로그 저장 위치:
+{0}</value>
+  </data>
+  <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
+    <value>로그 파일 열기</value>
+  </data>
+  <data name="PluginStoreLuaTestClose" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="PluginStoreCategoryUtility" xml:space="preserve">
+    <value>유틸리티</value>
+  </data>
+  <data name="PluginStoreCategoryGameplay" xml:space="preserve">
+    <value>게임플레이</value>
+  </data>
+  <data name="PluginStoreCategoryVisuals" xml:space="preserve">
+    <value>비주얼</value>
+  </data>
+  <data name="Backpack_TabOverview" xml:space="preserve">
+    <value>개요</value>
+  </data>
+  <data name="Backpack_PageSubtitle" xml:space="preserve">
+    <value>장비, 재료, 요리를 한곳에서 살펴보고 육성 계획을 세우세요.</value>
+  </data>
+  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
+    <value>동기화 데이터는 로컬에만 저장되며 계정이나 인벤토리 내용이 업로드되지 않습니다.</value>
+  </data>
+  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
+    <value>유효한 게임 설치 경로를 찾을 수 없습니다</value>
+  </data>
+  <data name="Backpack_PathNoticeBody" xml:space="preserve">
+    <value>소프트웨어의 게임 설정에서 경로를 구성해 주세요. Backpack는 별도의 경로를 저장하거나 요구하지 않습니다.</value>
+  </data>
+  <data name="Backpack_OpenSettings" xml:space="preserve">
+    <value>설정 열기</value>
+  </data>
+  <data name="Backpack_GamePathFallback" xml:space="preserve">
+    <value>게임 설정에서 설치 경로를 구성해 주세요</value>
+  </data>
+  <data name="Backpack_UsageTitle" xml:space="preserve">
+    <value>사용 안내</value>
+  </data>
+  <data name="Backpack_UsageStep1" xml:space="preserve">
+    <value>오른쪽 상단의 『인벤토리 동기화』를 클릭하여 게임 내 실제 인벤토리를 가져오고 데이터 동기화를 시작하세요.</value>
+  </data>
+  <data name="Backpack_UsageStep2" xml:space="preserve">
+    <value>상단의 탭으로 카테고리를 전환할 수 있습니다. 아이템 카드를 클릭하면 상세 정보를 볼 수 있습니다 (세트 / 옵션 / 무기 스킬).</value>
+  </data>
+  <data name="Backpack_UsageStep3" xml:space="preserve">
+    <value>개요 카드는 현재 인벤토리를 기반으로 재료 연동과 육성 재료 현황을 보여줍니다.</value>
+  </data>
+  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
+    <value>보유 무기</value>
+  </data>
+  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
+    <value>잠긴 성유물</value>
+  </data>
+  <data name="Backpack_KpiCookableFood" xml:space="preserve">
+    <value>제작 가능 요리</value>
+  </data>
+  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
+    <value>재료 종류</value>
+  </data>
+  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
+    <value>★5 무기</value>
+  </data>
+  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
+    <value>성유물 총합</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
+    <value>★5 무기 최대 재련</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
+    <value>★5 무기 {0}개가 최대 재련 단계에 도달했습니다.</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
+    <value>★5 성유물 최대 레벨</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
+    <value>★5 성유물 {0}개가 +20까지 강화되었습니다.</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
+    <value>재료 충분</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
+    <value>현재 {0}개의 요리에 필요한 재료가 모두 갖춰져 즉시 제작할 수 있습니다.</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
+    <value>재료 카테고리 공백</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
+    <value>{0}개의 재료 카테고리가 재고가 없습니다: {1}</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
+    <value>무기 도감 진행도</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
+    <value>아직 보유하지 않은 무기가 {0}개 남아 있습니다.</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
+    <value>재고 부족 재료</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
+    <value>{0}개 재료의 재고가 5개 미만입니다. 제때 보충해 주세요.</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
+    <value>데이터 개요</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
+    <value>인벤토리 데이터를 동기화하면 여기에 인벤토리 인사이트와 권장 사항이 표시됩니다.</value>
+  </data>
+  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
+    <value>상위 천재 재료</value>
+  </data>
+  <data name="Backpack_CookHeader" xml:space="preserve">
+    <value>요리 준비 현황</value>
+  </data>
+  <data name="Backpack_CookSubheader" xml:space="preserve">
+    <value>현재 재료 재고 기반</value>
+  </data>
+  <data name="Backpack_CookReady" xml:space="preserve">
+    <value>제작 가능</value>
+  </data>
+  <data name="Backpack_CookAlmost" xml:space="preserve">
+    <value>거의 다 됨</value>
+  </data>
+  <data name="Backpack_CookAlmostBody" xml:space="preserve">
+    <value>{0} ({1}) 부족</value>
+  </data>
+  <data name="Backpack_CookEmptyName" xml:space="preserve">
+    <value>요리 데이터 없음</value>
+  </data>
+  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
+    <value>동기화 대기 중</value>
+  </data>
+  <data name="Backpack_CookEmptyBody" xml:space="preserve">
+    <value>인벤토리 동기화 후 요리 준비 현황을 확인할 수 있습니다.</value>
+  </data>
+  <data name="Backpack_BrowseTitle" xml:space="preserve">
+    <value>탐색 및 검색</value>
+  </data>
+  <data name="Backpack_BrowseCaption" xml:space="preserve">
+    <value>키워드, 세부 카테고리, 필터, 정렬을 사용해 아이템을 빠르게 찾아보세요.</value>
+  </data>
+  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
+    <value>이름, 세트, 옵션, 캐릭터 또는 재료 검색</value>
+  </data>
+  <data name="Backpack_BrowseReset" xml:space="preserve">
+    <value>초기화</value>
+  </data>
+  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
+    <value>세부 카테고리</value>
+  </data>
+  <data name="Backpack_BrowseFilter" xml:space="preserve">
+    <value>필터</value>
+  </data>
+  <data name="Backpack_BrowseSort" xml:space="preserve">
+    <value>정렬</value>
+  </data>
+  <data name="Backpack_ResultCount" xml:space="preserve">
+    <value>결과 {0}개</value>
+  </data>
+  <data name="Backpack_EmptyTitle" xml:space="preserve">
+    <value>일치하는 아이템을 찾을 수 없습니다</value>
+  </data>
+  <data name="Backpack_EmptyBody" xml:space="preserve">
+    <value>키워드를 조정하거나 필터 조건을 지운 후 다시 시도해 주세요.</value>
+  </data>
+  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
+    <value>조건 지우기</value>
+  </data>
+  <data name="Backpack_PagerFormat" xml:space="preserve">
+    <value>{0} / {1} 페이지</value>
+  </data>
+  <data name="Backpack_PagerRange" xml:space="preserve">
+    <value>{0}-{1}개 / 총 {2}개</value>
+  </data>
+  <data name="Backpack_ResultAll" xml:space="preserve">
+    <value>결과 {0}개</value>
+  </data>
+  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
+    <value>무기 등급</value>
+  </data>
+  <data name="Backpack_DetailLevel" xml:space="preserve">
+    <value>레벨</value>
+  </data>
+  <data name="Backpack_DetailRefine" xml:space="preserve">
+    <value>재련</value>
+  </data>
+  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
+    <value>기본 공격력</value>
+  </data>
+  <data name="Backpack_DetailSubStat" xml:space="preserve">
+    <value>부속성</value>
+  </data>
+  <data name="Backpack_DetailSkill" xml:space="preserve">
+    <value>무기 스킬</value>
+  </data>
+  <data name="Backpack_DetailLore" xml:space="preserve">
+    <value>무기 이야기</value>
+  </data>
+  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
+    <value>강화 레벨</value>
+  </data>
+  <data name="Backpack_DetailMainStat" xml:space="preserve">
+    <value>주요 옵션</value>
+  </data>
+  <data name="Backpack_DetailSubStats" xml:space="preserve">
+    <value>부옵션</value>
+  </data>
+  <data name="Backpack_DetailSetBonus" xml:space="preserve">
+    <value>세트 효과</value>
+  </data>
+  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
+    <value>도감 항목</value>
+  </data>
+  <data name="Backpack_DetailCodexBody" xml:space="preserve">
+    <value>게임 데이터를 가져온 후 성유물의 강화 레벨, 주요 옵션 수치 및 부옵션 롤 세부 정보가 자동으로 채워집니다. 현재 표시되는 정보는 이 성유물의 세트 분류와 세트 효과 기본 정보입니다.</value>
+  </data>
+  <data name="Backpack_DetailCookState" xml:space="preserve">
+    <value>제작 상태</value>
+  </data>
+  <data name="Backpack_DetailCookReady" xml:space="preserve">
+    <value>재료 재고가 충분하여 즉시 제작 가능</value>
+  </data>
+  <data name="Backpack_DetailCookMissing" xml:space="preserve">
+    <value>일부 재료가 부족합니다. 보충 후 제작할 수 있습니다</value>
+  </data>
+  <data name="Backpack_DetailIngredients" xml:space="preserve">
+    <value>필요 재료</value>
+  </data>
+  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
+    <value>인벤토리 아이템</value>
+  </data>
+  <data name="Backpack_DetailCountBody" xml:space="preserve">
+    <value>현재 인벤토리에 있는 실제 수량.</value>
+  </data>
+  <data name="Backpack_DetailStockItem" xml:space="preserve">
+    <value>재고 아이템</value>
+  </data>
+  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
+    <value>인벤토리 개요</value>
+  </data>
+  <data name="Backpack_SectionInsights" xml:space="preserve">
+    <value>인벤토리 인사이트</value>
+  </data>
+  <data name="Backpack_SectionCultivation" xml:space="preserve">
+    <value>육성 재료 현황</value>
+  </data>
+  <data name="Backpack_SectionItems" xml:space="preserve">
+    <value>탐색 및 검색</value>
+  </data>
+  <data name="Backpack_DetailCountLabel" xml:space="preserve">
+    <value>보유 수량</value>
+  </data>
+  <data name="Backpack_DialogClose" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="Backpack_DialogConfirm" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
+    <value>인벤토리 데이터를 가져왔습니다</value>
+  </data>
+  <data name="Backpack_NotifyImportBody" xml:space="preserve">
+    <value>이번 인벤토리 데이터를 수신하여 저장했습니다. 개요, 재료 현황 및 요리 권장 사항이 업데이트되었습니다.</value>
+  </data>
+  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
+    <value>동기화 실패</value>
+  </data>
+  <data name="Backpack_ChipAll" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
+    <value>카테고리</value>
+  </data>
+  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
+    <value>보유</value>
+  </data>
+  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
+    <value>도감</value>
+  </data>
+  <data name="Backpack_ChipFilterFive" xml:space="preserve">
+    <value>★5</value>
+  </data>
+  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
+    <value>잠김</value>
+  </data>
+  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
+    <value>제작 가능</value>
+  </data>
+  <data name="Backpack_ChipSortDefault" xml:space="preserve">
+    <value>기본</value>
+  </data>
+  <data name="Backpack_ChipSortName" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="Backpack_ChipSortRank" xml:space="preserve">
+    <value>등급</value>
+  </data>
+  <data name="Backpack_ChipSortLevel" xml:space="preserve">
+    <value>레벨</value>
+  </data>
+  <data name="Backpack_ChipSortCount" xml:space="preserve">
+    <value>수량</value>
+  </data>
+  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
+    <value>전체 {0}</value>
+  </data>
+  <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
+    <value>클라우드 게임 자격 증명 제거</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmTitle" xml:space="preserve">
+    <value>클라우드 게임 자격 증명 제거</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
+    <value>이 계정의 클라우드 게임 출석 체크 자격 증명을 제거하시겠습니까?</value>
+  </data>
 </root>

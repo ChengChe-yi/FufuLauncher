@@ -5009,4 +5009,675 @@ Detail: {0}</value>
   <data name="Checkin_AccountLabel" xml:space="preserve">
     <value>Akun: {0}</value>
   </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>Posisi Jendela Notifikasi</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>Atur posisi tampilan jendela notifikasi di layar</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>Kanan Bawah</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>Kanan Atas</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>Kiri Atas</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>Kiri Bawah</value>
+  </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>Masuk game langsung dengan akun miHoYo/HoyoLAB</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>Masuk game langsung sebagai akun miHoYo atau HoyoLAB yang dipilih saat peluncuran, tanpa perlu memasukkan ulang nama pengguna dan kata sandi di dalam game.</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>Tidak Dapat Diaktifkan</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>Silakan login akun miHoYo atau HoyoLAB terlebih dahulu di pengaturan akun.</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>Sesi Login Akun Telah Kedaluwarsa</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>Akun saat ini perlu login ulang sebelum dapat menggunakan fitur ini.</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>Belum Ada Game yang Dipilih</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>Silakan pilih direktori instalasi game terlebih dahulu di halaman utama.</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>Telah Diaktifkan</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>Pada peluncuran game berikutnya, kamu akan langsung masuk sebagai akun miHoYo/HoyoLAB tanpa perlu memasukkan ulang nama pengguna dan kata sandi.</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>Tidak Dapat Diaktifkan</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>Fitur ini untuk sementara tidak dapat digunakan pada akun saat ini. Silakan periksa status login akun lalu coba lagi.</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>Untuk Sementara Tidak Tersedia</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>Jaringan atau layanan sedang bermasalah, silakan coba lagi nanti.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>Akun Tidak Cocok dengan Server</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>Akun HoyoLAB Server Global yang dipilih saat ini tidak dapat digunakan untuk meluncurkan game Server CN, silakan ganti ke akun dari region yang sesuai.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>Akun miHoYo Server CN yang dipilih saat ini tidak dapat digunakan untuk meluncurkan game Server Global, silakan ganti ke akun dari region yang sesuai.</value>
+  </data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve">
+    <value>Terjemahkan</value>
+  </data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve">
+    <value>Lihat Asli</value>
+  </data>
+  <data name="HelpPage_Translating" xml:space="preserve">
+    <value>Menerjemahkan ({0}/{1})...</value>
+  </data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve">
+    <value>Terjemahan Gagal</value>
+  </data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve">
+    <value>Terjemahan Selesai</value>
+  </data>
+  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
+    <value>Nonaktifkan auto-disable FPS saat peluncuran</value>
+  </data>
+  <data name="PluginStoreTitle" xml:space="preserve">
+    <value>Toko Plugin</value>
+  </data>
+  <data name="PluginStoreSearch" xml:space="preserve">
+    <value>Cari plugin...</value>
+  </data>
+  <data name="PluginStoreInstall" xml:space="preserve">
+    <value>Pasang</value>
+  </data>
+  <data name="PluginStoreInstalled" xml:space="preserve">
+    <value>Terpasang</value>
+  </data>
+  <data name="PluginStoreUpdate" xml:space="preserve">
+    <value>Perbarui</value>
+  </data>
+  <data name="PluginStoreUninstall" xml:space="preserve">
+    <value>Copot</value>
+  </data>
+  <data name="PluginStoreInstalling" xml:space="preserve">
+    <value>Sedang Memasang...</value>
+  </data>
+  <data name="PluginStoreRating" xml:space="preserve">
+    <value>Penilaian</value>
+  </data>
+  <data name="PluginStoreDownloads" xml:space="preserve">
+    <value>Unduhan</value>
+  </data>
+  <data name="PluginStoreSize" xml:space="preserve">
+    <value>Ukuran</value>
+  </data>
+  <data name="PluginStoreVersion" xml:space="preserve">
+    <value>Versi</value>
+  </data>
+  <data name="PluginStoreNoResults" xml:space="preserve">
+    <value>Tidak ada plugin yang ditemukan</value>
+  </data>
+  <data name="PluginStoreError" xml:space="preserve">
+    <value>Gagal Memuat</value>
+  </data>
+  <data name="PluginStoreLoading" xml:space="preserve">
+    <value>Sedang Memuat...</value>
+  </data>
+  <data name="PluginStoreRetry" xml:space="preserve">
+    <value>Coba Lagi</value>
+  </data>
+  <data name="PluginStorePrevious" xml:space="preserve">
+    <value>Sebelumnya</value>
+  </data>
+  <data name="PluginStoreNext" xml:space="preserve">
+    <value>Berikutnya</value>
+  </data>
+  <data name="PluginStoreAll" xml:space="preserve">
+    <value>Semua</value>
+  </data>
+  <data name="PluginStoreSortPopular" xml:space="preserve">
+    <value>Populer</value>
+  </data>
+  <data name="PluginStoreSortNewest" xml:space="preserve">
+    <value>Terbaru</value>
+  </data>
+  <data name="PluginStoreSortRating" xml:space="preserve">
+    <value>Penilaian Tertinggi</value>
+  </data>
+  <data name="PluginStoreInstallSuccess" xml:space="preserve">
+    <value>Berhasil Dipasang: {0}</value>
+  </data>
+  <data name="PluginStoreInstallFailed" xml:space="preserve">
+    <value>Pemasangan Gagal: {0}</value>
+  </data>
+  <data name="PluginStoreUninstallSuccess" xml:space="preserve">
+    <value>Berhasil Dicopot: {0}</value>
+  </data>
+  <data name="PluginStoreVerifying" xml:space="preserve">
+    <value>Memverifikasi...</value>
+  </data>
+  <data name="PluginStoreHashMismatch" xml:space="preserve">
+    <value>Verifikasi integritas file gagal, unduhan mungkin rusak atau telah dirusak</value>
+  </data>
+  <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
+    <value>Verifikasi integritas skrip pemasangan gagal</value>
+  </data>
+  <data name="PluginStoreSecurityBlocked" xml:space="preserve">
+    <value>Pemasangan Diblokir: {0}</value>
+  </data>
+  <data name="PluginStoreSecurityBlockedShort" xml:space="preserve">
+    <value>Diblokir oleh Keamanan</value>
+  </data>
+  <data name="PluginStorePathTraversal" xml:space="preserve">
+    <value>Keamanan: upaya path traversal telah diblokir</value>
+  </data>
+  <data name="PluginStoreHashVerified" xml:space="preserve">
+    <value>Verifikasi integritas lulus</value>
+  </data>
+  <data name="PluginStoreDiscover" xml:space="preserve">
+    <value>Jelajahi &amp; Temukan</value>
+  </data>
+  <data name="PluginStoreSearchPlaceholder" xml:space="preserve">
+    <value>Cari nama plugin atau kata kunci...</value>
+  </data>
+  <data name="PluginStoreRefresh" xml:space="preserve">
+    <value>Muat Ulang</value>
+  </data>
+  <data name="PluginStoreSyncing" xml:space="preserve">
+    <value>Menyinkronkan daftar plugin...</value>
+  </data>
+  <data name="PluginStoreDeveloper" xml:space="preserve">
+    <value>Disediakan oleh</value>
+  </data>
+  <data name="PluginStoreDetails" xml:space="preserve">
+    <value>Detail Fitur</value>
+  </data>
+  <data name="PluginStoreUpdateNow" xml:space="preserve">
+    <value>Perbarui Sekarang</value>
+  </data>
+  <data name="PluginStoreInstallPlugin" xml:space="preserve">
+    <value>Pasang Plugin Ini</value>
+  </data>
+  <data name="PluginStoreCancel" xml:space="preserve">
+    <value>Batal dan Kembali</value>
+  </data>
+  <data name="PluginStoreNoMatch" xml:space="preserve">
+    <value>Tidak ada plugin yang cocok ditemukan</value>
+  </data>
+  <data name="PluginStoreNoAvailable" xml:space="preserve">
+    <value>Belum ada plugin yang tersedia</value>
+  </data>
+  <data name="PluginStoreTotalPlugins" xml:space="preserve">
+    <value>Total {0} plugin</value>
+  </data>
+  <data name="PluginStoreConnectionFailed" xml:space="preserve">
+    <value>Koneksi Gagal</value>
+  </data>
+  <data name="PluginStoreLoadFailed" xml:space="preserve">
+    <value>Gagal memuat daftar plugin, silakan coba lagi nanti</value>
+  </data>
+  <data name="PluginStoreInstallComplete" xml:space="preserve">
+    <value>Pemasangan Selesai</value>
+  </data>
+  <data name="PluginStoreHashFailed" xml:space="preserve">
+    <value>Verifikasi Gagal</value>
+  </data>
+  <data name="PluginStoreCancelled" xml:space="preserve">
+    <value>Dibatalkan</value>
+  </data>
+  <data name="PluginStoreInstallFailedShort" xml:space="preserve">
+    <value>Pemasangan Gagal</value>
+  </data>
+  <data name="PluginStoreUninstalling" xml:space="preserve">
+    <value>Sedang Mencopot...</value>
+  </data>
+  <data name="PluginStoreUninstallComplete" xml:space="preserve">
+    <value>Berhasil Dicopot</value>
+  </data>
+  <data name="PluginStoreUninstallFailed" xml:space="preserve">
+    <value>Pencopotan Gagal</value>
+  </data>
+  <data name="PluginStoreServerUnreachable" xml:space="preserve">
+    <value>Tidak dapat terhubung ke server toko plugin, silakan periksa jaringan atau status server</value>
+  </data>
+  <data name="PluginStoreServerTimeout" xml:space="preserve">
+    <value>Koneksi ke toko plugin timeout, silakan coba lagi nanti</value>
+  </data>
+  <data name="PluginStoreLoadListFailed" xml:space="preserve">
+    <value>Gagal memuat daftar plugin: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
+    <value>Tidak dapat mengunduh skrip pemasangan, server tidak tersedia</value>
+  </data>
+  <data name="PluginStoreDownloadLuaError" xml:space="preserve">
+    <value>Gagal mengunduh skrip pemasangan: {0}</value>
+  </data>
+  <data name="PluginStoreDownloading" xml:space="preserve">
+    <value>Mengunduh {0}%</value>
+  </data>
+  <data name="PluginStoreDownloadFileFailed" xml:space="preserve">
+    <value>Tidak dapat mengunduh file plugin, server tidak tersedia</value>
+  </data>
+  <data name="PluginStoreDownloadFileError" xml:space="preserve">
+    <value>Gagal mengunduh file plugin: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadCountWan" xml:space="preserve">
+    <value>{0:F1}rb</value>
+  </data>
+  <data name="PluginStoreDownloadCountK" xml:space="preserve">
+    <value>{0:F1}rb</value>
+  </data>
+  <data name="PluginStoreScriptDownloading" xml:space="preserve">
+    <value>Mengunduh skrip pemasangan...</value>
+  </data>
+  <data name="PluginStoreScriptScanning" xml:space="preserve">
+    <value>Memindai...</value>
+  </data>
+  <data name="PluginStoreScriptExecuting" xml:space="preserve">
+    <value>Menjalankan skrip pemasangan...</value>
+  </data>
+  <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
+    <value>Skrip Lua gagal melewati verifikasi keamanan.</value>
+  </data>
+  <data name="PluginStoreLuaScriptError" xml:space="preserve">
+    <value>Kesalahan skrip Lua: {0}</value>
+  </data>
+  <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
+    <value>Eksekusi skrip Lua gagal: {0}</value>
+  </data>
+  <data name="PluginStoreDialogClose" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
+    <value>Keamanan: operasi {0} menerima jalur kosong.</value>
+  </data>
+  <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
+    <value>Keamanan: jalur tidak valid ({0}): {1}</value>
+  </data>
+  <data name="PluginStoreSecurityOutsideDir" xml:space="preserve">
+    <value>Keamanan: jalur harus berada di dalam direktori plugin ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
+    <value>Skrip mengandung operasi yang dilarang ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
+    <value>Upaya Path Traversal</value>
+  </data>
+  <data name="PluginStoreSecurityScriptTooLarge" xml:space="preserve">
+    <value>Skrip Terlalu Besar</value>
+  </data>
+  <data name="PluginStoreUpload" xml:space="preserve">
+    <value>Unggah Plugin</value>
+  </data>
+  <data name="PluginStoreUploadTooltip" xml:space="preserve">
+    <value>Buka GitHub untuk mengirimkan pluginmu</value>
+  </data>
+  <data name="PluginStoreLuaTestButton" xml:space="preserve">
+    <value>Tes Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestTitle" xml:space="preserve">
+    <value>Tes Skrip Pemasangan Plugin Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestDescription" xml:space="preserve">
+    <value>Masukkan skrip pemasangan plugin Lua di bawah ini, klik Jalankan Tes untuk memverifikasi skrip. Skrip akan dijalankan di lingkungan sandbox, semua operasi file dibatasi di dalam direktori Plugins.</value>
+  </data>
+  <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
+    <value>-- Masukkan skrip pemasangan plugin Lua di sini
+-- API yang tersedia: install.download(), install.extract(), install.download_plugin(id), dll.
+-- Lihat panduan pengembangan plugin Lua untuk detail</value>
+  </data>
+  <data name="PluginStoreLuaTestRun" xml:space="preserve">
+    <value>Jalankan Tes</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityWarning" xml:space="preserve">
+    <value>Peringatan Keamanan</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
+    <value>Skrip gagal melewati verifikasi keamanan: {0}
+
+Tetap ingin menjalankan? (Tidak Disarankan)</value>
+  </data>
+  <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
+    <value>Sedang menjalankan skrip Lua...</value>
+  </data>
+  <data name="PluginStoreLuaTestSuccess" xml:space="preserve">
+    <value>Skrip Lua berhasil dijalankan</value>
+  </data>
+  <data name="PluginStoreLuaTestFailed" xml:space="preserve">
+    <value>Eksekusi skrip Lua gagal</value>
+  </data>
+  <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
+    <value>Log telah disimpan ke:
+{0}</value>
+  </data>
+  <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
+    <value>Buka File Log</value>
+  </data>
+  <data name="PluginStoreLuaTestClose" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="PluginStoreCategoryUtility" xml:space="preserve">
+    <value>Utilitas</value>
+  </data>
+  <data name="PluginStoreCategoryGameplay" xml:space="preserve">
+    <value>Gameplay</value>
+  </data>
+  <data name="PluginStoreCategoryVisuals" xml:space="preserve">
+    <value>Visual</value>
+  </data>
+  <data name="Backpack_TabOverview" xml:space="preserve">
+    <value>Ringkasan</value>
+  </data>
+  <data name="Backpack_PageSubtitle" xml:space="preserve">
+    <value>Telusuri peralatan, material, dan masakan di satu tempat untuk membantu perencanaan progres.</value>
+  </data>
+  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
+    <value>Data sinkronisasi hanya disimpan di perangkat ini, tidak akan mengunggah akun atau isi Backpack.</value>
+  </data>
+  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
+    <value>Direktori instalasi game yang valid belum terdeteksi</value>
+  </data>
+  <data name="Backpack_PathNoticeBody" xml:space="preserve">
+    <value>Silakan konfigurasikan jalur di pengaturan game pada aplikasi; Backpack tidak akan menyimpan atau meminta jalur kedua.</value>
+  </data>
+  <data name="Backpack_OpenSettings" xml:space="preserve">
+    <value>Buka Pengaturan</value>
+  </data>
+  <data name="Backpack_GamePathFallback" xml:space="preserve">
+    <value>Silakan konfigurasikan direktori instalasi di pengaturan game</value>
+  </data>
+  <data name="Backpack_UsageTitle" xml:space="preserve">
+    <value>Petunjuk Penggunaan</value>
+  </data>
+  <data name="Backpack_UsageStep1" xml:space="preserve">
+    <value>Klik &apos;Sinkronkan Backpack&apos; di kanan atas untuk memasukkan data inventaris asli dari game dan memulai sinkronisasi data.</value>
+  </data>
+  <data name="Backpack_UsageStep2" xml:space="preserve">
+    <value>Tab di bagian atas untuk beralih kategori; klik kartu item mana saja untuk melihat parameter detail (Set / Sub-stat / Skill Senjata).</value>
+  </data>
+  <data name="Backpack_UsageStep3" xml:space="preserve">
+    <value>Kartu ringkasan akan menampilkan sinergi bahan masakan dan cakupan material pengembangan berdasarkan inventaris saat ini.</value>
+  </data>
+  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
+    <value>Senjata yang Dimiliki</value>
+  </data>
+  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
+    <value>Artifact yang Dikunci</value>
+  </data>
+  <data name="Backpack_KpiCookableFood" xml:space="preserve">
+    <value>Masakan yang Bisa Dibuat</value>
+  </data>
+  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
+    <value>Jenis Material</value>
+  </data>
+  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
+    <value>Senjata Bintang 5</value>
+  </data>
+  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
+    <value>Total Artifact</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
+    <value>Senjata Bintang 5 dengan Refinement Maks</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
+    <value>Total {0} senjata Bintang 5 telah mencapai refinement maksimal.</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
+    <value>Artifact Bintang 5 Level Maks</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
+    <value>{0} Artifact Bintang 5 telah ditingkatkan hingga +20.</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
+    <value>Bahan Masakan Tersedia</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
+    <value>Saat ini ada {0} masakan yang bahannya lengkap dan siap dibuat.</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
+    <value>Kategori Material Kosong</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
+    <value>Ada {0} kategori material dengan stok kosong: {1}</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
+    <value>Progres Kodeks Senjata</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
+    <value>Masih ada {0} senjata yang hanya ada di kodeks dan belum dimiliki.</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
+    <value>Material Stok Rendah</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
+    <value>{0} material memiliki stok kurang dari 5, perhatikan untuk segera menambah.</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
+    <value>Ringkasan Data</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
+    <value>Setelah menyinkronkan data Backpack, wawasan dan saran inventaris akan ditampilkan di sini.</value>
+  </data>
+  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
+    <value>Material Talent Tingkat Tinggi</value>
+  </data>
+  <data name="Backpack_CookHeader" xml:space="preserve">
+    <value>Status Persiapan Masakan</value>
+  </data>
+  <data name="Backpack_CookSubheader" xml:space="preserve">
+    <value>Berdasarkan stok bahan masakan saat ini</value>
+  </data>
+  <data name="Backpack_CookReady" xml:space="preserve">
+    <value>Siap Dibuat</value>
+  </data>
+  <data name="Backpack_CookAlmost" xml:space="preserve">
+    <value>Hampir Siap</value>
+  </data>
+  <data name="Backpack_CookAlmostBody" xml:space="preserve">
+    <value>Kurang {0} ({1})</value>
+  </data>
+  <data name="Backpack_CookEmptyName" xml:space="preserve">
+    <value>Belum Ada Data Masakan</value>
+  </data>
+  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
+    <value>Menunggu Sinkronisasi</value>
+  </data>
+  <data name="Backpack_CookEmptyBody" xml:space="preserve">
+    <value>Sinkronkan Backpack untuk melihat status persiapan masakan.</value>
+  </data>
+  <data name="Backpack_BrowseTitle" xml:space="preserve">
+    <value>Jelajahi &amp; Cari</value>
+  </data>
+  <data name="Backpack_BrowseCaption" xml:space="preserve">
+    <value>Gunakan kata kunci, subkategori, filter, dan urutan untuk menemukan item dengan cepat.</value>
+  </data>
+  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
+    <value>Cari nama, set, sub-stat, karakter, atau bahan masakan</value>
+  </data>
+  <data name="Backpack_BrowseReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
+    <value>Subkategori</value>
+  </data>
+  <data name="Backpack_BrowseFilter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Backpack_BrowseSort" xml:space="preserve">
+    <value>Urutkan</value>
+  </data>
+  <data name="Backpack_ResultCount" xml:space="preserve">
+    <value>{0} hasil</value>
+  </data>
+  <data name="Backpack_EmptyTitle" xml:space="preserve">
+    <value>Tidak ditemukan item yang cocok</value>
+  </data>
+  <data name="Backpack_EmptyBody" xml:space="preserve">
+    <value>Sesuaikan kata kunci atau hapus filter lalu coba lagi.</value>
+  </data>
+  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
+    <value>Hapus Filter</value>
+  </data>
+  <data name="Backpack_PagerFormat" xml:space="preserve">
+    <value>Halaman {0} / {1}</value>
+  </data>
+  <data name="Backpack_PagerRange" xml:space="preserve">
+    <value>Item {0}-{1} / Total {2}</value>
+  </data>
+  <data name="Backpack_ResultAll" xml:space="preserve">
+    <value>{0} hasil</value>
+  </data>
+  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
+    <value>Kualitas Senjata</value>
+  </data>
+  <data name="Backpack_DetailLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Backpack_DetailRefine" xml:space="preserve">
+    <value>Refinement</value>
+  </data>
+  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
+    <value>ATK Dasar</value>
+  </data>
+  <data name="Backpack_DetailSubStat" xml:space="preserve">
+    <value>Sub-stat</value>
+  </data>
+  <data name="Backpack_DetailSkill" xml:space="preserve">
+    <value>Skill Senjata</value>
+  </data>
+  <data name="Backpack_DetailLore" xml:space="preserve">
+    <value>Cerita Senjata</value>
+  </data>
+  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
+    <value>Level Enhancement</value>
+  </data>
+  <data name="Backpack_DetailMainStat" xml:space="preserve">
+    <value>Main Stat</value>
+  </data>
+  <data name="Backpack_DetailSubStats" xml:space="preserve">
+    <value>Sub-stat</value>
+  </data>
+  <data name="Backpack_DetailSetBonus" xml:space="preserve">
+    <value>Bonus Set</value>
+  </data>
+  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
+    <value>Entri Kodeks</value>
+  </data>
+  <data name="Backpack_DetailCodexBody" xml:space="preserve">
+    <value>Setelah diimpor dari game, level enhancement, nilai main stat, dan detail roll sub-stat Artifact akan terisi otomatis. Saat ini ditampilkan adalah klasifikasi set dan informasi dasar bonus set dari Artifact tersebut.</value>
+  </data>
+  <data name="Backpack_DetailCookState" xml:space="preserve">
+    <value>Status Pembuatan</value>
+  </data>
+  <data name="Backpack_DetailCookReady" xml:space="preserve">
+    <value>Stok bahan masakan terpenuhi, dapat langsung dibuat</value>
+  </data>
+  <data name="Backpack_DetailCookMissing" xml:space="preserve">
+    <value>Beberapa bahan masakan kurang, lengkapi untuk dapat membuat</value>
+  </data>
+  <data name="Backpack_DetailIngredients" xml:space="preserve">
+    <value>Bahan yang Diperlukan</value>
+  </data>
+  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
+    <value>Item Backpack</value>
+  </data>
+  <data name="Backpack_DetailCountBody" xml:space="preserve">
+    <value>Jumlah sebenarnya di Backpack saat ini.</value>
+  </data>
+  <data name="Backpack_DetailStockItem" xml:space="preserve">
+    <value>Item Stok</value>
+  </data>
+  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
+    <value>Ringkasan Inventaris</value>
+  </data>
+  <data name="Backpack_SectionInsights" xml:space="preserve">
+    <value>Wawasan Backpack</value>
+  </data>
+  <data name="Backpack_SectionCultivation" xml:space="preserve">
+    <value>Cakupan Material Pengembangan</value>
+  </data>
+  <data name="Backpack_SectionItems" xml:space="preserve">
+    <value>Jelajahi &amp; Cari</value>
+  </data>
+  <data name="Backpack_DetailCountLabel" xml:space="preserve">
+    <value>Jumlah yang Dimiliki</value>
+  </data>
+  <data name="Backpack_DialogClose" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="Backpack_DialogConfirm" xml:space="preserve">
+    <value>Konfirmasi</value>
+  </data>
+  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
+    <value>Data Backpack Berhasil Diimpor</value>
+  </data>
+  <data name="Backpack_NotifyImportBody" xml:space="preserve">
+    <value>Data Backpack sesi ini telah diterima dan disimpan. Ringkasan, cakupan material, dan saran masakan telah diperbarui.</value>
+  </data>
+  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
+    <value>Sinkronisasi Gagal</value>
+  </data>
+  <data name="Backpack_ChipAll" xml:space="preserve">
+    <value>Semua</value>
+  </data>
+  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
+    <value>Dimiliki</value>
+  </data>
+  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
+    <value>Kodeks</value>
+  </data>
+  <data name="Backpack_ChipFilterFive" xml:space="preserve">
+    <value>Bintang 5</value>
+  </data>
+  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
+    <value>Terkunci</value>
+  </data>
+  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
+    <value>Dapat Dibuat</value>
+  </data>
+  <data name="Backpack_ChipSortDefault" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="Backpack_ChipSortName" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="Backpack_ChipSortRank" xml:space="preserve">
+    <value>Kualitas</value>
+  </data>
+  <data name="Backpack_ChipSortLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Backpack_ChipSortCount" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
+    <value>Semua {0}</value>
+  </data>
+  <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
+    <value>Hapus kredensial cloud game</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmTitle" xml:space="preserve">
+    <value>Hapus Kredensial Cloud Game</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
+    <value>Apakah kamu yakin ingin menghapus kredensial check-in cloud game untuk akun ini?</value>
+  </data>
 </root>

@@ -5009,4 +5009,675 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Checkin_AccountLabel" xml:space="preserve">
     <value>Аккаунт: {0}</value>
   </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>Позиция всплывающих уведомлений</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>Настройка позиции всплывающих уведомлений в окне</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>Снизу справа</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>Сверху справа</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>Сверху слева</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>Снизу слева</value>
+  </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>Использовать аккаунт miHoYo/HoYoLAB для входа в игру</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>При запуске игра откроется под выбранным аккаунтом miHoYo или HoYoLAB, вводить логин и пароль в игре не потребуется.</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>Не удалось включить</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>Сначала войдите в аккаунт miHoYo или HoYoLAB в настройках аккаунта.</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>Срок сессии аккаунта истёк</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>Чтобы воспользоваться этой функцией, необходимо войти в аккаунт повторно.</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>Игра не выбрана</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>Сначала выберите каталог установки игры на главной странице.</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>При следующем запуске игра откроется под аккаунтом miHoYo/HoYoLAB, повторно вводить логин и пароль не потребуется.</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>Не удалось включить</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>Эта функция сейчас недоступна для аккаунта. Проверьте состояние входа и повторите попытку.</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>Временно недоступно</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>Сеть или сервис недоступны. Повторите попытку позже.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>Аккаунт не соответствует серверу</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>Выбранный международный аккаунт HoYoLAB нельзя использовать для запуска китайской версии игры. Переключитесь на аккаунт соответствующего региона.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>Выбранный китайский аккаунт miHoYo нельзя использовать для запуска международной версии игры. Переключитесь на аккаунт соответствующего региона.</value>
+  </data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve">
+    <value>Перевести</value>
+  </data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve">
+    <value>Показать оригинал</value>
+  </data>
+  <data name="HelpPage_Translating" xml:space="preserve">
+    <value>Перевод ({0}/{1})...</value>
+  </data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve">
+    <value>Ошибка перевода</value>
+  </data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve">
+    <value>Перевод завершён</value>
+  </data>
+  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
+    <value>Отключить автоблокировку FPS при запуске</value>
+  </data>
+  <data name="PluginStoreTitle" xml:space="preserve">
+    <value>Магазин плагинов</value>
+  </data>
+  <data name="PluginStoreSearch" xml:space="preserve">
+    <value>Поиск плагинов...</value>
+  </data>
+  <data name="PluginStoreInstall" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="PluginStoreInstalled" xml:space="preserve">
+    <value>Установлено</value>
+  </data>
+  <data name="PluginStoreUpdate" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="PluginStoreUninstall" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="PluginStoreInstalling" xml:space="preserve">
+    <value>Установка...</value>
+  </data>
+  <data name="PluginStoreRating" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="PluginStoreDownloads" xml:space="preserve">
+    <value>Загрузки</value>
+  </data>
+  <data name="PluginStoreSize" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="PluginStoreVersion" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="PluginStoreNoResults" xml:space="preserve">
+    <value>Плагины не найдены</value>
+  </data>
+  <data name="PluginStoreError" xml:space="preserve">
+    <value>Ошибка загрузки</value>
+  </data>
+  <data name="PluginStoreLoading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="PluginStoreRetry" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="PluginStorePrevious" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="PluginStoreNext" xml:space="preserve">
+    <value>Вперёд</value>
+  </data>
+  <data name="PluginStoreAll" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="PluginStoreSortPopular" xml:space="preserve">
+    <value>Популярные</value>
+  </data>
+  <data name="PluginStoreSortNewest" xml:space="preserve">
+    <value>Новые</value>
+  </data>
+  <data name="PluginStoreSortRating" xml:space="preserve">
+    <value>С лучшим рейтингом</value>
+  </data>
+  <data name="PluginStoreInstallSuccess" xml:space="preserve">
+    <value>Установлено: {0}</value>
+  </data>
+  <data name="PluginStoreInstallFailed" xml:space="preserve">
+    <value>Не удалось установить: {0}</value>
+  </data>
+  <data name="PluginStoreUninstallSuccess" xml:space="preserve">
+    <value>Удалено: {0}</value>
+  </data>
+  <data name="PluginStoreVerifying" xml:space="preserve">
+    <value>Проверка...</value>
+  </data>
+  <data name="PluginStoreHashMismatch" xml:space="preserve">
+    <value>Сбой проверки целостности файла. Загрузка могла быть повреждена или изменена</value>
+  </data>
+  <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
+    <value>Сбой проверки целостности скрипта установки</value>
+  </data>
+  <data name="PluginStoreSecurityBlocked" xml:space="preserve">
+    <value>Установка заблокирована: {0}</value>
+  </data>
+  <data name="PluginStoreSecurityBlockedShort" xml:space="preserve">
+    <value>Блокировка безопасности</value>
+  </data>
+  <data name="PluginStorePathTraversal" xml:space="preserve">
+    <value>Безопасность: попытка обхода пути заблокирована</value>
+  </data>
+  <data name="PluginStoreHashVerified" xml:space="preserve">
+    <value>Проверка целостности пройдена</value>
+  </data>
+  <data name="PluginStoreDiscover" xml:space="preserve">
+    <value>Исследуйте и открывайте</value>
+  </data>
+  <data name="PluginStoreSearchPlaceholder" xml:space="preserve">
+    <value>Поиск по названию или ключевому слову...</value>
+  </data>
+  <data name="PluginStoreRefresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="PluginStoreSyncing" xml:space="preserve">
+    <value>Синхронизация списка плагинов...</value>
+  </data>
+  <data name="PluginStoreDeveloper" xml:space="preserve">
+    <value>Разработка</value>
+  </data>
+  <data name="PluginStoreDetails" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="PluginStoreUpdateNow" xml:space="preserve">
+    <value>Обновить сейчас</value>
+  </data>
+  <data name="PluginStoreInstallPlugin" xml:space="preserve">
+    <value>Установить этот плагин</value>
+  </data>
+  <data name="PluginStoreCancel" xml:space="preserve">
+    <value>Отмена и возврат</value>
+  </data>
+  <data name="PluginStoreNoMatch" xml:space="preserve">
+    <value>Подходящие плагины не найдены</value>
+  </data>
+  <data name="PluginStoreNoAvailable" xml:space="preserve">
+    <value>Нет доступных плагинов</value>
+  </data>
+  <data name="PluginStoreTotalPlugins" xml:space="preserve">
+    <value>Всего плагинов: {0}</value>
+  </data>
+  <data name="PluginStoreConnectionFailed" xml:space="preserve">
+    <value>Ошибка подключения</value>
+  </data>
+  <data name="PluginStoreLoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить список плагинов. Повторите попытку позже</value>
+  </data>
+  <data name="PluginStoreInstallComplete" xml:space="preserve">
+    <value>Установка завершена</value>
+  </data>
+  <data name="PluginStoreHashFailed" xml:space="preserve">
+    <value>Ошибка проверки</value>
+  </data>
+  <data name="PluginStoreCancelled" xml:space="preserve">
+    <value>Отменено</value>
+  </data>
+  <data name="PluginStoreInstallFailedShort" xml:space="preserve">
+    <value>Не удалось установить</value>
+  </data>
+  <data name="PluginStoreUninstalling" xml:space="preserve">
+    <value>Удаление...</value>
+  </data>
+  <data name="PluginStoreUninstallComplete" xml:space="preserve">
+    <value>Удалено</value>
+  </data>
+  <data name="PluginStoreUninstallFailed" xml:space="preserve">
+    <value>Не удалось удалить</value>
+  </data>
+  <data name="PluginStoreServerUnreachable" xml:space="preserve">
+    <value>Не удалось подключиться к серверу магазина плагинов. Проверьте сеть или состояние сервера</value>
+  </data>
+  <data name="PluginStoreServerTimeout" xml:space="preserve">
+    <value>Время ожидания подключения к магазину истекло. Повторите попытку позже</value>
+  </data>
+  <data name="PluginStoreLoadListFailed" xml:space="preserve">
+    <value>Не удалось загрузить список плагинов: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
+    <value>Не удалось загрузить скрипт установки: сервер недоступен</value>
+  </data>
+  <data name="PluginStoreDownloadLuaError" xml:space="preserve">
+    <value>Не удалось загрузить скрипт установки: {0}</value>
+  </data>
+  <data name="PluginStoreDownloading" xml:space="preserve">
+    <value>Загрузка {0}%</value>
+  </data>
+  <data name="PluginStoreDownloadFileFailed" xml:space="preserve">
+    <value>Не удалось загрузить файл плагина: сервер недоступен</value>
+  </data>
+  <data name="PluginStoreDownloadFileError" xml:space="preserve">
+    <value>Не удалось загрузить файл плагина: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadCountWan" xml:space="preserve">
+    <value>{0:F1} млн</value>
+  </data>
+  <data name="PluginStoreDownloadCountK" xml:space="preserve">
+    <value>{0:F1} тыс.</value>
+  </data>
+  <data name="PluginStoreScriptDownloading" xml:space="preserve">
+    <value>Загрузка скрипта установки...</value>
+  </data>
+  <data name="PluginStoreScriptScanning" xml:space="preserve">
+    <value>Сканирование...</value>
+  </data>
+  <data name="PluginStoreScriptExecuting" xml:space="preserve">
+    <value>Выполнение скрипта установки...</value>
+  </data>
+  <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
+    <value>Lua-скрипт не прошёл проверку безопасности.</value>
+  </data>
+  <data name="PluginStoreLuaScriptError" xml:space="preserve">
+    <value>Ошибка Lua-скрипта: {0}</value>
+  </data>
+  <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
+    <value>Не удалось выполнить Lua-скрипт: {0}</value>
+  </data>
+  <data name="PluginStoreDialogClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
+    <value>Безопасность: операция {0} получила пустой путь.</value>
+  </data>
+  <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
+    <value>Безопасность: недопустимый путь ({0}): {1}</value>
+  </data>
+  <data name="PluginStoreSecurityOutsideDir" xml:space="preserve">
+    <value>Безопасность: путь должен находиться внутри каталога плагинов ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
+    <value>Скрипт содержит запрещённую операцию ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
+    <value>Попытка обхода пути</value>
+  </data>
+  <data name="PluginStoreSecurityScriptTooLarge" xml:space="preserve">
+    <value>Скрипт слишком большой</value>
+  </data>
+  <data name="PluginStoreUpload" xml:space="preserve">
+    <value>Загрузить плагин</value>
+  </data>
+  <data name="PluginStoreUploadTooltip" xml:space="preserve">
+    <value>Отправить свой плагин на GitHub</value>
+  </data>
+  <data name="PluginStoreLuaTestButton" xml:space="preserve">
+    <value>Тест Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestTitle" xml:space="preserve">
+    <value>Тест скрипта установки плагина Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestDescription" xml:space="preserve">
+    <value>Введите скрипт установки плагина Lua ниже и нажмите «Выполнить», чтобы проверить его. Скрипт запускается в изолированной среде, все операции с файлами ограничены каталогом Plugins.</value>
+  </data>
+  <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
+    <value>-- Введите скрипт установки плагина Lua ниже
+-- Доступные API: install.download(), install.extract(), install.download_plugin(id) и др.
+-- Подробности см. в руководстве разработчика плагинов Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestRun" xml:space="preserve">
+    <value>Выполнить</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityWarning" xml:space="preserve">
+    <value>Предупреждение безопасности</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
+    <value>Скрипт не прошёл проверку безопасности: {0}
+
+Всё равно выполнить? (Не рекомендуется)</value>
+  </data>
+  <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
+    <value>Выполнение Lua-скрипта...</value>
+  </data>
+  <data name="PluginStoreLuaTestSuccess" xml:space="preserve">
+    <value>Lua-скрипт выполнен успешно</value>
+  </data>
+  <data name="PluginStoreLuaTestFailed" xml:space="preserve">
+    <value>Не удалось выполнить Lua-скрипт</value>
+  </data>
+  <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
+    <value>Журнал сохранён в:
+{0}</value>
+  </data>
+  <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
+    <value>Открыть файл журнала</value>
+  </data>
+  <data name="PluginStoreLuaTestClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="PluginStoreCategoryUtility" xml:space="preserve">
+    <value>Утилиты</value>
+  </data>
+  <data name="PluginStoreCategoryGameplay" xml:space="preserve">
+    <value>Геймплей</value>
+  </data>
+  <data name="PluginStoreCategoryVisuals" xml:space="preserve">
+    <value>Визуальные эффекты</value>
+  </data>
+  <data name="Backpack_TabOverview" xml:space="preserve">
+    <value>Обзор</value>
+  </data>
+  <data name="Backpack_PageSubtitle" xml:space="preserve">
+    <value>Просматривайте снаряжение, материалы и блюда в одном месте для удобного планирования развития.</value>
+  </data>
+  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
+    <value>Синхронизированные данные хранятся только локально, аккаунт и содержимое рюкзака не загружаются.</value>
+  </data>
+  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
+    <value>Не найден допустимый каталог установки игры</value>
+  </data>
+  <data name="Backpack_PathNoticeBody" xml:space="preserve">
+    <value>Укажите путь в настройках игры. Backpack не сохраняет и не запрашивает второй путь.</value>
+  </data>
+  <data name="Backpack_OpenSettings" xml:space="preserve">
+    <value>Открыть настройки</value>
+  </data>
+  <data name="Backpack_GamePathFallback" xml:space="preserve">
+    <value>Укажите каталог установки в настройках игры</value>
+  </data>
+  <data name="Backpack_UsageTitle" xml:space="preserve">
+    <value>Инструкции</value>
+  </data>
+  <data name="Backpack_UsageStep1" xml:space="preserve">
+    <value>Нажмите «Синхронизировать рюкзак» в правом верхнем углу, чтобы загрузить реальное содержимое инвентаря из игры и запустить синхронизацию.</value>
+  </data>
+  <data name="Backpack_UsageStep2" xml:space="preserve">
+    <value>Переключайте категории на верхней панели; нажмите на карточку предмета, чтобы увидеть подробные параметры (комплект / доп. характеристики / навык оружия).</value>
+  </data>
+  <data name="Backpack_UsageStep3" xml:space="preserve">
+    <value>Карточки обзора отображают рекомендации по блюдам и покрытие материалов развития на основе текущего инвентаря.</value>
+  </data>
+  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
+    <value>Оружие в наличии</value>
+  </data>
+  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
+    <value>Заблокированные артефакты</value>
+  </data>
+  <data name="Backpack_KpiCookableFood" xml:space="preserve">
+    <value>Доступные блюда</value>
+  </data>
+  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
+    <value>Категории материалов</value>
+  </data>
+  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
+    <value>Оружие 5 звёзд</value>
+  </data>
+  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
+    <value>Всего артефактов</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
+    <value>Оружие 5 звёзд с макс. улучшением</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
+    <value>У Вас {0} ед. оружия 5 звёзд с максимальным улучшением.</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
+    <value>Артефакты 5 звёзд макс. уровня</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
+    <value>{0} артефактов 5 звёзд улучшены до +20.</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
+    <value>Достаточно ингредиентов</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
+    <value>Ингредиенты для {0} блюд готовы — можно приготовить прямо сейчас.</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
+    <value>Отсутствуют категории материалов</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
+    <value>{0} категорий материалов имеют нулевой запас: {1}</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
+    <value>Прогресс кодекса оружия</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
+    <value>{0} единиц оружия присутствуют только в кодексе — их пока нет в инвентаре.</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
+    <value>Материалы с низким запасом</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
+    <value>{0} материалов в запасе менее 5 шт. Не забудьте пополнить их вовремя.</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
+    <value>Обзор данных</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
+    <value>После синхронизации рюкзака здесь появятся обзор инвентаря и рекомендации.</value>
+  </data>
+  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
+    <value>Материалы талантов высокого ранга</value>
+  </data>
+  <data name="Backpack_CookHeader" xml:space="preserve">
+    <value>Готовность блюд</value>
+  </data>
+  <data name="Backpack_CookSubheader" xml:space="preserve">
+    <value>На основе текущих ингредиентов</value>
+  </data>
+  <data name="Backpack_CookReady" xml:space="preserve">
+    <value>Можно приготовить</value>
+  </data>
+  <data name="Backpack_CookAlmost" xml:space="preserve">
+    <value>Почти готово</value>
+  </data>
+  <data name="Backpack_CookAlmostBody" xml:space="preserve">
+    <value>Не хватает: {0} ({1})</value>
+  </data>
+  <data name="Backpack_CookEmptyName" xml:space="preserve">
+    <value>Данные о блюдах отсутствуют</value>
+  </data>
+  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
+    <value>Ожидание синхронизации</value>
+  </data>
+  <data name="Backpack_CookEmptyBody" xml:space="preserve">
+    <value>Синхронизируйте рюкзак, чтобы увидеть готовность блюд.</value>
+  </data>
+  <data name="Backpack_BrowseTitle" xml:space="preserve">
+    <value>Просмотр и поиск</value>
+  </data>
+  <data name="Backpack_BrowseCaption" xml:space="preserve">
+    <value>Используйте ключевые слова, подкатегории, фильтры и сортировку для быстрого поиска предметов.</value>
+  </data>
+  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
+    <value>Поиск по названию, комплекту, доп. характеристикам, персонажу или ингредиенту</value>
+  </data>
+  <data name="Backpack_BrowseReset" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
+    <value>Подкатегория</value>
+  </data>
+  <data name="Backpack_BrowseFilter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="Backpack_BrowseSort" xml:space="preserve">
+    <value>Сортировка</value>
+  </data>
+  <data name="Backpack_ResultCount" xml:space="preserve">
+    <value>Результатов: {0}</value>
+  </data>
+  <data name="Backpack_EmptyTitle" xml:space="preserve">
+    <value>Подходящие предметы не найдены</value>
+  </data>
+  <data name="Backpack_EmptyBody" xml:space="preserve">
+    <value>Измените запрос или сбросьте фильтры и повторите попытку.</value>
+  </data>
+  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
+    <value>Очистить условия</value>
+  </data>
+  <data name="Backpack_PagerFormat" xml:space="preserve">
+    <value>Стр. {0} / {1}</value>
+  </data>
+  <data name="Backpack_PagerRange" xml:space="preserve">
+    <value>{0}-{1} из {2}</value>
+  </data>
+  <data name="Backpack_ResultAll" xml:space="preserve">
+    <value>Результатов: {0}</value>
+  </data>
+  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
+    <value>Редкость оружия</value>
+  </data>
+  <data name="Backpack_DetailLevel" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="Backpack_DetailRefine" xml:space="preserve">
+    <value>Улучшение</value>
+  </data>
+  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
+    <value>Базовая атака</value>
+  </data>
+  <data name="Backpack_DetailSubStat" xml:space="preserve">
+    <value>Доп. характеристика</value>
+  </data>
+  <data name="Backpack_DetailSkill" xml:space="preserve">
+    <value>Навык оружия</value>
+  </data>
+  <data name="Backpack_DetailLore" xml:space="preserve">
+    <value>История оружия</value>
+  </data>
+  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
+    <value>Уровень усиления</value>
+  </data>
+  <data name="Backpack_DetailMainStat" xml:space="preserve">
+    <value>Основная характеристика</value>
+  </data>
+  <data name="Backpack_DetailSubStats" xml:space="preserve">
+    <value>Доп. характеристики</value>
+  </data>
+  <data name="Backpack_DetailSetBonus" xml:space="preserve">
+    <value>Эффект комплекта</value>
+  </data>
+  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
+    <value>Запись кодекса</value>
+  </data>
+  <data name="Backpack_DetailCodexBody" xml:space="preserve">
+    <value>После импорта данных игры автоматически заполнятся уровень усиления артефакта, значение основной характеристики и подробности прокатки доп. характеристик. Сейчас отображаются базовые сведения о категории и эффекте комплекта этого артефакта.</value>
+  </data>
+  <data name="Backpack_DetailCookState" xml:space="preserve">
+    <value>Состояние приготовления</value>
+  </data>
+  <data name="Backpack_DetailCookReady" xml:space="preserve">
+    <value>Ингредиентов достаточно — можно приготовить</value>
+  </data>
+  <data name="Backpack_DetailCookMissing" xml:space="preserve">
+    <value>Не хватает части ингредиентов — пополните их, чтобы приготовить</value>
+  </data>
+  <data name="Backpack_DetailIngredients" xml:space="preserve">
+    <value>Необходимые ингредиенты</value>
+  </data>
+  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
+    <value>Предмет в рюкзаке</value>
+  </data>
+  <data name="Backpack_DetailCountBody" xml:space="preserve">
+    <value>Текущее количество в рюкзаке.</value>
+  </data>
+  <data name="Backpack_DetailStockItem" xml:space="preserve">
+    <value>Предмет на складе</value>
+  </data>
+  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
+    <value>Обзор инвентаря</value>
+  </data>
+  <data name="Backpack_SectionInsights" xml:space="preserve">
+    <value>Аналитика рюкзака</value>
+  </data>
+  <data name="Backpack_SectionCultivation" xml:space="preserve">
+    <value>Покрытие материалов развития</value>
+  </data>
+  <data name="Backpack_SectionItems" xml:space="preserve">
+    <value>Просмотр и поиск</value>
+  </data>
+  <data name="Backpack_DetailCountLabel" xml:space="preserve">
+    <value>Количество в наличии</value>
+  </data>
+  <data name="Backpack_DialogClose" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Backpack_DialogConfirm" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
+    <value>Данные рюкзака импортированы</value>
+  </data>
+  <data name="Backpack_NotifyImportBody" xml:space="preserve">
+    <value>Данные рюкзака получены и сохранены. Обзор, покрытие материалов и рекомендации по блюдам обновлены.</value>
+  </data>
+  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
+    <value>Ошибка синхронизации</value>
+  </data>
+  <data name="Backpack_ChipAll" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
+    <value>В наличии</value>
+  </data>
+  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
+    <value>Кодекс</value>
+  </data>
+  <data name="Backpack_ChipFilterFive" xml:space="preserve">
+    <value>5 звёзд</value>
+  </data>
+  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
+    <value>Заблокировано</value>
+  </data>
+  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
+    <value>Можно приготовить</value>
+  </data>
+  <data name="Backpack_ChipSortDefault" xml:space="preserve">
+    <value>По умолчанию</value>
+  </data>
+  <data name="Backpack_ChipSortName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="Backpack_ChipSortRank" xml:space="preserve">
+    <value>Редкость</value>
+  </data>
+  <data name="Backpack_ChipSortLevel" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="Backpack_ChipSortCount" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
+    <value>Все — {0}</value>
+  </data>
+  <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
+    <value>Удалить учётные данные облачной игры</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmTitle" xml:space="preserve">
+    <value>Удалить учётные данные облачной игры</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
+    <value>Удалить учётные данные облачной игры для этого аккаунта?</value>
+  </data>
 </root>

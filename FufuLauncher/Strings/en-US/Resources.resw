@@ -5526,4 +5526,153 @@ Do you still want to execute it? (Not recommended)</value>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Are you sure you want to remove the cloud gaming credential for this account?</value>
   </data>
+  <data name="Fps_CompatWarning_Content" xml:space="preserve">
+    <value>If AI frame interpolation is enabled on NVIDIA RTX 40 series or newer GPUs, or if frame rate monitoring software such as RTSS or MSI Afterburner is in use, the game may freeze on screen or fail to launch normally.</value>
+  </data>
+  <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
+    <value>Don&apos;t show this warning again</value>
+  </data>
+  <data name="Fps_CompatWarning_Title" xml:space="preserve">
+    <value>Compatibility Warning</value>
+  </data>
+  <data name="Fps_HashMismatch_Content" xml:space="preserve">
+    <value>The FPS display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value>
+  </data>
+  <data name="Fps_Repair_Fail_Title" xml:space="preserve">
+    <value>Repair Failed</value>
+  </data>
+  <data name="Fps_Repair_Success" xml:space="preserve">
+    <value>The FPS display plugin has been successfully repaired and installed.</value>
+  </data>
+  <data name="Fps_Repair_Title" xml:space="preserve">
+    <value>Repairing FPS Plugin</value>
+  </data>
+  <data name="Avatar_Batch_Fail_Title" xml:space="preserve">
+    <value>Batch Save Failed</value>
+  </data>
+  <data name="Avatar_Batch_Success" xml:space="preserve">
+    <value>Avatars of all sizes have been generated and overwritten in batch.</value>
+  </data>
+  <data name="Avatar_Clear_Fail_Title" xml:space="preserve">
+    <value>Clear Failed</value>
+  </data>
+  <data name="Avatar_Clear_Success_Format" xml:space="preserve">
+    <value>Size {0}x{0} avatars have been cleared</value>
+  </data>
+  <data name="Avatar_Crop_Success" xml:space="preserve">
+    <value>Avatar cropped and saved successfully.</value>
+  </data>
+  <data name="Avatar_EditNotFound_Content" xml:space="preserve">
+    <value>No editable avatar was found.</value>
+  </data>
+  <data name="Avatar_EditNotFound_Title" xml:space="preserve">
+    <value>Notice</value>
+  </data>
+  <data name="Avatar_ImportFail_Title" xml:space="preserve">
+    <value>Import Failed</value>
+  </data>
+  <data name="Avatar_LoadFail_Title" xml:space="preserve">
+    <value>Load Failed</value>
+  </data>
+  <data name="Avatar_SaveFail_Title" xml:space="preserve">
+    <value>Save Failed</value>
+  </data>
+  <data name="Plugin_ArchWarning_Content" xml:space="preserve">
+    <value>Your computer may use the ARM architecture. The injection feature is not available on ARM-based PCs. Are you sure you want to continue enabling it?</value>
+  </data>
+  <data name="Plugin_ArchWarning_Continue" xml:space="preserve">
+    <value>Continue Enabling</value>
+  </data>
+  <data name="Plugin_ArchWarning_Title" xml:space="preserve">
+    <value>Architecture Compatibility Warning</value>
+  </data>
+  <data name="Plugin_Corrupted_Content" xml:space="preserve">
+    <value>The plugin file is abnormal.
+This is usually because the plugin was blocked by antivirus software (such as Windows Defender) or has been damaged.
+
+We recommend that you:
+1. Add this software&apos;s directory to your antivirus whitelist.
+2. Re-download and install the plugin from this page.</value>
+  </data>
+  <data name="Plugin_Corrupted_Title" xml:space="preserve">
+    <value>Plugin May Be Corrupted</value>
+  </data>
+  <data name="Plugin_Download_Connecting" xml:space="preserve">
+    <value>Connecting...</value>
+  </data>
+  <data name="Plugin_Download_Extracting" xml:space="preserve">
+    <value>Extracting and installing...</value>
+  </data>
+  <data name="Plugin_Download_Fail_Content_Format" xml:space="preserve">
+    <value>Installation failed: {0}</value>
+  </data>
+  <data name="Plugin_Download_Fallback" xml:space="preserve">
+    <value>Connection failed. Trying backup route...</value>
+  </data>
+  <data name="Plugin_Download_MainLine" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Plugin_Download_BackupLine" xml:space="preserve">
+    <value>Backup</value>
+  </data>
+  <data name="Plugin_Download_Manual" xml:space="preserve">
+    <value>Manual Download</value>
+  </data>
+  <data name="Plugin_Download_Progress_Format" xml:space="preserve">
+    <value>Downloading via {0} route... {1}%</value>
+  </data>
+  <data name="Plugin_Download_Success" xml:space="preserve">
+    <value>Plugin installed and refreshed.</value>
+  </data>
+  <data name="Plugin_Download_Title" xml:space="preserve">
+    <value>Fetching Plugin</value>
+  </data>
+  <data name="Plugin_FileNotFound" xml:space="preserve">
+    <value>File not found. Please make sure the launcher files are complete.</value>
+  </data>
+  <data name="Plugin_MainMissing_Content" xml:space="preserve">
+    <value>Main plugin DLL file not found. The plugin may not be installed, was accidentally deleted, or was blocked by antivirus software. Please re-download the plugin, or add the launcher directory to your antivirus whitelist and try again.</value>
+  </data>
+  <data name="Plugin_MainMissing_Title" xml:space="preserve">
+    <value>Main Plugin Missing</value>
+  </data>
+  <data name="Preset_Create_Placeholder" xml:space="preserve">
+    <value>Please enter a new preset name</value>
+  </data>
+  <data name="Preset_Create_Title" xml:space="preserve">
+    <value>Create New Preset</value>
+  </data>
+  <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
+    <value>Are you sure you want to delete preset \&quot;{0}\&quot;? This action cannot be undone!</value>
+  </data>
+  <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
+    <value>Confirm Delete</value>
+  </data>
+  <data name="Preset_Locked_Content_Format" xml:space="preserve">
+    <value>Lock reason: {0}\n\nIf you continue using it, this warning will be ignored and the preset&apos;s hash will be updated to the current plugin hash, which will unlock the preset again. Continue?</value>
+  </data>
+  <data name="Preset_Locked_Continue" xml:space="preserve">
+    <value>Continue and Unlock</value>
+  </data>
+  <data name="Preset_Locked_Title" xml:space="preserve">
+    <value>Configuration Preset Locked</value>
+  </data>
+  <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve">
+    <value>Confirm Reset</value>
+  </data>
+  <data name="Preset_ResetAll_Content" xml:space="preserve">
+    <value>Are you sure you want to remove all presets for the current plugin and re-download to restore defaults? This action cannot be undone!</value>
+  </data>
+  <data name="Preset_ResetAll_Title" xml:space="preserve">
+    <value>Reset All Presets</value>
+  </data>
+  <data name="PR_Description" xml:space="preserve">
+    <value>This project is currently maintained independently by a solo developer (CodeCubist).\nWe are committed to and actively implement a development approach centered on player pain points, driving updates in an open, transparent, and efficient manner.\nSubmitting Pull Requests is the core way for users with coding skills to help advance development progress, optimize the structure, and share the burden of project maintenance.\nIf you can help, please use the button below to go to the code repository and submit your contribution.</value>
+  </data>
+  <data name="PR_GitHubButton" xml:space="preserve">
+    <value>Visit the GitHub Repository to Submit a Pull Request</value>
+  </data>
+  <data name="PR_Window_Title" xml:space="preserve">
+    <value>Pull Request</value>
+  </data>
 </root>

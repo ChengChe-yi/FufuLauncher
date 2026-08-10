@@ -5640,4 +5640,34 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>确定要移除该账户的云游戏签到凭证吗？</value>
   </data>
+  <data name="AboutPage_GetBuildFromActions" xml:space="preserve">
+    <value>从 GitHub Actions 获取构建</value>
+  </data>
+  <data name="AboutPage_GitHubToken" xml:space="preserve">
+    <value>GitHub Token</value>
+  </data>
+  <data name="AboutPage_FetchSuccess" xml:space="preserve">
+    <value>获取成功！已生成下载脚本。</value>
+  </data>
+  <data name="AboutPage_EnterToken" xml:space="preserve">
+    <value>请输入您的 Token！</value>
+  </data>
+  <data name="AboutPage_FetchFailedArtifact" xml:space="preserve">
+    <value>获取失败（未找到 artifact）</value>
+  </data>
+  <data name="AboutPage_FetchFailedRun" xml:space="preserve">
+    <value>获取失败（未找到成功的运行）</value>
+  </data>
+  <data name="AboutPage_FetchFailedWorkflow" xml:space="preserve">
+    <value>获取失败（未找到 workflow）</value>
+  </data>
+  <data name="AboutPage_Exception" xml:space="preserve">
+    <value>发生异常</value>
+  </data>
+  <data name="AboutPage_GitHubTokenPlaceholder" xml:space="preserve">
+    <value>请输入您的 GitHub Token</value>
+  </data>
+  <data name="AboutPage_Loading" xml:space="preserve">
+    <value>加载中...</value>
+  </data>
 </root>

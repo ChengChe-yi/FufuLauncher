@@ -5009,4 +5009,675 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Checkin_AccountLabel" xml:space="preserve">
     <value>アカウント: {0}</value>
   </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>通知ポップアップの位置</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>通知ポップアップを画面に表示する位置を設定します</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>右下</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>右上</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>左上</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>左下</value>
+  </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>米游社/HoyoLAB アカウントでゲームに直接ログイン</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>ゲーム起動時に、現在選択中の米游社または HoyoLAB アカウントとしてゲームに直接サインインできます。ゲーム内で再度アカウント情報を入力する必要はありません。</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>开启できません</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>まずアカウント設定で米游社または HoyoLAB アカウントにログインしてください。</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>アカウントのログイン期限が切れました</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>この機能を使用するには、現在のアカウントを再ログインする必要があります。</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>ゲームが選択されていません</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>まずホーム画面でゲームのインストールディレクトリを選択してください。</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>开启しました</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>次回ゲーム起動時に、米游社/HoyoLAB アカウントとしてゲームに直接サインインします。アカウント情報を再度入力する必要はありません。</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>开启できません</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>現在のアカウントでは一時的にこの機能を使用できません。アカウントのログイン状態を確認してから再試行してください。</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>一時的に利用できません</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>ネットワークまたはサービスに異常があります。しばらくしてから再度お試しください。</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>アカウントとサーバーが一致しません</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>現在選択中の HoyoLAB グローバル版アカウントでは中国版のゲームを起動できません。対応するリージョンのアカウントに切り替えてください。</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>現在選択中の米游社中国版アカウントではグローバル版のゲームを起動できません。対応するリージョンのアカウントに切り替えてください。</value>
+  </data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve">
+    <value>翻訳</value>
+  </data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve">
+    <value>原文を表示</value>
+  </data>
+  <data name="HelpPage_Translating" xml:space="preserve">
+    <value>翻訳中 ({0}/{1})...</value>
+  </data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve">
+    <value>翻訳に失敗しました</value>
+  </data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve">
+    <value>翻訳完了</value>
+  </data>
+  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
+    <value>起動時の自動FPS無効化をオフ</value>
+  </data>
+  <data name="PluginStoreTitle" xml:space="preserve">
+    <value>プラグインストア</value>
+  </data>
+  <data name="PluginStoreSearch" xml:space="preserve">
+    <value>プラグインを検索...</value>
+  </data>
+  <data name="PluginStoreInstall" xml:space="preserve">
+    <value>インストール</value>
+  </data>
+  <data name="PluginStoreInstalled" xml:space="preserve">
+    <value>インストール済み</value>
+  </data>
+  <data name="PluginStoreUpdate" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="PluginStoreUninstall" xml:space="preserve">
+    <value>アンインストール</value>
+  </data>
+  <data name="PluginStoreInstalling" xml:space="preserve">
+    <value>インストール中...</value>
+  </data>
+  <data name="PluginStoreRating" xml:space="preserve">
+    <value>評価</value>
+  </data>
+  <data name="PluginStoreDownloads" xml:space="preserve">
+    <value>ダウンロード</value>
+  </data>
+  <data name="PluginStoreSize" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="PluginStoreVersion" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="PluginStoreNoResults" xml:space="preserve">
+    <value>プラグインが見つかりません</value>
+  </data>
+  <data name="PluginStoreError" xml:space="preserve">
+    <value>読み込みに失敗しました</value>
+  </data>
+  <data name="PluginStoreLoading" xml:space="preserve">
+    <value>読み込み中...</value>
+  </data>
+  <data name="PluginStoreRetry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="PluginStorePrevious" xml:space="preserve">
+    <value>前のページ</value>
+  </data>
+  <data name="PluginStoreNext" xml:space="preserve">
+    <value>次のページ</value>
+  </data>
+  <data name="PluginStoreAll" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="PluginStoreSortPopular" xml:space="preserve">
+    <value>人気</value>
+  </data>
+  <data name="PluginStoreSortNewest" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="PluginStoreSortRating" xml:space="preserve">
+    <value>評価が高い順</value>
+  </data>
+  <data name="PluginStoreInstallSuccess" xml:space="preserve">
+    <value>インストール完了: {0}</value>
+  </data>
+  <data name="PluginStoreInstallFailed" xml:space="preserve">
+    <value>インストール失敗: {0}</value>
+  </data>
+  <data name="PluginStoreUninstallSuccess" xml:space="preserve">
+    <value>アンインストール完了: {0}</value>
+  </data>
+  <data name="PluginStoreVerifying" xml:space="preserve">
+    <value>検証中...</value>
+  </data>
+  <data name="PluginStoreHashMismatch" xml:space="preserve">
+    <value>ファイルの整合性検証に失敗しました。ダウンロードファイルが破損または改ざんされている可能性があります</value>
+  </data>
+  <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
+    <value>インストールスクリプトの整合性検証に失敗しました</value>
+  </data>
+  <data name="PluginStoreSecurityBlocked" xml:space="preserve">
+    <value>インストールがブロックされました: {0}</value>
+  </data>
+  <data name="PluginStoreSecurityBlockedShort" xml:space="preserve">
+    <value>セキュリティブロック</value>
+  </data>
+  <data name="PluginStorePathTraversal" xml:space="preserve">
+    <value>セキュリティ: パストラバーサル試行をブロックしました</value>
+  </data>
+  <data name="PluginStoreHashVerified" xml:space="preserve">
+    <value>整合性検証成功</value>
+  </data>
+  <data name="PluginStoreDiscover" xml:space="preserve">
+    <value>探索と発見</value>
+  </data>
+  <data name="PluginStoreSearchPlaceholder" xml:space="preserve">
+    <value>プラグイン名またはキーワードを検索...</value>
+  </data>
+  <data name="PluginStoreRefresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="PluginStoreSyncing" xml:space="preserve">
+    <value>プラグイン一覧を同期中...</value>
+  </data>
+  <data name="PluginStoreDeveloper" xml:space="preserve">
+    <value>提供元</value>
+  </data>
+  <data name="PluginStoreDetails" xml:space="preserve">
+    <value>機能詳細</value>
+  </data>
+  <data name="PluginStoreUpdateNow" xml:space="preserve">
+    <value>今すぐ更新</value>
+  </data>
+  <data name="PluginStoreInstallPlugin" xml:space="preserve">
+    <value>このプラグインをインストール</value>
+  </data>
+  <data name="PluginStoreCancel" xml:space="preserve">
+    <value>キャンセルして戻る</value>
+  </data>
+  <data name="PluginStoreNoMatch" xml:space="preserve">
+    <value>一致するプラグインが見つかりません</value>
+  </data>
+  <data name="PluginStoreNoAvailable" xml:space="preserve">
+    <value>利用可能なプラグインがありません</value>
+  </data>
+  <data name="PluginStoreTotalPlugins" xml:space="preserve">
+    <value>合計 {0} 件のプラグイン</value>
+  </data>
+  <data name="PluginStoreConnectionFailed" xml:space="preserve">
+    <value>接続に失敗しました</value>
+  </data>
+  <data name="PluginStoreLoadFailed" xml:space="preserve">
+    <value>プラグイン一覧の読み込みに失敗しました。しばらくしてから再度お試しください</value>
+  </data>
+  <data name="PluginStoreInstallComplete" xml:space="preserve">
+    <value>インストール完了</value>
+  </data>
+  <data name="PluginStoreHashFailed" xml:space="preserve">
+    <value>検証失敗</value>
+  </data>
+  <data name="PluginStoreCancelled" xml:space="preserve">
+    <value>キャンセルしました</value>
+  </data>
+  <data name="PluginStoreInstallFailedShort" xml:space="preserve">
+    <value>インストール失敗</value>
+  </data>
+  <data name="PluginStoreUninstalling" xml:space="preserve">
+    <value>アンインストール中...</value>
+  </data>
+  <data name="PluginStoreUninstallComplete" xml:space="preserve">
+    <value>アンインストール完了</value>
+  </data>
+  <data name="PluginStoreUninstallFailed" xml:space="preserve">
+    <value>アンインストール失敗</value>
+  </data>
+  <data name="PluginStoreServerUnreachable" xml:space="preserve">
+    <value>プラグインストアサーバーに接続できません。ネットワークまたはサーバーの状態を確認してください</value>
+  </data>
+  <data name="PluginStoreServerTimeout" xml:space="preserve">
+    <value>プラグインストアへの接続がタイムアウトしました。しばらくしてから再度お試しください</value>
+  </data>
+  <data name="PluginStoreLoadListFailed" xml:space="preserve">
+    <value>プラグイン一覧の読み込みに失敗しました: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
+    <value>インストールスクリプトをダウンロードできません。サーバーが利用できません</value>
+  </data>
+  <data name="PluginStoreDownloadLuaError" xml:space="preserve">
+    <value>インストールスクリプトのダウンロードに失敗しました: {0}</value>
+  </data>
+  <data name="PluginStoreDownloading" xml:space="preserve">
+    <value>ダウンロード中 {0}%</value>
+  </data>
+  <data name="PluginStoreDownloadFileFailed" xml:space="preserve">
+    <value>プラグインファイルをダウンロードできません。サーバーが利用できません</value>
+  </data>
+  <data name="PluginStoreDownloadFileError" xml:space="preserve">
+    <value>プラグインファイルのダウンロードに失敗しました: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadCountWan" xml:space="preserve">
+    <value>{0:F1}万</value>
+  </data>
+  <data name="PluginStoreDownloadCountK" xml:space="preserve">
+    <value>{0:F1}k</value>
+  </data>
+  <data name="PluginStoreScriptDownloading" xml:space="preserve">
+    <value>インストールスクリプトをダウンロード中...</value>
+  </data>
+  <data name="PluginStoreScriptScanning" xml:space="preserve">
+    <value>スキャン中...</value>
+  </data>
+  <data name="PluginStoreScriptExecuting" xml:space="preserve">
+    <value>インストールスクリプトを実行中...</value>
+  </data>
+  <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
+    <value>Luaスクリプトはセキュリティ検証を通過しませんでした。</value>
+  </data>
+  <data name="PluginStoreLuaScriptError" xml:space="preserve">
+    <value>Luaスクリプトエラー: {0}</value>
+  </data>
+  <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
+    <value>Luaスクリプトの実行に失敗しました: {0}</value>
+  </data>
+  <data name="PluginStoreDialogClose" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
+    <value>セキュリティ: {0} の操作に空のパスが渡されました。</value>
+  </data>
+  <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
+    <value>セキュリティ: 無効なパス ({0}): {1}</value>
+  </data>
+  <data name="PluginStoreSecurityOutsideDir" xml:space="preserve">
+    <value>セキュリティ: パスはプラグインディレクトリ内 ({0}) にある必要があります。</value>
+  </data>
+  <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
+    <value>スクリプトに禁止された操作 ({0}) が含まれています。</value>
+  </data>
+  <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
+    <value>パストラバーサル試行</value>
+  </data>
+  <data name="PluginStoreSecurityScriptTooLarge" xml:space="preserve">
+    <value>スクリプトが大きすぎます</value>
+  </data>
+  <data name="PluginStoreUpload" xml:space="preserve">
+    <value>プラグインをアップロード</value>
+  </data>
+  <data name="PluginStoreUploadTooltip" xml:space="preserve">
+    <value>GitHub でプラグインを提出する</value>
+  </data>
+  <data name="PluginStoreLuaTestButton" xml:space="preserve">
+    <value>Luaテスト</value>
+  </data>
+  <data name="PluginStoreLuaTestTitle" xml:space="preserve">
+    <value>Lua プラグインインストールスクリプトテスト</value>
+  </data>
+  <data name="PluginStoreLuaTestDescription" xml:space="preserve">
+    <value>下部に Lua プラグインインストールスクリプトを入力し、テスト実行をクリックしてスクリプトを検証してください。スクリプトはサンドボックス環境で実行され、すべてのファイル操作は Plugins ディレクトリ内に制限されます。</value>
+  </data>
+  <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
+    <value>-- ここに Lua プラグインインストールスクリプトを入力してください
+-- 使用可能な API: install.download(), install.extract(), install.download_plugin(id) など
+-- 詳細は Lua プラグイン開発ガイドを参照してください</value>
+  </data>
+  <data name="PluginStoreLuaTestRun" xml:space="preserve">
+    <value>テストを実行</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityWarning" xml:space="preserve">
+    <value>セキュリティ警告</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
+    <value>スクリプトはセキュリティ検証を通過しませんでした：{0}
+
+それでも実行しますか？（推奨されません）</value>
+  </data>
+  <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
+    <value>Lua スクリプトを実行中...</value>
+  </data>
+  <data name="PluginStoreLuaTestSuccess" xml:space="preserve">
+    <value>Lua スクリプトの実行に成功しました</value>
+  </data>
+  <data name="PluginStoreLuaTestFailed" xml:space="preserve">
+    <value>Lua スクリプトの実行に失敗しました</value>
+  </data>
+  <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
+    <value>ログを保存しました：
+{0}</value>
+  </data>
+  <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
+    <value>ログファイルを開く</value>
+  </data>
+  <data name="PluginStoreLuaTestClose" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="PluginStoreCategoryUtility" xml:space="preserve">
+    <value>ユーティリティ</value>
+  </data>
+  <data name="PluginStoreCategoryGameplay" xml:space="preserve">
+    <value>ゲームプレイ</value>
+  </data>
+  <data name="PluginStoreCategoryVisuals" xml:space="preserve">
+    <value>ビジュアル</value>
+  </data>
+  <data name="Backpack_TabOverview" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="Backpack_PageSubtitle" xml:space="preserve">
+    <value>装備、素材、料理を一括で確認し、育成計画をサポートします。</value>
+  </data>
+  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
+    <value>同期データはこの端末のみに保存され、アカウントやバックパックの内容はアップロードされません。</value>
+  </data>
+  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
+    <value>有効なゲームインストールディレクトリが検出されていません</value>
+  </data>
+  <data name="Backpack_PathNoticeBody" xml:space="preserve">
+    <value>ソフトウェアのゲーム設定でパスを設定してください。Backpack は別途パスを保存したり要求したりすることはありません。</value>
+  </data>
+  <data name="Backpack_OpenSettings" xml:space="preserve">
+    <value>設定を開く</value>
+  </data>
+  <data name="Backpack_GamePathFallback" xml:space="preserve">
+    <value>ゲーム設定でインストールディレクトリを設定してください</value>
+  </data>
+  <data name="Backpack_UsageTitle" xml:space="preserve">
+    <value>使用方法</value>
+  </data>
+  <data name="Backpack_UsageStep1" xml:space="preserve">
+    <value>右上の「バックパックを同期」をクリックすると、ゲーム内の実際のインベントリが読み込まれ、データ同期が開始されます。</value>
+  </data>
+  <data name="Backpack_UsageStep2" xml:space="preserve">
+    <value>上部のタブでカテゴリーを切り替えられます。アイテムカードをクリックして詳細パラメータ（セット / サブ効果 / 武器スキル）を確認できます。</value>
+  </data>
+  <data name="Backpack_UsageStep3" xml:space="preserve">
+    <value>概要カードでは、現在の在庫に基づく食材連携と育成素材のカバー率が表示されます。</value>
+  </data>
+  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
+    <value>所持武器</value>
+  </data>
+  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
+    <value>ロック中の聖遺物</value>
+  </data>
+  <data name="Backpack_KpiCookableFood" xml:space="preserve">
+    <value>調理可能な料理</value>
+  </data>
+  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
+    <value>素材の種類</value>
+  </data>
+  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
+    <value>★5 武器</value>
+  </data>
+  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
+    <value>聖遺物の総数</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
+    <value>★5 武器 精錬 MAX</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
+    <value>★5 武器 {0} 丁が精錬 MAX です。</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
+    <value>★5 聖遺物 強化 MAX</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
+    <value>★5 聖遺物 {0} 個が +20 まで強化されています。</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
+    <value>食材が十分にあります</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
+    <value>現在 {0} 品の料理の食材が揃っており、すぐに調理できます。</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
+    <value>素材カテゴリーの欠落</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
+    <value>{0} 個の素材カテゴリーの在庫がゼロです：{1}</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
+    <value>武器図鑑の進捗</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
+    <value>あと {0} 丁の武器が図鑑にのみ登録されており、まだ未所持です。</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
+    <value>在庫不足の素材</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
+    <value>{0} 件の素材が在庫 5 個未満です。適時補充してください。</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
+    <value>データ概要</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
+    <value>バックパックのデータを同期すると、ここに在庫の分析と提案が表示されます。</value>
+  </data>
+  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
+    <value>上位天賦素材</value>
+  </data>
+  <data name="Backpack_CookHeader" xml:space="preserve">
+    <value>料理の準備状況</value>
+  </data>
+  <data name="Backpack_CookSubheader" xml:space="preserve">
+    <value>現在の食材在庫に基づきます</value>
+  </data>
+  <data name="Backpack_CookReady" xml:space="preserve">
+    <value>調理可能</value>
+  </data>
+  <data name="Backpack_CookAlmost" xml:space="preserve">
+    <value>あと少し</value>
+  </data>
+  <data name="Backpack_CookAlmostBody" xml:space="preserve">
+    <value>{0}（{1}）が不足しています</value>
+  </data>
+  <data name="Backpack_CookEmptyName" xml:space="preserve">
+    <value>料理データがありません</value>
+  </data>
+  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
+    <value>同期待ち</value>
+  </data>
+  <data name="Backpack_CookEmptyBody" xml:space="preserve">
+    <value>バックパックを同期すると、料理の準備状況を確認できます。</value>
+  </data>
+  <data name="Backpack_BrowseTitle" xml:space="preserve">
+    <value>閲覧と検索</value>
+  </data>
+  <data name="Backpack_BrowseCaption" xml:space="preserve">
+    <value>キーワード、サブカテゴリー、フィルター、並び替えでアイテムを素早く検索できます。</value>
+  </data>
+  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
+    <value>名前、セット、サブ効果、キャラクター、食材を検索</value>
+  </data>
+  <data name="Backpack_BrowseReset" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
+    <value>サブカテゴリー</value>
+  </data>
+  <data name="Backpack_BrowseFilter" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="Backpack_BrowseSort" xml:space="preserve">
+    <value>並び替え</value>
+  </data>
+  <data name="Backpack_ResultCount" xml:space="preserve">
+    <value>結果 {0} 件</value>
+  </data>
+  <data name="Backpack_EmptyTitle" xml:space="preserve">
+    <value>一致するアイテムが見つかりません</value>
+  </data>
+  <data name="Backpack_EmptyBody" xml:space="preserve">
+    <value>キーワードを調整するか、フィルターをクリアして再度お試しください。</value>
+  </data>
+  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
+    <value>条件をクリア</value>
+  </data>
+  <data name="Backpack_PagerFormat" xml:space="preserve">
+    <value>{0} / {1} ページ</value>
+  </data>
+  <data name="Backpack_PagerRange" xml:space="preserve">
+    <value>{0}-{1} 件目 / 全 {2} 件</value>
+  </data>
+  <data name="Backpack_ResultAll" xml:space="preserve">
+    <value>結果 {0} 件</value>
+  </data>
+  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
+    <value>武器ランク</value>
+  </data>
+  <data name="Backpack_DetailLevel" xml:space="preserve">
+    <value>レベル</value>
+  </data>
+  <data name="Backpack_DetailRefine" xml:space="preserve">
+    <value>精錬</value>
+  </data>
+  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
+    <value>基礎攻撃力</value>
+  </data>
+  <data name="Backpack_DetailSubStat" xml:space="preserve">
+    <value>サブステータス</value>
+  </data>
+  <data name="Backpack_DetailSkill" xml:space="preserve">
+    <value>武器スキル</value>
+  </data>
+  <data name="Backpack_DetailLore" xml:space="preserve">
+    <value>武器物語</value>
+  </data>
+  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
+    <value>強化レベル</value>
+  </data>
+  <data name="Backpack_DetailMainStat" xml:space="preserve">
+    <value>メインステータス</value>
+  </data>
+  <data name="Backpack_DetailSubStats" xml:space="preserve">
+    <value>サブステータス</value>
+  </data>
+  <data name="Backpack_DetailSetBonus" xml:space="preserve">
+    <value>セット効果</value>
+  </data>
+  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
+    <value>図鑑項目</value>
+  </data>
+  <data name="Backpack_DetailCodexBody" xml:space="preserve">
+    <value>ゲームからインポートすると、聖遺物の強化レベル、メインステータスの数値、サブステータスのロール詳細が自動的に入力されます。現在表示しているのは、その聖遺物のセット分類とセット効果の基本情報です。</value>
+  </data>
+  <data name="Backpack_DetailCookState" xml:space="preserve">
+    <value>調理ステータス</value>
+  </data>
+  <data name="Backpack_DetailCookReady" xml:space="preserve">
+    <value>食材の在庫が満たされており、すぐに調理できます</value>
+  </data>
+  <data name="Backpack_DetailCookMissing" xml:space="preserve">
+    <value>一部の食材が不足しています。揃えれば調理できます</value>
+  </data>
+  <data name="Backpack_DetailIngredients" xml:space="preserve">
+    <value>必要な食材</value>
+  </data>
+  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
+    <value>バックパック内のアイテム</value>
+  </data>
+  <data name="Backpack_DetailCountBody" xml:space="preserve">
+    <value>現在のバックパック内の実際の数量です。</value>
+  </data>
+  <data name="Backpack_DetailStockItem" xml:space="preserve">
+    <value>在庫アイテム</value>
+  </data>
+  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
+    <value>在庫概要</value>
+  </data>
+  <data name="Backpack_SectionInsights" xml:space="preserve">
+    <value>バックパック分析</value>
+  </data>
+  <data name="Backpack_SectionCultivation" xml:space="preserve">
+    <value>育成素材のカバー率</value>
+  </data>
+  <data name="Backpack_SectionItems" xml:space="preserve">
+    <value>閲覧と検索</value>
+  </data>
+  <data name="Backpack_DetailCountLabel" xml:space="preserve">
+    <value>所持数</value>
+  </data>
+  <data name="Backpack_DialogClose" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Backpack_DialogConfirm" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
+    <value>バックパックデータをインポートしました</value>
+  </data>
+  <data name="Backpack_NotifyImportBody" xml:space="preserve">
+    <value>今回のバックパックデータを受信して保存しました。概要、素材カバー率、料理のおすすめが更新されています。</value>
+  </data>
+  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
+    <value>同期に失敗しました</value>
+  </data>
+  <data name="Backpack_ChipAll" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
+    <value>カテゴリー</value>
+  </data>
+  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
+    <value>所持</value>
+  </data>
+  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
+    <value>図鑑</value>
+  </data>
+  <data name="Backpack_ChipFilterFive" xml:space="preserve">
+    <value>★5</value>
+  </data>
+  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
+    <value>ロック中</value>
+  </data>
+  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
+    <value>調理可能</value>
+  </data>
+  <data name="Backpack_ChipSortDefault" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="Backpack_ChipSortName" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Backpack_ChipSortRank" xml:space="preserve">
+    <value>ランク</value>
+  </data>
+  <data name="Backpack_ChipSortLevel" xml:space="preserve">
+    <value>レベル</value>
+  </data>
+  <data name="Backpack_ChipSortCount" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
+    <value>{0} すべて</value>
+  </data>
+  <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
+    <value>クラウドゲーム認証情報を削除</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmTitle" xml:space="preserve">
+    <value>クラウドゲーム認証情報を削除</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
+    <value>このアカウントのクラウドゲーム出勤認証情報を削除してもよろしいですか？</value>
+  </data>
 </root>

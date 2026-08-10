@@ -5009,4 +5009,675 @@ Detalhes: {0}</value>
   <data name="Checkin_AccountLabel" xml:space="preserve">
     <value>Conta: {0}</value>
   </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>Posição das notificações</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>Defina onde as notificações serão exibidas na janela</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>Canto inferior direito</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>Canto superior direito</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>Canto superior esquerdo</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>Canto inferior esquerdo</value>
+  </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>Entrar no jogo diretamente com a conta miHoYo/HoyoLAB</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>Ao iniciar o jogo, entre diretamente com a conta miHoYo ou HoyoLAB selecionada, sem precisar digitar usuário e senha novamente dentro do jogo.</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>Não foi possível ativar</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>Faça login em uma conta miHoYo ou HoyoLAB nas configurações de conta primeiro.</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>Sessão da conta expirada</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>Você precisa entrar novamente na conta atual para usar este recurso.</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>Jogo não selecionado</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>Selecione o diretório de instalação do jogo na página inicial primeiro.</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>Ativado</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>Na próxima vez que iniciar o jogo, você entrará diretamente com a conta miHoYo/HoyoLAB, sem precisar digitar usuário e senha novamente.</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>Não foi possível ativar</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>Este recurso não está disponível para a conta atual. Verifique o status de login da conta e tente novamente.</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>Temporariamente indisponível</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>Falha na rede ou no serviço. Tente novamente mais tarde.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>Conta e servidor não correspondem</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>A conta HoyoLAB do servidor global selecionada não pode ser usada para iniciar o jogo do servidor chinês. Troque para uma conta da região correspondente.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>A conta miHoYo do servidor chinês selecionada não pode ser usada para iniciar o jogo do servidor global. Troque para uma conta da região correspondente.</value>
+  </data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve">
+    <value>Traduzir</value>
+  </data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve">
+    <value>Ver texto original</value>
+  </data>
+  <data name="HelpPage_Translating" xml:space="preserve">
+    <value>Traduzindo ({0}/{1})...</value>
+  </data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve">
+    <value>Falha na tradução</value>
+  </data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve">
+    <value>Tradução concluída</value>
+  </data>
+  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
+    <value>Desativar a desabilitação automática de FPS ao iniciar</value>
+  </data>
+  <data name="PluginStoreTitle" xml:space="preserve">
+    <value>Loja de Plugins</value>
+  </data>
+  <data name="PluginStoreSearch" xml:space="preserve">
+    <value>Pesquisar plugins...</value>
+  </data>
+  <data name="PluginStoreInstall" xml:space="preserve">
+    <value>Instalar</value>
+  </data>
+  <data name="PluginStoreInstalled" xml:space="preserve">
+    <value>Instalado</value>
+  </data>
+  <data name="PluginStoreUpdate" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="PluginStoreUninstall" xml:space="preserve">
+    <value>Desinstalar</value>
+  </data>
+  <data name="PluginStoreInstalling" xml:space="preserve">
+    <value>Instalando...</value>
+  </data>
+  <data name="PluginStoreRating" xml:space="preserve">
+    <value>Avaliação</value>
+  </data>
+  <data name="PluginStoreDownloads" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="PluginStoreSize" xml:space="preserve">
+    <value>Tamanho</value>
+  </data>
+  <data name="PluginStoreVersion" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="PluginStoreNoResults" xml:space="preserve">
+    <value>Nenhum plugin encontrado</value>
+  </data>
+  <data name="PluginStoreError" xml:space="preserve">
+    <value>Falha ao carregar</value>
+  </data>
+  <data name="PluginStoreLoading" xml:space="preserve">
+    <value>Carregando...</value>
+  </data>
+  <data name="PluginStoreRetry" xml:space="preserve">
+    <value>Tentar novamente</value>
+  </data>
+  <data name="PluginStorePrevious" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="PluginStoreNext" xml:space="preserve">
+    <value>Próxima</value>
+  </data>
+  <data name="PluginStoreAll" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="PluginStoreSortPopular" xml:space="preserve">
+    <value>Populares</value>
+  </data>
+  <data name="PluginStoreSortNewest" xml:space="preserve">
+    <value>Mais recentes</value>
+  </data>
+  <data name="PluginStoreSortRating" xml:space="preserve">
+    <value>Melhor avaliados</value>
+  </data>
+  <data name="PluginStoreInstallSuccess" xml:space="preserve">
+    <value>Instalado: {0}</value>
+  </data>
+  <data name="PluginStoreInstallFailed" xml:space="preserve">
+    <value>Falha na instalação: {0}</value>
+  </data>
+  <data name="PluginStoreUninstallSuccess" xml:space="preserve">
+    <value>Desinstalado: {0}</value>
+  </data>
+  <data name="PluginStoreVerifying" xml:space="preserve">
+    <value>Verificando...</value>
+  </data>
+  <data name="PluginStoreHashMismatch" xml:space="preserve">
+    <value>Falha na verificação de integridade do arquivo. O download pode estar corrompido ou adulterado</value>
+  </data>
+  <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
+    <value>Falha na verificação de integridade do script de instalação</value>
+  </data>
+  <data name="PluginStoreSecurityBlocked" xml:space="preserve">
+    <value>Instalação bloqueada: {0}</value>
+  </data>
+  <data name="PluginStoreSecurityBlockedShort" xml:space="preserve">
+    <value>Bloqueio de segurança</value>
+  </data>
+  <data name="PluginStorePathTraversal" xml:space="preserve">
+    <value>Segurança: tentativa de path traversal bloqueada</value>
+  </data>
+  <data name="PluginStoreHashVerified" xml:space="preserve">
+    <value>Verificação de integridade concluída</value>
+  </data>
+  <data name="PluginStoreDiscover" xml:space="preserve">
+    <value>Explorar e descobrir</value>
+  </data>
+  <data name="PluginStoreSearchPlaceholder" xml:space="preserve">
+    <value>Pesquisar nome ou palavra-chave do plugin...</value>
+  </data>
+  <data name="PluginStoreRefresh" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="PluginStoreSyncing" xml:space="preserve">
+    <value>Sincronizando lista de plugins...</value>
+  </data>
+  <data name="PluginStoreDeveloper" xml:space="preserve">
+    <value>Desenvolvido por</value>
+  </data>
+  <data name="PluginStoreDetails" xml:space="preserve">
+    <value>Detalhes da função</value>
+  </data>
+  <data name="PluginStoreUpdateNow" xml:space="preserve">
+    <value>Atualizar agora</value>
+  </data>
+  <data name="PluginStoreInstallPlugin" xml:space="preserve">
+    <value>Instalar este plugin</value>
+  </data>
+  <data name="PluginStoreCancel" xml:space="preserve">
+    <value>Cancelar e voltar</value>
+  </data>
+  <data name="PluginStoreNoMatch" xml:space="preserve">
+    <value>Nenhum plugin correspondente encontrado</value>
+  </data>
+  <data name="PluginStoreNoAvailable" xml:space="preserve">
+    <value>Nenhum plugin disponível no momento</value>
+  </data>
+  <data name="PluginStoreTotalPlugins" xml:space="preserve">
+    <value>Total de {0} plugins</value>
+  </data>
+  <data name="PluginStoreConnectionFailed" xml:space="preserve">
+    <value>Falha na conexão</value>
+  </data>
+  <data name="PluginStoreLoadFailed" xml:space="preserve">
+    <value>Falha ao carregar a lista de plugins. Tente novamente mais tarde</value>
+  </data>
+  <data name="PluginStoreInstallComplete" xml:space="preserve">
+    <value>Instalação concluída</value>
+  </data>
+  <data name="PluginStoreHashFailed" xml:space="preserve">
+    <value>Falha na verificação</value>
+  </data>
+  <data name="PluginStoreCancelled" xml:space="preserve">
+    <value>Cancelado</value>
+  </data>
+  <data name="PluginStoreInstallFailedShort" xml:space="preserve">
+    <value>Falha na instalação</value>
+  </data>
+  <data name="PluginStoreUninstalling" xml:space="preserve">
+    <value>Desinstalando...</value>
+  </data>
+  <data name="PluginStoreUninstallComplete" xml:space="preserve">
+    <value>Desinstalado</value>
+  </data>
+  <data name="PluginStoreUninstallFailed" xml:space="preserve">
+    <value>Falha na desinstalação</value>
+  </data>
+  <data name="PluginStoreServerUnreachable" xml:space="preserve">
+    <value>Não foi possível conectar ao servidor da loja de plugins. Verifique sua rede ou o status do servidor</value>
+  </data>
+  <data name="PluginStoreServerTimeout" xml:space="preserve">
+    <value>Tempo de conexão com a loja de plugins esgotado. Tente novamente mais tarde</value>
+  </data>
+  <data name="PluginStoreLoadListFailed" xml:space="preserve">
+    <value>Falha ao carregar a lista de plugins: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
+    <value>Não foi possível baixar o script de instalação. Servidor indisponível</value>
+  </data>
+  <data name="PluginStoreDownloadLuaError" xml:space="preserve">
+    <value>Falha ao baixar o script de instalação: {0}</value>
+  </data>
+  <data name="PluginStoreDownloading" xml:space="preserve">
+    <value>Baixando {0}%</value>
+  </data>
+  <data name="PluginStoreDownloadFileFailed" xml:space="preserve">
+    <value>Não foi possível baixar o arquivo do plugin. Servidor indisponível</value>
+  </data>
+  <data name="PluginStoreDownloadFileError" xml:space="preserve">
+    <value>Falha ao baixar o arquivo do plugin: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadCountWan" xml:space="preserve">
+    <value>{0:F1} mi</value>
+  </data>
+  <data name="PluginStoreDownloadCountK" xml:space="preserve">
+    <value>{0:F1}k</value>
+  </data>
+  <data name="PluginStoreScriptDownloading" xml:space="preserve">
+    <value>Baixando script de instalação...</value>
+  </data>
+  <data name="PluginStoreScriptScanning" xml:space="preserve">
+    <value>Escaneando...</value>
+  </data>
+  <data name="PluginStoreScriptExecuting" xml:space="preserve">
+    <value>Executando script de instalação...</value>
+  </data>
+  <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
+    <value>O script Lua não passou na verificação de segurança.</value>
+  </data>
+  <data name="PluginStoreLuaScriptError" xml:space="preserve">
+    <value>Erro no script Lua: {0}</value>
+  </data>
+  <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
+    <value>Falha ao executar o script Lua: {0}</value>
+  </data>
+  <data name="PluginStoreDialogClose" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
+    <value>Segurança: caminho vazio informado para a operação {0}.</value>
+  </data>
+  <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
+    <value>Segurança: caminho inválido ({0}): {1}</value>
+  </data>
+  <data name="PluginStoreSecurityOutsideDir" xml:space="preserve">
+    <value>Segurança: o caminho deve estar dentro do diretório de plugins ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
+    <value>O script contém uma operação proibida ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
+    <value>Tentativa de path traversal</value>
+  </data>
+  <data name="PluginStoreSecurityScriptTooLarge" xml:space="preserve">
+    <value>Script grande demais</value>
+  </data>
+  <data name="PluginStoreUpload" xml:space="preserve">
+    <value>Enviar plugin</value>
+  </data>
+  <data name="PluginStoreUploadTooltip" xml:space="preserve">
+    <value>Envie seu plugin pelo GitHub</value>
+  </data>
+  <data name="PluginStoreLuaTestButton" xml:space="preserve">
+    <value>Teste Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestTitle" xml:space="preserve">
+    <value>Teste de script de instalação de plugin Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestDescription" xml:space="preserve">
+    <value>Insira o script de instalação do plugin Lua abaixo e clique em Executar teste para validá-lo. O script será executado em um ambiente sandbox, com todas as operações de arquivo restritas ao diretório Plugins.</value>
+  </data>
+  <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
+    <value>-- Insira aqui o script de instalação do plugin Lua
+-- APIs disponíveis: install.download(), install.extract(), install.download_plugin(id), etc.
+-- Consulte o Guia de Desenvolvimento de Plugins Lua para detalhes</value>
+  </data>
+  <data name="PluginStoreLuaTestRun" xml:space="preserve">
+    <value>Executar teste</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityWarning" xml:space="preserve">
+    <value>Aviso de segurança</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
+    <value>O script não passou na verificação de segurança: {0}
+
+Deseja executá-lo mesmo assim? (Não recomendado)</value>
+  </data>
+  <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
+    <value>Executando script Lua...</value>
+  </data>
+  <data name="PluginStoreLuaTestSuccess" xml:space="preserve">
+    <value>Script Lua executado com sucesso</value>
+  </data>
+  <data name="PluginStoreLuaTestFailed" xml:space="preserve">
+    <value>Falha ao executar o script Lua</value>
+  </data>
+  <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
+    <value>Log salvo em:
+{0}</value>
+  </data>
+  <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
+    <value>Abrir arquivo de log</value>
+  </data>
+  <data name="PluginStoreLuaTestClose" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="PluginStoreCategoryUtility" xml:space="preserve">
+    <value>Utilitários</value>
+  </data>
+  <data name="PluginStoreCategoryGameplay" xml:space="preserve">
+    <value>Gameplay</value>
+  </data>
+  <data name="PluginStoreCategoryVisuals" xml:space="preserve">
+    <value>Visual</value>
+  </data>
+  <data name="Backpack_TabOverview" xml:space="preserve">
+    <value>Visão geral</value>
+  </data>
+  <data name="Backpack_PageSubtitle" xml:space="preserve">
+    <value>Visualize equipamentos, materiais e pratos em um só lugar para auxiliar no planejamento de progressão.</value>
+  </data>
+  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
+    <value>Os dados sincronizados são salvos apenas neste computador e não enviam informações da conta ou do inventário.</value>
+  </data>
+  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
+    <value>Diretório de instalação do jogo não identificado</value>
+  </data>
+  <data name="Backpack_PathNoticeBody" xml:space="preserve">
+    <value>Configure o caminho nas configurações de jogo do aplicativo; o Backpack não salva nem exige um segundo caminho.</value>
+  </data>
+  <data name="Backpack_OpenSettings" xml:space="preserve">
+    <value>Abrir configurações</value>
+  </data>
+  <data name="Backpack_GamePathFallback" xml:space="preserve">
+    <value>Configure o diretório de instalação nas configurações de jogo</value>
+  </data>
+  <data name="Backpack_UsageTitle" xml:space="preserve">
+    <value>Instruções de uso</value>
+  </data>
+  <data name="Backpack_UsageStep1" xml:space="preserve">
+    <value>Clique em &quot;Sincronizar inventário&quot; no canto superior direito para injetar o inventário real do jogo e iniciar a sincronização de dados.</value>
+  </data>
+  <data name="Backpack_UsageStep2" xml:space="preserve">
+    <value>Use as abas superiores para alternar entre categorias; clique em qualquer卡片 para ver detalhes (conjunto / sub-atributo / habilidade da arma).</value>
+  </data>
+  <data name="Backpack_UsageStep3" xml:space="preserve">
+    <value>Os cartões de visão geral indicam sinergia de ingredientes e cobertura de materiais de progressão com base no inventário atual.</value>
+  </data>
+  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
+    <value>Armas possuídas</value>
+  </data>
+  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
+    <value>Artefatos bloqueados</value>
+  </data>
+  <data name="Backpack_KpiCookableFood" xml:space="preserve">
+    <value>Pratos que podem ser feitos</value>
+  </data>
+  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
+    <value>Tipos de materiais</value>
+  </data>
+  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
+    <value>Armas 5 estrelas</value>
+  </data>
+  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
+    <value>Total de artefatos</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
+    <value>Armas 5 estrelas com refinamento máximo</value>
+  </data>
+  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
+    <value>Um total de {0} armas 5 estrelas estão com refinamento máximo.</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
+    <value>Artefatos 5 estrelas no nível máximo</value>
+  </data>
+  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
+    <value>{0} artefatos 5 estrelas foram fortalecidos até +20.</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
+    <value>Ingredientes suficientes</value>
+  </data>
+  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
+    <value>Atualmente {0} pratos têm todos os ingredientes prontos e podem ser preparados imediatamente.</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
+    <value>Categorias de materiais vazias</value>
+  </data>
+  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
+    <value>Há {0} categorias de materiais com estoque zerado: {1}</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
+    <value>Progresso do catálogo de armas</value>
+  </data>
+  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
+    <value>Faltam {0} armas que estão apenas no catálogo e ainda não foram obtidas.</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
+    <value>Materiais com estoque baixo</value>
+  </data>
+  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
+    <value>{0} materiais estão com estoque abaixo de 5 unidades. Reforce seu estoque em breve.</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
+    <value>Resumo dos dados</value>
+  </data>
+  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
+    <value>Após sincronizar o inventário, os insights e sugestões de estoque serão exibidos aqui.</value>
+  </data>
+  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
+    <value>Materiais de talento de tier alto</value>
+  </data>
+  <data name="Backpack_CookHeader" xml:space="preserve">
+    <value>Status de preparação dos pratos</value>
+  </data>
+  <data name="Backpack_CookSubheader" xml:space="preserve">
+    <value>Com base no estoque atual de ingredientes</value>
+  </data>
+  <data name="Backpack_CookReady" xml:space="preserve">
+    <value>Pode ser preparado</value>
+  </data>
+  <data name="Backpack_CookAlmost" xml:space="preserve">
+    <value>Quase lá</value>
+  </data>
+  <data name="Backpack_CookAlmostBody" xml:space="preserve">
+    <value>Faltando {0} ({1})</value>
+  </data>
+  <data name="Backpack_CookEmptyName" xml:space="preserve">
+    <value>Sem dados de pratos</value>
+  </data>
+  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
+    <value>Aguardando sincronização</value>
+  </data>
+  <data name="Backpack_CookEmptyBody" xml:space="preserve">
+    <value>Após sincronizar o inventário, você poderá ver o status de preparação dos pratos.</value>
+  </data>
+  <data name="Backpack_BrowseTitle" xml:space="preserve">
+    <value>Navegar e pesquisar</value>
+  </data>
+  <data name="Backpack_BrowseCaption" xml:space="preserve">
+    <value>Use palavras-chave, subcategorias, filtros e ordenação para localizar itens rapidamente.</value>
+  </data>
+  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
+    <value>Pesquisar nome, conjunto, sub-atributo, personagem ou ingrediente</value>
+  </data>
+  <data name="Backpack_BrowseReset" xml:space="preserve">
+    <value>Redefinir</value>
+  </data>
+  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
+    <value>Subcategoria</value>
+  </data>
+  <data name="Backpack_BrowseFilter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="Backpack_BrowseSort" xml:space="preserve">
+    <value>Ordenar</value>
+  </data>
+  <data name="Backpack_ResultCount" xml:space="preserve">
+    <value>{0} resultados</value>
+  </data>
+  <data name="Backpack_EmptyTitle" xml:space="preserve">
+    <value>Nenhum item correspondente encontrado</value>
+  </data>
+  <data name="Backpack_EmptyBody" xml:space="preserve">
+    <value>Ajuste as palavras-chave ou remova os filtros e tente novamente.</value>
+  </data>
+  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
+    <value>Limpar condições</value>
+  </data>
+  <data name="Backpack_PagerFormat" xml:space="preserve">
+    <value>Página {0} / {1}</value>
+  </data>
+  <data name="Backpack_PagerRange" xml:space="preserve">
+    <value>Itens {0}-{1} de {2}</value>
+  </data>
+  <data name="Backpack_ResultAll" xml:space="preserve">
+    <value>{0} resultados</value>
+  </data>
+  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
+    <value>Qualidade da arma</value>
+  </data>
+  <data name="Backpack_DetailLevel" xml:space="preserve">
+    <value>Nível</value>
+  </data>
+  <data name="Backpack_DetailRefine" xml:space="preserve">
+    <value>Refinamento</value>
+  </data>
+  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
+    <value>Ataque base</value>
+  </data>
+  <data name="Backpack_DetailSubStat" xml:space="preserve">
+    <value>Sub-atributo</value>
+  </data>
+  <data name="Backpack_DetailSkill" xml:space="preserve">
+    <value>Habilidade da arma</value>
+  </data>
+  <data name="Backpack_DetailLore" xml:space="preserve">
+    <value>História da arma</value>
+  </data>
+  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
+    <value>Nível de fortalecimento</value>
+  </data>
+  <data name="Backpack_DetailMainStat" xml:space="preserve">
+    <value>Atributo principal</value>
+  </data>
+  <data name="Backpack_DetailSubStats" xml:space="preserve">
+    <value>Sub-atributos</value>
+  </data>
+  <data name="Backpack_DetailSetBonus" xml:space="preserve">
+    <value>Bônus do conjunto</value>
+  </data>
+  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
+    <value>Entrada do catálogo</value>
+  </data>
+  <data name="Backpack_DetailCodexBody" xml:space="preserve">
+    <value>Após importar do jogo, o nível de fortalecimento do artefato, o valor do atributo principal e os rolls dos sub-atributos serão preenchidos automaticamente. As informações mostradas aqui são apenas a classificação do conjunto e o efeito base do conjunto do artefato.</value>
+  </data>
+  <data name="Backpack_DetailCookState" xml:space="preserve">
+    <value>Status de preparo</value>
+  </data>
+  <data name="Backpack_DetailCookReady" xml:space="preserve">
+    <value>Estoque de ingredientes suficiente. Pode preparar agora</value>
+  </data>
+  <data name="Backpack_DetailCookMissing" xml:space="preserve">
+    <value>Alguns ingredientes estão faltando. Complete-os para preparar</value>
+  </data>
+  <data name="Backpack_DetailIngredients" xml:space="preserve">
+    <value>Ingredientes necessários</value>
+  </data>
+  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
+    <value>Item do inventário</value>
+  </data>
+  <data name="Backpack_DetailCountBody" xml:space="preserve">
+    <value>Quantidade real no inventário atual.</value>
+  </data>
+  <data name="Backpack_DetailStockItem" xml:space="preserve">
+    <value>Item em estoque</value>
+  </data>
+  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
+    <value>Resumo do estoque</value>
+  </data>
+  <data name="Backpack_SectionInsights" xml:space="preserve">
+    <value>Insights do inventário</value>
+  </data>
+  <data name="Backpack_SectionCultivation" xml:space="preserve">
+    <value>Cobertura de materiais de progressão</value>
+  </data>
+  <data name="Backpack_SectionItems" xml:space="preserve">
+    <value>Navegar e pesquisar</value>
+  </data>
+  <data name="Backpack_DetailCountLabel" xml:space="preserve">
+    <value>Quantidade em posse</value>
+  </data>
+  <data name="Backpack_DialogClose" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="Backpack_DialogConfirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
+    <value>Dados do inventário importados</value>
+  </data>
+  <data name="Backpack_NotifyImportBody" xml:space="preserve">
+    <value>Os dados do inventário foram recebidos e salvos. A visão geral, a cobertura de materiais e as sugestões de pratos foram atualizadas.</value>
+  </data>
+  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
+    <value>Falha na sincronização</value>
+  </data>
+  <data name="Backpack_ChipAll" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
+    <value>Possuídos</value>
+  </data>
+  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
+    <value>Catálogo</value>
+  </data>
+  <data name="Backpack_ChipFilterFive" xml:space="preserve">
+    <value>5 estrelas</value>
+  </data>
+  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
+    <value>Bloqueados</value>
+  </data>
+  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
+    <value>Preparáveis</value>
+  </data>
+  <data name="Backpack_ChipSortDefault" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="Backpack_ChipSortName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Backpack_ChipSortRank" xml:space="preserve">
+    <value>Qualidade</value>
+  </data>
+  <data name="Backpack_ChipSortLevel" xml:space="preserve">
+    <value>Nível</value>
+  </data>
+  <data name="Backpack_ChipSortCount" xml:space="preserve">
+    <value>Quantidade</value>
+  </data>
+  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
+    <value>Todos {0}</value>
+  </data>
+  <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
+    <value>Remover credenciais de jogo na nuvem</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmTitle" xml:space="preserve">
+    <value>Remover credenciais de jogo na nuvem</value>
+  </data>
+  <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
+    <value>Tem certeza de que deseja remover as credenciais de check-in de jogo na nuvem desta conta?</value>
+  </data>
 </root>
