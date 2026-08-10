@@ -78,6 +78,18 @@ jobs:
             exit 1
         }
 
+    - name: Install UPX
+      run: choco install upx --no-progress
+
+    - name: Compress FuFuPlugin with UPX
+      shell: pwsh
+      run: |
+        $pluginDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0\Plugins\FuFuPlugin"
+        Get-ChildItem -Path $pluginDir -Filter "FufuLauncher.UnlockerIsland.dll" -Recurse | ForEach-Object {
+            Write-Host "Compressing $($_.FullName) with UPX (light compression)..."
+            upx -1 "$($_.FullName)"
+        }
+
     - name: Collect PE files for signing
       shell: pwsh
       run: |
