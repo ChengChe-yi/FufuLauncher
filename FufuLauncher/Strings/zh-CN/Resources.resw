@@ -4537,7 +4537,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>数据中心</value>
   </data>
   <data name="DataPage_Subtitle" xml:space="preserve">
-    <value>汇总全服榜单，交叉分析成可直接照做的培养与抽卡结论</value>
+    <value>汇总全服榜单，交叉分析培养与抽卡趋势以供决策参考</value>
   </data>
   <data name="DataPage_TabOverview" xml:space="preserve">
     <value>总览</value>
@@ -5254,7 +5254,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>总览</value>
   </data>
   <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>将装备、材料与料理转化为可执行的养成信息。</value>
+    <value>集中浏览装备、材料与料理，辅助养成规划。</value>
   </data>
   <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
     <value>同步数据仅保存在本机，不会上传账号或背包内容。</value>
