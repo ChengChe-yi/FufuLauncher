@@ -1,11 +1,13 @@
 using System.ComponentModel;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Models;
 
 public class NavItemConfig : INotifyPropertyChanged
 {
     public string ViewModelKey { get; init; } = "";
-    public string DisplayName { get; init; } = "";
+    public string DisplayNameKey { get; init; } = "";
+    public string DisplayName => string.IsNullOrEmpty(DisplayNameKey) ? string.Empty : DisplayNameKey.GetLocalized();
     public string IconGlyph { get; init; } = "";
 
     private bool _isUserVisible = true;

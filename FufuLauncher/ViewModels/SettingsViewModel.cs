@@ -338,19 +338,19 @@ namespace FufuLauncher.ViewModels
         {
             var allItems = new List<NavItemConfig>
             {
-                new() { ViewModelKey = "FufuLauncher.ViewModels.MainViewModel",       DisplayName = "主页",           IconGlyph = "\uE80F", IsForceVisible = true },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.PluginSettingsViewModel", DisplayName = "注入设置",    IconGlyph = "\uEA86" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.ControlPanelModel",   DisplayName = "控制面板",       IconGlyph = "\uE80A" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.BlankViewModel",      DisplayName = "游戏设置",       IconGlyph = "\uE7FC" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.AccountViewModel",    DisplayName = "账户设置",       IconGlyph = "\uE77B" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.OtherViewModel",      DisplayName = "其他功能",       IconGlyph = "\uE71D" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.PluginViewModel",     DisplayName = "插件管理",       IconGlyph = "\uE7B5" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.DataViewModel",       DisplayName = "数据中心",       IconGlyph = "\uE9D9" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.BackpackViewModel",   DisplayName = "背包浏览器",     IconGlyph = "\uE8EC" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.HelpViewModel",       DisplayName = "帮助文档",       IconGlyph = "\uE82D" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.CommunityViewModel",  DisplayName = "VanillaBBS",     IconGlyph = "\uE716" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.CalculatorViewModel",  DisplayName = "养成计算",      IconGlyph = "\uE1D0" },
-                new() { ViewModelKey = "FufuLauncher.ViewModels.SettingsViewModel",   DisplayName = "设置中心",       IconGlyph = "\uE713", IsForceVisible = true },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.MainViewModel",       DisplayNameKey = "NavHome",            IconGlyph = "\uE80F", IsForceVisible = true },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.PluginSettingsViewModel", DisplayNameKey = "InjectionSettingsNav", IconGlyph = "\uEA86" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.ControlPanelModel",   DisplayNameKey = "NavControlPanel",    IconGlyph = "\uE80A" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.BlankViewModel",      DisplayNameKey = "PageTitle_GameSettings", IconGlyph = "\uE7FC" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.AccountViewModel",    DisplayNameKey = "NavAccountSettings", IconGlyph = "\uE77B" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.OtherViewModel",      DisplayNameKey = "NavOtherFeatures",   IconGlyph = "\uE71D" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.PluginViewModel",     DisplayNameKey = "PluginMgmtTitle",    IconGlyph = "\uE7B5" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.DataViewModel",       DisplayNameKey = "NavDataCenter",      IconGlyph = "\uE9D9" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.BackpackViewModel",   DisplayNameKey = "Backpack_NavTitle",  IconGlyph = "\uE8EC" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.HelpViewModel",       DisplayNameKey = "NavHelpDocs",        IconGlyph = "\uE82D" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.CommunityViewModel",  DisplayNameKey = "NavCommunity",       IconGlyph = "\uE716" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.CalculatorViewModel", DisplayNameKey = "NavCalculator",      IconGlyph = "\uE1D0" },
+                new() { ViewModelKey = "FufuLauncher.ViewModels.SettingsViewModel",   DisplayNameKey = "NavSettings",        IconGlyph = "\uE713", IsForceVisible = true },
             };
 
             foreach (var item in allItems)
