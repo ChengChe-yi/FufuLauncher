@@ -188,6 +188,9 @@ public partial class App : Application
                     services.AddSingleton<IUidLookupService, Services.UID.UidLookupService>();
 
                     services.AddSingleton<AccountManager>();
+                    services.AddSingleton<Services.MiHoYo.Fingerprint.DeviceFpService>();
+                    services.AddSingleton<Services.MiHoYo.AccountIdentityService>();
+                    services.AddSingleton<Contracts.Services.IBbsRequestBuilder, Services.MiHoYo.Transport.BbsRequestBuilder>();
 
                     services.AddLogging(builder =>
                     {

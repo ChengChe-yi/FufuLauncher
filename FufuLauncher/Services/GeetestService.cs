@@ -8,9 +8,11 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using FufuLauncher.Contracts.Services;
+using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Helpers;
+using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Services.MiHoYo;
+using FufuLauncher.Services.MiHoYo.Transport;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -27,28 +29,15 @@ public sealed class GeetestService
     private const string VerifyVerificationUrl = "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/verifyVerification";
     private const string DailyNoteChallengePath = "/game_record/app/genshin/api/dailyNote";
 
-    private const string CNVersion = "2.109.0";
-    private const string CNX4 = "xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs";
-    private const string Referer = "https://webstatic.mihoyo.com";
-
-    private static string MobileUserAgent => DailyNoteService.GetCurrentUserAgent();
-
     private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
-
-    private readonly IDeviceFingerprintService _fingerprintService;
-    private readonly AccountManager _accountManager;
 
     public GeetestService()
     {
-        _fingerprintService = App.GetService<IDeviceFingerprintService>()
-            ?? throw new InvalidOperationException("Geetest_NoFingerprintService".GetLocalized());
-        _accountManager = App.GetService<AccountManager>()
-            ?? throw new InvalidOperationException("Geetest_NoAccountService".GetLocalized());
     }
 
-    public async Task<string> TryVerifyForDailyNoteAsync(Dictionary<string, string> cookies)
+    public async Task<string> TryVerifyForDailyNoteAsync(AccountContext ctx)
     {
-        string createJson = await CallCreateVerificationAsync(cookies);
+        string createJson = await CallCreateVerificationAsync(ctx);
         string gt = null;
         string challenge = null;
 
@@ -77,7 +66,7 @@ public sealed class GeetestService
         }
         Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: 验证码完成 challenge={result.Challenge}, validate={result.Validate}");
 
-        string verifyJson = await CallVerifyVerificationAsync(cookies, result.Challenge, result.Validate);
+        string verifyJson = await CallVerifyVerificationAsync(ctx, result.Challenge, result.Validate);
         using (JsonDocument doc = JsonDocument.Parse(verifyJson))
         {
             int retcode = doc.RootElement.TryGetProperty("retcode", out JsonElement rc) ? rc.GetInt32() : -1;
@@ -93,34 +82,33 @@ public sealed class GeetestService
         }
     }
 
-    private async Task<string> CallCreateVerificationAsync(Dictionary<string, string> cookies)
+    private async Task<string> CallCreateVerificationAsync(AccountContext ctx)
     {
-        string activeId = _accountManager.ActiveAccountId ?? throw new InvalidOperationException("Geetest_NoActiveAccount".GetLocalized());
-        string cookieStr = DailyNoteService.BuildCookieString(cookies, DailyNoteService.CookieMode.Cookie);
-        string ds = DailyNoteService.CalculateDS2(CNX4, "is_high=true", "");
-        string fp = await _fingerprintService.GetOrRegisterFingerprintAsync(activeId, cookies);
-        Debug.WriteLine($"[GeetestService] CallCreateVerification: device_fp={fp}");
+        string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
+        string ds = DailyNoteService.CalculateDS2(HeaderSalts.CnX4, "is_high=true", "");
+        Debug.WriteLine($"[GeetestService] CallCreateVerification: device_fp={ctx.Device.DeviceFp}");
 
         using HttpRequestMessage req = new(HttpMethod.Get, CreateVerificationUrl);
         req.Headers.Add("Cookie", cookieStr);
-        req.Headers.Add("x-rpc-app_version", CNVersion);
+        req.Headers.Add("x-rpc-app_version", HeaderVersions.MobileCnLogin);
         req.Headers.Add("x-rpc-client_type", "5");
-        req.Headers.Add("x-rpc-device_id", DailyNoteService.GetGameRecordDeviceId());
-        req.Headers.Add("x-rpc-device_fp", fp);
+        req.Headers.Add("x-rpc-device_id", ctx.Device.BbsDeviceId);
+        req.Headers.Add("x-rpc-device_fp", ctx.Device.DeviceFp);
+        req.Headers.Add("x-rpc-device_name", Uri.EscapeDataString(ctx.Device.DeviceName));
+        req.Headers.Add("x-rpc-sys_version", ctx.Device.SysVersion);
         req.Headers.Add("x-rpc-challenge_game", "2");
         req.Headers.Add("x-rpc-challenge_path", DailyNoteChallengePath);
         req.Headers.Add("DS", ds);
-        req.Headers.Add("Referer", Referer);
-        req.Headers.UserAgent.ParseAdd(MobileUserAgent);
+        req.Headers.Add("Referer", UserAgents.WebstaticReferer);
+        req.Headers.UserAgent.ParseAdd(ctx.UserAgent.Mobile);
 
-        HttpResponseMessage resp = await _httpClient.SendAsync(req);
+        using HttpResponseMessage resp = await _httpClient.SendAsync(req);
         return await resp.Content.ReadAsStringAsync();
     }
 
-    private async Task<string> CallVerifyVerificationAsync(Dictionary<string, string> cookies, string challenge, string validate)
+    private async Task<string> CallVerifyVerificationAsync(AccountContext ctx, string challenge, string validate)
     {
-        string activeId = _accountManager.ActiveAccountId ?? throw new InvalidOperationException("Geetest_NoActiveAccount".GetLocalized());
-        string cookieStr = DailyNoteService.BuildCookieString(cookies, DailyNoteService.CookieMode.Cookie);
+        string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
         GeetestWebResponse body = new()
         {
             Challenge = challenge,
@@ -128,24 +116,25 @@ public sealed class GeetestService
             Seccode = $"{validate}|jordan"
         };
         string bodyJson = JsonSerializer.Serialize(body);
-        string ds = DailyNoteService.CalculateDS2(CNX4, "", bodyJson);
-        string fp = await _fingerprintService.GetOrRegisterFingerprintAsync(activeId, cookies);
-        Debug.WriteLine($"[GeetestService] CallVerifyVerification: device_fp={fp}");
+        string ds = DailyNoteService.CalculateDS2(HeaderSalts.CnX4, "", bodyJson);
+        Debug.WriteLine($"[GeetestService] CallVerifyVerification: device_fp={ctx.Device.DeviceFp}");
 
         using HttpRequestMessage req = new(HttpMethod.Post, VerifyVerificationUrl);
         req.Content = new StringContent(bodyJson, Encoding.UTF8, "application/json");
         req.Headers.Add("Cookie", cookieStr);
-        req.Headers.Add("x-rpc-app_version", CNVersion);
+        req.Headers.Add("x-rpc-app_version", HeaderVersions.MobileCnLogin);
         req.Headers.Add("x-rpc-client_type", "5");
-        req.Headers.Add("x-rpc-device_id", DailyNoteService.GetGameRecordDeviceId());
-        req.Headers.Add("x-rpc-device_fp", fp);
+        req.Headers.Add("x-rpc-device_id", ctx.Device.BbsDeviceId);
+        req.Headers.Add("x-rpc-device_fp", ctx.Device.DeviceFp);
+        req.Headers.Add("x-rpc-device_name", Uri.EscapeDataString(ctx.Device.DeviceName));
+        req.Headers.Add("x-rpc-sys_version", ctx.Device.SysVersion);
         req.Headers.Add("x-rpc-challenge_game", "2");
         req.Headers.Add("x-rpc-challenge_path", DailyNoteChallengePath);
         req.Headers.Add("DS", ds);
-        req.Headers.Add("Referer", Referer);
-        req.Headers.UserAgent.ParseAdd(MobileUserAgent);
+        req.Headers.Add("Referer", UserAgents.WebstaticReferer);
+        req.Headers.UserAgent.ParseAdd(ctx.UserAgent.Mobile);
 
-        HttpResponseMessage resp = await _httpClient.SendAsync(req);
+        using HttpResponseMessage resp = await _httpClient.SendAsync(req);
         return await resp.Content.ReadAsStringAsync();
     }
 

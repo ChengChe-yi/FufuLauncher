@@ -33,6 +33,11 @@ public static class HeaderNames
     public const string RpcChallengeGame = "x-rpc-challenge_game";
     public const string RpcChallengePath = "x-rpc-challenge_path";
     public const string RpcDeviceName = "x-rpc-device_name";
+    public const string RpcDeviceModel = "x-rpc-device_model";
+    public const string RpcLifecycleId = "x-rpc-lifecycle_id";
+    public const string RpcVerifyKey = "x-rpc-verify_key";
+    public const string RpcCsmSource = "x-rpc-csm_source";
+    public const string RpcH265Supported = "x-rpc-h265_supported";
 
     /// <summary>标准头。</summary>
     public const string UserAgent = "User-Agent";
@@ -156,7 +161,7 @@ public static class UserAgents
     public const string AndroidBbs293 = "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1";
 
     /// <summary>Android miHoYoBBS 2.109.0（DeviceProfileService 默认模板）。</summary>
-    public const string AndroidBbsTemplate2109 = "Mozilla/5.0 (Linux; Android {0}; {1} Build/{2}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/110.0.5481.154 Safari/537.36 miHoYoBBS/{3}";
+    public const string AndroidBbsTemplate = "Mozilla/5.0 (Linux; Android {0}; {1} Build/{2}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/110.0.5481.154 Safari/537.36 miHoYoBBS/{3}";
 
     /// <summary>HoYoLAB 海外版 UA（HoyolabCheckinService）。</summary>
     public const string HoyolabOversea313 = "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/3.13.0";

@@ -148,6 +148,7 @@
     <ItemGroup>
       <Folder Include="Constants\MiHoYo\" />
       <Folder Include="Plugins\Avatar\" />
+      <Folder Include="Services\MiHoYo\Fingerprint\" />
       <Folder Include="Services\UID\" />
     </ItemGroup>
 
