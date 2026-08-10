@@ -14,7 +14,7 @@ public class DailyNoteCardService
 {
     private readonly DailyNoteService _dailyNoteService = new();
 
-    public async Task<DailyNoteCardData> LoadCardDataAsync(string roleId, string server, Dictionary<string, string> cookies)
+    public async Task<DailyNoteCardData?> LoadCardDataAsync(string roleId, string server, Dictionary<string, string> cookies)
     {
         return await _dailyNoteService.GetDailyNoteAsync(roleId, server);
     }

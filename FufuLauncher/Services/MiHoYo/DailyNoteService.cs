@@ -31,7 +31,7 @@ public sealed class DailyNoteService
             ?? throw new InvalidOperationException("DailyNote_NoIdentityService".GetLocalized());
     }
 
-    public async Task<DailyNoteCardData> GetDailyNoteAsync(string roleId, string server)
+    public async Task<DailyNoteCardData?> GetDailyNoteAsync(string roleId, string server)
     {
         await _semaphore.WaitAsync();
         try
@@ -47,6 +47,41 @@ public sealed class DailyNoteService
             string apiUrl = $"{DailyNoteUrl}?server={Uri.EscapeDataString(server)}&role_id={Uri.EscapeDataString(roleId)}";
             string json = await RequestDailyNoteAsync(apiUrl, ctx, null);
             var (retcode, message) = ParseResponse(json);
+            
+            if (retcode == 10001)
+            {
+                Debug.WriteLine("[DailyNoteService] retcode10001");
+                var refreshService = new TokenRefreshService();
+                var currentCookies = await accountManager.LoadCookiesAsync(activeId);
+                if (currentCookies != null && currentCookies.Count > 0)
+                {
+                    var refreshedCookies = await refreshService.RefreshCookieAsync(currentCookies);
+                    if (refreshedCookies != null && refreshedCookies.Count > 0)
+                    {
+                        await accountManager.UpdateCookiesAsync(activeId, refreshedCookies);
+                        ctx = await _identityService.BuildAsync(activeId);
+                        json = await RequestDailyNoteAsync(apiUrl, ctx, null);
+                        (retcode, message) = ParseResponse(json);
+                        Debug.WriteLine($"[DailyNoteService] Cookie刷新后重试retcode={retcode}");
+                    }
+                    else
+                    {
+                        Debug.WriteLine("[DailyNoteService] Cookie刷新失败");
+                        return null;
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("[DailyNoteService] 无法加载当前Cookie");
+                    return null;
+                }
+                
+                if (retcode == 10001)
+                {
+                    Debug.WriteLine("[DailyNoteService] Cookie刷新后登录过期");
+                    return null;
+                }
+            }
 
             if (retcode == 1034)
             {

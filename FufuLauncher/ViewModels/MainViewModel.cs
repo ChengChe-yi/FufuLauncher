@@ -1483,6 +1483,12 @@ private void QuickSwitchPreset(PresetModel targetPreset)
 
                 var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(roleId, server, cookies);
 
+                if (dailyNoteData == null)
+                {
+                    Debug.WriteLine("[DailyNote] 登录过期且刷新失败，跳过便签更新");
+                    return;
+                }
+
                 await UpdateUI(() =>
                 {
                     CurrentResin = dailyNoteData.CurrentResin;
