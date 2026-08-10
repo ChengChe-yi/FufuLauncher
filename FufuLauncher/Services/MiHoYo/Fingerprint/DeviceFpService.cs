@@ -71,9 +71,19 @@ public sealed class DeviceFpService
         try
         {
             var saved = await _accountManager.LoadFingerprintAsync(accountId);
-            if (saved is not null && !string.IsNullOrEmpty(saved.DeviceFp))
+            if (saved is not null && !string.IsNullOrEmpty(saved.DeviceFp) && !string.IsNullOrEmpty(saved.DeviceId))
             {
-                Debug.WriteLine($"[DeviceFp] 命中已保存指纹: {saved.DeviceFp}");
+                if (string.IsNullOrEmpty(saved.BbsDeviceId))
+                {
+                    // 缺 bbs_device_id：由 device_id 派生（v3）补全并持久化，避免重新注册导致档案分裂
+                    saved = saved with { BbsDeviceId = NameUuidFromBytes(Encoding.UTF8.GetBytes(saved.DeviceId)).ToString() };
+                    await _accountManager.SaveFingerprintAsync(accountId, saved);
+                    Debug.WriteLine($"[DeviceFp] 补全 bbs_device_id: {saved.BbsDeviceId}");
+                }
+                else
+                {
+                    Debug.WriteLine($"[DeviceFp] 命中已保存指纹: {saved.DeviceFp}");
+                }
                 return saved;
             }
 
@@ -175,13 +185,14 @@ public sealed class DeviceFpService
 
 
     /// <summary>原版 SDK DeviceFingerprintSharedPreferences.random(10)：10 位十进制数字，首位 1-9。</summary>
-    private static string GenerateDefaultDeviceId()
-    {
-        var rng = Random.Shared;
-        return new string(new[] { (char)('1' + rng.Next(9)) }
-            .Concat(Enumerable.Range(0, 9).Select(_ => (char)('0' + rng.Next(10)))).ToArray());
-    }
-
+    // private static string GenerateDefaultDeviceId()
+    // {
+    //     var rng = Random.Shared;
+    //     return new string(new[] { (char)('1' + rng.Next(9)) }
+    //         .Concat(Enumerable.Range(0, 9).Select(_ => (char)('0' + rng.Next(10)))).ToArray());
+    // }
+    /// <summary>注册请求体 device_fp 初始占位：13 位小写 hex(模仿已经注册更真实服务端下发真实 fp 后覆盖视情况调整）。</summary>
+    private static string GenerateDefaultDeviceId() => GenerateRandomHex(13);
     private static string GenerateRandomHex(int length)
     {
         var bytes = RandomNumberGenerator.GetBytes((length + 1) / 2);
