@@ -35,6 +35,24 @@ public static class HeaderSalts
     public const string GachaLk2 = "sidQFEglajEz7FA0Aj7HQPV88zpf17SO";
 
     /// <summary>
+    /// passport / 账号体系接口 DS salt（配 DS1 生成算法 <c>md5(salt&amp;t&amp;r&amp;b&amp;q)</c>，
+    /// ds 形如 <c>t,r,md5</c>，salt 仅参与计算不出现）。
+    /// </summary>
+    public const string PassportProd = "JwYDpKvLj6MrMqqYU6jTKF17KNO2PXoS";
+
+    /// <summary>
+    /// 米游社 App 2.112.0 的 K2 盐（client_type=2，配 DS1 算法 <c>md5(salt&amp;t&amp;r)</c>）。
+    /// <para>K2/LK2 随米游社版本变化，升级版本时需同步更新。</para>
+    /// </summary>
+    public const string K2_2112 = "5e54bba5a8acdf5981ae2c95e528d56f";
+
+    /// <summary>
+    /// 米游社 App 2.112.0 的 LK2 盐（client_type=4，配 DS1 算法 <c>md5(salt&amp;t&amp;r)</c>）。
+    /// <para>同 <see cref="K2_2112"/>：随版本变化，升级版本时需同步更新。</para>
+    /// </summary>
+    public const string LK2_2112 = "720eebad04f745764ea4413fe603f3a9";
+
+    /// <summary>
     /// UserInfoService.cs:60 中疑似 typo 的旧 salt 字符串，仅用于排查历史问题，<b>不要用于新调用方</b>。
     /// 与 <see cref="CnX4"/> 的差异在末尾 <c>MXmz9</c> vs <c>Asafs</c>。
     /// </summary>

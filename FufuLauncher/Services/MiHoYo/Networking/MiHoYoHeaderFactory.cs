@@ -69,6 +69,14 @@ public static class MiHoYoHeaderFactory
         request.Headers.Add(HeaderNames.Accept, "application/json, text/plain, */*");
         request.Headers.UserAgent.ParseAdd(options.UserAgent);
     }
+
+    /// <summary>
+    /// 统一构建 getFp（device-fp 指纹注册 / 续期）请求头。
+    /// </summary>
+    public static void ApplyDeviceFpHeaders(HttpRequestMessage request, string userAgent = UserAgents.OkHttp)
+    {
+        request.Headers.UserAgent.ParseAdd(userAgent);
+    }
 }
 
 /// <summary>game_record 请求头构建参数。</summary>

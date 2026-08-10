@@ -2,9 +2,11 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
+using FufuLauncher.Models.MiHoYo.Fingerprint;
 using Microsoft.Extensions.DependencyInjection;
 using MihoyoBBS;
 
@@ -17,7 +19,9 @@ namespace FufuLauncher.Services;
 /// </summary>
 public sealed record AccountCookieFile(
     [property: System.Text.Json.Serialization.JsonPropertyName("cookies")]
-    Dictionary<string, string> Cookies);
+    Dictionary<string, string> Cookies,
+    [property: System.Text.Json.Serialization.JsonPropertyName("fingerprint")]
+    DeviceFpRequest? Fingerprint = null);
 
 public class AccountManager
 {
@@ -213,12 +217,105 @@ public class AccountManager
 
 
     /// <summary>
-    /// 写入账号 Cookie 文件：只包含 cookie 分组，账号元数据不落盘于此。
+    /// 写入账号 Cookie 文件：只包含 cookie 分组与设备指纹画像，账号元数据不落盘于此。
     /// </summary>
     private async Task WriteCookieFileAsync(string path, Dictionary<string, string> cookies)
     {
-        var file = new AccountCookieFile(cookies);
-        var json = JsonSerializer.Serialize(file, new JsonSerializerOptions { WriteIndented = true });
+        var file = new AccountCookieFile(cookies, await ReadFingerprintCoreAsync(path));
+        var json = JsonSerializer.Serialize(file, new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+        await File.WriteAllTextAsync(path, json);
+    }
+
+    /// <summary>
+    /// 读取账号已保存的设备指纹画像（cookie 文件 <c>fingerprint</c> 段）。
+    /// </summary>
+    private async Task<DeviceFpRequest?> ReadFingerprintCoreAsync(string path)
+    {
+        try
+        {
+            if (!File.Exists(path))
+                return null;
+
+            var json = await File.ReadAllTextAsync(path);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            if (root.ValueKind == JsonValueKind.Object
+                && TryGetPropertyIgnoreCase(root, "fingerprint", out var fpProp)
+                && fpProp.ValueKind == JsonValueKind.Object)
+            {
+                return fpProp.Deserialize<DeviceFpRequest>();
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[AccountManager] 读取 fingerprint 失败: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 读取账号已保存的设备指纹画像（cookie 文件 <c>fingerprint</c> 段）。
+    /// </summary>
+    public async Task<DeviceFpRequest?> LoadFingerprintAsync(string accountId)
+    {
+        var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
+        if (entry is null || string.IsNullOrEmpty(entry.CookieFilePath))
+            return null;
+
+        var path = Path.Combine(CookiesDir, entry.CookieFilePath);
+        if (!File.Exists(path))
+            return null;
+
+        return await ReadFingerprintCoreAsync(path);
+    }
+
+    /// <summary>
+    /// 读取账号已保存的设备指纹画像（同步版，供同步接口调用，避免 UI 线程死锁）。
+    /// </summary>
+    public DeviceFpRequest? LoadFingerprint(string accountId)
+    {
+        var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
+        if (entry is null || string.IsNullOrEmpty(entry.CookieFilePath))
+            return null;
+
+        var path = Path.Combine(CookiesDir, entry.CookieFilePath);
+        if (!File.Exists(path))
+            return null;
+
+        try
+        {
+            var json = File.ReadAllText(path);
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            if (root.ValueKind == JsonValueKind.Object
+                && TryGetPropertyIgnoreCase(root, "fingerprint", out var fpProp)
+                && fpProp.ValueKind == JsonValueKind.Object)
+            {
+                return fpProp.Deserialize<DeviceFpRequest>();
+            }
+            return null;
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[AccountManager] 读取 fingerprint 失败: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// 保存设备指纹画像到账号 cookie 文件的 <c>fingerprint</c> 段（保留已有 cookie 分组）。
+    /// </summary>
+    public async Task SaveFingerprintAsync(string accountId, DeviceFpRequest fp)
+    {
+        var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
+        if (entry is null || string.IsNullOrEmpty(entry.CookieFilePath))
+            return;
+
+        var path = Path.Combine(CookiesDir, entry.CookieFilePath);
+        var cookies = await ReadCookieValuesAsync(path) ?? new Dictionary<string, string>();
+        var file = new AccountCookieFile(cookies, fp);
+        var json = JsonSerializer.Serialize(file, new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
         await File.WriteAllTextAsync(path, json);
     }
 
