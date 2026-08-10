@@ -4423,7 +4423,7 @@ Do you still want to execute it? (Not recommended)</value>
     <value>Data Center</value>
   </data>
   <data name="DataPage_Subtitle" xml:space="preserve">
-    <value>Server-wide statistics cross-referenced into actionable build and wish advice</value>
+    <value>Server-wide statistics cross-referenced for informed build and wish decisions</value>
   </data>
   <data name="DataPage_TabOverview" xml:space="preserve">
     <value>Overview</value>
@@ -5140,7 +5140,7 @@ Do you still want to execute it? (Not recommended)</value>
     <value>Overview</value>
   </data>
   <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>Turn equipment, materials and food into actionable cultivation insight.</value>
+    <value>Browse equipment, materials and food in one place to support cultivation planning.</value>
   </data>
   <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
     <value>Sync data stays on this device; it never uploads your account or backpack.</value>
