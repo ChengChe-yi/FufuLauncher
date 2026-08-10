@@ -86,8 +86,8 @@ jobs:
       run: |
         $pluginDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0\Plugins\FuFuPlugin"
         Get-ChildItem -Path $pluginDir -Filter "FufuLauncher.UnlockerIsland.dll" -Recurse | ForEach-Object {
-            Write-Host "Compressing $($_.FullName) with UPX (light compression)..."
-            upx -1 "$($_.FullName)"
+            Write-Host "Compressing $($_.FullName) with UPX (best compression)..."
+            upx --best "$($_.FullName)"
         }
 
     - name: Collect PE files for signing
