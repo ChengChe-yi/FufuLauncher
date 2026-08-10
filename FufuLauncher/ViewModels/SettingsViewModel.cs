@@ -73,8 +73,8 @@ namespace FufuLauncher.ViewModels
         [ObservableProperty] private bool _minimizeToTray;
         [ObservableProperty] private string _customLaunchParameters = "";
         [ObservableProperty] private WindowModeType _launchArgsWindowMode = WindowModeType.Normal;
-        [ObservableProperty] private string _launchArgsWidth;
-        [ObservableProperty] private string _launchArgsHeight;
+        [ObservableProperty] private string _launchArgsWidth = "";
+        [ObservableProperty] private string _launchArgsHeight = "";
         [ObservableProperty] private string _launchArgsPreview = "";
         [ObservableProperty] private string _customBackgroundPath;
         [ObservableProperty] private bool _hasCustomBackground;
@@ -976,27 +976,8 @@ namespace FufuLauncher.ViewModels
 
         private void InitializeDefaultResolution()
         {
-            try
-            {
-                var displayArea = DisplayArea.Primary;
-
-                if (displayArea != null)
-                {
-                    _launchArgsWidth = displayArea.OuterBounds.Width.ToString();
-                    _launchArgsHeight = displayArea.OuterBounds.Height.ToString();
-                }
-                else
-                {
-                    _launchArgsWidth = "1920";
-                    _launchArgsHeight = "1080";
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"获取屏幕分辨率失败: {ex.Message}，使用默认值。");
-                _launchArgsWidth = "1920";
-                _launchArgsHeight = "1080";
-            }
+            _launchArgsWidth = "";
+            _launchArgsHeight = "";
         }
 
         public async Task ReloadSettingsAsync()
