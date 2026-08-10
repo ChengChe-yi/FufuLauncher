@@ -313,10 +313,32 @@ public class AccountManager
             return;
 
         var path = Path.Combine(CookiesDir, entry.CookieFilePath);
-        var cookies = await ReadCookieValuesAsync(path) ?? new Dictionary<string, string>();
-        var file = new AccountCookieFile(cookies, fp);
-        var json = JsonSerializer.Serialize(file, new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
-        await File.WriteAllTextAsync(path, json);
+        await _lock.WaitAsync();
+        try
+        {
+            Dictionary<string, string>? cookies;
+            try
+            {
+                cookies = await ReadCookieValuesAsync(path);
+            }
+            catch (FileNotFoundException)
+            {
+                // cookie 文件尚未创建（首次写入）：允许以空 cookies 新建
+                cookies = new Dictionary<string, string>();
+            }
+
+            // 解析失败（null）：中止，避免用空 cookies 覆盖账号已有凭证
+            if (cookies is null)
+            {
+                System.Diagnostics.Debug.WriteLine($"[AccountManager] 指纹持久化中止：cookie 文件解析失败 {entry.CookieFilePath}");
+                return;
+            }
+
+            var file = new AccountCookieFile(cookies, fp);
+            var json = JsonSerializer.Serialize(file, new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+            await File.WriteAllTextAsync(path, json);
+        }
+        finally { _lock.Release(); }
     }
 
     /// <summary>

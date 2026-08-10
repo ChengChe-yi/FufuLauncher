@@ -4,13 +4,13 @@ Licensed under the MIT License.
 */
 using System.Diagnostics;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
 using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Services.MiHoYo.Networking;
+using FufuLauncher.Services.MiHoYo.Transport;
 
 namespace FufuLauncher.Services.MiHoYo;
 
@@ -57,7 +57,7 @@ public sealed class DailyNoteService
                 if (!isCaptchaDisabled)
                 {
                     GeetestService geetestService = new();
-                    string xrpcChallenge = await geetestService.TryVerifyForDailyNoteAsync(ctx.Cookies);
+                    string xrpcChallenge = await geetestService.TryVerifyForDailyNoteAsync(ctx);
                     if (!string.IsNullOrEmpty(xrpcChallenge))
                     {
                         json = await RequestDailyNoteAsync(apiUrl, ctx, xrpcChallenge);
@@ -86,7 +86,7 @@ public sealed class DailyNoteService
 
     private async Task<string> RequestDailyNoteAsync(string apiUrl, AccountContext ctx, string? xrpcChallenge)
     {
-        string cookieStr = BuildCookieString(ctx.Cookies, CookieMode.Cookie);
+        string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
         string query = new Uri(apiUrl).Query.TrimStart('?');
         string sortedQuery = string.Join("&", query.Split('&').OrderBy(s => s, StringComparer.Ordinal));
 
@@ -106,13 +106,13 @@ public sealed class DailyNoteService
             Page: Page));
         req.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
 
-        var resp = await _httpClient.SendAsync(req);
+        using var resp = await _httpClient.SendAsync(req);
         return await resp.Content.ReadAsStringAsync();
     }
 
     private async Task<string> RequestWidgetAsync(AccountContext ctx)
     {
-        string cookieStr = BuildCookieString(ctx.Cookies, CookieMode.SToken);
+        string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.SToken);
         string sortedQuery = string.Join("&", WidgetUrl.Split('?', 2)[1].Split('&').OrderBy(s => s, StringComparer.Ordinal));
 
         using var req = new HttpRequestMessage(HttpMethod.Get, WidgetUrl);
@@ -129,66 +129,29 @@ public sealed class DailyNoteService
             Page: Page));
         req.Headers.Add("Accept-Language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
 
-        var resp = await _httpClient.SendAsync(req);
+        using var resp = await _httpClient.SendAsync(req);
         return await resp.Content.ReadAsStringAsync();
     }
 
     internal static string CalculateDS2(string salt, string query, string body) =>
         MiHoYoHeaderFactory.CalculateDs2(salt, query, body);
 
-    internal static string BuildCookieString(IReadOnlyDictionary<string, string> cookies, CookieMode mode)
-    {
-        var sb = new StringBuilder();
-        if (mode == CookieMode.SToken)
-        {
-            if (cookies.TryGetValue("stoken", out var stoken) && !string.IsNullOrEmpty(stoken)) sb.Append($"stoken={stoken}");
-            if (cookies.TryGetValue("mid", out var mid) && !string.IsNullOrEmpty(mid)) sb.Append($";mid={mid}");
-            string stuid = cookies.GetValueOrDefault("stuid") ?? cookies.GetValueOrDefault("account_id") ?? cookies.GetValueOrDefault("ltuid_v2") ?? "";
-            if (!string.IsNullOrEmpty(stuid)) sb.Append($";stuid={stuid}");
-        }
-        else
-        {
-            // CookieToken | LToken：account_id + cookie_token + ltoken + ltuid（后两者全有才追加）
-            // v1 键优先，缺 v1 时整体回退 v2 键
-            string tokenSuffix = cookies.ContainsKey("cookie_token") ? string.Empty : "_v2";
-
-            string aid = cookies.GetValueOrDefault($"account_id{tokenSuffix}");
-            if (!string.IsNullOrEmpty(aid))
-            {
-                sb.Append($"account_id{tokenSuffix}={aid}");
-            }
-
-            string cookieToken = cookies.GetValueOrDefault($"cookie_token{tokenSuffix}");
-            if (!string.IsNullOrEmpty(cookieToken))
-            {
-                if (sb.Length > 0) sb.Append(';');
-                sb.Append($"cookie_token{tokenSuffix}={cookieToken}");
-            }
-
-            string ltoken = cookies.GetValueOrDefault($"ltoken{tokenSuffix}");
-            string ltuid = cookies.GetValueOrDefault($"ltuid{tokenSuffix}");
-            if (!string.IsNullOrEmpty(ltoken) && !string.IsNullOrEmpty(ltuid))
-            {
-                if (sb.Length > 0) sb.Append(';');
-                sb.Append($"ltoken{tokenSuffix}={ltoken};ltuid{tokenSuffix}={ltuid}");
-            }
-        }
-        return sb.ToString();
-    }
-
     private static (int Retcode, string Message) ParseResponse(string json)
     {
-        using var doc = JsonDocument.Parse(json);
-        var root = doc.RootElement;
-        int retcode = root.TryGetProperty("retcode", out var rc) ? rc.GetInt32() : -1;
-        string message = root.TryGetProperty("message", out var m)
-            ? m.GetString() ?? "Status_UnknownError".GetLocalized()
-            : "Status_UnknownError".GetLocalized();
-        return (retcode, message);
-    }
-
-    internal enum CookieMode
-    {
-        Cookie, SToken
+        try
+        {
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+            int retcode = root.TryGetProperty("retcode", out var rc) ? rc.GetInt32() : -1;
+            string message = root.TryGetProperty("message", out var m)
+                ? m.GetString() ?? "Status_UnknownError".GetLocalized()
+                : "Status_UnknownError".GetLocalized();
+            return (retcode, message);
+        }
+        catch (JsonException)
+        {
+            // 非 JSON 响应（风控 HTML / 网关空 body）：返回哨兵 retcode，走本地化错误路径
+            return (-1, "Status_UnknownError".GetLocalized());
+        }
     }
 }

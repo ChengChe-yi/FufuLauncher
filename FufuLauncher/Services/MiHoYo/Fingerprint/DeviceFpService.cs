@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -35,6 +36,9 @@ public sealed class DeviceFpService
 
     private readonly AccountManager _accountManager;
 
+    /// <summary>per-account 串行化：同一账号的“读已存 → 注册 → 持久化”不允许并发，避免双注册。</summary>
+    private readonly ConcurrentDictionary<string, SemaphoreSlim> _locks = new();
+
     public DeviceFpService(AccountManager accountManager)
     {
         _accountManager = accountManager;
@@ -52,29 +56,50 @@ public sealed class DeviceFpService
     /// </summary>
     public async Task<string?> GetFingerprintAsync(string accountId)
     {
-        var saved = await _accountManager.LoadFingerprintAsync(accountId);
-        if (saved is not null && !string.IsNullOrEmpty(saved.DeviceFp))
-        {
-            Debug.WriteLine($"[DeviceFp] 命中已保存指纹: {saved.DeviceFp}");
-            return saved.DeviceFp;
-        }
+        var req = await GetFingerprintRequestAsync(accountId);
+        return req?.DeviceFp;
+    }
 
-        var request = BuildNewRequest();
-        string? fp = await RegisterAsync(request);
-        if (string.IsNullOrEmpty(fp))
+    /// <summary>
+    /// 获取账号完整指纹请求体（含 device_id / bbs_device_id / seed 等）。
+    /// 同一账号串行执行“读已存 → 注册 → 持久化”；注册失败返回 null。
+    /// </summary>
+    public async Task<DeviceFpRequest?> GetFingerprintRequestAsync(string accountId)
+    {
+        var sem = _locks.GetOrAdd(accountId, _ => new SemaphoreSlim(1, 1));
+        await sem.WaitAsync();
+        try
         {
-            Debug.WriteLine("[DeviceFp] 注册失败，未获得指纹");
-            return null;
-        }
+            var saved = await _accountManager.LoadFingerprintAsync(accountId);
+            if (saved is not null && !string.IsNullOrEmpty(saved.DeviceFp))
+            {
+                Debug.WriteLine($"[DeviceFp] 命中已保存指纹: {saved.DeviceFp}");
+                return saved;
+            }
 
-        await _accountManager.SaveFingerprintAsync(accountId, request with { DeviceFp = fp });
-        Debug.WriteLine($"[DeviceFp] 注册成功并已持久化: {fp}");
-        return fp;
+            var request = BuildNewRequest();
+            string? fp = await RegisterAsync(request);
+            if (string.IsNullOrEmpty(fp))
+            {
+                Debug.WriteLine("[DeviceFp] 注册失败，未获得指纹");
+                return null;
+            }
+
+            var persisted = request with { DeviceFp = fp };
+            await _accountManager.SaveFingerprintAsync(accountId, persisted);
+            Debug.WriteLine($"[DeviceFp] 注册成功并已持久化: {fp}");
+            return persisted;
+        }
+        finally
+        {
+            sem.Release();
+        }
     }
 
     /// <summary>
     /// 全新注册请求体：device_id / seed 随机生成，画像字段固定（ExtFields 模型默认值），
-    /// bbs_device_id 按账号派生（v3），保证与请求头 x-rpc-device_id 同源且账号级稳定。
+    /// bbs_device_id = nameUUIDFromBytes(device_id)（v3），与请求头 x-rpc-device_id 同源。
+    /// 账号级稳定由持久化保证（首次注册后完整请求体存档复用）。
     /// </summary>
     private static DeviceFpRequest BuildNewRequest()
     {

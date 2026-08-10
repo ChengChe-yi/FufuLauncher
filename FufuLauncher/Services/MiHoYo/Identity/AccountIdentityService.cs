@@ -39,13 +39,10 @@ public sealed class AccountIdentityService
             Debug.WriteLine($"[AccountIdentity] 账号 {accountId} 未找到 cookies，返回空 ctx");
         }
 
-        // 2. 确保指纹已注册（有则返回已存值）；注册失败返回 null
-        string? fp = await _deviceFpService.GetFingerprintAsync(accountId);
-        if (string.IsNullOrEmpty(fp))
-            Debug.WriteLine($"[AccountIdentity] 账号 {accountId} 指纹注册/读取失败");
-
-        // 3. 读完整指纹请求体（含 device_id / bbs_device_id）
-        var fpRequest = _accountManager.LoadFingerprint(accountId);
+        // 2. 确保指纹已注册/读取（同账号串行；返回完整请求体，含 device_id / bbs_device_id）
+        var fpRequest = await _deviceFpService.GetFingerprintRequestAsync(accountId);
+        if (fpRequest is null || string.IsNullOrEmpty(fpRequest.DeviceFp))
+            throw new InvalidOperationException($"账号 {accountId} 设备指纹不可用（注册失败）");
 
         // 4. 派生身份字段
         var serverType = ServerTypeExtensions.ParseServerType(ExtractServerType(accountId));
@@ -58,9 +55,9 @@ public sealed class AccountIdentityService
         const string sysVersion = "16";
         const string buildId = "V417IR";
         var device = new DeviceIdentity(
-            DeviceId: fpRequest?.DeviceId ?? "",
-            BbsDeviceId: fpRequest?.BbsDeviceId ?? "",
-            DeviceFp: fp ?? "",
+            DeviceId: fpRequest.DeviceId,
+            BbsDeviceId: fpRequest.BbsDeviceId ?? "",
+            DeviceFp: fpRequest.DeviceFp ?? "",
             DeviceName: "Xiaomi " + model,
             SysVersion: sysVersion,
             Model: model,

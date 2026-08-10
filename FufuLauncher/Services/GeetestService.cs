@@ -12,6 +12,7 @@ using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Services.MiHoYo;
+using FufuLauncher.Services.MiHoYo.Transport;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -30,20 +31,13 @@ public sealed class GeetestService
 
     private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
 
-    private readonly AccountIdentityService _identityService;
-    private readonly AccountManager _accountManager;
-
     public GeetestService()
     {
-        _identityService = App.GetService<AccountIdentityService>()
-            ?? throw new InvalidOperationException("Geetest_NoIdentityService".GetLocalized());
-        _accountManager = App.GetService<AccountManager>()
-            ?? throw new InvalidOperationException("Geetest_NoAccountService".GetLocalized());
     }
 
-    public async Task<string> TryVerifyForDailyNoteAsync(IReadOnlyDictionary<string, string> cookies)
+    public async Task<string> TryVerifyForDailyNoteAsync(AccountContext ctx)
     {
-        string createJson = await CallCreateVerificationAsync(cookies);
+        string createJson = await CallCreateVerificationAsync(ctx);
         string gt = null;
         string challenge = null;
 
@@ -72,7 +66,7 @@ public sealed class GeetestService
         }
         Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: 验证码完成 challenge={result.Challenge}, validate={result.Validate}");
 
-        string verifyJson = await CallVerifyVerificationAsync(cookies, result.Challenge, result.Validate);
+        string verifyJson = await CallVerifyVerificationAsync(ctx, result.Challenge, result.Validate);
         using (JsonDocument doc = JsonDocument.Parse(verifyJson))
         {
             int retcode = doc.RootElement.TryGetProperty("retcode", out JsonElement rc) ? rc.GetInt32() : -1;
@@ -88,12 +82,9 @@ public sealed class GeetestService
         }
     }
 
-    private async Task<string> CallCreateVerificationAsync(IReadOnlyDictionary<string, string> cookies)
+    private async Task<string> CallCreateVerificationAsync(AccountContext ctx)
     {
-        string activeId = _accountManager.ActiveAccountId ?? throw new InvalidOperationException("Geetest_NoActiveAccount".GetLocalized());
-        // 身份从聚合入口取：device_id / device_fp / UA / 版本同源
-        var ctx = await _identityService.BuildAsync(activeId);
-        string cookieStr = DailyNoteService.BuildCookieString(cookies, DailyNoteService.CookieMode.Cookie);
+        string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
         string ds = DailyNoteService.CalculateDS2(HeaderSalts.CnX4, "is_high=true", "");
         Debug.WriteLine($"[GeetestService] CallCreateVerification: device_fp={ctx.Device.DeviceFp}");
 
@@ -103,22 +94,21 @@ public sealed class GeetestService
         req.Headers.Add("x-rpc-client_type", "5");
         req.Headers.Add("x-rpc-device_id", ctx.Device.BbsDeviceId);
         req.Headers.Add("x-rpc-device_fp", ctx.Device.DeviceFp);
+        req.Headers.Add("x-rpc-device_name", Uri.EscapeDataString(ctx.Device.DeviceName));
+        req.Headers.Add("x-rpc-sys_version", ctx.Device.SysVersion);
         req.Headers.Add("x-rpc-challenge_game", "2");
         req.Headers.Add("x-rpc-challenge_path", DailyNoteChallengePath);
         req.Headers.Add("DS", ds);
         req.Headers.Add("Referer", UserAgents.WebstaticReferer);
         req.Headers.UserAgent.ParseAdd(ctx.UserAgent.Mobile);
 
-        HttpResponseMessage resp = await _httpClient.SendAsync(req);
+        using HttpResponseMessage resp = await _httpClient.SendAsync(req);
         return await resp.Content.ReadAsStringAsync();
     }
 
-    private async Task<string> CallVerifyVerificationAsync(IReadOnlyDictionary<string, string> cookies, string challenge, string validate)
+    private async Task<string> CallVerifyVerificationAsync(AccountContext ctx, string challenge, string validate)
     {
-        string activeId = _accountManager.ActiveAccountId ?? throw new InvalidOperationException("Geetest_NoActiveAccount".GetLocalized());
-        // 身份从聚合入口取：device_id / device_fp / UA / 版本同源
-        var ctx = await _identityService.BuildAsync(activeId);
-        string cookieStr = DailyNoteService.BuildCookieString(cookies, DailyNoteService.CookieMode.Cookie);
+        string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
         GeetestWebResponse body = new()
         {
             Challenge = challenge,
@@ -136,13 +126,15 @@ public sealed class GeetestService
         req.Headers.Add("x-rpc-client_type", "5");
         req.Headers.Add("x-rpc-device_id", ctx.Device.BbsDeviceId);
         req.Headers.Add("x-rpc-device_fp", ctx.Device.DeviceFp);
+        req.Headers.Add("x-rpc-device_name", Uri.EscapeDataString(ctx.Device.DeviceName));
+        req.Headers.Add("x-rpc-sys_version", ctx.Device.SysVersion);
         req.Headers.Add("x-rpc-challenge_game", "2");
         req.Headers.Add("x-rpc-challenge_path", DailyNoteChallengePath);
         req.Headers.Add("DS", ds);
         req.Headers.Add("Referer", UserAgents.WebstaticReferer);
         req.Headers.UserAgent.ParseAdd(ctx.UserAgent.Mobile);
 
-        HttpResponseMessage resp = await _httpClient.SendAsync(req);
+        using HttpResponseMessage resp = await _httpClient.SendAsync(req);
         return await resp.Content.ReadAsStringAsync();
     }
 
