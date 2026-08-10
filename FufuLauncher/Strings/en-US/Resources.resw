@@ -402,6 +402,57 @@
   <data name="InjectionCaption" xml:space="preserve">
     <value>Built-in uses the launcher's engine to load plugins; Standalone uses an external program — useful when built-in is incompatible.</value>
   </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>Log into game with MiYouShe/HoyoLAB account</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>Launch the game directly with your currently selected MiYouShe or HoyoLAB account, no need to re-enter credentials in-game.</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>Cannot Enable</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>Please log into a MiYouShe or HoyoLAB account first under Account settings.</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>Account Session Expired</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>Your current account needs to sign in again before using this feature.</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>Game Not Selected</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>Please select the game installation directory on the home page first.</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>Next time you launch the game, you will enter directly with your MiYouShe/HoyoLAB account. No need to enter credentials again.</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>Cannot Enable</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>This account cannot use this feature right now. Please check the account session and try again.</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>Temporarily Unavailable</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>Network or service error. Please try again later.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>Account Does Not Match Server</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>The selected HoyoLAB overseas account cannot be used to launch the Chinese mainland version of the game. Please switch to an account that matches the current server.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>The selected MiYouShe Chinese mainland account cannot be used to launch the overseas version of the game. Please switch to an account that matches the current server.</value>
+  </data>
   <data name="RedeemReminderTitle" xml:space="preserve">
     <value>Redeem Code Reminder</value>
   </data>
@@ -5463,7 +5514,9 @@ Do you still want to execute it? (Not recommended)</value>
   <data name="Checkin_CheckingIn" xml:space="preserve">
     <value>Checking in...</value>
   </data>
-<data name="Checkin_AccountLabel" xml:space="preserve"><value>Account: {0}</value></data>
+  <data name="Checkin_AccountLabel" xml:space="preserve">
+    <value>Account: {0}</value>
+  </data>
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Remove Cloud Gaming Credential</value>
   </data>

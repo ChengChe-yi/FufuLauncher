@@ -402,6 +402,57 @@
   <data name="InjectionCaption" xml:space="preserve">
     <value>内置注入通过启动器自身引擎加载插件；独立注入使用独立程序启动游戏并加载插件，适用于内置模式不兼容的情况。</value>
   </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>使用米游社/HoyoLAB 账户直接登录游戏</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>启动游戏时直接以当前选中的米游社或 HoyoLAB 账户身份进入游戏，无需在游戏内再次输入账号密码。</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>无法开启</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>请先在账户设置中登录一个米游社或 HoyoLAB 账户。</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>账户登录已过期</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>当前账户需要重新登录后才能使用此功能。</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>未选择游戏</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>请先在主页选择游戏安装目录。</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>已开启</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>下次启动游戏时将直接以米游社/HoyoLAB 账户身份进入游戏，无需再次输入账号密码。</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>无法开启</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>当前账户暂时无法使用此功能，请检查账户登录状态后重试。</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>暂时不可用</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>网络或服务异常，请稍后再试。</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>账户与服务器不匹配</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>当前选中的 HoyoLAB 国际服账户无法用于启动国服游戏，请切换到对应区域的账户。</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>当前选中的米游社国服账户无法用于启动国际服游戏，请切换到对应区域的账户。</value>
+  </data>
   <data name="RedeemReminderTitle" xml:space="preserve">
     <value>兑换码提醒</value>
   </data>
@@ -5577,7 +5628,9 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Checkin_CheckingIn" xml:space="preserve">
     <value>签到中...</value>
   </data>
-<data name="Checkin_AccountLabel" xml:space="preserve"><value>账号: {0}</value></data>
+  <data name="Checkin_AccountLabel" xml:space="preserve">
+    <value>账号: {0}</value>
+  </data>
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>移除云游戏凭证</value>
   </data>

@@ -16,6 +16,7 @@ using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
+using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -62,6 +63,8 @@ namespace FufuLauncher.ViewModels
         private readonly IGameLauncherService _gameLauncherService;
         private readonly IFilePickerService _filePickerService;
         private readonly AccountManager _accountManager;
+        private readonly Services.AuthTicket.IAuthTicketService _authTicketService;
+        private readonly DispatcherQueue _dispatcherQueue;
         public record MonitorItem(string DisplayName, int Index);
 
         [ObservableProperty] private ElementTheme _elementTheme;
@@ -163,6 +166,8 @@ namespace FufuLauncher.ViewModels
 
         [ObservableProperty] private bool _isRedeemCodeNotificationEnabled = true;
         
+        [ObservableProperty] private bool _isUsingHoyolabAccount;
+        
         [ObservableProperty] private bool _isScreenshotEnabled;
         [ObservableProperty] private string _screenshotHotkey = "F12";
         [ObservableProperty] private string _screenshotSavePath;
@@ -176,6 +181,104 @@ namespace FufuLauncher.ViewModels
         {
             if (_isInitializing) return;
             _ = _localSettingsService.SaveSettingAsync("IsCaptchaPopupDisabled", value);
+        }
+
+        partial void OnIsUsingHoyolabAccountChanged(bool value)
+        {
+            if (_isInitializing) return;
+
+            if (value)
+            {
+                _ = ValidateAndEnableHoyolabAccountAsync();
+            }
+            else
+            {
+                _ = _localSettingsService.SaveSettingAsync("UsingHoyolabAccount", false);
+            }
+        }
+
+        private async Task ValidateAndEnableHoyolabAccountAsync()
+        {
+            try
+            {
+                var activeId = _accountManager.ActiveAccountId;
+                if (string.IsNullOrEmpty(activeId))
+                {
+                    _dispatcherQueue.TryEnqueue(() =>
+                    {
+                        IsUsingHoyolabAccount = false;
+                        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                            "HoyolabAccount_NoLoggedIn_Title".GetLocalized(),
+                            "HoyolabAccount_NoLoggedIn_Message".GetLocalized(),
+                            NotificationType.Warning));
+                    });
+                    return;
+                }
+
+                var cookies = await _accountManager.LoadCookiesAsync(activeId);
+                if (cookies == null || !cookies.ContainsKey("stoken") || string.IsNullOrEmpty(cookies["stoken"]))
+                {
+                    _dispatcherQueue.TryEnqueue(() =>
+                    {
+                        IsUsingHoyolabAccount = false;
+                        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                            "HoyolabAccount_LoginExpired_Title".GetLocalized(),
+                            "HoyolabAccount_LoginExpired_Message".GetLocalized(),
+                            NotificationType.Warning));
+                    });
+                    return;
+                }
+
+                if (!_gameLauncherService.IsGamePathSelected())
+                {
+                    _dispatcherQueue.TryEnqueue(() =>
+                    {
+                        IsUsingHoyolabAccount = false;
+                        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                            "HoyolabAccount_NoGamePath_Title".GetLocalized(),
+                            "HoyolabAccount_NoGamePath_Message".GetLocalized(),
+                            NotificationType.Warning));
+                    });
+                    return;
+                }
+
+                var result = await _authTicketService.CreateAuthTicketAsync(activeId);
+                if (result.Success)
+                {
+                    await _localSettingsService.SaveSettingAsync("UsingHoyolabAccount", true);
+                    _dispatcherQueue.TryEnqueue(() =>
+                    {
+                        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                            "HoyolabAccount_Enabled_Title".GetLocalized(),
+                            "HoyolabAccount_Enabled_Message".GetLocalized(),
+                            NotificationType.Success,
+                            5000));
+                    });
+                }
+                else
+                {
+                    _dispatcherQueue.TryEnqueue(() =>
+                    {
+                        IsUsingHoyolabAccount = false;
+                        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                            "HoyolabAccount_EnableFailed_Title".GetLocalized(),
+                            "HoyolabAccount_EnableFailed_Message".GetLocalized(),
+                            NotificationType.Error));
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[SettingsVM] 验证时异常: {ex.Message}");
+                _dispatcherQueue.TryEnqueue(() =>
+                {
+                    IsUsingHoyolabAccount = false;
+                    WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                        "HoyolabAccount_TempUnavailable_Title".GetLocalized(),
+                        "HoyolabAccount_TempUnavailable_Message".GetLocalized(),
+                        NotificationType.Error));
+                });
+            }
         }
 
         partial void OnIsScreenshotEnabledChanged(bool value)
@@ -542,7 +645,8 @@ namespace FufuLauncher.ViewModels
             INavigationService navigationService,
             IGameLauncherService gameLauncherService,
             IFilePickerService filePickerService,
-            AccountManager accountManager)
+            AccountManager accountManager,
+            Services.AuthTicket.IAuthTicketService authTicketService)
         {
             _themeSelectorService = themeSelectorService;
             _backgroundRenderer = backgroundRenderer;
@@ -551,6 +655,8 @@ namespace FufuLauncher.ViewModels
             _gameLauncherService = gameLauncherService;
             _filePickerService = filePickerService;
             _accountManager = accountManager;
+            _authTicketService = authTicketService;
+            _dispatcherQueue = App.MainWindow.DispatcherQueue;
 
             InitializeDefaultResolution();
 
@@ -1142,6 +1248,9 @@ namespace FufuLauncher.ViewModels
 
             var redeemNotifyJson = await _localSettingsService.ReadSettingAsync("IsRedeemCodeNotificationEnabled");
             IsRedeemCodeNotificationEnabled = redeemNotifyJson == null || Convert.ToBoolean(redeemNotifyJson);
+
+            var usingHoyolabJson = await _localSettingsService.ReadSettingAsync("UsingHoyolabAccount");
+            IsUsingHoyolabAccount = usingHoyolabJson != null && Convert.ToBoolean(usingHoyolabJson);
 
             var behaviorJson = await _localSettingsService.ReadSettingAsync("PostLaunchBehavior");
             PostLaunchBehavior postLaunchBehavior = PostLaunchBehavior.None;

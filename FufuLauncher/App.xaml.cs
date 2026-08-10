@@ -162,6 +162,7 @@ public partial class App : Application
 
                     services.AddSingleton<IGameLauncherService, GameLauncherService>();
                     services.AddSingleton<IGameConfigService, GameConfigService>();
+                    services.AddSingleton<Services.AuthTicket.IAuthTicketService, Services.AuthTicket.AuthTicketService>();
 
                     services.AddSingleton<IHoyoverseCheckinService, HoyoverseCheckinService>();
                     services.AddSingleton<ICommunityCheckinService, CommunityCheckinService>();

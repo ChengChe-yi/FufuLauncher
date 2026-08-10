@@ -12,6 +12,7 @@ using FufuLauncher.ViewModels;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
+using FufuLauncher.Services.AuthTicket;
 
 namespace FufuLauncher.Services
 {
@@ -34,9 +35,13 @@ namespace FufuLauncher.Services
         private const string GamePathKey = "GameInstallationPath";
         private const string UseInjectionKey = "UseInjection";
         private const string CustomLaunchParametersKey = "CustomLaunchParameters";
+        private const string UsingHoyolabAccountKey = "UsingHoyolabAccount";
         public const string GenshinHDRConfigKey = "IsGenshinHDRForcedEnabled";
         private readonly IPluginUpdateService _pluginUpdateService;
         private readonly IScreenshotService _screenshotService;
+        private readonly IAuthTicketService _authTicketService;
+        private readonly AccountManager _accountManager;
+        private readonly GameRegistrySnapshot _registrySnapshot = new();
 
         private bool _lastUseInjection;
 
@@ -46,13 +51,17 @@ namespace FufuLauncher.Services
             ILauncherService launcherService,
             ControlPanelModel controlPanelModel,
             IPluginUpdateService pluginUpdateService,
-            IScreenshotService screenshotService)
+            IScreenshotService screenshotService,
+            IAuthTicketService authTicketService,
+            AccountManager accountManager)
         {
             _localSettingsService = localSettingsService;
             _gameConfigService = gameConfigService;
             _launcherService = launcherService;
             _controlPanelModel = controlPanelModel;
             _screenshotService = screenshotService;
+            _authTicketService = authTicketService;
+            _accountManager = accountManager;
         }
 
         [DllImport("user32.dll")]
@@ -138,6 +147,18 @@ namespace FufuLauncher.Services
             Trace.WriteLine($"[启动服务] 保存自定义参数: '{parameters}'");
         }
 
+        public async Task<bool> GetUsingHoyolabAccountAsync()
+        {
+            var obj = await _localSettingsService.ReadSettingAsync(UsingHoyolabAccountKey);
+            return obj != null && Convert.ToBoolean(obj);
+        }
+
+        public async Task SetUsingHoyolabAccountAsync(bool value)
+        {
+            await _localSettingsService.SaveSettingAsync(UsingHoyolabAccountKey, value);
+            Trace.WriteLine($"[启动服务] 保存米游社账户启动选项: {value}");
+        }
+
         private async Task ApplyGenshinHDRConfigAsync(StringBuilder logBuilder)
         {
             try
@@ -183,7 +204,7 @@ namespace FufuLauncher.Services
             return 0;
         }
 
-public async Task<LaunchResult> LaunchGameAsync()
+        public async Task<LaunchResult> LaunchGameAsync()
         {
             var result = new LaunchResult { Success = false, ErrorMessage = "LaunchErr_UnknownError".GetLocalized(), DetailLog = "" };
             var logBuilder = new StringBuilder();
@@ -235,8 +256,82 @@ public async Task<LaunchResult> LaunchGameAsync()
                 }
 
                 await ApplyGenshinHDRConfigAsync(logBuilder);
+                
+                string? authTicket = null;
+                bool usingHoyolabAccount = await GetUsingHoyolabAccountAsync();
+                if (usingHoyolabAccount)
+                {
+                    logBuilder.AppendLine("[启动流程] 已启用米游社/HoyoLAB账户启动");
+                    var activeAccountId = _accountManager.ActiveAccountId;
+                    if (!string.IsNullOrEmpty(activeAccountId))
+                    {
+                        bool isOversea = activeAccountId.StartsWith("os", StringComparison.OrdinalIgnoreCase);
+                        
+                        bool isBilibili = false;
+                        try
+                        {
+                            var configIniPath = Path.Combine(gamePath, "config.ini");
+                            if (File.Exists(configIniPath))
+                            {
+                                var configContent = await File.ReadAllTextAsync(configIniPath);
+                                isBilibili = configContent.Contains("channel=14") || configContent.Contains("cps=bilibili");
+                            }
+                        }
+                        catch { }
+                        
+                        bool isGameOversea = config.ServerType == "ServerType_Global".GetLocalized();
+                        
+                        if (isBilibili)
+                        {
+                            logBuilder.AppendLine("[启动流程] 跳过");
+                        }
+                        else if (isOversea && !isGameOversea)
+                        {
+                            logBuilder.AppendLine("[启动流程] 国际服跳过AuthTicket");
+                            WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                "HoyolabAccount_ServerMismatch_Title".GetLocalized(),
+                                "HoyolabAccount_ServerMismatch_OverseaMsg".GetLocalized(),
+                                NotificationType.Warning,
+                                5000));
+                        }
+                        else if (!isOversea && isGameOversea)
+                        {
+                            logBuilder.AppendLine("[启动流程] 国服账户不能用于国际服游戏，跳过AuthTicket");
+                            WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                "HoyolabAccount_ServerMismatch_Title".GetLocalized(),
+                                "HoyolabAccount_ServerMismatch_CnMsg".GetLocalized(),
+                                NotificationType.Warning,
+                                5000));
+                        }
+                        else
+                        {
+                            _registrySnapshot.TakeSnapshot(isOversea);
+                            logBuilder.AppendLine("[启动流程] 已保存注册表快照");
 
-                var arguments = BuildLaunchArguments(config).ToString();
+                            var ticketResult = await _authTicketService.CreateAuthTicketAsync(activeAccountId);
+                            if (ticketResult.Success)
+                            {
+                                authTicket = ticketResult.Ticket;
+                                logBuilder.AppendLine($"[启动流程] 成功获取AuthTicket (长度: {authTicket.Length})");
+                            }
+                            else
+                            {
+                                logBuilder.AppendLine($"[启动流程] 获取AuthTicket失败: {ticketResult.ErrorMessage}");
+                                WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                    "HoyolabAccount_EnableFailed_Title".GetLocalized(),
+                                    "HoyolabAccount_EnableFailed_Message".GetLocalized(),
+                                    NotificationType.Warning,
+                                    5000));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        logBuilder.AppendLine("[启动流程] 未选择米游社/HoyoLAB 账户，跳过 AuthTicket");
+                    }
+                }
+
+                var arguments = BuildLaunchArguments(config, authTicket).ToString();
                 logBuilder.AppendLine($"[启动流程] 启动参数: {arguments}");
 
                 var useInjection = await GetUseInjectionAsync();
@@ -349,6 +444,24 @@ public async Task<LaunchResult> LaunchGameAsync()
                         _ = LaunchBetterGIAsync();
                         await CheckAndLaunchFpsOverlayAsync(logBuilder, gamePid);
                         await CheckAndLaunchScreenshotServiceAsync(logBuilder, gamePid);
+                        
+                        if (_registrySnapshot.HasSnapshot)
+                        {
+                            _ = Task.Run(async () =>
+                            {
+                                try
+                                {
+                                    var proc = Process.GetProcessById(gamePid);
+                                    await proc.WaitForExitAsync();
+                                }
+                                catch { }
+                                finally
+                                {
+                                    _registrySnapshot.RestoreSnapshot();
+                                    Debug.WriteLine("[启动流程] 游戏退出，已恢复注册表快照");
+                                }
+                            });
+                        }
 
                         result.Success = true;
                         result.ErrorMessage = "";
@@ -422,7 +535,7 @@ public async Task<LaunchResult> LaunchGameAsync()
             }
         }
 
-        private StringBuilder BuildLaunchArguments(GameConfig config)
+        private StringBuilder BuildLaunchArguments(GameConfig config, string? authTicket = null)
         {
             var args = new StringBuilder();
 
@@ -445,6 +558,13 @@ public async Task<LaunchResult> LaunchGameAsync()
                         Debug.WriteLine($"[启动服务] 使用自定义参数: '{customParams}'");
                     }
                 }
+            }
+            
+            if (!string.IsNullOrEmpty(authTicket))
+            {
+                if (args.Length > 0) args.Append(' ');
+                args.Append($"login_auth_ticket={authTicket}");
+                Debug.WriteLine("[启动服务] 已追加login_auth_ticket参数");
             }
 
             return args;

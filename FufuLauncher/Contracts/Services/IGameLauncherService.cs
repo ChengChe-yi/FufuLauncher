@@ -17,6 +17,9 @@ namespace FufuLauncher.Contracts.Services
         Task<string> GetCustomLaunchParametersAsync();
         Task SetCustomLaunchParametersAsync(string parameters);
 
+        Task<bool> GetUsingHoyolabAccountAsync();
+        Task SetUsingHoyolabAccountAsync(bool value);
+
         Task<LaunchResult> LaunchGameAsync();
         Task StopBetterGIAsync();
     }
