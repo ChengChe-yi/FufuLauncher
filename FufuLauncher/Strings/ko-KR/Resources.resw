@@ -4440,7 +4440,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>특성</value>
   </data>
   <data name="DataPage_ZeroConstellation" xml:space="preserve">
-    <value>무명함 비율</value>
+    <value>명함 비율</value>
   </data>
   <data name="DataPage_ClearTime" xml:space="preserve">
     <value>평균 클리어 시간</value>
@@ -4677,16 +4677,16 @@ UIGF v4.x/3.0/2.x</value>
     <value>{0}의 보유율은 {1}인데 사용률은 {2}뿐입니다. 거의 모두 갖고 있지만 거의 쓰지 않습니다.</value>
   </data>
   <data name="DataPage_InsightNoConstTitle" xml:space="preserve">
-    <value>무명함으로 충분</value>
+    <value>명함으로 충분</value>
   </data>
   <data name="DataPage_InsightNoConstBody" xml:space="preserve">
-    <value>{0}은(는) {1}의 플레이어가 무명함으로 운용하므로 명함이 필요하지 않습니다.</value>
+    <value>{0}은(는) {1}의 플레이어가 명함(C0)으로 운용하므로 돌파가 필요하지 않습니다.</value>
   </data>
   <data name="DataPage_InsightConstTitle" xml:space="preserve">
-    <value>명함 의존</value>
+    <value>돌파 의존</value>
   </data>
   <data name="DataPage_InsightConstBody" xml:space="preserve">
-    <value>{0}을(를) 무명함으로 쓰는 비율은 {1}뿐이며, 사용률은 대부분 명함 보유자에게서 나옵니다.</value>
+    <value>{0}을(를) 명함(C0)으로 쓰는 비율은 {1}뿐이며, 사용률은 대부분 돌파 보유자에게서 나옵니다.</value>
   </data>
   <data name="DataPage_InsightWeaponTitle" xml:space="preserve">
     <value>사실상 전용 무기</value>

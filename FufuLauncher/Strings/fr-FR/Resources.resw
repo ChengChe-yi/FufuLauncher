@@ -1605,7 +1605,7 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
     <value>Expéditions</value>
   </data>
   <data name="Home_Transformer" xml:space="preserve">
-    <value>Transformateur</value>
+    <value>Transformateur paramétrique</value>
   </data>
   <data name="Home_ToggleBg" xml:space="preserve">
     <value>Changer l'arrière-plan</value>
@@ -1737,7 +1737,7 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
     <value>Vidéothèque : consultez les vidéos des personnages ou les cinématiques du jeu</value>
   </data>
   <data name="Home_BBSTooltip" xml:space="preserve">
-    <value>Données de combat : consultez les données détaillées des Profondeurs et du Théâtre des Fantaisies</value>
+    <value>Données de combat : consultez les données détaillées des Profondeurs et du Théâtre de l'Imaginarium</value>
   </data>
   <data name="OtherPage_Title" xml:space="preserve">
     <value>Autres paramètres</value>
@@ -4265,7 +4265,7 @@ Rapport : {0}</value>
     <value>Personnages</value>
   </data>
   <data name="DataPage_TabSpiral" xml:space="preserve">
-    <value>Abîme en spirale</value>
+    <value>Profondeurs spiralées</value>
   </data>
   <data name="DataPage_TabStygian" xml:space="preserve">
     <value>Assaut stygien</value>
@@ -4355,7 +4355,7 @@ Rapport : {0}</value>
     <value>Version actuelle</value>
   </data>
   <data name="DataPage_KpiSample" xml:space="preserve">
-    <value>Échantillon Abîme</value>
+    <value>Échantillon des Profondeurs</value>
   </data>
   <data name="DataPage_KpiStygianSample" xml:space="preserve">
     <value>Stygien</value>
@@ -4394,7 +4394,7 @@ Rapport : {0}</value>
     <value>Score global</value>
   </data>
   <data name="DataPage_SortAbyss" xml:space="preserve">
-    <value>Taux d'utilisation en Abîme</value>
+    <value>Taux d'utilisation dans les Profondeurs</value>
   </data>
   <data name="DataPage_SortValue" xml:space="preserve">
     <value>Priorité d'invocation</value>
@@ -4721,7 +4721,7 @@ Rapport : {0}</value>
     <value>Aucune bannière de personnage n'est en cours.</value>
   </data>
   <data name="DataPage_BannerAdviceItem" xml:space="preserve">
-    <value>{0} ({1}, usage en Abîme {2})</value>
+    <value>{0} ({1}, usage dans les Profondeurs {2})</value>
   </data>
   <data name="DataPage_ListSeparator" xml:space="preserve">
     <value>, </value>

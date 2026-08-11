@@ -374,7 +374,7 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
     <value>探索派遣を表示</value>
   </data>
   <data name="ShowTransformer" xml:space="preserve">
-    <value>参量質変器を表示</value>
+    <value>パラメータ変換器を表示</value>
   </data>
   <data name="NavItemsTitle" xml:space="preserve">
     <value>ナビゲーションバー表示項目</value>
@@ -713,10 +713,10 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
     <value>クラウドゲーム認証情報を追加</value>
   </data>
   <data name="CaptchaQuestion" xml:space="preserve">
-    <value>CAPTCHAについて</value>
+    <value>CAPTCHAが発生したら？</value>
   </data>
   <data name="CaptchaTooltip" xml:space="preserve">
-    <value>チェックインでCAPTCHAが表示される場合があります。実デバイス情報の設定でリスク軽減。</value>
+    <value>ゲームチェックインやコミュニティチェックイン中（比較的発生しやすい）にCAPTCHAが表示される場合があります。実機のデバイス情報を設定してリスク管理の頻度を下げるか、スタンドアロン版でCAPTCHA解決サービスを設定してください。</value>
   </data>
   <data name="SelfHostedVersion" xml:space="preserve">
     <value>自己ホスト版</value>
@@ -3916,7 +3916,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>非公開</value>
   </data>
   <data name="Gacha_Won5050" xml:space="preserve">
-    <value>50/50敗北</value>
+    <value>すり抜け</value>
   </data>
   <data name="Gacha_Guaranteed" xml:space="preserve">
     <value>確定</value>

@@ -4926,7 +4926,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>稀有貨幣</value>
   </data>
   <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>千星奇域</value>
+    <value>幻想真境劇詩</value>
   </data>
   <data name="Backpack_GadgetTabMisc" xml:space="preserve">
     <value>小道具</value>
@@ -4941,7 +4941,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>貴重物品</value>
   </data>
   <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>千星奇域</value>
+    <value>幻想真境劇詩</value>
   </data>
   <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
     <value>冒險道具</value>

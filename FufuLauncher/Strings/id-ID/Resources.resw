@@ -138,7 +138,7 @@ Saran:
     <value>Unduh Manual</value>
   </data>
   <data name="Plugin_Download_Progress_Format" xml:space="preserve">
-    <value>{0} jalur mengunduh... {1}%</value>
+    <value>Mengunduh melalui jalur {0}... {1}%</value>
   </data>
   <data name="Plugin_Download_Success" xml:space="preserve">
     <value>Plugin terpasang dan disegarkan</value>
@@ -4671,7 +4671,7 @@ Detail: {0}</value>
     <value>{0} dipakai oleh {1} pemilik, tetapi hanya {2} akun yang punya — kuat tapi langka, prioritas tertinggi.</value>
   </data>
   <data name="DataPage_InsightBenchTitle" xml:space="preserve">
-    <value>Duduk di bangku</value>
+    <value>Masuk gudang</value>
   </data>
   <data name="DataPage_InsightBenchBody" xml:space="preserve">
     <value>{0} ada di {1} akun tetapi hanya {2} yang memakainya — hampir semua punya, hampir tidak ada yang pakai.</value>
@@ -5421,7 +5421,7 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
     <value>Senjata yang Dimiliki</value>
   </data>
   <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>Artifact yang Dikunci</value>
+    <value>Artefak yang Dikunci</value>
   </data>
   <data name="Backpack_KpiCookableFood" xml:space="preserve">
     <value>Masakan yang Bisa Dibuat</value>
@@ -5442,10 +5442,10 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
     <value>Total {0} senjata Bintang 5 telah mencapai refinement maksimal.</value>
   </data>
   <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>Artifact Bintang 5 Level Maks</value>
+    <value>Artefak Bintang 5 Level Maks</value>
   </data>
   <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>{0} Artifact Bintang 5 telah ditingkatkan hingga +20.</value>
+    <value>{0} Artefak Bintang 5 telah ditingkatkan hingga +20.</value>
   </data>
   <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
     <value>Bahan Masakan Tersedia</value>
@@ -5583,7 +5583,7 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
     <value>Entri Kodeks</value>
   </data>
   <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>Setelah diimpor dari game, level enhancement, nilai main stat, dan detail roll sub-stat Artifact akan terisi otomatis. Saat ini ditampilkan adalah klasifikasi set dan informasi dasar bonus set dari Artifact tersebut.</value>
+    <value>Setelah diimpor dari game, level enhancement, nilai main stat, dan detail roll sub-stat Artefak akan terisi otomatis. Saat ini ditampilkan adalah klasifikasi set dan informasi dasar bonus set dari Artefak tersebut.</value>
   </data>
   <data name="Backpack_DetailCookState" xml:space="preserve">
     <value>Status Pembuatan</value>

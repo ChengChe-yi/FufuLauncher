@@ -374,7 +374,7 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
     <value>Expeditionen anzeigen</value>
   </data>
   <data name="ShowTransformer" xml:space="preserve">
-    <value>Parametrischen Transformator anzeigen</value>
+    <value>Parameterwandler anzeigen</value>
   </data>
   <data name="NavItemsTitle" xml:space="preserve">
     <value>Navigationsleisten-Elemente</value>
@@ -1605,7 +1605,7 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
     <value>Expeditionen</value>
   </data>
   <data name="Home_Transformer" xml:space="preserve">
-    <value>Parametrischer Transformator</value>
+    <value>Parameterwandler</value>
   </data>
   <data name="Home_ToggleBg" xml:space="preserve">
     <value>Hintergrund wechseln</value>
@@ -1737,7 +1737,7 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
     <value>Videobibliothek: Ermöglicht das Ansehen von Charaktervideos und Zwischensequenzen.</value>
   </data>
   <data name="Home_BBSTooltip" xml:space="preserve">
-    <value>Kampfstatistiken: Zeigt detaillierte Kampfdaten wie Abgrund und Theater der Träume an.</value>
+    <value>Kampfstatistiken: Zeigt detaillierte Kampfdaten wie Gewundener Abgrund und Theater der imaginären Realität an.</value>
   </data>
   <data name="OtherPage_Title" xml:space="preserve">
     <value>Weitere Einstellungen</value>
@@ -2611,7 +2611,7 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
     <value>Stygische Prüfung</value>
   </data>
   <data name="DataPage_SpiralAbyss" xml:space="preserve">
-    <value>Spiralabgrund</value>
+    <value>Gewundener Abgrund</value>
   </data>
   <data name="DataPage_WishData" xml:space="preserve">
     <value>Wunschdaten</value>
@@ -4197,19 +4197,19 @@ Rückmeldung: {0}</value>
     <value>Beschleunigt den Download über Drittanbieter-CDN-Knoten. Deaktivieren, um direkt von GitHub herunterzuladen.</value>
   </data>
   <data name="PluginStoreSubtitle" xml:space="preserve">
-    <value>Community-Plug-ins entdecken und installieren, um den Launcher zu erweitern</value>
+    <value>Community-Plugins entdecken und installieren, um den Launcher zu erweitern</value>
   </data>
   <data name="PluginStorePluginsSection" xml:space="preserve">
-    <value>Plug-ins</value>
+    <value>Plugins</value>
   </data>
   <data name="PluginStoreMoreActions" xml:space="preserve">
     <value>Weitere Aktionen</value>
   </data>
   <data name="PluginStorePrivatePlugin" xml:space="preserve">
-    <value>Privates Plug-in</value>
+    <value>Privates Plugin</value>
   </data>
   <data name="PluginStorePrivatePluginTooltip" xml:space="preserve">
-    <value>Privates Plug-in hinzufügen (Plug-in-ID und Zugriffsschlüssel erforderlich)</value>
+    <value>Privates Plugin hinzufügen (Plugin-ID und Zugriffsschlüssel erforderlich)</value>
   </data>
   <data name="PluginStorePrivateBadge" xml:space="preserve">
     <value>Privat</value>
@@ -4248,7 +4248,7 @@ Rückmeldung: {0}</value>
     <value>Abhängigkeiten</value>
   </data>
   <data name="PluginStoreLongDescription" xml:space="preserve">
-    <value>Über dieses Plug-in</value>
+    <value>Über dieses Plugin</value>
   </data>
   <data name="PluginStoreDownloadingLua" xml:space="preserve">
     <value>Installationsskript wird heruntergeladen...</value>
@@ -4266,7 +4266,7 @@ Rückmeldung: {0}</value>
     <value>Charaktere</value>
   </data>
   <data name="DataPage_TabSpiral" xml:space="preserve">
-    <value>Abgrund</value>
+    <value>Gewundener Abgrund</value>
   </data>
   <data name="DataPage_TabStygian" xml:space="preserve">
     <value>Stygische Prüfung</value>
@@ -4926,7 +4926,7 @@ Rückmeldung: {0}</value>
     <value>Seltene Währung</value>
   </data>
   <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Imaginarium-Theater</value>
+    <value>Theater der imaginären Realität</value>
   </data>
   <data name="Backpack_GadgetTabMisc" xml:space="preserve">
     <value>Gadgets</value>
@@ -4941,7 +4941,7 @@ Rückmeldung: {0}</value>
     <value>Wertgegenstände</value>
   </data>
   <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Imaginarium-Theater</value>
+    <value>Theater der imaginären Realität</value>
   </data>
   <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
     <value>Abenteuer-Gadgets</value>

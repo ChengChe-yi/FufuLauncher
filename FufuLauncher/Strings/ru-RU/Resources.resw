@@ -1605,7 +1605,7 @@
     <value>Экспедиции</value>
   </data>
   <data name="Home_Transformer" xml:space="preserve">
-    <value>Преобразователь</value>
+    <value>Параметрический преобразователь</value>
   </data>
   <data name="Home_ToggleBg" xml:space="preserve">
     <value>Сменить фон</value>
@@ -1737,7 +1737,7 @@
     <value>Видеотека: ролики персонажей и катсцены</value>
   </data>
   <data name="Home_BBSTooltip" xml:space="preserve">
-    <value>Хроника: Витой Бездны, Театр воображения и др.</value>
+    <value>Хроника: Витой Бездны, Театр «Воображариум» и др.</value>
   </data>
   <data name="OtherPage_Title" xml:space="preserve">
     <value>Другие настройки</value>
@@ -2962,7 +2962,7 @@
     <value>Ивент оружия</value>
   </data>
   <data name="GachaAnalysis_ChronicledWish" xml:space="preserve">
-    <value>Хроника желаний</value>
+    <value>Молитва хроник</value>
   </data>
   <data name="GachaAnalysis_StandardWish" xml:space="preserve">
     <value>Стандартный баннер</value>

@@ -1288,7 +1288,7 @@ Stack trace:
     <value>Cronologia</value>
   </data>
   <data name="DataPage_TopArtifacts" xml:space="preserve">
-    <value>Migliori Artefatti</value>
+    <value>Migliori Manufatti</value>
   </data>
   <data name="DataPage_TopWeapons" xml:space="preserve">
     <value>Migliori Armi</value>
@@ -3119,7 +3119,7 @@ Se puoi aiutare, usa il pulsante qui sotto per visitare il repository di codice 
     <value>Statistiche Avanzate</value>
   </data>
   <data name="PlayerInfo_ArtifactDetails" xml:space="preserve">
-    <value>Dettagli Artefatti</value>
+    <value>Dettagli Manufatti</value>
   </data>
   <data name="PlayerInfo_Attack" xml:space="preserve">
     <value>ATT</value>
@@ -5427,7 +5427,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Armi possedute</value>
   </data>
   <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>Artefatti bloccati</value>
+    <value>Manufatti bloccati</value>
   </data>
   <data name="Backpack_KpiCookableFood" xml:space="preserve">
     <value>Pietanze preparabili</value>
@@ -5439,7 +5439,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Armi a 5 stelle</value>
   </data>
   <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>Artefatti totali</value>
+    <value>Manufatti totali</value>
   </data>
   <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
     <value>Armi a 5 stelle con Affinamento massimo</value>
@@ -5448,7 +5448,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>{0} armi a 5 stelle hanno raggiunto l'Affinamento massimo.</value>
   </data>
   <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>Artefatti a 5 stelle al livello massimo</value>
+    <value>Manufatti a 5 stelle al livello massimo</value>
   </data>
   <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
     <value>{0} artefatti a 5 stelle sono stati potenziati a +20.</value>
@@ -5589,7 +5589,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Voce del catalogo</value>
   </data>
   <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>Dopo aver importato il gioco, verranno compilati automaticamente il livello di potenziamento dell'Artefatto, il valore del Sotto-stat principale e i dettagli dei roll dei Sotto-stat secondari. Al momento vengono visualizzate le informazioni di base sulla categoria del Set di artefatti e sui relativi bonus.</value>
+    <value>Dopo aver importato il gioco, verranno compilati automaticamente il livello di potenziamento del Manufatto, il valore del Sotto-stat principale e i dettagli dei roll dei Sotto-stat secondari. Al momento vengono visualizzate le informazioni di base sulla categoria del Set di manufatti e sui relativi bonus.</value>
   </data>
   <data name="Backpack_DetailCookState" xml:space="preserve">
     <value>Stato di preparazione</value>
