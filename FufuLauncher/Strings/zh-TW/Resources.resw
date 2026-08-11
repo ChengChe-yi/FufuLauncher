@@ -5243,6 +5243,10 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>安裝失敗</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>安裝後未偵測到插件檔案，可能未成功安裝</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>解除安裝中...</value>
   </data>

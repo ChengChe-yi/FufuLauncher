@@ -4366,6 +4366,10 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>安装失败</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>安装后未检测到插件文件，可能未成功安装</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>卸载中...</value>
   </data>

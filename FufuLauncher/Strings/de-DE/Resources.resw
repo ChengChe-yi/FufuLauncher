@@ -5243,6 +5243,10 @@ Rückmeldung: {0}</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>Installation fehlgeschlagen</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>Plugindateien nach der Installation nicht gefunden; das Plugin wurde möglicherweise nicht installiert</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Deinstallation läuft...</value>
   </data>

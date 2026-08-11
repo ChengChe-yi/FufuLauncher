@@ -5249,6 +5249,10 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>Installazione non riuscita</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>File del plugin non trovati dopo l'installazione; il plugin potrebbe non essere stato installato</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Disinstallazione in corso...</value>
   </data>

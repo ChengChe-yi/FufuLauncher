@@ -4252,6 +4252,10 @@ Details: {0}</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>Install failed</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>Plugin files not found after installation; the plugin may not have been installed</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Uninstalling...</value>
   </data>

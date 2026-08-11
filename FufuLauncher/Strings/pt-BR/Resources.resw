@@ -5243,6 +5243,10 @@ Detalhes: {0}</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>Falha na instalação</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>Arquivos do plugin não encontrados após a instalação; o plugin pode não ter sido instalado</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Desinstalando...</value>
   </data>

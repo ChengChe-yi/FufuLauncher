@@ -5242,6 +5242,10 @@ Rapport : {0}</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>Échec de l'installation</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>Fichiers du plugin introuvables après l'installation ; le plugin n'a peut-être pas été installé</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Désinstallation en cours...</value>
   </data>

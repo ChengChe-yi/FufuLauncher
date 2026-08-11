@@ -5243,6 +5243,10 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>Не удалось установить</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>Файлы плагина не найдены после установки; возможно, плагин не был установлен</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Удаление...</value>
   </data>

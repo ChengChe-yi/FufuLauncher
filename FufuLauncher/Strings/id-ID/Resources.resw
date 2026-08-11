@@ -5243,6 +5243,10 @@ Detail: {0}</value>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
     <value>Pemasangan Gagal</value>
   </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>File plugin tidak ditemukan setelah instalasi; plugin mungkin tidak terpasang dengan benar</value>
+  </data>
+
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Sedang Mencopot...</value>
   </data>
