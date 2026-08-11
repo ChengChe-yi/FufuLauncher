@@ -3915,7 +3915,7 @@ UIGF v4.x/3.0/2.x</value>
   <data name="User_GenderPrivate" xml:space="preserve">
     <value>Скрыто</value>
   </data>
-  <data name="Gacha_Won5050" xml:space="preserve">
+  <data name="Gacha_Lost5050" xml:space="preserve">
     <value>Проигрыш 50/50</value>
   </data>
   <data name="Gacha_Guaranteed" xml:space="preserve">

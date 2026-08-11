@@ -356,7 +356,7 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
     <value>注意</value>
   </data>
   <data name="NotesWarningMessage" xml:space="preserve">
-    <value>メモデータは米游社のゲーム記録APIから取得しています。頻繁に更新すると人機認証が発生する可能性があります。深刻な場合、リスク管理により戦績ページに一時的にアクセスできなくなることがあります。その場合は更新頻度を下げ、時間をおいて再試行してください。</value>
+    <value>メモデータはMiYouSheのゲーム記録APIから取得しています。頻繁に更新するとCAPTCHAが発生する可能性があります。深刻な場合、アカウント制限により戦績ページに一時的にアクセスできなくなることがあります。その場合は更新頻度を下げ、時間をおいて再試行してください。</value>
   </data>
   <data name="HideNotesCard" xml:space="preserve">
     <value>メモカードを非表示</value>
@@ -716,7 +716,7 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
     <value>CAPTCHAが発生したら？</value>
   </data>
   <data name="CaptchaTooltip" xml:space="preserve">
-    <value>ゲームチェックインやコミュニティチェックイン中（比較的発生しやすい）にCAPTCHAが表示される場合があります。実機のデバイス情報を設定してリスク管理の頻度を下げるか、スタンドアロン版でCAPTCHA解決サービスを設定してください。</value>
+    <value>ゲームチェックインやコミュニティチェックイン中（比較的発生しやすい）にCAPTCHAが表示される場合があります。実機のデバイス情報を設定して制限を受けにくくするか、スタンドアロン版でCAPTCHA解決サービスを設定してください。</value>
   </data>
   <data name="SelfHostedVersion" xml:space="preserve">
     <value>自己ホスト版</value>
@@ -1737,7 +1737,7 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
     <value>動画ライブラリ: キャラクターデモやゲーム内カットシーンを閲覧</value>
   </data>
   <data name="Home_BBSTooltip" xml:space="preserve">
-    <value>戦績: 深境螺旋や幻想真境劇詩などの詳細戦績データを表示</value>
+    <value>戦績: 深境螺旋や幻想シアターなどの詳細戦績データを表示</value>
   </data>
   <data name="OtherPage_Title" xml:space="preserve">
     <value>その他の設定</value>
@@ -1890,13 +1890,13 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
     <value>返信</value>
   </data>
   <data name="Account_BoundCharacters" xml:space="preserve">
-    <value>紐付きキャラクター</value>
+    <value>連携済みキャラクター</value>
   </data>
   <data name="Account_NoCharacters" xml:space="preserve">
-    <value>紐付きキャラクターなし</value>
+    <value>連携済みキャラクターなし</value>
   </data>
   <data name="Account_BindHint" xml:space="preserve">
-    <value>MiYouSheまたはゲーム内でキャラクターを紐付けてから更新してください</value>
+    <value>MiYouSheまたはゲーム内でキャラクターを連携してから更新してください</value>
   </data>
   <data name="Account_PlayTime" xml:space="preserve">
     <value>プレイ時間</value>
@@ -2238,7 +2238,7 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
     <value>戦績</value>
   </data>
   <data name="BBSWindow_SwitchIdentity" xml:space="preserve">
-    <value>識別切替</value>
+    <value>アカウント切替</value>
   </data>
   <data name="BBSWindow_EnterUrl" xml:space="preserve">
     <value>URLを入力...</value>
@@ -3056,7 +3056,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>画像保存</value>
   </data>
   <data name="GachaAnalysis_GoldPullStats" xml:space="preserve">
-    <value>金祈願方法統計</value>
+    <value>星5排出統計</value>
   </data>
   <data name="GachaAnalysis_GoldPullStatsDesc" xml:space="preserve">
     <value>同じガチャの同時期の記録を1グループとしてカウント</value>
@@ -3065,13 +3065,13 @@ UIGF v4.x/3.0/2.x</value>
     <value>10連★5率</value>
   </data>
   <data name="GachaAnalysis_GroupsWith5Star" xml:space="preserve">
-    <value>グループで★5</value>
+    <value>★5が出たグループ</value>
   </data>
   <data name="GachaAnalysis_SinglePullGoldRate" xml:space="preserve">
     <value>単発★5率</value>
   </data>
   <data name="GachaAnalysis_TimesWith5Star" xml:space="preserve">
-    <value>回で★5</value>
+    <value>★5が出た回数</value>
   </data>
   <data name="GachaAnalysis_Avg5StarCost" xml:space="preserve">
     <value>平均★5コスト</value>
@@ -3915,7 +3915,7 @@ UIGF v4.x/3.0/2.x</value>
   <data name="User_GenderPrivate" xml:space="preserve">
     <value>非公開</value>
   </data>
-  <data name="Gacha_Won5050" xml:space="preserve">
+  <data name="Gacha_Lost5050" xml:space="preserve">
     <value>すり抜け</value>
   </data>
   <data name="Gacha_Guaranteed" xml:space="preserve">
@@ -3955,10 +3955,10 @@ UIGF v4.x/3.0/2.x</value>
     <value>最深天井</value>
   </data>
   <data name="Gacha_Best5Star" xml:space="preserve">
-    <value>最良★5</value>
+    <value>一番運が良かった★5</value>
   </data>
   <data name="Gacha_Worst5Star" xml:space="preserve">
-    <value>最悪★5</value>
+    <value>一番ハマった★5</value>
   </data>
   <data name="Gacha_ActiveMonths" xml:space="preserve">
     <value>アクティブ月数</value>
@@ -4185,10 +4185,10 @@ UIGF v4.x/3.0/2.x</value>
     <value>設定を検索…</value>
   </data>
   <data name="DisableCaptchaPopup" xml:space="preserve">
-    <value>リスク管理の認証コードポップアップを無効化</value>
+    <value>セキュリティチェックのCAPTCHAポップアップを無効化</value>
   </data>
   <data name="DisableCaptchaPopupCaption" xml:space="preserve">
-    <value>有効にすると、アカウントのリスク管理認証コードウィンドウが表示されなくなります。認証をスキップすると、リアルタイムノートなどの機能が一時的に利用できなくなる場合があります。</value>
+    <value>有効にすると、アカウントのセキュリティチェックCAPTCHAウィンドウが表示されなくなります。CAPTCHAをスキップすると、リアルタイムノートなどの機能が一時的に利用できなくなる場合があります。</value>
   </data>
   <data name="UseThirdPartyCDNTitle" xml:space="preserve">
     <value>サードパーティ CDN で更新をダウンロード</value>
@@ -4551,7 +4551,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>復刻回数が多い</value>
   </data>
   <data name="DataPage_WishTopCompanion" xml:space="preserve">
-    <value>星4同時登場が多い</value>
+    <value>★4同時登場が多い</value>
   </data>
   <data name="DataPage_WishSearchPlaceholder" xml:space="preserve">
     <value>キャラ名・バージョンで検索…</value>
@@ -4566,16 +4566,16 @@ UIGF v4.x/3.0/2.x</value>
     <value>祈願履歴の記録はありません。</value>
   </data>
   <data name="DataPage_RerunChar5" xml:space="preserve">
-    <value>星5キャラ</value>
+    <value>★5キャラ</value>
   </data>
   <data name="DataPage_RerunChar4" xml:space="preserve">
-    <value>星4キャラ</value>
+    <value>★4キャラ</value>
   </data>
   <data name="DataPage_RerunWeapon5" xml:space="preserve">
-    <value>星5武器</value>
+    <value>★5武器</value>
   </data>
   <data name="DataPage_RerunWeapon4" xml:space="preserve">
-    <value>星4武器</value>
+    <value>★4武器</value>
   </data>
   <data name="DataPage_RerunCategory" xml:space="preserve">
     <value>分類</value>
@@ -4602,7 +4602,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>時期到来</value>
   </data>
   <data name="DataPage_RerunSoon" xml:space="preserve">
-    <value>接近中</value>
+    <value>復刻間近</value>
   </data>
   <data name="DataPage_RerunFresh" xml:space="preserve">
     <value>復刻直後</value>
@@ -4782,13 +4782,13 @@ UIGF v4.x/3.0/2.x</value>
     <value>プロセスを終了</value>
   </data>
   <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>バックパックを同期</value>
+    <value>バッグを同期</value>
   </data>
   <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>バックパックを同期</value>
+    <value>バッグを同期</value>
   </data>
   <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>ゲーム起動済み、バックパックデータ待機中…</value>
+    <value>ゲーム起動済み、バッグデータ待機中…</value>
   </data>
   <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
     <value>キャンセル</value>
@@ -4926,7 +4926,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>レア通貨</value>
   </data>
   <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>幻想真境劇詩</value>
+    <value>幻想シアター</value>
   </data>
   <data name="Backpack_GadgetTabMisc" xml:space="preserve">
     <value>小道具</value>
@@ -4941,7 +4941,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>貴重品</value>
   </data>
   <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>幻想真境劇詩</value>
+    <value>幻想シアター</value>
   </data>
   <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
     <value>冒険道具</value>
@@ -4962,13 +4962,13 @@ UIGF v4.x/3.0/2.x</value>
     <value>レア通貨</value>
   </data>
   <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>バックパックブラウザ</value>
+    <value>バッグブラウザ</value>
   </data>
   <data name="Backpack_ErrX64Required" xml:space="preserve">
-    <value>バックパック同期はx64版のみ対応しています。</value>
+    <value>バッグ同期はx64版のみ対応しています。</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
-    <value>バックパック同期モジュール modules/backpack.dll が見つかりません。</value>
+    <value>バッグ同期モジュール modules/backpack.dll が見つかりません。</value>
   </data>
   <data name="Checkin_PartialFailed" xml:space="preserve">
     <value>チェックイン一部失敗</value>
@@ -5028,16 +5028,16 @@ UIGF v4.x/3.0/2.x</value>
     <value>左下</value>
   </data>
   <data name="UsingHoyolabAccountTitle" xml:space="preserve">
-    <value>米游社/HoyoLAB アカウントでゲームに直接ログイン</value>
+    <value>MiYouShe/HoyoLAB アカウントでゲームに直接ログイン</value>
   </data>
   <data name="UsingHoyolabAccountCaption" xml:space="preserve">
-    <value>ゲーム起動時に、現在選択中の米游社または HoyoLAB アカウントとしてゲームに直接サインインできます。ゲーム内で再度アカウント情報を入力する必要はありません。</value>
+    <value>ゲーム起動時に、現在選択中のMiYouSheまたは HoyoLAB アカウントとしてゲームに直接サインインできます。ゲーム内で再度アカウント情報を入力する必要はありません。</value>
   </data>
   <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
     <value>有効化できません</value>
   </data>
   <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
-    <value>まずアカウント設定で米游社または HoyoLAB アカウントにログインしてください。</value>
+    <value>まずアカウント設定でMiYouSheまたは HoyoLAB アカウントにログインしてください。</value>
   </data>
   <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
     <value>アカウントのログイン期限が切れました</value>
@@ -5055,7 +5055,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>有効化しました</value>
   </data>
   <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
-    <value>次回ゲーム起動時に、米游社/HoyoLAB アカウントとしてゲームに直接サインインします。アカウント情報を再度入力する必要はありません。</value>
+    <value>次回ゲーム起動時に、MiYouShe/HoyoLAB アカウントとしてゲームに直接サインインします。アカウント情報を再度入力する必要はありません。</value>
   </data>
   <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
     <value>有効化できません</value>
@@ -5076,7 +5076,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>現在選択中の HoyoLAB グローバル版アカウントでは中国版のゲームを起動できません。対応するリージョンのアカウントに切り替えてください。</value>
   </data>
   <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
-    <value>現在選択中の米游社中国版アカウントではグローバル版のゲームを起動できません。対応するリージョンのアカウントに切り替えてください。</value>
+    <value>現在選択中のMiYouShe中国版アカウントではグローバル版のゲームを起動できません。対応するリージョンのアカウントに切り替えてください。</value>
   </data>
   <data name="HelpPage_TranslateBtn" xml:space="preserve">
     <value>翻訳</value>
@@ -5391,7 +5391,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>装備、素材、料理を一括で確認し、育成計画をサポートします。</value>
   </data>
   <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>同期データはこの端末のみに保存され、アカウントやバックパックの内容はアップロードされません。</value>
+    <value>同期データはこの端末のみに保存され、アカウントやバッグの内容はアップロードされません。</value>
   </data>
   <data name="Backpack_PathNoticeTitle" xml:space="preserve">
     <value>有効なゲームインストールディレクトリが検出されていません</value>
@@ -5409,7 +5409,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>使用方法</value>
   </data>
   <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>右上の「バックパックを同期」をクリックすると、ゲーム内の実際のインベントリが読み込まれ、データ同期が開始されます。</value>
+    <value>右上の「バッグを同期」をクリックすると、ゲーム内の実際のインベントリが読み込まれ、データ同期が開始されます。</value>
   </data>
   <data name="Backpack_UsageStep2" xml:space="preserve">
     <value>上部のタブでカテゴリーを切り替えられます。アイテムカードをクリックして詳細パラメータ（セット / サブ効果 / 武器スキル）を確認できます。</value>
@@ -5475,7 +5475,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>データ概要</value>
   </data>
   <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>バックパックのデータを同期すると、ここに在庫の分析と提案が表示されます。</value>
+    <value>バッグのデータを同期すると、ここに在庫の分析と提案が表示されます。</value>
   </data>
   <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
     <value>上位天賦素材</value>
@@ -5502,7 +5502,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>同期待ち</value>
   </data>
   <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>バックパックを同期すると、料理の準備状況を確認できます。</value>
+    <value>バッグを同期すると、料理の準備状況を確認できます。</value>
   </data>
   <data name="Backpack_BrowseTitle" xml:space="preserve">
     <value>閲覧と検索</value>
@@ -5598,10 +5598,10 @@ UIGF v4.x/3.0/2.x</value>
     <value>必要な食材</value>
   </data>
   <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>バックパック内のアイテム</value>
+    <value>バッグ内のアイテム</value>
   </data>
   <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>現在のバックパック内の実際の数量です。</value>
+    <value>現在のバッグ内の実際の数量です。</value>
   </data>
   <data name="Backpack_DetailStockItem" xml:space="preserve">
     <value>在庫アイテム</value>
@@ -5610,7 +5610,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>在庫概要</value>
   </data>
   <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>バックパック分析</value>
+    <value>バッグ分析</value>
   </data>
   <data name="Backpack_SectionCultivation" xml:space="preserve">
     <value>育成素材のカバー率</value>
@@ -5628,10 +5628,10 @@ UIGF v4.x/3.0/2.x</value>
     <value>確定</value>
   </data>
   <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>バックパックデータをインポートしました</value>
+    <value>バッグデータをインポートしました</value>
   </data>
   <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>今回のバックパックデータを受信して保存しました。概要、素材カバー率、料理のおすすめが更新されています。</value>
+    <value>今回のバッグデータを受信して保存しました。概要、素材カバー率、料理のおすすめが更新されています。</value>
   </data>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>同期に失敗しました</value>
@@ -5700,7 +5700,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>ダウンロード回線を選択して高速ダウンロードを開始</value>
   </data>
   <data name="PluginMirrorTesting" xml:space="preserve">
-    <value>測速中...</value>
+    <value>速度測定中...</value>
   </data>
   <data name="PluginMirrorTestingCount" xml:space="preserve">
     <value>{0} / {1}</value>
@@ -5718,7 +5718,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>公式ソース直結</value>
   </data>
   <data name="PluginMirrorRetest" xml:space="preserve">
-    <value>再測速</value>
+    <value>再測定</value>
   </data>
   <data name="PluginMirrorStopDownload" xml:space="preserve">
     <value>停止</value>

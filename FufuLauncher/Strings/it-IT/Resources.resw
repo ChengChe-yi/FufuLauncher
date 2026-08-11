@@ -2035,7 +2035,7 @@ per recuperare i record dall'API</value>
   <data name="Gacha_No5StarRecord" xml:space="preserve">
     <value>Nessun record 5★</value>
   </data>
-  <data name="Gacha_Won5050" xml:space="preserve">
+  <data name="Gacha_Lost5050" xml:space="preserve">
     <value>50/50 Perso</value>
   </data>
   <data name="Gacha_ZeroPulls" xml:space="preserve">

@@ -101,7 +101,7 @@ public partial class GachaDisplayItem : ObservableObject
 
     public string PityStatusText => PityStatus switch
     {
-        PityStatus.LostPity => "Gacha_Won5050".GetLocalized(),
+        PityStatus.LostPity => "Gacha_Lost5050".GetLocalized(),
         PityStatus.Guaranteed => "Gacha_Guaranteed".GetLocalized(),
         PityStatus.SmallPity => "Gacha_FiftyFifty".GetLocalized(),
         PityStatus.Up => "UP",

@@ -3915,7 +3915,7 @@ Gesuchte Datei:
   <data name="User_GenderPrivate" xml:space="preserve">
     <value>Privat</value>
   </data>
-  <data name="Gacha_Won5050" xml:space="preserve">
+  <data name="Gacha_Lost5050" xml:space="preserve">
     <value>Verloren (50/50)</value>
   </data>
   <data name="Gacha_Guaranteed" xml:space="preserve">
