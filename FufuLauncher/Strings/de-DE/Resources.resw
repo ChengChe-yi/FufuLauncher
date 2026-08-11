@@ -5636,6 +5636,25 @@ Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Synchronisierung fehlgeschlagen</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>Synchronisationsmodul nicht gefunden</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>Über das Synchronisationsmodul</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>Dieses Synchronisationsmodul wurde von einem anderen Entwickler als separates Projekt erstellt. Zur Integration des Moduls konnten wir uns nicht mit dem Entwickler einigen, weshalb es zurückgestellt wurde. Wir bemühen uns weiterhin um eine Lösung und bitten um Ihr Verständnis.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>Hinweise zu Daten und Updates</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>Metadaten werden unregelmäßig aktualisiert; neue Daten sind möglicherweise nicht zeitnah verfügbar. Diese Funktion bietet derzeit nur einen Nachschlage-Modus (Durchsuchen).</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>Alle</value>
   </data>

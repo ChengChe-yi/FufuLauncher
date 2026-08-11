@@ -5636,6 +5636,25 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Ошибка синхронизации</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>Модуль синхронизации не найден</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>О модуле синхронизации</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>Этот модуль синхронизации создан другим разработчиком как отдельный проект. Мы не смогли договориться с разработчиком о включении модуля, поэтому он был отложен. Мы продолжаем искать возможности; приносим извинения.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>Данные и обновления</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>Метаданные обновляются нерегулярно, поэтому новые данные могут появляться не сразу. Сейчас эта функция предоставляет только режим энциклопедии (просмотра).</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>Все</value>
   </data>

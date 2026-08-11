@@ -5636,6 +5636,25 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Sinkronisasi Gagal</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>Modul sinkronisasi tidak ditemukan</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>Tentang Modul Sinkronisasi</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>Modul sinkronisasi ini dibuat oleh pengembang lain sebagai proyek terpisah. Kami belum mencapai kesepakatan dengan pengembang mengenai penggabungan modul, sehingga hal ini ditunda. Kami terus berusaha mencari peluang; mohon maaf atas ketidaknyamanannya.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>Catatan Data &amp; Pembaruan</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>Metadata diperbarui secara tidak teratur, sehingga data baru mungkin tidak tersedia tepat waktu. Fitur ini saat ini hanya menyediakan mode ensiklopedia (penjelajahan).</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>Detail</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>Semua</value>
   </data>

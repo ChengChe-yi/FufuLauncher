@@ -5443,6 +5443,25 @@ Do you still want to execute it? (Not recommended)</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Sync failed</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>Sync module not found</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>About the Sync Module</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>This sync module is developed by another developer as a separate project. We have not reached an agreement with the developer on bundling the module, which is why it has been put on hold. We are still doing our best to seek an opportunity, and we apologize for the inconvenience.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>Data &amp; Update Notes</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>Metadata is updated irregularly, so new data may not be available in a timely manner. This feature currently only provides an encyclopedia (browse) view.</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>All</value>
   </data>

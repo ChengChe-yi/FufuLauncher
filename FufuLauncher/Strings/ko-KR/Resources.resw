@@ -5636,6 +5636,25 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>동기화 실패</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>동기화 모듈을 찾을 수 없음</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>동기화 모듈 정보</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>이 동기화 모듈은 다른 개발자가 제작한 별도의 프로젝트입니다. 모듈 내장에 대해 개발자와 합의에 이르지 못해 보류되었습니다. 계속해서 기회를 찾기 위해 노력하고 있으니 양해 부탁드립니다.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>데이터 및 업데이트 안내</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>메타데이터는 수시로 업데이트되므로 최신 데이터를 제때 받지 못할 수 있습니다. 현재 이 기능은 도감(열람) 기능만 제공합니다.</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>상세 정보</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>전체</value>
   </data>

@@ -270,6 +270,43 @@
             </Grid>
         </DataTemplate>
 
+        <DataTemplate x:Key="ModuleNoticeTemplate">
+            <StackPanel Width="440" Spacing="12">
+                <Border Style="{StaticResource BackpackDetailCardStyle}">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE946;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{helpers:Loc Key=Backpack_ModuleNoticeTitle}" Style="{StaticResource BackpackSectionHeaderStyle}" VerticalAlignment="Center" Margin="0" />
+                        </StackPanel>
+                        <TextBlock Text="{helpers:Loc Key=Backpack_ModuleNoticeBody}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="20" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ModuleDetailsTemplate">
+            <StackPanel Width="440" Spacing="12">
+                <Border Style="{StaticResource BackpackDetailCardStyle}">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE946;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{helpers:Loc Key=Backpack_ModuleNoticeTitle}" Style="{StaticResource BackpackSectionHeaderStyle}" VerticalAlignment="Center" Margin="0" />
+                        </StackPanel>
+                        <TextBlock Text="{helpers:Loc Key=Backpack_ModuleNoticeBody}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="20" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource BackpackDetailCardStyle}">
+                    <StackPanel Spacing="8">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE72C;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Center" />
+                            <TextBlock Text="{helpers:Loc Key=Backpack_MetaNoticeTitle}" Style="{StaticResource BackpackSectionHeaderStyle}" VerticalAlignment="Center" Margin="0" />
+                        </StackPanel>
+                        <TextBlock Text="{helpers:Loc Key=Backpack_MetaNoticeBody}" Style="{StaticResource BackpackCaptionStyle}" TextWrapping="Wrap" LineHeight="20" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </DataTemplate>
+
         <DataTemplate x:Key="FoodCardTemplate">
             <Grid Style="{StaticResource BackpackInventoryCardStyle}" RowSpacing="10" HorizontalAlignment="Stretch">
                 <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
@@ -366,7 +403,7 @@
                             <Grid.Shadow><ThemeShadow /></Grid.Shadow>
                             <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
                             <Grid ColumnSpacing="10">
-                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Padding="0,2">
                                     <StackPanel Orientation="Horizontal" Spacing="8">
                                         <ToggleButton Style="{StaticResource BackpackTabChipStyle}" IsChecked="{x:Bind ViewModel.IsOverview, Mode=OneWay}" Click="OnTabClick" Tag="0"><StackPanel Orientation="Horizontal" Spacing="6"><FontIcon Glyph="&#xE80F;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="13" /><TextBlock Text="{helpers:Loc Key=Backpack_TabOverview}" /></StackPanel></ToggleButton>
@@ -380,7 +417,8 @@
                                 </ScrollViewer>
                                 <Button Grid.Column="1" Style="{StaticResource BackpackIconButtonStyle}" Click="OnOpenGameSettings" ToolTipService.ToolTip="游戏设置"><FontIcon Glyph="&#xE713;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
                                 <Button Grid.Column="2" Style="{StaticResource BackpackIconButtonStyle}" IsEnabled="{x:Bind ViewModel.IsGameRunning, Mode=OneWay}" Click="OnKillGame" ToolTipService.ToolTip="结束同步进程"><FontIcon Glyph="&#xE733;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" /></Button>
-                                <Button Grid.Column="3" Style="{StaticResource BackpackAccentButtonStyle}" IsEnabled="{x:Bind ViewModel.CanLaunch, Mode=OneWay}" Click="OnSyncBag"><StackPanel Orientation="Horizontal" Spacing="8"><ProgressRing Width="15" Height="15" IsActive="{x:Bind ViewModel.IsLaunching, Mode=OneWay}" Visibility="{x:Bind ViewModel.ProgressRingVisibility, Mode=OneWay}" /><FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" Visibility="{x:Bind ViewModel.SyncIconVisibility, Mode=OneWay}" /><TextBlock Text="{x:Bind ViewModel.SyncBagLabel}" /></StackPanel></Button>
+                                <Button Grid.Column="3" Style="{StaticResource BackpackToolButtonStyle}" Click="OnModuleDetails"><StackPanel Orientation="Horizontal" Spacing="7"><FontIcon Glyph="&#xE946;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="14" /><TextBlock Text="{helpers:Loc Key=Backpack_DetailsButton}" /></StackPanel></Button>
+                                <Button Grid.Column="4" Style="{StaticResource BackpackAccentButtonStyle}" IsEnabled="{x:Bind ViewModel.CanLaunch, Mode=OneWay}" Click="OnSyncBag"><StackPanel Orientation="Horizontal" Spacing="8"><ProgressRing Width="15" Height="15" IsActive="{x:Bind ViewModel.IsLaunching, Mode=OneWay}" Visibility="{x:Bind ViewModel.ProgressRingVisibility, Mode=OneWay}" /><FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource SegoeFluentIconsFont}" FontSize="15" Visibility="{x:Bind ViewModel.SyncIconVisibility, Mode=OneWay}" /><TextBlock Text="{x:Bind ViewModel.SyncBagLabel}" /></StackPanel></Button>
                             </Grid>
                             <Grid Grid.Row="1" Margin="0,12,0,0">
                                 <TextBlock Text="{helpers:Loc Key=Backpack_LocalOnlyDisclaimer}" Style="{StaticResource BackpackLabelStyle}" VerticalAlignment="Center" MaxLines="1" />

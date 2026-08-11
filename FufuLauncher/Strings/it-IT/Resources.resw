@@ -5642,6 +5642,25 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Sincronizzazione non riuscita</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>Modulo di sincronizzazione non trovato</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>Informazioni sul modulo di sincronizzazione</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>Questo modulo di sincronizzazione è stato creato da un altro sviluppatore come progetto separato. Non abbiamo raggiunto un accordo con lo sviluppatore sull'integrazione del modulo, motivo per cui è stato sospeso. Continuiamo a cercare opportunità; ci scusiamo per l'inconveniente.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>Note su dati e aggiornamenti</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>I metadati vengono aggiornati in modo irregolare; i nuovi dati potrebbero non essere disponibili tempestivamente. Questa funzione attualmente offre solo una modalità enciclopedia (esplorazione).</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>Dettagli</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>Tutti</value>
   </data>

@@ -5636,6 +5636,25 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>同期に失敗しました</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>同期モジュールが見つかりません</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>同期モジュールについて</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>この同期モジュールは別の開発者が制作した単独プロジェクトです。モジュールの組み込みについて開発者と合意に至っておらず、そのため保留となっています。引き続き機会を模索しておりますので、ご了承ください。</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>データと更新について</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>メタデータの更新は不定期のため、最新データをすぐに取得できない場合があります。本機能は現在、図鑑（閲覧）機能のみを提供しています。</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>詳細</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>すべて</value>
   </data>

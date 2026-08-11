@@ -5636,6 +5636,25 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>同步失敗</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>未偵測到同步模組</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>關於同步模組</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>該同步模組由其他開發者製作，為單獨專案。開發者對於模組內建事宜並未與我們達成一致，因此導致了擱置。我們仍在盡可能爭取機會，敬請見諒。</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>資料與更新說明</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>元資料不定期更新，可能無法即時取得更新資料；此功能目前僅提供圖鑑（瀏覽）功能。</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>詳情</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>全部</value>
   </data>

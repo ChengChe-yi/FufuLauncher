@@ -116,8 +116,12 @@ public sealed partial class BackpackPage : Page
                 await _syncDialog.ShowAsync();
             }
 
-                if (_syncReceivedData)
-                    await ShowMessageDialogAsync(BackpackLocalization.Get("NotifyImportTitle"), BackpackLocalization.Get("NotifyImportBody"));
+            if (_syncReceivedData)
+                await ShowMessageDialogAsync(BackpackLocalization.Get("NotifyImportTitle"), BackpackLocalization.Get("NotifyImportBody"));
+        }
+        catch (FileNotFoundException)
+        {
+            await ShowDetailDialogAsync(BackpackLocalization.Get("ModuleMissingTitle"), "ModuleNoticeTemplate", new object(), 520, "DialogConfirm");
         }
         catch (Exception ex)
         {
@@ -179,6 +183,11 @@ public sealed partial class BackpackPage : Page
 
     private void OnKillGame(object sender, RoutedEventArgs e) => _runtime.KillLaunchedGame();
 
+    private async void OnModuleDetails(object sender, RoutedEventArgs e)
+    {
+        await ShowDetailDialogAsync(BackpackLocalization.Get("ModuleNoticeTitle"), "ModuleDetailsTemplate", new object(), 560, "DialogConfirm");
+    }
+
     private void OnPreviousPageClick(object sender, RoutedEventArgs e) => ViewModel.PreviousPage();
     private void OnNextPageClick(object sender, RoutedEventArgs e) => ViewModel.NextPage();
 
@@ -201,7 +210,7 @@ public sealed partial class BackpackPage : Page
         }
     }
 
-    private async Task ShowDetailDialogAsync(string title, string templateKey, object content, double maxWidth)
+    private async Task ShowDetailDialogAsync(string title, string templateKey, object content, double maxWidth, string? closeTextKey = null)
     {
         if (XamlRoot is null || Resources[templateKey] is not DataTemplate template) return;
 
@@ -218,7 +227,7 @@ public sealed partial class BackpackPage : Page
             XamlRoot = XamlRoot,
             Title = title,
             Content = host,
-            CloseButtonText = BackpackLocalization.Get("DialogClose"),
+            CloseButtonText = BackpackLocalization.Get(closeTextKey ?? "DialogClose"),
             DefaultButton = ContentDialogButton.Close
         };
         dialog.Resources["ContentDialogMaxWidth"] = maxWidth;

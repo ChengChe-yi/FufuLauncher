@@ -5635,6 +5635,25 @@ Voulez-vous quand même l'exécuter ? (Déconseillé)</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Échec de la synchronisation</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>Module de synchronisation introuvable</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>À propos du module de synchronisation</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>Ce module de synchronisation a été créé par un autre développeur dans le cadre d'un projet distinct. Nous ne sommes pas parvenus à un accord avec le développeur concernant son intégration, ce qui explique sa mise en attente. Nous continuons de chercher une opportunité ; veuillez nous excuser.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>Données et mises à jour</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>Les métadonnées sont mises à jour de manière irrégulière ; les nouvelles données peuvent ne pas être disponibles immédiatement. Cette fonctionnalité ne fournit actuellement qu'un mode encyclopédie (parcours).</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>Détails</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>Tous</value>
   </data>

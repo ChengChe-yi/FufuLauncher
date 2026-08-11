@@ -5636,6 +5636,25 @@ Detalles: {0}</value>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Error de sincronización</value>
   </data>
+
+  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
+    <value>Módulo de sincronización no encontrado</value>
+  </data>
+  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
+    <value>Acerca del módulo de sincronización</value>
+  </data>
+  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
+    <value>Este módulo de sincronización fue creado por otro desarrollador como un proyecto independiente. No hemos llegado a un acuerdo con el desarrollador sobre la integración del módulo, por lo que quedó en pausa. Seguimos buscando oportunidades; disculpe las molestias.</value>
+  </data>
+  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
+    <value>Datos y actualizaciones</value>
+  </data>
+  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
+    <value>Los metadatos se actualizan de forma irregular, por lo que los datos nuevos pueden no estar disponibles a tiempo. Esta función actualmente solo ofrece un modo de enciclopedia (navegación).</value>
+  </data>
+  <data name="Backpack_DetailsButton" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
   <data name="Backpack_ChipAll" xml:space="preserve">
     <value>Todos</value>
   </data>
