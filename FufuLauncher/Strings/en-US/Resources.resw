@@ -5530,7 +5530,7 @@ Do you still want to execute it? (Not recommended)</value>
     <value>If AI frame interpolation is enabled on NVIDIA RTX 40 series or newer GPUs, or if frame rate monitoring software such as RTSS or MSI Afterburner is in use, the game may freeze on screen or fail to launch normally.</value>
   </data>
   <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
-    <value>Don&apos;t show this warning again</value>
+    <value>Don't show this warning again</value>
   </data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve">
     <value>Compatibility Warning</value>
@@ -5591,7 +5591,7 @@ Do you still want to execute it? (Not recommended)</value>
 This is usually because the plugin was blocked by antivirus software (such as Windows Defender) or has been damaged.
 
 We recommend that you:
-1. Add this software&apos;s directory to your antivirus whitelist.
+1. Add this software's directory to your antivirus whitelist.
 2. Re-download and install the plugin from this page.</value>
   </data>
   <data name="Plugin_Corrupted_Title" xml:space="preserve">
@@ -5643,13 +5643,13 @@ We recommend that you:
     <value>Create New Preset</value>
   </data>
   <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
-    <value>Are you sure you want to delete preset \&quot;{0}\&quot;? This action cannot be undone!</value>
+    <value>Are you sure you want to delete preset \"{0}\"? This action cannot be undone!</value>
   </data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
     <value>Confirm Delete</value>
   </data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve">
-    <value>Lock reason: {0}\n\nIf you continue using it, this warning will be ignored and the preset&apos;s hash will be updated to the current plugin hash, which will unlock the preset again. Continue?</value>
+    <value>Lock reason: {0}\n\nIf you continue using it, this warning will be ignored and the preset's hash will be updated to the current plugin hash, which will unlock the preset again. Continue?</value>
   </data>
   <data name="Preset_Locked_Continue" xml:space="preserve">
     <value>Continue and Unlock</value>
@@ -5674,5 +5674,106 @@ We recommend that you:
   </data>
   <data name="PR_Window_Title" xml:space="preserve">
     <value>Pull Request</value>
+  </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Mirror acceleration for plugin store</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>GitHub download links of store plugins will be accelerated via mirror sites</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Mirror boost</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Plugin Download Accelerator</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Choose a download route to start the accelerated download</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Testing mirrors...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Please choose a download route</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Please select a download node from the list first</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Start Download</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Direct Official Source</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Re-test</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Switch Source</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Retry with another source</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Cancel Install</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Download Complete</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Mirrors Unavailable</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>All mirror nodes failed the integrity check or timed out.
+
+You can try downloading directly from the official source, or cancel this installation.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>File Verification Failed</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>The downloaded file failed the SHA-256 check; it may have been corrupted or tampered with during transfer and has been deleted.
+
+Please retry with another node or the official source.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Download Slow</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>The download progress has not changed for a long time, likely due to poor network.
+
+Stop this download and switch to another source?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Stop &amp; Switch</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Keep Waiting</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Download Failed</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Download failed: {0}
+
+You can retry with another node or download directly from the official source.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Plugin installation aborted</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Excellent</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Normal</value>
   </data>
 </root>

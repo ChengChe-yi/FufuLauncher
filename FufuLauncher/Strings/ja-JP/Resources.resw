@@ -5680,4 +5680,105 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>このアカウントのクラウドゲーム出勤認証情報を削除してもよろしいですか？</value>
   </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>プラグインストアのミラー加速</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>ストアプラグインのGitHubダウンロードリンクはミラーサイト経由で高速化されます</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>ミラー加速</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>プラグイン高速ダウンロード</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>ダウンロード回線を選択して高速ダウンロードを開始</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>測速中...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>ダウンロード回線を選択してください</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>先にリストからダウンロードノードを選択してください</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>ダウンロード開始</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>公式ソース直結</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>再測速</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>回線変更</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>別回線で再試行</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>インストール中止</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>ダウンロード中...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>ダウンロード完了</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>ミラーノードが利用不可</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>すべてのミラーノードが整合性チェックに失敗したかタイムアウトしました。
+
+公式ソースからの直接ダウンロードを試すか、インストールをキャンセルできます。</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>ファイル検証失敗</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>ダウンロードしたファイルのSHA-256検証に失敗しました。転送中に破損または改ざんされた可能性があるため、自動的に削除しました。
+
+別のノードまたは公式ソースで再試行してください。</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>ダウンロードが遅い</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>ダウンロードの進行が長い間変わっていません。ネットワークが不安定な可能性があります。
+
+現在のダウンロードを停止して回線を変更しますか？</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>停止して回線変更</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>待機を続ける</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>ダウンロード失敗</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>ダウンロードに失敗しました：{0}
+
+別のノードで再試行するか、公式ソースから直接ダウンロードできます。</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>プラグインのインストールを中止しました</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>極めて良好</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>良好</value>
+  </data>
 </root>

@@ -5670,4 +5670,105 @@ UIGF v4.x/3.0/2.x</value>
   <data name="AboutPage_Loading" xml:space="preserve">
     <value>加载中...</value>
   </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>插件商城镜像站加速</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>商城插件的 GitHub 下载链接将通过镜像站加速下载</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>镜像加速</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>插件下载加速</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>选择下载线路，开始镜像站加速下载</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>正在测速中...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>请选择下载线路</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>请先在列表中选择一个下载节点</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>开始下载</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>直连官方源</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>重新测速</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>停止下载</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>换源</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>换源重试</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>取消安装</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>正在下载...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>下载完成</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>镜像节点不可用</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>所有镜像节点均未通过完整性校验或网络超时。
+
+可以尝试直连官方源下载，或取消本次安装。</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>文件校验失败</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>下载的文件 SHA-256 校验未通过，文件可能在传输中被损坏或篡改，已自动删除。
+
+建议更换其他节点或使用官方源重新下载。</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>下载缓慢</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>下载进度长期未更新，可能是网络不佳。
+
+是否停止当前下载并换源重试？</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>停止并换源</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>继续等待</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>下载失败</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>下载失败：{0}
+
+可以更换其他节点重试，或使用官方源直连下载。</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>插件安装已中止</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>极佳</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>正常</value>
+  </data>
 </root>

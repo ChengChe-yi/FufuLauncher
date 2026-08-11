@@ -1,0 +1,123 @@
+﻿<Window
+    x:Class="FufuLauncher.Views.PluginMirrorDownloadWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:mirror="using:FufuLauncher.Services.PluginMirror"
+    mc:Ignorable="d"
+    Title="{helpers:Loc Key=PluginMirrorWindowTitle}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="AppTitleBar" Height="40" Background="Transparent">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0" Spacing="8">
+                <FontIcon Glyph="&#xE774;" FontSize="14" VerticalAlignment="Center" />
+                <TextBlock Text="{helpers:Loc Key=PluginMirrorWindowTitle}" VerticalAlignment="Center" FontWeight="SemiBold" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="32,12,32,28">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,16">
+                <TextBlock Text="{helpers:Loc Key=PluginMirrorWindowDesc}" FontWeight="Bold" FontSize="18" />
+            </StackPanel>
+            
+            <StackPanel x:Name="TestingPanel" Grid.Row="1" Spacing="16" VerticalAlignment="Center">
+                <TextBlock x:Name="TestStatusText"
+                           Text="{helpers:Loc Key=PluginMirrorTesting}"
+                           TextAlignment="Center" Opacity="0.7" />
+                <ProgressBar IsIndeterminate="True" Height="4" CornerRadius="2" />
+            </StackPanel>
+            
+            <Grid x:Name="SelectionPanel" Grid.Row="1" Visibility="Collapsed" RowSpacing="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="SelectionHintText"
+                           Grid.Row="0"
+                           Text="{helpers:Loc Key=PluginMirrorSelectSourceHint}"
+                           FontWeight="SemiBold" />
+
+                <ListView x:Name="MirrorListView"
+                          Grid.Row="1"
+                          SelectionMode="Single"
+                          Margin="0,0,0,4">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="mirror:MirrorTestResult">
+                            <Grid ColumnSpacing="12" Padding="4,6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{x:Bind Domain}" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="1"
+                                           Text="{x:Bind StatusDesc}"
+                                           Opacity="0.7"
+                                           VerticalAlignment="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
+                    <Button x:Name="RetestButton"
+                            Content="{helpers:Loc Key=PluginMirrorRetest}"
+                            Click="OnRetestClick"
+                            Height="36" MinWidth="88" />
+                    <Button x:Name="DirectButton"
+                            Content="{helpers:Loc Key=PluginMirrorDirectOfficial}"
+                            Click="OnDirectClick"
+                            Height="36" MinWidth="88" />
+                    <Button x:Name="StartDownloadButton"
+                            Content="{helpers:Loc Key=PluginMirrorStartDownload}"
+                            Click="OnStartDownloadClick"
+                            Style="{StaticResource AccentButtonStyle}"
+                            Height="36" MinWidth="88" />
+                </StackPanel>
+            </Grid>
+            
+            <Grid x:Name="DownloadPanel" Grid.Row="1" Visibility="Collapsed" RowSpacing="14">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock x:Name="DownloadStatusText"
+                               Text="{helpers:Loc Key=PluginMirrorDownloading}"
+                               FontWeight="SemiBold" />
+                    <TextBlock x:Name="PercentText" Text="0%" HorizontalAlignment="Right" Opacity="0.7" />
+                </Grid>
+
+                <ProgressBar x:Name="DownloadProgressBar" Grid.Row="1" Maximum="100" Height="8" CornerRadius="4" />
+
+                <TextBlock x:Name="DetailText" Grid.Row="2" Opacity="0.7" />
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
+                    <Button x:Name="StopButton"
+                            Content="{helpers:Loc Key=PluginMirrorStopDownload}"
+                            Click="OnStopClick"
+                            Height="36" MinWidth="88" />
+                    <Button x:Name="SwitchButton"
+                            Content="{helpers:Loc Key=PluginMirrorSwitchSource}"
+                            Click="OnSwitchSourceClick"
+                            Height="36" MinWidth="88" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -5405,7 +5405,7 @@ Deseja executá-lo mesmo assim? (Não recomendado)</value>
     <value>Instruções de uso</value>
   </data>
   <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Clique em &quot;Sincronizar inventário&quot; no canto superior direito para injetar o inventário real do jogo e iniciar a sincronização de dados.</value>
+    <value>Clique em "Sincronizar inventário" no canto superior direito para injetar o inventário real do jogo e iniciar a sincronização de dados.</value>
   </data>
   <data name="Backpack_UsageStep2" xml:space="preserve">
     <value>Use as abas superiores para alternar entre categorias; clique em qualquer卡片 para ver detalhes (conjunto / sub-atributo / habilidade da arma).</value>
@@ -5679,5 +5679,106 @@ Deseja executá-lo mesmo assim? (Não recomendado)</value>
   </data>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Tem certeza de que deseja remover as credenciais de check-in de jogo na nuvem desta conta?</value>
+  </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Aceleração por espelho na loja de plugins</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>Links do GitHub dos plugins serão baixados por sites espelho</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Espelho</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Acelerador de download</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Escolha uma rota de download para iniciar o download acelerado</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Testando espelhos...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Escolha uma rota de download</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Selecione primeiro um nó da lista</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Iniciar download</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Fonte oficial direta</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Testar novamente</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Parar</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Trocar de fonte</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Tentar com outra fonte</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Cancelar instalação</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Baixando...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Download concluído</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Espelhos indisponíveis</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>Todos os nós espelho falharam na verificação de integridade ou expiraram.
+
+Você pode tentar a fonte oficial direta ou cancelar a instalação.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>Falha na verificação do arquivo</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>O arquivo baixado não passou na verificação SHA-256; pode ter sido corrompido e foi excluído.
+
+Tente novamente com outro nó ou com a fonte oficial.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Download lento</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>O progresso do download está parado há muito tempo, provavelmente problema de rede.
+
+Parar o download e trocar de fonte?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Parar e trocar</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Continuar aguardando</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Falha no download</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Falha no download: {0}
+
+Você pode tentar outro nó ou usar a fonte oficial direta.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Instalação do plugin cancelada</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Excelente</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Normal</value>
   </data>
 </root>

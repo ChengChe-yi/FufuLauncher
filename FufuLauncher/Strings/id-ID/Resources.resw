@@ -5405,7 +5405,7 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
     <value>Petunjuk Penggunaan</value>
   </data>
   <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Klik &apos;Sinkronkan Backpack&apos; di kanan atas untuk memasukkan data inventaris asli dari game dan memulai sinkronisasi data.</value>
+    <value>Klik 'Sinkronkan Backpack' di kanan atas untuk memasukkan data inventaris asli dari game dan memulai sinkronisasi data.</value>
   </data>
   <data name="Backpack_UsageStep2" xml:space="preserve">
     <value>Tab di bagian atas untuk beralih kategori; klik kartu item mana saja untuk melihat parameter detail (Set / Sub-stat / Skill Senjata).</value>
@@ -5679,5 +5679,106 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
   </data>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Apakah kamu yakin ingin menghapus kredensial check-in cloud game untuk akun ini?</value>
+  </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Akselerasi mirror di toko plugin</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>Tautan GitHub plugin akan diunduh melalui situs mirror</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Mirror</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Akselerator unduhan</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Pilih rute unduhan untuk memulai unduhan yang dipercepat</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Menguji mirror...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Pilih rute unduhan</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Pilih node dari daftar terlebih dahulu</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Mulai unduhan</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Sumber resmi langsung</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Uji ulang</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Berhenti</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Ganti sumber</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Coba lagi dengan sumber lain</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Batalkan instalasi</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Mengunduh...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Unduhan selesai</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Mirror tidak tersedia</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>Semua node mirror gagal verifikasi integritas atau waktu habis.
+
+Anda dapat mencoba sumber resmi langsung atau membatalkan instalasi.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>Verifikasi file gagal</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>File yang diunduh gagal pemeriksaan SHA-256; mungkin rusak dan telah dihapus.
+
+Coba lagi dengan node lain atau sumber resmi.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Unduhan lambat</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>Kemajuan unduhan tidak berubah dalam waktu lama, kemungkinan masalah jaringan.
+
+Hentikan unduhan dan ganti sumber?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Hentikan &amp; ganti</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Terus tunggu</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Unduhan gagal</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Unduhan gagal: {0}
+
+Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Instalasi plugin dibatalkan</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Sangat baik</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Normal</value>
   </data>
 </root>

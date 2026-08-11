@@ -10,8 +10,10 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
+using FufuLauncher.Services.PluginMirror;
 using FufuLauncher.Helpers;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
@@ -23,6 +25,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
 {
     private readonly PluginStoreService _storeService;
     private readonly LuaPluginInstaller _luaInstaller;
+    private readonly ILocalSettingsService _localSettingsService;
     private readonly string _pluginsDir;
     private DispatcherQueue? _dispatcher;
 
@@ -42,6 +45,8 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     
     private bool _hasContent;
 
+    private bool _isMirrorAccelerationEnabled = true;
+
     private CancellationTokenSource? _installCts;
     
     private readonly HashSet<string> _installingPluginIds = new(StringComparer.Ordinal);
@@ -49,14 +54,15 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     private static readonly string CurrentAppVersion =
         Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "1.0.0.0";
 
-    public PluginStoreViewModel(PluginStoreService storeService, LuaPluginInstaller luaInstaller)
+    public PluginStoreViewModel(PluginStoreService storeService, LuaPluginInstaller luaInstaller,
+        ILocalSettingsService localSettingsService)
     {
         _pluginsDir = Path.Combine(AppContext.BaseDirectory, "Plugins");
         _storeService = storeService;
         _luaInstaller = luaInstaller;
+        _localSettingsService = localSettingsService;
 
         _luaInstaller.ProgressChanged += OnInstallProgress;
-        _luaInstaller.LogReceived += OnInstallLog;
 
         RefreshCommand = new RelayCommand(async () => await LoadPluginsAsync());
         SearchCommand = new RelayCommand(async () => await SearchAsync());
@@ -187,6 +193,33 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     public bool CanGoNext => CurrentPage < TotalPages;
     public string PageInfo => TotalPages > 0 ? $"{CurrentPage} / {TotalPages}" : "";
 
+    /// <summary>插件商城镜像站加速开关（商城页可直接切换，与设置页共用同一持久化键）。</summary>
+    public bool IsMirrorAccelerationEnabled
+    {
+        get => _isMirrorAccelerationEnabled;
+        set
+        {
+            if (_isMirrorAccelerationEnabled == value) return;
+            _isMirrorAccelerationEnabled = value;
+            OnPropertyChanged();
+            _ = _localSettingsService.SaveSettingAsync(PluginMirrorDownloadService.SettingKey, value);
+        }
+    }
+
+    private async Task LoadMirrorAccelerationSettingAsync()
+    {
+        try
+        {
+            var json = await _localSettingsService.ReadSettingAsync(PluginMirrorDownloadService.SettingKey);
+            _isMirrorAccelerationEnabled = json == null || Convert.ToBoolean(json);
+            OnPropertyChanged(nameof(IsMirrorAccelerationEnabled));
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[PluginStoreVM] Failed to load mirror acceleration setting: {ex.Message}");
+        }
+    }
+
     public ICommand RefreshCommand { get; }
     public ICommand SearchCommand { get; }
     public ICommand SortCommand { get; }
@@ -203,6 +236,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     {
         _dispatcher = DispatcherQueue.GetForCurrentThread();
 
+        await LoadMirrorAccelerationSettingAsync();
         await LoadCategoriesAsync();
         await LoadPluginsAsync();
     }
@@ -1232,11 +1266,6 @@ public class PluginStoreViewModel : INotifyPropertyChanged
                 }
             }
         });
-    }
-
-    private void OnInstallLog(string message)
-    {
-        Debug.WriteLine($"[PluginStore] {message}");
     }
 
     public async Task ExecuteLuaTestAsync()

@@ -5680,4 +5680,105 @@ Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Möchten Sie die Cloud-Gaming-Anmeldedaten für dieses Konto wirklich entfernen?</value>
   </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Mirror-Beschleunigung für den Plugin-Store</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>GitHub-Downloadlinks von Store-Plugins werden über Mirror-Sites beschleunigt</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Mirror-Boost</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Plugin-Download-Beschleuniger</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Wählen Sie eine Download-Route, um die beschleunigte Übertragung zu starten</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Miroirs werden getestet...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Bitte wählen Sie eine Download-Route</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Bitte wählen Sie zuerst einen Knoten aus der Liste</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Download starten</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Direkt offizielle Quelle</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Neu testen</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Stoppen</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Quelle wechseln</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Mit anderer Quelle erneut versuchen</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Installation abbrechen</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Lade herunter...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Download abgeschlossen</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Miroirs nicht verfügbar</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>Alle Mirror-Knoten haben die Integritätsprüfung nicht bestanden oder sind ausgelaufen.
+
+Sie können die direkte offizielle Quelle versuchen oder die Installation abbrechen.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>Dateiprüfung fehlgeschlagen</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>Die SHA-256-Prüfung der heruntergeladenen Datei ist fehlgeschlagen; sie wurde gelöscht.
+
+Bitte versuchen Sie es mit einem anderen Knoten oder der offiziellen Quelle erneut.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Download langsam</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>Der Fortschritt bewegt sich seit Langem nicht mehr, möglicherweise Netzwerkprobleme.
+
+Download stoppen und Quelle wechseln?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Stoppen &amp; wechseln</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Weiter warten</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Download fehlgeschlagen</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Download fehlgeschlagen: {0}
+
+Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Plugin-Installation abgebrochen</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Ausgezeichnet</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
 </root>

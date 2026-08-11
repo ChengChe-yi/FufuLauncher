@@ -5680,4 +5680,105 @@ Detalles: {0}</value>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>¿Seguro que quieres quitar las credenciales de inicio de sesión en la nube de esta cuenta?</value>
   </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Aceleración por espejo en la tienda de plugins</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>Los enlaces de GitHub de los plugins se descargarán mediante sitios espejo</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Espejo</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Acelerador de descarga</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Elige una ruta de descarga para iniciar la descarga acelerada</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Probando espejos...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Elige una ruta de descarga</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Selecciona primero un nodo de la lista</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Iniciar descarga</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Fuente oficial directa</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Volver a probar</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Detener</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Cambiar de fuente</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Reintentar con otra fuente</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Cancelar instalación</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Descargando...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Descarga completada</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Espejos no disponibles</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>Todos los nodos espejo no superaron la verificación de integridad o agotaron el tiempo.
+
+Puedes probar la fuente oficial directa o cancelar la instalación.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>Error de verificación</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>El archivo descargado no superó la comprobación SHA-256; puede estar dañado y se ha eliminado.
+
+Reintenta con otro nodo o con la fuente oficial.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Descarga lenta</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>El progreso de la descarga no avanza desde hace tiempo, probablemente por la red.
+
+¿Detener la descarga y cambiar de fuente?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Detener y cambiar</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Seguir esperando</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Error de descarga</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Error de descarga: {0}
+
+Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Instalación del plugin cancelada</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Excelente</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
 </root>

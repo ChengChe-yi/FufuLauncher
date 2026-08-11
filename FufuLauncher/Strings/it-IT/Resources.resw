@@ -5034,10 +5034,10 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>In basso a sinistra</value>
   </data>
   <data name="UsingHoyolabAccountTitle" xml:space="preserve">
-    <value>Accedi direttamente al gioco con l&apos;account 米游社/HoyoLAB</value>
+    <value>Accedi direttamente al gioco con l'account 米游社/HoyoLAB</value>
   </data>
   <data name="UsingHoyolabAccountCaption" xml:space="preserve">
-    <value>Avvia il gioco direttamente con l&apos;account 米游社 o HoyoLAB attualmente selezionato, senza dover reinserire le credenziali nel gioco.</value>
+    <value>Avvia il gioco direttamente con l'account 米游社 o HoyoLAB attualmente selezionato, senza dover reinserire le credenziali nel gioco.</value>
   </data>
   <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
     <value>Impossibile attivare</value>
@@ -5046,10 +5046,10 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Accedi prima a un account 米游社 o HoyoLAB nelle impostazioni degli account.</value>
   </data>
   <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
-    <value>Accesso all&apos;account scaduto</value>
+    <value>Accesso all'account scaduto</value>
   </data>
   <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
-    <value>Per usare questa funzione, devi effettuare nuovamente l&apos;accesso con l&apos;account attuale.</value>
+    <value>Per usare questa funzione, devi effettuare nuovamente l'accesso con l'account attuale.</value>
   </data>
   <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
     <value>Nessun gioco selezionato</value>
@@ -5061,13 +5061,13 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Attivato</value>
   </data>
   <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
-    <value>Al prossimo avvio del gioco, accederai direttamente con l&apos;account 米游社/HoyoLAB, senza dover reinserire le credenziali.</value>
+    <value>Al prossimo avvio del gioco, accederai direttamente con l'account 米游社/HoyoLAB, senza dover reinserire le credenziali.</value>
   </data>
   <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
     <value>Impossibile attivare</value>
   </data>
   <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
-    <value>L&apos;account attuale non può usare temporaneamente questa funzione. Controlla lo stato dell&apos;accesso e riprova.</value>
+    <value>L'account attuale non può usare temporaneamente questa funzione. Controlla lo stato dell'accesso e riprova.</value>
   </data>
   <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
     <value>Temporaneamente non disponibile</value>
@@ -5079,10 +5079,10 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Account e server non corrispondono</value>
   </data>
   <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
-    <value>L&apos;account HoyoLAB internazionale selezionato non può essere usato per avviare la versione cinese del gioco. Passa a un account corrispondente al server attuale.</value>
+    <value>L'account HoyoLAB internazionale selezionato non può essere usato per avviare la versione cinese del gioco. Passa a un account corrispondente al server attuale.</value>
   </data>
   <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
-    <value>L&apos;account 米游社 cinese selezionato non può essere usato per avviare la versione internazionale del gioco. Passa a un account corrispondente al server attuale.</value>
+    <value>L'account 米游社 cinese selezionato non può essere usato per avviare la versione internazionale del gioco. Passa a un account corrispondente al server attuale.</value>
   </data>
   <data name="HelpPage_TranslateBtn" xml:space="preserve">
     <value>Traduci</value>
@@ -5100,7 +5100,7 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Traduzione completata</value>
   </data>
   <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>Disattiva la disattivazione automatica del Plugin FPS all&apos;avvio</value>
+    <value>Disattiva la disattivazione automatica del Plugin FPS all'avvio</value>
   </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>Negozio dei Plugin</value>
@@ -5178,10 +5178,10 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Verifica in corso...</value>
   </data>
   <data name="PluginStoreHashMismatch" xml:space="preserve">
-    <value>Verifica dell&apos;integrità del file non riuscita; il download potrebbe essere danneggiato o manomesso</value>
+    <value>Verifica dell'integrità del file non riuscita; il download potrebbe essere danneggiato o manomesso</value>
   </data>
   <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
-    <value>Verifica dell&apos;integrità dello script di installazione non riuscita</value>
+    <value>Verifica dell'integrità dello script di installazione non riuscita</value>
   </data>
   <data name="PluginStoreSecurityBlocked" xml:space="preserve">
     <value>Installazione bloccata: {0}</value>
@@ -5205,7 +5205,7 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Aggiorna</value>
   </data>
   <data name="PluginStoreSyncing" xml:space="preserve">
-    <value>Sincronizzazione dell&apos;elenco dei Plugin in corso...</value>
+    <value>Sincronizzazione dell'elenco dei Plugin in corso...</value>
   </data>
   <data name="PluginStoreDeveloper" xml:space="preserve">
     <value>Sviluppatore</value>
@@ -5235,13 +5235,13 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Connessione non riuscita</value>
   </data>
   <data name="PluginStoreLoadFailed" xml:space="preserve">
-    <value>Caricamento dell&apos;elenco dei Plugin non riuscito. Riprova più tardi.</value>
+    <value>Caricamento dell'elenco dei Plugin non riuscito. Riprova più tardi.</value>
   </data>
   <data name="PluginStoreInstallComplete" xml:space="preserve">
     <value>Installazione completata</value>
   </data>
   <data name="PluginStoreHashFailed" xml:space="preserve">
-    <value>Verifica dell&apos;hash non riuscita</value>
+    <value>Verifica dell'hash non riuscita</value>
   </data>
   <data name="PluginStoreCancelled" xml:space="preserve">
     <value>Annullato</value>
@@ -5265,7 +5265,7 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Connessione al Negozio dei Plugin scaduta. Riprova più tardi.</value>
   </data>
   <data name="PluginStoreLoadListFailed" xml:space="preserve">
-    <value>Caricamento dell&apos;elenco dei Plugin non riuscito: {0}</value>
+    <value>Caricamento dell'elenco dei Plugin non riuscito: {0}</value>
   </data>
   <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
     <value>Impossibile scaricare lo script di installazione: server non disponibile</value>
@@ -5310,7 +5310,7 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Chiudi</value>
   </data>
   <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
-    <value>Sicurezza: l&apos;operazione {0} ha ricevuto un percorso vuoto.</value>
+    <value>Sicurezza: l'operazione {0} ha ricevuto un percorso vuoto.</value>
   </data>
   <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
     <value>Sicurezza: percorso non valido ({0}): {1}</value>
@@ -5319,7 +5319,7 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
     <value>Sicurezza: il percorso deve trovarsi nella directory dei Plugin ({0}).</value>
   </data>
   <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
-    <value>Lo script contiene un&apos;operazione vietata ({0}).</value>
+    <value>Lo script contiene un'operazione vietata ({0}).</value>
   </data>
   <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
     <value>Tentativo di attraversamento del percorso</value>
@@ -5393,7 +5393,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Sfoglia equipaggiamento, materiali e pietanze in un unico posto per pianificare lo sviluppo.</value>
   </data>
   <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>I dati sincronizzati restano su questo dispositivo; il tuo account e il contenuto dell&apos;inventario non vengono mai caricati.</value>
+    <value>I dati sincronizzati restano su questo dispositivo; il tuo account e il contenuto dell'inventario non vengono mai caricati.</value>
   </data>
   <data name="Backpack_PathNoticeTitle" xml:space="preserve">
     <value>Nessuna directory di installazione del gioco valida rilevata</value>
@@ -5411,13 +5411,13 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Come si usa</value>
   </data>
   <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Fai clic su «Sincronizza inventario» in alto a destra per importare l&apos;inventario reale del gioco e avviare la sincronizzazione dei dati.</value>
+    <value>Fai clic su «Sincronizza inventario» in alto a destra per importare l'inventario reale del gioco e avviare la sincronizzazione dei dati.</value>
   </data>
   <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>Usa le schede in alto per cambiare categoria; fai clic su una scheda oggetto qualsiasi per visualizzare i dettagli (set / Sotto-stat / abilità dell&apos;Arma).</value>
+    <value>Usa le schede in alto per cambiare categoria; fai clic su una scheda oggetto qualsiasi per visualizzare i dettagli (set / Sotto-stat / abilità dell'Arma).</value>
   </data>
   <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>Le schede della panoramica suggeriscono sinergie tra ingredienti e materiali per lo sviluppo in base all&apos;inventario attuale.</value>
+    <value>Le schede della panoramica suggeriscono sinergie tra ingredienti e materiali per lo sviluppo in base all'inventario attuale.</value>
   </data>
   <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
     <value>Armi possedute</value>
@@ -5441,7 +5441,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Armi a 5 stelle con Affinamento massimo</value>
   </data>
   <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>{0} armi a 5 stelle hanno raggiunto l&apos;Affinamento massimo.</value>
+    <value>{0} armi a 5 stelle hanno raggiunto l'Affinamento massimo.</value>
   </data>
   <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
     <value>Artefatti a 5 stelle al livello massimo</value>
@@ -5474,10 +5474,10 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Le scorte di {0} materiali sono inferiori a 5 unità; ricordati di rifornirle.</value>
   </data>
   <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>Panoramica dell&apos;inventario</value>
+    <value>Panoramica dell'inventario</value>
   </data>
   <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>Sincronizza i dati dell&apos;inventario per visualizzare qui analisi e suggerimenti sulle scorte.</value>
+    <value>Sincronizza i dati dell'inventario per visualizzare qui analisi e suggerimenti sulle scorte.</value>
   </data>
   <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
     <value>Materiali per talenti di alto livello</value>
@@ -5504,7 +5504,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>In attesa della sincronizzazione</value>
   </data>
   <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>Sincronizza l&apos;inventario per visualizzare lo stato di preparazione delle pietanze.</value>
+    <value>Sincronizza l'inventario per visualizzare lo stato di preparazione delle pietanze.</value>
   </data>
   <data name="Backpack_BrowseTitle" xml:space="preserve">
     <value>Sfoglia e cerca</value>
@@ -5549,7 +5549,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>{0} risultati</value>
   </data>
   <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>Rarità dell&apos;Arma</value>
+    <value>Rarità dell'Arma</value>
   </data>
   <data name="Backpack_DetailLevel" xml:space="preserve">
     <value>Livello</value>
@@ -5564,10 +5564,10 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Sotto-stat secondaria</value>
   </data>
   <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>Abilità dell&apos;Arma</value>
+    <value>Abilità dell'Arma</value>
   </data>
   <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>Storia dell&apos;Arma</value>
+    <value>Storia dell'Arma</value>
   </data>
   <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
     <value>Livello di potenziamento</value>
@@ -5585,7 +5585,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Voce del catalogo</value>
   </data>
   <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>Dopo aver importato il gioco, verranno compilati automaticamente il livello di potenziamento dell&apos;Artefatto, il valore del Sotto-stat principale e i dettagli dei roll dei Sotto-stat secondari. Al momento vengono visualizzate le informazioni di base sulla categoria del Set di artefatti e sui relativi bonus.</value>
+    <value>Dopo aver importato il gioco, verranno compilati automaticamente il livello di potenziamento dell'Artefatto, il valore del Sotto-stat principale e i dettagli dei roll dei Sotto-stat secondari. Al momento vengono visualizzate le informazioni di base sulla categoria del Set di artefatti e sui relativi bonus.</value>
   </data>
   <data name="Backpack_DetailCookState" xml:space="preserve">
     <value>Stato di preparazione</value>
@@ -5600,7 +5600,7 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Ingredienti richiesti</value>
   </data>
   <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>Oggetto dell&apos;inventario</value>
+    <value>Oggetto dell'inventario</value>
   </data>
   <data name="Backpack_DetailCountBody" xml:space="preserve">
     <value>Quantità effettiva attualmente presente nel tuo inventario.</value>
@@ -5609,10 +5609,10 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Oggetto in scorta</value>
   </data>
   <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>Panoramica dell&apos;inventario</value>
+    <value>Panoramica dell'inventario</value>
   </data>
   <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>Analisi dell&apos;inventario</value>
+    <value>Analisi dell'inventario</value>
   </data>
   <data name="Backpack_SectionCultivation" xml:space="preserve">
     <value>Copertura dei materiali per lo sviluppo</value>
@@ -5630,10 +5630,10 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
     <value>Conferma</value>
   </data>
   <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>Dati dell&apos;inventario importati</value>
+    <value>Dati dell'inventario importati</value>
   </data>
   <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>I dati dell&apos;inventario sono stati ricevuti e salvati. La panoramica, la copertura dei materiali e i suggerimenti sulle pietanze sono stati aggiornati.</value>
+    <value>I dati dell'inventario sono stati ricevuti e salvati. La panoramica, la copertura dei materiali e i suggerimenti sulle pietanze sono stati aggiornati.</value>
   </data>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Sincronizzazione non riuscita</value>
@@ -5685,5 +5685,106 @@ Vuoi comunque eseguirlo? (Non consigliato)</value>
   </data>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Sei sicuro di voler rimuovere la credenziale di accesso al cloud gaming di questo account?</value>
+  </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Accelerazione mirror nello store dei plugin</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>I link GitHub dei plugin verranno scaricati tramite siti mirror</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Mirror</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Acceleratore di download</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Scegli una rotta di download per avviare il download accelerato</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Test dei mirror...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Scegli una rotta di download</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Seleziona prima un nodo dall'elenco</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Avvia download</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Fonte ufficiale diretta</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Riprova test</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Ferma</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Cambia fonte</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Riprova con altra fonte</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Annulla installazione</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Download in corso...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Download completato</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Mirror non disponibili</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>Tutti i nodi mirror non hanno superato il controllo di integrità o sono andati in timeout.
+
+Puoi provare la fonte ufficiale diretta o annullare l'installazione.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>Verifica file fallita</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>Il file scaricato non ha superato il controllo SHA-256; potrebbe essere stato danneggiato ed è stato eliminato.
+
+Riprova con un altro nodo o con la fonte ufficiale.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Download lento</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>Il progresso non avanza da molto tempo, probabilmente per problemi di rete.
+
+Fermare il download e cambiare fonte?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Ferma e cambia</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Continua ad attendere</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Download fallito</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Download fallito: {0}
+
+Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Installazione del plugin annullata</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Ottimo</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Normale</value>
   </data>
 </root>

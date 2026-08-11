@@ -5680,4 +5680,105 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Удалить учётные данные облачной игры для этого аккаунта?</value>
   </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Ускорение через зеркала в магазине плагинов</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>Ссылки GitHub для плагинов будут загружаться через зеркальные сайты</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Зеркала</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Ускоренная загрузка плагина</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Выберите маршрут загрузки, чтобы начать ускоренную загрузку</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Проверка зеркал...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Выберите маршрут загрузки</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Сначала выберите узел из списка</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Начать загрузку</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Прямой официальный источник</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Проверить снова</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Остановить</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Сменить источник</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Повторить с другим источником</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Отменить установку</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Загрузка завершена</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Зеркала недоступны</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>Все зеркальные узлы не прошли проверку целостности или истекли по времени.
+
+Можно попробовать прямой официальный источник или отменить установку.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>Ошибка проверки файла</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>Файл не прошёл проверку SHA-256; возможно, он был повреждён и удалён.
+
+Повторите с другим узлом или официальным источником.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Медленная загрузка</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>Прогресс загрузки долго не меняется, возможно, проблема с сетью.
+
+Остановить загрузку и сменить источник?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Остановить и сменить</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Продолжить ожидание</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Ошибка загрузки</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Ошибка загрузки: {0}
+
+Повторите с другим узлом или используйте прямой официальный источник.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Установка плагина прервана</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Отлично</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Нормально</value>
+  </data>
 </root>

@@ -5012,7 +5012,7 @@ Rapport : {0}</value>
     <value>Position de la notification</value>
   </data>
   <data name="NotificationPositionCaption" xml:space="preserve">
-    <value>Définir la position d&apos;affichage des notifications dans la fenêtre</value>
+    <value>Définir la position d'affichage des notifications dans la fenêtre</value>
   </data>
   <data name="PositionBottomRight" xml:space="preserve">
     <value>Coin inférieur droit</value>
@@ -5036,7 +5036,7 @@ Rapport : {0}</value>
     <value>Activation impossible</value>
   </data>
   <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
-    <value>Veuillez d&apos;abord vous connecter à un compte miHoYo ou HoYoLAB dans les paramètres du compte.</value>
+    <value>Veuillez d'abord vous connecter à un compte miHoYo ou HoYoLAB dans les paramètres du compte.</value>
   </data>
   <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
     <value>Connexion du compte expirée</value>
@@ -5048,7 +5048,7 @@ Rapport : {0}</value>
     <value>Aucun jeu sélectionné</value>
   </data>
   <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
-    <value>Veuillez d&apos;abord sélectionner le répertoire d&apos;installation du jeu dans la page d&apos;accueil.</value>
+    <value>Veuillez d'abord sélectionner le répertoire d'installation du jeu dans la page d'accueil.</value>
   </data>
   <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
     <value>Activé</value>
@@ -5060,7 +5060,7 @@ Rapport : {0}</value>
     <value>Activation impossible</value>
   </data>
   <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
-    <value>Cette fonctionnalité est temporairement indisponible pour ce compte. Veuillez vérifier l&apos;état de connexion du compte, puis réessayer.</value>
+    <value>Cette fonctionnalité est temporairement indisponible pour ce compte. Veuillez vérifier l'état de connexion du compte, puis réessayer.</value>
   </data>
   <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
     <value>Temporairement indisponible</value>
@@ -5162,7 +5162,7 @@ Rapport : {0}</value>
     <value>Installé : {0}</value>
   </data>
   <data name="PluginStoreInstallFailed" xml:space="preserve">
-    <value>Échec de l&apos;installation : {0}</value>
+    <value>Échec de l'installation : {0}</value>
   </data>
   <data name="PluginStoreUninstallSuccess" xml:space="preserve">
     <value>Désinstallé : {0}</value>
@@ -5171,10 +5171,10 @@ Rapport : {0}</value>
     <value>Vérification en cours...</value>
   </data>
   <data name="PluginStoreHashMismatch" xml:space="preserve">
-    <value>La vérification d&apos;intégrité du fichier a échoué. Le téléchargement est peut-être corrompu ou altéré.</value>
+    <value>La vérification d'intégrité du fichier a échoué. Le téléchargement est peut-être corrompu ou altéré.</value>
   </data>
   <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
-    <value>La vérification d&apos;intégrité du script d&apos;installation a échoué</value>
+    <value>La vérification d'intégrité du script d'installation a échoué</value>
   </data>
   <data name="PluginStoreSecurityBlocked" xml:space="preserve">
     <value>Installation bloquée : {0}</value>
@@ -5186,7 +5186,7 @@ Rapport : {0}</value>
     <value>Sécurité : tentative de traversée de répertoire bloquée</value>
   </data>
   <data name="PluginStoreHashVerified" xml:space="preserve">
-    <value>Vérification d&apos;intégrité réussie</value>
+    <value>Vérification d'intégrité réussie</value>
   </data>
   <data name="PluginStoreDiscover" xml:space="preserve">
     <value>Explorer et découvrir</value>
@@ -5240,7 +5240,7 @@ Rapport : {0}</value>
     <value>Annulé</value>
   </data>
   <data name="PluginStoreInstallFailedShort" xml:space="preserve">
-    <value>Échec de l&apos;installation</value>
+    <value>Échec de l'installation</value>
   </data>
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Désinstallation en cours...</value>
@@ -5252,7 +5252,7 @@ Rapport : {0}</value>
     <value>Échec de la désinstallation</value>
   </data>
   <data name="PluginStoreServerUnreachable" xml:space="preserve">
-    <value>Impossible de se connecter au serveur du magasin de plugins. Veuillez vérifier votre réseau ou l&apos;état du serveur.</value>
+    <value>Impossible de se connecter au serveur du magasin de plugins. Veuillez vérifier votre réseau ou l'état du serveur.</value>
   </data>
   <data name="PluginStoreServerTimeout" xml:space="preserve">
     <value>Connexion au magasin de plugins expirée. Veuillez réessayer plus tard.</value>
@@ -5261,10 +5261,10 @@ Rapport : {0}</value>
     <value>Échec du chargement de la liste des plugins : {0}</value>
   </data>
   <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
-    <value>Impossible de télécharger le script d&apos;installation. Serveur indisponible.</value>
+    <value>Impossible de télécharger le script d'installation. Serveur indisponible.</value>
   </data>
   <data name="PluginStoreDownloadLuaError" xml:space="preserve">
-    <value>Échec du téléchargement du script d&apos;installation : {0}</value>
+    <value>Échec du téléchargement du script d'installation : {0}</value>
   </data>
   <data name="PluginStoreDownloading" xml:space="preserve">
     <value>Téléchargement {0} %</value>
@@ -5282,28 +5282,28 @@ Rapport : {0}</value>
     <value>{0:F1} k</value>
   </data>
   <data name="PluginStoreScriptDownloading" xml:space="preserve">
-    <value>Téléchargement du script d&apos;installation...</value>
+    <value>Téléchargement du script d'installation...</value>
   </data>
   <data name="PluginStoreScriptScanning" xml:space="preserve">
     <value>Analyse en cours...</value>
   </data>
   <data name="PluginStoreScriptExecuting" xml:space="preserve">
-    <value>Exécution du script d&apos;installation...</value>
+    <value>Exécution du script d'installation...</value>
   </data>
   <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
-    <value>Le script Lua n&apos;a pas passé la vérification de sécurité.</value>
+    <value>Le script Lua n'a pas passé la vérification de sécurité.</value>
   </data>
   <data name="PluginStoreLuaScriptError" xml:space="preserve">
     <value>Erreur du script Lua : {0}</value>
   </data>
   <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
-    <value>Échec de l&apos;exécution du script Lua : {0}</value>
+    <value>Échec de l'exécution du script Lua : {0}</value>
   </data>
   <data name="PluginStoreDialogClose" xml:space="preserve">
     <value>Fermer</value>
   </data>
   <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
-    <value>Sécurité : un chemin vide a été fourni pour l&apos;opération {0}.</value>
+    <value>Sécurité : un chemin vide a été fourni pour l'opération {0}.</value>
   </data>
   <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
     <value>Sécurité : chemin invalide ({0}) : {1}</value>
@@ -5330,13 +5330,13 @@ Rapport : {0}</value>
     <value>Test Lua</value>
   </data>
   <data name="PluginStoreLuaTestTitle" xml:space="preserve">
-    <value>Test du script d&apos;installation du plugin Lua</value>
+    <value>Test du script d'installation du plugin Lua</value>
   </data>
   <data name="PluginStoreLuaTestDescription" xml:space="preserve">
-    <value>Saisissez ci-dessous le script d&apos;installation du plugin Lua, puis cliquez sur Exécuter le test pour le valider. Le script s&apos;exécute dans un environnement sandbox, avec toutes les opérations de fichiers limitées au répertoire Plugins.</value>
+    <value>Saisissez ci-dessous le script d'installation du plugin Lua, puis cliquez sur Exécuter le test pour le valider. Le script s'exécute dans un environnement sandbox, avec toutes les opérations de fichiers limitées au répertoire Plugins.</value>
   </data>
   <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
-    <value>-- Saisissez ici le script d&apos;installation du plugin Lua
+    <value>-- Saisissez ici le script d'installation du plugin Lua
 -- API disponibles : install.download(), install.extract(), install.download_plugin(id), etc.
 -- Consultez le guide de développement des plugins Lua</value>
   </data>
@@ -5347,9 +5347,9 @@ Rapport : {0}</value>
     <value>Avertissement de sécurité</value>
   </data>
   <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
-    <value>Le script n&apos;a pas passé la vérification de sécurité : {0}
+    <value>Le script n'a pas passé la vérification de sécurité : {0}
 
-Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
+Voulez-vous quand même l'exécuter ? (Déconseillé)</value>
   </data>
   <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
     <value>Exécution du script Lua en cours...</value>
@@ -5358,10 +5358,10 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Exécution du script Lua réussie</value>
   </data>
   <data name="PluginStoreLuaTestFailed" xml:space="preserve">
-    <value>Échec de l&apos;exécution du script Lua</value>
+    <value>Échec de l'exécution du script Lua</value>
   </data>
   <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
-    <value>Journal enregistré à l&apos;emplacement :
+    <value>Journal enregistré à l'emplacement :
 {0}</value>
   </data>
   <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
@@ -5380,37 +5380,37 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Personnalisation visuelle</value>
   </data>
   <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>Vue d&apos;ensemble</value>
+    <value>Vue d'ensemble</value>
   </data>
   <data name="Backpack_PageSubtitle" xml:space="preserve">
     <value>Parcourez vos équipements, matériaux et plats en un seul endroit pour planifier votre progression.</value>
   </data>
   <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>Les données synchronisées sont stockées uniquement sur cet appareil ; aucun contenu du compte ou de l&apos;inventaire n&apos;est téléversé.</value>
+    <value>Les données synchronisées sont stockées uniquement sur cet appareil ; aucun contenu du compte ou de l'inventaire n'est téléversé.</value>
   </data>
   <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>Aucun répertoire d&apos;installation du jeu valide n&apos;a été détecté</value>
+    <value>Aucun répertoire d'installation du jeu valide n'a été détecté</value>
   </data>
   <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>Veuillez configurer le chemin dans les paramètres de jeu du logiciel. Backpack n&apos;enregistre ni ne demande un second chemin.</value>
+    <value>Veuillez configurer le chemin dans les paramètres de jeu du logiciel. Backpack n'enregistre ni ne demande un second chemin.</value>
   </data>
   <data name="Backpack_OpenSettings" xml:space="preserve">
     <value>Ouvrir les paramètres</value>
   </data>
   <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>Veuillez configurer le répertoire d&apos;installation dans les paramètres de jeu</value>
+    <value>Veuillez configurer le répertoire d'installation dans les paramètres de jeu</value>
   </data>
   <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>Instructions d&apos;utilisation</value>
+    <value>Instructions d'utilisation</value>
   </data>
   <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Cliquez sur « Synchroniser l&apos;inventaire » en haut à droite pour injecter votre inventaire réel du jeu et démarrer la synchronisation des données.</value>
+    <value>Cliquez sur « Synchroniser l'inventaire » en haut à droite pour injecter votre inventaire réel du jeu et démarrer la synchronisation des données.</value>
   </data>
   <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>Utilisez les onglets en haut pour changer de catégorie. Cliquez sur la fiche d&apos;un objet pour afficher ses paramètres détaillés (set / sous-stat / compétence d&apos;arme).</value>
+    <value>Utilisez les onglets en haut pour changer de catégorie. Cliquez sur la fiche d'un objet pour afficher ses paramètres détaillés (set / sous-stat / compétence d'arme).</value>
   </data>
   <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>Les cartes de vue d&apos;ensemble proposent des synergies d&apos;ingrédients et la couverture des matériaux de progression en fonction de l&apos;inventaire actuel.</value>
+    <value>Les cartes de vue d'ensemble proposent des synergies d'ingrédients et la couverture des matériaux de progression en fonction de l'inventaire actuel.</value>
   </data>
   <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
     <value>Armes possédées</value>
@@ -5434,7 +5434,7 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Armes 5 étoiles à affinage maximum</value>
   </data>
   <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>{0} armes 5 étoiles ont atteint l&apos;affinage maximum.</value>
+    <value>{0} armes 5 étoiles ont atteint l'affinage maximum.</value>
   </data>
   <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
     <value>Artéfacts 5 étoiles au niveau maximum</value>
@@ -5458,7 +5458,7 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Progression du codex des armes</value>
   </data>
   <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>{0} armes figurent uniquement dans le codex et n&apos;ont pas encore été obtenues.</value>
+    <value>{0} armes figurent uniquement dans le codex et n'ont pas encore été obtenues.</value>
   </data>
   <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
     <value>Matériaux en stock faible</value>
@@ -5470,7 +5470,7 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Aperçu des données</value>
   </data>
   <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>Après la synchronisation de l&apos;inventaire, des analyses et suggestions s&apos;afficheront ici.</value>
+    <value>Après la synchronisation de l'inventaire, des analyses et suggestions s'afficheront ici.</value>
   </data>
   <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
     <value>Matériaux de talent de haut rang</value>
@@ -5479,7 +5479,7 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>État de préparation des plats</value>
   </data>
   <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>Basé sur l&apos;inventaire d&apos;ingrédients actuel</value>
+    <value>Basé sur l'inventaire d'ingrédients actuel</value>
   </data>
   <data name="Backpack_CookReady" xml:space="preserve">
     <value>Prêt à cuisiner</value>
@@ -5497,7 +5497,7 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>En attente de synchronisation</value>
   </data>
   <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>Synchronisez votre inventaire pour consulter l&apos;état de préparation des plats.</value>
+    <value>Synchronisez votre inventaire pour consulter l'état de préparation des plats.</value>
   </data>
   <data name="Backpack_BrowseTitle" xml:space="preserve">
     <value>Parcourir et rechercher</value>
@@ -5542,7 +5542,7 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>{0} résultats</value>
   </data>
   <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>Rareté de l&apos;arme</value>
+    <value>Rareté de l'arme</value>
   </data>
   <data name="Backpack_DetailLevel" xml:space="preserve">
     <value>Niveau</value>
@@ -5557,13 +5557,13 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Sous-stat</value>
   </data>
   <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>Compétence de l&apos;arme</value>
+    <value>Compétence de l'arme</value>
   </data>
   <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>Histoire de l&apos;arme</value>
+    <value>Histoire de l'arme</value>
   </data>
   <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>Niveau d&apos;amélioration</value>
+    <value>Niveau d'amélioration</value>
   </data>
   <data name="Backpack_DetailMainStat" xml:space="preserve">
     <value>Stat principale</value>
@@ -5578,13 +5578,13 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Entrée du codex</value>
   </data>
   <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>Après l&apos;importation depuis le jeu, le niveau d&apos;amélioration, la valeur de la stat principale et le détail des jets des sous-stats de l&apos;artéfact seront automatiquement remplis. Les informations actuellement affichées correspondent à la catégorie du set et aux informations de base du bonus de set de cet artéfact.</value>
+    <value>Après l'importation depuis le jeu, le niveau d'amélioration, la valeur de la stat principale et le détail des jets des sous-stats de l'artéfact seront automatiquement remplis. Les informations actuellement affichées correspondent à la catégorie du set et aux informations de base du bonus de set de cet artéfact.</value>
   </data>
   <data name="Backpack_DetailCookState" xml:space="preserve">
     <value>État de la préparation</value>
   </data>
   <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>Le stock d&apos;ingrédients est suffisant, vous pouvez cuisiner immédiatement</value>
+    <value>Le stock d'ingrédients est suffisant, vous pouvez cuisiner immédiatement</value>
   </data>
   <data name="Backpack_DetailCookMissing" xml:space="preserve">
     <value>Certains ingrédients sont insuffisants, complétez-les pour cuisiner</value>
@@ -5593,19 +5593,19 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Ingrédients requis</value>
   </data>
   <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>Objet de l&apos;inventaire</value>
+    <value>Objet de l'inventaire</value>
   </data>
   <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>Quantité réelle dans l&apos;inventaire actuel.</value>
+    <value>Quantité réelle dans l'inventaire actuel.</value>
   </data>
   <data name="Backpack_DetailStockItem" xml:space="preserve">
     <value>Objet en stock</value>
   </data>
   <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>Aperçu de l&apos;inventaire</value>
+    <value>Aperçu de l'inventaire</value>
   </data>
   <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>Analyses de l&apos;inventaire</value>
+    <value>Analyses de l'inventaire</value>
   </data>
   <data name="Backpack_SectionCultivation" xml:space="preserve">
     <value>Couverture des matériaux de progression</value>
@@ -5623,10 +5623,10 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
     <value>Confirmer</value>
   </data>
   <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>Données de l&apos;inventaire importées</value>
+    <value>Données de l'inventaire importées</value>
   </data>
   <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>Les données de l&apos;inventaire ont été reçues et enregistrées. La vue d&apos;ensemble, la couverture des matériaux et les suggestions de plats ont été mises à jour.</value>
+    <value>Les données de l'inventaire ont été reçues et enregistrées. La vue d'ensemble, la couverture des matériaux et les suggestions de plats ont été mises à jour.</value>
   </data>
   <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
     <value>Échec de la synchronisation</value>
@@ -5678,5 +5678,106 @@ Voulez-vous quand même l&apos;exécuter ? (Déconseillé)</value>
   </data>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Voulez-vous vraiment supprimer les identifiants de connexion quotidienne au cloud gaming de ce compte ?</value>
+  </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>Accélération par miroir de la boutique</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>Les liens GitHub des plugins seront téléchargés via des sites miroirs</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>Miroir</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>Accélération du téléchargement</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>Choisissez une ligne de téléchargement pour démarrer</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>Test des miroirs...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>Choisissez une ligne de téléchargement</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>Veuillez d'abord sélectionner un nœud dans la liste</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>Démarrer</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>Source officielle directe</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>Retester</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>Arrêter</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>Changer de source</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>Réessayer avec une autre source</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>Annuler l'installation</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>Téléchargement...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>Téléchargement terminé</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>Miroirs indisponibles</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>Tous les miroirs ont échoué au contrôle d'intégrité ou ont expiré.
+
+Vous pouvez essayer la source officielle directe ou annuler l'installation.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>Échec de la vérification</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>Le fichier téléchargé n'a pas passé le contrôle SHA-256 ; il a peut-être été corrompu et a été supprimé.
+
+Réessayez avec un autre nœud ou la source officielle.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>Téléchargement lent</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>La progression est bloquée depuis longtemps, probablement un problème réseau.
+
+Arrêter et changer de source ?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>Arrêter et changer</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>Continuer</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>Échec du téléchargement</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>Échec du téléchargement : {0}
+
+Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>Installation du plugin annulée</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>Excellent</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>Normal</value>
   </data>
 </root>

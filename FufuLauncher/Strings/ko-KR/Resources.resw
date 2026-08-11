@@ -5680,4 +5680,105 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>이 계정의 클라우드 게임 출석 체크 자격 증명을 제거하시겠습니까?</value>
   </data>
+  <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
+    <value>플러그인 스토어 미러 가속</value>
+  </data>
+  <data name="PluginMirrorAccelerationCaption" xml:space="preserve">
+    <value>스토어 플러그인의 GitHub 다운로드 링크는 미러 사이트를 통해 가속됩니다</value>
+  </data>
+  <data name="PluginMirrorAccelerationShort" xml:space="preserve">
+    <value>미러 가속</value>
+  </data>
+  <data name="PluginMirrorWindowTitle" xml:space="preserve">
+    <value>플러그인 다운로드 가속</value>
+  </data>
+  <data name="PluginMirrorWindowDesc" xml:space="preserve">
+    <value>다운로드 경로를 선택하여 미러 가속 다운로드를 시작하세요</value>
+  </data>
+  <data name="PluginMirrorTesting" xml:space="preserve">
+    <value>속도 측정 중...</value>
+  </data>
+  <data name="PluginMirrorTestingCount" xml:space="preserve">
+    <value>{0} / {1}</value>
+  </data>
+  <data name="PluginMirrorSelectSourceHint" xml:space="preserve">
+    <value>다운로드 경로를 선택하세요</value>
+  </data>
+  <data name="PluginMirrorSelectSourceFirst" xml:space="preserve">
+    <value>먼저 목록에서 다운로드 노드를 선택하세요</value>
+  </data>
+  <data name="PluginMirrorStartDownload" xml:space="preserve">
+    <value>다운로드 시작</value>
+  </data>
+  <data name="PluginMirrorDirectOfficial" xml:space="preserve">
+    <value>공식 소스 직접 연결</value>
+  </data>
+  <data name="PluginMirrorRetest" xml:space="preserve">
+    <value>다시 측정</value>
+  </data>
+  <data name="PluginMirrorStopDownload" xml:space="preserve">
+    <value>중지</value>
+  </data>
+  <data name="PluginMirrorSwitchSource" xml:space="preserve">
+    <value>경로 변경</value>
+  </data>
+  <data name="PluginMirrorRetrySwitch" xml:space="preserve">
+    <value>다른 경로로 재시도</value>
+  </data>
+  <data name="PluginMirrorCancelInstall" xml:space="preserve">
+    <value>설치 취소</value>
+  </data>
+  <data name="PluginMirrorDownloading" xml:space="preserve">
+    <value>다운로드 중...</value>
+  </data>
+  <data name="PluginMirrorDownloadComplete" xml:space="preserve">
+    <value>다운로드 완료</value>
+  </data>
+  <data name="PluginMirrorAllFailedTitle" xml:space="preserve">
+    <value>미러 노드를 사용할 수 없음</value>
+  </data>
+  <data name="PluginMirrorAllFailedMessage" xml:space="preserve">
+    <value>모든 미러 노드가 무결성 검사를 통과하지 못했거나 시간 초과되었습니다.
+
+공식 소스에서 직접 다운로드하거나 설치를 취소할 수 있습니다.</value>
+  </data>
+  <data name="PluginMirrorHashFailedTitle" xml:space="preserve">
+    <value>파일 검증 실패</value>
+  </data>
+  <data name="PluginMirrorHashFailedMessage" xml:space="preserve">
+    <value>다운로드한 파일의 SHA-256 검증이 실패했습니다. 전송 중 손상 또는 변조되었을 수 있으며 자동으로 삭제되었습니다.
+
+다른 노드 또는 공식 소스로 다시 시도하세요.</value>
+  </data>
+  <data name="PluginMirrorStuckTitle" xml:space="preserve">
+    <value>다운로드 느림</value>
+  </data>
+  <data name="PluginMirrorStuckMessage" xml:space="preserve">
+    <value>다운로드 진행이 오랫동안 변하지 않았습니다. 네트워크가 좋지 않을 수 있습니다.
+
+현재 다운로드를 중지하고 다른 경로로 전환할까요?</value>
+  </data>
+  <data name="PluginMirrorStuckSwitch" xml:space="preserve">
+    <value>중지하고 경로 변경</value>
+  </data>
+  <data name="PluginMirrorStuckContinue" xml:space="preserve">
+    <value>계속 대기</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedTitle" xml:space="preserve">
+    <value>다운로드 실패</value>
+  </data>
+  <data name="PluginMirrorDownloadFailedMessage" xml:space="preserve">
+    <value>다운로드 실패: {0}
+
+다른 노드로 재시도하거나 공식 소스에서 직접 다운로드할 수 있습니다.</value>
+  </data>
+  <data name="PluginMirrorAbortedMessage" xml:space="preserve">
+    <value>플러그인 설치가 중단되었습니다</value>
+  </data>
+  <data name="PluginMirrorStatusExcellent" xml:space="preserve">
+    <value>매우 좋음</value>
+  </data>
+  <data name="PluginMirrorStatusNormal" xml:space="preserve">
+    <value>양호</value>
+  </data>
 </root>

@@ -219,6 +219,8 @@ public partial class App : Application
                     services.AddTransient<CommunityPage>();
                     services.AddSingleton<Services.PluginStoreService>();
                     services.AddSingleton<Services.LuaPluginInstaller>();
+                    services.AddSingleton<Services.PluginMirror.MirrorSiteProvider>();
+                    services.AddSingleton<Services.PluginMirror.PluginMirrorDownloadService>();
                     services.AddSingleton<ViewModels.PluginStoreViewModel>();
                     services.AddTransient<Views.PluginStorePage>();
 

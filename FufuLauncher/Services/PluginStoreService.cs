@@ -11,12 +11,14 @@ using System.Text.Json.Serialization;
 using FufuLauncher.Constants;
 using FufuLauncher.Models;
 using FufuLauncher.Helpers;
+using FufuLauncher.Services.PluginMirror;
 
 namespace FufuLauncher.Services;
 
 public class PluginStoreService
 {
     private readonly HttpClient _httpClient;
+    private readonly PluginMirrorDownloadService _mirrorDownloadService;
     private static readonly string ClientVersion =
         Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "1.0.0.0";
 
@@ -26,8 +28,10 @@ public class PluginStoreService
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
-    public PluginStoreService()
+    public PluginStoreService(PluginMirrorDownloadService mirrorDownloadService)
     {
+        _mirrorDownloadService = mirrorDownloadService;
+
         var handler = new HttpClientHandler
         {
             AllowAutoRedirect = true,
@@ -412,7 +416,21 @@ public class PluginStoreService
         CancellationToken cancellationToken = default)
     {
         var url = AppendTokens(fileUrl, dlToken, accessToken);
+        
+        if (await _mirrorDownloadService.TryDownloadViaMirrorAsync(
+                this, url, destinationPath, progress, expectedHash, cancellationToken))
+        {
+            return;
+        }
 
+        await DownloadFileCoreAsync(url, destinationPath, progress, expectedHash,
+            checkErrorGate: true, cancellationToken);
+    }
+    
+    internal async Task DownloadFileCoreAsync(string url, string destinationPath,
+        IProgress<DownloadProgressInfo>? progress, string? expectedHash,
+        bool checkErrorGate, CancellationToken cancellationToken)
+    {
         try
         {
             Debug.WriteLine($"[PluginStoreService] Downloading file: {url} -> {destinationPath}");
@@ -423,7 +441,10 @@ public class PluginStoreService
             if (contentType.Contains("json"))
             {
                 var body = await response.Content.ReadAsStringAsync();
-                CheckBodyForErrorGate(body, ExtractPluginIdFromUrl(fileUrl));
+                if (checkErrorGate)
+                {
+                    CheckBodyForErrorGate(body, ExtractPluginIdFromUrl(url));
+                }
                 throw new InvalidOperationException(
                     string.Format("PluginStoreHttpError".GetLocalized(), (int)response.StatusCode, body.Length > 200 ? body[..200] : body));
             }

@@ -16,6 +16,7 @@ using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
+using FufuLauncher.Services.PluginMirror;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -175,6 +176,8 @@ namespace FufuLauncher.ViewModels
 
         [ObservableProperty] private bool _isUseThirdPartyCDNEnabled = true;
 
+        [ObservableProperty] private bool _isPluginMirrorAccelerationEnabled = true;
+
         [ObservableProperty] private bool _isCaptchaPopupDisabled;
 
         partial void OnIsCaptchaPopupDisabledChanged(bool value)
@@ -291,6 +294,12 @@ namespace FufuLauncher.ViewModels
         {
             if (_isInitializing) return;
             _ = _localSettingsService.SaveSettingAsync("IsUseThirdPartyCDNEnabled", value);
+        }
+
+        partial void OnIsPluginMirrorAccelerationEnabledChanged(bool value)
+        {
+            if (_isInitializing) return;
+            _ = _localSettingsService.SaveSettingAsync(PluginMirrorDownloadService.SettingKey, value);
         }
 
         partial void OnScreenshotHotkeyChanged(string value)
@@ -1271,6 +1280,9 @@ namespace FufuLauncher.ViewModels
 
             var useThirdPartyCDNJson = await _localSettingsService.ReadSettingAsync("IsUseThirdPartyCDNEnabled");
             IsUseThirdPartyCDNEnabled = useThirdPartyCDNJson == null || Convert.ToBoolean(useThirdPartyCDNJson);
+
+            var pluginMirrorJson = await _localSettingsService.ReadSettingAsync(PluginMirrorDownloadService.SettingKey);
+            IsPluginMirrorAccelerationEnabled = pluginMirrorJson == null || Convert.ToBoolean(pluginMirrorJson);
 
             var customExeJson = await _localSettingsService.ReadSettingAsync(GameExeManager.CustomExeNameKey);
             CustomGameExeName = customExeJson?.ToString() ?? string.Empty;
