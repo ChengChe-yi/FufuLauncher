@@ -13,55 +13,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Avatar_Batch_Fail_Title" xml:space="preserve">
-    <value>Batch Save Failed</value>
+    <value>Error al guardar en lote</value>
   </data>
   <data name="Avatar_Batch_Success" xml:space="preserve">
-    <value>Batch generated and overwrote all avatar sizes</value>
+    <value>Se generaron y sobrescribieron los avatares de todos los tamaños</value>
   </data>
   <data name="Avatar_Clear_Fail_Title" xml:space="preserve">
-    <value>Clear Failed</value>
+    <value>Error al limpiar</value>
   </data>
   <data name="Avatar_Clear_Success_Format" xml:space="preserve">
-    <value>Avatar size {0}x{0} cleared</value>
+    <value>Avatar de tamaño {0}x{0} eliminado</value>
   </data>
   <data name="Avatar_Crop_Success" xml:space="preserve">
-    <value>Avatar cropped and saved successfully</value>
+    <value>Avatar recortado y guardado correctamente</value>
   </data>
   <data name="Avatar_EditNotFound_Content" xml:space="preserve">
-    <value>No avatar found to edit</value>
+    <value>No se encontró ningún avatar para editar</value>
   </data>
   <data name="Avatar_EditNotFound_Title" xml:space="preserve">
-    <value>Notice</value>
+    <value>Aviso</value>
   </data>
   <data name="Avatar_ImportFail_Title" xml:space="preserve">
-    <value>Import Failed</value>
+    <value>Error de importación</value>
   </data>
   <data name="Avatar_LoadFail_Title" xml:space="preserve">
-    <value>Load Failed</value>
+    <value>Error de carga</value>
   </data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve">
-    <value>Save Failed</value>
+    <value>Error al guardar</value>
   </data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve">
-    <value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value>
+    <value>Si tienes activada la generación de fotogramas por IA en GPUs NVIDIA de la serie RTX 40 o superior, o usas software de visualización de FPS como RTSS o MSI Afterburner, el juego puede congelarse o no iniciarse correctamente.</value>
   </data>
   <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
-    <value>Don't show this warning again</value>
+    <value>No volver a mostrar esta advertencia</value>
   </data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Advertencia de compatibilidad</value>
   </data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve">
-    <value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value>
+    <value>El hash del plugin de visualización de FPS no coincide. Puede haber sido modificado o dañado. Vuelve a instalar el launcher.</value>
   </data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve">
-    <value>Repair Failed</value>
+    <value>Error al reparar</value>
   </data>
   <data name="Fps_Repair_Success" xml:space="preserve">
-    <value>FPS display plugin has been successfully repaired and installed</value>
+    <value>El plugin de visualización de FPS se ha reparado e instalado correctamente</value>
   </data>
   <data name="Fps_Repair_Title" xml:space="preserve">
-    <value>Repairing FPS Plugin</value>
+    <value>Reparando el plugin de FPS</value>
   </data>
   <data name="LanguageChangedTitle" xml:space="preserve">
     <value>Idioma cambiado</value>
@@ -85,107 +85,107 @@
     <value>Seleccionado</value>
   </data>
   <data name="PR_Description" xml:space="preserve">
-    <value>This project is currently maintained by an individual developer (CodeCubist).
-We adhere to a player pain-point-driven development direction, promoting open, transparent, and efficient updates.
-Submitting Pull Requests is the core way for users with coding skills to help advance development, optimize structure, and share project maintenance responsibilities.
-If you can help, please use the button below to visit the code repository and submit your contribution.</value>
+    <value>Este proyecto lo mantiene actualmente un desarrollador individual (CodeCubist).
+Seguimos un enfoque de desarrollo centrado en los puntos débiles de los jugadores, impulsando actualizaciones de forma abierta, transparente y eficiente.
+Enviar Pull Requests es la vía principal para que los usuarios con conocimientos de programación ayuden a avanzar el desarrollo, optimizar la estructura y compartir el mantenimiento del proyecto.
+Si puedes ayudar, usa el botón de abajo para visitar el repositorio y enviar tu contribución.</value>
   </data>
   <data name="PR_GitHubButton" xml:space="preserve">
-    <value>Visit GitHub Repository to Submit Pull Request</value>
+    <value>Visitar el repositorio de GitHub para enviar un Pull Request</value>
   </data>
   <data name="PR_Window_Title" xml:space="preserve">
     <value>Pull Request</value>
   </data>
   <data name="Plugin_ArchWarning_Content" xml:space="preserve">
-    <value>Your computer may be ARM-based. The injection feature is not available on ARM-based computers. Are you sure you want to continue enabling it?</value>
+    <value>Tu equipo puede tener arquitectura ARM. La función de inyección no está disponible en equipos ARM. ¿Seguro que quieres continuar y activarla?</value>
   </data>
   <data name="Plugin_ArchWarning_Continue" xml:space="preserve">
-    <value>Continue Enabling</value>
+    <value>Continuar y activar</value>
   </data>
   <data name="Plugin_ArchWarning_Title" xml:space="preserve">
-    <value>Architecture Compatibility Warning</value>
+    <value>Advertencia de compatibilidad de arquitectura</value>
   </data>
   <data name="Plugin_Corrupted_Content" xml:space="preserve">
-    <value>Plugin files are abnormal.
-This is usually because the plugin was falsely flagged and blocked by antivirus software (such as Windows Defender) or has been damaged.
+    <value>Los archivos del plugin están dañados.
+Normalmente se debe a que el antivirus (como Windows Defender) bloqueó el plugin por error o a que está dañado.
 
-Recommendations:
-1. Add the software directory to the antivirus whitelist
-2. Re-download and install the plugin on this page</value>
+Recomendaciones:
+1. Añade el directorio del software a la lista blanca del antivirus
+2. Vuelve a descargar e instalar el plugin en esta página</value>
   </data>
   <data name="Plugin_Corrupted_Title" xml:space="preserve">
-    <value>Plugin May Be Corrupted</value>
+    <value>El plugin puede estar dañado</value>
   </data>
   <data name="Plugin_Download_BackupLine" xml:space="preserve">
-    <value>Backup</value>
+    <value>Respaldo</value>
   </data>
   <data name="Plugin_Download_Connecting" xml:space="preserve">
-    <value>Connecting...</value>
+    <value>Conectando...</value>
   </data>
   <data name="Plugin_Download_Extracting" xml:space="preserve">
-    <value>Extracting and installing...</value>
+    <value>Extrayendo e instalando...</value>
   </data>
   <data name="Plugin_Download_Fail_Content_Format" xml:space="preserve">
-    <value>Installation failed: {0}</value>
+    <value>Instalación fallida: {0}</value>
   </data>
   <data name="Plugin_Download_Fallback" xml:space="preserve">
-    <value>Connection failed, trying backup line...</value>
+    <value>Error de conexión, probando línea de respaldo...</value>
   </data>
   <data name="Plugin_Download_MainLine" xml:space="preserve">
-    <value>Main</value>
+    <value>Principal</value>
   </data>
   <data name="Plugin_Download_Manual" xml:space="preserve">
-    <value>Manual Download</value>
+    <value>Descarga manual</value>
   </data>
   <data name="Plugin_Download_Progress_Format" xml:space="preserve">
-    <value>{0} line downloading... {1}%</value>
+    <value>Descargando por la línea {0}... {1}%</value>
   </data>
   <data name="Plugin_Download_Success" xml:space="preserve">
-    <value>Plugin installed and refreshed</value>
+    <value>Plugin instalado y actualizado</value>
   </data>
   <data name="Plugin_Download_Title" xml:space="preserve">
-    <value>Getting Plugin</value>
+    <value>Obteniendo plugin</value>
   </data>
   <data name="Plugin_FileNotFound" xml:space="preserve">
-    <value>File not found, please confirm launcher files are complete</value>
+    <value>Archivo no encontrado. Por favor, comprueba que los archivos del launcher están completos</value>
   </data>
   <data name="Plugin_MainMissing_Content" xml:space="preserve">
-    <value>Main plugin DLL file not found. The plugin may not be installed, was accidentally deleted, or was blocked by antivirus software. Please re-download the plugin, or add the launcher directory to the antivirus whitelist and try again.</value>
+    <value>No se encontró el archivo DLL del plugin principal. El plugin puede no estar instalado, haber sido eliminado por error o estar bloqueado por el antivirus. Vuelve a descargar el plugin o añade el directorio del launcher a la lista blanca del antivirus e inténtalo de nuevo.</value>
   </data>
   <data name="Plugin_MainMissing_Title" xml:space="preserve">
-    <value>Main Plugin Missing</value>
+    <value>Falta el plugin principal</value>
   </data>
   <data name="Preset_Create_Placeholder" xml:space="preserve">
-    <value>Enter new preset name</value>
+    <value>Introduce el nombre del nuevo ajuste</value>
   </data>
   <data name="Preset_Create_Title" xml:space="preserve">
-    <value>Create New Preset</value>
+    <value>Crear nuevo ajuste</value>
   </data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Delete</value>
+    <value>Confirmar eliminación</value>
   </data>
   <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
-    <value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value>
+    <value>¿Seguro que quieres eliminar el ajuste "{0}"? Esta acción no se puede deshacer.</value>
   </data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve">
-    <value>Lock reason: {0}
+    <value>Motivo del bloqueo: {0}
 
-If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value>
+Si continúas, se ignorará esta advertencia y el Hash de este ajuste se actualizará al Hash actual del plugin, desbloqueando así el ajuste. ¿Quieres continuar?</value>
   </data>
   <data name="Preset_Locked_Continue" xml:space="preserve">
-    <value>Continue and Unlock</value>
+    <value>Continuar y desbloquear</value>
   </data>
   <data name="Preset_Locked_Title" xml:space="preserve">
-    <value>Configuration Preset Locked</value>
+    <value>Ajuste de configuración bloqueado</value>
   </data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Reset</value>
+    <value>Confirmar restablecimiento</value>
   </data>
   <data name="Preset_ResetAll_Content" xml:space="preserve">
-    <value>Remove all presets for the current plugin and re-download the defaults? This action cannot be undone!</value>
+    <value>¿Eliminar todos los ajustes del plugin actual y volver a descargar los predeterminados? Esta acción no se puede deshacer.</value>
   </data>
   <data name="Preset_ResetAll_Title" xml:space="preserve">
-    <value>Reset All Presets</value>
+    <value>Restablecer todos los ajustes</value>
   </data>
   <data name="RestartNowBtn" xml:space="preserve">
     <value>Reiniciar ahora</value>
@@ -650,7 +650,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Acrylic</value>
   </data>
   <data name="MicaWarning" xml:space="preserve">
-    <value>Nota: Mica solo está disponible en Windows 11.</value>
+    <value>Nota: El efecto Mica solo está disponible en Windows 11; en sistemas más antiguos puede volverse a un color sólido.</value>
   </data>
   <data name="ShowHamburger" xml:space="preserve">
     <value>Mostrar botón de menú lateral</value>
@@ -1572,7 +1572,7 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Noticias</value>
   </data>
   <data name="Home_CheckinCard" xml:space="preserve">
-    <value>Check-in</value>
+    <value>Check-in de Genshin</value>
   </data>
   <data name="Home_RefreshToken" xml:space="preserve">
     <value>Actualizar token</value>
@@ -1764,7 +1764,7 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Herramientas de accesibilidad</value>
   </data>
   <data name="OtherPage_AutoClicker" xml:space="preserve">
-    <value>Auto Clicker</value>
+    <value>Autoclic</value>
   </data>
   <data name="OtherPage_AutoClickerDesc" xml:space="preserve">
     <value>Mantén presionada una tecla o botón del ratón para simular clics de alta frecuencia</value>
@@ -2235,7 +2235,7 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Cancelar</value>
   </data>
   <data name="BBSWindow_Title" xml:space="preserve">
-    <value>Registros de batalla</value>
+    <value>Crónica de batalla</value>
   </data>
   <data name="BBSWindow_SwitchIdentity" xml:space="preserve">
     <value>Cambiar identidad</value>
@@ -2385,7 +2385,7 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Exportar formato estándar UIGF JSON al escritorio</value>
   </data>
   <data name="GachaDialog_TotalInvested" xml:space="preserve">
-    <value>Total: </value>
+    <value>Total invertido: </value>
   </data>
   <data name="GachaDialog_Pulls" xml:space="preserve">
     <value> Tiradas</value>
@@ -2520,7 +2520,7 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Protogemas obtenidas</value>
   </data>
   <data name="GenshinData_Mom" xml:space="preserve">
-    <value>Mensual </value>
+    <value>vs. mes anterior </value>
   </data>
   <data name="GenshinData_LastMonth" xml:space="preserve">
     <value>(Mes pasado </value>
@@ -2608,7 +2608,7 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Datos de personajes</value>
   </data>
   <data name="DataPage_AbyssData" xml:space="preserve">
-    <value>Abismo</value>
+    <value>Asalto Estigio</value>
   </data>
   <data name="DataPage_SpiralAbyss" xml:space="preserve">
     <value>Espiral del Abismo</value>
@@ -2617,7 +2617,7 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Datos de deseos</value>
   </data>
   <data name="DataPage_RerunTimer" xml:space="preserve">
-    <value>Temporizador de rerun</value>
+    <value>Temporizador de reedición</value>
   </data>
   <data name="DataPage_Timeline" xml:space="preserve">
     <value>Línea de tiempo</value>
@@ -2662,10 +2662,10 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
     <value>Luminosidad máxima</value>
   </data>
   <data name="HDR_SceneLuminance" xml:space="preserve">
-    <value>Blanco papel</value>
+    <value>Brillo de escena (blanco papel)</value>
   </data>
   <data name="HDR_UILuminance" xml:space="preserve">
-    <value>Blanco UI</value>
+    <value>Brillo de UI (blanco UI)</value>
   </data>
   <data name="HDR_ResetDefault" xml:space="preserve">
     <value>Restablecer predeterminado</value>
@@ -3460,10 +3460,10 @@ Archivos buscados:
     <value>Token caducado o cuenta restringida</value>
   </data>
   <data name="CheckinCloud_GainedTime" xml:space="preserve">
-    <value>Obtenidos {0} minutos de tiempo libre</value>
+    <value>Has obtenido {0} minutos de tiempo gratuito</value>
   </data>
   <data name="CheckinCloud_CurrentFreeTime" xml:space="preserve">
-    <value>Tiempo libre actual: {0}</value>
+    <value>Tiempo gratuito actual: {0}</value>
   </data>
   <data name="CheckinCloud_AlreadyCheckedIn" xml:space="preserve">
     <value>Ya se hizo check-in hoy o se alcanzó el límite</value>
@@ -3475,13 +3475,13 @@ Archivos buscados:
     <value>Excepción: {0}</value>
   </data>
   <data name="CheckinCloud_HoursMinutes" xml:space="preserve">
-    <value>{0}h{1}m</value>
+    <value>{0} h {1} min</value>
   </data>
   <data name="CheckinCloud_HoursOnly" xml:space="preserve">
-    <value>{0}h</value>
+    <value>{0} h</value>
   </data>
   <data name="CheckinCloud_MinutesOnly" xml:space="preserve">
-    <value>{0}m</value>
+    <value>{0} min</value>
   </data>
   <data name="CheckinCommunity_Title" xml:space="preserve">
     <value>Check-in de comunidad</value>
@@ -3649,7 +3649,7 @@ Archivos buscados:
     <value>{0} fallidas</value>
   </data>
   <data name="Checkin_AccountsSuccess" xml:space="preserve">
-    <value>{0} cuenta(s) exitosa(s)</value>
+    <value>{0} cuentas exitosas</value>
   </data>
   <data name="Checkin_AccountsFailed" xml:space="preserve">
     <value>{0} fallidas</value>
@@ -4069,7 +4069,7 @@ Archivos buscados:
     <value>Error al obtener datos de notas diarias: Formato de respuesta no válido</value>
   </data>
   <data name="DailyNote_TransformerTime" xml:space="preserve">
-    <value>{0}d {1}h {2}m</value>
+    <value>{0} d {1} h {2} min</value>
   </data>
   <data name="DailyNote_Claimed" xml:space="preserve">
     <value>Reclamado</value>
@@ -4200,7 +4200,7 @@ Detalles: {0}</value>
     <value>Descubre e instala complementos de la comunidad para ampliar el lanzador</value>
   </data>
   <data name="PluginStorePluginsSection" xml:space="preserve">
-    <value>Complementos</value>
+    <value>Plugins</value>
   </data>
   <data name="PluginStoreMoreActions" xml:space="preserve">
     <value>Más acciones</value>
@@ -4236,7 +4236,7 @@ Detalles: {0}</value>
     <value>Tipo de actualización</value>
   </data>
   <data name="PluginStoreMinAppVersion" xml:space="preserve">
-    <value>Versión mínima del lanzador</value>
+    <value>Versión mínima del launcher</value>
   </data>
   <data name="PluginStoreVersionTooLow" xml:space="preserve">
     <value>v{0} (la actual {1} es demasiado antigua)</value>
@@ -4248,7 +4248,7 @@ Detalles: {0}</value>
     <value>Dependencias</value>
   </data>
   <data name="PluginStoreLongDescription" xml:space="preserve">
-    <value>Acerca de este complemento</value>
+    <value>Acerca de este plugin</value>
   </data>
   <data name="PluginStoreDownloadingLua" xml:space="preserve">
     <value>Descargando el script de instalación...</value>
@@ -4272,7 +4272,7 @@ Detalles: {0}</value>
     <value>Asalto Estigio</value>
   </data>
   <data name="DataPage_TabWish" xml:space="preserve">
-    <value>Banners</value>
+    <value>Historial de banners</value>
   </data>
   <data name="DataPage_TabRerun" xml:space="preserve">
     <value>Reediciones</value>
@@ -4503,7 +4503,7 @@ Detalles: {0}</value>
     <value>1.ª mitad</value>
   </data>
   <data name="DataPage_HalfMid" xml:space="preserve">
-    <value>mitad</value>
+    <value>2.ª mitad</value>
   </data>
   <data name="DataPage_HalfSecond" xml:space="preserve">
     <value>2.ª mitad</value>
@@ -4752,223 +4752,223 @@ Detalles: {0}</value>
     <value>Error al exportar el PDF</value>
   </data>
   <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Weapons</value>
+    <value>Armas</value>
   </data>
   <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Artifacts</value>
+    <value>Artefactos</value>
   </data>
   <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Materials</value>
+    <value>Materiales</value>
   </data>
   <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Food</value>
+    <value>Comida</value>
   </data>
   <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Waiting for data…</value>
+    <value>Esperando datos…</value>
   </data>
   <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Received</value>
+    <value>Recibido</value>
   </data>
   <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Launching…</value>
+    <value>Iniciando…</value>
   </data>
   <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Game launched, waiting for data…</value>
+    <value>Juego iniciado, esperando datos…</value>
   </data>
   <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Seleccionar ruta del juego</value>
   </data>
   <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Kill Process</value>
+    <value>Finalizar proceso</value>
   </data>
   <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Sincronizar inventario</value>
   </data>
   <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Sincronizar inventario</value>
   </data>
   <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Game launched, waiting for backpack data…</value>
+    <value>Juego iniciado, esperando datos del inventario…</value>
   </data>
   <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Backpack_Locked" xml:space="preserve">
-    <value>Locked</value>
+    <value>Bloqueado</value>
   </data>
   <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Flower of Life</value>
+    <value>Flor de la vida</value>
   </data>
   <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Plume of Death</value>
+    <value>Pluma de la muerte</value>
   </data>
   <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Sands of Eon</value>
+    <value>Arenas del Eón</value>
   </data>
   <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Goblet of Eonothem</value>
+    <value>Cáliz de Eonothem</value>
   </data>
   <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Circlet of Logos</value>
+    <value>Diadema de Logos</value>
   </data>
   <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Invalid path. Please select YuanShen.exe (CN server only).</value>
+    <value>Ruta no válida. Selecciona el juego de la versión CN (YuanShen.exe).</value>
   </data>
   <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Seleccionar ruta del juego</value>
   </data>
   <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Click an entry below to switch to that path</value>
+    <value>Haz clic en una entrada de la lista para cambiar a esa ruta</value>
   </data>
   <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Game Path</value>
+    <value>Ruta del juego</value>
   </data>
   <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Select YuanShen.exe (CN only), not launcher.exe</value>
+    <value>Selecciona el juego de la versión CN (YuanShen.exe), no el launcher (launcher.exe)</value>
   </data>
   <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>Base ATK</value>
+    <value>Ataque base</value>
   </data>
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
-    <value>Failed to resolve current process path</value>
+    <value>No se pudo obtener la ruta del proceso actual</value>
   </data>
   <data name="Backpack_ErrElevationCancelled" xml:space="preserve">
-    <value>Elevation was cancelled by the user</value>
+    <value>El usuario canceló la elevación de privilegios</value>
   </data>
   <data name="Backpack_ErrHelperStartFailed" xml:space="preserve">
-    <value>Failed to start the injection helper</value>
+    <value>No se pudo iniciar el proceso de inyección</value>
   </data>
   <data name="Backpack_ErrInvalidConfig" xml:space="preserve">
-    <value>Invalid configuration file</value>
+    <value>Archivo de configuración no válido</value>
   </data>
   <data name="Backpack_ErrGameCreateFailed" xml:space="preserve">
-    <value>Failed to create game process</value>
+    <value>No se pudo crear el proceso del juego</value>
   </data>
   <data name="Backpack_ErrDllInjFailed" xml:space="preserve">
-    <value>DLL injection failed</value>
+    <value>Error de inyección de DLL</value>
   </data>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
-    <value>Injection helper exited with code {0}</value>
+    <value>El proceso de inyección salió con el código {0}</value>
   </data>
   <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Char Ascension</value>
+    <value>Ascensión de personaje</value>
   </data>
   <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Weapon Ascension</value>
+    <value>Ascensión de arma</value>
   </data>
   <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Talent Materials</value>
+    <value>Materiales de talento</value>
   </data>
   <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Char EXP</value>
+    <value>EXP de personaje</value>
   </data>
   <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Weapon Enhancement</value>
+    <value>Mejora de arma</value>
   </data>
   <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Refinement</value>
+    <value>Materiales de refinamiento</value>
   </data>
   <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Local Specialty</value>
+    <value>Especialidad local</value>
   </data>
   <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Ingredients</value>
+    <value>Ingredientes</value>
   </data>
   <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Recovery</value>
+    <value>Recuperación</value>
   </data>
   <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Attack</value>
+    <value>Ataque</value>
   </data>
   <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Defense</value>
+    <value>Defensa</value>
   </data>
   <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Aventura</value>
   </data>
   <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Special Recovery</value>
+    <value>Recuperación especial</value>
   </data>
   <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Special Attack</value>
+    <value>Ataque especial</value>
   </data>
   <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Special Defense</value>
+    <value>Defensa especial</value>
   </data>
   <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Special Adventure</value>
+    <value>Aventura especial</value>
   </data>
   <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Arlecchino Specials</value>
+    <value>Especialidades de Arlecchino</value>
   </data>
   <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Sweet Flowers</value>
+    <value>Dulces</value>
   </data>
   <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Materials</value>
+    <value>Materiales</value>
   </data>
   <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Ores</value>
+    <value>Minerales</value>
   </data>
   <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Fish</value>
+    <value>Peces</value>
   </data>
   <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Fishing Bait</value>
+    <value>Cebo de pesca</value>
   </data>
   <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Artilugios</value>
   </data>
   <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Assets</value>
+    <value>Activos</value>
   </data>
   <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Moneda rara</value>
   </data>
   <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Teatro de la Imaginación</value>
   </data>
   <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Artilugios</value>
   </data>
   <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Consumables</value>
+    <value>Consumibles</value>
   </data>
   <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Quest Items</value>
+    <value>Objetos de misión</value>
   </data>
   <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Precious</value>
+    <value>Valiosos</value>
   </data>
   <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Teatro de la Imaginación</value>
   </data>
   <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Aventura</value>
   </data>
   <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Nation Emblems</value>
+    <value>Emblemas de las naciones</value>
   </data>
   <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Wish Items</value>
+    <value>Objetos de deseo</value>
   </data>
   <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>Starglitter</value>
+    <value>Cupón avanzado</value>
   </data>
   <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>Stardust</value>
+    <value>Cupón normal</value>
   </data>
   <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Moneda rara</value>
   </data>
   <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Backpack Browser</value>
+    <value>Explorador de inventario</value>
   </data>
   <data name="Backpack_ErrX64Required" xml:space="preserve">
-    <value>Backpack synchronization requires the x64 build.</value>
+    <value>La sincronización del inventario solo admite la versión x64.</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
-    <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
+    <value>Falta el módulo de sincronización del inventario modules/backpack.dll.</value>
   </data>
   <data name="Checkin_SignNow" xml:space="preserve">
     <value>Registrarse ahora</value>
@@ -4977,7 +4977,7 @@ Detalles: {0}</value>
     <value>Cargando estado...</value>
   </data>
   <data name="Checkin_NotLoggedIn" xml:space="preserve">
-    <value>No conectado</value>
+    <value>Sin iniciar sesión</value>
   </data>
   <data name="Checkin_PleaseLogin" xml:space="preserve">
     <value>Inicie sesión primero</value>
@@ -5646,7 +5646,7 @@ Detalles: {0}</value>
     <value>En posesión</value>
   </data>
   <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>Codex</value>
+    <value>Códice</value>
   </data>
   <data name="Backpack_ChipFilterFive" xml:space="preserve">
     <value>5 estrellas</value>

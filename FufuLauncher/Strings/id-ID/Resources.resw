@@ -13,55 +13,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Avatar_Batch_Fail_Title" xml:space="preserve">
-    <value>Batch Save Failed</value>
+    <value>Penyimpanan Batch Gagal</value>
   </data>
   <data name="Avatar_Batch_Success" xml:space="preserve">
-    <value>Batch generated and overwrote all avatar sizes</value>
+    <value>Semua ukuran avatar berhasil dibuat dan ditimpa secara batch</value>
   </data>
   <data name="Avatar_Clear_Fail_Title" xml:space="preserve">
-    <value>Clear Failed</value>
+    <value>Pembersihan Gagal</value>
   </data>
   <data name="Avatar_Clear_Success_Format" xml:space="preserve">
-    <value>Avatar size {0}x{0} cleared</value>
+    <value>Avatar ukuran {0}x{0} berhasil dibersihkan</value>
   </data>
   <data name="Avatar_Crop_Success" xml:space="preserve">
-    <value>Avatar cropped and saved successfully</value>
+    <value>Avatar berhasil dipotong dan disimpan</value>
   </data>
   <data name="Avatar_EditNotFound_Content" xml:space="preserve">
-    <value>No avatar found to edit</value>
+    <value>Tidak ditemukan avatar yang dapat diedit</value>
   </data>
   <data name="Avatar_EditNotFound_Title" xml:space="preserve">
-    <value>Notice</value>
+    <value>Pemberitahuan</value>
   </data>
   <data name="Avatar_ImportFail_Title" xml:space="preserve">
-    <value>Import Failed</value>
+    <value>Impor Gagal</value>
   </data>
   <data name="Avatar_LoadFail_Title" xml:space="preserve">
-    <value>Load Failed</value>
+    <value>Gagal Memuat</value>
   </data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve">
-    <value>Save Failed</value>
+    <value>Penyimpanan Gagal</value>
   </data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve">
-    <value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value>
+    <value>Jika Anda mengaktifkan AI frame generation pada GPU NVIDIA RTX 40-series atau lebih baru, atau menggunakan software penampil FPS seperti RTSS atau MSI Afterburner, game dapat membeku atau gagal diluncurkan.</value>
   </data>
   <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
-    <value>Don't show this warning again</value>
+    <value>Jangan tampilkan peringatan ini lagi</value>
   </data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Peringatan Kompatibilitas</value>
   </data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve">
-    <value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value>
+    <value>Hash plugin penampil FPS tidak cocok. Plugin mungkin telah diubah atau rusak. Silakan instal ulang launcher.</value>
   </data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve">
-    <value>Repair Failed</value>
+    <value>Perbaikan Gagal</value>
   </data>
   <data name="Fps_Repair_Success" xml:space="preserve">
-    <value>FPS display plugin has been successfully repaired and installed</value>
+    <value>Plugin penampil FPS berhasil diperbaiki dan diinstal</value>
   </data>
   <data name="Fps_Repair_Title" xml:space="preserve">
-    <value>Repairing FPS Plugin</value>
+    <value>Memperbaiki Plugin FPS</value>
   </data>
   <data name="LanguageChangedTitle" xml:space="preserve">
     <value>Bahasa Telah Diubah</value>
@@ -85,107 +85,107 @@
     <value>Terpilih</value>
   </data>
   <data name="PR_Description" xml:space="preserve">
-    <value>This project is currently maintained by an individual developer (CodeCubist).
-We adhere to a player pain-point-driven development direction, promoting open, transparent, and efficient updates.
-Submitting Pull Requests is the core way for users with coding skills to help advance development, optimize structure, and share project maintenance responsibilities.
-If you can help, please use the button below to visit the code repository and submit your contribution.</value>
+    <value>Proyek ini saat ini dikelola oleh pengembang individu (CodeCubist).
+Kami berpegang pada arah pengembangan yang berfokus pada masalah pemain, mendorong pembaruan yang terbuka, transparan, dan efisien.
+Mengirimkan Pull Request adalah cara utama bagi pengguna dengan kemampuan coding untuk membantu memajukan pengembangan, mengoptimalkan struktur, dan berbagi beban pemeliharaan proyek.
+Jika Anda dapat membantu, silakan gunakan tombol di bawah untuk mengunjungi repositori kode dan kirimkan kontribusi Anda.</value>
   </data>
   <data name="PR_GitHubButton" xml:space="preserve">
-    <value>Visit GitHub Repository to Submit Pull Request</value>
+    <value>Kunjungi Repositori GitHub untuk Mengirim Pull Request</value>
   </data>
   <data name="PR_Window_Title" xml:space="preserve">
     <value>Pull Request</value>
   </data>
   <data name="Plugin_ArchWarning_Content" xml:space="preserve">
-    <value>Your computer may be ARM-based. The injection feature is not available on ARM-based computers. Are you sure you want to continue enabling it?</value>
+    <value>Komputer Anda mungkin berbasis ARM. Fitur injeksi tidak tersedia di komputer berbasis ARM. Yakin ingin melanjutkan pengaktifannya?</value>
   </data>
   <data name="Plugin_ArchWarning_Continue" xml:space="preserve">
-    <value>Continue Enabling</value>
+    <value>Lanjutkan Mengaktifkan</value>
   </data>
   <data name="Plugin_ArchWarning_Title" xml:space="preserve">
-    <value>Architecture Compatibility Warning</value>
+    <value>Peringatan Kompatibilitas Arsitektur</value>
   </data>
   <data name="Plugin_Corrupted_Content" xml:space="preserve">
-    <value>Plugin files are abnormal.
-This is usually because the plugin was falsely flagged and blocked by antivirus software (such as Windows Defender) or has been damaged.
+    <value>File plugin tidak normal.
+Ini biasanya karena plugin diblokir oleh antivirus (seperti Windows Defender) atau telah rusak.
 
-Recommendations:
-1. Add the software directory to the antivirus whitelist
-2. Re-download and install the plugin on this page</value>
+Saran:
+1. Tambahkan direktori aplikasi ke daftar putih antivirus
+2. Unduh ulang dan pasang plugin di halaman ini</value>
   </data>
   <data name="Plugin_Corrupted_Title" xml:space="preserve">
-    <value>Plugin May Be Corrupted</value>
+    <value>Plugin Mungkin Rusak</value>
   </data>
   <data name="Plugin_Download_BackupLine" xml:space="preserve">
-    <value>Backup</value>
+    <value>Cadangan</value>
   </data>
   <data name="Plugin_Download_Connecting" xml:space="preserve">
-    <value>Connecting...</value>
+    <value>Menghubungkan...</value>
   </data>
   <data name="Plugin_Download_Extracting" xml:space="preserve">
-    <value>Extracting and installing...</value>
+    <value>Mengekstrak dan memasang...</value>
   </data>
   <data name="Plugin_Download_Fail_Content_Format" xml:space="preserve">
-    <value>Installation failed: {0}</value>
+    <value>Pemasangan gagal: {0}</value>
   </data>
   <data name="Plugin_Download_Fallback" xml:space="preserve">
-    <value>Connection failed, trying backup line...</value>
+    <value>Koneksi gagal, mencoba jalur cadangan...</value>
   </data>
   <data name="Plugin_Download_MainLine" xml:space="preserve">
-    <value>Main</value>
+    <value>Utama</value>
   </data>
   <data name="Plugin_Download_Manual" xml:space="preserve">
-    <value>Manual Download</value>
+    <value>Unduh Manual</value>
   </data>
   <data name="Plugin_Download_Progress_Format" xml:space="preserve">
-    <value>{0} line downloading... {1}%</value>
+    <value>{0} jalur mengunduh... {1}%</value>
   </data>
   <data name="Plugin_Download_Success" xml:space="preserve">
-    <value>Plugin installed and refreshed</value>
+    <value>Plugin terpasang dan disegarkan</value>
   </data>
   <data name="Plugin_Download_Title" xml:space="preserve">
-    <value>Getting Plugin</value>
+    <value>Mendapatkan Plugin</value>
   </data>
   <data name="Plugin_FileNotFound" xml:space="preserve">
-    <value>File not found, please confirm launcher files are complete</value>
+    <value>File tidak ditemukan. Harap pastikan file launcher lengkap</value>
   </data>
   <data name="Plugin_MainMissing_Content" xml:space="preserve">
-    <value>Main plugin DLL file not found. The plugin may not be installed, was accidentally deleted, or was blocked by antivirus software. Please re-download the plugin, or add the launcher directory to the antivirus whitelist and try again.</value>
+    <value>File DLL plugin utama tidak ditemukan. Plugin mungkin belum terpasang, terhapus tidak sengaja, atau diblokir antivirus. Silakan unduh ulang plugin, atau tambahkan direktori launcher ke daftar putih antivirus lalu coba lagi.</value>
   </data>
   <data name="Plugin_MainMissing_Title" xml:space="preserve">
-    <value>Main Plugin Missing</value>
+    <value>Plugin Utama Tidak Ditemukan</value>
   </data>
   <data name="Preset_Create_Placeholder" xml:space="preserve">
-    <value>Enter new preset name</value>
+    <value>Masukkan nama preset baru</value>
   </data>
   <data name="Preset_Create_Title" xml:space="preserve">
-    <value>Create New Preset</value>
+    <value>Buat Preset Baru</value>
   </data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Delete</value>
+    <value>Konfirmasi Hapus</value>
   </data>
   <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
-    <value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value>
+    <value>Apakah Anda yakin ingin menghapus preset "{0}"? Tindakan ini tidak dapat dibatalkan!</value>
   </data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve">
-    <value>Lock reason: {0}
+    <value>Alasan terkunci: {0}
 
-If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value>
+Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diperbarui ke Hash plugin saat ini, sehingga preset terbuka kembali. Lanjutkan?</value>
   </data>
   <data name="Preset_Locked_Continue" xml:space="preserve">
-    <value>Continue and Unlock</value>
+    <value>Lanjutkan dan Buka Kunci</value>
   </data>
   <data name="Preset_Locked_Title" xml:space="preserve">
-    <value>Configuration Preset Locked</value>
+    <value>Preset Konfigurasi Terkunci</value>
   </data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Reset</value>
+    <value>Konfirmasi Reset</value>
   </data>
   <data name="Preset_ResetAll_Content" xml:space="preserve">
-    <value>Remove all presets for the current plugin and re-download the defaults? This action cannot be undone!</value>
+    <value>Hapus semua preset untuk plugin ini dan unduh ulang preset default? Tindakan ini tidak dapat dibatalkan!</value>
   </data>
   <data name="Preset_ResetAll_Title" xml:space="preserve">
-    <value>Reset All Presets</value>
+    <value>Reset Semua Preset</value>
   </data>
   <data name="RestartNowBtn" xml:space="preserve">
     <value>Mulai Ulang Sekarang</value>
@@ -650,7 +650,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Acrylic</value>
   </data>
   <data name="MicaWarning" xml:space="preserve">
-    <value>Catatan: Mica hanya tersedia di Windows 11.</value>
+    <value>Catatan: Mica hanya tersedia di Windows 11; pada sistem yang lebih lama, mungkin akan kembali ke warna polos.</value>
   </data>
   <data name="ShowHamburger" xml:space="preserve">
     <value>Tampilkan Tombol Hamburger Sidebar</value>
@@ -1572,7 +1572,7 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Berita</value>
   </data>
   <data name="Home_CheckinCard" xml:space="preserve">
-    <value>Check-in</value>
+    <value>Check-in Genshin</value>
   </data>
   <data name="Home_RefreshToken" xml:space="preserve">
     <value>Segarkan Token</value>
@@ -1896,13 +1896,13 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Tidak ada karakter terikat</value>
   </data>
   <data name="Account_BindHint" xml:space="preserve">
-    <value>Silakan ikat karakter di MiYouShe atau dalam game, lalu segarkan</value>
+    <value>Silakan tautkan karakter di MiYouShe atau di dalam game, lalu segarkan</value>
   </data>
   <data name="Account_PlayTime" xml:space="preserve">
     <value>Waktu Bermain</value>
   </data>
   <data name="Account_RecentDays_Format" xml:space="preserve">
-    <value>{0} Hari Terakhir</value>
+    <value>Statistik {0} Hari Terakhir</value>
   </data>
   <data name="Account_InGame" xml:space="preserve">
     <value>Dalam Game</value>
@@ -1947,7 +1947,7 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Operasi Lainnya</value>
   </data>
   <data name="Account_RecentDays30" xml:space="preserve">
-    <value>30 Hari Terakhir</value>
+    <value>Statistik 30 Hari Terakhir</value>
   </data>
   <data name="Account_NoRecentRecords30" xml:space="preserve">
     <value>Tidak ada catatan game selama 30 hari terakhir</value>
@@ -2085,7 +2085,7 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Hubungi Penulis</value>
   </data>
   <data name="SponsorWindow_Title" xml:space="preserve">
-    <value>Sponsor</value>
+    <value>Dukung Penulis</value>
   </data>
   <data name="SponsorWindow_OnlyWeChat" xml:space="preserve">
     <value>Saat ini hanya WeChat yang didukung. Alipay dan metode pembayaran lainnya tidak tersedia.</value>
@@ -2451,7 +2451,7 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Keamanan &amp; Jaringan</value>
   </data>
   <data name="Diagnostics_WindowsSecurity" xml:space="preserve">
-    <value>Windows Security Center</value>
+    <value>Pusat Keamanan Windows</value>
   </data>
   <data name="Diagnostics_DiskSpace" xml:space="preserve">
     <value>Ruang Disk Sistem</value>
@@ -2605,10 +2605,10 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>4★</value>
   </data>
   <data name="DataPage_RoleData" xml:space="preserve">
-    <value>Data Peran</value>
+    <value>Data Karakter</value>
   </data>
   <data name="DataPage_AbyssData" xml:space="preserve">
-    <value>Abyss</value>
+    <value>Pertarungan Stygian</value>
   </data>
   <data name="DataPage_SpiralAbyss" xml:space="preserve">
     <value>Spiral Abyss</value>
@@ -2620,7 +2620,7 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Timer Rerun</value>
   </data>
   <data name="DataPage_Timeline" xml:space="preserve">
-    <value>Timeline</value>
+    <value>Garis Waktu Aktivitas</value>
   </data>
   <data name="DataPage_DataProvidedBy" xml:space="preserve">
     <value>Data karakter oleh Teyvat Assistant. Timeline oleh Paimon.moe.</value>
@@ -2662,10 +2662,10 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Luminositas Maks</value>
   </data>
   <data name="HDR_SceneLuminance" xml:space="preserve">
-    <value>Paper White</value>
+    <value>Luminansi Scene (Paper White)</value>
   </data>
   <data name="HDR_UILuminance" xml:space="preserve">
-    <value>UI White</value>
+    <value>Kecerahan UI (UI White)</value>
   </data>
   <data name="HDR_ResetDefault" xml:space="preserve">
     <value>Reset Default</value>
@@ -2749,7 +2749,7 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Versi</value>
   </data>
   <data name="AchievementWindow_HiddenComplete" xml:space="preserve">
-    <value>Sembunyikan Selesai</value>
+    <value>Sembunyikan yang Selesai</value>
   </data>
   <data name="AchievementWindow_ShowAll" xml:space="preserve">
     <value>Tampilkan Semua</value>
@@ -2905,10 +2905,10 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
     <value>Level Skill</value>
   </data>
   <data name="PlayerInfo_NormalAttack" xml:space="preserve">
-    <value>Normal Attack</value>
+    <value>Serangan Normal</value>
   </data>
   <data name="PlayerInfo_ElementalSkill" xml:space="preserve">
-    <value>Elemental Skill</value>
+    <value>Skill Elemental</value>
   </data>
   <data name="PlayerInfo_ElementalBurst" xml:space="preserve">
     <value>Elemental Burst</value>
@@ -3245,7 +3245,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>Pengambilan gagal (workflow tidak ditemukan)</value>
   </data>
   <data name="AboutPage_Exception" xml:space="preserve">
-    <value>Terjadi Exception</value>
+    <value>Terjadi pengecualian</value>
   </data>
   <data name="AboutPage_GitHubTokenPlaceholder" xml:space="preserve">
     <value>Harap masukkan GitHub Token Anda</value>
@@ -3389,7 +3389,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>Ekspor UIAF selesai</value>
   </data>
   <data name="AchievementWindow_SaveException" xml:space="preserve">
-    <value>Exception penyimpanan</value>
+    <value>Kesalahan penyimpanan</value>
   </data>
   <data name="AchievementWindow_CannotOpenBrowser" xml:space="preserve">
     <value>Tidak dapat membuka browser</value>
@@ -3481,7 +3481,7 @@ File yang dicari:
     <value>{0}j</value>
   </data>
   <data name="CheckinCloud_MinutesOnly" xml:space="preserve">
-    <value>{0}m</value>
+    <value>{0} menit</value>
   </data>
   <data name="CheckinCommunity_Title" xml:space="preserve">
     <value>Check-in Komunitas</value>
@@ -3574,7 +3574,7 @@ File yang dicari:
     <value>Gagal mendapatkan info check-in</value>
   </data>
   <data name="Checkin_FirstBindWarning" xml:space="preserve">
-    <value>pertama kali diikat. Harap check-in manual sekali terlebih dahulu.</value>
+    <value>Ini pertama kalinya akun di-tautkan. Harap lakukan check-in manual satu kali terlebih dahulu.</value>
   </data>
   <data name="Checkin_AlreadySignedToday" xml:space="preserve">
     <value>Sudah check-in hari ini</value>
@@ -3802,7 +3802,7 @@ File yang dicari:
     <value>Verifikasi Tidak Lulus</value>
   </data>
   <data name="HashCheck_Exception" xml:space="preserve">
-    <value>Exception Verifikasi</value>
+    <value>Kesalahan Verifikasi</value>
   </data>
   <data name="HashCheck_ExceptionMsg" xml:space="preserve">
     <value>Kesalahan saat verifikasi hash: {0}</value>
@@ -4266,7 +4266,7 @@ Detail: {0}</value>
     <value>Karakter</value>
   </data>
   <data name="DataPage_TabSpiral" xml:space="preserve">
-    <value>Pusaran Abyss</value>
+    <value>Spiral Abyss</value>
   </data>
   <data name="DataPage_TabStygian" xml:space="preserve">
     <value>Serangan Stygian</value>
@@ -4389,7 +4389,7 @@ Detail: {0}</value>
     <value>Urutkan</value>
   </data>
   <data name="DataPage_StarFilter" xml:space="preserve">
-    <value>Kelangkaan</value>
+    <value>Tingkat Bintang</value>
   </data>
   <data name="DataPage_SortHeat" xml:space="preserve">
     <value>Skor keseluruhan</value>
@@ -4752,205 +4752,205 @@ Detail: {0}</value>
     <value>Gagal mengekspor PDF</value>
   </data>
   <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Weapons</value>
+    <value>Senjata</value>
   </data>
   <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Artifacts</value>
+    <value>Artefak</value>
   </data>
   <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Materials</value>
+    <value>Bahan</value>
   </data>
   <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Food</value>
+    <value>Makanan</value>
   </data>
   <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Waiting for data…</value>
+    <value>Menunggu data…</value>
   </data>
   <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Received</value>
+    <value>Diterima</value>
   </data>
   <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Launching…</value>
+    <value>Meluncurkan…</value>
   </data>
   <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Game launched, waiting for data…</value>
+    <value>Game diluncurkan, menunggu data…</value>
   </data>
   <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Pilih Path Game</value>
   </data>
   <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Kill Process</value>
+    <value>Akhiri Proses</value>
   </data>
   <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Sinkronkan Backpack</value>
   </data>
   <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Sinkronkan Backpack</value>
   </data>
   <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Game launched, waiting for backpack data…</value>
+    <value>Game diluncurkan, menunggu data backpack…</value>
   </data>
   <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Batal</value>
   </data>
   <data name="Backpack_Locked" xml:space="preserve">
-    <value>Locked</value>
+    <value>Terkunci</value>
   </data>
   <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Flower of Life</value>
+    <value>Bunga Kehidupan</value>
   </data>
   <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Plume of Death</value>
+    <value>Bulu Kematian</value>
   </data>
   <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Sands of Eon</value>
+    <value>Pasir Waktu</value>
   </data>
   <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Goblet of Eonothem</value>
+    <value>Piala Eonothem</value>
   </data>
   <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Circlet of Logos</value>
+    <value>Mahkota Logos</value>
   </data>
   <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Invalid path. Please select YuanShen.exe (CN server only).</value>
+    <value>Path tidak valid. Silakan pilih YuanShen.exe (khusus server CN).</value>
   </data>
   <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Pilih Path Game</value>
   </data>
   <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Click an entry below to switch to that path</value>
+    <value>Klik entri di bawah untuk beralih ke path tersebut</value>
   </data>
   <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Game Path</value>
+    <value>Path Game</value>
   </data>
   <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Select YuanShen.exe (CN only), not launcher.exe</value>
+    <value>Pilih file game YuanShen.exe (khusus CN), bukan launcher.exe</value>
   </data>
   <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>Base ATK</value>
+    <value>ATK Dasar</value>
   </data>
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
-    <value>Failed to resolve current process path</value>
+    <value>Gagal mendapatkan path proses saat ini</value>
   </data>
   <data name="Backpack_ErrElevationCancelled" xml:space="preserve">
-    <value>Elevation was cancelled by the user</value>
+    <value>Elevasi dibatalkan oleh pengguna</value>
   </data>
   <data name="Backpack_ErrHelperStartFailed" xml:space="preserve">
-    <value>Failed to start the injection helper</value>
+    <value>Gagal memulai proses bantu injeksi</value>
   </data>
   <data name="Backpack_ErrInvalidConfig" xml:space="preserve">
-    <value>Invalid configuration file</value>
+    <value>File konfigurasi tidak valid</value>
   </data>
   <data name="Backpack_ErrGameCreateFailed" xml:space="preserve">
-    <value>Failed to create game process</value>
+    <value>Gagal membuat proses game</value>
   </data>
   <data name="Backpack_ErrDllInjFailed" xml:space="preserve">
-    <value>DLL injection failed</value>
+    <value>Injeksi DLL gagal</value>
   </data>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
-    <value>Injection helper exited with code {0}</value>
+    <value>Proses bantu injeksi keluar dengan kode {0}</value>
   </data>
   <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Char Ascension</value>
+    <value>Ascension Karakter</value>
   </data>
   <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Weapon Ascension</value>
+    <value>Ascension Senjata</value>
   </data>
   <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Talent Materials</value>
+    <value>Material Bakat</value>
   </data>
   <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Char EXP</value>
+    <value>Pengalaman Karakter</value>
   </data>
   <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Weapon Enhancement</value>
+    <value>Penguatan Senjata</value>
   </data>
   <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Refinement</value>
+    <value>Material Refinement</value>
   </data>
   <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Local Specialty</value>
+    <value>Produk Khas Daerah</value>
   </data>
   <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Ingredients</value>
+    <value>Bahan Masakan</value>
   </data>
   <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Recovery</value>
+    <value>Makanan Pemulihan</value>
   </data>
   <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Attack</value>
+    <value>Makanan Serangan</value>
   </data>
   <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Defense</value>
+    <value>Makanan Pertahanan</value>
   </data>
   <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Makanan Petualangan</value>
   </data>
   <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Special Recovery</value>
+    <value>Makanan Pemulihan Spesial</value>
   </data>
   <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Special Attack</value>
+    <value>Makanan Serangan Spesial</value>
   </data>
   <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Special Defense</value>
+    <value>Makanan Pertahanan Spesial</value>
   </data>
   <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Special Adventure</value>
+    <value>Makanan Petualangan Spesial</value>
   </data>
   <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Arlecchino Specials</value>
+    <value>Kreasi Inspiratif</value>
   </data>
   <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Sweet Flowers</value>
+    <value>Patung Gula</value>
   </data>
   <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Materials</value>
+    <value>Bahan</value>
   </data>
   <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Ores</value>
+    <value>Bijih</value>
   </data>
   <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Fish</value>
+    <value>Ikan</value>
   </data>
   <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Fishing Bait</value>
+    <value>Umpan Pancing</value>
   </data>
   <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Item</value>
   </data>
   <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Assets</value>
+    <value>Aset Pribadi</value>
   </data>
   <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Mata Uang Langka</value>
   </data>
   <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Teater Imaginarium</value>
   </data>
   <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Gadget</value>
   </data>
   <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Consumables</value>
+    <value>Barang Habis Pakai</value>
   </data>
   <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Quest Items</value>
+    <value>Item Misi</value>
   </data>
   <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Precious</value>
+    <value>Barang Berharga</value>
   </data>
   <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Teater Imaginarium</value>
   </data>
   <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Item Petualangan</value>
   </data>
   <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Nation Emblems</value>
+    <value>Lambang Tujuh Negara</value>
   </data>
   <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Wish Items</value>
+    <value>Item Wish</value>
   </data>
   <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
     <value>Starglitter</value>
@@ -4959,16 +4959,16 @@ Detail: {0}</value>
     <value>Stardust</value>
   </data>
   <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Mata Uang Langka</value>
   </data>
   <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Backpack Browser</value>
+    <value>Penjelajah Backpack</value>
   </data>
   <data name="Backpack_ErrX64Required" xml:space="preserve">
-    <value>Backpack synchronization requires the x64 build.</value>
+    <value>Sinkronisasi Backpack hanya mendukung build x64.</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
-    <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
+    <value>Modul sinkronisasi Backpack (modules/backpack.dll) tidak ditemukan.</value>
   </data>
   <data name="Checkin_SignNow" xml:space="preserve">
     <value>Check-in Sekarang</value>
@@ -5433,7 +5433,7 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
     <value>Senjata Bintang 5</value>
   </data>
   <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>Total Artifact</value>
+    <value>Total Artefak</value>
   </data>
   <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
     <value>Senjata Bintang 5 dengan Refinement Maks</value>
@@ -5568,7 +5568,7 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
     <value>Cerita Senjata</value>
   </data>
   <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>Level Enhancement</value>
+    <value>Tingkat Peningkatan</value>
   </data>
   <data name="Backpack_DetailMainStat" xml:space="preserve">
     <value>Main Stat</value>

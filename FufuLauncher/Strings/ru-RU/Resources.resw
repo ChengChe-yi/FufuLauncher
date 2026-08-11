@@ -13,55 +13,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Avatar_Batch_Fail_Title" xml:space="preserve">
-    <value>Batch Save Failed</value>
+    <value>Ошибка пакетного сохранения</value>
   </data>
   <data name="Avatar_Batch_Success" xml:space="preserve">
-    <value>Batch generated and overwrote all avatar sizes</value>
+    <value>Аватары всех размеров сгенерированы и заменены</value>
   </data>
   <data name="Avatar_Clear_Fail_Title" xml:space="preserve">
-    <value>Clear Failed</value>
+    <value>Ошибка очистки</value>
   </data>
   <data name="Avatar_Clear_Success_Format" xml:space="preserve">
-    <value>Avatar size {0}x{0} cleared</value>
+    <value>Аватар размера {0}x{0} удалён</value>
   </data>
   <data name="Avatar_Crop_Success" xml:space="preserve">
-    <value>Avatar cropped and saved successfully</value>
+    <value>Аватар обрезан и сохранён</value>
   </data>
   <data name="Avatar_EditNotFound_Content" xml:space="preserve">
-    <value>No avatar found to edit</value>
+    <value>Аватар для редактирования не найден</value>
   </data>
   <data name="Avatar_EditNotFound_Title" xml:space="preserve">
-    <value>Notice</value>
+    <value>Уведомление</value>
   </data>
   <data name="Avatar_ImportFail_Title" xml:space="preserve">
-    <value>Import Failed</value>
+    <value>Ошибка импорта</value>
   </data>
   <data name="Avatar_LoadFail_Title" xml:space="preserve">
-    <value>Load Failed</value>
+    <value>Ошибка загрузки</value>
   </data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve">
-    <value>Save Failed</value>
+    <value>Ошибка сохранения</value>
   </data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve">
-    <value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value>
+    <value>Если включена генерация кадров с ИИ на видеокартах NVIDIA RTX 40-й серии и новее, или используются программы отображения FPS (например, RTSS, MSI Afterburner), игра может зависнуть или не запуститься.</value>
   </data>
   <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
-    <value>Don't show this warning again</value>
+    <value>Больше не показывать это предупреждение</value>
   </data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Предупреждение о совместимости</value>
   </data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve">
-    <value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value>
+    <value>Хэш плагина отображения FPS не совпадает. Возможно, он был изменён или повреждён. Переустановите лаунчер.</value>
   </data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve">
-    <value>Repair Failed</value>
+    <value>Ошибка восстановления</value>
   </data>
   <data name="Fps_Repair_Success" xml:space="preserve">
-    <value>FPS display plugin has been successfully repaired and installed</value>
+    <value>Плагин отображения FPS успешно восстановлен и установлен</value>
   </data>
   <data name="Fps_Repair_Title" xml:space="preserve">
-    <value>Repairing FPS Plugin</value>
+    <value>Восстановление FPS плагина…</value>
   </data>
   <data name="LanguageChangedTitle" xml:space="preserve">
     <value>Язык изменён</value>
@@ -85,107 +85,107 @@
     <value>Выбрано</value>
   </data>
   <data name="PR_Description" xml:space="preserve">
-    <value>This project is currently maintained by an individual developer (CodeCubist).
-We adhere to a player pain-point-driven development direction, promoting open, transparent, and efficient updates.
-Submitting Pull Requests is the core way for users with coding skills to help advance development, optimize structure, and share project maintenance responsibilities.
-If you can help, please use the button below to visit the code repository and submit your contribution.</value>
+    <value>Этот проект в настоящее время поддерживается одним разработчиком (CodeCubist).
+Мы придерживаемся направления разработки, ориентированной на боли игроков, и открыто, прозрачно и эффективно продвигаем обновления.
+Отправка Pull Request — основной способ, позволяющий пользователям с навыками программирования помочь в развитии проекта, оптимизации структуры и распределении нагрузки по его сопровождению.
+Если вы можете помочь, воспользуйтесь кнопкой ниже, чтобы перейти в репозиторий и отправить свой вклад.</value>
   </data>
   <data name="PR_GitHubButton" xml:space="preserve">
-    <value>Visit GitHub Repository to Submit Pull Request</value>
+    <value>Перейти в репозиторий GitHub и отправить Pull Request</value>
   </data>
   <data name="PR_Window_Title" xml:space="preserve">
     <value>Pull Request</value>
   </data>
   <data name="Plugin_ArchWarning_Content" xml:space="preserve">
-    <value>Your computer may be ARM-based. The injection feature is not available on ARM-based computers. Are you sure you want to continue enabling it?</value>
+    <value>Возможно, ваш компьютер имеет ARM-архитектуру. Функция инжекта недоступна на устройствах с ARM. Продолжить включение?</value>
   </data>
   <data name="Plugin_ArchWarning_Continue" xml:space="preserve">
-    <value>Continue Enabling</value>
+    <value>Продолжить включение</value>
   </data>
   <data name="Plugin_ArchWarning_Title" xml:space="preserve">
-    <value>Architecture Compatibility Warning</value>
+    <value>Предупреждение о совместимости архитектуры</value>
   </data>
   <data name="Plugin_Corrupted_Content" xml:space="preserve">
-    <value>Plugin files are abnormal.
-This is usually because the plugin was falsely flagged and blocked by antivirus software (such as Windows Defender) or has been damaged.
+    <value>Файлы плагина повреждены.
+Обычно это происходит из-за ложного срабатывания антивируса (например, Windows Defender) или повреждения файлов.
 
-Recommendations:
-1. Add the software directory to the antivirus whitelist
-2. Re-download and install the plugin on this page</value>
+Рекомендации:
+1. Добавьте папку программы в исключения антивируса
+2. Скачайте и установите плагин заново на этой странице</value>
   </data>
   <data name="Plugin_Corrupted_Title" xml:space="preserve">
-    <value>Plugin May Be Corrupted</value>
+    <value>Плагин может быть повреждён</value>
   </data>
   <data name="Plugin_Download_BackupLine" xml:space="preserve">
-    <value>Backup</value>
+    <value>Резервная линия</value>
   </data>
   <data name="Plugin_Download_Connecting" xml:space="preserve">
-    <value>Connecting...</value>
+    <value>Подключение...</value>
   </data>
   <data name="Plugin_Download_Extracting" xml:space="preserve">
-    <value>Extracting and installing...</value>
+    <value>Распаковка и установка...</value>
   </data>
   <data name="Plugin_Download_Fail_Content_Format" xml:space="preserve">
-    <value>Installation failed: {0}</value>
+    <value>Ошибка установки: {0}</value>
   </data>
   <data name="Plugin_Download_Fallback" xml:space="preserve">
-    <value>Connection failed, trying backup line...</value>
+    <value>Не удалось подключиться, пробуем резервный канал...</value>
   </data>
   <data name="Plugin_Download_MainLine" xml:space="preserve">
-    <value>Main</value>
+    <value>Основная линия</value>
   </data>
   <data name="Plugin_Download_Manual" xml:space="preserve">
-    <value>Manual Download</value>
+    <value>Скачать вручную</value>
   </data>
   <data name="Plugin_Download_Progress_Format" xml:space="preserve">
-    <value>{0} line downloading... {1}%</value>
+    <value>Загрузка через {0} канал... {1}%</value>
   </data>
   <data name="Plugin_Download_Success" xml:space="preserve">
-    <value>Plugin installed and refreshed</value>
+    <value>Плагин установлен, список обновлён</value>
   </data>
   <data name="Plugin_Download_Title" xml:space="preserve">
-    <value>Getting Plugin</value>
+    <value>Получение плагина</value>
   </data>
   <data name="Plugin_FileNotFound" xml:space="preserve">
-    <value>File not found, please confirm launcher files are complete</value>
+    <value>Файл не найден. Убедитесь, что файлы лаунчера не повреждены</value>
   </data>
   <data name="Plugin_MainMissing_Content" xml:space="preserve">
-    <value>Main plugin DLL file not found. The plugin may not be installed, was accidentally deleted, or was blocked by antivirus software. Please re-download the plugin, or add the launcher directory to the antivirus whitelist and try again.</value>
+    <value>Файл DLL основного плагина не найден. Возможно, плагин не установлен, был случайно удалён или заблокирован антивирусом. Скачайте плагин заново или добавьте папку лаунчера в исключения антивируса и повторите попытку.</value>
   </data>
   <data name="Plugin_MainMissing_Title" xml:space="preserve">
-    <value>Main Plugin Missing</value>
+    <value>Основной плагин отсутствует</value>
   </data>
   <data name="Preset_Create_Placeholder" xml:space="preserve">
-    <value>Enter new preset name</value>
+    <value>Введите имя нового пресета</value>
   </data>
   <data name="Preset_Create_Title" xml:space="preserve">
-    <value>Create New Preset</value>
+    <value>Создание нового пресета</value>
   </data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Delete</value>
+    <value>Подтвердить удаление</value>
   </data>
   <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
-    <value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value>
+    <value>Удалить пресет "{0}"? Это действие нельзя отменить!</value>
   </data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve">
-    <value>Lock reason: {0}
+    <value>Причина блокировки: {0}
 
-If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value>
+Если продолжить, предупреждение будет проигнорировано, а хэш пресета будет обновлён до текущего хэша плагина, что разблокирует пресет. Продолжить?</value>
   </data>
   <data name="Preset_Locked_Continue" xml:space="preserve">
-    <value>Continue and Unlock</value>
+    <value>Продолжить и разблокировать</value>
   </data>
   <data name="Preset_Locked_Title" xml:space="preserve">
-    <value>Configuration Preset Locked</value>
+    <value>Пресет конфигурации заблокирован</value>
   </data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Reset</value>
+    <value>Подтвердить сброс</value>
   </data>
   <data name="Preset_ResetAll_Content" xml:space="preserve">
-    <value>Remove all presets for the current plugin and re-download the defaults? This action cannot be undone!</value>
+    <value>Удалить все пресеты текущего плагина и заново скачать стандартные? Это действие нельзя отменить!</value>
   </data>
   <data name="Preset_ResetAll_Title" xml:space="preserve">
-    <value>Reset All Presets</value>
+    <value>Сброс всех пресетов</value>
   </data>
   <data name="RestartNowBtn" xml:space="preserve">
     <value>Перезапустить сейчас</value>
@@ -650,7 +650,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Acrylic (Акрил)</value>
   </data>
   <data name="MicaWarning" xml:space="preserve">
-    <value>Примечание: Mica доступен только в Windows 11.</value>
+    <value>Примечание: Mica доступен только в Windows 11; на старых системах фон может стать сплошным.</value>
   </data>
   <data name="ShowHamburger" xml:space="preserve">
     <value>Показать кнопку меню</value>
@@ -1842,7 +1842,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Ошибка обработки клавиши</value>
   </data>
   <data name="Account_NotLoggedIn" xml:space="preserve">
-    <value>Не в сети</value>
+    <value>Не выполнен вход</value>
   </data>
   <data name="Account_SavedAccounts" xml:space="preserve">
     <value>Сохранённые аккаунты</value>
@@ -2067,10 +2067,10 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Поиск по названию или содержимому...</value>
   </data>
   <data name="AboutPage_GetBuildFromActions" xml:space="preserve">
-    <value>Сборка из Github Actions</value>
+    <value>Сборка из GitHub Actions</value>
   </data>
   <data name="AboutPage_Contributors" xml:space="preserve">
-    <value>Контрибьюторы</value>
+    <value>Участники</value>
   </data>
   <data name="AboutPage_LoadFailed" xml:space="preserve">
     <value>Ошибка загрузки</value>
@@ -2334,7 +2334,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Скачать</value>
   </data>
   <data name="VideoResources_CutsceneVideos" xml:space="preserve">
-    <value>Касцены</value>
+    <value>Катсцены</value>
   </data>
   <data name="ScreenshotGallery_Title" xml:space="preserve">
     <value>Галерея скриншотов</value>
@@ -3215,13 +3215,13 @@ UIGF v4.x/3.0/2.x</value>
     <value>Ошибка получения</value>
   </data>
   <data name="AboutPage_LoadingBio" xml:space="preserve">
-    <value>Загрузка bio...</value>
+    <value>Загрузка информации о пользователе...</value>
   </data>
   <data name="AboutPage_OpenInBrowser" xml:space="preserve">
     <value>Открыть во внешнем браузере</value>
   </data>
   <data name="AboutPage_NoBio" xml:space="preserve">
-    <value>У пользователя нет bio.</value>
+    <value>У пользователя нет описания.</value>
   </data>
   <data name="AboutPage_ConfirmNav" xml:space="preserve">
     <value>Подтвердить навигацию / Копировать</value>
@@ -3574,7 +3574,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>Не удалось получить информацию об отметке</value>
   </data>
   <data name="Checkin_FirstBindWarning" xml:space="preserve">
-    <value>привязан впервые. Сначала выполните отметку вручную.</value>
+    <value>Аккаунт привязан впервые. Сначала выполните отметку вручную.</value>
   </data>
   <data name="Checkin_AlreadySignedToday" xml:space="preserve">
     <value>Уже отмечен сегодня</value>
@@ -3703,7 +3703,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>Установите Enable=true в config.json</value>
   </data>
   <data name="Checkin_DefaultUser" xml:space="preserve">
-    <value>Пользователь{0}</value>
+    <value>Пользователь {0}</value>
   </data>
   <data name="Checkin_GameCheckinProgress" xml:space="preserve">
     <value>Игровая отметка...</value>
@@ -4503,7 +4503,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>1-я половина</value>
   </data>
   <data name="DataPage_HalfMid" xml:space="preserve">
-    <value>середина</value>
+    <value>Средняя половина</value>
   </data>
   <data name="DataPage_HalfSecond" xml:space="preserve">
     <value>2-я половина</value>
@@ -4752,223 +4752,223 @@ UIGF v4.x/3.0/2.x</value>
     <value>Не удалось экспортировать PDF</value>
   </data>
   <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Weapons</value>
+    <value>Оружие</value>
   </data>
   <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Artifacts</value>
+    <value>Артефакты</value>
   </data>
   <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Materials</value>
+    <value>Материалы</value>
   </data>
   <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Food</value>
+    <value>Еда</value>
   </data>
   <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Waiting for data…</value>
+    <value>Ожидание данных…</value>
   </data>
   <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Received</value>
+    <value>Получено</value>
   </data>
   <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Launching…</value>
+    <value>Запуск…</value>
   </data>
   <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Game launched, waiting for data…</value>
+    <value>Игра запущена, ожидание данных…</value>
   </data>
   <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Выбрать путь к игре</value>
   </data>
   <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Kill Process</value>
+    <value>Завершить процесс</value>
   </data>
   <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Синхронизировать рюкзак</value>
   </data>
   <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Синхронизация рюкзака</value>
   </data>
   <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Game launched, waiting for backpack data…</value>
+    <value>Игра запущена, ожидание данных рюкзака…</value>
   </data>
   <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Отмена</value>
   </data>
   <data name="Backpack_Locked" xml:space="preserve">
-    <value>Locked</value>
+    <value>Заблокировано</value>
   </data>
   <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Flower of Life</value>
+    <value>Цветок жизни</value>
   </data>
   <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Plume of Death</value>
+    <value>Перо смерти</value>
   </data>
   <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Sands of Eon</value>
+    <value>Пески эона</value>
   </data>
   <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Goblet of Eonothem</value>
+    <value>Кубок эонотема</value>
   </data>
   <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Circlet of Logos</value>
+    <value>Венец логоса</value>
   </data>
   <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Invalid path. Please select YuanShen.exe (CN server only).</value>
+    <value>Неверный путь. Выберите клиент сервера Китая (YuanShen.exe).</value>
   </data>
   <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Выбор пути к игре</value>
   </data>
   <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Click an entry below to switch to that path</value>
+    <value>Выберите запись в списке ниже, чтобы переключиться на этот путь</value>
   </data>
   <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Game Path</value>
+    <value>Путь к игре</value>
   </data>
   <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Select YuanShen.exe (CN only), not launcher.exe</value>
+    <value>Выберите клиент сервера Китая (YuanShen.exe), а не лаунчер (launcher.exe)</value>
   </data>
   <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>Base ATK</value>
+    <value>Базовая атака</value>
   </data>
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
-    <value>Failed to resolve current process path</value>
+    <value>Не удалось определить путь текущего процесса</value>
   </data>
   <data name="Backpack_ErrElevationCancelled" xml:space="preserve">
-    <value>Elevation was cancelled by the user</value>
+    <value>Пользователь отменил повышение прав</value>
   </data>
   <data name="Backpack_ErrHelperStartFailed" xml:space="preserve">
-    <value>Failed to start the injection helper</value>
+    <value>Не удалось запустить вспомогательный процесс инжекта</value>
   </data>
   <data name="Backpack_ErrInvalidConfig" xml:space="preserve">
-    <value>Invalid configuration file</value>
+    <value>Неверный файл конфигурации</value>
   </data>
   <data name="Backpack_ErrGameCreateFailed" xml:space="preserve">
-    <value>Failed to create game process</value>
+    <value>Не удалось создать процесс игры</value>
   </data>
   <data name="Backpack_ErrDllInjFailed" xml:space="preserve">
-    <value>DLL injection failed</value>
+    <value>Ошибка внедрения DLL</value>
   </data>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
-    <value>Injection helper exited with code {0}</value>
+    <value>Вспомогательный процесс инжекта завершился с кодом {0}</value>
   </data>
   <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Char Ascension</value>
+    <value>Возвышение персонажей</value>
   </data>
   <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Weapon Ascension</value>
+    <value>Возвышение оружия</value>
   </data>
   <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Talent Materials</value>
+    <value>Материалы талантов</value>
   </data>
   <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Char EXP</value>
+    <value>Развитие персонажа</value>
   </data>
   <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Weapon Enhancement</value>
+    <value>Улучшение оружия</value>
   </data>
   <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Refinement</value>
+    <value>Материалы пробуждения</value>
   </data>
   <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Local Specialty</value>
+    <value>Местные диковины</value>
   </data>
   <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Ingredients</value>
+    <value>Ингредиенты</value>
   </data>
   <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Recovery</value>
+    <value>Восстанавливающая еда</value>
   </data>
   <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Attack</value>
+    <value>Боевая еда</value>
   </data>
   <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Defense</value>
+    <value>Защитная еда</value>
   </data>
   <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Приключенческая еда</value>
   </data>
   <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Special Recovery</value>
+    <value>Особая восстанавливающая еда</value>
   </data>
   <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Special Attack</value>
+    <value>Особая боевая еда</value>
   </data>
   <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Special Defense</value>
+    <value>Особая защитная еда</value>
   </data>
   <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Special Adventure</value>
+    <value>Особая приключенческая еда</value>
   </data>
   <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Arlecchino Specials</value>
+    <value>Особые блюда</value>
   </data>
   <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Sweet Flowers</value>
+    <value>Десерты</value>
   </data>
   <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Materials</value>
+    <value>Материалы</value>
   </data>
   <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Ores</value>
+    <value>Руда</value>
   </data>
   <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Fish</value>
+    <value>Рыба</value>
   </data>
   <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Fishing Bait</value>
+    <value>Наживка</value>
   </data>
   <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Предметы</value>
   </data>
   <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Assets</value>
+    <value>Личные активы</value>
   </data>
   <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Редкая валюта</value>
   </data>
   <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Театр «Воображариум»</value>
   </data>
   <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Инструменты</value>
   </data>
   <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Consumables</value>
+    <value>Расходные предметы</value>
   </data>
   <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Quest Items</value>
+    <value>Предметы заданий</value>
   </data>
   <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Precious</value>
+    <value>Драгоценности</value>
   </data>
   <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Театр «Воображариум»</value>
   </data>
   <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Приключенческие предметы</value>
   </data>
   <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Nation Emblems</value>
+    <value>Печати семи наций</value>
   </data>
   <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Wish Items</value>
+    <value>Предметы молитвы</value>
   </data>
   <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>Starglitter</value>
+    <value>Звёздный блеск</value>
   </data>
   <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>Stardust</value>
+    <value>Звёздная пыль</value>
   </data>
   <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Редкая валюта</value>
   </data>
   <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Backpack Browser</value>
+    <value>Обзор рюкзака</value>
   </data>
   <data name="Backpack_ErrX64Required" xml:space="preserve">
-    <value>Backpack synchronization requires the x64 build.</value>
+    <value>Синхронизация рюкзака поддерживается только в версии x64.</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
-    <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
+    <value>Отсутствует модуль синхронизации рюкзака modules/backpack.dll.</value>
   </data>
   <data name="Checkin_SignNow" xml:space="preserve">
     <value>Отметиться сейчас</value>

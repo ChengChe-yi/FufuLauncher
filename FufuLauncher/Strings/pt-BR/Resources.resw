@@ -13,61 +13,61 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Avatar_Batch_Fail_Title" xml:space="preserve">
-    <value>Batch Save Failed</value>
+    <value>Falha ao salvar em lote</value>
   </data>
   <data name="Avatar_Batch_Success" xml:space="preserve">
-    <value>Batch generated and overwrote all avatar sizes</value>
+    <value>Avatares gerados e substituídos em todos os tamanhos</value>
   </data>
   <data name="Avatar_Clear_Fail_Title" xml:space="preserve">
-    <value>Clear Failed</value>
+    <value>Falha ao limpar</value>
   </data>
   <data name="Avatar_Clear_Success_Format" xml:space="preserve">
-    <value>Avatar size {0}x{0} cleared</value>
+    <value>Avatar de tamanho {0}x{0} removido</value>
   </data>
   <data name="Avatar_Crop_Success" xml:space="preserve">
-    <value>Avatar cropped and saved successfully</value>
+    <value>Avatar recortado e salvo com sucesso</value>
   </data>
   <data name="Avatar_EditNotFound_Content" xml:space="preserve">
-    <value>No avatar found to edit</value>
+    <value>Nenhum avatar disponível para edição</value>
   </data>
   <data name="Avatar_EditNotFound_Title" xml:space="preserve">
-    <value>Notice</value>
+    <value>Aviso</value>
   </data>
   <data name="Avatar_ImportFail_Title" xml:space="preserve">
-    <value>Import Failed</value>
+    <value>Falha na importação</value>
   </data>
   <data name="Avatar_LoadFail_Title" xml:space="preserve">
-    <value>Load Failed</value>
+    <value>Falha ao carregar</value>
   </data>
   <data name="Avatar_SaveFail_Title" xml:space="preserve">
-    <value>Save Failed</value>
+    <value>Falha ao salvar</value>
   </data>
   <data name="Fps_CompatWarning_Content" xml:space="preserve">
-    <value>If you have NVIDIA RTX 40-series or newer AI frame generation enabled, or use frame display software such as RTSS or MSI Afterburner, it may cause the game to freeze or fail to start normally.</value>
+    <value>Se você ativou a geração de quadros por IA em placas NVIDIA RTX série 40 ou superior, ou usa softwares de exibição de FPS como RTSS ou MSI Afterburner, o jogo pode travar ou falhar ao iniciar.</value>
   </data>
   <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
-    <value>Don't show this warning again</value>
+    <value>Não mostrar este aviso novamente</value>
   </data>
   <data name="Fps_CompatWarning_Title" xml:space="preserve">
-    <value>Compatibility Warning</value>
+    <value>Aviso de compatibilidade</value>
   </data>
   <data name="Fps_HashMismatch_Content" xml:space="preserve">
-    <value>The frame rate display plugin hash does not match. It may have been tampered with or corrupted. Please reinstall the launcher.</value>
+    <value>O hash do plugin de exibição de FPS não corresponde. Ele pode ter sido adulterado ou corrompido. Reinstale o launcher.</value>
   </data>
   <data name="Fps_Repair_Fail_Title" xml:space="preserve">
-    <value>Repair Failed</value>
+    <value>Falha no reparo</value>
   </data>
   <data name="Fps_Repair_Success" xml:space="preserve">
-    <value>FPS display plugin has been successfully repaired and installed</value>
+    <value>O plugin de exibição de FPS foi reparado e instalado com sucesso</value>
   </data>
   <data name="Fps_Repair_Title" xml:space="preserve">
-    <value>Repairing FPS Plugin</value>
+    <value>Reparando o plugin de FPS</value>
   </data>
   <data name="LanguageChangedTitle" xml:space="preserve">
     <value>Idioma alterado</value>
   </data>
   <data name="LanguageChangedMessage" xml:space="preserve">
-    <value>O idioma foi alterado. Alguns elementos da interface precisam reiniciar para aplicar completamente.</value>
+    <value>O idioma foi alterado. Devido a limitações técnicas, é necessário reiniciar o aplicativo para que parte da interface seja totalmente aplicada.</value>
   </data>
   <data name="LanguageSelection_Title" xml:space="preserve">
     <value>Escolha seu idioma</value>
@@ -85,107 +85,107 @@
     <value>Selecionado</value>
   </data>
   <data name="PR_Description" xml:space="preserve">
-    <value>This project is currently maintained by an individual developer (CodeCubist).
-We adhere to a player pain-point-driven development direction, promoting open, transparent, and efficient updates.
-Submitting Pull Requests is the core way for users with coding skills to help advance development, optimize structure, and share project maintenance responsibilities.
-If you can help, please use the button below to visit the code repository and submit your contribution.</value>
+    <value>Este projeto é mantido atualmente por um desenvolvedor individual (CodeCubist).
+Seguimos uma direção de desenvolvimento centrada nos problemas dos jogadores, com atualizações abertas, transparentes e eficientes.
+Enviar Pull Requests é a principal forma de usuários com habilidades de programação ajudarem a acelerar o desenvolvimento, otimizar a estrutura e dividir a manutenção do projeto.
+Se puder ajudar, use o botão abaixo para acessar o repositório e enviar sua contribuição.</value>
   </data>
   <data name="PR_GitHubButton" xml:space="preserve">
-    <value>Visit GitHub Repository to Submit Pull Request</value>
+    <value>Visite o repositório no GitHub para enviar um Pull Request</value>
   </data>
   <data name="PR_Window_Title" xml:space="preserve">
     <value>Pull Request</value>
   </data>
   <data name="Plugin_ArchWarning_Content" xml:space="preserve">
-    <value>Your computer may be ARM-based. The injection feature is not available on ARM-based computers. Are you sure you want to continue enabling it?</value>
+    <value>Seu computador pode ser da arquitetura ARM. O recurso de injeção não está disponível em computadores ARM. Deseja continuar mesmo assim?</value>
   </data>
   <data name="Plugin_ArchWarning_Continue" xml:space="preserve">
-    <value>Continue Enabling</value>
+    <value>Continuar e ativar</value>
   </data>
   <data name="Plugin_ArchWarning_Title" xml:space="preserve">
-    <value>Architecture Compatibility Warning</value>
+    <value>Aviso de compatibilidade de arquitetura</value>
   </data>
   <data name="Plugin_Corrupted_Content" xml:space="preserve">
-    <value>Plugin files are abnormal.
-This is usually because the plugin was falsely flagged and blocked by antivirus software (such as Windows Defender) or has been damaged.
+    <value>Os arquivos do plugin estão anormais.
+Isso geralmente acontece porque o plugin foi bloqueado por engano pelo antivírus (como o Windows Defender) ou foi danificado.
 
-Recommendations:
-1. Add the software directory to the antivirus whitelist
-2. Re-download and install the plugin on this page</value>
+Recomendações:
+1. Adicione o diretório do software à lista de permissões do antivírus
+2. Baixe e instale o plugin novamente nesta página</value>
   </data>
   <data name="Plugin_Corrupted_Title" xml:space="preserve">
-    <value>Plugin May Be Corrupted</value>
+    <value>O plugin pode estar corrompido</value>
   </data>
   <data name="Plugin_Download_BackupLine" xml:space="preserve">
-    <value>Backup</value>
+    <value>Reserva</value>
   </data>
   <data name="Plugin_Download_Connecting" xml:space="preserve">
-    <value>Connecting...</value>
+    <value>Conectando...</value>
   </data>
   <data name="Plugin_Download_Extracting" xml:space="preserve">
-    <value>Extracting and installing...</value>
+    <value>Extraindo e instalando...</value>
   </data>
   <data name="Plugin_Download_Fail_Content_Format" xml:space="preserve">
-    <value>Installation failed: {0}</value>
+    <value>Falha na instalação: {0}</value>
   </data>
   <data name="Plugin_Download_Fallback" xml:space="preserve">
-    <value>Connection failed, trying backup line...</value>
+    <value>Falha na conexão, tentando linha reserva...</value>
   </data>
   <data name="Plugin_Download_MainLine" xml:space="preserve">
-    <value>Main</value>
+    <value>Principal</value>
   </data>
   <data name="Plugin_Download_Manual" xml:space="preserve">
-    <value>Manual Download</value>
+    <value>Download manual</value>
   </data>
   <data name="Plugin_Download_Progress_Format" xml:space="preserve">
-    <value>{0} line downloading... {1}%</value>
+    <value>Baixando pela linha {0}... {1}%</value>
   </data>
   <data name="Plugin_Download_Success" xml:space="preserve">
-    <value>Plugin installed and refreshed</value>
+    <value>Plugin instalado e atualizado</value>
   </data>
   <data name="Plugin_Download_Title" xml:space="preserve">
-    <value>Getting Plugin</value>
+    <value>Obtendo plugin</value>
   </data>
   <data name="Plugin_FileNotFound" xml:space="preserve">
-    <value>File not found, please confirm launcher files are complete</value>
+    <value>Arquivo não encontrado. Confirme se os arquivos do launcher estão completos</value>
   </data>
   <data name="Plugin_MainMissing_Content" xml:space="preserve">
-    <value>Main plugin DLL file not found. The plugin may not be installed, was accidentally deleted, or was blocked by antivirus software. Please re-download the plugin, or add the launcher directory to the antivirus whitelist and try again.</value>
+    <value>Arquivo DLL do plugin principal não encontrado. O plugin pode não estar instalado, pode ter sido excluído por engano ou bloqueado pelo antivírus. Baixe o plugin novamente ou adicione o diretório do launcher à lista de permissões do antivírus e tente de novo.</value>
   </data>
   <data name="Plugin_MainMissing_Title" xml:space="preserve">
-    <value>Main Plugin Missing</value>
+    <value>Plugin principal ausente</value>
   </data>
   <data name="Preset_Create_Placeholder" xml:space="preserve">
-    <value>Enter new preset name</value>
+    <value>Digite o nome da nova predefinição</value>
   </data>
   <data name="Preset_Create_Title" xml:space="preserve">
-    <value>Create New Preset</value>
+    <value>Criar nova predefinição</value>
   </data>
   <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Delete</value>
+    <value>Confirmar exclusão</value>
   </data>
   <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
-    <value>Are you sure you want to delete the preset "{0}"? This action cannot be undone!</value>
+    <value>Tem certeza de que deseja excluir a predefinição "{0}"? Esta ação não pode ser desfeita!</value>
   </data>
   <data name="Preset_Locked_Content_Format" xml:space="preserve">
-    <value>Lock reason: {0}
+    <value>Motivo do bloqueio: {0}
 
-If you continue, this warning will be ignored and the preset's Hash will be updated to the current plugin Hash, unlocking the preset. Continue?</value>
+Se continuar, este aviso será ignorado e o Hash desta predefinição será atualizado para o Hash atual do plugin, desbloqueando-a. Continuar?</value>
   </data>
   <data name="Preset_Locked_Continue" xml:space="preserve">
-    <value>Continue and Unlock</value>
+    <value>Continuar e desbloquear</value>
   </data>
   <data name="Preset_Locked_Title" xml:space="preserve">
-    <value>Configuration Preset Locked</value>
+    <value>Predefinição de configuração bloqueada</value>
   </data>
   <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve">
-    <value>Confirm Reset</value>
+    <value>Confirmar redefinição</value>
   </data>
   <data name="Preset_ResetAll_Content" xml:space="preserve">
-    <value>Remove all presets for the current plugin and re-download the defaults? This action cannot be undone!</value>
+    <value>Tem certeza de que deseja remover todas as predefinições do plugin atual e baixar os padrões novamente? Esta ação não pode ser desfeita!</value>
   </data>
   <data name="Preset_ResetAll_Title" xml:space="preserve">
-    <value>Reset All Presets</value>
+    <value>Redefinir todas as predefinições</value>
   </data>
   <data name="RestartNowBtn" xml:space="preserve">
     <value>Reiniciar agora</value>
@@ -620,7 +620,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Desfoque Acrylic</value>
   </data>
   <data name="AcrylicOverlayNote" xml:space="preserve">
-    <value>Nota: Planos de fundo em vídeo usarão uma sobreposição semitransparente sólida por questões de desempenho.</value>
+    <value>Nota: Ao usar um plano de fundo em vídeo, o app voltará automaticamente a uma sobreposição sólida semitransparente por questões de desempenho e qualidade de exibição.</value>
   </data>
   <data name="SemiTransparentOverlay" xml:space="preserve">
     <value>Modo semitransparente da sobreposição de página</value>
@@ -650,7 +650,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Acrylic</value>
   </data>
   <data name="MicaWarning" xml:space="preserve">
-    <value>Nota: Mica está disponível apenas no Windows 11.</value>
+    <value>Nota: O efeito Mica está disponível apenas no Windows 11. Em sistemas mais antigos, o fundo pode voltar a ser de cor sólida.</value>
   </data>
   <data name="ShowHamburger" xml:space="preserve">
     <value>Mostrar botão de menu da barra lateral</value>
@@ -677,7 +677,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Check-in da comunidade</value>
   </data>
   <data name="CommunityCheckinCaption" xml:space="preserve">
-    <value>Complete automaticamente tarefas de interação na comunidade para ganhar Moedas MiYouShe</value>
+    <value>Complete automaticamente tarefas de interação na comunidade para ganhar Moedas Miyou</value>
   </data>
   <data name="Like" xml:space="preserve">
     <value>Curtir</value>
@@ -938,7 +938,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Número</value>
   </data>
   <data name="AutoCreatePresetLabel" xml:space="preserve">
-    <value>Criar predefinição automática</value>
+    <value>Criar predefinição automaticamente</value>
   </data>
   <data name="ShowDevFeaturesLabel" xml:space="preserve">
     <value>Mostrar recursos de desenvolvedor</value>
@@ -1154,7 +1154,7 @@ If you continue, this warning will be ignored and the preset's Hash will be upda
     <value>Troca de conta</value>
   </data>
   <data name="ReadFromLocalTooltip" xml:space="preserve">
-    <value>Ler do local</value>
+    <value>Ler localmente</value>
   </data>
   <data name="RefreshListTooltip" xml:space="preserve">
     <value>Atualizar lista</value>
@@ -1572,7 +1572,7 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Notícias</value>
   </data>
   <data name="Home_CheckinCard" xml:space="preserve">
-    <value>Check-in</value>
+    <value>Check-in do Genshin</value>
   </data>
   <data name="Home_RefreshToken" xml:space="preserve">
     <value>Atualizar token</value>
@@ -1737,7 +1737,7 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Biblioteca de vídeos: Navegue por demos de personagens e cutscenes do jogo</value>
   </data>
   <data name="Home_BBSTooltip" xml:space="preserve">
-    <value>Crônicas de batalha: Veja registros detalhados de batalha, como Abismo Espiral e Teatro Imaginarium</value>
+    <value>Crônicas de batalha: Veja registros detalhados de batalha, como Abismo Espiral e Teatro da Imaginação</value>
   </data>
   <data name="OtherPage_Title" xml:space="preserve">
     <value>Outras configurações</value>
@@ -1884,7 +1884,7 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Curtidas</value>
   </data>
   <data name="Account_Posts" xml:space="preserve">
-    <value>Posts</value>
+    <value>Publicações</value>
   </data>
   <data name="Account_Replies" xml:space="preserve">
     <value>Respostas</value>
@@ -2235,7 +2235,7 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Cancelar</value>
   </data>
   <data name="BBSWindow_Title" xml:space="preserve">
-    <value>Registros de batalha</value>
+    <value>Crônicas de batalha</value>
   </data>
   <data name="BBSWindow_SwitchIdentity" xml:space="preserve">
     <value>Trocar identidade</value>
@@ -2385,7 +2385,7 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Exportar formato JSON UIGF padrão para a área de trabalho</value>
   </data>
   <data name="GachaDialog_TotalInvested" xml:space="preserve">
-    <value>Total: </value>
+    <value>Total investido: </value>
   </data>
   <data name="GachaDialog_Pulls" xml:space="preserve">
     <value> Tiragens</value>
@@ -2608,7 +2608,7 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Dados de personagens</value>
   </data>
   <data name="DataPage_AbyssData" xml:space="preserve">
-    <value>Abismo</value>
+    <value>Ataque Estígio</value>
   </data>
   <data name="DataPage_SpiralAbyss" xml:space="preserve">
     <value>Abismo Espiral</value>
@@ -2770,10 +2770,10 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Perfil atual</value>
   </data>
   <data name="AchievementWindow_ManageArchive" xml:space="preserve">
-    <value>Trocar ou criar arquivo</value>
+    <value>Trocar ou criar perfil</value>
   </data>
   <data name="AchievementWindow_ArchiveManagement" xml:space="preserve">
-    <value>Gerenciamento de arquivos</value>
+    <value>Gerenciamento de perfis</value>
   </data>
   <data name="AchievementWindow_UpdateData" xml:space="preserve">
     <value>Atualizar dados</value>
@@ -2962,7 +2962,7 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Evento de arma</value>
   </data>
   <data name="GachaAnalysis_ChronicledWish" xml:space="preserve">
-    <value>Desejo crônico</value>
+    <value>Desejo Cronista</value>
   </data>
   <data name="GachaAnalysis_StandardWish" xml:space="preserve">
     <value>Desejo padrão</value>
@@ -3056,7 +3056,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>Salvar imagem</value>
   </data>
   <data name="GachaAnalysis_GoldPullStats" xml:space="preserve">
-    <value>Estatísticas de método de tiragem ouro</value>
+    <value>Estatísticas de como os 5★ foram obtidos</value>
   </data>
   <data name="GachaAnalysis_GoldPullStatsDesc" xml:space="preserve">
     <value>Registros do mesmo banner ao mesmo tempo são contados como um grupo</value>
@@ -3176,7 +3176,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>Tarefa cancelada</value>
   </data>
   <data name="DownloadWindow_Error" xml:space="preserve">
-    <value>Erro ocorrido</value>
+    <value>Ocorreu um erro</value>
   </data>
   <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
     <value>Ocultar log detalhado</value>
@@ -3281,7 +3281,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>Arquivo de banco de dados integrado não encontrado</value>
   </data>
   <data name="AchievementWindow_AlreadyLatest" xml:space="preserve">
-    <value>Seu arquivo já está na versão mais recente, nenhuma atualização necessária.</value>
+    <value>Seu perfil já está na versão mais recente; nenhuma atualização é necessária.</value>
   </data>
   <data name="AchievementWindow_UpdateDb" xml:space="preserve">
     <value>Atualizar banco de dados de conquistas</value>
@@ -3475,13 +3475,13 @@ Arquivos pesquisados:
     <value>Exceção: {0}</value>
   </data>
   <data name="CheckinCloud_HoursMinutes" xml:space="preserve">
-    <value>{0}h{1}m</value>
+    <value>{0}h {1}min</value>
   </data>
   <data name="CheckinCloud_HoursOnly" xml:space="preserve">
     <value>{0}h</value>
   </data>
   <data name="CheckinCloud_MinutesOnly" xml:space="preserve">
-    <value>{0}m</value>
+    <value>{0}min</value>
   </data>
   <data name="CheckinCommunity_Title" xml:space="preserve">
     <value>Check-in da comunidade</value>
@@ -3499,7 +3499,7 @@ Arquivos pesquisados:
     <value>Check-in da comunidade já feito, pulado</value>
   </data>
   <data name="CheckinCommunity_GetPostsFailed" xml:space="preserve">
-    <value>Falha ao obter lista de posts. Não é possível realizar ler/curtir/compartilhar.</value>
+    <value>Falha ao obter a lista de posts. Não é possível ler, curtir ou compartilhar.</value>
   </data>
   <data name="CheckinCommunity_ReadDoneSkipped" xml:space="preserve">
     <value>Leitura já feita, pulada</value>
@@ -4069,7 +4069,7 @@ Arquivos pesquisados:
     <value>Falha ao obter dados das notas diárias: Formato de resposta inválido</value>
   </data>
   <data name="DailyNote_TransformerTime" xml:space="preserve">
-    <value>{0}d {1}h {2}m</value>
+    <value>{0}d {1}h {2}min</value>
   </data>
   <data name="DailyNote_Claimed" xml:space="preserve">
     <value>Resgatado</value>
@@ -4200,7 +4200,7 @@ Detalhes: {0}</value>
     <value>Descubra e instale plugins da comunidade para ampliar o inicializador</value>
   </data>
   <data name="PluginStorePluginsSection" xml:space="preserve">
-    <value>Plugins</value>
+    <value>Lista de plugins</value>
   </data>
   <data name="PluginStoreMoreActions" xml:space="preserve">
     <value>Mais ações</value>
@@ -4272,7 +4272,7 @@ Detalhes: {0}</value>
     <value>Ataque Estígio</value>
   </data>
   <data name="DataPage_TabWish" xml:space="preserve">
-    <value>Banners</value>
+    <value>Histórico de banners</value>
   </data>
   <data name="DataPage_TabRerun" xml:space="preserve">
     <value>Reedições</value>
@@ -4752,223 +4752,223 @@ Detalhes: {0}</value>
     <value>Falha ao exportar o PDF</value>
   </data>
   <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Weapons</value>
+    <value>Armas</value>
   </data>
   <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Artifacts</value>
+    <value>Artefatos</value>
   </data>
   <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Materials</value>
+    <value>Materiais</value>
   </data>
   <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Food</value>
+    <value>Comida</value>
   </data>
   <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Waiting for data…</value>
+    <value>Aguardando dados…</value>
   </data>
   <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Received</value>
+    <value>Recebido</value>
   </data>
   <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Launching…</value>
+    <value>Iniciando…</value>
   </data>
   <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Game launched, waiting for data…</value>
+    <value>Jogo iniciado, aguardando dados…</value>
   </data>
   <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Selecionar caminho do jogo</value>
   </data>
   <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Kill Process</value>
+    <value>Encerrar processo</value>
   </data>
   <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Sincronizar inventário</value>
   </data>
   <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Sync Backpack</value>
+    <value>Sincronizar inventário</value>
   </data>
   <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Game launched, waiting for backpack data…</value>
+    <value>Jogo iniciado, aguardando dados do inventário…</value>
   </data>
   <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancelar</value>
   </data>
   <data name="Backpack_Locked" xml:space="preserve">
-    <value>Locked</value>
+    <value>Bloqueado</value>
   </data>
   <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Flower of Life</value>
+    <value>Flor da Vida</value>
   </data>
   <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Plume of Death</value>
+    <value>Pluma da Morte</value>
   </data>
   <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Sands of Eon</value>
+    <value>Areias do Éon</value>
   </data>
   <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Goblet of Eonothem</value>
+    <value>Cálice do Eonotema</value>
   </data>
   <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Circlet of Logos</value>
+    <value>Diadema do Logos</value>
   </data>
   <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Invalid path. Please select YuanShen.exe (CN server only).</value>
+    <value>Caminho inválido. Selecione o jogo do servidor CN (YuanShen.exe).</value>
   </data>
   <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Select Game Path</value>
+    <value>Selecionar caminho do jogo</value>
   </data>
   <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Click an entry below to switch to that path</value>
+    <value>Selecione um item na lista abaixo para alternar para esse caminho</value>
   </data>
   <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Game Path</value>
+    <value>Caminho do jogo</value>
   </data>
   <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Select YuanShen.exe (CN only), not launcher.exe</value>
+    <value>Selecione o jogo do servidor CN (YuanShen.exe), e não o launcher (launcher.exe)</value>
   </data>
   <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>Base ATK</value>
+    <value>ATQ base</value>
   </data>
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
-    <value>Failed to resolve current process path</value>
+    <value>Não foi possível obter o caminho do processo atual</value>
   </data>
   <data name="Backpack_ErrElevationCancelled" xml:space="preserve">
-    <value>Elevation was cancelled by the user</value>
+    <value>A elevação de privilégios foi cancelada pelo usuário</value>
   </data>
   <data name="Backpack_ErrHelperStartFailed" xml:space="preserve">
-    <value>Failed to start the injection helper</value>
+    <value>Não foi possível iniciar o processo de injeção</value>
   </data>
   <data name="Backpack_ErrInvalidConfig" xml:space="preserve">
-    <value>Invalid configuration file</value>
+    <value>Arquivo de configuração inválido</value>
   </data>
   <data name="Backpack_ErrGameCreateFailed" xml:space="preserve">
-    <value>Failed to create game process</value>
+    <value>Não foi possível criar o processo do jogo</value>
   </data>
   <data name="Backpack_ErrDllInjFailed" xml:space="preserve">
-    <value>DLL injection failed</value>
+    <value>Falha na injeção de DLL</value>
   </data>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
-    <value>Injection helper exited with code {0}</value>
+    <value>O processo de injeção saiu com o código {0}</value>
   </data>
   <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Char Ascension</value>
+    <value>Ascensão de personagem</value>
   </data>
   <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Weapon Ascension</value>
+    <value>Ascensão de arma</value>
   </data>
   <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Talent Materials</value>
+    <value>Materiais de talento</value>
   </data>
   <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Char EXP</value>
+    <value>EXP de personagem</value>
   </data>
   <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Weapon Enhancement</value>
+    <value>Aprimoramento de arma</value>
   </data>
   <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Refinement</value>
+    <value>Refinamento</value>
   </data>
   <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Local Specialty</value>
+    <value>Especialidade local</value>
   </data>
   <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Ingredients</value>
+    <value>Ingredientes</value>
   </data>
   <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Recovery</value>
+    <value>Recuperação</value>
   </data>
   <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Attack</value>
+    <value>Ataque</value>
   </data>
   <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Defense</value>
+    <value>Defesa</value>
   </data>
   <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Aventura</value>
   </data>
   <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Special Recovery</value>
+    <value>Recuperação especial</value>
   </data>
   <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Special Attack</value>
+    <value>Ataque especial</value>
   </data>
   <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Special Defense</value>
+    <value>Defesa especial</value>
   </data>
   <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Special Adventure</value>
+    <value>Aventura especial</value>
   </data>
   <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Arlecchino Specials</value>
+    <value>Especiais de Arlecchino</value>
   </data>
   <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Sweet Flowers</value>
+    <value>Esculturas de açúcar</value>
   </data>
   <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Materials</value>
+    <value>Materiais</value>
   </data>
   <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Ores</value>
+    <value>Minérios</value>
   </data>
   <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Fish</value>
+    <value>Peixes</value>
   </data>
   <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Fishing Bait</value>
+    <value>Iscas de pesca</value>
   </data>
   <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Pequenos itens</value>
   </data>
   <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Assets</value>
+    <value>Bens pessoais</value>
   </data>
   <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Moeda rara</value>
   </data>
   <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Teatro da Imaginação</value>
   </data>
   <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Gadgets</value>
+    <value>Pequenos itens</value>
   </data>
   <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Consumables</value>
+    <value>Consumíveis</value>
   </data>
   <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Quest Items</value>
+    <value>Itens de missão</value>
   </data>
   <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Precious</value>
+    <value>Itens valiosos</value>
   </data>
   <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
+    <value>Teatro da Imaginação</value>
   </data>
   <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
+    <value>Itens de aventura</value>
   </data>
   <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Nation Emblems</value>
+    <value>Sigilos das nações</value>
   </data>
   <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Wish Items</value>
+    <value>Itens de desejo</value>
   </data>
   <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>Starglitter</value>
+    <value>Brilho Estelar</value>
   </data>
   <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>Stardust</value>
+    <value>Poeira Estelar</value>
   </data>
   <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
+    <value>Moeda rara</value>
   </data>
   <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Backpack Browser</value>
+    <value>Navegador de inventário</value>
   </data>
   <data name="Backpack_ErrX64Required" xml:space="preserve">
-    <value>Backpack synchronization requires the x64 build.</value>
+    <value>A sincronização do inventário requer a versão x64.</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
-    <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
+    <value>O módulo de sincronização do inventário (modules/backpack.dll) está ausente.</value>
   </data>
   <data name="Checkin_SignNow" xml:space="preserve">
     <value>Fazer check-in agora</value>
@@ -5028,16 +5028,16 @@ Detalhes: {0}</value>
     <value>Canto inferior esquerdo</value>
   </data>
   <data name="UsingHoyolabAccountTitle" xml:space="preserve">
-    <value>Entrar no jogo diretamente com a conta miHoYo/HoyoLAB</value>
+    <value>Entrar no jogo diretamente com a conta MiYouShe/HoyoLAB</value>
   </data>
   <data name="UsingHoyolabAccountCaption" xml:space="preserve">
-    <value>Ao iniciar o jogo, entre diretamente com a conta miHoYo ou HoyoLAB selecionada, sem precisar digitar usuário e senha novamente dentro do jogo.</value>
+    <value>Ao iniciar o jogo, entre diretamente com a conta MiYouShe ou HoyoLAB selecionada, sem precisar digitar usuário e senha novamente dentro do jogo.</value>
   </data>
   <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
     <value>Não foi possível ativar</value>
   </data>
   <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
-    <value>Faça login em uma conta miHoYo ou HoyoLAB nas configurações de conta primeiro.</value>
+    <value>Faça login em uma conta MiYouShe ou HoyoLAB nas configurações de conta primeiro.</value>
   </data>
   <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
     <value>Sessão da conta expirada</value>
@@ -5055,7 +5055,7 @@ Detalhes: {0}</value>
     <value>Ativado</value>
   </data>
   <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
-    <value>Na próxima vez que iniciar o jogo, você entrará diretamente com a conta miHoYo/HoyoLAB, sem precisar digitar usuário e senha novamente.</value>
+    <value>Na próxima vez que iniciar o jogo, você entrará diretamente com a conta MiYouShe/HoyoLAB, sem precisar digitar usuário e senha novamente.</value>
   </data>
   <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
     <value>Não foi possível ativar</value>
@@ -5076,7 +5076,7 @@ Detalhes: {0}</value>
     <value>A conta HoyoLAB do servidor global selecionada não pode ser usada para iniciar o jogo do servidor chinês. Troque para uma conta da região correspondente.</value>
   </data>
   <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
-    <value>A conta miHoYo do servidor chinês selecionada não pode ser usada para iniciar o jogo do servidor global. Troque para uma conta da região correspondente.</value>
+    <value>A conta MiYouShe do servidor chinês selecionada não pode ser usada para iniciar o jogo do servidor global. Troque para uma conta da região correspondente.</value>
   </data>
   <data name="HelpPage_TranslateBtn" xml:space="preserve">
     <value>Traduzir</value>
@@ -5379,7 +5379,7 @@ Deseja executá-lo mesmo assim? (Não recomendado)</value>
     <value>Utilitários</value>
   </data>
   <data name="PluginStoreCategoryGameplay" xml:space="preserve">
-    <value>Gameplay</value>
+    <value>Jogabilidade</value>
   </data>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>Visual</value>
@@ -5412,7 +5412,7 @@ Deseja executá-lo mesmo assim? (Não recomendado)</value>
     <value>Clique em "Sincronizar inventário" no canto superior direito para injetar o inventário real do jogo e iniciar a sincronização de dados.</value>
   </data>
   <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>Use as abas superiores para alternar entre categorias; clique em qualquer卡片 para ver detalhes (conjunto / sub-atributo / habilidade da arma).</value>
+    <value>Use as abas superiores para alternar entre categorias; clique em qualquer cartão para ver detalhes (conjunto / sub-atributo / habilidade da arma).</value>
   </data>
   <data name="Backpack_UsageStep3" xml:space="preserve">
     <value>Os cartões de visão geral indicam sinergia de ingredientes e cobertura de materiais de progressão com base no inventário atual.</value>
