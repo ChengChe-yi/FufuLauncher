@@ -33,14 +33,20 @@ namespace FufuLauncher.Messages
             get;
         }
         public bool IsPersistent => Duration == 0;
+        
+        public string CopyText
+        {
+            get;
+        }
 
-        public NotificationMessage(string title, string message, NotificationType type, int duration = 5000)
+        public NotificationMessage(string title, string message, NotificationType type, int duration = 5000, string copyText = "")
             : base(null)
         {
             Title = title;
             Message = message;
             Type = type;
             Duration = duration;
+            CopyText = copyText ?? string.Empty;
         }
     }
 }

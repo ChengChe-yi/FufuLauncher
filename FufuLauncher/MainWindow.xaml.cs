@@ -2127,6 +2127,11 @@ public sealed partial class MainWindow : WindowEx
             Opacity = 0
         };
 
+        if (!string.IsNullOrEmpty(message.CopyText))
+        {
+            infoBar.ActionButton = CreateCopyActionButton(message.CopyText);
+        }
+
         infoBar.Closing += (sender, args) =>
         {
             args.Cancel = true;
@@ -2144,6 +2149,42 @@ public sealed partial class MainWindow : WindowEx
         };
 
         return infoBar;
+    }
+
+    private Button CreateCopyActionButton(string copyText)
+    {
+        var copyButton = new Button
+        {
+            Content = "CopyBtn".GetLocalized()
+        };
+
+        copyButton.Click += (_, _) =>
+        {
+            try
+            {
+                var package = new Windows.ApplicationModel.DataTransfer.DataPackage();
+                package.SetText(copyText);
+                Windows.ApplicationModel.DataTransfer.Clipboard.SetContent(package);
+            }
+            catch
+            {
+                // ignored
+            }
+
+            copyButton.Content = "Btn_Copied".GetLocalized();
+            copyButton.IsEnabled = false;
+
+            Task.Delay(1000).ContinueWith(_ =>
+            {
+                dispatcherQueue.TryEnqueue(() =>
+                {
+                    copyButton.Content = "CopyBtn".GetLocalized();
+                    copyButton.IsEnabled = true;
+                });
+            });
+        };
+
+        return copyButton;
     }
 
     private InfoBarSeverity GetInfoBarSeverity(NotificationType type)

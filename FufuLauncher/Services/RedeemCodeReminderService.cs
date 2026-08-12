@@ -189,11 +189,13 @@ namespace FufuLauncher.Helpers
             var recentCodes = codes.Take(5).ToList();
 
             var lines = new List<string>();
+            var copyTextLines = new List<string>();
             foreach (var item in recentCodes)
             {
                 var remaining = FormatRemainingTime(!string.IsNullOrEmpty(item.Valid) ? item.Valid : item.Time);
                 var codesStr = string.Join(", ", item.Codes.Take(3));
                 lines.Add($"• {item.Title} → {codesStr}（{remaining}）");
+                copyTextLines.AddRange(item.Codes.Take(3));
             }
 
             if (codes.Count > 5)
@@ -205,7 +207,8 @@ namespace FufuLauncher.Helpers
                 "RedeemCode_NewPublished".GetLocalized(),
                 string.Format("RedeemCode_NewContent".GetLocalized(), string.Join("\n", lines)),
                 NotificationType.Information,
-                0
+                0,
+                string.Join("\n", copyTextLines)
             );
 
             showNotificationAction?.Invoke(msg);
@@ -237,7 +240,8 @@ namespace FufuLauncher.Helpers
                     "RedeemCode_ExpiringTitle".GetLocalized(),
                     string.Format("RedeemCode_ExpiringContent".GetLocalized(), titles, codesContent),
                     NotificationType.Warning,
-                    0
+                    0,
+                    codesContent
                 );
 
                 showNotificationAction?.Invoke(msg);
