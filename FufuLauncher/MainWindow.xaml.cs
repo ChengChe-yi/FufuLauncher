@@ -1269,18 +1269,6 @@ public sealed partial class MainWindow : WindowEx
     {
         try
         {
-            if (Helpers.AppPaths.IsFirstRun)
-            {
-                IsAgreementShowing = true;
-                Width = 850;
-                Height = 640;
-                WindowManagerHelper.CenterWindowOnScreen(AppWindow, Width, Height);
-                AgreementFrame.Visibility = Visibility.Visible;
-                AgreementFrame.Navigate(typeof(Views.LanguageSelectionPage));
-                SyncPageTheme();
-                return;
-            }
-
             var localSettings = App.GetService<ILocalSettingsService>();
 
             var accepted = await localSettings.ReadSettingAsync("UserAgreementAccepted");

@@ -645,7 +645,9 @@ private void OnOpenGachaAnalysisClick(object sender, RoutedEventArgs e)
 
         if (!_isInitialized)
         {
-            if (Helpers.AppPaths.IsFirstRun) return;
+            var localSettings = App.GetService<ILocalSettingsService>();
+            var accepted = await localSettings.ReadSettingAsync("UserAgreementAccepted");
+            if (accepted == null || !Convert.ToBoolean(accepted)) return;
             await ViewModel.InitializeAsync();
             _isInitialized = true;
         }

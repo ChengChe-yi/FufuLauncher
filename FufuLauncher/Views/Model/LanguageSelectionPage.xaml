@@ -11,6 +11,8 @@
     Loaded="OnPageLoaded">
 
     <Page.Resources>
+        <helpers:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+
         <Storyboard x:Name="EntranceStoryboard">
             <DoubleAnimation Storyboard.TargetName="IconImage" Storyboard.TargetProperty="Opacity" From="0" To="1"
                              Duration="0:0:0.6" />
@@ -121,7 +123,7 @@
                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
 
                         <Image Grid.Row="0"
-                               Source="{Binding FlagImagePath}"
+                               Source="{Binding FlagImagePath, Converter={StaticResource StringToImageSourceConverter}}"
                                Visibility="{Binding FlagImageVisibility}"
                                Width="40" Height="26"
                                HorizontalAlignment="Center"

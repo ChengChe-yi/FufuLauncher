@@ -67,6 +67,11 @@ chs.InstallingWebView2=正在部署必要组件 (Microsoft Edge WebView2 运行�
 chs.InstallFailedWebView2=必要组件 (Microsoft Edge WebView2 运行时) 部署未成功。请稍后手动安装环境，主程序将继续安装。
 chs.DownloadFailedWebView2=无法获取必要组件 (Microsoft Edge WebView2 运行时)。请检查网络连接状态，或稍后手动完成安装。
 
+chs.DownloadingWinAppSDK=正在获取必要组件 (Windows App SDK 运行时)...
+chs.InstallingWinAppSDK=正在部署必要组件 (Windows App SDK 运行时)，请稍候...
+chs.InstallFailedWinAppSDK=必要组件 (Windows App SDK 运行时) 部署未成功。请稍后手动安装环境，主程序将继续安装。
+chs.DownloadFailedWinAppSDK=无法获取必要组件 (Windows App SDK 运行时)。请检查网络连接状态，或稍后手动完成安装。
+
 chs.RuntimeExecFailed=必要组件安装程序无法执行。请稍后手动安装环境，主程序将继续安装。
 
 en.DownloadingDotNet=Retrieving prerequisite (Microsoft .NET 8.0 Desktop Runtime)...
@@ -83,6 +88,11 @@ en.DownloadingWebView2=Retrieving prerequisite (Microsoft Edge WebView2 Runtime)
 en.InstallingWebView2=Deploying prerequisite (Microsoft Edge WebView2 Runtime), please wait...
 en.InstallFailedWebView2=The deployment of the prerequisite (Microsoft Edge WebView2 Runtime) was unsuccessful. Please install it manually later. The main installation will now continue.
 en.DownloadFailedWebView2=Unable to retrieve the prerequisite (Microsoft Edge WebView2 Runtime). Please verify your network connection or install it manually later.
+
+en.DownloadingWinAppSDK=Retrieving prerequisite (Windows App SDK Runtime)...
+en.InstallingWinAppSDK=Deploying prerequisite (Windows App SDK Runtime), please wait...
+en.InstallFailedWinAppSDK=The deployment of the prerequisite (Windows App SDK Runtime) was unsuccessful. Please install it manually later. The main installation will now continue.
+en.DownloadFailedWinAppSDK=Unable to retrieve the prerequisite (Windows App SDK Runtime). Please verify your network connection or install it manually later.
 
 en.RuntimeExecFailed=The prerequisite installer failed to execute. Please install it manually later. The main installation will now continue.
 
@@ -234,6 +244,50 @@ begin
     Result := True;
 end;
 
+function IsWindowsAppSDKInstalled: Boolean;
+var
+  Names: TArrayOfString;
+  I: Integer;
+begin
+  Result := False;
+
+  if RegGetSubkeyNames(HKLM, 'SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages', Names) then
+  begin
+    for I := 0 to GetArrayLength(Names) - 1 do
+    begin
+      if Pos('Microsoft.WindowsAppRuntime.1.8', Names[I]) = 1 then
+      begin
+        Result := True;
+        Exit;
+      end;
+    end;
+  end;
+
+  if RegGetSubkeyNames(HKCU, 'SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages', Names) then
+  begin
+    for I := 0 to GetArrayLength(Names) - 1 do
+    begin
+      if Pos('Microsoft.WindowsAppRuntime.1.8', Names[I]) = 1 then
+      begin
+        Result := True;
+        Exit;
+      end;
+    end;
+  end;
+
+  if RegGetSubkeyNames(HKLM, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Appx\AppxAllUserStore\Packages', Names) then
+  begin
+    for I := 0 to GetArrayLength(Names) - 1 do
+    begin
+      if Pos('Microsoft.WindowsAppRuntime.1.8', Names[I]) = 1 then
+      begin
+        Result := True;
+        Exit;
+      end;
+    end;
+  end;
+end;
+
 function GetVersionFromJson(FileName: string): string;
 var
   Lines: TArrayOfString;
@@ -271,7 +325,7 @@ begin
 
   if CurPageID = wpReady then
   begin
-    if (not IsDotNet8DesktopRuntimeInstalled()) or (not IsVCRedistInstalled()) or NeedWebView2Update() then
+    if (not IsDotNet8DesktopRuntimeInstalled()) or (not IsVCRedistInstalled()) or NeedWebView2Update() or (not IsWindowsAppSDKInstalled()) then
     begin
       DownloadPage.Show;
       try
@@ -352,6 +406,33 @@ begin
               MsgBox(ExpandConstant('{cm:DownloadFailedWebView2}'), mbError, MB_OK);
           end;
         end;
+
+        if not IsWindowsAppSDKInstalled() then
+        begin
+          DownloadPage.Clear;
+          DownloadPage.Add('https://aka.ms/windowsappsdk/1.8/1.8.260710003/windowsappruntimeinstall-x64.exe', 'windowsappruntimeinstall-x64.exe', '');
+          try
+            DownloadPage.SetText(ExpandConstant('{cm:DownloadingWinAppSDK}'), '');
+            DownloadPage.Download;
+            DownloadPage.SetText(ExpandConstant('{cm:InstallingWinAppSDK}'), '');
+            
+            if Exec(ExpandConstant('{tmp}\windowsappruntimeinstall-x64.exe'), '--quiet', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+            begin
+              if (ResultCode <> 0) and (ResultCode <> 1641) and (ResultCode <> 3010) then
+              begin
+                 MsgBox(ExpandConstant('{cm:InstallFailedWinAppSDK}'), mbError, MB_OK);
+              end;
+            end
+            else
+            begin
+              MsgBox(ExpandConstant('{cm:RuntimeExecFailed}'), mbError, MB_OK);
+            end;
+          except
+            if not DownloadPage.AbortedByUser then
+              MsgBox(ExpandConstant('{cm:DownloadFailedWinAppSDK}'), mbError, MB_OK);
+          end;
+        end;
+
       finally
         DownloadPage.Hide;
       end;

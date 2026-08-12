@@ -47,13 +47,21 @@ public static class AppPaths
         Directory.CreateDirectory(SettingsDir);
         LoadCustomPaths();
 
-        IsFirstRun = !File.Exists(PathsConfigFile);
+        IsFirstRun = !File.Exists(PathsConfigFile) && !File.Exists(LocalSettingsDb);
 
         Directory.CreateDirectory(DataDir);
         Directory.CreateDirectory(CacheDir);
 
         if (IsFirstRun)
         {
+            try
+            {
+                WritePathsConfig(_dataDir, _cacheDir);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[AppPaths] paths.json 创建失败: {ex.Message}");
+            }
             return;
         }
 
