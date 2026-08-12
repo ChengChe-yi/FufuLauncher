@@ -22,7 +22,11 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Hosting;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media.Imaging;
+using Windows.Media.Core;
+using Windows.Media.Editing;
 using Windows.Media.Playback;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using FufuLauncher.Constants;
@@ -39,6 +43,8 @@ public sealed partial class MainWindow : WindowEx
     private readonly ILocalSettingsService _localSettingsService;
     private MediaPlayer? _globalBackgroundPlayer;
     private IMediaPlaybackSource? _suspendedVideoSource;
+    private TypedEventHandler<MediaPlayer, MediaPlayerFailedEventArgs>? _bgVideoFailedHandler;
+    private MediaSource? _bgVideoFallbackSource;
     private DispatcherTimer _bgFallbackTimer;
     private RoutedEventHandler _bgImageOpenedHandler;
     private ExceptionRoutedEventHandler _bgImageFailedHandler;
@@ -1102,6 +1108,10 @@ public sealed partial class MainWindow : WindowEx
 
         if (player != null)
         {
+            if (_bgVideoFailedHandler != null)
+            {
+                player.MediaFailed -= _bgVideoFailedHandler;
+            }
             player.Pause();
             player.Source = null;
             _ = Task.Run(() =>
@@ -1109,6 +1119,7 @@ public sealed partial class MainWindow : WindowEx
                 try { player.Dispose(); } catch { }
             });
         }
+        _bgVideoFailedHandler = null;
     }
 
     private async Task ApplyGlobalBackgroundAsync(BackgroundRenderResult? result)
@@ -1135,6 +1146,7 @@ public sealed partial class MainWindow : WindowEx
         if (result.IsVideo)
         {
             _isVideoBackground = true;
+            _bgVideoFallbackSource = null;
             GlobalBackgroundImage.Source = null;
             GlobalBackgroundImage.Visibility = Visibility.Collapsed;
             GlobalBackgroundVideo.Visibility = Visibility.Visible;
@@ -1142,6 +1154,8 @@ public sealed partial class MainWindow : WindowEx
             if (_globalBackgroundPlayer == null)
             {
                 _globalBackgroundPlayer = MediaPlayerHelper.CreateLoopingMutedPlayer();
+                _bgVideoFailedHandler = OnGlobalBackgroundVideoFailed;
+                _globalBackgroundPlayer.MediaFailed += _bgVideoFailedHandler;
                 GlobalBackgroundVideo.SetMediaPlayer(_globalBackgroundPlayer);
             }
             if (!ReferenceEquals(_globalBackgroundPlayer.Source, result.VideoSource))
@@ -1216,6 +1230,123 @@ public sealed partial class MainWindow : WindowEx
         UpdateBackgroundOverlayTheme();
     });
 }
+
+    private void OnGlobalBackgroundVideoFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
+    {
+        Debug.WriteLine($"背景视频播放失败({args.Error}): {args.ErrorMessage}");
+
+        if (_isExit) return;
+
+        var failedSource = sender.Source as MediaSource;
+        if (failedSource == null || ReferenceEquals(failedSource, _bgVideoFallbackSource)) return;
+        _bgVideoFallbackSource = failedSource;
+
+        dispatcherQueue.TryEnqueue(async () =>
+        {
+            try
+            {
+                await ShowVideoFirstFrameFallbackAsync(failedSource);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"视频首帧回退异常: {ex.Message}");
+            }
+            finally
+            {
+                if (ReferenceEquals(_bgVideoFallbackSource, failedSource))
+                    _bgVideoFallbackSource = null;
+            }
+        });
+    }
+
+    private async Task ShowVideoFirstFrameFallbackAsync(MediaSource failedSource)
+    {
+        var videoPath = failedSource.Uri?.IsFile == true ? failedSource.Uri.LocalPath : null;
+
+        if (string.IsNullOrEmpty(videoPath) || !File.Exists(videoPath))
+        {
+            await ApplyFallbackBackgroundImageAsync(failedSource);
+            return;
+        }
+
+        try
+        {
+            var file = await StorageFile.GetFileFromPathAsync(videoPath);
+            var clip = await MediaClip.CreateFromFileAsync(file);
+            var composition = new MediaComposition();
+            composition.Clips.Add(clip);
+
+            var thumbnail = await composition.GetThumbnailAsync(
+                TimeSpan.Zero, 1920, 1080, VideoFramePrecision.NearestKeyFrame);
+
+            var bitmap = new BitmapImage();
+            await bitmap.SetSourceAsync(thumbnail);
+            
+            if (!ReferenceEquals(_globalBackgroundPlayer?.Source, failedSource)) return;
+
+            var opacity = GlobalBackgroundVideo.Opacity;
+
+            _isVideoBackground = false;
+            DisposeGlobalBackgroundPlayer();
+            GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
+
+            GlobalBackgroundImage.Source = bitmap;
+            GlobalBackgroundImage.Visibility = Visibility.Visible;
+            GlobalBackgroundImage.Opacity = 0.0;
+
+            var anim = new DoubleAnimation
+            {
+                From = 0.0,
+                To = opacity,
+                Duration = TimeSpan.FromMilliseconds(400),
+                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
+            };
+            Storyboard.SetTarget(anim, GlobalBackgroundImage);
+            Storyboard.SetTargetProperty(anim, "Opacity");
+
+            var storyboard = new Storyboard();
+            storyboard.Children.Add(anim);
+            storyboard.Begin();
+
+            UpdateBackgroundOverlayTheme();
+            Debug.WriteLine("视频播放失败，已截取第一帧作为静态背景");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"提取视频首帧失败: {ex.Message}");
+            await ApplyFallbackBackgroundImageAsync(failedSource);
+        }
+    }
+
+    private async Task ApplyFallbackBackgroundImageAsync(MediaSource failedSource)
+    {
+        if (_isExit) return;
+
+        var fallbackPath = Path.Combine(AppContext.BaseDirectory, "Assets", "bg.png");
+        if (!File.Exists(fallbackPath))
+        {
+            Debug.WriteLine($"默认背景文件不存在: {fallbackPath}");
+            return;
+        }
+
+        await RunOnUIThreadAsync(() =>
+        {
+            if (!ReferenceEquals(_globalBackgroundPlayer?.Source, failedSource)) return;
+
+            var opacity = GlobalBackgroundVideo.Opacity;
+
+            _isVideoBackground = false;
+            DisposeGlobalBackgroundPlayer();
+            GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
+
+            GlobalBackgroundImage.Source = new BitmapImage(new Uri(fallbackPath));
+            GlobalBackgroundImage.Visibility = Visibility.Visible;
+            GlobalBackgroundImage.Opacity = opacity;
+
+            UpdateBackgroundOverlayTheme();
+            Debug.WriteLine("视频播放失败，已回退至默认静态背景");
+        });
+    }
 
     private void CleanupBgImageHandlers()
     {
