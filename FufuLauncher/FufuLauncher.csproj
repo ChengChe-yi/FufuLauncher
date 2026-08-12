@@ -30,9 +30,9 @@
 
         <PublishReadyToRun>true</PublishReadyToRun>
 
-        <Version>1.6.0.0</Version>
-        <AssemblyVersion>1.6.0.0</AssemblyVersion>
-        <FileVersion>1.6.0.0</FileVersion>
+        <Version>1.6.0.1</Version>
+        <AssemblyVersion>1.6.0.1</AssemblyVersion>
+        <FileVersion>1.6.0.1</FileVersion>
         <Copyright>Copyright © FufuLauncher Development Team</Copyright>
     </PropertyGroup>
 
