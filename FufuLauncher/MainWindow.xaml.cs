@@ -40,6 +40,7 @@ public sealed partial class MainWindow : WindowEx
     private Microsoft.UI.Dispatching.DispatcherQueue dispatcherQueue;
     private UISettings settings;
     private readonly IBackgroundRenderer _backgroundRenderer;
+    private readonly IDevBuildDetectionService _devBuildDetectionService;
     private readonly ILocalSettingsService _localSettingsService;
     private MediaPlayer? _globalBackgroundPlayer;
     private IMediaPlaybackSource? _suspendedVideoSource;
@@ -180,6 +181,7 @@ public sealed partial class MainWindow : WindowEx
         settings = new UISettings();
         settings.ColorValuesChanged += Settings_ColorValuesChanged;
         _backgroundRenderer = App.GetService<IBackgroundRenderer>();
+        _devBuildDetectionService = App.GetService<IDevBuildDetectionService>();
         _localSettingsService = App.GetService<ILocalSettingsService>();
         
         WeakReferenceMessenger.Default.Register<AgreementAcceptedMessage>(this, (_, _) =>
@@ -955,8 +957,11 @@ public sealed partial class MainWindow : WindowEx
                 if (!string.IsNullOrEmpty(customPath) && File.Exists(customPath))
                 {
                     var customResult = await _backgroundRenderer.GetCustomBackgroundAsync(customPath);
-                    await ApplyGlobalBackgroundAsync(customResult);
-                    return;
+                    if (customResult != null)
+                    {
+                        await ApplyGlobalBackgroundAsync(customResult);
+                        return;
+                    }
                 }
             }
             else
@@ -965,7 +970,8 @@ public sealed partial class MainWindow : WindowEx
             }
             
             var preferVideoObj = await _localSettingsService.ReadSettingAsync("PreferVideoBackground");
-            var preferVideo = preferVideoObj != null && Convert.ToBoolean(preferVideoObj);
+            var preferVideo = preferVideoObj != null && Convert.ToBoolean(preferVideoObj) &&
+                              _devBuildDetectionService.IsDevBuild;
 
             var serverJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.BackgroundServerKey);
             var serverValue = serverJson != null ? Convert.ToInt32(serverJson) : 0;

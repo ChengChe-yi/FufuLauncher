@@ -32,6 +32,7 @@ namespace FufuLauncher.ViewModels
     {
         private readonly IHoyoverseContentService _contentService;
         private readonly IBackgroundRenderer _backgroundRenderer;
+        private readonly IDevBuildDetectionService _devBuildDetectionService;
         private readonly ILocalSettingsService _localSettingsService;
         private readonly IHoyoverseCheckinService _checkinService;
         private readonly IUnifiedCheckinService _unifiedCheckinService;
@@ -212,6 +213,7 @@ namespace FufuLauncher.ViewModels
             IHoyoverseBackgroundService backgroundService,
             IHoyoverseContentService contentService,
             IBackgroundRenderer backgroundRenderer,
+            IDevBuildDetectionService devBuildDetectionService,
             ILocalSettingsService localSettingsService,
             IHoyoverseCheckinService checkinService,
             IUnifiedCheckinService unifiedCheckinService,
@@ -223,6 +225,7 @@ namespace FufuLauncher.ViewModels
         {
             _contentService = contentService;
             _backgroundRenderer = backgroundRenderer;
+            _devBuildDetectionService = devBuildDetectionService;
             _localSettingsService = localSettingsService;
             _checkinService = checkinService;
             _unifiedCheckinService = unifiedCheckinService;
@@ -245,6 +248,27 @@ namespace FufuLauncher.ViewModels
             {
                 await ClearDailyNoteDataAsync();
                 await LoadDailyNoteAsync();
+            });
+
+            WeakReferenceMessenger.Default.Register<DevBuildDetectionCompletedMessage>(this, async (r, m) =>
+            {
+                if (m.Value)
+                {
+                    await LoadAvailableBackgroundsAsync();
+                    await LoadBackgroundAsync();
+                }
+                else
+                {
+                    if (PreferVideoBackground)
+                    {
+                        PreferVideoBackground = false;
+                        await _localSettingsService.SaveSettingAsync("PreferVideoBackground", false);
+                        await _localSettingsService.SaveSettingAsync("UserPreferVideoBackground", false);
+                    }
+
+                    await LoadAvailableBackgroundsAsync();
+                    await LoadBackgroundAsync();
+                }
             });
 
             _bannerTimer = _dispatcherQueue.CreateTimer();
@@ -310,17 +334,20 @@ namespace FufuLauncher.ViewModels
 
                 var backgroundService = App.GetService<IHoyoverseBackgroundService>();
                 var backgrounds = await backgroundService.GetAvailableBackgroundsAsync(server);
+                
+                var visibleBackgrounds = backgrounds
+                    .Where(b => _devBuildDetectionService.IsDevBuild || !b.IsVideo)
+                    .ToList();
 
                 await UpdateUI(() =>
                 {
                     AvailableBackgrounds.Clear();
-                    foreach (var bg in backgrounds)
+                    foreach (var bg in visibleBackgrounds)
                     {
                         AvailableBackgrounds.Add(bg);
                     }
                 });
-
-                // 后台预加载所有图片背景到文件缓存
+                
                 var imageUrls = backgrounds
                     .Where(b => !b.IsVideo && !string.IsNullOrEmpty(b.Url))
                     .Select(b => b.Url);
@@ -335,6 +362,13 @@ namespace FufuLauncher.ViewModels
         private async Task SelectSpecificBackgroundAsync(BackgroundUrlInfo info)
         {
             if (info == null) return;
+
+            if (info.IsVideo && !_devBuildDetectionService.IsDevBuild)
+            {
+                _notificationService.Show("动态背景不可用", "预览版与正式版本不支持动态背景", NotificationType.Warning, 5000);
+                return;
+            }
+
             await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundUrl", info.Url);
             await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", info.IsVideo);
             
@@ -535,6 +569,14 @@ private async Task OpenPresetManagerAsync()
             {
                 PreferVideoBackground = Convert.ToBoolean(pref);
             }
+            
+            if (_devBuildDetectionService.HasChecked && !_devBuildDetectionService.IsDevBuild && PreferVideoBackground)
+            {
+                PreferVideoBackground = false;
+                await _localSettingsService.SaveSettingAsync("PreferVideoBackground", false);
+                await _localSettingsService.SaveSettingAsync("UserPreferVideoBackground", false);
+                Debug.WriteLine("[MainViewModel] 关闭动态背景");
+            }
 
             var panelOpacityJson = await _localSettingsService.ReadSettingAsync("PanelBackgroundOpacity");
             try
@@ -664,13 +706,14 @@ private async Task LoadBackgroundAsync()
             var server = Models.ServerType.CN;
             try { if (serverJson != null) server = (Models.ServerType)Convert.ToInt32(serverJson); } catch { }
             
-            var bgResult = await _backgroundRenderer.GetBackgroundAsync(server, PreferVideoBackground);
+            var preferVideo = PreferVideoBackground && _devBuildDetectionService.IsDevBuild;
+            var bgResult = await _backgroundRenderer.GetBackgroundAsync(server, preferVideo);
 
             await UpdateUI(() =>
             {
                 if (bgResult != null)
                 {
-                    if (bgResult.IsVideo && bgResult.VideoSource != null)
+                    if (bgResult.IsVideo && bgResult.VideoSource != null && _devBuildDetectionService.IsDevBuild)
                     {
                         SetupVideoPlayer(bgResult.VideoSource, bgResult.VideoStream);
                     }
@@ -806,6 +849,12 @@ private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFa
 
         private void ToggleBackgroundType()
         {
+            if (!_devBuildDetectionService.IsDevBuild)
+            {
+                _notificationService.Show("动态背景不可用", "预览版与正式版本不支持动态背景", NotificationType.Warning, 5000);
+                return;
+            }
+
             PreferVideoBackground = !PreferVideoBackground;
             OnPropertyChanged(nameof(BackgroundTypeToggleText));
             _ = _localSettingsService.SaveSettingAsync("UserPreferVideoBackground", PreferVideoBackground);

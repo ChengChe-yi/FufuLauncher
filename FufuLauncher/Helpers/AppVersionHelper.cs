@@ -40,6 +40,17 @@ namespace FufuLauncher.Helpers
             return true;
         }
 
+        public static bool IsNewerVersion(string candidateVersion, string baselineVersion)
+        {
+            if (!TryParseVersion(candidateVersion, out var candidateVer) ||
+                !TryParseVersion(baselineVersion, out var baselineVer))
+            {
+                return false;
+            }
+
+            return candidateVer > baselineVer;
+        }
+
         private static string ReadFullVersion()
         {
             var numeric = Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "1.0.0.0";

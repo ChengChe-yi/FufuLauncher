@@ -182,6 +182,7 @@ public partial class App : Application
                     services.AddTransient<LanguageSelectionPage>();
                     services.AddTransient<AgreementViewModel>();
                     services.AddTransient<AgreementPage>();
+                    services.AddSingleton<IDevBuildDetectionService, DevBuildDetectionService>();
                     services.AddSingleton<IUpdateService, UpdateService>();
                     services.AddSingleton<ControlPanelModel>();
                     services.AddTransient<PanelPage>();
@@ -566,10 +567,15 @@ public partial class App : Application
         {
             var updateService = GetService<IUpdateService>();
             var result = await updateService.CheckUpdateAsync();
-            
+
+            var devBuildService = GetService<IDevBuildDetectionService>();
+            WeakReferenceMessenger.Default.Send(new Messages.DevBuildDetectionCompletedMessage(devBuildService.IsDevBuild));
+
             if (result.IsDevBuild && MainWindow is MainWindow mainWindow)
             {
                 mainWindow.ShowDevBuildBadge();
+                
+                WeakReferenceMessenger.Default.Send(new Messages.BackgroundRefreshMessage());
             }
 
             if (result.ShouldShowUpdate)

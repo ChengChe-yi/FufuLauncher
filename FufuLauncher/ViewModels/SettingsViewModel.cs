@@ -59,6 +59,7 @@ namespace FufuLauncher.ViewModels
     {
         private readonly IThemeSelectorService _themeSelectorService;
         private readonly IBackgroundRenderer _backgroundRenderer;
+        private readonly IDevBuildDetectionService _devBuildDetectionService;
         private readonly ILocalSettingsService _localSettingsService;
         private readonly INavigationService _navigationService;
         private readonly IGameLauncherService _gameLauncherService;
@@ -671,6 +672,7 @@ namespace FufuLauncher.ViewModels
         public SettingsViewModel(
             IThemeSelectorService themeSelectorService,
             IBackgroundRenderer backgroundRenderer,
+            IDevBuildDetectionService devBuildDetectionService,
             ILocalSettingsService localSettingsService,
             INavigationService navigationService,
             IGameLauncherService gameLauncherService,
@@ -680,6 +682,7 @@ namespace FufuLauncher.ViewModels
         {
             _themeSelectorService = themeSelectorService;
             _backgroundRenderer = backgroundRenderer;
+            _devBuildDetectionService = devBuildDetectionService;
             _localSettingsService = localSettingsService;
             _navigationService = navigationService;
             _gameLauncherService = gameLauncherService;
@@ -867,6 +870,12 @@ namespace FufuLauncher.ViewModels
         {
             try
             {
+                if (!_devBuildDetectionService.IsDevBuild)
+                {
+                    ShowDialogMessage("提示", "动态背景仅开发版本可用，预览版与正式版本不支持下载背景视频");
+                    return;
+                }
+
                 var service = App.GetService<IHoyoverseBackgroundService>();
                 var (_, videoUrl) = await service.GetLatestBackgroundUrlsAsync(SelectedServer);
                 if (!string.IsNullOrEmpty(videoUrl))
@@ -2172,6 +2181,14 @@ namespace FufuLauncher.ViewModels
                 var path = await _filePickerService.PickImageOrVideoAsync();
                 if (!string.IsNullOrEmpty(path))
                 {
+                    var ext = Path.GetExtension(path).ToLowerInvariant();
+                    var isVideo = ext is ".mp4" or ".webm" or ".mkv" or ".avi" or ".mov";
+                    if (isVideo && !_devBuildDetectionService.IsDevBuild)
+                    {
+                        ShowDialogMessage("提示", "动态背景仅开发版本可用，预览版与正式版本请选择图片作为自定义背景");
+                        return;
+                    }
+
                     CustomBackgroundPath = path;
                     HasCustomBackground = true;
                     await _localSettingsService.SaveSettingAsync("CustomBackgroundPath", path);

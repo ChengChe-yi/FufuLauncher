@@ -14,12 +14,14 @@ namespace FufuLauncher.Services;
 public class UpdateService : IUpdateService
 {
     private readonly ILocalSettingsService _localSettingsService;
+    private readonly IDevBuildDetectionService _devBuildDetectionService;
     private readonly HttpClient _httpClient;
     private static readonly string CurrentVersion = AppVersionHelper.NumericVersion;
 
-    public UpdateService(ILocalSettingsService localSettingsService)
+    public UpdateService(ILocalSettingsService localSettingsService, IDevBuildDetectionService devBuildDetectionService)
     {
         _localSettingsService = localSettingsService;
+        _devBuildDetectionService = devBuildDetectionService;
 
         var handler = new HttpClientHandler
         {
@@ -69,7 +71,7 @@ public class UpdateService : IUpdateService
             Debug.WriteLine($"[UpdateService] 更新公告URL: {updateInfoUrl}");
             Debug.WriteLine($"[UpdateService] 预览版更新公告URL: {previewUpdateInfoUrl}");
             
-            var isDevBuild = !AppVersionHelper.IsPreviewBuild && IsNewerVersion(CurrentVersion, serverVersion);
+            var isDevBuild = await _devBuildDetectionService.DetectAsync(serverVersion);
             Debug.WriteLine($"[UpdateService] 是否开发版: {isDevBuild}");
 
             var lastVersionObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedVersionKey);
@@ -77,7 +79,7 @@ public class UpdateService : IUpdateService
 
             Debug.WriteLine($"[UpdateService] 上次记录版本: '{lastVersion}'");
             
-            if (IsNewerVersion(serverVersion, CurrentVersion) && serverVersion != lastVersion)
+            if (AppVersionHelper.IsNewerVersion(serverVersion, CurrentVersion) && serverVersion != lastVersion)
             {
                 Debug.WriteLine($"[UpdateService] 发现新版本，准备显示更新窗口");
                 await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedVersionKey, serverVersion);
@@ -95,7 +97,7 @@ public class UpdateService : IUpdateService
             var previewAnnouncementEnabled = previewAnnouncementEnabledObj == null || Convert.ToBoolean(previewAnnouncementEnabledObj);
 
             if (previewAnnouncementEnabled &&
-                IsNewerVersion(previewVersion, serverVersion) && IsNewerVersion(previewVersion, CurrentVersion))
+                AppVersionHelper.IsNewerVersion(previewVersion, serverVersion) && AppVersionHelper.IsNewerVersion(previewVersion, CurrentVersion))
             {
                 var lastPreviewVersionObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey);
                 var lastPreviewVersion = lastPreviewVersionObj?.ToString() ?? string.Empty;
@@ -129,17 +131,6 @@ public class UpdateService : IUpdateService
             Debug.WriteLine($"[UpdateService] 堆栈: {ex.StackTrace}");
             return new UpdateCheckResult { ShouldShowUpdate = false };
         }
-    }
-
-    internal static bool IsNewerVersion(string serverVersion, string currentVersion)
-    {
-        if (!AppVersionHelper.TryParseVersion(serverVersion, out var serverVer) ||
-            !AppVersionHelper.TryParseVersion(currentVersion, out var currentVer))
-        {
-            return false;
-        }
-
-        return serverVer > currentVer;
     }
 
     private async Task<bool> IsServerReachableAsync()
