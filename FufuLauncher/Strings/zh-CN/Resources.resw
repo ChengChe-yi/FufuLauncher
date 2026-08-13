@@ -2053,6 +2053,15 @@
   <data name="LaunchBtn_Terminating" xml:space="preserve">
     <value>正在终止游戏...</value>
   </data>
+  <data name="LaunchBtn_Launching" xml:space="preserve">
+    <value>点击取消启动</value>
+  </data>
+  <data name="LaunchCancelled_Title" xml:space="preserve">
+    <value>启动已取消</value>
+  </data>
+  <data name="LaunchCancelled_Msg" xml:space="preserve">
+    <value>已终止游戏启动流程</value>
+  </data>
   <data name="Checkin_Signed" xml:space="preserve">
     <value>游戏已签到</value>
   </data>

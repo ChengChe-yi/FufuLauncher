@@ -1951,6 +1951,15 @@ Go to the Microsoft website to download and install it?</value>
   <data name="LaunchBtn_Terminating" xml:space="preserve">
     <value>Terminating game...</value>
   </data>
+  <data name="LaunchBtn_Launching" xml:space="preserve">
+    <value>Cancel Launch</value>
+  </data>
+  <data name="LaunchCancelled_Title" xml:space="preserve">
+    <value>Launch Cancelled</value>
+  </data>
+  <data name="LaunchCancelled_Msg" xml:space="preserve">
+    <value>The game launch process has been terminated.</value>
+  </data>
   <data name="Checkin_Signed" xml:space="preserve">
     <value>Checked in today</value>
   </data>

@@ -22,6 +22,10 @@ namespace FufuLauncher.Services
         {
             get; set;
         }
+        public bool Cancelled
+        {
+            get; set;
+        }
         public string ErrorMessage { get; set; } = string.Empty;
         public string DetailLog { get; set; } = string.Empty;
     }
@@ -175,7 +179,7 @@ namespace FufuLauncher.Services
             }
         }
 
-        private async Task<int> WaitGenshinStartAsync()
+        private async Task<int> WaitGenshinStartAsync(CancellationToken cancellationToken)
         {
             int timeoutMs = 60000;
             int elapsedMs = 0;
@@ -186,7 +190,21 @@ namespace FufuLauncher.Services
 
             while (elapsedMs < timeoutMs)
             {
-                await Task.Delay(delayMs);
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
+                    return 0;
+                }
+
+                try
+                {
+                    await Task.Delay(delayMs, cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
+                    return 0;
+                }
                 elapsedMs += delayMs;
                 
                 var processes = Process.GetProcesses();
@@ -194,7 +212,15 @@ namespace FufuLauncher.Services
                 {
                     if (processNames.Any(name => process.ProcessName.Equals(name, StringComparison.OrdinalIgnoreCase)))
                     {
-                        await Task.Delay(2000);
+                        try
+                        {
+                            await Task.Delay(2000, cancellationToken);
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
+                            return 0;
+                        }
                         return process.Id;
                     }
                 }
@@ -204,16 +230,18 @@ namespace FufuLauncher.Services
             return 0;
         }
 
-        public async Task<LaunchResult> LaunchGameAsync()
+        public async Task<LaunchResult> LaunchGameAsync(CancellationToken cancellationToken = default)
         {
             var result = new LaunchResult { Success = false, ErrorMessage = "LaunchErr_UnknownError".GetLocalized(), DetailLog = "" };
             var logBuilder = new StringBuilder();
+            string gamePath = null;
+            List<string> processNames = null;
 
             try
             {
                 logBuilder.AppendLine("[启动流程] 开始启动游戏");
 
-                var gamePath = GetGamePath();
+                gamePath = GetGamePath();
                 logBuilder.AppendLine($"[启动流程] 游戏路径: {gamePath}");
 
                 if (string.IsNullOrEmpty(gamePath) || !Directory.Exists(gamePath))
@@ -225,6 +253,7 @@ namespace FufuLauncher.Services
                 }
 
                 var exeNames = await GameExeManager.GetExeNamesAsync();
+                processNames = exeNames.Select(Path.GetFileNameWithoutExtension).ToList();
                 var foundExes = exeNames.Where(name => File.Exists(Path.Combine(gamePath, name))).ToList();
 
                 if (foundExes.Count == 0)
@@ -253,6 +282,11 @@ namespace FufuLauncher.Services
                     logBuilder.AppendLine($"[启动流程] ? 错误: {result.ErrorMessage}");
                     result.DetailLog = logBuilder.ToString();
                     return result;
+                }
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return BuildCancelledResult(logBuilder);
                 }
 
                 await ApplyGenshinHDRConfigAsync(logBuilder);
@@ -331,12 +365,22 @@ namespace FufuLauncher.Services
                     }
                 }
 
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return BuildCancelledResult(logBuilder);
+                }
+
                 var arguments = BuildLaunchArguments(config, authTicket).ToString();
                 logBuilder.AppendLine($"[启动流程] 启动参数: {arguments}");
 
                 var useInjection = await GetUseInjectionAsync();
                 logBuilder.AppendLine($"[启动流程] 注入模式: {(useInjection ? "启用" : "禁用")}");
-                
+
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    return BuildCancelledResult(logBuilder);
+                }
+
                 logBuilder.AppendLine("[启动流程] 正在启动附加程序...");
                 await LaunchAdditionalProgramAsync();
 
@@ -420,7 +464,7 @@ namespace FufuLauncher.Services
                         }
 
                         logBuilder.AppendLine($"[启动流程] 准备注入 DLL: {targetDllPath}");
-                        gameStarted = await LaunchViaElevatedProcessAsync(gameExePath, targetDllPath, configMask, arguments, logBuilder);
+                        gameStarted = await LaunchViaElevatedProcessAsync(gameExePath, targetDllPath, configMask, arguments, logBuilder, cancellationToken);
                     }
                     else
                     {
@@ -436,12 +480,26 @@ namespace FufuLauncher.Services
 
                 if (gameStarted)
                 {
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        logBuilder.AppendLine("[启动流程] 用户取消启动，清理已启动的游戏进程...");
+                        KillGameProcesses(processNames, gamePath);
+                        return BuildCancelledResult(logBuilder);
+                    }
+
                     logBuilder.AppendLine("[启动流程] 游戏进程已启动，正在捕获目标PID...");
-                    int gamePid = await WaitGenshinStartAsync();
+                    int gamePid = await WaitGenshinStartAsync(cancellationToken);
+
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        logBuilder.AppendLine("[启动流程] 用户取消启动，清理已启动的游戏进程...");
+                        KillGameProcesses(processNames, gamePath);
+                        return BuildCancelledResult(logBuilder);
+                    }
 
                     if (gamePid > 0)
                     {
-                        _ = LaunchBetterGIAsync();
+                        _ = LaunchBetterGIAsync(cancellationToken);
                         await CheckAndLaunchFpsOverlayAsync(logBuilder, gamePid);
                         await CheckAndLaunchScreenshotServiceAsync(logBuilder, gamePid);
                         
@@ -477,12 +535,98 @@ namespace FufuLauncher.Services
                 Debug.WriteLine(result.DetailLog);
                 return result;
             }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                if (processNames != null && !string.IsNullOrEmpty(gamePath))
+                {
+                    logBuilder.AppendLine("[启动流程] 用户取消启动，清理已启动的游戏进程...");
+                    KillGameProcesses(processNames, gamePath);
+                }
+                return BuildCancelledResult(logBuilder);
+            }
             catch (Exception ex)
             {
                 result.ErrorMessage = string.Format("LaunchErr_FatalError".GetLocalized(), ex.Message);
                 result.DetailLog = $"[启动流程] ?? 未处理异常: {ex}\n{ex.StackTrace}";
                 Debug.WriteLine(result.DetailLog);
                 return result;
+            }
+        }
+
+        private LaunchResult BuildCancelledResult(StringBuilder logBuilder)
+        {
+            logBuilder.AppendLine("[启动流程] 用户取消启动，启动流程已终止");
+
+            if (_registrySnapshot.HasSnapshot)
+            {
+                try
+                {
+                    _registrySnapshot.RestoreSnapshot();
+                    logBuilder.AppendLine("[启动流程] 已恢复注册表快照");
+                }
+                catch (Exception ex)
+                {
+                    logBuilder.AppendLine($"[启动流程] 恢复注册表快照失败: {ex.Message}");
+                }
+            }
+
+            var result = new LaunchResult
+            {
+                Success = false,
+                Cancelled = true,
+                ErrorMessage = string.Empty,
+                DetailLog = logBuilder.ToString()
+            };
+            Debug.WriteLine(result.DetailLog);
+            return result;
+        }
+
+        private void KillGameProcesses(List<string> processNames, string gamePath)
+        {
+            try
+            {
+                var processes = new List<Process>();
+                foreach (var name in processNames)
+                {
+                    processes.AddRange(Process.GetProcessesByName(name));
+                }
+
+                foreach (var process in processes)
+                {
+                    try
+                    {
+                        if (process.HasExited) continue;
+
+                        if (!string.IsNullOrEmpty(gamePath))
+                        {
+                            try
+                            {
+                                var processPath = process.MainModule?.FileName;
+                                if (!string.IsNullOrEmpty(processPath) &&
+                                    !processPath.StartsWith(gamePath, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    continue;
+                                }
+                            }
+                            catch (Win32Exception)
+                            {
+                                // ignored
+                            }
+                            catch (InvalidOperationException) { continue; }
+                        }
+
+                        process.Kill();
+                        Debug.WriteLine($"[启动流程] 已终止游戏进程: {process.ProcessName} (PID:{process.Id})");
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[启动流程] 清理游戏进程异常: {ex.Message}");
             }
         }
 
@@ -643,7 +787,7 @@ namespace FufuLauncher.Services
             }
         }
 
-        private async Task<bool> LaunchViaElevatedProcessAsync(string gameExePath, string dllPath, int configMask, string arguments, StringBuilder log)
+        private async Task<bool> LaunchViaElevatedProcessAsync(string gameExePath, string dllPath, int configMask, string arguments, StringBuilder log, CancellationToken cancellationToken)
         {
             try
             {
@@ -672,7 +816,27 @@ namespace FufuLauncher.Services
                     return false;
                 }
 
-                await process.WaitForExitAsync();
+                try
+                {
+                    await process.WaitForExitAsync(cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    log.AppendLine("[启动流程] 用户取消启动，终止管理员注入进程...");
+                    try
+                    {
+                        if (!process.HasExited)
+                        {
+                            process.Kill();
+                        }
+                    }
+                    catch (Exception killEx)
+                    {
+                        log.AppendLine($"[启动流程] 终止管理员注入进程失败: {killEx.Message}");
+                    }
+                    return false;
+                }
+
                 log.AppendLine($"[启动流程] 管理员注入进程退出，代码: {process.ExitCode}");
 
                 return process.ExitCode == 0;
@@ -779,7 +943,7 @@ namespace FufuLauncher.Services
             }
         }
 
-        private async Task LaunchBetterGIAsync()
+        private async Task LaunchBetterGIAsync(CancellationToken cancellationToken = default)
         {
             try
             {
@@ -793,7 +957,21 @@ namespace FufuLauncher.Services
 
                     if (delaySeconds > 0)
                     {
-                        await Task.Delay(TimeSpan.FromSeconds(delaySeconds));
+                        try
+                        {
+                            await Task.Delay(TimeSpan.FromSeconds(delaySeconds), cancellationToken);
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            Debug.WriteLine("[BetterGI] 启动流程已取消，跳过 BetterGI 启动");
+                            return;
+                        }
+                    }
+
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        Debug.WriteLine("[BetterGI] 启动流程已取消，跳过 BetterGI 启动");
+                        return;
                     }
 
                     var startInfo = new ProcessStartInfo

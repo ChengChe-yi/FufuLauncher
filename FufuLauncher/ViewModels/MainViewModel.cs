@@ -178,6 +178,10 @@ namespace FufuLauncher.ViewModels
         private bool _cachedGameRunning;
         private DateTimeOffset _lastGameProcessCheck = DateTimeOffset.MinValue;
 
+        private CancellationTokenSource _launchCts;
+        private DateTime _lastLaunchButtonPressTime = DateTime.MinValue;
+        private static readonly TimeSpan LaunchButtonCooldown = TimeSpan.FromSeconds(1);
+
         public IAsyncRelayCommand LoadBackgroundCommand
         {
             get;
@@ -280,7 +284,7 @@ namespace FufuLauncher.ViewModels
             ToggleInfoCardCommand = new RelayCommand(ToggleInfoCard);
             ToggleBackgroundTypeCommand = new RelayCommand(ToggleBackgroundType);
             ExecuteCheckinCommand = new AsyncRelayCommand(ExecuteCheckinAsync);
-            LaunchGameCommand = new AsyncRelayCommand(LaunchGameAsync);
+            LaunchGameCommand = new AsyncRelayCommand(LaunchGameAsync, AsyncRelayCommandOptions.AllowConcurrentExecutions);
             OpenScreenshotFolderCommand = new AsyncRelayCommand(OpenScreenshotFolderAsync);
             SelectSpecificBackgroundCommand = new AsyncRelayCommand<BackgroundUrlInfo>(SelectSpecificBackgroundAsync);
             
@@ -1255,6 +1259,19 @@ private void QuickSwitchPreset(PresetModel targetPreset)
 
         private async Task LaunchGameAsync()
         {
+            var now = DateTime.UtcNow;
+            if (now - _lastLaunchButtonPressTime <= LaunchButtonCooldown)
+            {
+                return;
+            }
+            _lastLaunchButtonPressTime = now;
+            
+            if (IsGameLaunching)
+            {
+                _launchCts?.Cancel();
+                return;
+            }
+
             await ForceRefreshGameStateAsync();
 
             if (IsGameRunning)
@@ -1272,11 +1289,19 @@ private void QuickSwitchPreset(PresetModel targetPreset)
             }
 
             IsGameLaunching = true;
-            IsLaunchButtonEnabled = false;
+            LaunchButtonText = "LaunchBtn_Launching".GetLocalized();
+            OnPropertyChanged(nameof(LaunchButtonText));
+            _launchCts = new CancellationTokenSource();
 
             try
             {
-                var result = await _gameLauncherService.LaunchGameAsync();
+                var result = await _gameLauncherService.LaunchGameAsync(_launchCts.Token);
+
+                if (result.Cancelled)
+                {
+                    _notificationService.Show("LaunchCancelled_Title".GetLocalized(), "LaunchCancelled_Msg".GetLocalized(), NotificationType.Information, 3000);
+                    return;
+                }
 
                 if (result.Success)
                 {
@@ -1293,6 +1318,7 @@ private void QuickSwitchPreset(PresetModel targetPreset)
                 IsGameLaunching = false;
                 IsLaunchButtonEnabled = true;
                 await ForceRefreshGameStateAsync();
+                UpdateLaunchButtonState();
             }
         }
 

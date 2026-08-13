@@ -20,7 +20,7 @@ namespace FufuLauncher.Contracts.Services
         Task<bool> GetUsingHoyolabAccountAsync();
         Task SetUsingHoyolabAccountAsync(bool value);
 
-        Task<LaunchResult> LaunchGameAsync();
+        Task<LaunchResult> LaunchGameAsync(CancellationToken cancellationToken = default);
         Task StopBetterGIAsync();
     }
 }
