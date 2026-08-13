@@ -11,10 +11,10 @@ namespace FufuLauncher.Controls;
 public sealed class SpeedGraphData
 {
     private const ulong InitialMaxSpeed = 1024 * 1024;
-    private const double MinSampleGapPercent = 0.4;
+    private const double MinSampleGapPercent = 0.2;
 
-    private readonly PathFigure _areaFigure = new() { IsClosed = true, IsFilled = true };
-    private readonly PathFigure _lineFigure = new() { IsClosed = false, IsFilled = false };
+    private readonly Path _shapePath;
+    private readonly Path _speedLinePath;
     private readonly List<Point> _samples = [];
 
     private Size _graphSize;
@@ -23,13 +23,8 @@ public sealed class SpeedGraphData
 
     public SpeedGraphData(Path shapePath, Path speedLinePath)
     {
-        var areaGeometry = new PathGeometry();
-        areaGeometry.Figures.Add(_areaFigure);
-        shapePath.Data = areaGeometry;
-
-        var lineGeometry = new PathGeometry();
-        lineGeometry.Figures.Add(_lineFigure);
-        speedLinePath.Data = lineGeometry;
+        _shapePath = shapePath;
+        _speedLinePath = speedLinePath;
     }
 
     public sealed class SetSpeedResult
@@ -71,11 +66,9 @@ public sealed class SpeedGraphData
             }
             else
             {
-                _samples[^1] = new Point(Math.Max(last.X, x), y);
+                _samples[^1] = new Point(last.X, y);
             }
         }
-
-        // 从第二次采样起持续刷新速度文本与当前速度线动画，不受采样点合并影响
         if (!isFirstSample)
         {
             result.NeedAnimation = true;
@@ -106,45 +99,55 @@ public sealed class SpeedGraphData
         _graphSize = size;
         RebuildGeometry();
     }
-
+    
     private void RebuildGeometry()
     {
-        _areaFigure.Segments.Clear();
-        _lineFigure.Segments.Clear();
+        var areaFigure = new PathFigure { IsClosed = true, IsFilled = true };
+        var lineFigure = new PathFigure { IsClosed = false, IsFilled = false };
 
-        if (_samples.Count == 0)
+        if (_samples.Count > 0)
         {
-            _areaFigure.StartPoint = new Point(0, 0);
-            _lineFigure.StartPoint = new Point(0, 0);
-            return;
+            double width = _graphSize.Width;
+            double height = _graphSize.Height;
+
+            Point[] pixels = new Point[_samples.Count];
+            for (int i = 0; i < _samples.Count; i++)
+            {
+                pixels[i] = ToPixel(_samples[i]);
+            }
+
+            if (pixels.Length == 1)
+            {
+                Point p = pixels[0];
+                double x0 = Math.Max(0, p.X - 1.5);
+                double x1 = p.X + 1.5;
+
+                lineFigure.StartPoint = p;
+
+                areaFigure.StartPoint = new Point(x0, height);
+                areaFigure.Segments.Add(new LineSegment { Point = new Point(x0, p.Y) });
+                areaFigure.Segments.Add(new LineSegment { Point = new Point(x1, p.Y) });
+                areaFigure.Segments.Add(new LineSegment { Point = new Point(x1, height) });
+            }
+            else
+            {
+                lineFigure.StartPoint = pixels[0];
+                AddSmoothSegments(lineFigure.Segments, pixels, width, height);
+
+                areaFigure.StartPoint = new Point(pixels[0].X, height);
+                areaFigure.Segments.Add(new LineSegment { Point = pixels[0] });
+                AddSmoothSegments(areaFigure.Segments, pixels, width, height);
+                areaFigure.Segments.Add(new LineSegment { Point = new Point(pixels[^1].X, height) });
+            }
         }
 
-        double width = _graphSize.Width;
-        double height = _graphSize.Height;
+        var areaGeometry = new PathGeometry();
+        areaGeometry.Figures.Add(areaFigure);
+        _shapePath.Data = areaGeometry;
 
-        Point[] pixels = new Point[_samples.Count];
-        for (int i = 0; i < _samples.Count; i++)
-        {
-            pixels[i] = ToPixel(_samples[i]);
-        }
-
-        if (pixels.Length == 1)
-        {
-            _lineFigure.StartPoint = pixels[0];
-
-            _areaFigure.StartPoint = new Point(pixels[0].X, height);
-            _areaFigure.Segments.Add(new LineSegment { Point = pixels[0] });
-            _areaFigure.Segments.Add(new LineSegment { Point = new Point(pixels[0].X, height) });
-            return;
-        }
-
-        _lineFigure.StartPoint = pixels[0];
-        AddSmoothSegments(_lineFigure.Segments, pixels, width, height);
-
-        _areaFigure.StartPoint = new Point(pixels[0].X, height);
-        _areaFigure.Segments.Add(new LineSegment { Point = pixels[0] });
-        AddSmoothSegments(_areaFigure.Segments, pixels, width, height);
-        _areaFigure.Segments.Add(new LineSegment { Point = new Point(pixels[^1].X, height) });
+        var lineGeometry = new PathGeometry();
+        lineGeometry.Figures.Add(lineFigure);
+        _speedLinePath.Data = lineGeometry;
     }
     
     private static void AddSmoothSegments(PathSegmentCollection segments, IReadOnlyList<Point> points, double maxX, double maxY)
