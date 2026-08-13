@@ -499,13 +499,10 @@
     <value>官方背景服务器</value>
   </data>
   <data name="ServerCN" xml:space="preserve">
-    <value>国服 (天空岛)</value>
+    <value>国服</value>
   </data>
   <data name="ServerGlobal" xml:space="preserve">
-    <value>国际服 (提瓦特)</value>
-  </data>
-  <data name="OfficialBgApiTitle" xml:space="preserve">
-    <value>官方背景 API</value>
+    <value>国际服</value>
   </data>
   <data name="OfficialBgApiCaption" xml:space="preserve">
     <value>留空使用当前服务器的默认 API。自定义 API 需要返回与官方 getAllGameBasicInfo 一致的数据结构。</value>
@@ -2194,6 +2191,105 @@
   <data name="PreDownload_Start" xml:space="preserve">
     <value>开始预下载</value>
   </data>
+  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
+    <value>预下载</value>
+  </data>
+  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
+    <value>提前下载更新资源</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
+    <value>合并更新资源到游戏</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
+    <value>合并预下载</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
+    <value>立即合并已预下载资源（开发者）</value>
+  </data>
+  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
+    <value>已预下载</value>
+  </data>
+  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
+    <value>游戏更新</value>
+  </data>
+  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
+    <value>把游戏更新到最新版本，已预下载的资源会自动复用。</value>
+  </data>
+  <data name="GameUpdate_UpdateStart" xml:space="preserve">
+    <value>开始更新</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
+    <value>合并预下载</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
+    <value>立即把已预下载的资源合并进游戏，游戏版本将提前到预下载版本。开发者专属功能。</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
+    <value>开始合并</value>
+  </data>
+  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
+    <value>游戏已更新到最新版本。</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
+    <value>预下载资源已合并完成。</value>
+  </data>
+  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
+    <value>更新失败</value>
+  </data>
+  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
+    <value>确认预下载</value>
+  </data>
+  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
+    <value>确认更新</value>
+  </data>
+  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
+    <value>确认合并预下载</value>
+  </data>
+  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
+    <value>需下载：{0}\n需安装：{1}\n目标版本：{2}\n\n确定开始？</value>
+  </data>
+  <data name="GameUpdate_PlanSummary" xml:space="preserve">
+    <value>计划：下载 {0}，目标版本 {1}</value>
+  </data>
+  <data name="GameUpdate_StageMerge" xml:space="preserve">
+    <value>正在合并文件…</value>
+  </data>
+  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
+    <value>正在应用补丁…</value>
+  </data>
+  <data name="GameUpdate_MergingFile" xml:space="preserve">
+    <value>正在合并 {0}/{1}：{2}</value>
+  </data>
+  <data name="GameUpdate_SkipAsset" xml:space="preserve">
+    <value>跳过资产（稍后自动修复）：{0}</value>
+  </data>
+  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
+    <value>预下载完成，等待正式更新。</value>
+  </data>
+  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
+    <value>当前版本没有可预下载的内容。</value>
+  </data>
+  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
+    <value>游戏已经是最新版本。</value>
+  </data>
+  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
+    <value>无法识别本地游戏版本，请检查 config.ini。</value>
+  </data>
+  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
+    <value>磁盘空间不足：需要 {0}，可用 {1}。</value>
+  </data>
+  <data name="GameUpdate_DevOnly" xml:space="preserve">
+    <value>该功能仅对开发者认证用户开放。</value>
+  </data>
+  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
+    <value>补丁头解析失败：补丁文件已损坏或被截断。</value>
+  </data>
+  <data name="Patch_DiffNotSeekable" xml:space="preserve">
+    <value>补丁流必须支持随机访问。</value>
+  </data>
   <data name="PresetManager_Title" xml:space="preserve">
     <value>预设管理</value>
   </data>
@@ -2293,8 +2389,8 @@
   <data name="DownloadWindow_BaseGameTooltip" xml:space="preserve">
     <value>取消勾选则只更新语音包</value>
   </data>
-  <data name="DownloadWindow_ShowDetailLog" xml:space="preserve">
-    <value>显示详细日志</value>
+  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
+    <value>下载速度</value>
   </data>
   <data name="DownloadWindow_Ready" xml:space="preserve">
     <value>准备就绪</value>
@@ -3263,9 +3359,6 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="DownloadWindow_Error" xml:space="preserve">
     <value>发生错误</value>
-  </data>
-  <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
-    <value>隐藏详细日志</value>
   </data>
   <data name="DownloadWindow_AllDone" xml:space="preserve">
     <value>所有文件下载、校验、部署已完成。</value>
@@ -5832,5 +5925,228 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="DevVersionBadgeFormat" xml:space="preserve">
     <value>v{0} 开发版</value>
+  </data>
+  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
+    <value>目标服务器</value>
+  </data>
+  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
+    <value>当前服务器：{0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
+    <value>无法识别当前服务器，请确认游戏目录有效</value>
+  </data>
+  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
+    <value>请先选择目标服务器</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
+    <value>操作已取消</value>
+  </data>
+  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
+    <value>当前已切换至：{0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
+    <value>正在下载分片 {0}/{1} - {2}</value>
+  </data>
+  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
+    <value>清理插件文件夹失败: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
+    <value>转换失败</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
+    <value>切换失败，文件可能被占用
+错误信息: {0}
+
+请问是放弃切换并修复游戏，还是尝试补救方案？</value>
+  </data>
+  <data name="AdvancedServerSwitch_RetryBtn" xml:space="preserve">
+    <value>继续尝试</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairBtn" xml:space="preserve">
+    <value>修复游戏</value>
+  </data>
+  <data name="AdvancedServerSwitch_Repairing" xml:space="preserve">
+    <value>正在修复游戏...</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairDone" xml:space="preserve">
+    <value>修复完成</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairDoneMsg" xml:space="preserve">
+    <value>游戏文件修复完成，您可以尝试重新切换服务器或直接游玩！</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairFailed" xml:space="preserve">
+    <value>修复失败</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairFailedMsg" xml:space="preserve">
+    <value>游戏修复失败，错误信息: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanTitle" xml:space="preserve">
+    <value>手动清理插件</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanMsg" xml:space="preserve">
+    <value>请在弹出的文件夹中，手动删除所有文件(可使用快捷键Ctrl+A全选，再按Del键，或自己手动勾选右键删除)
+我们会实时监测，当你清理完毕后可点击确认继续</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanDone" xml:space="preserve">
+    <value>你似乎已经成功了，可以直接确认了</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanConfirm" xml:space="preserve">
+    <value>确认并重试</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>B服 (Bilibili)</value>
+  </data>
+  <data name="DownloadWindow_Server" xml:space="preserve">
+    <value>服务器</value>
+  </data>
+  <data name="Download_FileFailed" xml:space="preserve">
+    <value>有 {0} 个文件下载失败，请重试或更换服务器后重新下载</value>
+  </data>
+  <data name="PreDownload_Failed" xml:space="preserve">
+    <value>预下载失败</value>
+  </data>
+  <data name="PreDownload_Success" xml:space="preserve">
+    <value>预下载文件已下载并成功安装覆盖。</value>
+  </data>
+  <data name="VerifyGame_Success" xml:space="preserve">
+    <value>游戏文件完整性校验并修复完成</value>
+  </data>
+  <data name="VerifyGame_Failed" xml:space="preserve">
+    <value>校验失败</value>
+  </data>
+  <data name="GameServer_StageFetchBranches" xml:space="preserve">
+    <value>正在请求网络分支</value>
+  </data>
+  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
+    <value>正在下载并解析清单</value>
+  </data>
+  <data name="GameServer_StageDiff" xml:space="preserve">
+    <value>正在比对</value>
+  </data>
+  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
+    <value>正在下载所需的数据块</value>
+  </data>
+  <data name="GameServer_StageReplace" xml:space="preserve">
+    <value>正在替换文件</value>
+  </data>
+  <data name="GameServer_ReplacingFile" xml:space="preserve">
+    <value>正在替换文件 {0}/{1} - {2}</value>
+  </data>
+  <data name="GameServer_StageCleanup" xml:space="preserve">
+    <value>清理临时数据</value>
+  </data>
+  <data name="GameServer_StageVerify" xml:space="preserve">
+    <value>正在校验游戏文件完整性，该过程可能需要较长时间</value>
+  </data>
+  <data name="GameServer_VerifyOk" xml:space="preserve">
+    <value>文件校验通过，游戏数据完整</value>
+  </data>
+  <data name="GameServer_VerifyProgress" xml:space="preserve">
+    <value>校验中: {0}/{1}</value>
+  </data>
+  <data name="GameServer_RepairFound" xml:space="preserve">
+    <value>发现 {0} 个异常或缺失文件，正在修复</value>
+  </data>
+  <data name="GameServer_RepairDone" xml:space="preserve">
+    <value>异常文件修复完成</value>
+  </data>
+  <data name="GameServer_InstallingPredownload" xml:space="preserve">
+    <value>正在安装预下载文件</value>
+  </data>
+  <data name="GameServer_BranchDataNull" xml:space="preserve">
+    <value>接口返回data为空，获取分支数据失败</value>
+  </data>
+  <data name="GameServer_NoMainBranch" xml:space="preserve">
+    <value>无法获取 main 分支数据</value>
+  </data>
+  <data name="GameServer_NoPredownload" xml:space="preserve">
+    <value>当前未开启预下载</value>
+  </data>
+  <data name="GameServer_NoPackageId" xml:space="preserve">
+    <value>分支数据缺少package_id</value>
+  </data>
+  <data name="GameServer_NoPassword" xml:space="preserve">
+    <value>分支数据缺少password</value>
+  </data>
+  <data name="GameServer_NoManifests" xml:space="preserve">
+    <value>获取清单(manifests)失败。</value>
+  </data>
+  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
+    <value>清单校验失败: {0}</value>
+  </data>
+  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
+    <value>请求接口失败: {0}，错误信息: {1}</value>
+  </data>
+  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
+    <value>数据块 {0} 下载失败或校验不通过。</value>
+  </data>
+  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
+    <value>文件校验不通过: {0}</value>
+  </data>
+  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
+    <value>文件大小不匹配: {0}，实际 {1} 字节，期望 {2} 字节</value>
+  </data>
+  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
+    <value>缓存缺失，跳过文件: {0}（稍后可通过校验修复）</value>
+  </data>
+  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
+    <value>文件组装校验不通过（本地旧文件可能损坏），已跳过: {0}（稍后可通过校验修复）</value>
+  </data>
+  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
+    <value>临时分片清理失败: {0}</value>
+  </data>
+  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
+    <value>清理旧版SDK文件...</value>
+  </data>
+  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
+    <value>获取渠道SDK配置...</value>
+  </data>
+  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
+    <value>获取渠道SDK配置失败</value>
+  </data>
+  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
+    <value>正在下载渠道SDK...</value>
+  </data>
+  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
+    <value>正在解压渠道SDK...</value>
+  </data>
+  <data name="GameServer_CleanedPlugins" xml:space="preserve">
+    <value>已清理 Plugins 文件夹</value>
+  </data>
+  <data name="GameServer_InsufficientPermission" xml:space="preserve">
+    <value>游戏目录权限不足，无法写入文件: {0}，请以管理员身份运行或检查目录权限</value>
+  </data>
+  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
+    <value>渠道SDK文件缺失或损坏，正在重新获取...</value>
+  </data>
+  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
+    <value>正在处理废弃文件...</value>
+  </data>
+  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
+    <value>获取废弃文件配置失败: {0}</value>
+  </data>
+  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
+    <value>官方服</value>
+  </data>
+  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
+    <value>渠道服</value>
+  </data>
+  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
+    <value>国际服</value>
+  </data>
+  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
+    <value>下载速度</value>
+  </data>
+  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
+    <value>剩余分片：{0}</value>
+  </data>
+  <data name="SpeedGraph_NoData" xml:space="preserve">
+    <value>暂无速度数据</value>
   </data>
 </root>

@@ -5,6 +5,7 @@ Licensed under the MIT License.
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
+using FufuLauncher.Services.GameServer;
 
 namespace FufuLauncher.Services;
 
@@ -51,10 +52,12 @@ public class GameConfigService : IGameConfigService
 {
     private const string SettingsKey = "GameInstallationPath";
     private readonly ILocalSettingsService _localSettingsService;
+    private readonly GameServerConfigurationService _gameServerConfigurationService;
 
-    public GameConfigService(ILocalSettingsService localSettingsService)
+    public GameConfigService(ILocalSettingsService localSettingsService, GameServerConfigurationService gameServerConfigurationService)
     {
         _localSettingsService = localSettingsService;
+        _gameServerConfigurationService = gameServerConfigurationService;
     }
 
     public async Task<GameConfig?> LoadGameConfigAsync(string gamePath)
@@ -86,14 +89,14 @@ public class GameConfigService : IGameConfigService
                     if (parts.Length > 1)
                         config.Version = parts[1].Trim();
                 }
-
-                config.ServerType = DetectServerType(content);
             }
             else
             {
                 config.Version = "Msg_VersionInfoNotFound".GetLocalized();
-                config.ServerType = "Status_Unknown".GetLocalized();
             }
+            
+            var serverScheme = _gameServerConfigurationService.TryDetectCurrentScheme(gamePath);
+            config.ServerType = serverScheme?.DisplayName ?? "Status_Unknown".GetLocalized();
 
             config.DirectorySize = CalculateDirectorySize(gamePath);
 
@@ -115,22 +118,6 @@ public class GameConfigService : IGameConfigService
 
         var result = await _localSettingsService.ReadSettingAsync(SettingsKey);
         return result?.ToString();
-    }
-
-    private string DetectServerType(string configContent)
-    {
-
-        if (configContent.Contains("pcadbdpz") || configContent.Contains("channel=1"))
-            return "ServerType_MainlandChina".GetLocalized();
-
-        if (configContent.Contains("channel=14") || configContent.Contains("cps=bilibili"))
-            return "ServerType_MainlandChina".GetLocalized();
-
-        if (configContent.Contains("os_usa") || configContent.Contains("os_euro") ||
-            configContent.Contains("os_asia") || configContent.Contains("channel=0"))
-            return "ServerType_Global".GetLocalized();
-
-        return "ServerType_Unknown".GetLocalized();
     }
 
     private string CalculateDirectorySize(string path)

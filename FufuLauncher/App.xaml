@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="/Styles/Thickness.xaml" />
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="/Styles/Backpack.xaml" />
+                <ResourceDictionary Source="/Controls/SpeedGraph/SpeedGraph.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="AppGlobalFont">/Assets/zh-cn-l.ttf#SDK_SC_Web</FontFamily>

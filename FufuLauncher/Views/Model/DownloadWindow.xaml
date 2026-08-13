@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:controls="using:FufuLauncher.Controls"
     mc:Ignorable="d"
     Title="{helpers:Loc Key=DownloadWindow_Title}">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -38,6 +39,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBox x:Name="PathBox" Grid.Row="0" Grid.Column="0" Header="{helpers:Loc Key=DownloadWindow_InstallDir}" IsReadOnly="True" />
@@ -49,25 +51,21 @@
                     <ComboBoxItem Content="한국어 (ko-kr)" Tag="ko-kr" />
                 </ComboBox>
 
-                <CheckBox x:Name="BaseGameCheck" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                <ComboBox x:Name="ServerCombo" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Header="{helpers:Loc Key=DownloadWindow_Server}" SelectedIndex="0"
+                          DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
+
+                <CheckBox x:Name="BaseGameCheck" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                           IsChecked="True" Content="{helpers:Loc Key=DownloadWindow_DownloadBaseGame}"
                           ToolTipService.ToolTip="{helpers:Loc Key=DownloadWindow_BaseGameTooltip}" />
             </Grid>
 
-            <Grid Grid.Row="2" Margin="0,0,0,16">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <ToggleButton x:Name="LogToggle" Content="{helpers:Loc Key=DownloadWindow_ShowDetailLog}" Click="LogToggle_Click" Height="32" Margin="0,0,0,8" />
-                <Border x:Name="LogBorder" Grid.Row="1" Visibility="Collapsed"
-                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
-                        Background="{ThemeResource LayerFillColorDefaultBrush}">
-                    <ScrollViewer x:Name="LogScroller" Padding="8">
-                        <TextBlock x:Name="LogBlock" FontFamily="Consolas" FontSize="12" TextWrapping="Wrap" />
-                    </ScrollViewer>
-                </Border>
-            </Grid>
+            <Border Grid.Row="2" Margin="0,0,0,16" VerticalAlignment="Top"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{helpers:Loc Key=DownloadWindow_DownloadSpeed}" FontWeight="SemiBold" />
+                    <controls:SpeedGraph x:Name="SpeedGraphChart" Height="120" />
+                </StackPanel>
+            </Border>
 
             <StackPanel Grid.Row="3" Spacing="8">
                 <Grid>

@@ -2361,6 +2361,27 @@
                                                   IsOn="{x:Bind ViewModel.IsPluginMirrorAccelerationEnabled, Mode=TwoWay}" />
                                 </Grid>
 
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid x:Name="ApplyPredownloadRow" Style="{StaticResource SettingsRowStyle}"
+                                      Visibility="Collapsed">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=GameUpdate_ApplyBtnTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=GameUpdate_ApplyBtnCaption}" />
+                                    </StackPanel>
+                                    <Button x:Name="BtnApplyPredownload"
+                                            Grid.Column="2"
+                                            Style="{StaticResource RowButtonStyle}"
+                                            Content="{helpers:Loc Key=GameUpdate_ApplyPredownloadStart}"
+                                            Click="OnApplyPredownloadClick" />
+                                </Grid>
+
                             </StackPanel>
                         </Border>
                     </StackPanel>

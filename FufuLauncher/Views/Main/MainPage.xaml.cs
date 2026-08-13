@@ -9,8 +9,10 @@ using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
+using FufuLauncher.Models.GameServer;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
+using FufuLauncher.Services.GameServer;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -100,7 +102,7 @@ public sealed partial class MainPage : Page
                     }
                 }
                 
-                await PerformServerSwitch(gameDir, configPath, toBilibili);
+                await PerformServerSwitch(gameDir, toBilibili);
             }
             catch (Exception ex)
             {
@@ -172,26 +174,16 @@ public sealed partial class MainPage : Page
             return isEnabled ? 1.0 : 0.4;
         }
         
-        private async Task PerformServerSwitch(string gameDir, string configPath, bool toBilibili)
+        private async Task PerformServerSwitch(string gameDir, bool toBilibili)
         {
             try
             {
-                // Official: channel=1, sub_channel=1, cps=mihoyo
-                // Bilibili: channel=14, sub_channel=0, cps=bilibili
-                string channel = toBilibili ? "14" : "1";
-                string subChannel = toBilibili ? "0" : "1";
-                string cps = toBilibili ? "bilibili" : "mihoyo";
-
-                string[] lines = await File.ReadAllLinesAsync(configPath);
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    if (lines[i].StartsWith("channel=")) lines[i] = $"channel={channel}";
-                    else if (lines[i].StartsWith("sub_channel=")) lines[i] = $"sub_channel={subChannel}";
-                    else if (lines[i].StartsWith("cps=")) lines[i] = $"cps={cps}";
-                }
-                await File.WriteAllLinesAsync(configPath, lines);
+                var configurationService = App.GetService<GameServerConfigurationService>();
+                var scheme = toBilibili ? GameServerScheme.FromPreset("Bili") : GameServerScheme.FromPreset("CN");
                 
-                await BilibiliSdkManager.EnsureSdkAndDeprecatedFilesAsync(gameDir, toBilibili);
+                configurationService.ApplyScheme(gameDir, scheme);
+
+                await App.GetService<GameChannelSdkService>().EnsureSdkAndDeprecatedFilesAsync(gameDir, scheme);
                 
                 var serverName = toBilibili ? "Home_BilibiliServer".GetLocalized() : "Home_OfficialServer".GetLocalized();
                 var action = toBilibili ? "Home_Deployed".GetLocalized() : "Home_Cleaned".GetLocalized();

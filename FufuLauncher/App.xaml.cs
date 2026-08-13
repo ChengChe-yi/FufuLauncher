@@ -192,7 +192,7 @@ public partial class App : Application
                     services.AddSingleton<AccountManager>();
                     services.AddSingleton<Services.MiHoYo.Fingerprint.DeviceFpService>();
                     services.AddSingleton<Services.MiHoYo.AccountIdentityService>();
-                    services.AddSingleton<Contracts.Services.IBbsRequestBuilder, Services.MiHoYo.Transport.BbsRequestBuilder>();
+                    services.AddSingleton<IBbsRequestBuilder, Services.MiHoYo.Transport.BbsRequestBuilder>();
 
                     services.AddLogging(builder =>
                     {
@@ -218,22 +218,35 @@ public partial class App : Application
                     services.AddTransient<GachaAnalysisModel>();
                     services.AddTransient<CommunityViewModel>();
                     services.AddTransient<CommunityPage>();
-                    services.AddSingleton<Services.PluginStoreService>();
-                    services.AddSingleton<Services.LuaPluginInstaller>();
+                    services.AddSingleton<PluginStoreService>();
+                    services.AddSingleton<LuaPluginInstaller>();
                     services.AddSingleton<Services.PluginMirror.MirrorSiteProvider>();
                     services.AddSingleton<Services.PluginMirror.PluginMirrorDownloadService>();
-                    services.AddSingleton<ViewModels.PluginStoreViewModel>();
-                    services.AddTransient<Views.PluginStorePage>();
+                    services.AddSingleton<PluginStoreViewModel>();
+                    services.AddTransient<PluginStorePage>();
+                    
+                    services.AddSingleton<Services.GameServer.GameServerHttpClientProvider>();
+                    services.AddSingleton<Services.GameServer.ChunkDownloader>();
+                    services.AddSingleton<Services.GameServer.SophonBuildClient>();
+                    services.AddSingleton<Services.GameServer.GameServerConfigurationService>();
+                    services.AddSingleton<Services.GameServer.GameChannelSdkService>();
+                    services.AddTransient<Services.GameServer.GameServerConverter>();
+                    
+                    services.AddSingleton<Services.GameServer.GameUpdateService>();
+                    
+                    services.AddSingleton<DeveloperAuthorizationService>();
 
                     services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
                 })
                 .Build();
 
             CleanupOldSettings();
+            
+            Services.GameServer.GameServerCacheMaintenance.CleanLegacyCaches();
         }
         catch (Exception ex)
         {
-            LogException(ex, "App Constructor (核心配置初始化异常)");
+            LogException(ex, "App Constructor");
             ShowCrashDialog("核心配置及服务初始化异常", ex);
             Environment.Exit(-1);
         }
@@ -248,7 +261,7 @@ public partial class App : Application
             || baseEx is ObjectDisposedException
             || baseEx is OperationCanceledException)
         {
-            System.Diagnostics.Debug.WriteLine($"[UnobservedTask] 已忽略的后台异常: {baseEx.GetType().Name}: {baseEx.Message}");
+            Debug.WriteLine($"[UnobservedTask] 已忽略的后台异常: {baseEx.GetType().Name}: {baseEx.Message}");
             return;
         }
 
@@ -260,9 +273,7 @@ public partial class App : Application
     {
         e.Handled = true;
         LogException(e.Exception, "App_UnhandledException");
-
-        // Don't crash on InvalidCastException from XAML binding (WinRT interop issue)
-        // or COMException from ContentDialog conflicts
+        
         if (e.Exception is InvalidCastException || 
             (e.Exception is COMException comEx && comEx.HResult == unchecked((int)0x80000019)))
         {
@@ -348,7 +359,7 @@ public partial class App : Application
         try
         {
             base.OnLaunched(args);
-            Debug.WriteLine("=== App 启动开始 ===");
+            Debug.WriteLine("App启动开始");
 
             _mainDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
 
@@ -361,13 +372,13 @@ public partial class App : Application
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[UidLookup] 静默写入失败: {ex.Message}");
+                    Debug.WriteLine($"[UidLookup] 写入失败: {ex.Message}");
                 }
             });
 
             await VerifyResourceFilesAsync();
 
-            if (!Helpers.AppPaths.IsFirstRun)
+            if (!AppPaths.IsFirstRun)
             {
                 await ApplyLanguageSettingAsync();
                 await SetDefaultThemeAsync();
@@ -398,8 +409,8 @@ public partial class App : Application
             var activationService = GetService<IActivationService>();
             await activationService.ActivateAsync(args);
 
-            Debug.WriteLine("=== App 主窗口已激活 ===");
-            var shouldRunBackgroundTasks = !Helpers.AppPaths.IsFirstRun && 
+            Debug.WriteLine("App主窗口已激活");
+            var shouldRunBackgroundTasks = !AppPaths.IsFirstRun && 
                 !(MainWindow is MainWindow mw && mw.IsAgreementShowing);
             if (shouldRunBackgroundTasks)
             {
@@ -464,7 +475,7 @@ public partial class App : Application
                 });
             }
 
-            Debug.WriteLine("=== App 启动完成 ===");
+            Debug.WriteLine("App启动完成");
         }
         catch (Exception ex)
         {
@@ -585,7 +596,7 @@ public partial class App : Application
 
                 MainWindow.Activate();
 
-                var updateWindow = new Views.UpdateNotificationWindow(result.UpdateInfoUrl, result.IsPreview);
+                var updateWindow = new UpdateNotificationWindow(result.UpdateInfoUrl, result.IsPreview);
                 updateWindow.Title = result.IsPreview
                     ? $"预览版更新公告 - v{result.ServerVersion}"
                     : $"版本更新公告 - v{result.ServerVersion}";

@@ -174,36 +174,9 @@ public partial class PluginSettingsViewModel : ObservableObject
     private async Task<bool> CheckHwidAuthorizationAsync()
     {
         if (_hasCheckedHwid && _isHwidAuthorized) return true;
-
-        string hwid = await Task.Run(() => SystemEnvironmentHelper.GetHwid());
-
-        if (string.IsNullOrEmpty(hwid) || hwid == "Unknown") return false;
-
-        try
-        {
-            using var client = new HttpClient();
-            client.Timeout = TimeSpan.FromSeconds(5);
-            var content = new StringContent(
-                JsonSerializer.Serialize(new { hwid = hwid }),
-                System.Text.Encoding.UTF8,
-                "application/json"
-            );
-
-            var response = await client.PostAsync("https://dev.s1ky3.xyz/api/verify-hwid", content);
-            if (response.IsSuccessStatusCode)
-            {
-                var responseString = await response.Content.ReadAsStringAsync();
-                var result = JsonDocument.Parse(responseString).RootElement;
-                if (result.TryGetProperty("authorized", out var authElement) && authElement.GetBoolean())
-                {
-                    _isHwidAuthorized = true;
-                }
-            }
-        }
-        catch
-        {
-        }
-
+        
+        var authorizationService = App.GetService<Services.DeveloperAuthorizationService>();
+        _isHwidAuthorized = authorizationService is not null && await authorizationService.IsAuthorizedAsync();
         _hasCheckedHwid = true;
         System.Diagnostics.Debug.WriteLine($"[HWID_DEBUG] 授权结果: {_isHwidAuthorized}");
         return _isHwidAuthorized;

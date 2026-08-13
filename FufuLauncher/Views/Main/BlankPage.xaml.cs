@@ -19,7 +19,9 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Windows.Storage.Pickers;
 using FufuLauncher.Constants;
+using FufuLauncher.Models.GameServer;
 using FufuLauncher.Services;
+using FufuLauncher.Services.GameServer;
 using FufuLauncher.ViewModels;
 using WinRT.Interop;
 using File = System.IO.File;
@@ -380,10 +382,35 @@ private async void CreateShortcut_Click(object sender, RoutedEventArgs e)
 
 private void PreDownloadGame_Click(object sender, RoutedEventArgs e)
 {
-    if (_currentConfig == null || string.IsNullOrEmpty(_currentConfig.GamePath))
+    string? gameDir = GetGameDirectory();
+    if (gameDir is null)
     {
         _ = ShowError("Err_GamePathNotFound".GetLocalized());
         return;
+    }
+
+    var newWindow = new GameUpdateWindow(gameDir, GameUpdateOperationKind.Predownload);
+    newWindow.Activate();
+}
+
+private void UpdateGame_Click(object sender, RoutedEventArgs e)
+{
+    string? gameDir = GetGameDirectory();
+    if (gameDir is null)
+    {
+        _ = ShowError("Err_GamePathNotFound".GetLocalized());
+        return;
+    }
+
+    var newWindow = new GameUpdateWindow(gameDir, GameUpdateOperationKind.Update);
+    newWindow.Activate();
+}
+
+private string? GetGameDirectory()
+{
+    if (_currentConfig == null || string.IsNullOrEmpty(_currentConfig.GamePath))
+    {
+        return null;
     }
 
     string gameDir = _currentConfig.GamePath;
@@ -392,8 +419,22 @@ private void PreDownloadGame_Click(object sender, RoutedEventArgs e)
         gameDir = Path.GetDirectoryName(gameDir) ?? gameDir;
     }
 
-    var newWindow = new PreDownloadWindow(gameDir);
-    newWindow.Activate();
+    return gameDir;
+}
+
+private async Task RefreshUpdateStateAsync()
+{
+    string? gameDir = GetGameDirectory();
+    if (gameDir is null)
+    {
+        return;
+    }
+
+    bool finished = GameUpdateService.IsPredownloadFinished(gameDir, out _);
+    DispatcherQueue.TryEnqueue(() =>
+    {
+        PredownloadFinishedBadge.Visibility = finished ? Visibility.Visible : Visibility.Collapsed;
+    });
 }
 
 private async void FpsOverlayToggle_Toggled(object sender, RoutedEventArgs e)
@@ -773,60 +814,6 @@ private async void FpsOverlayToggle_Toggled(object sender, RoutedEventArgs e)
             newWindow.Activate();
         }
 
-        private async Task LoadGameConfig(string gameExePath)
-        {
-            if (string.IsNullOrEmpty(gameExePath)) return;
-
-            var gameDir = gameExePath;
-            if (File.Exists(gameExePath))
-            {
-                gameDir = Path.GetDirectoryName(gameExePath);
-            }
-    
-            if (!Directory.Exists(gameDir)) return;
-
-            var configPath = Path.Combine(gameDir, "config.ini");
-            var serverType = "ServerType_Unknown".GetLocalized();
-
-            bool isGlobalExe = File.Exists(Path.Combine(gameDir, "GenshinImpact.exe"));
-
-            if (isGlobalExe)
-            {
-                serverType = "ServerType_Global".GetLocalized();
-            }
-            else if (File.Exists(configPath))
-            {
-                try
-                {
-                    var lines = await File.ReadAllLinesAsync(configPath);
-                    var channel = "1";
-
-                    foreach (var line in lines)
-                    {
-                        if (line.StartsWith("channel="))
-                        {
-                            channel = line.Split('=')[1].Trim();
-                            break;
-                        }
-                    }
-
-                    if (channel == "14") serverType = "ServerType_Bilibili".GetLocalized();
-                    else if (channel == "1") serverType = "ServerType_Official".GetLocalized();
-                    else serverType = string.Format("ServerType_CustomOther_Format".GetLocalized(), channel);
-                }
-                catch
-                {
-                    serverType = "Err_ReadConfigFailed".GetLocalized();
-                }
-            }
-
-            if (_currentConfig != null)
-            {
-                _currentConfig.ServerType = serverType;
-            }
-        }
-
-
         private void OpenMap_Click(object sender, RoutedEventArgs e)
         {
             var newWindow = new Window();
@@ -1143,8 +1130,6 @@ private async Task LoadGameInfoAsync(string gamePath)
                     .FirstOrDefault();
             }
 
-            bool isGlobalExe = File.Exists(Path.Combine(gamePath, "GenshinImpact.exe"));
-
             if (configPath != null && File.Exists(configPath))
             {
                 var content = await File.ReadAllTextAsync(configPath);
@@ -1156,21 +1141,14 @@ private async Task LoadGameInfoAsync(string gamePath)
                     if (parts.Length > 1)
                         config.Version = parts[1].Trim();
                 }
-                
-                if (isGlobalExe)
-                {
-                    config.ServerType = "ServerType_Global".GetLocalized();
-                }
-                else
-                {
-                    config.ServerType = DetectServerType(content);
-                }
             }
             else
             {
                 config.Version = "Msg_VersionInfoNotFound".GetLocalized();
-                config.ServerType = isGlobalExe ? "ServerType_Global".GetLocalized() : "UnknownGeneric".GetLocalized();
             }
+            
+            var serverScheme = App.GetService<GameServerConfigurationService>().TryDetectCurrentScheme(gamePath);
+            config.ServerType = serverScheme?.DisplayName ?? "UnknownGeneric".GetLocalized();
 
             config.DirectorySize = CalculateDirectorySize(gamePath);
 
@@ -1178,6 +1156,7 @@ private async Task LoadGameInfoAsync(string gamePath)
         });
 
         _ = GetGameBranchesInfoAsync();
+        _ = RefreshUpdateStateAsync();
     }
     catch (Exception ex)
     {
@@ -1257,21 +1236,6 @@ private async Task LoadGameInfoAsync(string gamePath)
         {
             InfoPanel.Visibility = Visibility.Collapsed;
             EmptyPanel.Visibility = Visibility.Visible;
-        }
-
-        private string DetectServerType(string configContent)
-        {
-            if (configContent.Contains("pcadbdpz") || configContent.Contains("channel=1"))
-                return "ServerType_MainlandChina".GetLocalized();
-
-            if (configContent.Contains("channel=14") || configContent.Contains("cps=bilibili"))
-                return "ServerType_MainlandChina".GetLocalized();
-
-            if (configContent.Contains("os") || configContent.Contains("os") ||
-                configContent.Contains("os") || configContent.Contains("channel=0"))
-                return "ServerType_Global".GetLocalized();
-
-            return "ServerType_Unknown".GetLocalized();
         }
 
         private string CalculateDirectorySize(string path)

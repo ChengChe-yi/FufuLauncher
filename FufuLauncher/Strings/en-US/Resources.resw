@@ -2095,6 +2095,105 @@ Go to the Microsoft website to download and install it?</value>
   <data name="PreDownload_Start" xml:space="preserve">
     <value>Start Pre-Download</value>
   </data>
+  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
+    <value>Pre-Download</value>
+  </data>
+  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
+    <value>Download update resources ahead of time</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
+    <value>Merge update resources into the game</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
+    <value>Merge Pre-Download</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
+    <value>Apply pre-downloaded resources now (Developer)</value>
+  </data>
+  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
+    <value>Downloaded</value>
+  </data>
+  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
+    <value>Game Update</value>
+  </data>
+  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
+    <value>Update the game to the latest version. Already pre-downloaded resources will be reused automatically.</value>
+  </data>
+  <data name="GameUpdate_UpdateStart" xml:space="preserve">
+    <value>Start Update</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
+    <value>Merge Pre-Download</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
+    <value>Apply the pre-downloaded resources to the game immediately. The game version will advance to the pre-download version ahead of the official release. Developer-only feature.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
+    <value>Start Merge</value>
+  </data>
+  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
+    <value>Game updated to the latest version.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
+    <value>Pre-downloaded resources merged.</value>
+  </data>
+  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
+    <value>Update Failed</value>
+  </data>
+  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
+    <value>Confirm Pre-Download</value>
+  </data>
+  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
+    <value>Confirm Update</value>
+  </data>
+  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
+    <value>Confirm Merge Pre-Download</value>
+  </data>
+  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
+    <value>Download size: {0}\nInstall size: {1}\nTarget version: {2}\n\nStart now?</value>
+  </data>
+  <data name="GameUpdate_PlanSummary" xml:space="preserve">
+    <value>Plan: download {0}, target version {1}</value>
+  </data>
+  <data name="GameUpdate_StageMerge" xml:space="preserve">
+    <value>Merging files...</value>
+  </data>
+  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
+    <value>Applying patches...</value>
+  </data>
+  <data name="GameUpdate_MergingFile" xml:space="preserve">
+    <value>Merging {0}/{1}: {2}</value>
+  </data>
+  <data name="GameUpdate_SkipAsset" xml:space="preserve">
+    <value>Skipped asset (will be repaired later): {0}</value>
+  </data>
+  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
+    <value>Pre-download completed. Waiting for the official update.</value>
+  </data>
+  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
+    <value>No pre-download content available for the current version.</value>
+  </data>
+  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
+    <value>The game is already up to date.</value>
+  </data>
+  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
+    <value>Cannot determine the local game version. Please check config.ini.</value>
+  </data>
+  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
+    <value>Not enough free space: {0} required, {1} available.</value>
+  </data>
+  <data name="GameUpdate_DevOnly" xml:space="preserve">
+    <value>This feature is only available to developer-authorized users.</value>
+  </data>
+  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
+    <value>Failed to read patch header: the patch file is damaged or truncated.</value>
+  </data>
+  <data name="Patch_DiffNotSeekable" xml:space="preserve">
+    <value>The patch stream must be seekable.</value>
+  </data>
   <data name="PresetManager_Title" xml:space="preserve">
     <value>Preset Manager</value>
   </data>
@@ -2155,8 +2254,8 @@ Go to the Microsoft website to download and install it?</value>
   <data name="DownloadWindow_BaseGameTooltip" xml:space="preserve">
     <value>Uncheck to only update voice pack</value>
   </data>
-  <data name="DownloadWindow_ShowDetailLog" xml:space="preserve">
-    <value>Show Detailed Log</value>
+  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
+    <value>Download speed</value>
   </data>
   <data name="DownloadWindow_Ready" xml:space="preserve">
     <value>Ready</value>
@@ -3125,9 +3224,6 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="DownloadWindow_Error" xml:space="preserve">
     <value>Error Occurred</value>
-  </data>
-  <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
-    <value>Hide Detailed Log</value>
   </data>
   <data name="DownloadWindow_AllDone" xml:space="preserve">
     <value>All files downloaded, verified, and deployed.</value>
@@ -5837,5 +5933,225 @@ You can retry with another node or download directly from the official source.</
   </data>
   <data name="DevVersionBadgeFormat" xml:space="preserve">
     <value>v{0} Dev</value>
+  </data>
+  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
+    <value>Target server</value>
+  </data>
+  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
+    <value>Current server: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
+    <value>Cannot detect the current server, please verify the game directory</value>
+  </data>
+  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
+    <value>Please select a target server first</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
+    <value>Operation cancelled</value>
+  </data>
+  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
+    <value>Switched to: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
+    <value>Downloading chunks {0}/{1} - {2}</value>
+  </data>
+  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
+    <value>Failed to clean plugin folders: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
+    <value>Conversion failed</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
+    <value>Switch failed, files may be in use.
+Error: {0}
+
+Give up switching and repair the game, or try a workaround?</value>
+  </data>
+  <data name="AdvancedServerSwitch_RetryBtn" xml:space="preserve">
+    <value>Keep trying</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairBtn" xml:space="preserve">
+    <value>Repair game</value>
+  </data>
+  <data name="AdvancedServerSwitch_Repairing" xml:space="preserve">
+    <value>Repairing game...</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairDone" xml:space="preserve">
+    <value>Repair complete</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairDoneMsg" xml:space="preserve">
+    <value>Game files repaired. You can switch servers again or play directly!</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairFailed" xml:space="preserve">
+    <value>Repair failed</value>
+  </data>
+  <data name="AdvancedServerSwitch_RepairFailedMsg" xml:space="preserve">
+    <value>Game repair failed, error: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanTitle" xml:space="preserve">
+    <value>Clean plugins manually</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanMsg" xml:space="preserve">
+    <value>In the opened folder, manually delete all files (Ctrl+A then Del, or select and delete).
+We are monitoring in real time; click confirm once you finish cleaning.</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanDone" xml:space="preserve">
+    <value>Looks done, you can confirm now</value>
+  </data>
+  <data name="AdvancedServerSwitch_ManualCleanConfirm" xml:space="preserve">
+    <value>Confirm and retry</value>
+  </data>
+  <data name="DownloadWindow_Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Download_FileFailed" xml:space="preserve">
+    <value>{0} file(s) failed to download. Please retry or switch server and download again</value>
+  </data>
+  <data name="PreDownload_Failed" xml:space="preserve">
+    <value>Pre-download failed</value>
+  </data>
+  <data name="PreDownload_Success" xml:space="preserve">
+    <value>Pre-download files downloaded and installed.</value>
+  </data>
+  <data name="VerifyGame_Success" xml:space="preserve">
+    <value>Game files verified and repaired</value>
+  </data>
+  <data name="VerifyGame_Failed" xml:space="preserve">
+    <value>Verification failed</value>
+  </data>
+  <data name="GameServer_StageFetchBranches" xml:space="preserve">
+    <value>Fetching network branches</value>
+  </data>
+  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
+    <value>Downloading and decoding manifests</value>
+  </data>
+  <data name="GameServer_StageDiff" xml:space="preserve">
+    <value>Comparing</value>
+  </data>
+  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
+    <value>Downloading required chunks</value>
+  </data>
+  <data name="GameServer_StageReplace" xml:space="preserve">
+    <value>Replacing files</value>
+  </data>
+  <data name="GameServer_ReplacingFile" xml:space="preserve">
+    <value>Replacing file {0}/{1} - {2}</value>
+  </data>
+  <data name="GameServer_StageCleanup" xml:space="preserve">
+    <value>Cleaning up temporary data</value>
+  </data>
+  <data name="GameServer_StageVerify" xml:space="preserve">
+    <value>Verifying game file integrity, this may take a while</value>
+  </data>
+  <data name="GameServer_VerifyOk" xml:space="preserve">
+    <value>Verification passed, game data is intact</value>
+  </data>
+  <data name="GameServer_VerifyProgress" xml:space="preserve">
+    <value>Verifying: {0}/{1}</value>
+  </data>
+  <data name="GameServer_RepairFound" xml:space="preserve">
+    <value>Found {0} broken or missing file(s), repairing</value>
+  </data>
+  <data name="GameServer_RepairDone" xml:space="preserve">
+    <value>Broken files repaired</value>
+  </data>
+  <data name="GameServer_InstallingPredownload" xml:space="preserve">
+    <value>Installing pre-download files</value>
+  </data>
+  <data name="GameServer_BranchDataNull" xml:space="preserve">
+    <value>API returned null data, failed to fetch branch info</value>
+  </data>
+  <data name="GameServer_NoMainBranch" xml:space="preserve">
+    <value>Failed to get main branch data</value>
+  </data>
+  <data name="GameServer_NoPredownload" xml:space="preserve">
+    <value>Pre-download is not available right now</value>
+  </data>
+  <data name="GameServer_NoPackageId" xml:space="preserve">
+    <value>Branch data missing package_id</value>
+  </data>
+  <data name="GameServer_NoPassword" xml:space="preserve">
+    <value>Branch data missing password</value>
+  </data>
+  <data name="GameServer_NoManifests" xml:space="preserve">
+    <value>Failed to get manifests.</value>
+  </data>
+  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
+    <value>Manifest checksum mismatch: {0}</value>
+  </data>
+  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
+    <value>API request failed: {0}, error: {1}</value>
+  </data>
+  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
+    <value>Chunk {0} failed to download or failed verification.</value>
+  </data>
+  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
+    <value>File checksum mismatch: {0}</value>
+  </data>
+  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
+    <value>File size mismatch: {0}, got {1} bytes, expected {2} bytes</value>
+  </data>
+  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
+    <value>Cache missing, skipped file: {0} (can be repaired by verification later)</value>
+  </data>
+  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
+    <value>Assembled file failed verification (local old file may be corrupted), skipped: {0} (can be repaired by verification later)</value>
+  </data>
+  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
+    <value>Failed to clean temporary chunks: {0}</value>
+  </data>
+  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
+    <value>Cleaning legacy SDK files...</value>
+  </data>
+  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
+    <value>Fetching channel SDK config...</value>
+  </data>
+  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
+    <value>Failed to get channel SDK config</value>
+  </data>
+  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
+    <value>Downloading channel SDK...</value>
+  </data>
+  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
+    <value>Extracting channel SDK...</value>
+  </data>
+  <data name="GameServer_CleanedPlugins" xml:space="preserve">
+    <value>Cleaned Plugins folder</value>
+  </data>
+  <data name="GameServer_InsufficientPermission" xml:space="preserve">
+    <value>Insufficient permission to write to the game directory: {0}. Run as administrator or check directory permissions</value>
+  </data>
+  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
+    <value>Channel SDK files missing or corrupted, re-fetching...</value>
+  </data>
+  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
+    <value>Processing deprecated files...</value>
+  </data>
+  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
+    <value>Failed to fetch deprecated file configs: {0}</value>
+  </data>
+  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
+    <value>Official</value>
+  </data>
+  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
+    <value>Bilibili</value>
+  </data>
+  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
+    <value>Oversea</value>
+  </data>
+  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
+    <value>Download speed</value>
+  </data>
+  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
+    <value>Remaining chunks: {0}</value>
+  </data>
+  <data name="SpeedGraph_NoData" xml:space="preserve">
+    <value>No speed data available</value>
   </data>
 </root>

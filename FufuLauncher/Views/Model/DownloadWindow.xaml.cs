@@ -4,7 +4,9 @@ Licensed under the MIT License.
 */
 
 using FufuLauncher.Helpers;
+using FufuLauncher.Models.GameServer;
 using FufuLauncher.Services;
+using FufuLauncher.Services.GameServer;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -17,14 +19,22 @@ namespace FufuLauncher.Views
     public sealed partial class DownloadWindow : Window
     {
         private readonly string _installPath;
-        private CancellationTokenSource _cts;
+        private CancellationTokenSource? _cts;
         private bool _isDownloading = false;
+        private readonly GameServerDownloadMonitor _downloadMonitor = new();
+        private DownloadSpeedChartController? _chartController;
 
         public DownloadWindow(string installPath)
         {
             InitializeComponent();
             _installPath = installPath;
             PathBox.Text = _installPath;
+
+            _chartController = new DownloadSpeedChartController(SpeedGraphChart, _downloadMonitor);
+            SpeedGraphChart.NoDataText = "SpeedGraph_NoData".GetLocalized();
+
+            ServerCombo.ItemsSource = GameServerScheme.Selectable;
+            ServerCombo.SelectedItem = GameServerScheme.ChineseOfficialOfficial;
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
@@ -45,22 +55,18 @@ namespace FufuLauncher.Views
             _isDownloading = true;
             SetUIState(false);
 
-            LogBlock.Text = ">>> 初始化任务...\n";
+            _chartController!.Start();
             MainProgressBar.Value = 0;
             StatusText.Foreground = (SolidColorBrush)Application.Current.Resources["TextFillColorPrimaryBrush"];
 
             _cts = new CancellationTokenSource();
 
-            var downloader = new GenshinDownloader();
+            var scheme = ServerCombo.SelectedItem as GameServerScheme ?? GameServerScheme.ChineseOfficialOfficial;
 
-            downloader.Log += (msg) => DispatcherQueue.TryEnqueue(() =>
-            {
-                if (LogBorder.Visibility == Visibility.Visible)
-                {
-                    LogBlock.Text += $"[{DateTime.Now:HH:mm:ss}] {msg}\n";
-                    LogScroller.ChangeView(null, LogScroller.ScrollableHeight, null);
-                }
-            });
+            var downloader = new GenshinDownloader(
+                App.GetService<SophonBuildClient>(),
+                App.GetService<ChunkDownloader>(),
+                scheme);
 
             downloader.ProgressChanged += (downloaded, total, doneFiles, totalFiles) =>
             {
@@ -68,6 +74,7 @@ namespace FufuLauncher.Views
                 {
                     if (total <= 0) return;
                     double percent = (double)downloaded / total * 100;
+                    _chartController!.UpdateProgress(percent);
                     MainProgressBar.Value = percent;
 
                     StatusText.Text = string.Format("DownloadWindow_Processing".GetLocalized(), doneFiles, totalFiles);
@@ -79,10 +86,11 @@ namespace FufuLauncher.Views
 
             try
             {
-                var lang = ((ComboBoxItem)LanguageCombo.SelectedItem).Tag.ToString();
+                var lang = ((ComboBoxItem)LanguageCombo.SelectedItem).Tag?.ToString() ?? "zh-cn";
                 var downloadBase = BaseGameCheck.IsChecked == true;
 
-                await Task.Run(() => downloader.StartDownloadAsync(_installPath, lang, downloadBase, 16, _cts.Token));
+                await Task.Run(() => downloader.StartDownloadAsync(_installPath, lang, downloadBase, 16, _cts.Token, _downloadMonitor));
+                _chartController.Stop();
 
                 DispatcherQueue.TryEnqueue(async () =>
                 {
@@ -103,10 +111,12 @@ namespace FufuLauncher.Views
             }
             catch (OperationCanceledException)
             {
+                _chartController.SetPaused();
                 DispatcherQueue.TryEnqueue(() => StatusText.Text = "DownloadWindow_Cancelled".GetLocalized());
             }
             catch (Exception ex)
             {
+                _chartController.SetFailed();
                 DispatcherQueue.TryEnqueue(async () =>
                 {
                     StatusText.Text = "DownloadWindow_Error".GetLocalized();
@@ -135,16 +145,11 @@ namespace FufuLauncher.Views
             else Close();
         }
 
-        private void LogToggle_Click(object sender, RoutedEventArgs e)
-        {
-            LogBorder.Visibility = LogToggle.IsChecked == true ? Visibility.Visible : Visibility.Collapsed;
-            LogToggle.Content = LogToggle.IsChecked == true ? "DownloadWindow_HideDetailLog".GetLocalized() : "DownloadWindow_ShowDetailLog".GetLocalized();
-        }
-
         private void SetUIState(bool enabled)
         {
             StartButton.IsEnabled = enabled;
             LanguageCombo.IsEnabled = enabled;
+            ServerCombo.IsEnabled = enabled;
             BaseGameCheck.IsEnabled = enabled;
             PathBox.IsEnabled = enabled;
             CancelButton.IsEnabled = !enabled;

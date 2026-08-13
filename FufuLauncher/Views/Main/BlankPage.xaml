@@ -741,6 +741,52 @@
                                     </StackPanel>
                                 </Grid>
                             </Button>
+
+                            <Button x:Name="BtnPredownloadGame" Grid.Row="1" Grid.Column="2" Click="PreDownloadGame_Click"
+                                    Style="{StaticResource SafeToolCardButtonStyle}" Translation="0,0,32">
+                                <Button.Shadow>
+                                    <ThemeShadow />
+                                </Button.Shadow>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Glyph="&#xE895;" FontSize="22" Margin="0,0,16,0" />
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{helpers:Loc Key=GameUpdate_PredownloadTitle}" FontWeight="SemiBold" />
+                                        <StackPanel Orientation="Horizontal" Spacing="6">
+                                            <TextBlock Text="{helpers:Loc Key=GameUpdate_PredownloadCaption}" FontSize="11"
+                                                       Foreground="{ThemeResource SafeSecondaryTextBrush}" />
+                                            <Border x:Name="PredownloadFinishedBadge" Background="#2E7FB800" CornerRadius="8" Padding="6,1"
+                                                    Visibility="Collapsed" VerticalAlignment="Center">
+                                                <TextBlock Text="{helpers:Loc Key=GameUpdate_PredownloadFinishedBadge}" FontSize="10"
+                                                           Foreground="#FFA0D500" />
+                                            </Border>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+
+                            <Button x:Name="BtnUpdateGame" Grid.Row="1" Grid.Column="3" Click="UpdateGame_Click"
+                                    Style="{StaticResource SafeToolCardButtonStyle}" Translation="0,0,32">
+                                <Button.Shadow>
+                                    <ThemeShadow />
+                                </Button.Shadow>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Glyph="&#xE777;" FontSize="22" Margin="0,0,16,0" />
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <TextBlock Text="{helpers:Loc Key=GameUpdate_UpdateBtnTitle}" FontWeight="SemiBold" />
+                                        <TextBlock Text="{helpers:Loc Key=GameUpdate_UpdateBtnCaption}" FontSize="11"
+                                                   Foreground="{ThemeResource SafeSecondaryTextBrush}" />
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+
                         </Grid>
 
                         <Grid Style="{StaticResource SafeCardStyle}" Padding="20" Translation="0,0,32"

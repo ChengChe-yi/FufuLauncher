@@ -13,6 +13,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Services.AuthTicket;
+using FufuLauncher.Services.GameServer;
 
 namespace FufuLauncher.Services
 {
@@ -36,6 +37,7 @@ namespace FufuLauncher.Services
         private readonly IGameConfigService _gameConfigService;
         private readonly ILauncherService _launcherService;
         private readonly ControlPanelModel _controlPanelModel;
+        private readonly GameServerConfigurationService _gameServerConfigurationService;
         private const string GamePathKey = "GameInstallationPath";
         private const string UseInjectionKey = "UseInjection";
         private const string CustomLaunchParametersKey = "CustomLaunchParameters";
@@ -57,7 +59,8 @@ namespace FufuLauncher.Services
             IPluginUpdateService pluginUpdateService,
             IScreenshotService screenshotService,
             IAuthTicketService authTicketService,
-            AccountManager accountManager)
+            AccountManager accountManager,
+            GameServerConfigurationService gameServerConfigurationService)
         {
             _localSettingsService = localSettingsService;
             _gameConfigService = gameConfigService;
@@ -66,6 +69,7 @@ namespace FufuLauncher.Services
             _screenshotService = screenshotService;
             _authTicketService = authTicketService;
             _accountManager = accountManager;
+            _gameServerConfigurationService = gameServerConfigurationService;
         }
 
         [DllImport("user32.dll")]
@@ -313,7 +317,7 @@ namespace FufuLauncher.Services
                         }
                         catch { }
                         
-                        bool isGameOversea = config.ServerType == "ServerType_Global".GetLocalized();
+                        bool isGameOversea = _gameServerConfigurationService.TryDetectCurrentScheme(gamePath)?.IsOversea == true;
                         
                         if (isBilibili)
                         {
@@ -682,9 +686,6 @@ namespace FufuLauncher.Services
         private StringBuilder BuildLaunchArguments(GameConfig config, string? authTicket = null)
         {
             var args = new StringBuilder();
-
-            if (config.ServerType.Contains("官服")) {}
-            else if (config.ServerType.Contains("B服")){}
 
             var customParamsObj = _localSettingsService.ReadSettingAsync(CustomLaunchParametersKey).Result;
             if (customParamsObj != null)
