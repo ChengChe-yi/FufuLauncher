@@ -53,6 +53,13 @@
                     <SolidColorBrush x:Key="BannerOverlayButtonBackgroundBrush" Color="#99000000" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
+            
+            <AcrylicBrush
+                x:Key="LaunchButtonBackgroundBrush"
+                FallbackColor="#CC000000"
+                TintColor="#000000"
+                TintOpacity="0.15" />
+            <SolidColorBrush x:Key="LaunchButtonHoverBrush" Color="#26FFFFFF" />
 
             <Storyboard x:Name="EntranceStoryboard">
                 <DoubleAnimation
@@ -1291,14 +1298,14 @@
 
                 <Grid>
                     <Border
-                        Background="{ThemeResource IosGlassBrush}"
+                        Background="{ThemeResource LaunchButtonBackgroundBrush}"
                         BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                         BorderThickness="1"
                         CornerRadius="24" />
 
                     <Border
                         x:Name="LaunchButtonHoverLayer"
-                        Background="{ThemeResource CardButtonHoverBrush}"
+                        Background="{ThemeResource LaunchButtonHoverBrush}"
                         CornerRadius="24"
                         Opacity="0"
                         IsHitTestVisible="False" />
