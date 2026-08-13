@@ -354,6 +354,8 @@ namespace FufuLauncher.ViewModels
 
         public async Task InitializeNavItemsAsync()
         {
+            NavItems.Clear();
+
             var allItems = new List<NavItemConfig>
             {
                 new() { ViewModelKey = "FufuLauncher.ViewModels.MainViewModel",       DisplayNameKey = "NavHome",            IconGlyph = "\uE80F", IsForceVisible = true },
@@ -696,7 +698,7 @@ namespace FufuLauncher.ViewModels
             ElementTheme = _themeSelectorService.Theme;
             _versionDescription = GetVersionDescription();
             ClearWebView2CacheCommand = new AsyncRelayCommand(ClearWebView2CacheAsync);
-            UpdateWebView2CacheSize();
+            UpdateWebView2CacheSizeAsync();
             ClearCustomBackgroundCommand = new AsyncRelayCommand(ClearCustomBackgroundAsync);
             ResetGameExeNameCommand = new AsyncRelayCommand(ResetGameExeNameAsync);
             ResetBackgroundApiCommand = new AsyncRelayCommand(ResetBackgroundApiAsync);
@@ -954,20 +956,29 @@ namespace FufuLauncher.ViewModels
             return string.Format("{0:n2} {1}", number, suffixes[counter]);
         }
         
-        private void UpdateWebView2CacheSize()
+        private static string? _cachedWebView2CacheSize;
+
+        private async void UpdateWebView2CacheSizeAsync(bool forceRefresh = false)
         {
             try
             {
                 string cacheFolder = Path.Combine(AppContext.BaseDirectory, "FufuLauncher.exe.WebView2");
-                if (Directory.Exists(cacheFolder))
-                {
-                    long size = GetDirectorySize(new DirectoryInfo(cacheFolder));
-                    WebView2CacheSize = FormatSize(size);
-                }
-                else
+                if (!Directory.Exists(cacheFolder))
                 {
                     WebView2CacheSize = "0 MB";
+                    return;
                 }
+
+                if (!forceRefresh && _cachedWebView2CacheSize != null)
+                {
+                    WebView2CacheSize = _cachedWebView2CacheSize;
+                    return;
+                }
+
+                long size = await Task.Run(() => GetDirectorySize(new DirectoryInfo(cacheFolder)));
+                var formatted = FormatSize(size);
+                _cachedWebView2CacheSize = formatted;
+                WebView2CacheSize = formatted;
             }
             catch
             {
@@ -1044,7 +1055,7 @@ namespace FufuLauncher.ViewModels
                     await Task.Run(() => SafeDeleteDirectory(cacheFolder));
                 }
                 
-                UpdateWebView2CacheSize();
+                UpdateWebView2CacheSizeAsync(true);
             }
             catch (Exception ex)
             {

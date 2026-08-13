@@ -196,7 +196,6 @@ public sealed partial class MainWindow : WindowEx
                     await PerformMainInitAsync();
                     _announcementCheckTimer.Start();
                     await CheckAndWarnVCRedistAsync();
-                    await CheckAndWarnUacElevationAsync();
                 }
                 catch (Exception ex) { Debug.WriteLine($"消息处理异常: {ex.Message}"); }
             });
@@ -345,7 +344,6 @@ public sealed partial class MainWindow : WindowEx
                 try
                 {
                     await CheckAndWarnVCRedistAsync();
-                    await CheckAndWarnUacElevationAsync();
                 }
                 catch (Exception ex)
                 {
@@ -665,59 +663,6 @@ public sealed partial class MainWindow : WindowEx
     
     #region Environment Checks
 
-    private async Task CheckAndWarnUacElevationAsync()
-    {
-        var ignoreFilePath = Path.Combine(AppContext.BaseDirectory, ".no_uac_warning");
-        if (File.Exists(ignoreFilePath)) return;
-
-        if (SystemEnvironmentHelper.IsUacElevatedWithConsent())
-    {
-        try
-        {
-            if (Content is FrameworkElement rootElement)
-            {
-                if (rootElement.XamlRoot == null)
-                {
-                    var tcs = new TaskCompletionSource<bool>();
-                    RoutedEventHandler onLoaded = null!;
-                    onLoaded = (_, _) =>
-                    {
-                        rootElement.Loaded -= onLoaded;
-                        tcs.TrySetResult(true);
-                    };
-                    rootElement.Loaded += onLoaded;
-                    await tcs.Task;
-                }
-                
-                ContentDialog dialog = new()
-                {
-                    XamlRoot = rootElement.XamlRoot,
-                    Title = "AdminWarningTitle".GetLocalized(),
-                    Content = "AdminWarningContent".GetLocalized(),
-                    PrimaryButtonText = "DontShowAgain".GetLocalized(),
-                    CloseButtonText = "GotItBtn".GetLocalized(),
-                    DefaultButton = ContentDialogButton.Close
-                };
-                
-                dialog.PrimaryButtonClick += (_, _) =>
-                {
-                    try { File.Create(ignoreFilePath).Dispose(); }
-                    catch
-                    {
-                        // ignored
-                    }
-                };
-
-                await dialog.ShowAsync(); 
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"显示 UAC 警告弹窗失败: {ex.Message}");
-        }
-    }
-}
-    
     private async Task CheckAndWarnVCRedistAsync()
     {
         var ignoreFilePath = Path.Combine(AppContext.BaseDirectory, ".no_vc_warning");
