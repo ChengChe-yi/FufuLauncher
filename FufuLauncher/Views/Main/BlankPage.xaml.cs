@@ -15,6 +15,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Windows.Storage.Pickers;
 using FufuLauncher.Constants;
 using FufuLauncher.Services;
@@ -115,6 +117,8 @@ namespace FufuLauncher.Views
         private GameConfigData? _currentConfig;
         private readonly string _accountsFilePath;
         private readonly ILocalSettingsService _localSettingsService;
+        private Storyboard? _redeemExpandStoryboard;
+        private bool _redeemCodesExpanded;
 
         public BlankPage()
         {
@@ -487,16 +491,99 @@ private async void FpsOverlayToggle_Toggled(object sender, RoutedEventArgs e)
 
         private void ToggleCodes_Click(object sender, RoutedEventArgs e)
         {
-            if (RedeemContentPanel.Visibility == Visibility.Visible)
+            StopRedeemExpandAnimation();
+
+            if (_redeemCodesExpanded)
             {
-                RedeemContentPanel.Visibility = Visibility.Collapsed;
-                RedeemChevron.Glyph = "\uE70D"; // ChevronDown
+                // 平滑收起：从当前实际高度动画到 0
+                var fromHeight = RedeemContentPanel.ActualHeight;
+                var fromOpacity = RedeemContentPanel.Opacity;
+                RedeemContentPanel.Height = fromHeight;
+
+                var sb = new Storyboard();
+                sb.Children.Add(CreateRedeemPanelAnimation("Height", fromHeight, 0, 260, EasingMode.EaseIn));
+                sb.Children.Add(CreateRedeemPanelAnimation("Opacity", fromOpacity, 0, 200, EasingMode.EaseIn));
+                sb.Children.Add(CreateChevronAnimation(RedeemChevronRotate.Angle, 0, 260, EasingMode.EaseIn));
+                sb.Completed += (_, _) =>
+                {
+                    RedeemContentPanel.Visibility = Visibility.Collapsed;
+                    RedeemContentPanel.Height = double.NaN;
+                    RedeemContentPanel.Opacity = 1;
+                    _redeemCodesExpanded = false;
+                    _redeemExpandStoryboard = null;
+                };
+                _redeemExpandStoryboard = sb;
+                sb.Begin();
             }
             else
             {
+                // 平滑展开：先测量内容的目标高度，再从 0 动画到该高度
                 RedeemContentPanel.Visibility = Visibility.Visible;
-                RedeemChevron.Glyph = "\uE70E"; // ChevronUp
+                RedeemContentPanel.Height = double.NaN;
+                RedeemContentPanel.UpdateLayout();
+                var toHeight = RedeemContentPanel.ActualHeight;
+
+                RedeemContentPanel.Height = 0;
+                RedeemContentPanel.Opacity = 0;
+
+                var sb = new Storyboard();
+                sb.Children.Add(CreateRedeemPanelAnimation("Height", 0, toHeight, 300, EasingMode.EaseOut));
+                sb.Children.Add(CreateRedeemPanelAnimation("Opacity", 0, 1, 240, EasingMode.EaseOut));
+                sb.Children.Add(CreateChevronAnimation(RedeemChevronRotate.Angle, 180, 300, EasingMode.EaseOut));
+                sb.Completed += (_, _) =>
+                {
+                    RedeemContentPanel.Height = double.NaN;
+                    RedeemContentPanel.Opacity = 1;
+                    _redeemCodesExpanded = true;
+                    _redeemExpandStoryboard = null;
+                };
+                _redeemExpandStoryboard = sb;
+                sb.Begin();
             }
+        }
+
+        /// <summary>
+        /// 若上一次展开/收起动画仍在进行，则以当前动画值作为基准值再停止，避免视觉跳变。
+        /// </summary>
+        private void StopRedeemExpandAnimation()
+        {
+            if (_redeemExpandStoryboard == null)
+                return;
+
+            RedeemContentPanel.Height = RedeemContentPanel.ActualHeight;
+            RedeemContentPanel.Opacity = RedeemContentPanel.Opacity;
+            RedeemChevronRotate.Angle = RedeemChevronRotate.Angle;
+            _redeemExpandStoryboard.Stop();
+            _redeemExpandStoryboard = null;
+        }
+
+        private DoubleAnimation CreateRedeemPanelAnimation(string property, double from, double to, int durationMs, EasingMode easing)
+        {
+            var animation = new DoubleAnimation
+            {
+                EnableDependentAnimation = true,
+                From = from,
+                To = to,
+                Duration = new Duration(TimeSpan.FromMilliseconds(durationMs)),
+                EasingFunction = new CubicEase { EasingMode = easing },
+            };
+            Storyboard.SetTarget(animation, RedeemContentPanel);
+            Storyboard.SetTargetProperty(animation, property);
+            return animation;
+        }
+
+        private DoubleAnimation CreateChevronAnimation(double from, double to, int durationMs, EasingMode easing)
+        {
+            var animation = new DoubleAnimation
+            {
+                From = from,
+                To = to,
+                Duration = new Duration(TimeSpan.FromMilliseconds(durationMs)),
+                EasingFunction = new CubicEase { EasingMode = easing },
+            };
+            Storyboard.SetTarget(animation, RedeemChevronRotate);
+            Storyboard.SetTargetProperty(animation, nameof(RotateTransform.Angle));
+            return animation;
         }
 
         private void CopyCode_Click(object sender, RoutedEventArgs e)
