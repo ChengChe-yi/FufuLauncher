@@ -1484,17 +1484,25 @@ public sealed partial class MainWindow : WindowEx
         {
             var isAdmin = SystemEnvironmentHelper.IsRunningAsAdministrator();
             TitleBarText.Text = isAdmin ? "AppDisplayNameAdmin".GetLocalized() : "AppDisplayName".GetLocalized();
-
-            // 预览版构建在标题右侧显示黄色版本号与发布类型
+            
             if (AppVersionHelper.IsPreviewBuild)
             {
                 TitleBarVersionText.Text = string.Format("PreviewVersionBadgeFormat".GetLocalized(), AppVersionHelper.NumericVersion);
                 TitleBarVersionText.Visibility = Visibility.Visible;
             }
-            else
-            {
-                TitleBarVersionText.Visibility = Visibility.Collapsed;
-            }
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
+    public void ShowDevBuildBadge()
+    {
+        try
+        {
+            TitleBarVersionText.Text = string.Format("DevVersionBadgeFormat".GetLocalized(), AppVersionHelper.NumericVersion);
+            TitleBarVersionText.Visibility = Visibility.Visible;
         }
         catch
         {

@@ -289,50 +289,6 @@ public partial class App : Application
         });
     }
 
-    private void LaunchLocalUpdater()
-    {
-        try
-        {
-            var mainExePath = Environment.ProcessPath;
-            if (string.IsNullOrEmpty(mainExePath))
-            {
-                Debug.WriteLine("[Updater] 无法获取主程序路径，更新程序启动中止");
-                return;
-            }
-            
-            var currentPid = Process.GetCurrentProcess().Id;
-            
-            var baseDirectory = Path.GetDirectoryName(mainExePath);
-            if (string.IsNullOrEmpty(baseDirectory)) return;
-            
-            var updaterPath = Path.Combine(baseDirectory, "update.exe");
-
-            if (File.Exists(updaterPath))
-            {
-                var psi = new ProcessStartInfo
-                {
-                    FileName = updaterPath,
-                    Arguments = $"\"{mainExePath}\" {currentPid}", 
-                    UseShellExecute = true,
-                    WindowStyle = ProcessWindowStyle.Normal
-                };
-
-                Process.Start(psi);
-                Debug.WriteLine($"[Updater] 已成功启动更新程序，路径: {updaterPath}");
-            }
-            else
-            {
-                Debug.WriteLine($"[Updater] 找不到更新程序，预期路径: {updaterPath}");
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"[Updater] 启动更新程序失败: {ex.Message}");
-            LogException(ex, "LaunchLocalUpdater");
-        }
-    }
-
-
     private void CleanupOldSettings()
     {
         try
@@ -394,8 +350,6 @@ public partial class App : Application
             Debug.WriteLine("=== App 启动开始 ===");
 
             _mainDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
-
-            _ = Task.Run(() => LaunchLocalUpdater());
 
             _ = Task.Run(async () =>
             {
@@ -612,6 +566,11 @@ public partial class App : Application
         {
             var updateService = GetService<IUpdateService>();
             var result = await updateService.CheckUpdateAsync();
+            
+            if (result.IsDevBuild && MainWindow is MainWindow mainWindow)
+            {
+                mainWindow.ShowDevBuildBadge();
+            }
 
             if (result.ShouldShowUpdate)
             {

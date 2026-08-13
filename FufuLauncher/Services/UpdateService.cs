@@ -68,6 +68,9 @@ public class UpdateService : IUpdateService
             Debug.WriteLine($"[UpdateService] 解析后的预览版版本: '{previewVersion}'");
             Debug.WriteLine($"[UpdateService] 更新公告URL: {updateInfoUrl}");
             Debug.WriteLine($"[UpdateService] 预览版更新公告URL: {previewUpdateInfoUrl}");
+            
+            var isDevBuild = !AppVersionHelper.IsPreviewBuild && IsNewerVersion(CurrentVersion, serverVersion);
+            Debug.WriteLine($"[UpdateService] 是否开发版: {isDevBuild}");
 
             var lastVersionObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedVersionKey);
             var lastVersion = lastVersionObj?.ToString() ?? string.Empty;
@@ -82,6 +85,7 @@ public class UpdateService : IUpdateService
                 return new UpdateCheckResult
                 {
                     ShouldShowUpdate = true,
+                    IsDevBuild = isDevBuild,
                     ServerVersion = serverVersion,
                     UpdateInfoUrl = updateInfoUrl
                 };
@@ -107,6 +111,7 @@ public class UpdateService : IUpdateService
                     {
                         ShouldShowUpdate = true,
                         IsPreview = true,
+                        IsDevBuild = isDevBuild,
                         ServerVersion = previewVersion,
                         UpdateInfoUrl = previewUpdateInfoUrl
                     };
@@ -116,7 +121,7 @@ public class UpdateService : IUpdateService
             }
 
             Debug.WriteLine($"[UpdateService] 无可用更新，跳过");
-            return new UpdateCheckResult { ShouldShowUpdate = false };
+            return new UpdateCheckResult { ShouldShowUpdate = false, IsDevBuild = isDevBuild };
         }
         catch (Exception ex)
         {

@@ -5821,4 +5821,7 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RollbackToStableCaption" xml:space="preserve">
     <value>仅预览版可用。下载并安装最新正式版，覆盖当前预览版</value>
   </data>
+  <data name="DevVersionBadgeFormat" xml:space="preserve">
+    <value>v{0} 开发版</value>
+  </data>
 </root>

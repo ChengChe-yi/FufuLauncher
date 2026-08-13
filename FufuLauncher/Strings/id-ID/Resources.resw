@@ -5831,4 +5831,7 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="RollbackToStableCaption" xml:space="preserve">
     <value>Only available on pre-release builds. Downloads and installs the latest stable release, replacing the current pre-release.</value>
   </data>
+  <data name="DevVersionBadgeFormat" xml:space="preserve">
+    <value>v{0} Dev</value>
+  </data>
 </root>
