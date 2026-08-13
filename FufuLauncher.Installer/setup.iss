@@ -1,5 +1,6 @@
 #define AppName       "FufuLauncher"
-#define AppVersion    "1.6.0.1"
+#define AppVersion    "1.6.0.2Pre-release"
+#define AppVersionNum "1.6.0.2"
 #define AppPublisher  "FufuLauncher"
 #define AppExe        "FufuLauncher.exe"
 #define AppId         "{{A7B2C3D4-E5F6-7890-AB12-CD34EF567890}"
@@ -15,8 +16,8 @@ AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
 AppPublisher={#AppPublisher}
 AppCopyright=Copyright (C) 2026 {#AppPublisher}
-VersionInfoVersion={#AppVersion}
-VersionInfoProductVersion={#AppVersion}
+VersionInfoVersion={#AppVersionNum}
+VersionInfoProductVersion={#AppVersionNum}
 VersionInfoDescription={#AppName} Installer
 
 DefaultDirName={localappdata}\Programs\{#AppName}
@@ -197,6 +198,20 @@ begin
   end;
 end;
 
+function LeadingDigits(S: string): string;
+var
+  I: Integer;
+begin
+  Result := '';
+  for I := 1 to Length(S) do
+  begin
+    if (S[I] >= '0') and (S[I] <= '9') then
+      Result := Result + S[I]
+    else
+      Break;
+  end;
+end;
+
 function CompareVersionStr(V1, V2: string): Integer;
 var
   P1, P2: Integer;
@@ -210,8 +225,8 @@ begin
     P2 := Pos('.', V2);
     if P2 = 0 then P2 := Length(V2) + 1;
 
-    if P1 > 1 then Num1 := StrToIntDef(Copy(V1, 1, P1 - 1), 0) else Num1 := 0;
-    if P2 > 1 then Num2 := StrToIntDef(Copy(V2, 1, P2 - 1), 0) else Num2 := 0;
+    if P1 > 1 then Num1 := StrToIntDef(LeadingDigits(Copy(V1, 1, P1 - 1)), 0) else Num1 := 0;
+    if P2 > 1 then Num2 := StrToIntDef(LeadingDigits(Copy(V2, 1, P2 - 1)), 0) else Num2 := 0;
 
     if Num1 < Num2 then
     begin

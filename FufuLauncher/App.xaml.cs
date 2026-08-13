@@ -615,13 +615,15 @@ public partial class App : Application
 
             if (result.ShouldShowUpdate)
             {
-                Debug.WriteLine($"准备显示更新窗口，版本: {result.ServerVersion}");
+                Debug.WriteLine($"准备显示更新窗口，版本: {result.ServerVersion}，预览版: {result.IsPreview}");
                 Debug.WriteLine($"[App] 动态更新公告URL: {result.UpdateInfoUrl}");
 
                 MainWindow.Activate();
 
-                var updateWindow = new Views.UpdateNotificationWindow(result.UpdateInfoUrl);
-                updateWindow.Title = $"版本更新公告 - v{result.ServerVersion}";
+                var updateWindow = new Views.UpdateNotificationWindow(result.UpdateInfoUrl, result.IsPreview);
+                updateWindow.Title = result.IsPreview
+                    ? $"预览版更新公告 - v{result.ServerVersion}"
+                    : $"版本更新公告 - v{result.ServerVersion}";
                 updateWindow.Activate();
             }
         }

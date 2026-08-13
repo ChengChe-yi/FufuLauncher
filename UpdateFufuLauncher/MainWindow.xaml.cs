@@ -47,7 +47,7 @@ namespace Updater
             public int AnimationId;
         }
         
-        private const string AppVersion = "1.6.0.1";
+        private const string AppVersion = "1.6.0.2";
 
         private static readonly HttpClient _httpClient = new(new HttpClientHandler
         {
@@ -70,6 +70,11 @@ namespace Updater
         private int _stuckTicks = 0;
         private bool _isDownloading = false;
         private bool _useThirdPartyCDN = true;
+        private bool _isPreviewMode = false;
+        private bool _isRollbackMode = false;
+        private string _installedVersion = AppVersion;
+        private bool _isInstalledPreviewBuild = false;
+        private string _officialVersion = string.Empty;
 
         private const string TestFileOfficialUrl = "https://raw.githubusercontent.com/moodlehq/moodle-exttests/master/test.html";
         private const string ExpectedTestFileMD5 = "47250a973d1b88d9445f94db4ef2c97a";
@@ -90,7 +95,38 @@ namespace Updater
                     var value = arg.Substring("--use-third-party-cdn=".Length);
                     _useThirdPartyCDN = !value.Equals("false", StringComparison.OrdinalIgnoreCase);
                 }
+                else if (arg.Equals("--preview", StringComparison.OrdinalIgnoreCase))
+                {
+                    _isPreviewMode = true;
+                }
+                else if (arg.Equals("--rollback", StringComparison.OrdinalIgnoreCase))
+                {
+                    _isRollbackMode = true;
+                }
+                else if (arg.StartsWith("--installed-version=", StringComparison.OrdinalIgnoreCase))
+                {
+                    _installedVersion = arg.Substring("--installed-version=".Length);
+                }
             }
+
+            _isInstalledPreviewBuild = _installedVersion.IndexOf("Pre-release", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private static string StripPreReleaseSuffix(string version)
+        {
+            if (string.IsNullOrWhiteSpace(version)) return string.Empty;
+
+            var trimmed = version.Trim();
+            if (trimmed.EndsWith("Pre-release", StringComparison.OrdinalIgnoreCase))
+            {
+                trimmed = trimmed.Substring(0, trimmed.Length - "Pre-release".Length).Trim();
+            }
+            return trimmed;
+        }
+
+        private static bool TryParseVersion(string input, out Version version)
+        {
+            return Version.TryParse(StripPreReleaseSuffix(input), out version);
         }
 
         private void StuckTimer_Tick(object sender, EventArgs e)
@@ -206,10 +242,22 @@ namespace Updater
                 }
                 
                 JObject updateJson = JObject.Parse(updateContent);
-                string remoteVersionStr = updateJson.GetValue("version", StringComparison.OrdinalIgnoreCase)?.ToString();
+                _officialVersion = updateJson.GetValue("version", StringComparison.OrdinalIgnoreCase)?.ToString() ?? string.Empty;
 
-                if (!Version.TryParse(AppVersion, out Version currentVersion) || 
-                    !Version.TryParse(remoteVersionStr, out Version remoteVersion))
+                if (_isRollbackMode)
+                {
+                    await CheckRollbackAsync();
+                    return;
+                }
+
+                if (_isPreviewMode)
+                {
+                    await CheckPreviewUpdateAsync(updateJson);
+                    return;
+                }
+
+                if (!TryParseVersion(_installedVersion, out Version currentVersion) ||
+                    !TryParseVersion(_officialVersion, out Version remoteVersion))
                 {
                     MessageBox.Show("版本号无法识别，请前往官网下载\n此处不提供更新", "版本异常", MessageBoxButton.OK, MessageBoxImage.Error);
                     Environment.Exit(0);
@@ -218,66 +266,188 @@ namespace Updater
 
                 if (currentVersion >= remoteVersion)
                 {
-                    LoadingPanel.Visibility = Visibility.Collapsed;
-                    NoUpdatePanel.Visibility = Visibility.Visible;
-                    SubtitleText.Text = "检查完毕";
+                    // 预览版用户可无理由回退正式版
+                    ShowNoUpdate("当前已是最新版本，无需更新", _isInstalledPreviewBuild);
                     return;
                 }
 
-                SubtitleText.Text = "获取GitHub最新Release...";
-                string githubApiUrl = "https://api.github.com/repos/FufuLauncher/FufuLauncher/releases/latest";
-                var ghResponse = await _httpClient.GetStringAsync(githubApiUrl);
-                JObject ghJson = JObject.Parse(ghResponse);
-                JToken targetAsset = ghJson["assets"]?.FirstOrDefault(a => a["name"]?.ToString().EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true);
-
-                if (targetAsset == null)
-                {
-                    throw new Exception("最新的Release中不存在文件");
-                }
-
-                _targetExeUrl = targetAsset["browser_download_url"].ToString();
-                _fileName = targetAsset["name"].ToString();
-
-                // 从 GitHub API 的 asset 元数据中提取 SHA-256 哈希（格式: "sha256:xxxxx"）
-                string digest = targetAsset["digest"]?.ToString();
-                if (!string.IsNullOrEmpty(digest) && digest.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
-                {
-                    _expectedSha256 = digest.Substring("sha256:".Length);
-                }
-
-                if (_useThirdPartyCDN)
-                {
-                    SubtitleText.Text = "节点联通性校验...";
-                    await TestMirrorsAsync();
-
-                    LoadingPanel.Visibility = Visibility.Collapsed;
-                    SelectionPanel.Visibility = Visibility.Visible;
-                    ActionPanel.Visibility = Visibility.Visible;
-                    MirrorListView.ItemsSource = _mirrors;
-
-                    if (_mirrors.Count > 0)
-                    {
-                        MirrorListView.SelectedIndex = 0;
-                        SubtitleText.Text = "请选择下载线路";
-                    }
-                    else
-                    {
-                        SubtitleText.Text = "所有节点均未通过校验";
-                        MessageBox.Show("所有镜像节点均未通过文件完整性校验或网络超时\n\n请更换网络环境，或尝试使用直连官方源下载", "网络不佳", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                }
-                else
-                {
-                    // Skip mirror testing, directly download from GitHub
-                    SubtitleText.Text = "直连GitHub下载...";
-                    StartMultiThreadDownload(_targetExeUrl);
-                }
+                await FetchLatestOfficialReleaseAsync();
+                await PrepareDownloadAsync("请选择下载线路", "直连GitHub下载...");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"更新初始化失败，请检查网络，或者去下面下载\nhttps://wwaoi.lanzn.com/b00wnb99ef\n密码:6hnh\n错误详情: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(1);
             }
+        }
+
+        private void ShowNoUpdate(string message, bool showRollback = false)
+        {
+            LoadingPanel.Visibility = Visibility.Collapsed;
+            NoUpdatePanel.Visibility = Visibility.Visible;
+            NoUpdateText.Text = message;
+            RollbackBtn.Visibility = showRollback ? Visibility.Visible : Visibility.Collapsed;
+            SubtitleText.Text = "检查完毕";
+        }
+
+        private async Task FetchLatestOfficialReleaseAsync()
+        {
+            SubtitleText.Text = "获取GitHub最新Release...";
+            string githubApiUrl = "https://api.github.com/repos/FufuLauncher/FufuLauncher/releases/latest";
+            var ghResponse = await _httpClient.GetStringAsync(githubApiUrl);
+            JObject ghJson = JObject.Parse(ghResponse);
+            JToken targetAsset = ghJson["assets"]?.FirstOrDefault(a => a["name"]?.ToString().EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true);
+
+            if (targetAsset == null)
+            {
+                throw new Exception("最新的Release中不存在文件");
+            }
+
+            _targetExeUrl = targetAsset["browser_download_url"].ToString();
+            _fileName = targetAsset["name"].ToString();
+
+            // 从 GitHub API 的 asset 元数据中提取 SHA-256 哈希（格式: "sha256:xxxxx"）
+            string digest = targetAsset["digest"]?.ToString();
+            if (!string.IsNullOrEmpty(digest) && digest.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
+            {
+                _expectedSha256 = digest.Substring("sha256:".Length);
+            }
+        }
+
+        private async Task PrepareDownloadAsync(string selectionSubtitle, string directSubtitle)
+        {
+            if (_useThirdPartyCDN)
+            {
+                SubtitleText.Text = "节点联通性校验...";
+                await TestMirrorsAsync();
+
+                LoadingPanel.Visibility = Visibility.Collapsed;
+                SelectionPanel.Visibility = Visibility.Visible;
+                ActionPanel.Visibility = Visibility.Visible;
+                MirrorListView.ItemsSource = _mirrors;
+
+                if (_mirrors.Count > 0)
+                {
+                    MirrorListView.SelectedIndex = 0;
+                    SubtitleText.Text = selectionSubtitle;
+                }
+                else
+                {
+                    SubtitleText.Text = "所有节点均未通过校验";
+                    MessageBox.Show("所有镜像节点均未通过文件完整性校验或网络超时\n\n请更换网络环境，或尝试使用直连官方源下载", "网络不佳", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else
+            {
+                // Skip mirror testing, directly download from GitHub
+                SubtitleText.Text = directSubtitle;
+                StartMultiThreadDownload(_targetExeUrl);
+            }
+        }
+
+        private async Task CheckRollbackAsync()
+        {
+            SubtitleText.Text = "准备回退正式版...";
+
+            string versionLabel = string.IsNullOrEmpty(_officialVersion) ? string.Empty : $" v{_officialVersion}";
+            var confirm = MessageBox.Show(
+                $"确定要回退到正式版{versionLabel}吗？\n\n回退将下载并安装最新正式版，覆盖当前预览版。",
+                "回退正式版", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (confirm != MessageBoxResult.Yes)
+            {
+                Environment.Exit(0);
+                return;
+            }
+
+            await FetchLatestOfficialReleaseAsync();
+            await PrepareDownloadAsync("请选择下载线路（回退正式版）", "直连GitHub下载正式版...");
+        }
+
+        private async void RollbackToStable_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await CheckRollbackAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"回退正式版失败，请检查网络\n错误详情: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(1);
+            }
+        }
+
+        private async Task CheckPreviewUpdateAsync(JObject updateJson)
+        {
+            string previewVersionStr = updateJson.GetValue("PreReleaseVersion", StringComparison.OrdinalIgnoreCase)?.ToString()?.Trim() ?? string.Empty;
+
+            if (string.IsNullOrEmpty(previewVersionStr))
+            {
+                ShowNoUpdate("服务端暂未发布预览版更新", _isInstalledPreviewBuild);
+                return;
+            }
+
+            if (!TryParseVersion(previewVersionStr, out Version previewVersion))
+            {
+                MessageBox.Show("预览版版本号无法识别，请前往官网下载\n此处不提供更新", "版本异常", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+                return;
+            }
+
+            string officialVersionStr = updateJson.GetValue("version", StringComparison.OrdinalIgnoreCase)?.ToString();
+            if (!TryParseVersion(officialVersionStr, out Version officialVersion))
+            {
+                MessageBox.Show("正式版版本号无法识别，请前往官网下载\n此处不提供更新", "版本异常", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(0);
+                return;
+            }
+
+            if (previewVersion <= officialVersion)
+            {
+                ShowNoUpdate("预览版版本号未高于最新正式版，不允许更新预览版", _isInstalledPreviewBuild);
+                return;
+            }
+
+            SubtitleText.Text = "获取GitHub标签列表...";
+            string tagsUrl = "https://api.github.com/repos/FufuLauncher/FufuLauncher/tags?per_page=100";
+            var tagsResponse = await _httpClient.GetStringAsync(tagsUrl);
+            JArray tags = JArray.Parse(tagsResponse);
+
+            // 服务器字段可能已带 Pre-release 后缀，先去掉再拼 tag，避免双重后缀
+            string previewTagName = $"{StripPreReleaseSuffix(previewVersionStr)}Pre-release";
+            JToken matchedTag = tags.FirstOrDefault(t => string.Equals(t["name"]?.ToString(), previewTagName, StringComparison.OrdinalIgnoreCase));
+
+            if (matchedTag == null)
+            {
+                MessageBox.Show($"未在GitHub找到预览版发布包（标签: {previewTagName}）\n\n更新流程已终止，请稍后再试", "未找到预览版", MessageBoxButton.OK, MessageBoxImage.Information);
+                Environment.Exit(0);
+                return;
+            }
+
+            SubtitleText.Text = "获取预览版Release信息...";
+            string tagName = matchedTag["name"]!.ToString();
+            string releaseUrl = $"https://api.github.com/repos/FufuLauncher/FufuLauncher/releases/tags/{Uri.EscapeDataString(tagName)}";
+            var releaseResponse = await _httpClient.GetStringAsync(releaseUrl);
+            JObject releaseJson = JObject.Parse(releaseResponse);
+
+            JToken targetAsset = releaseJson["assets"]?.FirstOrDefault(a => a["name"]?.ToString().EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true);
+
+            if (targetAsset == null)
+            {
+                throw new Exception("预览版Release中不存在文件");
+            }
+
+            _targetExeUrl = targetAsset["browser_download_url"]!.ToString();
+            _fileName = targetAsset["name"]!.ToString();
+
+            // 从 GitHub API 的 asset 元数据中提取 SHA-256 哈希（格式: "sha256:xxxxx"）
+            string digest = targetAsset["digest"]?.ToString();
+            if (!string.IsNullOrEmpty(digest) && digest.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
+            {
+                _expectedSha256 = digest.Substring("sha256:".Length);
+            }
+
+            await PrepareDownloadAsync("请选择下载线路（预览版）", "直连GitHub下载预览版...");
         }
 
         private async Task TestMirrorsAsync()

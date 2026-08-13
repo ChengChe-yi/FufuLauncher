@@ -5794,4 +5794,31 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginMirrorStatusNormal" xml:space="preserve">
     <value>正常</value>
   </data>
+  <data name="PreviewUpdateTitle" xml:space="preserve">
+    <value>预览版更新</value>
+  </data>
+  <data name="PreviewUpdateCaption" xml:space="preserve">
+    <value>下载预览版（测试版）</value>
+  </data>
+  <data name="UpdateNotification_PreviewTitle" xml:space="preserve">
+    <value>预览版更新公告</value>
+  </data>
+  <data name="PreviewUpdateAnnouncementTitle" xml:space="preserve">
+    <value>预览版更新公告</value>
+  </data>
+  <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
+    <value>开启后，检测到新预览版时自动弹出更新公告窗口</value>
+  </data>
+  <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
+    <value>这是预览版（Pre-release）更新，可能存在不稳定问题，请谨慎更新</value>
+  </data>
+  <data name="PreviewVersionBadgeFormat" xml:space="preserve">
+    <value>v{0} 预览版</value>
+  </data>
+  <data name="RollbackToStableTitle" xml:space="preserve">
+    <value>回退正式版</value>
+  </data>
+  <data name="RollbackToStableCaption" xml:space="preserve">
+    <value>仅预览版可用。下载并安装最新正式版，覆盖当前预览版</value>
+  </data>
 </root>

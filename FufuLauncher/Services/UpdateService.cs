@@ -3,7 +3,6 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Diagnostics;
-using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FufuLauncher.Constants;
@@ -16,7 +15,7 @@ public class UpdateService : IUpdateService
 {
     private readonly ILocalSettingsService _localSettingsService;
     private readonly HttpClient _httpClient;
-    private static readonly string CurrentVersion = Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "1.0.0.0";
+    private static readonly string CurrentVersion = AppVersionHelper.NumericVersion;
 
     public UpdateService(ILocalSettingsService localSettingsService)
     {
@@ -60,36 +59,64 @@ public class UpdateService : IUpdateService
             var updateInfo = JsonSerializer.Deserialize<UpdateInfo>(json);
             var serverVersion = updateInfo?.Version ?? CurrentVersion;
             var updateInfoUrl = updateInfo?.UpdateInfoUrl ?? ApiEndpoints.UpdateHtmlUrl;
+            var previewVersion = updateInfo?.PreReleaseVersion ?? string.Empty;
+            var previewUpdateInfoUrl = string.IsNullOrEmpty(updateInfo?.PreReleaseUpdateInfoUrl)
+                ? ApiEndpoints.UpdatePreHtmlUrl
+                : updateInfo!.PreReleaseUpdateInfoUrl;
 
             Debug.WriteLine($"[UpdateService] 解析后的服务器版本: {serverVersion}");
+            Debug.WriteLine($"[UpdateService] 解析后的预览版版本: '{previewVersion}'");
             Debug.WriteLine($"[UpdateService] 更新公告URL: {updateInfoUrl}");
+            Debug.WriteLine($"[UpdateService] 预览版更新公告URL: {previewUpdateInfoUrl}");
 
             var lastVersionObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedVersionKey);
             var lastVersion = lastVersionObj?.ToString() ?? string.Empty;
 
             Debug.WriteLine($"[UpdateService] 上次记录版本: '{lastVersion}'");
-
-            if (!IsNewerVersion(serverVersion, CurrentVersion))
+            
+            if (IsNewerVersion(serverVersion, CurrentVersion) && serverVersion != lastVersion)
             {
-                Debug.WriteLine($"[UpdateService] 服务器版本不比本地版本新，跳过更新");
-                return new UpdateCheckResult { ShouldShowUpdate = false };
+                Debug.WriteLine($"[UpdateService] 发现新版本，准备显示更新窗口");
+                await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedVersionKey, serverVersion);
+
+                return new UpdateCheckResult
+                {
+                    ShouldShowUpdate = true,
+                    ServerVersion = serverVersion,
+                    UpdateInfoUrl = updateInfoUrl
+                };
+            }
+            
+            var previewAnnouncementEnabledObj = await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
+            var previewAnnouncementEnabled = previewAnnouncementEnabledObj == null || Convert.ToBoolean(previewAnnouncementEnabledObj);
+
+            if (previewAnnouncementEnabled &&
+                IsNewerVersion(previewVersion, serverVersion) && IsNewerVersion(previewVersion, CurrentVersion))
+            {
+                var lastPreviewVersionObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey);
+                var lastPreviewVersion = lastPreviewVersionObj?.ToString() ?? string.Empty;
+
+                Debug.WriteLine($"[UpdateService] 上次记录预览版版本: '{lastPreviewVersion}'");
+
+                if (previewVersion != lastPreviewVersion)
+                {
+                    Debug.WriteLine($"[UpdateService] 发现新预览版，准备显示更新窗口");
+                    await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey, previewVersion);
+
+                    return new UpdateCheckResult
+                    {
+                        ShouldShowUpdate = true,
+                        IsPreview = true,
+                        ServerVersion = previewVersion,
+                        UpdateInfoUrl = previewUpdateInfoUrl
+                    };
+                }
+
+                Debug.WriteLine($"[UpdateService] 已显示过此预览版，跳过重复提示");
             }
 
-            if (serverVersion == lastVersion)
-            {
-                Debug.WriteLine($"[UpdateService] 已显示过此版本，跳过重复提示");
-                return new UpdateCheckResult { ShouldShowUpdate = false };
-            }
-
-            Debug.WriteLine($"[UpdateService] 发现新版本，准备显示更新窗口");
-            await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedVersionKey, serverVersion);
-
-            return new UpdateCheckResult
-            {
-                ShouldShowUpdate = true,
-                ServerVersion = serverVersion,
-                UpdateInfoUrl = updateInfoUrl
-            };
+            Debug.WriteLine($"[UpdateService] 无可用更新，跳过");
+            return new UpdateCheckResult { ShouldShowUpdate = false };
         }
         catch (Exception ex)
         {
@@ -101,19 +128,14 @@ public class UpdateService : IUpdateService
 
     internal static bool IsNewerVersion(string serverVersion, string currentVersion)
     {
-        try
-        {
-            var serverVer = new Version(serverVersion);
-            var currentVer = new Version(currentVersion);
-            return serverVer > currentVer;
-        }
-        catch
+        if (!AppVersionHelper.TryParseVersion(serverVersion, out var serverVer) ||
+            !AppVersionHelper.TryParseVersion(currentVersion, out var currentVer))
         {
             return false;
         }
+
+        return serverVer > currentVer;
     }
-
-
 
     private async Task<bool> IsServerReachableAsync()
     {
@@ -183,5 +205,11 @@ public class UpdateService : IUpdateService
 
         [JsonPropertyName("updateInfoUrl")]
         public string UpdateInfoUrl { get; set; } = string.Empty;
+
+        [JsonPropertyName("PreReleaseVersion")]
+        public string PreReleaseVersion { get; set; } = string.Empty;
+
+        [JsonPropertyName("PreReleaseUpdateInfoUrl")]
+        public string PreReleaseUpdateInfoUrl { get; set; } = string.Empty;
     }
 }

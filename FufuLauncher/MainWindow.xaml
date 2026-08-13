@@ -367,6 +367,13 @@
                                FontWeight="SemiBold"
                                VerticalAlignment="Center"
                                Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                    <TextBlock x:Name="TitleBarVersionText"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="8,0,0,0"
+                               Foreground="#FFD700"
+                               Visibility="Collapsed"/>
                 </StackPanel>
             </Border>
         </Grid>

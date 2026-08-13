@@ -476,15 +476,13 @@ public sealed partial class PluginStorePage : Page
 
     private static bool IsVersionSatisfied(string currentVersion, string minVersion)
     {
-        try
+        if (!AppVersionHelper.TryParseVersion(currentVersion, out var cur) ||
+            !AppVersionHelper.TryParseVersion(minVersion, out var min))
         {
-            var cur = new Version(currentVersion);
-            var min = new Version(minVersion);
-            return cur >= min;
-        }
-        catch
-        {
+            // 版本号无法识别时放行（保持原有行为）
             return true;
         }
+
+        return cur >= min;
     }
 }

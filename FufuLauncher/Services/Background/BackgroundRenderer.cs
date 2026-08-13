@@ -140,10 +140,8 @@ namespace FufuLauncher.Services.Background
             if (!isVideo && url == _currentBackgroundUrl && _cachedBackground != null)
                 return _cachedBackground;
 
-            var fileName = GetCacheFileName(url, isVideo ? ".mp4" : ".img");
-            var cachedFilePath = Path.Combine(_cacheFolderPath, fileName);
-
-            if (!File.Exists(cachedFilePath) || new FileInfo(cachedFilePath).Length <= 1024)
+            var cachedFilePath = FindCachedFilePath(url, isVideo ? GetVideoExtension(url) : ".img");
+            if (cachedFilePath == null || new FileInfo(cachedFilePath).Length <= 1024)
                 return null;
 
             try
@@ -165,10 +163,33 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 缓存文件加载失败({fileName}): {ex.Message}");
+                Debug.WriteLine($"BackgroundRenderer: 缓存文件加载失败({cachedFilePath}): {ex.Message}");
                 try { File.Delete(cachedFilePath); } catch { }
                 return null;
             }
+        }
+
+        private string? FindCachedFilePath(string url, string defaultExtension)
+        {
+            var predictedPath = Path.Combine(_cacheFolderPath, GetCacheFileName(url, defaultExtension));
+            if (File.Exists(predictedPath))
+                return predictedPath;
+            
+            try
+            {
+                if (Directory.Exists(_cacheFolderPath))
+                {
+                    var hash = ComputeUrlHash(url);
+                    foreach (var file in Directory.GetFiles(_cacheFolderPath, hash + ".*"))
+                    {
+                        if (!file.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase))
+                            return file;
+                    }
+                }
+            }
+            catch { }
+
+            return null;
         }
 
         private Task<BackgroundRenderResult> CreateVideoResultAsync(string filePath)
@@ -224,7 +245,7 @@ namespace FufuLauncher.Services.Background
                 {
                     var isVideoObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundIsVideo");
                     bool isVideo = isVideoObj != null && Convert.ToBoolean(isVideoObj);
-                    await DownloadToCache(specificUrl, isVideo ? ".mp4" : ".img");
+                    await DownloadToCache(specificUrl, isVideo ? GetVideoExtension(specificUrl) : ".img");
                     return await LoadFromCacheOrNull(specificUrl, isVideo);
                 }
 
@@ -232,7 +253,7 @@ namespace FufuLauncher.Services.Background
                 if (bgInfo == null)
                     return null;
 
-                await DownloadToCache(bgInfo.Url, bgInfo.IsVideo ? ".mp4" : ".img");
+                await DownloadToCache(bgInfo.Url, bgInfo.IsVideo ? GetVideoExtension(bgInfo.Url) : ".img");
                 var result = await LoadFromCacheOrNull(bgInfo.Url, bgInfo.IsVideo);
 
                 _ = Task.Run(async () =>
@@ -295,7 +316,7 @@ namespace FufuLauncher.Services.Background
                     var bgInfo = ParseTargetBackground(response, preferVideo);
                     if (bgInfo != null)
                     {
-                        await DownloadToCache(bgInfo.Url, bgInfo.IsVideo ? ".mp4" : ".img");
+                        await DownloadToCache(bgInfo.Url, bgInfo.IsVideo ? GetVideoExtension(bgInfo.Url) : ".img");
                     }
 
                     await PreloadAllFromResponse(response);
@@ -390,7 +411,8 @@ namespace FufuLauncher.Services.Background
             {
                 try
                 {
-                    var ext = url.Contains(".mp4", StringComparison.OrdinalIgnoreCase) ? ".mp4" : ".img";
+                    var urlExt = GetUrlPathExtension(url);
+                    var ext = urlExt != null && VideoExtensions.Contains(urlExt) ? urlExt : ".img";
                     await DownloadToCache(url, ext);
                 }
                 catch (Exception ex)
@@ -406,24 +428,25 @@ namespace FufuLauncher.Services.Background
             {
                 if (!Directory.Exists(_cacheFolderPath))
                     return;
-
-                var validFiles = new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "api_cn.json", "api_os.json" };
+                
+                var validHashes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 var allUrls = ParseAllUrls(apiResponse);
                 foreach (var url in allUrls)
                 {
-                    var ext = url.Contains(".mp4", StringComparison.OrdinalIgnoreCase) ? ".mp4" : ".img";
-                    validFiles.Add(GetCacheFileName(url, ext));
+                    validHashes.Add(ComputeUrlHash(url));
                 }
 
                 foreach (var file in Directory.GetFiles(_cacheFolderPath))
                 {
                     var name = Path.GetFileName(file);
+                    if (name is "api_cn.json" or "api_os.json")
+                        continue;
                     if (name.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase))
                     {
                         try { File.Delete(file); } catch { }
                         continue;
                     }
-                    if (!validFiles.Contains(name))
+                    if (!validHashes.Contains(Path.GetFileNameWithoutExtension(name)))
                     {
                         try { File.Delete(file); } catch { }
                     }
@@ -436,7 +459,7 @@ namespace FufuLauncher.Services.Background
         {
             try
             {
-                var ext = isVideo ? ".mp4" : ".img";
+                var ext = isVideo ? GetVideoExtension(url) : ".img";
                 await DownloadToCache(url, ext);
                 var result = await LoadFromCacheOrNull(url, isVideo);
                 return result;
@@ -548,10 +571,43 @@ namespace FufuLauncher.Services.Background
                 return;
 
             Directory.CreateDirectory(_cacheFolderPath);
-            var data = await _httpClient.GetByteArrayAsync(url);
+
+            using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+            response.EnsureSuccessStatusCode();
+            
+            if (GetUrlPathExtension(url) == null)
+            {
+                var detected = GetExtensionFromContentType(response.Content.Headers.ContentType?.MediaType, defaultExtension);
+                if (!string.Equals(detected, defaultExtension, StringComparison.OrdinalIgnoreCase))
+                {
+                    fileName = GetCacheFileName(url, detected);
+                    cachedFilePath = Path.Combine(_cacheFolderPath, fileName);
+                    if (File.Exists(cachedFilePath) && new FileInfo(cachedFilePath).Length > 1024)
+                        return;
+                }
+            }
+
+            await using var contentStream = await response.Content.ReadAsStreamAsync();
             var tempFile = Path.Combine(_cacheFolderPath, $"{fileName}.tmp");
-            await File.WriteAllBytesAsync(tempFile, data);
+            await using (var fileStream = new FileStream(tempFile, FileMode.Create, FileAccess.Write))
+            {
+                await contentStream.CopyToAsync(fileStream);
+            }
             File.Move(tempFile, cachedFilePath, true);
+        }
+
+        private static string GetExtensionFromContentType(string? mediaType, string defaultExtension)
+        {
+            if (string.IsNullOrEmpty(mediaType))
+                return defaultExtension;
+
+            var mime = mediaType.ToLowerInvariant();
+            if (mime.Contains("webm")) return ".webm";
+            if (mime.Contains("mp4")) return ".mp4";
+            if (mime.Contains("matroska")) return ".mkv";
+            if (mime.Contains("quicktime")) return ".mov";
+            if (mime.StartsWith("image/")) return ".img";
+            return defaultExtension;
         }
 
         private string GetApiCachePath(ServerType server)
@@ -566,21 +622,38 @@ namespace FufuLauncher.Services.Background
             await File.WriteAllTextAsync(GetApiCachePath(server), json);
         }
 
-        private string GetCacheFileName(string url, string defaultExtension = ".mp4")
-        {
-            var extension = defaultExtension;
-            try
-            {
-                var uri = new Uri(url);
-                var ext = Path.GetExtension(uri.AbsolutePath);
-                if (!string.IsNullOrEmpty(ext))
-                    extension = ext;
-            }
-            catch { }
+        private static readonly string[] VideoExtensions = { ".webm", ".mp4", ".mkv", ".avi", ".mov" };
 
+        private static string ComputeUrlHash(string url)
+        {
             var bytes = Encoding.UTF8.GetBytes(url);
             var hash = MD5.HashData(bytes);
-            return Convert.ToHexString(hash).ToLower() + extension;
+            return Convert.ToHexString(hash).ToLower();
+        }
+
+        private static string? GetUrlPathExtension(string url)
+        {
+            try
+            {
+                var ext = Path.GetExtension(new Uri(url).AbsolutePath)?.ToLowerInvariant();
+                return string.IsNullOrEmpty(ext) ? null : ext;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        
+        private static string GetVideoExtension(string url)
+        {
+            var ext = GetUrlPathExtension(url);
+            return ext != null && VideoExtensions.Contains(ext) ? ext : ".mp4";
+        }
+
+        private string GetCacheFileName(string url, string defaultExtension = ".mp4")
+        {
+            var extension = GetUrlPathExtension(url) ?? defaultExtension;
+            return ComputeUrlHash(url) + extension;
         }
 
         private static string ComputeMD5(string input)

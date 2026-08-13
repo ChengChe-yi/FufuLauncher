@@ -163,8 +163,11 @@
             </StackPanel>
 
             <StackPanel x:Name="NoUpdatePanel" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
-                <TextBlock Text="当前已是最新版本，无需更新" FontSize="16" Foreground="#E0E0E0" TextAlignment="Center" Margin="0,0,0,24"/>
-                <Button Content="关闭" Click="CloseWindow_Click" Style="{StaticResource PrimaryActionBtnStyle}" Width="120" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="NoUpdateText" Text="当前已是最新版本，无需更新" FontSize="16" Foreground="#E0E0E0" TextAlignment="Center" Margin="0,0,0,24"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="RollbackBtn" Content="回退正式版" Click="RollbackToStable_Click" Style="{StaticResource SecondaryActionBtnStyle}" Width="160" Margin="0,0,6,0" Visibility="Collapsed"/>
+                    <Button Content="关闭" Click="CloseWindow_Click" Style="{StaticResource PrimaryActionBtnStyle}" Width="120" HorizontalAlignment="Center" Margin="6,0,0,0"/>
+                </StackPanel>
             </StackPanel>
 
             <Grid x:Name="SelectionPanel" Visibility="Collapsed">

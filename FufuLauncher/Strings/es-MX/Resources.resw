@@ -5804,4 +5804,31 @@ Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
   <data name="PluginMirrorStatusNormal" xml:space="preserve">
     <value>Normal</value>
   </data>
+  <data name="PreviewUpdateTitle" xml:space="preserve">
+    <value>Preview Update</value>
+  </data>
+  <data name="PreviewUpdateCaption" xml:space="preserve">
+    <value>Download the pre-release (beta) build. Preview updates are only triggered when the preview version is newer than the latest stable release.</value>
+  </data>
+  <data name="UpdateNotification_PreviewTitle" xml:space="preserve">
+    <value>Pre-release Update Announcement</value>
+  </data>
+  <data name="PreviewUpdateAnnouncementTitle" xml:space="preserve">
+    <value>Pre-release Update Announcements</value>
+  </data>
+  <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
+    <value>When enabled, an update announcement window pops up automatically when a new pre-release build is detected.</value>
+  </data>
+  <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
+    <value>This is a pre-release update and may be unstable. Please update with caution.</value>
+  </data>
+  <data name="PreviewVersionBadgeFormat" xml:space="preserve">
+    <value>v{0} Pre-release</value>
+  </data>
+  <data name="RollbackToStableTitle" xml:space="preserve">
+    <value>Rollback to Stable</value>
+  </data>
+  <data name="RollbackToStableCaption" xml:space="preserve">
+    <value>Only available on pre-release builds. Downloads and installs the latest stable release, replacing the current pre-release.</value>
+  </data>
 </root>

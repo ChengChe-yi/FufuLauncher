@@ -70,7 +70,8 @@ namespace FufuLauncher.ViewModels
 
         [ObservableProperty] private ElementTheme _elementTheme;
         [ObservableProperty] private string _versionDescription;
-        public string AppVersion => string.Format("AppVersionFormat".GetLocalized(), Assembly.GetEntryAssembly()?.GetName().Version);
+        public string AppVersion => string.Format("AppVersionFormat".GetLocalized(), AppVersionHelper.FullVersion);
+        public bool IsPreviewBuild => AppVersionHelper.IsPreviewBuild;
         [ObservableProperty] private ServerType _selectedServer;
         [ObservableProperty] private bool _isBackgroundEnabled = true;
         [ObservableProperty] private AppLanguage _selectedLanguage;
@@ -175,6 +176,8 @@ namespace FufuLauncher.ViewModels
         [ObservableProperty] private bool _hasScreenshotSavePath;
 
         [ObservableProperty] private bool _isUseThirdPartyCDNEnabled = true;
+
+        [ObservableProperty] private bool _isPreviewUpdateAnnouncementEnabled = true;
 
         [ObservableProperty] private bool _isPluginMirrorAccelerationEnabled = true;
 
@@ -294,6 +297,12 @@ namespace FufuLauncher.ViewModels
         {
             if (_isInitializing) return;
             _ = _localSettingsService.SaveSettingAsync("IsUseThirdPartyCDNEnabled", value);
+        }
+
+        partial void OnIsPreviewUpdateAnnouncementEnabledChanged(bool value)
+        {
+            if (_isInitializing) return;
+            _ = _localSettingsService.SaveSettingAsync("IsPreviewUpdateAnnouncementEnabled", value);
         }
 
         partial void OnIsPluginMirrorAccelerationEnabledChanged(bool value)
@@ -535,6 +544,16 @@ namespace FufuLauncher.ViewModels
         {
             get;
         }
+
+        public ICommand CheckPreviewUpdateCommand
+        {
+            get;
+        }
+
+        public ICommand CheckRollbackCommand
+        {
+            get;
+        }
         
         private bool _isInitializing;
 
@@ -672,6 +691,8 @@ namespace FufuLauncher.ViewModels
             SelectStartupSoundCommand = new AsyncRelayCommand(SelectStartupSoundAsync);
             ClearStartupSoundCommand = new AsyncRelayCommand(ClearStartupSound);
             CheckUpdateCommand = new RelayCommand(CheckUpdate);
+            CheckPreviewUpdateCommand = new RelayCommand(CheckPreviewUpdate);
+            CheckRollbackCommand = new RelayCommand(CheckRollback);
             ElementTheme = _themeSelectorService.Theme;
             _versionDescription = GetVersionDescription();
             ClearWebView2CacheCommand = new AsyncRelayCommand(ClearWebView2CacheAsync);
@@ -848,7 +869,7 @@ namespace FufuLauncher.ViewModels
                 var (_, videoUrl) = await service.GetLatestBackgroundUrlsAsync(SelectedServer);
                 if (!string.IsNullOrEmpty(videoUrl))
                 {
-                    await DownloadAndSaveFileAsync(videoUrl, "背景视频", ".mp4");
+                    await DownloadAndSaveFileAsync(videoUrl, "背景视频", GetUrlVideoExtension(videoUrl));
                 }
                 else
                 {
@@ -861,12 +882,25 @@ namespace FufuLauncher.ViewModels
             }
         }
 
+        private static string GetUrlVideoExtension(string url)
+        {
+            try
+            {
+                var ext = Path.GetExtension(new Uri(url).AbsolutePath)?.ToLowerInvariant();
+                if (ext is ".mp4" or ".webm" or ".mkv" or ".avi" or ".mov")
+                    return ext;
+            }
+            catch { }
+            return ".mp4";
+        }
+
         private async Task DownloadAndSaveFileAsync(string url, string typeName, string extension)
         {
-            var filters = extension == ".mp4"
-                ? new[] { ("视频文件", new[] { ".mp4" }) }
+            var isVideo = extension is ".mp4" or ".webm" or ".mkv" or ".avi" or ".mov";
+            var filters = isVideo
+                ? new[] { ("视频文件", new[] { extension }) }
                 : new[] { ("图片文件", new[] { ".png", ".jpg" }) };
-            var startLocation = extension == ".mp4"
+            var startLocation = isVideo
                 ? Windows.Storage.Pickers.PickerLocationId.VideosLibrary
                 : Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
             var defaultName = $"FufuLauncher_{typeName}_{DateTime.Now:yyyyMMddHHmmss}";
@@ -1059,18 +1093,44 @@ namespace FufuLauncher.ViewModels
         
         private void CheckUpdate()
         {
+            LaunchUpdater();
+        }
+
+        private void CheckPreviewUpdate()
+        {
+            LaunchUpdater(isPreview: true);
+        }
+
+        private void CheckRollback()
+        {
+            LaunchUpdater(rollback: true);
+        }
+
+        private void LaunchUpdater(bool isPreview = false, bool rollback = false)
+        {
             try
             {
                 string updaterPath = Path.Combine(AppContext.BaseDirectory, "UpdateFufuLauncher.exe");
                 
                 if (File.Exists(updaterPath))
                 {
+                    var arguments = $"--use-third-party-cdn={IsUseThirdPartyCDNEnabled.ToString().ToLower()}" +
+                                    $" --installed-version={AppVersionHelper.FullVersion}";
+                    if (isPreview)
+                    {
+                        arguments += " --preview";
+                    }
+                    if (rollback)
+                    {
+                        arguments += " --rollback";
+                    }
+
                     var startInfo = new ProcessStartInfo
                     {
                         FileName = updaterPath,
                         UseShellExecute = true,
                         Verb = "runas",
-                        Arguments = $"--use-third-party-cdn={IsUseThirdPartyCDNEnabled.ToString().ToLower()}"
+                        Arguments = arguments
                     };
                     Process.Start(startInfo);
                 }
@@ -1280,6 +1340,9 @@ namespace FufuLauncher.ViewModels
 
             var useThirdPartyCDNJson = await _localSettingsService.ReadSettingAsync("IsUseThirdPartyCDNEnabled");
             IsUseThirdPartyCDNEnabled = useThirdPartyCDNJson == null || Convert.ToBoolean(useThirdPartyCDNJson);
+
+            var previewAnnouncementJson = await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
+            IsPreviewUpdateAnnouncementEnabled = previewAnnouncementJson == null || Convert.ToBoolean(previewAnnouncementJson);
 
             var pluginMirrorJson = await _localSettingsService.ReadSettingAsync(PluginMirrorDownloadService.SettingKey);
             IsPluginMirrorAccelerationEnabled = pluginMirrorJson == null || Convert.ToBoolean(pluginMirrorJson);
@@ -2156,10 +2219,7 @@ namespace FufuLauncher.ViewModels
 
         private static string GetVersionDescription()
         {
-            var version = Assembly.GetEntryAssembly().GetName().Version;
-            if (version == null) version = new Version(1, 0, 0, 0);
-
-            return $"FufuLauncher - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            return $"FufuLauncher - {AppVersionHelper.FullVersion}";
         }
     }
 }

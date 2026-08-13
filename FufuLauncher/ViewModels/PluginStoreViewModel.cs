@@ -137,11 +137,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
         get => _hasError;
         set { _hasError = value; OnPropertyChanged(); OnPageStateChanged(); }
     }
-
-    // 页面互斥状态：骨架屏 / 出错 / 空列表 / 正常网格。x:Bind 无法表达复合条件，因此在这里合成。
-    //
-    // 关键点：骨架屏只在“冷启动”（还没有任何内容）时出现。刷新 / 翻页 / 切分类时
-    // _hasContent 为 true，网格继续留在原位并整体压暗，避免内容被整块替换掉造成跳动。
+    
     public bool ShowSkeleton => IsLoading && !_hasContent;
     public bool IsRefreshing => IsLoading && _hasContent;
     public bool ShowError => HasError && !IsLoading;
@@ -192,8 +188,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     public bool CanGoPrev => CurrentPage > 1;
     public bool CanGoNext => CurrentPage < TotalPages;
     public string PageInfo => TotalPages > 0 ? $"{CurrentPage} / {TotalPages}" : "";
-
-    /// <summary>插件商城镜像站加速开关（商城页可直接切换，与设置页共用同一持久化键）。</summary>
+    
     public bool IsMirrorAccelerationEnabled
     {
         get => _isMirrorAccelerationEnabled;
@@ -1164,11 +1159,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
             Debug.WriteLine($"[PluginStoreVM] Failed to clean up plugin dir: {ex.Message}");
         }
     }
-
-    /// <summary>
-    /// 判定插件是否真实存在于磁盘上（目录 + config.ini + 引用的 DLL）。
-    /// 安装完成后的校验与刷新列表共用同一套判定，避免“脚本没报错但实际没装上”被误判为安装成功。
-    /// </summary>
+    
     private bool IsPluginInstalledOnDisk(string pluginId, out string? localVersion)
     {
         localVersion = null;
@@ -1212,8 +1203,7 @@ public class PluginStoreViewModel : INotifyPropertyChanged
                     dllFileName = value;
                 }
             }
-
-            // config.ini 里声明了 DLL 就必须存在，否则视为未安装
+            
             if (!string.IsNullOrEmpty(dllFileName))
             {
                 var dllPath = Path.Combine(pluginDir, dllFileName);
@@ -1246,16 +1236,13 @@ public class PluginStoreViewModel : INotifyPropertyChanged
     
     private static bool IsVersionSatisfied(string currentVersion, string minVersion)
     {
-        try
-        {
-            var cur = new Version(currentVersion);
-            var min = new Version(minVersion);
-            return cur >= min;
-        }
-        catch
+        if (!AppVersionHelper.TryParseVersion(currentVersion, out var cur) ||
+            !AppVersionHelper.TryParseVersion(minVersion, out var min))
         {
             return true;
         }
+
+        return cur >= min;
     }
 
     private static string AppendTokenToUrl(string url, string? accessToken)

@@ -34,14 +34,36 @@
             <Image Grid.Column="0" Width="16" Height="16" Margin="12,0,0,0"
                    Source="/Assets/WindowIcon.ico" VerticalAlignment="Center" />
 
-            <TextBlock Grid.Column="1" Text="{helpers:Loc Key=UpdateNotification_Title}"
+            <TextBlock x:Name="TitleBarText" Grid.Column="1" Text="{helpers:Loc Key=UpdateNotification_Title}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        VerticalAlignment="Center" Margin="12,0,0,0"
                        Opacity="0.8" />
         </Grid>
 
         <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border x:Name="PreviewBanner" Grid.Row="0"
+                    Visibility="Collapsed"
+                    Background="#FFD700"
+                    CornerRadius="4"
+                    Margin="12,10,12,0"
+                    Padding="12,8">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon Glyph="&#xE7BA;" FontSize="14" Foreground="#1A1A1A" VerticalAlignment="Center" />
+                    <TextBlock Text="{helpers:Loc Key=UpdateNotification_PreviewBanner}"
+                               FontSize="12"
+                               Foreground="#1A1A1A"
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Border>
+
             <WebView2 x:Name="UpdateWebView"
+                      Grid.Row="1"
                       Margin="0,0,0,0"
                       DefaultBackgroundColor="Transparent" />
         </Grid>
