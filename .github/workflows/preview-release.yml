@@ -112,14 +112,13 @@ jobs:
     - name: Install UPX
       run: choco install upx --no-progress
 
-    - name: Compress Executables and DLLs with UPX
+    - name: Compress Launcher files with UPX
       shell: pwsh
       run: |
         $baseOutputDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0"
-        Write-Host "Compressing Launcher.dll, Launcher_2.exe, and CaptureApp.exe with UPX (best compression)..."
+        Write-Host "Compressing Launcher.dll and Launcher_2.exe with UPX (best compression)..."
         upx --best "$baseOutputDir\Launcher.dll"
         upx --best "$baseOutputDir\Launcher_2.exe"
-        upx --best "$baseOutputDir\CaptureApp.exe"
 
     - name: Regenerate hash.txt for modified files
       shell: pwsh
