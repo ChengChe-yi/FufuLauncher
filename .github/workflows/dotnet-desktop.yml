@@ -41,23 +41,48 @@ jobs:
         repository: FufuLauncher/FufuLauncher.UnlockerIsland
         path: FufuLauncher.UnlockerIsland_Repo
 
-    - name: Build FufuLauncher.UnlockerIsland
-      run: msbuild FufuLauncher.UnlockerIsland_Repo\FufuLauncher.UnlockerIsland\FufuLauncher.UnlockerIsland.vcxproj /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v145
+    - name: Build Launcher and Launcher_2
+      run: |
+        msbuild FufuLauncher.UnlockerIsland_Repo\Launcher\Launcher.vcxproj /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
+        msbuild FufuLauncher.UnlockerIsland_Repo\Launcher_2\Launcher_2.vcxproj /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
 
-    - name: Copy DLL to FufuLauncher
+    - name: Replace Launcher and Launcher_2
       shell: pwsh
       run: |
         $baseOutputDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0"
-        $pluginOutputDir = "$baseOutputDir\Plugins\FuFuPlugin"
 
-        New-Item -ItemType Directory -Force -Path $pluginOutputDir | Out-Null
+        $launcherDll = Get-ChildItem -Path "FufuLauncher.UnlockerIsland_Repo" -Filter "Launcher.dll" -Recurse | Where-Object { $_.FullName -match "x64" -and $_.FullName -match "Release" } | Select-Object -First 1
+        $launcher2Exe = Get-ChildItem -Path "FufuLauncher.UnlockerIsland_Repo" -Filter "Launcher_2.exe" -Recurse | Where-Object { $_.FullName -match "x64" -and $_.FullName -match "Release" } | Select-Object -First 1
 
-        $unlockerDll = Get-ChildItem -Path "FufuLauncher.UnlockerIsland_Repo" -Filter "FufuLauncher.UnlockerIsland.dll" -Recurse | Where-Object { $_.FullName -match "x64" -and $_.FullName -match "Release" } | Select-Object -First 1
-
-        if ($unlockerDll) {
-            Copy-Item -Path $unlockerDll.FullName -Destination "$pluginOutputDir\FufuLauncher.UnlockerIsland.dll" -Force
+        if ($launcherDll -and $launcher2Exe) {
+            Copy-Item -Path $launcherDll.FullName -Destination "$baseOutputDir\Launcher.dll" -Force
+            Copy-Item -Path $launcher2Exe.FullName -Destination "$baseOutputDir\Launcher_2.exe" -Force
+            Write-Host "成功替换Launcher.dll和Launcher_2.exe"
         } else {
-            Write-Error "未能定位到FufuLauncher.UnlockerIsland.dll编译产物"
+            Write-Error "未能定位到Launcher.dll或Launcher_2.exe编译产物"
+            exit 1
+        }
+
+    - name: Checkout FufuLauncher.CaptureApp
+      uses: actions/checkout@v4
+      with:
+        repository: FufuLauncher/FufuLauncher.CaptureApp
+        path: FufuLauncher.CaptureApp_Repo
+
+    - name: Publish CaptureApp (Native AOT)
+      run: dotnet publish FufuLauncher.CaptureApp_Repo\CaptureApp.csproj -c ${{ matrix.configuration }} -r win-x64 /p:PublishAot=true /p:PublishSingleFile=true -o CaptureAppOutput
+
+    - name: Replace CaptureApp.exe
+      shell: pwsh
+      run: |
+        $baseOutputDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0"
+        $captureAppExe = "CaptureAppOutput\CaptureApp.exe"
+        
+        if (Test-Path $captureAppExe) {
+            Copy-Item -Path $captureAppExe -Destination "$baseOutputDir\CaptureApp.exe" -Force
+            Write-Host "成功替换CaptureApp.exe"
+        } else {
+            Write-Error "未能定位到CaptureApp.exe编译产物"
             exit 1
         }
 
@@ -81,14 +106,14 @@ jobs:
     - name: Install UPX
       run: choco install upx --no-progress
 
-    - name: Compress FuFuPlugin with UPX
+    - name: Compress Executables and DLLs with UPX
       shell: pwsh
       run: |
-        $pluginDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0\Plugins\FuFuPlugin"
-        Get-ChildItem -Path $pluginDir -Filter "FufuLauncher.UnlockerIsland.dll" -Recurse | ForEach-Object {
-            Write-Host "Compressing $($_.FullName) with UPX (best compression)..."
-            upx --best "$($_.FullName)"
-        }
+        $baseOutputDir = "FufuLauncher\bin\x64\Release\net8.0-windows10.0.26100.0"
+        Write-Host "Compressing Launcher.dll, Launcher_2.exe, and CaptureApp.exe with UPX (best compression)..."
+        upx --best "$baseOutputDir\Launcher.dll"
+        upx --best "$baseOutputDir\Launcher_2.exe"
+        upx --best "$baseOutputDir\CaptureApp.exe"
 
     - name: Collect PE files for signing
       shell: pwsh
@@ -211,12 +236,16 @@ jobs:
         $stagingDir = "PluginStaging"
         New-Item -ItemType Directory -Force -Path $stagingDir | Out-Null
         
-        Compress-Archive -Path "$pluginDir\*" -DestinationPath "$stagingDir\FuFuPlugin.zip" -Force
-        Copy-Item -Path "$stagingDir\FuFuPlugin.zip" -Destination "$stagingDir\FuFuPlugin-old.zip" -Force
-        Copy-Item -Path "$stagingDir\FuFuPlugin.zip" -Destination "$stagingDir\FuFuPlugin.vmp.zip" -Force
-        Copy-Item -Path "$stagingDir\FuFuPlugin.zip" -Destination "$stagingDir\FuFuPlugin.vmp2.zip" -Force
-        
-        Compress-Archive -Path "$stagingDir\*.zip" -DestinationPath "FuFuPlugin_Bundle.zip" -Force
+        if (Test-Path "$pluginDir\*") {
+            Compress-Archive -Path "$pluginDir\*" -DestinationPath "$stagingDir\FuFuPlugin.zip" -Force
+            Copy-Item -Path "$stagingDir\FuFuPlugin.zip" -Destination "$stagingDir\FuFuPlugin-old.zip" -Force
+            Copy-Item -Path "$stagingDir\FuFuPlugin.zip" -Destination "$stagingDir\FuFuPlugin.vmp.zip" -Force
+            Copy-Item -Path "$stagingDir\FuFuPlugin.zip" -Destination "$stagingDir\FuFuPlugin.vmp2.zip" -Force
+            
+            Compress-Archive -Path "$stagingDir\*.zip" -DestinationPath "FuFuPlugin_Bundle.zip" -Force
+        } else {
+            Write-Host "FuFuPlugin 目录为空或不存在，跳过打包。"
+        }
 
     - name: Upload FuFuPlugin Bundle
       uses: actions/upload-artifact@v4
