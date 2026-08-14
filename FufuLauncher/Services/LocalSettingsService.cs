@@ -35,6 +35,10 @@ namespace FufuLauncher.Services
 
         public const string HasDismissedFpsWarningKey = "HasDismissedFpsWarning";
 
+        public const string AnnouncementViewModeKey = "AnnouncementViewMode";
+
+        public const string AnnouncementRegionKey = "AnnouncementRegion";
+
         private readonly JsonSerializerOptions _jsonOptions;
 
         public LocalSettingsService(LocalSettingsRepository repository)

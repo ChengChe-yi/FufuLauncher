@@ -20,7 +20,7 @@ public sealed partial class SettingsPage : Page
     private DispatcherTimer? _navLockTimer;
 
     private static readonly string[] _sectionTags =
-        { "AppearanceItem", "HomeCardsItem", "WidgetsItem", "NotesItem", "HomeTextItem",
+        { "AppearanceItem", "HomeCardsItem", "GameAnnouncementItem", "WidgetsItem", "NotesItem", "HomeTextItem",
           "BackgroundItem", "WindowEffectsItem",
           "LaunchConfigItem", "ScreenshotSettingsItem", "CheckinSettingsItem",
           "LanguageItem", "WindowBehaviorItem", "StartupSoundItem", "AdvancedOptionsItem", "UpdateItem",

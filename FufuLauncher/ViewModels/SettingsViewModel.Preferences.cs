@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
+using FufuLauncher.Models.GameAnnouncement;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
 using FufuLauncher.Services.PluginMirror;
@@ -201,6 +202,16 @@ public partial class SettingsViewModel
 
         var previewAnnouncementJson = await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
         IsPreviewUpdateAnnouncementEnabled = previewAnnouncementJson == null || Convert.ToBoolean(previewAnnouncementJson);
+
+        var announcementViewModeJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.AnnouncementViewModeKey);
+        if (announcementViewModeJson is string modeStr && Enum.TryParse<AnnouncementViewMode>(modeStr, out var parsedMode))
+        {
+            AnnouncementViewMode = parsedMode;
+        }
+        else
+        {
+            AnnouncementViewMode = AnnouncementViewMode.New;
+        }
 
         var pluginMirrorJson = await _localSettingsService.ReadSettingAsync(PluginMirrorDownloadService.SettingKey);
         IsPluginMirrorAccelerationEnabled = pluginMirrorJson == null || Convert.ToBoolean(pluginMirrorJson);

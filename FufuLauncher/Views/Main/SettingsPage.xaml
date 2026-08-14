@@ -269,6 +269,11 @@
                         <FontIcon Glyph="&#xE80F;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Content="{helpers:Loc Key=SectionGameAnnouncement}" Tag="GameAnnouncementItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8A5;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Content="{helpers:Loc Key=WidgetItemsTitle}" Tag="WidgetsItem">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE8FD;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
@@ -586,6 +591,38 @@
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsShowWidgetCardEnabled, Mode=TwoWay}" />
+                                </Grid>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    
+                    <StackPanel x:Name="GameAnnouncementItem" Style="{StaticResource SectionBlockStyle}">
+                        <TextBlock Text="{helpers:Loc Key=SectionGameAnnouncement}" Style="{StaticResource SectionHeaderStyle}" />
+                        <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                            <Border.Shadow>
+                                <ThemeShadow />
+                            </Border.Shadow>
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource CardIntroStyle}" Text="{helpers:Loc Key=GameAnnouncementViewModeCaption}" />
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=GameAnnouncementViewModeTitle}" />
+                                    </StackPanel>
+                                    <ComboBox Grid.Column="2"
+                                              Style="{StaticResource RowComboBoxStyle}"
+                                              SelectedIndex="{x:Bind ViewModel.AnnouncementViewMode, Mode=TwoWay, Converter={StaticResource EnumToIntConverter}}">
+                                        <ComboBoxItem Content="{helpers:Loc Key=GameAnnouncementViewModeNew}" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=GameAnnouncementViewModeClassic}" />
+                                    </ComboBox>
                                 </Grid>
 
                             </StackPanel>

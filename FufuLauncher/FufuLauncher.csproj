@@ -111,6 +111,7 @@
         <Content Include="Strings\id-ID\Resources.resw" />
         <Content Include="Strings\pt-BR\Resources.resw" />
         <Content Include="Strings\es-MX\Resources.resw" />
+        <Content Remove="Plugins\Avatar\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -122,6 +123,7 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Remove="Plugins\Avatar\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -147,13 +149,25 @@
         <Compile Update="Views\Model\BrowserConfig.cs">
             <DependentUpon>BrowserWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Remove="Plugins\Avatar\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Constants\MiHoYo\" />
-      <Folder Include="Plugins\Avatar\" />
       <Folder Include="Services\MiHoYo\Fingerprint\" />
       <Folder Include="Services\UID\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Page Remove="Plugins\Avatar\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Plugins\Avatar\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Remove="Plugins\Avatar\**" />
     </ItemGroup>
 
     <Target Name="RemoveUnwantedRuntimesFolders" AfterTargets="Build;Publish" Condition="Exists('$(OutDir)runtimes')">

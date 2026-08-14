@@ -14,7 +14,7 @@ namespace FufuLauncher.Views;
 
 public sealed partial class BlankPage
 {
-    #region 快捷操作（验证游戏、地图与公告）
+    #region 操作
 
     private async void VerifyGame_Click(object sender, RoutedEventArgs e)
     {
@@ -67,10 +67,9 @@ public sealed partial class BlankPage
         newWindow.Activate();
     }
 
-    private void OpenAnnouncement_Click(object sender, RoutedEventArgs e)
+    private async void OpenAnnouncement_Click(object sender, RoutedEventArgs e)
     {
-        var announcementWindow = new AnnouncementWindow();
-        announcementWindow.Activate();
+        await GameAnnouncementLauncher.OpenAsync();
     }
 
     #endregion

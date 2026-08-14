@@ -77,6 +77,10 @@ namespace FufuLauncher.Constants
         public const string HypOsApi = "https://sg-hyp-api.hoyoverse.com/hyp/hyp-connect/api";
         public const string SophonOsApi = "https://sg-downloader-api.hoyoverse.com/downloader/sophon_chunk/api";
         public const string Hk4eAnnouncementPageUrl = "https://sdk.mihoyo.com/hk4e/announcement/index.html?auth_appid=announcement&authkey_ver=1&bundle_id=hk4e_cn&channel_id=1&game=hk4e&game_biz=hk4e_cn&lang=zh-cn&level=60&platform=pc&region=cn_gf01&sdk_presentation_style=fullscreen&sdk_screen_transparent=true&sign_type=2&uid=100000000";
+        public const string GameAnnouncementListCnUrl = "https://hk4e-ann-api.mihoyo.com/common/hk4e_cn/announcement/api/getAnnList?game=hk4e&game_biz=hk4e_cn&lang={0}&bundle_id=hk4e_cn&platform=pc&region={1}&level=55&uid=100000000";
+        public const string GameAnnouncementContentCnUrl = "https://hk4e-ann-api.mihoyo.com/common/hk4e_cn/announcement/api/getAnnContent?game=hk4e&game_biz=hk4e_cn&lang={0}&bundle_id=hk4e_cn&platform=pc&region={1}&level=55&uid=100000000";
+        public const string GameAnnouncementListOsUrl = "https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnList?game=hk4e&game_biz=hk4e_global&lang={0}&bundle_id=hk4e_global&platform=pc&region={1}&level=55&uid=100000000";
+        public const string GameAnnouncementContentOsUrl = "https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnContent?game=hk4e&game_biz=hk4e_global&lang={0}&bundle_id=hk4e_global&platform=pc&region={1}&level=55&uid=100000000";
         public const string BaikeDailyMaterialsUrl = "https://baike.mihoyo.com/ys/obc/channel/map/193?bbs_presentation_style=no_header&visit_device=pc";
         public const string BaikeActivitiesUrl = "https://baike.mihoyo.com/ys/obc/channel/position/48/53?bbs_presentation_style=no_header&visit_device=pc&no_page_view=1";
         public const string GithubFeatureRequestUrl = "https://github.com/FufuLauncher/FufuLauncher/issues/new?template=feature_request.yml";

@@ -9,6 +9,7 @@ using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
+using FufuLauncher.Services.GameAnnouncement;
 using FufuLauncher.ViewModels;
 using FufuLauncher.Views;
 using Microsoft.Extensions.Configuration;
@@ -136,6 +137,9 @@ public partial class App
                 services.AddTransient<GachaViewModel>();
                 services.AddSingleton<GachaService>();
                 services.AddSingleton<IAnnouncementService, AnnouncementService>();
+                services.AddSingleton<IGameAnnouncementService, GameAnnouncementService>();
+                services.AddSingleton<IGameAnnouncementImageService, GameAnnouncementImageService>();
+                services.AddTransient<GameAnnouncementViewModel>();
                 services.AddTransient<IPluginUpdateService, PluginUpdateService>();
                 services.AddTransient<GachaAnalysisModel>();
                 services.AddTransient<CommunityViewModel>();
