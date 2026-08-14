@@ -1,6 +1,6 @@
 #define AppName       "FufuLauncher"
-#define AppVersion    "1.6.0.2"
-#define AppVersionNum "1.6.0.2"
+#define AppVersion    "1.6.0.3"
+#define AppVersionNum "1.6.0.3"
 #define AppPublisher  "FufuLauncher"
 #define AppExe        "FufuLauncher.exe"
 #define AppId         "{{A7B2C3D4-E5F6-7890-AB12-CD34EF567890}"
