@@ -69,6 +69,12 @@ jobs:
         repository: FufuLauncher/FufuLauncher.CaptureApp
         path: FufuLauncher.CaptureApp_Repo
 
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+
+    - name: Restore CaptureApp NuGet Packages
+      run: nuget restore FufuLauncher.CaptureApp_Repo\CaptureApp.sln
+
     - name: Publish CaptureApp (Native AOT)
       run: dotnet publish FufuLauncher.CaptureApp_Repo\CaptureApp.csproj -c ${{ matrix.configuration }} -r win-x64 /p:PublishAot=true /p:PublishSingleFile=true -o CaptureAppOutput
 
