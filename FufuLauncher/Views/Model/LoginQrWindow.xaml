@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <Window
     x:Class="FufuLauncher.Views.LoginQrWindow"
@@ -32,55 +32,81 @@
             <TextBlock Text="{helpers:Loc Key=LoginQR_Title}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="14" Opacity="0.8" />
         </Grid>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-            <ComboBox x:Name="LoginMethodComboBox" SelectedIndex="0" HorizontalAlignment="Center"
-                      SelectionChanged="LoginMethodComboBox_SelectionChanged">
-                <ComboBoxItem Content="{helpers:Loc Key=LoginQR_MiyousheQR}" />
-                <ComboBoxItem Content="{helpers:Loc Key=LoginQR_WebPassport}" />
-                <ComboBoxItem Content="{helpers:Loc Key=LoginQR_HoYoLABWeb}" />
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
+            <ComboBox x:Name="ServerComboBox" SelectedIndex="0" HorizontalAlignment="Center"
+                      SelectionChanged="ServerComboBox_SelectionChanged">
+                <ComboBoxItem Content="{helpers:Loc Key=LoginQR_ServerCn}" />
+                <ComboBoxItem Content="{helpers:Loc Key=LoginQR_ServerOs}" />
             </ComboBox>
+            
+            <StackPanel x:Name="CnLoginPanel" Spacing="20">
+                <ComboBox x:Name="LoginMethodComboBox" SelectedIndex="0" HorizontalAlignment="Center"
+                          SelectionChanged="LoginMethodComboBox_SelectionChanged">
+                    <ComboBoxItem Content="{helpers:Loc Key=LoginQR_MiyousheQR}" />
+                    <ComboBoxItem Content="{helpers:Loc Key=LoginQR_WebPassport}" />
+                    <ComboBoxItem Content="{helpers:Loc Key=LoginQR_MobileCaptcha}" />
+                </ComboBox>
 
-            <StackPanel x:Name="GameLoginPanel" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center"
-                        Visibility="Collapsed">
-                <TextBlock Text="{helpers:Loc Key=LoginQR_GameAppId}" VerticalAlignment="Center" />
-                <TextBox x:Name="GameAppIdTextBox" Text="7" Width="100" PlaceholderText="{helpers:Loc Key=LoginQR_EnterAppId}" />
-                <Button Content="{helpers:Loc Key=LoginQR_ConfirmGenerate}" Click="GameLoginButton_Click" />
-            </StackPanel>
+                <StackPanel x:Name="GameLoginPanel" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center"
+                            Visibility="Collapsed">
+                    <TextBlock Text="{helpers:Loc Key=LoginQR_GameAppId}" VerticalAlignment="Center" />
+                    <TextBox x:Name="GameAppIdTextBox" Text="7" Width="100" PlaceholderText="{helpers:Loc Key=LoginQR_EnterAppId}" />
+                    <Button Content="{helpers:Loc Key=LoginQR_ConfirmGenerate}" Click="GameLoginButton_Click" />
+                </StackPanel>
 
-            <StackPanel x:Name="QrCodeContainer" Spacing="20">
-                <Border Width="220" Height="220" Background="White" CornerRadius="8" Padding="10"
-                        HorizontalAlignment="Center">
-                    <Image x:Name="QrCodeImage" Stretch="Uniform" Opacity="0" />
-                </Border>
-                <Button x:Name="RefreshButton" Content="{helpers:Loc Key=LoginQR_RefreshQR}" Click="RefreshButton_Click" HorizontalAlignment="Center" />
-            </StackPanel>
+                <StackPanel x:Name="QrCodeContainer" Spacing="20">
+                    <Border Width="220" Height="220" Background="White" CornerRadius="8" Padding="10"
+                            HorizontalAlignment="Center">
+                        <Image x:Name="QrCodeImage" Stretch="Uniform" Opacity="0" />
+                    </Border>
+                    <Button x:Name="RefreshButton" Content="{helpers:Loc Key=LoginQR_RefreshQR}" Click="RefreshButton_Click" HorizontalAlignment="Center" />
+                </StackPanel>
 
-            <Grid x:Name="PassportWebViewBorder" Visibility="Collapsed" HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch" MinWidth="420" MinHeight="480">
+                <Grid x:Name="PassportWebViewBorder" Visibility="Collapsed" HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch" MinWidth="420" MinHeight="480">
 
-                <WebView2 x:Name="PassportWebView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    <WebView2 x:Name="PassportWebView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-                <Grid IsHitTestVisible="False">
-                    <Path Data="M 0,12 A 12,12 0 0 1 12,0 L 0,0 Z"
-                          Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <Path Data="M 0,0 A 12,12 0 0 1 12,12 L 12,0 Z"
-                          Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          HorizontalAlignment="Right" VerticalAlignment="Top" />
-                    <Path Data="M 12,12 A 12,12 0 0 1 0,0 L 0,12 Z"
-                          Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                    <Path Data="M 12,0 A 12,12 0 0 1 0,12 L 12,12 Z"
-                          Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                    <Grid IsHitTestVisible="False">
+                        <Path Data="M 0,12 A 12,12 0 0 1 12,0 L 0,0 Z"
+                              Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              HorizontalAlignment="Left" VerticalAlignment="Top" />
+                        <Path Data="M 0,0 A 12,12 0 0 1 12,12 L 12,0 Z"
+                              Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              HorizontalAlignment="Right" VerticalAlignment="Top" />
+                        <Path Data="M 12,12 A 12,12 0 0 1 0,0 L 0,12 Z"
+                              Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                        <Path Data="M 12,0 A 12,12 0 0 1 0,12 L 12,12 Z"
+                              Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                              HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                    </Grid>
                 </Grid>
-            </Grid>
 
-            <TextBlock x:Name="WebLoginWarningTextBlock"
-                       Text="{helpers:Loc Key=LoginQR_WebLoginWarning}"
-                       Foreground="DarkOrange"
-                       HorizontalAlignment="Center"
-                       Visibility="Collapsed" />
+                <TextBlock x:Name="WebLoginWarningTextBlock"
+                           Text="{helpers:Loc Key=LoginQR_WebLoginWarning}"
+                           Foreground="DarkOrange"
+                           HorizontalAlignment="Center"
+                           Visibility="Collapsed" />
+            </StackPanel>
+            
+            <StackPanel x:Name="OsLoginPanel" Spacing="12" Visibility="Collapsed">
+                <Button x:Name="OverseaPasswordButton" MinWidth="280"
+                        Content="{helpers:Loc Key=LoginQR_OverseaPassword}"
+                        Click="OverseaPasswordButton_Click" />
+                <Button MinWidth="280" Content="{helpers:Loc Key=LoginQR_ThirdPartyGoogle}" Tag="Google"
+                        Click="ThirdPartyLoginButton_Click" />
+                <Button MinWidth="280" Content="{helpers:Loc Key=LoginQR_ThirdPartyApple}" Tag="Apple"
+                        Click="ThirdPartyLoginButton_Click" />
+                <Button MinWidth="280" Content="{helpers:Loc Key=LoginQR_ThirdPartyFacebook}" Tag="Facebook"
+                        Click="ThirdPartyLoginButton_Click" />
+                <Button MinWidth="280" Content="{helpers:Loc Key=LoginQR_ThirdPartyTwitter}" Tag="Twitter"
+                        Click="ThirdPartyLoginButton_Click" />
+                <TextBlock Text="{helpers:Loc Key=LoginQR_OverseaRiskHint}"
+                           Style="{ThemeResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           MaxWidth="280" HorizontalAlignment="Center" TextWrapping="Wrap" />
+            </StackPanel>
 
             <Button x:Name="ManualCookieButton" Content="{helpers:Loc Key=LoginQR_ManualCookie}" Click="ManualCookieButton_Click"
                     HorizontalAlignment="Center" />

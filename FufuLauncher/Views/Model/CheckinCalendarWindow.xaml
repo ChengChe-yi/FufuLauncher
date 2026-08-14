@@ -9,6 +9,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid x:Name="AppTitleBar" Grid.Row="0" Background="Transparent" IsHitTestVisible="True">
@@ -29,5 +30,9 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
+
+        <Button Grid.Row="2" x:Name="ResignButton" Content="{helpers:Loc Key=Checkin_ResignTitle}"
+                HorizontalAlignment="Center" Margin="0,0,0,12" Padding="24,6"
+                Click="ResignButton_Click" />
     </Grid>
 </Window>

@@ -18,7 +18,7 @@ public sealed class GameUpdateService
 {
     public const string ChunksDirectoryName = "chunks";
     
-    public const string PredownloadStatusFileName = "snap_hutao_predownload_status.json";
+    public const string PredownloadStatusFileName = "predownload_status.json";
 
     private const long TempFileMarginBytes = 1024L * 1024L * 1024L;
 

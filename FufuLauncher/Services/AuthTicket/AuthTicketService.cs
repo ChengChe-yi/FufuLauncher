@@ -8,13 +8,12 @@ using System.Text;
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Constants.MiHoYo;
+using FufuLauncher.Services.MiHoYo.Passport;
 
 namespace FufuLauncher.Services.AuthTicket;
 
 public sealed class AuthTicketService : IAuthTicketService
 {
-    private const string HoyoPlayUserAgent = "HYPContainer/1.1.4.133";
-
     private readonly AccountManager _accountManager;
 
     public AuthTicketService(AccountManager accountManager)
@@ -142,19 +141,19 @@ public sealed class AuthTicketService : IAuthTicketService
         IReadOnlyDictionary<string, string> cookies,
         bool isOversea)
     {
-        request.Headers.UserAgent.ParseAdd(HoyoPlayUserAgent);
+        request.Headers.UserAgent.ParseAdd(UserAgents.HoyoPlay);
         request.Headers.Accept.ParseAdd("application/json");
 
         if (isOversea)
         {
-            request.Headers.Add("x-rpc-app_id", "ddxf6vlr1reo");
-            request.Headers.Add("x-rpc-client_type", "3");
-            request.Headers.Add("x-rpc-device_id", GenerateDeviceId53());
+            request.Headers.Add(HeaderNames.RpcAppId, AppIds.HoyoPlayOversea);
+            request.Headers.Add(HeaderNames.RpcClientType, "3");
+            request.Headers.Add(HeaderNames.RpcDeviceId, PassportDeviceId.Generate53());
         }
         else
         {
-            request.Headers.Add("x-rpc-app_id", "ddxf5dufpuyo");
-            request.Headers.Add("x-rpc-client_type", "3");
+            request.Headers.Add(HeaderNames.RpcAppId, AppIds.GameCombo);
+            request.Headers.Add(HeaderNames.RpcClientType, "3");
 
             string cookieStr = BuildLTokenCookie(cookies);
             if (!string.IsNullOrEmpty(cookieStr))
@@ -194,15 +193,5 @@ public sealed class AuthTicketService : IAuthTicketService
                 return value;
         }
         return string.Empty;
-    }
-    
-    private static string GenerateDeviceId53()
-    {
-        const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-        var sb = new StringBuilder(53);
-        var rng = Random.Shared;
-        for (int i = 0; i < 53; i++)
-            sb.Append(chars[rng.Next(chars.Length)]);
-        return sb.ToString();
     }
 }

@@ -1,16 +1,15 @@
-﻿// Copyright (c) FufuLauncher Dev Team. All rights reserved.
-// By kyxsan.
-// Licensed under the MIT License.
-
+﻿/*
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+*/
 using System.Diagnostics;
-using System.Net.Http;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo.Identity;
+using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Services.MiHoYo;
 using FufuLauncher.Services.MiHoYo.Transport;
 using Microsoft.UI;
@@ -18,7 +17,6 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.Web.WebView2.Core;
 using Windows.Graphics;
 
 namespace FufuLauncher.Services;
@@ -58,7 +56,7 @@ public sealed class GeetestService
         if (string.IsNullOrEmpty(gt) || string.IsNullOrEmpty(challenge))
             return null;
 
-        GeetestResult result = await ShowGeetestWebViewAsync(gt, challenge);
+        GeetestResult result = await ShowGeetestWebViewAsync(gt, challenge, isOversea: false);
         if (result == null || string.IsNullOrEmpty(result.Validate))
         {
             Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: 用户未完成验证 (result=null) 或 validate 为空");
@@ -138,8 +136,9 @@ public sealed class GeetestService
         return await resp.Content.ReadAsStringAsync();
     }
 
-    private static async Task<GeetestResult> ShowGeetestWebViewAsync(string gt, string challenge)
+    private static async Task<GeetestResult> ShowGeetestWebViewAsync(string gt, string challenge, bool isOversea, string? apiServerOverride = null)
     {
+        string apiServer = apiServerOverride ?? (isOversea ? "api-na.geetest.com" : "api.geetest.com");
         TaskCompletionSource<GeetestResult> tcs = new();
 
         if (App.MainWindow == null)
@@ -242,9 +241,17 @@ public sealed class GeetestService
                     tcs.TrySetResult(null);
                 };
 
-                string html = GetGeetestHtml(gt, challenge);
+                string html = GetGeetestHtml(gt, challenge, apiServer);
                 webView.NavigateToString(html);
                 geetestWindow.Activate();
+                try
+                {
+                    geetestWindow.AppWindow.MoveInZOrderAtTop();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[GeetestService] MoveInZOrderAtTop 失败: {ex.Message}");
+                }
             }
             catch (Exception ex)
             {
@@ -256,7 +263,7 @@ public sealed class GeetestService
         return await tcs.Task;
     }
 
-    private static string GetGeetestHtml(string gt, string challenge)
+    private static string GetGeetestHtml(string gt, string challenge, string apiServer)
     {
         var captchaTitle = "Geetest_CaptchaTitle".GetLocalized();
         return $$"""
@@ -289,7 +296,7 @@ public sealed class GeetestService
                             challenge: "{{challenge}}",
                             new_captcha: true,
                             product: 'bind',
-                            api_server: 'api.geetest.com'
+                            api_server: '{{apiServer}}'
                         },
                         function (captchaObj) {
                             captchaObj.onReady(function () {
@@ -299,11 +306,96 @@ public sealed class GeetestService
                                 var result = captchaObj.getValidate();
                                 chrome.webview.postMessage(result);
                             });
+                            captchaObj.onError(function () {
+                                chrome.webview.postMessage('{"geetest_error":1}');
+                            });
                         }
                     );
                 </script>
             </html>
             """;
+    }
+    
+    public async Task<bool> TryVerifyAigisSessionAsync(IAigisProvider provider, string? rawSession, bool isOversea)
+    {
+        if (string.IsNullOrEmpty(rawSession))
+        {
+            return false;
+        }
+
+        Debug.WriteLine($"[GeetestService] TryVerifyAigisSession: rawSession={Truncate(rawSession, 500)}");
+
+        AigisSession? session = Deserialize<AigisSession>(rawSession);
+        if (session is null || string.IsNullOrEmpty(session.SessionId))
+        {
+            Debug.WriteLine("[GeetestService] TryVerifyAigisSession: Aigis 会话解析失败");
+            return false;
+        }
+
+        GeetestVerification? verification = session.Data.ValueKind switch
+        {
+            JsonValueKind.String => Deserialize<GeetestVerification>(session.Data.GetString() ?? string.Empty),
+            JsonValueKind.Object => DeserializeElement<GeetestVerification>(session.Data),
+            _ => null
+        };
+        if (verification is null || string.IsNullOrEmpty(verification.Gt) || string.IsNullOrEmpty(verification.Challenge))
+        {
+            Debug.WriteLine($"[GeetestService] TryVerifyAigisSession: 极验参数解析失败 data={Truncate(session.Data.ToString(), 500)}");
+            return false;
+        }
+
+        Debug.WriteLine($"[GeetestService] TryVerifyAigisSession: gt={Truncate(verification.Gt, 32)}, challenge={Truncate(verification.Challenge, 32)}, isOversea={isOversea}");
+
+        GeetestResult? result = await ShowGeetestWebViewAsync(verification.Gt, verification.Challenge, isOversea);
+        
+        if (isOversea && (result is null || (result.Error == 1 && string.IsNullOrEmpty(result.Validate))))
+        {
+            Debug.WriteLine("[GeetestService] TryVerifyAigisSession: api-na 加载失败，回退 api.geetest.com 重试");
+            result = await ShowGeetestWebViewAsync(verification.Gt, verification.Challenge, isOversea, apiServerOverride: "api.geetest.com");
+        }
+
+        if (result is null || string.IsNullOrEmpty(result.Validate))
+        {
+            Debug.WriteLine("[GeetestService] TryVerifyAigisSession: 极验未完成");
+            return false;
+        }
+
+        var webResponse = new GeetestWebResponse
+        {
+            Challenge = result.Challenge,
+            Validate = result.Validate,
+            Seccode = string.IsNullOrEmpty(result.Seccode) ? $"{result.Validate}|jordan" : result.Seccode,
+        };
+
+        provider.Aigis = $"{session.SessionId};{Convert.ToBase64String(JsonSerializer.SerializeToUtf8Bytes(webResponse))}";
+        return true;
+    }
+
+    private static string Truncate(string value, int maxLength) =>
+        value.Length <= maxLength ? value : value[..maxLength];
+
+    private static T? Deserialize<T>(string json)
+    {
+        try
+        {
+            return JsonSerializer.Deserialize<T>(json);
+        }
+        catch (JsonException)
+        {
+            return default;
+        }
+    }
+
+    private static T? DeserializeElement<T>(JsonElement element)
+    {
+        try
+        {
+            return element.Deserialize<T>();
+        }
+        catch (JsonException)
+        {
+            return default;
+        }
     }
 
     private sealed class GeetestWebResponse
@@ -338,6 +430,18 @@ public sealed class GeetestResult
 
     [JsonPropertyName("geetest_validate")]
     public string Validate
+    {
+        get; set;
+    }
+
+    [JsonPropertyName("geetest_seccode")]
+    public string Seccode
+    {
+        get; set;
+    }
+    
+    [JsonPropertyName("geetest_error")]
+    public int Error
     {
         get; set;
     }

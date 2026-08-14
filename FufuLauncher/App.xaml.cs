@@ -193,6 +193,11 @@ public partial class App : Application
                     services.AddSingleton<Services.MiHoYo.Fingerprint.DeviceFpService>();
                     services.AddSingleton<Services.MiHoYo.AccountIdentityService>();
                     services.AddSingleton<IBbsRequestBuilder, Services.MiHoYo.Transport.BbsRequestBuilder>();
+                    
+                    services.AddSingleton<GeetestService>();
+                    services.AddSingleton<Services.MiHoYo.Passport.PassportClient>();
+                    services.AddSingleton<Services.MiHoYo.Passport.OverseaPassportClient>();
+                    services.AddSingleton<Services.MiHoYo.Passport.OverseaRiskVerificationService>();
 
                     services.AddLogging(builder =>
                     {

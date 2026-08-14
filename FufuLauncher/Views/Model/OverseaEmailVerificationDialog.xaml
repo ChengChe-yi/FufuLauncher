@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentDialog
+    x:Class="FufuLauncher.Views.OverseaEmailVerificationDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    BorderThickness="1"
+    BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}"
+    Style="{ThemeResource DefaultContentDialogStyle}"
+    Title="{helpers:Loc Key=LoginQR_OverseaVerifyTitle}"
+    PrimaryButtonText="{helpers:Loc Key=OkBtn}"
+    CloseButtonText="{helpers:Loc Key=CancelBtn}"
+    DefaultButton="Primary">
+
+    <StackPanel Width="340" Spacing="12">
+        <TextBlock
+            x:Name="EmailTextBlock"
+            Style="{ThemeResource BodyStrongTextBlockStyle}"
+            TextWrapping="Wrap" />
+
+        <TextBlock
+            x:Name="InfoTextBlock"
+            Style="{ThemeResource CaptionTextBlockStyle}"
+            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+            TextWrapping="Wrap"
+            Visibility="Collapsed" />
+
+        <Grid ColumnSpacing="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox
+                x:Name="CaptchaTextBox"
+                Grid.Column="0"
+                Header="{helpers:Loc Key=LoginQR_EmailCaptchaHeader}"
+                PlaceholderText="{helpers:Loc Key=LoginQR_EmailCaptchaPlaceholder}"
+                InputScope="Number"
+                MaxLength="6"
+                TextChanged="CaptchaTextBox_TextChanged" />
+
+            <Button
+                x:Name="SendEmailCaptchaButton"
+                Grid.Column="1"
+                Content="{helpers:Loc Key=LoginQR_SendEmailCaptcha}"
+                VerticalAlignment="Bottom"
+                Click="SendEmailCaptchaButton_Click" />
+        </Grid>
+
+        <TextBlock
+            x:Name="ErrorTextBlock"
+            Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+            Visibility="Collapsed"
+            TextWrapping="Wrap" />
+    </StackPanel>
+</ContentDialog>

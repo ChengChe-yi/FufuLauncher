@@ -1993,9 +1993,6 @@
   <data name="LoginQR_WebPassport" xml:space="preserve">
     <value>网页通行证登录</value>
   </data>
-  <data name="LoginQR_HoYoLABWeb" xml:space="preserve">
-    <value>HoYoLAB网页登录</value>
-  </data>
   <data name="LoginQR_GameAppId" xml:space="preserve">
     <value>游戏App ID:</value>
   </data>
@@ -2016,6 +2013,120 @@
   </data>
   <data name="LoginQR_ClearHistory" xml:space="preserve">
     <value>清除历史登录数据</value>
+  </data>
+  <data name="LoginQR_ServerCn" xml:space="preserve">
+    <value>国服</value>
+  </data>
+  <data name="LoginQR_ServerOs" xml:space="preserve">
+    <value>国际服</value>
+  </data>
+  <data name="LoginQR_MobileCaptcha" xml:space="preserve">
+    <value>手机验证码登录</value>
+  </data>
+  <data name="LoginQR_OverseaPassword" xml:space="preserve">
+    <value>账号密码登录</value>
+  </data>
+  <data name="LoginQR_ThirdPartyLoginTitle" xml:space="preserve">
+    <value>第三方登录</value>
+  </data>
+  <data name="LoginQR_ThirdPartyGoogle" xml:space="preserve">
+    <value>Google 登录</value>
+  </data>
+  <data name="LoginQR_ThirdPartyApple" xml:space="preserve">
+    <value>Apple 登录</value>
+  </data>
+  <data name="LoginQR_ThirdPartyFacebook" xml:space="preserve">
+    <value>Facebook 登录</value>
+  </data>
+  <data name="LoginQR_ThirdPartyTwitter" xml:space="preserve">
+    <value>X (Twitter) 登录</value>
+  </data>
+  <data name="LoginQR_OverseaRiskHint" xml:space="preserve">
+    <value>提示：HoYoVerse 可能要求通过邮箱验证码完成安全验证。</value>
+  </data>
+  <data name="LoginQR_LoginButton" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="LoginQR_SendCaptcha" xml:space="preserve">
+    <value>发送验证码</value>
+  </data>
+  <data name="LoginQR_MobileHeader" xml:space="preserve">
+    <value>手机号</value>
+  </data>
+  <data name="LoginQR_MobilePlaceholder" xml:space="preserve">
+    <value>请输入11位手机号</value>
+  </data>
+  <data name="LoginQR_CaptchaHeader" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="LoginQR_CaptchaPlaceholder" xml:space="preserve">
+    <value>6位短信验证码</value>
+  </data>
+  <data name="LoginQR_AccountHeader" xml:space="preserve">
+    <value>账号</value>
+  </data>
+  <data name="LoginQR_AccountPlaceholder" xml:space="preserve">
+    <value>邮箱或用户名</value>
+  </data>
+  <data name="LoginQR_PasswordHeader" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="LoginQR_PasswordPlaceholder" xml:space="preserve">
+    <value>请输入密码</value>
+  </data>
+  <data name="LoginQR_OverseaVerifyTitle" xml:space="preserve">
+    <value>安全验证</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaHeader" xml:space="preserve">
+    <value>邮箱验证码</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaPlaceholder" xml:space="preserve">
+    <value>6位邮箱验证码</value>
+  </data>
+  <data name="LoginQR_SendEmailCaptcha" xml:space="preserve">
+    <value>发送邮箱验证码</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaSent" xml:space="preserve">
+    <value>邮箱验证码已发送，请查收</value>
+  </data>
+  <data name="LoginQR_UnknownEmail" xml:space="preserve">
+    <value>未知邮箱</value>
+  </data>
+  <data name="Checkin_ResignTitle" xml:space="preserve">
+    <value>补签</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormat" xml:space="preserve">
+    <value>本月剩余可补签 {0} 次，补签卡剩余 {1} 张。确定要补签吗？</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormatCn" xml:space="preserve">
+    <value>本月剩余可补签 {0} 次，消耗米游币 {1}。确定要补签吗？</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoinCn" xml:space="preserve">
+    <value>米游币不足</value>
+  </data>
+  <data name="Checkin_ResignSuccess" xml:space="preserve">
+    <value>补签成功</value>
+  </data>
+  <data name="Checkin_ResignFailed" xml:space="preserve">
+    <value>补签失败 [{0}] {1}</value>
+  </data>
+  <data name="Checkin_ResignLimitExceeded" xml:space="preserve">
+    <value>补签次数已用完</value>
+  </data>
+  <data name="Checkin_ResignNotSigned" xml:space="preserve">
+    <value>需先完成今日签到</value>
+  </data>
+  <data name="Checkin_ResignNoDate" xml:space="preserve">
+    <value>没有可补签的日期</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoin" xml:space="preserve">
+    <value>补签卡不足</value>
+  </data>
+  <data name="Checkin_ResignQueryFailed" xml:space="preserve">
+    <value>查询补签资格失败: {0}</value>
+  </data>
+  <data name="Checkin_ResignUnsupported" xml:space="preserve">
+    <value>当前服务器暂不支持补签</value>
   </data>
   <data name="Panel_Toolbox" xml:space="preserve">
     <value>工具箱</value>

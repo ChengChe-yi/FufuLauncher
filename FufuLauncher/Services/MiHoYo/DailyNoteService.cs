@@ -3,12 +3,13 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Diagnostics;
-using System.Net.Http;
 using System.Text.Json;
 using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
+using FufuLauncher.Models.MiHoYo;
 using FufuLauncher.Models.MiHoYo.Identity;
+using FufuLauncher.Services.MiHoYo.Hoyolab;
 using FufuLauncher.Services.MiHoYo.Networking;
 using FufuLauncher.Services.MiHoYo.Transport;
 
@@ -17,6 +18,7 @@ namespace FufuLauncher.Services.MiHoYo;
 public sealed class DailyNoteService
 {
     private readonly AccountIdentityService _identityService;
+    private readonly OverseaGameRecordClient _overseaGameRecordClient = new();
 
     private const string Page = "v6.6.1-gr-cn_#/ys";
     private const string DailyNoteUrl = "https://api-takumi-record.mihoyo.com/game_record/app/genshin/api/dailyNote";
@@ -38,11 +40,15 @@ public sealed class DailyNoteService
         {
             AccountManager accountManager = App.GetService<AccountManager>();
             string activeId = accountManager.ActiveAccountId ?? throw new InvalidOperationException("DailyNote_NoActiveAccount".GetLocalized());
-
-            // 身份从聚合入口取：cookies + 设备指纹 + UA 同源
+            
             var ctx = await _identityService.BuildAsync(activeId);
             if (ctx.Cookies.Count == 0)
                 throw new InvalidOperationException("DailyNote_CannotLoadCookie".GetLocalized());
+
+            if (ServerRegion.IsOversea(server))
+            {
+                return await _overseaGameRecordClient.GetDailyNoteAsync(roleId, server, ctx.Cookies);
+            }
 
             string apiUrl = $"{DailyNoteUrl}?server={Uri.EscapeDataString(server)}&role_id={Uri.EscapeDataString(roleId)}";
             string json = await RequestDailyNoteAsync(apiUrl, ctx, null);
@@ -185,7 +191,6 @@ public sealed class DailyNoteService
         }
         catch (JsonException)
         {
-            // 非 JSON 响应（风控 HTML / 网关空 body）：返回哨兵 retcode，走本地化错误路径
             return (-1, "Status_UnknownError".GetLocalized());
         }
     }

@@ -2,7 +2,6 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
-using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
@@ -151,20 +150,90 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
     {
         if (serverType == "os")
         {
-            return null;
+            string cookieStr = string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
+            var rolesResult = await _hoyolabRoleResolverService.ResolveRolesAsync(cookieStr);
+            var os = new HoyolabCheckinService();
+            await os.InitializeAsync(cookieStr, rolesResult.Roles.Select(ToOsAccountItem).ToList());
+            return await os.GetCheckinCalendarAsync();
         }
-        //if (serverType == "os")
-        //{
-        //    string cookieStr = string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
-        //    var os = new HoyolabCheckinService();
-        //    await os.InitializeAsync(cookieStr);
-        //    return await os.GetCheckinCalendarAsync();   
-        //}
 
         var config = BuildConfigFromCookies(cookies, serverType);
         var genshin = new Genshin();
         await genshin.InitializeAsync(config);
         return await genshin.GetCheckinCalendarAsync();
+    }
+
+    public async Task<CheckinResignInfo?> GetResignInfoAsync(string targetUid, Dictionary<string, string> cookies, string serverType)
+    {
+        if (serverType == "os")
+        {
+            string cookieStr = string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
+            var rolesResult = await _hoyolabRoleResolverService.ResolveRolesAsync(cookieStr);
+            if (!rolesResult.HasRoles)
+                return null;
+
+            var role = SelectRole(rolesResult.Roles, targetUid);
+            var os = new HoyolabCheckinService();
+            await os.InitializeAsync(cookieStr, rolesResult.Roles.Select(ToOsAccountItem).ToList());
+            return await os.GetResignInfoAsync(role.region, role.game_uid);
+        }
+        
+        var config = BuildConfigFromCookies(cookies, serverType);
+        var genshin = new Genshin();
+        await genshin.InitializeAsync(config);
+        var account = SelectCnAccount(genshin.AccountList, targetUid);
+        if (account == null)
+            return null;
+
+        return await genshin.GetResignInfoAsync(account.Region, account.GameUid);
+    }
+
+    public async Task<(bool success, string message)> ExecuteResignAsync(string targetUid, Dictionary<string, string> cookies, string serverType)
+    {
+        if (serverType == "os")
+        {
+            string cookieStr = string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
+            var rolesResult = await _hoyolabRoleResolverService.ResolveRolesAsync(cookieStr);
+            if (!rolesResult.HasRoles)
+                return (false, rolesResult.Message);
+
+            var role = SelectRole(rolesResult.Roles, targetUid);
+            var os = new HoyolabCheckinService();
+            await os.InitializeAsync(cookieStr, rolesResult.Roles.Select(ToOsAccountItem).ToList());
+            return await os.ResignAsync(role.region, role.game_uid);
+        }
+        
+        var config = BuildConfigFromCookies(cookies, serverType);
+        var genshin = new Genshin();
+        await genshin.InitializeAsync(config);
+        var account = SelectCnAccount(genshin.AccountList, targetUid);
+        if (account == null)
+            return (false, "Checkin_NoBoundAccount".GetLocalized());
+
+        var (success, message, retcode) = await genshin.ResignAsync(account.Region, account.GameUid);
+        if (success)
+            return (true, message);
+
+        string mapped = retcode switch
+        {
+            -5003 => "Checkin_AlreadySignedToday".GetLocalized(),
+            -5005 => "Checkin_ResignLimitExceeded".GetLocalized(),
+            -5007 => "Checkin_ResignNotSigned".GetLocalized(),
+            -5008 => "Checkin_ResignNoDate".GetLocalized(),
+            -5014 => "Checkin_ResignInsufficientCoinCn".GetLocalized(),
+            _ => string.Format("Checkin_ResignFailed".GetLocalized(), retcode, message)
+        };
+        return (false, mapped);
+    }
+
+    private static AccountItem? SelectCnAccount(List<AccountItem> accounts, string targetUid)
+    {
+        if (accounts.Count == 0)
+            return null;
+
+        return string.IsNullOrEmpty(targetUid)
+            ? accounts[0]
+            : accounts.FirstOrDefault(a => a.GameUid == targetUid) ?? accounts[0];
     }
 
     private static GameRoleInfo SelectRole(List<GameRoleInfo> roles, string targetUid)

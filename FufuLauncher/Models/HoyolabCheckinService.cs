@@ -1,19 +1,21 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Net;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
+using MihoyoBBS;
 
 namespace FufuLauncher.Models
 {
   
     public class OsRewardItem
     {
+        [JsonPropertyName("icon")] public string Icon { get; set; }
         [JsonPropertyName("name")] public string Name { get; set; }
         [JsonPropertyName("cnt")] public int Count { get; set; }
     }
@@ -21,6 +23,32 @@ namespace FufuLauncher.Models
     public class OsCheckinRewardsData
     {
         [JsonPropertyName("awards")] public List<OsRewardItem> Awards { get; set; }
+    }
+    
+    public class OsCheckinCalendarData
+    {
+        [JsonPropertyName("month")] public int Month { get; set; }
+
+        [JsonPropertyName("awards")] public List<OsRewardItem> Awards { get; set; }
+    }
+    
+    public class CheckinResignInfo
+    {
+        [JsonPropertyName("resign_cnt_daily")] public int ResignCountDaily { get; set; }
+        [JsonPropertyName("resign_cnt_monthly")] public int ResignCountMonthly { get; set; }
+        [JsonPropertyName("resign_limit_daily")] public int ResignLimitDaily { get; set; }
+        [JsonPropertyName("resign_limit_monthly")] public int ResignLimitMonthly { get; set; }
+        [JsonPropertyName("sign_cnt_missed")] public int SignCountMissed { get; set; }
+        [JsonPropertyName("coin_cnt")] public int CoinCount { get; set; }
+        [JsonPropertyName("coin_cost")] public int CoinCost { get; set; }
+        [JsonPropertyName("rule")] public string Rule { get; set; } = "";
+        [JsonPropertyName("signed")] public bool Signed { get; set; }
+        [JsonPropertyName("sign_days")] public int SignDays { get; set; }
+        [JsonPropertyName("cost")] public int Cost { get; set; }
+        [JsonPropertyName("month_quality_cnt")] public int MonthQualityCount { get; set; }
+        [JsonPropertyName("quality_cnt")] public int QualityCount { get; set; }
+        
+        public int RemainingMonthly => Math.Max(0, ResignLimitMonthly - ResignCountMonthly);
     }
 
     public class OsAccountItem
@@ -67,15 +95,12 @@ namespace FufuLauncher.Models
         public int FailCount { get; set; }
         public int SkippedCount { get; set; }
     }
-
+    
     public class HoyolabCheckinService
     {
-      
-        public string BaseApi { get; set; } = "https://sg-hk4e-api.hoyolab.com";
-        public string ActId { get; set; } = "e202102251931481";
+        public string BaseApi { get; set; } = ApiEndpoints.OverseaSignBaseApi;
+        public string ActId { get; set; } = ApiEndpoints.OverseaSignActId;
         public string GameBiz { get; set; } = "hk4e_global";
-        public string DsSalt { get; set; } = "okr4obncj8bw5a65hbnn5oo6ixjc3l9w";
-        public string DsSalt2 { get; set; } = "h4c1d6ywfq5bsbnbhm1bzq7bxzzv6srt";
 
         private HttpClient _httpClient;
         private Dictionary<string, string> _headers;
@@ -105,7 +130,7 @@ namespace FufuLauncher.Models
             {
                 ["Accept"] = "application/json, text/plain, */*",
                 ["Origin"] = "https://act.hoyolab.com",
-                ["x-rpc-app_version"] = "3.13.0",
+                ["x-rpc-app_version"] = "2.54.0",
                 ["x-rpc-client_type"] = "5",
                 ["x-rpc-language"] = "zh-cn",
                 ["Referer"] = "https://act.hoyolab.com/",
@@ -115,50 +140,8 @@ namespace FufuLauncher.Models
                 ["x-rpc-device_id"] = deviceId,
                 ["x-rpc-game_biz"] = GameBiz,
                 ["X-Requested-With"] = "com.mihoyo.hoyolab",
-                ["User-Agent"] = "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/3.13.0"
+                ["User-Agent"] = "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/2.54.0"
             };
-        }
-
-        private string GenerateDs()
-        {
-            var t = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
-            var r = RandomString(6);
-            var c = Md5($"salt={DsSalt}&t={t}&r={r}");
-            return $"{t},{r},{c}";
-        }
-
-        private string GenerateDs2(string body = "", string query = "")
-        {
-            var t = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
-            var r = new Random().Next(100001, 200000).ToString();
-            var b = string.IsNullOrEmpty(body) ? "" : body;
-            var q = string.IsNullOrEmpty(query) ? "" : query;
-
-            if (!string.IsNullOrEmpty(q))
-            {
-                var pairs = q.Split('&').OrderBy(x => x).ToArray();
-                q = string.Join("&", pairs);
-            }
-
-            var c = Md5($"salt={DsSalt2}&t={t}&r={r}&b={b}&q={q}");
-            return $"{t},{r},{c}";
-        }
-
-        private string Md5(string input)
-        {
-            using (var md5 = MD5.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(input);
-                var hash = md5.ComputeHash(bytes);
-                return BitConverter.ToString(hash).Replace("-", "").ToLower();
-            }
-        }
-
-        private string RandomString(int length)
-        {
-            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-            var r = new Random();
-            return new string(Enumerable.Range(0, length).Select(_ => chars[r.Next(chars.Length)]).ToArray());
         }
 
         private void AddHeaders(HttpRequestMessage request)
@@ -211,8 +194,6 @@ namespace FufuLauncher.Models
                 var url = $"https://api-account-os.hoyolab.com/binding/api/getUserGameRolesByCookieToken?{query}";
                 using var req = new HttpRequestMessage(HttpMethod.Get, url);
                 AddHeaders(req);
-                req.Headers.Remove("DS");
-                req.Headers.Add("DS", GenerateDs2(query: query));
                 var resp = await _httpClient.SendAsync(req);
                 var text = await resp.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<OsApiResponse<OsAccountInfoData>>(text);
@@ -237,8 +218,6 @@ namespace FufuLauncher.Models
                     var url = $"{BaseApi}/event/sol/home?{query}";
                     using var req = new HttpRequestMessage(HttpMethod.Get, url);
                     AddHeaders(req);
-                    req.Headers.Remove("DS");
-                    req.Headers.Add("DS", GenerateDs2(query: query));
                     var resp = await _httpClient.SendAsync(req);
                     var text = await resp.Content.ReadAsStringAsync();
                     var result = JsonSerializer.Deserialize<OsApiResponse<OsCheckinRewardsData>>(text);
@@ -250,6 +229,96 @@ namespace FufuLauncher.Models
             }
             return new List<OsRewardItem>();
         }
+        
+        public async Task<CheckinCalendarData?> GetCheckinCalendarAsync()
+        {
+            try
+            {
+                var query = $"act_id={ActId}&lang=zh-cn";
+                var url = $"{BaseApi}/event/sol/home?{query}";
+                using var req = new HttpRequestMessage(HttpMethod.Get, url);
+                AddHeaders(req);
+                var resp = await _httpClient.SendAsync(req);
+                var text = await resp.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<OsApiResponse<OsCheckinCalendarData>>(text);
+                if (result != null && result.RetCode == 0 && result.Data != null)
+                {
+                    return new CheckinCalendarData
+                    {
+                        Month = result.Data.Month,
+                        Awards = result.Data.Awards?
+                            .Select(a => new CalendarRewardItem { Icon = a.Icon, Name = a.Name, Count = a.Count })
+                            .ToList() ?? new List<CalendarRewardItem>()
+                    };
+                }
+                LastApiError = result?.Message ?? "Checkin_GetCalendarException".GetLocalized();
+            }
+            catch (Exception ex)
+            {
+                LastApiError = string.Format("Checkin_GetCalendarException".GetLocalized(), ex.Message);
+            }
+            return null;
+        }
+        
+        public async Task<CheckinResignInfo?> GetResignInfoAsync(string region, string uid)
+        {
+            try
+            {
+                var query = $"act_id={ActId}&lang=zh-cn&region={region}&uid={uid}";
+                var url = $"{BaseApi}/event/sol/resign_info?{query}";
+                using var req = new HttpRequestMessage(HttpMethod.Get, url);
+                AddHeaders(req);
+                var resp = await _httpClient.SendAsync(req);
+                var text = await resp.Content.ReadAsStringAsync();
+                var result = JsonSerializer.Deserialize<OsApiResponse<CheckinResignInfo>>(text);
+                if (result != null && result.RetCode == 0 && result.Data != null)
+                    return result.Data;
+                LastApiError = result?.Message ?? "Checkin_ResignQueryFailed".GetLocalized();
+            }
+            catch (Exception ex)
+            {
+                LastApiError = string.Format("Checkin_ResignQueryFailed".GetLocalized(), ex.Message);
+            }
+            return null;
+        }
+        
+        public async Task<(bool success, string message)> ResignAsync(string region, string uid)
+        {
+            try
+            {
+                var body = new { act_id = ActId, region, uid };
+                var jsonBody = JsonSerializer.Serialize(body);
+
+                using var req = new HttpRequestMessage(HttpMethod.Post, $"{BaseApi}/event/sol/resign?lang=zh-cn");
+                foreach (var h in _headers)
+                    AddHeader(req, h.Key, h.Value);
+                req.Content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+                var resp = await _httpClient.SendAsync(req);
+                var text = await resp.Content.ReadAsStringAsync();
+                var data = JsonSerializer.Deserialize<OsApiResponse<OsSignResponseData>>(text);
+
+                if (data == null)
+                    return (false, "Checkin_ParseResultFailed".GetLocalized());
+                if (data.RetCode == 0 && data.Data?.Code == "ok")
+                    return (true, "Checkin_ResignSuccess".GetLocalized());
+
+                string message = data.RetCode switch
+                {
+                    -5003 => "Checkin_AlreadySignedToday".GetLocalized(),
+                    -5005 => "Checkin_ResignLimitExceeded".GetLocalized(),
+                    -5007 => "Checkin_ResignNotSigned".GetLocalized(),
+                    -5008 => "Checkin_ResignNoDate".GetLocalized(),
+                    -5014 => "Checkin_ResignInsufficientCoin".GetLocalized(),
+                    _ => string.Format("Checkin_ResignFailed".GetLocalized(), data.RetCode, data.Message)
+                };
+                return (false, message);
+            }
+            catch (Exception ex)
+            {
+                return (false, string.Format("Checkin_ResignFailed".GetLocalized(), "异常", ex.Message));
+            }
+        }
 
         public async Task<OsIsSignData> IsSignAsync(string region, string uid)
         {
@@ -259,8 +328,6 @@ namespace FufuLauncher.Models
                 var url = $"{BaseApi}/event/sol/info?{query}";
                 using var req = new HttpRequestMessage(HttpMethod.Get, url);
                 AddHeaders(req);
-                req.Headers.Remove("DS");
-                req.Headers.Add("DS", GenerateDs2(query: query));
                 var resp = await _httpClient.SendAsync(req);
                 var text = await resp.Content.ReadAsStringAsync();
                 var result = JsonSerializer.Deserialize<OsApiResponse<OsIsSignData>>(text);
@@ -292,10 +359,6 @@ namespace FufuLauncher.Models
                         AddHeader(req, h.Key, h.Value);
 
                     req.Content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
-
-                   
-                    req.Headers.Remove("DS");
-                    req.Headers.Add("DS", GenerateDs2(body: jsonBody));
 
                     var resp = await _httpClient.SendAsync(req);
                     if ((int)resp.StatusCode == 429)
@@ -449,4 +512,3 @@ namespace FufuLauncher.Models
         }
     }
 }
-

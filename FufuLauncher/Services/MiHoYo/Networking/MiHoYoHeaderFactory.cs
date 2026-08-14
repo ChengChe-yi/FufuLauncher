@@ -2,25 +2,14 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
-using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using FufuLauncher.Constants.MiHoYo;
 
 namespace FufuLauncher.Services.MiHoYo.Networking;
 
-/// <summary>
-/// 米游社请求头统一构建工厂。
-/// <para>
-/// DS 规则：<c>x-rpc-client_type=5</c>（网页 / WebView 端）使用 X4 / X6 系 salt 配合 <b>DS2</b> 生成算法
-/// （ds 形如 <c>t,r,md5</c>，salt 仅参与计算、不出现在 ds 中）；
-/// <c>x-rpc-client_type=2/4</c>（App / 网页端）使用 X2 系 salt 配合 <b>DS1</b> 算法
-/// （ds 形如 <c>t,r,salt,md5</c>，salt 明文携带）。
-/// </para>
-/// </summary>
 public static class MiHoYoHeaderFactory
 {
-    /// <summary>DS1 生成（client_type=2/4）：<c>t,r,salt,md5</c>，salt 明文出现在 ds 中。</summary>
     public static string CalculateDs1(string salt, string query = "", string body = "")
     {
         long t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -29,8 +18,7 @@ public static class MiHoYoHeaderFactory
         string hash = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes($"salt={salt}&t={t}&r={r}&b={body}&q={query}"))).ToLowerInvariant();
         return $"{t},{r},{salt},{hash}";
     }
-
-    /// <summary>DS2 生成（client_type=5，X4/X6 salt）：<c>t,r,md5</c>，salt 只参与计算不出现。</summary>
+    
     public static string CalculateDs2(string salt, string query = "", string body = "")
     {
         long t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -39,15 +27,30 @@ public static class MiHoYoHeaderFactory
         string hash = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes($"salt={salt}&t={t}&r={r}&b={body}&q={query}"))).ToLowerInvariant();
         return $"{t},{r},{hash}";
     }
-
-    /// <summary>按 client_type 选择 DS 算法：<see cref="ClientTypes.Other"/>(5) → DS2；其余 → DS1。</summary>
+    
     public static string CalculateDs(string salt, string query, string body, string clientType)
         => clientType == ClientTypes.Other ? CalculateDs2(salt, query, body) : CalculateDs1(salt, query, body);
+    
+    public static string CalculateDsGen2(string salt, string body = "", string query = "")
+    {
+        long t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+        string r = GenerateLowerAndNumberString(6);
+        string hash = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes($"salt={salt}&t={t}&r={r}&b={body}&q={query}"))).ToLowerInvariant();
+        return $"{t},{r},{hash}";
+    }
 
-    /// <summary>
-    /// 统一构建 game_record（api-takumi-record）系请求头，固定 <c>x-rpc-client_type=5</c>（WebView / 网页端）。
-    /// DS 由 <see cref="CalculateDs2"/> 生成（X4 / X6 salt），query 需调用方传入已排序的 query 字符串。
-    /// </summary>
+    private static string GenerateLowerAndNumberString(int length)
+    {
+        const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        return string.Create(length, chars, static (span, state) =>
+        {
+            for (int i = 0; i < span.Length; i++)
+            {
+                span[i] = state[Random.Shared.Next(state.Length)];
+            }
+        });
+    }
+    
     public static void ApplyGameRecordHeaders(HttpRequestMessage request, GameRecordHeaderOptions options)
     {
         request.Headers.Add(HeaderNames.Cookie, options.Cookie);
@@ -69,17 +72,13 @@ public static class MiHoYoHeaderFactory
         request.Headers.Add(HeaderNames.Accept, "application/json, text/plain, */*");
         request.Headers.UserAgent.ParseAdd(options.UserAgent);
     }
-
-    /// <summary>
-    /// 统一构建 getFp（device-fp 指纹注册 / 续期）请求头。
-    /// </summary>
+    
     public static void ApplyDeviceFpHeaders(HttpRequestMessage request, string userAgent = UserAgents.OkHttp)
     {
         request.Headers.UserAgent.ParseAdd(userAgent);
     }
 }
 
-/// <summary>game_record 请求头构建参数。</summary>
 public sealed record GameRecordHeaderOptions(
     string AppVersion,
     string UserAgent,

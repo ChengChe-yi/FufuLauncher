@@ -10,7 +10,6 @@ using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace FufuLauncher.Views;
@@ -479,7 +478,6 @@ public sealed partial class PluginStorePage : Page
         if (!AppVersionHelper.TryParseVersion(currentVersion, out var cur) ||
             !AppVersionHelper.TryParseVersion(minVersion, out var min))
         {
-            // 版本号无法识别时放行（保持原有行为）
             return true;
         }
 

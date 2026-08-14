@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
+using FufuLauncher.Models;
 
 namespace MihoyoBBS
 {
@@ -499,6 +500,8 @@ namespace MihoyoBBS
         protected readonly string CheckinRewardsUrl = ApiEndpoints.MihoyoBbsCheckinRewardsUrl;
         protected readonly string IsSignUrl = ApiEndpoints.MihoyoBbsIsSignUrl;
         protected readonly string SignUrl = ApiEndpoints.MihoyoBbsSignUrl;
+        protected readonly string ResignInfoUrl = "https://api-takumi.mihoyo.com/event/luna/resign_info";
+        protected readonly string ResignUrl = "https://api-takumi.mihoyo.com/event/luna/resign";
 
         protected GameCheckin(string gameId, string gameName, string actId, string playerName = "玩家")
         {
@@ -693,6 +696,71 @@ namespace MihoyoBBS
             {
                 LastApiError = string.Format("Checkin_RequestSignStatusException".GetLocalized(), ex.Message);
                 return null;
+            }
+        }
+        
+        public async Task<CheckinResignInfo?> GetResignInfoAsync(string region, string uid)
+        {
+            try
+            {
+                var url = $"{ResignInfoUrl}?lang=zh-cn&act_id={ActId}&region={region}&uid={uid}";
+                using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+                {
+                    AddHeadersToRequest(request);
+                    var response = await HttpClient.SendAsync(request).ConfigureAwait(false);
+                    var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    var result = JsonSerializer.Deserialize<ApiResponse<CheckinResignInfo>>(responseText);
+                    if (result != null && result.RetCode == 0 && result.Data != null)
+                    {
+                        return result.Data;
+                    }
+                    LastApiError = result?.Message ?? "Checkin_ResignQueryFailed".GetLocalized();
+                }
+            }
+            catch (Exception ex)
+            {
+                LastApiError = string.Format("Checkin_ResignQueryFailed".GetLocalized(), ex.Message);
+            }
+            return null;
+        }
+        
+        public async Task<(bool success, string message, int retcode)> ResignAsync(string region, string uid)
+        {
+            try
+            {
+                var content = new
+                {
+                    act_id = ActId,
+                    region,
+                    uid
+                };
+                var jsonContent = JsonSerializer.Serialize(content);
+
+                using (var request = new HttpRequestMessage(HttpMethod.Post, ResignUrl))
+                {
+                    foreach (var h in Headers)
+                    {
+                        AddHeaderToRequest(request, h.Key, h.Value);
+                    }
+                    request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    var response = await HttpClient.SendAsync(request).ConfigureAwait(false);
+                    var responseText = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    var data = JsonSerializer.Deserialize<ApiResponse<SignResponseData>>(responseText);
+                    if (data == null)
+                    {
+                        return (false, "Checkin_ParseResultFailed".GetLocalized(), -1);
+                    }
+                    if (data.RetCode == 0)
+                    {
+                        return (true, "Checkin_ResignSuccess".GetLocalized(), 0);
+                    }
+                    return (false, data.Message, data.RetCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message, -1);
             }
         }
 

@@ -4,9 +4,10 @@ Licensed under the MIT License.
 */
 using System.Text.Json;
 using FufuLauncher.Constants;
+using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
-using FufuLauncher.Models;
+using FufuLauncher.Models.MiHoYo;
 using Microsoft.Extensions.Logging;
 
 namespace FufuLauncher.Services;
@@ -51,6 +52,18 @@ public class UserInfoService : IUserInfoService
         _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent",
             "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1");
     }
+    
+    private void ApplyOverseaHeaders(string cookie)
+    {
+        _httpClient.DefaultRequestHeaders.Clear();
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Cookie", cookie);
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json");
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-app_version", HeaderVersions.BbsOs254);
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-client_type", "5");
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-language", "zh-cn");
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
+        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", UserAgents.WindowsBbsOversea254);
+    }
 
     private string GenerateDS()
     {
@@ -69,8 +82,7 @@ public class UserInfoService : IUserInfoService
         var hasOsFields = cookie.Contains("ltuid_v2=", StringComparison.OrdinalIgnoreCase) ||
                           cookie.Contains("account_id_v2=", StringComparison.OrdinalIgnoreCase) ||
                           cookie.Contains("cookie_token_v2=", StringComparison.OrdinalIgnoreCase);
-
-        // 优先国服：同时有国服和国际服 cookie 字段时走国服，避免 region_block
+        
         if (hasCnFields) return false;
         if (hasOsFields) return true;
 
@@ -83,28 +95,51 @@ public class UserInfoService : IUserInfoService
         try
         {
             bool isOs = await IsInternationalAsync(cookie);
-            ApplyCommonHeaders(cookie);
 
             if (isOs)
             {
+                ApplyOverseaHeaders(cookie);
+                var bindingRoles = await TryGetOverseaRolesFromBindingAsync();
+                if (bindingRoles != null)
+                    return new GameRolesResponse(0, "OK", new GameRolesData(bindingRoles));
+
                 var rolesResult = await _hoyolabRoleResolverService.ResolveRolesAsync(cookie);
-                return new GameRolesResponse(
-                    rolesResult.RetCode,
-                    rolesResult.Message,
-                    new GameRolesData(rolesResult.Roles));
+                return new GameRolesResponse(rolesResult.RetCode, rolesResult.Message, new GameRolesData(rolesResult.Roles));
             }
-            else
-            {
-                var response = await _httpClient.GetAsync(ApiEndpoints.MihoyoBbsUserGameRolesUrl);
-                var json = await response.Content.ReadAsStringAsync();
-                System.Diagnostics.Debug.WriteLine($"[UserInfoService] GameRoles HTTP {response.StatusCode} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
-                return JsonSerializer.Deserialize<GameRolesResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
-            }
+
+            ApplyCommonHeaders(cookie);
+            var response = await _httpClient.GetAsync(ApiEndpoints.MihoyoBbsUserGameRolesUrl);
+            var json = await response.Content.ReadAsStringAsync();
+            System.Diagnostics.Debug.WriteLine($"[UserInfoService] GameRoles HTTP {response.StatusCode} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
+            return JsonSerializer.Deserialize<GameRolesResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "获取角色信息失败");
             return new GameRolesResponse(-1, ex.Message, null);
+        }
+    }
+    
+    private async Task<List<GameRoleInfo>?> TryGetOverseaRolesFromBindingAsync()
+    {
+        try
+        {
+            var response = await _httpClient.GetAsync(ApiEndpoints.OverseaUserGameRolesUrl);
+            var json = await response.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<GameRolesResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            if (result == null || result.retcode != 0 || result.data?.list == null || result.data.list.Count == 0)
+                return null;
+            
+            return result.data.list
+                .Select(role => string.IsNullOrEmpty(role.region)
+                    ? role with { region = ServerRegion.Resolve(role.game_uid) }
+                    : role)
+                .ToList();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "国际服 binding 角色解析失败，回退 RoleResolver");
+            return null;
         }
     }
 
@@ -113,10 +148,13 @@ public class UserInfoService : IUserInfoService
     {
         try
         {
-            ApplyCommonHeaders(cookie);
             bool isOs = await IsInternationalAsync(cookie);
+            if (isOs)
+                ApplyOverseaHeaders(cookie);
+            else
+                ApplyCommonHeaders(cookie);
 
-            var url = isOs ? "https://bbs-api-os.hoyolab.com/community/painter/wapi/user/full" : ApiEndpoints.MiyousheUserFullInfoUrl;
+            var url = isOs ? ApiEndpoints.OverseaUserFullInfoUrl : ApiEndpoints.MiyousheUserFullInfoUrl;
 
             var response = await _httpClient.GetAsync(url);
             var json = await response.Content.ReadAsStringAsync();
