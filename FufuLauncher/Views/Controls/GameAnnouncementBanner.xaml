@@ -9,6 +9,17 @@
     <Grid x:Name="RootGrid"
           Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
           CornerRadius="8,8,0,0">
+        <Grid x:Name="ZoomHost"
+              RenderTransformOrigin="0.5,0.5"
+              IsHitTestVisible="False">
+            <Grid.RenderTransform>
+                <ScaleTransform x:Name="ZoomTransform" />
+            </Grid.RenderTransform>
+            <Image x:Name="InnerImage"
+                   Stretch="UniformToFill"
+                   Visibility="Collapsed" />
+        </Grid>
+
         <FontIcon x:Name="PlaceholderIcon"
                   Glyph="&#xE91B;"
                   FontSize="22"

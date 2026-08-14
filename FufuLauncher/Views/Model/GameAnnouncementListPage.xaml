@@ -54,16 +54,30 @@
                 </Pivot.HeaderTemplate>
                 <Pivot.ItemTemplate>
                     <DataTemplate x:DataType="vm:GameAnnouncementTab">
-                        <ItemsControl ItemsSource="{x:Bind Items}">
-                            <ItemsControl.ItemsPanel>
+                        <ListView ItemsSource="{x:Bind Items}"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="False"
+                                  ScrollViewer.HorizontalScrollMode="Disabled">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <ContentPresenter />
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <ItemsWrapGrid Orientation="Horizontal"
                                                    Margin="16,12,16,16"
                                                    ItemWidth="332"
                                                    ItemHeight="204" />
                                 </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="model:GameAnnouncement">
                                     <Grid Width="320" Margin="0,0,12,12"
                                           Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"
@@ -98,18 +112,20 @@
                                         <StackPanel Grid.Row="1" Margin="12,10,12,10" Spacing="2">
                                             <TextBlock Text="{x:Bind Subtitle}"
                                                        Style="{StaticResource BodyStrongTextBlockStyle}"
+                                                       FontFamily="{StaticResource AppGlobalFont}"
                                                        TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis" />
                                             <TextBlock Text="{x:Bind Title}"
                                                        Style="{StaticResource CaptionTextBlockStyle}"
+                                                       FontFamily="{StaticResource AppGlobalFont}"
                                                        Opacity="0.6"
                                                        TextWrapping="NoWrap"
                                                        TextTrimming="CharacterEllipsis" />
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </DataTemplate>
                 </Pivot.ItemTemplate>
             </Pivot>
