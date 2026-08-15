@@ -13,6 +13,8 @@ public sealed class DownloadSpeedChartController
     private static readonly TimeSpan ChartTickInterval = TimeSpan.FromMilliseconds(200);
     private static readonly TimeSpan SpeedSampleInterval = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan StalledThreshold = TimeSpan.FromSeconds(5);
+    
+    private const double SpeedSmoothingFactor = 0.3;
 
     private readonly SpeedGraph _chart;
     private readonly GameServerDownloadMonitor _monitor;
@@ -20,7 +22,7 @@ public sealed class DownloadSpeedChartController
 
     private long _lastSampleBytes;
     private long _lastSampleTicks;
-    private ulong _lastSpeed;
+    private double _smoothedSpeed;
     private long _lastBytesTicks;
     private double _lastPercent;
 
@@ -38,7 +40,7 @@ public sealed class DownloadSpeedChartController
         _monitor.Reset();
         _lastSampleBytes = 0;
         _lastSampleTicks = 0;
-        _lastSpeed = 0;
+        _smoothedSpeed = 0;
         _lastBytesTicks = Environment.TickCount64;
         _lastPercent = 0;
 
@@ -95,7 +97,7 @@ public sealed class DownloadSpeedChartController
         
         if (nowTicks - _lastBytesTicks >= StalledThreshold.TotalMilliseconds)
         {
-            _lastSpeed = 0;
+            _smoothedSpeed = 0;
             _lastSampleBytes = totalBytes;
             _lastSampleTicks = nowTicks;
             _chart.SetSpeed(_lastPercent, 0);
@@ -113,11 +115,13 @@ public sealed class DownloadSpeedChartController
         {
             double elapsedSeconds = (nowTicks - _lastSampleTicks) / 1000.0;
             long deltaBytes = totalBytes - _lastSampleBytes;
-            _lastSpeed = deltaBytes > 0 ? (ulong)(deltaBytes / elapsedSeconds) : 0UL;
+            double rawSpeed = deltaBytes > 0 ? deltaBytes / elapsedSeconds : 0.0;
+            _smoothedSpeed = _smoothedSpeed <= 0 ? rawSpeed
+                : rawSpeed * SpeedSmoothingFactor + _smoothedSpeed * (1.0 - SpeedSmoothingFactor);
             _lastSampleBytes = totalBytes;
             _lastSampleTicks = nowTicks;
         }
 
-        _chart.SetSpeed(_lastPercent, _lastSpeed);
+        _chart.SetSpeed(_lastPercent, (ulong)_smoothedSpeed);
     }
 }
