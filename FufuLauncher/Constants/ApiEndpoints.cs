@@ -115,7 +115,7 @@ namespace FufuLauncher.Constants
         public const string PluginStoreLeaderboardUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/leaderboard";
         public const string PluginStoreDownloadTokenUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/download-token";
         public const string PluginStorePrivateAccessUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/private-access";
-        public const string BackpackStaticBase = "http://8.134.75.17/static/raw/";
+        public const string BackpackStaticBase = "http://127.0.0.1/static/raw/";
         public const string BackpackWeaponIconUrl = BackpackStaticBase + "EquipIcon/";
         public const string BackpackArtifactIconUrl = BackpackStaticBase + "RelicIcon/";
         public const string BackpackMaterialIconUrl = BackpackStaticBase + "ItemIcon/";
