@@ -56,6 +56,9 @@ namespace FufuLauncher.Services.Background
         private string _cacheFolderPath => Path.Combine(Helpers.AppPaths.CacheDir, "BackgroundCache");
         private BackgroundRenderResult _cachedBackground;
         private string _currentBackgroundUrl;
+        private byte[] _videoBytes;
+        private string _videoBytesUrl;
+        private string _videoMimeType;
         private BackgroundRenderResult _cachedCustomBackground;
         private string _customBackgroundPath;
         
@@ -155,6 +158,13 @@ namespace FufuLauncher.Services.Background
             if (!isVideo && url == _currentBackgroundUrl && _cachedBackground != null)
                 return _cachedBackground;
 
+            if (isVideo)
+            {
+                var cached = await LoadVideoFromMemoryOrNull(url);
+                if (cached != null)
+                    return cached;
+            }
+
             var cachedFilePath = FindCachedFilePath(url, isVideo ? GetVideoExtension(url) : ".img");
             if (cachedFilePath == null || new FileInfo(cachedFilePath).Length <= 1024)
                 return null;
@@ -164,7 +174,7 @@ namespace FufuLauncher.Services.Background
                 BackgroundRenderResult result;
                 if (isVideo)
                 {
-                    result = await CreateVideoResultAsync(cachedFilePath);
+                    result = await LoadVideoIntoMemoryAsync(url, cachedFilePath);
                 }
                 else
                 {
@@ -182,6 +192,93 @@ namespace FufuLauncher.Services.Background
                 try { File.Delete(cachedFilePath); } catch { }
                 return null;
             }
+        }
+
+        private async Task<BackgroundRenderResult> LoadVideoFromMemoryOrNull(string url)
+        {
+            if (_videoBytes == null || !string.Equals(_videoBytesUrl, url, StringComparison.Ordinal))
+                return null;
+
+            try
+            {
+                var mediaSource = await CreateMediaSourceFromBytesAsync(_videoBytes, _videoMimeType);
+                if (mediaSource == null)
+                    return null;
+
+                return new BackgroundRenderResult
+                {
+                    VideoSource = mediaSource,
+                    VideoStream = null,
+                    IsVideo = true
+                };
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"BackgroundRenderer: 内存视频缓存加载失败({url}): {ex.Message}");
+                ReleaseVideoCache();
+                return null;
+            }
+        }
+
+        private async Task<BackgroundRenderResult> LoadVideoIntoMemoryAsync(string url, string filePath)
+        {
+            try
+            {
+                var mimeType = GetMimeType(filePath);
+                var bytes = await File.ReadAllBytesAsync(filePath);
+                var mediaSource = await CreateMediaSourceFromBytesAsync(bytes, mimeType);
+                if (mediaSource == null)
+                    return null;
+
+                _videoBytes = bytes;
+                _videoBytesUrl = url;
+                _videoMimeType = mimeType;
+
+                return new BackgroundRenderResult { VideoSource = mediaSource, VideoStream = null, IsVideo = true };
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"BackgroundRenderer: 视频载入内存失败({filePath}): {ex.Message}");
+                ReleaseVideoCache();
+                return null;
+            }
+        }
+
+        private static async Task<MediaSource> CreateMediaSourceFromBytesAsync(byte[] bytes, string contentType)
+        {
+            try
+            {
+                var stream = new InMemoryRandomAccessStream();
+                await stream.WriteAsync(bytes.AsBuffer());
+                stream.Seek(0);
+                return MediaSource.CreateFromStream(stream, contentType);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"BackgroundRenderer: 从内存创建视频源失败: {ex.Message}");
+                return null;
+            }
+        }
+
+        private static string GetMimeType(string filePath)
+        {
+            var ext = Path.GetExtension(filePath).ToLowerInvariant();
+            return ext switch
+            {
+                ".webm" => "video/webm",
+                ".mp4" => "video/mp4",
+                ".mkv" => "video/x-matroska",
+                ".avi" => "video/x-msvideo",
+                ".mov" => "video/quicktime",
+                _ => "video/mp4"
+            };
+        }
+
+        private void ReleaseVideoCache()
+        {
+            _videoBytes = null;
+            _videoBytesUrl = null;
+            _videoMimeType = null;
         }
 
         private string? FindCachedFilePath(string url, string defaultExtension)
@@ -205,13 +302,6 @@ namespace FufuLauncher.Services.Background
             catch { }
 
             return null;
-        }
-
-        private Task<BackgroundRenderResult> CreateVideoResultAsync(string filePath)
-        {
-            var source = MediaSource.CreateFromUri(new Uri(filePath));
-            var result = new BackgroundRenderResult { VideoSource = source, VideoStream = null, IsVideo = true };
-            return Task.FromResult(result);
         }
 
         private async Task<string> ResolveBackgroundApiUrlAsync(ServerType server)
@@ -591,12 +681,14 @@ namespace FufuLauncher.Services.Background
 
             _cachedBackground = null;
             _currentBackgroundUrl = null;
+            ReleaseVideoCache();
         }
 
         public void ClearCustomBackground()
         {
             _customBackgroundPath = null;
             _cachedCustomBackground = null;
+            ReleaseVideoCache();
         }
 
         private async Task DownloadToCache(string url, string defaultExtension)
