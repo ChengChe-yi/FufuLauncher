@@ -28,7 +28,7 @@ public class UnifiedCheckinResult
             var executedResults = ExecutedResults.ToList();
             if (executedResults.Count == 0) return NotificationType.Error;
             if (executedResults.All(r => r.Success)) return NotificationType.Success;
-            if (executedResults.Any(r => r.Success))
+            if (executedResults.Any(r => r.Success) && executedResults.Any(r => !r.Success))
                 return NotificationType.Warning;
             return NotificationType.Error;
         }
