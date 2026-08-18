@@ -125,8 +125,15 @@ public sealed partial class MainWindow
             var saveEnabledObj = await localSettings.ReadSettingAsync("IsSaveWindowSizeEnabled");
             if (saveEnabledObj != null && Convert.ToBoolean(saveEnabledObj))
             {
-                await localSettings.SaveSettingAsync("SavedWindowWidth", Width);
+                var presenter = AppWindow.Presenter as OverlappedPresenter;
+                if (presenter != null && presenter.State != OverlappedPresenterState.Minimized)
+                {
+                    if (Width > 0 && Height > 0)
+                    {
+                        await localSettings.SaveSettingAsync("SavedWindowWidth", Width);
                 await localSettings.SaveSettingAsync("SavedWindowHeight", Height);
+                    }
+                }
             }
         }
         catch
