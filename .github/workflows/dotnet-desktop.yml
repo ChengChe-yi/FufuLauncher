@@ -50,7 +50,7 @@ jobs:
 
     - name: Build UnlockerIsland Projects
       run: |
-        msbuild FufuLauncher.UnlockerIsland_Repo\FufuLauncher.UnlockerIsland\FufuLauncher.UnlockerIsland.vcxproj /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
+        msbuild FufuLauncher.UnlockerIsland_Repo\FufuLauncher.UnlockerIsland\FufuLauncher.UnlockerIsland.vcxproj /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v145
         msbuild FufuLauncher.UnlockerIsland_Repo\Launcher\Launcher.vcxproj /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
         msbuild FufuLauncher.UnlockerIsland_Repo\Launcher_2\Launcher_2.vcxproj /p:Configuration=Release /p:Platform=x64 /p:PlatformToolset=v143
 
