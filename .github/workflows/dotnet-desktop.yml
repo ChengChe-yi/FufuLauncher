@@ -172,10 +172,19 @@ jobs:
         $hashFile = Join-Path $outputDir "Assets\Launcher\hash.txt"
         $captureApp = Join-Path $outputDir "CaptureApp.exe"
         $launcher = Join-Path $outputDir "Launcher.dll"
-        $existingLines = Get-Content $hashFile
-        $line1 = $existingLines[0]
-        $line2 = (Get-FileHash $captureApp -Algorithm SHA512).Hash.ToLower()
-        $line3 = (Get-FileHash $launcher -Algorithm SHA512).Hash.ToLower()
+        
+        [string[]]$existingLines = @()
+        if (Test-Path $hashFile) {
+            $existingLines = Get-Content $hashFile -ErrorAction SilentlyContinue
+        }
+        
+        $line1 = if ($existingLines.Count -gt 0) { $existingLines[0] } else { "" }
+        $line2 = if (Test-Path $captureApp) { (Get-FileHash $captureApp -Algorithm SHA512).Hash.ToLower() } else { "" }
+        $line3 = if (Test-Path $launcher) { (Get-FileHash $launcher -Algorithm SHA512).Hash.ToLower() } else { "" }
+        
+        $hashDir = Split-Path $hashFile -Parent
+        if (!(Test-Path $hashDir)) { New-Item -ItemType Directory -Force -Path $hashDir | Out-Null }
+        
         Set-Content -Path $hashFile -Value @($line1, $line2, $line3)
         Write-Host "Updated hash.txt with signed file hashes"
 
