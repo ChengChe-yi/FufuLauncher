@@ -5093,9 +5093,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>번역 완료</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>시작 시 FPS 자동 비활성화 끄기</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>플러그인 스토어</value>
   </data>

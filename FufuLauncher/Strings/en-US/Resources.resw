@@ -1663,9 +1663,6 @@ Go to the Microsoft website to download and install it?</value>
   <data name="OtherPage_Title" xml:space="preserve">
     <value>Other Settings</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>Turn off auto-disable FPS plugin on startup</value>
-  </data>
   <data name="OtherPage_ExternalPrograms" xml:space="preserve">
     <value>External Programs</value>
   </data>
@@ -3991,6 +3988,9 @@ Files searched:
   </data>
   <data name="Settings_ConfigSaveFailedMsg" xml:space="preserve">
     <value>Unable to save settings to database: {0}</value>
+  </data>
+  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
+    <value>Database path: {0}. Check that the directory is writable and the disk is available.</value>
   </data>
   <data name="Diagnostics_Connected" xml:space="preserve">
     <value>Connected</value>

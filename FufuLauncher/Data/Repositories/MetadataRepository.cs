@@ -48,7 +48,7 @@ public class MetadataRepository
             bool tableExists = false;
             try
             {
-                using var checkConn = new SqliteConnection($"Data Source={dbPath}");
+                using var checkConn = new SqliteConnection(SqlitePaths.BuildConnectionString(dbPath));
                 checkConn.Open();
                 using var checkCmd = checkConn.CreateCommand();
                 checkCmd.CommandText =

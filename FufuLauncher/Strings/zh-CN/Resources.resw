@@ -4100,6 +4100,9 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Settings_ConfigSaveFailedMsg" xml:space="preserve">
     <value>无法将设置保存到数据库: {0}</value>
   </data>
+  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
+    <value>数据库路径: {0}，请检查该目录是否可写、磁盘是否可用。</value>
+  </data>
   <data name="Diagnostics_Connected" xml:space="preserve">
     <value>已连接</value>
   </data>
@@ -4390,9 +4393,6 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="Hoyolab_CHTServer" xml:space="preserve">
     <value>台港澳服</value>
-  </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>关闭启动时自动禁用FPS</value>
   </data>
   <data name="FilePicker_MainWindowNull" xml:space="preserve">
     <value>主窗口不存在，无法打开文件选择器</value>

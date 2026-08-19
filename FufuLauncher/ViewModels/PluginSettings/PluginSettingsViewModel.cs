@@ -16,23 +16,6 @@ public partial class PluginSettingsViewModel : ObservableObject
     private string _dllPath;
     private IniFile _iniFile;
     private bool _useKeyListInput = true;
-    private bool _isAutoDisableFpsOff = false;
-    
-    public bool IsAutoDisableFpsOff
-    {
-        get => _isAutoDisableFpsOff;
-        set
-        {
-            if (SetProperty(ref _isAutoDisableFpsOff, value))
-            {
-                var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
-                if (localSettings != null)
-                {
-                    _ = localSettings.SaveSettingAsync("IsAutoDisableFpsOff", value);
-                }
-            }
-        }
-    }
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsDownloadSupported))]
@@ -161,10 +144,6 @@ public partial class PluginSettingsViewModel : ObservableObject
             var autoCreateTask = localSettings.ReadSettingAsync("IsAutoCreatePresetEnabled");
             autoCreateTask.Wait();
             _isAutoCreatePresetEnabled = autoCreateTask.Result != null && Convert.ToBoolean(autoCreateTask.Result);
-            
-            var autoDisableFpsTask = localSettings.ReadSettingAsync("IsAutoDisableFpsOff");
-            autoDisableFpsTask.Wait();
-            _isAutoDisableFpsOff = autoDisableFpsTask.Result != null && Convert.ToBoolean(autoDisableFpsTask.Result);
             
             var devFeaturesTask = localSettings.ReadSettingAsync("IsDevFeaturesEnabled");
             devFeaturesTask.Wait();

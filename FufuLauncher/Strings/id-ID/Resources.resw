@@ -5093,9 +5093,6 @@ Detail: {0}</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>Terjemahan Selesai</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>Nonaktifkan auto-disable FPS saat peluncuran</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>Toko Plugin</value>
   </data>

@@ -5093,9 +5093,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>Перевод завершён</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>Отключить автоблокировку FPS при запуске</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>Магазин плагинов</value>
   </data>

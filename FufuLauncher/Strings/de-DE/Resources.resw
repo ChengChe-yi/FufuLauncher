@@ -5093,9 +5093,6 @@ Rückmeldung: {0}</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>Übersetzung abgeschlossen</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>Automatische FPS-Deaktivierung beim Start deaktivieren</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>Plugin-Markt</value>
   </data>

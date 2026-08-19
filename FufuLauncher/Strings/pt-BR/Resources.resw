@@ -5093,9 +5093,6 @@ Detalhes: {0}</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>Tradução concluída</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>Desativar a desabilitação automática de FPS ao iniciar</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>Loja de Plugins</value>
   </data>

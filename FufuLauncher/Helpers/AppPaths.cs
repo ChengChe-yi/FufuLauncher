@@ -47,6 +47,8 @@ public static class AppPaths
         Directory.CreateDirectory(SettingsDir);
         LoadCustomPaths();
 
+        ValidateOrFallbackDataDir();
+
         IsFirstRun = !File.Exists(PathsConfigFile) && !File.Exists(LocalSettingsDb);
 
         Directory.CreateDirectory(DataDir);
@@ -265,6 +267,44 @@ public static class AppPaths
         catch (Exception ex)
         {
             Debug.WriteLine($"[AppPaths] 读取自定义路径失败: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Verifies the configured DataDir is creatable and writable. If a custom
+    /// DataDir is unusable (missing drive, read-only location, revoked
+    /// permissions, etc.), fall back to the default %LOCALAPPDATA% location so
+    /// the SQLite databases can still be opened.
+    /// </summary>
+    private static void ValidateOrFallbackDataDir()
+    {
+        if (string.IsNullOrWhiteSpace(_dataDir))
+        {
+            _dataDir = Path.Combine(RootDir, "Data");
+        }
+
+        try
+        {
+            Directory.CreateDirectory(_dataDir);
+
+            var probe = Path.Combine(_dataDir, $".write_test_{Environment.ProcessId}.tmp");
+            File.WriteAllText(probe, "ok");
+            File.Delete(probe);
+        }
+        catch (Exception ex)
+        {
+            var defaultData = Path.Combine(RootDir, "Data");
+            Debug.WriteLine($"[AppPaths] 数据目录不可用，已回退到默认目录: {_dataDir} -> {defaultData} ({ex.Message})");
+            _dataDir = defaultData;
+
+            try
+            {
+                Directory.CreateDirectory(_dataDir);
+            }
+            catch (Exception fallbackEx)
+            {
+                Debug.WriteLine($"[AppPaths] 默认数据目录创建失败: {fallbackEx.Message}");
+            }
         }
     }
 

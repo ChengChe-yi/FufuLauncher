@@ -5099,9 +5099,6 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>Traduzione completata</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>Disattiva la disattivazione automatica del Plugin FPS all'avvio</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>Negozio dei Plugin</value>
   </data>

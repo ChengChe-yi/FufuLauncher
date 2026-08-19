@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using FufuLauncher.Data.Entities;
+using FufuLauncher.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace FufuLauncher.Data;
@@ -26,7 +27,7 @@ public class AchievementDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite($"Data Source={_dbPath};Pooling=False");
+        optionsBuilder.UseSqlite(SqlitePaths.BuildConnectionString(_dbPath) + ";Pooling=False");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

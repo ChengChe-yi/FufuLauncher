@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using FufuLauncher.Data.Entities;
+using FufuLauncher.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace FufuLauncher.Data;
@@ -22,7 +23,7 @@ public class MetadataDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite($"Data Source={_dbPath}");
+        optionsBuilder.UseSqlite(SqlitePaths.BuildConnectionString(_dbPath));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

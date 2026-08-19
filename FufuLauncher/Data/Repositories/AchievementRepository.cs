@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 using System.Diagnostics;
 using FufuLauncher.Data.Entities;
+using FufuLauncher.Helpers;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,7 +64,7 @@ public class AchievementRepository
             bool tableExists = false;
             try
             {
-                using var checkConn = new SqliteConnection($"Data Source={dbPath}");
+                using var checkConn = new SqliteConnection(SqlitePaths.BuildConnectionString(dbPath));
                 checkConn.Open();
                 using var checkCmd = checkConn.CreateCommand();
                 checkCmd.CommandText =

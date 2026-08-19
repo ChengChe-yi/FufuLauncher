@@ -5093,9 +5093,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>翻譯完成</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>關閉啟動時自動停用FPS</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>插件商城</value>
   </data>

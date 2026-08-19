@@ -72,39 +72,12 @@ namespace FufuLauncher.Services
                         NotificationType.Error,
                         4000
                     ));
+                    // The data directory is unusable; skip loading so callers do
+                    // not attempt to open the database against an invalid path.
+                    return;
                 }
 
                 _settings = await _repository.GetAllSettingsAsync();
-
-                try
-                {
-                    bool isAutoDisableFpsOff = false;
-                    if (_settings.TryGetValue("IsAutoDisableFpsOff", out var offStr))
-                    {
-                        isAutoDisableFpsOff = offStr.Contains("true", StringComparison.OrdinalIgnoreCase);
-                    }
-
-                    if (!isAutoDisableFpsOff)
-                    {
-                        string fpsDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS");
-                        string fpsEnabledPath = Path.Combine(fpsDir, "FPS.dll");
-                        string fpsDisabledPath = Path.Combine(fpsDir, "FPS.disabled");
-
-                        if (File.Exists(fpsEnabledPath))
-                        {
-                            if (File.Exists(fpsDisabledPath))
-                            {
-                                File.Delete(fpsDisabledPath);
-                            }
-                            File.Move(fpsEnabledPath, fpsDisabledPath);
-                            Debug.WriteLine("LocalSettingsService: 已在启动时自动禁用FPS插件");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"LocalSettingsService: 自动禁用FPS插件失败 - {ex.Message}");
-                }
 
                 _isInitialized = true;
                 Debug.WriteLine($"LocalSettingsService: 初始化完成，加载 {_settings.Count} 项");
@@ -168,13 +141,12 @@ namespace FufuLauncher.Services
 
             var json = JsonSerializer.Serialize(value, _jsonOptions);
 
-            _settings[key] = json;
-
             Debug.WriteLine($"LocalSettingsService: 保存{key}");
 
             try
             {
                 await _repository.UpsertSettingAsync(key, json);
+                _settings[key] = json;
             }
             catch (Exception ex)
             {
@@ -186,7 +158,9 @@ namespace FufuLauncher.Services
                 });
                 WeakReferenceMessenger.Default.Send(new NotificationMessage(
                     "Settings_ConfigSaveFailed".GetLocalized(),
-                    string.Format("Settings_ConfigSaveFailedMsg".GetLocalized(), ex.Message),
+                    string.Format("Settings_ConfigSaveFailedMsg".GetLocalized(), ex.Message)
+                        + Environment.NewLine
+                        + string.Format("Settings_ConfigSaveFailedPathHint".GetLocalized(), Helpers.AppPaths.LocalSettingsDb),
                     NotificationType.Error,
                     5000));
             }

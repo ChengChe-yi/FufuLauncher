@@ -39,7 +39,7 @@ public class LocalSettingsRepository
 
     private static void EnsureSettingsTable(string dbPath)
     {
-        using var conn = new SqliteConnection($"Data Source={dbPath}");
+        using var conn = new SqliteConnection(SqlitePaths.BuildConnectionString(dbPath));
         conn.Open();
         using var cmd = conn.CreateCommand();
         cmd.CommandText =

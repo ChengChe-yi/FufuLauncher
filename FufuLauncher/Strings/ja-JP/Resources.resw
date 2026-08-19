@@ -5093,9 +5093,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="HelpPage_TranslateComplete" xml:space="preserve">
     <value>翻訳完了</value>
   </data>
-  <data name="DisableFpsAutoDisableLabel" xml:space="preserve">
-    <value>起動時の自動FPS無効化をオフ</value>
-  </data>
   <data name="PluginStoreTitle" xml:space="preserve">
     <value>プラグインストア</value>
   </data>

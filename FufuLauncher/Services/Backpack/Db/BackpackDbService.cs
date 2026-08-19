@@ -16,7 +16,7 @@ public sealed partial class BackpackDbService : IDisposable
         var dir = Path.Combine(AppPaths.DataDir, "Backpack");
         Directory.CreateDirectory(dir);
         var path = Path.Combine(dir, "backpack.db");
-        _db = new SqliteConnection($"Data Source={path}");
+        _db = new SqliteConnection(SqlitePaths.BuildConnectionString(path));
         _db.Open();
         InitSchema();
     }
