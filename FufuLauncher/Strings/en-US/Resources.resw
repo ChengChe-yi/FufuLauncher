@@ -4256,6 +4256,9 @@ Files searched:
   <data name="Geetest_CaptchaTitle" xml:space="preserve">
     <value>CAPTCHA Verification</value>
   </data>
+  <data name="Launcher_DllNotFound" xml:space="preserve">
+    <value>Launcher.dll is missing. Injection is unavailable. Please ensure the file is built from FufuLauncher.UnlockerIsland.</value>
+  </data>
   <data name="Launcher_DllNotLoaded" xml:space="preserve">
     <value>Launcher.dll failed to load due to missing C++ runtime or antivirus blocking. Cannot start.</value>
   </data>

@@ -20,11 +20,20 @@ namespace FufuLauncher.Services
                          bool resin106, bool resin201, bool resin107009, bool resin107012, bool resin220007);
     }
 
+    public enum LauncherDllLoadError
+    {
+        None,
+        FileNotFound,
+        LoadFailed,
+        Exception
+    }
+
     public class LauncherService : ILauncherService
     {
         private const string DllName = "Launcher.dll";
         
         public static bool IsLauncherDllLoaded { get; private set; } = false;
+        public static LauncherDllLoadError DllLoadError { get; private set; } = LauncherDllLoadError.None;
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr LoadLibrary(string lpFileName);
@@ -46,6 +55,7 @@ namespace FufuLauncher.Services
                 {
                     Debug.WriteLine($"找不到核心文件: {absoluteDllPath}");
                     IsLauncherDllLoaded = false;
+                    DllLoadError = LauncherDllLoadError.FileNotFound;
                     return;
                 }
 
@@ -55,15 +65,18 @@ namespace FufuLauncher.Services
                     int errorCode = Marshal.GetLastWin32Error();
                     Debug.WriteLine($"加载 {DllName} 失败。文件存在，但缺少依赖项或架构不匹配。Win32错误码: {errorCode}");
                     IsLauncherDllLoaded = false;
+                    DllLoadError = LauncherDllLoadError.LoadFailed;
                     return;
                 }
                 
                 IsLauncherDllLoaded = true;
+                DllLoadError = LauncherDllLoadError.None;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"初始化 LauncherService 时发生异常: {ex.Message}");
                 IsLauncherDllLoaded = false;
+                DllLoadError = LauncherDllLoadError.Exception;
             }
         }
 
@@ -120,7 +133,9 @@ namespace FufuLauncher.Services
         {
             if (!IsLauncherDllLoaded)
             {
-                errorMessage = "Launcher_DllNotLoaded".GetLocalized();
+                errorMessage = DllLoadError == LauncherDllLoadError.FileNotFound
+                    ? "Launcher_DllNotFound".GetLocalized()
+                    : "Launcher_DllNotLoaded".GetLocalized();
                 processId = 0;
                 return -1;
             }
