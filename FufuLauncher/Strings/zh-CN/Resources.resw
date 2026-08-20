@@ -4367,6 +4367,9 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Geetest_CaptchaTitle" xml:space="preserve">
     <value>人机验证</value>
   </data>
+  <data name="Launcher_DllNotFound" xml:space="preserve">
+    <value>Launcher.dll 文件缺失，注入功能不可用。请确保编译时已从 FufuLauncher.UnlockerIsland 生成该文件。</value>
+  </data>
   <data name="Launcher_DllNotLoaded" xml:space="preserve">
     <value>由于系统缺少 C++ 运行库或核心文件被杀毒软件拦截，Launcher.dll 未加载成功，无法启动。</value>
   </data>
