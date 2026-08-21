@@ -59,6 +59,7 @@
 ![Español (México)](https://img.shields.io/badge/Espa%C3%B1ol_(M%C3%A9xico)-es--MX-informational)
 ![Français](https://img.shields.io/badge/Fran%C3%A7ais-fr--FR-informational)
 ![Bahasa Indonesia](https://img.shields.io/badge/Bahasa_Indonesia-id--ID-informational)
+![हिन्दी](https://img.shields.io/badge/%E0%A4%B9%E0%A4%BF%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%80-hi--IN-informational)
 ![Italiano](https://img.shields.io/badge/Italiano-it--IT-informational)
 ![日本語](https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E-ja--JP-informational)
 ![한국어](https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-ko--KR-informational)
