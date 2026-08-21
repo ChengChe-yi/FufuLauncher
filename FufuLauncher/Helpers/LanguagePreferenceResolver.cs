@@ -19,12 +19,12 @@ public static class LanguagePreferenceResolver
             [AppLanguage.ja] = "ja-JP", [AppLanguage.es] = "es-ES",
             [AppLanguage.esMX] = "es-MX", [AppLanguage.ko] = "ko-KR",
             [AppLanguage.it] = "it-IT", [AppLanguage.id] = "id-ID",
-            [AppLanguage.pt] = "pt-BR"
+            [AppLanguage.pt] = "pt-BR", [AppLanguage.hi] = "hi-IN"
         };
 
     private static readonly string[] SupportedCultures =
         ["zh-CN", "zh-TW", "en-US", "fr-FR", "de-DE", "ru-RU", "ja-JP",
-         "es-ES", "es-MX", "ko-KR", "it-IT", "id-ID", "pt-BR"];
+         "es-ES", "es-MX", "ko-KR", "it-IT", "id-ID", "pt-BR", "hi-IN"];
 
     public static string Resolve(AppLanguage language, IEnumerable<string>? systemLanguagePreferences)
     {

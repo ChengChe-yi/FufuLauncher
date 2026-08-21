@@ -1902,6 +1902,10 @@
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=12}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
+                                                     Content="{helpers:Loc Key=LangHi}" GroupName="AppLanguage" CommandParameter="14"
+                                                     IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=14}"
+                                                     Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
+                                        <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                      Content="{helpers:Loc Key=LangDefault}" GroupName="AppLanguage" CommandParameter="0"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=0}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />

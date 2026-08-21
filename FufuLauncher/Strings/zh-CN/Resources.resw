@@ -318,6 +318,9 @@
   <data name="LangPt" xml:space="preserve">
     <value>葡萄牙语（巴西）</value>
   </data>
+  <data name="LangHi" xml:space="preserve">
+    <value>印地语</value>
+  </data>
   <data name="LangDefault" xml:space="preserve">
     <value>使用系统默认语言</value>
   </data>

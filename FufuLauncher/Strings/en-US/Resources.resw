@@ -318,6 +318,9 @@
   <data name="LangPt" xml:space="preserve">
     <value>Português (Brasil)</value>
   </data>
+  <data name="LangHi" xml:space="preserve">
+    <value>हिन्दी</value>
+  </data>
   <data name="LangDefault" xml:space="preserve">
     <value>Use System Default Language</value>
   </data>

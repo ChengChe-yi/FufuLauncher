@@ -92,6 +92,7 @@ namespace FufuLauncher.ViewModels
                 new() { FlagImagePath = FlagPath("indonesia"),          NativeName = "Bahasa Indonesia",      CountryName = "Indonesia",            LanguageCode = "id-ID", LanguageEnum = AppLanguage.id,     CultureCode = "id-ID" },
                 new() { FlagImagePath = FlagPath("brazil"),             NativeName = "Português (Brasil)",    CountryName = "Brazil",               LanguageCode = "pt-BR", LanguageEnum = AppLanguage.pt,     CultureCode = "pt-BR" },
                 new() { FlagImagePath = FlagPath("mexico"),             NativeName = "Español (México)",      CountryName = "Mexico",               LanguageCode = "es-MX", LanguageEnum = AppLanguage.esMX,   CultureCode = "es-MX" },
+                new() { FlagImagePath = FlagPath("india"),               NativeName = "हिन्दी",                 CountryName = "India",                LanguageCode = "hi-IN", LanguageEnum = AppLanguage.hi,      CultureCode = "hi-IN" },
             };
 
             foreach (var opt in options)

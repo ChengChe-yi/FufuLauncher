@@ -19,5 +19,6 @@ public enum AppLanguage
     it = 10,
     id = 11,
     pt = 12,
-    esMX = 13
+    esMX = 13,
+    hi = 14
 }

@@ -99,6 +99,7 @@
         <Content Include="Strings\id-ID\Resources.resw" />
         <Content Include="Strings\pt-BR\Resources.resw" />
         <Content Include="Strings\es-MX\Resources.resw" />
+        <Content Include="Strings\hi-IN\Resources.resw" />
         <Content Remove="Plugins\Avatar\**" />
     </ItemGroup>
 
