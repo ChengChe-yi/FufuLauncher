@@ -1663,6 +1663,12 @@
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>战绩信息</value>
   </data>
+  <data name="Home_WidgetBackpack" xml:space="preserve">
+    <value>背包浏览器</value>
+  </data>
+  <data name="Home_BackpackTooltip" xml:space="preserve">
+    <value>浏览武器、圣遗物、素材、食物与小道具等物品数据</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>增加小工具</value>
   </data>
@@ -5517,6 +5523,78 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="Backpack_NavTitle" xml:space="preserve">
     <value>背包浏览器</value>
+  </data>
+  <data name="BackpackWindow_Title" xml:space="preserve">
+    <value>背包浏览器</value>
+  </data>
+  <data name="BackpackWindow_Archive" xml:space="preserve">
+    <value>背包档案</value>
+  </data>
+  <data name="BackpackWindow_SearchPlaceholder" xml:space="preserve">
+    <value>搜索物品名称、描述...</value>
+  </data>
+  <data name="BackpackWindow_TotalItems" xml:space="preserve">
+    <value>收录 {0} 件 / 已拥有 {1} 件</value>
+  </data>
+  <data name="BackpackWindow_VisibilityOn" xml:space="preserve">
+    <value>隐藏空物品</value>
+  </data>
+  <data name="BackpackWindow_VisibilityOff" xml:space="preserve">
+    <value>显示全部</value>
+  </data>
+  <data name="BackpackWindow_ImportBackpack" xml:space="preserve">
+    <value>导入数据</value>
+  </data>
+  <data name="BackpackWindow_ExportBackpack" xml:space="preserve">
+    <value>导出数据</value>
+  </data>
+  <data name="BackpackWindow_RefreshData" xml:space="preserve">
+    <value>刷新数据</value>
+  </data>
+  <data name="BackpackWindow_ViewDetail" xml:space="preserve">
+    <value>查看详情</value>
+  </data>
+  <data name="BackpackWindow_CloseDetail" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="BackpackWindow_ViewGuide" xml:space="preserve">
+    <value>查看攻略</value>
+  </data>
+  <data name="BackpackWindow_DetailTitle" xml:space="preserve">
+    <value>物品详情</value>
+  </data>
+  <data name="BackpackWindow_DetailSubtitleSimple" xml:space="preserve">
+    <value>持有物品</value>
+  </data>
+  <data name="BackpackWindow_ProfileMissing" xml:space="preserve">
+    <value>未配置档案</value>
+  </data>
+  <data name="BackpackWindow_StatusNoPath" xml:space="preserve">
+    <value>未配置游戏路径</value>
+  </data>
+  <data name="BackpackWindow_StatusRunning" xml:space="preserve">
+    <value>● 游戏运行中</value>
+  </data>
+  <data name="BackpackWindow_StatusIdle" xml:space="preserve">
+    <value>○ 游戏未启动</value>
+  </data>
+  <data name="BackpackWindow_EmptyMessage" xml:space="preserve">
+    <value>暂无匹配项</value>
+  </data>
+  <data name="BackpackWindow_CountFormat" xml:space="preserve">
+    <value>显示 {0} 项</value>
+  </data>
+  <data name="Backpack_SummaryWeaponLabel" xml:space="preserve">
+    <value>持有武器</value>
+  </data>
+  <data name="Backpack_SummaryArtifactLabel" xml:space="preserve">
+    <value>圣遗物套装</value>
+  </data>
+  <data name="Backpack_SummaryFoodLabel" xml:space="preserve">
+    <value>可烹饪料理</value>
+  </data>
+  <data name="Backpack_SummaryAssetLabel" xml:space="preserve">
+    <value>已收录素材</value>
   </data>
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>背包同步仅支持 x64 版本。</value>

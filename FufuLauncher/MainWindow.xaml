@@ -202,12 +202,6 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="{helpers:Loc Key=Backpack_NavTitle}" Tag="FufuLauncher.ViewModels.BackpackViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE8EC;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                
                 <NavigationViewItem Content="{helpers:Loc Key=NavHelpDocs}" Tag="FufuLauncher.ViewModels.HelpViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE82D;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>

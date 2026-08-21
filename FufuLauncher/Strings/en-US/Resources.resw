@@ -1561,6 +1561,12 @@ Go to the Microsoft website to download and install it?</value>
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Battle Chronicle</value>
   </data>
+  <data name="Home_WidgetBackpack" xml:space="preserve">
+    <value>Backpack Browser</value>
+  </data>
+  <data name="Home_BackpackTooltip" xml:space="preserve">
+    <value>Browse weapons, artifacts, materials, food, gadgets and other item data</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Add Widget</value>
   </data>
@@ -5406,6 +5412,78 @@ Do you still want to execute it? (Not recommended)</value>
   </data>
   <data name="Backpack_NavTitle" xml:space="preserve">
     <value>Backpack Browser</value>
+  </data>
+  <data name="BackpackWindow_Title" xml:space="preserve">
+    <value>Backpack Browser</value>
+  </data>
+  <data name="BackpackWindow_Archive" xml:space="preserve">
+    <value>Backpack Archive</value>
+  </data>
+  <data name="BackpackWindow_SearchPlaceholder" xml:space="preserve">
+    <value>Search by name or description...</value>
+  </data>
+  <data name="BackpackWindow_TotalItems" xml:space="preserve">
+    <value>{0} items cataloged / {1} collected</value>
+  </data>
+  <data name="BackpackWindow_VisibilityOn" xml:space="preserve">
+    <value>Hide empty</value>
+  </data>
+  <data name="BackpackWindow_VisibilityOff" xml:space="preserve">
+    <value>Show all</value>
+  </data>
+  <data name="BackpackWindow_ImportBackpack" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="BackpackWindow_ExportBackpack" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="BackpackWindow_RefreshData" xml:space="preserve">
+    <value>Refresh data</value>
+  </data>
+  <data name="BackpackWindow_ViewDetail" xml:space="preserve">
+    <value>View details</value>
+  </data>
+  <data name="BackpackWindow_CloseDetail" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="BackpackWindow_ViewGuide" xml:space="preserve">
+    <value>View guide</value>
+  </data>
+  <data name="BackpackWindow_DetailTitle" xml:space="preserve">
+    <value>Item details</value>
+  </data>
+  <data name="BackpackWindow_DetailSubtitleSimple" xml:space="preserve">
+    <value>Inventory item</value>
+  </data>
+  <data name="BackpackWindow_ProfileMissing" xml:space="preserve">
+    <value>No profile configured</value>
+  </data>
+  <data name="BackpackWindow_StatusNoPath" xml:space="preserve">
+    <value>Game path not configured</value>
+  </data>
+  <data name="BackpackWindow_StatusRunning" xml:space="preserve">
+    <value>● Game running</value>
+  </data>
+  <data name="BackpackWindow_StatusIdle" xml:space="preserve">
+    <value>○ Game idle</value>
+  </data>
+  <data name="BackpackWindow_EmptyMessage" xml:space="preserve">
+    <value>No matching items</value>
+  </data>
+  <data name="BackpackWindow_CountFormat" xml:space="preserve">
+    <value>{0} shown</value>
+  </data>
+  <data name="Backpack_SummaryWeaponLabel" xml:space="preserve">
+    <value>Weapons owned</value>
+  </data>
+  <data name="Backpack_SummaryArtifactLabel" xml:space="preserve">
+    <value>Artifact sets</value>
+  </data>
+  <data name="Backpack_SummaryFoodLabel" xml:space="preserve">
+    <value>Cookable dishes</value>
+  </data>
+  <data name="Backpack_SummaryAssetLabel" xml:space="preserve">
+    <value>Materials collected</value>
   </data>
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Backpack synchronization requires the x64 build.</value>
