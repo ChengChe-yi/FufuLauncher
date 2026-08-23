@@ -9,12 +9,14 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using FufuLauncher.Contracts.Services;
 using FufuLauncher.Data.Entities;
 using FufuLauncher.Data.Repositories;
 using FufuLauncher.Helpers;
 using Microsoft.Data.Sqlite;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
+using FufuLauncher.Services.Yae;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Animation;
@@ -1417,74 +1419,7 @@ public sealed partial class AchievementWindow : Window
                 return;
             }
 
-            var idMap = new Dictionary<int, AchievementItem>();
-            foreach (var cat in ViewModel.Categories)
-            {
-                foreach (var item in cat.Achievements)
-                {
-                    if (item.IsGroup)
-                    {
-                        foreach (var child in item.Children)
-                        {
-                            idMap[child.Id] = child;
-                        }
-                    }
-                    else
-                    {
-                        idMap[item.Id] = item;
-                    }
-                }
-            }
-
-            int updatedCount = 0;
-
-            foreach (var uiafItem in uiafData.List)
-            {
-                if (idMap.TryGetValue(uiafItem.Id, out var targetItem))
-                {
-                    bool isCompleted = uiafItem.Status == 2 || uiafItem.Status == 3;
-                    bool needUpdate = false;
-
-                    if (uiafItem.Current > targetItem.CurrentProgress) needUpdate = true;
-                    if (isCompleted && !targetItem.IsCompleted) needUpdate = true;
-
-                    if (needUpdate)
-                    {
-                        targetItem.CurrentProgress = uiafItem.Current;
-                        if (isCompleted)
-                        {
-                            targetItem.IsCompleted = true;
-                            
-                            if (uiafItem.Timestamp > 0)
-                            {
-                                targetItem.CompletionTimestamp = uiafItem.Timestamp;
-                            }
-                            else if (targetItem.CompletionTimestamp == 0)
-                            {
-                                targetItem.CompletionTimestamp = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
-                            }
-                        }
-                        updatedCount++;
-                    }
-                }
-            }
-
-            foreach (var cat in ViewModel.Categories)
-            {
-                foreach (var item in cat.Achievements)
-                {
-                    if (item.IsGroup)
-                    {
-                        item.RefreshGroupStatus();
-                    }
-                }
-                cat.RefreshProgress();
-            }
-
-            CalculateGlobalStats();
-            SaveData();
-
-            if (ViewModel.HideCompleted) ApplyFilters();
+            int updatedCount = ApplyUiafData(uiafData);
 
             ViewModel.StatusMessage = $"UIAF导入完成，同步了 {updatedCount} 个成就";
             await ShowDialogAsync("导入数据", $"UIAF导入成功！\n共更新了 {updatedCount} 个成就进度");
@@ -1492,6 +1427,153 @@ public sealed partial class AchievementWindow : Window
         catch (Exception ex)
         {
             await ShowDialogAsync("导入失败", $"读取或解析过程中发生异常：\n{ex.Message}");
+        }
+        finally
+        {
+            _isBatchProcessing = false;
+        }
+    }
+
+    private int ApplyUiafData(UiafData uiafData)
+    {
+        var idMap = new Dictionary<int, AchievementItem>();
+        foreach (var cat in ViewModel.Categories)
+        {
+            foreach (var item in cat.Achievements)
+            {
+                if (item.IsGroup)
+                {
+                    foreach (var child in item.Children)
+                    {
+                        idMap[child.Id] = child;
+                    }
+                }
+                else
+                {
+                    idMap[item.Id] = item;
+                }
+            }
+        }
+
+        int updatedCount = 0;
+
+        foreach (var uiafItem in uiafData.List)
+        {
+            if (!idMap.TryGetValue(uiafItem.Id, out var targetItem)) continue;
+
+            bool isCompleted = uiafItem.Status == 2 || uiafItem.Status == 3;
+            bool needUpdate = uiafItem.Current > targetItem.CurrentProgress
+                || (isCompleted && !targetItem.IsCompleted);
+
+            if (!needUpdate) continue;
+
+            targetItem.CurrentProgress = uiafItem.Current;
+            if (isCompleted)
+            {
+                targetItem.IsCompleted = true;
+
+                if (uiafItem.Timestamp > 0)
+                {
+                    targetItem.CompletionTimestamp = uiafItem.Timestamp;
+                }
+                else if (targetItem.CompletionTimestamp == 0)
+                {
+                    targetItem.CompletionTimestamp = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
+                }
+            }
+            updatedCount++;
+        }
+
+        foreach (var cat in ViewModel.Categories)
+        {
+            foreach (var item in cat.Achievements)
+            {
+                if (item.IsGroup)
+                {
+                    item.RefreshGroupStatus();
+                }
+            }
+            cat.RefreshProgress();
+        }
+
+        CalculateGlobalStats();
+        SaveData();
+
+        if (ViewModel.HideCompleted) ApplyFilters();
+
+        return updatedCount;
+    }
+
+    private async void OnYaeReadClick(object sender, RoutedEventArgs e)
+    {
+        if (_isBatchProcessing) return;
+
+        var localSettingsService = App.GetService<ILocalSettingsService>();
+        var configuredPath = await localSettingsService.ReadSettingAsync("GameInstallationPath") as string;
+        string? gameExe = null;
+        if (!string.IsNullOrWhiteSpace(configuredPath))
+        {
+            var directory = configuredPath.Trim().Trim('"');
+            if (Directory.Exists(directory))
+            {
+                foreach (var exeName in await GameExeManager.GetExeNamesAsync())
+                {
+                    var candidate = Path.Combine(directory, exeName);
+                    if (File.Exists(candidate))
+                    {
+                        gameExe = candidate;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (string.IsNullOrEmpty(gameExe))
+        {
+            await ShowDialogAsync("ErrorTitle".GetLocalized(), "AchievementWindow_YaeNoGamePath".GetLocalized());
+            return;
+        }
+
+        _isBatchProcessing = true;
+        ViewModel.StatusMessage = "AchievementWindow_ReadingFromGame".GetLocalized();
+
+        try
+        {
+            var result = await YaeAchievementReader.ReadAchievementsAsync(gameExe);
+            if (result is null || result.List.Count == 0)
+            {
+                ViewModel.StatusMessage = "AchievementWindow_YaeEmptyResult".GetLocalized();
+                await ShowDialogAsync("导入结果", "AchievementWindow_YaeEmptyResult".GetLocalized());
+                return;
+            }
+
+            var uiafData = new UiafData
+            {
+                Info = new UiafInfo
+                {
+                    ExportApp = result.Info?.ExportApp ?? "FufuLauncher",
+                    ExportAppVersion = result.Info?.ExportAppVersion ?? "1.0.0",
+                    UiafVersion = "v1.1",
+                    ExportTimestamp = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds(),
+                },
+                List = result.List.Select(item => new UiafItem
+                {
+                    Id = item.Id,
+                    Current = item.Current,
+                    Status = item.Status,
+                    Timestamp = item.Timestamp,
+                }).ToList(),
+            };
+
+            int updatedCount = ApplyUiafData(uiafData);
+
+            ViewModel.StatusMessage = string.Format("AchievementWindow_YaeReadDone".GetLocalized(), result.List.Count, updatedCount);
+            await ShowDialogAsync("导入成功", string.Format("AchievementWindow_YaeReadDone".GetLocalized(), result.List.Count, updatedCount));
+        }
+        catch (Exception ex)
+        {
+            ViewModel.StatusMessage = "AchievementWindow_YaeReadFailed".GetLocalized();
+            await ShowDialogAsync("导入失败", ex.Message);
         }
         finally
         {

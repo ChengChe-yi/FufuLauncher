@@ -77,6 +77,10 @@
         <PackageReference Include="System.IO.Hashing" Version="9.0.11" />
         <PackageReference Include="System.Management" Version="8.0.0" />
         <PackageReference Include="WinUIEx" Version="2.9.1" />
+        <PackageReference Include="Yae.Lib" Version="5.4.5">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="YamlDotNet" Version="18.1.0" />
         <PackageReference Include="ZstdSharp.Port" Version="0.8.8" />
     </ItemGroup>
@@ -168,5 +172,12 @@
 
         <RemoveDir Directories="@(RuntimeDirsToDelete)" />
         <Message Text="已清理runtimes文件夹" Importance="high" />
+    </Target>
+
+    <Target Name="CopyYaeAchievementLib" AfterTargets="Build;Publish" Condition="Exists('$(OutDir)runtimes\win-x64\native\YaeAchievementLib.dll')">
+        <Copy SourceFiles="$(OutDir)runtimes\win-x64\native\YaeAchievementLib.dll"
+              DestinationFiles="$(OutDir)YaeAchievementLib.dll"
+              SkipUnchangedFiles="true" />
+        <Message Text="已复制 YaeAchievementLib.dll 到输出根目录" Importance="high" />
     </Target>
 </Project>

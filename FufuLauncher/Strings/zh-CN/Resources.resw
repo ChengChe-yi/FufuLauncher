@@ -3059,6 +3059,27 @@
   <data name="AchievementWindow_UpdateData" xml:space="preserve">
     <value>更新数据</value>
   </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>通过 Embedded Yae 从游戏内导入</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>启动游戏并通过 Embedded Yae 组件从游戏内导入成就进度</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>未找到游戏安装目录，请先在设置中配置游戏路径。</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>正在等待游戏数据</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>未获取到任何成就数据。</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>已从游戏内导入 {0} 条成就数据，同步了 {1} 个成就进度。</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>从游戏内导入成就失败。</value>
+  </data>
   <data name="AchievementWindow_Progress" xml:space="preserve">
     <value>进度: </value>
   </data>

@@ -27,6 +27,12 @@ namespace FufuLauncher
                 return;
             }
 
+            if (args.Length >= 2 && string.Equals(args[0], "--yae-inject", StringComparison.OrdinalIgnoreCase))
+            {
+                Environment.Exit(Services.Yae.YaeAchievementReader.RunElevatedInjection(args[1]));
+                return;
+            }
+
             SentrySdk.Init(options => 
             { 
                 options.Dsn = "https://9c8e89f029c240e3dba227979a26759a@o4511497397272576.ingest.de.sentry.io/4511497409265745"; 

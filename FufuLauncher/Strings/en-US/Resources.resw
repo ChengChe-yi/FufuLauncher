@@ -2921,6 +2921,27 @@ Go to the Microsoft website to download and install it?</value>
   <data name="AchievementWindow_UpdateData" xml:space="preserve">
     <value>Update Data</value>
   </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>Import from Game via Embedded Yae</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>Launch the game and import achievement progress via the Embedded Yae component</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>Game installation directory not found. Please configure the game path in settings first.</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>Waiting for game data...</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>No achievement data was obtained.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>Imported {0} achievements from the game, synced {1} achievement progress entries.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>Failed to import achievements from the game.</value>
+  </data>
   <data name="AchievementWindow_Progress" xml:space="preserve">
     <value>Progress: </value>
   </data>

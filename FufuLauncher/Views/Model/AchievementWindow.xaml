@@ -152,6 +152,13 @@
                     <ComboBox ItemsSource="{x:Bind ViewModel.AvailableVersions}" SelectedItem="{x:Bind ViewModel.SelectedVersion, Mode=TwoWay}" PlaceholderText="{helpers:Loc Key=AchievementWindow_Version}" MinWidth="100" VerticalAlignment="Center"/>
                     <ToggleSwitch IsOn="{x:Bind ViewModel.HideCompleted, Mode=TwoWay}" OnContent="{helpers:Loc Key=AchievementWindow_HiddenComplete}" OffContent="{helpers:Loc Key=AchievementWindow_ShowAll}" VerticalAlignment="Center" MinWidth="100"/>
                     
+                    <Button Click="OnYaeReadClick" VerticalAlignment="Center" Padding="8,5" ToolTipService.ToolTip="{helpers:Loc Key=AchievementWindow_YaeReadTooltip}">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <FontIcon Glyph="&#xEAFC;" FontFamily="Segoe Fluent Icons" FontSize="14"/>
+                            <TextBlock Text="{helpers:Loc Key=AchievementWindow_YaeRead}" FontSize="12"/>
+                        </StackPanel>
+                    </Button>
+
                     <Button Click="OnUiafImportClick" VerticalAlignment="Center" Padding="8,5">
                         <StackPanel Orientation="Horizontal" Spacing="6">
                             <FontIcon Glyph="&#xE118;" FontFamily="Segoe Fluent Icons" FontSize="14"/>
