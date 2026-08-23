@@ -125,6 +125,7 @@ public sealed partial class BackpackViewModel : ObservableObject
     public partial bool IsInitializing { get; set; } = true;
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(GameStatusLabel))]
     public partial bool IsGameRunning { get; set; } = false;
 
     [ObservableProperty]
@@ -218,6 +219,7 @@ public sealed partial class BackpackViewModel : ObservableObject
         _activeCounts = db.LoadMaterialCounts();
         _activeProps  = db.LoadProps();
         RefreshBrowse();
+        InitializeWindowCollections();
     }
 
     public void UpdateGameInstallation(string? directory, bool isAvailable)

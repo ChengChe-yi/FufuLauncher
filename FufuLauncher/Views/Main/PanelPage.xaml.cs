@@ -43,6 +43,12 @@ public sealed partial class PanelPage : Page
         window.Activate();
     }
 
+    private void OnOpenBackpackClick(object sender, RoutedEventArgs e)
+    {
+        var window = new BackpackWindow();
+        window.Activate();
+    }
+
     private void OnOpenPlayerRolesClick(object sender, RoutedEventArgs e)
     {
         var window = new PlayerInfoWindow();

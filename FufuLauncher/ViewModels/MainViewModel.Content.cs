@@ -19,6 +19,8 @@ public partial class MainViewModel
     [ObservableProperty] private ObservableCollection<PostItem> _announcementPosts = new();
     [ObservableProperty] private ObservableCollection<PostItem> _infoPosts = new();
     [ObservableProperty] private ObservableCollection<SocialMediaItem> _socialMediaList = new();
+    
+    [ObservableProperty] private bool _isNewsLoaded;
 
     private DispatcherQueueTimer _bannerTimer;
 
@@ -43,6 +45,8 @@ public partial class MainViewModel
             }
 
             _bannerTimer?.Start();
+
+            IsNewsLoaded = true;
 
             return;
         }
@@ -88,6 +92,8 @@ public partial class MainViewModel
                         SocialMediaList.Add(item);
                     }
 
+                    IsNewsLoaded = true;
+
                     if (Banners.Count > 0)
                     {
                         _dispatcherQueue.TryEnqueue(async () =>
@@ -110,10 +116,15 @@ public partial class MainViewModel
                     }
                 });
             }
+            else
+            {
+                IsNewsLoaded = true;
+            }
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"内容加载失败: {ex.Message}");
+            IsNewsLoaded = true;
         }
     }
 
