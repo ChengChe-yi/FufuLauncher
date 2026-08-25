@@ -14,17 +14,24 @@ namespace FufuLauncher.Views
     {
         private readonly string _gameDir;
         private readonly GameUpdateOperationKind _kind;
+        private readonly bool _autoStart;
         private CancellationTokenSource? _cts;
 
         private readonly GameServerDownloadMonitor _downloadMonitor = new();
         private readonly RemainingChunksTracker _remainingChunksTracker = new();
         private DownloadSpeedChartController? _chartController;
 
-        public GameUpdateWindow(string gameDir, GameUpdateOperationKind kind)
+        public GameUpdateWindow(string gameDir, GameUpdateOperationKind kind, bool autoStart = false)
         {
             InitializeComponent();
             _gameDir = gameDir;
             _kind = kind;
+            _autoStart = autoStart;
+
+            if (autoStart)
+            {
+                Activated += OnAutoStartActivated;
+            }
 
             _chartController = new DownloadSpeedChartController(SpeedGraphChart, _downloadMonitor);
             SpeedGraphChart.NoDataText = "SpeedGraph_NoData".GetLocalized();
@@ -39,6 +46,15 @@ namespace FufuLauncher.Views
             var winId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(winId);
             appWindow.Resize(new Windows.Graphics.SizeInt32(600, 640));
+        }
+
+        private void OnAutoStartActivated(object sender, WindowActivatedEventArgs args)
+        {
+            Activated -= OnAutoStartActivated;
+            if (StartBtn.IsEnabled)
+            {
+                BeginOperation();
+            }
         }
         
         private void ApplyKindTexts()
@@ -56,7 +72,12 @@ namespace FufuLauncher.Views
             StartBtn.Content = startKey.GetLocalized();
         }
 
-        private async void StartBtn_Click(object sender, RoutedEventArgs e)
+        private void StartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BeginOperation();
+        }
+
+        private async void BeginOperation()
         {
             var configurationService = App.GetService<GameServerConfigurationService>();
             var currentScheme = configurationService.TryDetectCurrentScheme(_gameDir);

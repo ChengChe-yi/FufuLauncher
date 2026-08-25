@@ -71,6 +71,8 @@ public partial class App
                 _ = Task.Run(CheckForAnnouncementAsync);
 
                 _ = Task.Run(RunStartupUpdateCheckAsync);
+
+                ProcessStartupLaunchArguments();
             }
 
             Debug.WriteLine("App启动完成");

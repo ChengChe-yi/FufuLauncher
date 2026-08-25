@@ -96,9 +96,14 @@ public partial class App : Application
 
     private void App_Activated(object sender, AppActivationArguments e)
     {
+        var trigger = ParseRedirectedTrigger(e);
         _mainDispatcherQueue?.TryEnqueue(() =>
         {
-            MainWindow.Activate();
+            MainWindow?.Activate();
+            if (trigger != LaunchTriggerAction.None)
+            {
+                _ = TriggerGameUpdateOperationAsync(trigger);
+            }
         });
     }
 
