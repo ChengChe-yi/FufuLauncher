@@ -3,9 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.Input;
-using MihoyoBBS;
 
 namespace FufuLauncher.ViewModels;
 
@@ -13,80 +11,12 @@ public partial class GachaAnalysisModel
 {
     #region Gacha Record Fetching
 
-    //private async Task<(string stoken, string mid, string stuid, string cookie, string configPath)> FindAccountByGameUidAsync(string targetGameUid)
-    //{
-    //    var baseDir = Helpers.AppPaths.DataDir;
-    //    var filesToTry = Directory.GetFiles(baseDir, "config*.json")
-    //        .Concat(Directory.GetFiles(baseDir, "config.lab*.json"))
-    //        .Distinct()
-    //        .ToList();
-
-    //    foreach (var file in filesToTry)
-    //    {
-    //        try
-    //        {
-    //            var json = await File.ReadAllTextAsync(file);
-    //            using var doc = JsonDocument.Parse(json);
-    //            if (!doc.RootElement.TryGetProperty("Display", out var display)) continue;
-    //            var displayGameUid = display.TryGetProperty("GameUid", out var gu) ? gu.GetString() ?? "" : "";
-    //            if (string.IsNullOrEmpty(displayGameUid)) continue;
-    //            if (displayGameUid != targetGameUid) continue;
-
-    //            var account = doc.RootElement.GetProperty("Account");
-    //            var stoken = account.TryGetProperty("Stoken", out var st) ? st.GetString() ?? "" : "";
-    //            var mid = account.TryGetProperty("Mid", out var mi) ? mi.GetString() ?? "" : "";
-    //            var stuid = account.TryGetProperty("Stuid", out var si) ? si.GetString() ?? "" : "";
-    //            var cookie = account.TryGetProperty("Cookie", out var ck) ? ck.GetString() ?? "" : "";
-
-    //            bool needSave = false;
-
-    //            if (string.IsNullOrEmpty(stoken) && !string.IsNullOrEmpty(cookie))
-    //            {
-    //                var stokenMatch = Regex.Match(cookie, @"stoken=([^;]+)");
-    //                if (stokenMatch.Success) { stoken = stokenMatch.Groups[1].Value; needSave = true; }
-    //            }
-    //            if (string.IsNullOrEmpty(mid) && !string.IsNullOrEmpty(cookie))
-    //            {
-    //                var midMatch = Regex.Match(cookie, @"mid=([^;]+)");
-    //                if (midMatch.Success) { mid = midMatch.Groups[1].Value; needSave = true; }
-    //            }
-
-    //            if (needSave)
-    //            {
-    //                try
-    //                {
-    //                    var configObj = JsonSerializer.Deserialize<Config>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-    //                    if (configObj?.Account != null)
-    //                    {
-    //                        if (!string.IsNullOrEmpty(stoken)) configObj.Account.Stoken = stoken;
-    //                        if (!string.IsNullOrEmpty(mid)) configObj.Account.Mid = mid;
-    //                        var updatedJson = JsonSerializer.Serialize(configObj, new JsonSerializerOptions { WriteIndented = true });
-    //                        await File.WriteAllTextAsync(file, updatedJson);
-    //                        Debug.WriteLine($"[Gacha] 已回写 stoken/mid 到 {Path.GetFileName(file)}");
-    //                    }
-    //                }
-    //                catch (Exception ex)
-    //                {
-    //                    Debug.WriteLine($"[Gacha] 回写 stoken/mid 失败: {ex.Message}");
-    //                }
-    //            }
-
-    //            return (stoken, mid, stuid, cookie, file);
-    //        }
-    //        catch { }
-    //    }
-
-    //    return (null, null, null, null, null);
-    //}
-
     [RelayCommand]
     private async Task FetchFromMiYouSheAsync(bool incremental)
     {
-        // 当前登录账户的游戏 UID（来自账号管理）
         var loggedInAccount = _accountManager.GetActiveAccountEntry();
         var loggedInUid = loggedInAccount?.GameUid ?? "";
 
-        // 目标抽卡账户 UID：优先使用当前选中的存档 UID，没有则使用登录账户的 UID
         string gameUid = _currentUid;
         if (string.IsNullOrEmpty(gameUid))
             gameUid = loggedInUid;
@@ -98,28 +28,49 @@ public partial class GachaAnalysisModel
             return;
         }
 
-        var activeId = _accountManager.ActiveAccountId;
-        if (activeId == null)
+        var candidates = _accountManager.GetAllAccounts()
+            .Where(a => a.ServerType == "cn" && a.GameUid == gameUid)
+            .ToList();
+
+        var matchedAccount = candidates.FirstOrDefault(a => a.Id == _accountManager.ActiveAccountId)
+            ?? candidates.FirstOrDefault();
+
+        if (matchedAccount == null && loggedInAccount != null && loggedInUid == gameUid)
         {
-            CrawlerStatus = "请先登录米游社账号后重试";
-            OnErrorAction?.Invoke(CrawlerStatus);
-            return;
+            matchedAccount = loggedInAccount;
         }
 
-        if (!string.IsNullOrEmpty(loggedInUid) && loggedInUid != gameUid)
+        if (matchedAccount == null)
         {
-            CrawlerStatus = $"当前登录账户 UID {loggedInUid} 与目标账户 UID {gameUid} 不一致，请登录到目标账户";
-            if (OnRequireReLoginAsync != null)
-                await OnRequireReLoginAsync($"当前登录的米游社账户为 UID {loggedInUid}，而你正在更新 UID {gameUid} 的记录。\n请先登录到 UID {gameUid} 对应的账户后再试。");
-            else
+            var activeId = _accountManager.ActiveAccountId;
+            if (activeId == null)
+            {
+                CrawlerStatus = $"未找到绑定 UID {gameUid} 的米游社账号，请先登录后重试";
                 OnErrorAction?.Invoke(CrawlerStatus);
-            return;
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(loggedInUid) && loggedInUid != gameUid)
+            {
+                CrawlerStatus = $"当前登录账户 UID {loggedInUid} 与目标账户 UID {gameUid} 不一致，且未找到绑定 UID {gameUid} 的米游社账号，请登录到目标账户";
+                if (OnRequireReLoginAsync != null)
+                    await OnRequireReLoginAsync($"当前登录的米游社账户为 UID {loggedInUid}，而你正在更新 UID {gameUid} 的记录。\n请先登录到 UID {gameUid} 对应的账户后再试。");
+                else
+                    OnErrorAction?.Invoke(CrawlerStatus);
+                return;
+            }
+
+            matchedAccount = loggedInAccount;
         }
 
-        var cookies = await _accountManager.LoadCookiesAsync(activeId);
+        var accountLabel = string.IsNullOrWhiteSpace(matchedAccount.Nickname)
+            ? matchedAccount.Stuid
+            : matchedAccount.Nickname;
+
+        var cookies = await _accountManager.LoadCookiesAsync(matchedAccount.Id);
         if (cookies == null || cookies.Count == 0)
         {
-            CrawlerStatus = "无法读取登录凭证，请重新登录";
+            CrawlerStatus = $"无法读取账号 {accountLabel} 的登录凭证，请重新登录该账号";
             OnErrorAction?.Invoke(CrawlerStatus);
             return;
         }
@@ -134,7 +85,7 @@ public partial class GachaAnalysisModel
 
         if (string.IsNullOrEmpty(stoken) || string.IsNullOrEmpty(mid))
         {
-            CrawlerStatus = "当前登录凭证不完整（缺少 stoken/mid），请重新登录";
+            CrawlerStatus = $"账号 {accountLabel} 的登录凭证不完整（缺少 stoken/mid），请重新登录该账号";
             OnErrorAction?.Invoke(CrawlerStatus);
             return;
         }
@@ -153,10 +104,10 @@ public partial class GachaAnalysisModel
 
             if (string.IsNullOrEmpty(authkey))
             {
-                CrawlerStatus = "认证密钥生成失败，请重新登录后重试";
+                CrawlerStatus = $"认证密钥生成失败，请重新登录账号 {accountLabel} 后重试";
                 IsFetching = false;
                 if (OnRequireReLoginAsync != null)
-                    await OnRequireReLoginAsync($"UID {gameUid} 的认证密钥生成失败，登录凭证可能已过期。\n请重新登录后再试。");
+                    await OnRequireReLoginAsync($"UID {gameUid} 的认证密钥生成失败，账号 {accountLabel} 的登录凭证可能已过期。\n请重新登录该账号后再试。");
                 else
                     OnErrorAction?.Invoke(CrawlerStatus);
                 return;
