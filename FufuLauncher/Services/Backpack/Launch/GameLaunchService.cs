@@ -24,14 +24,14 @@ internal static partial class GameLaunchService
     public static async Task<int> LaunchAsync(string gameExePath)
     {
         if (RuntimeInformation.ProcessArchitecture != Architecture.X64)
-            throw new PlatformNotSupportedException(BackpackLocalization.Get("ErrX64Required"));
+            throw new PlatformNotSupportedException("Backpack_ErrX64Required".GetLocalized());
 
         var dllPath = GetDllPath()
-            ?? throw new FileNotFoundException(BackpackLocalization.Get("ErrDllMissing"));
+            ?? throw new FileNotFoundException("Backpack_ErrDllMissing".GetLocalized());
         var gameDir    = Path.GetDirectoryName(gameExePath) ?? AppContext.BaseDirectory;
         var cfgFile    = Path.Combine(Path.GetTempPath(), $"BackpackViewer_{Guid.NewGuid():N}.tmp");
         var currentExe = Environment.ProcessPath
-            ?? throw new InvalidOperationException(BackpackLocalization.Get("ErrNoProcessPath"));
+            ?? throw new InvalidOperationException("Backpack_ErrNoProcessPath".GetLocalized());
 
         File.WriteAllLines(cfgFile, [
             gameExePath,
@@ -60,13 +60,13 @@ internal static partial class GameLaunchService
             catch (System.ComponentModel.Win32Exception ex) when (ex.NativeErrorCode == 1223)
             {
                 TryDelete(cfgFile);
-                throw new InvalidOperationException(BackpackLocalization.Get("ErrElevationCancelled"));
+                throw new InvalidOperationException("Backpack_ErrElevationCancelled".GetLocalized());
             }
 
             if (helper is null)
             {
                 TryDelete(cfgFile);
-                throw new InvalidOperationException(BackpackLocalization.Get("ErrHelperStartFailed"));
+                throw new InvalidOperationException("Backpack_ErrHelperStartFailed".GetLocalized());
             }
 
             using (helper)
@@ -78,10 +78,10 @@ internal static partial class GameLaunchService
                     TryDelete(cfgFile);
                     throw new InvalidOperationException(code switch
                     {
-                        1 => BackpackLocalization.Get("ErrInvalidConfig"),
-                        2 => BackpackLocalization.Get("ErrGameCreateFailed"),
-                        3 => BackpackLocalization.Get("ErrDllInjFailed"),
-                        _ => string.Format(BackpackLocalization.Get("ErrHelperExitCode"), code),
+                        1 => "Backpack_ErrInvalidConfig".GetLocalized(),
+                        2 => "Backpack_ErrGameCreateFailed".GetLocalized(),
+                        3 => "Backpack_ErrDllInjFailed".GetLocalized(),
+                        _ => string.Format("Backpack_ErrHelperExitCode".GetLocalized(), code),
                     });
                 }
 

@@ -1,6 +1,0 @@
-[
-  { "id": 108822, "name": "一捧绿野", "type": "攻击类料理", "variant": "special", "rank": 4, "icon": "UI_ItemIcon_108806", "ingredients": [], "character": "爱可菲" },
-  { "id": 108823, "name": "白浪拂沙", "type": "冒险类料理", "variant": "special", "rank": 3, "icon": "UI_ItemIcon_108807", "ingredients": [], "character": "爱可菲" },
-  { "id": 108824, "name": "鎏金殿堂", "type": "攻击类料理", "variant": "special", "rank": 5, "icon": "UI_ItemIcon_108808", "ingredients": [], "character": "爱可菲" },
-  { "id": 108825, "name": "雾凇秋分", "type": "恢复类料理", "variant": "special", "rank": 4, "icon": "UI_ItemIcon_108809", "ingredients": [], "character": "爱可菲" }
-]

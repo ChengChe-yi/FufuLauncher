@@ -5193,84 +5193,32 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF निर्यात विफल</value>
   </data>
-  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>हथियार</value>
-  </data>
-  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>आर्टिफैक्ट</value>
-  </data>
-  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>सामग्री</value>
-  </data>
-  <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>भोजन</value>
-  </data>
-  <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>डेटा की प्रतीक्षा…</value>
-  </data>
-  <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>प्राप्त</value>
-  </data>
-  <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>लॉन्च हो रहा है…</value>
-  </data>
-  <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>गेम लॉन्च हुआ, डेटा की प्रतीक्षा…</value>
-  </data>
-  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>गेम पथ चुनें</value>
-  </data>
-  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>प्रक्रिया समाप्त करें</value>
-  </data>
-  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>बैकपैक सिंक करें</value>
-  </data>
-  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>बैकपैक सिंक करें</value>
-  </data>
-  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>गेम लॉन्च हुआ, बैकपैक डेटा की प्रतीक्षा…</value>
-  </data>
-  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>रद्द करें</value>
-  </data>
-  <data name="Backpack_Locked" xml:space="preserve">
-    <value>लॉक किया गया</value>
-  </data>
-  <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>जीवन का फूल</value>
-  </data>
-  <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>मृत्यु का पंख</value>
-  </data>
-  <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>अनंत काल की रेत</value>
-  </data>
-  <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>युगों का प्याला</value>
-  </data>
-  <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>लोगो का मुकुट</value>
-  </data>
-  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>अमान्य पथ। कृपया YuanShen.exe चुनें (केवल CN सर्वर)।</value>
-  </data>
-  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>गेम पथ चुनें</value>
-  </data>
-  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>उस पथ पर स्विच करने के लिए नीचे की प्रविष्टि पर क्लिक करें</value>
-  </data>
-  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>गेम पथ</value>
-  </data>
-  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>YuanShen.exe चुनें (केवल CN), launcher.exe नहीं</value>
-  </data>
-  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>बेस ATK</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>वर्तमान प्रक्रिया पथ हल करने में विफल</value>
   </data>
@@ -5292,435 +5240,153 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>इंजेक्शन सहायक कोड {0} के साथ बाहर निकला</value>
   </data>
-  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>पात्र असेंशन</value>
-  </data>
-  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>हथियार असेंशन</value>
-  </data>
-  <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>टैलेंट सामग्री</value>
-  </data>
-  <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>पात्र EXP</value>
-  </data>
-  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>हथियार एन्हांसमेंट</value>
-  </data>
-  <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>रिफाइनमेंट</value>
-  </data>
-  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>स्थानीय विशेषता</value>
-  </data>
-  <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>सामग्री</value>
-  </data>
-  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>पुनर्प्राप्ति</value>
-  </data>
-  <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>हमला</value>
-  </data>
-  <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>रक्षा</value>
-  </data>
-  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>साहसिक</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>विशेष पुनर्प्राप्ति</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>विशेष हमला</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>विशेष रक्षा</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>विशेष साहसिक</value>
-  </data>
-  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>अर्लेचिनो विशेष</value>
-  </data>
-  <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>मीठे फूल</value>
-  </data>
-  <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>सामग्री</value>
-  </data>
-  <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>अयस्क</value>
-  </data>
-  <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>मछली</value>
-  </data>
-  <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>मछली पकड़ने का चारा</value>
-  </data>
-  <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>गैजेट</value>
-  </data>
-  <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>संपत्ति</value>
-  </data>
-  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>दुर्लभ मुद्रा</value>
-  </data>
-  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>इमेजिनेरियम थिएटर</value>
-  </data>
-  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>गैजेट</value>
-  </data>
-  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>उपभोग्य वस्तुएँ</value>
-  </data>
-  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>क्वेस्ट आइटम</value>
-  </data>
-  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>कीमती</value>
-  </data>
-  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>इमेजिनेरियम थिएटर</value>
-  </data>
-  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>साहसिक</value>
-  </data>
-  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>राष्ट्र प्रतीक</value>
-  </data>
-  <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>विश आइटम</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>स्टारग्लिटर</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>स्टारडस्ट</value>
-  </data>
-  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>दुर्लभ मुद्रा</value>
-  </data>
-  <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>बैकपैक ब्राउज़र</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>बैकपैक सिंक्रोनाइज़ेशन के लिए x64 बिल्ड आवश्यक है।</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>बैकपैक सिंक्रोनाइज़ेशन मॉड्यूल modules/backpack.dll गायब है।</value>
   </data>
-  <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>अवलोकन</value>
-  </data>
-  <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>कल्टिवेशन योजना का समर्थन करने के लिए उपकरण, सामग्री और भोजन एक ही स्थान पर ब्राउज़ करें।</value>
-  </data>
-  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>सिंक डेटा इस डिवाइस पर रहता है; यह आपका खाता या बैकपैक कभी अपलोड नहीं करता।</value>
-  </data>
-  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>कोई मान्य गेम इंस्टॉलेशन निर्देशिका नहीं मिली</value>
-  </data>
-  <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>कृपया सेटिंग्स में पथ कॉन्फ़िगर करें; बैकपैक दूसरा पथ नहीं माँगेगा।</value>
-  </data>
-  <data name="Backpack_OpenSettings" xml:space="preserve">
-    <value>सेटिंग्स खोलें</value>
-  </data>
-  <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>सेटिंग्स में गेम इंस्टॉलेशन पथ कॉन्फ़िगर करें</value>
-  </data>
-  <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>उपयोग कैसे करें</value>
-  </data>
-  <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>इन-गेम इन्वेंटरी आयात करने और सिंक शुरू करने के लिए ऊपर दाईं ओर "बैकपैक सिंक करें" पर क्लिक करें।</value>
-  </data>
-  <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>ऊपर टैब स्विच करें; विवरण (सेट, सब-स्टेट, कौशल) देखने के लिए किसी भी आइटम कार्ड पर क्लिक करें।</value>
-  </data>
-  <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>अवलोकन कार्ड वर्तमान इन्वेंटरी के आधार पर सामग्री लिंक और कल्टिवेशन सामग्री सुझाएँगे।</value>
-  </data>
-  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
-    <value>स्वामित्व वाले हथियार</value>
-  </data>
-  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>लॉक किए गए आर्टिफैक्ट</value>
-  </data>
-  <data name="Backpack_KpiCookableFood" xml:space="preserve">
-    <value>पकाने योग्य व्यंजन</value>
-  </data>
-  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
-    <value>सामग्री प्रकार</value>
-  </data>
-  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
-    <value>5★ हथियार</value>
-  </data>
-  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>कुल आर्टिफैक्ट</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
-    <value>अधिकतम रिफाइनमेंट पर 5★ हथियार</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>{0} 5★ हथियार अधिकतम रिफाइनमेंट तक पहुँच गए हैं।</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>अधिकतम-स्तर 5★ आर्टिफैक्ट</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>{0} 5★ आर्टिफैक्ट +20 तक रिफाइन हो चुके हैं।</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
-    <value>सामग्री तैयार</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
-    <value>{0} व्यंजनों की सभी आवश्यक सामग्री हाथ में है।</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
-    <value>सामग्री श्रेणी कमी</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
-    <value>{0} सामग्री श्रेणियाँ खाली हैं: {1}</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
-    <value>हथियार कोडेक्स प्रगति</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>{0} हथियार अभी भी केवल कोडेक्स में हैं और अभी स्वामित्व में नहीं हैं।</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
-    <value>कम-स्टॉक सामग्री</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
-    <value>{0} सामग्री स्टॉक में 5 से कम हैं।</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>बैकपैक अवलोकन</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>यहाँ अंतर्दृष्टि और सुझाव देखने के लिए बैकपैक डेटा आयात करें।</value>
-  </data>
-  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
-    <value>उच्च-स्तरीय टैलेंट सामग्री</value>
-  </data>
-  <data name="Backpack_CookHeader" xml:space="preserve">
-    <value>पकाने की तैयारी</value>
-  </data>
-  <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>आपके वर्तमान सामग्री स्टॉक के आधार पर</value>
-  </data>
-  <data name="Backpack_CookReady" xml:space="preserve">
-    <value>पकाने योग्य</value>
-  </data>
-  <data name="Backpack_CookAlmost" xml:space="preserve">
-    <value>लगभग</value>
-  </data>
-  <data name="Backpack_CookAlmostBody" xml:space="preserve">
-    <value>{0} गायब ({1})</value>
-  </data>
-  <data name="Backpack_CookEmptyName" xml:space="preserve">
-    <value>कोई भोजन डेटा नहीं</value>
-  </data>
-  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
-    <value>सिंक की प्रतीक्षा</value>
-  </data>
-  <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>बैकपैक डेटा सिंक करने के बाद पकाने के सुझाव यहाँ उपलब्ध होंगे।</value>
-  </data>
-  <data name="Backpack_BrowseTitle" xml:space="preserve">
-    <value>ब्राउज़ और खोज</value>
-  </data>
-  <data name="Backpack_BrowseCaption" xml:space="preserve">
-    <value>आइटम तेज़ी से खोजने के लिए कीवर्ड, उपश्रेणियाँ, फ़िल्टर और क्रमबद्धता का उपयोग करें।</value>
-  </data>
-  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
-    <value>नाम, सेट, स्टेट, पात्र या सामग्री से खोजें</value>
-  </data>
-  <data name="Backpack_BrowseReset" xml:space="preserve">
-    <value>रीसेट करें</value>
-  </data>
-  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
-    <value>उपश्रेणी</value>
-  </data>
-  <data name="Backpack_BrowseFilter" xml:space="preserve">
-    <value>फ़िल्टर</value>
-  </data>
-  <data name="Backpack_BrowseSort" xml:space="preserve">
-    <value>क्रमबद्ध करें</value>
-  </data>
-  <data name="Backpack_ResultCount" xml:space="preserve">
-    <value>{0} आइटम</value>
-  </data>
-  <data name="Backpack_EmptyTitle" xml:space="preserve">
-    <value>कोई मिलान आइटम नहीं</value>
-  </data>
-  <data name="Backpack_EmptyBody" xml:space="preserve">
-    <value>कीवर्ड समायोजित करें या फ़िल्टर साफ़ करें और पुनः प्रयास करें।</value>
-  </data>
-  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
-    <value>साफ़ करें</value>
-  </data>
-  <data name="Backpack_PagerFormat" xml:space="preserve">
-    <value>पृष्ठ {0} / {1}</value>
-  </data>
-  <data name="Backpack_PagerRange" xml:space="preserve">
-    <value>{0}-{1} / {2}</value>
-  </data>
-  <data name="Backpack_ResultAll" xml:space="preserve">
-    <value>{0} आइटम</value>
-  </data>
-  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>हथियार रैंक</value>
-  </data>
-  <data name="Backpack_DetailLevel" xml:space="preserve">
-    <value>स्तर</value>
-  </data>
-  <data name="Backpack_DetailRefine" xml:space="preserve">
-    <value>रिफाइन</value>
-  </data>
-  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
-    <value>बेस ATK</value>
-  </data>
-  <data name="Backpack_DetailSubStat" xml:space="preserve">
-    <value>द्वितीयक स्टेट</value>
-  </data>
-  <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>हथियार कौशल</value>
-  </data>
-  <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>हथियार कथा</value>
-  </data>
-  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>एन्हांसमेंट स्तर</value>
-  </data>
-  <data name="Backpack_DetailMainStat" xml:space="preserve">
-    <value>मुख्य स्टेट</value>
-  </data>
-  <data name="Backpack_DetailSubStats" xml:space="preserve">
-    <value>सब-स्टेट</value>
-  </data>
-  <data name="Backpack_DetailSetBonus" xml:space="preserve">
-    <value>सेट बोनस</value>
-  </data>
-  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
-    <value>कोडेक्स प्रविष्टि</value>
-  </data>
-  <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>गेम आयात करने के बाद आर्टिफैक्ट का एन्हांसमेंट स्तर, मुख्य स्टेट मान और सब-स्टेट रोल विवरण भरा जाएगा। वर्तमान में बुनियादी सेट वर्गीकरण और बोनस टेक्स्ट दिखाया जा रहा है।</value>
-  </data>
-  <data name="Backpack_DetailCookState" xml:space="preserve">
-    <value>क्राफ्ट स्थिति</value>
-  </data>
-  <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>सभी सामग्री हाथ में; पकाने के लिए तैयार।</value>
-  </data>
-  <data name="Backpack_DetailCookMissing" xml:space="preserve">
-    <value>कुछ सामग्री गायब; दोबारा भंडार होने पर पकाने योग्य।</value>
-  </data>
-  <data name="Backpack_DetailIngredients" xml:space="preserve">
-    <value>सामग्री</value>
-  </data>
-  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>इन्वेंटरी आइटम</value>
-  </data>
-  <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>आपके बैकपैक में मौजूद आइटम।</value>
-  </data>
-  <data name="Backpack_DetailStockItem" xml:space="preserve">
-    <value>स्टॉक आइटम</value>
-  </data>
-  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>इन्वेंटरी अवलोकन</value>
-  </data>
-  <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>बैकपैक अंतर्दृष्टि</value>
-  </data>
-  <data name="Backpack_SectionCultivation" xml:space="preserve">
-    <value>कल्टिवेशन सामग्री</value>
-  </data>
-  <data name="Backpack_SectionItems" xml:space="preserve">
-    <value>ब्राउज़ और खोज</value>
-  </data>
-  <data name="Backpack_DetailCountLabel" xml:space="preserve">
-    <value>संख्या</value>
-  </data>
-  <data name="Backpack_DialogClose" xml:space="preserve">
-    <value>बंद करें</value>
-  </data>
-  <data name="Backpack_DialogConfirm" xml:space="preserve">
-    <value>ठीक है</value>
-  </data>
-  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>बैकपैक डेटा आयात हुआ</value>
-  </data>
-  <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>बैकपैक डेटा प्राप्त और सहेजा गया। अवलोकन, कल्टिवेशन योजना और पकाने के सुझाव अपडेट कर दिए गए हैं।</value>
-  </data>
-  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
-    <value>सिंक विफल</value>
-  </data>
-  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
-    <value>सिंक मॉड्यूल नहीं मिला</value>
-  </data>
-  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
-    <value>सिंक मॉड्यूल के बारे में</value>
-  </data>
-  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
-    <value>यह सिंक मॉड्यूल किसी अन्य डेवलपर द्वारा एक अलग परियोजना के रूप में विकसित किया गया है। हमने मॉड्यूल बंडल करने के संबंध में डेवलपर के साथ कोई समझौता नहीं किया है, इसीलिए इसे रोक दिया गया है। हम अभी भी अवसर तलाशने की पूरी कोशिश कर रहे हैं, और असुविधा के लिए हम क्षमा चाहते हैं।</value>
-  </data>
-  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
-    <value>डेटा और अपडेट नोट्स</value>
-  </data>
-  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
-    <value>मेटाडेटा अनियमित रूप से अपडेट होता है, इसलिए नया डेटा समय पर उपलब्ध नहीं हो सकता। यह सुविधा वर्तमान में केवल विश्वकोश (ब्राउज़) दृश्य प्रदान करती है।</value>
-  </data>
-  <data name="Backpack_DetailsButton" xml:space="preserve">
-    <value>विवरण</value>
-  </data>
-  <data name="Backpack_ChipAll" xml:space="preserve">
-    <value>सभी</value>
-  </data>
-  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
-    <value>श्रेणियाँ</value>
-  </data>
-  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
-    <value>स्वामित्व</value>
-  </data>
-  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>कैटलॉग</value>
-  </data>
-  <data name="Backpack_ChipFilterFive" xml:space="preserve">
-    <value>5★</value>
-  </data>
-  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
-    <value>लॉक किया गया</value>
-  </data>
-  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
-    <value>पकाने योग्य</value>
-  </data>
-  <data name="Backpack_ChipSortDefault" xml:space="preserve">
-    <value>डिफ़ॉल्ट</value>
-  </data>
-  <data name="Backpack_ChipSortName" xml:space="preserve">
-    <value>नाम</value>
-  </data>
-  <data name="Backpack_ChipSortRank" xml:space="preserve">
-    <value>रैंक</value>
-  </data>
-  <data name="Backpack_ChipSortLevel" xml:space="preserve">
-    <value>स्तर</value>
-  </data>
-  <data name="Backpack_ChipSortCount" xml:space="preserve">
-    <value>संख्या</value>
-  </data>
-  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
-    <value>सभी {0}</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Checkin_PartialFailed" xml:space="preserve">
     <value>चेक-इन आंशिक रूप से विफल</value>
   </data>

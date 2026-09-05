@@ -63,9 +63,6 @@ public partial class App
                 services.AddTransient<DataViewModel>();
                 services.AddTransient<DataPage>();
 
-                services.AddSingleton<Services.Backpack.BackpackRuntimeService>();
-                services.AddTransient<BackpackPage>();
-
                 services.AddTransient<SettingsViewModel>();
                 services.AddTransient<SettingsPage>();
                 services.AddTransient<BlankPage>();

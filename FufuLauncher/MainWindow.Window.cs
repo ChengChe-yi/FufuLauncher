@@ -59,7 +59,6 @@ public sealed partial class MainWindow
         // 通知 ViewModel 取消后台任务
         try { App.GetService<MainViewModel>()?.Cleanup(); } catch { }
         try { App.GetService<ControlPanelModel>()?.Cleanup(); } catch { }
-        try { Services.Backpack.BackpackRuntimeService.Current?.Dispose(); } catch { }
 
         DisposeGlobalBackgroundPlayer();
         GlobalBackgroundImage.Source = null;

@@ -4751,84 +4751,32 @@ Detail: {0}</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>Gagal mengekspor PDF</value>
   </data>
-  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Senjata</value>
-  </data>
-  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Artefak</value>
-  </data>
-  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Bahan</value>
-  </data>
-  <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Makanan</value>
-  </data>
-  <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Menunggu data…</value>
-  </data>
-  <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Diterima</value>
-  </data>
-  <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Meluncurkan…</value>
-  </data>
-  <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Game diluncurkan, menunggu data…</value>
-  </data>
-  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Pilih Path Game</value>
-  </data>
-  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Akhiri Proses</value>
-  </data>
-  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Sinkronkan Backpack</value>
-  </data>
-  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Sinkronkan Backpack</value>
-  </data>
-  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Game diluncurkan, menunggu data backpack…</value>
-  </data>
-  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Batal</value>
-  </data>
-  <data name="Backpack_Locked" xml:space="preserve">
-    <value>Terkunci</value>
-  </data>
-  <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Bunga Kehidupan</value>
-  </data>
-  <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Bulu Kematian</value>
-  </data>
-  <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Pasir Waktu</value>
-  </data>
-  <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Piala Eonothem</value>
-  </data>
-  <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Mahkota Logos</value>
-  </data>
-  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Path tidak valid. Silakan pilih YuanShen.exe (khusus server CN).</value>
-  </data>
-  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Pilih Path Game</value>
-  </data>
-  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Klik entri di bawah untuk beralih ke path tersebut</value>
-  </data>
-  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Path Game</value>
-  </data>
-  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Pilih file game YuanShen.exe (khusus CN), bukan launcher.exe</value>
-  </data>
-  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>ATK Dasar</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>Gagal mendapatkan path proses saat ini</value>
   </data>
@@ -4850,120 +4798,44 @@ Detail: {0}</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>Proses bantu injeksi keluar dengan kode {0}</value>
   </data>
-  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Ascension Karakter</value>
-  </data>
-  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Ascension Senjata</value>
-  </data>
-  <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Material Bakat</value>
-  </data>
-  <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Pengalaman Karakter</value>
-  </data>
-  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Penguatan Senjata</value>
-  </data>
-  <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Material Refinement</value>
-  </data>
-  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Produk Khas Daerah</value>
-  </data>
-  <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Bahan Masakan</value>
-  </data>
-  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Makanan Pemulihan</value>
-  </data>
-  <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Makanan Serangan</value>
-  </data>
-  <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Makanan Pertahanan</value>
-  </data>
-  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Makanan Petualangan</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Makanan Pemulihan Spesial</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Makanan Serangan Spesial</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Makanan Pertahanan Spesial</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Makanan Petualangan Spesial</value>
-  </data>
-  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Kreasi Inspiratif</value>
-  </data>
-  <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Patung Gula</value>
-  </data>
-  <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Bahan</value>
-  </data>
-  <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Bijih</value>
-  </data>
-  <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Ikan</value>
-  </data>
-  <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Umpan Pancing</value>
-  </data>
-  <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Aset Pribadi</value>
-  </data>
-  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Mata Uang Langka</value>
-  </data>
-  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Teater Imaginarium</value>
-  </data>
-  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Gadget</value>
-  </data>
-  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Barang Habis Pakai</value>
-  </data>
-  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Item Misi</value>
-  </data>
-  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Barang Berharga</value>
-  </data>
-  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Teater Imaginarium</value>
-  </data>
-  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Item Petualangan</value>
-  </data>
-  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Lambang Tujuh Negara</value>
-  </data>
-  <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Item Wish</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>Starglitter</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>Stardust</value>
-  </data>
-  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Mata Uang Langka</value>
-  </data>
-  <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Penjelajah Backpack</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Sinkronisasi Backpack hanya mendukung build x64.</value>
   </data>
@@ -5381,316 +5253,110 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>Visual</value>
   </data>
-  <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>Ringkasan</value>
-  </data>
-  <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>Telusuri peralatan, material, dan masakan di satu tempat untuk membantu perencanaan progres.</value>
-  </data>
-  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>Data sinkronisasi hanya disimpan di perangkat ini, tidak akan mengunggah akun atau isi Backpack.</value>
-  </data>
-  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>Direktori instalasi game yang valid belum terdeteksi</value>
-  </data>
-  <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>Silakan konfigurasikan jalur di pengaturan game pada aplikasi; Backpack tidak akan menyimpan atau meminta jalur kedua.</value>
-  </data>
-  <data name="Backpack_OpenSettings" xml:space="preserve">
-    <value>Buka Pengaturan</value>
-  </data>
-  <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>Silakan konfigurasikan direktori instalasi di pengaturan game</value>
-  </data>
-  <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>Petunjuk Penggunaan</value>
-  </data>
-  <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Klik 'Sinkronkan Backpack' di kanan atas untuk memasukkan data inventaris asli dari game dan memulai sinkronisasi data.</value>
-  </data>
-  <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>Tab di bagian atas untuk beralih kategori; klik kartu item mana saja untuk melihat parameter detail (Set / Sub-stat / Skill Senjata).</value>
-  </data>
-  <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>Kartu ringkasan akan menampilkan sinergi bahan masakan dan cakupan material pengembangan berdasarkan inventaris saat ini.</value>
-  </data>
-  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
-    <value>Senjata yang Dimiliki</value>
-  </data>
-  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>Artefak yang Dikunci</value>
-  </data>
-  <data name="Backpack_KpiCookableFood" xml:space="preserve">
-    <value>Masakan yang Bisa Dibuat</value>
-  </data>
-  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
-    <value>Jenis Material</value>
-  </data>
-  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
-    <value>Senjata Bintang 5</value>
-  </data>
-  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>Total Artefak</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
-    <value>Senjata Bintang 5 dengan Refinement Maks</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>Total {0} senjata Bintang 5 telah mencapai refinement maksimal.</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>Artefak Bintang 5 Level Maks</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>{0} Artefak Bintang 5 telah ditingkatkan hingga +20.</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
-    <value>Bahan Masakan Tersedia</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
-    <value>Saat ini ada {0} masakan yang bahannya lengkap dan siap dibuat.</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
-    <value>Kategori Material Kosong</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
-    <value>Ada {0} kategori material dengan stok kosong: {1}</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
-    <value>Progres Kodeks Senjata</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>Masih ada {0} senjata yang hanya ada di kodeks dan belum dimiliki.</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
-    <value>Material Stok Rendah</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
-    <value>{0} material memiliki stok kurang dari 5, perhatikan untuk segera menambah.</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>Ringkasan Data</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>Setelah menyinkronkan data Backpack, wawasan dan saran inventaris akan ditampilkan di sini.</value>
-  </data>
-  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
-    <value>Material Talent Tingkat Tinggi</value>
-  </data>
-  <data name="Backpack_CookHeader" xml:space="preserve">
-    <value>Status Persiapan Masakan</value>
-  </data>
-  <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>Berdasarkan stok bahan masakan saat ini</value>
-  </data>
-  <data name="Backpack_CookReady" xml:space="preserve">
-    <value>Siap Dibuat</value>
-  </data>
-  <data name="Backpack_CookAlmost" xml:space="preserve">
-    <value>Hampir Siap</value>
-  </data>
-  <data name="Backpack_CookAlmostBody" xml:space="preserve">
-    <value>Kurang {0} ({1})</value>
-  </data>
-  <data name="Backpack_CookEmptyName" xml:space="preserve">
-    <value>Belum Ada Data Masakan</value>
-  </data>
-  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
-    <value>Menunggu Sinkronisasi</value>
-  </data>
-  <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>Sinkronkan Backpack untuk melihat status persiapan masakan.</value>
-  </data>
-  <data name="Backpack_BrowseTitle" xml:space="preserve">
-    <value>Jelajahi &amp; Cari</value>
-  </data>
-  <data name="Backpack_BrowseCaption" xml:space="preserve">
-    <value>Gunakan kata kunci, subkategori, filter, dan urutan untuk menemukan item dengan cepat.</value>
-  </data>
-  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
-    <value>Cari nama, set, sub-stat, karakter, atau bahan masakan</value>
-  </data>
-  <data name="Backpack_BrowseReset" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
-    <value>Subkategori</value>
-  </data>
-  <data name="Backpack_BrowseFilter" xml:space="preserve">
-    <value>Filter</value>
-  </data>
-  <data name="Backpack_BrowseSort" xml:space="preserve">
-    <value>Urutkan</value>
-  </data>
-  <data name="Backpack_ResultCount" xml:space="preserve">
-    <value>{0} hasil</value>
-  </data>
-  <data name="Backpack_EmptyTitle" xml:space="preserve">
-    <value>Tidak ditemukan item yang cocok</value>
-  </data>
-  <data name="Backpack_EmptyBody" xml:space="preserve">
-    <value>Sesuaikan kata kunci atau hapus filter lalu coba lagi.</value>
-  </data>
-  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
-    <value>Hapus Filter</value>
-  </data>
-  <data name="Backpack_PagerFormat" xml:space="preserve">
-    <value>Halaman {0} / {1}</value>
-  </data>
-  <data name="Backpack_PagerRange" xml:space="preserve">
-    <value>Item {0}-{1} / Total {2}</value>
-  </data>
-  <data name="Backpack_ResultAll" xml:space="preserve">
-    <value>{0} hasil</value>
-  </data>
-  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>Kualitas Senjata</value>
-  </data>
-  <data name="Backpack_DetailLevel" xml:space="preserve">
-    <value>Level</value>
-  </data>
-  <data name="Backpack_DetailRefine" xml:space="preserve">
-    <value>Refinement</value>
-  </data>
-  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
-    <value>ATK Dasar</value>
-  </data>
-  <data name="Backpack_DetailSubStat" xml:space="preserve">
-    <value>Sub-stat</value>
-  </data>
-  <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>Skill Senjata</value>
-  </data>
-  <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>Cerita Senjata</value>
-  </data>
-  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>Tingkat Peningkatan</value>
-  </data>
-  <data name="Backpack_DetailMainStat" xml:space="preserve">
-    <value>Main Stat</value>
-  </data>
-  <data name="Backpack_DetailSubStats" xml:space="preserve">
-    <value>Sub-stat</value>
-  </data>
-  <data name="Backpack_DetailSetBonus" xml:space="preserve">
-    <value>Bonus Set</value>
-  </data>
-  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
-    <value>Entri Kodeks</value>
-  </data>
-  <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>Setelah diimpor dari game, level enhancement, nilai main stat, dan detail roll sub-stat Artefak akan terisi otomatis. Saat ini ditampilkan adalah klasifikasi set dan informasi dasar bonus set dari Artefak tersebut.</value>
-  </data>
-  <data name="Backpack_DetailCookState" xml:space="preserve">
-    <value>Status Pembuatan</value>
-  </data>
-  <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>Stok bahan masakan terpenuhi, dapat langsung dibuat</value>
-  </data>
-  <data name="Backpack_DetailCookMissing" xml:space="preserve">
-    <value>Beberapa bahan masakan kurang, lengkapi untuk dapat membuat</value>
-  </data>
-  <data name="Backpack_DetailIngredients" xml:space="preserve">
-    <value>Bahan yang Diperlukan</value>
-  </data>
-  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>Item Backpack</value>
-  </data>
-  <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>Jumlah sebenarnya di Backpack saat ini.</value>
-  </data>
-  <data name="Backpack_DetailStockItem" xml:space="preserve">
-    <value>Item Stok</value>
-  </data>
-  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>Ringkasan Inventaris</value>
-  </data>
-  <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>Wawasan Backpack</value>
-  </data>
-  <data name="Backpack_SectionCultivation" xml:space="preserve">
-    <value>Cakupan Material Pengembangan</value>
-  </data>
-  <data name="Backpack_SectionItems" xml:space="preserve">
-    <value>Jelajahi &amp; Cari</value>
-  </data>
-  <data name="Backpack_DetailCountLabel" xml:space="preserve">
-    <value>Jumlah yang Dimiliki</value>
-  </data>
-  <data name="Backpack_DialogClose" xml:space="preserve">
-    <value>Tutup</value>
-  </data>
-  <data name="Backpack_DialogConfirm" xml:space="preserve">
-    <value>Konfirmasi</value>
-  </data>
-  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>Data Backpack Berhasil Diimpor</value>
-  </data>
-  <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>Data Backpack sesi ini telah diterima dan disimpan. Ringkasan, cakupan material, dan saran masakan telah diperbarui.</value>
-  </data>
-  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
-    <value>Sinkronisasi Gagal</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
-    <value>Modul sinkronisasi tidak ditemukan</value>
-  </data>
-  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
-    <value>Tentang Modul Sinkronisasi</value>
-  </data>
-  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
-    <value>Modul sinkronisasi ini dibuat oleh pengembang lain sebagai proyek terpisah. Kami belum mencapai kesepakatan dengan pengembang mengenai penggabungan modul, sehingga hal ini ditunda. Kami terus berusaha mencari peluang; mohon maaf atas ketidaknyamanannya.</value>
-  </data>
-  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
-    <value>Catatan Data &amp; Pembaruan</value>
-  </data>
-  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
-    <value>Metadata diperbarui secara tidak teratur, sehingga data baru mungkin tidak tersedia tepat waktu. Fitur ini saat ini hanya menyediakan mode ensiklopedia (penjelajahan).</value>
-  </data>
-  <data name="Backpack_DetailsButton" xml:space="preserve">
-    <value>Detail</value>
-  </data>
-  <data name="Backpack_ChipAll" xml:space="preserve">
-    <value>Semua</value>
-  </data>
-  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
-    <value>Kategori</value>
-  </data>
-  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
-    <value>Dimiliki</value>
-  </data>
-  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>Kodeks</value>
-  </data>
-  <data name="Backpack_ChipFilterFive" xml:space="preserve">
-    <value>Bintang 5</value>
-  </data>
-  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
-    <value>Terkunci</value>
-  </data>
-  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
-    <value>Dapat Dibuat</value>
-  </data>
-  <data name="Backpack_ChipSortDefault" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="Backpack_ChipSortName" xml:space="preserve">
-    <value>Nama</value>
-  </data>
-  <data name="Backpack_ChipSortRank" xml:space="preserve">
-    <value>Kualitas</value>
-  </data>
-  <data name="Backpack_ChipSortLevel" xml:space="preserve">
-    <value>Level</value>
-  </data>
-  <data name="Backpack_ChipSortCount" xml:space="preserve">
-    <value>Jumlah</value>
-  </data>
-  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
-    <value>Semua {0}</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Hapus kredensial cloud game</value>
   </data>

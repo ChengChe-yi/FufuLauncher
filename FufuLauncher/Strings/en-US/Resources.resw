@@ -1561,12 +1561,8 @@ Go to the Microsoft website to download and install it?</value>
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Battle Chronicle</value>
   </data>
-  <data name="Home_WidgetBackpack" xml:space="preserve">
-    <value>Backpack Browser</value>
-  </data>
-  <data name="Home_BackpackTooltip" xml:space="preserve">
-    <value>Browse weapons, artifacts, materials, food, gadgets and other item data</value>
-  </data>
+  
+  
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Add Widget</value>
   </data>
@@ -5221,84 +5217,32 @@ Do you still want to execute it? (Not recommended)</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF export failed</value>
   </data>
-  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Weapons</value>
-  </data>
-  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Artifacts</value>
-  </data>
-  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Materials</value>
-  </data>
-  <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Food</value>
-  </data>
-  <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Waiting for data…</value>
-  </data>
-  <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Received</value>
-  </data>
-  <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Launching…</value>
-  </data>
-  <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Game launched, waiting for data…</value>
-  </data>
-  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Select Game Path</value>
-  </data>
-  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Kill Process</value>
-  </data>
-  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Sync Backpack</value>
-  </data>
-  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Sync Backpack</value>
-  </data>
-  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Game launched, waiting for backpack data…</value>
-  </data>
-  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="Backpack_Locked" xml:space="preserve">
-    <value>Locked</value>
-  </data>
-  <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Flower of Life</value>
-  </data>
-  <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Plume of Death</value>
-  </data>
-  <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Sands of Eon</value>
-  </data>
-  <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Goblet of Eonothem</value>
-  </data>
-  <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Circlet of Logos</value>
-  </data>
-  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Invalid path. Please select YuanShen.exe (CN server only).</value>
-  </data>
-  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Select Game Path</value>
-  </data>
-  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Click an entry below to switch to that path</value>
-  </data>
-  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Game Path</value>
-  </data>
-  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Select YuanShen.exe (CN only), not launcher.exe</value>
-  </data>
-  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>Base ATK</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>Failed to resolve current process path</value>
   </data>
@@ -5320,508 +5264,178 @@ Do you still want to execute it? (Not recommended)</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>Injection helper exited with code {0}</value>
   </data>
-  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Char Ascension</value>
-  </data>
-  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Weapon Ascension</value>
-  </data>
-  <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Talent Materials</value>
-  </data>
-  <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Char EXP</value>
-  </data>
-  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Weapon Enhancement</value>
-  </data>
-  <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Refinement</value>
-  </data>
-  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Local Specialty</value>
-  </data>
-  <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Ingredients</value>
-  </data>
-  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Recovery</value>
-  </data>
-  <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Attack</value>
-  </data>
-  <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Defense</value>
-  </data>
-  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Special Recovery</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Special Attack</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Special Defense</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Special Adventure</value>
-  </data>
-  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Arlecchino Specials</value>
-  </data>
-  <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Sweet Flowers</value>
-  </data>
-  <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Materials</value>
-  </data>
-  <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Ores</value>
-  </data>
-  <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Fish</value>
-  </data>
-  <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Fishing Bait</value>
-  </data>
-  <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Gadgets</value>
-  </data>
-  <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Assets</value>
-  </data>
-  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
-  </data>
-  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
-  </data>
-  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Gadgets</value>
-  </data>
-  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Consumables</value>
-  </data>
-  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Quest Items</value>
-  </data>
-  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Precious</value>
-  </data>
-  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Imaginarium Theater</value>
-  </data>
-  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Adventure</value>
-  </data>
-  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Nation Emblems</value>
-  </data>
-  <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Wish Items</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>Starglitter</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>Stardust</value>
-  </data>
-  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Rare Currency</value>
-  </data>
-  <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Backpack Browser</value>
-  </data>
-  <data name="BackpackWindow_Title" xml:space="preserve">
-    <value>Backpack Browser</value>
-  </data>
-  <data name="BackpackWindow_Archive" xml:space="preserve">
-    <value>Backpack Archive</value>
-  </data>
-  <data name="BackpackWindow_SearchPlaceholder" xml:space="preserve">
-    <value>Search by name or description...</value>
-  </data>
-  <data name="BackpackWindow_TotalItems" xml:space="preserve">
-    <value>{0} items cataloged / {1} collected</value>
-  </data>
-  <data name="BackpackWindow_VisibilityOn" xml:space="preserve">
-    <value>Hide empty</value>
-  </data>
-  <data name="BackpackWindow_VisibilityOff" xml:space="preserve">
-    <value>Show all</value>
-  </data>
-  <data name="BackpackWindow_ImportBackpack" xml:space="preserve">
-    <value>Import</value>
-  </data>
-  <data name="BackpackWindow_ExportBackpack" xml:space="preserve">
-    <value>Export</value>
-  </data>
-  <data name="BackpackWindow_RefreshData" xml:space="preserve">
-    <value>Refresh data</value>
-  </data>
-  <data name="BackpackWindow_ViewDetail" xml:space="preserve">
-    <value>View details</value>
-  </data>
-  <data name="BackpackWindow_CloseDetail" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="BackpackWindow_ViewGuide" xml:space="preserve">
-    <value>View guide</value>
-  </data>
-  <data name="BackpackWindow_DetailTitle" xml:space="preserve">
-    <value>Item details</value>
-  </data>
-  <data name="BackpackWindow_DetailSubtitleSimple" xml:space="preserve">
-    <value>Inventory item</value>
-  </data>
-  <data name="BackpackWindow_ProfileMissing" xml:space="preserve">
-    <value>No profile configured</value>
-  </data>
-  <data name="BackpackWindow_StatusNoPath" xml:space="preserve">
-    <value>Game path not configured</value>
-  </data>
-  <data name="BackpackWindow_StatusRunning" xml:space="preserve">
-    <value>● Game running</value>
-  </data>
-  <data name="BackpackWindow_StatusIdle" xml:space="preserve">
-    <value>○ Game idle</value>
-  </data>
-  <data name="BackpackWindow_EmptyMessage" xml:space="preserve">
-    <value>No matching items</value>
-  </data>
-  <data name="BackpackWindow_CountFormat" xml:space="preserve">
-    <value>{0} shown</value>
-  </data>
-  <data name="Backpack_SummaryWeaponLabel" xml:space="preserve">
-    <value>Weapons owned</value>
-  </data>
-  <data name="Backpack_SummaryArtifactLabel" xml:space="preserve">
-    <value>Artifact sets</value>
-  </data>
-  <data name="Backpack_SummaryFoodLabel" xml:space="preserve">
-    <value>Cookable dishes</value>
-  </data>
-  <data name="Backpack_SummaryAssetLabel" xml:space="preserve">
-    <value>Materials collected</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Backpack synchronization requires the x64 build.</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>The Backpack synchronization module modules/backpack.dll is missing.</value>
   </data>
-  <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>Overview</value>
-  </data>
-  <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>Browse equipment, materials and food in one place to support cultivation planning.</value>
-  </data>
-  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>Sync data stays on this device; it never uploads your account or backpack.</value>
-  </data>
-  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>No valid game installation directory detected</value>
-  </data>
-  <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>Please configure the path in Settings; Backpack will not request a second path.</value>
-  </data>
-  <data name="Backpack_OpenSettings" xml:space="preserve">
-    <value>Open Settings</value>
-  </data>
-  <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>Configure game installation path in Settings</value>
-  </data>
-  <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>How to use</value>
-  </data>
-  <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Click "Sync Backpack" at the top right to import in-game inventory and start the sync.</value>
-  </data>
-  <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>Switch tabs at the top; click any item card to inspect details (set, sub-stats, skill).</value>
-  </data>
-  <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>The overview cards will suggest ingredient links and cultivation materials based on current inventory.</value>
-  </data>
-  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
-    <value>Owned Weapons</value>
-  </data>
-  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>Locked Artifacts</value>
-  </data>
-  <data name="Backpack_KpiCookableFood" xml:space="preserve">
-    <value>Cookable Dishes</value>
-  </data>
-  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
-    <value>Material Types</value>
-  </data>
-  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
-    <value>5★ Weapons</value>
-  </data>
-  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>Total Artifacts</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
-    <value>5★ Weapons at max refinement</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>{0} 5★ weapons have reached max refinement.</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>Max-level 5★ Artifacts</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>{0} 5★ artifacts have been refined to +20.</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
-    <value>Ingredients Ready</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
-    <value>{0} dishes have all required ingredients on hand.</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
-    <value>Material Category Shortage</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
-    <value>{0} material categories are empty: {1}</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
-    <value>Weapon Codex Progress</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>{0} weapons are still in the codex only and not yet owned.</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
-    <value>Low-stock Materials</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
-    <value>{0} materials have less than 5 in stock.</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>Backpack Overview</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>Import backpack data to see insights and suggestions here.</value>
-  </data>
-  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
-    <value>High-tier Talent Materials</value>
-  </data>
-  <data name="Backpack_CookHeader" xml:space="preserve">
-    <value>Cooking Readiness</value>
-  </data>
-  <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>Based on your current ingredient stock</value>
-  </data>
-  <data name="Backpack_CookReady" xml:space="preserve">
-    <value>Cookable</value>
-  </data>
-  <data name="Backpack_CookAlmost" xml:space="preserve">
-    <value>Almost</value>
-  </data>
-  <data name="Backpack_CookAlmostBody" xml:space="preserve">
-    <value>Missing {0} ({1})</value>
-  </data>
-  <data name="Backpack_CookEmptyName" xml:space="preserve">
-    <value>No food data</value>
-  </data>
-  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
-    <value>Awaiting sync</value>
-  </data>
-  <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>After syncing backpack data, cooking suggestions will be available here.</value>
-  </data>
-  <data name="Backpack_BrowseTitle" xml:space="preserve">
-    <value>Browse &amp; Search</value>
-  </data>
-  <data name="Backpack_BrowseCaption" xml:space="preserve">
-    <value>Use keywords, subcategories, filters and sort to find items quickly.</value>
-  </data>
-  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
-    <value>Search by name, set, stat, character or ingredient</value>
-  </data>
-  <data name="Backpack_BrowseReset" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
-    <value>Subcategory</value>
-  </data>
-  <data name="Backpack_BrowseFilter" xml:space="preserve">
-    <value>Filter</value>
-  </data>
-  <data name="Backpack_BrowseSort" xml:space="preserve">
-    <value>Sort</value>
-  </data>
-  <data name="Backpack_ResultCount" xml:space="preserve">
-    <value>{0} items</value>
-  </data>
-  <data name="Backpack_EmptyTitle" xml:space="preserve">
-    <value>No matching items</value>
-  </data>
-  <data name="Backpack_EmptyBody" xml:space="preserve">
-    <value>Adjust keywords or clear filters and try again.</value>
-  </data>
-  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="Backpack_PagerFormat" xml:space="preserve">
-    <value>Page {0} / {1}</value>
-  </data>
-  <data name="Backpack_PagerRange" xml:space="preserve">
-    <value>{0}-{1} of {2}</value>
-  </data>
-  <data name="Backpack_ResultAll" xml:space="preserve">
-    <value>{0} items</value>
-  </data>
-  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>Weapon Rank</value>
-  </data>
-  <data name="Backpack_DetailLevel" xml:space="preserve">
-    <value>Level</value>
-  </data>
-  <data name="Backpack_DetailRefine" xml:space="preserve">
-    <value>Refine</value>
-  </data>
-  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
-    <value>Base ATK</value>
-  </data>
-  <data name="Backpack_DetailSubStat" xml:space="preserve">
-    <value>Secondary Stat</value>
-  </data>
-  <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>Weapon Skill</value>
-  </data>
-  <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>Weapon Story</value>
-  </data>
-  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>Enhancement Level</value>
-  </data>
-  <data name="Backpack_DetailMainStat" xml:space="preserve">
-    <value>Main Stat</value>
-  </data>
-  <data name="Backpack_DetailSubStats" xml:space="preserve">
-    <value>Sub-Stats</value>
-  </data>
-  <data name="Backpack_DetailSetBonus" xml:space="preserve">
-    <value>Set Bonus</value>
-  </data>
-  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
-    <value>Codex Entry</value>
-  </data>
-  <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>After importing the game, the artifact's enhancement level, main stat value and sub-stat roll detail will be filled in. Currently showing the basic set classification and bonus text.</value>
-  </data>
-  <data name="Backpack_DetailCookState" xml:space="preserve">
-    <value>Craft Status</value>
-  </data>
-  <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>All ingredients on hand; ready to cook.</value>
-  </data>
-  <data name="Backpack_DetailCookMissing" xml:space="preserve">
-    <value>Some ingredients missing; cookable once restocked.</value>
-  </data>
-  <data name="Backpack_DetailIngredients" xml:space="preserve">
-    <value>Ingredients</value>
-  </data>
-  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>Inventory Item</value>
-  </data>
-  <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>Items you have in your backpack.</value>
-  </data>
-  <data name="Backpack_DetailStockItem" xml:space="preserve">
-    <value>Stock Item</value>
-  </data>
-  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>Inventory Overview</value>
-  </data>
-  <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>Backpack Insights</value>
-  </data>
-  <data name="Backpack_SectionCultivation" xml:space="preserve">
-    <value>Cultivation Materials</value>
-  </data>
-  <data name="Backpack_SectionItems" xml:space="preserve">
-    <value>Browse &amp; Search</value>
-  </data>
-  <data name="Backpack_DetailCountLabel" xml:space="preserve">
-    <value>Count</value>
-  </data>
-  <data name="Backpack_DialogClose" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="Backpack_DialogConfirm" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>Backpack data imported</value>
-  </data>
-  <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>Backpack data received and saved. Overview, cultivation plan and cooking suggestions have been updated.</value>
-  </data>
-  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
-    <value>Sync failed</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
-    <value>Sync module not found</value>
-  </data>
-  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
-    <value>About the Sync Module</value>
-  </data>
-  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
-    <value>This sync module is developed by another developer as a separate project. We have not reached an agreement with the developer on bundling the module, which is why it has been put on hold. We are still doing our best to seek an opportunity, and we apologize for the inconvenience.</value>
-  </data>
-  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
-    <value>Data &amp; Update Notes</value>
-  </data>
-  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
-    <value>Metadata is updated irregularly, so new data may not be available in a timely manner. This feature currently only provides an encyclopedia (browse) view.</value>
-  </data>
-  <data name="Backpack_DetailsButton" xml:space="preserve">
-    <value>Details</value>
-  </data>
-  <data name="Backpack_ChipAll" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
-    <value>Categories</value>
-  </data>
-  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
-    <value>Owned</value>
-  </data>
-  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>Catalog</value>
-  </data>
-  <data name="Backpack_ChipFilterFive" xml:space="preserve">
-    <value>5★</value>
-  </data>
-  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
-    <value>Locked</value>
-  </data>
-  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
-    <value>Cookable</value>
-  </data>
-  <data name="Backpack_ChipSortDefault" xml:space="preserve">
-    <value>Default</value>
-  </data>
-  <data name="Backpack_ChipSortName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Backpack_ChipSortRank" xml:space="preserve">
-    <value>Rank</value>
-  </data>
-  <data name="Backpack_ChipSortLevel" xml:space="preserve">
-    <value>Level</value>
-  </data>
-  <data name="Backpack_ChipSortCount" xml:space="preserve">
-    <value>Count</value>
-  </data>
-  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
-    <value>All {0}</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Checkin_PartialFailed" xml:space="preserve">
     <value>Check-in partially failed</value>
   </data>

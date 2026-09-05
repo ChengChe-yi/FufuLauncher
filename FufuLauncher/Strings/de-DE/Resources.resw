@@ -4751,84 +4751,32 @@ Rückmeldung: {0}</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF-Export fehlgeschlagen</value>
   </data>
-  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Waffen</value>
-  </data>
-  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Artefakte</value>
-  </data>
-  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Materialien</value>
-  </data>
-  <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Gerichte</value>
-  </data>
-  <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Warte auf Daten…</value>
-  </data>
-  <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Empfangen</value>
-  </data>
-  <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Wird gestartet…</value>
-  </data>
-  <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Spiel gestartet, warte auf Daten…</value>
-  </data>
-  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Spielpfad auswählen</value>
-  </data>
-  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Prozess beenden</value>
-  </data>
-  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Inventar synchronisieren</value>
-  </data>
-  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Inventar synchronisieren</value>
-  </data>
-  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Spiel gestartet, warte auf Inventardaten…</value>
-  </data>
-  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="Backpack_Locked" xml:space="preserve">
-    <value>Gesperrt</value>
-  </data>
-  <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Blume des Lebens</value>
-  </data>
-  <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Feder des Todes</value>
-  </data>
-  <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Sand der Zeit</value>
-  </data>
-  <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Kelch des Eonothems</value>
-  </data>
-  <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Diadem des Logos</value>
-  </data>
-  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Ungültiger Pfad. Bitte wähle YuanShen.exe (nur CN-Server).</value>
-  </data>
-  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Spielpfad auswählen</value>
-  </data>
-  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Klicke unten auf einen Eintrag, um zu diesem Pfad zu wechseln</value>
-  </data>
-  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Spielpfad</value>
-  </data>
-  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Bitte wähle die CN-Version (YuanShen.exe) aus, nicht den Launcher (launcher.exe)</value>
-  </data>
-  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>Basis-ATK</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>Aktueller Prozesspfad konnte nicht ermittelt werden</value>
   </data>
@@ -4850,120 +4798,44 @@ Rückmeldung: {0}</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>Injektionsprozess wurde unerwartet beendet ({0})</value>
   </data>
-  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Charakteraufstieg</value>
-  </data>
-  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Waffenaufstieg</value>
-  </data>
-  <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Talentmaterialien</value>
-  </data>
-  <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Charakterentwicklung</value>
-  </data>
-  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Waffenverstärkung</value>
-  </data>
-  <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Verfeinerungsmaterialien</value>
-  </data>
-  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Regionale Spezialitäten</value>
-  </data>
-  <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Zutaten</value>
-  </data>
-  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Regenerationsgerichte</value>
-  </data>
-  <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Angriffsgerichte</value>
-  </data>
-  <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Verteidigungsgerichte</value>
-  </data>
-  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Abenteuergerichte</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Spezial-Regenerationsgerichte</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Spezial-Angriffsgerichte</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Spezial-Verteidigungsgerichte</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Spezial-Abenteuergerichte</value>
-  </data>
-  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Werke der Inspiration</value>
-  </data>
-  <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Süßigkeiten</value>
-  </data>
-  <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Materialien</value>
-  </data>
-  <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Erze</value>
-  </data>
-  <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Fische</value>
-  </data>
-  <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Fischköder</value>
-  </data>
-  <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Gadgets</value>
-  </data>
-  <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Persönliche Vermögenswerte</value>
-  </data>
-  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Seltene Währung</value>
-  </data>
-  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Theater der imaginären Realität</value>
-  </data>
-  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Gadgets</value>
-  </data>
-  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Verbrauchsgegenstände</value>
-  </data>
-  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Auftragsgegenstände</value>
-  </data>
-  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Wertgegenstände</value>
-  </data>
-  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Theater der imaginären Realität</value>
-  </data>
-  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Abenteuer-Gadgets</value>
-  </data>
-  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Embleme der sieben Nationen</value>
-  </data>
-  <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Wunschgegenstände</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>Sternenglanz</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>Sternenstaub</value>
-  </data>
-  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Seltene Währung</value>
-  </data>
-  <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Backpack-Browser</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Die Backpack-Synchronisierung erfordert die x64-Version.</value>
   </data>
@@ -5381,316 +5253,110 @@ Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>Visuelle Anpassung</value>
   </data>
-  <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>Übersicht</value>
-  </data>
-  <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>Ausrüstung, Materialien und Gerichte an einem Ort ansehen, um die Charakterentwicklung zu planen.</value>
-  </data>
-  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>Synchronisierungsdaten werden nur lokal gespeichert und weder Konto- noch Inventarinhalte hochgeladen.</value>
-  </data>
-  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>Kein gültiger Spielinstallationspfad gefunden</value>
-  </data>
-  <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>Bitte konfigurieren Sie den Pfad in den Spieleinstellungen der Software. Backpack speichert keinen zweiten Pfad und fordert ihn auch nicht an.</value>
-  </data>
-  <data name="Backpack_OpenSettings" xml:space="preserve">
-    <value>Einstellungen öffnen</value>
-  </data>
-  <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>Bitte konfigurieren Sie das Installationsverzeichnis in den Spieleinstellungen</value>
-  </data>
-  <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>Nutzungshinweise</value>
-  </data>
-  <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Klicken Sie oben rechts auf „Inventar synchronisieren“, um das echte Spielinventar zu laden und die Datensynchronisierung zu starten.</value>
-  </data>
-  <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>In den oberen Registerkarten können Sie zwischen den Kategorien wechseln. Klicken Sie auf eine beliebige Gegenstandskarte, um detaillierte Parameter (Set / Werte / Waffenfähigkeit) anzuzeigen.</value>
-  </data>
-  <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>Die Übersichtskarten zeigen auf Basis des aktuellen Inventars Zutat-Kombinationen und die Abdeckung von Entwicklungsmaterialien.</value>
-  </data>
-  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
-    <value>Waffen im Besitz</value>
-  </data>
-  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>Gesperrte Artefakte</value>
-  </data>
-  <data name="Backpack_KpiCookableFood" xml:space="preserve">
-    <value>Zubereitbare Gerichte</value>
-  </data>
-  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
-    <value>Materialarten</value>
-  </data>
-  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
-    <value>5-Sterne-Waffen</value>
-  </data>
-  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>Gesamtzahl Artefakte</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
-    <value>Voll aufgewertete 5-Sterne-Waffen</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>{0} 5-Sterne-Waffen sind vollständig aufgewertet.</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>5-Sterne-Artefakte auf Maximalstufe</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>{0} 5-Sterne-Artefakte wurden auf +20 verstärkt.</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
-    <value>Zutaten ausreichend</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
-    <value>Für {0} Gerichte sind die Zutaten vollständig und können sofort zubereitet werden.</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
-    <value>Leere Materialkategorien</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
-    <value>{0} Materialkategorien haben einen Bestand von null: {1}</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
-    <value>Waffenlexikon-Fortschritt</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>{0} Waffen sind nur im Lexikon vorhanden und noch nicht im Besitz.</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
-    <value>Materialien mit niedrigem Bestand</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
-    <value>{0} Materialien haben einen Bestand von weniger als 5. Bitte zeitnah auffüllen.</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>Datenübersicht</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>Nach der Inventarsynchronisierung werden hier Einblicke und Empfehlungen zum Bestand angezeigt.</value>
-  </data>
-  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
-    <value>Hochstufige Talentmaterialien</value>
-  </data>
-  <data name="Backpack_CookHeader" xml:space="preserve">
-    <value>Gerichtezubereitung</value>
-  </data>
-  <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>Basierend auf dem aktuellen Zutatenbestand</value>
-  </data>
-  <data name="Backpack_CookReady" xml:space="preserve">
-    <value>Zubereitbar</value>
-  </data>
-  <data name="Backpack_CookAlmost" xml:space="preserve">
-    <value>Fast geschafft</value>
-  </data>
-  <data name="Backpack_CookAlmostBody" xml:space="preserve">
-    <value>Es fehlt {0} ({1})</value>
-  </data>
-  <data name="Backpack_CookEmptyName" xml:space="preserve">
-    <value>Keine Gerichtedaten vorhanden</value>
-  </data>
-  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
-    <value>Wartet auf Synchronisierung</value>
-  </data>
-  <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>Nach der Inventarsynchronisierung können Sie die Zubereitung der Gerichte einsehen.</value>
-  </data>
-  <data name="Backpack_BrowseTitle" xml:space="preserve">
-    <value>Durchsuchen und Filtern</value>
-  </data>
-  <data name="Backpack_BrowseCaption" xml:space="preserve">
-    <value>Mit Stichwörtern, Unterkategorien, Filtern und Sortierung schnell Gegenstände finden.</value>
-  </data>
-  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
-    <value>Name, Set, Wert, Charakter oder Zutat suchen</value>
-  </data>
-  <data name="Backpack_BrowseReset" xml:space="preserve">
-    <value>Zurücksetzen</value>
-  </data>
-  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
-    <value>Unterkategorie</value>
-  </data>
-  <data name="Backpack_BrowseFilter" xml:space="preserve">
-    <value>Filter</value>
-  </data>
-  <data name="Backpack_BrowseSort" xml:space="preserve">
-    <value>Sortierung</value>
-  </data>
-  <data name="Backpack_ResultCount" xml:space="preserve">
-    <value>{0} Ergebnisse</value>
-  </data>
-  <data name="Backpack_EmptyTitle" xml:space="preserve">
-    <value>Keine passenden Gegenstände gefunden</value>
-  </data>
-  <data name="Backpack_EmptyBody" xml:space="preserve">
-    <value>Passen Sie das Stichwort an oder löschen Sie die Filter und versuchen Sie es erneut.</value>
-  </data>
-  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
-    <value>Bedingungen löschen</value>
-  </data>
-  <data name="Backpack_PagerFormat" xml:space="preserve">
-    <value>Seite {0} / {1}</value>
-  </data>
-  <data name="Backpack_PagerRange" xml:space="preserve">
-    <value>Einträge {0}-{1} von {2}</value>
-  </data>
-  <data name="Backpack_ResultAll" xml:space="preserve">
-    <value>{0} Ergebnisse</value>
-  </data>
-  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>Waffenqualität</value>
-  </data>
-  <data name="Backpack_DetailLevel" xml:space="preserve">
-    <value>Stufe</value>
-  </data>
-  <data name="Backpack_DetailRefine" xml:space="preserve">
-    <value>Veredelung</value>
-  </data>
-  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
-    <value>Basisangriff</value>
-  </data>
-  <data name="Backpack_DetailSubStat" xml:space="preserve">
-    <value>Sekundärwert</value>
-  </data>
-  <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>Waffenfähigkeit</value>
-  </data>
-  <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>Waffengeschichte</value>
-  </data>
-  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>Verstärkungsstufe</value>
-  </data>
-  <data name="Backpack_DetailMainStat" xml:space="preserve">
-    <value>Hauptwert</value>
-  </data>
-  <data name="Backpack_DetailSubStats" xml:space="preserve">
-    <value>Sekundärwerte</value>
-  </data>
-  <data name="Backpack_DetailSetBonus" xml:space="preserve">
-    <value>Set-Effekt</value>
-  </data>
-  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
-    <value>Lexikoneintrag</value>
-  </data>
-  <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>Nach dem Import aus dem Spiel werden die Verstärkungsstufe, der Hauptwert und die Sekundärwert-Rolls des Artefakts automatisch ausgefüllt. Aktuell werden die Set-Kategorie und grundlegende Set-Effekt-Informationen dieses Artefakts angezeigt.</value>
-  </data>
-  <data name="Backpack_DetailCookState" xml:space="preserve">
-    <value>Zubereitungsstatus</value>
-  </data>
-  <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>Zutatenbestand ausreichend, kann sofort zubereitet werden</value>
-  </data>
-  <data name="Backpack_DetailCookMissing" xml:space="preserve">
-    <value>Einige Zutaten fehlen. Nach Auffüllen kann zubereitet werden</value>
-  </data>
-  <data name="Backpack_DetailIngredients" xml:space="preserve">
-    <value>Benötigte Zutaten</value>
-  </data>
-  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>Inventargegenstand</value>
-  </data>
-  <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>Aktuelle Anzahl im Inventar.</value>
-  </data>
-  <data name="Backpack_DetailStockItem" xml:space="preserve">
-    <value>Bestandsgegenstand</value>
-  </data>
-  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>Bestandsübersicht</value>
-  </data>
-  <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>Inventareinblicke</value>
-  </data>
-  <data name="Backpack_SectionCultivation" xml:space="preserve">
-    <value>Abdeckung der Entwicklungsmaterialien</value>
-  </data>
-  <data name="Backpack_SectionItems" xml:space="preserve">
-    <value>Durchsuchen und Filtern</value>
-  </data>
-  <data name="Backpack_DetailCountLabel" xml:space="preserve">
-    <value>Anzahl im Besitz</value>
-  </data>
-  <data name="Backpack_DialogClose" xml:space="preserve">
-    <value>Schließen</value>
-  </data>
-  <data name="Backpack_DialogConfirm" xml:space="preserve">
-    <value>Bestätigen</value>
-  </data>
-  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>Inventardaten importiert</value>
-  </data>
-  <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>Die diesmaligen Inventardaten wurden empfangen und gespeichert. Übersicht, Materialabdeckung und Gerichtempfehlungen wurden aktualisiert.</value>
-  </data>
-  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
-    <value>Synchronisierung fehlgeschlagen</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
-    <value>Synchronisationsmodul nicht gefunden</value>
-  </data>
-  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
-    <value>Über das Synchronisationsmodul</value>
-  </data>
-  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
-    <value>Dieses Synchronisationsmodul wurde von einem anderen Entwickler als separates Projekt erstellt. Zur Integration des Moduls konnten wir uns nicht mit dem Entwickler einigen, weshalb es zurückgestellt wurde. Wir bemühen uns weiterhin um eine Lösung und bitten um Ihr Verständnis.</value>
-  </data>
-  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
-    <value>Hinweise zu Daten und Updates</value>
-  </data>
-  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
-    <value>Metadaten werden unregelmäßig aktualisiert; neue Daten sind möglicherweise nicht zeitnah verfügbar. Diese Funktion bietet derzeit nur einen Nachschlage-Modus (Durchsuchen).</value>
-  </data>
-  <data name="Backpack_DetailsButton" xml:space="preserve">
-    <value>Details</value>
-  </data>
-  <data name="Backpack_ChipAll" xml:space="preserve">
-    <value>Alle</value>
-  </data>
-  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
-    <value>Kategorie</value>
-  </data>
-  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
-    <value>Im Besitz</value>
-  </data>
-  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>Lexikon</value>
-  </data>
-  <data name="Backpack_ChipFilterFive" xml:space="preserve">
-    <value>5-Sterne</value>
-  </data>
-  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
-    <value>Gesperrt</value>
-  </data>
-  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
-    <value>Zubereitbar</value>
-  </data>
-  <data name="Backpack_ChipSortDefault" xml:space="preserve">
-    <value>Standard</value>
-  </data>
-  <data name="Backpack_ChipSortName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Backpack_ChipSortRank" xml:space="preserve">
-    <value>Qualität</value>
-  </data>
-  <data name="Backpack_ChipSortLevel" xml:space="preserve">
-    <value>Stufe</value>
-  </data>
-  <data name="Backpack_ChipSortCount" xml:space="preserve">
-    <value>Anzahl</value>
-  </data>
-  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
-    <value>Alle {0}</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Cloud-Gaming-Anmeldedaten entfernen</value>
   </data>

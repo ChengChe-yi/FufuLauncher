@@ -4751,84 +4751,32 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF 匯出失敗</value>
   </data>
-  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>武器</value>
-  </data>
-  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>聖遺物</value>
-  </data>
-  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>材料</value>
-  </data>
-  <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>食物</value>
-  </data>
-  <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>等待資料…</value>
-  </data>
-  <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>已接收</value>
-  </data>
-  <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>啟動中…</value>
-  </data>
-  <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>遊戲已啟動，等待資料…</value>
-  </data>
-  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>選擇遊戲路徑</value>
-  </data>
-  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>結束處理程序</value>
-  </data>
-  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>同步背包</value>
-  </data>
-  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>同步背包</value>
-  </data>
-  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>遊戲已啟動，正在等待背包資料…</value>
-  </data>
-  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="Backpack_Locked" xml:space="preserve">
-    <value>已鎖定</value>
-  </data>
-  <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>生之花</value>
-  </data>
-  <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>死之羽</value>
-  </data>
-  <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>時之沙</value>
-  </data>
-  <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>空之杯</value>
-  </data>
-  <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>理之冠</value>
-  </data>
-  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>路徑無效，請選擇陸服遊戲本體（YuanShen.exe）。</value>
-  </data>
-  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>選擇遊戲路徑</value>
-  </data>
-  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>在下方清單中選取以切換到該路徑</value>
-  </data>
-  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>遊戲路徑</value>
-  </data>
-  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>請選擇陸服遊戲本體（YuanShen.exe）而非啟動器（launcher.exe）</value>
-  </data>
-  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>基礎攻擊力</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>無法取得目前處理程序路徑</value>
   </data>
@@ -4850,120 +4798,44 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>注入處理程序異常退出 ({0})</value>
   </data>
-  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>角色突破</value>
-  </data>
-  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>武器突破</value>
-  </data>
-  <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>天賦材料</value>
-  </data>
-  <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>角色培養</value>
-  </data>
-  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>武器強化</value>
-  </data>
-  <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>精煉材料</value>
-  </data>
-  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>地區特產</value>
-  </data>
-  <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>食材</value>
-  </data>
-  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>恢復類料理</value>
-  </data>
-  <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>攻擊類料理</value>
-  </data>
-  <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>防禦類料理</value>
-  </data>
-  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>冒險類料理</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>特殊恢復</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>特殊攻擊</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>特殊防禦</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>特殊冒險</value>
-  </data>
-  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>靈感之作</value>
-  </data>
-  <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>糖雕</value>
-  </data>
-  <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>素材</value>
-  </data>
-  <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>礦石</value>
-  </data>
-  <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>魚</value>
-  </data>
-  <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>魚餌</value>
-  </data>
-  <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>道具</value>
-  </data>
-  <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>個人資產</value>
-  </data>
-  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>稀有貨幣</value>
-  </data>
-  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>幻想真境劇詩</value>
-  </data>
-  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>小道具</value>
-  </data>
-  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>消耗品</value>
-  </data>
-  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>任務道具</value>
-  </data>
-  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>貴重物品</value>
-  </data>
-  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>幻想真境劇詩</value>
-  </data>
-  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>冒險道具</value>
-  </data>
-  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>七國徽印</value>
-  </data>
-  <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>祈願道具</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>高級兌換券</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>普通兌換券</value>
-  </data>
-  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>稀有貨幣</value>
-  </data>
-  <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>背包瀏覽器</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>背包同步僅支援 x64 版本。</value>
   </data>
@@ -5381,316 +5253,110 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>視覺美化</value>
   </data>
-  <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>總覽</value>
-  </data>
-  <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>集中瀏覽裝備、材料與料理，輔助養成規劃。</value>
-  </data>
-  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>同步資料僅儲存在本機，不會上傳帳號或背包內容。</value>
-  </data>
-  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>尚未識別到有效的遊戲安裝目錄</value>
-  </data>
-  <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>請在軟體的遊戲設定中設定路徑；Backpack 不會儲存或要求第二份路徑。</value>
-  </data>
-  <data name="Backpack_OpenSettings" xml:space="preserve">
-    <value>開啟設定</value>
-  </data>
-  <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>請在遊戲設定中設定安裝目錄</value>
-  </data>
-  <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>使用說明</value>
-  </data>
-  <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>點擊右上角『同步背包』以注入遊戲內真實庫存，並啟動資料同步。</value>
-  </data>
-  <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>頂部分欄可切換分類；點擊任何物品卡片查看詳細參數（套裝 / 詞條 / 武器技能）。</value>
-  </data>
-  <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>總覽卡片會基於目前庫存給出食材聯動與養成材料覆蓋。</value>
-  </data>
-  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
-    <value>已擁有武器</value>
-  </data>
-  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>鎖定聖遺物</value>
-  </data>
-  <data name="Backpack_KpiCookableFood" xml:space="preserve">
-    <value>可製作料理</value>
-  </data>
-  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
-    <value>材料種類</value>
-  </data>
-  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
-    <value>五星武器</value>
-  </data>
-  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>聖遺物總數</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
-    <value>滿精煉五星武器</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>共 {0} 把五星武器已滿精煉。</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>滿級五星聖遺物</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>{0} 件五星聖遺物已強化至 +20。</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
-    <value>食材充足</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
-    <value>目前有 {0} 道料理的食材已備齊，可以立即製作。</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
-    <value>材料類別空缺</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
-    <value>有 {0} 個材料分類庫存為零：{1}</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
-    <value>武器圖鑑進度</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>還有 {0} 把武器僅在圖鑑中，尚未擁有。</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
-    <value>低庫存材料</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
-    <value>{0} 項材料庫存不足 5 個，注意及時補充。</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>資料概覽</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>同步背包資料後將在此展示庫存洞察與建議。</value>
-  </data>
-  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
-    <value>高階天賦材料</value>
-  </data>
-  <data name="Backpack_CookHeader" xml:space="preserve">
-    <value>料理準備情況</value>
-  </data>
-  <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>基於目前食材庫存</value>
-  </data>
-  <data name="Backpack_CookReady" xml:space="preserve">
-    <value>可製作</value>
-  </data>
-  <data name="Backpack_CookAlmost" xml:space="preserve">
-    <value>差一步</value>
-  </data>
-  <data name="Backpack_CookAlmostBody" xml:space="preserve">
-    <value>缺少 {0}（{1}）</value>
-  </data>
-  <data name="Backpack_CookEmptyName" xml:space="preserve">
-    <value>暫無料理資料</value>
-  </data>
-  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
-    <value>等待同步</value>
-  </data>
-  <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>同步背包後即可查看料理準備情況。</value>
-  </data>
-  <data name="Backpack_BrowseTitle" xml:space="preserve">
-    <value>瀏覽與檢索</value>
-  </data>
-  <data name="Backpack_BrowseCaption" xml:space="preserve">
-    <value>使用關鍵字、細分分類、篩選與排序快速定位物品。</value>
-  </data>
-  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
-    <value>搜尋名稱、套裝、詞條、角色或食材</value>
-  </data>
-  <data name="Backpack_BrowseReset" xml:space="preserve">
-    <value>重設</value>
-  </data>
-  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
-    <value>細分分類</value>
-  </data>
-  <data name="Backpack_BrowseFilter" xml:space="preserve">
-    <value>篩選</value>
-  </data>
-  <data name="Backpack_BrowseSort" xml:space="preserve">
-    <value>排序</value>
-  </data>
-  <data name="Backpack_ResultCount" xml:space="preserve">
-    <value>{0} 項結果</value>
-  </data>
-  <data name="Backpack_EmptyTitle" xml:space="preserve">
-    <value>沒有找到相符的物品</value>
-  </data>
-  <data name="Backpack_EmptyBody" xml:space="preserve">
-    <value>調整關鍵字或清除篩選條件後再試。</value>
-  </data>
-  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
-    <value>清除條件</value>
-  </data>
-  <data name="Backpack_PagerFormat" xml:space="preserve">
-    <value>第 {0} / {1} 頁</value>
-  </data>
-  <data name="Backpack_PagerRange" xml:space="preserve">
-    <value>第 {0}-{1} 項 / 共 {2} 項</value>
-  </data>
-  <data name="Backpack_ResultAll" xml:space="preserve">
-    <value>{0} 項結果</value>
-  </data>
-  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>武器品質</value>
-  </data>
-  <data name="Backpack_DetailLevel" xml:space="preserve">
-    <value>等級</value>
-  </data>
-  <data name="Backpack_DetailRefine" xml:space="preserve">
-    <value>精煉</value>
-  </data>
-  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
-    <value>基礎攻擊力</value>
-  </data>
-  <data name="Backpack_DetailSubStat" xml:space="preserve">
-    <value>副屬性</value>
-  </data>
-  <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>武器技能</value>
-  </data>
-  <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>武器故事</value>
-  </data>
-  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>強化等級</value>
-  </data>
-  <data name="Backpack_DetailMainStat" xml:space="preserve">
-    <value>主詞條</value>
-  </data>
-  <data name="Backpack_DetailSubStats" xml:space="preserve">
-    <value>副詞條</value>
-  </data>
-  <data name="Backpack_DetailSetBonus" xml:space="preserve">
-    <value>套裝效果</value>
-  </data>
-  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
-    <value>圖鑑條目</value>
-  </data>
-  <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>匯入遊戲後，將自動填入聖遺物的強化等級、主詞條數值與副詞條 roll 明細。目前顯示的是該聖遺物的套裝分類與套裝效果基礎資訊。</value>
-  </data>
-  <data name="Backpack_DetailCookState" xml:space="preserve">
-    <value>製作狀態</value>
-  </data>
-  <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>食材庫存已滿足，可立即製作</value>
-  </data>
-  <data name="Backpack_DetailCookMissing" xml:space="preserve">
-    <value>部分食材不足，補齊後即可製作</value>
-  </data>
-  <data name="Backpack_DetailIngredients" xml:space="preserve">
-    <value>所需食材</value>
-  </data>
-  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>背包物品</value>
-  </data>
-  <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>目前背包中的實際數量。</value>
-  </data>
-  <data name="Backpack_DetailStockItem" xml:space="preserve">
-    <value>庫存物品</value>
-  </data>
-  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>庫存概況</value>
-  </data>
-  <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>背包洞察</value>
-  </data>
-  <data name="Backpack_SectionCultivation" xml:space="preserve">
-    <value>養成材料覆蓋</value>
-  </data>
-  <data name="Backpack_SectionItems" xml:space="preserve">
-    <value>瀏覽與檢索</value>
-  </data>
-  <data name="Backpack_DetailCountLabel" xml:space="preserve">
-    <value>持有數量</value>
-  </data>
-  <data name="Backpack_DialogClose" xml:space="preserve">
-    <value>關閉</value>
-  </data>
-  <data name="Backpack_DialogConfirm" xml:space="preserve">
-    <value>確定</value>
-  </data>
-  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>背包資料已匯入</value>
-  </data>
-  <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>已接收並儲存本次背包資料。總覽、材料覆蓋和料理建議已更新。</value>
-  </data>
-  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
-    <value>同步失敗</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
-    <value>未偵測到同步模組</value>
-  </data>
-  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
-    <value>關於同步模組</value>
-  </data>
-  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
-    <value>該同步模組由其他開發者製作，為單獨專案。開發者對於模組內建事宜並未與我們達成一致，因此導致了擱置。我們仍在盡可能爭取機會，敬請見諒。</value>
-  </data>
-  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
-    <value>資料與更新說明</value>
-  </data>
-  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
-    <value>元資料不定期更新，可能無法即時取得更新資料；此功能目前僅提供圖鑑（瀏覽）功能。</value>
-  </data>
-  <data name="Backpack_DetailsButton" xml:space="preserve">
-    <value>詳情</value>
-  </data>
-  <data name="Backpack_ChipAll" xml:space="preserve">
-    <value>全部</value>
-  </data>
-  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
-    <value>分類</value>
-  </data>
-  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
-    <value>已擁有</value>
-  </data>
-  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>圖鑑</value>
-  </data>
-  <data name="Backpack_ChipFilterFive" xml:space="preserve">
-    <value>五星</value>
-  </data>
-  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
-    <value>已鎖定</value>
-  </data>
-  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
-    <value>可製作</value>
-  </data>
-  <data name="Backpack_ChipSortDefault" xml:space="preserve">
-    <value>預設</value>
-  </data>
-  <data name="Backpack_ChipSortName" xml:space="preserve">
-    <value>名稱</value>
-  </data>
-  <data name="Backpack_ChipSortRank" xml:space="preserve">
-    <value>品質</value>
-  </data>
-  <data name="Backpack_ChipSortLevel" xml:space="preserve">
-    <value>等級</value>
-  </data>
-  <data name="Backpack_ChipSortCount" xml:space="preserve">
-    <value>數量</value>
-  </data>
-  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
-    <value>全部{0}</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>移除雲端遊戲憑證</value>
   </data>

@@ -115,11 +115,7 @@ namespace FufuLauncher.Constants
         public const string PluginStoreLeaderboardUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/leaderboard";
         public const string PluginStoreDownloadTokenUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/download-token";
         public const string PluginStorePrivateAccessUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/private-access";
-        public const string BackpackStaticBase = "http://127.0.0.1/static/raw/";
-        public const string BackpackWeaponIconUrl = BackpackStaticBase + "EquipIcon/";
-        public const string BackpackArtifactIconUrl = BackpackStaticBase + "RelicIcon/";
-        public const string BackpackMaterialIconUrl = BackpackStaticBase + "ItemIcon/";
-        public static string GetPluginFileDownloadUrl(string pluginId) => 
+        public static string GetPluginFileDownloadUrl(string pluginId) =>
             $"{PluginStoreBaseUrl}/plugins/files/{Uri.EscapeDataString(pluginId)}.zip";
     }
 }

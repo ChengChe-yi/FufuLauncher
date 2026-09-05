@@ -4751,84 +4751,32 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>Не удалось экспортировать PDF</value>
   </data>
-  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>Оружие</value>
-  </data>
-  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>Артефакты</value>
-  </data>
-  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>Материалы</value>
-  </data>
-  <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>Еда</value>
-  </data>
-  <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>Ожидание данных…</value>
-  </data>
-  <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>Получено</value>
-  </data>
-  <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>Запуск…</value>
-  </data>
-  <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>Игра запущена, ожидание данных…</value>
-  </data>
-  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>Выбрать путь к игре</value>
-  </data>
-  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>Завершить процесс</value>
-  </data>
-  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>Синхронизировать рюкзак</value>
-  </data>
-  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>Синхронизация рюкзака</value>
-  </data>
-  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>Игра запущена, ожидание данных рюкзака…</value>
-  </data>
-  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="Backpack_Locked" xml:space="preserve">
-    <value>Заблокировано</value>
-  </data>
-  <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>Цветок жизни</value>
-  </data>
-  <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>Перо смерти</value>
-  </data>
-  <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>Пески эона</value>
-  </data>
-  <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>Кубок эонотема</value>
-  </data>
-  <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>Венец логоса</value>
-  </data>
-  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>Неверный путь. Выберите клиент сервера Китая (YuanShen.exe).</value>
-  </data>
-  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>Выбор пути к игре</value>
-  </data>
-  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>Выберите запись в списке ниже, чтобы переключиться на этот путь</value>
-  </data>
-  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>Путь к игре</value>
-  </data>
-  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>Выберите клиент сервера Китая (YuanShen.exe), а не лаунчер (launcher.exe)</value>
-  </data>
-  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>Базовая атака</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>Не удалось определить путь текущего процесса</value>
   </data>
@@ -4850,120 +4798,44 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>Вспомогательный процесс инжекта завершился с кодом {0}</value>
   </data>
-  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>Возвышение персонажей</value>
-  </data>
-  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>Возвышение оружия</value>
-  </data>
-  <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>Материалы талантов</value>
-  </data>
-  <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>Развитие персонажа</value>
-  </data>
-  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>Улучшение оружия</value>
-  </data>
-  <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>Материалы пробуждения</value>
-  </data>
-  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>Местные диковины</value>
-  </data>
-  <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>Ингредиенты</value>
-  </data>
-  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>Восстанавливающая еда</value>
-  </data>
-  <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>Боевая еда</value>
-  </data>
-  <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>Защитная еда</value>
-  </data>
-  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>Приключенческая еда</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>Особая восстанавливающая еда</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>Особая боевая еда</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>Особая защитная еда</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>Особая приключенческая еда</value>
-  </data>
-  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>Особые блюда</value>
-  </data>
-  <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>Десерты</value>
-  </data>
-  <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>Материалы</value>
-  </data>
-  <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>Руда</value>
-  </data>
-  <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>Рыба</value>
-  </data>
-  <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>Наживка</value>
-  </data>
-  <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>Предметы</value>
-  </data>
-  <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>Личные активы</value>
-  </data>
-  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>Редкая валюта</value>
-  </data>
-  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>Театр «Воображариум»</value>
-  </data>
-  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>Инструменты</value>
-  </data>
-  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>Расходные предметы</value>
-  </data>
-  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>Предметы заданий</value>
-  </data>
-  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>Драгоценности</value>
-  </data>
-  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>Театр «Воображариум»</value>
-  </data>
-  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>Приключенческие предметы</value>
-  </data>
-  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>Печати семи наций</value>
-  </data>
-  <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>Предметы молитвы</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>Звёздный блеск</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>Звёздная пыль</value>
-  </data>
-  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>Редкая валюта</value>
-  </data>
-  <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>Обзор рюкзака</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Синхронизация рюкзака поддерживается только в версии x64.</value>
   </data>
@@ -5381,316 +5253,110 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>Визуальные эффекты</value>
   </data>
-  <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>Обзор</value>
-  </data>
-  <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>Просматривайте снаряжение, материалы и блюда в одном месте для удобного планирования развития.</value>
-  </data>
-  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>Синхронизированные данные хранятся только локально, аккаунт и содержимое рюкзака не загружаются.</value>
-  </data>
-  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>Не найден допустимый каталог установки игры</value>
-  </data>
-  <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>Укажите путь в настройках игры. Backpack не сохраняет и не запрашивает второй путь.</value>
-  </data>
-  <data name="Backpack_OpenSettings" xml:space="preserve">
-    <value>Открыть настройки</value>
-  </data>
-  <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>Укажите каталог установки в настройках игры</value>
-  </data>
-  <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>Инструкции</value>
-  </data>
-  <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>Нажмите «Синхронизировать рюкзак» в правом верхнем углу, чтобы загрузить реальное содержимое инвентаря из игры и запустить синхронизацию.</value>
-  </data>
-  <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>Переключайте категории на верхней панели; нажмите на карточку предмета, чтобы увидеть подробные параметры (комплект / доп. характеристики / навык оружия).</value>
-  </data>
-  <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>Карточки обзора отображают рекомендации по блюдам и покрытие материалов развития на основе текущего инвентаря.</value>
-  </data>
-  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
-    <value>Оружие в наличии</value>
-  </data>
-  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>Заблокированные артефакты</value>
-  </data>
-  <data name="Backpack_KpiCookableFood" xml:space="preserve">
-    <value>Доступные блюда</value>
-  </data>
-  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
-    <value>Категории материалов</value>
-  </data>
-  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
-    <value>Оружие 5 звёзд</value>
-  </data>
-  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>Всего артефактов</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
-    <value>Оружие 5 звёзд с макс. улучшением</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>У Вас {0} ед. оружия 5 звёзд с максимальным улучшением.</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>Артефакты 5 звёзд макс. уровня</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>{0} артефактов 5 звёзд улучшены до +20.</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
-    <value>Достаточно ингредиентов</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
-    <value>Ингредиенты для {0} блюд готовы — можно приготовить прямо сейчас.</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
-    <value>Отсутствуют категории материалов</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
-    <value>{0} категорий материалов имеют нулевой запас: {1}</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
-    <value>Прогресс кодекса оружия</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>{0} единиц оружия присутствуют только в кодексе — их пока нет в инвентаре.</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
-    <value>Материалы с низким запасом</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
-    <value>{0} материалов в запасе менее 5 шт. Не забудьте пополнить их вовремя.</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>Обзор данных</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>После синхронизации рюкзака здесь появятся обзор инвентаря и рекомендации.</value>
-  </data>
-  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
-    <value>Материалы талантов высокого ранга</value>
-  </data>
-  <data name="Backpack_CookHeader" xml:space="preserve">
-    <value>Готовность блюд</value>
-  </data>
-  <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>На основе текущих ингредиентов</value>
-  </data>
-  <data name="Backpack_CookReady" xml:space="preserve">
-    <value>Можно приготовить</value>
-  </data>
-  <data name="Backpack_CookAlmost" xml:space="preserve">
-    <value>Почти готово</value>
-  </data>
-  <data name="Backpack_CookAlmostBody" xml:space="preserve">
-    <value>Не хватает: {0} ({1})</value>
-  </data>
-  <data name="Backpack_CookEmptyName" xml:space="preserve">
-    <value>Данные о блюдах отсутствуют</value>
-  </data>
-  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
-    <value>Ожидание синхронизации</value>
-  </data>
-  <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>Синхронизируйте рюкзак, чтобы увидеть готовность блюд.</value>
-  </data>
-  <data name="Backpack_BrowseTitle" xml:space="preserve">
-    <value>Просмотр и поиск</value>
-  </data>
-  <data name="Backpack_BrowseCaption" xml:space="preserve">
-    <value>Используйте ключевые слова, подкатегории, фильтры и сортировку для быстрого поиска предметов.</value>
-  </data>
-  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
-    <value>Поиск по названию, комплекту, доп. характеристикам, персонажу или ингредиенту</value>
-  </data>
-  <data name="Backpack_BrowseReset" xml:space="preserve">
-    <value>Сбросить</value>
-  </data>
-  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
-    <value>Подкатегория</value>
-  </data>
-  <data name="Backpack_BrowseFilter" xml:space="preserve">
-    <value>Фильтр</value>
-  </data>
-  <data name="Backpack_BrowseSort" xml:space="preserve">
-    <value>Сортировка</value>
-  </data>
-  <data name="Backpack_ResultCount" xml:space="preserve">
-    <value>Результатов: {0}</value>
-  </data>
-  <data name="Backpack_EmptyTitle" xml:space="preserve">
-    <value>Подходящие предметы не найдены</value>
-  </data>
-  <data name="Backpack_EmptyBody" xml:space="preserve">
-    <value>Измените запрос или сбросьте фильтры и повторите попытку.</value>
-  </data>
-  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
-    <value>Очистить условия</value>
-  </data>
-  <data name="Backpack_PagerFormat" xml:space="preserve">
-    <value>Стр. {0} / {1}</value>
-  </data>
-  <data name="Backpack_PagerRange" xml:space="preserve">
-    <value>{0}-{1} из {2}</value>
-  </data>
-  <data name="Backpack_ResultAll" xml:space="preserve">
-    <value>Результатов: {0}</value>
-  </data>
-  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>Редкость оружия</value>
-  </data>
-  <data name="Backpack_DetailLevel" xml:space="preserve">
-    <value>Уровень</value>
-  </data>
-  <data name="Backpack_DetailRefine" xml:space="preserve">
-    <value>Улучшение</value>
-  </data>
-  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
-    <value>Базовая атака</value>
-  </data>
-  <data name="Backpack_DetailSubStat" xml:space="preserve">
-    <value>Доп. характеристика</value>
-  </data>
-  <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>Навык оружия</value>
-  </data>
-  <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>История оружия</value>
-  </data>
-  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>Уровень усиления</value>
-  </data>
-  <data name="Backpack_DetailMainStat" xml:space="preserve">
-    <value>Основная характеристика</value>
-  </data>
-  <data name="Backpack_DetailSubStats" xml:space="preserve">
-    <value>Доп. характеристики</value>
-  </data>
-  <data name="Backpack_DetailSetBonus" xml:space="preserve">
-    <value>Эффект комплекта</value>
-  </data>
-  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
-    <value>Запись кодекса</value>
-  </data>
-  <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>После импорта данных игры автоматически заполнятся уровень усиления артефакта, значение основной характеристики и подробности прокатки доп. характеристик. Сейчас отображаются базовые сведения о категории и эффекте комплекта этого артефакта.</value>
-  </data>
-  <data name="Backpack_DetailCookState" xml:space="preserve">
-    <value>Состояние приготовления</value>
-  </data>
-  <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>Ингредиентов достаточно — можно приготовить</value>
-  </data>
-  <data name="Backpack_DetailCookMissing" xml:space="preserve">
-    <value>Не хватает части ингредиентов — пополните их, чтобы приготовить</value>
-  </data>
-  <data name="Backpack_DetailIngredients" xml:space="preserve">
-    <value>Необходимые ингредиенты</value>
-  </data>
-  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>Предмет в рюкзаке</value>
-  </data>
-  <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>Текущее количество в рюкзаке.</value>
-  </data>
-  <data name="Backpack_DetailStockItem" xml:space="preserve">
-    <value>Предмет на складе</value>
-  </data>
-  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>Обзор инвентаря</value>
-  </data>
-  <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>Аналитика рюкзака</value>
-  </data>
-  <data name="Backpack_SectionCultivation" xml:space="preserve">
-    <value>Покрытие материалов развития</value>
-  </data>
-  <data name="Backpack_SectionItems" xml:space="preserve">
-    <value>Просмотр и поиск</value>
-  </data>
-  <data name="Backpack_DetailCountLabel" xml:space="preserve">
-    <value>Количество в наличии</value>
-  </data>
-  <data name="Backpack_DialogClose" xml:space="preserve">
-    <value>Закрыть</value>
-  </data>
-  <data name="Backpack_DialogConfirm" xml:space="preserve">
-    <value>Подтвердить</value>
-  </data>
-  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>Данные рюкзака импортированы</value>
-  </data>
-  <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>Данные рюкзака получены и сохранены. Обзор, покрытие материалов и рекомендации по блюдам обновлены.</value>
-  </data>
-  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
-    <value>Ошибка синхронизации</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
-    <value>Модуль синхронизации не найден</value>
-  </data>
-  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
-    <value>О модуле синхронизации</value>
-  </data>
-  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
-    <value>Этот модуль синхронизации создан другим разработчиком как отдельный проект. Мы не смогли договориться с разработчиком о включении модуля, поэтому он был отложен. Мы продолжаем искать возможности; приносим извинения.</value>
-  </data>
-  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
-    <value>Данные и обновления</value>
-  </data>
-  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
-    <value>Метаданные обновляются нерегулярно, поэтому новые данные могут появляться не сразу. Сейчас эта функция предоставляет только режим энциклопедии (просмотра).</value>
-  </data>
-  <data name="Backpack_DetailsButton" xml:space="preserve">
-    <value>Подробнее</value>
-  </data>
-  <data name="Backpack_ChipAll" xml:space="preserve">
-    <value>Все</value>
-  </data>
-  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
-    <value>Категория</value>
-  </data>
-  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
-    <value>В наличии</value>
-  </data>
-  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>Кодекс</value>
-  </data>
-  <data name="Backpack_ChipFilterFive" xml:space="preserve">
-    <value>5 звёзд</value>
-  </data>
-  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
-    <value>Заблокировано</value>
-  </data>
-  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
-    <value>Можно приготовить</value>
-  </data>
-  <data name="Backpack_ChipSortDefault" xml:space="preserve">
-    <value>По умолчанию</value>
-  </data>
-  <data name="Backpack_ChipSortName" xml:space="preserve">
-    <value>Название</value>
-  </data>
-  <data name="Backpack_ChipSortRank" xml:space="preserve">
-    <value>Редкость</value>
-  </data>
-  <data name="Backpack_ChipSortLevel" xml:space="preserve">
-    <value>Уровень</value>
-  </data>
-  <data name="Backpack_ChipSortCount" xml:space="preserve">
-    <value>Количество</value>
-  </data>
-  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
-    <value>Все — {0}</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Удалить учётные данные облачной игры</value>
   </data>

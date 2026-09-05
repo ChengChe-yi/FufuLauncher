@@ -129,9 +129,6 @@
         <Content Include="Assets\Flags\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Include="Assets\Backpack\**\*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
         <Content Include="Assets\mirrors.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>

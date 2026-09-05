@@ -4751,84 +4751,32 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF 내보내기 실패</value>
   </data>
-  <data name="Backpack_TabWeapon.Header" xml:space="preserve">
-    <value>무기</value>
-  </data>
-  <data name="Backpack_TabArtifact.Header" xml:space="preserve">
-    <value>성유물</value>
-  </data>
-  <data name="Backpack_TabMaterial.Header" xml:space="preserve">
-    <value>재료</value>
-  </data>
-  <data name="Backpack_TabFood.Header" xml:space="preserve">
-    <value>음식</value>
-  </data>
-  <data name="Backpack_StatusWaiting" xml:space="preserve">
-    <value>데이터 대기 중…</value>
-  </data>
-  <data name="Backpack_StatusReceived" xml:space="preserve">
-    <value>수신됨</value>
-  </data>
-  <data name="Backpack_StatusLaunching" xml:space="preserve">
-    <value>실행 중…</value>
-  </data>
-  <data name="Backpack_StatusLaunched" xml:space="preserve">
-    <value>게임이 실행되었습니다. 데이터를 기다리는 중…</value>
-  </data>
-  <data name="Backpack_BtnSelectPath.Label" xml:space="preserve">
-    <value>게임 경로 선택</value>
-  </data>
-  <data name="Backpack_BtnKillGame.Label" xml:space="preserve">
-    <value>프로세스 종료</value>
-  </data>
-  <data name="Backpack_BtnSyncBag.Label" xml:space="preserve">
-    <value>인벤토리 동기화</value>
-  </data>
-  <data name="Backpack_SyncBagDialogTitle" xml:space="preserve">
-    <value>인벤토리 동기화</value>
-  </data>
-  <data name="Backpack_SyncBagDialogWaiting" xml:space="preserve">
-    <value>게임이 실행되었습니다. 인벤토리 데이터를 기다리는 중…</value>
-  </data>
-  <data name="Backpack_SyncBagDialogCancel" xml:space="preserve">
-    <value>취소</value>
-  </data>
-  <data name="Backpack_Locked" xml:space="preserve">
-    <value>잠김</value>
-  </data>
-  <data name="Backpack_SlotFlower" xml:space="preserve">
-    <value>생명의 꽃</value>
-  </data>
-  <data name="Backpack_SlotPlume" xml:space="preserve">
-    <value>죽음의 깃털</value>
-  </data>
-  <data name="Backpack_SlotSands" xml:space="preserve">
-    <value>시간의 모래</value>
-  </data>
-  <data name="Backpack_SlotGoblet" xml:space="preserve">
-    <value>공간의 성배</value>
-  </data>
-  <data name="Backpack_SlotCirclet" xml:space="preserve">
-    <value>이성의 왕관</value>
-  </data>
-  <data name="Backpack_PathInvalidMsg" xml:space="preserve">
-    <value>경로가 올바르지 않습니다. 국내판 게임 본체(YuanShen.exe)를 선택해 주세요.</value>
-  </data>
-  <data name="Backpack_SelectPathTitle.Text" xml:space="preserve">
-    <value>게임 경로 선택</value>
-  </data>
-  <data name="Backpack_SelectPathHint.Text" xml:space="preserve">
-    <value>아래 목록에서 항목을 클릭하면 해당 경로로 전환됩니다</value>
-  </data>
-  <data name="Backpack_AddPathHeader.Text" xml:space="preserve">
-    <value>게임 경로</value>
-  </data>
-  <data name="Backpack_AddPathDesc.Text" xml:space="preserve">
-    <value>국내판 게임 본체(YuanShen.exe)를 선택하세요. 런처(launcher.exe)가 아닙니다</value>
-  </data>
-  <data name="Backpack_WeaponBaseAtkLabel.Text" xml:space="preserve">
-    <value>기초 공격력</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>현재 프로세스 경로를 확인할 수 없습니다</value>
   </data>
@@ -4850,120 +4798,44 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>인젝션 헬퍼가 코드 {0}(으)로 종료되었습니다</value>
   </data>
-  <data name="Backpack_MatTabCharAscension" xml:space="preserve">
-    <value>캐릭터 돌파</value>
-  </data>
-  <data name="Backpack_MatTabWeaponAscension" xml:space="preserve">
-    <value>무기 돌파</value>
-  </data>
-  <data name="Backpack_MatTabTalent" xml:space="preserve">
-    <value>특성 재료</value>
-  </data>
-  <data name="Backpack_MatTabCharExp" xml:space="preserve">
-    <value>캐릭터 육성</value>
-  </data>
-  <data name="Backpack_MatTabWeaponEnhance" xml:space="preserve">
-    <value>무기 강화</value>
-  </data>
-  <data name="Backpack_MatTabRefine" xml:space="preserve">
-    <value>재련 재료</value>
-  </data>
-  <data name="Backpack_MatTabLocalSpecialty" xml:space="preserve">
-    <value>지역 특산물</value>
-  </data>
-  <data name="Backpack_MatTabIngredient" xml:space="preserve">
-    <value>식재료</value>
-  </data>
-  <data name="Backpack_FoodTabRecovery" xml:space="preserve">
-    <value>회복 요리</value>
-  </data>
-  <data name="Backpack_FoodTabAttack" xml:space="preserve">
-    <value>공격 요리</value>
-  </data>
-  <data name="Backpack_FoodTabDefense" xml:space="preserve">
-    <value>방어 요리</value>
-  </data>
-  <data name="Backpack_FoodTabAdventure" xml:space="preserve">
-    <value>모험 요리</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialRecovery" xml:space="preserve">
-    <value>특수 회복 요리</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAttack" xml:space="preserve">
-    <value>특수 공격 요리</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialDefense" xml:space="preserve">
-    <value>특수 방어 요리</value>
-  </data>
-  <data name="Backpack_FoodTabSpecialAdventure" xml:space="preserve">
-    <value>특수 모험 요리</value>
-  </data>
-  <data name="Backpack_FoodTabArlecchino" xml:space="preserve">
-    <value>아를레키노 스페셜</value>
-  </data>
-  <data name="Backpack_FoodTabSweet" xml:space="preserve">
-    <value>설탕 조각</value>
-  </data>
-  <data name="Backpack_MatTabCommon" xml:space="preserve">
-    <value>소재</value>
-  </data>
-  <data name="Backpack_MatTabOre" xml:space="preserve">
-    <value>광석</value>
-  </data>
-  <data name="Backpack_MatTabFish" xml:space="preserve">
-    <value>물고기</value>
-  </data>
-  <data name="Backpack_MatTabBait" xml:space="preserve">
-    <value>미끼</value>
-  </data>
-  <data name="Backpack_TabGadget.Header" xml:space="preserve">
-    <value>도구</value>
-  </data>
-  <data name="Backpack_TabAsset.Header" xml:space="preserve">
-    <value>개인 자산</value>
-  </data>
-  <data name="Backpack_AssetTabCurrency" xml:space="preserve">
-    <value>희귀 화폐</value>
-  </data>
-  <data name="Backpack_AssetTabQiyu" xml:space="preserve">
-    <value>환상극장</value>
-  </data>
-  <data name="Backpack_GadgetTabMisc" xml:space="preserve">
-    <value>소도구</value>
-  </data>
-  <data name="Backpack_GadgetTabConsumable" xml:space="preserve">
-    <value>소모품</value>
-  </data>
-  <data name="Backpack_GadgetTabQuest" xml:space="preserve">
-    <value>임무 도구</value>
-  </data>
-  <data name="Backpack_GadgetTabPrecious" xml:space="preserve">
-    <value>귀중품</value>
-  </data>
-  <data name="Backpack_GadgetTabQiyu" xml:space="preserve">
-    <value>환상극장</value>
-  </data>
-  <data name="Backpack_GadgetTabAdventure" xml:space="preserve">
-    <value>모험 도구</value>
-  </data>
-  <data name="Backpack_GadgetTabEmblem" xml:space="preserve">
-    <value>칠국 휘장</value>
-  </data>
-  <data name="Backpack_GadgetTabWish" xml:space="preserve">
-    <value>기원 도구</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherHi" xml:space="preserve">
-    <value>고급 교환권</value>
-  </data>
-  <data name="Backpack_GadgetTabVoucherLo" xml:space="preserve">
-    <value>일반 교환권</value>
-  </data>
-  <data name="Backpack_GadgetTabCurrency" xml:space="preserve">
-    <value>희귀 화폐</value>
-  </data>
-  <data name="Backpack_NavTitle" xml:space="preserve">
-    <value>인벤토리 브라우저</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>인벤토리 동기화는 x64 빌드만 지원합니다.</value>
   </data>
@@ -5381,316 +5253,110 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>비주얼</value>
   </data>
-  <data name="Backpack_TabOverview" xml:space="preserve">
-    <value>개요</value>
-  </data>
-  <data name="Backpack_PageSubtitle" xml:space="preserve">
-    <value>장비, 재료, 요리를 한곳에서 살펴보고 육성 계획을 세우세요.</value>
-  </data>
-  <data name="Backpack_LocalOnlyDisclaimer" xml:space="preserve">
-    <value>동기화 데이터는 로컬에만 저장되며 계정이나 인벤토리 내용이 업로드되지 않습니다.</value>
-  </data>
-  <data name="Backpack_PathNoticeTitle" xml:space="preserve">
-    <value>유효한 게임 설치 경로를 찾을 수 없습니다</value>
-  </data>
-  <data name="Backpack_PathNoticeBody" xml:space="preserve">
-    <value>소프트웨어의 게임 설정에서 경로를 구성해 주세요. Backpack는 별도의 경로를 저장하거나 요구하지 않습니다.</value>
-  </data>
-  <data name="Backpack_OpenSettings" xml:space="preserve">
-    <value>설정 열기</value>
-  </data>
-  <data name="Backpack_GamePathFallback" xml:space="preserve">
-    <value>게임 설정에서 설치 경로를 구성해 주세요</value>
-  </data>
-  <data name="Backpack_UsageTitle" xml:space="preserve">
-    <value>사용 안내</value>
-  </data>
-  <data name="Backpack_UsageStep1" xml:space="preserve">
-    <value>오른쪽 상단의 『인벤토리 동기화』를 클릭하여 게임 내 실제 인벤토리를 가져오고 데이터 동기화를 시작하세요.</value>
-  </data>
-  <data name="Backpack_UsageStep2" xml:space="preserve">
-    <value>상단의 탭으로 카테고리를 전환할 수 있습니다. 아이템 카드를 클릭하면 상세 정보를 볼 수 있습니다 (세트 / 옵션 / 무기 스킬).</value>
-  </data>
-  <data name="Backpack_UsageStep3" xml:space="preserve">
-    <value>개요 카드는 현재 인벤토리를 기반으로 재료 연동과 육성 재료 현황을 보여줍니다.</value>
-  </data>
-  <data name="Backpack_KpiOwnedWeapons" xml:space="preserve">
-    <value>보유 무기</value>
-  </data>
-  <data name="Backpack_KpiLockedArtifacts" xml:space="preserve">
-    <value>잠긴 성유물</value>
-  </data>
-  <data name="Backpack_KpiCookableFood" xml:space="preserve">
-    <value>제작 가능 요리</value>
-  </data>
-  <data name="Backpack_KpiMaterialTypes" xml:space="preserve">
-    <value>재료 종류</value>
-  </data>
-  <data name="Backpack_KpiFiveStarWeapons" xml:space="preserve">
-    <value>★5 무기</value>
-  </data>
-  <data name="Backpack_KpiTotalArtifacts" xml:space="preserve">
-    <value>성유물 총합</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Title" xml:space="preserve">
-    <value>★5 무기 최대 재련</value>
-  </data>
-  <data name="Backpack_InsightMaxRefine.Body" xml:space="preserve">
-    <value>★5 무기 {0}개가 최대 재련 단계에 도달했습니다.</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Title" xml:space="preserve">
-    <value>★5 성유물 최대 레벨</value>
-  </data>
-  <data name="Backpack_InsightMaxLevel.Body" xml:space="preserve">
-    <value>★5 성유물 {0}개가 +20까지 강화되었습니다.</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Title" xml:space="preserve">
-    <value>재료 충분</value>
-  </data>
-  <data name="Backpack_InsightIngredientsReady.Body" xml:space="preserve">
-    <value>현재 {0}개의 요리에 필요한 재료가 모두 갖춰져 즉시 제작할 수 있습니다.</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Title" xml:space="preserve">
-    <value>재료 카테고리 공백</value>
-  </data>
-  <data name="Backpack_InsightEmptyCategories.Body" xml:space="preserve">
-    <value>{0}개의 재료 카테고리가 재고가 없습니다: {1}</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Title" xml:space="preserve">
-    <value>무기 도감 진행도</value>
-  </data>
-  <data name="Backpack_InsightCatalogWeapons.Body" xml:space="preserve">
-    <value>아직 보유하지 않은 무기가 {0}개 남아 있습니다.</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Title" xml:space="preserve">
-    <value>재고 부족 재료</value>
-  </data>
-  <data name="Backpack_InsightLowStock.Body" xml:space="preserve">
-    <value>{0}개 재료의 재고가 5개 미만입니다. 제때 보충해 주세요.</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Title" xml:space="preserve">
-    <value>데이터 개요</value>
-  </data>
-  <data name="Backpack_InsightEmpty.Body" xml:space="preserve">
-    <value>인벤토리 데이터를 동기화하면 여기에 인벤토리 인사이트와 권장 사항이 표시됩니다.</value>
-  </data>
-  <data name="Backpack_PlanHighTierTalent" xml:space="preserve">
-    <value>상위 특성 재료</value>
-  </data>
-  <data name="Backpack_CookHeader" xml:space="preserve">
-    <value>요리 준비 현황</value>
-  </data>
-  <data name="Backpack_CookSubheader" xml:space="preserve">
-    <value>현재 재료 재고 기반</value>
-  </data>
-  <data name="Backpack_CookReady" xml:space="preserve">
-    <value>제작 가능</value>
-  </data>
-  <data name="Backpack_CookAlmost" xml:space="preserve">
-    <value>거의 다 됨</value>
-  </data>
-  <data name="Backpack_CookAlmostBody" xml:space="preserve">
-    <value>{0} ({1}) 부족</value>
-  </data>
-  <data name="Backpack_CookEmptyName" xml:space="preserve">
-    <value>요리 데이터 없음</value>
-  </data>
-  <data name="Backpack_CookEmptyStatus" xml:space="preserve">
-    <value>동기화 대기 중</value>
-  </data>
-  <data name="Backpack_CookEmptyBody" xml:space="preserve">
-    <value>인벤토리 동기화 후 요리 준비 현황을 확인할 수 있습니다.</value>
-  </data>
-  <data name="Backpack_BrowseTitle" xml:space="preserve">
-    <value>탐색 및 검색</value>
-  </data>
-  <data name="Backpack_BrowseCaption" xml:space="preserve">
-    <value>키워드, 세부 카테고리, 필터, 정렬을 사용해 아이템을 빠르게 찾아보세요.</value>
-  </data>
-  <data name="Backpack_BrowseSearchPlaceholder" xml:space="preserve">
-    <value>이름, 세트, 옵션, 캐릭터 또는 재료 검색</value>
-  </data>
-  <data name="Backpack_BrowseReset" xml:space="preserve">
-    <value>초기화</value>
-  </data>
-  <data name="Backpack_BrowseSubcategory" xml:space="preserve">
-    <value>세부 카테고리</value>
-  </data>
-  <data name="Backpack_BrowseFilter" xml:space="preserve">
-    <value>필터</value>
-  </data>
-  <data name="Backpack_BrowseSort" xml:space="preserve">
-    <value>정렬</value>
-  </data>
-  <data name="Backpack_ResultCount" xml:space="preserve">
-    <value>결과 {0}개</value>
-  </data>
-  <data name="Backpack_EmptyTitle" xml:space="preserve">
-    <value>일치하는 아이템을 찾을 수 없습니다</value>
-  </data>
-  <data name="Backpack_EmptyBody" xml:space="preserve">
-    <value>키워드를 조정하거나 필터 조건을 지운 후 다시 시도해 주세요.</value>
-  </data>
-  <data name="Backpack_EmptyClearBtn" xml:space="preserve">
-    <value>조건 지우기</value>
-  </data>
-  <data name="Backpack_PagerFormat" xml:space="preserve">
-    <value>{0} / {1} 페이지</value>
-  </data>
-  <data name="Backpack_PagerRange" xml:space="preserve">
-    <value>{0}-{1}개 / 총 {2}개</value>
-  </data>
-  <data name="Backpack_ResultAll" xml:space="preserve">
-    <value>결과 {0}개</value>
-  </data>
-  <data name="Backpack_DetailWeaponRank" xml:space="preserve">
-    <value>무기 등급</value>
-  </data>
-  <data name="Backpack_DetailLevel" xml:space="preserve">
-    <value>레벨</value>
-  </data>
-  <data name="Backpack_DetailRefine" xml:space="preserve">
-    <value>재련</value>
-  </data>
-  <data name="Backpack_DetailBaseAtk" xml:space="preserve">
-    <value>기본 공격력</value>
-  </data>
-  <data name="Backpack_DetailSubStat" xml:space="preserve">
-    <value>부속성</value>
-  </data>
-  <data name="Backpack_DetailSkill" xml:space="preserve">
-    <value>무기 스킬</value>
-  </data>
-  <data name="Backpack_DetailLore" xml:space="preserve">
-    <value>무기 이야기</value>
-  </data>
-  <data name="Backpack_DetailEnhanceLevel" xml:space="preserve">
-    <value>강화 레벨</value>
-  </data>
-  <data name="Backpack_DetailMainStat" xml:space="preserve">
-    <value>주요 옵션</value>
-  </data>
-  <data name="Backpack_DetailSubStats" xml:space="preserve">
-    <value>부옵션</value>
-  </data>
-  <data name="Backpack_DetailSetBonus" xml:space="preserve">
-    <value>세트 효과</value>
-  </data>
-  <data name="Backpack_DetailCodexTitle" xml:space="preserve">
-    <value>도감 항목</value>
-  </data>
-  <data name="Backpack_DetailCodexBody" xml:space="preserve">
-    <value>게임 데이터를 가져온 후 성유물의 강화 레벨, 주요 옵션 수치 및 부옵션 롤 세부 정보가 자동으로 채워집니다. 현재 표시되는 정보는 이 성유물의 세트 분류와 세트 효과 기본 정보입니다.</value>
-  </data>
-  <data name="Backpack_DetailCookState" xml:space="preserve">
-    <value>제작 상태</value>
-  </data>
-  <data name="Backpack_DetailCookReady" xml:space="preserve">
-    <value>재료 재고가 충분하여 즉시 제작 가능</value>
-  </data>
-  <data name="Backpack_DetailCookMissing" xml:space="preserve">
-    <value>일부 재료가 부족합니다. 보충 후 제작할 수 있습니다</value>
-  </data>
-  <data name="Backpack_DetailIngredients" xml:space="preserve">
-    <value>필요 재료</value>
-  </data>
-  <data name="Backpack_DetailInventoryItem" xml:space="preserve">
-    <value>인벤토리 아이템</value>
-  </data>
-  <data name="Backpack_DetailCountBody" xml:space="preserve">
-    <value>현재 인벤토리에 있는 실제 수량.</value>
-  </data>
-  <data name="Backpack_DetailStockItem" xml:space="preserve">
-    <value>재고 아이템</value>
-  </data>
-  <data name="Backpack_SectionOverviewKpi" xml:space="preserve">
-    <value>인벤토리 개요</value>
-  </data>
-  <data name="Backpack_SectionInsights" xml:space="preserve">
-    <value>인벤토리 인사이트</value>
-  </data>
-  <data name="Backpack_SectionCultivation" xml:space="preserve">
-    <value>육성 재료 현황</value>
-  </data>
-  <data name="Backpack_SectionItems" xml:space="preserve">
-    <value>탐색 및 검색</value>
-  </data>
-  <data name="Backpack_DetailCountLabel" xml:space="preserve">
-    <value>보유 수량</value>
-  </data>
-  <data name="Backpack_DialogClose" xml:space="preserve">
-    <value>닫기</value>
-  </data>
-  <data name="Backpack_DialogConfirm" xml:space="preserve">
-    <value>확인</value>
-  </data>
-  <data name="Backpack_NotifyImportTitle" xml:space="preserve">
-    <value>인벤토리 데이터를 가져왔습니다</value>
-  </data>
-  <data name="Backpack_NotifyImportBody" xml:space="preserve">
-    <value>이번 인벤토리 데이터를 수신하여 저장했습니다. 개요, 재료 현황 및 요리 권장 사항이 업데이트되었습니다.</value>
-  </data>
-  <data name="Backpack_NotifyFailedTitle" xml:space="preserve">
-    <value>동기화 실패</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-  <data name="Backpack_ModuleMissingTitle" xml:space="preserve">
-    <value>동기화 모듈을 찾을 수 없음</value>
-  </data>
-  <data name="Backpack_ModuleNoticeTitle" xml:space="preserve">
-    <value>동기화 모듈 정보</value>
-  </data>
-  <data name="Backpack_ModuleNoticeBody" xml:space="preserve">
-    <value>이 동기화 모듈은 다른 개발자가 제작한 별도의 프로젝트입니다. 모듈 내장에 대해 개발자와 합의에 이르지 못해 보류되었습니다. 계속해서 기회를 찾기 위해 노력하고 있으니 양해 부탁드립니다.</value>
-  </data>
-  <data name="Backpack_MetaNoticeTitle" xml:space="preserve">
-    <value>데이터 및 업데이트 안내</value>
-  </data>
-  <data name="Backpack_MetaNoticeBody" xml:space="preserve">
-    <value>메타데이터는 수시로 업데이트되므로 최신 데이터를 제때 받지 못할 수 있습니다. 현재 이 기능은 도감(열람) 기능만 제공합니다.</value>
-  </data>
-  <data name="Backpack_DetailsButton" xml:space="preserve">
-    <value>상세 정보</value>
-  </data>
-  <data name="Backpack_ChipAll" xml:space="preserve">
-    <value>전체</value>
-  </data>
-  <data name="Backpack_ChipCategoryGeneric" xml:space="preserve">
-    <value>카테고리</value>
-  </data>
-  <data name="Backpack_ChipFilterOwned" xml:space="preserve">
-    <value>보유</value>
-  </data>
-  <data name="Backpack_ChipFilterCatalog" xml:space="preserve">
-    <value>도감</value>
-  </data>
-  <data name="Backpack_ChipFilterFive" xml:space="preserve">
-    <value>★5</value>
-  </data>
-  <data name="Backpack_ChipFilterLocked" xml:space="preserve">
-    <value>잠김</value>
-  </data>
-  <data name="Backpack_ChipFilterCookable" xml:space="preserve">
-    <value>제작 가능</value>
-  </data>
-  <data name="Backpack_ChipSortDefault" xml:space="preserve">
-    <value>기본</value>
-  </data>
-  <data name="Backpack_ChipSortName" xml:space="preserve">
-    <value>이름</value>
-  </data>
-  <data name="Backpack_ChipSortRank" xml:space="preserve">
-    <value>등급</value>
-  </data>
-  <data name="Backpack_ChipSortLevel" xml:space="preserve">
-    <value>레벨</value>
-  </data>
-  <data name="Backpack_ChipSortCount" xml:space="preserve">
-    <value>수량</value>
-  </data>
-  <data name="Backpack_ChipSubcategoryTemplate" xml:space="preserve">
-    <value>전체 {0}</value>
-  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>클라우드 게임 자격 증명 제거</value>
   </data>

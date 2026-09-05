@@ -333,22 +333,6 @@
                                     </StackPanel>
                                 </Grid>
                             </Button>
-
-                            <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenBackpackClick">
-                                <Grid ColumnSpacing="14">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="48" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <FontIcon Glyph="&#xE8EC;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets, Segoe UI Symbol" FontSize="22" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
-                                    </Border>
-                                    <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetBackpack}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_BackpackTooltip}" TextWrapping="Wrap" />
-                                    </StackPanel>
-                                </Grid>
-                            </Button>
                         </Grid>
                     </StackPanel>
                 </Border>
