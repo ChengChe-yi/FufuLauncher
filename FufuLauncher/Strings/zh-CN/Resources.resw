@@ -5791,43 +5791,7 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
     <value>切换失败，文件可能被占用
-错误信息: {0}
-
-请问是放弃切换并修复游戏，还是尝试补救方案？</value>
-  </data>
-  <data name="AdvancedServerSwitch_RetryBtn" xml:space="preserve">
-    <value>继续尝试</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairBtn" xml:space="preserve">
-    <value>修复游戏</value>
-  </data>
-  <data name="AdvancedServerSwitch_Repairing" xml:space="preserve">
-    <value>正在修复游戏...</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairDone" xml:space="preserve">
-    <value>修复完成</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairDoneMsg" xml:space="preserve">
-    <value>游戏文件修复完成，您可以尝试重新切换服务器或直接游玩！</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairFailed" xml:space="preserve">
-    <value>修复失败</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairFailedMsg" xml:space="preserve">
-    <value>游戏修复失败，错误信息: {0}</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanTitle" xml:space="preserve">
-    <value>手动清理插件</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanMsg" xml:space="preserve">
-    <value>请在弹出的文件夹中，手动删除所有文件(可使用快捷键Ctrl+A全选，再按Del键，或自己手动勾选右键删除)
-我们会实时监测，当你清理完毕后可点击确认继续</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanDone" xml:space="preserve">
-    <value>你似乎已经成功了，可以直接确认了</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanConfirm" xml:space="preserve">
-    <value>确认并重试</value>
+错误信息: {0}</value>
   </data>
   <data name="ServerBili" xml:space="preserve">
     <value>B服 (Bilibili)</value>

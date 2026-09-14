@@ -5799,43 +5799,7 @@ You can retry with another node or download directly from the official source.</
   </data>
   <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
     <value>Switch failed, files may be in use.
-Error: {0}
-
-Give up switching and repair the game, or try a workaround?</value>
-  </data>
-  <data name="AdvancedServerSwitch_RetryBtn" xml:space="preserve">
-    <value>Keep trying</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairBtn" xml:space="preserve">
-    <value>Repair game</value>
-  </data>
-  <data name="AdvancedServerSwitch_Repairing" xml:space="preserve">
-    <value>Repairing game...</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairDone" xml:space="preserve">
-    <value>Repair complete</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairDoneMsg" xml:space="preserve">
-    <value>Game files repaired. You can switch servers again or play directly!</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairFailed" xml:space="preserve">
-    <value>Repair failed</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairFailedMsg" xml:space="preserve">
-    <value>Game repair failed, error: {0}</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanTitle" xml:space="preserve">
-    <value>Clean plugins manually</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanMsg" xml:space="preserve">
-    <value>In the opened folder, manually delete all files (Ctrl+A then Del, or select and delete).
-We are monitoring in real time; click confirm once you finish cleaning.</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanDone" xml:space="preserve">
-    <value>Looks done, you can confirm now</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanConfirm" xml:space="preserve">
-    <value>Confirm and retry</value>
+Error: {0}</value>
   </data>
   <data name="DownloadWindow_Server" xml:space="preserve">
     <value>Server</value>

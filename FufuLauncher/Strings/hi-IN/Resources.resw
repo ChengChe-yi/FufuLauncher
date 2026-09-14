@@ -5750,43 +5750,7 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
     <value>स्विच विफल, फ़ाइलें उपयोग में हो सकती हैं।
-त्रुटि: {0}
-
-स्विचिंग छोड़कर गेम की मरम्मत करें, या कोई वैकल्पिक तरीका आज़माएँ?</value>
-  </data>
-  <data name="AdvancedServerSwitch_RetryBtn" xml:space="preserve">
-    <value>प्रयास जारी रखें</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairBtn" xml:space="preserve">
-    <value>गेम मरम्मत करें</value>
-  </data>
-  <data name="AdvancedServerSwitch_Repairing" xml:space="preserve">
-    <value>गेम मरम्मत हो रही है...</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairDone" xml:space="preserve">
-    <value>मरम्मत पूर्ण</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairDoneMsg" xml:space="preserve">
-    <value>गेम फ़ाइलें मरम्मत हो गईं। आप फिर से सर्वर स्विच कर सकते हैं या सीधे खेल सकते हैं!</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairFailed" xml:space="preserve">
-    <value>मरम्मत विफल</value>
-  </data>
-  <data name="AdvancedServerSwitch_RepairFailedMsg" xml:space="preserve">
-    <value>गेम मरम्मत विफल, त्रुटि: {0}</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanTitle" xml:space="preserve">
-    <value>प्लगइन मैन्युअल रूप से साफ़ करें</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanMsg" xml:space="preserve">
-    <value>खुले हुए फ़ोल्डर में, सभी फ़ाइलें मैन्युअल रूप से हटाएँ (Ctrl+A फिर Del, या चुनकर हटाएँ)।
-हम रीयल-टाइम निगरानी कर रहे हैं; सफ़ाई पूर्ण करने के बाद पुष्टि करें पर क्लिक करें।</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanDone" xml:space="preserve">
-    <value>लगता है हो गया, आप अभी पुष्टि कर सकते हैं</value>
-  </data>
-  <data name="AdvancedServerSwitch_ManualCleanConfirm" xml:space="preserve">
-    <value>पुष्टि करें और पुनः प्रयास करें</value>
+त्रुटि: {0}</value>
   </data>
   <data name="DownloadWindow_Server" xml:space="preserve">
     <value>सर्वर</value>
