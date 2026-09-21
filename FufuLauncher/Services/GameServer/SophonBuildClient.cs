@@ -51,7 +51,10 @@ public sealed class SophonBuildClient
             ? pwdProp.GetString()!
             : throw new InvalidOperationException("GameServer_NoPassword".GetLocalized());
 
-        string buildUrl = $"{scheme.SophonApi}/getBuild?branch=main&package_id={Uri.EscapeDataString(packageId)}&password={Uri.EscapeDataString(password)}&tag={Uri.EscapeDataString(tag)}";
+        string branchName = targetBranch.TryGetProperty("branch", out var branchProp) && branchProp.ValueKind == JsonValueKind.String
+            ? branchProp.GetString()!
+            : "main";
+        string buildUrl = $"{scheme.SophonApi}/getBuild?branch={Uri.EscapeDataString(branchName)}&package_id={Uri.EscapeDataString(packageId)}&password={Uri.EscapeDataString(password)}&tag={Uri.EscapeDataString(tag)}";
         string json = await GetStringWithRetryAsync(buildUrl, token).ConfigureAwait(false);
 
         using var buildDoc = JsonDocument.Parse(json);
@@ -195,9 +198,11 @@ public sealed class SophonBuildClient
         string password = targetBranch.TryGetProperty("password", out var pwdProp) && pwdProp.ValueKind == JsonValueKind.String
             ? pwdProp.GetString()!
             : throw new InvalidOperationException("GameServer_NoPassword".GetLocalized());
-
-        string branchName = isPreDownload ? "pre_download" : "main";
-        return $"{scheme.SophonApi}/getBuild?branch={branchName}&package_id={packageId}&password={password}";
+        
+        string branchName = targetBranch.TryGetProperty("branch", out var branchProp) && branchProp.ValueKind == JsonValueKind.String
+            ? branchProp.GetString()!
+            : (isPreDownload ? "predownload" : "main");
+        return $"{scheme.SophonApi}/getBuild?branch={Uri.EscapeDataString(branchName)}&package_id={Uri.EscapeDataString(packageId)}&password={Uri.EscapeDataString(password)}";
     }
     
     private static SophonBranchInfo ParseBranchInfo(JsonElement dataProp)
