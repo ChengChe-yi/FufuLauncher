@@ -1845,6 +1845,9 @@ Go to the Microsoft website to download and install it?</value>
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Copy Cookie</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Refresh Cookie</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>Delete Account</value>
   </data>

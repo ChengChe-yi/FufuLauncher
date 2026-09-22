@@ -143,7 +143,7 @@ public sealed partial class AccountPage : Page
 
     private void RegisterRippleHandlers()
     {
-        var rippleButtons = new[] { BtnSwitchAccount, BtnRefreshInfo, BtnGenshinData, BtnGachaAnalysis, BtnSecurityCenter, BtnLockAccount, BtnCopyCookie, BtnDeleteAccount, BtnLogout };
+        var rippleButtons = new[] { BtnSwitchAccount, BtnRefreshInfo, BtnGenshinData, BtnGachaAnalysis, BtnSecurityCenter, BtnLockAccount, BtnCopyCookie, BtnRefreshCookie, BtnDeleteAccount, BtnLogout };
         foreach (var btn in rippleButtons)
         {
             btn.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Btn_RipplePressed), true);
@@ -218,6 +218,7 @@ public sealed partial class AccountPage : Page
         BtnSecurityCenter.Opacity = 0; BtnSecurityCenterTransform.Y = -80;
         BtnLockAccount.Opacity = 0; BtnLockAccountTransform.Y = -80;
         BtnCopyCookie.Opacity = 0; BtnCopyCookieTransform.Y = -80;
+        BtnRefreshCookie.Opacity = 0; BtnRefreshCookieTransform.Y = -80;
         BtnDeleteAccount.Opacity = 0; BtnDeleteAccountTransform.Y = -80;
         BtnLogout.Opacity = 0; BtnLogoutTransform.Y = -80;
 
@@ -379,7 +380,7 @@ public sealed partial class AccountPage : Page
 
             const int baseSpacing = 8;
             const int maxSpacing = 28;
-            const int buttonCount = 9;
+            const int buttonCount = 10;
             const double titleBarOffset = 40;  
             const double outerMargin = 36;  
             const double safetyMargin = 16; 
@@ -401,6 +402,7 @@ public sealed partial class AccountPage : Page
             totalButtonsHeight += BtnSecurityCenter?.ActualHeight ?? 44;
             totalButtonsHeight += BtnLockAccount?.ActualHeight ?? 44;
             totalButtonsHeight += BtnCopyCookie?.ActualHeight ?? 44;
+            totalButtonsHeight += BtnRefreshCookie?.ActualHeight ?? 44;
             totalButtonsHeight += BtnDeleteAccount?.ActualHeight ?? 44;
             totalButtonsHeight += BtnLogout?.ActualHeight ?? 44;
 

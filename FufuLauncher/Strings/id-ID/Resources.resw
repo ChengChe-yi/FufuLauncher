@@ -1919,6 +1919,9 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Salin Cookie</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Segarkan Cookie</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>Hapus Akun</value>
   </data>

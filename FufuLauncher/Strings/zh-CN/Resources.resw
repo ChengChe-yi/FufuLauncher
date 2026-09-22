@@ -1947,6 +1947,9 @@
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>复制 Cookie</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>刷新 Cookie</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>删除账号</value>
   </data>

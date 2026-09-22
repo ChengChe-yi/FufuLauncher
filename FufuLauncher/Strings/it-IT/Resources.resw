@@ -105,6 +105,9 @@
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Copia Cookie</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Aggiorna Cookie</value>
+  </data>
   <data name="Account_CopyUID" xml:space="preserve">
     <value>Copia UID</value>
   </data>

@@ -1919,6 +1919,9 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Copiar cookie</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Actualizar cookie</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>Eliminar cuenta</value>
   </data>

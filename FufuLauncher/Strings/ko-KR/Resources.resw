@@ -1919,6 +1919,9 @@ Microsoft 웹사이트로 이동하여 다운로드 및 설치하시겠습니까
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>쿠키 복사</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>쿠키 새로고침</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>계정 삭제</value>
   </data>

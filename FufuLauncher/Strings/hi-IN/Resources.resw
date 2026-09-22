@@ -1843,6 +1843,9 @@
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>कुकी कॉपी करें</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>कुकी रीफ़्रेश करें</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>खाता हटाएँ</value>
   </data>

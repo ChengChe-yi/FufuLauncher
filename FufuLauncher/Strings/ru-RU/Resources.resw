@@ -1919,6 +1919,9 @@
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Копировать Cookie</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Обновить Cookie</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>Удалить аккаунт</value>
   </data>

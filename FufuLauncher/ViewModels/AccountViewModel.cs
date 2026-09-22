@@ -11,6 +11,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Constants;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
@@ -103,6 +104,10 @@ public partial class AccountViewModel : ObservableRecipient
     {
         get;
     }
+    public IRelayCommand RefreshCookieCommand
+    {
+        get;
+    }
     public IRelayCommand AddAccountCommand
     {
         get;
@@ -132,6 +137,7 @@ public partial class AccountViewModel : ObservableRecipient
         LoadUserInfoCommand = new AsyncRelayCommand(async () => await LoadUserInfoAsync());
         OpenGenshinDataCommand = new AsyncRelayCommand(OpenGenshinDataAsync);
         CopyCookieCommand = new AsyncRelayCommand(CopyCookieAsync);
+        RefreshCookieCommand = new AsyncRelayCommand(RefreshCookieAsync);
         AddAccountCommand = new AsyncRelayCommand(AddNewAccountAsync);
         SwitchAccountCommand = new AsyncRelayCommand<AccountInfo>(SwitchToAccountAsync);
         OpenSecurityCenterCommand = new AsyncRelayCommand(OpenSecurityCenterAsync);
@@ -353,6 +359,55 @@ public partial class AccountViewModel : ObservableRecipient
             {
                 StatusMessage = $"复制失败: {ex.Message}";
                 WeakReferenceMessenger.Default.Send(new NotificationMessage("复制失败", ex.Message, NotificationType.Error));
+            });
+        }
+    }
+    private async Task RefreshCookieAsync()
+    {
+        try
+        {
+            var activeId = _accountManager.ActiveAccountId;
+            if (activeId == null)
+            {
+                RunOnUIThread(() =>
+                {
+                    StatusMessage = "未找到登录信息";
+                    WeakReferenceMessenger.Default.Send(new NotificationMessage("Home_RefreshFailed".GetLocalized(), "Home_NoActiveAccount".GetLocalized(), NotificationType.Error));
+                });
+                return;
+            }
+
+            var cookies = await _accountManager.LoadCookiesAsync(activeId);
+            if (cookies == null || cookies.Count == 0)
+            {
+                RunOnUIThread(() =>
+                {
+                    StatusMessage = "未找到有效的 Cookie";
+                    WeakReferenceMessenger.Default.Send(new NotificationMessage("Home_RefreshFailed".GetLocalized(), "Home_CannotLoadCredentials".GetLocalized(), NotificationType.Error));
+                });
+                return;
+            }
+
+            RunOnUIThread(() => StatusMessage = "正在刷新 Cookie...");
+
+            var tokenService = new TokenRefreshService();
+            var newCookies = await tokenService.RefreshCookieAsync(cookies, true);
+
+            if (newCookies == null || newCookies.Count == 0)
+            {
+                RunOnUIThread(() => StatusMessage = "Cookie 刷新失败");
+                return;
+            }
+
+            await _accountManager.UpdateCookiesAsync(activeId, newCookies);
+            RunOnUIThread(() => StatusMessage = "Cookie 刷新成功");
+        }
+        catch (Exception ex)
+        {
+            RunOnUIThread(() =>
+            {
+                StatusMessage = $"Cookie 刷新失败: {ex.Message}";
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("Home_RefreshFailed".GetLocalized(), ex.Message, NotificationType.Error));
             });
         }
     }

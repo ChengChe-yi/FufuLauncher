@@ -1919,6 +1919,9 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Copier le Cookie</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Actualiser le Cookie</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>Supprimer le compte</value>
   </data>

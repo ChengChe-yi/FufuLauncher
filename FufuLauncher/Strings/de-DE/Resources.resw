@@ -1919,6 +1919,9 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Cookie kopieren</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Cookie aktualisieren</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>Konto löschen</value>
   </data>

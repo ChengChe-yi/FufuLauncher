@@ -1919,6 +1919,9 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
   <data name="Account_CopyCookie" xml:space="preserve">
     <value>Cookieをコピー</value>
   </data>
+  <data name="Account_RefreshCookie" xml:space="preserve">
+    <value>Cookieを更新</value>
+  </data>
   <data name="Account_DeleteAccount" xml:space="preserve">
     <value>アカウント削除</value>
   </data>

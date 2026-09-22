@@ -319,7 +319,7 @@
                 </DoubleAnimation>
                 <DoubleAnimation
                     BeginTime="0:0:0.49"
-                    Storyboard.TargetName="BtnDeleteAccountTransform"
+                    Storyboard.TargetName="BtnRefreshCookieTransform"
                     Storyboard.TargetProperty="Y"
                     From="-80"
                     To="0"
@@ -330,7 +330,7 @@
                 </DoubleAnimation>
                 <DoubleAnimation
                     BeginTime="0:0:0.49"
-                    Storyboard.TargetName="BtnDeleteAccount"
+                    Storyboard.TargetName="BtnRefreshCookie"
                     Storyboard.TargetProperty="Opacity"
                     From="0"
                     To="1"
@@ -341,7 +341,7 @@
                 </DoubleAnimation>
                 <DoubleAnimation
                     BeginTime="0:0:0.56"
-                    Storyboard.TargetName="BtnLogoutTransform"
+                    Storyboard.TargetName="BtnDeleteAccountTransform"
                     Storyboard.TargetProperty="Y"
                     From="-80"
                     To="0"
@@ -352,6 +352,28 @@
                 </DoubleAnimation>
                 <DoubleAnimation
                     BeginTime="0:0:0.56"
+                    Storyboard.TargetName="BtnDeleteAccount"
+                    Storyboard.TargetProperty="Opacity"
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.55">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation
+                    BeginTime="0:0:0.63"
+                    Storyboard.TargetName="BtnLogoutTransform"
+                    Storyboard.TargetProperty="Y"
+                    From="-80"
+                    To="0"
+                    Duration="0:0:0.55">
+                    <DoubleAnimation.EasingFunction>
+                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation
+                    BeginTime="0:0:0.63"
                     Storyboard.TargetName="BtnLogout"
                     Storyboard.TargetProperty="Opacity"
                     From="0"
@@ -720,6 +742,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Button
                                     x:Name="BtnSwitchAccount"
@@ -901,8 +924,33 @@
                                 </Button>
 
                                 <Button
-                                    x:Name="BtnDeleteAccount"
+                                    x:Name="BtnRefreshCookie"
                                     Grid.Row="7"
+                                    Command="{x:Bind ViewModel.RefreshCookieCommand}"
+                                    Opacity="0"
+                                    Style="{StaticResource ActionButtonStyle}"
+                                    Translation="0,0,32">
+                                    <Button.RenderTransform>
+                                        <TranslateTransform x:Name="BtnRefreshCookieTransform" Y="-80" />
+                                    </Button.RenderTransform>
+                                    <Button.Shadow>
+                                        <ThemeShadow />
+                                    </Button.Shadow>
+                                    <Grid Background="Transparent">
+                                        <Canvas IsHitTestVisible="False" />
+                                        <StackPanel
+                                            HorizontalAlignment="Center"
+                                            Orientation="Horizontal"
+                                            Spacing="8">
+                                            <FontIcon FontSize="16" Glyph="&#xE72C;" />
+                                            <TextBlock Text="{helpers:Loc Key=Account_RefreshCookie}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+
+                                <Button
+                                    x:Name="BtnDeleteAccount"
+                                    Grid.Row="8"
                                     Click="OnDeleteCurrentAccountClicked"
                                     Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
@@ -931,7 +979,7 @@
 
                                 <Button
                                     x:Name="BtnLogout"
-                                    Grid.Row="8"
+                                    Grid.Row="9"
                                     Command="{x:Bind ViewModel.LogoutCommand}"
                                     Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
