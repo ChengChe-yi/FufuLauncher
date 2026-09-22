@@ -265,6 +265,54 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>고급 옵션</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>저장 경로를 사용할 수 없음</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} 경로가 존재하지 않습니다: {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>{0} - {1}에서 새 경로를 선택하세요.</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>저장 경로</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>구성 파일, 계정 데이터, 데이터베이스가 저장되는 위치입니다. 변경 사항은 재시작 후 적용됩니다.</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>캐시, 로그, 웹 데이터가 저장되는 위치입니다. 변경 사항은 재시작 후 적용됩니다.</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>저장 경로 변경됨</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>새 저장 경로를 설정에 기록했습니다. 완전히 적용하려면 재시작이 필요하며, 재시작 전까지 일부 기능은 이전 경로를 사용합니다. 지금 재시작할까요?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>저장 경로가 비어 있어 {0} 경로를 만들 수 없으며 설정이 저장되지 않았습니다. 로컬 디스크에 있는 폴더를 선택하세요.</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} 경로와 {1} 경로가 동일한 경로({2})를 가리킵니다. 두 폴더가 같은 이름의 파일을 읽고 쓰며 서로 덮어쓰게 되므로 설정이 저장되지 않았습니다. 서로 다른 폴더를 선택하세요.</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} 경로({1})와 {2} 경로({3})가 서로의 상위 또는 하위 폴더입니다. 데이터 이동 시 두 폴더 사이에서 파일이 재귀적으로 처리되어 이동 실패나 파일 중복이 발생할 수 있으므로 설정이 저장되지 않았습니다. 서로를 포함하지 않는 두 폴더를 선택하세요.</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} 경로({1})가 앱 설치 폴더({2}) 안에 있습니다. 앱 업데이트나 제거 시 이 폴더의 파일이 덮어써지거나 삭제되어 데이터가 손실될 수 있으므로 설정이 저장되지 않았습니다. 앱 설치 폴더 밖의 폴더를 선택하세요.</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} 경로({1})가 앱 설치 폴더({2})의 상위 폴더입니다. 앱 자체 파일을 포함하게 되어 디스크의 다른 내용과 섞이므로 설정이 저장되지 않았습니다. 앱 설치 폴더 밖의 폴더를 선택하세요.</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} 경로({1})가 드라이브 루트입니다. 앱이 드라이브 바로 아래에 파일을 만들어 디스크의 다른 내용과 섞이므로 설정이 저장되지 않았습니다. 해당 드라이브의 하위 폴더를 선택하세요.</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} 경로({1})는 유효한 폴더 경로가 아닙니다({2}). 설정이 저장되지 않았습니다. 로컬 디스크에 있는 폴더를 선택하세요.</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>저장 경로 설정을 저장하지 못했습니다({0}). 대상 폴더가 존재하고 현재 계정에 쓰기 권한이 있는지 확인하세요.</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>스크린샷 설정</value>
   </data>

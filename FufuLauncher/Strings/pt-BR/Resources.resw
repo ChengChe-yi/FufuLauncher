@@ -265,6 +265,54 @@ Se continuar, este aviso será ignorado e o Hash desta predefinição será atua
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>Opções avançadas</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>Caminho de armazenamento indisponível</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} não existe: {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>Selecione um novo caminho em {0} - {1}.</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>Caminhos de armazenamento</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>Aqui ficam os arquivos de configuração, os dados de conta e os bancos de dados. As alterações entram em vigor após reiniciar.</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>Aqui ficam o cache, os logs e os dados da web. As alterações entram em vigor após reiniciar.</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>Caminho de armazenamento alterado</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>O novo caminho de armazenamento foi gravado na configuração. Ele passa a valer integralmente após reiniciar; até lá, alguns recursos continuam usando o caminho anterior. Reiniciar agora?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>O caminho de armazenamento está vazio: não é possível criar {0} e a configuração não foi salva. Selecione uma pasta existente em um disco local.</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} e {1} apontam para o mesmo caminho ({2}). Os dois diretórios leriam e gravariam arquivos com o mesmo nome, sobrescrevendo um ao outro, portanto a configuração não foi salva. Escolha duas pastas diferentes.</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} ({1}) e {2} ({3}) estão aninhados um dentro do outro. A migração de dados processaria os arquivos de forma recursiva entre eles, o que pode falhar ou duplicar arquivos, portanto a configuração não foi salva. Escolha duas pastas que não se contenham.</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} ({1}) está dentro da pasta de instalação do aplicativo ({2}). Atualizações ou desinstalações sobrescrevem ou excluem arquivos desse diretório, o que pode causar perda de dados, portanto a configuração não foi salva. Escolha uma pasta fora da pasta de instalação.</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} ({1}) é o diretório pai da pasta de instalação do aplicativo ({2}). Ele conteria os arquivos do próprio aplicativo misturados a outros conteúdos do disco, portanto a configuração não foi salva. Escolha uma pasta fora da pasta de instalação.</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} ({1}) é a raiz de uma unidade. O aplicativo criaria arquivos diretamente na raiz da unidade, misturando-os a outros conteúdos do disco, portanto a configuração não foi salva. Escolha uma subpasta dessa unidade.</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} não é um caminho de pasta válido: {1} ({2}), portanto a configuração não foi salva. Selecione uma pasta existente em um disco local.</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>Não foi possível salvar a configuração do caminho de armazenamento ({0}). Verifique se a pasta de destino existe e se a conta atual tem permissão de gravação nela.</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>Configurações de captura de tela</value>
   </data>

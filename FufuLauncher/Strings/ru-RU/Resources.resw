@@ -265,6 +265,54 @@
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>Расширенные параметры</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>Путь хранения недоступен</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} не существует: {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>Выберите новый путь в разделе «{0} — {1}».</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>Пути хранения</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>Здесь хранятся файлы конфигурации, данные аккаунтов и базы данных. Изменения вступают в силу после перезапуска.</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>Здесь хранятся кэш, журналы и веб-данные. Изменения вступают в силу после перезапуска.</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>Путь хранения изменён</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>Новый путь хранения записан в конфигурацию. Он полностью вступит в силу после перезапуска; до этого часть функций продолжает использовать прежний путь. Перезапустить сейчас?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>{0}: путь пуст, папку создать невозможно, настройка не сохранена. Выберите папку, существующую на локальном диске.</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} и {1}: указан один и тот же путь ({2}). В обоих каталогах использовались бы файлы с одинаковыми именами и перезаписывали друг друга, настройка не сохранена. Выберите две разные папки.</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} ({1}) и {2} ({3}): пути вложены друг в друга. При переносе данных файлы обрабатывались бы рекурсивно между этими каталогами, что может привести к сбою переноса или дублированию файлов, настройка не сохранена. Выберите две папки, которые не содержат друг друга.</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} ({1}): путь находится внутри папки установки приложения ({2}). Обновление или удаление приложения перезаписывает или удаляет файлы в этом каталоге, что может привести к потере данных, настройка не сохранена. Выберите папку вне папки установки приложения.</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} ({1}): путь является родительским каталогом для папки установки приложения ({2}). В нём оказались бы собственные файлы приложения вместе с другими данными на диске, настройка не сохранена. Выберите папку вне папки установки приложения.</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} ({1}): путь является корнем диска. Приложение создавало бы файлы непосредственно в корне диска вместе с другим содержимым, настройка не сохранена. Выберите вложенную папку на этом диске.</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} ({1}): путь недопустим ({2}), настройка не сохранена. Выберите папку, существующую на локальном диске.</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>Не удалось сохранить настройку пути хранения ({0}). Убедитесь, что целевая папка существует и у текущей учётной записи есть права на запись в неё.</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>Настройки скриншотов</value>
   </data>

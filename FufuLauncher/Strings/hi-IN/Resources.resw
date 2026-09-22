@@ -111,6 +111,54 @@
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>उन्नत विकल्प</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>संग्रहण पथ अनुपलब्ध</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} मौजूद नहीं है: {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>{0} - {1} में नया पथ चुनें।</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>संग्रहण पथ</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन फ़ाइलें, खाता डेटा और डेटाबेस यहाँ संग्रहीत होते हैं। बदलाव पुनः आरंभ करने के बाद लागू होते हैं।</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>कैश, लॉग और वेब डेटा यहाँ संग्रहीत होते हैं। बदलाव पुनः आरंभ करने के बाद लागू होते हैं।</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>संग्रहण पथ बदला गया</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>नया संग्रहण पथ कॉन्फ़िगरेशन में लिख दिया गया है। यह पुनः आरंभ करने के बाद पूरी तरह लागू होगा; तब तक कुछ सुविधाएँ पुराना पथ ही उपयोग करती हैं। अभी पुनः आरंभ करें?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>संग्रहण पथ खाली है: {0} बनाया नहीं जा सकता और सेटिंग सहेजी नहीं गई। स्थानीय डिस्क पर मौजूद फ़ोल्डर चुनें।</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} और {1} एक ही पथ ({2}) की ओर इंगित करते हैं। दोनों निर्देशिकाएँ एक ही नाम की फ़ाइलें पढ़ती और लिखतीं और एक-दूसरे को अधिलेखित करतीं, इसलिए सेटिंग सहेजी नहीं गई। दो अलग-अलग फ़ोल्डर चुनें।</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} ({1}) और {2} ({3}) एक-दूसरे के भीतर हैं। डेटा स्थानांतरण दोनों के बीच फ़ाइलों को पुनरावर्ती रूप से संसाधित करेगा, जिससे स्थानांतरण विफल हो सकता है या फ़ाइलें दोहराई जा सकती हैं, इसलिए सेटिंग सहेजी नहीं गई। ऐसे दो फ़ोल्डर चुनें जिनमें एक-दूसरा शामिल न हो।</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} ({1}) ऐप इंस्टॉल निर्देशिका ({2}) के भीतर है। ऐप अपडेट या अनइंस्टॉल इस निर्देशिका की फ़ाइलों को अधिलेखित या हटा देते हैं, जिससे डेटा खो सकता है, इसलिए सेटिंग सहेजी नहीं गई। इंस्टॉल निर्देशिका के बाहर का फ़ोल्डर चुनें।</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} ({1}) ऐप इंस्टॉल निर्देशिका ({2}) की पैरेंट निर्देशिका है। इसमें ऐप की फ़ाइलें भी शामिल होंगी और डिस्क की अन्य सामग्री के साथ मिल जाएँगी, इसलिए सेटिंग सहेजी नहीं गई। इंस्टॉल निर्देशिका के बाहर का फ़ोल्डर चुनें।</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} ({1}) ड्राइव रूट है। ऐप सीधे ड्राइव में फ़ाइलें बनाएगा और वे डिस्क की अन्य सामग्री के साथ मिल जाएँगी, इसलिए सेटिंग सहेजी नहीं गई। उस ड्राइव का कोई सबफ़ोल्डर चुनें।</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} मान्य फ़ोल्डर पथ नहीं है: {1} ({2}), इसलिए सेटिंग सहेजी नहीं गई। स्थानीय डिस्क पर मौजूद फ़ोल्डर चुनें।</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>संग्रहण पथ की सेटिंग सहेजी नहीं जा सकी ({0})। जाँचें कि लक्ष्य फ़ोल्डर मौजूद है और वर्तमान खाते के पास उस पर लेखन अनुमति है।</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>स्क्रीनशॉट सेटिंग्स</value>
   </data>

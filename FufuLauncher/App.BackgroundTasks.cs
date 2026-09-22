@@ -90,6 +90,59 @@ public partial class App
         }
     }
 
+    private async Task CheckStoragePathsAsync()
+    {
+        try
+        {
+            if (!AppPaths.HasMissingPaths)
+            {
+                return;
+            }
+
+            var lines = new List<string>();
+
+            if (AppPaths.MissingDataDir != null)
+            {
+                lines.Add(string.Format(
+                    "StoragePath_MissingDir".GetLocalized(),
+                    "AgreementPage_UserDataDir".GetLocalized(),
+                    AppPaths.MissingDataDir));
+            }
+
+            if (AppPaths.MissingCacheDir != null)
+            {
+                lines.Add(string.Format(
+                    "StoragePath_MissingDir".GetLocalized(),
+                    "AgreementPage_CacheDir".GetLocalized(),
+                    AppPaths.MissingCacheDir));
+            }
+
+            lines.Add(string.Format(
+                "StoragePath_MissingHint".GetLocalized(),
+                "NavSettings".GetLocalized(),
+                "SectionStoragePaths".GetLocalized()));
+
+            var notification = new Messages.NotificationMessage(
+                "StoragePath_MissingTitle".GetLocalized(),
+                string.Join(Environment.NewLine, lines),
+                Messages.NotificationType.Warning,
+                0);
+
+            Debug.WriteLine($"[AppPaths] 存储路径缺失: {string.Join(" | ", lines)}");
+
+            await Task.Delay(1200);
+
+            await _mainDispatcherQueue.EnqueueAsync(() =>
+            {
+                WeakReferenceMessenger.Default.Send(notification);
+            });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[AppPaths] 启动存储路径检查失败: {ex.Message}");
+        }
+    }
+
     internal async Task PlayStartupSoundAsync()
     {
         try

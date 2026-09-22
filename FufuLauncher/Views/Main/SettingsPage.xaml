@@ -340,6 +340,11 @@
                         <FontIcon Glyph="&#xE713;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Content="{helpers:Loc Key=SectionStoragePaths}" Tag="StoragePathItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8B7;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Content="{helpers:Loc Key=SectionUpdate}" Tag="UpdateItem">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE895;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
@@ -2284,6 +2289,69 @@
                         </Border>
                     </StackPanel>
                     
+                    <StackPanel x:Name="StoragePathItem" Style="{StaticResource SectionBlockStyle}">
+                        <TextBlock Text="{helpers:Loc Key=SectionStoragePaths}" Style="{StaticResource SectionHeaderStyle}" />
+                        <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                            <Border.Shadow>
+                                <ThemeShadow />
+                            </Border.Shadow>
+                            <StackPanel>
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B7;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AgreementPage_UserDataDir}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=StorageDataDirCaption}" />
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}">
+                                    <TextBlock Style="{StaticResource PathTextStyle}"
+                                               MaxWidth="560"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{x:Bind ViewModel.DataPath, Mode=OneWay}" />
+                                    <Button Style="{StaticResource PresetButtonStyle}"
+                                            Content="{helpers:Loc Key=AgreementPage_Change}"
+                                            Command="{x:Bind ViewModel.ChangeDataPathCommand}" />
+                                </StackPanel>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AgreementPage_CacheDir}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=StorageCacheDirCaption}" />
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}">
+                                    <TextBlock Style="{StaticResource PathTextStyle}"
+                                               MaxWidth="560"
+                                               TextTrimming="CharacterEllipsis"
+                                               Text="{x:Bind ViewModel.CachePath, Mode=OneWay}" />
+                                    <Button Style="{StaticResource PresetButtonStyle}"
+                                            Content="{helpers:Loc Key=AgreementPage_Change}"
+                                            Command="{x:Bind ViewModel.ChangeCachePathCommand}" />
+                                </StackPanel>
+
+                                <InfoBar Style="{StaticResource RowInfoBarStyle}"
+                                         Severity="Error"
+                                         IsClosable="True"
+                                         FontSize="12"
+                                         Message="{x:Bind ViewModel.PathError, Mode=OneWay}"
+                                         IsOpen="{x:Bind ViewModel.HasPathError, Mode=OneWay}" />
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
                     <StackPanel x:Name="UpdateItem" Style="{StaticResource SectionBlockStyle}">
                         <TextBlock Text="{helpers:Loc Key=SectionUpdate}" Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">

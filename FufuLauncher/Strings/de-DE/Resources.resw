@@ -265,6 +265,54 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>Erweiterte Optionen</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>Speicherpfad nicht verfügbar</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} ist nicht vorhanden: {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>Wählen Sie einen neuen Pfad unter {0} - {1}.</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>Speicherpfade</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>Hier werden Konfigurationsdateien, Kontodaten und Datenbanken gespeichert. Änderungen werden nach einem Neustart wirksam.</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>Hier werden Cache, Protokolle und Webdaten gespeichert. Änderungen werden nach einem Neustart wirksam.</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>Speicherpfad geändert</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>Der neue Speicherpfad wurde in die Konfiguration übernommen. Er wird erst nach einem Neustart vollständig wirksam; bis dahin verwenden einige Funktionen weiterhin den bisherigen Pfad. Jetzt neu starten?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>Der Speicherpfad ist leer: {0} kann nicht erstellt werden, die Einstellung wurde nicht gespeichert. Wählen Sie einen Ordner, der auf einem lokalen Datenträger vorhanden ist.</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} und {1} verweisen auf denselben Pfad ({2}). Beide Verzeichnisse würden Dateien mit gleichem Namen lesen und schreiben und sich gegenseitig überschreiben, die Einstellung wurde nicht gespeichert. Wählen Sie zwei verschiedene Ordner.</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} ({1}) und {2} ({3}) liegen ineinander. Beim Verschieben der Daten würden Dateien rekursiv zwischen beiden Verzeichnissen verarbeitet, was fehlschlagen oder Dateien duplizieren kann, die Einstellung wurde nicht gespeichert. Wählen Sie zwei Ordner, die einander nicht enthalten.</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} ({1}) liegt im Installationsordner der App ({2}). App-Updates oder Deinstallationen überschreiben oder löschen Dateien in diesem Verzeichnis, was zu Datenverlust führen kann, die Einstellung wurde nicht gespeichert. Wählen Sie einen Ordner außerhalb des Installationsordners.</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} ({1}) ist das übergeordnete Verzeichnis des Installationsordners der App ({2}). Es würde die Dateien der App enthalten und mit anderen Inhalten des Datenträgers vermischen, die Einstellung wurde nicht gespeichert. Wählen Sie einen Ordner außerhalb des Installationsordners.</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} ({1}) ist ein Laufwerksstamm. Die App würde Dateien direkt im Laufwerk anlegen und mit anderen Inhalten des Datenträgers vermischen, die Einstellung wurde nicht gespeichert. Wählen Sie einen Unterordner dieses Laufwerks.</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} ist kein gültiger Ordnerpfad: {1} ({2}), die Einstellung wurde nicht gespeichert. Wählen Sie einen Ordner, der auf einem lokalen Datenträger vorhanden ist.</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>Die Einstellung für den Speicherpfad konnte nicht gespeichert werden ({0}). Prüfen Sie, ob der Zielordner vorhanden ist und das aktuelle Konto Schreibrechte dafür besitzt.</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>Screenshot-Einstellungen</value>
   </data>

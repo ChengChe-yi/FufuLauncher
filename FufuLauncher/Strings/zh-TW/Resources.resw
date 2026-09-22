@@ -265,6 +265,54 @@
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>進階選項</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>儲存路徑無法使用</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0}不存在：{1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>請在「{0} - {1}」中重新選擇路徑。</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>儲存路徑</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>用於存放設定檔、帳號資料與資料庫檔案。變更後需重新啟動軟體才會生效。</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>用於存放快取、日誌與網頁資料。變更後需重新啟動軟體才會生效。</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>儲存路徑已變更</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>新的儲存路徑已寫入設定，需重新啟動軟體後才會完全生效。在重新啟動前，部分功能仍會使用原路徑。是否立即重新啟動？</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>儲存路徑為空，無法建立{0}，設定未儲存。請選擇本機磁碟上已存在的資料夾。</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0}與{1}指向同一路徑（{2}）。兩個目錄會讀寫同名檔案並互相覆寫，設定未儲存。請將兩者改為不同的資料夾。</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0}（{1}）與{2}（{3}）互為父層或子層目錄。資料搬移會在兩者之間遞迴處理同名檔案，可能導致搬移失敗或檔案重複，設定未儲存。請選擇兩個互不包含的資料夾。</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0}（{1}）位於應用程式安裝目錄（{2}）內。軟體更新或解除安裝會覆寫、刪除該目錄下的檔案，可能導致資料遺失，設定未儲存。請選擇應用程式安裝目錄以外的資料夾。</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0}（{1}）是應用程式安裝目錄（{2}）的上一層目錄。該目錄會包含軟體本身的檔案，與磁碟上的其他內容混在一起，設定未儲存。請選擇應用程式安裝目錄以外的資料夾。</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0}（{1}）是磁碟機根目錄。軟體會直接在該磁碟機下建立檔案，與磁碟機上的其他內容混在一起，設定未儲存。請選擇該磁碟機下的子資料夾。</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0}不是有效的資料夾路徑：{1}（{2}），設定未儲存。請選擇本機磁碟上已存在的資料夾。</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>儲存路徑設定未能儲存（{0}）。請確認目標資料夾存在，且目前帳戶對其具有寫入權限。</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>螢幕截圖設定</value>
   </data>

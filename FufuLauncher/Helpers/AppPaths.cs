@@ -42,12 +42,33 @@ public static class AppPaths
 
     public static bool IsFirstRun { get; private set; }
 
+    public static string? MissingDataDir { get; private set; }
+    public static string? MissingCacheDir { get; private set; }
+
+    public static bool HasMissingPaths => MissingDataDir != null || MissingCacheDir != null;
+
     public static void EnsureDirectories()
     {
         Directory.CreateDirectory(SettingsDir);
         LoadCustomPaths();
 
+        var defaultData = Path.Combine(RootDir, "Data");
+        var defaultCache = Path.Combine(RootDir, "Cache");
+
+        if (!Directory.Exists(_dataDir) && !string.Equals(_dataDir, defaultData, StringComparison.OrdinalIgnoreCase))
+        {
+            MissingDataDir = _dataDir;
+            Debug.WriteLine($"[AppPaths] 数据目录不存在: {_dataDir}");
+        }
+
+        if (!Directory.Exists(_cacheDir) && !string.Equals(_cacheDir, defaultCache, StringComparison.OrdinalIgnoreCase))
+        {
+            MissingCacheDir = _cacheDir;
+            Debug.WriteLine($"[AppPaths] 缓存目录不存在: {_cacheDir}");
+        }
+
         ValidateOrFallbackDataDir();
+        ValidateOrFallbackCacheDir();
 
         IsFirstRun = !File.Exists(PathsConfigFile) && !File.Exists(LocalSettingsDb);
 
@@ -67,8 +88,6 @@ public static class AppPaths
             return;
         }
 
-        var defaultData = Path.Combine(RootDir, "Data");
-        var defaultCache = Path.Combine(RootDir, "Cache");
         if (!string.Equals(defaultData, _dataDir, StringComparison.OrdinalIgnoreCase)
             && Directory.Exists(defaultData)
             && !ArePathsOverlapping(defaultData, _dataDir))
@@ -158,14 +177,82 @@ public static class AppPaths
         File.WriteAllText(PathsConfigFile, JsonSerializer.Serialize(config));
     }
     
+    public static string? ValidateCustomPaths(string dataPath, string cachePath)
+    {
+        var dataLabel = "AgreementPage_UserDataDir".GetLocalized();
+        var cacheLabel = "AgreementPage_CacheDir".GetLocalized();
+
+        if (string.IsNullOrWhiteSpace(dataPath))
+            return string.Format("StoragePath_Error_Empty".GetLocalized(), dataLabel);
+
+        if (string.IsNullOrWhiteSpace(cachePath))
+            return string.Format("StoragePath_Error_Empty".GetLocalized(), cacheLabel);
+
+        var dataError = TryNormalizeDirectory(dataPath, dataLabel, out var fullData);
+        if (dataError != null)
+            return dataError;
+
+        var cacheError = TryNormalizeDirectory(cachePath, cacheLabel, out var fullCache);
+        if (cacheError != null)
+            return cacheError;
+
+        if (string.Equals(fullData, fullCache, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_Same".GetLocalized(), dataLabel, cacheLabel, dataPath);
+
+        if (fullData.StartsWith(fullCache, StringComparison.OrdinalIgnoreCase)
+            || fullCache.StartsWith(fullData, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_Nested".GetLocalized(), dataLabel, dataPath, cacheLabel, cachePath);
+
+        var appDir = NormalizeDirectory(AppContext.BaseDirectory);
+        var appDirDisplay = AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+
+        if (fullData.StartsWith(appDir, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_UnderAppDir".GetLocalized(), dataLabel, dataPath, appDirDisplay);
+
+        if (fullCache.StartsWith(appDir, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_UnderAppDir".GetLocalized(), cacheLabel, cachePath, appDirDisplay);
+
+        if (appDir.StartsWith(fullData, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_ParentOfAppDir".GetLocalized(), dataLabel, dataPath, appDirDisplay);
+
+        if (appDir.StartsWith(fullCache, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_ParentOfAppDir".GetLocalized(), cacheLabel, cachePath, appDirDisplay);
+
+        if (string.Equals(Path.GetPathRoot(dataPath), fullData, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_DriveRoot".GetLocalized(), dataLabel, dataPath);
+
+        if (string.Equals(Path.GetPathRoot(cachePath), fullCache, StringComparison.OrdinalIgnoreCase))
+            return string.Format("StoragePath_Error_DriveRoot".GetLocalized(), cacheLabel, cachePath);
+
+        return null;
+    }
+
+    private static string? TryNormalizeDirectory(string path, string label, out string normalized)
+    {
+        try
+        {
+            normalized = NormalizeDirectory(path);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            normalized = string.Empty;
+            return string.Format("StoragePath_Error_Invalid".GetLocalized(), label, path, ex.Message);
+        }
+    }
+
+    private static string NormalizeDirectory(string path)
+    {
+        return Path.GetFullPath(path).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+               + Path.DirectorySeparatorChar;
+    }
+
     private static bool ArePathsOverlapping(string path1, string path2)
     {
         try
         {
-            var full1 = Path.GetFullPath(path1).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
-                        + Path.DirectorySeparatorChar;
-            var full2 = Path.GetFullPath(path2).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
-                        + Path.DirectorySeparatorChar;
+            var full1 = NormalizeDirectory(path1);
+            var full2 = NormalizeDirectory(path2);
             return full1.StartsWith(full2, StringComparison.OrdinalIgnoreCase)
                 || full2.StartsWith(full1, StringComparison.OrdinalIgnoreCase);
         }
@@ -177,10 +264,8 @@ public static class AppPaths
     
     private static bool IsSubdirectoryOf(string candidate, string parent)
     {
-        var fullCandidate = Path.GetFullPath(candidate).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
-                            + Path.DirectorySeparatorChar;
-        var fullParent = Path.GetFullPath(parent).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
-                         + Path.DirectorySeparatorChar;
+        var fullCandidate = NormalizeDirectory(candidate);
+        var fullParent = NormalizeDirectory(parent);
         return fullCandidate.StartsWith(fullParent, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -295,6 +380,7 @@ public static class AppPaths
         {
             var defaultData = Path.Combine(RootDir, "Data");
             Debug.WriteLine($"[AppPaths] 数据目录不可用，已回退到默认目录: {_dataDir} -> {defaultData} ({ex.Message})");
+            MissingDataDir = _dataDir;
             _dataDir = defaultData;
 
             try
@@ -304,6 +390,39 @@ public static class AppPaths
             catch (Exception fallbackEx)
             {
                 Debug.WriteLine($"[AppPaths] 默认数据目录创建失败: {fallbackEx.Message}");
+            }
+        }
+    }
+
+    private static void ValidateOrFallbackCacheDir()
+    {
+        if (string.IsNullOrWhiteSpace(_cacheDir))
+        {
+            _cacheDir = Path.Combine(RootDir, "Cache");
+        }
+
+        try
+        {
+            Directory.CreateDirectory(_cacheDir);
+
+            var probe = Path.Combine(_cacheDir, $".write_test_{Environment.ProcessId}.tmp");
+            File.WriteAllText(probe, "ok");
+            File.Delete(probe);
+        }
+        catch (Exception ex)
+        {
+            var defaultCache = Path.Combine(RootDir, "Cache");
+            Debug.WriteLine($"[AppPaths] 缓存目录不可用，已回退到默认目录: {_cacheDir} -> {defaultCache} ({ex.Message})");
+            MissingCacheDir = _cacheDir;
+            _cacheDir = defaultCache;
+
+            try
+            {
+                Directory.CreateDirectory(_cacheDir);
+            }
+            catch (Exception fallbackEx)
+            {
+                Debug.WriteLine($"[AppPaths] 默认缓存目录创建失败: {fallbackEx.Message}");
             }
         }
     }

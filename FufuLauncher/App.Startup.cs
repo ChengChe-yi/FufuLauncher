@@ -72,6 +72,8 @@ public partial class App
 
                 _ = Task.Run(RunStartupUpdateCheckAsync);
 
+                _ = Task.Run(CheckStoragePathsAsync);
+
                 ProcessStartupLaunchArguments();
             }
 

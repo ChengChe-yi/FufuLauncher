@@ -23,7 +23,7 @@ public sealed partial class SettingsPage : Page
         { "AppearanceItem", "HomeCardsItem", "GameAnnouncementItem", "WidgetsItem", "NotesItem", "HomeTextItem",
           "BackgroundItem", "WindowEffectsItem",
           "LaunchConfigItem", "ScreenshotSettingsItem", "CheckinSettingsItem",
-          "LanguageItem", "WindowBehaviorItem", "StartupSoundItem", "AdvancedOptionsItem", "UpdateItem",
+          "LanguageItem", "WindowBehaviorItem", "StartupSoundItem", "AdvancedOptionsItem", "StoragePathItem", "UpdateItem",
           "AboutItem", "SecurityAuthItem" };
 
     private readonly List<SettingsSearchResult> _searchIndex = new();

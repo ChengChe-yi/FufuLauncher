@@ -265,6 +265,54 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>Opsi Lanjutan</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>Jalur Penyimpanan Tidak Tersedia</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} tidak ada: {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>Pilih jalur baru di {0} - {1}.</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>Jalur Penyimpanan</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>File konfigurasi, data akun, dan basis data disimpan di sini. Perubahan berlaku setelah memulai ulang.</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>Cache, log, dan data web disimpan di sini. Perubahan berlaku setelah memulai ulang.</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>Jalur Penyimpanan Diubah</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>Jalur penyimpanan baru telah ditulis ke konfigurasi. Perubahan berlaku sepenuhnya setelah memulai ulang; sebelum itu, sebagian fitur masih memakai jalur lama. Mulai ulang sekarang?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>Jalur penyimpanan kosong: {0} tidak dapat dibuat dan pengaturan tidak disimpan. Pilih folder yang ada di disk lokal.</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} dan {1} menunjuk ke jalur yang sama ({2}). Kedua direktori akan membaca dan menulis file dengan nama sama sehingga saling menimpa, jadi pengaturan tidak disimpan. Pilih dua folder yang berbeda.</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} ({1}) dan {2} ({3}) saling bersarang. Pemindahan data akan memproses file secara rekursif di antara keduanya sehingga dapat gagal atau menduplikasi file, jadi pengaturan tidak disimpan. Pilih dua folder yang tidak saling berisi.</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} ({1}) berada di dalam folder instalasi aplikasi ({2}). Pembaruan atau penghapusan aplikasi menimpa atau menghapus file di direktori tersebut sehingga data dapat hilang, jadi pengaturan tidak disimpan. Pilih folder di luar folder instalasi.</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} ({1}) adalah direktori induk dari folder instalasi aplikasi ({2}). Direktori ini akan memuat file aplikasi sendiri dan bercampur dengan konten lain di disk, jadi pengaturan tidak disimpan. Pilih folder di luar folder instalasi.</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} ({1}) adalah akar drive. Aplikasi akan membuat file langsung di akar drive dan bercampur dengan konten lain di disk, jadi pengaturan tidak disimpan. Pilih subfolder di drive tersebut.</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} bukan jalur folder yang valid: {1} ({2}), jadi pengaturan tidak disimpan. Pilih folder yang ada di disk lokal.</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>Pengaturan jalur penyimpanan tidak dapat disimpan ({0}). Pastikan folder tujuan ada dan akun saat ini memiliki izin tulis untuk folder tersebut.</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>Pengaturan Screenshot</value>
   </data>

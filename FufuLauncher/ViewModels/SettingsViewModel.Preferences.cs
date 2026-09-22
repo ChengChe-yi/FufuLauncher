@@ -66,6 +66,7 @@ public partial class SettingsViewModel
             OnPropertyChanged(nameof(CpuUsageWarningThreshold));
             OnPropertyChanged(nameof(IsRedeemCodeNotificationEnabled));
             OnPropertyChanged(nameof(IsCaptchaPopupDisabled));
+            RefreshStoragePaths();
             LoadMonitors();
         }
         finally

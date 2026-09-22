@@ -265,6 +265,54 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>Options avancées</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>Chemin de stockage indisponible</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} n'existe pas : {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>Sélectionnez un nouveau chemin dans {0} - {1}.</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>Chemins de stockage</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>Les fichiers de configuration, les données de compte et les bases de données y sont stockés. Les modifications prennent effet après un redémarrage.</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>Le cache, les journaux et les données web y sont stockés. Les modifications prennent effet après un redémarrage.</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>Chemin de stockage modifié</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>Le nouveau chemin de stockage a été enregistré dans la configuration. Il prend pleinement effet après un redémarrage ; d'ici là, certaines fonctions utilisent encore l'ancien chemin. Redémarrer maintenant ?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>Le chemin de stockage est vide : impossible de créer {0} et le paramètre n'a pas été enregistré. Sélectionnez un dossier existant sur un disque local.</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} et {1} désignent le même chemin ({2}). Les deux répertoires liraient et écriraient des fichiers de même nom et se remplaceraient mutuellement, le paramètre n'a pas été enregistré. Choisissez deux dossiers différents.</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} ({1}) et {2} ({3}) sont imbriqués l'un dans l'autre. La migration des données traiterait les fichiers de façon récursive entre ces répertoires, ce qui peut échouer ou dupliquer des fichiers, le paramètre n'a pas été enregistré. Choisissez deux dossiers qui ne se contiennent pas.</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} ({1}) se trouve dans le dossier d'installation de l'application ({2}). Une mise à jour ou une désinstallation remplace ou supprime les fichiers de ce répertoire, ce qui peut entraîner une perte de données, le paramètre n'a pas été enregistré. Choisissez un dossier en dehors du dossier d'installation.</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} ({1}) est le dossier parent du dossier d'installation de l'application ({2}). Il contiendrait les fichiers de l'application, mélangés aux autres contenus du disque, le paramètre n'a pas été enregistré. Choisissez un dossier en dehors du dossier d'installation.</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} ({1}) est la racine d'un lecteur. L'application créerait des fichiers directement à la racine du lecteur, mélangés aux autres contenus du disque, le paramètre n'a pas été enregistré. Choisissez un sous-dossier de ce lecteur.</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} n'est pas un chemin de dossier valide : {1} ({2}), le paramètre n'a pas été enregistré. Sélectionnez un dossier existant sur un disque local.</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>Le paramètre de chemin de stockage n'a pas pu être enregistré ({0}). Vérifiez que le dossier cible existe et que le compte actuel dispose des droits d'écriture.</value>
+  </data>
   <data name="SectionScreenshotSettings" xml:space="preserve">
     <value>Paramètres de capture d'écran</value>
   </data>

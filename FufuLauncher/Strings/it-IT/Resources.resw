@@ -3642,6 +3642,54 @@ Riscattalo in gioco tempestivamente!</value>
   <data name="SectionAdvancedOptions" xml:space="preserve">
     <value>Opzioni Avanzate</value>
   </data>
+  <data name="StoragePath_MissingTitle" xml:space="preserve">
+    <value>Percorso di archiviazione non disponibile</value>
+  </data>
+  <data name="StoragePath_MissingDir" xml:space="preserve">
+    <value>{0} non esiste: {1}</value>
+  </data>
+  <data name="StoragePath_MissingHint" xml:space="preserve">
+    <value>Seleziona un nuovo percorso in {0} - {1}.</value>
+  </data>
+  <data name="SectionStoragePaths" xml:space="preserve">
+    <value>Percorsi di archiviazione</value>
+  </data>
+  <data name="StorageDataDirCaption" xml:space="preserve">
+    <value>Qui vengono archiviati i file di configurazione, i dati account e i database. Le modifiche hanno effetto dopo il riavvio.</value>
+  </data>
+  <data name="StorageCacheDirCaption" xml:space="preserve">
+    <value>Qui vengono archiviati cache, log e dati web. Le modifiche hanno effetto dopo il riavvio.</value>
+  </data>
+  <data name="StoragePath_RestartTitle" xml:space="preserve">
+    <value>Percorso di archiviazione modificato</value>
+  </data>
+  <data name="StoragePath_RestartMessage" xml:space="preserve">
+    <value>Il nuovo percorso di archiviazione è stato scritto nella configurazione. Ha pieno effetto dopo il riavvio; fino ad allora alcune funzioni continuano a usare il percorso precedente. Riavviare ora?</value>
+  </data>
+  <data name="StoragePath_Error_Empty" xml:space="preserve">
+    <value>Il percorso di archiviazione è vuoto: non è possibile creare {0} e l'impostazione non è stata salvata. Seleziona una cartella esistente su un disco locale.</value>
+  </data>
+  <data name="StoragePath_Error_Same" xml:space="preserve">
+    <value>{0} e {1} puntano allo stesso percorso ({2}). Entrambe le directory leggerebbero e scriverebbero file con lo stesso nome sovrascrivendosi a vicenda, quindi l'impostazione non è stata salvata. Scegli due cartelle diverse.</value>
+  </data>
+  <data name="StoragePath_Error_Nested" xml:space="preserve">
+    <value>{0} ({1}) e {2} ({3}) sono annidati uno dentro l'altro. La migrazione dei dati elaborerebbe i file in modo ricorsivo tra le due directory, con possibili errori o file duplicati, quindi l'impostazione non è stata salvata. Scegli due cartelle che non si contengano a vicenda.</value>
+  </data>
+  <data name="StoragePath_Error_UnderAppDir" xml:space="preserve">
+    <value>{0} ({1}) si trova nella cartella di installazione dell'app ({2}). Gli aggiornamenti o la disinstallazione sovrascrivono o eliminano i file di quella directory, con possibile perdita di dati, quindi l'impostazione non è stata salvata. Scegli una cartella esterna alla cartella di installazione.</value>
+  </data>
+  <data name="StoragePath_Error_ParentOfAppDir" xml:space="preserve">
+    <value>{0} ({1}) è la directory padre della cartella di installazione dell'app ({2}). Conterrebbe i file dell'app mescolati ad altri contenuti del disco, quindi l'impostazione non è stata salvata. Scegli una cartella esterna alla cartella di installazione.</value>
+  </data>
+  <data name="StoragePath_Error_DriveRoot" xml:space="preserve">
+    <value>{0} ({1}) è la radice di un'unità. L'app creerebbe file direttamente nella radice dell'unità, mescolandoli ad altri contenuti del disco, quindi l'impostazione non è stata salvata. Scegli una sottocartella di quell'unità.</value>
+  </data>
+  <data name="StoragePath_Error_Invalid" xml:space="preserve">
+    <value>{0} non è un percorso di cartella valido: {1} ({2}), quindi l'impostazione non è stata salvata. Seleziona una cartella esistente su un disco locale.</value>
+  </data>
+  <data name="StoragePath_Error_SaveFailed" xml:space="preserve">
+    <value>Non è stato possibile salvare l'impostazione del percorso di archiviazione ({0}). Verifica che la cartella di destinazione esista e che l'account corrente abbia i permessi di scrittura.</value>
+  </data>
   <data name="SectionAppearance" xml:space="preserve">
     <value>Aspetto e Personalizzazione</value>
   </data>
