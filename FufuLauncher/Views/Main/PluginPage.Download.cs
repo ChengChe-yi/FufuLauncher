@@ -50,13 +50,13 @@ public sealed partial class PluginPage
 
     private async void OnGetPluginsClick(object sender, RoutedEventArgs e)
     {
-        string urlLatest = "http://kr2-proxy.gitwarp.top:9980/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
-        string urlOld = "http://kr2-proxy.gitwarp.top:9980/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin-old.zip";
-        string urlHotSwitch = "http://kr2-proxy.gitwarp.top:9980/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/input_hot_switch.zip";
+        string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+        string urlOld = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin-old.zip";
+        string urlHotSwitch = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/input_hot_switch.zip";
         
         var stackPanel = new StackPanel { Spacing = 10 };
         
-        var rbLatest = new RadioButton { Content = "下载/更新插件(国际服通用)", IsChecked = true, GroupName = "PluginSelect", Tag = urlLatest };
+        var rbLatest = new RadioButton { Content = "下载/更新插件", IsChecked = true, GroupName = "PluginSelect", Tag = urlLatest };
         
         var rbCustom = new RadioButton { Content = "自定义插件链接", GroupName = "PluginSelect", Tag = "Custom" };
         var txtCustomUrl = new TextBox 
@@ -136,7 +136,7 @@ public sealed partial class PluginPage
         if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) 
             fileName = "CustomPlugin.zip";
         
-        var rawGithubUrl = proxyUrl.Replace("http://kr2-proxy.gitwarp.top:9980/", "");
+        var rawGithubUrl = proxyUrl.Replace("https://gh-proxy.com/", "");
         
         if (rawGithubUrl.Contains("github.com") && rawGithubUrl.Contains("/blob/") && !rawGithubUrl.Contains("?raw=true"))
         {

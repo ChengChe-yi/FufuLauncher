@@ -106,7 +106,7 @@ public sealed partial class PluginSettingsPage
 
             if (ViewModel.SelectedPluginIndex == 0)
             {
-                string urlLatest = "http://kr2-proxy.gitwarp.top:9980/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+                string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
                 await DownloadAndInstallPluginAsync(urlLatest);
             }
             else if (ViewModel.SelectedPluginIndex == 1)

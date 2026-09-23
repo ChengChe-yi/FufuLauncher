@@ -106,7 +106,7 @@ public sealed partial class PluginSettingsPage
 
     private async void OnDownloadPluginClick(object sender, RoutedEventArgs e)
     {
-        string urlLatest = "http://kr2-proxy.gitwarp.top:9980/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+        string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
         await DownloadAndInstallPluginAsync(urlLatest);
     }
 
@@ -118,7 +118,7 @@ public sealed partial class PluginSettingsPage
         if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) 
             fileName = "FuFuPlugin.zip";
         
-        var rawGithubUrl = proxyUrl.Replace("http://kr2-proxy.gitwarp.top:9980/", "");
+        var rawGithubUrl = proxyUrl.Replace("https://gh-proxy.com/", "");
         if (rawGithubUrl.Contains("github.com") && rawGithubUrl.Contains("/blob/") && !rawGithubUrl.Contains("?raw=true"))
         {
             rawGithubUrl += "?raw=true";
