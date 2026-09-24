@@ -6074,4 +6074,7 @@ Error: {0}</value>
   <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
     <value>Ends in {0} day(s)</value>
   </data>
+  <data name="Preset_Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
 </root>

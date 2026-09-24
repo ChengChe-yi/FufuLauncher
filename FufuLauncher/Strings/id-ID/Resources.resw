@@ -5548,4 +5548,7 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="DevVersionBadgeFormat" xml:space="preserve">
     <value>v{0} Dev</value>
   </data>
+  <data name="Preset_Rename" xml:space="preserve">
+    <value>Ubah nama</value>
+  </data>
 </root>

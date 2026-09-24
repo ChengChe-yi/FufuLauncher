@@ -220,13 +220,29 @@ public partial class PluginSettingsViewModel
         return preset;
     }
 
-    private void SavePresetToFile(PresetModel preset)
+    public bool RenamePreset(PresetModel preset, string name)
     {
-        if (string.IsNullOrEmpty(preset.FilePath)) return;
+        if (preset == null || string.IsNullOrWhiteSpace(name)) return false;
+
+        var newName = name.Trim();
+        if (preset.Name == newName) return true;
+
+        var previousName = preset.Name;
+        preset.Name = newName;
+        if (SavePresetToFile(preset)) return true;
+
+        preset.Name = previousName;
+        return false;
+    }
+
+    private bool SavePresetToFile(PresetModel preset)
+    {
+        if (string.IsNullOrEmpty(preset.FilePath)) return false;
         try
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             File.WriteAllText(preset.FilePath, JsonSerializer.Serialize(preset, options));
+            return true;
         }
         catch (Exception ex)
         {
@@ -236,6 +252,7 @@ public partial class PluginSettingsViewModel
                 NotificationType.Error,
                 6000
             ));
+            return false;
         }
     }
 
