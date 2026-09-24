@@ -190,8 +190,9 @@ namespace FufuLauncher.ViewModels
             var refreshGameTask = ForceRefreshGameStateAsync();
             var checkinTask = LoadCheckinStatusAsync();
             var dailyNoteTask = LoadDailyNoteAsync();
+            var loadPinnedPresetsTask = LoadPinnedPresetsAsync();
 
-            await Task.WhenAll(refreshGameTask, checkinTask, dailyNoteTask);
+            await Task.WhenAll(refreshGameTask, checkinTask, dailyNoteTask, loadPinnedPresetsTask);
         }
 
         private async Task RefreshSettingsAsync()

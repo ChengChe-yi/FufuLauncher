@@ -65,6 +65,40 @@ public sealed partial class PluginSettingsPage
         }
     }
 
+    private async void OnRenamePresetClick(object sender, RoutedEventArgs e)
+    {
+        if (sender is not MenuFlyoutItem item || item.Tag is not PresetModel preset) return;
+
+        var inputTextBox = new TextBox
+        {
+            Text = preset.Name,
+            PlaceholderText = "Preset_Create_Placeholder".GetLocalized(),
+            AcceptsReturn = false
+        };
+        var dialog = new ContentDialog
+        {
+            Title = "Preset_Rename".GetLocalized(),
+            Content = inputTextBox,
+            PrimaryButtonText = "LanguageSelection_Confirm".GetLocalized(),
+            CloseButtonText = "CancelBtn".GetLocalized(),
+            DefaultButton = ContentDialogButton.Primary,
+            IsPrimaryButtonEnabled = !string.IsNullOrWhiteSpace(inputTextBox.Text),
+            XamlRoot = XamlRoot
+        };
+
+        inputTextBox.TextChanged += (_, _) =>
+            dialog.IsPrimaryButtonEnabled = !string.IsNullOrWhiteSpace(inputTextBox.Text);
+        dialog.Opened += (_, _) =>
+        {
+            inputTextBox.Focus(FocusState.Programmatic);
+            inputTextBox.SelectAll();
+        };
+        dialog.PrimaryButtonClick += (_, args) =>
+            args.Cancel = !ViewModel.RenamePreset(preset, inputTextBox.Text);
+
+        await dialog.ShowAsync();
+    }
+
     private async void OnDeletePresetClick(object sender, RoutedEventArgs e)
     {
         if (sender is FrameworkElement element && element.DataContext is PresetModel preset)

@@ -5554,4 +5554,7 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="DevVersionBadgeFormat" xml:space="preserve">
     <value>v{0} Dev</value>
   </data>
+  <data name="Preset_Rename" xml:space="preserve">
+    <value>Rinomina</value>
+  </data>
 </root>
