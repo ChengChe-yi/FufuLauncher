@@ -5551,4 +5551,91 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>重新命名</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>官方背景庫</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>瀏覽遊戲官方下發的全部背景資源，支援預覽與儲存</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>重新整理</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>來源：{0} · 共 {1} 項資源</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>正在取得官方背景資源...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>取得官方背景資源失敗，請檢查網路後重試</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>重試</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>目前伺服器尚未下發可用的背景資源</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>請稍後重試，或檢查設定中的官方背景伺服器與 API 設定。</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>動態影片</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>靜態圖片</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>封面圖</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>選擇左側的背景即可查看預覽與可用操作</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>設為啟動器背景</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>已設為啟動器背景</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>儲存到本機</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>已儲存：{0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>儲存失敗：{0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>動態背景暫不支援直接設為啟動器背景，可儲存到本機使用。</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>這是動態背景搭配的封面圖，可作為靜態背景設為啟動器背景。</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>目前已啟用自訂背景或輪播，官方背景需在設定中關閉自訂背景後才會生效。</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>播放預覽</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>停止預覽</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>影片預覽播放失敗，已恢復顯示封面圖</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>圖片檔案</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>影片檔案</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>瀏覽並儲存官方背景</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>瀏覽遊戲官方下發的全部背景資源，支援預覽與儲存到本機，靜態背景可直接設為啟動器背景。</value>
+  </data>
 </root>

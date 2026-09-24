@@ -271,9 +271,6 @@ public partial class SettingsViewModel : ObservableRecipient
         get;
     }
 
-    public IAsyncRelayCommand DownloadLatestBackgroundImageCommand { get; }
-    public IAsyncRelayCommand DownloadLatestBackgroundVideoCommand { get; }
-
     public IAsyncRelayCommand ResetBackgroundApiCommand { get; }
     public IAsyncRelayCommand ResetLaunchButtonOverlayColorCommand { get; }
     public IAsyncRelayCommand ResetCpuUsageWarningSettingsCommand { get; }
@@ -386,9 +383,6 @@ public partial class SettingsViewModel : ObservableRecipient
         SelectCustomBackgroundCommand = new AsyncRelayCommand(SelectCustomBackgroundAsync);
         SelectBackgroundSlideshowFolderCommand = new AsyncRelayCommand(SelectBackgroundSlideshowFolderAsync);
         ClearBackgroundSlideshowFolderCommand = new AsyncRelayCommand(ClearBackgroundSlideshowFolderAsync);
-
-        DownloadLatestBackgroundImageCommand = new AsyncRelayCommand(DownloadLatestBackgroundImageAsync);
-        DownloadLatestBackgroundVideoCommand = new AsyncRelayCommand(DownloadLatestBackgroundVideoAsync);
 
         SelectScreenshotFolderCommand = new AsyncRelayCommand(SelectScreenshotFolderAsync);
         ClearScreenshotFolderCommand = new AsyncRelayCommand(ClearScreenshotFolderAsync);

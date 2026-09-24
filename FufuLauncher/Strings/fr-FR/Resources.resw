@@ -5550,4 +5550,91 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>Renommer</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>Bibliothèque de fonds officiels</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>Parcourez tous les fonds publiés par le jeu, prévisualisez-les et enregistrez-les localement</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>Actualiser</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>Source : {0} · {1} ressources</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>Chargement des fonds officiels...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>Échec du chargement des fonds officiels. Vérifiez le réseau puis réessayez.</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>Réessayer</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>Aucun fond n'est encore disponible pour ce serveur</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>Réessayez plus tard ou vérifiez le serveur et l'API des fonds dans les paramètres.</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>Vidéo dynamique</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>Image statique</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>Image de couverture</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>Utilisé</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>Sélectionnez un fond à gauche pour afficher l'aperçu et les actions disponibles</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>Définir comme fond du lanceur</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>Défini comme fond du lanceur</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>Enregistrer localement</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>Enregistré : {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>Échec de l'enregistrement : {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>Les fonds dynamiques ne peuvent pas encore être définis comme fond du lanceur, mais vous pouvez les enregistrer localement.</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>Il s'agit de l'image de couverture associée à un fond dynamique ; elle peut servir de fond statique.</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>Un fond personnalisé ou un diaporama est actif : les fonds officiels ne s'appliqueront qu'après avoir désactivé le fond personnalisé dans les paramètres.</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>Lire l'aperçu</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>Arrêter l'aperçu</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>Échec de l'aperçu vidéo ; retour à l'image de couverture</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>Fichiers image</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>Fichiers vidéo</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>Parcourir et enregistrer les fonds officiels</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>Parcourez tous les fonds publiés par le jeu, prévisualisez-les et enregistrez-les localement ; les images statiques peuvent être définies directement comme fond du lanceur.</value>
+  </data>
 </root>

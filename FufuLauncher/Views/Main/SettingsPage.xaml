@@ -1088,15 +1088,13 @@
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=FetchBgAssetsTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BrowseOfficialBgCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal">
                                     <Button Style="{StaticResource SubPanelButtonStyle}"
-                                            Content="{helpers:Loc Key=DownloadBgImage}"
-                                            Command="{x:Bind ViewModel.DownloadLatestBackgroundImageCommand}" />
-                                    <Button Style="{StaticResource SubPanelButtonStyle}"
-                                            Content="{helpers:Loc Key=DownloadBgVideo}"
-                                            Command="{x:Bind ViewModel.DownloadLatestBackgroundVideoCommand}" />
+                                            Content="{helpers:Loc Key=BrowseOfficialBg}"
+                                            Click="OnOpenOfficialBackgroundWindowClick" />
                                 </StackPanel>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />

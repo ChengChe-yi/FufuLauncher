@@ -5551,4 +5551,91 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>Umbenennen</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>Offizielle Hintergrundbibliothek</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>Alle vom Spiel veröffentlichten Hintergründe durchsuchen, ansehen und lokal speichern</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>Quelle: {0} · {1} Ressourcen</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>Offizielle Hintergründe werden geladen...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>Offizielle Hintergründe konnten nicht geladen werden. Prüfe das Netzwerk und versuche es erneut.</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>Erneut versuchen</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>Für diesen Server sind noch keine Hintergründe verfügbar</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>Versuche es später erneut oder prüfe Server und API in den Einstellungen.</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>Dynamisches Video</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>Statisches Bild</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>Titelbild</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>In Verwendung</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>Wähle links einen Hintergrund, um Vorschau und verfügbare Aktionen zu sehen</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>Als Launcher-Hintergrund festlegen</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>Als Launcher-Hintergrund festgelegt</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>Lokal speichern</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>Gespeichert: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>Speichern fehlgeschlagen: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>Dynamische Hintergründe können noch nicht als Launcher-Hintergrund festgelegt werden, lassen sich aber lokal speichern.</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>Dies ist das Titelbild eines dynamischen Hintergrunds; es kann als statischer Hintergrund festgelegt werden.</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>Ein eigener Hintergrund oder eine Diashow ist aktiv. Offizielle Hintergründe wirken erst, wenn du den eigenen Hintergrund in den Einstellungen deaktivierst.</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>Vorschau abspielen</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>Vorschau stoppen</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>Videovorschau fehlgeschlagen; Titelbild wird wieder angezeigt</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>Bilddateien</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>Videodateien</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>Offizielle Hintergründe durchsuchen und speichern</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>Alle vom Spiel veröffentlichten Hintergründe durchsuchen, ansehen und lokal speichern; statische Bilder lassen sich direkt als Launcher-Hintergrund festlegen.</value>
+  </data>
 </root>

@@ -5551,4 +5551,91 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>이름 바꾸기</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>공식 배경 라이브러리</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>게임 공식에서 배포한 모든 배경을 보고 미리보기와 저장을 할 수 있습니다</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>새로 고침</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>출처: {0} · 총 {1}개</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>공식 배경을 불러오는 중...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>공식 배경을 불러오지 못했습니다. 네트워크를 확인한 뒤 다시 시도하세요</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>다시 시도</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>현재 서버에 사용할 수 있는 배경이 아직 없습니다</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>잠시 후 다시 시도하거나 설정의 공식 배경 서버와 API를 확인하세요.</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>동적 영상</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>정적 이미지</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>커버 이미지</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>사용 중</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>왼쪽 배경을 선택하면 미리보기와 사용 가능한 작업이 표시됩니다</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>런처 배경으로 설정</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>런처 배경으로 설정했습니다</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>로컬에 저장</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>저장됨: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>저장 실패: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>동적 배경은 런처 배경으로 바로 설정할 수 없지만 로컬에 저장해 사용할 수 있습니다.</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>동적 배경에 포함된 커버 이미지이며 정적 배경으로 설정할 수 있습니다.</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>현재 사용자 배경 또는 슬라이드쇼가 켜져 있어, 공식 배경을 적용하려면 설정에서 사용자 배경을 꺼야 합니다.</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>미리보기 재생</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>미리보기 중지</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>영상 미리보기 재생에 실패하여 커버 이미지를 표시합니다</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>이미지 파일</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>동영상 파일</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>공식 배경 보기 및 저장</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>게임 공식에서 배포한 모든 배경을 보고 미리보기와 로컬 저장을 할 수 있으며, 정적 이미지는 바로 런처 배경으로 설정할 수 있습니다.</value>
+  </data>
 </root>

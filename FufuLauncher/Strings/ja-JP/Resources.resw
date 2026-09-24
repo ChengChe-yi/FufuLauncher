@@ -5551,4 +5551,91 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>名前を変更</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>公式背景ライブラリ</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>ゲーム公式が配信しているすべての背景を閲覧し、プレビューと保存ができます</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>取得元：{0} · 全 {1} 件</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>公式背景を取得しています...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>公式背景の取得に失敗しました。ネットワークを確認して再試行してください</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>このサーバーでは利用可能な背景がまだ配信されていません</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>しばらくしてから再試行するか、設定の公式背景サーバーと API を確認してください。</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>動画</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>静止画像</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>カバー画像</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>左の背景を選択すると、プレビューと操作が表示されます</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>ランチャー背景に設定</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>ランチャー背景に設定しました</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>ローカルに保存</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>保存しました：{0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>保存に失敗しました：{0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>動画背景はランチャー背景として直接設定できませんが、ローカルに保存して利用できます。</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>これは動画背景に付属するカバー画像で、静止背景として設定できます。</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>現在カスタム背景またはスライドショーが有効なため、公式背景を反映するには設定でカスタム背景をオフにしてください。</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>プレビューを再生</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>プレビューを停止</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>動画プレビューの再生に失敗しました。カバー画像を表示します</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>画像ファイル</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>動画ファイル</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>公式背景を閲覧して保存</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>ゲーム公式が配信しているすべての背景を閲覧し、プレビューとローカル保存ができます。静止画像はそのままランチャー背景に設定できます。</value>
+  </data>
 </root>

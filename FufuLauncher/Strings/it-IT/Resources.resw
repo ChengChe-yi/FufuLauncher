@@ -5557,4 +5557,91 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>Rinomina</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>Libreria di sfondi ufficiali</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>Sfoglia tutti gli sfondi pubblicati dal gioco, visualizzali in anteprima e salvali in locale</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>Origine: {0} · {1} risorse</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>Caricamento degli sfondi ufficiali...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>Impossibile caricare gli sfondi ufficiali. Controlla la rete e riprova.</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>Riprova</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>Per questo server non ci sono ancora sfondi disponibili</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>Riprova più tardi oppure controlla server e API degli sfondi nelle impostazioni.</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>Video dinamico</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>Immagine statica</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>Immagine di copertina</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>In uso</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>Seleziona uno sfondo a sinistra per vedere l'anteprima e le azioni disponibili</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>Imposta come sfondo del launcher</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>Impostato come sfondo del launcher</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>Salva in locale</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>Salvato: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>Salvataggio non riuscito: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>Gli sfondi dinamici non possono ancora essere impostati come sfondo del launcher, ma puoi salvarli in locale.</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>Questa è l'immagine di copertina di uno sfondo dinamico; può essere usata come sfondo statico.</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>È attivo uno sfondo personalizzato o una presentazione: gli sfondi ufficiali avranno effetto dopo averlo disattivato nelle impostazioni.</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>Riproduci anteprima</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>Interrompi anteprima</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>Anteprima video non riuscita; viene mostrata di nuovo l'immagine di copertina</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>File immagine</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>File video</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>Sfoglia e salva sfondi ufficiali</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>Sfoglia tutti gli sfondi pubblicati dal gioco, visualizzali in anteprima e salvali in locale; le immagini statiche si possono impostare direttamente come sfondo del launcher.</value>
+  </data>
 </root>

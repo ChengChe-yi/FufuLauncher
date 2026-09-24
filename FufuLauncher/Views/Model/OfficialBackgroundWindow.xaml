@@ -1,0 +1,405 @@
+﻿<Window
+    x:Class="FufuLauncher.Views.OfficialBackgroundWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:FufuLauncher.Models"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    mc:Ignorable="d"
+    Title="{helpers:Loc Key=OfficialBgWindow_Title}">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid x:Name="RootGrid" Background="Transparent">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.ThemeDictionaries>
+                    <ResourceDictionary x:Key="Light">
+                        <AcrylicBrush x:Key="OfficialBgPanelBrush"
+                                      TintColor="#FFFFFF"
+                                      TintOpacity="0.6"
+                                      FallbackColor="#E5FFFFFF" />
+                        <SolidColorBrush x:Key="OfficialBgStrokeBrush" Color="#1A000000" />
+                        <SolidColorBrush x:Key="OfficialBgTileBrush" Color="#14000000" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="Default">
+                        <AcrylicBrush x:Key="OfficialBgPanelBrush"
+                                      TintColor="#000000"
+                                      TintOpacity="0.15"
+                                      FallbackColor="#CC000000" />
+                        <SolidColorBrush x:Key="OfficialBgStrokeBrush" Color="#20FFFFFF" />
+                        <SolidColorBrush x:Key="OfficialBgTileBrush" Color="#26FFFFFF" />
+                    </ResourceDictionary>
+                    <ResourceDictionary x:Key="Dark">
+                        <AcrylicBrush x:Key="OfficialBgPanelBrush"
+                                      TintColor="#000000"
+                                      TintOpacity="0.15"
+                                      FallbackColor="#CC000000" />
+                        <SolidColorBrush x:Key="OfficialBgStrokeBrush" Color="#20FFFFFF" />
+                        <SolidColorBrush x:Key="OfficialBgTileBrush" Color="#26FFFFFF" />
+                    </ResourceDictionary>
+                </ResourceDictionary.ThemeDictionaries>
+
+                <Style x:Key="OfficialBgBadgeStyle" TargetType="Border">
+                    <Setter Property="CornerRadius" Value="4" />
+                    <Setter Property="Padding" Value="6,2" />
+                    <Setter Property="Background" Value="#99000000" />
+                </Style>
+
+                <Style x:Key="OfficialBgBadgeTextStyle" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid x:Name="AppTitleBar"
+              Grid.Row="0"
+              Height="48"
+              Background="Transparent">
+            <StackPanel
+                Margin="20,0,0,0"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="10">
+                <Image
+                    Width="16"
+                    Height="16"
+                    VerticalAlignment="Center"
+                    Source="/Assets/WindowIcon.ico" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Text="{helpers:Loc Key=OfficialBgWindow_Title}" />
+            </StackPanel>
+        </Grid>
+
+        <Grid
+            Grid.Row="1"
+            Padding="24,4,24,16"
+            ColumnSpacing="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="340" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel VerticalAlignment="Center" Spacing="2">
+                        <TextBlock FontSize="12" Text="{helpers:Loc Key=OfficialBgWindow_Description}" />
+                        <TextBlock
+                            FontSize="11"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Text="{x:Bind ViewModel.SummaryText, Mode=OneWay}" />
+                    </StackPanel>
+                    <Button
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Command="{x:Bind ViewModel.LoadCommand}"
+                        ToolTipService.ToolTip="{helpers:Loc Key=OfficialBgWindow_Refresh}">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon FontSize="14" Glyph="&#xE72C;" />
+                            <TextBlock Text="{helpers:Loc Key=OfficialBgWindow_Refresh}" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Spacing="12"
+                        Visibility="{x:Bind ViewModel.LoadingVisibility, Mode=OneWay}">
+                        <ProgressRing
+                            Width="40"
+                            Height="40"
+                            IsActive="True" />
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Text="{helpers:Loc Key=OfficialBgWindow_Loading}" />
+                    </StackPanel>
+                    
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        MaxWidth="380"
+                        Spacing="12"
+                        Visibility="{x:Bind ViewModel.ErrorVisibility, Mode=OneWay}">
+                        <FontIcon
+                            FontSize="30"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Glyph="&#xE783;" />
+                        <TextBlock
+                            FontSize="12"
+                            Text="{helpers:Loc Key=OfficialBgWindow_LoadFailed}"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                        <Button
+                            HorizontalAlignment="Center"
+                            Command="{x:Bind ViewModel.LoadCommand}"
+                            Content="{helpers:Loc Key=OfficialBgWindow_Retry}" />
+                    </StackPanel>
+                    
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        MaxWidth="380"
+                        Spacing="12"
+                        Visibility="{x:Bind ViewModel.EmptyVisibility, Mode=OneWay}">
+                        <FontIcon
+                            FontSize="30"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Glyph="&#xE91B;" />
+                        <TextBlock
+                            FontSize="12"
+                            Text="{helpers:Loc Key=OfficialBgWindow_Empty}"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            FontSize="11"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            Text="{helpers:Loc Key=OfficialBgWindow_EmptyHint}"
+                            TextAlignment="Center"
+                            TextWrapping="Wrap" />
+                        <Button
+                            HorizontalAlignment="Center"
+                            Command="{x:Bind ViewModel.LoadCommand}"
+                            Content="{helpers:Loc Key=OfficialBgWindow_Retry}" />
+                    </StackPanel>
+                    
+                    <GridView
+                        Padding="0,4,0,0"
+                        IsItemClickEnabled="True"
+                        ItemClick="BackgroundGridView_ItemClick"
+                        ItemsSource="{x:Bind ViewModel.Backgrounds, Mode=OneWay}"
+                        SelectionMode="None"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        Visibility="{x:Bind ViewModel.ContentVisibility, Mode=OneWay}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid
+                                    ItemHeight="168"
+                                    ItemWidth="240"
+                                    Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="models:OfficialBackgroundItem">
+                                <Grid
+                                    Width="228"
+                                    Height="156"
+                                    Margin="4"
+                                    BorderBrush="{ThemeResource OfficialBgStrokeBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="10">
+                                    <Border
+                                        Background="{ThemeResource OfficialBgTileBrush}"
+                                        CornerRadius="9">
+                                        <Grid>
+                                            <FontIcon
+                                                FontSize="26"
+                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                Glyph="&#xE91B;" />
+                                            <Image
+                                                Source="{x:Bind ThumbnailUrl}"
+                                                Stretch="UniformToFill"
+                                                ImageFailed="BackgroundThumbnail_ImageFailed"
+                                                ImageOpened="BackgroundThumbnail_ImageOpened" />
+                                        </Grid>
+                                    </Border>
+
+                                    <Border
+                                        Margin="8"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Style="{StaticResource OfficialBgBadgeStyle}">
+                                        <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{x:Bind TypeText}" />
+                                    </Border>
+
+                                    <Border
+                                        Margin="8"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Bottom"
+                                        Background="#CC0F7B0F"
+                                        Style="{StaticResource OfficialBgBadgeStyle}"
+                                        Visibility="{x:Bind CurrentBadgeVisibility, Mode=OneWay}">
+                                        <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{helpers:Loc Key=OfficialBgWindow_Current}" />
+                                    </Border>
+
+                                    <Button
+                                        Width="32"
+                                        Height="32"
+                                        Margin="8"
+                                        Padding="0"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Background="#99000000"
+                                        BorderThickness="0"
+                                        Click="QuickSave_Click"
+                                        CornerRadius="16"
+                                        Tag="{x:Bind}"
+                                        ToolTipService.ToolTip="{helpers:Loc Key=OfficialBgWindow_Save}">
+                                        <FontIcon
+                                            FontSize="14"
+                                            Foreground="White"
+                                            Glyph="&#xE896;" />
+                                    </Button>
+
+                                    <ProgressRing
+                                        Width="28"
+                                        Height="28"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Foreground="White"
+                                        IsActive="True"
+                                        Visibility="{x:Bind BusyVisibility, Mode=OneWay}" />
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </Grid>
+            </Grid>
+            
+            <Border
+                Grid.Column="1"
+                Padding="16"
+                Background="{ThemeResource OfficialBgPanelBrush}"
+                BorderBrush="{ThemeResource OfficialBgStrokeBrush}"
+                BorderThickness="1"
+                CornerRadius="14">
+                <Grid>
+                    <TextBlock
+                        MaxWidth="240"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        Text="{helpers:Loc Key=OfficialBgWindow_NoSelection}"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap"
+                        Visibility="{x:Bind ViewModel.NoSelectionVisibility, Mode=OneWay}" />
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="{x:Bind ViewModel.DetailVisibility, Mode=OneWay}">
+                        <StackPanel Spacing="12">
+                            <Grid
+                                Height="180"
+                                Background="{ThemeResource OfficialBgTileBrush}"
+                                CornerRadius="10">
+                                <FontIcon
+                                    FontSize="26"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    Glyph="&#xE91B;" />
+                                <Image
+                                    Source="{x:Bind ViewModel.SelectedItem.ThumbnailUrl, Mode=OneWay}"
+                                    Stretch="UniformToFill"
+                                    ImageFailed="PreviewImage_ImageFailed" />
+                                <MediaPlayerElement
+                                    x:Name="VideoPreviewElement"
+                                    AreTransportControlsEnabled="False"
+                                    Stretch="Uniform"
+                                    Visibility="{x:Bind ViewModel.PreviewVideoVisibility, Mode=OneWay}" />
+                                <ProgressRing
+                                    Width="28"
+                                    Height="28"
+                                    IsActive="True"
+                                    Visibility="{x:Bind ViewModel.PreviewLoadingVisibility, Mode=OneWay}" />
+                            </Grid>
+
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Border Style="{StaticResource OfficialBgBadgeStyle}">
+                                    <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{x:Bind ViewModel.SelectedItem.TypeText, Mode=OneWay}" />
+                                </Border>
+                                <Border
+                                    Background="#CC0F7B0F"
+                                    Style="{StaticResource OfficialBgBadgeStyle}"
+                                    Visibility="{x:Bind ViewModel.CurrentBadgeVisibility, Mode=OneWay}">
+                                    <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{helpers:Loc Key=OfficialBgWindow_Current}" />
+                                </Border>
+                            </StackPanel>
+
+                            <TextBlock
+                                FontSize="10"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                Text="{x:Bind ViewModel.SelectedUrl, Mode=OneWay}"
+                                TextTrimming="CharacterEllipsis"
+                                ToolTipService.ToolTip="{x:Bind ViewModel.SelectedUrl, Mode=OneWay}" />
+
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind ViewModel.ToggleVideoPreviewCommand}"
+                                Visibility="{x:Bind ViewModel.PlayPreviewVisibility, Mode=OneWay}">
+                                <StackPanel Orientation="Horizontal" Spacing="8">
+                                    <FontIcon FontSize="14" Glyph="&#xE768;" />
+                                    <TextBlock Text="{x:Bind ViewModel.PreviewButtonText, Mode=OneWay}" />
+                                </StackPanel>
+                            </Button>
+
+                            <TextBlock
+                                FontSize="11"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                Text="{helpers:Loc Key=OfficialBgWindow_VideoNotSupported}"
+                                TextWrapping="Wrap"
+                                Visibility="{x:Bind ViewModel.VideoHintVisibility, Mode=OneWay}" />
+
+                            <TextBlock
+                                FontSize="11"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                Text="{helpers:Loc Key=OfficialBgWindow_PosterNote}"
+                                TextWrapping="Wrap"
+                                Visibility="{x:Bind ViewModel.PosterNoteVisibility, Mode=OneWay}" />
+
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind ViewModel.ApplyToHomepageCommand}"
+                                CommandParameter="{x:Bind ViewModel.SelectedItem, Mode=OneWay}"
+                                Content="{helpers:Loc Key=OfficialBgWindow_Apply}"
+                                Style="{StaticResource AccentButtonStyle}"
+                                Visibility="{x:Bind ViewModel.ApplyVisibility, Mode=OneWay}" />
+
+                            <Button
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind ViewModel.SaveCommand}"
+                                CommandParameter="{x:Bind ViewModel.SelectedItem, Mode=OneWay}"
+                                Content="{helpers:Loc Key=OfficialBgWindow_Save}" />
+
+                            <TextBlock
+                                FontSize="11"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                Text="{helpers:Loc Key=OfficialBgWindow_CustomBackgroundHint}"
+                                TextWrapping="Wrap"
+                                Visibility="{x:Bind ViewModel.CustomBackgroundHintVisibility, Mode=OneWay}" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <InfoBar
+            Grid.Row="2"
+            Margin="24,0,24,16"
+            IsClosable="True"
+            IsOpen="{x:Bind ViewModel.IsStatusOpen, Mode=TwoWay}"
+            Message="{x:Bind ViewModel.StatusMessage, Mode=OneWay}"
+            Severity="{x:Bind ViewModel.StatusSeverity, Mode=OneWay}" />
+    </Grid>
+</Window>

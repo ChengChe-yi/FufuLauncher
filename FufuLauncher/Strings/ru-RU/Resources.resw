@@ -5551,4 +5551,91 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>Переименовать</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>Библиотека официальных фонов</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>Просматривайте все официальные фоны игры, смотрите предпросмотр и сохраняйте их локально</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>Источник: {0} · ресурсов: {1}</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>Загрузка официальных фонов...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить официальные фоны. Проверьте сеть и повторите попытку.</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>Для этого сервера пока нет доступных фонов</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>Повторите попытку позже или проверьте сервер и API фонов в настройках.</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>Динамическое видео</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>Статичное изображение</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>Обложка</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>Используется</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>Выберите фон слева, чтобы увидеть предпросмотр и доступные действия</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>Сделать фоном лаунчера</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>Установлен как фон лаунчера</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>Сохранить локально</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>Сохранено: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>Не удалось сохранить: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>Динамические фоны пока нельзя напрямую сделать фоном лаунчера, но их можно сохранить локально.</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>Это обложка динамического фона; её можно использовать как статичный фон.</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>Включён свой фон или слайд-шоу: официальные фоны вступят в силу после отключения своего фона в настройках.</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>Воспроизвести предпросмотр</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>Остановить предпросмотр</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>Не удалось воспроизвести видео; снова показана обложка</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>Файлы изображений</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>Видеофайлы</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>Просмотр и сохранение официальных фонов</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>Просматривайте все официальные фоны игры, смотрите предпросмотр и сохраняйте их локально; статичные изображения можно сразу сделать фоном лаунчера.</value>
+  </data>
 </root>

@@ -5551,4 +5551,91 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>Ubah nama</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>Pustaka Latar Resmi</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>Jelajahi semua latar yang dirilis resmi oleh game, lihat pratinjau, dan simpan ke perangkat</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>Segarkan</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>Sumber: {0} · {1} aset</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>Memuat latar resmi...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>Gagal memuat latar resmi. Periksa jaringan lalu coba lagi.</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>Coba lagi</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>Server ini belum menyediakan latar yang tersedia</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>Coba lagi nanti, atau periksa server dan API latar di pengaturan.</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>Video dinamis</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>Gambar statis</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>Gambar sampul</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>Sedang digunakan</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>Pilih latar di sebelah kiri untuk melihat pratinjau dan tindakan yang tersedia</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>Jadikan latar peluncur</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>Dijadikan latar peluncur</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>Simpan ke perangkat</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>Tersimpan: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>Gagal menyimpan: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>Latar dinamis belum bisa langsung dijadikan latar peluncur, tetapi bisa disimpan ke perangkat.</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>Ini gambar sampul dari latar dinamis; bisa dipakai sebagai latar statis.</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>Latar khusus atau salindia sedang aktif, latar resmi baru berlaku setelah dinonaktifkan di pengaturan.</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>Putar pratinjau</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>Hentikan pratinjau</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>Pratinjau video gagal; gambar sampul ditampilkan kembali</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>Berkas gambar</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>Berkas video</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>Jelajahi dan simpan latar resmi</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>Jelajahi semua latar resmi dari game, lihat pratinjau, dan simpan ke perangkat; gambar statis bisa langsung dijadikan latar peluncur.</value>
+  </data>
 </root>

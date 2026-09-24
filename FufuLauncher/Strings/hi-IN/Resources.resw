@@ -6028,4 +6028,91 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>नाम बदलें</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>आधिकारिक पृष्ठभूमि लाइब्रेरी</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>गेम द्वारा जारी सभी पृष्ठभूमियाँ देखें, पूर्वावलोकन करें और उन्हें लोकल में सहेजें</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>रीफ़्रेश करें</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>स्रोत: {0} · कुल {1} संसाधन</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>आधिकारिक पृष्ठभूमियाँ लोड हो रही हैं...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>आधिकारिक पृष्ठभूमियाँ लोड नहीं हो सकीं। नेटवर्क जाँचें और फिर कोशिश करें।</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>पुनः प्रयास करें</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>इस सर्वर पर अभी कोई पृष्ठभूमि उपलब्ध नहीं है</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>बाद में फिर कोशिश करें, या सेटिंग्स में पृष्ठभूमि सर्वर और API जाँचें।</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>डायनामिक वीडियो</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>स्थिर छवि</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>कवर छवि</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>उपयोग में</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>पूर्वावलोकन और उपलब्ध क्रियाएँ देखने के लिए बाईं ओर से कोई पृष्ठभूमि चुनें</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>लॉन्चर पृष्ठभूमि के रूप में सेट करें</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>लॉन्चर पृष्ठभूमि के रूप में सेट हो गया</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>लोकल में सहेजें</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>सहेजा गया: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>सहेजना विफल: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>डायनामिक पृष्ठभूमियाँ अभी सीधे लॉन्चर पृष्ठभूमि के रूप में सेट नहीं की जा सकतीं, पर उन्हें लोकल में सहेजा जा सकता है।</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>यह डायनामिक पृष्ठभूमि की कवर छवि है; इसे स्थिर पृष्ठभूमि के रूप में सेट किया जा सकता है।</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>कस्टम पृष्ठभूमि या स्लाइडशो चालू है, इसलिए आधिकारिक पृष्ठभूमि सेटिंग्स में कस्टम पृष्ठभूमि बंद करने के बाद ही लागू होगी।</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>पूर्वावलोकन चलाएँ</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>पूर्वावलोकन रोकें</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>वीडियो पूर्वावलोकन विफल; कवर छवि फिर से दिखाई जा रही है</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>छवि फ़ाइलें</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>वीडियो फ़ाइलें</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>आधिकारिक पृष्ठभूमियाँ देखें और सहेजें</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>गेम द्वारा जारी सभी पृष्ठभूमियाँ देखें, पूर्वावलोकन करें और लोकल में सहेजें; स्थिर छवियों को सीधे लॉन्चर पृष्ठभूमि के रूप में सेट किया जा सकता है।</value>
+  </data>
 </root>

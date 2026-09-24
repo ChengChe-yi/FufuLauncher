@@ -13,6 +13,21 @@ public sealed partial class SettingsPage
 {
     #region 子窗口
 
+    private void OnOpenOfficialBackgroundWindowClick(object sender, RoutedEventArgs e)
+    {
+        if (_officialBackgroundWindow != null)
+        {
+            _officialBackgroundWindow.Activate();
+            return;
+        }
+
+        var window = new OfficialBackgroundWindow();
+        window.Closed += (s, args) => _officialBackgroundWindow = null;
+
+        _officialBackgroundWindow = window;
+        window.Activate();
+    }
+
     private void OnEasterEggClick(object sender, RoutedEventArgs e)
     {
         if (_easterEggWindow != null)

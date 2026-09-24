@@ -5551,4 +5551,91 @@ Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
   <data name="Preset_Rename" xml:space="preserve">
     <value>Cambiar nombre</value>
   </data>
+  <data name="OfficialBgWindow_Title" xml:space="preserve">
+    <value>Biblioteca de fondos oficiales</value>
+  </data>
+  <data name="OfficialBgWindow_Description" xml:space="preserve">
+    <value>Explora todos los fondos publicados por el juego, previsualízalos y guárdalos localmente</value>
+  </data>
+  <data name="OfficialBgWindow_Refresh" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="OfficialBgWindow_SummaryFormat" xml:space="preserve">
+    <value>Origen: {0} · {1} recursos</value>
+  </data>
+  <data name="OfficialBgWindow_Loading" xml:space="preserve">
+    <value>Cargando fondos oficiales...</value>
+  </data>
+  <data name="OfficialBgWindow_LoadFailed" xml:space="preserve">
+    <value>No se pudieron cargar los fondos oficiales. Comprueba la red e inténtalo de nuevo.</value>
+  </data>
+  <data name="OfficialBgWindow_Retry" xml:space="preserve">
+    <value>Reintentar</value>
+  </data>
+  <data name="OfficialBgWindow_Empty" xml:space="preserve">
+    <value>Este servidor aún no tiene fondos disponibles</value>
+  </data>
+  <data name="OfficialBgWindow_EmptyHint" xml:space="preserve">
+    <value>Inténtalo más tarde o revisa el servidor y la API de fondos en los ajustes.</value>
+  </data>
+  <data name="OfficialBgWindow_TypeVideo" xml:space="preserve">
+    <value>Vídeo dinámico</value>
+  </data>
+  <data name="OfficialBgWindow_TypeImage" xml:space="preserve">
+    <value>Imagen estática</value>
+  </data>
+  <data name="OfficialBgWindow_TypePoster" xml:space="preserve">
+    <value>Imagen de portada</value>
+  </data>
+  <data name="OfficialBgWindow_Current" xml:space="preserve">
+    <value>En uso</value>
+  </data>
+  <data name="OfficialBgWindow_NoSelection" xml:space="preserve">
+    <value>Selecciona un fondo a la izquierda para ver la vista previa y las acciones disponibles</value>
+  </data>
+  <data name="OfficialBgWindow_Apply" xml:space="preserve">
+    <value>Establecer como fondo del launcher</value>
+  </data>
+  <data name="OfficialBgWindow_ApplySuccess" xml:space="preserve">
+    <value>Establecido como fondo del launcher</value>
+  </data>
+  <data name="OfficialBgWindow_Save" xml:space="preserve">
+    <value>Guardar localmente</value>
+  </data>
+  <data name="OfficialBgWindow_SaveSuccessFormat" xml:space="preserve">
+    <value>Guardado: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_SaveFailedFormat" xml:space="preserve">
+    <value>Error al guardar: {0}</value>
+  </data>
+  <data name="OfficialBgWindow_VideoNotSupported" xml:space="preserve">
+    <value>Los fondos dinámicos aún no se pueden establecer como fondo del launcher, pero sí guardarlos localmente.</value>
+  </data>
+  <data name="OfficialBgWindow_PosterNote" xml:space="preserve">
+    <value>Esta es la imagen de portada de un fondo dinámico; puede usarse como fondo estático.</value>
+  </data>
+  <data name="OfficialBgWindow_CustomBackgroundHint" xml:space="preserve">
+    <value>Hay un fondo personalizado o pase de diapositivas activo: los fondos oficiales se aplicarán tras desactivarlo en los ajustes.</value>
+  </data>
+  <data name="OfficialBgWindow_PlayPreview" xml:space="preserve">
+    <value>Reproducir vista previa</value>
+  </data>
+  <data name="OfficialBgWindow_StopPreview" xml:space="preserve">
+    <value>Detener vista previa</value>
+  </data>
+  <data name="OfficialBgWindow_PreviewFailed" xml:space="preserve">
+    <value>Error al reproducir la vista previa; se muestra la imagen de portada</value>
+  </data>
+  <data name="OfficialBgWindow_ImageFilter" xml:space="preserve">
+    <value>Archivos de imagen</value>
+  </data>
+  <data name="OfficialBgWindow_VideoFilter" xml:space="preserve">
+    <value>Archivos de vídeo</value>
+  </data>
+  <data name="BrowseOfficialBg" xml:space="preserve">
+    <value>Explorar y guardar fondos oficiales</value>
+  </data>
+  <data name="BrowseOfficialBgCaption" xml:space="preserve">
+    <value>Explora todos los fondos publicados por el juego, previsualízalos y guárdalos localmente; las imágenes estáticas se pueden establecer directamente como fondo del launcher.</value>
+  </data>
 </root>
