@@ -19,7 +19,24 @@ namespace FufuLauncher.Views;
 
 public sealed partial class OfficialBackgroundWindow : Window
 {
+    private static OfficialBackgroundWindow? _current;
+
     public OfficialBackgroundViewModel ViewModel { get; }
+    
+    public static void ShowOrActivate()
+    {
+        if (_current != null)
+        {
+            _current.Activate();
+            return;
+        }
+
+        var window = new OfficialBackgroundWindow();
+        window.Closed += (_, _) => _current = null;
+
+        _current = window;
+        window.Activate();
+    }
 
     public OfficialBackgroundWindow()
     {

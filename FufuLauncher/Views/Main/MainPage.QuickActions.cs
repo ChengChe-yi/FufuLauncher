@@ -103,6 +103,12 @@ public sealed partial class MainPage
         }
     }
 
+    private void OnOpenOfficialBackgroundWindowClick(object sender, RoutedEventArgs e)
+    {
+        BackgroundFlyout.Hide();
+        OfficialBackgroundWindow.ShowOrActivate();
+    }
+
     private void InjectionModuleListView_ItemClick(object sender, ItemClickEventArgs e)
     {
         if (e.ClickedItem is InjectionModuleInfo module)

@@ -1026,8 +1026,14 @@
                         ToolTipService.ToolTip="{helpers:Loc Key=Home_ToggleBg}">
                         <Button.Flyout>
                             <Flyout x:Name="BackgroundFlyout" Placement="BottomEdgeAlignedRight">
-                                <Grid>
+                                <Grid RowSpacing="6">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
                                     <GridView
+                                        Grid.Row="0"
                                         Width="320"
                                         MaxHeight="400"
                                         IsItemClickEnabled="True"
@@ -1056,6 +1062,29 @@
                                             </DataTemplate>
                                         </GridView.ItemTemplate>
                                     </GridView>
+
+                                    <Rectangle
+                                        Grid.Row="1"
+                                        Height="1"
+                                        Fill="{ThemeResource CardStrokeColorDefaultBrush}" />
+
+                                    <Button
+                                        Grid.Row="2"
+                                        Padding="8,6"
+                                        HorizontalAlignment="Stretch"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Click="OnOpenOfficialBackgroundWindowClick"
+                                        CornerRadius="6"
+                                        ToolTipService.ToolTip="{helpers:Loc Key=BrowseOfficialBg}">
+                                        <StackPanel
+                                            HorizontalAlignment="Center"
+                                            Orientation="Horizontal"
+                                            Spacing="8">
+                                            <FontIcon FontSize="14" Glyph="&#xE896;" />
+                                            <TextBlock FontSize="12" Text="{helpers:Loc Key=BrowseOfficialBg}" />
+                                        </StackPanel>
+                                    </Button>
                                 </Grid>
                             </Flyout>
                         </Button.Flyout>

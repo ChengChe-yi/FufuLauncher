@@ -15,17 +15,7 @@ public sealed partial class SettingsPage
 
     private void OnOpenOfficialBackgroundWindowClick(object sender, RoutedEventArgs e)
     {
-        if (_officialBackgroundWindow != null)
-        {
-            _officialBackgroundWindow.Activate();
-            return;
-        }
-
-        var window = new OfficialBackgroundWindow();
-        window.Closed += (s, args) => _officialBackgroundWindow = null;
-
-        _officialBackgroundWindow = window;
-        window.Activate();
+        OfficialBackgroundWindow.ShowOrActivate();
     }
 
     private void OnEasterEggClick(object sender, RoutedEventArgs e)

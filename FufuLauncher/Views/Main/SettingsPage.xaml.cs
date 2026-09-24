@@ -14,8 +14,6 @@ public sealed partial class SettingsPage : Page
 
     private Window _easterEggWindow;
 
-    private OfficialBackgroundWindow? _officialBackgroundWindow;
-
     private bool _cpuUsageWarningToggleLoaded;
 
     private bool _isNavigatingFromMenu;
