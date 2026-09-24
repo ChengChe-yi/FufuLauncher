@@ -334,11 +334,19 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate x:DataType="viewmodels:PresetModel">
                                             <StackPanel Orientation="Horizontal" Spacing="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="4" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
-                                                <Button Content="{x:Bind Name}" 
+                                                <Button Content="{x:Bind Name, Mode=OneWay}"
                                                         Click="OnSwitchPresetClick" 
                                                         Background="Transparent" 
                                                         BorderThickness="0"
-                                                        ToolTipService.ToolTip="{helpers:Loc Key=SwitchPresetTooltip}"/>
+                                                        ToolTipService.ToolTip="{helpers:Loc Key=SwitchPresetTooltip}">
+                                                    <Button.ContextFlyout>
+                                                        <MenuFlyout>
+                                                            <MenuFlyoutItem Text="{helpers:Loc Key=Preset_Rename}"
+                                                                            Tag="{x:Bind}"
+                                                                            Click="OnRenamePresetClick"/>
+                                                        </MenuFlyout>
+                                                    </Button.ContextFlyout>
+                                                </Button>
                                                 <TextBlock Text="{helpers:Loc Key=LockedTag}" 
                                                            Visibility="{x:Bind IsLocked, Mode=OneWay}" 
                                                            Foreground="Red" 

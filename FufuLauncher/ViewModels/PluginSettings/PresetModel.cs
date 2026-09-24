@@ -9,7 +9,12 @@ namespace FufuLauncher.ViewModels;
 public class PresetModel : ObservableObject
 {
     public string Id { get; set; }
-    public string Name { get; set; }
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set => SetProperty(ref _name, value);
+    }
     public string DllHash { get; set; }
     public Dictionary<string, Dictionary<string, string>> ConfigData { get; set; } = new(StringComparer.OrdinalIgnoreCase);
     

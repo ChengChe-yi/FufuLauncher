@@ -5548,4 +5548,7 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DevVersionBadgeFormat" xml:space="preserve">
     <value>v{0} Dev</value>
   </data>
+  <data name="Preset_Rename" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
 </root>

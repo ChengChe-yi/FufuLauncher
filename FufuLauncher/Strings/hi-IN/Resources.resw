@@ -6025,4 +6025,7 @@ UIGF v4.x/3.0/2.x</value>
   <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
     <value>{0} दिन में समाप्त होगा</value>
   </data>
+  <data name="Preset_Rename" xml:space="preserve">
+    <value>नाम बदलें</value>
+  </data>
 </root>
