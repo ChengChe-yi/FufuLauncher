@@ -542,7 +542,10 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
     <value>대상 모니터</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>게임을 실행할 모니터를 지정하세요</value>
+    <value>게임이 실행될 모니터를 지정합니다. 번호는 게임과 동일합니다(1 = 주 모니터).</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>주 모니터</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>모니터 식별</value>

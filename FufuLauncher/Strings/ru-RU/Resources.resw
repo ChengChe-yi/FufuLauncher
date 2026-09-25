@@ -542,7 +542,10 @@
     <value>Целевой монитор</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>Укажите монитор для запуска игры</value>
+    <value>Укажите монитор для запуска игры. Нумерация как в игре (1 — основной монитор)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>Основной</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>Определить мониторы</value>

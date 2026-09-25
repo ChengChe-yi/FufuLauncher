@@ -542,7 +542,10 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
     <value>対象モニター</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>ゲームを起動するモニターを指定</value>
+    <value>ゲームを起動するモニターを指定（番号はゲームと同じ、1 がメインモニター）</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>メインモニター</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>モニターを識別</value>

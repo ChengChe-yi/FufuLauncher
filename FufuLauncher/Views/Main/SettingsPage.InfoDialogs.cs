@@ -36,12 +36,8 @@ public sealed partial class SettingsPage
 
     private void OnIdentifyMonitorsClick(object sender, RoutedEventArgs e)
     {
-        var displayAreas = DisplayArea.FindAll();
-        for (int i = 0; i < displayAreas.Count; i++)
+        foreach (var monitor in MonitorHelper.GetAll())
         {
-            int index = i + 1;
-            var displayArea = displayAreas[i];
-
             var window = new Window();
             window.ExtendsContentIntoTitleBar = true;
 
@@ -54,7 +50,7 @@ public sealed partial class SettingsPage
 
             var textBlock = new TextBlock
             {
-                Text = index.ToString(),
+                Text = monitor.Index.ToString(),
                 FontSize = 140,
                 Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.White),
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -81,8 +77,8 @@ public sealed partial class SettingsPage
                 var size = new Windows.Graphics.SizeInt32(250, 250);
                 appWindow.Resize(size);
 
-                var centeredX = displayArea.WorkArea.X + (displayArea.WorkArea.Width - size.Width) / 2;
-                var centeredY = displayArea.WorkArea.Y + (displayArea.WorkArea.Height - size.Height) / 2;
+                var centeredX = monitor.WorkX + (monitor.WorkWidth - size.Width) / 2;
+                var centeredY = monitor.WorkY + (monitor.WorkHeight - size.Height) / 2;
                 appWindow.Move(new Windows.Graphics.PointInt32(centeredX, centeredY));
             }
 

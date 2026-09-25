@@ -409,7 +409,10 @@
     <value>目标显示器</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>指定游戏启动时所在的显示器</value>
+    <value>指定游戏启动时所在的显示器，编号与游戏一致（1 为主显示器）</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>主显示器</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>识别显示器</value>

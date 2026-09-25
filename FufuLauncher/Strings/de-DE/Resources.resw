@@ -542,7 +542,10 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
     <value>Zielmonitor</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>Gib den Monitor an, auf dem das Spiel gestartet werden soll</value>
+    <value>Gib den Monitor an, auf dem das Spiel gestartet werden soll. Die Nummerierung entspricht dem Spiel (1 = Hauptmonitor)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>Hauptmonitor</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>Monitore identifizieren</value>

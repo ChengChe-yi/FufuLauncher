@@ -409,7 +409,10 @@
     <value>Target Monitor</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>Specify which monitor the game launches on</value>
+    <value>Specify which monitor the game launches on. The numbering matches the game (1 is the primary display)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>Primary</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>Identify Monitors</value>

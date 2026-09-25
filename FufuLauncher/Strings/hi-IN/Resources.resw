@@ -409,7 +409,10 @@
     <value>लक्ष्य मॉनिटर</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>गेम किस मॉनिटर पर लॉन्च होगा, निर्दिष्ट करें</value>
+    <value>निर्दिष्ट करें कि गेम किस मॉनिटर पर शुरू होगा। क्रमांकन गेम के समान है (1 = प्राथमिक डिस्प्ले)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>प्राथमिक</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>मॉनिटर पहचानें</value>

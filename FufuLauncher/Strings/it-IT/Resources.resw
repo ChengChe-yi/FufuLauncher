@@ -3973,7 +3973,10 @@ Riscattalo in gioco tempestivamente!</value>
     <value>Verifica stato rete...</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>Specifica su quale monitor avviare il gioco</value>
+    <value>Specifica su quale monitor avviare il gioco. La numerazione corrisponde a quella del gioco (1 = monitor principale)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>Monitor principale</value>
   </data>
   <data name="TargetMonitorTitle" xml:space="preserve">
     <value>Monitor Destinazione</value>

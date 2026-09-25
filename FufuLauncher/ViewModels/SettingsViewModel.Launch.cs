@@ -5,7 +5,6 @@ Licensed under the MIT License.
 using System.Text.RegularExpressions;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services;
-using Microsoft.UI.Windowing;
 
 namespace FufuLauncher.ViewModels;
 
@@ -38,11 +37,11 @@ public partial class SettingsViewModel
         AvailableMonitors.Clear();
         AvailableMonitors.Add(new MonitorItem("默认 (不指定)", 0));
 
-        var displayAreas = DisplayArea.FindAll();
-        for (int i = 0; i < displayAreas.Count; i++)
+        var primaryTag = "MonitorPrimaryTag".GetLocalized();
+        foreach (var monitor in MonitorHelper.GetAll())
         {
-            int index = i + 1;
-            AvailableMonitors.Add(new MonitorItem($"显示器 {index} ({displayAreas[i].OuterBounds.Width}x{displayAreas[i].OuterBounds.Height})", index));
+            var tag = monitor.IsPrimary ? $" · {primaryTag}" : "";
+            AvailableMonitors.Add(new MonitorItem($"显示器 {monitor.Index}{tag} ({monitor.Width}x{monitor.Height})", monitor.Index));
         }
 
         SelectedMonitor = AvailableMonitors.FirstOrDefault(m => m.Index == LaunchArgsMonitorIndex) ?? AvailableMonitors.FirstOrDefault();

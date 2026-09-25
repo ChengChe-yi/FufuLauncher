@@ -542,7 +542,10 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
     <value>Monitor Target</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>Tentukan monitor mana yang digunakan game saat diluncurkan</value>
+    <value>Tentukan monitor mana yang digunakan game saat diluncurkan. Penomoran sama seperti di game (1 = monitor utama)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>Monitor utama</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>Identifikasi Monitor</value>

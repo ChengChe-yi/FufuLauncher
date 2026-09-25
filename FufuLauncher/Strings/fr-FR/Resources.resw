@@ -542,7 +542,10 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
     <value>Moniteur cible</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>Spécifier le moniteur sur lequel le jeu se lancera</value>
+    <value>Spécifier le moniteur sur lequel le jeu se lancera. La numérotation correspond à celle du jeu (1 = écran principal)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>Écran principal</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>Identifier les moniteurs</value>

@@ -542,7 +542,10 @@ Se continuar, este aviso será ignorado e o Hash desta predefinição será atua
     <value>Monitor de destino</value>
   </data>
   <data name="TargetMonitorCaption" xml:space="preserve">
-    <value>Especifique em qual monitor o jogo será iniciado</value>
+    <value>Especifique em qual monitor o jogo será iniciado. A numeração corresponde à do jogo (1 = monitor principal)</value>
+  </data>
+  <data name="MonitorPrimaryTag" xml:space="preserve">
+    <value>Monitor principal</value>
   </data>
   <data name="IdentifyMonitors" xml:space="preserve">
     <value>Identificar monitores</value>
