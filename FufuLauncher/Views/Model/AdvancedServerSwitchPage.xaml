@@ -6,42 +6,68 @@
     xmlns:controls="using:FufuLauncher.Controls"
     Background="Transparent">
 
-    <Grid Padding="32,48,32,32">
-        <StackPanel VerticalAlignment="Center" Spacing="16" MaxWidth="560" HorizontalAlignment="Center">
-            <FontIcon Glyph="&#xE8AB;" FontSize="48" Opacity="0.8" />
-            <TextBlock Text="{helpers:Loc Key=AdvancedServerSwitch_Title}" FontSize="28" FontWeight="SemiBold" HorizontalAlignment="Center" />
-            <TextBlock Text="{helpers:Loc Key=AdvancedServerSwitch_Warning}"
-                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                       TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" />
-            <TextBlock x:Name="CurrentServerText" HorizontalAlignment="Center" Opacity="0.7" />
-            <ComboBox x:Name="TargetServerCombo" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName"
-                      Header="{helpers:Loc Key=AdvancedServerSwitch_TargetServer}" />
-            <Button x:Name="StartBtn" Content="{helpers:Loc Key=AdvancedServerSwitch_Convert}" Width="200" Height="40" HorizontalAlignment="Center"
-                    Click="StartBtn_Click" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <StackPanel x:Name="ProgressPanel" Visibility="Collapsed" Spacing="8">
-                <TextBlock x:Name="StatusText" TextWrapping="Wrap" />
-                <ProgressBar x:Name="ProgressBar" IsIndeterminate="True" Height="8" />
-                <TextBlock x:Name="ProgressDetailText" Opacity="0.7" />
-                <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
-                    <StackPanel Spacing="4">
-                        <TextBlock Text="{helpers:Loc Key=AdvancedServerSwitch_DownloadSpeed}" FontWeight="SemiBold" />
-                        <controls:SpeedGraph x:Name="SpeedGraphChart" Height="120" />
-                    </StackPanel>
-                </Border>
-                <TextBlock x:Name="RemainingCountText" FontWeight="SemiBold" />
-                <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
-                    <ListView x:Name="RemainingChunksList" Height="110" SelectionMode="None" IsItemClickEnabled="False">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" FontSize="12" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Border>
-                <Button x:Name="CancelBtn" Content="{helpers:Loc Key=AdvancedServerSwitch_Cancel}" Width="120" Height="36" HorizontalAlignment="Center"
-                        Click="CancelBtn_Click" />
+        <Grid Grid.Row="0" Padding="32,48,32,32">
+            <StackPanel VerticalAlignment="Center" Spacing="16" MaxWidth="560" HorizontalAlignment="Center">
+                <FontIcon Glyph="&#xE8AB;" FontSize="48" Opacity="0.8" />
+                <TextBlock Text="{helpers:Loc Key=AdvancedServerSwitch_Title}" FontSize="28" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                <TextBlock Text="{helpers:Loc Key=AdvancedServerSwitch_Warning}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" />
+                <TextBlock x:Name="CurrentServerText" HorizontalAlignment="Center" Opacity="0.7" />
+                <ComboBox x:Name="TargetServerCombo" HorizontalAlignment="Stretch" DisplayMemberPath="DisplayName"
+                          Header="{helpers:Loc Key=AdvancedServerSwitch_TargetServer}" />
+                <Button x:Name="StartBtn" Content="{helpers:Loc Key=AdvancedServerSwitch_Convert}" Width="200" Height="40" HorizontalAlignment="Center"
+                        Click="StartBtn_Click" />
+
+                <StackPanel x:Name="ProgressPanel" Visibility="Collapsed" Spacing="8">
+                    <TextBlock x:Name="StatusText" TextWrapping="Wrap" />
+                    <ProgressBar x:Name="ProgressBar" IsIndeterminate="True" Height="8" />
+                    <TextBlock x:Name="ProgressDetailText" Opacity="0.7" />
+                    <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="{helpers:Loc Key=AdvancedServerSwitch_DownloadSpeed}" FontWeight="SemiBold" />
+                            <controls:SpeedGraph x:Name="SpeedGraphChart" Height="120" />
+                        </StackPanel>
+                    </Border>
+                    <TextBlock x:Name="RemainingCountText" FontWeight="SemiBold" />
+                    <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
+                        <ListView x:Name="RemainingChunksList" Height="110" SelectionMode="None" IsItemClickEnabled="False">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" FontSize="12" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Border>
+                    <Button x:Name="CancelBtn" Content="{helpers:Loc Key=AdvancedServerSwitch_Cancel}" Width="120" Height="36" HorizontalAlignment="Center"
+                            Click="CancelBtn_Click" />
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
+
+        <InfoBar Grid.Row="1" IsOpen="True" Severity="Warning" IsClosable="False">
+            <InfoBar.Content>
+                <StackPanel Spacing="6" MaxWidth="720" HorizontalAlignment="Left" Margin="0,2,12,8">
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="若启动游戏遇到下面弹窗，停止切换游戏服务器，请使用软件或官方启动器的" /><Run FontWeight="Bold" Text="“修复游戏”" />
+                    </TextBlock>
+                    <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1"
+                            CornerRadius="4" Padding="8,6" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
+                        <StackPanel Spacing="2">
+                            <TextBlock Text="Error" FontFamily="Consolas" FontSize="12" FontWeight="SemiBold" />
+                            <TextBlock FontFamily="Consolas" FontSize="12" TextWrapping="Wrap">
+                                <Run FontWeight="Bold">DllNotFoundException</Run><Run>: Unable to load DLL </Run><Run FontWeight="Bold">'Mmoron'</Run><Run>: The specified module could not be found.</Run>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </InfoBar.Content>
+        </InfoBar>
     </Grid>
 </Page>
