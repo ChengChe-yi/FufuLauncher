@@ -94,4 +94,35 @@ internal static class YaeNative
 
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     public static extern nint LoadLibraryEx(string lpFileName, nint hFile, uint dwFlags);
+
+    public const uint TH32CS_SNAPMODULE = 0x00000008;
+    public const uint TH32CS_SNAPMODULE32 = 0x00000010;
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    public static extern nint CreateToolhelp32Snapshot(uint dwFlags, uint th32ProcessID);
+
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool Module32First(nint hSnapshot, ref ModuleEntry32 lpme);
+
+    [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool Module32Next(nint hSnapshot, ref ModuleEntry32 lpme);
+
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ModuleEntry32
+    {
+        public uint dwSize;
+        public uint th32ModuleID;
+        public uint th32ProcessID;
+        public uint GlblcntUsage;
+        public uint ProccntUsage;
+        public nint modBaseAddr;
+        public uint modBaseSize;
+        public nint hModule;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+        public string szModule;
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+        public string szExePath;
+    }
 }

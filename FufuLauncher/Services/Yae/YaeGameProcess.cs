@@ -4,7 +4,8 @@ Licensed under the MIT License.
 
 以 CREATE_SUSPENDED 启动游戏进程并注入 YaeAchievementLib.dll：
 1. LoadLibraryW 远程线程加载 DLL；
-2. 以 LoadLibraryW 线程退出码（HMODULE）作为 DLL 在目标进程的基址；
+2. 等 LoadLibraryW 完成后用 ToolHelp 枚举目标进程模块，按路径匹配获取完整 64 位基址
+   （GetExitCodeThread 只返回 32 位 DWORD，x64 下会截断 HMODULE，不再用于取基址）；
 3. 在本进程 DONT_RESOLVE_DLL_REFERENCES 加载 DLL 计算 YaeMain RVA；
 4. 在目标进程以 base + YaeMainRVA 创建远程线程执行入口。
 注入流程参考 HolographicHat/YaeAchievement (GPL-3.0)。
@@ -35,7 +36,7 @@ internal sealed class YaeGameProcess : IDisposable
     {
         var startupInfo = new YaeNative.StartupInfoW
         {
-            cb = (uint)System.Runtime.InteropServices.Marshal.SizeOf<YaeNative.StartupInfoW>(),
+            cb = (uint)Marshal.SizeOf<YaeNative.StartupInfoW>(),
         };
         var workDir = Path.GetDirectoryName(gameExePath) ?? AppContext.BaseDirectory;
         var commandLine = $"\"{gameExePath}\"";
@@ -53,7 +54,7 @@ internal sealed class YaeGameProcess : IDisposable
 
         try
         {
-            var targetBase = InjectDllAndGetBase(processInfo.hProcess, dllPath);
+            var targetBase = InjectDllAndGetBase(processInfo.hProcess, processInfo.dwProcessId, dllPath);
             var entryRva = ResolveYaeMainRva(dllPath);
             _entryThreadHandle = StartRemoteThread(processInfo.hProcess, targetBase + entryRva);
         }
@@ -88,7 +89,7 @@ internal sealed class YaeGameProcess : IDisposable
         if (_entryThreadHandle != 0) YaeNative.CloseHandle(_entryThreadHandle);
     }
 
-    private static nint InjectDllAndGetBase(nint hProcess, string dllPath)
+    private static nint InjectDllAndGetBase(nint hProcess, uint processId, string dllPath)
     {
         var libPathBytes = Encoding.Unicode.GetBytes(dllPath + "\0");
         var libPathLen = (uint)libPathBytes.Length;
@@ -98,49 +99,132 @@ internal sealed class YaeGameProcess : IDisposable
             throw new Win32Exception("VirtualAllocEx failed.");
         }
 
-        if (!YaeNative.WriteProcessMemory(hProcess, remotePath, libPathBytes, libPathLen, out _))
+        try
         {
-            throw new Win32Exception("WriteProcessMemory failed.");
+            if (!YaeNative.WriteProcessMemory(hProcess, remotePath, libPathBytes, libPathLen, out _))
+            {
+                throw new Win32Exception("WriteProcessMemory failed.");
+            }
+
+            var kernel32 = YaeNative.GetModuleHandleW("kernel32.dll");
+            var loadLibraryW = YaeNative.GetProcAddress(kernel32, "LoadLibraryW");
+            if (loadLibraryW == 0)
+            {
+                throw new Win32Exception("GetProcAddress(LoadLibraryW) failed.");
+            }
+
+            var loadThread = YaeNative.CreateRemoteThread(hProcess, 0, 0, loadLibraryW, remotePath, 0, out _);
+            if (loadThread == 0)
+            {
+                throw new Win32Exception("CreateRemoteThread(LoadLibraryW) failed.");
+            }
+
+            try
+            {
+                // DLL 加载可能因杀软扫描等原因超过 2s，放宽到 10s。
+                // 这里只用来同步"加载是否完成"：GetExitCodeThread 只返回 32 位 DWORD，
+                // x64 下拿 HMODULE 会被截断，所以基址不从这里取。
+                if (YaeNative.WaitForSingleObject(loadThread, 10000) != 0) // WAIT_TIMEOUT
+                {
+                    throw new Win32Exception($"远程 LoadLibraryW 在 10s 内未完成，DLL 加载超时：{dllPath}");
+                }
+            }
+            finally
+            {
+                YaeNative.CloseHandle(loadThread);
+            }
+        }
+        finally
+        {
+            YaeNative.VirtualFreeEx(hProcess, remotePath, 0, 0x8000);
         }
 
-        var kernel32 = YaeNative.GetModuleHandleW("kernel32.dll");
-        var loadLibraryW = YaeNative.GetProcAddress(kernel32, "LoadLibraryW");
-        if (loadLibraryW == 0)
+        // 加载完成后再枚举模块取完整 64 位基址。
+        var moduleBase = FindRemoteModuleBase(processId, dllPath);
+        if (moduleBase == 0)
         {
-            throw new Win32Exception("GetProcAddress(LoadLibraryW) failed.");
+            throw new Win32Exception($"未在目标进程中找到已加载模块：{dllPath}");
         }
+        return moduleBase;
+    }
 
-        var loadThread = YaeNative.CreateRemoteThread(hProcess, 0, 0, loadLibraryW, remotePath, 0, out _);
-        if (loadThread == 0)
+    private static nint FindRemoteModuleBase(uint processId, string dllPath)
+    {
+        const uint TH32CS_SNAPMODULE = 0x00000008;
+        const uint TH32CS_SNAPMODULE32 = 0x00000010;
+        const uint ERROR_BAD_LENGTH = 24;
+
+        var targetFullPath = SafeGetFullPath(dllPath);
+        var targetFileName = Path.GetFileName(targetFullPath);
+
+        nint snapshot;
+        do
         {
-            throw new Win32Exception("CreateRemoteThread(LoadLibraryW) failed.");
+            snapshot = YaeNative.CreateToolhelp32Snapshot(
+                TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processId);
+
+            // 目标进程模块列表在变化时会返回 ERROR_BAD_LENGTH，重试一次即可。
+            if (Marshal.GetLastSystemError() is not (0 or (int)ERROR_BAD_LENGTH))
+            {
+                break;
+            }
+        }
+        while (snapshot == -1);
+
+        if (snapshot == -1)
+        {
+            return 0;
         }
 
         try
         {
-            // DLL 加载可能因杀软扫描等原因超过 2s，放宽到 10s。
-            // 等待远程 LoadLibraryW 完成，其退出码即目标进程中 DLL 的 HMODULE（模块基址）。
-            // 直接以该基址启动 YaeMain，不再枚举进程模块检测基址——
-            // 反作弊驱动可能过滤 ToolHelp/psapi 枚举，造成"模块已加载但枚举不到"的假阴性
-            // （此前实测的"未在目标进程中找到Yae模块"）。
-            if (YaeNative.WaitForSingleObject(loadThread, 10000) != 0) // WAIT_TIMEOUT
+            var entry = new YaeNative.ModuleEntry32
             {
-                throw new Win32Exception($"远程 LoadLibraryW 在 10s 内未完成，DLL 加载超时：{dllPath}");
+                dwSize = (uint)Marshal.SizeOf<YaeNative.ModuleEntry32>(),
+            };
+
+            if (!YaeNative.Module32First(snapshot, ref entry))
+            {
+                return 0;
             }
 
-            YaeNative.GetExitCodeThread(loadThread, out uint moduleBase);
-            YaeNative.VirtualFreeEx(hProcess, remotePath, 0, 0x8000);
-
-            if (moduleBase == 0)
+            do
             {
-                throw new Win32Exception($"远程 LoadLibraryW 返回 NULL，DLL 加载失败：{dllPath}");
-            }
+                var modulePath = entry.szExePath;
+                if (string.IsNullOrEmpty(modulePath))
+                {
+                    continue;
+                }
 
-            return (nint)moduleBase;
+                var moduleFullPath = SafeGetFullPath(modulePath);
+
+                // 先按完整路径比较；失败再退化为文件名比较，
+                // 兼容某些进程返回短路径或 \??\ 前缀路径的情况。
+                if (string.Equals(moduleFullPath, targetFullPath, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(Path.GetFileName(moduleFullPath), targetFileName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return entry.modBaseAddr;
+                }
+            }
+            while (YaeNative.Module32Next(snapshot, ref entry));
         }
         finally
         {
-            YaeNative.CloseHandle(loadThread);
+            YaeNative.CloseHandle(snapshot);
+        }
+
+        return 0;
+    }
+
+    private static string SafeGetFullPath(string path)
+    {
+        try
+        {
+            return Path.GetFullPath(path);
+        }
+        catch
+        {
+            return path;
         }
     }
 
