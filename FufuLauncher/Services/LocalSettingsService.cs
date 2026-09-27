@@ -28,6 +28,8 @@ namespace FufuLauncher.Services
         private const string _defaultApplicationDataFolder = "FufuLauncher/ApplicationData";
         private const string _defaultLocalSettingsDb = "LocalSettings.db";
 
+        private static readonly TimeSpan LoadRetryBackoff = TimeSpan.FromSeconds(30);
+
         private readonly LocalSettingsRepository _repository;
 
         private readonly ConcurrentDictionary<string, string> _settings = new();
@@ -52,6 +54,8 @@ namespace FufuLauncher.Services
 
      
         private Task? _backgroundLoadTask;
+
+        private DateTime? _lastLoadFailureUtc;
 
         private bool _dirErrorNotified;
 
@@ -96,6 +100,11 @@ namespace FufuLauncher.Services
                 if (_backgroundLoadTask is { IsCompleted: false })
                     return;
 
+                // 上次刚失败过则退避，避免每次设置读取都重试一次注定失败的全表查询
+                if (_lastLoadFailureUtc is { } failedAt &&
+                    DateTime.UtcNow - failedAt < LoadRetryBackoff)
+                    return;
+
                 _backgroundLoadTask = Task.Run(RunBackgroundLoadAsync);
             }
         }
@@ -129,10 +138,13 @@ namespace FufuLauncher.Services
             {
                 lock (_stateLock)
                 {
-                    // 未就绪说明本次加载未成功，清空任务引用以便下次重试；
+                    // 未就绪说明本次加载未成功：清空任务引用以便重试，并记录失败时间用于退避；
                     // 成功时保留已完成的引用，后续调用由 _fullLoadCompleted 短路。
                     if (!_fullLoadCompleted)
+                    {
                         _backgroundLoadTask = null;
+                        _lastLoadFailureUtc = DateTime.UtcNow;
+                    }
                 }
             }
         }
@@ -203,9 +215,42 @@ namespace FufuLauncher.Services
                 _missingDuringLoad.Clear();
                 _removedDuringLoad.Clear();
                 _fullLoadCompleted = true;
+                _lastLoadFailureUtc = null;
             }
 
             Debug.WriteLine($"LocalSettingsService: 全量加载完成，共 {all.Count} 项（新增 {added}，保留内存值 {kept}，跳过已删除 {skippedRemoved}）");
+        }
+
+
+        public async Task InvalidateAndReloadAsync()
+        {
+            await _fullLoadGate.WaitAsync();
+            try
+            {
+                // 与写入串行：避免在途保存在重置后把旧结果并入新缓存
+                await _writeGate.WaitAsync();
+                try
+                {
+                    lock (_stateLock)
+                    {
+                        _settings.Clear();
+                        _missingDuringLoad.Clear();
+                        _removedDuringLoad.Clear();
+                        _fullLoadCompleted = false;
+                        _backgroundLoadTask = null;
+                    }
+
+                    await LoadAllCoreAsync();
+                }
+                finally
+                {
+                    _writeGate.Release();
+                }
+            }
+            finally
+            {
+                _fullLoadGate.Release();
+            }
         }
 
         public async Task<object?> ReadSettingAsync(string key)
@@ -303,6 +348,12 @@ namespace FufuLauncher.Services
 
         public async Task SaveSettingAsync<T>(string key, T value)
         {
+            await TrySaveSettingAsync(key, value);
+        }
+
+
+        public async Task<bool> TrySaveSettingAsync<T>(string key, T value)
+        {
             StartBackgroundLoad();
 
             var json = JsonSerializer.Serialize(value, _jsonOptions);
@@ -322,6 +373,8 @@ namespace FufuLauncher.Services
                     _missingDuringLoad.TryRemove(key, out _);
                     _removedDuringLoad.TryRemove(key, out _);
                 }
+
+                return true;
             }
             catch (Exception ex)
             {
@@ -338,6 +391,7 @@ namespace FufuLauncher.Services
                         + string.Format("Settings_ConfigSaveFailedPathHint".GetLocalized(), AppPaths.LocalSettingsDb),
                     NotificationType.Error,
                     5000));
+                return false;
             }
             finally
             {

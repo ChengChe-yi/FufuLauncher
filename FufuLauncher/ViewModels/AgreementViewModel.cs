@@ -127,10 +127,15 @@ namespace FufuLauncher.ViewModels
                 Helpers.AppPaths.SaveCustomPaths(DataPath, CachePath);
                 Helpers.AppPaths.FinalizeFirstRun();
 
-                await _localSettingsService.SaveSettingAsync("UserAgreementAccepted", true);
+                if (!await _localSettingsService.TrySaveSettingAsync("UserAgreementAccepted", true))
+                {
+                    PathError = string.Format("StoragePath_Error_SaveFailed".GetLocalized(), "UserAgreementAccepted");
+                    return;
+                }
 
                 if (!AppRestartHelper.TryRestart())
                 {
+                   
                     Debug.WriteLine("[Agreement] 重启失败，继续以当前进程运行");
                     WeakReferenceMessenger.Default.Send(new AgreementAcceptedMessage());
                 }

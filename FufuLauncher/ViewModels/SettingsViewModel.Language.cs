@@ -3,7 +3,9 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
+using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using Microsoft.UI.Xaml.Controls;
 
@@ -56,7 +58,18 @@ public partial class SettingsViewModel
         }
     }
 
-    private static void RestartApp() => AppRestartHelper.TryRestart();
+    private static void RestartApp()
+    {
+        if (AppRestartHelper.TryRestart())
+            return;
+
+       
+        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+            "Restart_FailedTitle".GetLocalized(),
+            "Restart_FailedMessage".GetLocalized(),
+            NotificationType.Warning,
+            6000));
+    }
 
     #endregion
 }

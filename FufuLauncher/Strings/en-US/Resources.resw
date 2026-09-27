@@ -135,6 +135,12 @@
   <data name="StoragePath_RestartMessage" xml:space="preserve">
     <value>The new storage path has been written to the configuration. It takes full effect after a restart; until then, some features still use the previous path. Restart now?</value>
   </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>Could Not Restart</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>Automatic restart failed. Your settings were saved; please close and reopen the app manually to apply the changes.</value>
+  </data>
   <data name="StoragePath_Error_Empty" xml:space="preserve">
     <value>The storage path is empty: the {0} cannot be created and the setting was not saved. Select a folder that exists on a local disk.</value>
   </data>
