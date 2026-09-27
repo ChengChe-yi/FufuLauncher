@@ -149,7 +149,7 @@ namespace FufuLauncher.Services
             }
         }
 
-      
+
         private async Task LoadAllCoreAsync()
         {
             Debug.WriteLine("LocalSettingsService: 开始全量加载设置");
@@ -222,25 +222,37 @@ namespace FufuLauncher.Services
         }
 
 
-        public async Task InvalidateAndReloadAsync()
+
+        public async Task<bool> InvalidateAndReloadAsync()
         {
             await _fullLoadGate.WaitAsync();
             try
             {
-                // 与写入串行：避免在途保存在重置后把旧结果并入新缓存
+                // 与写入串行：避免在途保存把已被替换掉的值写穿进新缓存
                 await _writeGate.WaitAsync();
                 try
                 {
+                    var (success, all) = await _repository.TryGetAllSettingsAsync();
+                    if (!success)
+                    {
+                        Debug.WriteLine("LocalSettingsService: 整表替换后重载失败，缓存保持原状");
+                        return false;
+                    }
+
                     lock (_stateLock)
                     {
                         _settings.Clear();
+                        foreach (var (key, value) in all)
+                            _settings[key] = value;
+
                         _missingDuringLoad.Clear();
                         _removedDuringLoad.Clear();
-                        _fullLoadCompleted = false;
-                        _backgroundLoadTask = null;
+                        _fullLoadCompleted = true;
+                        _lastLoadFailureUtc = null;
                     }
 
-                    await LoadAllCoreAsync();
+                    Debug.WriteLine($"LocalSettingsService: 缓存已按数据库重建，共 {all.Count} 项");
+                    return true;
                 }
                 finally
                 {

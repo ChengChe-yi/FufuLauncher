@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -16,6 +16,6 @@ namespace FufuLauncher.Contracts.Services
 
         Task RemoveSettingAsync(string key);
 
-        Task InvalidateAndReloadAsync();
+        Task<bool> InvalidateAndReloadAsync();
     }
 }

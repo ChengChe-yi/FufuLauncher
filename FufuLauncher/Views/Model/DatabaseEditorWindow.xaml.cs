@@ -116,7 +116,11 @@ namespace FufuLauncher.Views
 
                 await _repository.ReplaceAllSettingsAsync(entities);
 
-                await _localSettingsService.InvalidateAndReloadAsync();
+                if (!await _localSettingsService.InvalidateAndReloadAsync())
+                {
+                    ShowDialog("失败", "更改已写入数据库，但重新加载设置失败，部分设置可能仍为旧值。请重启软件。");
+                    return;
+                }
 
                 ShowDialog("成功", "所有的更改已保存到数据库");
             }
