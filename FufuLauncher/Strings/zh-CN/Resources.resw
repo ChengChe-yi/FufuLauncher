@@ -135,6 +135,12 @@
   <data name="StoragePath_RestartMessage" xml:space="preserve">
     <value>新的存储路径已写入配置，重启软件后才能完全生效。在重启前，部分功能仍会使用原路径。是否立即重启？</value>
   </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>无法自动重启</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>自动重启失败，设置已保存。请手动关闭并重新打开软件以使更改生效。</value>
+  </data>
   <data name="StoragePath_Error_Empty" xml:space="preserve">
     <value>存储路径为空，无法创建{0}，设置未保存。请选择本机磁盘上已存在的文件夹。</value>
   </data>

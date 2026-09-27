@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using FufuLauncher.Contracts.Services;
 using FufuLauncher.Data.Repositories;
 using FufuLauncher.Data.Entities;
 
@@ -35,6 +36,7 @@ namespace FufuLauncher.Views
     public sealed partial class DatabaseEditorWindow : Window
     {
         private readonly LocalSettingsRepository _repository;
+        private readonly ILocalSettingsService _localSettingsService;
         public ObservableCollection<SettingItem> SettingsItems { get; } = new();
 
         public DatabaseEditorWindow()
@@ -42,6 +44,7 @@ namespace FufuLauncher.Views
             InitializeComponent();
 
             _repository = App.GetService<LocalSettingsRepository>();
+            _localSettingsService = App.GetService<ILocalSettingsService>();
 
             SettingsListView.ItemsSource = SettingsItems;
             LoadData();
@@ -112,6 +115,13 @@ namespace FufuLauncher.Views
                     .ToList();
 
                 await _repository.ReplaceAllSettingsAsync(entities);
+
+                if (!await _localSettingsService.InvalidateAndReloadAsync())
+                {
+                    ShowDialog("失败", "更改已写入数据库，但重新加载设置失败，部分设置可能仍为旧值。请重启软件。");
+                    return;
+                }
+
                 ShowDialog("成功", "所有的更改已保存到数据库");
             }
             catch (Exception ex)

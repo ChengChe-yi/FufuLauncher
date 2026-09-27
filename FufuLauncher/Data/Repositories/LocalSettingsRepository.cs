@@ -88,21 +88,6 @@ public class LocalSettingsRepository
         }
     }
 
-    public async Task<Dictionary<string, string>> GetAllSettingsAsync()
-    {
-        try
-        {
-            using var context = CreateContext();
-            var settings = await context.Settings.ToListAsync();
-            return settings.ToDictionary(s => s.Key, s => s.Value ?? string.Empty);
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"LocalSettingsRepository: 加载设置失败 - {ex.Message}");
-            return new Dictionary<string, string>();
-        }
-    }
-
     public Dictionary<string, string> GetAllSettings()
     {
         try
@@ -114,6 +99,38 @@ public class LocalSettingsRepository
         {
             Debug.WriteLine($"LocalSettingsRepository: 加载设置失败 - {ex.Message}");
             return new Dictionary<string, string>();
+        }
+    }
+
+    //读取单个设置项
+    public async Task<(bool Success, bool Found, string Value)> TryGetSettingAsync(string key)
+    {
+        try
+        {
+            using var context = CreateContext();
+            var entity = await context.Settings.FindAsync(key);
+            return entity is null ? (true, false, string.Empty) : (true, true, entity.Value ?? string.Empty);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"LocalSettingsRepository: 读取 '{key}' 失败 - {ex.Message}");
+            return (false, false, string.Empty);
+        }
+    }
+
+    //全量读取
+    public async Task<(bool Success, Dictionary<string, string> Values)> TryGetAllSettingsAsync()
+    {
+        try
+        {
+            using var context = CreateContext();
+            var settings = await context.Settings.ToListAsync();
+            return (true, settings.ToDictionary(s => s.Key, s => s.Value ?? string.Empty));
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"LocalSettingsRepository: 全量加载设置失败 - {ex.Message}");
+            return (false, new Dictionary<string, string>());
         }
     }
 
@@ -130,10 +147,11 @@ public class LocalSettingsRepository
             context.Settings.Add(new SettingEntity { Key = key, Value = value });
         }
         await context.SaveChangesAsync();
-        Debug.WriteLine($"LocalSettingsRepository: 已保存 '{key}'");
+        SettingsLog.Write($"LocalSettingsRepository: 已保存 '{key}'");
     }
 
-    public async Task DeleteSettingAsync(string key)
+
+    public async Task<bool> DeleteSettingAsync(string key)
     {
         try
         {
@@ -143,12 +161,14 @@ public class LocalSettingsRepository
             {
                 context.Settings.Remove(entity);
                 await context.SaveChangesAsync();
-                Debug.WriteLine($"LocalSettingsRepository: 已删除 '{key}'");
+                SettingsLog.Write($"LocalSettingsRepository: 已删除 '{key}'");
             }
+            return true;
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"LocalSettingsRepository: 删除设置失败 - {ex.Message}");
+            return false;
         }
     }
 

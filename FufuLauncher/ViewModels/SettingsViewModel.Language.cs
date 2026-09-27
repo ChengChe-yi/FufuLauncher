@@ -3,7 +3,9 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
+using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using Microsoft.UI.Xaml.Controls;
 
@@ -56,27 +58,17 @@ public partial class SettingsViewModel
         }
     }
 
-    private void RestartApp()
+    private static void RestartApp()
     {
-        try
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = Environment.ProcessPath,
-                    Arguments = "restart",
-                    UseShellExecute = true
-                }
-            };
-            process.Start();
-            
-            Environment.Exit(0);
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"重启应用失败: {ex.Message}");
-        }
+        if (AppRestartHelper.TryRestart())
+            return;
+
+       
+        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+            "Restart_FailedTitle".GetLocalized(),
+            "Restart_FailedMessage".GetLocalized(),
+            NotificationType.Warning,
+            6000));
     }
 
     #endregion

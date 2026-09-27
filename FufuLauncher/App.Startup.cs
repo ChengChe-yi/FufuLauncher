@@ -28,6 +28,9 @@ public partial class App
 
             _ = Task.Run(LoadUidLookupAsync);
 
+            //全量加载设置
+            GetService<ILocalSettingsService>().StartBackgroundLoad();
+
             await VerifyResourceFilesAsync();
 
             if (!AppPaths.IsFirstRun)
