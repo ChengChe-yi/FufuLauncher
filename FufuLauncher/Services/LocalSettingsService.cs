@@ -436,18 +436,27 @@ namespace FufuLauncher.Services
             await _fullLoadGate.WaitAsync();
             try
             {
-                lock (_stateLock)
+                
+                await _writeGate.WaitAsync();
+                try
                 {
-                    
-                    _generation++;
-                    _settings.Clear();
-                    _missingDuringLoad.Clear();
-                    _removedDuringLoad.Clear();
-                    _fullLoadCompleted = false;
-                    _backgroundLoadTask = null;
-                }
+                    lock (_stateLock)
+                    {
+                        
+                        _generation++;
+                        _settings.Clear();
+                        _missingDuringLoad.Clear();
+                        _removedDuringLoad.Clear();
+                        _fullLoadCompleted = false;
+                        _backgroundLoadTask = null;
+                    }
 
-                await LoadAllCoreAsync();
+                    await LoadAllCoreAsync();
+                }
+                finally
+                {
+                    _writeGate.Release();
+                }
             }
             finally
             {
