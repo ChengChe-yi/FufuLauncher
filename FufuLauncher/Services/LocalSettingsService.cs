@@ -50,9 +50,6 @@ namespace FufuLauncher.Services
       
         private bool _fullLoadCompleted;
 
-
-        private long _generation;
-
      
         private Task? _backgroundLoadTask;
 
@@ -169,13 +166,6 @@ namespace FufuLauncher.Services
                 return;
             }
 
-          
-            long generation;
-            lock (_stateLock)
-            {
-                generation = _generation;
-            }
-
             var (success, all) = await _repository.TryGetAllSettingsAsync();
             if (!success)
             {
@@ -184,53 +174,35 @@ namespace FufuLauncher.Services
                 return;
             }
 
-         
             int added = 0, kept = 0, skippedRemoved = 0;
-            bool generationChanged = false;
             lock (_stateLock)
             {
-               
-                if (generation != _generation)
+                foreach (var (key, value) in all)
                 {
-                    generationChanged = true;
-                }
-                else
-                {
-                    foreach (var (key, value) in all)
+                    // 加载窗口内被删除的键：磁盘快照可能仍含旧值，不得重新填回
+                    if (_removedDuringLoad.ContainsKey(key))
                     {
-                        // 加载窗口内被删除的键：磁盘快照可能仍含旧值，不得重新填回
-                        if (_removedDuringLoad.ContainsKey(key))
-                        {
-                            skippedRemoved++;
-                            continue;
-                        }
-
-                        if (_settings.TryGetValue(key, out var existing))
-                        {
-                           
-                            if (!string.Equals(existing, value, StringComparison.Ordinal))
-                            {
-                                kept++;
-                                SettingsLog.Write($"LocalSettingsService: '{key}' 内存值与快照不一致，保留内存值");
-                            }
-                            continue;
-                        }
-
-                        if (_settings.TryAdd(key, value))
-                            added++;
+                        skippedRemoved++;
+                        continue;
                     }
 
-                    _missingDuringLoad.Clear();
-                    _removedDuringLoad.Clear();
-                    _fullLoadCompleted = true;
-                }
-            }
+                    if (_settings.TryGetValue(key, out var existing))
+                    {
+                        if (!string.Equals(existing, value, StringComparison.Ordinal))
+                        {
+                            kept++;
+                            SettingsLog.Write($"LocalSettingsService: '{key}' 内存值与快照不一致，保留内存值");
+                        }
+                        continue;
+                    }
 
-            if (generationChanged)
-            {
-                
-                Debug.WriteLine("LocalSettingsService: 全量加载期间数据路径已变更，丢弃本次结果并等待重试");
-                return;
+                    if (_settings.TryAdd(key, value))
+                        added++;
+                }
+
+                _missingDuringLoad.Clear();
+                _removedDuringLoad.Clear();
+                _fullLoadCompleted = true;
             }
 
             Debug.WriteLine($"LocalSettingsService: 全量加载完成，共 {all.Count} 项（新增 {added}，保留内存值 {kept}，跳过已删除 {skippedRemoved}）");
@@ -238,83 +210,62 @@ namespace FufuLauncher.Services
 
         public async Task<object?> ReadSettingAsync(string key)
         {
+            StartBackgroundLoad();
 
-            const int maxGenerationRetries = 5;
-            int generationRetries = 0;
+            string? fromCache;
+            bool foundInCache;
+            bool knownAbsent;
 
-            while (true)
+            lock (_stateLock)
             {
-                StartBackgroundLoad();
+                foundInCache = _settings.TryGetValue(key, out fromCache);
+                knownAbsent = !foundInCache && IsKnownAbsentLocked(key);
+            }
 
-                string? fromCache;
-                bool foundInCache;
-                bool knownAbsent;
-                long generation;
+            if (foundInCache)
+            {
+                SettingsLog.Write($"LocalSettingsService: 读取 {key}");
+                return Deserialize(fromCache!);
+            }
 
-                lock (_stateLock)
+            if (knownAbsent)
+            {
+                SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
+                return null;
+            }
+
+            // 锁外查库（异步）
+            var (success, found, lazyValue) = await _repository.TryGetSettingAsync(key);
+
+            // 回到锁内应用结果；期间状态可能已变，重新校验
+            lock (_stateLock)
+            {
+                if (_settings.TryGetValue(key, out var current))
                 {
-                    generation = _generation;
-                    foundInCache = _settings.TryGetValue(key, out fromCache);
-                    knownAbsent = !foundInCache && IsKnownAbsentLocked(key);
+                    SettingsLog.Write($"LocalSettingsService: 懒加载 {key} 期间已有更新值，以缓存为准");
+                    return Deserialize(current);
                 }
 
-                if (foundInCache)
-                {
-                    SettingsLog.Write($"LocalSettingsService: 读取 {key}");
-                    return Deserialize(fromCache!);
-                }
-
-                if (knownAbsent)
+                if (_removedDuringLoad.ContainsKey(key) || _fullLoadCompleted)
                 {
                     SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
                     return null;
                 }
 
-   
-                var (success, found, lazyValue) = await _repository.TryGetSettingAsync(key);
-
-             
-                lock (_stateLock)
+                if (success && found)
                 {
-                   
-                    if (generation != _generation)
-                    {
-                        if (generationRetries++ < maxGenerationRetries)
-                            continue;
-
-                        Debug.WriteLine($"LocalSettingsService: '{key}' 读取期间世代反复变化，返回缓存当前值");
-                        return _settings.TryGetValue(key, out var latest) ? Deserialize(latest) : null;
-                    }
-
-                    
-                    if (_settings.TryGetValue(key, out var current))
-                    {
-                        SettingsLog.Write($"LocalSettingsService: 懒加载 {key} 期间已有更新值，以缓存为准");
-                        return Deserialize(current);
-                    }
-
-               
-                    if (_removedDuringLoad.ContainsKey(key) || _fullLoadCompleted)
-                    {
-                        SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
-                        return null;
-                    }
-
-                    if (success && found)
-                    {
-                        _settings[key] = lazyValue;
-                        SettingsLog.Write($"LocalSettingsService: 懒加载 {key}");
-                        return Deserialize(lazyValue);
-                    }
-
-                    if (success)
-                        _missingDuringLoad.TryAdd(key, 0);
-                    else
-                        Debug.WriteLine($"LocalSettingsService: 懒加载 '{key}' 查询失败");
-
-                    SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
-                    return null;
+                    _settings[key] = lazyValue;
+                    SettingsLog.Write($"LocalSettingsService: 懒加载 {key}");
+                    return Deserialize(lazyValue);
                 }
+
+                if (success)
+                    _missingDuringLoad.TryAdd(key, 0);
+                else
+                    Debug.WriteLine($"LocalSettingsService: 懒加载 '{key}' 查询失败");
+
+                SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
+                return null;
             }
         }
 
@@ -424,43 +375,6 @@ namespace FufuLauncher.Services
             finally
             {
                 _writeGate.Release();
-            }
-        }
-
-        /// <summary>
-        /// 丢弃当前快照并同步重建（等待完成）。用于首次运行接受协议后切换数据目录等
-        /// 明确需要"返回时快照即最新"的场景。
-        /// </summary>
-        public async Task ReInitializeAsync()
-        {
-            await _fullLoadGate.WaitAsync();
-            try
-            {
-                
-                await _writeGate.WaitAsync();
-                try
-                {
-                    lock (_stateLock)
-                    {
-                        
-                        _generation++;
-                        _settings.Clear();
-                        _missingDuringLoad.Clear();
-                        _removedDuringLoad.Clear();
-                        _fullLoadCompleted = false;
-                        _backgroundLoadTask = null;
-                    }
-
-                    await LoadAllCoreAsync();
-                }
-                finally
-                {
-                    _writeGate.Release();
-                }
-            }
-            finally
-            {
-                _fullLoadGate.Release();
             }
         }
     }

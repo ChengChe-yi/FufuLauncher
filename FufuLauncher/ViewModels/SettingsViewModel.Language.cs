@@ -56,28 +56,7 @@ public partial class SettingsViewModel
         }
     }
 
-    private void RestartApp()
-    {
-        try
-        {
-            var process = new Process
-            {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = Environment.ProcessPath,
-                    Arguments = "restart",
-                    UseShellExecute = true
-                }
-            };
-            process.Start();
-            
-            Environment.Exit(0);
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"重启应用失败: {ex.Message}");
-        }
-    }
+    private static void RestartApp() => AppRestartHelper.TryRestart();
 
     #endregion
 }
