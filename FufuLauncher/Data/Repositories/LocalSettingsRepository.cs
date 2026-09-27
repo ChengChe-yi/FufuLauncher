@@ -150,7 +150,8 @@ public class LocalSettingsRepository
         SettingsLog.Write($"LocalSettingsRepository: 已保存 '{key}'");
     }
 
-    public async Task DeleteSettingAsync(string key)
+
+    public async Task<bool> DeleteSettingAsync(string key)
     {
         try
         {
@@ -162,10 +163,12 @@ public class LocalSettingsRepository
                 await context.SaveChangesAsync();
                 SettingsLog.Write($"LocalSettingsRepository: 已删除 '{key}'");
             }
+            return true;
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"LocalSettingsRepository: 删除设置失败 - {ex.Message}");
+            return false;
         }
     }
 

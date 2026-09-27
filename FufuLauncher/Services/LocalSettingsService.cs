@@ -21,8 +21,7 @@ namespace FufuLauncher.Services
     /// <item>同时在后台线程全量加载，填充快照；</item>
     /// <item>快照就绪前的读取按需单键查库（懒加载），命中后并入快照。</item>
     /// </list>
-    /// 全量加载完成时与内存中已有的键做一致性检查：加载窗口内的本进程写入（保存/删除）
-    /// 优先于快照值，其余保留内存值，避免覆盖刚写入的设置。
+
     /// </summary>
     public class LocalSettingsService : ILocalSettingsService
     {
@@ -36,15 +35,24 @@ namespace FufuLauncher.Services
         /// <summary>加载窗口内确认不存在的键，避免同一缺失键反复查库。</summary>
         private readonly ConcurrentDictionary<string, byte> _missingDuringLoad = new();
 
-        /// <summary>加载窗口内被删除的键；合并快照时不得重新填回。</summary>
+        /// <summary>加载窗口内被删除的键；合并快照时不得重新填回，在途懒加载也不得写回。</summary>
         private readonly ConcurrentDictionary<string, byte> _removedDuringLoad = new();
+
+       
+        private readonly object _stateLock = new();
+
+
+        private readonly SemaphoreSlim _writeGate = new(1, 1);
+
 
         private readonly SemaphoreSlim _fullLoadGate = new(1, 1);
 
-        /// <summary>全量快照是否已就绪。就绪后未命中即代表该键确实不存在。</summary>
-        private volatile bool _fullLoadCompleted;
+      
+        private bool _fullLoadCompleted;
 
+     
         private Task? _backgroundLoadTask;
+
         private bool _dirErrorNotified;
 
         public const string BackgroundServerKey = "BackgroundServer";
@@ -76,15 +84,20 @@ namespace FufuLauncher.Services
             };
         }
 
-        /// <summary>
-        /// 启动后台全量加载。幂等，可重复调用；读取/写入路径也会在首次触碰时自动触发。
-        /// </summary>
+
         public void StartBackgroundLoad()
         {
-            if (_backgroundLoadTask is not null)
-                return;
+            lock (_stateLock)
+            {
+                if (_fullLoadCompleted)
+                    return;
 
-            _backgroundLoadTask = Task.Run(RunBackgroundLoadAsync);
+                // 已有加载在途则不重复排程
+                if (_backgroundLoadTask is { IsCompleted: false })
+                    return;
+
+                _backgroundLoadTask = Task.Run(RunBackgroundLoadAsync);
+            }
         }
 
         private async Task RunBackgroundLoadAsync()
@@ -94,8 +107,11 @@ namespace FufuLauncher.Services
                 await _fullLoadGate.WaitAsync();
                 try
                 {
-                    if (_fullLoadCompleted)
-                        return;
+                    lock (_stateLock)
+                    {
+                        if (_fullLoadCompleted)
+                            return;
+                    }
 
                     await LoadAllCoreAsync();
                 }
@@ -109,9 +125,19 @@ namespace FufuLauncher.Services
                 // 后台任务无人 await，异常不能外泄为未观察异常；保持懒加载模式即可
                 Debug.WriteLine($"LocalSettingsService: 后台全量加载异常 - {ex.Message}");
             }
+            finally
+            {
+                lock (_stateLock)
+                {
+                    // 未就绪说明本次加载未成功，清空任务引用以便下次重试；
+                    // 成功时保留已完成的引用，后续调用由 _fullLoadCompleted 短路。
+                    if (!_fullLoadCompleted)
+                        _backgroundLoadTask = null;
+                }
+            }
         }
 
-        /// <summary>全量加载并合并进快照。调用方需持有 <see cref="_fullLoadGate"/>。</summary>
+      
         private async Task LoadAllCoreAsync()
         {
             Debug.WriteLine("LocalSettingsService: 开始全量加载设置");
@@ -140,6 +166,7 @@ namespace FufuLauncher.Services
                 return;
             }
 
+         
             var (success, all) = await _repository.TryGetAllSettingsAsync();
             if (!success)
             {
@@ -148,34 +175,39 @@ namespace FufuLauncher.Services
                 return;
             }
 
+         
             int added = 0, kept = 0, skippedRemoved = 0;
-            foreach (var (key, value) in all)
+            lock (_stateLock)
             {
-                // 加载窗口内被删除的键：磁盘快照可能仍含旧值，不得重新填回
-                if (_removedDuringLoad.ContainsKey(key))
+                foreach (var (key, value) in all)
                 {
-                    skippedRemoved++;
-                    continue;
-                }
-
-                if (_settings.TryGetValue(key, out var existing))
-                {
-                    // 加载窗口内发生过懒加载或写入，内存值不旧于快照值，保留并记录差异
-                    if (!string.Equals(existing, value, StringComparison.Ordinal))
+                    // 加载窗口内被删除的键：磁盘快照可能仍含旧值，不得重新填回
+                    if (_removedDuringLoad.ContainsKey(key))
                     {
-                        kept++;
-                        SettingsLog.Write($"LocalSettingsService: '{key}' 内存值与快照不一致，保留内存值");
+                        skippedRemoved++;
+                        continue;
                     }
-                    continue;
+
+                    if (_settings.TryGetValue(key, out var existing))
+                    {
+                        // 加载窗口内发生过懒加载或写入，内存值不旧于快照值，保留并记录差异
+                        if (!string.Equals(existing, value, StringComparison.Ordinal))
+                        {
+                            kept++;
+                            SettingsLog.Write($"LocalSettingsService: '{key}' 内存值与快照不一致，保留内存值");
+                        }
+                        continue;
+                    }
+
+                    if (_settings.TryAdd(key, value))
+                        added++;
                 }
 
-                if (_settings.TryAdd(key, value))
-                    added++;
+                _missingDuringLoad.Clear();
+                _removedDuringLoad.Clear();
+                _fullLoadCompleted = true;
             }
 
-            _missingDuringLoad.Clear();
-            _removedDuringLoad.Clear();
-            _fullLoadCompleted = true;
             Debug.WriteLine($"LocalSettingsService: 全量加载完成，共 {all.Count} 项（新增 {added}，保留内存值 {kept}，跳过已删除 {skippedRemoved}）");
         }
 
@@ -183,36 +215,69 @@ namespace FufuLauncher.Services
         {
             StartBackgroundLoad();
 
-            if (_settings.TryGetValue(key, out var storedValue))
+
+            string? fromCache;
+            bool foundInCache;
+            bool knownAbsent;
+
+            lock (_stateLock)
             {
-                SettingsLog.Write($"LocalSettingsService: 读取 {key}");
-                return Deserialize(storedValue);
+                foundInCache = _settings.TryGetValue(key, out fromCache);
+                knownAbsent = !foundInCache && IsKnownAbsentLocked(key);
             }
 
-            // 已删除或快照已就绪仍未命中 → 该键确实不存在
-            if (_fullLoadCompleted || _removedDuringLoad.ContainsKey(key) || _missingDuringLoad.ContainsKey(key))
+            if (foundInCache)
+            {
+                SettingsLog.Write($"LocalSettingsService: 读取 {key}");
+                return Deserialize(fromCache!);
+            }
+
+            if (knownAbsent)
             {
                 SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
                 return null;
             }
 
-            // 懒加载：只取这一个键，避免为单次读取拉全表
+            // ② 锁外查库（异步）
             var (success, found, lazyValue) = await _repository.TryGetSettingAsync(key);
-            if (success && found)
+
+            // ③ 回到锁内应用结果；期间状态可能已变，重新校验
+            lock (_stateLock)
             {
-                _settings[key] = lazyValue;
-                SettingsLog.Write($"LocalSettingsService: 懒加载 {key}");
-                return Deserialize(lazyValue);
+                // 期间被写入（保存或快照合并）→ 缓存中的值更新，以它为准
+                if (_settings.TryGetValue(key, out var current))
+                {
+                    SettingsLog.Write($"LocalSettingsService: 懒加载 {key} 期间已有更新值，以缓存为准");
+                    return Deserialize(current);
+                }
+
+                // 期间被删除，或快照已完成且不含该键 → 不写回
+                if (_removedDuringLoad.ContainsKey(key) || _fullLoadCompleted)
+                {
+                    SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
+                    return null;
+                }
+
+                if (success && found)
+                {
+                    _settings[key] = lazyValue;
+                    SettingsLog.Write($"LocalSettingsService: 懒加载 {key}");
+                    return Deserialize(lazyValue);
+                }
+
+                if (success)
+                    _missingDuringLoad.TryAdd(key, 0);
+                else
+                    Debug.WriteLine($"LocalSettingsService: 懒加载 '{key}' 查询失败");
+
+                SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
+                return null;
             }
-
-            if (success)
-                _missingDuringLoad.TryAdd(key, 0);
-            else
-                Debug.WriteLine($"LocalSettingsService: 懒加载 '{key}' 查询失败");
-
-            SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
-            return null;
         }
+
+      
+        private bool IsKnownAbsentLocked(string key) =>
+            _fullLoadCompleted || _removedDuringLoad.ContainsKey(key) || _missingDuringLoad.ContainsKey(key);
 
         private object? Deserialize(string storedValue)
         {
@@ -250,14 +315,19 @@ namespace FufuLauncher.Services
 
             SettingsLog.Write($"LocalSettingsService: 保存{key}");
 
+            await _writeGate.WaitAsync();
             try
             {
+                // 先落盘；失败则不改动缓存，保持内存与磁盘一致
                 await _repository.UpsertSettingAsync(key, json);
 
-                // 写穿缓存：并入快照，且全量加载合并时会保留此值
-                _settings[key] = json;
-                _missingDuringLoad.TryRemove(key, out _);
-                _removedDuringLoad.TryRemove(key, out _);
+                lock (_stateLock)
+                {
+                    // 写穿缓存：并入快照，且全量加载合并时会保留此值
+                    _settings[key] = json;
+                    _missingDuringLoad.TryRemove(key, out _);
+                    _removedDuringLoad.TryRemove(key, out _);
+                }
             }
             catch (Exception ex)
             {
@@ -275,17 +345,43 @@ namespace FufuLauncher.Services
                     NotificationType.Error,
                     5000));
             }
+            finally
+            {
+                _writeGate.Release();
+            }
         }
 
         public async Task RemoveSettingAsync(string key)
         {
             StartBackgroundLoad();
 
-            _settings.TryRemove(key, out _);
-            _missingDuringLoad.TryAdd(key, 0);
-            _removedDuringLoad.TryAdd(key, 0);
+            await _writeGate.WaitAsync();
+            try
+            {
+                // 先落盘再改缓存：删除失败时保持缓存不变，避免"磁盘还有、内存当作已删"
+                bool deleted = await _repository.DeleteSettingAsync(key);
+                if (!deleted)
+                {
+                    Debug.WriteLine($"LocalSettingsService: 删除 '{key}' 未生效，缓存保持不变");
+                    return;
+                }
 
-            await _repository.DeleteSettingAsync(key);
+                lock (_stateLock)
+                {
+                    _settings.TryRemove(key, out _);
+
+                    if (!_fullLoadCompleted)
+                    {
+                        // 加载窗口内需要墓碑：既防止快照合并填回，也防止在途懒加载写回
+                        _removedDuringLoad.TryAdd(key, 0);
+                        _missingDuringLoad.TryAdd(key, 0);
+                    }
+                }
+            }
+            finally
+            {
+                _writeGate.Release();
+            }
         }
 
         /// <summary>
@@ -297,10 +393,14 @@ namespace FufuLauncher.Services
             await _fullLoadGate.WaitAsync();
             try
             {
-                _settings.Clear();
-                _missingDuringLoad.Clear();
-                _removedDuringLoad.Clear();
-                _fullLoadCompleted = false;
+                lock (_stateLock)
+                {
+                    _settings.Clear();
+                    _missingDuringLoad.Clear();
+                    _removedDuringLoad.Clear();
+                    _fullLoadCompleted = false;
+                    _backgroundLoadTask = null;
+                }
 
                 await LoadAllCoreAsync();
             }
