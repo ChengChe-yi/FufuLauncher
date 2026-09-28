@@ -25,7 +25,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
     {
         Timeout = TimeSpan.FromSeconds(30)
     };
-    private static readonly Regex UrlRegex = new(@"https?://[^\s<>""']+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static readonly Regex UrlRegex = new(@"https?://[A-Za-z0-9\-._~:/?#\[\]@!$&()*+,;=%]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private readonly bool _isPreview;
     private readonly string _updateInfoUrl;
@@ -192,9 +192,12 @@ public sealed partial class UpdateNotificationWindow : WindowEx
             return;
 
         _initialHeightAdjustmentPending = false;
+        var bannerHeight = PreviewBanner.Visibility == Visibility.Visible
+            ? PreviewBanner.ActualHeight + PreviewBanner.Margin.Top + PreviewBanner.Margin.Bottom
+            : 0;
         var desiredHeight = Math.Clamp(Math.Ceiling(
-            AppTitleBar.ActualHeight + PreviewBanner.ActualHeight + UpdateFooter.ActualHeight +
-            contentHeight + 18 + 20 + 8), 360, 730);
+            AppTitleBar.ActualHeight + bannerHeight + UpdateFooter.ActualHeight +
+            contentHeight + AnnouncementContent.Margin.Top + AnnouncementContent.Margin.Bottom + 8), 360, 730);
         if (Math.Abs(Height - desiredHeight) > 1)
         {
             Height = desiredHeight;
@@ -262,6 +265,15 @@ public sealed partial class UpdateNotificationWindow : WindowEx
             return;
         }
 
+        if (name == "a")
+        {
+            var start = bodyText.Length;
+            foreach (var child in node.ChildNodes)
+                AppendSections(child, document, bodyFontSize, bodyText, sections);
+            AppendLinkTarget(node, bodyText, start);
+            return;
+        }
+
         foreach (var child in node.ChildNodes)
             AppendSections(child, document, bodyFontSize, bodyText, sections);
 
@@ -297,6 +309,15 @@ public sealed partial class UpdateNotificationWindow : WindowEx
             return;
         }
 
+        if (name == "a")
+        {
+            var start = text.Length;
+            foreach (var child in node.ChildNodes)
+                AppendVisibleText(child, text);
+            AppendLinkTarget(node, text, start);
+            return;
+        }
+
         foreach (var child in node.ChildNodes)
             AppendVisibleText(child, text);
 
@@ -304,6 +325,24 @@ public sealed partial class UpdateNotificationWindow : WindowEx
             AppendLineBreak(text, 2);
         else if (name is "div" or "section" or "article" or "li" or "blockquote" or "tr")
             AppendLineBreak(text, 1);
+    }
+
+    private static void AppendLinkTarget(HtmlNode node, StringBuilder text, int start)
+    {
+        var href = WebUtility.HtmlDecode(node.GetAttributeValue("href", string.Empty)).Trim();
+        if (!Uri.TryCreate(href, UriKind.Absolute, out var uri) || uri.Scheme is not ("http" or "https"))
+            return;
+
+        var uriBuilder = new UriBuilder(uri) { Host = uri.IdnHost };
+        var linkText = uriBuilder.Uri.AbsoluteUri;
+        start = Math.Min(start, text.Length);
+        var visibleText = text.ToString(start, text.Length - start);
+        if (visibleText.Contains(linkText, StringComparison.OrdinalIgnoreCase) ||
+            (href.All(character => character < 128) &&
+             visibleText.Contains(href, StringComparison.OrdinalIgnoreCase)))
+            return;
+
+        text.Append(' ').Append(linkText).Append(' ');
     }
 
     private static void AppendTextNode(HtmlNode node, StringBuilder text)
