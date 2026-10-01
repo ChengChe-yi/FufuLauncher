@@ -2101,6 +2101,15 @@
   <data name="Panel_Resources" xml:space="preserve">
     <value>संसाधन</value>
   </data>
+  <data name="Panel_CommunityDesc" xml:space="preserve">
+    <value>खिलाड़ी फ़ोरम, विचार-विमर्श और प्रतिक्रिया</value>
+  </data>
+  <data name="Panel_CommunityTooltip" xml:space="preserve">
+    <value>सुझाव साझा करने और सहायता पाने के लिए खिलाड़ी फ़ोरम में शामिल हों</value>
+  </data>
+  <data name="CommunityWindow_Title" xml:space="preserve">
+    <value>VanillaBBS</value>
+  </data>
   <data name="Panel_ResourcesDesc" xml:space="preserve">
     <value>मीडिया और संसाधन लाइब्रेरी</value>
   </data>

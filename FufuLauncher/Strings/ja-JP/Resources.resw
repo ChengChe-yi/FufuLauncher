@@ -2066,6 +2066,15 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
   <data name="Panel_Resources" xml:space="preserve">
     <value>リソース</value>
   </data>
+  <data name="Panel_CommunityDesc" xml:space="preserve">
+    <value>プレイヤーフォーラム、交流、フィードバック</value>
+  </data>
+  <data name="Panel_CommunityTooltip" xml:space="preserve">
+    <value>プレイヤーフォーラムで情報交換や質問ができます</value>
+  </data>
+  <data name="CommunityWindow_Title" xml:space="preserve">
+    <value>VanillaBBS</value>
+  </data>
   <data name="Panel_ResourcesDesc" xml:space="preserve">
     <value>管理とリソース取得</value>
   </data>

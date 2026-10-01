@@ -2109,6 +2109,15 @@ Go to the Microsoft website to download and install it?</value>
   <data name="Panel_Resources" xml:space="preserve">
     <value>Resources</value>
   </data>
+  <data name="Panel_CommunityDesc" xml:space="preserve">
+    <value>Player forum, discussions, and feedback</value>
+  </data>
+  <data name="Panel_CommunityTooltip" xml:space="preserve">
+    <value>Join the player forum to share tips and get help</value>
+  </data>
+  <data name="CommunityWindow_Title" xml:space="preserve">
+    <value>VanillaBBS</value>
+  </data>
   <data name="Panel_ResourcesDesc" xml:space="preserve">
     <value>Media and resource library</value>
   </data>

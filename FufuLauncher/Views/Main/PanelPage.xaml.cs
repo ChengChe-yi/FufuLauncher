@@ -82,6 +82,12 @@ public sealed partial class PanelPage : Page
         window.Activate();
     }
 
+    private void OnOpenCommunityClick(object sender, RoutedEventArgs e)
+    {
+        var window = new CommunityWindow();
+        window.Activate();
+    }
+
     private async void PanelPage_Loaded(object sender, RoutedEventArgs e)
     {
         EntranceStoryboard.Begin();

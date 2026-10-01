@@ -3100,6 +3100,15 @@ Se puoi aiutare, usa il pulsante qui sotto per visitare il repository di codice 
   <data name="Panel_Resources" xml:space="preserve">
     <value>Risorse</value>
   </data>
+  <data name="Panel_CommunityDesc" xml:space="preserve">
+    <value>Forum dei giocatori, scambi e feedback</value>
+  </data>
+  <data name="Panel_CommunityTooltip" xml:space="preserve">
+    <value>Entra nel forum dei giocatori per condividere consigli e ricevere aiuto</value>
+  </data>
+  <data name="CommunityWindow_Title" xml:space="preserve">
+    <value>VanillaBBS</value>
+  </data>
   <data name="Panel_ResourcesDesc" xml:space="preserve">
     <value>Libreria media e risorse</value>
   </data>

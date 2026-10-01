@@ -2066,6 +2066,15 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="Panel_Resources" xml:space="preserve">
     <value>Acquisition de ressources</value>
   </data>
+  <data name="Panel_CommunityDesc" xml:space="preserve">
+    <value>Forum des joueurs, échanges et retours</value>
+  </data>
+  <data name="Panel_CommunityTooltip" xml:space="preserve">
+    <value>Rejoignez le forum des joueurs pour échanger et obtenir de l'aide</value>
+  </data>
+  <data name="CommunityWindow_Title" xml:space="preserve">
+    <value>VanillaBBS</value>
+  </data>
   <data name="Panel_ResourcesDesc" xml:space="preserve">
     <value>Gestion et acquisition de ressources</value>
   </data>

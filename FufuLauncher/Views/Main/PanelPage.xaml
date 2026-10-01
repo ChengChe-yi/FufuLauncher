@@ -153,6 +153,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Margin="0,0,0,6" Translation="0,0,32">
@@ -373,6 +374,53 @@
                                 <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
                                     <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetVideo}" />
                                     <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_VideoTooltip}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <Border
+                    Grid.Row="4"
+                    Padding="18"
+                    Background="{ThemeResource PanelGlassBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="14"
+                    Translation="0,0,32">
+                    <Border.Shadow>
+                        <ThemeShadow />
+                    </Border.Shadow>
+                    <StackPanel Spacing="14">
+                        <StackPanel Spacing="2">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Foreground="{ThemeResource PanelTextBrush}"
+                                Text="{helpers:Loc Key=NavCommunity}" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                Text="{helpers:Loc Key=Panel_CommunityDesc}" />
+                        </StackPanel>
+
+                        <Button Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenCommunityClick">
+                            <Grid ColumnSpacing="14">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="48" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
+                                    <FontIcon
+                                        Glyph="&#xE716;"
+                                        FontSize="22"
+                                        Foreground="{ThemeResource PanelTextBrush}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
+                                </Border>
+                                <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                                    <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=CommunityWindow_Title}" />
+                                    <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Panel_CommunityTooltip}" TextWrapping="Wrap" />
                                 </StackPanel>
                             </Grid>
                         </Button>

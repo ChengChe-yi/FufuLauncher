@@ -2066,6 +2066,15 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
   <data name="Panel_Resources" xml:space="preserve">
     <value>Sumber Daya</value>
   </data>
+  <data name="Panel_CommunityDesc" xml:space="preserve">
+    <value>Forum pemain, berbagi, dan masukan</value>
+  </data>
+  <data name="Panel_CommunityTooltip" xml:space="preserve">
+    <value>Gabung ke forum pemain untuk berbagi tips dan mendapatkan bantuan</value>
+  </data>
+  <data name="CommunityWindow_Title" xml:space="preserve">
+    <value>VanillaBBS</value>
+  </data>
   <data name="Panel_ResourcesDesc" xml:space="preserve">
     <value>Media dan perpustakaan sumber daya</value>
   </data>

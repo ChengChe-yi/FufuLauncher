@@ -208,12 +208,6 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 
-                <NavigationViewItem Content="VanillaBBS" Tag="FufuLauncher.ViewModels.CommunityViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE716;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                
                 <NavigationViewItem Content="{helpers:Loc Key=NavCalculator}" Tag="FufuLauncher.ViewModels.CalculatorViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE1D0;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>

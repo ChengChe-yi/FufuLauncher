@@ -27,7 +27,6 @@ public partial class SettingsViewModel
             new() { ViewModelKey = "FufuLauncher.ViewModels.PluginViewModel",     DisplayNameKey = "PluginMgmtTitle",    IconGlyph = "\uE7B5" },
             new() { ViewModelKey = "FufuLauncher.ViewModels.DataViewModel",       DisplayNameKey = "NavDataCenter",      IconGlyph = "\uE9D9" },
             new() { ViewModelKey = "FufuLauncher.ViewModels.HelpViewModel",       DisplayNameKey = "NavHelpDocs",        IconGlyph = "\uE82D" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.CommunityViewModel",  DisplayNameKey = "NavCommunity",       IconGlyph = "\uE716" },
             new() { ViewModelKey = "FufuLauncher.ViewModels.CalculatorViewModel", DisplayNameKey = "NavCalculator",      IconGlyph = "\uE1D0" },
             new() { ViewModelKey = "FufuLauncher.ViewModels.SettingsViewModel",   DisplayNameKey = "NavSettings",        IconGlyph = "\uE713", IsForceVisible = true },
         };

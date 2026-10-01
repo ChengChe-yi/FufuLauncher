@@ -2066,6 +2066,15 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="Panel_Resources" xml:space="preserve">
     <value>Ressourcenbeschaffung</value>
   </data>
+  <data name="Panel_CommunityDesc" xml:space="preserve">
+    <value>Spielerforum, Austausch und Feedback</value>
+  </data>
+  <data name="Panel_CommunityTooltip" xml:space="preserve">
+    <value>Tausche dich im Spielerforum aus und finde Hilfe</value>
+  </data>
+  <data name="CommunityWindow_Title" xml:space="preserve">
+    <value>VanillaBBS</value>
+  </data>
   <data name="Panel_ResourcesDesc" xml:space="preserve">
     <value>Verwaltung und Ressourcenbeschaffung</value>
   </data>

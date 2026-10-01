@@ -139,8 +139,6 @@ public partial class App
                 services.AddTransient<GameAnnouncementViewModel>();
                 services.AddTransient<IPluginUpdateService, PluginUpdateService>();
                 services.AddTransient<GachaAnalysisModel>();
-                services.AddTransient<CommunityViewModel>();
-                services.AddTransient<CommunityPage>();
                 services.AddSingleton<PluginStoreService>();
                 services.AddSingleton<LuaPluginInstaller>();
                 services.AddSingleton<Services.PluginMirror.MirrorSiteProvider>();
