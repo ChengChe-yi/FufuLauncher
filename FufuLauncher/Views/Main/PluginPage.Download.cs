@@ -75,7 +75,7 @@ public sealed partial class PluginPage
 
         var warningText = new TextBlock 
         { 
-            Text = "注意：最新体验版插件已内置手柄热切换和已适配国际服，且功能全面和性能可观", 
+            Text = "注意：游戏已内置手柄热切换", 
             Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red),
             TextWrapping = TextWrapping.Wrap,
             FontSize = 13,

@@ -6290,4 +6290,7 @@ Error: {0}</value>
   <data name="Settings_IgnoreConstraint_Caption" xml:space="preserve">
     <value>Disabling this restriction affects the usage restriction policy applied during software updates. Proceed with caution.</value>
   </data>
+  <data name="Constraint_ModeSwitchExplanation" xml:space="preserve">
+    <value>Why we do this: when the game updates, the old main plugin may run into various unexpected issues or even security risks. The lightweight plugin works across all game versions, so we temporarily switch you to lightweight mode during game updates to keep the basic features working, and will switch back automatically once the main plugin is adapted.</value>
+  </data>
 </root>

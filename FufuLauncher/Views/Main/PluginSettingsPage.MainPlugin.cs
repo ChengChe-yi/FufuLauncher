@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Runtime.InteropServices;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
 using FufuLauncher.Helpers;
@@ -69,14 +70,35 @@ public sealed partial class PluginSettingsPage
         ViewModel.IsMainPluginEnabled = toggleSwitch.IsOn;
     }
 
-    private async Task ShowConstraintBlockedDialogAsync()
+    private async Task ShowConstraintBlockedDialogAsync(bool showModeSwitchExplanation = false)
     {
         var message = await App.GetService<ConstraintService>().GetBlockMessageAsync();
+
+        object content;
+
+        if (showModeSwitchExplanation)
+        {
+            var panel = new StackPanel { Spacing = 12 };
+            panel.Children.Add(new TextBlock { Text = message, TextWrapping = TextWrapping.Wrap });
+            panel.Children.Add(new TextBlock
+            {
+                Text = "Constraint_ModeSwitchExplanation".GetLocalized(),
+                Foreground = new SolidColorBrush(Microsoft.UI.Colors.DodgerBlue),
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = 12
+            });
+
+            content = panel;
+        }
+        else
+        {
+            content = message;
+        }
 
         var dialog = new ContentDialog
         {
             Title = "Constraint_BlockedTitle".GetLocalized(),
-            Content = message,
+            Content = content,
             CloseButtonText = "GotItBtn".GetLocalized(),
             XamlRoot = XamlRoot
         };

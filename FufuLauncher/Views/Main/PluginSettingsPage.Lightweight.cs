@@ -61,7 +61,7 @@ public sealed partial class PluginSettingsPage
         if (App.GetService<ConstraintService>().IsRestricted)
         {
             SyncModeTabs();
-            await ShowConstraintBlockedDialogAsync();
+            await ShowConstraintBlockedDialogAsync(showModeSwitchExplanation: true);
             return;
         }
 

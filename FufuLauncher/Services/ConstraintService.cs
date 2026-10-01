@@ -26,6 +26,7 @@ namespace FufuLauncher.Services
 
         private readonly ILocalSettingsService _localSettings;
         private readonly LightweightPluginService _lightweightPlugin;
+        private readonly IPluginUpdateService _pluginUpdateService;
         private readonly SemaphoreSlim _refreshGate = new(1, 1);
         private readonly object _stateLock = new();
 
@@ -34,10 +35,14 @@ namespace FufuLauncher.Services
         private bool _ignoreRestrictions;
         private string _dialogText = string.Empty;
 
-        public ConstraintService(ILocalSettingsService localSettings, LightweightPluginService lightweightPlugin)
+        public ConstraintService(
+            ILocalSettingsService localSettings,
+            LightweightPluginService lightweightPlugin,
+            IPluginUpdateService pluginUpdateService)
         {
             _localSettings = localSettings;
             _lightweightPlugin = lightweightPlugin;
+            _pluginUpdateService = pluginUpdateService;
         }
 
         public bool IsRestricted
@@ -112,9 +117,9 @@ namespace FufuLauncher.Services
                 return;
             }
 
-            if (forced)
+            if (forced && await RestoreForcedModeAsync(reinstallMainPlugin: false))
             {
-                await RestoreForcedModeAsync();
+                _ = Task.Run(async () => await _pluginUpdateService.InstallOrUpdateMainPluginAsync());
             }
         }
 
@@ -163,7 +168,7 @@ namespace FufuLauncher.Services
             {
                 if (IsForced)
                 {
-                    await RestoreForcedModeAsync();
+                    await RestoreForcedModeAsync(reinstallMainPlugin: true);
                 }
 
                 if (wasRestricted)
@@ -259,7 +264,7 @@ namespace FufuLauncher.Services
 
             if (IsForced)
             {
-                await RestoreForcedModeAsync();
+                await RestoreForcedModeAsync(reinstallMainPlugin: true);
             }
 
             if (wasRestricted)
@@ -291,7 +296,7 @@ namespace FufuLauncher.Services
             }
         }
 
-        private async Task RestoreForcedModeAsync()
+        private async Task<bool> RestoreForcedModeAsync(bool reinstallMainPlugin)
         {
             bool previousWasLightweight = false;
 
@@ -305,11 +310,21 @@ namespace FufuLauncher.Services
                 Debug.WriteLine($"[策略约束] 读取历史模式失败: {ex.Message}");
             }
 
+            bool restoredStandardMode = false;
+
             if (!previousWasLightweight)
             {
+                restoredStandardMode = true;
+
                 await _lightweightPlugin.SetLightweightModeAsync(false);
                 LightweightPluginService.RemoveOrDisableLitePlugin();
-                LightweightPluginService.TryEnableMainPlugin();
+
+                bool installed = reinstallMainPlugin && await _pluginUpdateService.InstallOrUpdateMainPluginAsync();
+
+                if (!installed)
+                {
+                    LightweightPluginService.TryEnableMainPlugin();
+                }
             }
 
             await _localSettings.SaveSettingAsync(ForcedSettingKey, false);
@@ -318,6 +333,8 @@ namespace FufuLauncher.Services
             {
                 _forced = false;
             }
+
+            return restoredStandardMode;
         }
 
         private async Task ApplyRestrictionAsync(bool installIfMissing)
