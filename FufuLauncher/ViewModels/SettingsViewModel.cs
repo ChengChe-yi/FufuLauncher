@@ -175,6 +175,8 @@ public partial class SettingsViewModel : ObservableRecipient
 
     [ObservableProperty] private bool _isPluginMirrorAccelerationEnabled = true;
 
+    [ObservableProperty] private bool _ignoreConstraintRestrictions;
+
     [ObservableProperty] private bool _isCaptchaPopupDisabled;
 
     public IAsyncRelayCommand SelectScreenshotFolderCommand { get; }

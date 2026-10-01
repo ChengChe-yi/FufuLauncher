@@ -31,6 +31,13 @@ namespace FufuLauncher.Services
                 var enabledObj = await _localSettingsService.ReadSettingAsync(AutoUpdatePluginKey);
                 if (enabledObj == null || !Convert.ToBoolean(enabledObj)) return;
 
+                var lightweightObj = await _localSettingsService.ReadSettingAsync(LightweightPluginService.SettingKey);
+                if (lightweightObj != null && Convert.ToBoolean(lightweightObj))
+                {
+                    logBuilder.AppendLine("[插件更新] 当前处于轻量模式，跳过主插件自动更新");
+                    return;
+                }
+
                 logBuilder.AppendLine("[插件更新] 自动更新已启用，开始获取最新普通版插件...");
 
                 string proxyUrl = ApiEndpoints.PluginProxyUrl;

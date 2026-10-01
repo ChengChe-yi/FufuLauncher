@@ -2,7 +2,9 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
+using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -12,24 +14,47 @@ public sealed partial class PluginPage
 {
     #region 插件列表操作
 
-    private void OnPluginToggled(object sender, RoutedEventArgs e)
+    private async void OnPluginToggled(object sender, RoutedEventArgs e)
     {
-        if (sender is ToggleSwitch toggleSwitch && toggleSwitch.Tag is PluginItem item)
+        if (sender is not ToggleSwitch toggleSwitch || toggleSwitch.Tag is not PluginItem item) return;
+
+        if (toggleSwitch.IsOn != item.IsEnabled)
         {
-            if (toggleSwitch.IsOn != item.IsEnabled)
+            if (toggleSwitch.IsOn &&
+                LightweightPluginService.IsMainPluginPackage(Path.GetFileName(item.DirectoryPath), item.FileName) &&
+                App.GetService<ConstraintService>().IsRestricted)
             {
-                if (ViewModel.TogglePluginCommand.CanExecute(item))
-                {
-                    ViewModel.TogglePluginCommand.Execute(item);
-                }
-                else
-                {
-                    toggleSwitch.IsOn = item.IsEnabled;
-                }
+                toggleSwitch.IsOn = item.IsEnabled;
+                await ShowConstraintBlockedDialogAsync();
+                return;
+            }
+
+            if (ViewModel.TogglePluginCommand.CanExecute(item))
+            {
+                ViewModel.TogglePluginCommand.Execute(item);
+            }
+            else
+            {
+                toggleSwitch.IsOn = item.IsEnabled;
             }
         }
     }
-    
+
+    private async Task ShowConstraintBlockedDialogAsync()
+    {
+        var message = await App.GetService<ConstraintService>().GetBlockMessageAsync();
+
+        var dialog = new ContentDialog
+        {
+            Title = "Constraint_BlockedTitle".GetLocalized(),
+            Content = message,
+            CloseButtonText = "GotItBtn".GetLocalized(),
+            XamlRoot = XamlRoot
+        };
+
+        await dialog.ShowAsync();
+    }
+
     private async void OnRenameClick(object sender, RoutedEventArgs e)
     {
         if (sender is MenuFlyoutItem item && item.Tag is PluginItem pluginItem)

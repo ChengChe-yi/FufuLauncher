@@ -30,8 +30,19 @@ public void LoadConfiguration()
 
         if (!File.Exists(_iniPath))
         {
-            PluginName = SelectedPluginIndex == 0 ? "未安装 FuFuPlugin" : "未安装 FPS 插件";
+            if (SelectedPluginIndex == 0)
+            {
+                PluginName = IsLightweightMode
+                    ? "LightweightMode_LiteNotInstalled".GetLocalized()
+                    : "未安装 FuFuPlugin";
+            }
+            else
+            {
+                PluginName = "未安装 FPS 插件";
+            }
             PluginDescription = "请确保Plugins目录下存在对应的文件夹及config.ini文件";
+            AvailablePresets.Clear();
+            CurrentPreset = null;
             return;
         }
 

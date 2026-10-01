@@ -5656,4 +5656,106 @@ UIGF v4.x/3.0/2.x</value>
   <data name="BrowseOfficialBgCaption" xml:space="preserve">
     <value>Просматривайте все официальные фоны игры, смотрите предпросмотр и сохраняйте их локально; статичные изображения можно сразу сделать фоном лаунчера.</value>
   </data>
+  <data name="LightweightMode_StandardTooltip" xml:space="preserve">
+    <value>Standard mode (main plugin)</value>
+  </data>
+  <data name="LightweightMode_LiteTooltip" xml:space="preserve">
+    <value>Lightweight mode (YuanShen-UnlockerLite)</value>
+  </data>
+  <data name="LightweightMode_PluginComboLabel" xml:space="preserve">
+    <value>YuanShen-UnlockerLite (Lite Plugin)</value>
+  </data>
+  <data name="LightweightMode_LiteEnabledLabel" xml:space="preserve">
+    <value>Lite Plugin Enabled</value>
+  </data>
+  <data name="LightweightMode_ReinstallBtn" xml:space="preserve">
+    <value>Reinstall Lite Plugin</value>
+  </data>
+  <data name="LightweightMode_EnterTitle" xml:space="preserve">
+    <value>Switch to Lightweight Mode</value>
+  </data>
+  <data name="LightweightMode_EnterContent" xml:space="preserve">
+    <value>The main plugin will be disabled, the latest YuanShen-UnlockerLite will be downloaded and installed, and this page will show the lite plugin configuration instead.</value>
+  </data>
+  <data name="LightweightMode_EnterConfirm" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="LightweightMode_ExitTitle" xml:space="preserve">
+    <value>Switch Back to Standard Mode</value>
+  </data>
+  <data name="LightweightMode_ExitContent" xml:space="preserve">
+    <value>The lite plugin will be removed and the main plugin will be enabled again.</value>
+  </data>
+  <data name="LightweightMode_ExitConfirm" xml:space="preserve">
+    <value>Switch</value>
+  </data>
+  <data name="LightweightMode_EnterSuccess" xml:space="preserve">
+    <value>Switched to lightweight mode</value>
+  </data>
+  <data name="LightweightMode_ExitSuccess" xml:space="preserve">
+    <value>Switched back to standard mode</value>
+  </data>
+  <data name="LightweightMode_ExitSuccessNoMain" xml:space="preserve">
+    <value>Switched back to standard mode, but the main plugin was not found. Please download it first.</value>
+  </data>
+  <data name="LightweightMode_InstallTitle" xml:space="preserve">
+    <value>Installing Lite Plugin</value>
+  </data>
+  <data name="LightweightMode_ReinstallTitle" xml:space="preserve">
+    <value>Reinstalling Lite Plugin</value>
+  </data>
+  <data name="LightweightMode_StatusResolving" xml:space="preserve">
+    <value>Resolving the latest release...</value>
+  </data>
+  <data name="LightweightMode_StatusDownloading" xml:space="preserve">
+    <value>Downloading...</value>
+  </data>
+  <data name="LightweightMode_StatusInstalling" xml:space="preserve">
+    <value>Installing...</value>
+  </data>
+  <data name="LightweightMode_DownloadFailed" xml:space="preserve">
+    <value>Failed to download the lightweight plugin: {0}</value>
+  </data>
+  <data name="LightweightMode_InvalidPackage" xml:space="preserve">
+    <value>Invalid package content: YuanShen-UnlockerLite.dll was not found.</value>
+  </data>
+  <data name="LightweightMode_InstallFailed" xml:space="preserve">
+    <value>Failed to install the lightweight plugin: {0} Please check your network and try again.</value>
+  </data>
+  <data name="LightweightMode_ReinstallSuccess" xml:space="preserve">
+    <value>The lightweight plugin was reinstalled.</value>
+  </data>
+  <data name="LightweightMode_BlockMainInstall" xml:space="preserve">
+    <value>Installing or enabling the main plugin is disabled in lightweight mode. Switch back to standard mode to restore it.</value>
+  </data>
+  <data name="LightweightMode_BlockLiteInstall" xml:space="preserve">
+    <value>The lightweight plugin can only be installed or enabled in lightweight mode.</value>
+  </data>
+  <data name="LightweightMode_LiteDisabledOverlay" xml:space="preserve">
+    <value>The lite plugin is disabled or not installed. Reinstall it from the Functions menu.</value>
+  </data>
+  <data name="LightweightMode_LiteNotInstalled" xml:space="preserve">
+    <value>YuanShen-UnlockerLite is not installed</value>
+  </data>
+  <data name="LightweightMode_LiteMissing_Title" xml:space="preserve">
+    <value>Lightweight Plugin Missing</value>
+  </data>
+  <data name="LightweightMode_LiteMissing_Content" xml:space="preserve">
+    <value>Lightweight plugin DLL file not found. It may not be installed, was accidentally deleted, or was blocked by antivirus software. Please reinstall it from the Functions menu.</value>
+  </data>
+  <data name="Constraint_BlockedTitle" xml:space="preserve">
+    <value>Action Restricted</value>
+  </data>
+  <data name="Constraint_BlockedDefault" xml:space="preserve">
+    <value>The main plugin cannot be enabled in the current state. Please use lightweight mode.</value>
+  </data>
+  <data name="Constraint_AutoApplied" xml:space="preserve">
+    <value>The main plugin was disabled and lightweight mode was enabled automatically by the server policy.</value>
+  </data>
+  <data name="Settings_IgnoreConstraint_Title" xml:space="preserve">
+    <value>Ignore Usage Restrictions</value>
+  </data>
+  <data name="Settings_IgnoreConstraint_Caption" xml:space="preserve">
+    <value>Disabling this restriction affects the usage restriction policy applied during software updates. Proceed with caution.</value>
+  </data>
 </root>

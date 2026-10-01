@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Controls;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
 using FufuLauncher.Helpers;
+using FufuLauncher.Services;
 using Windows.System;
 
 namespace FufuLauncher.Views;
@@ -53,11 +54,45 @@ public sealed partial class PluginSettingsPage
         }
     }
 
+    private async void OnMainPluginToggled(object sender, RoutedEventArgs e)
+    {
+        if (sender is not ToggleSwitch toggleSwitch) return;
+        if (toggleSwitch.IsOn == ViewModel.IsMainPluginEnabled) return;
+
+        if (toggleSwitch.IsOn && App.GetService<ConstraintService>().IsRestricted)
+        {
+            toggleSwitch.IsOn = false;
+            await ShowConstraintBlockedDialogAsync();
+            return;
+        }
+
+        ViewModel.IsMainPluginEnabled = toggleSwitch.IsOn;
+    }
+
+    private async Task ShowConstraintBlockedDialogAsync()
+    {
+        var message = await App.GetService<ConstraintService>().GetBlockMessageAsync();
+
+        var dialog = new ContentDialog
+        {
+            Title = "Constraint_BlockedTitle".GetLocalized(),
+            Content = message,
+            CloseButtonText = "GotItBtn".GetLocalized(),
+            XamlRoot = XamlRoot
+        };
+
+        await dialog.ShowAsync();
+    }
+
     private void StartMainPluginWatcher()
     {
         if (_mainPluginWatcher != null) return;
 
-        string mainPluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FuFuPlugin");
+        bool lightweight = ViewModel.IsLightweightMode;
+        string subDir = lightweight ? LightweightPluginService.LitePluginFolderName : LightweightPluginService.MainPluginFolderName;
+        string dllName = lightweight ? LightweightPluginService.LitePluginDllName : LightweightPluginService.MainPluginDllName;
+
+        string mainPluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", subDir);
         if (!Directory.Exists(mainPluginDir))
         {
             Directory.CreateDirectory(mainPluginDir);
@@ -65,7 +100,7 @@ public sealed partial class PluginSettingsPage
 
         _mainPluginWatcher = new FileSystemWatcher(mainPluginDir)
         {
-            Filter = "FufuLauncher.UnlockerIsland.*",
+            Filter = dllName + ".*",
             NotifyFilter = NotifyFilters.FileName | NotifyFilters.Size | NotifyFilters.LastWrite,
             EnableRaisingEvents = true
         };
@@ -74,6 +109,13 @@ public sealed partial class PluginSettingsPage
         _mainPluginWatcher.Deleted += OnMainPluginFileChanged;
         _mainPluginWatcher.Renamed += OnMainPluginFileChanged;
         _mainPluginWatcher.Changed += OnMainPluginFileChanged;
+    }
+
+    private void RestartMainPluginWatcher()
+    {
+        _mainPluginWatcher?.Dispose();
+        _mainPluginWatcher = null;
+        StartMainPluginWatcher();
     }
 
     private void OnMainPluginFileChanged(object sender, FileSystemEventArgs e)
@@ -97,15 +139,27 @@ public sealed partial class PluginSettingsPage
         if (_hasShownMainPluginMissingWarning || !ViewModel.IsMainPluginDllMissing()) return;
 
         _hasShownMainPluginMissingWarning = true;
+
+        bool lightweight = ViewModel.IsLightweightMode;
         WeakReferenceMessenger.Default.Send(new NotificationMessage(
-            "Plugin_MainMissing_Title".GetLocalized(),
-            "Plugin_MainMissing_Content".GetLocalized(),
+            lightweight ? "LightweightMode_LiteMissing_Title".GetLocalized() : "Plugin_MainMissing_Title".GetLocalized(),
+            lightweight ? "LightweightMode_LiteMissing_Content".GetLocalized() : "Plugin_MainMissing_Content".GetLocalized(),
             NotificationType.Error,
             6000));
     }
 
     private async void OnDownloadPluginClick(object sender, RoutedEventArgs e)
     {
+        if (ViewModel.IsLightweightMode)
+        {
+            WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                "AdminWarningTitle".GetLocalized(),
+                "LightweightMode_BlockMainInstall".GetLocalized(),
+                NotificationType.Warning,
+                5000));
+            return;
+        }
+
         string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
         await DownloadAndInstallPluginAsync(urlLatest);
     }
@@ -113,6 +167,17 @@ public sealed partial class PluginSettingsPage
 
     private async Task DownloadAndInstallPluginAsync(string proxyUrl)
     {
+        var blockReason = App.GetService<LightweightPluginService>().GetInstallBlockReason(LightweightPluginService.MainPluginFolderName, null);
+        if (blockReason != null)
+        {
+            WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                "AdminWarningTitle".GetLocalized(),
+                blockReason,
+                NotificationType.Warning,
+                5000));
+            return;
+        }
+
         var fileName = proxyUrl.Split('/').Last();
         if (fileName.Contains("?")) fileName = fileName.Split('?')[0];
         if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) 

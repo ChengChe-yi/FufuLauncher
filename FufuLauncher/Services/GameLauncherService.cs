@@ -44,6 +44,8 @@ namespace FufuLauncher.Services
         private const string UsingHoyolabAccountKey = "UsingHoyolabAccount";
         public const string GenshinHDRConfigKey = "IsGenshinHDRForcedEnabled";
         private readonly IPluginUpdateService _pluginUpdateService;
+        private readonly LightweightPluginService _lightweightPluginService;
+        private readonly ConstraintService _constraintService;
         private readonly IScreenshotService _screenshotService;
         private readonly IAuthTicketService _authTicketService;
         private readonly AccountManager _accountManager;
@@ -60,7 +62,9 @@ namespace FufuLauncher.Services
             IScreenshotService screenshotService,
             IAuthTicketService authTicketService,
             AccountManager accountManager,
-            GameServerConfigurationService gameServerConfigurationService)
+            GameServerConfigurationService gameServerConfigurationService,
+            LightweightPluginService lightweightPluginService,
+            ConstraintService constraintService)
         {
             _localSettingsService = localSettingsService;
             _gameConfigService = gameConfigService;
@@ -70,6 +74,8 @@ namespace FufuLauncher.Services
             _authTicketService = authTicketService;
             _accountManager = accountManager;
             _gameServerConfigurationService = gameServerConfigurationService;
+            _lightweightPluginService = lightweightPluginService;
+            _constraintService = constraintService;
         }
 
         [DllImport("user32.dll")]
@@ -377,6 +383,19 @@ namespace FufuLauncher.Services
                 var arguments = BuildLaunchArguments(config, authTicket).ToString();
                 logBuilder.AppendLine($"[启动流程] 启动参数: {arguments}");
 
+                _constraintService.TriggerBackgroundRefresh();
+
+                if (_constraintService.IsRestricted)
+                {
+                    LightweightPluginService.DisableMainPluginIfPresent();
+                    logBuilder.AppendLine("[启动流程] 策略限制生效，已静默禁用主插件");
+                }
+
+                if (_lightweightPluginService.EnforceModeAtLaunch(_lightweightPluginService.IsLightweightMode))
+                {
+                    logBuilder.AppendLine("[启动流程] 已按当前模式同步主插件/轻量插件启用状态");
+                }
+
                 var useInjection = await GetUseInjectionAsync();
                 logBuilder.AppendLine($"[启动流程] 注入模式: {(useInjection ? "启用" : "禁用")}");
 
@@ -409,7 +428,13 @@ namespace FufuLauncher.Services
                     string targetDllPath = null;
                     var defaultDllPath = _launcherService.GetDefaultDllPath();
 
-                    if (!string.IsNullOrEmpty(defaultDllPath) && File.Exists(defaultDllPath))
+                    if (_lightweightPluginService.IsLightweightMode &&
+                        File.Exists(LightweightPluginService.LitePluginDllPath))
+                    {
+                        targetDllPath = LightweightPluginService.LitePluginDllPath;
+                        logBuilder.AppendLine($"[启动流程] 轻量模式已启用，使用轻量插件DLL: {targetDllPath}");
+                    }
+                    else if (!string.IsNullOrEmpty(defaultDllPath) && File.Exists(defaultDllPath))
                     {
                         targetDllPath = defaultDllPath;
                         logBuilder.AppendLine($"[启动流程] 发现默认DLL: {targetDllPath}");

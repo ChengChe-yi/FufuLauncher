@@ -9,6 +9,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using FufuLauncher.Helpers;
+using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using Windows.Storage.Pickers;
@@ -275,6 +278,14 @@ public class PluginViewModel : INotifyPropertyChanged
                 var folderName = Path.GetFileNameWithoutExtension(fileName);
                 var destFolderPath = Path.Combine(_pluginsPath, folderName);
 
+                var blockReason = App.GetService<LightweightPluginService>().GetInstallBlockReason(folderName, fileName);
+                if (blockReason != null)
+                {
+                    StatusMessage = blockReason;
+                    NotifyPluginOperationBlocked(blockReason);
+                    return;
+                }
+
                 if (!Directory.Exists(destFolderPath))
                 {
                     Directory.CreateDirectory(destFolderPath);
@@ -303,6 +314,30 @@ public class PluginViewModel : INotifyPropertyChanged
     private void TogglePlugin(PluginItem? item)
     {
         if (item == null || !File.Exists(item.FullPath)) return;
+
+        bool enabling = item.FullPath.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase);
+
+        if (enabling)
+        {
+            var constraint = App.GetService<ConstraintService>();
+            if (constraint.IsRestricted &&
+                LightweightPluginService.IsMainPluginPackage(Path.GetFileName(item.DirectoryPath), Path.GetFileName(item.FullPath)))
+            {
+                StatusMessage = constraint.BlockMessage;
+                NotifyPluginOperationBlocked(constraint.BlockMessage);
+                item.RefreshState();
+                return;
+            }
+
+            var blockReason = App.GetService<LightweightPluginService>().GetInstallBlockReason(null, Path.GetFileName(item.FullPath));
+            if (blockReason != null)
+            {
+                StatusMessage = blockReason;
+                NotifyPluginOperationBlocked(blockReason);
+                item.RefreshState();
+                return;
+            }
+        }
 
         try
         {
@@ -344,6 +379,15 @@ public class PluginViewModel : INotifyPropertyChanged
             StatusMessage = $"切换状态失败: {ex.Message}";
             item.RefreshState();
         }
+    }
+
+    private static void NotifyPluginOperationBlocked(string message)
+    {
+        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+            "AdminWarningTitle".GetLocalized(),
+            message,
+            NotificationType.Warning,
+            5000));
     }
 
     private void DeletePlugin(PluginItem? item)

@@ -116,6 +116,18 @@ public sealed partial class MainWindow
         }
     }
 
+    private async Task CheckPeriodicConstraintAsync()
+    {
+        try
+        {
+            await _constraintService.RefreshAsync();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[策略约束] 定时检查失败: {ex.Message}");
+        }
+    }
+
     #endregion
 
     #region Environment Checks

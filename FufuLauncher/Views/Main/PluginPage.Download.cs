@@ -7,6 +7,8 @@ using Windows.System;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using FufuLauncher.Helpers;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.Views;
 
@@ -55,14 +57,16 @@ public sealed partial class PluginPage
         string urlHotSwitch = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/input_hot_switch.zip";
         
         var stackPanel = new StackPanel { Spacing = 10 };
+
+        bool lightweight = App.GetService<LightweightPluginService>().IsLightweightMode;
+
+        var rbLatest = new RadioButton { Content = "下载/更新插件", IsChecked = !lightweight, IsEnabled = !lightweight, GroupName = "PluginSelect", Tag = urlLatest };
         
-        var rbLatest = new RadioButton { Content = "下载/更新插件", IsChecked = true, GroupName = "PluginSelect", Tag = urlLatest };
-        
-        var rbCustom = new RadioButton { Content = "自定义插件链接", GroupName = "PluginSelect", Tag = "Custom" };
+        var rbCustom = new RadioButton { Content = "自定义插件链接", IsChecked = lightweight, GroupName = "PluginSelect", Tag = "Custom" };
         var txtCustomUrl = new TextBox 
         { 
             PlaceholderText = "请输入下载直链", 
-            Visibility = Visibility.Collapsed,
+            Visibility = lightweight ? Visibility.Visible : Visibility.Collapsed,
             Margin = new Thickness(28, 0, 0, 0)
         };
         
@@ -81,6 +85,19 @@ public sealed partial class PluginPage
         stackPanel.Children.Add(new TextBlock { Text = "请选择要下载并安装的插件包：", Margin = new Thickness(0, 0, 0, 5) });
         stackPanel.Children.Add(rbLatest);
         stackPanel.Children.Add(warningText);
+
+        if (lightweight)
+        {
+            stackPanel.Children.Add(new TextBlock
+            {
+                Text = "LightweightMode_BlockMainInstall".GetLocalized(),
+                Foreground = new SolidColorBrush(Microsoft.UI.Colors.OrangeRed),
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = 12,
+                Margin = new Thickness(0, 0, 0, 5)
+            });
+        }
+
         stackPanel.Children.Add(rbCustom);
         stackPanel.Children.Add(txtCustomUrl);
         
@@ -129,12 +146,34 @@ public sealed partial class PluginPage
         }
     }
     
+    private async Task ShowInstallBlockedDialogAsync(string message)
+    {
+        var dialog = new ContentDialog
+        {
+            Title = "AdminWarningTitle".GetLocalized(),
+            Content = message,
+            CloseButtonText = "CloseBtn".GetLocalized(),
+            XamlRoot = XamlRoot
+        };
+
+        await dialog.ShowAsync();
+    }
+
     private async Task DownloadAndInstallPluginAsync(string proxyUrl)
     {
+        var lightweightPlugin = App.GetService<LightweightPluginService>();
+
         var fileName = proxyUrl.Split('/').Last();
         if (fileName.Contains("?")) fileName = fileName.Split('?')[0];
         if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) 
             fileName = "CustomPlugin.zip";
+
+        var preBlockReason = lightweightPlugin.GetInstallBlockReason(Path.GetFileNameWithoutExtension(fileName), null);
+        if (preBlockReason != null)
+        {
+            await ShowInstallBlockedDialogAsync(preBlockReason);
+            return;
+        }
         
         var rawGithubUrl = proxyUrl.Replace("https://gh-proxy.com/", "");
         
@@ -266,6 +305,18 @@ public sealed partial class PluginPage
             else
             {
                 sourceDirToMove = extractPath;
+            }
+
+            var packageDllName = Directory.GetFiles(sourceDirToMove, "*.dll", SearchOption.AllDirectories)
+                .Select(Path.GetFileName)
+                .FirstOrDefault();
+
+            var blockReason = lightweightPlugin.GetInstallBlockReason(targetFolderName, packageDllName);
+            if (blockReason != null)
+            {
+                progressDialog.Hide();
+                await ShowInstallBlockedDialogAsync(blockReason);
+                return;
             }
             
             if (Directory.Exists(finalDestDir))

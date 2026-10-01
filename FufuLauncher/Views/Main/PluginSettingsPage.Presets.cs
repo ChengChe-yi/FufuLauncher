@@ -140,6 +140,18 @@ public sealed partial class PluginSettingsPage
 
             if (ViewModel.SelectedPluginIndex == 0)
             {
+                if (ViewModel.IsLightweightMode)
+                {
+                    if (!await InstallLightweightPluginWithProgressAsync("LightweightMode_ReinstallTitle"))
+                    {
+                        return;
+                    }
+
+                    ViewModel.LoadConfiguration();
+                    ViewModel.RefreshPluginStates();
+                    return;
+                }
+
                 string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
                 await DownloadAndInstallPluginAsync(urlLatest);
             }

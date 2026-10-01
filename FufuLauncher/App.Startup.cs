@@ -31,6 +31,9 @@ public partial class App
             //全量加载设置
             GetService<ILocalSettingsService>().StartBackgroundLoad();
 
+            await GetService<LightweightPluginService>().InitializeAsync();
+            await GetService<ConstraintService>().InitializeAsync();
+
             await VerifyResourceFilesAsync();
 
             if (!AppPaths.IsFirstRun)
@@ -72,6 +75,8 @@ public partial class App
                 _ = Task.Run(PlayStartupSoundDelayedAsync);
 
                 _ = Task.Run(CheckForAnnouncementAsync);
+
+                _ = Task.Run(async () => await GetService<ConstraintService>().RefreshAsync());
 
                 _ = Task.Run(RunStartupUpdateCheckAsync);
 

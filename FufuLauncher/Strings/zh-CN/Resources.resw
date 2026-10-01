@@ -6183,4 +6183,106 @@ UIGF v4.x/3.0/2.x</value>
   <data name="BrowseOfficialBgCaption" xml:space="preserve">
     <value>浏览游戏官方下发的全部背景资源，支持预览与保存到本地，静态背景可直接设为启动器背景。</value>
   </data>
+  <data name="LightweightMode_StandardTooltip" xml:space="preserve">
+    <value>标准模式（主插件）</value>
+  </data>
+  <data name="LightweightMode_LiteTooltip" xml:space="preserve">
+    <value>轻量模式（YuanShen-UnlockerLite）</value>
+  </data>
+  <data name="LightweightMode_PluginComboLabel" xml:space="preserve">
+    <value>YuanShen-UnlockerLite (轻量插件)</value>
+  </data>
+  <data name="LightweightMode_LiteEnabledLabel" xml:space="preserve">
+    <value>轻量插件启用</value>
+  </data>
+  <data name="LightweightMode_ReinstallBtn" xml:space="preserve">
+    <value>重新安装轻量插件</value>
+  </data>
+  <data name="LightweightMode_EnterTitle" xml:space="preserve">
+    <value>切换到轻量模式</value>
+  </data>
+  <data name="LightweightMode_EnterContent" xml:space="preserve">
+    <value>切换后将自动禁用主插件，并下载安装最新的 YuanShen-UnlockerLite 轻量插件，本页配置将改为轻量插件的配置。</value>
+  </data>
+  <data name="LightweightMode_EnterConfirm" xml:space="preserve">
+    <value>切换</value>
+  </data>
+  <data name="LightweightMode_ExitTitle" xml:space="preserve">
+    <value>切换回标准模式</value>
+  </data>
+  <data name="LightweightMode_ExitContent" xml:space="preserve">
+    <value>切换后将删除轻量插件并重新启用主插件。</value>
+  </data>
+  <data name="LightweightMode_ExitConfirm" xml:space="preserve">
+    <value>切换</value>
+  </data>
+  <data name="LightweightMode_EnterSuccess" xml:space="preserve">
+    <value>已切换到轻量模式</value>
+  </data>
+  <data name="LightweightMode_ExitSuccess" xml:space="preserve">
+    <value>已切换回标准模式</value>
+  </data>
+  <data name="LightweightMode_ExitSuccessNoMain" xml:space="preserve">
+    <value>已切换回标准模式，但未检测到主插件，请先下载安装主插件</value>
+  </data>
+  <data name="LightweightMode_InstallTitle" xml:space="preserve">
+    <value>正在安装轻量插件</value>
+  </data>
+  <data name="LightweightMode_ReinstallTitle" xml:space="preserve">
+    <value>正在重新安装轻量插件</value>
+  </data>
+  <data name="LightweightMode_StatusResolving" xml:space="preserve">
+    <value>正在获取最新版本...</value>
+  </data>
+  <data name="LightweightMode_StatusDownloading" xml:space="preserve">
+    <value>正在下载...</value>
+  </data>
+  <data name="LightweightMode_StatusInstalling" xml:space="preserve">
+    <value>正在安装...</value>
+  </data>
+  <data name="LightweightMode_DownloadFailed" xml:space="preserve">
+    <value>下载轻量插件失败：{0}</value>
+  </data>
+  <data name="LightweightMode_InvalidPackage" xml:space="preserve">
+    <value>插件包内容不正确，未找到 YuanShen-UnlockerLite.dll</value>
+  </data>
+  <data name="LightweightMode_InstallFailed" xml:space="preserve">
+    <value>安装轻量插件失败：{0} 请检查网络后重试。</value>
+  </data>
+  <data name="LightweightMode_ReinstallSuccess" xml:space="preserve">
+    <value>轻量插件已覆盖安装</value>
+  </data>
+  <data name="LightweightMode_BlockMainInstall" xml:space="preserve">
+    <value>轻量模式下已禁用主插件的安装与启用，如需恢复请切换回标准模式。</value>
+  </data>
+  <data name="LightweightMode_BlockLiteInstall" xml:space="preserve">
+    <value>未切换到轻量模式，无法安装或启用轻量插件。</value>
+  </data>
+  <data name="LightweightMode_LiteDisabledOverlay" xml:space="preserve">
+    <value>轻量插件已被禁用或未安装，请在功能菜单中重新安装轻量插件</value>
+  </data>
+  <data name="LightweightMode_LiteNotInstalled" xml:space="preserve">
+    <value>未安装 YuanShen-UnlockerLite</value>
+  </data>
+  <data name="LightweightMode_LiteMissing_Title" xml:space="preserve">
+    <value>轻量插件缺失</value>
+  </data>
+  <data name="LightweightMode_LiteMissing_Content" xml:space="preserve">
+    <value>未找到轻量插件 DLL 文件，插件可能未安装、被误删或被杀毒软件拦截。请在功能菜单中重新安装轻量插件。</value>
+  </data>
+  <data name="Constraint_BlockedTitle" xml:space="preserve">
+    <value>操作已受限</value>
+  </data>
+  <data name="Constraint_BlockedDefault" xml:space="preserve">
+    <value>当前状态下无法启用主插件，请使用轻量模式。</value>
+  </data>
+  <data name="Constraint_AutoApplied" xml:space="preserve">
+    <value>已根据服务端策略自动禁用主插件并切换到轻量模式。</value>
+  </data>
+  <data name="Settings_IgnoreConstraint_Title" xml:space="preserve">
+    <value>忽略使用限制</value>
+  </data>
+  <data name="Settings_IgnoreConstraint_Caption" xml:space="preserve">
+    <value>取消此项限制会对软件更新时的使用限制策略产生影响，请谨慎操作。</value>
+  </data>
 </root>

@@ -2,8 +2,10 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using FufuLauncher.Messages;
 using FufuLauncher.ViewModels;
 using FufuLauncher.Helpers;
 
@@ -28,6 +30,15 @@ public sealed partial class PluginSettingsPage : Page
         Unloaded += PluginSettingsPage_Unloaded;
         
         ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+
+        WeakReferenceMessenger.Default.Register<ConstraintStateChangedMessage>(this, (_, _) =>
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                if (!IsLoaded) return;
+                ApplyModeChange();
+            });
+        });
     }
 
     private async void PluginSettingsPage_Loaded(object sender, RoutedEventArgs e)

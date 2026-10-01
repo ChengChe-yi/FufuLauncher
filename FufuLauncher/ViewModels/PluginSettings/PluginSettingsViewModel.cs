@@ -5,6 +5,7 @@ Licensed under the MIT License.
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Helpers;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
@@ -16,13 +17,33 @@ public partial class PluginSettingsViewModel : ObservableObject
     private string _dllPath;
     private IniFile _iniFile;
     private bool _useKeyListInput = true;
+    private readonly LightweightPluginService _lightweightPlugin;
     
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsDownloadSupported))]
+    [NotifyPropertyChangedFor(nameof(ModeTabVisibility))]
+    [NotifyPropertyChangedFor(nameof(SelectedPluginComboLabel))]
     private int selectedPluginIndex = 0;
     
-    public bool IsDownloadSupported => SelectedPluginIndex == 0;
-    
+    public bool IsDownloadSupported => SelectedPluginIndex == 0 && !IsLightweightMode;
+
+    public bool IsLightweightMode => _lightweightPlugin.IsLightweightMode;
+
+    public bool IsStandardModeTab => !IsLightweightMode;
+
+    public bool IsLightweightModeTab => IsLightweightMode;
+
+    public bool IsLitePluginInstallSupported => IsLightweightMode;
+
+    public Microsoft.UI.Xaml.Visibility ModeTabVisibility =>
+        SelectedPluginIndex == 0 ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    public string SelectedPluginComboLabel =>
+        IsLightweightMode ? "LightweightMode_PluginComboLabel".GetLocalized() : "PluginFuFuMain".GetLocalized();
+
+    public string PluginToggleLabel =>
+        IsLightweightMode ? "LightweightMode_LiteEnabledLabel".GetLocalized() : "MainPluginEnabledLabel".GetLocalized();
+
     [ObservableProperty]
     private string pluginName;
 
@@ -107,12 +128,19 @@ public partial class PluginSettingsViewModel : ObservableObject
 
     public PluginSettingsViewModel()
     {
+        _lightweightPlugin = App.GetService<LightweightPluginService>();
         CheckPluginStates();
         UpdatePaths();
-        _pluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FuFuPlugin");
-        _iniPath = Path.Combine(_pluginDir, "config.ini");
-        _dllPath = Path.Combine(_pluginDir, "FufuLauncher.UnlockerIsland.dll");
-        _presetsDir = AppPaths.PluginPresetsDir;
+        _pluginDir = GetMainPluginDirectory();
+        _iniPath = IsLightweightMode
+            ? LightweightPluginService.LitePluginConfigPath
+            : Path.Combine(_pluginDir, "config.ini");
+        _dllPath = IsLightweightMode
+            ? LightweightPluginService.FindLitePluginDisabledPath() ?? LightweightPluginService.LitePluginDllPath
+            : LightweightPluginService.MainPluginDllPath;
+        _presetsDir = IsLightweightMode
+            ? Path.Combine(AppPaths.PluginPresetsDir, LightweightPluginService.LitePluginFolderName)
+            : AppPaths.PluginPresetsDir;
     
         _iniFile = new IniFile(_iniPath);
     
@@ -209,6 +237,23 @@ public partial class PluginSettingsViewModel : ObservableObject
                 }
             }
         }
+    }
+
+    public void RefreshModeState()
+    {
+        OnPropertyChanged(nameof(IsLightweightMode));
+        OnPropertyChanged(nameof(IsStandardModeTab));
+        OnPropertyChanged(nameof(IsLightweightModeTab));
+        OnPropertyChanged(nameof(IsDownloadSupported));
+        OnPropertyChanged(nameof(IsLitePluginInstallSupported));
+        OnPropertyChanged(nameof(PluginToggleLabel));
+        OnPropertyChanged(nameof(SelectedPluginComboLabel));
+
+        CheckPluginStates();
+        UpdatePaths();
+        LoadConfiguration();
+        UpdateAvatarPreview();
+        RefreshUIState();
     }
 
 }

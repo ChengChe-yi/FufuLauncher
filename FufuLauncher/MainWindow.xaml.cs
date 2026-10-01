@@ -57,6 +57,9 @@ public sealed partial class MainWindow : WindowEx
     private DispatcherTimer _announcementCheckTimer;
     private readonly IAnnouncementService _announcementService;
 
+    private DispatcherTimer _constraintCheckTimer;
+    private readonly ConstraintService _constraintService;
+
     private DispatcherTimer _memoryOptimizationTimer;
     private DispatcherTimer _periodicMemoryTimer;
 
@@ -226,6 +229,7 @@ public sealed partial class MainWindow : WindowEx
             if (m.IsRunning) return;
 
             dispatcherQueue.TryEnqueue(async () => await CheckPeriodicAnnouncementAsync());
+            dispatcherQueue.TryEnqueue(async () => await CheckPeriodicConstraintAsync());
         });
 
         WeakReferenceMessenger.Default.Register<OverlayStyleChangedMessage>(this, (_, m) =>
@@ -365,6 +369,14 @@ public sealed partial class MainWindow : WindowEx
         if (!Helpers.AppPaths.IsFirstRun)
         {
             _announcementCheckTimer.Start();
+        }
+
+        _constraintService = App.GetService<ConstraintService>();
+        _constraintCheckTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
+        _constraintCheckTimer.Tick += async (_, _) => await CheckPeriodicConstraintAsync();
+        if (!Helpers.AppPaths.IsFirstRun)
+        {
+            _constraintCheckTimer.Start();
         }
 
     }

@@ -113,7 +113,7 @@ private static void RunElevatedInjection(string[] args)
         if (separatorIndex == -1 &&
             TryParseLegacyElevatedInjection(args, out var legacyDllPath, out var legacyCommandLineArgs))
         {
-            dllPath = string.IsNullOrEmpty(legacyDllPath) ? launcher.GetDefaultDllPath() : legacyDllPath;
+            dllPath = string.IsNullOrEmpty(legacyDllPath) ? ResolveInjectDllPath(launcher) : legacyDllPath;
             commandLineArgs = legacyCommandLineArgs;
         }
         else
@@ -123,7 +123,7 @@ private static void RunElevatedInjection(string[] args)
                 return;
             }
 
-            dllPath = launcher.GetDefaultDllPath();
+            dllPath = ResolveInjectDllPath(launcher);
 
             // Without an explicit preset, keep the config.ini prepared by the current in-app preset.
             for (var i = 2; i < separatorIndex; i++)
@@ -132,7 +132,7 @@ private static void RunElevatedInjection(string[] args)
                 {
                     if (i + 1 < separatorIndex)
                     {
-                        ApplyPreset(args[++i]);
+                        ApplyPreset(args[++i], Path.GetDirectoryName(dllPath) ?? string.Empty);
                     }
                 }
             }
@@ -179,7 +179,59 @@ private static bool TryParseLegacyElevatedInjection(string[] args, out string dl
     return true;
 }
 
-private static void ApplyPreset(string presetId)
+private static string ResolveInjectDllPath(LauncherService launcher)
+{
+    var defaultDllPath = launcher.GetDefaultDllPath();
+    if (!string.IsNullOrEmpty(defaultDllPath) && File.Exists(defaultDllPath))
+    {
+        return defaultDllPath;
+    }
+
+    var lightweightDllPath = LightweightPluginService.LitePluginDllPath;
+    if (File.Exists(lightweightDllPath))
+    {
+        return lightweightDllPath;
+    }
+
+    try
+    {
+        var pluginsDir = LightweightPluginService.PluginsDir;
+        if (Directory.Exists(pluginsDir))
+        {
+            var pluginDll = Directory.GetFiles(pluginsDir, "*.dll", SearchOption.AllDirectories)
+                .FirstOrDefault(file => !file.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase));
+
+            if (!string.IsNullOrEmpty(pluginDll))
+            {
+                return pluginDll;
+            }
+        }
+    }
+    catch
+    {
+        // ignored
+    }
+
+    return defaultDllPath;
+}
+
+private static string ResolvePluginConfigPath(string pluginDirectory)
+{
+    if (string.IsNullOrEmpty(pluginDirectory) || !Directory.Exists(pluginDirectory))
+    {
+        return Path.Combine(AppContext.BaseDirectory, "Plugins", LightweightPluginService.MainPluginFolderName, "config.ini");
+    }
+
+    var lowerCaseConfig = Path.Combine(pluginDirectory, "config.ini");
+    if (File.Exists(lowerCaseConfig)) return lowerCaseConfig;
+
+    var upperCaseConfig = Path.Combine(pluginDirectory, LightweightPluginService.LitePluginConfigName);
+    if (File.Exists(upperCaseConfig)) return upperCaseConfig;
+
+    return lowerCaseConfig;
+}
+
+private static void ApplyPreset(string presetId, string pluginDirectory)
 {
     try
     {
@@ -193,8 +245,7 @@ private static void ApplyPreset(string presetId)
             
             if (doc.RootElement.TryGetProperty("ConfigData", out var configData))
             {
-                var pluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FuFuPlugin");
-                var iniPath = Path.Combine(pluginDir, "config.ini");
+                var iniPath = ResolvePluginConfigPath(pluginDirectory);
                 
                 var iniFile = new IniFile(iniPath);
                 var dict = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string>>>(configData.GetRawText());

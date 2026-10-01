@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using FufuLauncher.Models;
+using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -20,8 +21,9 @@ public sealed partial class PluginPage
             var folderName = new DirectoryInfo(item.DirectoryPath).Name;
             bool isFuFuPlugin = folderName.Contains("FuFuPlugin", StringComparison.OrdinalIgnoreCase);
             bool isFpsPlugin = folderName.Contains("FPS", StringComparison.OrdinalIgnoreCase);
+            bool isLitePlugin = folderName.Contains(LightweightPluginService.LitePluginFolderName, StringComparison.OrdinalIgnoreCase);
             
-            if (isFuFuPlugin || isFpsPlugin)
+            if (isFuFuPlugin || isFpsPlugin || isLitePlugin)
             {
                 ExitStoryboard.Begin();
                 await Task.Delay(300);

@@ -115,6 +115,8 @@ namespace FufuLauncher.Constants
         public const string PluginStoreLeaderboardUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/leaderboard";
         public const string PluginStoreDownloadTokenUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/download-token";
         public const string PluginStorePrivateAccessUrl = PluginStoreBaseUrl + PluginStoreApiPrefix + "/private-access";
+        public const string ConstraintStatusUrl = "https://fu1.fun/constraint.json";
+        public const string ConstraintDialogUrl = "https://fu1.fun/dialog.json";
         public static string GetPluginFileDownloadUrl(string pluginId) =>
             $"{PluginStoreBaseUrl}/plugins/files/{Uri.EscapeDataString(pluginId)}.zip";
     }

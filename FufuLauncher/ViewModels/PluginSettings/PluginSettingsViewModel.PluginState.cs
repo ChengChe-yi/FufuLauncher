@@ -5,12 +5,27 @@ Licensed under the MIT License.
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
 public partial class PluginSettingsViewModel
 {
     #region 插件状态与路径管理
+
+    private string GetMainPluginFolderName() =>
+        IsLightweightMode ? LightweightPluginService.LitePluginFolderName : LightweightPluginService.MainPluginFolderName;
+
+    private string GetMainPluginDirectory() =>
+        IsLightweightMode ? LightweightPluginService.LitePluginDir : LightweightPluginService.MainPluginDir;
+
+    private string GetMainPluginEnabledPath() =>
+        IsLightweightMode ? LightweightPluginService.LitePluginDllPath : LightweightPluginService.MainPluginDllPath;
+
+    private string GetMainPluginDisabledPath() =>
+        IsLightweightMode
+            ? LightweightPluginService.FindLitePluginDisabledPath() ?? LightweightPluginService.LitePluginDisabledPath
+            : LightweightPluginService.FindMainPluginDisabledPath() ?? LightweightPluginService.MainPluginDisabledPath;
 
     private bool _isMainPluginEnabled;
     public bool IsMainPluginEnabled
@@ -61,7 +76,12 @@ public partial class PluginSettingsViewModel
     {
         get
         {
-            if (SelectedPluginIndex == 0) return "已被禁用，请启用主插件才能调试配置";
+            if (SelectedPluginIndex == 0)
+            {
+                return IsLightweightMode
+                    ? "LightweightMode_LiteDisabledOverlay".GetLocalized()
+                    : "已被禁用，请启用主插件才能调试配置";
+            }
             if (SelectedPluginIndex == 1) return "已被禁用，请启用FPS插件才能调试插件配置";
             if (SelectedPluginIndex == 2) return "已被禁用，该插件存在安全风险，无法启用";
             return string.Empty;
@@ -78,9 +98,8 @@ private void CheckPluginStates()
     string avatarEnabledPath = Path.Combine(avatarDir, "Avatar.dll");
     string avatarDisabledPath = Path.Combine(avatarDir, "Avatar.disabled");
     
-    string mainDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FuFuPlugin");
-    string mainEnabledPath = Path.Combine(mainDir, "FufuLauncher.UnlockerIsland.dll");
-    string mainDisabledPath = Path.Combine(mainDir, "FufuLauncher.UnlockerIsland.disabled");
+    string mainEnabledPath = GetMainPluginEnabledPath();
+    string mainDisabledPath = GetMainPluginDisabledPath();
 
     if (File.Exists(mainEnabledPath) && File.Exists(mainDisabledPath))
     {
@@ -137,9 +156,15 @@ private void CheckPluginStates()
     
     private void ChangeMainPluginState(bool enable)
     {
-        string mainDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FuFuPlugin");
-        string enabledPath = Path.Combine(mainDir, "FufuLauncher.UnlockerIsland.dll");
-        string disabledPath = Path.Combine(mainDir, "FufuLauncher.UnlockerIsland.disabled");
+        if (enable && App.GetService<ConstraintService>().IsRestricted)
+        {
+            OnPropertyChanged(nameof(IsMainPluginEnabled));
+            return;
+        }
+
+        string mainDir = GetMainPluginDirectory();
+        string enabledPath = GetMainPluginEnabledPath();
+        string disabledPath = GetMainPluginDisabledPath();
 
         if (!Directory.Exists(mainDir)) Directory.CreateDirectory(mainDir);
 
@@ -159,6 +184,7 @@ private void CheckPluginStates()
         }
         catch (Exception ex)
         {
+            OnPropertyChanged(nameof(IsMainPluginEnabled));
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
                 "状态切换失败",
                 $"无法修改文件后缀名。\n详细信息: {ex.Message}",
@@ -291,7 +317,10 @@ private void CheckPluginStates()
     
     private void UpdatePaths()
     {
-        string subDir = SelectedPluginIndex == 0 ? "FuFuPlugin" : (SelectedPluginIndex == 1 ? "FPS" : "Avatar");
+        bool isLightweightMain = SelectedPluginIndex == 0 && IsLightweightMode;
+        string subDir = SelectedPluginIndex == 0
+            ? GetMainPluginFolderName()
+            : (SelectedPluginIndex == 1 ? "FPS" : "Avatar");
         _pluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", subDir);
         
         if (SelectedPluginIndex == 2)
@@ -301,10 +330,15 @@ private void CheckPluginStates()
             string avatarDisabledPath = Path.Combine(_pluginDir, "Avatar.disabled");
             _dllPath = File.Exists(avatarDisabledPath) ? avatarDisabledPath : avatarEnabledPath;
         }
+        else if (isLightweightMain)
+        {
+            _iniPath = LightweightPluginService.LitePluginConfigPath;
+            _dllPath = LightweightPluginService.FindLitePluginDisabledPath() ?? LightweightPluginService.LitePluginDllPath;
+        }
         else
         {
             _iniPath = Path.Combine(_pluginDir, "config.ini");
-            if (subDir == "FuFuPlugin")
+            if (SelectedPluginIndex == 0)
             {
                 string mainEnabledPath = Path.Combine(_pluginDir, "FufuLauncher.UnlockerIsland.dll");
                 string mainDisabledPath = Path.Combine(_pluginDir, "FufuLauncher.UnlockerIsland.disabled");
@@ -349,10 +383,7 @@ private void CheckPluginStates()
 
     public bool IsMainPluginDllMissing()
     {
-        string mainDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FuFuPlugin");
-        string mainEnabledPath = Path.Combine(mainDir, "FufuLauncher.UnlockerIsland.dll");
-        string mainDisabledPath = Path.Combine(mainDir, "FufuLauncher.UnlockerIsland.disabled");
-        return !File.Exists(mainEnabledPath) && !File.Exists(mainDisabledPath);
+        return !File.Exists(GetMainPluginEnabledPath()) && !File.Exists(GetMainPluginDisabledPath());
     }
 
     public bool IsPluginCorrupted()

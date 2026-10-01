@@ -140,6 +140,8 @@ public partial class App
                 services.AddTransient<IPluginUpdateService, PluginUpdateService>();
                 services.AddTransient<GachaAnalysisModel>();
                 services.AddSingleton<PluginStoreService>();
+                services.AddSingleton<LightweightPluginService>();
+                services.AddSingleton<ConstraintService>();
                 services.AddSingleton<LuaPluginInstaller>();
                 services.AddSingleton<Services.PluginMirror.MirrorSiteProvider>();
                 services.AddSingleton<Services.PluginMirror.PluginMirrorDownloadService>();
