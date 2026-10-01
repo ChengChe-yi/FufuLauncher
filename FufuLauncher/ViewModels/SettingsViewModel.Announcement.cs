@@ -23,16 +23,4 @@ public partial class SettingsViewModel
 
     #endregion
 
-    #region 启动器公告
-
-    [ObservableProperty]
-    private bool _isSuppressAnnouncementInGameEnabled = true;
-
-    partial void OnIsSuppressAnnouncementInGameEnabledChanged(bool value)
-    {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync(LocalSettingsService.SuppressAnnouncementInGameKey, value);
-    }
-
-    #endregion
 }

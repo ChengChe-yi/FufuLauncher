@@ -2452,23 +2452,6 @@
                                                   IsOn="{x:Bind ViewModel.IsPreviewUpdateAnnouncementEnabled, Mode=TwoWay}" />
                                 </Grid>
 
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE769;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=SuppressAnnouncementInGameTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=SuppressAnnouncementInGameCaption}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.IsSuppressAnnouncementInGameEnabled, Mode=TwoWay}" />
-                                </Grid>
-
                                 <Rectangle Style="{StaticResource RowDividerStyle}"
                                            Visibility="{x:Bind ViewModel.IsPreviewBuild, Mode=OneWay}" />
 
