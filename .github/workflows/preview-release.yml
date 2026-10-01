@@ -129,10 +129,10 @@ jobs:
         $launcher = Join-Path $outputDir "Launcher.dll"
         
         if (Test-Path $hashFile) {
-            $existingLines = Get-Content $hashFile
-            $line1 = $existingLines[0]
-            $line2 = if (Test-Path $captureApp) { (Get-FileHash $captureApp -Algorithm SHA512).Hash.ToLower() } else { $existingLines[1] }
-            $line3 = if (Test-Path $launcher) { (Get-FileHash $launcher -Algorithm SHA512).Hash.ToLower() } else { $existingLines[2] }
+            $existingLines = @(Get-Content $hashFile)
+            $line1 = if ($existingLines.Count -gt 0) { $existingLines[0] } else { "" }
+            $line2 = if (Test-Path $captureApp) { (Get-FileHash $captureApp -Algorithm SHA512).Hash.ToLower() } elseif ($existingLines.Count -gt 1) { $existingLines[1] } else { "" }
+            $line3 = if (Test-Path $launcher) { (Get-FileHash $launcher -Algorithm SHA512).Hash.ToLower() } elseif ($existingLines.Count -gt 2) { $existingLines[2] } else { "" }
             Set-Content -Path $hashFile -Value @($line1, $line2, $line3)
             Write-Host "Updated hash.txt with UPX compressed file hashes"
         } else {
