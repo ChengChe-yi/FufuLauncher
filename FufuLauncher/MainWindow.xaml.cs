@@ -221,6 +221,13 @@ public sealed partial class MainWindow : WindowEx
             });
         });
 
+        WeakReferenceMessenger.Default.Register<GameRunningStateChangedMessage>(this, (_, m) =>
+        {
+            if (m.IsRunning) return;
+
+            dispatcherQueue.TryEnqueue(async () => await CheckPeriodicAnnouncementAsync());
+        });
+
         WeakReferenceMessenger.Default.Register<OverlayStyleChangedMessage>(this, (_, m) =>
         {
             _isAcrylicOverlayEnabled = m.Value;

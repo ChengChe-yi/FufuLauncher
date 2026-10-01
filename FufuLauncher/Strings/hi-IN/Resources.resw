@@ -5763,6 +5763,12 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
     <value>सक्षम होने पर, नया प्री-रिलीज़ बिल्ड पाए जाने पर अपडेट घोषणा विंडो स्वतः पॉप अप होती है।</value>
   </data>
+  <data name="SuppressAnnouncementInGameTitle" xml:space="preserve">
+    <value>गेम के दौरान लॉन्चर सूचनाएँ रोकें</value>
+  </data>
+  <data name="SuppressAnnouncementInGameCaption" xml:space="preserve">
+    <value>सक्षम होने पर, गेम चलने के दौरान लॉन्चर सूचनाएँ अपने आप नहीं दिखेंगी। गेम बंद करने या लॉन्चर को पुनः आरंभ करने पर वे सामान्य रूप से दिखाई देंगी।</value>
+  </data>
   <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
     <value>यह एक प्री-रिलीज़ अपडेट है और अस्थिर हो सकता है। कृपया सावधानी से अपडेट करें।</value>
   </data>

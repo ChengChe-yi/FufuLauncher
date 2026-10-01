@@ -5544,6 +5544,12 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
     <value>When enabled, an update announcement window pops up automatically when a new pre-release build is detected.</value>
   </data>
+  <data name="SuppressAnnouncementInGameTitle" xml:space="preserve">
+    <value>Suspendre les annonces du lanceur pendant le jeu</value>
+  </data>
+  <data name="SuppressAnnouncementInGameCaption" xml:space="preserve">
+    <value>Lorsque cette option est activée, les annonces du lanceur ne s&apos;affichent pas automatiquement pendant le jeu. Elles réapparaissent normalement après la fermeture du jeu ou le redémarrage du lanceur.</value>
+  </data>
   <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
     <value>This is a pre-release update and may be unstable. Please update with caution.</value>
   </data>

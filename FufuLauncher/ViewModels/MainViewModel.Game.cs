@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
@@ -245,6 +246,8 @@ public partial class MainViewModel
 
     private async Task SetGameRunningStateAsync(bool isRunning, string temporaryText = null)
     {
+        bool stateChanged = IsGameRunning != isRunning;
+
         await UpdateUI(() =>
         {
             IsGameRunning = isRunning;
@@ -263,6 +266,11 @@ public partial class MainViewModel
             OnPropertyChanged(nameof(LaunchButtonIcon));
             OnPropertyChanged(nameof(IsGameRunning));
         });
+
+        if (stateChanged)
+        {
+            WeakReferenceMessenger.Default.Send(new GameRunningStateChangedMessage(isRunning));
+        }
     }
 
     private async Task TerminateGameAsync()
@@ -351,24 +359,16 @@ public partial class MainViewModel
 
     private async Task StartGameMonitoringLoopAsync(CancellationToken token)
     {
-        bool lastState = false;
-
         while (!token.IsCancellationRequested)
         {
             try
             {
                 bool currentState = await CheckGameProcessRunningAsync();
 
-                if (currentState != lastState || currentState != IsGameRunning)
+                if (currentState != IsGameRunning)
                 {
-                    await UpdateUI(() =>
-                    {
-                        IsGameRunning = currentState;
-                        UpdateLaunchButtonState();
-                    });
+                    await SetGameRunningStateAsync(currentState);
                 }
-
-                lastState = currentState;
             }
             catch (Exception ex)
             {

@@ -5545,6 +5545,12 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
     <value>When enabled, an update announcement window pops up automatically when a new pre-release build is detected.</value>
   </data>
+  <data name="SuppressAnnouncementInGameTitle" xml:space="preserve">
+    <value>Launcher-Ankündigungen während des Spiels pausieren</value>
+  </data>
+  <data name="SuppressAnnouncementInGameCaption" xml:space="preserve">
+    <value>Wenn aktiviert, werden Launcher-Ankündigungen während des Spiels nicht automatisch angezeigt. Nach dem Beenden des Spiels oder einem Neustart des Launchers erscheinen sie wieder normal.</value>
+  </data>
   <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
     <value>This is a pre-release update and may be unstable. Please update with caution.</value>
   </data>

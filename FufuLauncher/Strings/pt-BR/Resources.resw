@@ -5545,6 +5545,12 @@ Você pode tentar outro nó ou usar a fonte oficial direta.</value>
   <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
     <value>When enabled, an update announcement window pops up automatically when a new pre-release build is detected.</value>
   </data>
+  <data name="SuppressAnnouncementInGameTitle" xml:space="preserve">
+    <value>Pausar anúncios do launcher durante o jogo</value>
+  </data>
+  <data name="SuppressAnnouncementInGameCaption" xml:space="preserve">
+    <value>Quando ativado, os anúncios do launcher não aparecem automaticamente enquanto o jogo estiver em execução. Eles voltarão a aparecer normalmente após sair do jogo ou reiniciar o launcher.</value>
+  </data>
   <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
     <value>This is a pre-release update and may be unstable. Please update with caution.</value>
   </data>

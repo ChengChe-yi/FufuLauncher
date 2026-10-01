@@ -5545,6 +5545,12 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
     <value>When enabled, an update announcement window pops up automatically when a new pre-release build is detected.</value>
   </data>
+  <data name="SuppressAnnouncementInGameTitle" xml:space="preserve">
+    <value>Jeda pengumuman launcher saat bermain game</value>
+  </data>
+  <data name="SuppressAnnouncementInGameCaption" xml:space="preserve">
+    <value>Jika diaktifkan, pengumuman launcher tidak akan muncul otomatis saat game sedang berjalan. Pengumuman akan muncul kembali seperti biasa setelah keluar dari game atau memulai ulang launcher.</value>
+  </data>
   <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
     <value>This is a pre-release update and may be unstable. Please update with caution.</value>
   </data>

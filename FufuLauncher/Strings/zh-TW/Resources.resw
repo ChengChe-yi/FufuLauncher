@@ -5545,6 +5545,12 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
     <value>開啟後，偵測到新預覽版時自動彈出更新公告視窗</value>
   </data>
+  <data name="SuppressAnnouncementInGameTitle" xml:space="preserve">
+    <value>遊戲中暫停啟動器公告</value>
+  </data>
+  <data name="SuppressAnnouncementInGameCaption" xml:space="preserve">
+    <value>開啟後，遊戲執行期間不會自動彈出啟動器公告；結束遊戲或重啟啟動器後將恢復正常彈出</value>
+  </data>
   <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
     <value>這是預覽版（Pre-release）更新，可能存在不穩定問題，請謹慎更新</value>
   </data>

@@ -67,6 +67,8 @@ namespace FufuLauncher.Services
 
         public const string LastAnnouncementUrlKey = "LastAnnouncementUrl";
 
+        public const string SuppressAnnouncementInGameKey = "IsSuppressAnnouncementInGameEnabled";
+
         public const string HasShownSecurityWarningKey = "HasShownSecurityWarning";
 
         public const string HasDismissedFpsWarningKey = "HasDismissedFpsWarning";

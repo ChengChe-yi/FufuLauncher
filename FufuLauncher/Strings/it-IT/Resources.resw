@@ -5551,6 +5551,12 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="PreviewUpdateAnnouncementCaption" xml:space="preserve">
     <value>When enabled, an update announcement window pops up automatically when a new pre-release build is detected.</value>
   </data>
+  <data name="SuppressAnnouncementInGameTitle" xml:space="preserve">
+    <value>Sospendi gli annunci del launcher durante il gioco</value>
+  </data>
+  <data name="SuppressAnnouncementInGameCaption" xml:space="preserve">
+    <value>Se attivato, gli annunci del launcher non vengono mostrati automaticamente mentre il gioco è in esecuzione. Torneranno a comparire normalmente dopo aver chiuso il gioco o riavviato il launcher.</value>
+  </data>
   <data name="UpdateNotification_PreviewBanner" xml:space="preserve">
     <value>This is a pre-release update and may be unstable. Please update with caution.</value>
   </data>
