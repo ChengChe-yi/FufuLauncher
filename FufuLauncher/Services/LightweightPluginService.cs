@@ -299,7 +299,7 @@ namespace FufuLauncher.Services
             return true;
         }
 
-        public async Task InstallOrUpdateLitePluginAsync(IProgress<double>? progress = null, Action<string>? status = null)
+        public async Task InstallOrUpdateLitePluginAsync(IProgress<double>? progress = null, Action<string>? status = null, CancellationToken cancellationToken = default)
         {
             string tempZip = Path.Combine(Path.GetTempPath(), $"YuanShen-UnlockerLite_{Guid.NewGuid():N}.zip");
             string extractDir = Path.Combine(Path.GetTempPath(), $"YuanShen-UnlockerLite_Extract_{Guid.NewGuid():N}");
@@ -317,14 +317,16 @@ namespace FufuLauncher.Services
                 {
                     foreach (var url in urls)
                     {
+                        cancellationToken.ThrowIfCancellationRequested();
+
                         try
                         {
                             if (File.Exists(tempZip)) File.Delete(tempZip);
                             status?.Invoke("LightweightMode_StatusDownloading".GetLocalized());
-                            await DownloadAsync(client, url, tempZip, progress);
+                            await DownloadAsync(client, url, tempZip, progress, cancellationToken);
                             return true;
                         }
-                        catch (Exception ex)
+                        catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
                         {
                             lastError = ex;
                             Debug.WriteLine($"[轻量模式] 下载失败 {url}: {ex.Message}");
@@ -349,6 +351,8 @@ namespace FufuLauncher.Services
                         lastError);
                 }
 
+                cancellationToken.ThrowIfCancellationRequested();
+
                 status?.Invoke("LightweightMode_StatusInstalling".GetLocalized());
                 progress?.Report(0);
 
@@ -361,6 +365,8 @@ namespace FufuLauncher.Services
                 {
                     throw new InvalidDataException("LightweightMode_InvalidPackage".GetLocalized());
                 }
+
+                cancellationToken.ThrowIfCancellationRequested();
 
                 if (File.Exists(LitePluginConfigPath))
                 {
@@ -451,22 +457,22 @@ namespace FufuLauncher.Services
             return null;
         }
 
-        private static async Task DownloadAsync(HttpClient client, string url, string destination, IProgress<double>? progress)
+        private static async Task DownloadAsync(HttpClient client, string url, string destination, IProgress<double>? progress, CancellationToken cancellationToken)
         {
-            using var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
+            using var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             response.EnsureSuccessStatusCode();
 
             var totalBytes = response.Content.Headers.ContentLength ?? -1L;
             var totalRead = 0L;
             var buffer = new byte[81920];
 
-            await using var source = await response.Content.ReadAsStreamAsync();
+            await using var source = await response.Content.ReadAsStreamAsync(cancellationToken);
             await using var target = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None, 81920, true);
 
             int read;
-            while ((read = await source.ReadAsync(buffer)) > 0)
+            while ((read = await source.ReadAsync(buffer, cancellationToken)) > 0)
             {
-                await target.WriteAsync(buffer.AsMemory(0, read));
+                await target.WriteAsync(buffer.AsMemory(0, read), cancellationToken);
                 totalRead += read;
 
                 if (totalBytes > 0)

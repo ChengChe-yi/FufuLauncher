@@ -6512,4 +6512,58 @@ Error: {0}</value>
   <data name="PluginSignature_TrustUnknown" xml:space="preserve">
     <value>Unknown status (0x{0})</value>
   </data>
+  <data name="Plugin_StopSwitchBtn" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Plugin_StopRequested" xml:space="preserve">
+    <value>Stopping...</value>
+  </data>
+  <data name="Plugin_SwitchStopped_Title" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="Plugin_SwitchStopped_Content" xml:space="preserve">
+    <value>The switch was stopped and nothing was changed.</value>
+  </data>
+  <data name="DailyNote_NoIdentityService" xml:space="preserve">
+    <value>The account identity service is unavailable, so daily note data cannot be read.</value>
+  </data>
+  <data name="PluginStoreAccessDenied" xml:space="preserve">
+    <value>Access denied.</value>
+  </data>
+  <data name="PluginStoreCancelling" xml:space="preserve">
+    <value>Cancelling...</value>
+  </data>
+  <data name="PluginStoreCaptchaCancelled" xml:space="preserve">
+    <value>Captcha verification was cancelled.</value>
+  </data>
+  <data name="PluginStoreCaptchaFailed" xml:space="preserve">
+    <value>Captcha verification failed.</value>
+  </data>
+  <data name="PluginStoreCaptchaRequired" xml:space="preserve">
+    <value>Captcha verification is required.</value>
+  </data>
+  <data name="PluginStoreCaptchaRetryExhausted" xml:space="preserve">
+    <value>Captcha retry limit reached. Please try again later.</value>
+  </data>
+  <data name="PluginStoreExtracting" xml:space="preserve">
+    <value>Extracting...</value>
+  </data>
+  <data name="PluginStoreHttpError" xml:space="preserve">
+    <value>Request failed (HTTP {0}): {1}</value>
+  </data>
+  <data name="PluginStorePrivateAccessCancelled" xml:space="preserve">
+    <value>Private plugin access verification was cancelled.</value>
+  </data>
+  <data name="PluginStorePrivateAccessDenied" xml:space="preserve">
+    <value>Private plugin access was denied.</value>
+  </data>
+  <data name="PluginStorePrivateAccessRequired" xml:space="preserve">
+    <value>Private plugin access authorization is required.</value>
+  </data>
+  <data name="PluginStoreRetrying" xml:space="preserve">
+    <value>Retrying...</value>
+  </data>
+  <data name="PluginStoreWritingConfig" xml:space="preserve">
+    <value>Writing configuration...</value>
+  </data>
 </root>

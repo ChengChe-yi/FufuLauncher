@@ -6507,4 +6507,61 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginSignature_TrustUnknown" xml:space="preserve">
     <value>未知状态（0x{0}）</value>
   </data>
+  <data name="Plugin_StopSwitchBtn" xml:space="preserve">
+    <value>停止切换</value>
+  </data>
+  <data name="Plugin_StopRequested" xml:space="preserve">
+    <value>正在停止...</value>
+  </data>
+  <data name="Plugin_SwitchStopped_Title" xml:space="preserve">
+    <value>已停止</value>
+  </data>
+  <data name="Plugin_SwitchStopped_Content" xml:space="preserve">
+    <value>已停止切换，未做任何更改。</value>
+  </data>
+  <data name="DailyNote_NoIdentityService" xml:space="preserve">
+    <value>未能获取游戏身份服务，无法读取便签数据</value>
+  </data>
+  <data name="OfficialBgApiTitle" xml:space="preserve">
+    <value>官方背景 API</value>
+  </data>
+  <data name="PluginStoreAccessDenied" xml:space="preserve">
+    <value>访问被拒绝</value>
+  </data>
+  <data name="PluginStoreCancelling" xml:space="preserve">
+    <value>正在取消...</value>
+  </data>
+  <data name="PluginStoreCaptchaCancelled" xml:space="preserve">
+    <value>已取消验证码校验</value>
+  </data>
+  <data name="PluginStoreCaptchaFailed" xml:space="preserve">
+    <value>验证码校验失败</value>
+  </data>
+  <data name="PluginStoreCaptchaRequired" xml:space="preserve">
+    <value>需要完成验证码校验</value>
+  </data>
+  <data name="PluginStoreCaptchaRetryExhausted" xml:space="preserve">
+    <value>验证码校验重试次数已用尽，请稍后再试</value>
+  </data>
+  <data name="PluginStoreExtracting" xml:space="preserve">
+    <value>正在解压...</value>
+  </data>
+  <data name="PluginStoreHttpError" xml:space="preserve">
+    <value>请求失败（HTTP {0}）：{1}</value>
+  </data>
+  <data name="PluginStorePrivateAccessCancelled" xml:space="preserve">
+    <value>已取消私密插件访问验证</value>
+  </data>
+  <data name="PluginStorePrivateAccessDenied" xml:space="preserve">
+    <value>私密插件访问被拒绝</value>
+  </data>
+  <data name="PluginStorePrivateAccessRequired" xml:space="preserve">
+    <value>需要私密插件访问授权</value>
+  </data>
+  <data name="PluginStoreRetrying" xml:space="preserve">
+    <value>正在重试...</value>
+  </data>
+  <data name="PluginStoreWritingConfig" xml:space="preserve">
+    <value>正在写入配置...</value>
+  </data>
 </root>

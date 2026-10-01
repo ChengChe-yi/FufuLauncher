@@ -158,11 +158,21 @@ public sealed partial class PluginSettingsPage
         content.Children.Add(statusText);
         content.Children.Add(progressBar);
 
+        using var cancellation = new CancellationTokenSource();
+
         var progressDialog = new ContentDialog
         {
             Title = titleKey.GetLocalized(),
             Content = content,
+            SecondaryButtonText = "Plugin_StopSwitchBtn".GetLocalized(),
             XamlRoot = XamlRoot
+        };
+
+        progressDialog.SecondaryButtonClick += (_, args) =>
+        {
+            args.Cancel = true;
+            cancellation.Cancel();
+            statusText.Text = "Plugin_StopRequested".GetLocalized();
         };
 
         _ = progressDialog.ShowAsync();
@@ -171,10 +181,22 @@ public sealed partial class PluginSettingsPage
         {
             var progress = new Progress<double>(value => progressBar.Value = value);
             await App.GetService<LightweightPluginService>()
-                .InstallOrUpdateLitePluginAsync(progress, text => statusText.Text = text);
+                .InstallOrUpdateLitePluginAsync(progress, text => statusText.Text = text, cancellation.Token);
 
             progressDialog.Hide();
             return true;
+        }
+        catch (OperationCanceledException)
+        {
+            progressDialog.Hide();
+
+            WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                "Plugin_SwitchStopped_Title".GetLocalized(),
+                "Plugin_SwitchStopped_Content".GetLocalized(),
+                NotificationType.Warning,
+                4000));
+
+            return false;
         }
         catch (Exception ex)
         {

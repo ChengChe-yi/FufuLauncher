@@ -5980,4 +5980,58 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginSignature_TrustUnknown" xml:space="preserve">
     <value>未知狀態（0x{0}）</value>
   </data>
+  <data name="Plugin_StopSwitchBtn" xml:space="preserve">
+    <value>停止切換</value>
+  </data>
+  <data name="Plugin_StopRequested" xml:space="preserve">
+    <value>正在停止...</value>
+  </data>
+  <data name="Plugin_SwitchStopped_Title" xml:space="preserve">
+    <value>已停止</value>
+  </data>
+  <data name="Plugin_SwitchStopped_Content" xml:space="preserve">
+    <value>已停止切換，未做任何變更。</value>
+  </data>
+  <data name="DailyNote_NoIdentityService" xml:space="preserve">
+    <value>未能取得遊戲身分服務，無法讀取便籤資料</value>
+  </data>
+  <data name="PluginStoreAccessDenied" xml:space="preserve">
+    <value>存取被拒絕</value>
+  </data>
+  <data name="PluginStoreCancelling" xml:space="preserve">
+    <value>正在取消...</value>
+  </data>
+  <data name="PluginStoreCaptchaCancelled" xml:space="preserve">
+    <value>已取消驗證碼校驗</value>
+  </data>
+  <data name="PluginStoreCaptchaFailed" xml:space="preserve">
+    <value>驗證碼校驗失敗</value>
+  </data>
+  <data name="PluginStoreCaptchaRequired" xml:space="preserve">
+    <value>需要完成驗證碼校驗</value>
+  </data>
+  <data name="PluginStoreCaptchaRetryExhausted" xml:space="preserve">
+    <value>驗證碼校驗重試次數已用盡，請稍後再試</value>
+  </data>
+  <data name="PluginStoreExtracting" xml:space="preserve">
+    <value>正在解壓縮...</value>
+  </data>
+  <data name="PluginStoreHttpError" xml:space="preserve">
+    <value>請求失敗（HTTP {0}）：{1}</value>
+  </data>
+  <data name="PluginStorePrivateAccessCancelled" xml:space="preserve">
+    <value>已取消私密插件存取驗證</value>
+  </data>
+  <data name="PluginStorePrivateAccessDenied" xml:space="preserve">
+    <value>私密插件存取被拒絕</value>
+  </data>
+  <data name="PluginStorePrivateAccessRequired" xml:space="preserve">
+    <value>需要私密插件存取授權</value>
+  </data>
+  <data name="PluginStoreRetrying" xml:space="preserve">
+    <value>正在重試...</value>
+  </data>
+  <data name="PluginStoreWritingConfig" xml:space="preserve">
+    <value>正在寫入設定...</value>
+  </data>
 </root>

@@ -12,7 +12,7 @@ namespace FufuLauncher.Services
     public interface IPluginUpdateService
     {
         Task ExecuteAutoUpdateAsync(StringBuilder logBuilder);
-        Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null);
+        Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null, CancellationToken cancellationToken = default);
     }
 
     public class PluginUpdateService : IPluginUpdateService
@@ -53,13 +53,13 @@ namespace FufuLauncher.Services
             }
         }
 
-        public async Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null)
+        public async Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null, CancellationToken cancellationToken = default)
         {
-            await InstallGate.WaitAsync();
+            await InstallGate.WaitAsync(cancellationToken);
 
             try
             {
-                return await InstallOrUpdateMainPluginCoreAsync(logBuilder);
+                return await InstallOrUpdateMainPluginCoreAsync(logBuilder, cancellationToken);
             }
             finally
             {
@@ -67,7 +67,7 @@ namespace FufuLauncher.Services
             }
         }
 
-        private async Task<bool> InstallOrUpdateMainPluginCoreAsync(StringBuilder? logBuilder)
+        private async Task<bool> InstallOrUpdateMainPluginCoreAsync(StringBuilder? logBuilder, CancellationToken cancellationToken)
         {
             string tempPath = Path.Combine(Path.GetTempPath(), $"FuFuPlugin_Install_{Guid.NewGuid():N}.zip");
             string extractPath = Path.Combine(Path.GetTempPath(), $"FuFuPlugin_Install_Extract_{Guid.NewGuid():N}");
@@ -77,6 +77,8 @@ namespace FufuLauncher.Services
             {
                 string targetDir = LightweightPluginService.MainPluginDir;
                 string configPath = Path.Combine(targetDir, "config.ini");
+
+                cancellationToken.ThrowIfCancellationRequested();
 
                 if (File.Exists(configPath))
                 {
@@ -89,23 +91,25 @@ namespace FufuLauncher.Services
                     HttpResponseMessage response;
                     try
                     {
-                        response = await client.GetAsync(ApiEndpoints.PluginProxyUrl, HttpCompletionOption.ResponseHeadersRead);
+                        response = await client.GetAsync(ApiEndpoints.PluginProxyUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                         response.EnsureSuccessStatusCode();
                     }
-                    catch
+                    catch (Exception) when (!cancellationToken.IsCancellationRequested)
                     {
                         logBuilder?.AppendLine("[插件更新] 主线路请求失败，正在尝试备用线路...");
-                        response = await client.GetAsync(ApiEndpoints.PluginRawUrl, HttpCompletionOption.ResponseHeadersRead);
+                        response = await client.GetAsync(ApiEndpoints.PluginRawUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                         response.EnsureSuccessStatusCode();
                     }
 
                     using (response)
-                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    using (var stream = await response.Content.ReadAsStreamAsync(cancellationToken))
                     using (var fileStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
                     {
-                        await stream.CopyToAsync(fileStream);
+                        await stream.CopyToAsync(fileStream, cancellationToken);
                     }
                 }
+
+                cancellationToken.ThrowIfCancellationRequested();
 
                 if (Directory.Exists(extractPath)) Directory.Delete(extractPath, true);
                 Directory.CreateDirectory(extractPath);
@@ -113,6 +117,8 @@ namespace FufuLauncher.Services
 
                 var subDirs = Directory.GetDirectories(extractPath);
                 string sourceDir = (subDirs.Length == 1 && Directory.GetFiles(extractPath).Length == 0) ? subDirs[0] : extractPath;
+
+                cancellationToken.ThrowIfCancellationRequested();
 
                 await Task.Run(() =>
                 {
@@ -137,6 +143,10 @@ namespace FufuLauncher.Services
 
                 logBuilder?.AppendLine("[插件更新] 主插件安装完成");
                 return true;
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
