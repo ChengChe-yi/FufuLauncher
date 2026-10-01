@@ -1180,7 +1180,7 @@
     <value>未找到文件，请确认启动器文件完整</value>
   </data>
   <data name="Plugin_MainMissing_Content" xml:space="preserve">
-    <value>未找到主插件 DLL 文件，插件可能未安装、被误删或被杀毒软件拦截。请重新下载插件，或将启动器目录加入杀毒软件白名单后再试。</value>
+    <value>未找到主插件DLL文件，插件可能未安装、被误删或被杀毒软件拦截。请重新下载插件，或将启动器目录加入杀毒软件白名单后再试。</value>
   </data>
   <data name="Plugin_MainMissing_Title" xml:space="preserve">
     <value>主插件缺失</value>
@@ -6268,7 +6268,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>轻量插件缺失</value>
   </data>
   <data name="LightweightMode_LiteMissing_Content" xml:space="preserve">
-    <value>未找到轻量插件 DLL 文件，插件可能未安装、被误删或被杀毒软件拦截。请在功能菜单中重新安装轻量插件。</value>
+    <value>未找到轻量插件DLL文件，插件可能未安装、被误删或被杀毒软件拦截。请在功能菜单中重新安装轻量插件。</value>
   </data>
   <data name="Constraint_BlockedTitle" xml:space="preserve">
     <value>操作已受限</value>
@@ -6422,5 +6422,89 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="PluginPage_DuplicateHint" xml:space="preserve">
     <value>建议手动删除旧版本插件</value>
+  </data>
+  <data name="Settings_PluginSignature_Title" xml:space="preserve">
+    <value>校验插件签名</value>
+  </data>
+  <data name="Settings_PluginSignature_Caption" xml:space="preserve">
+    <value>检测已安装插件DLL的数字签名，并查看签名详情</value>
+  </data>
+  <data name="Settings_PluginSignature_Btn" xml:space="preserve">
+    <value>开始校验</value>
+  </data>
+  <data name="PluginSignature_DialogTitle" xml:space="preserve">
+    <value>插件签名校验结果</value>
+  </data>
+  <data name="PluginSignature_Checking" xml:space="preserve">
+    <value>正在校验插件签名...</value>
+  </data>
+  <data name="PluginSignature_NoPlugins" xml:space="preserve">
+    <value>未在 Plugins 目录中找到任何插件 DLL</value>
+  </data>
+  <data name="PluginSignature_Failed" xml:space="preserve">
+    <value>校验失败：{0}</value>
+  </data>
+  <data name="PluginSignature_Signed" xml:space="preserve">
+    <value>已签名</value>
+  </data>
+  <data name="PluginSignature_Unsigned" xml:space="preserve">
+    <value>未签名</value>
+  </data>
+  <data name="PluginSignature_File" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="PluginSignature_Signer" xml:space="preserve">
+    <value>签名者</value>
+  </data>
+  <data name="PluginSignature_Issuer" xml:space="preserve">
+    <value>颁发者</value>
+  </data>
+  <data name="PluginSignature_SerialNumber" xml:space="preserve">
+    <value>序列号</value>
+  </data>
+  <data name="PluginSignature_Thumbprint" xml:space="preserve">
+    <value>指纹</value>
+  </data>
+  <data name="PluginSignature_ValidFrom" xml:space="preserve">
+    <value>有效期起</value>
+  </data>
+  <data name="PluginSignature_ValidTo" xml:space="preserve">
+    <value>有效期至</value>
+  </data>
+  <data name="PluginSignature_SignatureAlgorithm" xml:space="preserve">
+    <value>签名算法</value>
+  </data>
+  <data name="PluginSignature_PublicKey" xml:space="preserve">
+    <value>公钥算法</value>
+  </data>
+  <data name="PluginSignature_TrustStatus" xml:space="preserve">
+    <value>信任状态</value>
+  </data>
+  <data name="PluginSignature_TrustValid" xml:space="preserve">
+    <value>签名有效且受信任</value>
+  </data>
+  <data name="PluginSignature_TrustNotSigned" xml:space="preserve">
+    <value>文件没有数字签名</value>
+  </data>
+  <data name="PluginSignature_TrustBadDigest" xml:space="preserve">
+    <value>签名校验失败：文件内容可能已被修改</value>
+  </data>
+  <data name="PluginSignature_TrustSubjectNotTrusted" xml:space="preserve">
+    <value>签名主体不受信任</value>
+  </data>
+  <data name="PluginSignature_TrustExpired" xml:space="preserve">
+    <value>签名证书已过期</value>
+  </data>
+  <data name="PluginSignature_TrustRevoked" xml:space="preserve">
+    <value>签名证书已被吊销</value>
+  </data>
+  <data name="PluginSignature_TrustUntrustedRoot" xml:space="preserve">
+    <value>签名不受信任：证书链或根证书不在受信任列表</value>
+  </data>
+  <data name="PluginSignature_TrustWrongUsage" xml:space="preserve">
+    <value>证书用途与代码签名不匹配</value>
+  </data>
+  <data name="PluginSignature_TrustUnknown" xml:space="preserve">
+    <value>未知状态（0x{0}）</value>
   </data>
 </root>

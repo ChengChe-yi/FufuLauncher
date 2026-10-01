@@ -5896,4 +5896,88 @@ Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
   <data name="PluginPage_DuplicateHint" xml:space="preserve">
     <value>It is recommended to delete the older plugin version manually.</value>
   </data>
+  <data name="Settings_PluginSignature_Title" xml:space="preserve">
+    <value>Verify Plugin Signatures</value>
+  </data>
+  <data name="Settings_PluginSignature_Caption" xml:space="preserve">
+    <value>Check the digital signature of installed plugin DLLs and inspect the signature details.</value>
+  </data>
+  <data name="Settings_PluginSignature_Btn" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="PluginSignature_DialogTitle" xml:space="preserve">
+    <value>Plugin Signature Results</value>
+  </data>
+  <data name="PluginSignature_Checking" xml:space="preserve">
+    <value>Verifying plugin signatures...</value>
+  </data>
+  <data name="PluginSignature_NoPlugins" xml:space="preserve">
+    <value>No plugin DLLs were found in the Plugins folder.</value>
+  </data>
+  <data name="PluginSignature_Failed" xml:space="preserve">
+    <value>Verification failed: {0}</value>
+  </data>
+  <data name="PluginSignature_Signed" xml:space="preserve">
+    <value>Signed</value>
+  </data>
+  <data name="PluginSignature_Unsigned" xml:space="preserve">
+    <value>Not signed</value>
+  </data>
+  <data name="PluginSignature_File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="PluginSignature_Signer" xml:space="preserve">
+    <value>Signer</value>
+  </data>
+  <data name="PluginSignature_Issuer" xml:space="preserve">
+    <value>Issuer</value>
+  </data>
+  <data name="PluginSignature_SerialNumber" xml:space="preserve">
+    <value>Serial number</value>
+  </data>
+  <data name="PluginSignature_Thumbprint" xml:space="preserve">
+    <value>Thumbprint</value>
+  </data>
+  <data name="PluginSignature_ValidFrom" xml:space="preserve">
+    <value>Valid from</value>
+  </data>
+  <data name="PluginSignature_ValidTo" xml:space="preserve">
+    <value>Valid to</value>
+  </data>
+  <data name="PluginSignature_SignatureAlgorithm" xml:space="preserve">
+    <value>Signature algorithm</value>
+  </data>
+  <data name="PluginSignature_PublicKey" xml:space="preserve">
+    <value>Public key algorithm</value>
+  </data>
+  <data name="PluginSignature_TrustStatus" xml:space="preserve">
+    <value>Trust status</value>
+  </data>
+  <data name="PluginSignature_TrustValid" xml:space="preserve">
+    <value>Signature is valid and trusted.</value>
+  </data>
+  <data name="PluginSignature_TrustNotSigned" xml:space="preserve">
+    <value>The file has no digital signature.</value>
+  </data>
+  <data name="PluginSignature_TrustBadDigest" xml:space="preserve">
+    <value>Signature verification failed: the file may have been modified.</value>
+  </data>
+  <data name="PluginSignature_TrustSubjectNotTrusted" xml:space="preserve">
+    <value>The signing identity is not trusted.</value>
+  </data>
+  <data name="PluginSignature_TrustExpired" xml:space="preserve">
+    <value>The signing certificate has expired.</value>
+  </data>
+  <data name="PluginSignature_TrustRevoked" xml:space="preserve">
+    <value>The signing certificate has been revoked.</value>
+  </data>
+  <data name="PluginSignature_TrustUntrustedRoot" xml:space="preserve">
+    <value>Signature is not trusted: the certificate chain or root certificate is not trusted.</value>
+  </data>
+  <data name="PluginSignature_TrustWrongUsage" xml:space="preserve">
+    <value>The certificate usage does not match code signing.</value>
+  </data>
+  <data name="PluginSignature_TrustUnknown" xml:space="preserve">
+    <value>Unknown status (0x{0})</value>
+  </data>
 </root>
