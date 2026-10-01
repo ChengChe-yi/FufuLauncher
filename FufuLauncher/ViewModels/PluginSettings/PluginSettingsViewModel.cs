@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services;
@@ -109,6 +110,16 @@ public partial class PluginSettingsViewModel : ObservableObject
     
     public ObservableCollection<PluginSettingItem> Settings { get; } = new();
 
+    public ObservableCollection<PluginSettingItem> PinnedSettings { get; } = new();
+
+    public Microsoft.UI.Xaml.Visibility PinnedSettingsVisibility =>
+        PinnedSettings.Count > 0 ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    private const string PinnedSettingsKey = "PluginSettingPinnedItems";
+
+    private readonly List<string> _settingOrder = new();
+    private Dictionary<string, List<string>> _pinnedSections = new(StringComparer.OrdinalIgnoreCase);
+
     public Microsoft.UI.Xaml.Visibility AvatarSettingsVisibility => 
         SelectedPluginIndex == 2 ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
 
@@ -129,6 +140,7 @@ public partial class PluginSettingsViewModel : ObservableObject
     public PluginSettingsViewModel()
     {
         _lightweightPlugin = App.GetService<LightweightPluginService>();
+        PinnedSettings.CollectionChanged += (_, _) => OnPropertyChanged(nameof(PinnedSettingsVisibility));
         CheckPluginStates();
         UpdatePaths();
         _pluginDir = GetMainPluginDirectory();
@@ -177,6 +189,10 @@ public partial class PluginSettingsViewModel : ObservableObject
             devFeaturesTask.Wait();
             bool savedDevFeatures = devFeaturesTask.Result != null && Convert.ToBoolean(devFeaturesTask.Result);
 
+            var pinnedSectionsTask = localSettings.ReadSettingAsync(PinnedSettingsKey);
+            pinnedSectionsTask.Wait();
+            _pinnedSections = DeserializePinnedSections(pinnedSectionsTask.Result);
+
             if (savedDevFeatures)
             {
                 _isDevFeaturesEnabled = true;
@@ -200,7 +216,7 @@ public partial class PluginSettingsViewModel : ObservableObject
         {
             if (SetProperty(ref _useKeyListInput, value))
             {
-                foreach (var setting in Settings.Where(s => string.Equals(s.Type, "key", StringComparison.OrdinalIgnoreCase)))
+                foreach (var setting in Settings.Concat(PinnedSettings).Where(s => string.Equals(s.Type, "key", StringComparison.OrdinalIgnoreCase)))
                 {
                     setting.SetKeyInputMode(value);
                 }
@@ -254,6 +270,108 @@ public partial class PluginSettingsViewModel : ObservableObject
         LoadConfiguration();
         UpdateAvatarPreview();
         RefreshUIState();
+    }
+
+    public void ToggleSettingPin(PluginSettingItem? item)
+    {
+        if (item == null) return;
+
+        bool pinned = !item.IsPinned;
+        item.IsPinned = pinned;
+
+        string target = GetSettingsTargetKey();
+
+        if (!_pinnedSections.TryGetValue(target, out var sections))
+        {
+            sections = new List<string>();
+            _pinnedSections[target] = sections;
+        }
+
+        if (pinned)
+        {
+            if (!sections.Any(key => string.Equals(key, item.SectionKey, StringComparison.OrdinalIgnoreCase)))
+            {
+                sections.Add(item.SectionKey);
+            }
+
+            Settings.Remove(item);
+            InsertBySettingOrder(PinnedSettings, item);
+        }
+        else
+        {
+            sections.RemoveAll(key => string.Equals(key, item.SectionKey, StringComparison.OrdinalIgnoreCase));
+            PinnedSettings.Remove(item);
+            InsertBySettingOrder(Settings, item);
+        }
+
+        SavePinnedSections();
+    }
+
+    public bool IsSettingPinned(string sectionKey)
+    {
+        if (!_pinnedSections.TryGetValue(GetSettingsTargetKey(), out var sections)) return false;
+
+        return sections.Any(key => string.Equals(key, sectionKey, StringComparison.OrdinalIgnoreCase));
+    }
+
+    private string GetSettingsTargetKey()
+    {
+        var name = Path.GetFileName(_pluginDir);
+        return string.IsNullOrEmpty(name) ? "default" : name;
+    }
+
+    private int GetSettingOrderIndex(string sectionKey) =>
+        _settingOrder.FindIndex(key => string.Equals(key, sectionKey, StringComparison.OrdinalIgnoreCase));
+
+    private void InsertBySettingOrder(ObservableCollection<PluginSettingItem> target, PluginSettingItem item)
+    {
+        int itemIndex = GetSettingOrderIndex(item.SectionKey);
+
+        if (itemIndex >= 0)
+        {
+            for (int i = 0; i < target.Count; i++)
+            {
+                int otherIndex = GetSettingOrderIndex(target[i].SectionKey);
+                if (otherIndex > itemIndex)
+                {
+                    target.Insert(i, item);
+                    return;
+                }
+            }
+        }
+
+        target.Add(item);
+    }
+
+    private void SavePinnedSections()
+    {
+        var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
+        if (localSettings == null) return;
+
+        _ = localSettings.SaveSettingAsync(PinnedSettingsKey, JsonSerializer.Serialize(_pinnedSections));
+    }
+
+    private static Dictionary<string, List<string>> DeserializePinnedSections(object? stored)
+    {
+        var result = new Dictionary<string, List<string>>(StringComparer.OrdinalIgnoreCase);
+        if (stored == null) return result;
+
+        try
+        {
+            var parsed = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(stored.ToString() ?? string.Empty);
+            if (parsed == null) return result;
+
+            foreach (var pair in parsed)
+            {
+                result[pair.Key] = pair.Value ?? new List<string>();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"[插件配置] 读取收藏项失败: {ex.Message}");
+        }
+
+        return result;
     }
 
 }

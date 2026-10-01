@@ -35,6 +35,15 @@
                             </Flyout>
                         </Button.Flyout>
                     </Button>
+                    <Button Click="OnPinSettingClick"
+                            Tag="{x:Bind}"
+                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
+                            Background="Transparent" BorderThickness="0"
+                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                            VerticalAlignment="Center"
+                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
+                    </Button>
                 </StackPanel>
                 <ToggleSwitch IsOn="{x:Bind BoolValue, Mode=TwoWay}" OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" MinWidth="0" Margin="0"/>
             </StackPanel>
@@ -63,6 +72,15 @@
                                 </Grid>
                             </Flyout>
                         </Button.Flyout>
+                    </Button>
+                    <Button Click="OnPinSettingClick"
+                            Tag="{x:Bind}"
+                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
+                            Background="Transparent" BorderThickness="0"
+                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                            VerticalAlignment="Center"
+                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
                     </Button>
                 </StackPanel>
                 <Grid>
@@ -106,6 +124,15 @@
                             </Flyout>
                         </Button.Flyout>
                     </Button>
+                    <Button Click="OnPinSettingClick"
+                            Tag="{x:Bind}"
+                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
+                            Background="Transparent" BorderThickness="0"
+                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                            VerticalAlignment="Center"
+                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
+                    </Button>
                 </StackPanel>
                 <NumberBox Value="{x:Bind FloatValue, Mode=TwoWay}" SpinButtonPlacementMode="Inline" Width="200" HorizontalAlignment="Left"/>
             </StackPanel>
@@ -135,6 +162,15 @@
                             </Flyout>
                         </Button.Flyout>
                     </Button>
+                    <Button Click="OnPinSettingClick"
+                            Tag="{x:Bind}"
+                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
+                            Background="Transparent" BorderThickness="0"
+                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                            VerticalAlignment="Center"
+                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
+                    </Button>
                 </StackPanel>
                 <TextBox Text="{x:Bind StringValue, Mode=TwoWay}" Width="200" HorizontalAlignment="Left"/>
             </StackPanel>
@@ -145,6 +181,27 @@
                                            NumberTemplate="{StaticResource NumberTemplate}"
                                            StringTemplate="{StaticResource StringTemplate}"
                                            KeyTemplate="{StaticResource KeyTemplate}" />
+
+        <Style x:Key="SettingGridViewItemStyle" TargetType="GridViewItem">
+            <Setter Property="Margin" Value="0,0,24,24"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GridViewItem">
+                        <ContentPresenter />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ItemsPanelTemplate x:Key="SettingItemsPanel">
+            <ItemsWrapGrid Orientation="Horizontal" />
+        </ItemsPanelTemplate>
         
         <Storyboard x:Name="EntranceStoryboard">
             <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
@@ -414,38 +471,30 @@
                             </StackPanel>
                         </Grid>
 
-                        <GridView ItemsSource="{x:Bind ViewModel.Settings, Mode=OneWay}"
-                                  Visibility="{x:Bind ViewModel.MainSettingsVisibility, Mode=OneWay}"
+                        <GridView ItemsSource="{x:Bind ViewModel.PinnedSettings, Mode=OneWay}"
+                                  Visibility="{x:Bind ViewModel.PinnedSettingsVisibility, Mode=OneWay}"
                                   ItemTemplateSelector="{StaticResource SettingSelector}"
+                                  ItemContainerStyle="{StaticResource SettingGridViewItemStyle}"
+                                  ItemsPanel="{StaticResource SettingItemsPanel}"
                                   SelectionMode="None"
                                   IsItemClickEnabled="False"
                                   HorizontalAlignment="Stretch"
-                                  ScrollViewer.VerticalScrollMode="Disabled">
-                            <GridView.ItemContainerStyle>
-                                <Style TargetType="GridViewItem">
-                                    <Setter Property="Margin" Value="0,0,24,24"/>
-                                    <Setter Property="Padding" Value="0"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                                    <Setter Property="Background" Value="Transparent"/>
-                                    <Setter Property="MinHeight" Value="0"/>
-                                    <Setter Property="MinWidth" Value="0"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="GridViewItem">
-                                                <ContentPresenter />
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </GridView.ItemContainerStyle>
+                                  ScrollViewer.VerticalScrollMode="Disabled"/>
 
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <ItemsWrapGrid Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                        </GridView>
+                        <Rectangle Height="1"
+                                   Margin="0,0,0,24"
+                                   Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
+                                   Visibility="{x:Bind ViewModel.PinnedSettingsVisibility, Mode=OneWay}"/>
+
+                        <GridView ItemsSource="{x:Bind ViewModel.Settings, Mode=OneWay}"
+                                  Visibility="{x:Bind ViewModel.MainSettingsVisibility, Mode=OneWay}"
+                                  ItemTemplateSelector="{StaticResource SettingSelector}"
+                                  ItemContainerStyle="{StaticResource SettingGridViewItemStyle}"
+                                  ItemsPanel="{StaticResource SettingItemsPanel}"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="False"
+                                  HorizontalAlignment="Stretch"
+                                  ScrollViewer.VerticalScrollMode="Disabled"/>
                         
                         <StackPanel Visibility="{x:Bind ViewModel.AvatarSettingsVisibility, Mode=OneWay}" Margin="0,16,0,0">
                             <TextBlock Text="{helpers:Loc Key=AvatarSettingsTitle}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,16"/>

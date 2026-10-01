@@ -22,6 +22,29 @@ public class PluginSettingItem : ObservableObject
     public Microsoft.UI.Xaml.Visibility HelpVisibility => !string.IsNullOrEmpty(HelpUrl) ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
     public Microsoft.UI.Xaml.Visibility GifImageVisibility => !string.IsNullOrEmpty(HelpUrl) ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
     public Microsoft.UI.Xaml.Visibility GifErrorVisibility => Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    private bool _isPinned;
+
+    public bool IsPinned
+    {
+        get => _isPinned;
+        set
+        {
+            if (SetProperty(ref _isPinned, value))
+            {
+                OnPropertyChanged(nameof(PinGlyph));
+                OnPropertyChanged(nameof(PinOpacity));
+                OnPropertyChanged(nameof(PinTooltip));
+            }
+        }
+    }
+
+    public string PinGlyph => IsPinned ? "\uE735" : "\uE734";
+
+    public double PinOpacity => IsPinned ? 0.95 : 0.5;
+
+    public string PinTooltip => IsPinned ? "UnpinSettingTooltip".GetLocalized() : "PinSettingTooltip".GetLocalized();
+
     private string _rawValue;
     private static readonly ObservableCollection<VirtualKeyOption> _availableKeys = new ObservableCollection<VirtualKeyOption>(GetAvailableKeys());
     private bool _useKeyListInput;

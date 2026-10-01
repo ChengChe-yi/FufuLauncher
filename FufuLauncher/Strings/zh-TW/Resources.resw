@@ -5761,4 +5761,10 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Constraint_ModeSwitchExplanation" xml:space="preserve">
     <value>為什麼要這樣做：遊戲更新時舊的主插件可能會遇到各類奇怪的問題，甚至是存在安全風險，輕量級插件全版本通用，因此在遊戲更新時我們將暫時將你切換到輕量級模式保障最基礎的使用，待主插件適配完成後將會自動切換回去。</value>
   </data>
+  <data name="PinSettingTooltip" xml:space="preserve">
+    <value>收藏該項並置頂顯示</value>
+  </data>
+  <data name="UnpinSettingTooltip" xml:space="preserve">
+    <value>取消收藏</value>
+  </data>
 </root>

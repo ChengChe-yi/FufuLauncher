@@ -144,6 +144,14 @@ public sealed partial class PluginSettingsPage : Page
 
     public bool InvertBool(bool value) => !value;
 
+    private void OnPinSettingClick(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button && button.Tag is PluginSettingItem item)
+        {
+            ViewModel.ToggleSettingPin(item);
+        }
+    }
+
     private void MoveDirectorySafe(string sourceDir, string destDir)
     {
         Directory.CreateDirectory(destDir);

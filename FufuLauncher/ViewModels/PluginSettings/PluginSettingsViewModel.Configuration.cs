@@ -16,6 +16,8 @@ public partial class PluginSettingsViewModel
 public void LoadConfiguration()
     {
         Settings.Clear();
+        PinnedSettings.Clear();
+        _settingOrder.Clear();
 
         if (SelectedPluginIndex == 2)
         {
@@ -95,7 +97,18 @@ public void LoadConfiguration()
                 var help = dic.GetValueOrDefault("help", "");
                 
                 var settingItem = new PluginSettingItem(_iniFile, section.Key, name, type, value, help, OnSettingValueChanged, UseKeyListInput);
-                Settings.Add(settingItem);
+
+                _settingOrder.Add(section.Key);
+
+                if (IsSettingPinned(section.Key))
+                {
+                    settingItem.IsPinned = true;
+                    PinnedSettings.Add(settingItem);
+                }
+                else
+                {
+                    Settings.Add(settingItem);
+                }
             }
         }
         catch (Exception ex)
