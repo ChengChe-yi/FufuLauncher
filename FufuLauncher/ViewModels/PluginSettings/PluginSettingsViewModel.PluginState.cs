@@ -185,6 +185,14 @@ private void CheckPluginStates()
         catch (Exception ex)
         {
             OnPropertyChanged(nameof(IsMainPluginEnabled));
+
+            var lockedFile = FileLockHelper.FindLockedFile(enabledPath, disabledPath);
+            if (lockedFile != null)
+            {
+                NotifyLockedPluginFile(lockedFile);
+                return;
+            }
+
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
                 "状态切换失败",
                 $"无法修改文件后缀名。\n详细信息: {ex.Message}",
@@ -221,6 +229,13 @@ private void CheckPluginStates()
         }
         catch (Exception ex)
         {
+            var lockedFile = FileLockHelper.FindLockedFile(enabledPath, disabledPath);
+            if (lockedFile != null)
+            {
+                NotifyLockedPluginFile(lockedFile);
+                return;
+            }
+
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
                 "状态切换失败",
                 $"无法修改插件文件后缀名。\n详细信息: {ex.Message}",
@@ -291,6 +306,13 @@ private void CheckPluginStates()
         }
         catch (Exception ex)
         {
+            var lockedFile = FileLockHelper.FindLockedFile(enabledPath, disabledPath);
+            if (lockedFile != null)
+            {
+                NotifyLockedPluginFile(lockedFile);
+                return;
+            }
+
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
                 "状态切换失败",
                 $"无法修改插件文件后缀名。\n详细信息: {ex.Message}",
@@ -298,6 +320,15 @@ private void CheckPluginStates()
                 6000
             ));
         }
+    }
+
+    private static void NotifyLockedPluginFile(string lockedFilePath)
+    {
+        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+            FileLockHelper.GetLockedFileTitle(),
+            FileLockHelper.GetLockedFileMessage(lockedFilePath),
+            NotificationType.Error,
+            8000));
     }
 
     public void RefreshPluginStates()

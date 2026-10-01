@@ -63,9 +63,9 @@ public sealed partial class PluginPage
 
             var dialog = new ContentDialog
             {
-                Title = "重命名插件文件夹",
-                PrimaryButtonText = "确定",
-                CloseButtonText = "取消",
+                Title = "PluginPage_RenameFolderTitle".GetLocalized(),
+                PrimaryButtonText = "OkBtn".GetLocalized(),
+                CloseButtonText = "CancelBtn".GetLocalized(),
                 DefaultButton = ContentDialogButton.Primary,
                 XamlRoot = XamlRoot
             };

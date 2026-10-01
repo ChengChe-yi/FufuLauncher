@@ -60,12 +60,12 @@ public sealed partial class PluginPage
 
         bool lightweight = App.GetService<LightweightPluginService>().IsLightweightMode;
 
-        var rbLatest = new RadioButton { Content = "下载/更新插件", IsChecked = !lightweight, IsEnabled = !lightweight, GroupName = "PluginSelect", Tag = urlLatest };
+        var rbLatest = new RadioButton { Content = "PluginPage_DownloadLatestOption".GetLocalized(), IsChecked = !lightweight, IsEnabled = !lightweight, GroupName = "PluginSelect", Tag = urlLatest };
         
-        var rbCustom = new RadioButton { Content = "自定义插件链接", IsChecked = lightweight, GroupName = "PluginSelect", Tag = "Custom" };
+        var rbCustom = new RadioButton { Content = "PluginPage_DownloadCustomOption".GetLocalized(), IsChecked = lightweight, GroupName = "PluginSelect", Tag = "Custom" };
         var txtCustomUrl = new TextBox 
         { 
-            PlaceholderText = "请输入下载直链", 
+            PlaceholderText = "PluginPage_DownloadCustomPlaceholder".GetLocalized(), 
             Visibility = lightweight ? Visibility.Visible : Visibility.Collapsed,
             Margin = new Thickness(28, 0, 0, 0)
         };
@@ -75,14 +75,14 @@ public sealed partial class PluginPage
 
         var warningText = new TextBlock 
         { 
-            Text = "注意：游戏已内置手柄热切换", 
+            Text = "PluginPage_DownloadNotice".GetLocalized(), 
             Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red),
             TextWrapping = TextWrapping.Wrap,
             FontSize = 13,
             Margin = new Thickness(0, 5, 0, 5)
         };
         
-        stackPanel.Children.Add(new TextBlock { Text = "请选择要下载并安装的插件包：", Margin = new Thickness(0, 0, 0, 5) });
+        stackPanel.Children.Add(new TextBlock { Text = "PluginPage_DownloadChooseHint".GetLocalized(), Margin = new Thickness(0, 0, 0, 5) });
         stackPanel.Children.Add(rbLatest);
         stackPanel.Children.Add(warningText);
 
@@ -103,7 +103,7 @@ public sealed partial class PluginPage
         
         stackPanel.Children.Add(new TextBlock 
         { 
-            Text = "默认使用代理加速，若失败将自动切换至GitHub直连", 
+            Text = "PluginPage_DownloadProxyHint".GetLocalized(), 
             FontSize = 12, 
             Opacity = 0.7,
             Margin = new Thickness(0, 10, 0, 0)
@@ -111,10 +111,10 @@ public sealed partial class PluginPage
 
         var dialog = new ContentDialog
         {
-            Title = "获取插件",
+            Title = "PluginPage_GetPluginsTitle".GetLocalized(),
             Content = stackPanel,
-            PrimaryButtonText = "下载并安装",
-            CloseButtonText = "取消",
+            PrimaryButtonText = "PluginPage_DownloadAndInstallBtn".GetLocalized(),
+            CloseButtonText = "CancelBtn".GetLocalized(),
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = XamlRoot
         };
@@ -132,9 +132,9 @@ public sealed partial class PluginPage
                 {
                     var errDialog = new ContentDialog
                     {
-                        Title = "输入错误",
-                        Content = "请输入有效的插件下载链接。",
-                        CloseButtonText = "确定",
+                        Title = "PluginPage_InputErrorTitle".GetLocalized(),
+                        Content = "PluginPage_InvalidUrlMessage".GetLocalized(),
+                        CloseButtonText = "OkBtn".GetLocalized(),
                         XamlRoot = XamlRoot
                     };
                     await errDialog.ShowAsync();
@@ -152,6 +152,19 @@ public sealed partial class PluginPage
         {
             Title = "AdminWarningTitle".GetLocalized(),
             Content = message,
+            CloseButtonText = "CloseBtn".GetLocalized(),
+            XamlRoot = XamlRoot
+        };
+
+        await dialog.ShowAsync();
+    }
+
+    private async Task ShowLockedFileDialogAsync(string lockedFilePath)
+    {
+        var dialog = new ContentDialog
+        {
+            Title = FileLockHelper.GetLockedFileTitle(),
+            Content = FileLockHelper.GetLockedFileMessage(lockedFilePath),
             CloseButtonText = "CloseBtn".GetLocalized(),
             XamlRoot = XamlRoot
         };
@@ -196,7 +209,7 @@ public sealed partial class PluginPage
         };
         var statusText = new TextBlock 
         { 
-            Text = "正在连接...", HorizontalAlignment = HorizontalAlignment.Center 
+            Text = "PluginPage_StatusConnecting".GetLocalized(), HorizontalAlignment = HorizontalAlignment.Center 
         };
         var stackPanel = new StackPanel();
         stackPanel.Children.Add(statusText);
@@ -204,13 +217,15 @@ public sealed partial class PluginPage
 
         var progressDialog = new ContentDialog
         {
-            Title = $"正在获取 {fileName}",
+            Title = string.Format("PluginPage_FetchingFormat".GetLocalized(), fileName),
             Content = stackPanel,
             CloseButtonText = null,
             XamlRoot = XamlRoot
         };
 
         progressDialog.ShowAsync();
+
+        string? installTargetDir = null;
 
         try
         {
@@ -228,14 +243,14 @@ public sealed partial class PluginPage
                 }
                 catch
                 {
-                    statusText.Text = "连接失败，正在尝试备用线路...";
+                    statusText.Text = "PluginPage_StatusSwitchingLine".GetLocalized();
                     usedFallback = true;
                     await Task.Delay(1000); 
                     response = await client.GetAsync(rawGithubUrl, HttpCompletionOption.ResponseHeadersRead);
                     
                     if (!response.IsSuccessStatusCode)
                     {
-                        throw new Exception($"下载失败 (HTTP {response.StatusCode})");
+                        throw new Exception(string.Format("PluginPage_DownloadHttpFailedFormat".GetLocalized(), response.StatusCode));
                     }
                 }
                 
@@ -262,8 +277,8 @@ public sealed partial class PluginPage
                                     var percent = Math.Round((double)totalRead / totalBytes * 100, 0);
                                     
                                     progressBar.Value = percent;
-                                    var source = usedFallback ? "备用线路" : "主线路";
-                                    statusText.Text = $"{source}下载中... {percent}%";
+                                    var source = usedFallback ? "PluginPage_LineBackup".GetLocalized() : "PluginPage_LineMain".GetLocalized();
+                                    statusText.Text = string.Format("PluginPage_StatusDownloadingFormat".GetLocalized(), source, percent);
                                 }
                             }
                         }
@@ -271,7 +286,7 @@ public sealed partial class PluginPage
                 }
             }
             
-            statusText.Text = "正在解压...";
+            statusText.Text = "PluginPage_StatusExtracting".GetLocalized();
             progressBar.IsIndeterminate = true;
             await Task.Delay(500); 
             
@@ -286,7 +301,7 @@ public sealed partial class PluginPage
                 // ignored
             }
 
-            statusText.Text = "正在安装...";
+            statusText.Text = "PluginPage_StatusInstalling".GetLocalized();
             
             var targetFolderName = Path.GetFileNameWithoutExtension(tempPath); 
             var finalDestDir = Path.Combine(pluginsDir, targetFolderName);
@@ -318,6 +333,16 @@ public sealed partial class PluginPage
                 await ShowInstallBlockedDialogAsync(blockReason);
                 return;
             }
+
+            installTargetDir = finalDestDir;
+
+            var lockedFile = FileLockHelper.FindLockedFileInDirectory(finalDestDir);
+            if (lockedFile != null)
+            {
+                progressDialog.Hide();
+                await ShowLockedFileDialogAsync(lockedFile);
+                return;
+            }
             
             if (Directory.Exists(finalDestDir))
             {
@@ -343,12 +368,20 @@ public sealed partial class PluginPage
         catch (Exception ex)
         {
             progressDialog.Hide();
+
+            var lockedFile = FileLockHelper.FindLockedFileInDirectory(installTargetDir);
+            if (lockedFile != null)
+            {
+                await ShowLockedFileDialogAsync(lockedFile);
+                return;
+            }
+
             var failDialog = new ContentDialog
             {
-                Title = "下载/安装错误",
-                Content = $"自动下载失败：{ex.Message}\n\n建议点击下方按钮打开浏览器手动下载。",
-                PrimaryButtonText = "手动下载",
-                CloseButtonText = "关闭",
+                Title = "PluginPage_DownloadErrorTitle".GetLocalized(),
+                Content = string.Format("PluginPage_DownloadErrorContentFormat".GetLocalized(), ex.Message),
+                PrimaryButtonText = "PluginPage_ManualDownloadBtn".GetLocalized(),
+                CloseButtonText = "CloseBtn".GetLocalized(),
                 DefaultButton = ContentDialogButton.Primary,
                 XamlRoot = XamlRoot
             };

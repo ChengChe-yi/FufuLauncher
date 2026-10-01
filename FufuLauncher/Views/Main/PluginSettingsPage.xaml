@@ -11,6 +11,16 @@
     Background="Transparent">
 
     <Page.Resources>
+        <ResourceDictionary>
+        <ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary x:Key="Light">
+                <AcrylicBrush x:Key="BatchActionAcrylicBrush" FallbackColor="#F2FFFFFF" TintColor="#FFFFFF" TintOpacity="0.5" TintLuminosityOpacity="0.85"/>
+            </ResourceDictionary>
+            <ResourceDictionary x:Key="Default">
+                <AcrylicBrush x:Key="BatchActionAcrylicBrush" FallbackColor="#F21F1F1F" TintColor="#1F1F1F" TintOpacity="0.5" TintLuminosityOpacity="0.85"/>
+            </ResourceDictionary>
+        </ResourceDictionary.ThemeDictionaries>
+
         <DataTemplate x:Key="BoolTemplate" x:DataType="viewmodels:PluginSettingItem">
             <StackPanel Width="240" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
@@ -44,6 +54,11 @@
                             ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
                         <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
                     </Button>
+                    <FontIcon Glyph="&#xE73E;"
+                              FontSize="12"
+                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                              VerticalAlignment="Center"
+                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
                 </StackPanel>
                 <ToggleSwitch IsOn="{x:Bind BoolValue, Mode=TwoWay}" OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" MinWidth="0" Margin="0"/>
             </StackPanel>
@@ -82,6 +97,11 @@
                             ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
                         <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
                     </Button>
+                    <FontIcon Glyph="&#xE73E;"
+                              FontSize="12"
+                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                              VerticalAlignment="Center"
+                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
                 </StackPanel>
                 <Grid>
                     <ComboBox ItemsSource="{x:Bind AvailableKeys}" 
@@ -133,6 +153,11 @@
                             ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
                         <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
                     </Button>
+                    <FontIcon Glyph="&#xE73E;"
+                              FontSize="12"
+                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                              VerticalAlignment="Center"
+                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
                 </StackPanel>
                 <NumberBox Value="{x:Bind FloatValue, Mode=TwoWay}" SpinButtonPlacementMode="Inline" Width="200" HorizontalAlignment="Left"/>
             </StackPanel>
@@ -171,6 +196,11 @@
                             ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
                         <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
                     </Button>
+                    <FontIcon Glyph="&#xE73E;"
+                              FontSize="12"
+                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                              VerticalAlignment="Center"
+                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
                 </StackPanel>
                 <TextBox Text="{x:Bind StringValue, Mode=TwoWay}" Width="200" HorizontalAlignment="Left"/>
             </StackPanel>
@@ -222,6 +252,47 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
+
+        <Storyboard x:Name="SelectionRectFadeIn">
+            <DoubleAnimation Storyboard.TargetName="SelectionRectangle"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.18">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="SelectionRectFadeOut" Completed="SelectionRectFadeOut_Completed">
+            <DoubleAnimation Storyboard.TargetName="SelectionRectangle"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1" To="0" Duration="0:0:0.18">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="BatchActionBarFadeIn">
+            <DoubleAnimation Storyboard.TargetName="BatchActionBar"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.18">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="BatchActionBarFadeOut" Completed="BatchActionBarFadeOut_Completed">
+            <DoubleAnimation Storyboard.TargetName="BatchActionBar"
+                             Storyboard.TargetProperty="Opacity"
+                             From="1" To="0" Duration="0:0:0.18">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        </ResourceDictionary>
     </Page.Resources>
 
     <Grid x:Name="RootLayoutGrid" Padding="32,24,32,24" Opacity="0">
@@ -399,9 +470,15 @@
 
         <Grid Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <ContentControl IsEnabled="{x:Bind ViewModel.IsSettingsInteractable, Mode=OneWay}" 
+                <ContentControl x:Name="SettingsContent"
+                                IsEnabled="{x:Bind ViewModel.IsSettingsInteractable, Mode=OneWay}" 
                                 HorizontalContentAlignment="Stretch" 
-                                VerticalContentAlignment="Stretch">
+                                VerticalContentAlignment="Stretch"
+                                PointerPressed="OnSettingsPointerPressed"
+                                PointerMoved="OnSettingsPointerMoved"
+                                PointerReleased="OnSettingsPointerReleased"
+                                PointerCaptureLost="OnSettingsPointerCaptureLost"
+                                PointerCanceled="OnSettingsPointerCaptureLost">
                     <StackPanel>
                         <Grid Margin="0,0,0,32" Visibility="{x:Bind ViewModel.MainSettingsVisibility, Mode=OneWay}">
                             <Grid.ColumnDefinitions>
@@ -471,7 +548,8 @@
                             </StackPanel>
                         </Grid>
 
-                        <GridView ItemsSource="{x:Bind ViewModel.PinnedSettings, Mode=OneWay}"
+                        <GridView x:Name="PinnedSettingsGrid"
+                                  ItemsSource="{x:Bind ViewModel.PinnedSettings, Mode=OneWay}"
                                   Visibility="{x:Bind ViewModel.PinnedSettingsVisibility, Mode=OneWay}"
                                   ItemTemplateSelector="{StaticResource SettingSelector}"
                                   ItemContainerStyle="{StaticResource SettingGridViewItemStyle}"
@@ -486,7 +564,8 @@
                                    Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
                                    Visibility="{x:Bind ViewModel.PinnedSettingsVisibility, Mode=OneWay}"/>
 
-                        <GridView ItemsSource="{x:Bind ViewModel.Settings, Mode=OneWay}"
+                        <GridView x:Name="SettingsGrid"
+                                  ItemsSource="{x:Bind ViewModel.Settings, Mode=OneWay}"
                                   Visibility="{x:Bind ViewModel.MainSettingsVisibility, Mode=OneWay}"
                                   ItemTemplateSelector="{StaticResource SettingSelector}"
                                   ItemContainerStyle="{StaticResource SettingGridViewItemStyle}"
@@ -541,6 +620,42 @@
                     </StackPanel>
                 </ContentControl>
             </ScrollViewer>
+
+            <Canvas x:Name="SelectionCanvas" IsHitTestVisible="False">
+                <Rectangle x:Name="SelectionRectangle"
+                           Visibility="Collapsed"
+                           Opacity="0"
+                           RadiusX="6"
+                           RadiusY="6"
+                           Fill="#33FFFFFF"
+                           Stroke="#CCFFFFFF"
+                           StrokeThickness="1"/>
+            </Canvas>
+
+            <Canvas x:Name="BatchActionHost">
+                <Border x:Name="BatchActionBar"
+                        Visibility="Collapsed"
+                        Opacity="0"
+                        Translation="0,0,16"
+                        Background="{ThemeResource BatchActionAcrylicBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="12,8">
+                    <Border.Shadow>
+                        <ThemeShadow />
+                    </Border.Shadow>
+                    <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                        <TextBlock Text="{x:Bind ViewModel.SelectionSummary, Mode=OneWay}"
+                                   FontSize="12" Opacity="0.8" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <Button Content="{helpers:Loc Key=BatchActions_Enable}" Click="OnBatchEnableClick"/>
+                        <Button Content="{helpers:Loc Key=BatchActions_Disable}" Click="OnBatchDisableClick"/>
+                        <Button Content="{helpers:Loc Key=BatchActions_Pin}" Click="OnBatchPinClick"/>
+                        <Button Content="{helpers:Loc Key=BatchActions_Unpin}" Click="OnBatchUnpinClick"/>
+                        <Button Content="{helpers:Loc Key=BatchActions_ClearSelection}" Click="OnBatchClearSelectionClick"/>
+                    </StackPanel>
+                </Border>
+            </Canvas>
                 
             <Grid x:Name="SettingsOverlay" 
                   Visibility="Collapsed" 

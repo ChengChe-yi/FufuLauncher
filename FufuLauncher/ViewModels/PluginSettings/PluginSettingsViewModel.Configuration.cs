@@ -18,6 +18,7 @@ public void LoadConfiguration()
         Settings.Clear();
         PinnedSettings.Clear();
         _settingOrder.Clear();
+        NotifySelectionChanged();
 
         if (SelectedPluginIndex == 2)
         {

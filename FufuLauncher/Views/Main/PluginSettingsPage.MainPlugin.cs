@@ -70,6 +70,19 @@ public sealed partial class PluginSettingsPage
         ViewModel.IsMainPluginEnabled = toggleSwitch.IsOn;
     }
 
+    private async Task ShowLockedFileDialogAsync(string lockedFilePath)
+    {
+        var dialog = new ContentDialog
+        {
+            Title = FileLockHelper.GetLockedFileTitle(),
+            Content = FileLockHelper.GetLockedFileMessage(lockedFilePath),
+            CloseButtonText = "CloseBtn".GetLocalized(),
+            XamlRoot = XamlRoot
+        };
+
+        await dialog.ShowAsync();
+    }
+
     private async Task ShowConstraintBlockedDialogAsync(bool showModeSwitchExplanation = false)
     {
         var message = await App.GetService<ConstraintService>().GetBlockMessageAsync();
@@ -200,6 +213,13 @@ public sealed partial class PluginSettingsPage
             return;
         }
 
+        var preLockedFile = FileLockHelper.FindLockedFileInDirectory(LightweightPluginService.MainPluginDir);
+        if (preLockedFile != null)
+        {
+            await ShowLockedFileDialogAsync(preLockedFile);
+            return;
+        }
+
         var fileName = proxyUrl.Split('/').Last();
         if (fileName.Contains("?")) fileName = fileName.Split('?')[0];
         if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) 
@@ -307,6 +327,14 @@ public sealed partial class PluginSettingsPage
         catch (Exception ex)
         {
             progressDialog.Hide();
+
+            var lockedFile = FileLockHelper.FindLockedFileInDirectory(LightweightPluginService.MainPluginDir);
+            if (lockedFile != null)
+            {
+                await ShowLockedFileDialogAsync(lockedFile);
+                return;
+            }
+
             var failDialog = new ContentDialog
             {
                 Title = "ErrorTitle".GetLocalized(),

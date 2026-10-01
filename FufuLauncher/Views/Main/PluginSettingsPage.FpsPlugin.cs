@@ -120,6 +120,13 @@ private async Task EnforceFpsPluginDisableAsync()
             return;
         }
 
+        var preLockedFile = FileLockHelper.FindLockedFileInDirectory(finalDestDir);
+        if (preLockedFile != null)
+        {
+            if (showUI) await ShowLockedFileDialogAsync(preLockedFile);
+            return;
+        }
+
         ContentDialog progressDialog = null;
         if (showUI)
         {
@@ -160,6 +167,13 @@ private async Task EnforceFpsPluginDisableAsync()
             if (progressDialog != null) progressDialog.Hide();
             if (showUI)
             {
+                var lockedFile = FileLockHelper.FindLockedFileInDirectory(finalDestDir);
+                if (lockedFile != null)
+                {
+                    await ShowLockedFileDialogAsync(lockedFile);
+                    return;
+                }
+
                 var failDialog = new ContentDialog
                 {
                     Title = "Fps_Repair_Fail_Title".GetLocalized(),

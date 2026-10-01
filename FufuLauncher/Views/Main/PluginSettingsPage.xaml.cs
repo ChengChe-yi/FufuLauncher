@@ -121,6 +121,10 @@ public sealed partial class PluginSettingsPage : Page
                 }
             }
         }
+        else if (e.PropertyName == nameof(ViewModel.SelectionBarVisibility))
+        {
+            UpdateBatchBarVisibility();
+        }
         else if (e.PropertyName == nameof(ViewModel.SelectedPluginIndex))
         {
             await CheckAndShowFpsWarningAsync();

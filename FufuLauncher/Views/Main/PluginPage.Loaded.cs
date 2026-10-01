@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -48,7 +49,7 @@ public sealed partial class PluginPage
     
         var textBlock = new TextBlock
         {
-            Text = "安全软件会阻塞该程序的正常注入运行，如无法使用或者插件消失，请关闭你电脑的安全中心！",
+            Text = "PluginPage_SecurityWarningContent".GetLocalized(),
             Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red),
             FontWeight = Microsoft.UI.Text.FontWeights.Bold,
             TextWrapping = TextWrapping.Wrap,
@@ -58,9 +59,9 @@ public sealed partial class PluginPage
     
         var dialog = new ContentDialog
         {
-            Title = "警告",
+            Title = "AdminWarningTitle".GetLocalized(),
             Content = textBlock,
-            CloseButtonText = "我知道了",
+            CloseButtonText = "GotItBtn".GetLocalized(),
             DefaultButton = ContentDialogButton.Close,
             XamlRoot = XamlRoot
         };

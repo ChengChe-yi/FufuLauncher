@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -25,10 +26,10 @@ public sealed partial class PluginPage
                 {
                     var dialog = new ContentDialog
                     {
-                        Title = "架构兼容性警告",
-                        Content = "您的电脑可能为ARM架构，注入功能在ARM架构的电脑中不可用，是否确认继续开启？",
-                        PrimaryButtonText = "继续开启",
-                        CloseButtonText = "取消",
+                        Title = "Plugin_ArchWarning_Title".GetLocalized(),
+                        Content = "Plugin_ArchWarning_Content".GetLocalized(),
+                        PrimaryButtonText = "Plugin_ArchWarning_Continue".GetLocalized(),
+                        CloseButtonText = "CancelBtn".GetLocalized(),
                         XamlRoot = XamlRoot
                     };
 

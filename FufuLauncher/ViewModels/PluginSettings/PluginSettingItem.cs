@@ -45,6 +45,23 @@ public class PluginSettingItem : ObservableObject
 
     public string PinTooltip => IsPinned ? "UnpinSettingTooltip".GetLocalized() : "PinSettingTooltip".GetLocalized();
 
+    private bool _isSelected;
+
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set
+        {
+            if (SetProperty(ref _isSelected, value))
+            {
+                OnPropertyChanged(nameof(SelectionMarkVisibility));
+            }
+        }
+    }
+
+    public Microsoft.UI.Xaml.Visibility SelectionMarkVisibility =>
+        IsSelected ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
     private string _rawValue;
     private static readonly ObservableCollection<VirtualKeyOption> _availableKeys = new ObservableCollection<VirtualKeyOption>(GetAvailableKeys());
     private bool _useKeyListInput;

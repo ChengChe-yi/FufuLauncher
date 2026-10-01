@@ -276,7 +276,12 @@ public partial class PluginSettingsViewModel : ObservableObject
     {
         if (item == null) return;
 
-        bool pinned = !item.IsPinned;
+        ApplyPin(item, !item.IsPinned);
+        SavePinnedSections();
+    }
+
+    private void ApplyPin(PluginSettingItem item, bool pinned)
+    {
         item.IsPinned = pinned;
 
         string target = GetSettingsTargetKey();
@@ -303,8 +308,67 @@ public partial class PluginSettingsViewModel : ObservableObject
             PinnedSettings.Remove(item);
             InsertBySettingOrder(Settings, item);
         }
+    }
+
+    public IEnumerable<PluginSettingItem> SelectedSettings =>
+        PinnedSettings.Concat(Settings).Where(item => item.IsSelected);
+
+    public int SelectedSettingsCount =>
+        PinnedSettings.Count(item => item.IsSelected) + Settings.Count(item => item.IsSelected);
+
+    public Microsoft.UI.Xaml.Visibility SelectionBarVisibility =>
+        SelectedSettingsCount > 0 ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    public string SelectionSummary =>
+        string.Format("BatchActions_SelectedCount".GetLocalized(), SelectedSettingsCount);
+
+    public void NotifySelectionChanged()
+    {
+        OnPropertyChanged(nameof(SelectedSettingsCount));
+        OnPropertyChanged(nameof(SelectionBarVisibility));
+        OnPropertyChanged(nameof(SelectionSummary));
+    }
+
+    public void ClearSelection()
+    {
+        foreach (var item in PinnedSettings.Concat(Settings))
+        {
+            item.IsSelected = false;
+        }
+
+        NotifySelectionChanged();
+    }
+
+    public void BatchSetBoolValue(bool value)
+    {
+        foreach (var item in PinnedSettings.Concat(Settings))
+        {
+            if (!item.IsSelected) continue;
+            if (!string.Equals(item.Type, "bool", StringComparison.OrdinalIgnoreCase)) continue;
+
+            item.BoolValue = value;
+        }
+
+        NotifySelectionChanged();
+    }
+
+    public void BatchSetPinned(bool pinned)
+    {
+        var selected = PinnedSettings.Concat(Settings).Where(item => item.IsSelected).ToList();
+        if (selected.Count == 0) return;
+
+        foreach (var item in selected)
+        {
+            if (item.IsPinned != pinned)
+            {
+                ApplyPin(item, pinned);
+            }
+
+            item.IsSelected = false;
+        }
 
         SavePinnedSections();
+        NotifySelectionChanged();
     }
 
     public bool IsSettingPinned(string sectionKey)

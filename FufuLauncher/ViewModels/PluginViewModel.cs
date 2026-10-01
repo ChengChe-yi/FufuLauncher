@@ -243,19 +243,20 @@ public class PluginViewModel : INotifyPropertyChanged
         if (duplicates.Any())
         {
             StringBuilder sb = new();
-            sb.AppendLine("检测到以下重复插件：\n");
+            sb.AppendLine("PluginPage_DuplicateDetectedHeader".GetLocalized());
+            sb.AppendLine();
 
             foreach (var item in duplicates)
             {
-                sb.AppendLine($"插件名称：{item.Key}");
-                sb.AppendLine($"   冲突文件夹：");
+                sb.AppendLine(string.Format("PluginPage_DuplicatePluginNameFormat".GetLocalized(), item.Key));
+                sb.AppendLine("PluginPage_DuplicateConflictsHeader".GetLocalized());
                 foreach (var folder in item.Value)
                 {
-                    sb.AppendLine($"    - {folder}");
+                    sb.AppendLine(string.Format("PluginPage_DuplicateFolderItemFormat".GetLocalized(), folder));
                 }
                 sb.AppendLine();
             }
-            sb.AppendLine("建议手动删除旧版本插件");
+            sb.AppendLine("PluginPage_DuplicateHint".GetLocalized());
             
             DuplicateDetected?.Invoke(this, sb.ToString());
         }
@@ -339,9 +340,10 @@ public class PluginViewModel : INotifyPropertyChanged
             }
         }
 
+        string newPath = string.Empty;
+
         try
         {
-            string newPath;
             bool targetState;
 
             if (item.FullPath.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase))
@@ -376,9 +378,27 @@ public class PluginViewModel : INotifyPropertyChanged
         }
         catch (Exception ex)
         {
+            var lockedFile = FileLockHelper.FindLockedFile(item.FullPath, newPath);
+            if (lockedFile != null)
+            {
+                StatusMessage = FileLockHelper.GetLockedFileMessage(lockedFile);
+                NotifyPluginLockedFile(lockedFile);
+                item.RefreshState();
+                return;
+            }
+
             StatusMessage = $"切换状态失败: {ex.Message}";
             item.RefreshState();
         }
+    }
+
+    private static void NotifyPluginLockedFile(string lockedFilePath)
+    {
+        WeakReferenceMessenger.Default.Send(new NotificationMessage(
+            FileLockHelper.GetLockedFileTitle(),
+            FileLockHelper.GetLockedFileMessage(lockedFilePath),
+            NotificationType.Error,
+            8000));
     }
 
     private static void NotifyPluginOperationBlocked(string message)
@@ -393,6 +413,18 @@ public class PluginViewModel : INotifyPropertyChanged
     private void DeletePlugin(PluginItem? item)
     {
         if (item == null) return;
+
+        if (Directory.Exists(item.DirectoryPath))
+        {
+            var lockedFile = FileLockHelper.FindLockedFileInDirectory(item.DirectoryPath);
+            if (lockedFile != null)
+            {
+                StatusMessage = FileLockHelper.GetLockedFileMessage(lockedFile);
+                NotifyPluginLockedFile(lockedFile);
+                return;
+            }
+        }
+
         try
         {
             if (Directory.Exists(item.DirectoryPath))
@@ -405,6 +437,14 @@ public class PluginViewModel : INotifyPropertyChanged
         }
         catch (Exception ex)
         {
+            var lockedFile = FileLockHelper.FindLockedFileInDirectory(item.DirectoryPath);
+            if (lockedFile != null)
+            {
+                StatusMessage = FileLockHelper.GetLockedFileMessage(lockedFile);
+                NotifyPluginLockedFile(lockedFile);
+                return;
+            }
+
             StatusMessage = $"删除失败: {ex.Message}";
         }
     }
@@ -443,6 +483,14 @@ public class PluginViewModel : INotifyPropertyChanged
         }
         catch (Exception ex)
         {
+            var lockedFile = FileLockHelper.FindLockedFileInDirectory(item.DirectoryPath);
+            if (lockedFile != null)
+            {
+                StatusMessage = FileLockHelper.GetLockedFileMessage(lockedFile);
+                NotifyPluginLockedFile(lockedFile);
+                return;
+            }
+
             StatusMessage = $"重命名失败: {ex.Message}";
         }
     }

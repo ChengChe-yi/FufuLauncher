@@ -5767,4 +5767,133 @@ UIGF v4.x/3.0/2.x</value>
   <data name="UnpinSettingTooltip" xml:space="preserve">
     <value>取消收藏</value>
   </data>
+  <data name="BatchActions_SelectedCount" xml:space="preserve">
+    <value>已選擇 {0} 項</value>
+  </data>
+  <data name="BatchActions_Enable" xml:space="preserve">
+    <value>批次開啟</value>
+  </data>
+  <data name="BatchActions_Disable" xml:space="preserve">
+    <value>批次關閉</value>
+  </data>
+  <data name="BatchActions_Pin" xml:space="preserve">
+    <value>批次收藏</value>
+  </data>
+  <data name="BatchActions_Unpin" xml:space="preserve">
+    <value>批次取消收藏</value>
+  </data>
+  <data name="BatchActions_ClearSelection" xml:space="preserve">
+    <value>取消選擇</value>
+  </data>
+  <data name="Plugin_FileLocked_Title" xml:space="preserve">
+    <value>插件檔案被占用</value>
+  </data>
+  <data name="Plugin_FileLocked_Content" xml:space="preserve">
+    <value>插件檔案「{0}」正被其它程式占用，操作未能完成。請先關閉遊戲或占用該檔案的程式後重試；若反覆出現，可能是防毒軟體正在掃描，請稍後再試。</value>
+  </data>
+  <data name="PluginPage_FreeCamHelpTitle" xml:space="preserve">
+    <value>自由視角使用說明</value>
+  </data>
+  <data name="PluginPage_FileNotFoundTitle" xml:space="preserve">
+    <value>檔案未找到</value>
+  </data>
+  <data name="PluginPage_FreeCamImageMissing" xml:space="preserve">
+    <value>未能在 Assets 資料夾中找到 freecam.png</value>
+  </data>
+  <data name="PluginPage_DuplicateTitle" xml:space="preserve">
+    <value>插件衝突警告</value>
+  </data>
+  <data name="PluginPage_OpenPluginFolderBtn" xml:space="preserve">
+    <value>開啟插件目錄</value>
+  </data>
+  <data name="PluginPage_IgnoreBtn" xml:space="preserve">
+    <value>忽略</value>
+  </data>
+  <data name="PluginPage_GetPluginsTitle" xml:space="preserve">
+    <value>取得插件</value>
+  </data>
+  <data name="PluginPage_DownloadLatestOption" xml:space="preserve">
+    <value>下載/更新插件</value>
+  </data>
+  <data name="PluginPage_DownloadCustomOption" xml:space="preserve">
+    <value>自訂插件連結</value>
+  </data>
+  <data name="PluginPage_DownloadCustomPlaceholder" xml:space="preserve">
+    <value>請輸入下載直鏈</value>
+  </data>
+  <data name="PluginPage_DownloadNotice" xml:space="preserve">
+    <value>注意：遊戲已內建手把熱切換</value>
+  </data>
+  <data name="PluginPage_DownloadChooseHint" xml:space="preserve">
+    <value>請選擇要下載並安裝的插件包：</value>
+  </data>
+  <data name="PluginPage_DownloadProxyHint" xml:space="preserve">
+    <value>預設使用代理加速，若失敗將自動切換至 GitHub 直連</value>
+  </data>
+  <data name="PluginPage_DownloadAndInstallBtn" xml:space="preserve">
+    <value>下載並安裝</value>
+  </data>
+  <data name="PluginPage_InputErrorTitle" xml:space="preserve">
+    <value>輸入錯誤</value>
+  </data>
+  <data name="PluginPage_InvalidUrlMessage" xml:space="preserve">
+    <value>請輸入有效的插件下載連結。</value>
+  </data>
+  <data name="PluginPage_FetchingFormat" xml:space="preserve">
+    <value>正在取得 {0}</value>
+  </data>
+  <data name="PluginPage_StatusConnecting" xml:space="preserve">
+    <value>正在連線...</value>
+  </data>
+  <data name="PluginPage_StatusSwitchingLine" xml:space="preserve">
+    <value>連線失敗，正在嘗試備用線路...</value>
+  </data>
+  <data name="PluginPage_DownloadHttpFailedFormat" xml:space="preserve">
+    <value>下載失敗 (HTTP {0})</value>
+  </data>
+  <data name="PluginPage_LineBackup" xml:space="preserve">
+    <value>備用線路</value>
+  </data>
+  <data name="PluginPage_LineMain" xml:space="preserve">
+    <value>主線路</value>
+  </data>
+  <data name="PluginPage_StatusDownloadingFormat" xml:space="preserve">
+    <value>{0}下載中... {1}%</value>
+  </data>
+  <data name="PluginPage_StatusExtracting" xml:space="preserve">
+    <value>正在解壓縮...</value>
+  </data>
+  <data name="PluginPage_StatusInstalling" xml:space="preserve">
+    <value>正在安裝...</value>
+  </data>
+  <data name="PluginPage_DownloadErrorTitle" xml:space="preserve">
+    <value>下載/安裝錯誤</value>
+  </data>
+  <data name="PluginPage_DownloadErrorContentFormat" xml:space="preserve">
+    <value>自動下載失敗：{0}&#10;&#10;建議點擊下方按鈕開啟瀏覽器手動下載。</value>
+  </data>
+  <data name="PluginPage_ManualDownloadBtn" xml:space="preserve">
+    <value>手動下載</value>
+  </data>
+  <data name="PluginPage_SecurityWarningContent" xml:space="preserve">
+    <value>安全軟體會阻擋該程式的正常注入運行，如無法使用或者插件消失，請關閉你電腦的安全中心！</value>
+  </data>
+  <data name="PluginPage_RenameFolderTitle" xml:space="preserve">
+    <value>重新命名插件資料夾</value>
+  </data>
+  <data name="PluginPage_DuplicateDetectedHeader" xml:space="preserve">
+    <value>偵測到以下重複插件：</value>
+  </data>
+  <data name="PluginPage_DuplicatePluginNameFormat" xml:space="preserve">
+    <value>插件名稱：{0}</value>
+  </data>
+  <data name="PluginPage_DuplicateConflictsHeader" xml:space="preserve">
+    <value>衝突資料夾：</value>
+  </data>
+  <data name="PluginPage_DuplicateFolderItemFormat" xml:space="preserve">
+    <value>   - {0}</value>
+  </data>
+  <data name="PluginPage_DuplicateHint" xml:space="preserve">
+    <value>建議手動刪除舊版本插件</value>
+  </data>
 </root>

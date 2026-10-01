@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -40,9 +41,9 @@ public sealed partial class PluginPage
 
                 var dialog = new ContentDialog
                 {
-                    Title = "自由视角使用说明",
+                    Title = "PluginPage_FreeCamHelpTitle".GetLocalized(),
                     Content = image,
-                    CloseButtonText = "关闭",
+                    CloseButtonText = "CloseBtn".GetLocalized(),
                     XamlRoot = XamlRoot,
                     Resources = { ["ContentDialogMaxWidth"] = 900.0 }
                 };
@@ -52,9 +53,9 @@ public sealed partial class PluginPage
             {
                 var dialog = new ContentDialog
                 {
-                    Title = "文件未找到",
-                    Content = "未能在 Assets 文件夹中找到 freecam.png",
-                    CloseButtonText = "确定",
+                    Title = "PluginPage_FileNotFoundTitle".GetLocalized(),
+                    Content = "PluginPage_FreeCamImageMissing".GetLocalized(),
+                    CloseButtonText = "OkBtn".GetLocalized(),
                     XamlRoot = XamlRoot
                 };
                 await dialog.ShowAsync();
@@ -72,14 +73,14 @@ public sealed partial class PluginPage
 
         var dialog = new ContentDialog
         {
-            Title = "插件冲突警告",
+            Title = "PluginPage_DuplicateTitle".GetLocalized(),
             Content = new ScrollViewer 
             { 
                 Content = new TextBlock { Text = message, TextWrapping = TextWrapping.Wrap },
                 MaxHeight = 300
             },
-            PrimaryButtonText = "打开插件目录",
-            CloseButtonText = "忽略",
+            PrimaryButtonText = "PluginPage_OpenPluginFolderBtn".GetLocalized(),
+            CloseButtonText = "PluginPage_IgnoreBtn".GetLocalized(),
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = XamlRoot
         };
