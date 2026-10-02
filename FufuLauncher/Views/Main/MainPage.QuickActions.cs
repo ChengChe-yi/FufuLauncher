@@ -17,7 +17,43 @@ namespace FufuLauncher.Views;
 
 public sealed partial class MainPage
 {
-    #region 令牌刷新与弹层选择
+    #region 公告、令牌刷新与弹层选择
+
+    private async void AnnouncementBell_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var announcementService = App.GetService<IAnnouncementService>();
+
+            var announcementUrl = await announcementService.GetCurrentAnnouncementUrlAsync();
+
+            if (string.IsNullOrEmpty(announcementUrl))
+            {
+                var localSettings = App.GetService<ILocalSettingsService>();
+
+                var lastUrlObj = await localSettings.ReadSettingAsync("LastAnnouncementUrl");
+                if (lastUrlObj is string lastUrl && !string.IsNullOrEmpty(lastUrl))
+                {
+                    announcementUrl = lastUrl;
+                }
+            }
+
+
+            if (!string.IsNullOrEmpty(announcementUrl))
+            {
+                var announcementWindow = new AnnouncementWindowL(announcementUrl);
+                announcementWindow.Activate();
+            }
+            else
+            {
+                Debug.WriteLine("[Announcement] 手动获取公告失败：未获取到且无本地缓存");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[Announcement] 手动触发公告异常: {ex.Message}");
+        }
+    }
 
     private async void RefreshTokenButton_Click(object sender, RoutedEventArgs e)
     {

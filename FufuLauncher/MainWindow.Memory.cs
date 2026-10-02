@@ -74,6 +74,7 @@ public sealed partial class MainWindow
         _networkMonitorService.Stop();
         _messageDismissTimer.Stop();
 
+        _announcementCheckTimer.Stop();
         FlushMemory();
 
         Debug.WriteLine("应用挂起");
@@ -109,6 +110,11 @@ public sealed partial class MainWindow
         if (!_networkMonitorService.IsEnabled)
         {
             _networkMonitorService.Start();
+        }
+
+        if (!_announcementCheckTimer.IsEnabled)
+        {
+            _announcementCheckTimer.Start();
         }
 
         Debug.WriteLine("应用已唤醒");
