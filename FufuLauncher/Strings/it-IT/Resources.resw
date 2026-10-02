@@ -6040,4 +6040,22 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>Mostra avviso nella finestra captcha</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>Mostra nella finestra captcha del controllo rischi un avviso sulla provenienza. Disattivandolo si nasconde solo il testo; la verifica resta invariata.</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>MIYOUSHE · NOTE · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>Questa verifica proviene dalle note di Miyoushe</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>Questa finestra è attivata dal controllo rischi di miHoYo e serve solo alla consulta delle «note». Non è il captcha del launcher.</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>Dopo la verifica potrai visualizzare le note. Per nascondere questo avviso, disattivalo in «Impostazioni → Opzioni avanzate».</value>
+  </data>
 </root>

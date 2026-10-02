@@ -6511,4 +6511,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>CAPTCHA पॉपअप विवरण दिखाएं</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>जोखिम नियंत्रण CAPTCHA विंडो में स्रोत का विवरण दिखाता है। इसे बंद करने पर केवल टेक्स्ट छिपता है; सत्यापन सामान्य रूप से काम करता रहता है।</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>MIYOUSHE नोट्स · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>यह सत्यापन Miyoushe नोट्स का है</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>यह विंडो miHoYo जोखिम नियंत्रण द्वारा दिखाई जाती है और केवल "नोट्स" डेटा की जाँच के लिए है। यह लॉन्चर का अपना CAPTCHA नहीं है।</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>सत्यापन पूरा होने पर नोट्स देखे जा सकते हैं। यह सूचना न चाहें तो «सेटिंग्स → उन्नत विकल्प» में बंद कर सकते हैं।</value>
+  </data>
 </root>

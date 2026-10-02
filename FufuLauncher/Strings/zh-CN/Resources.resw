@@ -6564,4 +6564,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>正在写入配置...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>显示验证码弹窗说明</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>在米游社风控验证码弹窗中显示来源说明；关闭后仅隐藏文字，验证功能不受影响。</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>米游社便签 · 人机验证</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>此验证来自米游社便签</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>该弹窗由米游社风控触发，仅用于「便签」数据的查询验证，并非启动器自身的人机验证。</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>完成验证后即可查看便签；不想看到此提示，可在「设置 → 高级选项」中关闭。</value>
+  </data>
 </root>

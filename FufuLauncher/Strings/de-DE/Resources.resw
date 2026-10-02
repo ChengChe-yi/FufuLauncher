@@ -6034,4 +6034,22 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>Hinweis im Captcha-Fenster anzeigen</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>Zeigt im Risikokontroll-Captcha-Fenster einen Hinweis zur Herkunft. Beim Deaktivieren wird nur der Text ausgeblendet; die Prüfung funktioniert weiterhin.</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>MIYOUSHE · NOTIZEN · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>Diese Prüfung stammt von den Miyoushe-Notizen</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>Dieses Fenster wird von der miHoYo-Risikokontrolle ausgelöst und dient nur der Abfrage der „Notizen“. Es ist nicht das Captcha des Launchers.</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>Nach erfolgreicher Prüfung können die Notizen angezeigt werden. Zum Ausblenden dieser Anzeige: „Einstellungen → Erweiterte Optionen“.</value>
+  </data>
 </root>

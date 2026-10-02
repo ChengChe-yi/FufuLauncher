@@ -179,6 +179,8 @@ public partial class SettingsViewModel : ObservableRecipient
 
     [ObservableProperty] private bool _isCaptchaPopupDisabled;
 
+    [ObservableProperty] private bool _isCaptchaNoticeEnabled = true;
+
     public IAsyncRelayCommand SelectScreenshotFolderCommand { get; }
     public IAsyncRelayCommand ClearScreenshotFolderCommand { get; }
     public IAsyncRelayCommand OpenScreenshotFolderCommand { get; }

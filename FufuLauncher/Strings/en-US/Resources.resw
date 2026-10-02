@@ -6566,4 +6566,22 @@ Error: {0}</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>Show CAPTCHA popup notice</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>Shows a notice in the miHoYo risk-control CAPTCHA window explaining where it comes from. Turning it off only hides the text; verification still works.</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>MIYOUSHE NOTES · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>This CAPTCHA belongs to Miyoushe Daily Notes</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>This window is triggered by miHoYo risk control and is only used to verify "Daily Notes" requests. It is not the launcher's own CAPTCHA.</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>Complete the verification to view your Daily Notes. To hide this notice, turn it off in Settings → Advanced Options.</value>
+  </data>
 </root>

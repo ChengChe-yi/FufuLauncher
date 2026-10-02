@@ -6034,4 +6034,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>CAPTCHAポップアップの説明を表示</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>リスクコントロールCAPTCHAウィンドウに出典の説明を表示します。オフにすると説明が隠れるだけで、認証は通常どおり利用できます。</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>米遊社リアルタイムノート · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>この認証は米遊社のリアルタイムノート用です</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>このウィンドウは米遊社のリスクコントロールにより表示され、「リアルタイムノート」の取得にのみ使用されます。ランチャー自身のCAPTCHAではありません。</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>認証に成功するとリアルタイムノートを表示できます。この案内が不要な場合は「設定 → 詳細オプション」で非表示にできます。</value>
+  </data>
 </root>

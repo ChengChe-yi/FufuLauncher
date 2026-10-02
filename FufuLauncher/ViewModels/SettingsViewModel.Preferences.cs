@@ -66,6 +66,7 @@ public partial class SettingsViewModel
             OnPropertyChanged(nameof(CpuUsageWarningThreshold));
             OnPropertyChanged(nameof(IsRedeemCodeNotificationEnabled));
             OnPropertyChanged(nameof(IsCaptchaPopupDisabled));
+            OnPropertyChanged(nameof(IsCaptchaNoticeEnabled));
             OnPropertyChanged(nameof(IgnoreConstraintRestrictions));
             RefreshStoragePaths();
             LoadMonitors();
@@ -393,6 +394,9 @@ public partial class SettingsViewModel
         
         var captchaPopupJson = await _localSettingsService.ReadSettingAsync("IsCaptchaPopupDisabled");
         IsCaptchaPopupDisabled = captchaPopupJson != null && Convert.ToBoolean(captchaPopupJson);
+
+        var captchaNoticeJson = await _localSettingsService.ReadSettingAsync("IsCaptchaNoticeEnabled");
+        IsCaptchaNoticeEnabled = captchaNoticeJson == null || Convert.ToBoolean(captchaNoticeJson);
 
         var ignoreConstraintJson = await _localSettingsService.ReadSettingAsync(ConstraintService.IgnoreSettingKey);
         IgnoreConstraintRestrictions = ignoreConstraintJson != null && Convert.ToBoolean(ignoreConstraintJson);

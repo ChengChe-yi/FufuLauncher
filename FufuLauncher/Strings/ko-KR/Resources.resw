@@ -6034,4 +6034,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>CAPTCHA 팝업 설명 표시</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>리스크 컨트롤 CAPTCHA 창에 출처 설명을 표시합니다. 끄면 설명만 숨겨지고 인증은 정상적으로 사용할 수 있습니다.</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>미유써 실시간 노트 · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>이 인증은 미유써 실시간 노트용입니다</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>이 창은 미유써 리스크 컨트롤로 표시되며 '실시간 노트' 조회에만 사용됩니다. 런처 자체의 CAPTCHA가 아닙니다.</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>인증을 완료하면 실시간 노트를 볼 수 있습니다. 이 안내가 필요 없다면 「설정 → 고급 옵션」에서 끌 수 있습니다.</value>
+  </data>
 </root>

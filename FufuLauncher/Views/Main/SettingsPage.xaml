@@ -2247,6 +2247,23 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE946;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableCaptchaNotice}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=EnableCaptchaNoticeCaption}" />
+                                    </StackPanel>
+                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                  IsOn="{x:Bind ViewModel.IsCaptchaNoticeEnabled, Mode=TwoWay}" />
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE70F;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ConfigEditorBtn}" />

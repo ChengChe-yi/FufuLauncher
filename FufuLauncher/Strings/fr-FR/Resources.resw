@@ -6033,4 +6033,22 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>Afficher l'explication du captcha</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>Affiche une explication dans la fenêtre de captcha du contrôle des risques. La désactiver masque uniquement le texte ; la vérification reste inchangée.</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>MIYOUSHE · NOTES · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>Ce captcha provient des notes Miyoushe</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>Cette fenêtre est déclenchée par le contrôle des risques de miHoYo et sert uniquement à la consultation des « notes ». Ce n'est pas le captcha du lanceur.</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>Une fois la vérification réussie, vous pourrez consulter vos notes. Pour masquer ce message, désactivez-le dans « Paramètres → Options avancées ».</value>
+  </data>
 </root>

@@ -6034,4 +6034,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>Показывать пояснение в окне капчи</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>Показывает в окне капчи контроля рисков пояснение об источнике. Отключение скрывает только текст и не влияет на проверку.</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>MIYOUSHE · ЗАМЕТКИ · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>Эта проверка — от заметок Miyoushe</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>Окно вызывается контролем рисков miHoYo и служит только для запроса «заметок». Это не капча самого лаунчера.</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>После проверки заметки станут доступны. Чтобы скрыть это сообщение, отключите его в «Настройки → Расширенные параметры».</value>
+  </data>
 </root>

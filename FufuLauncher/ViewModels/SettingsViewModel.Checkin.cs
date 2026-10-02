@@ -22,6 +22,12 @@ public partial class SettingsViewModel
         _ = _localSettingsService.SaveSettingAsync("IsCaptchaPopupDisabled", value);
     }
 
+    partial void OnIsCaptchaNoticeEnabledChanged(bool value)
+    {
+        if (_isInitializing) return;
+        _ = _localSettingsService.SaveSettingAsync("IsCaptchaNoticeEnabled", value);
+    }
+
     partial void OnIsRedeemCodeNotificationEnabledChanged(bool value)
     {
         _ = _localSettingsService.SaveSettingAsync("IsRedeemCodeNotificationEnabled", value);

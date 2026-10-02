@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FufuLauncher.Constants.MiHoYo;
+using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Models.MiHoYo.Passport;
@@ -35,6 +36,8 @@ public sealed class GeetestService
 
     public async Task<string> TryVerifyForDailyNoteAsync(AccountContext ctx)
     {
+        bool showNotice = await ReadCaptchaNoticeSettingAsync();
+
         string createJson = await CallCreateVerificationAsync(ctx);
         string gt = null;
         string challenge = null;
@@ -56,7 +59,7 @@ public sealed class GeetestService
         if (string.IsNullOrEmpty(gt) || string.IsNullOrEmpty(challenge))
             return null;
 
-        GeetestResult result = await ShowGeetestWebViewAsync(gt, challenge, isOversea: false);
+        GeetestResult result = await ShowGeetestWebViewAsync(gt, challenge, isOversea: false, showNotice: showNotice);
         if (result == null || string.IsNullOrEmpty(result.Validate))
         {
             Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: 用户未完成验证 (result=null) 或 validate 为空");
@@ -77,6 +80,21 @@ public sealed class GeetestService
             string finalChallenge = data.TryGetProperty("challenge", out JsonElement chProp) ? chProp.GetString() : null;
             Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: verifyVerification 成功 xrpc_challenge={finalChallenge}");
             return finalChallenge;
+        }
+    }
+
+    private static async Task<bool> ReadCaptchaNoticeSettingAsync()
+    {
+        try
+        {
+            var localSettingsService = App.GetService<ILocalSettingsService>();
+            var noticeJson = await localSettingsService.ReadSettingAsync("IsCaptchaNoticeEnabled");
+            return noticeJson == null || Convert.ToBoolean(noticeJson);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[GeetestService] 读取验证码弹窗说明设置失败，按默认显示: {ex.Message}");
+            return true;
         }
     }
 
@@ -136,7 +154,7 @@ public sealed class GeetestService
         return await resp.Content.ReadAsStringAsync();
     }
 
-    private static async Task<GeetestResult> ShowGeetestWebViewAsync(string gt, string challenge, bool isOversea, string? apiServerOverride = null)
+    private static async Task<GeetestResult> ShowGeetestWebViewAsync(string gt, string challenge, bool isOversea, string? apiServerOverride = null, bool showNotice = false)
     {
         string apiServer = apiServerOverride ?? (isOversea ? "api-na.geetest.com" : "api.geetest.com");
         TaskCompletionSource<GeetestResult> tcs = new();
@@ -241,7 +259,7 @@ public sealed class GeetestService
                     tcs.TrySetResult(null);
                 };
 
-                string html = GetGeetestHtml(gt, challenge, apiServer);
+                string html = GetGeetestHtml(gt, challenge, apiServer, showNotice);
                 webView.NavigateToString(html);
                 geetestWindow.Activate();
                 try
@@ -263,9 +281,81 @@ public sealed class GeetestService
         return await tcs.Task;
     }
 
-    private static string GetGeetestHtml(string gt, string challenge, string apiServer)
+    private static string GetGeetestHtml(string gt, string challenge, string apiServer, bool showNotice)
     {
         var captchaTitle = "Geetest_CaptchaTitle".GetLocalized();
+
+        string noticeStyle = string.Empty;
+        string noticeMarkup = string.Empty;
+        if (showNotice)
+        {
+            noticeStyle = """
+                    .captcha-notice, .captcha-notice * {
+                        pointer-events: none;
+                        user-select: none;
+                        -webkit-user-select: none;
+                    }
+                    .captcha-notice {
+                        position: fixed;
+                        inset: 0;
+                        z-index: -1;
+                        overflow: hidden;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .captcha-notice .notice-watermark {
+                        font-size: clamp(44px, 7.5vw, 118px);
+                        font-weight: 900;
+                        letter-spacing: .06em;
+                        white-space: nowrap;
+                        color: transparent;
+                        -webkit-text-stroke: 2px rgba(128, 128, 128, .35);
+                    }
+                    .captcha-notice .notice-card {
+                        position: fixed;
+                        top: 16px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: min(1080px, 94vw);
+                        padding: 12px 26px 14px;
+                        border: 1px solid rgba(150, 150, 150, .55);
+                        border-radius: 14px;
+                        background: rgba(28, 28, 30, .82);
+                        text-align: center;
+                        color: #ffffff;
+                    }
+                    .captcha-notice .notice-card-title {
+                        font-size: clamp(20px, 1.9vw, 30px);
+                        font-weight: 800;
+                        letter-spacing: .02em;
+                        color: #ffffff;
+                        margin-bottom: 6px;
+                    }
+                    .captcha-notice .notice-card-line {
+                        font-size: clamp(14px, 1.15vw, 19px);
+                        line-height: 1.6;
+                        color: rgba(255, 255, 255, .88);
+                    }
+                """;
+
+            string watermark = "CaptchaNoticeWatermark".GetLocalized();
+            string noticeTitle = "CaptchaNoticeTitle".GetLocalized();
+            string noticeLine1 = "CaptchaNoticeLine1".GetLocalized();
+            string noticeLine2 = "CaptchaNoticeLine2".GetLocalized();
+
+            noticeMarkup = $"""
+                    <div class="captcha-notice">
+                        <div class="notice-watermark">{watermark}</div>
+                        <div class="notice-card">
+                            <div class="notice-card-title">{noticeTitle}</div>
+                            <div class="notice-card-line">{noticeLine1}</div>
+                            <div class="notice-card-line">{noticeLine2}</div>
+                        </div>
+                    </div>
+                """;
+        }
+
         return $$"""
             <html>
                 <head>
@@ -279,12 +369,15 @@ public sealed class GeetestService
                             align-items: center;
                             justify-content: center;
                             height: 100vh;
-                            font-family: 'Segoe UI', sans-serif;
+                            overflow: hidden;
+                            font-family: 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
                         }
                         #geetest-div { }
+            {{noticeStyle}}
                     </style>
                 </head>
                 <body>
+            {{noticeMarkup}}
                     <div id="geetest-div"></div>
                 </body>
                 <script src="https://static.geetest.com/static/js/gt.0.5.2.js"></script>

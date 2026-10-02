@@ -6034,4 +6034,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>正在寫入設定...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>顯示驗證碼彈窗說明</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>在米遊社風控驗證碼彈窗中顯示來源說明；關閉後僅隱藏文字，驗證功能不受影響。</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>米遊社便箋 · 人機驗證</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>此驗證來自米遊社便箋</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>該彈窗由米遊社風控觸發，僅用於「便箋」資料的查詢驗證，並非啟動器自身的人機驗證。</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>完成驗證後即可查看便箋；不想看到此提示，可在「設定 → 進階選項」中關閉。</value>
+  </data>
 </root>

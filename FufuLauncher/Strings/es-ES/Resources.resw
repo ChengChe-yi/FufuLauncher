@@ -6034,4 +6034,22 @@ Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
   <data name="PluginStoreWritingConfig" xml:space="preserve">
     <value>Writing configuration...</value>
   </data>
+  <data name="EnableCaptchaNotice" xml:space="preserve">
+    <value>Mostrar aviso en la ventana de captcha</value>
+  </data>
+  <data name="EnableCaptchaNoticeCaption" xml:space="preserve">
+    <value>Muestra un aviso en la ventana de captcha del control de riesgos indicando su origen. Desactivarlo solo oculta el texto; la verificación sigue funcionando.</value>
+  </data>
+  <data name="CaptchaNoticeWatermark" xml:space="preserve">
+    <value>MIYOUSHE · NOTAS · CAPTCHA</value>
+  </data>
+  <data name="CaptchaNoticeTitle" xml:space="preserve">
+    <value>Esta verificación proviene de las notas de Miyoushe</value>
+  </data>
+  <data name="CaptchaNoticeLine1" xml:space="preserve">
+    <value>Esta ventana la activa el control de riesgos de miHoYo y solo se usa para consultar las «notas». No es el captcha del launcher.</value>
+  </data>
+  <data name="CaptchaNoticeLine2" xml:space="preserve">
+    <value>Al completar la verificación podrás ver tus notas. Para ocultar este aviso, desactívalo en «Ajustes → Opciones avanzadas».</value>
+  </data>
 </root>
