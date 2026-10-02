@@ -6058,4 +6058,76 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>Dopo la verifica potrai visualizzare le note. Per nascondere questo avviso, disattivalo in «Impostazioni → Opzioni avanzate».</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Informazioni dispositivo Miyoushe</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>Visualizza e modifica l'impronta, gli identificatori e il profilo del dispositivo dell'account selezionato</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Impronta del dispositivo</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Identificatori usati per l'autenticazione delle API Miyoushe. Le modifiche si applicano all'account dopo il salvataggio.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Profilo dispositivo (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Caratteristiche inviate con l'impronta. Ogni campo è modificabile singolarmente.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Genera identificatori casuali</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Ricarica</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Ripristina predefiniti</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Filtra campi</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>Nessun account disponibile</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>Questo account non ha ancora un'impronta del dispositivo. Accedi e carica i dati una volta per poterla modificare.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Salvato</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Salvataggio non riuscito</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields non è un JSON valido</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Identificatori casuali generati. Salva per applicare.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Profilo dispositivo predefinito ripristinato. Salva per applicare.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id non può essere vuoto</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Reimposta</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Ripristino della configurazione predefinita...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Configurazione predefinita ripristinata</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Ripristino non riuscito. Controlla la rete e riprova.</value>
+  </data>
 </root>

@@ -6051,4 +6051,76 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>Une fois la vérification réussie, vous pourrez consulter vos notes. Pour masquer ce message, désactivez-le dans « Paramètres → Options avancées ».</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Informations sur l'appareil Miyoushe</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>Consultez et modifiez l'empreinte, les identifiants et le profil d'appareil du compte sélectionné</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Empreinte de l'appareil</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Identifiants utilisés pour l'authentification de l'API Miyoushe. Les modifications s'appliquent au compte après l'enregistrement.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Profil de l'appareil (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Caractéristiques transmises avec l'empreinte. Chaque champ est modifiable.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Générer des identifiants</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Recharger</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Rétablir les valeurs par défaut</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Filtrer les champs</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>Aucun compte disponible</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>Ce compte n'a pas encore d'empreinte. Connectez-vous et chargez les données une fois pour pouvoir la modifier.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Enregistré</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Échec de l'enregistrement</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields n'est pas un JSON valide</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Identifiants aléatoires générés. Enregistrez pour appliquer.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Profil d'appareil par défaut rétabli. Enregistrez pour appliquer.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id ne peut pas être vide</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Réinitialisation à la configuration par défaut...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Configuration par défaut rétablie</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Échec de la réinitialisation. Vérifiez le réseau et réessayez.</value>
+  </data>
 </root>

@@ -6529,4 +6529,76 @@ UIGF v4.x/3.0/2.x</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>सत्यापन पूरा होने पर नोट्स देखे जा सकते हैं। यह सूचना न चाहें तो «सेटिंग्स → उन्नत विकल्प» में बंद कर सकते हैं।</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Miyoushe डिवाइस जानकारी</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>चयनित खाते का डिवाइस फिंगरप्रिंट, पहचान और डिवाइस प्रोफ़ाइल देखें और बदलें</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>खाता</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>डिवाइस फिंगरप्रिंट</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Miyoushe API प्रमाणीकरण के लिए डिवाइस पहचान। सहेजने के बाद बदलाव तुरंत लागू होते हैं।</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>डिवाइस प्रोफ़ाइल (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>फिंगरप्रिंट के साथ भेजी जाने वाली डिवाइस विशेषताएँ। हर फ़ील्ड बदली जा सकती है।</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>पहचान यादृच्छिक करें</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>फिर लोड करें</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>डिफ़ॉल्ट बहाल करें</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>सहेजें</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>फ़ील्ड फ़िल्टर करें</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>कोई खाता उपलब्ध नहीं</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>इस खाते में अभी डिवाइस फिंगरप्रिंट नहीं है। साइन इन करके एक बार डेटा लोड करें, फिर इसे बदल सकते हैं।</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>सहेजा गया</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>सहेजना विफल</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields मान्य JSON नहीं है</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>यादृच्छिक डिवाइस पहचान बनाई गई। लागू करने के लिए सहेजें।</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>डिफ़ॉल्ट डिवाइस प्रोफ़ाइल बहाल की गई। लागू करने के लिए सहेजें।</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id खाली नहीं हो सकता</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>रीसेट करें</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>डिफ़ॉल्ट कॉन्फ़िगरेशन पर रीसेट किया जा रहा है...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>डिफ़ॉल्ट कॉन्फ़िगरेशन बहाल किया गया</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>रीसेट विफल। नेटवर्क जाँचें और फिर कोशिश करें।</value>
+  </data>
 </root>

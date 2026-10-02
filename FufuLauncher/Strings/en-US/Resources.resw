@@ -6584,4 +6584,76 @@ Error: {0}</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>Complete the verification to view your Daily Notes. To hide this notice, turn it off in Settings → Advanced Options.</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Miyoushe Device Info</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>View and edit the device fingerprint, identifiers and device profile of the selected account</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Device Fingerprint</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Device identifiers used for Miyoushe API authentication. Changes apply to this account right after saving.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Device Profile (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Device traits reported with the fingerprint. Each field can be edited individually.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Randomize IDs</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Restore Defaults</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Filter fields</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>No account available</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>This account has no device fingerprint yet. Sign in and load data once, then you can edit it.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Save failed</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields is not valid JSON</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Random device IDs generated. Save to apply.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Default device profile restored. Save to apply.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id cannot be empty</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Reset to Defaults</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Resetting to default configuration...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Reset to default configuration</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Reset failed. Check your network and try again.</value>
+  </data>
 </root>

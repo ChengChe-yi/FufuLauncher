@@ -6052,4 +6052,76 @@ UIGF v4.x/3.0/2.x</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>完成驗證後即可查看便箋；不想看到此提示，可在「設定 → 進階選項」中關閉。</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>米遊社裝置資訊</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>檢視並修改目前帳號的裝置指紋、裝置識別與裝置畫像資料</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>帳號</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>裝置指紋</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>用於米遊社介面驗證的裝置識別，儲存後立即對此帳號生效</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>裝置畫像（ext_fields）</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>隨裝置指紋上報的裝置特徵參數，可依需求逐項修改</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>隨機產生識別</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>重新載入</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>還原預設</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>儲存</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>篩選欄位</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>目前沒有可用帳號</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>此帳號尚未產生裝置指紋，登入並載入一次資料後即可編輯</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>儲存成功</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>儲存失敗</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields 不是有效的 JSON</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>已產生隨機裝置識別，儲存後生效</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>已還原預設裝置畫像，儲存後生效</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id 不能為空</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>一鍵重置</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>正在重置為預設設定…</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>已重置為預設設定</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>重置失敗，請檢查網路後重試</value>
+  </data>
 </root>

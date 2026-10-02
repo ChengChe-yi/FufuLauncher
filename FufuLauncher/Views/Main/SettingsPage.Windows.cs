@@ -134,6 +134,12 @@ public sealed partial class SettingsPage
         editorWindow.Activate();
     }
 
+    private void OnOpenDeviceInfoWindowClick(object sender, RoutedEventArgs e)
+    {
+        var deviceInfoWindow = new DeviceInfoWindow();
+        deviceInfoWindow.Activate();
+    }
+
     private void OnOpenSponsorWindowClick(object sender, RoutedEventArgs e)
     {
         var sponsorWindow = new SponsorWindow();

@@ -113,5 +113,38 @@ public partial class AccountManager
         finally { _lock.Release(); }
     }
 
+    public async Task ClearFingerprintAsync(string accountId)
+    {
+        var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
+        if (entry is null || string.IsNullOrEmpty(entry.CookieFilePath))
+            return;
+
+        var path = Path.Combine(CookiesDir, entry.CookieFilePath);
+        await _lock.WaitAsync();
+        try
+        {
+            Dictionary<string, string>? cookies;
+            try
+            {
+                cookies = await ReadCookieValuesAsync(path);
+            }
+            catch (FileNotFoundException)
+            {
+                cookies = new Dictionary<string, string>();
+            }
+
+            if (cookies is null)
+            {
+                System.Diagnostics.Debug.WriteLine($"[AccountManager] 指纹清除中止：cookie 文件解析失败 {entry.CookieFilePath}");
+                return;
+            }
+
+            var file = new AccountCookieFile(cookies, null);
+            var json = JsonSerializer.Serialize(file, new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+            await File.WriteAllTextAsync(path, json);
+        }
+        finally { _lock.Release(); }
+    }
+
     #endregion
 }

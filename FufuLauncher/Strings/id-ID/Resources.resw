@@ -6052,4 +6052,76 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>Setelah verifikasi selesai, Catatan dapat dilihat. Untuk menyembunyikan keterangan ini, matikan di «Pengaturan → Opsi Lanjutan».</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Info Perangkat Miyoushe</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>Lihat dan ubah sidik jari, pengenal, dan profil perangkat akun yang dipilih</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Akun</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Sidik Jari Perangkat</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Pengenal perangkat untuk autentikasi API Miyoushe. Perubahan berlaku pada akun ini setelah disimpan.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Profil Perangkat (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Karakteristik perangkat yang dikirim bersama sidik jari. Setiap kolom dapat diubah.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Acak Pengenal</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Muat Ulang</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Kembalikan Default</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Filter kolom</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>Tidak ada akun tersedia</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>Akun ini belum memiliki sidik jari perangkat. Masuk dan muat data sekali untuk dapat mengeditnya.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Tersimpan</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Gagal menyimpan</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields bukan JSON yang valid</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Pengenal perangkat acak dibuat. Simpan untuk menerapkan.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Profil perangkat default dikembalikan. Simpan untuk menerapkan.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id tidak boleh kosong</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Mengembalikan ke konfigurasi default...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Konfigurasi default dikembalikan</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Reset gagal. Periksa jaringan lalu coba lagi.</value>
+  </data>
 </root>

@@ -6052,4 +6052,76 @@ Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>Al completar la verificación podrás ver tus notas. Para ocultar este aviso, desactívalo en «Ajustes → Opciones avanzadas».</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Información del dispositivo de Miyoushe</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>Consulta y edita la huella, los identificadores y el perfil del dispositivo de la cuenta seleccionada</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Huella del dispositivo</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Identificadores usados para la autenticación de la API de Miyoushe. Los cambios se aplican a esta cuenta al guardar.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Perfil del dispositivo (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Características enviadas junto con la huella. Cada campo se puede editar por separado.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Generar identificadores</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Recargar</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Restaurar valores predeterminados</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Filtrar campos</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>No hay ninguna cuenta disponible</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>Esta cuenta aún no tiene huella de dispositivo. Inicia sesión y carga los datos una vez para poder editarla.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Guardado</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Error al guardar</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields no es un JSON válido</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Identificadores aleatorios generados. Guarda para aplicar.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Perfil de dispositivo predeterminado restaurado. Guarda para aplicar.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id no puede estar vacío</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Restablecer</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Restableciendo la configuración predeterminada...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Configuración predeterminada restablecida</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Error al restablecer. Comprueba la red e inténtalo de nuevo.</value>
+  </data>
 </root>

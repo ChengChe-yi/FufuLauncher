@@ -6052,4 +6052,76 @@ UIGF v4.x/3.0/2.x</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>인증을 완료하면 실시간 노트를 볼 수 있습니다. 이 안내가 필요 없다면 「설정 → 고급 옵션」에서 끌 수 있습니다.</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>미유써 기기 정보</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>선택한 계정의 기기 지문, 기기 식별자, 기기 프로필 데이터를 확인하고 수정합니다</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>기기 지문</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>미유써 API 인증에 사용되는 기기 식별자입니다. 저장하면 해당 계정에 즉시 적용됩니다.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>기기 프로필(ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>지문과 함께 전송되는 기기 특성 값입니다. 항목별로 수정할 수 있습니다.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>식별자 무작위 생성</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>다시 불러오기</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>기본값 복원</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>항목 필터</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>사용 가능한 계정이 없습니다</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>이 계정에는 아직 기기 지문이 없습니다. 로그인 후 데이터를 한 번 불러오면 편집할 수 있습니다.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>저장됨</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>저장 실패</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields가 올바른 JSON이 아닙니다</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>무작위 기기 식별자를 생성했습니다. 저장하면 적용됩니다.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>기본 기기 프로필을 복원했습니다. 저장하면 적용됩니다.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id는 비워 둘 수 없습니다</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>한 번에 초기화</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>기본 구성으로 초기화하는 중…</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>기본 구성으로 초기화되었습니다</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>초기화에 실패했습니다. 네트워크를 확인한 후 다시 시도하세요.</value>
+  </data>
 </root>

@@ -3,7 +3,9 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Diagnostics;
+using System.Text.Json;
 using FufuLauncher.Constants.MiHoYo;
+using FufuLauncher.Models.MiHoYo.Fingerprint;
 using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Services.MiHoYo.Fingerprint;
 
@@ -38,14 +40,14 @@ public sealed class AccountIdentityService
             Stuid: ExtractStuid(cookies, serverType),
             Mid: cookies.GetValueOrDefault("mid") ?? "");
         
-        const string model = "2605EPN8EC";
-        const string sysVersion = "16";
         const string buildId = "V417IR";
+        var (model, sysVersion, deviceName) = ResolveDeviceTraits(fpRequest);
+
         var device = new DeviceIdentity(
             DeviceId: fpRequest.DeviceId,
             BbsDeviceId: fpRequest.BbsDeviceId ?? "",
             DeviceFp: fpRequest.DeviceFp ?? "",
-            DeviceName: "Xiaomi " + model,
+            DeviceName: deviceName,
             SysVersion: sysVersion,
             Model: model,
             FpLastUpdate: DateTimeOffset.UtcNow);
@@ -61,6 +63,65 @@ public sealed class AccountIdentityService
             Identity: accountIdentity,
             Device: device,
             UserAgent: ua);
+    }
+
+    private static (string Model, string SysVersion, string DeviceName) ResolveDeviceTraits(DeviceFpRequest fingerprint)
+    {
+        const string defaultModel = "2605EPN8EC";
+        const string defaultSysVersion = "16";
+
+        string model = defaultModel;
+        string sysVersion = defaultSysVersion;
+        string deviceName = "";
+
+        if (!string.IsNullOrWhiteSpace(fingerprint.ExtFields))
+        {
+            try
+            {
+                using var doc = JsonDocument.Parse(fingerprint.ExtFields);
+                if (doc.RootElement.ValueKind == JsonValueKind.Object)
+                {
+                    model = ReadString(doc.RootElement, "model") ?? model;
+                    sysVersion = ReadString(doc.RootElement, "osVersion") ?? sysVersion;
+                    deviceName = ReadString(doc.RootElement, "deviceName") ?? "";
+                }
+            }
+            catch (JsonException)
+            {
+            }
+        }
+
+        if (string.IsNullOrWhiteSpace(model))
+        {
+            model = defaultModel;
+        }
+
+        if (string.IsNullOrWhiteSpace(sysVersion))
+        {
+            sysVersion = defaultSysVersion;
+        }
+
+        if (string.IsNullOrWhiteSpace(deviceName) || deviceName == model)
+        {
+            deviceName = "Xiaomi " + model;
+        }
+
+        return (model, sysVersion, deviceName);
+    }
+
+    private static string? ReadString(JsonElement element, string propertyName)
+    {
+        if (!element.TryGetProperty(propertyName, out var property))
+        {
+            return null;
+        }
+
+        return property.ValueKind switch
+        {
+            JsonValueKind.String => property.GetString(),
+            JsonValueKind.Number => property.GetRawText(),
+            _ => null
+        };
     }
 
     private static string ExtractServerType(string accountId)

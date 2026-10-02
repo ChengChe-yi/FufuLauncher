@@ -6052,4 +6052,76 @@ UIGF v4.x/3.0/2.x</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>После проверки заметки станут доступны. Чтобы скрыть это сообщение, отключите его в «Настройки → Расширенные параметры».</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Информация об устройстве Miyoushe</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>Просмотр и изменение отпечатка, идентификаторов и профиля устройства выбранного аккаунта</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Отпечаток устройства</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Идентификаторы устройства для аутентификации в API Miyoushe. Изменения применяются к аккаунту сразу после сохранения.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Профиль устройства (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Характеристики устройства, отправляемые вместе с отпечатком. Каждое поле можно изменить.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Случайные идентификаторы</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Сбросить настройки</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Фильтр полей</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>Нет доступных аккаунтов</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>У этого аккаунта ещё нет отпечатка устройства. Войдите и один раз загрузите данные, чтобы его изменить.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Сохранено</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Не удалось сохранить</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields — недопустимый JSON</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Случайные идентификаторы устройства созданы. Сохраните для применения.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Профиль устройства сброшен к значениям по умолчанию. Сохраните для применения.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id не может быть пустым</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Сброс к конфигурации по умолчанию…</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Конфигурация по умолчанию восстановлена</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Не удалось сбросить. Проверьте сеть и повторите попытку.</value>
+  </data>
 </root>

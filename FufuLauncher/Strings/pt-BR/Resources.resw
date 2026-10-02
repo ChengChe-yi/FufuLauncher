@@ -6052,4 +6052,76 @@ Você pode tentar outro nó ou usar a fonte oficial direta.</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>Após concluir a verificação, as Notas poderão ser vistas. Para ocultar este aviso, desative-o em «Configurações → Opções avançadas».</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Informações do Dispositivo Miyoushe</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>Veja e edite a impressão, os identificadores e o perfil do dispositivo da conta selecionada</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Conta</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Impressão Digital do Dispositivo</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Identificadores usados na autenticação da API Miyoushe. As alterações valem para esta conta após salvar.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Perfil do Dispositivo (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Características enviadas junto com a impressão. Cada campo pode ser editado.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Gerar identificadores</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Recarregar</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Restaurar padrões</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Filtrar campos</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>Nenhuma conta disponível</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>Esta conta ainda não tem impressão digital de dispositivo. Faça login e carregue os dados uma vez para poder editá-la.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Salvo</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Falha ao salvar</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields não é um JSON válido</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Identificadores aleatórios gerados. Salve para aplicar.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Perfil de dispositivo padrão restaurado. Salve para aplicar.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id não pode ficar vazio</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Redefinir</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Redefinindo para a configuração padrão...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Configuração padrão restaurada</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Falha ao redefinir. Verifique a rede e tente novamente.</value>
+  </data>
 </root>

@@ -6052,4 +6052,76 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   <data name="CaptchaNoticeLine2" xml:space="preserve">
     <value>Nach erfolgreicher Prüfung können die Notizen angezeigt werden. Zum Ausblenden dieser Anzeige: „Einstellungen → Erweiterte Optionen“.</value>
   </data>
+  <data name="DeviceInfo_Title" xml:space="preserve">
+    <value>Miyoushe-Geräteinformationen</value>
+  </data>
+  <data name="DeviceInfo_Caption" xml:space="preserve">
+    <value>Fingerabdruck, Kennungen und Geräteprofil des ausgewählten Kontos anzeigen und bearbeiten</value>
+  </data>
+  <data name="DeviceInfo_Account" xml:space="preserve">
+    <value>Konto</value>
+  </data>
+  <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
+    <value>Gerätefingerabdruck</value>
+  </data>
+  <data name="DeviceInfo_FingerprintCaption" xml:space="preserve">
+    <value>Gerätekennungen für die Miyoushe-API-Authentifizierung. Änderungen gelten für dieses Konto sofort nach dem Speichern.</value>
+  </data>
+  <data name="DeviceInfo_ExtSection" xml:space="preserve">
+    <value>Geräteprofil (ext_fields)</value>
+  </data>
+  <data name="DeviceInfo_ExtCaption" xml:space="preserve">
+    <value>Mit dem Fingerabdruck übermittelte Gerätemerkmale. Jedes Feld ist einzeln bearbeitbar.</value>
+  </data>
+  <data name="DeviceInfo_Randomize" xml:space="preserve">
+    <value>Kennungen zufällig erzeugen</value>
+  </data>
+  <data name="DeviceInfo_Reload" xml:space="preserve">
+    <value>Neu laden</value>
+  </data>
+  <data name="DeviceInfo_RestoreDefaults" xml:space="preserve">
+    <value>Standardwerte wiederherstellen</value>
+  </data>
+  <data name="DeviceInfo_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="DeviceInfo_FilterPlaceholder" xml:space="preserve">
+    <value>Felder filtern</value>
+  </data>
+  <data name="DeviceInfo_NoAccount" xml:space="preserve">
+    <value>Kein Konto verfügbar</value>
+  </data>
+  <data name="DeviceInfo_NoFingerprint" xml:space="preserve">
+    <value>Für dieses Konto existiert noch kein Gerätefingerabdruck. Nach dem Anmelden und einmaligem Laden der Daten kann er bearbeitet werden.</value>
+  </data>
+  <data name="DeviceInfo_Saved" xml:space="preserve">
+    <value>Gespeichert</value>
+  </data>
+  <data name="DeviceInfo_SaveFailed" xml:space="preserve">
+    <value>Speichern fehlgeschlagen</value>
+  </data>
+  <data name="DeviceInfo_InvalidJson" xml:space="preserve">
+    <value>ext_fields ist kein gültiges JSON</value>
+  </data>
+  <data name="DeviceInfo_Randomized" xml:space="preserve">
+    <value>Zufällige Gerätekennungen erzeugt. Zum Anwenden speichern.</value>
+  </data>
+  <data name="DeviceInfo_DefaultsRestored" xml:space="preserve">
+    <value>Standard-Geräteprofil wiederhergestellt. Zum Anwenden speichern.</value>
+  </data>
+  <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
+    <value>device_id darf nicht leer sein</value>
+  </data>
+  <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
+  <data name="DeviceInfo_Resetting" xml:space="preserve">
+    <value>Zurücksetzen auf Standardkonfiguration...</value>
+  </data>
+  <data name="DeviceInfo_ResetDone" xml:space="preserve">
+    <value>Standardkonfiguration wiederhergestellt</value>
+  </data>
+  <data name="DeviceInfo_ResetFailed" xml:space="preserve">
+    <value>Zurücksetzen fehlgeschlagen. Netzwerk prüfen und erneut versuchen.</value>
+  </data>
 </root>
