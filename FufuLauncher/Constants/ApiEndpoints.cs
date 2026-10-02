@@ -32,6 +32,8 @@ namespace FufuLauncher.Constants
         public const string MihoyoBbsSignUrl = MihoyoBbsWebApi + "/event/luna/sign";
         public const string PluginProxyUrl = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
         public const string PluginRawUrl = "https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip?raw=true";
+        public const string AnnouncementUrl = "https://philia093.cyou/announcement.json";
+        public const string AnnouncementFallbackUrl = "https://fu1.fun/announcement.json";
         public const string UpdateJsonUrl = "https://philia093.cyou/Update.json";
         public const string UpdateJsonFallbackUrl = "https://fu1.fun/Update.json";
         public const string UpdateHtmlUrl = "https://philia093.cyou/Update.html";

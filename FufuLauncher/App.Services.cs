@@ -133,6 +133,7 @@ public partial class App
                 services.AddTransient<PluginPage>();
                 services.AddTransient<GachaViewModel>();
                 services.AddSingleton<GachaService>();
+                services.AddSingleton<IAnnouncementService, AnnouncementService>();
                 services.AddSingleton<IGameAnnouncementService, GameAnnouncementService>();
                 services.AddSingleton<IGameAnnouncementImageService, GameAnnouncementImageService>();
                 services.AddTransient<GameAnnouncementViewModel>();

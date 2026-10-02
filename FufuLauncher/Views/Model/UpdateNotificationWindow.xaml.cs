@@ -38,7 +38,6 @@ public sealed partial class UpdateNotificationWindow : WindowEx
 
         _isPreview = isPreview;
         _updateInfoUrl = updateInfoUrl;
-        RootGrid.RequestedTheme = App.GetService<IThemeSelectorService>().Theme;
 
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
@@ -135,12 +134,11 @@ public sealed partial class UpdateNotificationWindow : WindowEx
         }
     }
 
-    private TextBlock CreateAnnouncementTextBlock(string text, AnnouncementSection section, Thickness margin)
+    private static TextBlock CreateAnnouncementTextBlock(string text, AnnouncementSection section, Thickness margin)
     {
         var isHeading = section.Tag is "h1" or "h2" or "h3" or "h4" or "h5" or "h6";
         var block = new TextBlock
         {
-            Style = (Style)RootGrid.Resources["AnnouncementTextBlockStyle"],
             FontFamily = new FontFamily("Microsoft YaHei"),
             FontSize = section.FontSize,
             FontWeight = isHeading ? Microsoft.UI.Text.FontWeights.Bold : Microsoft.UI.Text.FontWeights.Normal,
@@ -426,11 +424,19 @@ public sealed partial class UpdateNotificationWindow : WindowEx
 
     private async void OnUpdateBtnClicked(object sender, RoutedEventArgs e)
     {
-        if (await LaunchUpdaterAsync(_isPreview))
-            Close();
+        if (_isPreview)
+        {
+            LaunchPreviewUpdater();
+        }
+        else if (App.MainWindow is MainWindow mainWindow)
+        {
+            await mainWindow.NavigateToSettingsUpdateSectionAsync();
+        }
+
+        Close();
     }
 
-    private async Task<bool> LaunchUpdaterAsync(bool isPreview)
+    private void LaunchPreviewUpdater()
     {
         try
         {
@@ -439,14 +445,14 @@ public sealed partial class UpdateNotificationWindow : WindowEx
             if (!File.Exists(updaterPath))
             {
                 Debug.WriteLine("未找到 UpdateFufuLauncher.exe");
-                return false;
+                return;
             }
 
             bool useThirdPartyCdn = true;
             try
             {
                 var localSettingsService = App.GetService<ILocalSettingsService>();
-                var cdnSetting = await localSettingsService.ReadSettingAsync("IsUseThirdPartyCDNEnabled");
+                var cdnSetting = localSettingsService.ReadSettingAsync("IsUseThirdPartyCDNEnabled").Result;
                 if (cdnSetting != null)
                 {
                     useThirdPartyCdn = Convert.ToBoolean(cdnSetting);
@@ -462,17 +468,14 @@ public sealed partial class UpdateNotificationWindow : WindowEx
                 FileName = updaterPath,
                 UseShellExecute = true,
                 Verb = "runas",
-                Arguments = $"--use-third-party-cdn={useThirdPartyCdn.ToString().ToLower()}" +
-                            $" --installed-version={AppVersionHelper.FullVersion}" +
-                            (isPreview ? " --preview" : string.Empty)
+                Arguments = $"--use-third-party-cdn={useThirdPartyCdn.ToString().ToLower()} --preview" +
+                            $" --installed-version={AppVersionHelper.FullVersion}"
             };
             Process.Start(startInfo);
-            return true;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"启动更新程序失败: {ex.Message}");
-            return false;
+            Debug.WriteLine($"启动预览版更新程序失败: {ex.Message}");
         }
     }
 }

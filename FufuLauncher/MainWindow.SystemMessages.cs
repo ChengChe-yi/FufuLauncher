@@ -96,6 +96,26 @@ public sealed partial class MainWindow
         sb.Begin();
     }
 
+    private async Task CheckPeriodicAnnouncementAsync()
+    {
+        try
+        {
+            var announcementUrl = await _announcementService.CheckForNewAnnouncementAsync();
+            if (!string.IsNullOrEmpty(announcementUrl))
+            {
+                dispatcherQueue.TryEnqueue(() =>
+                {
+                    var announcementWindow = new Views.AnnouncementWindowL(announcementUrl);
+                    announcementWindow.Activate();
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[Announcement] 定时检查公告失败: {ex.Message}");
+        }
+    }
+
     private async Task CheckPeriodicConstraintAsync()
     {
         try

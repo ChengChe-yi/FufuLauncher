@@ -43,6 +43,30 @@ public partial class App
         }
     }
 
+    private async Task CheckForAnnouncementAsync()
+    {
+        try
+        {
+            await Task.Delay(1500);
+
+            var announcementService = GetService<IAnnouncementService>();
+            var announcementUrl = await announcementService.CheckForNewAnnouncementAsync();
+
+            if (!string.IsNullOrEmpty(announcementUrl))
+            {
+                await _mainDispatcherQueue.EnqueueAsync(() =>
+                {
+                    var announcementWindow = new AnnouncementWindowL(announcementUrl);
+                    announcementWindow.Activate();
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[Announcement] 公告检查失败: {ex.Message}");
+        }
+    }
+
     private async Task RunStartupUpdateCheckAsync()
     {
         try
