@@ -63,33 +63,6 @@ public partial class PluginSettingsViewModel : ObservableObject
     [ObservableProperty]
     private PresetModel currentPreset;
 
-    [ObservableProperty]
-    private Microsoft.UI.Xaml.Media.ImageSource currentAvatarSource;
-
-    [ObservableProperty]
-    private bool hasAvatar;
-    
-    
-    [ObservableProperty]
-    private Microsoft.UI.Xaml.Media.ImageSource avatar512Source;
-
-    [ObservableProperty]
-    private Microsoft.UI.Xaml.Media.ImageSource avatar256Source;
-
-    [ObservableProperty]
-    private Microsoft.UI.Xaml.Media.ImageSource avatar128Source;
-
-    [ObservableProperty]
-    private bool hasAvatar512;
-
-    [ObservableProperty]
-    private bool hasAvatar256;
-
-    [ObservableProperty]
-    private bool hasAvatar128;
-
-    
-    
     private bool _isAutoCreatePresetEnabled = false;
 
     public bool IsAutoCreatePresetEnabled
@@ -120,19 +93,12 @@ public partial class PluginSettingsViewModel : ObservableObject
     private readonly List<string> _settingOrder = new();
     private Dictionary<string, List<string>> _pinnedSections = new(StringComparer.OrdinalIgnoreCase);
 
-    public Microsoft.UI.Xaml.Visibility AvatarSettingsVisibility => 
-        SelectedPluginIndex == 2 ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
-
-    public Microsoft.UI.Xaml.Visibility MainSettingsVisibility => 
-        SelectedPluginIndex != 2 ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
-
 
     partial void OnSelectedPluginIndexChanged(int value)
     {
         CheckPluginStates();
         UpdatePaths();
         LoadConfiguration();
-        UpdateAvatarPreview();
         RefreshUIState();
     }
     
@@ -205,7 +171,6 @@ public partial class PluginSettingsViewModel : ObservableObject
         }
         
         LoadConfiguration();
-        UpdateAvatarPreview();
     }
     
 
@@ -268,7 +233,6 @@ public partial class PluginSettingsViewModel : ObservableObject
         CheckPluginStates();
         UpdatePaths();
         LoadConfiguration();
-        UpdateAvatarPreview();
         RefreshUIState();
     }
 

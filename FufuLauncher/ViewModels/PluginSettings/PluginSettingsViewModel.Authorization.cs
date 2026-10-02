@@ -34,34 +34,16 @@ public async Task TriggerBackgroundAuthCheckAsync()
 
     if (!isAuthorized)
     {
-        string avatarDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "Avatar");
-        string avatarEnabledPath = Path.Combine(avatarDir, "Avatar.dll");
-        string avatarDisabledPath = Path.Combine(avatarDir, "Avatar.disabled");
-        
-        if (File.Exists(avatarEnabledPath))
-        {
-            try { File.Move(avatarEnabledPath, avatarDisabledPath); } catch {}
-            if (dispatcher != null)
-            {
-                dispatcher.TryEnqueue(() => 
-                {
-                    _isAvatarPluginEnabled = false;
-                    OnPropertyChanged(nameof(IsAvatarPluginEnabled));
-                    RefreshUIState();
-                });
-            }
-        }
+        return;
+    }
+
+    if (dispatcher != null)
+    {
+        dispatcher.TryEnqueue(() => LoadConfiguration());
     }
     else
     {
-        if (dispatcher != null)
-        {
-            dispatcher.TryEnqueue(() => LoadConfiguration());
-        }
-        else
-        {
-            LoadConfiguration();
-        }
+        LoadConfiguration();
     }
 }
     private async Task InitializeAuthAndReloadAsync()
@@ -103,25 +85,6 @@ public async Task TriggerBackgroundAuthCheckAsync()
         if (isAuthorized)
         {
             LoadConfiguration();
-        }
-        else
-        {
-            string avatarDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "Avatar");
-            string avatarEnabledPath = Path.Combine(avatarDir, "Avatar.dll");
-            string avatarDisabledPath = Path.Combine(avatarDir, "Avatar.disabled");
-
-            if (File.Exists(avatarEnabledPath))
-            {
-                try
-                {
-                    File.Move(avatarEnabledPath, avatarDisabledPath);
-                }
-                catch { }
-                
-                _isAvatarPluginEnabled = false;
-                OnPropertyChanged(nameof(IsAvatarPluginEnabled));
-                RefreshUIState();
-            }
         }
     }
     private async Task VerifyAndApplyDevFeaturesAsync()

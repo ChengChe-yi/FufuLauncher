@@ -53,24 +53,11 @@ public partial class PluginSettingsViewModel
         }
     }
 
-    private bool _isAvatarPluginEnabled;
-    public bool IsAvatarPluginEnabled
-    {
-        get => _isAvatarPluginEnabled;
-        set
-        {
-            if (_isAvatarPluginEnabled != value)
-            {
-                ChangeAvatarPluginState(value);
-            }
-        }
-    }
-
     public Microsoft.UI.Xaml.Visibility SettingsOverlayVisibility => 
-        (SelectedPluginIndex == 0 && !_isMainPluginEnabled) || (SelectedPluginIndex == 1 && !_isFpsPluginEnabled) || (SelectedPluginIndex == 2 && !_isAvatarPluginEnabled) 
+        (SelectedPluginIndex == 0 && !_isMainPluginEnabled) || (SelectedPluginIndex == 1 && !_isFpsPluginEnabled)
             ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
 
-    public bool IsSettingsInteractable => (SelectedPluginIndex == 0 && _isMainPluginEnabled) || (SelectedPluginIndex == 1 && _isFpsPluginEnabled) || (SelectedPluginIndex == 2 && _isAvatarPluginEnabled);
+    public bool IsSettingsInteractable => (SelectedPluginIndex == 0 && _isMainPluginEnabled) || (SelectedPluginIndex == 1 && _isFpsPluginEnabled);
 
     public string OverlayWarningText
     {
@@ -83,7 +70,6 @@ public partial class PluginSettingsViewModel
                     : "已被禁用，请启用主插件才能调试配置";
             }
             if (SelectedPluginIndex == 1) return "已被禁用，请启用FPS插件才能调试插件配置";
-            if (SelectedPluginIndex == 2) return "已被禁用，该插件存在安全风险，无法启用";
             return string.Empty;
         }
     }
@@ -93,10 +79,6 @@ private void CheckPluginStates()
     string fpsDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS");
     string fpsEnabledPath = Path.Combine(fpsDir, "FPS.dll");
     string fpsDisabledPath = Path.Combine(fpsDir, "FPS.disabled");
-    
-    string avatarDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "Avatar");
-    string avatarEnabledPath = Path.Combine(avatarDir, "Avatar.dll");
-    string avatarDisabledPath = Path.Combine(avatarDir, "Avatar.disabled");
     
     string mainEnabledPath = GetMainPluginEnabledPath();
     string mainDisabledPath = GetMainPluginDisabledPath();
@@ -113,41 +95,13 @@ private void CheckPluginStates()
     {
         try { File.Delete(fpsDisabledPath); } catch { }
     }
-    
-    if (File.Exists(avatarEnabledPath) && File.Exists(avatarDisabledPath))
-    {
-        try { File.Delete(avatarDisabledPath); } catch { }
-    }
 
     bool fpsEnabled = File.Exists(fpsEnabledPath);
-    bool avatarEnabled = File.Exists(avatarEnabledPath);
     
-    bool newFpsState = fpsEnabled;
-    bool newAvatarState = avatarEnabled;
-
-    if (fpsEnabled && avatarEnabled)
+    if (_isFpsPluginEnabled != fpsEnabled)
     {
-        try
-        {
-            File.Move(fpsEnabledPath, fpsDisabledPath);
-            File.Move(avatarEnabledPath, avatarDisabledPath);
-        }
-        catch { }
-        
-        newFpsState = false;
-        newAvatarState = false;
-    }
-
-    if (_isFpsPluginEnabled != newFpsState)
-    {
-        _isFpsPluginEnabled = newFpsState;
+        _isFpsPluginEnabled = fpsEnabled;
         OnPropertyChanged(nameof(IsFpsPluginEnabled));
-    }
-
-    if (_isAvatarPluginEnabled != newAvatarState)
-    {
-        _isAvatarPluginEnabled = newAvatarState;
-        OnPropertyChanged(nameof(IsAvatarPluginEnabled));
     }
 
     RefreshUIState();
@@ -204,11 +158,6 @@ private void CheckPluginStates()
 
     private void ChangeFpsPluginState(bool enable)
     {
-        if (enable && IsAvatarPluginEnabled)
-        {
-            IsAvatarPluginEnabled = false;
-        }
-
         string fpsDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS");
         string enabledPath = Path.Combine(fpsDir, "FPS.dll");
         string disabledPath = Path.Combine(fpsDir, "FPS.disabled");
@@ -225,83 +174,6 @@ private void CheckPluginStates()
             }
             
             SetProperty(ref _isFpsPluginEnabled, enable, nameof(IsFpsPluginEnabled));
-            RefreshUIState();
-        }
-        catch (Exception ex)
-        {
-            var lockedFile = FileLockHelper.FindLockedFile(enabledPath, disabledPath);
-            if (lockedFile != null)
-            {
-                NotifyLockedPluginFile(lockedFile);
-                return;
-            }
-
-            WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "状态切换失败",
-                $"无法修改插件文件后缀名。\n详细信息: {ex.Message}",
-                NotificationType.Error,
-                6000
-            ));
-        }
-    }
-
-    private async void ChangeAvatarPluginState(bool enable)
-    {
-        if (enable)
-        {
-            bool isAuthorized = await CheckHwidAuthorizationAsync();
-            if (!isAuthorized)
-            {
-                WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                    "认证未通过",
-                    "已被禁用，该插件存在安全风险，无法启用",
-                    NotificationType.Error,
-                    6000
-                ));
-                var dispatcher = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
-                if (dispatcher != null)
-                {
-                    dispatcher.TryEnqueue(() => { SetProperty(ref _isAvatarPluginEnabled, false, nameof(IsAvatarPluginEnabled)); });
-                }
-                else
-                {
-                    SetProperty(ref _isAvatarPluginEnabled, false, nameof(IsAvatarPluginEnabled));
-                }
-                
-                string avatarDirCheck = Path.Combine(AppContext.BaseDirectory, "Plugins", "Avatar");
-                string enabledPathCheck = Path.Combine(avatarDirCheck, "Avatar.dll");
-                string disabledPathCheck = Path.Combine(avatarDirCheck, "Avatar.disabled");
-                if (File.Exists(enabledPathCheck))
-                {
-                    try { File.Move(enabledPathCheck, disabledPathCheck); } catch { }
-                }
-                return;
-            }
-
-            if (IsFpsPluginEnabled)
-            {
-                IsFpsPluginEnabled = false;
-            }
-        }
-
-        string avatarDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "Avatar");
-        string enabledPath = Path.Combine(avatarDir, "Avatar.dll");
-        string disabledPath = Path.Combine(avatarDir, "Avatar.disabled");
-
-        if (!Directory.Exists(avatarDir)) Directory.CreateDirectory(avatarDir);
-
-        try
-        {
-            if (enable && File.Exists(disabledPath))
-            {
-                File.Move(disabledPath, enabledPath);
-            }
-            else if (!enable && File.Exists(enabledPath))
-            {
-                File.Move(enabledPath, disabledPath);
-            }
-            
-            SetProperty(ref _isAvatarPluginEnabled, enable, nameof(IsAvatarPluginEnabled));
             RefreshUIState();
         }
         catch (Exception ex)
@@ -341,8 +213,6 @@ private void CheckPluginStates()
         OnPropertyChanged(nameof(SettingsOverlayVisibility));
         OnPropertyChanged(nameof(IsSettingsInteractable));
         OnPropertyChanged(nameof(OverlayWarningText));
-        OnPropertyChanged(nameof(AvatarSettingsVisibility));
-        OnPropertyChanged(nameof(MainSettingsVisibility));
         UpdatePaths();
     }
     
@@ -351,17 +221,10 @@ private void CheckPluginStates()
         bool isLightweightMain = SelectedPluginIndex == 0 && IsLightweightMode;
         string subDir = SelectedPluginIndex == 0
             ? GetMainPluginFolderName()
-            : (SelectedPluginIndex == 1 ? "FPS" : "Avatar");
+            : "FPS";
         _pluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", subDir);
         
-        if (SelectedPluginIndex == 2)
-        {
-            _iniPath = string.Empty;
-            string avatarEnabledPath = Path.Combine(_pluginDir, "Avatar.dll");
-            string avatarDisabledPath = Path.Combine(_pluginDir, "Avatar.disabled");
-            _dllPath = File.Exists(avatarDisabledPath) ? avatarDisabledPath : avatarEnabledPath;
-        }
-        else if (isLightweightMain)
+        if (isLightweightMain)
         {
             _iniPath = LightweightPluginService.LitePluginConfigPath;
             _dllPath = LightweightPluginService.FindLitePluginDisabledPath() ?? LightweightPluginService.LitePluginDllPath;

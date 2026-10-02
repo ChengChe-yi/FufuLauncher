@@ -39,27 +39,4 @@ public sealed partial class PluginSettingsPage
             }
         }
     }
-
-    private void AvatarPreview_ImageOpened(object sender, RoutedEventArgs e)
-    {
-        if (sender is Microsoft.UI.Xaml.Controls.Image image)
-        {
-            var storyboard = new Microsoft.UI.Xaml.Media.Animation.Storyboard();
-            var animation = new Microsoft.UI.Xaml.Media.Animation.DoubleAnimation
-            {
-                From = 0,
-                To = 1,
-                Duration = new Duration(TimeSpan.FromMilliseconds(300)),
-                BeginTime = TimeSpan.FromSeconds(0.5),
-                EasingFunction = new Microsoft.UI.Xaml.Media.Animation.CubicEase 
-                { 
-                    EasingMode = Microsoft.UI.Xaml.Media.Animation.EasingMode.EaseOut 
-                }
-            };
-            Microsoft.UI.Xaml.Media.Animation.Storyboard.SetTarget(animation, image);
-            Microsoft.UI.Xaml.Media.Animation.Storyboard.SetTargetProperty(animation, "Opacity");
-            storyboard.Children.Add(animation);
-            storyboard.Begin();
-        }
-    }
 }

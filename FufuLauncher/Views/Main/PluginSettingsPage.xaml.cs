@@ -91,10 +91,6 @@ public sealed partial class PluginSettingsPage : Page
             {
                 ViewModel.SelectedPluginIndex = 1;
             }
-            else if (folderName.Contains("Avatar", StringComparison.OrdinalIgnoreCase))
-            {
-                ViewModel.SelectedPluginIndex = 2;
-            }
             else
             {
                 ViewModel.SelectedPluginIndex = 0;

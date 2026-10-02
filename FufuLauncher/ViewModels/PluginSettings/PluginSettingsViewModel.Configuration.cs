@@ -20,17 +20,6 @@ public void LoadConfiguration()
         _settingOrder.Clear();
         NotifySelectionChanged();
 
-        if (SelectedPluginIndex == 2)
-        {
-            PluginName = "千星奇域头像替换";
-            PluginDescription = "注意：开启此功能会自动禁用FPS插件，两者不可同时开启，替换头像是永久性的";
-            PluginDeveloper = "不可用";
-            LastModifiedDate = "不可用";
-            AvailablePresets.Clear();
-            CurrentPreset = null;
-            return;
-        }
-
         if (!File.Exists(_iniPath))
         {
             if (SelectedPluginIndex == 0)
@@ -86,7 +75,7 @@ public void LoadConfiguration()
                 if (SelectedPluginIndex == 0)
                 {
                     // Translations under "Plugin_<SectionKey>" were authored specifically for
-                    // FuFuPlugin's config.ini. Other plugins (FPS, Avatar) can reuse the same
+                    // FuFuPlugin's config.ini. Other plugins (FPS) can reuse the same
                     // section names for unrelated settings, so only apply this lookup for
                     // FuFuPlugin to avoid showing a mistranslated label on another plugin's setting.
                     var localizationKey = $"Plugin_{section.Key}";
