@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using CommunityToolkit.Mvvm.Messaging;
+using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using FufuLauncher.Messages;
@@ -25,7 +26,6 @@ public sealed partial class PluginSettingsPage : Page
         MainVM = App.GetService<MainViewModel>();
         ControlPanelVM = App.GetService<ControlPanelModel>();
         InitializeComponent();
-    
         Loaded += PluginSettingsPage_Loaded;
         Unloaded += PluginSettingsPage_Unloaded;
         
@@ -149,6 +149,21 @@ public sealed partial class PluginSettingsPage : Page
         if (sender is Button button && button.Tag is PluginSettingItem item)
         {
             ViewModel.ToggleSettingPin(item);
+        }
+    }
+
+    private async void OnInstallSignatureClick(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (App.MainWindow is MainWindow mainWindow)
+            {
+                await mainWindow.NavigateToSettingsTrustSectionAsync();
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[PluginSettings] 跳转签名安装失败: {ex.Message}");
         }
     }
 

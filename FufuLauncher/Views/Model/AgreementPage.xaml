@@ -277,7 +277,7 @@
                 </Grid>
             </StackPanel>
 
-            <Button Content="{helpers:Loc Key=AgreementPage_ConfirmAndComplete}"
+            <Button Content="{helpers:Loc Key=AgreementPage_Next}"
                     Command="{x:Bind ViewModel.ConfirmDataDirCommand}"
                     HorizontalAlignment="Center"
                     Padding="24,8"
@@ -289,6 +289,63 @@
                        HorizontalAlignment="Center"
                        Visibility="{x:Bind ViewModel.PathErrorVisibility, Mode=OneWay}"
                        Margin="0,4,0,0" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Spacing="20"
+                    Padding="48"
+                    MaxWidth="560"
+                    Visibility="{x:Bind ViewModel.TrustVisibility, Mode=OneWay}">
+
+            <StackPanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition FromVerticalOffset="20" IsStaggeringEnabled="True" />
+                </TransitionCollection>
+            </StackPanel.ChildrenTransitions>
+
+            <FontIcon Glyph="&#xE8D7;"
+                      FontSize="40"
+                      HorizontalAlignment="Center"
+                      Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+
+            <TextBlock Text="安装平台证书(可选)"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="安装后本启动器与系统可以识别我们为可信开发者签发的代码签名，提高你的使用便捷性，使我们的插件不再频繁被Windows Defender拦截。"
+                       FontSize="12"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center" />
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Spacing="12">
+                <Button Content="安装证书"
+                        Click="OnTrustInstallClick"
+                        Style="{StaticResource AccentButtonStyle}"
+                        HorizontalAlignment="Center"
+                        Padding="24,8"
+                        CornerRadius="4" />
+
+                <Button Content="暂不安装"
+                        Click="OnTrustSkipClick"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        HorizontalAlignment="Center"
+                        Padding="24,8"
+                        CornerRadius="4" />
+            </StackPanel>
+
+            <TextBlock x:Name="TrustStatusText"
+                       FontSize="12"
+                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center" />
         </StackPanel>
 
         <Grid Grid.Row="1"

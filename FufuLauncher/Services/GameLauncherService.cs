@@ -50,6 +50,7 @@ namespace FufuLauncher.Services
         private readonly IAuthTicketService _authTicketService;
         private readonly AccountManager _accountManager;
         private readonly GameRegistrySnapshot _registrySnapshot = new();
+        private readonly CodeSigning.ModTrustGate _modTrustGate;
 
         private bool _lastUseInjection;
 
@@ -64,7 +65,8 @@ namespace FufuLauncher.Services
             AccountManager accountManager,
             GameServerConfigurationService gameServerConfigurationService,
             LightweightPluginService lightweightPluginService,
-            ConstraintService constraintService)
+            ConstraintService constraintService,
+            CodeSigning.ModTrustGate modTrustGate)
         {
             _localSettingsService = localSettingsService;
             _gameConfigService = gameConfigService;
@@ -76,6 +78,7 @@ namespace FufuLauncher.Services
             _gameServerConfigurationService = gameServerConfigurationService;
             _lightweightPluginService = lightweightPluginService;
             _constraintService = constraintService;
+            _modTrustGate = modTrustGate;
         }
 
         [DllImport("user32.dll")]
@@ -490,6 +493,59 @@ namespace FufuLauncher.Services
                         catch (Exception ex)
                         {
                             logBuilder.AppendLine($"[启动流程] 检查插件大小失败: {ex.Message}");
+                        }
+
+                        // 平台代码签名信任闸门：严格模式下拒绝未由平台签发（或已被吊销）的 DLL 注入。
+                        try
+                        {
+                            var trustDecision = _modTrustGate.EvaluateForLoading(targetDllPath);
+                            logBuilder.AppendLine($"[启动流程] 签名信任判定：{trustDecision.Result.Status} - {trustDecision.Reason}");
+
+                            if (!trustDecision.Allowed)
+                            {
+                                logBuilder.AppendLine("[启动流程] 严格信任模式已拦截该 DLL，取消注入");
+                                WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                    "ModTrust_BlockedTitle".GetLocalized(),
+                                    string.Format("ModTrust_BlockedMsg".GetLocalized(), trustDecision.Reason),
+                                    NotificationType.Warning,
+                                    8000));
+
+                                if (_registrySnapshot.HasSnapshot)
+                                {
+                                    try
+                                    {
+                                        _registrySnapshot.RestoreSnapshot();
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        logBuilder.AppendLine($"[启动流程] 恢复注册表快照失败: {ex.Message}");
+                                    }
+                                }
+
+                                var blockedMessage = string.Format("ModTrust_BlockedMsg".GetLocalized(), trustDecision.Reason);
+                                var blockedResult = new LaunchResult
+                                {
+                                    Success = false,
+                                    Cancelled = false,
+                                    ErrorMessage = blockedMessage,
+                                    DetailLog = logBuilder.ToString()
+                                };
+                                Debug.WriteLine(blockedResult.DetailLog);
+                                return blockedResult;
+                            }
+
+                            if (trustDecision.ShouldNotify)
+                            {
+                                WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                    "ModTrust_WarnTitle".GetLocalized(),
+                                    trustDecision.Reason,
+                                    NotificationType.Warning,
+                                    6000));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            logBuilder.AppendLine($"[启动流程] 签名信任校验异常（不影响启动）: {ex.Message}");
                         }
 
                         logBuilder.AppendLine($"[启动流程] 准备注入 DLL: {targetDllPath}");

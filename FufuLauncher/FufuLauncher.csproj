@@ -133,6 +133,11 @@
         <Content Include="Assets\mirrors.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <!-- 平台代码签名信任包（公开材料）：随应用分发，客户端据此固定信任锚 -->
+        <Content Include="Assets\Trust\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
     
     <ItemGroup>

@@ -158,6 +158,8 @@ public partial class App
                 services.AddSingleton<Services.GameServer.GameUpdateService>();
 
                 services.AddSingleton<DeveloperAuthorizationService>();
+                services.AddSingleton<Services.CodeSigning.CodeSigningTrustService>();
+                services.AddSingleton<Services.CodeSigning.ModTrustGate>();
 
                 services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
             })

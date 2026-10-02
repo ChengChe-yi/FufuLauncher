@@ -369,6 +369,41 @@ public sealed partial class MainWindow
         }
     }
 
+    public async Task NavigateToSettingsTrustSectionAsync()
+    {
+        if (_isExit) return;
+        try { Activate(); } catch (System.Runtime.InteropServices.COMException) { return; }
+
+        for (var i = 0; i < 40 && !_isMainUiLoaded; i++)
+        {
+            await Task.Delay(100);
+        }
+
+        var settingsItem = NavigationView.FooterMenuItems
+            .OfType<NavigationViewItem>()
+            .FirstOrDefault(item => item.Tag?.ToString() == "FufuLauncher.ViewModels.SettingsViewModel");
+
+        if (settingsItem != null)
+        {
+            NavigationView.SelectedItem = settingsItem;
+        }
+        else
+        {
+            NavigateToPage("FufuLauncher.ViewModels.SettingsViewModel");
+        }
+
+        for (var i = 0; i < 40; i++)
+        {
+            if (ContentFrame.Content is Views.SettingsPage settingsPage)
+            {
+                await settingsPage.NavigateToTrustInstallAsync();
+                return;
+            }
+
+            await Task.Delay(100);
+        }
+    }
+
     public async Task NavigateToAccountPageAsync()
     {
         if (_isExit) return;

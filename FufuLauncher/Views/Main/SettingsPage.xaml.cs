@@ -62,6 +62,7 @@ public sealed partial class SettingsPage : Page
 
         await LoadInjectionModuleSelectionAsync();
         await UpdateApplyPredownloadRowVisibilityAsync();
+        await RefreshModTrustUiAsync();
     }
 
     private void Page_Loaded(object sender, RoutedEventArgs e)

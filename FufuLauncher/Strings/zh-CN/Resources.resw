@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -6728,4 +6728,105 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Miyoushe_CommentSent" xml:space="preserve"><value>评论已提交，已切换至最新评论</value></data>
   <data name="Miyoushe_SubmissionUncertain" xml:space="preserve"><value>提交结果无法确认，草稿已保留。请先打开原帖检查，确认没有发布成功后再重新发布。</value></data>
   <data name="Miyoushe_CommentRiskHint" xml:space="preserve"><value>米游社要求安全验证。点击“验证并发布”完成官方验证码后提交本次评论。</value></data>
+    <data name="ModTrust_Title" xml:space="preserve">
+    <value>代码签名信任（FufuLauncher CA）</value>
+  </data>
+    <data name="ModTrust_Loading" xml:space="preserve">
+    <value>正在读取信任状态…</value>
+  </data>
+    <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+    <data name="ModTrust_PackageMissing" xml:space="preserve">
+    <value>尚未部署信任包：请在 Assets\Trust 放置证书与清单文件，或点击「立即更新」从官方端点同步。</value>
+  </data>
+    <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>当前状态：{0}</value>
+    <value>同步端点：{1}</value>
+  </data>
+    <data name="ModTrust_InstalledUser" xml:space="preserve">
+    <value>已安装（当前用户）</value>
+  </data>
+    <data name="ModTrust_InstalledMachine" xml:space="preserve">
+    <value>已安装（本机）</value>
+  </data>
+    <data name="ModTrust_NotInstalled" xml:space="preserve">
+    <value>未安装</value>
+  </data>
+    <data name="ModTrust_InstallTitle" xml:space="preserve">
+    <value>证书安装 / 卸载</value>
+  </data>
+        <data name="ModTrust_InstallCaption" xml:space="preserve">
+    <value>安装后，我们签发的代码签名会被系统与本启动器识别；可随时卸载，不影响其它证书。</value>
+  </data>
+    <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+    <value>安装（当前用户）</value>
+  </data>
+    <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+    <value>卸载（当前用户）</value>
+  </data>
+        <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+    <value>安装（本机，需管理员）</value>
+  </data>
+        <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+    <value>卸载（本机，需管理员）</value>
+  </data>
+    <data name="ModTrust_ScopeUser" xml:space="preserve">
+    <value>当前用户</value>
+  </data>
+    <data name="ModTrust_ScopeMachine" xml:space="preserve">
+    <value>本机</value>
+  </data>
+        <data name="ModTrust_InstallConfirm" xml:space="preserve">
+    <value>即将为「{0}」安装平台证书，安装后可识别我们签发的代码签名。是否继续？</value>
+  </data>
+        <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+    <value>即将为「{0}」卸载平台证书，卸载后将不再信任我们签发的代码签名。是否继续？</value>
+  </data>
+        <data name="ModTrust_SyncTitle" xml:space="preserve">
+    <value>信任信息更新 / 严格模式</value>
+  </data>
+        <data name="ModTrust_SyncCaption" xml:space="preserve">
+    <value>从官方端点更新信任信息；严格模式只允许通过签名校验的文件加载。</value>
+  </data>
+    <data name="ModTrust_SyncBtn" xml:space="preserve">
+    <value>立即更新</value>
+  </data>
+        <data name="ModTrust_SyncConfirm" xml:space="preserve">
+    <value>将从官方端点下载并校验信任信息，校验不通过不会应用。是否继续？</value>
+  </data>
+    <data name="ModTrust_StrictOn" xml:space="preserve">
+    <value>严格模式</value>
+  </data>
+    <data name="ModTrust_StrictOff" xml:space="preserve">
+    <value>仅提示</value>
+  </data>
+        <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>启用严格模式</value>
+  </data>
+        <data name="ModTrust_StrictConfirm" xml:space="preserve">
+    <value>启用后，未通过签名校验的文件将被阻止加载，可能影响你正在使用的第三方插件。是否继续？</value>
+  </data>
+    <data name="ModTrust_BlockedTitle" xml:space="preserve">
+    <value>代码签名校验未通过</value>
+  </data>
+        <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>该文件未通过签名校验，已阻止加载：</value>
+    <value></value>
+    <value>{0}</value>
+    <value></value>
+    <value>可在「设置 → 安全认证 → 代码签名信任」中查看详情。</value>
+  </data>
+    <data name="ModTrust_WarnTitle" xml:space="preserve">
+    <value>代码签名提示</value>
+  </data>
+    <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+    <value>已安装（本机，对所有用户生效）</value>
+  </data>
+    <data name="ModTrust_InstalledBoth" xml:space="preserve">
+    <value>已安装（当前用户 + 本机）</value>
+  </data>
+    <data name="ModTrust_MachineHint" xml:space="preserve">
+    <value>当前用户范围由本机安装提供；安装与卸载请在本机范围操作。</value>
+  </data>
 </root>

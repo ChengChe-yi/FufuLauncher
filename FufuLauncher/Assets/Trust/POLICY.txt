@@ -1,0 +1,11 @@
+﻿Root CA              : CN=FufuLauncher Code Signing Root CA, O=FufuLauncher
+  Not after          : 2051-10-03 05:45:21Z
+  SHA-256            : E11F0D745FDFFC102D791BCF876740835DEA5CBEB68C2218029A27984125F54D
+Issuing CA           : CN=FufuLauncher Code Signing Issuing CA, O=FufuLauncher, OU=Code Signing Issuing CA
+  Not after          : 2031-10-03 05:45:22Z
+  SHA-256            : 2637AC83DD50A333E9A9B594BE0F9C2DF422A4C1D03C26D1970E32B1035213A1
+Manifest signer      : CN=FufuLauncher Trust Manifest Signer, O=FufuLauncher, OU=Code Signing, OU=SignerId-manifest-signer
+  Not after          : 2027-10-03 05:45:23Z
+  SHA-256            : 16FDE43A8F140C8E58B9A1AC3CF37FD5368622B795355AE6B7ED0D07BE542B6E
+Revoked certificates : 0
+Manifest signature   : RSA-SHA256 by 16FDE43A8F140C8E58B9A1AC3CF37FD5368622B795355AE6B7ED0D07BE542B6E

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -6730,4 +6730,105 @@ Error: {0}</value>
   <data name="Miyoushe_CommentSent" xml:space="preserve"><value>Comment submitted; showing latest comments</value></data>
   <data name="Miyoushe_SubmissionUncertain" xml:space="preserve"><value>Submission could not be confirmed. Your draft is kept. Check the original post before publishing again.</value></data>
   <data name="Miyoushe_CommentRiskHint" xml:space="preserve"><value>Miyoushe requires verification. Select Verify and publish to complete the official captcha and submit this comment.</value></data>
+    <data name="ModTrust_Title" xml:space="preserve">
+    <value>Code signing trust (FufuLauncher CA)</value>
+  </data>
+    <data name="ModTrust_Loading" xml:space="preserve">
+    <value>Loading trust status...</value>
+  </data>
+    <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+    <data name="ModTrust_PackageMissing" xml:space="preserve">
+    <value>Trust package not deployed: place the certificate and manifest files under Assets\Trust, or click "Update now" to sync from the official endpoint.</value>
+  </data>
+    <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>Status: {0}</value>
+    <value>Sync endpoint: {1}</value>
+  </data>
+    <data name="ModTrust_InstalledUser" xml:space="preserve">
+    <value>installed (current user)</value>
+  </data>
+    <data name="ModTrust_InstalledMachine" xml:space="preserve">
+    <value>installed (machine)</value>
+  </data>
+    <data name="ModTrust_NotInstalled" xml:space="preserve">
+    <value>not installed</value>
+  </data>
+    <data name="ModTrust_InstallTitle" xml:space="preserve">
+    <value>Certificate install / uninstall</value>
+  </data>
+        <data name="ModTrust_InstallCaption" xml:space="preserve">
+    <value>After installing, code signatures we issue are recognised by Windows and this launcher. You can remove them at any time.</value>
+  </data>
+    <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+    <value>Install (user)</value>
+  </data>
+    <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+    <value>Uninstall (user)</value>
+  </data>
+        <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+    <value>Install (machine, admin)</value>
+  </data>
+        <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+    <value>Uninstall (machine, admin)</value>
+  </data>
+    <data name="ModTrust_ScopeUser" xml:space="preserve">
+    <value>current user</value>
+  </data>
+    <data name="ModTrust_ScopeMachine" xml:space="preserve">
+    <value>machine</value>
+  </data>
+        <data name="ModTrust_InstallConfirm" xml:space="preserve">
+    <value>Install the platform certificate for the {0}? Code signatures we issue will then be recognised. Continue?</value>
+  </data>
+        <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+    <value>Remove the platform certificate for the {0}? Code signatures we issue will no longer be trusted. Continue?</value>
+  </data>
+        <data name="ModTrust_SyncTitle" xml:space="preserve">
+    <value>Trust information update / strict mode</value>
+  </data>
+        <data name="ModTrust_SyncCaption" xml:space="preserve">
+    <value>Update trust information from the official endpoint. Strict mode only loads files that pass signature verification.</value>
+  </data>
+    <data name="ModTrust_SyncBtn" xml:space="preserve">
+    <value>Update now</value>
+  </data>
+        <data name="ModTrust_SyncConfirm" xml:space="preserve">
+    <value>Trust information will be downloaded from the official endpoint and verified; it is not applied if verification fails. Continue?</value>
+  </data>
+    <data name="ModTrust_StrictOn" xml:space="preserve">
+    <value>Strict</value>
+  </data>
+    <data name="ModTrust_StrictOff" xml:space="preserve">
+    <value>Warn only</value>
+  </data>
+        <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>Enable strict mode</value>
+  </data>
+        <data name="ModTrust_StrictConfirm" xml:space="preserve">
+    <value>Once enabled, files that fail signature verification will be blocked, which may affect third-party plugins you currently use. Continue?</value>
+  </data>
+    <data name="ModTrust_BlockedTitle" xml:space="preserve">
+    <value>Code signature verification failed</value>
+  </data>
+        <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>This file failed signature verification and was blocked:</value>
+    <value></value>
+    <value>{0}</value>
+    <value></value>
+    <value>See Settings -&gt; Security -&gt; Code signing trust for details.</value>
+  </data>
+    <data name="ModTrust_WarnTitle" xml:space="preserve">
+    <value>Code signing notice</value>
+  </data>
+    <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+    <value>installed (machine, applies to all users)</value>
+  </data>
+    <data name="ModTrust_InstalledBoth" xml:space="preserve">
+    <value>installed (current user + machine)</value>
+  </data>
+    <data name="ModTrust_MachineHint" xml:space="preserve">
+    <value>The current-user scope is provided by the machine installation; install and uninstall from the machine scope.</value>
+  </data>
 </root>

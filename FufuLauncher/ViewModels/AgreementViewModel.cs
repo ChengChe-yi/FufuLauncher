@@ -41,7 +41,15 @@ namespace FufuLauncher.ViewModels
         [NotifyPropertyChangedFor(nameof(AgreementVisibility))]
         [NotifyPropertyChangedFor(nameof(IconCheckVisibility))]
         [NotifyPropertyChangedFor(nameof(DataDirVisibility))]
+        [NotifyPropertyChangedFor(nameof(TrustVisibility))]
         private bool _isDataDirMode;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(AgreementVisibility))]
+        [NotifyPropertyChangedFor(nameof(IconCheckVisibility))]
+        [NotifyPropertyChangedFor(nameof(DataDirVisibility))]
+        [NotifyPropertyChangedFor(nameof(TrustVisibility))]
+        private bool _isTrustMode;
 
         [ObservableProperty]
         private string _dataPath = Helpers.AppPaths.DataDir;
@@ -49,11 +57,13 @@ namespace FufuLauncher.ViewModels
         [ObservableProperty]
         private string _cachePath = Helpers.AppPaths.CacheDir;
 
-        public Visibility AgreementVisibility => (!IsIconCheckMode && !IsDataDirMode) ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility AgreementVisibility => (!IsIconCheckMode && !IsDataDirMode && !IsTrustMode) ? Visibility.Visible : Visibility.Collapsed;
         
-        public Visibility IconCheckVisibility => (IsIconCheckMode && !IsDataDirMode) ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility IconCheckVisibility => (IsIconCheckMode && !IsDataDirMode && !IsTrustMode) ? Visibility.Visible : Visibility.Collapsed;
 
-        public Visibility DataDirVisibility => IsDataDirMode ? Visibility.Visible : Visibility.Collapsed;
+        public Visibility DataDirVisibility => (IsDataDirMode && !IsTrustMode) ? Visibility.Visible : Visibility.Collapsed;
+
+        public Visibility TrustVisibility => IsTrustMode ? Visibility.Visible : Visibility.Collapsed;
 
         public Visibility HintVisibility => HasReadAgreement ? Visibility.Collapsed : Visibility.Visible;
 
@@ -95,7 +105,7 @@ namespace FufuLauncher.ViewModels
             NextCommand = new AsyncRelayCommand(GoToIconCheckAsync);
             ConfirmIconsCommand = new AsyncRelayCommand(GoToDataDirAsync);
             TroubleshootIconsCommand = new AsyncRelayCommand(OnIconsMissingAsync);
-            ConfirmDataDirCommand = new AsyncRelayCommand(FinalizeAgreementAsync);
+            ConfirmDataDirCommand = new AsyncRelayCommand(GoToTrustAsync);
             BrowseDataPathCommand = new AsyncRelayCommand(PickDataPathAsync);
             BrowseCachePathCommand = new AsyncRelayCommand(PickCachePathAsync);
         }
@@ -113,7 +123,7 @@ namespace FufuLauncher.ViewModels
             await Task.CompletedTask;
         }
         
-        private async Task FinalizeAgreementAsync()
+        private async Task GoToTrustAsync()
         {
             try
             {
@@ -127,6 +137,26 @@ namespace FufuLauncher.ViewModels
                 Helpers.AppPaths.SaveCustomPaths(DataPath, CachePath);
                 Helpers.AppPaths.FinalizeFirstRun();
 
+                PathError = string.Empty;
+                IsTrustMode = true;
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                PathError = string.Format("StoragePath_Error_SaveFailed".GetLocalized(), ex.Message);
+                Debug.WriteLine($"[Agreement] GoToTrustAsync 失败: {ex}");
+            }
+        }
+
+        public async Task FinishOnboardingAsync()
+        {
+            await FinalizeAgreementAsync();
+        }
+
+        private async Task FinalizeAgreementAsync()
+        {
+            try
+            {
                 if (!await _localSettingsService.TrySaveSettingAsync("UserAgreementAccepted", true))
                 {
                     PathError = string.Format("StoragePath_Error_SaveFailed".GetLocalized(), "UserAgreementAccepted");

@@ -170,5 +170,28 @@ public sealed partial class SettingsPage
         }
     }
 
+    public async Task NavigateToTrustInstallAsync()
+    {
+        var securityItem = SettingsNavigationView.MenuItems
+            .OfType<NavigationViewItem>()
+            .FirstOrDefault(item => item.Tag?.ToString() == "SecurityAuthItem");
+
+        if (securityItem != null)
+        {
+            SettingsNavigationView.SelectedItem = securityItem;
+        }
+
+        await Task.Delay(120);
+
+        if (ModTrustInstallRow != null)
+        {
+            BringElementIntoView(ModTrustInstallRow);
+        }
+
+        await Task.Delay(120);
+
+        ModTrustInstallUserButton?.Focus(FocusState.Programmatic);
+    }
+
     #endregion
 }

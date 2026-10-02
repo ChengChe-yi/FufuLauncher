@@ -2,8 +2,10 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using FufuLauncher.Services;
+using FufuLauncher.Services.CodeSigning;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
@@ -30,6 +32,19 @@ namespace FufuLauncher
             if (args.Length >= 2 && string.Equals(args[0], "--yae-inject", StringComparison.OrdinalIgnoreCase))
             {
                 Environment.Exit(Services.Yae.YaeAchievementReader.RunElevatedInjection(args[1]));
+                return;
+            }
+
+            // 证书信任操作（提权助手/诊断）：必须在单实例判定之前处理，否则会被重定向到已运行的实例。
+            if (TrustCertCli.IsTrustCertCommand(args))
+            {
+                Environment.Exit(TrustCertCli.Run(args));
+                return;
+            }
+
+            if (TrustCertCli.IsTrustDiagCommand(args))
+            {
+                Environment.Exit(TrustCertCli.RunDiagnostics(args));
                 return;
             }
 
@@ -142,8 +157,26 @@ private static void RunElevatedInjection(string[] args)
                 .Select(argument => GameLauncherService.QuoteArgument(argument)));
         }
 
-        var result = launcher.LaunchGameAndInject(gameExePath, dllPath, commandLineArgs, out var errorMessage, out var pid);
+        // 提权注入前的最后一道信任闸门（严格模式下拒绝非平台签发的 DLL）。
+        try
+        {
+            var trustGate = new ModTrustGate(new CodeSigningTrustService());
+            var decision = trustGate.EvaluateForLoading(dllPath);
+            if (!decision.Allowed)
+            {
+                MessageBox(IntPtr.Zero,
+                    string.Format("ModTrust_BlockedMsg".GetLocalized(), decision.Reason),
+                    "ModTrust_BlockedTitle".GetLocalized(), 0x30);
+                exitCode = 3;
+                return;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[Program] 注入前信任校验异常（继续注入）：{ex.Message}");
+        }
 
+        var result = launcher.LaunchGameAndInject(gameExePath, dllPath, commandLineArgs, out var errorMessage, out var pid);
         if (result != 0)
         {
             MessageBox(IntPtr.Zero, string.Format("Program_InjectionFailed".GetLocalized(), errorMessage, result), "Program_ErrorTitle".GetLocalized(), 0x10);
