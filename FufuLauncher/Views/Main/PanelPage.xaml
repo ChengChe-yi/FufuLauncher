@@ -404,26 +404,47 @@
                                 Text="{helpers:Loc Key=Panel_CommunityDesc}" />
                         </StackPanel>
 
-                        <Button Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenCommunityClick">
-                            <Grid ColumnSpacing="14">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="48" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                    <FontIcon
-                                        Glyph="&#xE716;"
-                                        FontSize="22"
-                                        Foreground="{ThemeResource PanelTextBrush}"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center" />
-                                </Border>
-                                <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                    <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=CommunityWindow_Title}" />
-                                    <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Panel_CommunityTooltip}" TextWrapping="Wrap" />
-                                </StackPanel>
-                            </Grid>
-                        </Button>
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenCommunityClick">
+                                <Grid ColumnSpacing="14">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="48" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
+                                        <FontIcon
+                                            Glyph="&#xE716;"
+                                            FontSize="22"
+                                            Foreground="{ThemeResource PanelTextBrush}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                    </Border>
+                                    <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=CommunityWindow_Title}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Panel_CommunityTooltip}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+                            <Button Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenMiyousheClick">
+                                <Grid ColumnSpacing="14">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="48" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
+                                        <FontIcon Glyph="&#xE8F2;" FontSize="22" Foreground="{ThemeResource PanelTextBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Miyoushe_Title}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Miyoushe_CardHint}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+                        </Grid>
                     </StackPanel>
                 </Border>
             </Grid>

@@ -116,6 +116,7 @@
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="Licenses\TeyvatGuide.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
         <None Remove="Plugins\Avatar\**" />
     </ItemGroup>
 

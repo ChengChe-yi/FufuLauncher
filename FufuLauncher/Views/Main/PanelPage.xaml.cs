@@ -88,6 +88,11 @@ public sealed partial class PanelPage : Page
         window.Activate();
     }
 
+    private void OnOpenMiyousheClick(object sender, RoutedEventArgs e)
+    {
+        MiyousheWindow.Show();
+    }
+
     private async void PanelPage_Loaded(object sender, RoutedEventArgs e)
     {
         EntranceStoryboard.Begin();
