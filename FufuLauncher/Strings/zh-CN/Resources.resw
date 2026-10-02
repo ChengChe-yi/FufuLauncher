@@ -6654,4 +6654,78 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>重置失败，请检查网络后重试</value>
   </data>
+  <data name="Miyoushe_Title" xml:space="preserve"><value>米游社</value></data>
+  <data name="Miyoushe_CardHint" xml:space="preserve"><value>浏览官方资讯、社区帖子与关注动态</value></data>
+  <data name="Miyoushe_Explore" xml:space="preserve"><value>探索</value></data>
+  <data name="Miyoushe_Forum" xml:space="preserve"><value>社区主页</value></data>
+  <data name="Miyoushe_News" xml:space="preserve"><value>官方资讯</value></data>
+  <data name="Miyoushe_Following" xml:space="preserve"><value>关注动态</value></data>
+  <data name="Miyoushe_Favorites" xml:space="preserve"><value>米游社收藏</value></data>
+  <data name="Miyoushe_Library" xml:space="preserve"><value>我的内容</value></data>
+  <data name="Miyoushe_Bookmarks" xml:space="preserve"><value>本地收藏</value></data>
+  <data name="Miyoushe_History" xml:space="preserve"><value>浏览历史</value></data>
+  <data name="Miyoushe_MyProfile" xml:space="preserve"><value>我的主页</value></data>
+  <data name="Miyoushe_User" xml:space="preserve"><value>作者主页</value></data>
+  <data name="Miyoushe_Topic" xml:space="preserve"><value>话题</value></data>
+  <data name="Miyoushe_Collection" xml:space="preserve"><value>合集</value></data>
+  <data name="Miyoushe_Search" xml:space="preserve"><value>搜索结果</value></data>
+  <data name="Miyoushe_SearchHint" xml:space="preserve"><value>搜索帖子或粘贴帖子ID / 米游社链接</value></data>
+  <data name="Miyoushe_Guest" xml:space="preserve"><value>游客浏览</value></data>
+  <data name="Miyoushe_GuestHint" xml:space="preserve"><value>公开内容无需登录。个人动态与收藏需选择启动器中的国服账号。</value></data>
+  <data name="Miyoushe_AccountHint" xml:space="preserve"><value>切换仅影响此窗口</value></data>
+  <data name="Miyoushe_LoginHint" xml:space="preserve"><value>请在启动器账号管理中登录米游社国服账号，再选择该账号。登录过期时请重新登录。</value></data>
+  <data name="Miyoushe_IdentityError" xml:space="preserve"><value>账号的设备指纹不可用，已切换为游客。请在账号管理中重新登录后重试。</value></data>
+  <data name="Miyoushe_Refresh" xml:space="preserve"><value>刷新</value></data>
+  <data name="Miyoushe_RefreshHint" xml:space="preserve"><value>刷新当前页面 (F5)</value></data>
+  <data name="Miyoushe_Refreshed" xml:space="preserve"><value>已刷新（{0}）</value></data>
+  <data name="Miyoushe_Empty" xml:space="preserve"><value>这里还没有帖子</value></data>
+  <data name="Miyoushe_More" xml:space="preserve"><value>加载更多</value></data>
+  <data name="Miyoushe_SelectPost" xml:space="preserve"><value>选择一篇帖子，开始阅读</value></data>
+  <data name="Miyoushe_Save" xml:space="preserve"><value>本地收藏</value></data>
+  <data name="Miyoushe_CopyLink" xml:space="preserve"><value>复制链接</value></data>
+  <data name="Miyoushe_Original" xml:space="preserve"><value>打开原帖</value></data>
+  <data name="Miyoushe_Article" xml:space="preserve"><value>正文</value></data>
+  <data name="Miyoushe_Comments" xml:space="preserve"><value>评论</value></data>
+  <data name="Miyoushe_HotReplies" xml:space="preserve"><value>热门评论</value></data>
+  <data name="Miyoushe_LatestReplies" xml:space="preserve"><value>最新评论</value></data>
+  <data name="Miyoushe_OldestReplies" xml:space="preserve"><value>最早评论</value></data>
+  <data name="Miyoushe_OnlyAuthor" xml:space="preserve"><value>只看楼主</value></data>
+  <data name="Miyoushe_Hot" xml:space="preserve"><value>热门</value></data>
+  <data name="Miyoushe_Latest" xml:space="preserve"><value>最新发布</value></data>
+  <data name="Miyoushe_Featured" xml:space="preserve"><value>精选</value></data>
+  <data name="Miyoushe_Notices" xml:space="preserve"><value>公告</value></data>
+  <data name="Miyoushe_Events" xml:space="preserve"><value>活动</value></data>
+  <data name="Miyoushe_NoComments" xml:space="preserve"><value>暂无评论</value></data>
+  <data name="Miyoushe_SubReplies" xml:space="preserve"><value>查看 {0} 条楼中楼回复</value></data>
+  <data name="Miyoushe_Close" xml:space="preserve"><value>关闭</value></data>
+  <data name="Miyoushe_Image" xml:space="preserve"><value>查看图片</value></data>
+  <data name="Miyoushe_OpenImage" xml:space="preserve"><value>打开原图</value></data>
+  <data name="Miyoushe_LinkCopied" xml:space="preserve"><value>已复制帖子链接</value></data>
+  <data name="Miyoushe_SearchTooLong" xml:space="preserve"><value>搜索内容最多 200 个字符</value></data>
+  <data name="Miyoushe_Retry" xml:space="preserve"><value>重试</value></data>
+  <data name="Miyoushe_Timeout" xml:space="preserve"><value>请求超时，请稍后重试</value></data>
+  <data name="Miyoushe_Verify" xml:space="preserve"><value>完成安全验证</value></data>
+  <data name="Miyoushe_RiskHint" xml:space="preserve"><value>米游社要求安全验证，已暂停后续请求。完成官方验证码后，将重试刚才的操作。</value></data>
+  <data name="Miyoushe_VerifyHint" xml:space="preserve"><value>请完成米游社提供的官方验证码。关闭此窗口可取消验证。</value></data>
+  <data name="Miyoushe_VerifyLoadError" xml:space="preserve"><value>验证码加载失败，请检查网络后重试，或在米游社官方页面验证。</value></data>
+  <data name="Miyoushe_VerifyCancelled" xml:space="preserve"><value>已取消验证，浏览请求仍处于暂停状态。点击重试可再次验证。</value></data>
+  <data name="Miyoushe_LibraryError" xml:space="preserve"><value>本地收藏或历史记录读取失败，已有文件会保留。</value></data>
+  <data name="Miyoushe_Back" xml:space="preserve"><value>返回上一级</value></data>
+  <data name="Miyoushe_RightComments" xml:space="preserve"><value>右侧评论</value></data>
+  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve"><value>开启后评论显示在右侧栏；关闭后接在正文下方</value></data>
+  <data name="Miyoushe_LoadingComments" xml:space="preserve"><value>正在加载评论…</value></data>
+  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve"><value>评论暂未加载，请使用上方提示重试</value></data>
+  <data name="Miyoushe_Like" xml:space="preserve"><value>点赞</value></data>
+  <data name="Miyoushe_Liked" xml:space="preserve"><value>已赞</value></data>
+  <data name="Miyoushe_PublishComment" xml:space="preserve"><value>评论</value></data>
+  <data name="Miyoushe_Reply" xml:space="preserve"><value>回复</value></data>
+  <data name="Miyoushe_ReplyTo" xml:space="preserve"><value>回复 @{0}</value></data>
+  <data name="Miyoushe_CommentHint" xml:space="preserve"><value>写下你的评论（最多 1000 字）</value></data>
+  <data name="Miyoushe_SendComment" xml:space="preserve"><value>发布到米游社</value></data>
+  <data name="Miyoushe_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Miyoushe_VerifyAndSend" xml:space="preserve"><value>验证并发布</value></data>
+  <data name="Miyoushe_Resubmit" xml:space="preserve"><value>重新发布</value></data>
+  <data name="Miyoushe_CommentSent" xml:space="preserve"><value>评论已提交，已切换至最新评论</value></data>
+  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve"><value>提交结果无法确认，草稿已保留。请先打开原帖检查，确认没有发布成功后再重新发布。</value></data>
+  <data name="Miyoushe_CommentRiskHint" xml:space="preserve"><value>米游社要求安全验证。点击“验证并发布”完成官方验证码后提交本次评论。</value></data>
 </root>
