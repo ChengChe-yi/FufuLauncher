@@ -13,7 +13,12 @@
     IsMinimizable="False"
     IsResizable="True">
 
-    <Grid>
+    <Grid x:Name="RootGrid">
+        <Grid.Resources>
+            <Style x:Key="AnnouncementTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
+            </Style>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

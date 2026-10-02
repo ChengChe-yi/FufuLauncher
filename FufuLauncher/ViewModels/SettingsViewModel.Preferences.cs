@@ -206,9 +206,6 @@ public partial class SettingsViewModel
         var previewAnnouncementJson = await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
         IsPreviewUpdateAnnouncementEnabled = previewAnnouncementJson == null || Convert.ToBoolean(previewAnnouncementJson);
 
-        var suppressAnnouncementJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.SuppressAnnouncementInGameKey);
-        IsSuppressAnnouncementInGameEnabled = suppressAnnouncementJson == null || Convert.ToBoolean(suppressAnnouncementJson);
-
         var announcementViewModeJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.AnnouncementViewModeKey);
         if (announcementViewModeJson is string modeStr && Enum.TryParse<AnnouncementViewMode>(modeStr, out var parsedMode))
         {

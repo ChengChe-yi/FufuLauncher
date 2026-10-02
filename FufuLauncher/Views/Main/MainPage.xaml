@@ -1006,21 +1006,6 @@
                         Padding="0"
                         Background="Transparent"
                         BorderThickness="0"
-                        Click="AnnouncementBell_Click"
-                        CornerRadius="22"
-                        ToolTipService.ToolTip="{helpers:Loc Key=HomeTab_Announcements}">
-                        <FontIcon
-                            FontSize="18"
-                            Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                            Glyph="&#xEA8F;" />
-                    </Button>
-
-                    <Button
-                        Width="44"
-                        Height="44"
-                        Padding="0"
-                        Background="Transparent"
-                        BorderThickness="0"
                         CornerRadius="22"
                         IsEnabled="{x:Bind ViewModel.IsBackgroundToggleEnabled, Mode=OneWay}"
                         ToolTipService.ToolTip="{helpers:Loc Key=Home_ToggleBg}">

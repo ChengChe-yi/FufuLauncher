@@ -54,9 +54,6 @@ public sealed partial class MainWindow : WindowEx
 
     private bool _isMainUiLoaded;
 
-    private DispatcherTimer _announcementCheckTimer;
-    private readonly IAnnouncementService _announcementService;
-
     private DispatcherTimer _constraintCheckTimer;
     private readonly ConstraintService _constraintService;
 
@@ -188,7 +185,6 @@ public sealed partial class MainWindow : WindowEx
                     await ApplyMainWindowSizeAsync();
                     await Task.Delay(50);
                     await PerformMainInitAsync();
-                    _announcementCheckTimer.Start();
                     await CheckAndWarnVCRedistAsync();
                 }
                 catch (Exception ex) { Debug.WriteLine($"消息处理异常: {ex.Message}"); }
@@ -204,31 +200,12 @@ public sealed partial class MainWindow : WindowEx
                 catch (Exception ex) { Debug.WriteLine($"启动语音播放失败: {ex.Message}"); }
             });
 
-            _ = Task.Run(async () =>
-            {
-                try
-                {
-                    await Task.Delay(1500);
-                    var announcementService = App.GetService<IAnnouncementService>();
-                    var announcementUrl = await announcementService.CheckForNewAnnouncementAsync();
-                    if (!string.IsNullOrEmpty(announcementUrl))
-                    {
-                        dispatcherQueue.TryEnqueue(() =>
-                        {
-                            var announcementWindow = new Views.AnnouncementWindowL(announcementUrl);
-                            announcementWindow.Activate();
-                        });
-                    }
-                }
-                catch (Exception ex) { Debug.WriteLine($"[Announcement] 公告检查失败: {ex.Message}"); }
-            });
         });
 
         WeakReferenceMessenger.Default.Register<GameRunningStateChangedMessage>(this, (_, m) =>
         {
             if (m.IsRunning) return;
 
-            dispatcherQueue.TryEnqueue(async () => await CheckPeriodicAnnouncementAsync());
             dispatcherQueue.TryEnqueue(async () => await CheckPeriodicConstraintAsync());
         });
 
@@ -362,14 +339,6 @@ public sealed partial class MainWindow : WindowEx
         _messageDismissTimer.Tick += (_, _) => HideSystemMessage();
         _networkMonitorService = new NetworkMonitorService();
         _networkMonitorService.NetworkStatusChanged += OnNetworkStatusChanged;
-
-        _announcementService = App.GetService<IAnnouncementService>();
-        _announcementCheckTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
-        _announcementCheckTimer.Tick += async (_, _) => await CheckPeriodicAnnouncementAsync();
-        if (!Helpers.AppPaths.IsFirstRun)
-        {
-            _announcementCheckTimer.Start();
-        }
 
         _constraintService = App.GetService<ConstraintService>();
         _constraintCheckTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };

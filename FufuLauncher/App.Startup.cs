@@ -74,8 +74,6 @@ public partial class App
             {
                 _ = Task.Run(PlayStartupSoundDelayedAsync);
 
-                _ = Task.Run(CheckForAnnouncementAsync);
-
                 _ = Task.Run(async () => await GetService<ConstraintService>().RefreshAsync());
 
                 _ = Task.Run(RunStartupUpdateCheckAsync);
