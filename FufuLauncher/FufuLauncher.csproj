@@ -30,9 +30,9 @@
 
         <PublishReadyToRun>true</PublishReadyToRun>
 
-        <Version>1.7.0.3</Version>
-        <AssemblyVersion>1.7.0.3</AssemblyVersion>
-        <FileVersion>1.7.0.3</FileVersion>
+        <Version>1.7.1.0</Version>
+        <AssemblyVersion>1.7.1.0</AssemblyVersion>
+        <FileVersion>1.7.1.0</FileVersion>
         <Copyright>Copyright © FufuLauncher Development Team</Copyright>
     </PropertyGroup>
 
@@ -133,7 +133,6 @@
         <Content Include="Assets\mirrors.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <!-- 平台代码签名信任包（公开材料）：随应用分发，客户端据此固定信任锚 -->
         <Content Include="Assets\Trust\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

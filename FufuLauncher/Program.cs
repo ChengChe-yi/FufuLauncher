@@ -34,8 +34,7 @@ namespace FufuLauncher
                 Environment.Exit(Services.Yae.YaeAchievementReader.RunElevatedInjection(args[1]));
                 return;
             }
-
-            // 证书信任操作（提权助手/诊断）：必须在单实例判定之前处理，否则会被重定向到已运行的实例。
+            
             if (TrustCertCli.IsTrustCertCommand(args))
             {
                 Environment.Exit(TrustCertCli.Run(args));
@@ -156,8 +155,7 @@ private static void RunElevatedInjection(string[] args)
                 .Skip(separatorIndex + 1)
                 .Select(argument => GameLauncherService.QuoteArgument(argument)));
         }
-
-        // 提权注入前的最后一道信任闸门（严格模式下拒绝非平台签发的 DLL）。
+        
         try
         {
             var trustGate = new ModTrustGate(new CodeSigningTrustService());
