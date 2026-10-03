@@ -38,6 +38,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
 
         _isPreview = isPreview;
         _updateInfoUrl = updateInfoUrl;
+        RootGrid.RequestedTheme = App.GetService<IThemeSelectorService>().Theme;
 
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
@@ -134,11 +135,12 @@ public sealed partial class UpdateNotificationWindow : WindowEx
         }
     }
 
-    private static TextBlock CreateAnnouncementTextBlock(string text, AnnouncementSection section, Thickness margin)
+    private TextBlock CreateAnnouncementTextBlock(string text, AnnouncementSection section, Thickness margin)
     {
         var isHeading = section.Tag is "h1" or "h2" or "h3" or "h4" or "h5" or "h6";
         var block = new TextBlock
         {
+            Style = (Style)RootGrid.Resources["AnnouncementTextBlockStyle"],
             FontFamily = new FontFamily("Microsoft YaHei"),
             FontSize = section.FontSize,
             FontWeight = isHeading ? Microsoft.UI.Text.FontWeights.Bold : Microsoft.UI.Text.FontWeights.Normal,
