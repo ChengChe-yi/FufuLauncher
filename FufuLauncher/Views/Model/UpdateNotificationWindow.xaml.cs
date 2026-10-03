@@ -426,19 +426,14 @@ public sealed partial class UpdateNotificationWindow : WindowEx
 
     private async void OnUpdateBtnClicked(object sender, RoutedEventArgs e)
     {
-        if (_isPreview)
-        {
-            LaunchPreviewUpdater();
-        }
-        else if (App.MainWindow is MainWindow mainWindow)
-        {
-            await mainWindow.NavigateToSettingsUpdateSectionAsync();
-        }
-
-        Close();
+        if (sender is Button button) button.IsEnabled = false;
+        if (await LaunchUpdaterAsync(_isPreview))
+            Close();
+        else if (sender is Button retryButton)
+            retryButton.IsEnabled = true;
     }
 
-    private void LaunchPreviewUpdater()
+    private async Task<bool> LaunchUpdaterAsync(bool isPreview)
     {
         try
         {
@@ -447,14 +442,14 @@ public sealed partial class UpdateNotificationWindow : WindowEx
             if (!File.Exists(updaterPath))
             {
                 Debug.WriteLine("未找到 UpdateFufuLauncher.exe");
-                return;
+                return false;
             }
 
             bool useThirdPartyCdn = true;
             try
             {
                 var localSettingsService = App.GetService<ILocalSettingsService>();
-                var cdnSetting = localSettingsService.ReadSettingAsync("IsUseThirdPartyCDNEnabled").Result;
+                var cdnSetting = await localSettingsService.ReadSettingAsync("IsUseThirdPartyCDNEnabled");
                 if (cdnSetting != null)
                 {
                     useThirdPartyCdn = Convert.ToBoolean(cdnSetting);
@@ -470,14 +465,16 @@ public sealed partial class UpdateNotificationWindow : WindowEx
                 FileName = updaterPath,
                 UseShellExecute = true,
                 Verb = "runas",
-                Arguments = $"--use-third-party-cdn={useThirdPartyCdn.ToString().ToLower()} --preview" +
-                            $" --installed-version={AppVersionHelper.FullVersion}"
+                Arguments = $"--use-third-party-cdn={useThirdPartyCdn.ToString().ToLower()}" +
+                            $" --installed-version={AppVersionHelper.FullVersion}" +
+                            (isPreview ? " --preview" : string.Empty)
             };
-            Process.Start(startInfo);
+            return Process.Start(startInfo) != null;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"启动预览版更新程序失败: {ex.Message}");
+            Debug.WriteLine($"启动更新程序失败: {ex.Message}");
+            return false;
         }
     }
 }
