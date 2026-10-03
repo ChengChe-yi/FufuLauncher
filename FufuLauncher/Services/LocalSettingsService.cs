@@ -61,6 +61,7 @@ namespace FufuLauncher.Services
 
         public const string BackgroundServerKey = "BackgroundServer";
         public const string IsBackgroundEnabledKey = "IsBackgroundEnabled";
+        public const string IsStartupEnabledKey = "IsStartupEnabled";
         public const string LastAnnouncedVersionKey = "LastAnnouncedVersion";
 
         public const string LastAnnouncedPreviewVersionKey = "LastAnnouncedPreviewVersion";

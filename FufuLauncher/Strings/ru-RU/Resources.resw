@@ -6124,4 +6124,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>Не удалось сбросить. Проверьте сеть и повторите попытку.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Автозапуск</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Запускать при входе в систему</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Автоматически запускать FufuLauncher при входе в Windows</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>Не удалось включить автозапуск</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>Не удалось записать элемент автозапуска. Проверьте системные разрешения или настройки антивируса.</value>
+  </data>
 </root>

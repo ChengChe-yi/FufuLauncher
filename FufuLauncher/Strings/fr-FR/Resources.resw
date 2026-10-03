@@ -6123,4 +6123,19 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>Échec de la réinitialisation. Vérifiez le réseau et réessayez.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Démarrage</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Lancer au démarrage</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Démarrer automatiquement FufuLauncher à l'ouverture de votre session Windows</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>Impossible d'activer le lancement au démarrage</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>Échec de l'écriture de l'entrée de démarrage. Vérifiez les autorisations système ou les paramètres de votre logiciel de sécurité.</value>
+  </data>
 </root>

@@ -330,6 +330,11 @@
                         <FontIcon Glyph="&#xE700;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Content="{helpers:Loc Key=SectionStartup}" Tag="StartupItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE7E8;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Content="{helpers:Loc Key=SectionStartupSound}" Tag="StartupSoundItem">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE767;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
@@ -2044,6 +2049,33 @@
                                                  GroupName="NotificationPosition"
                                                  IsChecked="{Binding NotificationPosition, Mode=TwoWay, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=BottomLeft}" />
                                 </StackPanel>
+
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    
+                    <StackPanel x:Name="StartupItem" Style="{StaticResource SectionBlockStyle}">
+                        <TextBlock Text="{helpers:Loc Key=SectionStartup}" Style="{StaticResource SectionHeaderStyle}" />
+                        <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                            <Border.Shadow>
+                                <ThemeShadow />
+                            </Border.Shadow>
+                            <StackPanel>
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7E8;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=RunAtStartupTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=RunAtStartupCaption}" />
+                                    </StackPanel>
+                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                  IsOn="{x:Bind ViewModel.IsStartupEnabled, Mode=TwoWay}" />
+                                </Grid>
 
                             </StackPanel>
                         </Border>

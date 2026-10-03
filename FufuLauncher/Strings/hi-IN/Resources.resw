@@ -6601,4 +6601,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>रीसेट विफल। नेटवर्क जाँचें और फिर कोशिश करें।</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>स्टार्टअप</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>स्टार्टअप पर लॉन्च करें</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Windows में साइन इन करने पर FufuLauncher स्वचालित रूप से शुरू करें</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>स्टार्टअप पर लॉन्च सक्षम नहीं किया जा सका</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>स्टार्टअप प्रविष्टि लिखने में विफल। कृपया सिस्टम अनुमतियाँ या सुरक्षा सॉफ़्टवेयर सेटिंग्स जाँचें।</value>
+  </data>
 </root>

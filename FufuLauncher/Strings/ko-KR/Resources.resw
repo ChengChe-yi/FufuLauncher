@@ -6124,4 +6124,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>초기화에 실패했습니다. 네트워크를 확인한 후 다시 시도하세요.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>시작 프로그램</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>시작 시 자동 실행</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Windows 로그인 시 FufuLauncher를 자동으로 시작합니다</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>자동 실행을 켤 수 없습니다</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>시작 프로그램 항목을 쓰지 못했습니다. 시스템 권한 또는 보안 소프트웨어 설정을 확인하세요.</value>
+  </data>
 </root>

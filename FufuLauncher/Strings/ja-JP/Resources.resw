@@ -6124,4 +6124,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>リセットに失敗しました。ネットワークを確認して再試行してください。</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>スタートアップ</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>起動時に自動起動</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Windows へのサインイン時に FufuLauncher を自動的に起動します</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>自動起動を有効にできません</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>スタートアップ項目の書き込みに失敗しました。システムの権限やセキュリティソフトの設定を確認してください。</value>
+  </data>
 </root>

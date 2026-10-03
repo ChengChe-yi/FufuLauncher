@@ -6124,4 +6124,19 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>Reset gagal. Periksa jaringan lalu coba lagi.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Jalankan saat Startup</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Jalankan FufuLauncher secara otomatis saat Anda masuk ke Windows</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>Tidak Dapat Mengaktifkan Startup Otomatis</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>Gagal menulis entri startup. Periksa izin sistem atau pengaturan perangkat lunak keamanan.</value>
+  </data>
 </root>

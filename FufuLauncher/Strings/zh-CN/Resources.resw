@@ -6829,4 +6829,19 @@ UIGF v4.x/3.0/2.x</value>
     <data name="ModTrust_MachineHint" xml:space="preserve">
     <value>当前用户范围由本机安装提供；安装与卸载请在本机范围操作。</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>启动设置</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>开机自启动</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>登录Windows后自动启动芙芙启动器</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>无法开启开机自启</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>写入开机启动项失败，请检查系统权限或安全软件设置。</value>
+  </data>
 </root>

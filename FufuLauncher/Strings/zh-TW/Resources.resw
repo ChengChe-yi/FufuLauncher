@@ -6124,4 +6124,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>重置失敗，請檢查網路後重試</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>啟動設定</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>開機自動啟動</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>登入 Windows 後自動啟動芙芙啟動器</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>無法開啟開機自動啟動</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>寫入開機啟動項失敗，請檢查系統權限或安全軟體設定。</value>
+  </data>
 </root>

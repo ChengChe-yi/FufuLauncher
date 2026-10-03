@@ -6831,4 +6831,19 @@ Error: {0}</value>
     <data name="ModTrust_MachineHint" xml:space="preserve">
     <value>The current-user scope is provided by the machine installation; install and uninstall from the machine scope.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Startup</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Launch at Startup</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Start FufuLauncher automatically when you sign in to Windows</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>Couldn't Enable Launch at Startup</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>Failed to write the startup entry. Check system permissions or security software settings.</value>
+  </data>
 </root>

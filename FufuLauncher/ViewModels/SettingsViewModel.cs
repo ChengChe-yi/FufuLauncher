@@ -56,6 +56,7 @@ public partial class SettingsViewModel : ObservableRecipient
     private readonly INavigationService _navigationService;
     private readonly IGameLauncherService _gameLauncherService;
     private readonly IFilePickerService _filePickerService;
+    private readonly INotificationService _notificationService;
     private readonly AccountManager _accountManager;
     private readonly Services.AuthTicket.IAuthTicketService _authTicketService;
     private readonly DispatcherQueue _dispatcherQueue;
@@ -69,6 +70,7 @@ public partial class SettingsViewModel : ObservableRecipient
     [ObservableProperty] private bool _isBackgroundEnabled = true;
     [ObservableProperty] private AppLanguage _selectedLanguage;
     [ObservableProperty] private bool _minimizeToTray;
+    [ObservableProperty] private bool _isStartupEnabled;
     [ObservableProperty] private string _customLaunchParameters = "";
     [ObservableProperty] private WindowModeType _launchArgsWindowMode = WindowModeType.Normal;
     [ObservableProperty] private string _launchArgsWidth = "";
@@ -297,6 +299,7 @@ public partial class SettingsViewModel : ObservableRecipient
         INavigationService navigationService,
         IGameLauncherService gameLauncherService,
         IFilePickerService filePickerService,
+        INotificationService notificationService,
         AccountManager accountManager,
         Services.AuthTicket.IAuthTicketService authTicketService)
     {
@@ -307,6 +310,7 @@ public partial class SettingsViewModel : ObservableRecipient
         _navigationService = navigationService;
         _gameLauncherService = gameLauncherService;
         _filePickerService = filePickerService;
+        _notificationService = notificationService;
         _accountManager = accountManager;
         _authTicketService = authTicketService;
         _dispatcherQueue = App.MainWindow.DispatcherQueue;

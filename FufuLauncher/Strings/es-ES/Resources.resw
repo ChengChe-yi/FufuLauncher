@@ -6124,4 +6124,19 @@ Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>Error al restablecer. Comprueba la red e inténtalo de nuevo.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Iniciar al arrancar</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Iniciar FufuLauncher automáticamente al iniciar sesión en Windows</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>No se pudo activar el inicio automático</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>No se pudo escribir la entrada de inicio. Comprueba los permisos del sistema o la configuración del software de seguridad.</value>
+  </data>
 </root>

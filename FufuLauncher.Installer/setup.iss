@@ -555,3 +555,9 @@ begin
   else
     SetPreviousData(PreviousDataKey, 'desktopicon', '0');
 end;
+
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  if CurUninstallStep = usUninstall then
+    RegDeleteValue(HKCU, 'Software\Microsoft\Windows\CurrentVersion\Run', '{#AppName}');
+end;

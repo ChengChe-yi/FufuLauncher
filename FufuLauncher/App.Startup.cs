@@ -82,6 +82,8 @@ public partial class App
 
                 _ = Task.Run(CheckStoragePathsAsync);
 
+                _ = Task.Run(SyncStartupRegistrationAsync);
+
                 ProcessStartupLaunchArguments();
             }
 
@@ -116,6 +118,25 @@ public partial class App
         catch (Exception ex)
         {
             Debug.WriteLine($"Failed to set default theme: {ex.Message}");
+        }
+    }
+
+    private static async Task SyncStartupRegistrationAsync()
+    {
+        try
+        {
+            var settingsService = GetService<ILocalSettingsService>();
+            var startupJson = await settingsService.ReadSettingAsync(LocalSettingsService.IsStartupEnabledKey);
+            var requestedEnabled = startupJson != null && Convert.ToBoolean(startupJson);
+
+            if (requestedEnabled || StartupManager.IsRegistered())
+            {
+                StartupManager.ResolveEnabledState(requestedEnabled);
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[App] 同步开机自启注册表项失败: {ex.Message}");
         }
     }
 

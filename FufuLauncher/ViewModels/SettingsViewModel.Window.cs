@@ -5,7 +5,9 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
@@ -56,6 +58,33 @@ public partial class SettingsViewModel
         Debug.WriteLine($"SettingsViewModel: 保存托盘设置 {value}");
         _ = _localSettingsService.SaveSettingAsync("MinimizeToTray", value);
         WeakReferenceMessenger.Default.Send(new MinimizeToTrayChangedMessage(value));
+    }
+
+    partial void OnIsStartupEnabledChanged(bool value)
+    {
+        if (_isInitializing) return;
+        _ = ApplyStartupEnabledAsync(value);
+    }
+
+    private async Task ApplyStartupEnabledAsync(bool enabled)
+    {
+        if (StartupManager.TryApply(enabled, out _))
+        {
+            await _localSettingsService.SaveSettingAsync(LocalSettingsService.IsStartupEnabledKey, enabled);
+            return;
+        }
+
+        _isInitializing = true;
+        IsStartupEnabled = !enabled;
+        _isInitializing = false;
+
+        await _localSettingsService.SaveSettingAsync(LocalSettingsService.IsStartupEnabledKey, !enabled);
+
+        _notificationService.Show(
+            "RunAtStartupFailedTitle".GetLocalized(),
+            "RunAtStartupFailedMessage".GetLocalized(),
+            NotificationType.Error,
+            5000);
     }
 
     #endregion

@@ -35,6 +35,7 @@ public partial class SettingsViewModel
             OnPropertyChanged(nameof(IsBackgroundEnabled));
             OnPropertyChanged(nameof(SelectedLanguage));
             OnPropertyChanged(nameof(MinimizeToTray));
+            OnPropertyChanged(nameof(IsStartupEnabled));
             OnPropertyChanged(nameof(CustomLaunchParameters));
             OnPropertyChanged(nameof(LaunchArgsWindowMode));
             OnPropertyChanged(nameof(LaunchArgsWidth));
@@ -100,6 +101,15 @@ public partial class SettingsViewModel
 
         var trayJson = await _localSettingsService.ReadSettingAsync("MinimizeToTray");
         MinimizeToTray = trayJson != null && Convert.ToBoolean(trayJson);
+
+        var startupJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.IsStartupEnabledKey);
+        var startupRequested = startupJson != null && Convert.ToBoolean(startupJson);
+        var startupEnabled = StartupManager.ResolveEnabledState(startupRequested);
+        IsStartupEnabled = startupEnabled;
+        if (startupEnabled != startupRequested)
+        {
+            await _localSettingsService.SaveSettingAsync(LocalSettingsService.IsStartupEnabledKey, startupEnabled);
+        }
         
         var acrylicOverlayJson = await _localSettingsService.ReadSettingAsync("IsAcrylicOverlayEnabled");
         IsAcrylicOverlayEnabled = acrylicOverlayJson == null || Convert.ToBoolean(acrylicOverlayJson);

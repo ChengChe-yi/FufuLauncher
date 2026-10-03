@@ -6124,4 +6124,19 @@ Você pode tentar outro nó ou usar a fonte oficial direta.</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>Falha ao redefinir. Verifique a rede e tente novamente.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Inicialização</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Iniciar com o Windows</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Iniciar o FufuLauncher automaticamente ao entrar no Windows</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>Não foi possível ativar a inicialização automática</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>Falha ao gravar a entrada de inicialização. Verifique as permissões do sistema ou as configurações do software de segurança.</value>
+  </data>
 </root>

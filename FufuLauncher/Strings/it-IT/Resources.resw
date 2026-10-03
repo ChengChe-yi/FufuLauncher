@@ -6130,4 +6130,19 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>Ripristino non riuscito. Controlla la rete e riprova.</value>
   </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Avvio automatico</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Avvia all'avvio</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>Avvia automaticamente FufuLauncher all'accesso a Windows</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>Impossibile attivare l'avvio automatico</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>Scrittura della voce di avvio non riuscita. Controlla i permessi di sistema o le impostazioni del software di sicurezza.</value>
+  </data>
 </root>
