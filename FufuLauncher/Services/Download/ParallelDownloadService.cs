@@ -58,6 +58,25 @@ public sealed class ParallelDownloadService
 
         var opt = (options ?? ParallelDownloadOptions.Default).Validate();
 
+        // 单文件下载：handler/client 生命周期覆盖本次调用。
+        // 批处理请走 DownloadManyAsync，它在整批范围内复用同一个 client。
+        using var handler = CreateHandler(opt);
+        using var client = CreateClient(handler);
+        return await DownloadCoreAsync(client, url, destinationPath, opt, progress, token)
+            .ConfigureAwait(false);
+    }
+
+    /// <summary>
+    /// 下载核心。HttpClient 由调用方提供，便于批处理复用连接池。
+    /// </summary>
+    private async Task<string> DownloadCoreAsync(
+        HttpClient client,
+        string url,
+        string destinationPath,
+        ParallelDownloadOptions opt,
+        IProgress<ParallelDownloadProgress>? progress,
+        CancellationToken token)
+    {
         string fullPath = Path.GetFullPath(destinationPath);
         string directory = Path.GetDirectoryName(fullPath)
                            ?? throw new ArgumentException("目标路径缺少目录部分。", nameof(destinationPath));
@@ -84,25 +103,6 @@ public sealed class ParallelDownloadService
 
         try
         {
-            using var handler = new SocketsHttpHandler
-            {
-                MaxConnectionsPerServer = opt.MaxConnectionsPerServer,
-                PooledConnectionLifetime = TimeSpan.FromMinutes(5),
-                ConnectTimeout = opt.ConnectTimeout,
-                EnableMultipleHttp2Connections = true,
-            };
-            // Timeout=Infinite：大文件下载不应被固定整体超时打断，
-            // 改由停滞看门狗 + OverallTimeout 控制。
-            using var client = new HttpClient(handler, disposeHandler: true)
-            {
-                Timeout = Timeout.InfiniteTimeSpan,
-            };
-            client.DefaultRequestHeaders.UserAgent.ParseAdd(opt.UserAgent ?? DefaultUserAgent);
-            // 禁用透明压缩，确保 Range 偏移与实际写入字节一致
-            client.DefaultRequestHeaders.AcceptEncoding.Clear();
-            client.DefaultRequestHeaders.AcceptEncoding.Add(
-                new System.Net.Http.Headers.StringWithQualityHeaderValue("identity"));
-
             var probe = await ProbeAsync(client, url, opt, ct).ConfigureAwait(false);
             long totalSize = opt.ExpectedSize ?? probe.ContentLength;
 
@@ -134,8 +134,11 @@ public sealed class ParallelDownloadService
                 catch (DownloadFailedException ex)
                     when (ex.Reason == DownloadFailureReason.RangeNotSupported && opt.AllowRangeFallback)
                 {
-                    // 服务端声称支持 Range 但实际返回完整内容 → 降级单线程重下
+                    // 服务端声称支持 Range 但实际返回完整内容 → 降级单线程重下。
+                    // 单线程用 FileMode.Create 从头写同一个 workPath，
+                    // 旧的分段续传记录就此失效，必须先删掉，否则下次会跳过实际未写的段。
                     Debug.WriteLine("[ParallelDownload] 服务端忽略 Range，降级为单线程");
+                    TryDelete(resumeStatePath);
                     await DownloadSingleThreadAsync(client, url, workPath, totalSize, opt, progress, ct)
                         .ConfigureAwait(false);
                 }
@@ -217,6 +220,8 @@ public sealed class ParallelDownloadService
     /// <summary>
     /// 批量下载，限制同时进行的文件数。单个文件失败不影响其余项，
     /// 失败详情在结果的 <see cref="ParallelDownloadResult.Error"/> 中返回。
+    /// <para>整个批次复用同一个连接池，避免逐文件重建 handler 导致
+    /// 反复 TCP/TLS 握手与大量 TIME_WAIT 套接字。</para>
     /// </summary>
     public async Task<IReadOnlyList<ParallelDownloadResult>> DownloadManyAsync(
         IEnumerable<ParallelDownloadItem> items,
@@ -229,10 +234,31 @@ public sealed class ParallelDownloadService
 
         var list = items.ToList();
         var results = new ParallelDownloadResult[list.Count];
+        if (list.Count == 0)
+        {
+            return results;
+        }
+
+        // 用批次内最大并发需求建一个 client，供全部文件共享。
+        var batchOpt = (options ?? ParallelDownloadOptions.Default).Validate();
+        int peakSegments = list
+            .Select(i => (i.Options ?? batchOpt).Validate().MaxParallelSegments)
+            .DefaultIfEmpty(batchOpt.MaxParallelSegments)
+            .Max();
+
+        var handlerOpt = batchOpt with
+        {
+            MaxConnectionsPerServer = Math.Max(
+                batchOpt.MaxConnectionsPerServer,
+                Math.Max(peakSegments, maxConcurrentFiles)),
+        };
+
+        using var handler = CreateHandler(handlerOpt);
+        using var client = CreateClient(handler);
         using var gate = new SemaphoreSlim(Math.Max(maxConcurrentFiles, 1));
 
         // 不把 token 传给 Task.Run：否则取消时任务可能不启动，results 留空。
-        // 取消由 DownloadAsync 内部处理并落成失败结果。
+        // 取消由 DownloadCoreAsync 内部处理并落成失败结果。
         var tasks = list.Select((item, index) => Task.Run(async () =>
         {
             try
@@ -247,8 +273,9 @@ public sealed class ParallelDownloadService
 
             try
             {
-                string path = await DownloadAsync(
-                    item.Url, item.DestinationPath, item.Options ?? options, progress, token)
+                var itemOpt = (item.Options ?? batchOpt).Validate();
+                string path = await DownloadCoreAsync(
+                    client, item.Url, item.DestinationPath, itemOpt, progress, token)
                     .ConfigureAwait(false);
                 results[index] = new ParallelDownloadResult(item.Url, path, null);
             }
@@ -264,6 +291,39 @@ public sealed class ParallelDownloadService
 
         await Task.WhenAll(tasks).ConfigureAwait(false);
         return results;
+    }
+
+    // ================================================================ 客户端
+
+    /// <summary>按参数创建连接处理器。</summary>
+    private static SocketsHttpHandler CreateHandler(ParallelDownloadOptions opt) => new()
+    {
+        MaxConnectionsPerServer = opt.MaxConnectionsPerServer,
+        PooledConnectionLifetime = TimeSpan.FromMinutes(5),
+        ConnectTimeout = opt.ConnectTimeout,
+        EnableMultipleHttp2Connections = true,
+    };
+
+    /// <summary>
+    /// 按参数创建客户端。
+    /// <para>User-Agent 与 Accept-Encoding 逐请求设置（见 <see cref="CreateRequest"/>），
+    /// 因此同一个 client 可服务不同 UA 的多个文件。</para>
+    /// </summary>
+    private static HttpClient CreateClient(HttpMessageHandler handler) => new(handler, disposeHandler: true)
+    {
+        // Timeout=Infinite：大文件不应被固定整体超时打断，
+        // 改由停滞看门狗 + OverallTimeout 控制。
+        Timeout = Timeout.InfiniteTimeSpan,
+    };
+
+    /// <summary>创建带 User-Agent 与禁用透明压缩的请求。</summary>
+    private static HttpRequestMessage CreateRequest(HttpMethod method, string url, ParallelDownloadOptions opt)
+    {
+        var req = new HttpRequestMessage(method, url);
+        req.Headers.UserAgent.ParseAdd(opt.UserAgent ?? DefaultUserAgent);
+        // 禁用透明压缩，确保 Range 偏移与实际写入字节一致
+        req.Headers.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("identity"));
+        return req;
     }
 
     // ================================================================ 预检
@@ -284,7 +344,7 @@ public sealed class ParallelDownloadService
             HttpResponseMessage? headResp = null;
             try
             {
-                using var req = new HttpRequestMessage(HttpMethod.Head, url);
+                using var req = CreateRequest(HttpMethod.Head, url, opt);
                 headResp = await client.SendAsync(req, HttpCompletionOption.ResponseHeadersRead, probeCts.Token)
                     .ConfigureAwait(false);
 
@@ -312,7 +372,7 @@ public sealed class ParallelDownloadService
             }
 
             // HEAD 不被支持 → 用 1 字节的 Range GET 探测
-            using var probeReq = new HttpRequestMessage(HttpMethod.Get, url);
+            using var probeReq = CreateRequest(HttpMethod.Get, url, opt);
             probeReq.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(0, 0);
             using var probeResp = await client.SendAsync(probeReq, HttpCompletionOption.ResponseHeadersRead, probeCts.Token)
                 .ConfigureAwait(false);
@@ -359,7 +419,9 @@ public sealed class ParallelDownloadService
 
         try
         {
-            using var resp = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, attemptCts.Token)
+            using var req = CreateRequest(HttpMethod.Get, url, opt);
+            using var resp = await client.SendAsync(
+                    req, HttpCompletionOption.ResponseHeadersRead, attemptCts.Token)
                 .ConfigureAwait(false);
             resp.EnsureSuccessStatusCode();
 
@@ -385,10 +447,12 @@ public sealed class ParallelDownloadService
                     }
 
                     await limiter.AcquireAsync(read, attemptCts.Token).ConfigureAwait(false);
+
+                    // 限速等待不算“停滞”（见 DownloadChunkAsync 的同款说明）。
+                    Volatile.Write(ref lastProgressTicks, Environment.TickCount64);
                     await destination.WriteAsync(buffer.AsMemory(0, read), attemptCts.Token).ConfigureAwait(false);
 
                     downloaded += read;
-                    Volatile.Write(ref lastProgressTicks, Environment.TickCount64);
 
                     long now = Environment.TickCount64;
                     double elapsed = (now - lastReportTicks) / 1000.0;
@@ -462,6 +526,17 @@ public sealed class ParallelDownloadService
         var completed = opt.EnableResume
             ? LoadResumeState(resumeStatePath, totalSize, chunks.Count)
             : new HashSet<int>();
+
+        // 续传记录只说明“上次记到这里”，不代表 .part 里的数据还在。
+        // 文件被删/被截断/被其它流程改写时，跳过的段会留下空洞，
+        // 而 SetLength 会把空洞补零 —— 大小校验照样通过，产出静默损坏的文件。
+        // 因此文件长度不符时一律丢弃续传记录，从头下载。
+        if (completed.Count > 0 && !IsWorkFileIntact(workPath, totalSize))
+        {
+            Debug.WriteLine("[ParallelDownload] .part 文件缺失或长度不符，丢弃续传记录");
+            completed.Clear();
+            TryDelete(resumeStatePath);
+        }
 
         long alreadyDone = 0;
         foreach (int i in completed)
@@ -661,12 +736,16 @@ public sealed class ParallelDownloadService
         long chunkSize = end - start + 1;
         Exception? lastError = null;
 
+        // 本次尝试已写入的字节数；失败重试前需从总进度中扣回。
+        long writtenThisAttempt = 0;
+
         for (int attempt = 0; attempt <= opt.MaxRetries; attempt++)
         {
             ct.ThrowIfCancellationRequested();
 
             using var attemptCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
             long lastProgressTicks = Environment.TickCount64;
+            writtenThisAttempt = 0;
 
             PeriodicTimer? stallTimer = null;
             Task? watchdog = null;
@@ -679,7 +758,7 @@ public sealed class ParallelDownloadService
             byte[] buffer = ArrayPool<byte>.Shared.Rent(opt.BufferSize);
             try
             {
-                using var req = new HttpRequestMessage(HttpMethod.Get, url);
+                using var req = CreateRequest(HttpMethod.Get, url, opt);
                 req.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(start, end);
 
                 using var resp = await client.SendAsync(
@@ -712,14 +791,18 @@ public sealed class ParallelDownloadService
                     await globalLimiter.AcquireAsync(read, attemptCts.Token).ConfigureAwait(false);
                     await segmentLimiter.AcquireAsync(read, attemptCts.Token).ConfigureAwait(false);
 
+                    // 限速等待不算“停滞”：令牌桶没有公平性保证，多线程共享时
+                    // 单个线程的等待可达 N×BufferSize/速率，会超过 StallTimeout。
+                    // 因此拿到配额后重新计时，再开始写。
+                    Volatile.Write(ref lastProgressTicks, Environment.TickCount64);
+
                     await RandomAccess.WriteAsync(handle, buffer.AsMemory(0, read), writePos, attemptCts.Token)
                         .ConfigureAwait(false);
 
                     writePos += read;
                     written += read;
-                    Volatile.Write(ref lastProgressTicks, Environment.TickCount64);
+                    writtenThisAttempt += read;
                     Interlocked.Add(ref state.TotalDownloaded, read);
-
                     ReportProgress(state, totalSize, opt, progress);
                 }
 
@@ -757,6 +840,16 @@ public sealed class ParallelDownloadService
                     try { await watchdog.ConfigureAwait(false); }
                     catch { /* 看门狗自身异常一律忽略 */ }
                 }
+            }
+
+            // 能走到这里说明本次尝试失败了（成功路径在 try 内 return）。
+            // 把本段已写入的字节扣回：重试会从段首重写，最终失败时这些字节也不算完成。
+            // 不扣则 TotalDownloaded 虚高，百分比提前到 100、速度与 ETA 失真，
+            // 异常里的 BytesDownloaded 也会误导续传判断。
+            if (writtenThisAttempt > 0)
+            {
+                Interlocked.Add(ref state.TotalDownloaded, -writtenThisAttempt);
+                writtenThisAttempt = 0;
             }
 
             if (attempt < opt.MaxRetries)
@@ -871,6 +964,21 @@ public sealed class ParallelDownloadService
 
     // ================================================================ 断点续传
 
+    /// <summary>续传记录是否仍有对应的实体数据：workPath 必须存在且长度恰好等于 totalSize。</summary>
+    private static bool IsWorkFileIntact(string workPath, long totalSize)
+    {
+        try
+        {
+            var info = new FileInfo(workPath);
+            return info.Exists && info.Length == totalSize;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[ParallelDownload] 检查 .part 文件失败: {ex.Message}");
+            return false;
+        }
+    }
+
     /// <summary>续传状态文件结构。</summary>
     private sealed record ResumeState(long TotalSize, int TotalChunks, List<int> Completed);
 
@@ -916,15 +1024,32 @@ public sealed class ParallelDownloadService
 
     // ================================================================ 清理
 
+    /// <summary>
+    /// 失败后的清理。
+    /// <para><b>只在 workPath 是独立的临时文件时才删它</b>：当
+    /// <see cref="ParallelDownloadOptions.UseTemporaryFile"/> 为 false 时
+    /// workPath 就是用户的目标文件本身，删掉会破坏调用方原有的文件
+    /// （例如就地更新，失败一次旧文件就没了）。</para>
+    /// <para>续传记录则一贯按需删除：若 <see cref="ParallelDownloadOptions.EnableResume"/>
+    /// 为 true 则保留，供下次续传。</para>
+    /// </summary>
     private static void Cleanup(string workPath, string resumeStatePath, ParallelDownloadOptions opt)
     {
-        if (!opt.DeleteOnFailure)
+        if (opt.EnableResume)
         {
+            // 保留 .part 与 .state.json，供下次续传。
             return;
         }
 
-        TryDelete(workPath);
-        TryDelete(resumeStatePath);
+        if (opt.DeleteOnFailure && opt.UseTemporaryFile)
+        {
+            TryDelete(workPath);
+        }
+
+        if (opt.DeleteOnFailure)
+        {
+            TryDelete(resumeStatePath);
+        }
     }
 
     private static void TryDelete(string path)

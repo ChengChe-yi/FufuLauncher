@@ -104,10 +104,19 @@ public sealed record ParallelDownloadOptions
     /// <summary>目标文件已存在时是否覆盖；false 则直接报错。</summary>
     public bool OverwriteExisting { get; init; } = true;
 
-    /// <summary>是否启用断点续传（复用已有的临时文件与已完成分片记录）。</summary>
+    /// <summary>
+    /// 是否启用断点续传（复用已有的 <c>.part</c> 与已完成分片记录 <c>.state.json</c>）。
+    /// <para><b>启用后失败时不会清理这两者</b>（见 <see cref="DeleteOnFailure"/>），
+    /// 否则续传无从谈起。若续传记录与 <c>.part</c> 的实际长度不符，记录会被自动丢弃重下。</para>
+    /// </summary>
     public bool EnableResume { get; init; }
 
-    /// <summary>失败时是否清理临时文件与续传记录。</summary>
+    /// <summary>
+    /// 失败时是否清理临时文件与续传记录。
+    /// <para>当 <see cref="EnableResume"/> 为 true 时该项对 <c>.part</c> 与记录不生效 ——
+    /// 要续传就必须保留它们。另外，<see cref="UseTemporaryFile"/> 为 false 时
+    /// 临时文件就是目标文件本身，此时任何情况都不会删除它，以免破坏调用方的原有文件。</para>
+    /// </summary>
     public bool DeleteOnFailure { get; init; } = true;
 
     /// <summary>自定义 User-Agent；null 表示使用进程默认。</summary>
