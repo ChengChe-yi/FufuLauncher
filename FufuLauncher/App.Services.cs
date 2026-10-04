@@ -85,7 +85,6 @@ public partial class App
                 services.AddSingleton<IHoyolabRoleResolverService, HoyolabRoleResolverService>();
                 services.AddSingleton<IUnifiedCheckinService, UnifiedCheckinService>();
                 services.AddSingleton<DailyNoteCardService>();
-                services.AddSingleton<IDeviceFingerprintService, Services.MiHoYo.DeviceFingerprintService>();
                 services.AddSingleton<BlankViewModel>();
                 services.AddTransient<BlankPage>();
                 services.AddSingleton<ILauncherService, LauncherService>();
@@ -105,6 +104,8 @@ public partial class App
                 services.AddSingleton<IUidLookupService, Services.UID.UidLookupService>();
 
                 services.AddSingleton<AccountManager>();
+                services.AddSingleton<Services.Device.MobileDeviceService>();
+                services.AddSingleton<Services.MiHoYo.MiHoYoDeviceStore>();
                 services.AddSingleton<Services.MiHoYo.Fingerprint.DeviceFpService>();
                 services.AddSingleton<Services.MiHoYo.AccountIdentityService>();
                 services.AddSingleton<IBbsRequestBuilder, Services.MiHoYo.Transport.BbsRequestBuilder>();

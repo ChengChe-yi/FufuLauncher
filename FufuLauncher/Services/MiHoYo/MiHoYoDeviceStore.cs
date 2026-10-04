@@ -22,6 +22,8 @@ public sealed class MiHoYoDeviceStore
     private readonly SemaphoreSlim _gate = new(1, 1);
     private MiHoYoDeviceIdentity? _cached;
 
+    private static int _writeSequence;
+
     public async Task<MiHoYoDeviceIdentity?> LoadAsync(CancellationToken token = default)
     {
         await _gate.WaitAsync(token).ConfigureAwait(false);
@@ -73,17 +75,21 @@ public sealed class MiHoYoDeviceStore
         }
     }
 
-    /// <summary>回填服务端签发的设备指纹（保留 device_id / seed）。</summary>
-    public async Task<MiHoYoDeviceIdentity> WithFingerprintAsync(
-        string deviceFp, CancellationToken token = default)
+
+    public async Task<MiHoYoDeviceIdentity?> WithFingerprintAsync(
+        string expectedDeviceId, string deviceFp, CancellationToken token = default)
     {
         await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
             var current = await ReadCoreAsync(token).ConfigureAwait(false);
-            if (current is null || !current.IsUsable)
+            if (current is null
+                || !current.IsUsable
+                || !string.Equals(current.DeviceId, expectedDeviceId, StringComparison.Ordinal))
             {
-                current = MiHoYoDeviceIdentity.CreateNew();
+                Debug.WriteLine(
+                    $"[MiHoYoDevice] 身份已变更（期望 {expectedDeviceId}），丢弃过期指纹");
+                return null;
             }
 
             var updated = current with { DeviceFp = deviceFp };
@@ -96,17 +102,13 @@ public sealed class MiHoYoDeviceStore
         }
     }
 
-    /// <summary>丢弃现有身份（含磁盘文件）并重新生成。</summary>
-    /// <param name="initialDeviceId">重新生成时使用的设备号；为空或格式非法则随机生成。</param>
+
     public async Task<MiHoYoDeviceIdentity> ResetAsync(
         string? initialDeviceId = null, CancellationToken token = default)
     {
         await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
-            // 必须连磁盘文件一起删除，否则随后读回旧身份，重置形同无效。
-            DeletePersistedFile();
-
             var created = MiHoYoDeviceIdentity.CreateNew(initialDeviceId);
             await WriteCoreAsync(created, token).ConfigureAwait(false);
             Debug.WriteLine($"[MiHoYoDevice] 已重置并持久化 device_id={created.DeviceId}");
@@ -157,13 +159,13 @@ public sealed class MiHoYoDeviceStore
         // IO / 权限异常不在此处吞掉：文件可能完好，覆盖会丢失设备身份。
     }
 
-    /// <summary>原子写：先写临时文件再替换；成功后更新缓存。失败向上抛出。</summary>
+
     private async Task WriteCoreAsync(MiHoYoDeviceIdentity identity, CancellationToken token)
     {
         string path = AppPaths.MiHoYoDeviceFile;
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
 
-        string temporary = path + ".tmp";
+        string temporary = $"{path}.{Environment.ProcessId}.{Interlocked.Increment(ref _writeSequence)}.tmp";
         try
         {
             await File.WriteAllTextAsync(
@@ -178,17 +180,6 @@ public sealed class MiHoYoDeviceStore
 
         // 仅在确实落盘后才更新缓存，避免把未持久化的值当作已保存。
         _cached = identity;
-    }
-
-    private static void DeletePersistedFile()
-    {
-        string path = AppPaths.MiHoYoDeviceFile;
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-        }
-
-        TryDelete(path + ".tmp");
     }
 
     private static void TryDelete(string path)
