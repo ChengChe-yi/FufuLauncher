@@ -19,7 +19,7 @@ public sealed partial class MainPage
             btn.IsEnabled = false;
             try
             {
-                await ViewModel.LoadDailyNoteAsync();
+                await ViewModel.LoadDailyNoteAsync(force: true);
             }
             finally
             {
