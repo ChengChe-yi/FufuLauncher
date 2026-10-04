@@ -72,7 +72,7 @@ namespace FufuLauncher.ViewModels
             WeakReferenceMessenger.Default.Register<AccountChangedMessage>(this, async (r, m) =>
             {
                 await ClearDailyNoteDataAsync();
-                await LoadDailyNoteAsync();
+                await LoadDailyNoteAsync(force: true);
             });
 
             WeakReferenceMessenger.Default.Register<DevBuildDetectionCompletedMessage>(this, async (r, m) =>
@@ -190,10 +190,9 @@ namespace FufuLauncher.ViewModels
 
             var refreshGameTask = ForceRefreshGameStateAsync();
             var checkinTask = LoadCheckinStatusAsync();
-            var dailyNoteTask = LoadDailyNoteAsync();
             var loadPinnedPresetsTask = LoadPinnedPresetsAsync();
 
-            await Task.WhenAll(refreshGameTask, checkinTask, dailyNoteTask, loadPinnedPresetsTask);
+            await Task.WhenAll(refreshGameTask, checkinTask, loadPinnedPresetsTask);
         }
 
         private async Task RefreshSettingsAsync()
