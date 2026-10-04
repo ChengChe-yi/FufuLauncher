@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -11,6 +12,9 @@ namespace FufuLauncher.Models.MiHoYo.Identity;
 
 public sealed record MiHoYoDeviceIdentity
 {
+    /// <summary>设备号长度（hex 字符数）。</summary>
+    public const int DeviceIdLength = 16;
+
     /// <summary>当前存储格式版本。</summary>
     public const int CurrentVersion = 1;
 
@@ -38,17 +42,31 @@ public sealed record MiHoYoDeviceIdentity
     [JsonIgnore]
     public string BbsDeviceId => NameUuidFromBytes(Encoding.UTF8.GetBytes(DeviceId)).ToString();
 
-
+ 
     [JsonIgnore]
     public bool IsUsable =>
-        !string.IsNullOrWhiteSpace(DeviceId)
-        && !string.IsNullOrWhiteSpace(SeedId)
-        && !string.IsNullOrWhiteSpace(SeedTime);
+        IsValidDeviceId(DeviceId)
+        && IsValidSeedId(SeedId)
+        && IsValidSeedTime(SeedTime);
 
-    /// <summary>生成一份全新身份（<c>device_fp</c> 待注册后回填）。</summary>
-    public static MiHoYoDeviceIdentity CreateNew() => new()
+    /// <summary>设备号是否为 16 位 hex。</summary>
+    public static bool IsValidDeviceId(string? deviceId) =>
+        deviceId is { Length: DeviceIdLength } && deviceId.All(Uri.IsHexDigit);
+
+    /// <summary>种子 ID 是否为非空 GUID。</summary>
+    public static bool IsValidSeedId(string? seedId) =>
+        Guid.TryParse(seedId, out _);
+
+    /// <summary>种子时间是否为可解析的非负 Unix 毫秒。</summary>
+    public static bool IsValidSeedTime(string? seedTime) =>
+        long.TryParse(seedTime, NumberStyles.None, CultureInfo.InvariantCulture, out long value)
+        && value > 0;
+
+    public static MiHoYoDeviceIdentity CreateNew(string? deviceId = null) => new()
     {
-        DeviceId = Convert.ToHexString(RandomNumberGenerator.GetBytes(8)).ToLowerInvariant(),
+        DeviceId = IsValidDeviceId(deviceId)
+            ? deviceId!
+            : Convert.ToHexString(RandomNumberGenerator.GetBytes(DeviceIdLength / 2)).ToLowerInvariant(),
         SeedId = Guid.NewGuid().ToString(),
         SeedTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString(),
     };
