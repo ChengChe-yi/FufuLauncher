@@ -410,6 +410,22 @@ public partial class SettingsViewModel
 
         var ignoreConstraintJson = await _localSettingsService.ReadSettingAsync(ConstraintService.IgnoreSettingKey);
         IgnoreConstraintRestrictions = ignoreConstraintJson != null && Convert.ToBoolean(ignoreConstraintJson);
+
+        var conflictCheckJson = await _localSettingsService.ReadSettingAsync(PluginConflictSettings.CheckEnabledKey);
+        IsPluginConflictCheckEnabled = conflictCheckJson == null || Convert.ToBoolean(conflictCheckJson);
+
+        var conflictMainOnlyJson = await _localSettingsService.ReadSettingAsync(PluginConflictSettings.MainDllOnlyKey);
+        IsPluginConflictMainDllOnly = conflictMainOnlyJson == null || Convert.ToBoolean(conflictMainOnlyJson);
+    }
+
+    partial void OnIsPluginConflictCheckEnabledChanged(bool value)
+    {
+        _ = _localSettingsService.SaveSettingAsync(PluginConflictSettings.CheckEnabledKey, value);
+    }
+
+    partial void OnIsPluginConflictMainDllOnlyChanged(bool value)
+    {
+        _ = _localSettingsService.SaveSettingAsync(PluginConflictSettings.MainDllOnlyKey, value);
     }
 
     partial void OnIgnoreConstraintRestrictionsChanged(bool value)

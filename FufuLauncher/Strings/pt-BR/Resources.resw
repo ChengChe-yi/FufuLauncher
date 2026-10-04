@@ -6139,4 +6139,37 @@ Você pode tentar outro nó ou usar a fonte oficial direta.</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>Falha ao gravar a entrada de inicialização. Verifique as permissões do sistema ou as configurações do software de segurança.</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Conflito de DLL de plugin</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>Encontramos DLLs com o mesmo nome em vários plugins, então a injeção foi interrompida. Se continuar, uma versão antiga do plugin pode ser carregada e o jogo ou os plugins podem parar de funcionar corretamente.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>Nome da DLL: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>Mais recente</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Desatualizada</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Localizar arquivo</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Mantenha apenas o plugin mais recente e exclua ou renomeie as DLLs duplicadas nos outros plugins. Se não souber qual manter, exclua todos os plugins e reinstale-os.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Verificação de conflitos de plugins</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Verifica DLLs de plugin com o mesmo nome antes da injeção e a interrompe para você resolver o conflito</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Somente o plugin principal</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Verifica apenas FufuLauncher.UnlockerIsland.dll; desative para verificar todas as DLLs de plugin</value>
+  </data>
 </root>

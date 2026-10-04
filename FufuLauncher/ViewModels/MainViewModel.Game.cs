@@ -11,6 +11,7 @@ using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
+using FufuLauncher.Views;
 using Microsoft.UI.Xaml;
 
 namespace FufuLauncher.ViewModels;
@@ -137,6 +138,13 @@ public partial class MainViewModel
             {
                 await ForceRefreshGameStateAsync();
                 await ApplyPostLaunchBehaviorAsync();
+            }
+            else if (result.PluginDllConflicts.Count > 0)
+            {
+                if (!await PluginDllConflictDialog.ShowAsync(result.PluginDllConflicts))
+                {
+                    _notificationService.Show("LaunchErr_LaunchFailed".GetLocalized(), result.ErrorMessage, NotificationType.Error, 0);
+                }
             }
             else
             {

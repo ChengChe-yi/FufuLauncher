@@ -6139,4 +6139,37 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>Der Autostart-Eintrag konnte nicht geschrieben werden. Prüfen Sie Systemberechtigungen und Sicherheitssoftware.</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Plugin-DLL-Konflikt</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>Wir haben DLLs mit demselben Namen in mehreren Plugins gefunden, daher wurde die Injektion gestoppt. Andernfalls könnte eine veraltete Plugin-Version geladen werden und das Spiel oder die Plugins funktionieren möglicherweise nicht mehr richtig.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>DLL-Name: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>Neueste</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Veraltet</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Datei anzeigen</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Behalten Sie nur das neueste Plugin und löschen oder benennen Sie die doppelten DLLs in den anderen Plugins um. Wenn Sie nicht sicher sind, welche Sie behalten sollen, löschen Sie alle Plugins und installieren Sie sie neu.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Plugin-Konfliktprüfung</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Prüft vor der Injektion auf Plugin-DLLs mit demselben Namen und stoppt sie, damit Sie den Konflikt beheben können</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Nur Hauptplugin</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Prüft nur FufuLauncher.UnlockerIsland.dll; deaktivieren, um alle Plugin-DLLs zu prüfen</value>
+  </data>
 </root>

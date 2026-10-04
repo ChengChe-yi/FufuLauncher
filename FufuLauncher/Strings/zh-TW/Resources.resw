@@ -6139,4 +6139,37 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>寫入開機啟動項失敗，請檢查系統權限或安全軟體設定。</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>外掛 DLL 衝突</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>我們發現多個外掛裡有同名的 DLL，已停止注入。如果繼續注入，可能會載入舊版外掛，造成遊戲或外掛無法正常運作。</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>DLL 名稱：{0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>舊版本</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>定位檔案</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>請只保留最新版本的外掛，並把其他外掛裡的同名 DLL 刪除或重新命名；如果不清楚該保留哪一個，建議刪除全部外掛後重新安裝。</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>外掛衝突偵測</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>啟動注入前會檢查同名外掛 DLL，發現衝突時停止注入並提示處理</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>僅偵測主外掛</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>只檢查 FufuLauncher.UnlockerIsland.dll；關閉後檢查所有外掛 DLL</value>
+  </data>
 </root>

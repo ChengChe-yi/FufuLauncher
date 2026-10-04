@@ -177,6 +177,9 @@ public partial class SettingsViewModel : ObservableRecipient
 
     [ObservableProperty] private bool _isPluginMirrorAccelerationEnabled = true;
 
+    [ObservableProperty] private bool _isPluginConflictCheckEnabled = true;
+    [ObservableProperty] private bool _isPluginConflictMainDllOnly = true;
+
     [ObservableProperty] private bool _ignoreConstraintRestrictions;
 
     [ObservableProperty] private bool _isCaptchaPopupDisabled;

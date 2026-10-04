@@ -14,8 +14,12 @@ public sealed partial class SettingsPage
 {
     private CodeSigningTrustService TrustService => App.GetService<CodeSigningTrustService>();
 
+    private bool _isSyncingModTrustMode;
+
     private async Task RefreshModTrustUiAsync()
     {
+        SelectModTrustMode(ModTrustGate.ReadMode());
+
         try
         {
             var status = await Task.Run(() => TrustService.GetStatus());
@@ -35,11 +39,9 @@ public sealed partial class SettingsPage
                 ModTrustRootInfoText.Visibility = string.IsNullOrEmpty(info) ? Visibility.Collapsed : Visibility.Visible;
             }
 
-            if (ModTrustStrictToggle != null)
+            if (ModTrustModeComboBox != null)
             {
-                var mode = ModTrustGate.ReadMode();
-                ModTrustStrictToggle.IsOn = mode == ModTrustEnforcement.Enforce;
-                ModTrustStrictToggle.IsEnabled = status.PackageVerified;
+                ModTrustModeComboBox.IsEnabled = status.PackageVerified;
             }
 
             if (ModTrustInstallUserButton != null)
@@ -137,11 +139,14 @@ public sealed partial class SettingsPage
         await InstallOrUninstallAsync(TrustStoreScope.LocalMachine, install: false);
     }
 
-    private async void OnModTrustStrictToggled(object sender, RoutedEventArgs e)
+    private async void OnModTrustModeSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (ModTrustStrictToggle == null) return;
+        if (_isSyncingModTrustMode) return;
+        if (ModTrustModeComboBox?.SelectedItem is not ComboBoxItem { Tag: string tag }) return;
+        if (!Enum.TryParse<ModTrustEnforcement>(tag, true, out var mode)) return;
 
-        var mode = ModTrustStrictToggle.IsOn ? ModTrustEnforcement.Enforce : ModTrustEnforcement.Warn;
+        var current = ModTrustGate.ReadMode();
+        if (mode == current) return;
 
         if (mode == ModTrustEnforcement.Enforce)
         {
@@ -156,13 +161,33 @@ public sealed partial class SettingsPage
 
             if (confirmed != ContentDialogResult.Primary)
             {
-                ModTrustStrictToggle.IsOn = false;
+                SelectModTrustMode(current);
                 return;
             }
         }
 
         ModTrustGate.WriteMode(mode);
         Debug.WriteLine($"[ModTrust] 信任策略模式已切换为 {mode}");
+    }
+
+    private void SelectModTrustMode(ModTrustEnforcement mode)
+    {
+        if (ModTrustModeComboBox == null) return;
+
+        _isSyncingModTrustMode = true;
+        try
+        {
+            ModTrustModeComboBox.SelectedIndex = mode switch
+            {
+                ModTrustEnforcement.Off => 0,
+                ModTrustEnforcement.Warn => 1,
+                _ => 2
+            };
+        }
+        finally
+        {
+            _isSyncingModTrustMode = false;
+        }
     }
 
     private async void OnModTrustSyncClick(object sender, RoutedEventArgs e)

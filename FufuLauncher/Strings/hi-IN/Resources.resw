@@ -6616,4 +6616,37 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>स्टार्टअप प्रविष्टि लिखने में विफल। कृपया सिस्टम अनुमतियाँ या सुरक्षा सॉफ़्टवेयर सेटिंग्स जाँचें।</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>प्लगइन DLL टकराव</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>हमें कई प्लगइन में एक ही नाम की DLL मिलीं, इसलिए इंजेक्शन रोक दिया गया है। अगर इंजेक्शन जारी रहे, तो पुराना प्लगइन संस्करण लोड हो सकता है और गेम या प्लगइन ठीक से काम नहीं कर सकते।</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>DLL नाम: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>नवीनतम</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>पुराना</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>फ़ाइल ढूँढें</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>केवल नवीनतम प्लगइन रखें और अन्य प्लगइन की एक जैसी DLL हटाएँ या नाम बदलें। अगर समझ न आए कि कौन-सा रखें, तो सभी प्लगइन हटाकर दोबारा इंस्टॉल करें।</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>प्लगइन टकराव जाँच</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>इंजेक्शन से पहले एक ही नाम की प्लगइन DLL की जाँच करता है और टकराव मिलने पर इंजेक्शन रोककर आपको हल करने का संकेत देता है</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>केवल मुख्य प्लगइन</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>केवल FufuLauncher.UnlockerIsland.dll की जाँच करता है; बंद करने पर सभी प्लगइन DLL की जाँच होती है</value>
+  </data>
 </root>

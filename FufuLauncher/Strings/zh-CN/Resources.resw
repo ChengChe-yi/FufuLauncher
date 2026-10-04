@@ -4469,10 +4469,10 @@ UIGF v4.x/3.0/2.x</value>
     <value>人机验证</value>
   </data>
   <data name="Launcher_DllNotFound" xml:space="preserve">
-    <value>Launcher.dll 文件缺失，注入功能不可用。请确保编译时已从 FufuLauncher.UnlockerIsland 生成该文件。</value>
+    <value>注入挂起模块缺失，注入功能不可用。请重新安装启动器。</value>
   </data>
   <data name="Launcher_DllNotLoaded" xml:space="preserve">
-    <value>由于系统缺少 C++ 运行库或核心文件被杀毒软件拦截，Launcher.dll 未加载成功，无法启动。</value>
+    <value>由于系统缺少C++运行库或核心文件被杀毒软件拦截，注入挂起模块未加载成功，无法启动。</value>
   </data>
   <data name="Screenshot_Saved" xml:space="preserve">
     <value>截图已保存</value>
@@ -6799,10 +6799,10 @@ UIGF v4.x/3.0/2.x</value>
     <value>即将为「{0}」卸载平台证书，卸载后将不再信任我们签发的代码签名。是否继续？</value>
   </data>
         <data name="ModTrust_SyncTitle" xml:space="preserve">
-    <value>信任信息更新 / 严格模式</value>
+    <value>信任信息更新</value>
   </data>
         <data name="ModTrust_SyncCaption" xml:space="preserve">
-    <value>从官方端点更新信任信息；严格模式只允许通过签名校验的文件加载。</value>
+    <value>从官方端点更新代码签名信任信息。</value>
   </data>
     <data name="ModTrust_SyncBtn" xml:space="preserve">
     <value>立即更新</value>
@@ -6810,17 +6810,11 @@ UIGF v4.x/3.0/2.x</value>
         <data name="ModTrust_SyncConfirm" xml:space="preserve">
     <value>将从官方端点下载并校验信任信息，校验不通过不会应用。是否继续？</value>
   </data>
-    <data name="ModTrust_StrictOn" xml:space="preserve">
-    <value>严格模式</value>
-  </data>
-    <data name="ModTrust_StrictOff" xml:space="preserve">
-    <value>仅提示</value>
-  </data>
-        <data name="ModTrust_StrictTitle" xml:space="preserve">
-    <value>启用严格模式</value>
+                <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>启用拦截</value>
   </data>
         <data name="ModTrust_StrictConfirm" xml:space="preserve">
-    <value>启用后，未通过签名校验的文件将被阻止加载，可能影响你正在使用的第三方插件。是否继续？</value>
+    <value>启用后，未通过签名校验的文件将停止加载，可能影响你正在使用的第三方插件。是否继续？</value>
   </data>
     <data name="ModTrust_BlockedTitle" xml:space="preserve">
     <value>代码签名校验未通过</value>
@@ -6858,5 +6852,53 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>写入开机启动项失败，请检查系统权限或安全软件设置。</value>
+  </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>插件 DLL 冲突</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>我们发现多个插件里存在同名的 DLL，已停止注入。如果继续注入，可能会加载到旧版本的插件，造成游戏或插件无法正常运行。</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>DLL 名称：{0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>旧版本</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>定位文件</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>请只保留最新版本的插件，并把其他插件里的同名 DLL 删除或重命名；如果不清楚该保留哪一个，建议删除全部插件后重新安装。</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>插件冲突检测</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>启动注入前会检查同名插件 DLL，发现冲突时停止注入并提示处理</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>仅检测主插件</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>只检查 FufuLauncher.UnlockerIsland.dll；关闭后检查所有插件 DLL</value>
+  </data>
+  <data name="ModTrust_ModeTitle" xml:space="preserve">
+    <value>签名无效时的处理</value>
+  </data>
+  <data name="ModTrust_ModeCaption" xml:space="preserve">
+    <value>选择对未通过签名校验的文件执行的操作：不操作（照常加载）、仅提示（加载并提醒）、拦截（停止加载）</value>
+  </data>
+  <data name="ModTrust_ModeOff" xml:space="preserve">
+    <value>不操作</value>
+  </data>
+  <data name="ModTrust_ModeWarn" xml:space="preserve">
+    <value>仅提示</value>
+  </data>
+  <data name="ModTrust_ModeEnforce" xml:space="preserve">
+    <value>拦截</value>
   </data>
 </root>

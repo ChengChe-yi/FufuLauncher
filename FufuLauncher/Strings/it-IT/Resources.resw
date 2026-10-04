@@ -6145,4 +6145,37 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>Scrittura della voce di avvio non riuscita. Controlla i permessi di sistema o le impostazioni del software di sicurezza.</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Conflitto DLL del plugin</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>Abbiamo trovato DLL con lo stesso nome in più plugin, quindi l'iniezione è stata interrotta. Se proseguisse, potrebbe essere caricata una versione obsoleta del plugin e il gioco o i plugin potrebbero non funzionare più correttamente.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>Nome DLL: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>Più recente</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Obsoleto</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Individua file</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Mantieni solo il plugin più recente ed elimina o rinomina le DLL duplicate negli altri plugin. Se non sai quale mantenere, elimina tutti i plugin e reinstallali.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Controllo conflitti plugin</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Controlla le DLL dei plugin con lo stesso nome prima dell'iniezione e la interrompe per farti risolvere il conflitto</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Solo plugin principale</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Controlla solo FufuLauncher.UnlockerIsland.dll; disattiva per controllare tutte le DLL dei plugin</value>
+  </data>
 </root>

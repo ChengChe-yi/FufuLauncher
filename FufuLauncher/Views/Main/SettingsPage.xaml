@@ -1473,6 +1473,41 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PluginConflictCheckTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PluginConflictCheckCaption}" />
+                                    </StackPanel>
+                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                  IsOn="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=TwoWay}" />
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE721;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PluginConflictMainOnlyTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PluginConflictMainOnlyCaption}" />
+                                    </StackPanel>
+                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                  IsEnabled="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=OneWay}"
+                                                  IsOn="{x:Bind ViewModel.IsPluginConflictMainDllOnly, Mode=TwoWay}" />
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE77B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=UsingHoyolabAccountTitle}" />
@@ -2764,6 +2799,32 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE72E;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ModTrust_ModeTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   TextWrapping="Wrap"
+                                                   Text="{helpers:Loc Key=ModTrust_ModeCaption}" />
+                                    </StackPanel>
+                                    <ComboBox x:Name="ModTrustModeComboBox"
+                                              Grid.Column="2"
+                                              Style="{StaticResource RowComboBoxStyle}"
+                                              MinWidth="160"
+                                              SelectionChanged="OnModTrustModeSelectionChanged">
+                                        <ComboBoxItem Content="{helpers:Loc Key=ModTrust_ModeOff}" Tag="Off" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=ModTrust_ModeWarn}" Tag="Warn" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=ModTrust_ModeEnforce}" Tag="Enforce" />
+                                    </ComboBox>
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+                                
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE895;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ModTrust_SyncTitle}" />
@@ -2771,16 +2832,12 @@
                                                    TextWrapping="Wrap"
                                                    Text="{helpers:Loc Key=ModTrust_SyncCaption}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
-                                        <Button x:Name="ModTrustSyncButton"
-                                                Style="{StaticResource RowButtonStyle}"
-                                                Content="{helpers:Loc Key=ModTrust_SyncBtn}"
-                                                Click="OnModTrustSyncClick" />
-                                        <ToggleSwitch x:Name="ModTrustStrictToggle"
-                                                      OnContent="{helpers:Loc Key=ModTrust_StrictOn}"
-                                                      OffContent="{helpers:Loc Key=ModTrust_StrictOff}"
-                                                      Toggled="OnModTrustStrictToggled" />
-                                    </StackPanel>
+                                    <Button x:Name="ModTrustSyncButton"
+                                            Grid.Column="2"
+                                            VerticalAlignment="Center"
+                                            Style="{StaticResource RowButtonStyle}"
+                                            Content="{helpers:Loc Key=ModTrust_SyncBtn}"
+                                            Click="OnModTrustSyncClick" />
                                 </Grid>
                             </StackPanel>
                         </Border>

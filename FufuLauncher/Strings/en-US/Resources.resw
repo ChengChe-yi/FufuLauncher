@@ -6801,10 +6801,10 @@ Error: {0}</value>
     <value>Remove the platform certificate for the {0}? Code signatures we issue will no longer be trusted. Continue?</value>
   </data>
         <data name="ModTrust_SyncTitle" xml:space="preserve">
-    <value>Trust information update / strict mode</value>
+    <value>Trust info update</value>
   </data>
         <data name="ModTrust_SyncCaption" xml:space="preserve">
-    <value>Update trust information from the official endpoint. Strict mode only loads files that pass signature verification.</value>
+    <value>Updates code signing trust info from the official endpoint.</value>
   </data>
     <data name="ModTrust_SyncBtn" xml:space="preserve">
     <value>Update now</value>
@@ -6812,17 +6812,11 @@ Error: {0}</value>
         <data name="ModTrust_SyncConfirm" xml:space="preserve">
     <value>Trust information will be downloaded from the official endpoint and verified; it is not applied if verification fails. Continue?</value>
   </data>
-    <data name="ModTrust_StrictOn" xml:space="preserve">
-    <value>Strict</value>
-  </data>
-    <data name="ModTrust_StrictOff" xml:space="preserve">
-    <value>Warn only</value>
-  </data>
-        <data name="ModTrust_StrictTitle" xml:space="preserve">
-    <value>Enable strict mode</value>
+                <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>Enable blocking</value>
   </data>
         <data name="ModTrust_StrictConfirm" xml:space="preserve">
-    <value>Once enabled, files that fail signature verification will be blocked, which may affect third-party plugins you currently use. Continue?</value>
+    <value>Once enabled, files that fail signature verification will no longer load, which may affect the third-party plugins you are using. Continue?</value>
   </data>
     <data name="ModTrust_BlockedTitle" xml:space="preserve">
     <value>Code signature verification failed</value>
@@ -6860,5 +6854,53 @@ Error: {0}</value>
   </data>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>Failed to write the startup entry. Check system permissions or security software settings.</value>
+  </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Plugin DLL Conflict</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>We found DLLs with the same name in multiple plugins, so injection has been stopped. If injection continues, an outdated plugin version may be loaded and the game or plugins may stop working properly.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>DLL name: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>Newest</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Outdated</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Locate file</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Keep only the newest plugin, and delete or rename the duplicate DLLs in the other plugins. If you are not sure which one to keep, delete all plugins and reinstall them.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Plugin Conflict Check</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Checks for plugin DLLs with the same name before injection, and stops injection so you can resolve the conflict</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Main plugin only</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Only checks FufuLauncher.UnlockerIsland.dll; turn off to check every plugin DLL</value>
+  </data>
+  <data name="ModTrust_ModeTitle" xml:space="preserve">
+    <value>Action for invalid signatures</value>
+  </data>
+  <data name="ModTrust_ModeCaption" xml:space="preserve">
+    <value>Choose what happens to files that fail signature verification: do nothing (still load), notify only (load and warn), or block (stop loading)</value>
+  </data>
+  <data name="ModTrust_ModeOff" xml:space="preserve">
+    <value>Do nothing</value>
+  </data>
+  <data name="ModTrust_ModeWarn" xml:space="preserve">
+    <value>Notify only</value>
+  </data>
+  <data name="ModTrust_ModeEnforce" xml:space="preserve">
+    <value>Block</value>
   </data>
 </root>

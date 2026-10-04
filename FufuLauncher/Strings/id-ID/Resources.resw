@@ -6139,4 +6139,37 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>Gagal menulis entri startup. Periksa izin sistem atau pengaturan perangkat lunak keamanan.</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Konflik DLL Plugin</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>Kami menemukan DLL dengan nama yang sama di beberapa plugin, jadi injeksi dihentikan. Jika dilanjutkan, versi plugin yang lama bisa dimuat dan game atau plugin dapat berhenti berfungsi dengan baik.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>Nama DLL: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>Terbaru</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Lama</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Temukan berkas</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Simpan hanya plugin terbaru, lalu hapus atau ganti nama DLL yang sama di plugin lain. Jika tidak yakin mana yang harus disimpan, hapus semua plugin dan pasang ulang.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Pemeriksaan Konflik Plugin</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Memeriksa DLL plugin dengan nama yang sama sebelum injeksi dan menghentikannya agar Anda dapat menyelesaikan konflik</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Hanya plugin utama</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Hanya memeriksa FufuLauncher.UnlockerIsland.dll; matikan untuk memeriksa semua DLL plugin</value>
+  </data>
 </root>

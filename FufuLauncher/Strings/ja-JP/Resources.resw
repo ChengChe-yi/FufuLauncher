@@ -6139,4 +6139,37 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>スタートアップ項目の書き込みに失敗しました。システムの権限やセキュリティソフトの設定を確認してください。</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>プラグイン DLL の競合</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>複数のプラグインに同じ名前の DLL が見つかったため、注入を中止しました。このまま注入すると古いバージョンのプラグインが読み込まれ、ゲームやプラグインが正常に動作しなくなる可能性があります。</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>DLL 名：{0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>旧バージョン</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>場所を開く</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>最新のプラグインだけを残し、他のプラグインにある同じ名前の DLL は削除するか名前を変更してください。どれを残せばよいか分からない場合は、すべてのプラグインを削除して再インストールすることをおすすめします。</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>プラグイン競合チェック</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>注入前に同名のプラグイン DLL を確認し、競合がある場合は注入を中止して対処を促します</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>メインプラグインのみ</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>FufuLauncher.UnlockerIsland.dll のみを確認します。オフにするとすべてのプラグイン DLL を確認します</value>
+  </data>
 </root>

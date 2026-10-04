@@ -6139,4 +6139,37 @@ UIGF v4.x/3.0/2.x</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>Не удалось записать элемент автозапуска. Проверьте системные разрешения или настройки антивируса.</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Конфликт DLL плагинов</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>Мы обнаружили DLL с одинаковыми именами в нескольких плагинах и остановили внедрение. Если продолжить, может загрузиться устаревшая версия плагина, и игра или плагины могут перестать работать правильно.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>Имя DLL: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>Новейшая</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Устаревшая</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Показать файл</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Оставьте только самый новый плагин, а одинаковые DLL в других плагинах удалите или переименуйте. Если вы не уверены, какой оставить, удалите все плагины и установите их заново.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Проверка конфликтов плагинов</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Проверяет DLL плагинов с одинаковыми именами перед внедрением и останавливает его, чтобы вы устранили конфликт</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Только основной плагин</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Проверяется только FufuLauncher.UnlockerIsland.dll; отключите, чтобы проверять все DLL плагинов</value>
+  </data>
 </root>

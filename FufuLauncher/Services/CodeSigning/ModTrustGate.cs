@@ -57,7 +57,7 @@ public sealed class ModTrustGate
                 ? PolicyFilePath
                 : File.Exists(LegacyPolicyFilePath) ? LegacyPolicyFilePath : null;
 
-            if (path == null) return ModTrustEnforcement.Warn;
+            if (path == null) return ModTrustEnforcement.Off;
 
             using var document = JsonDocument.Parse(File.ReadAllText(path));
             if (document.RootElement.TryGetProperty("mode", out var mode))
@@ -80,7 +80,7 @@ public sealed class ModTrustGate
             Debug.WriteLine($"[ModTrustGate] 读取策略文件失败: {ex.Message}");
         }
 
-        return ModTrustEnforcement.Warn;
+        return ModTrustEnforcement.Off;
     }
 
     public static void WriteMode(ModTrustEnforcement mode)
@@ -94,7 +94,7 @@ public sealed class ModTrustGate
                 {
                     mode = mode.ToString(),
                     updatedUtc = DateTimeOffset.UtcNow.ToString("O"),
-                    note = "Off=不检查 Warn=仅提示 Enforce=严格放行（仅平台签发且符合策略的 DLL）"
+                    note = "Off=不操作 Warn=仅提示 Enforce=拦截（仅平台签发且符合策略的 DLL 可加载）"
                 }, new JsonSerializerOptions { WriteIndented = true });
 
                 var temporary = PolicyFilePath + ".tmp";

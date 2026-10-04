@@ -137,6 +137,21 @@ private static void RunElevatedInjection(string[] args)
                 return;
             }
 
+            foreach (var quarantined in PluginInjectionGuard.QuarantineRootStrayFiles())
+            {
+                Debug.WriteLine($"[Program] 已重命名插件根目录残留文件: {quarantined}");
+            }
+
+            var conflicts = PluginInjectionGuard.FindDuplicateDllNames(PluginConflictSettings.Read());
+            if (conflicts.Count > 0)
+            {
+                MessageBox(IntPtr.Zero,
+                    PluginInjectionGuard.BuildConflictReport(conflicts),
+                    "PluginDllConflict_Title".GetLocalized(), 0x30);
+                exitCode = 4;
+                return;
+            }
+
             dllPath = ResolveInjectDllPath(launcher);
 
             // Without an explicit preset, keep the config.ini prepared by the current in-app preset.

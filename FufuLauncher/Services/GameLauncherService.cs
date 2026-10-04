@@ -29,6 +29,7 @@ namespace FufuLauncher.Services
         }
         public string ErrorMessage { get; set; } = string.Empty;
         public string DetailLog { get; set; } = string.Empty;
+        public IReadOnlyList<PluginDllConflict> PluginDllConflicts { get; set; } = Array.Empty<PluginDllConflict>();
     }
 
     public class GameLauncherService : IGameLauncherService
@@ -402,6 +403,16 @@ namespace FufuLauncher.Services
                 var useInjection = await GetUseInjectionAsync();
                 logBuilder.AppendLine($"[启动流程] 注入模式: {(useInjection ? "启用" : "禁用")}");
 
+                if (useInjection)
+                {
+                    var conflictResult = BlockInjectionForPluginDllConflicts(logBuilder);
+                    if (conflictResult != null)
+                    {
+                        Debug.WriteLine(conflictResult.DetailLog);
+                        return conflictResult;
+                    }
+                }
+
                 if (cancellationToken.IsCancellationRequested)
                 {
                     return BuildCancelledResult(logBuilder);
@@ -636,6 +647,48 @@ namespace FufuLauncher.Services
                 Debug.WriteLine(result.DetailLog);
                 return result;
             }
+        }
+
+        private LaunchResult? BlockInjectionForPluginDllConflicts(StringBuilder logBuilder)
+        {
+            foreach (var quarantined in PluginInjectionGuard.QuarantineRootStrayFiles())
+            {
+                logBuilder.AppendLine($"[启动流程] 已重命名插件根目录残留文件: {Path.GetFileName(quarantined)}");
+            }
+
+            var conflicts = PluginInjectionGuard.FindDuplicateDllNames(PluginConflictSettings.Read());
+            if (conflicts.Count == 0) return null;
+
+            logBuilder.AppendLine($"[启动流程] 发现 {conflicts.Count} 组同名插件 DLL，注入已终止");
+            foreach (var conflict in conflicts)
+            {
+                logBuilder.AppendLine($"[启动流程]   {conflict.DllName}");
+                foreach (var candidate in conflict.Candidates)
+                {
+                    logBuilder.AppendLine($"[启动流程]     {candidate.FilePath} ({candidate.LastWriteTime:yyyy-MM-dd HH:mm:ss})");
+                }
+            }
+
+            if (_registrySnapshot.HasSnapshot)
+            {
+                try
+                {
+                    _registrySnapshot.RestoreSnapshot();
+                    logBuilder.AppendLine("[启动流程] 已恢复注册表快照");
+                }
+                catch (Exception ex)
+                {
+                    logBuilder.AppendLine($"[启动流程] 恢复注册表快照失败: {ex.Message}");
+                }
+            }
+
+            return new LaunchResult
+            {
+                Success = false,
+                ErrorMessage = "PluginDllConflict_Message".GetLocalized(),
+                DetailLog = logBuilder.ToString(),
+                PluginDllConflicts = conflicts
+            };
         }
 
         private LaunchResult BuildCancelledResult(StringBuilder logBuilder)

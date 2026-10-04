@@ -6138,4 +6138,37 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="RunAtStartupFailedMessage" xml:space="preserve">
     <value>Échec de l'écriture de l'entrée de démarrage. Vérifiez les autorisations système ou les paramètres de votre logiciel de sécurité.</value>
   </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Conflit de DLL de plugin</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>Nous avons trouvé des DLL portant le même nom dans plusieurs plugins, l'injection a donc été arrêtée. Si elle continue, une ancienne version du plugin risque d'être chargée et le jeu ou les plugins pourraient ne plus fonctionner correctement.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>Nom de la DLL : {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>La plus récente</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Obsolète</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Localiser le fichier</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Ne conservez que le plugin le plus récent et supprimez ou renommez les DLL en double des autres plugins. Si vous ne savez pas laquelle conserver, supprimez tous les plugins et réinstallez-les.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Vérification des conflits de plugins</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Vérifie les DLL de plugin portant le même nom avant l'injection et l'arrête pour vous laisser résoudre le conflit</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Plugin principal uniquement</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Ne vérifie que FufuLauncher.UnlockerIsland.dll ; désactivez pour vérifier toutes les DLL de plugin</value>
+  </data>
 </root>
