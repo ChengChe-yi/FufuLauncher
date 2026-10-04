@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -12,6 +12,7 @@ using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Services.MiHoYo;
+using FufuLauncher.Services.MiHoYo.Networking;
 using FufuLauncher.Services.MiHoYo.Transport;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -101,7 +102,7 @@ public sealed class GeetestService
     private async Task<string> CallCreateVerificationAsync(AccountContext ctx)
     {
         string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
-        string ds = DailyNoteService.CalculateDS2(HeaderSalts.CnX4, "is_high=true", "");
+        string ds = MiHoYoHeaderFactory.CalculateDs2(HeaderSalts.CnX4, "is_high=true", "");
         Debug.WriteLine($"[GeetestService] CallCreateVerification: device_fp={ctx.Device.DeviceFp}");
 
         using HttpRequestMessage req = new(HttpMethod.Get, CreateVerificationUrl);
@@ -132,7 +133,7 @@ public sealed class GeetestService
             Seccode = $"{validate}|jordan"
         };
         string bodyJson = JsonSerializer.Serialize(body);
-        string ds = DailyNoteService.CalculateDS2(HeaderSalts.CnX4, "", bodyJson);
+        string ds = MiHoYoHeaderFactory.CalculateDs2(HeaderSalts.CnX4, "", bodyJson);
         Debug.WriteLine($"[GeetestService] CallVerifyVerification: device_fp={ctx.Device.DeviceFp}");
 
         using HttpRequestMessage req = new(HttpMethod.Post, VerifyVerificationUrl);

@@ -1,19 +1,16 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
-using FufuLauncher.Models.MiHoYo.Fingerprint;
 
 namespace FufuLauncher.Services;
 
 public sealed record AccountCookieFile(
     [property: System.Text.Json.Serialization.JsonPropertyName("cookies")]
-    Dictionary<string, string> Cookies,
-    [property: System.Text.Json.Serialization.JsonPropertyName("fingerprint")]
-    DeviceFpRequest? Fingerprint = null);
+    Dictionary<string, string> Cookies);
 
 public partial class AccountManager
 {

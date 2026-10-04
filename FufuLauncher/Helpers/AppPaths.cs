@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -30,6 +30,7 @@ public static class AppPaths
     //public static string ConfigFile => Path.Combine(DataDir, "config.json");
     //public static string ConfigLabFile => Path.Combine(DataDir, "config.lab.json");
     public static string InventoryCacheFile => Path.Combine(DataDir, "inventory_cache.json");
+    public static string MiHoYoDeviceFile => Path.Combine(DataDir, "mihoyo_device.json");
     public static string ServerCacheDir => Path.Combine(CacheDir, "ServerCache");
     public static string VerifyCacheDir => Path.Combine(CacheDir, "VerifyCache");
     public static string PluginPresetsDir => Path.Combine(DataDir, "PluginPresets");
