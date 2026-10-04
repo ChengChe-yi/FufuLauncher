@@ -49,11 +49,15 @@ public sealed record MobileDeviceSnapshot
 /// </summary>
 public sealed class MobileDeviceService
 {
+
+    private readonly long _appInstallTimeMs =
+        DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - Random.Shared.Next(2, 8) * 60_000L;
+
     /// <summary>固定设备档案。</summary>
     public MobileDeviceDefinition Device { get; } = MobileDeviceDefinition.Default;
 
     /// <summary>
-    /// 采集一份设备信息快照：档案字段固定，单元级字段本次随机取值。
+    /// 采集一份设备信息快照：档案字段与安装时刻固定，单元级字段本次随机取值。
     /// </summary>
     public MobileDeviceSnapshot CaptureSnapshot()
     {
@@ -66,7 +70,7 @@ public sealed class MobileDeviceService
             BatteryPercent = Random.Shared.Next(40, 96),
             HeapFreeMb = Random.Shared.Next(392, 492),
             DataFreeMb = Random.Shared.Next(2164, 2589),
-            AppInstallTimeMs = nowMs - Random.Shared.Next(2, 8) * 60_000L,
+            AppInstallTimeMs = _appInstallTimeMs,
             Accelerometer = Inv(Random.Shared.NextDouble() * 0.8 - 0.4, "F7") + "x"
                 + Inv(9.8 + Random.Shared.NextDouble() * 0.1 - 0.05, "F7") + "x"
                 + Inv(Random.Shared.NextDouble() * 0.4, "F7"),
