@@ -1333,6 +1333,12 @@
   <data name="FileName_ShortcutName" xml:space="preserve">
     <value>快捷启动原神.lnk</value>
   </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>快捷方式名称</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>自定义名称(不含 .lnk,留空用默认)</value>
+  </data>
   <data name="Desc_ShortcutDescription" xml:space="preserve">
     <value>通过 FufuLauncher 注入启动原神</value>
   </data>
