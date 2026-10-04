@@ -6172,4 +6172,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
     <value>只檢查 FufuLauncher.UnlockerIsland.dll；關閉後檢查所有外掛 DLL</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>確認刪除</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>將刪除該 DLL 及其同目錄下的 config.ini，刪除後無法復原。是否繼續？</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>刪除失敗：{0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>同名 DLL 衝突已處理完畢，可以重新啟動遊戲了。</value>
+  </data>
 </root>

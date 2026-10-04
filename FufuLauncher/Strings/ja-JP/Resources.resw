@@ -6172,4 +6172,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
     <value>FufuLauncher.UnlockerIsland.dll のみを確認します。オフにするとすべてのプラグイン DLL を確認します</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>削除する</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>この DLL と同じフォルダーにある config.ini を一緒に削除します。元に戻せません。続行しますか？</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>削除に失敗しました：{0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>同名 DLL の競合を解消しました。ゲームを再起動できます。</value>
+  </data>
 </root>

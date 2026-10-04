@@ -6172,4 +6172,19 @@ Você pode tentar outro nó ou usar a fonte oficial direta.</value>
   <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
     <value>Verifica apenas FufuLauncher.UnlockerIsland.dll; desative para verificar todas as DLLs de plugin</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>Confirmar exclusão</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>A DLL e o config.ini na mesma pasta serão excluídos. Esta ação não pode ser desfeita. Continuar?</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>Falha ao excluir: {0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>O conflito de DLLs duplicadas foi resolvido. Você já pode reiniciar o jogo.</value>
+  </data>
 </root>

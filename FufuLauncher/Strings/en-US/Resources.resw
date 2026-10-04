@@ -6903,4 +6903,19 @@ Error: {0}</value>
   <data name="ModTrust_ModeEnforce" xml:space="preserve">
     <value>Block</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>Confirm delete</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>This deletes the DLL and the config.ini in the same folder. It cannot be undone. Continue?</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>Delete failed: {0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>The duplicate DLL conflict has been resolved. You can restart the game now.</value>
+  </data>
 </root>

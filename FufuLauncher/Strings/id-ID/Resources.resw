@@ -6172,4 +6172,19 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
     <value>Hanya memeriksa FufuLauncher.UnlockerIsland.dll; matikan untuk memeriksa semua DLL plugin</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>Hapus</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>Konfirmasi hapus</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>DLL dan config.ini di folder yang sama akan dihapus. Tindakan ini tidak dapat dibatalkan. Lanjutkan?</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>Gagal menghapus: {0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>Konflik DLL dengan nama sama sudah teratasi. Anda dapat memulai ulang game.</value>
+  </data>
 </root>

@@ -6649,4 +6649,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
     <value>केवल FufuLauncher.UnlockerIsland.dll की जाँच करता है; बंद करने पर सभी प्लगइन DLL की जाँच होती है</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>हटाएँ</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>हटाने की पुष्टि करें</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>इसी फ़ोल्डर की DLL और config.ini हटा दी जाएँगी। इसे वापस नहीं लाया जा सकता। जारी रखें?</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>हटाने में विफल: {0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>एक ही नाम की DLL का टकराव हल हो गया है। अब आप गेम दोबारा शुरू कर सकते हैं।</value>
+  </data>
 </root>

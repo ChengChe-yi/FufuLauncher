@@ -6901,4 +6901,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ModTrust_ModeEnforce" xml:space="preserve">
     <value>拦截</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>确认删除</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>将删除该 DLL 及其同目录下的 config.ini，删除后无法恢复。是否继续？</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>删除失败：{0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>同名 DLL 冲突已处理完毕，可以重新启动游戏了。</value>
+  </data>
 </root>

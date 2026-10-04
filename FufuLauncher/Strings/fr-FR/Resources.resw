@@ -6171,4 +6171,19 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
     <value>Ne vérifie que FufuLauncher.UnlockerIsland.dll ; désactivez pour vérifier toutes les DLL de plugin</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>Confirmer la suppression</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>Cette action supprime la DLL et le config.ini du même dossier. Elle est irréversible. Continuer ?</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>Échec de la suppression : {0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>Le conflit de DLL en double a été résolu. Vous pouvez redémarrer le jeu.</value>
+  </data>
 </root>

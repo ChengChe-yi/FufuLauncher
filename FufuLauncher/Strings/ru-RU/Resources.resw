@@ -6172,4 +6172,19 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
     <value>Проверяется только FufuLauncher.UnlockerIsland.dll; отключите, чтобы проверять все DLL плагинов</value>
   </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>Подтвердить удаление</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>Будут удалены DLL и config.ini в той же папке. Это действие необратимо. Продолжить?</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>Не удалось удалить: {0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>Конфликт одинаковых DLL устранён. Можно перезапустить игру.</value>
+  </data>
 </root>

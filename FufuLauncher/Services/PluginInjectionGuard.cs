@@ -78,6 +78,35 @@ public static class PluginInjectionGuard
         }
     }
 
+    public static bool TryRemovePlugin(string dllPath, out string errorMessage)
+    {
+        errorMessage = string.Empty;
+
+        var directory = Path.GetDirectoryName(dllPath);
+        var configPath = string.IsNullOrEmpty(directory) ? null : Path.Combine(directory, "config.ini");
+
+        try
+        {
+            if (File.Exists(dllPath)) File.Delete(dllPath);
+            if (configPath != null && File.Exists(configPath)) File.Delete(configPath);
+
+            if (!string.IsNullOrEmpty(directory) && Directory.Exists(directory) &&
+                !Directory.EnumerateFileSystemEntries(directory).Any())
+            {
+                Directory.Delete(directory);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            var lockedFile = FileLockHelper.FindLockedFile(dllPath, configPath);
+            errorMessage = lockedFile != null ? FileLockHelper.GetLockedFileMessage(lockedFile) : ex.Message;
+            Debug.WriteLine($"[PluginInjectionGuard] 删除插件失败 {dllPath}: {ex.Message}");
+            return false;
+        }
+    }
+
     public static string BuildConflictReport(IReadOnlyList<PluginDllConflict> conflicts)
     {
         var report = new StringBuilder();
