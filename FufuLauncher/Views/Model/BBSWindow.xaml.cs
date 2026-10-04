@@ -7,9 +7,9 @@ using Windows.Graphics;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using FufuLauncher.Contracts.Services;
 using FufuLauncher.Services;
-using FufuLauncher.Services.MiHoYo;
+using FufuLauncher.Services.Device;
+using FufuLauncher.Services.MiHoYo.Fingerprint;
 
 namespace FufuLauncher.Views
 {
@@ -18,8 +18,7 @@ namespace FufuLauncher.Views
         #region 构造函数与窗口初始化
         private AppWindow m_AppWindow;
 
-        private readonly IDeviceFingerprintService _fingerprintService;
-        private static readonly DeviceProfileService _deviceProfileService = new();
+        private readonly DeviceFpService _deviceFpService;
         private string _deviceId = "";
         private string _deviceName = "";
         private string _sysVersion = "";
@@ -33,28 +32,19 @@ namespace FufuLauncher.Views
         {
             InitializeComponent();
 
-            _fingerprintService = App.GetService<IDeviceFingerprintService>();
-            
-            var accountManager = App.GetService<AccountManager>();
-            var activeId = accountManager.ActiveAccountId;
-            if (!string.IsNullOrEmpty(activeId))
-            {
-                _deviceId = DeviceProfileService.GetDeviceIdForAccount(activeId);
-                var profile = _deviceProfileService.SelectProfile(activeId);
-                _deviceName = profile.DeviceName;
-                _sysVersion = profile.SysVersion;
-                _deviceUserAgent = profile.UserAgent;
-            }
-            else
-            {
-                
-                _deviceId = Guid.NewGuid().ToString();
-                _deviceName = "Xiaomi%2024031PN0DC";
-                _sysVersion = "12";
-                _deviceUserAgent = $"Mozilla/5.0 (Linux; Android 12; 24031PN0DC Build/V417IR; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/110.0.5481.154 Safari/537.36 miHoYoBBS/{CNVersion}";
-            }
+            _deviceFpService = App.GetService<DeviceFpService>();
 
-          
+            // 设备身份是 App 级：不随活跃账号变化，直接取固定档案。
+            var profile = App.GetService<MobileDeviceService>().Device;
+            _deviceName = Uri.EscapeDataString(profile.ResolvedDisplayName);
+            _sysVersion = profile.OsVersion;
+            _deviceUserAgent = string.Format(
+                FufuLauncher.Constants.MiHoYo.UserAgents.AndroidBbsTemplate,
+                profile.OsVersion,
+                profile.Model,
+                profile.BuildId,
+                CNVersion);
+
             foreach (var config in _clientConfigs.Values)
             {
                 config.UserAgent = _deviceUserAgent;

@@ -3,26 +3,33 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 using System.Diagnostics;
-using System.Text.Json;
 using FufuLauncher.Constants.MiHoYo;
-using FufuLauncher.Models.MiHoYo.Fingerprint;
 using FufuLauncher.Models.MiHoYo.Identity;
+using FufuLauncher.Services.Device;
 using FufuLauncher.Services.MiHoYo.Fingerprint;
 
 namespace FufuLauncher.Services.MiHoYo;
 
+/// <summary>
+/// 单账号运行期身份聚合：cookies（账号级）+ 设备身份（App 级）。
+/// </summary>
 public sealed class AccountIdentityService
 {
     private readonly AccountManager _accountManager;
     private readonly DeviceFpService _deviceFpService;
+    private readonly MobileDeviceService _deviceService;
 
-    public AccountIdentityService(AccountManager accountManager, DeviceFpService deviceFpService)
+    public AccountIdentityService(
+        AccountManager accountManager,
+        DeviceFpService deviceFpService,
+        MobileDeviceService deviceService)
     {
         _accountManager = accountManager;
         _deviceFpService = deviceFpService;
+        _deviceService = deviceService;
     }
-    
-    public async Task<AccountContext> BuildAsync(string accountId)
+
+    public async Task<AccountContext> BuildAsync(string accountId, CancellationToken token = default)
     {
         var cookies = await _accountManager.LoadCookiesAsync(accountId);
         if (cookies == null)
@@ -30,30 +37,36 @@ public sealed class AccountIdentityService
             cookies = new Dictionary<string, string>();
             Debug.WriteLine($"[AccountIdentity] 账号 {accountId} 未找到 cookies，返回空 ctx");
         }
-        
-        var fpRequest = await _deviceFpService.GetFingerprintRequestAsync(accountId);
-        if (fpRequest is null || string.IsNullOrEmpty(fpRequest.DeviceFp))
-            throw new InvalidOperationException($"账号 {accountId} 设备指纹不可用（注册失败）");
-        
+
+        var device = await _deviceFpService.GetOrRegisterAsync(token).ConfigureAwait(false);
+        if (string.IsNullOrEmpty(device.DeviceFp))
+        {
+            throw new InvalidOperationException("设备指纹不可用（注册失败）");
+        }
+
+        var profile = _deviceService.Device;
         var serverType = ServerTypeExtensions.ParseServerType(ExtractServerType(accountId));
         var accountIdentity = new AccountIdentity(
             Stuid: ExtractStuid(cookies, serverType),
             Mid: cookies.GetValueOrDefault("mid") ?? "");
-        
-        const string buildId = "V417IR";
-        var (model, sysVersion, deviceName) = ResolveDeviceTraits(fpRequest);
 
-        var device = new DeviceIdentity(
-            DeviceId: fpRequest.DeviceId,
-            BbsDeviceId: fpRequest.BbsDeviceId ?? "",
-            DeviceFp: fpRequest.DeviceFp ?? "",
-            DeviceName: deviceName,
-            SysVersion: sysVersion,
-            Model: model,
+        // 设备特征直接取自固定档案，无需再从 ext_fields 反解。
+        var deviceIdentity = new DeviceIdentity(
+            DeviceId: device.DeviceId,
+            BbsDeviceId: device.BbsDeviceId,
+            DeviceFp: device.DeviceFp,
+            DeviceName: profile.ResolvedDisplayName,
+            SysVersion: profile.OsVersion,
+            Model: profile.Model,
             FpLastUpdate: DateTimeOffset.UtcNow);
 
         var ua = new UserAgent(
-            Mobile: string.Format(UserAgents.AndroidBbsTemplate, sysVersion, model, buildId, HeaderVersions.MobileCnLogin),
+            Mobile: string.Format(
+                UserAgents.AndroidBbsTemplate,
+                profile.OsVersion,
+                profile.Model,
+                profile.BuildId,
+                HeaderVersions.MobileCnLogin),
             OkHttp: UserAgents.OkHttp);
 
         return new AccountContext(
@@ -61,67 +74,8 @@ public sealed class AccountIdentityService
             ServerType: serverType,
             Cookies: cookies,
             Identity: accountIdentity,
-            Device: device,
+            Device: deviceIdentity,
             UserAgent: ua);
-    }
-
-    private static (string Model, string SysVersion, string DeviceName) ResolveDeviceTraits(DeviceFpRequest fingerprint)
-    {
-        const string defaultModel = "2605EPN8EC";
-        const string defaultSysVersion = "16";
-
-        string model = defaultModel;
-        string sysVersion = defaultSysVersion;
-        string deviceName = "";
-
-        if (!string.IsNullOrWhiteSpace(fingerprint.ExtFields))
-        {
-            try
-            {
-                using var doc = JsonDocument.Parse(fingerprint.ExtFields);
-                if (doc.RootElement.ValueKind == JsonValueKind.Object)
-                {
-                    model = ReadString(doc.RootElement, "model") ?? model;
-                    sysVersion = ReadString(doc.RootElement, "osVersion") ?? sysVersion;
-                    deviceName = ReadString(doc.RootElement, "deviceName") ?? "";
-                }
-            }
-            catch (JsonException)
-            {
-            }
-        }
-
-        if (string.IsNullOrWhiteSpace(model))
-        {
-            model = defaultModel;
-        }
-
-        if (string.IsNullOrWhiteSpace(sysVersion))
-        {
-            sysVersion = defaultSysVersion;
-        }
-
-        if (string.IsNullOrWhiteSpace(deviceName) || deviceName == model)
-        {
-            deviceName = "Xiaomi " + model;
-        }
-
-        return (model, sysVersion, deviceName);
-    }
-
-    private static string? ReadString(JsonElement element, string propertyName)
-    {
-        if (!element.TryGetProperty(propertyName, out var property))
-        {
-            return null;
-        }
-
-        return property.ValueKind switch
-        {
-            JsonValueKind.String => property.GetString(),
-            JsonValueKind.Number => property.GetRawText(),
-            _ => null
-        };
     }
 
     private static string ExtractServerType(string accountId)

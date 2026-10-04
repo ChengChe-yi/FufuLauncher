@@ -2,133 +2,166 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
-
-using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using FufuLauncher.Models.MiHoYo.Fingerprint;
+using FufuLauncher.Models.MiHoYo.Identity;
+using FufuLauncher.Services.Device;
 using FufuLauncher.Services.MiHoYo.Networking;
 
 namespace FufuLauncher.Services.MiHoYo.Fingerprint;
 
+
 public sealed class DeviceFpService
 {
     private const string GetFpUrl = "https://public-data-api.mihoyo.com/device-fp/api/getFp";
-    private const string AppName = "bbs_cn";
-    private const string Platform = "2";
+
+    /// <summary><c>getFp</c> 的 <c>app_name</c>（国服）。</summary>
+    public const string AppName = "bbs_cn";
+
+    /// <summary><c>getFp</c> 的 <c>platform</c>（2 = 安卓 App）。</summary>
+    public const string Platform = "2";
 
     private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
     private static readonly JsonSerializerOptions _jsonOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
-        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
     };
 
-    private readonly AccountManager _accountManager;
-    
-    private readonly ConcurrentDictionary<string, SemaphoreSlim> _locks = new();
+    private readonly MiHoYoDeviceStore _store;
+    private readonly MobileDeviceService _device;
+    private readonly SemaphoreSlim _gate = new(1, 1);
 
-    public DeviceFpService(AccountManager accountManager)
+    public DeviceFpService(MiHoYoDeviceStore store, MobileDeviceService device)
     {
-        _accountManager = accountManager;
+        _store = store;
+        _device = device;
     }
-    
-    public string? GetCurrentDeviceId(string accountId) =>
-        _accountManager.LoadFingerprint(accountId)?.BbsDeviceId;
-    
-    public async Task<string?> GetFingerprintAsync(string accountId)
+
+    // ---------------------------------------------------------------- 取用
+
+
+    public Task<MiHoYoDeviceIdentity> GetIdentityAsync(CancellationToken token = default) =>
+        _store.GetOrCreateAsync(ResolveInitialDeviceId(), token);
+
+    /// <summary>取用设备号（<c>x-rpc-device_id</c> 同源值）。</summary>
+    public async Task<string> GetBbsDeviceIdAsync(CancellationToken token = default) =>
+        (await GetIdentityAsync(token).ConfigureAwait(false)).BbsDeviceId;
+
+    /// <summary>取用设备指纹；尚未注册时返回 null。</summary>
+    public async Task<string?> GetFingerprintAsync(CancellationToken token = default)
     {
-        var req = await GetFingerprintRequestAsync(accountId);
-        return req?.DeviceFp;
+        var identity = await GetIdentityAsync(token).ConfigureAwait(false);
+        return string.IsNullOrEmpty(identity.DeviceFp) ? null : identity.DeviceFp;
     }
-    
-    public async Task<DeviceFpRequest?> GetFingerprintRequestAsync(string accountId)
+
+
+    public async Task<MiHoYoDeviceIdentity> GetOrRegisterAsync(CancellationToken token = default)
     {
-        var sem = _locks.GetOrAdd(accountId, _ => new SemaphoreSlim(1, 1));
-        await sem.WaitAsync();
+        var identity = await GetIdentityAsync(token).ConfigureAwait(false);
+        if (!string.IsNullOrEmpty(identity.DeviceFp))
+        {
+            return identity;
+        }
+
+        await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
-            var saved = await _accountManager.LoadFingerprintAsync(accountId);
-            if (saved is not null && !string.IsNullOrEmpty(saved.DeviceFp) && !string.IsNullOrEmpty(saved.DeviceId))
+            // 双检：等锁期间可能已被其它调用注册完成。
+            identity = await GetIdentityAsync(token).ConfigureAwait(false);
+            if (!string.IsNullOrEmpty(identity.DeviceFp))
             {
-                if (string.IsNullOrEmpty(saved.BbsDeviceId))
-                {
-                    saved = saved with { BbsDeviceId = NameUuidFromBytes(Encoding.UTF8.GetBytes(saved.DeviceId)).ToString() };
-                    await _accountManager.SaveFingerprintAsync(accountId, saved);
-                    Debug.WriteLine($"[DeviceFp] 补全 bbs_device_id: {saved.BbsDeviceId}");
-                }
-                else
-                {
-                    Debug.WriteLine($"[DeviceFp] 命中已保存指纹: {saved.DeviceFp}");
-                }
-                return saved;
+                return identity;
             }
 
-            var request = BuildNewRequest();
-            string? fp = await RegisterAsync(request);
-            if (string.IsNullOrEmpty(fp))
+            string? issued = await RegisterAsync(identity, token).ConfigureAwait(false);
+            if (string.IsNullOrEmpty(issued))
             {
-                Debug.WriteLine("[DeviceFp] 注册失败，未获得指纹");
-                return null;
+                Debug.WriteLine("[DeviceFp] 注册未获得指纹，返回无指纹身份");
+                return identity;
             }
 
-            var persisted = request with { DeviceFp = fp };
-            await _accountManager.SaveFingerprintAsync(accountId, persisted);
-            Debug.WriteLine($"[DeviceFp] 注册成功并已持久化: {fp}");
-            return persisted;
+            // 只把指纹回填到发起注册时用的那个 device_id 上。
+            // 若期间发生过重置，写入会被拒绝，避免旧指纹挂到新设备号。
+            var updated = await _store.WithFingerprintAsync(identity.DeviceId, issued, token)
+                                     .ConfigureAwait(false);
+            if (updated is null)
+            {
+                Debug.WriteLine("[DeviceFp] 身份已重置，丢弃本次注册结果");
+                return await GetIdentityAsync(token).ConfigureAwait(false);
+            }
+
+            Debug.WriteLine($"[DeviceFp] 注册成功并已回填: {issued}");
+            return updated;
         }
         finally
         {
-            sem.Release();
+            _gate.Release();
         }
     }
-    
-    private static DeviceFpRequest BuildNewRequest()
+
+    public async Task<MiHoYoDeviceIdentity> ResetAndRegisterAsync(CancellationToken token = default)
     {
-        var now = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        long firstInstall = now - Random.Shared.NextInt64(30, 120) * 86_400_000L;
-        long lastUpdate = firstInstall + Random.Shared.NextInt64(0, 30) * 86_400_000L;
-        if (lastUpdate > now)
-            lastUpdate = now;
-        
-        var deviceId = GenerateRandomHex(16);
-
-        var extFields = new ExtFields
-        {
-            AppInstallTimeDiff = firstInstall,
-            AppUpdateTimeDiff = lastUpdate,
-        };
-
-        return new DeviceFpRequest
-        {
-            DeviceId = deviceId,
-            SeedId = Guid.NewGuid().ToString(),
-            SeedTime = $"{DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}",
-            Platform = Platform,
-            DeviceFp = GenerateDefaultDeviceId(),
-            AppName = AppName,
-            ExtFields = JsonSerializer.Serialize(extFields, _jsonOptions),
-            BbsDeviceId = NameUuidFromBytes(Encoding.UTF8.GetBytes(deviceId)).ToString(),
-        };
+        await _store.ResetAsync(ResolveInitialDeviceId(), token).ConfigureAwait(false);
+        return await GetOrRegisterAsync(token).ConfigureAwait(false);
     }
-    
-    private static async Task<string?> RegisterAsync(DeviceFpRequest request)
+
+    public Task SaveIdentityAsync(MiHoYoDeviceIdentity identity, CancellationToken token = default) =>
+        _store.SaveAsync(identity, token);
+
+
+    public string BuildExtFieldsJson() => FpExtFieldsBuilder.BuildJson(_device.CaptureSnapshot());
+
+    // ---------------------------------------------------------------- 内部
+
+    private async Task<string?> RegisterAsync(MiHoYoDeviceIdentity identity, CancellationToken token)
     {
         try
         {
-            var bodyJson = JsonSerializer.Serialize(request, _jsonOptions);
+            var request = new DeviceFpRequest
+            {
+                DeviceId = identity.DeviceId,
+                SeedId = identity.SeedId,
+                SeedTime = identity.SeedTime,
+                Platform = Platform,
+                DeviceFp = CreatePlaceholderFingerprint(),
+                AppName = AppName,
+                ExtFields = FpExtFieldsBuilder.BuildJson(_device.CaptureSnapshot()),
+                BbsDeviceId = identity.BbsDeviceId,
+            };
+
+            string bodyJson = JsonSerializer.Serialize(request, _jsonOptions);
             using var req = new HttpRequestMessage(HttpMethod.Post, GetFpUrl);
             req.Content = new StringContent(bodyJson, Encoding.UTF8, "application/json");
             MiHoYoHeaderFactory.ApplyDeviceFpHeaders(req);
 
-            using var resp = await _httpClient.SendAsync(req);
-            var json = await resp.Content.ReadAsStringAsync();
+            using var resp = await _httpClient.SendAsync(req, token).ConfigureAwait(false);
+            string json = await resp.Content.ReadAsStringAsync(token).ConfigureAwait(false);
             Debug.WriteLine($"[DeviceFp] getFp 状态码: {(int)resp.StatusCode}, 响应: {Truncate(json, 300)}");
 
+            return ParseFingerprint(json);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[DeviceFp] getFp 异常: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>解析 <c>getFp</c> 响应中的 <c>device_fp</c>；任一步失败返回 null。</summary>
+    private static string? ParseFingerprint(string json)
+    {
+        try
+        {
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
+
             if (root.TryGetProperty("retcode", out var rc) && rc.GetInt32() != 0)
             {
                 Debug.WriteLine($"[DeviceFp] getFp retcode={rc.GetInt32()}");
@@ -138,44 +171,31 @@ public sealed class DeviceFpService
             if (root.TryGetProperty("data", out var data)
                 && data.TryGetProperty("device_fp", out var fpProp))
             {
-                var fp = fpProp.GetString();
+                string? fp = fpProp.GetString();
                 return string.IsNullOrEmpty(fp) ? null : fp;
             }
 
             Debug.WriteLine("[DeviceFp] getFp 响应未包含 device_fp");
             return null;
         }
-        catch (Exception ex)
+        catch (JsonException ex)
         {
-            Debug.WriteLine($"[DeviceFp] getFp 异常: {ex.Message}");
+            Debug.WriteLine($"[DeviceFp] getFp 响应解析失败: {ex.Message}");
             return null;
         }
     }
 
-    
-    // private static string GenerateDefaultDeviceId()
-    // {
-    //     var rng = Random.Shared;
-    //     return new string(new[] { (char)('1' + rng.Next(9)) }
-    //         .Concat(Enumerable.Range(0, 9).Select(_ => (char)('0' + rng.Next(10)))).ToArray());
-    // }
-    
-    private static string GenerateDefaultDeviceId() => GenerateRandomHex(13);
-    private static string GenerateRandomHex(int length)
+
+    private static string CreatePlaceholderFingerprint()
     {
-        var bytes = RandomNumberGenerator.GetBytes((length + 1) / 2);
-        return Convert.ToHexString(bytes).ToLowerInvariant()[..length];
-    }
-    
-    private static Guid NameUuidFromBytes(byte[] name)
-    {
-        var hash = MD5.HashData(name);
-        hash[6] = (byte)((hash[6] & 0x0F) | 0x30);
-        hash[8] = (byte)((hash[8] & 0x3F) | 0x80);
-        Array.Reverse(hash, 0, 4);
-        Array.Reverse(hash, 4, 2);
-        Array.Reverse(hash, 6, 2);
-        return new Guid(hash);
+        Span<char> buffer = stackalloc char[10];
+        buffer[0] = (char)('1' + Random.Shared.Next(9));
+        for (int i = 1; i < buffer.Length; i++)
+        {
+            buffer[i] = (char)('0' + Random.Shared.Next(10));
+        }
+
+        return new string(buffer);
     }
 
     private static string Truncate(string s, int max) => s.Length <= max ? s : s[..max];
