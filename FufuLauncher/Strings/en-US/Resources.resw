@@ -1231,6 +1231,12 @@ Or copy the launch command for use with Steam or scripts?</value>
   <data name="FileName_ShortcutName" xml:space="preserve">
     <value>Launch Genshin Impact.lnk</value>
   </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>Shortcut name</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>Custom name (without .lnk, leave empty for default)</value>
+  </data>
   <data name="Desc_ShortcutDescription" xml:space="preserve">
     <value>Launch Genshin Impact via FufuLauncher injection</value>
   </data>
@@ -6593,6 +6599,9 @@ Error: {0}</value>
   <data name="DeviceInfo_Account" xml:space="preserve">
     <value>Account</value>
   </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>Device</value>
+  </data>
   <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
     <value>Device Fingerprint</value>
   </data>
@@ -6643,6 +6652,12 @@ Error: {0}</value>
   </data>
   <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
     <value>device_id cannot be empty</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id must be a valid GUID</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time must be a valid Unix millisecond timestamp</value>
   </data>
   <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
     <value>Reset to Defaults</value>

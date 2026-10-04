@@ -1,17 +1,15 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
-using FufuLauncher.Services.MiHoYo;
-
-namespace FufuLauncher.Services;
+namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
 public class DailyNoteCardService
 {
     private readonly DailyNoteService _dailyNoteService = new();
 
-    public async Task<DailyNoteCardData?> LoadCardDataAsync(string roleId, string server, Dictionary<string, string> cookies)
+    public async Task<DailyNoteCardData?> LoadCardDataAsync(string roleId, string server)
     {
         return await _dailyNoteService.GetDailyNoteAsync(roleId, server);
     }

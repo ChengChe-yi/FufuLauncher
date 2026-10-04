@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -12,6 +12,7 @@ using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
+using FufuLauncher.Services.MiHoYo.DailyNote;
 using Microsoft.UI.Dispatching;
 
 namespace FufuLauncher.ViewModels
@@ -71,7 +72,7 @@ namespace FufuLauncher.ViewModels
             WeakReferenceMessenger.Default.Register<AccountChangedMessage>(this, async (r, m) =>
             {
                 await ClearDailyNoteDataAsync();
-                await LoadDailyNoteAsync();
+                await LoadDailyNoteAsync(force: true);
             });
 
             WeakReferenceMessenger.Default.Register<DevBuildDetectionCompletedMessage>(this, async (r, m) =>
@@ -189,10 +190,9 @@ namespace FufuLauncher.ViewModels
 
             var refreshGameTask = ForceRefreshGameStateAsync();
             var checkinTask = LoadCheckinStatusAsync();
-            var dailyNoteTask = LoadDailyNoteAsync();
             var loadPinnedPresetsTask = LoadPinnedPresetsAsync();
 
-            await Task.WhenAll(refreshGameTask, checkinTask, dailyNoteTask, loadPinnedPresetsTask);
+            await Task.WhenAll(refreshGameTask, checkinTask, loadPinnedPresetsTask);
         }
 
         private async Task RefreshSettingsAsync()

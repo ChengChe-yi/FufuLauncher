@@ -266,7 +266,7 @@ private static void ApplyPreset(string presetId, string pluginDirectory)
 {
     try
     {
-        var presetsDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "Presets");
+        var presetsDir = AppPaths.PluginPresetsDir;
         var presetFile = Path.Combine(presetsDir, $"{presetId}.json");
         
         if (File.Exists(presetFile))

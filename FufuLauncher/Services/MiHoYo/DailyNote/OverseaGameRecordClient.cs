@@ -7,7 +7,7 @@ using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Services.MiHoYo.Networking;
 using FufuLauncher.Services.MiHoYo.Transport;
 
-namespace FufuLauncher.Services.MiHoYo.Hoyolab;
+namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
 public sealed class OverseaGameRecordClient
 {
@@ -17,7 +17,7 @@ public sealed class OverseaGameRecordClient
     };
 
     private readonly string _deviceId = Guid.NewGuid().ToString();
-    
+
     public async Task<DailyNoteCardData> GetDailyNoteAsync(
         string uid, string region, IReadOnlyDictionary<string, string> cookies, CancellationToken token = default)
     {

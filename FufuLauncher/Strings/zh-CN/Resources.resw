@@ -1333,6 +1333,12 @@
   <data name="FileName_ShortcutName" xml:space="preserve">
     <value>快捷启动原神.lnk</value>
   </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>快捷方式名称</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>自定义名称(不含 .lnk,留空用默认)</value>
+  </data>
   <data name="Desc_ShortcutDescription" xml:space="preserve">
     <value>通过 FufuLauncher 注入启动原神</value>
   </data>
@@ -6591,6 +6597,9 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_Account" xml:space="preserve">
     <value>账号</value>
   </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>设备</value>
+  </data>
   <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
     <value>设备指纹</value>
   </data>
@@ -6641,6 +6650,12 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
     <value>device_id 不能为空</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id 必须是有效的 GUID</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time 必须是有效的 Unix 毫秒时间戳</value>
   </data>
   <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
     <value>一键重置</value>

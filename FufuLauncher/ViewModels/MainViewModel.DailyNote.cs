@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -32,7 +32,7 @@ public partial class MainViewModel
     [ObservableProperty] private Visibility _showTransformer = Visibility.Visible;
     [ObservableProperty] private bool _isDailyNoteLoaded;
 
-    public async Task LoadDailyNoteAsync()
+    public async Task LoadDailyNoteAsync(bool force = false)
     {
         // 便签卡片隐藏时不发起任何 API 请求
         var hideJson = await _localSettingsService.ReadSettingAsync("IsHideDailyNoteCardEnabled");
@@ -40,6 +40,12 @@ public partial class MainViewModel
         {
             IsDailyNoteLoaded = false;
             Debug.WriteLine("[DailyNote] 便签卡片已隐藏，跳过API请求");
+            return;
+        }
+
+        if (!force && IsDailyNoteLoaded)
+        {
+            Debug.WriteLine("[DailyNote] 已有数据，跳过本次请求");
             return;
         }
 
@@ -77,7 +83,7 @@ public partial class MainViewModel
             string roleId = string.IsNullOrEmpty(targetUid) ? uids[0] : targetUid;
             string server = ServerRegion.Resolve(roleId);
 
-            var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(roleId, server, cookies);
+            var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(roleId, server);
 
             if (dailyNoteData == null)
             {

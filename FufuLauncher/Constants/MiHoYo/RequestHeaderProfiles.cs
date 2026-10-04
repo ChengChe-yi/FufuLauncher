@@ -45,7 +45,7 @@ public enum HeaderProfileKind
     /// <summary>极验验证（GeetestService.cs）。</summary>
     Geetest,
 
-    /// <summary>设备指纹 device-fp（DeviceFingerprintService）。</summary>
+    /// <summary>设备指纹 device-fp（DeviceFpService）。</summary>
     DeviceFingerprint,
 
     /// <summary>BBSWindow 调试器（MihoyoBBS.cs 旧 GameCheckin 头）。</summary>

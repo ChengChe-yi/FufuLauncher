@@ -57,14 +57,8 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                <TextBlock Text="{helpers:Loc Key=DeviceInfo_Account}" Style="{StaticResource DeviceFieldLabelStyle}" />
-                <ComboBox x:Name="AccountCombo" MinWidth="320" SelectionChanged="OnAccountSelectionChanged">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="models:DeviceAccountChoice">
-                            <TextBlock Text="{x:Bind DisplayName}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                <TextBlock Text="{helpers:Loc Key=DeviceInfo_Device}" Style="{StaticResource DeviceFieldLabelStyle}" />
+                <TextBlock x:Name="ScopeText" Style="{StaticResource DeviceFieldLabelStyle}" FontWeight="SemiBold" />
             </StackPanel>
 
             <TextBlock x:Name="HeaderHintText" Grid.Column="1"
@@ -106,15 +100,13 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
                             <TextBlock Text="device_id" Style="{StaticResource DeviceFieldLabelStyle}" />
                             <TextBox x:Name="DeviceIdBox" Grid.Column="1" FontFamily="Consolas" />
 
                             <TextBlock Grid.Row="1" Text="bbs_device_id" Style="{StaticResource DeviceFieldLabelStyle}" />
-                            <TextBox x:Name="BbsDeviceIdBox" Grid.Row="1" Grid.Column="1" FontFamily="Consolas" />
+                            <TextBox x:Name="BbsDeviceIdBox" Grid.Row="1" Grid.Column="1" FontFamily="Consolas" IsReadOnly="True" />
 
                             <TextBlock Grid.Row="2" Text="device_fp" Style="{StaticResource DeviceFieldLabelStyle}" />
                             <TextBox x:Name="DeviceFpBox" Grid.Row="2" Grid.Column="1" FontFamily="Consolas" />
@@ -124,12 +116,6 @@
 
                             <TextBlock Grid.Row="4" Text="seed_time" Style="{StaticResource DeviceFieldLabelStyle}" />
                             <TextBox x:Name="SeedTimeBox" Grid.Row="4" Grid.Column="1" FontFamily="Consolas" />
-
-                            <TextBlock Grid.Row="5" Text="platform" Style="{StaticResource DeviceFieldLabelStyle}" />
-                            <TextBox x:Name="PlatformBox" Grid.Row="5" Grid.Column="1" FontFamily="Consolas" />
-
-                            <TextBlock Grid.Row="6" Text="app_name" Style="{StaticResource DeviceFieldLabelStyle}" />
-                            <TextBox x:Name="AppNameBox" Grid.Row="6" Grid.Column="1" FontFamily="Consolas" />
                         </Grid>
                     </StackPanel>
                 </Border>
