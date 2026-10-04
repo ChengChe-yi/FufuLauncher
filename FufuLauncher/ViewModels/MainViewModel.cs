@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -12,6 +12,7 @@ using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
+using FufuLauncher.Services.MiHoYo.DailyNote;
 using Microsoft.UI.Dispatching;
 
 namespace FufuLauncher.ViewModels

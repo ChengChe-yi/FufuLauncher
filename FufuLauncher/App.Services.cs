@@ -84,7 +84,7 @@ public partial class App
                 services.AddSingleton<ICloudGameCheckinService, CloudGameCheckinService>();
                 services.AddSingleton<IHoyolabRoleResolverService, HoyolabRoleResolverService>();
                 services.AddSingleton<IUnifiedCheckinService, UnifiedCheckinService>();
-                services.AddSingleton<DailyNoteCardService>();
+                services.AddSingleton<Services.MiHoYo.DailyNote.DailyNoteCardService>();
                 services.AddSingleton<BlankViewModel>();
                 services.AddTransient<BlankPage>();
                 services.AddSingleton<ILauncherService, LauncherService>();

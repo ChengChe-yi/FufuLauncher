@@ -186,6 +186,9 @@ public sealed class DeviceFpService
     }
 
 
+
+    private string ResolveInitialDeviceId() => _device.Device.AndroidId;
+
     private static string CreatePlaceholderFingerprint()
     {
         Span<char> buffer = stackalloc char[10];

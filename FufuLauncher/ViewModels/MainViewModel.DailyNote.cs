@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -77,7 +77,7 @@ public partial class MainViewModel
             string roleId = string.IsNullOrEmpty(targetUid) ? uids[0] : targetUid;
             string server = ServerRegion.Resolve(roleId);
 
-            var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(roleId, server, cookies);
+            var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(roleId, server);
 
             if (dailyNoteData == null)
             {

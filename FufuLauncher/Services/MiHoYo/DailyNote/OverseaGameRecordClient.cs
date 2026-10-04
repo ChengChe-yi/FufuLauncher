@@ -7,8 +7,11 @@ using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Services.MiHoYo.Networking;
 using FufuLauncher.Services.MiHoYo.Transport;
 
-namespace FufuLauncher.Services.MiHoYo.Hoyolab;
+namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
+/// <summary>
+/// 国际服实时便签：与国服一致，按「先 index、后 dailyNote」的成对顺序取数据。
+/// </summary>
 public sealed class OverseaGameRecordClient
 {
     private static readonly HttpClient _httpClient = new(new HttpClientHandler { UseCookies = false })
@@ -17,7 +20,7 @@ public sealed class OverseaGameRecordClient
     };
 
     private readonly string _deviceId = Guid.NewGuid().ToString();
-    
+
     public async Task<DailyNoteCardData> GetDailyNoteAsync(
         string uid, string region, IReadOnlyDictionary<string, string> cookies, CancellationToken token = default)
     {
