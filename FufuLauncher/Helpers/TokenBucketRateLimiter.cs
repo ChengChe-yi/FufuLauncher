@@ -4,11 +4,6 @@ Licensed under the MIT License.
 */
 namespace FufuLauncher.Helpers;
 
-/// <summary>
-/// 令牌桶限速器。线程安全，可用于全局或单连接限速。
-/// <para>速率 &lt;= 0 表示不限速，此时 <see cref="AcquireAsync"/> 立即返回，
-/// 调用方无需为“未启用”分支写特判。</para>
-/// </summary>
 public sealed class TokenBucketRateLimiter
 {
     private readonly long _bytesPerSecond;
@@ -18,15 +13,8 @@ public sealed class TokenBucketRateLimiter
     private double _tokens;
     private long _lastRefillTicks;
 
-    /// <summary>
-    /// 迄今见过的最大单次申请量。
-    /// <para>桶容量必须不低于它，否则一次超大申请（如 80KB 缓冲区配上极低速率）
-    /// 会因为令牌被容量封顶而永远攒不够。</para>
-    /// </summary>
     private int _largestRequest;
 
-    /// <param name="bytesPerSecond">每秒允许的字节数；&lt;= 0 表示不限速。</param>
-    /// <param name="burstSeconds">突发容量相当于多少秒的流量，至少 0.1 秒。</param>
     public TokenBucketRateLimiter(long bytesPerSecond, double burstSeconds = 1.0)
     {
         _bytesPerSecond = Math.Max(bytesPerSecond, 0);
@@ -35,15 +23,10 @@ public sealed class TokenBucketRateLimiter
         _lastRefillTicks = Environment.TickCount64;
     }
 
-    /// <summary>是否处于启用状态。</summary>
     public bool IsEnabled => _bytesPerSecond > 0;
 
-    /// <summary>当前生效的桶容量。</summary>
     private double Capacity => Math.Max(_baseCapacity, _largestRequest);
 
-    /// <summary>
-    /// 申请 <paramref name="count"/> 字节的配额，额度不足时异步等待。
-    /// </summary>
     public async ValueTask AcquireAsync(int count, CancellationToken token = default)
     {
         if (!IsEnabled || count <= 0)
@@ -84,7 +67,6 @@ public sealed class TokenBucketRateLimiter
         }
     }
 
-    /// <summary>按经过的时间补充令牌。</summary>
     private void Refill()
     {
         long now = Environment.TickCount64;

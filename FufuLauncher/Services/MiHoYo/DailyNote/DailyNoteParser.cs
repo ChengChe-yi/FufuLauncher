@@ -8,7 +8,6 @@ using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
-/// <summary>实时便签卡片数据。</summary>
 public class DailyNoteCardData
 {
     public int CurrentResin { get; set; }
@@ -23,7 +22,6 @@ public class DailyNoteCardData
     public string TransformerRecoveryTime { get; set; } = "";
 }
 
-/// <summary>便签响应解析（国服 / 国际服共用）。</summary>
 public static class DailyNoteParser
 {
     public static DailyNoteCardData Parse(string json)

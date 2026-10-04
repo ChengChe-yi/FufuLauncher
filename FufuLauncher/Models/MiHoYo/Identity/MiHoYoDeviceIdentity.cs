@@ -12,33 +12,25 @@ namespace FufuLauncher.Models.MiHoYo.Identity;
 
 public sealed record MiHoYoDeviceIdentity
 {
-    /// <summary>设备号长度（hex 字符数）。</summary>
     public const int DeviceIdLength = 16;
 
-    /// <summary>当前存储格式版本。</summary>
     public const int CurrentVersion = 1;
 
-    /// <summary>存储格式版本。</summary>
     [JsonPropertyName("version")]
     public int Version { get; init; } = CurrentVersion;
 
-    /// <summary>设备号（16 位小写 hex）。</summary>
     [JsonPropertyName("device_id")]
     public string DeviceId { get; init; } = "";
 
-    /// <summary>服务端签发的设备指纹。</summary>
     [JsonPropertyName("device_fp")]
     public string DeviceFp { get; init; } = "";
 
-    /// <summary>随机种子 ID。</summary>
     [JsonPropertyName("seed_id")]
     public string SeedId { get; init; } = "";
 
-    /// <summary>随机种子时间（Unix 毫秒字符串）。</summary>
     [JsonPropertyName("seed_time")]
     public string SeedTime { get; init; } = "";
 
-    /// <summary><c>bbs_device_id</c>：由 <see cref="DeviceId"/> 派生（name-based UUID）。</summary>
     [JsonIgnore]
     public string BbsDeviceId => NameUuidFromBytes(Encoding.UTF8.GetBytes(DeviceId)).ToString();
 
@@ -49,15 +41,12 @@ public sealed record MiHoYoDeviceIdentity
         && IsValidSeedId(SeedId)
         && IsValidSeedTime(SeedTime);
 
-    /// <summary>设备号是否为 16 位 hex。</summary>
     public static bool IsValidDeviceId(string? deviceId) =>
         deviceId is { Length: DeviceIdLength } && deviceId.All(Uri.IsHexDigit);
 
-    /// <summary>种子 ID 是否为非空 GUID。</summary>
     public static bool IsValidSeedId(string? seedId) =>
         Guid.TryParse(seedId, out _);
 
-    /// <summary>种子时间是否为可解析的非负 Unix 毫秒。</summary>
     public static bool IsValidSeedTime(string? seedTime) =>
         long.TryParse(seedTime, NumberStyles.None, CultureInfo.InvariantCulture, out long value)
         && value > 0;
@@ -71,7 +60,6 @@ public sealed record MiHoYoDeviceIdentity
         SeedTime = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString(),
     };
 
-    /// <summary>RFC 4122 name-based UUID（MD5），等价于 Android 侧 nameUUIDFromBytes。</summary>
     private static Guid NameUuidFromBytes(byte[] name)
     {
         var hash = MD5.HashData(name);
