@@ -12,9 +12,9 @@ namespace Updater
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            if (Environment.OSVersion.Version.Build < 19045)
+            if (Environment.OSVersion.Version.Build < 18363)
             {
-                MessageBox.Show("此更新程序仅允许在Windows 10 22H2或更高版本上运行", "版本不支持", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("此更新程序仅允许在Windows 10 1909或更高版本上运行", "版本不支持", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
             
