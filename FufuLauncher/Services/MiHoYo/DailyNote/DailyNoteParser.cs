@@ -30,7 +30,8 @@ public static class DailyNoteParser
     {
         Debug.WriteLine($"[DailyNoteParser] 解析JSON: {json?.Substring(0, Math.Min(200, json?.Length ?? 0))}...");
 
-        var doc = JsonDocument.Parse(json);
+        // 租用池化缓冲，需显式释放；返回的 DailyNoteCardData 只持有已拷贝的值。
+        using var doc = JsonDocument.Parse(json);
         var root = doc.RootElement;
 
         int retcode = root.TryGetProperty("retcode", out var retcodeProp) ? retcodeProp.GetInt32() : -1;

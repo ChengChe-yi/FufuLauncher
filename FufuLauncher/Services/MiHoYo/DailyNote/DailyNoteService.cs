@@ -80,8 +80,20 @@ public sealed class DailyNoteService
 
             if (retcode == 1034)
             {
-                json = await TrySolveChallengeAsync(playerQuery, ctx, json);
-                (retcode, message) = ParseResponse(json);
+                string challenged = await TrySolveChallengeAsync(playerQuery, ctx, json);
+                var (challengeRetcode, challengeMessage) = ParseResponse(challenged);
+
+                if (challengeRetcode == 0)
+                {
+                    json = challenged;
+                    (retcode, message) = (challengeRetcode, challengeMessage);
+                }
+                else
+                {
+                    // 验证后重试仍未通过：保持 1034，交由下面的 widget 兜底通道再试。
+                    Debug.WriteLine(
+                        $"[DailyNoteService] 验证后重试 retcode={challengeRetcode}，转 widget 兜底");
+                }
             }
 
             if (retcode == 5003 || retcode == 1034)

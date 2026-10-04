@@ -217,16 +217,27 @@ public sealed partial class DeviceInfoWindow : Window
 
     private async void OnSaveClick(object sender, RoutedEventArgs e)
     {
+        // device_id 必须为 16 位 hex。
         string deviceId = DeviceIdBox.Text.Trim();
-        if (deviceId.Length == 0)
+        if (!MiHoYoDeviceIdentity.IsValidDeviceId(deviceId))
         {
             SetStatus("DeviceInfo_DeviceIdRequired".GetLocalized());
             return;
         }
 
-        if (!MiHoYoDeviceIdentity.IsValidDeviceId(deviceId))
+        // seed_id / seed_time 也必须合法：否则下次读取会被判为不可用而重新生成，
+        // 用户这次保存的内容会被静默覆盖。
+        string seedId = SeedIdBox.Text.Trim();
+        if (!MiHoYoDeviceIdentity.IsValidSeedId(seedId))
         {
-            SetStatus("DeviceInfo_DeviceIdRequired".GetLocalized());
+            SetStatus("DeviceInfo_SeedIdInvalid".GetLocalized());
+            return;
+        }
+
+        string seedTime = SeedTimeBox.Text.Trim();
+        if (!MiHoYoDeviceIdentity.IsValidSeedTime(seedTime))
+        {
+            SetStatus("DeviceInfo_SeedTimeInvalid".GetLocalized());
             return;
         }
 
@@ -237,8 +248,8 @@ public sealed partial class DeviceInfoWindow : Window
             {
                 DeviceId = deviceId,
                 DeviceFp = DeviceFpBox.Text.Trim(),
-                SeedId = SeedIdBox.Text.Trim(),
-                SeedTime = SeedTimeBox.Text.Trim(),
+                SeedId = seedId,
+                SeedTime = seedTime,
             };
 
             await _deviceFpService.SaveIdentityAsync(identity);

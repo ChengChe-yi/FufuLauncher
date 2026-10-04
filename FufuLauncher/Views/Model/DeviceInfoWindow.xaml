@@ -57,7 +57,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
-                <TextBlock Text="{helpers:Loc Key=DeviceInfo_Account}" Style="{StaticResource DeviceFieldLabelStyle}" />
+                <TextBlock Text="{helpers:Loc Key=DeviceInfo_Device}" Style="{StaticResource DeviceFieldLabelStyle}" />
                 <TextBlock x:Name="ScopeText" Style="{StaticResource DeviceFieldLabelStyle}" FontWeight="SemiBold" />
             </StackPanel>
 
