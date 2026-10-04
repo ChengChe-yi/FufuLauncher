@@ -28,10 +28,6 @@ public sealed class DailyNoteService
 
     private const string Page = "v6.6.1-gr-cn_#/ys";
 
-    /// <summary>成对请求之间的自然间隔（毫秒），对齐真实客户端节奏。</summary>
-    private const int PairIntervalMinMs = 1500;
-    private const int PairIntervalMaxMs = 3000;
-
     private static readonly SemaphoreSlim _semaphore = new(1, 1);
     private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
 
@@ -114,6 +110,8 @@ public sealed class DailyNoteService
     /// <summary>
     /// index 预热：best-effort，失败不影响后续便签请求。
     /// <para>复刻真实客户端的成对调用顺序，降低单独请求便签被风控的概率。</para>
+    /// <para>真实客户端两次请求连续发出（实测间隔仅约 157ms，即请求自身耗时），
+    /// 故此处不插入额外等待，以免无谓地拖慢便签显示。</para>
     /// </summary>
     private async Task WarmUpPlayerInfoAsync(string playerQuery, AccountContext ctx)
     {
@@ -121,8 +119,6 @@ public sealed class DailyNoteService
         {
             string query = $"avatar_list_type=1&{playerQuery}";
             await RequestAsync($"{RecordApiBase}{IndexPath}?{query}", ctx, challenge: null);
-
-            await Task.Delay(Random.Shared.Next(PairIntervalMinMs, PairIntervalMaxMs));
         }
         catch (Exception ex)
         {
