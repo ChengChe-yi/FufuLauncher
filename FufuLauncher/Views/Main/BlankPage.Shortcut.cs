@@ -56,7 +56,7 @@ public sealed partial class BlankPage
 
             var appPath = Environment.ProcessPath;
 
-            var presetsDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "Presets");
+            var presetsDir = AppPaths.PluginPresetsDir;
             var presets = new List<PresetModel>();
 
             if (Directory.Exists(presetsDir))
@@ -82,6 +82,24 @@ public sealed partial class BlankPage
                 Margin = new Thickness(0, 10, 0, 0)
             };
 
+            var defaultShortcutName = Path.GetFileNameWithoutExtension("FileName_ShortcutName".GetLocalized());
+            var nameTextBox = new TextBox
+            {
+                Text = defaultShortcutName,
+                PlaceholderText = "Placeholder_ShortcutName".GetLocalized(),
+                Width = 300,
+                Margin = new Thickness(0, 10, 0, 0)
+            };
+            bool nameEdited = false;
+            nameTextBox.TextChanged += (_, _) => nameEdited = true;
+            presetComboBox.SelectionChanged += (_, _) =>
+            {
+                if (!nameEdited && presetComboBox.SelectedItem is PresetModel preset)
+                {
+                    nameTextBox.Text = string.IsNullOrWhiteSpace(preset.Name) ? defaultShortcutName : preset.Name;
+                }
+            };
+
             var customParamsObj = await localSettings.ReadSettingAsync("CustomLaunchParameters");
             var customLaunchParams = customParamsObj as string;
             string customParamsDisplay = string.IsNullOrWhiteSpace(customLaunchParams) ? "None_Value".GetLocalized() : customLaunchParams;
@@ -91,6 +109,8 @@ public sealed partial class BlankPage
             contentPanel.Children.Add(new TextBlock { Text = string.Format("Msg_ImportedLaunchParams_Format".GetLocalized(), customParamsDisplay), Opacity = 0.7, TextWrapping = TextWrapping.Wrap });
             contentPanel.Children.Add(new TextBlock { Text = "Label_SpecifyInjectionPreset".GetLocalized(), Margin = new Thickness(0, 5, 0, 0) });
             contentPanel.Children.Add(presetComboBox);
+            contentPanel.Children.Add(new TextBlock { Text = "Label_ShortcutName".GetLocalized(), Margin = new Thickness(0, 5, 0, 0) });
+            contentPanel.Children.Add(nameTextBox);
 
             var choiceDialog = new ContentDialog
             {
@@ -128,7 +148,23 @@ public sealed partial class BlankPage
             if (choiceResult == ContentDialogResult.Primary)
             {
                 var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-                var shortcutPath = Path.Combine(desktopPath, "FileName_ShortcutName".GetLocalized());
+
+                var shortcutName = string.IsNullOrWhiteSpace(nameTextBox.Text)
+                    ? defaultShortcutName
+                    : nameTextBox.Text.Trim();
+                foreach (var invalidChar in Path.GetInvalidFileNameChars())
+                {
+                    shortcutName = shortcutName.Replace(invalidChar.ToString(), string.Empty);
+                }
+                if (string.IsNullOrWhiteSpace(shortcutName))
+                {
+                    shortcutName = defaultShortcutName;
+                }
+                if (!shortcutName.EndsWith(".lnk", StringComparison.OrdinalIgnoreCase))
+                {
+                    shortcutName += ".lnk";
+                }
+                var shortcutPath = Path.Combine(desktopPath, shortcutName);
 
                 Type shellType = Type.GetTypeFromProgID("WScript.Shell");
                 dynamic shell = Activator.CreateInstance(shellType);
