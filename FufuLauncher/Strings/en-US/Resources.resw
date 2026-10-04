@@ -1231,6 +1231,12 @@ Or copy the launch command for use with Steam or scripts?</value>
   <data name="FileName_ShortcutName" xml:space="preserve">
     <value>Launch Genshin Impact.lnk</value>
   </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>Shortcut name</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>Custom name (without .lnk, leave empty for default)</value>
+  </data>
   <data name="Desc_ShortcutDescription" xml:space="preserve">
     <value>Launch Genshin Impact via FufuLauncher injection</value>
   </data>
