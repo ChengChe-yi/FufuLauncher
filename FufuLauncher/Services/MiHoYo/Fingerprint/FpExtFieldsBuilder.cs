@@ -8,19 +8,12 @@ using FufuLauncher.Services.Device;
 
 namespace FufuLauncher.Services.MiHoYo.Fingerprint;
 
-/// <summary>
-/// 指纹专用 <c>ext_fields</c> 组装：设备档案（ROM 级，恒定）+ 设备快照（单元级，每枚换新）。
-/// <para>只做映射与按 <c>ext_list</c> 过滤；不随机取值、不发请求、不持久化。</para>
-/// </summary>
 public static class FpExtFieldsBuilder
 {
-    /// <summary>设备标识不可用时的错误码（<c>OAIDErrorCode.ERROR_NOT_SUPPORT</c>）。</summary>
     public const string DeviceIdErrorCode = "error_1008005";
 
-    /// <summary>宿主包名（米游社 App）。</summary>
     public const string HostPackageName = "com.mihoyo.hyperion";
 
-    /// <summary>宿主包版本。</summary>
     public const string HostPackageVersion = "2.42.0";
 
     private static readonly JsonSerializerOptions JsonOptions = new()
@@ -28,11 +21,6 @@ public static class FpExtFieldsBuilder
         Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
     };
 
-    /// <summary>
-    /// 组装完整 <c>ext_fields</c> 画像。
-    /// <para>恒等关系在此保证：<c>romCapacity == appMemory</c>、
-    /// <c>ramCapacity == sdCapacity</c>、<c>ramRemain - sdRemain == SdFreeDeltaMb</c>。</para>
-    /// </summary>
     public static ExtFields FromSnapshot(MobileDeviceSnapshot snapshot)
     {
         var d = snapshot.Device;
@@ -113,7 +101,6 @@ public static class FpExtFieldsBuilder
         };
     }
 
-    /// <summary>组装并按 <paramref name="allowedKeys"/> 白名单过滤；白名单为空表示不过滤。</summary>
     public static Dictionary<string, object> BuildFiltered(
         MobileDeviceSnapshot snapshot,
         IReadOnlySet<string>? allowedKeys)
@@ -129,15 +116,11 @@ public static class FpExtFieldsBuilder
                   .ToDictionary(kv => kv.Key, kv => kv.Value);
     }
 
-    /// <summary>组装并序列化为 JSON 字符串（即请求体 <c>ext_fields</c> 的值）。</summary>
     public static string BuildJson(
         MobileDeviceSnapshot snapshot,
         IReadOnlySet<string>? allowedKeys = null) =>
         JsonSerializer.Serialize(BuildFiltered(snapshot, allowedKeys), JsonOptions);
 
-    /// <summary>
-    /// 摊平为「JSON 字段名 → 值」字典；键名取自序列化结果，与请求体实际发出的键一致。
-    /// </summary>
     public static Dictionary<string, object> ToFieldDictionary(ExtFields fields)
     {
         using var doc = JsonDocument.Parse(JsonSerializer.Serialize(fields, JsonOptions));

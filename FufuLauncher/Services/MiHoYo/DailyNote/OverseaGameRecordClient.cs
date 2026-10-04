@@ -9,9 +9,6 @@ using FufuLauncher.Services.MiHoYo.Transport;
 
 namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
-/// <summary>
-/// 国际服实时便签：与国服一致，按「先 index、后 dailyNote」的成对顺序取数据。
-/// </summary>
 public sealed class OverseaGameRecordClient
 {
     private static readonly HttpClient _httpClient = new(new HttpClientHandler { UseCookies = false })

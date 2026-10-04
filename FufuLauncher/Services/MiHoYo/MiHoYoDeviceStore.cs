@@ -122,7 +122,6 @@ public sealed class MiHoYoDeviceStore
 
     // ---------------------------------------------------------------- 无锁内核（仅在持锁期间调用）
 
-    /// <summary>读缓存 → 读磁盘。文件不存在或内容不可用时返回 null；IO 失败抛出。</summary>
     private async Task<MiHoYoDeviceIdentity?> ReadCoreAsync(CancellationToken token)
     {
         if (_cached is not null)

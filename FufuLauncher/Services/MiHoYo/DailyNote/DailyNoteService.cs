@@ -14,10 +14,6 @@ using FufuLauncher.Services.MiHoYo.Transport;
 
 namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
-/// <summary>
-/// 国服实时便签：按「先 index、后 dailyNote」的成对顺序取数据。
-/// <para>成对顺序与真实客户端一致；单独请求 dailyNote 更易触发风控。</para>
-/// </summary>
 public sealed class DailyNoteService
 {
     private const string RecordApiBase = "https://api-takumi-record.mihoyo.com/game_record/app/genshin";
@@ -107,12 +103,6 @@ public sealed class DailyNoteService
         finally { _semaphore.Release(); }
     }
 
-    /// <summary>
-    /// index 预热：best-effort，失败不影响后续便签请求。
-    /// <para>复刻真实客户端的成对调用顺序，降低单独请求便签被风控的概率。</para>
-    /// <para>真实客户端两次请求连续发出（实测间隔仅约 157ms，即请求自身耗时），
-    /// 故此处不插入额外等待，以免无谓地拖慢便签显示。</para>
-    /// </summary>
     private async Task WarmUpPlayerInfoAsync(string playerQuery, AccountContext ctx)
     {
         try
@@ -126,7 +116,6 @@ public sealed class DailyNoteService
         }
     }
 
-    /// <summary>Cookie 过期时刷新并重试一次；无法恢复时返回 null。</summary>
     private async Task<string?> RetryWithRefreshedCookiesAsync(
         AccountManager accountManager, string activeId, string playerQuery, AccountContext ctx)
     {
@@ -157,7 +146,6 @@ public sealed class DailyNoteService
         return retcode == 10001 ? null : json;
     }
 
-    /// <summary>遇到 1034 风控时尝试过极验验证；无论成功与否都返回可继续解析的响应。</summary>
     private async Task<string> TrySolveChallengeAsync(string playerQuery, AccountContext ctx, string fallback)
     {
         var localSettingsService = App.GetService<ILocalSettingsService>();
@@ -178,7 +166,6 @@ public sealed class DailyNoteService
             $"{RecordApiBase}{DailyNotePath}?{playerQuery}", ctx, xrpcChallenge);
     }
 
-    /// <summary>便签的 widget 兜底通道（X6 salt + stoken cookie）。</summary>
     private async Task<string> RequestWidgetAsync(AccountContext ctx)
     {
         string url = RecordApiBase + WidgetPath;
@@ -202,7 +189,6 @@ public sealed class DailyNoteService
         return await resp.Content.ReadAsStringAsync();
     }
 
-    /// <summary>game_record 系通用 GET（X4 salt + Full cookie）。</summary>
     private async Task<string> RequestAsync(string apiUrl, AccountContext ctx, string? challenge)
     {
         string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
@@ -227,7 +213,6 @@ public sealed class DailyNoteService
         return await resp.Content.ReadAsStringAsync();
     }
 
-    /// <summary>query 按序号排序（DS 计算的输入要求）。</summary>
     private static string SortedQuery(string url) =>
         string.Join("&", new Uri(url).Query.TrimStart('?')
             .Split('&', StringSplitOptions.RemoveEmptyEntries)
