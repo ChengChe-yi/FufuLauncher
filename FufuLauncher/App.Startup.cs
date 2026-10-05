@@ -34,6 +34,8 @@ public partial class App
 
             await VerifyResourceFilesAsync();
 
+            await ApplyLanguageSettingAsync();
+
             var localUids = await LoadUidLookupAsync();
             if (await EnforceBanListAsync(localUids))
             {
@@ -42,13 +44,10 @@ public partial class App
 
             if (!AppPaths.IsFirstRun)
             {
-                await ApplyLanguageSettingAsync();
                 await SetDefaultThemeAsync();
             }
             else
             {
-                await ApplyLanguageSettingAsync();
-
                 WeakReferenceMessenger.Default.Register<Messages.AgreementAcceptedMessage>(this, (r, m) =>
                 {
                     WeakReferenceMessenger.Default.Unregister<Messages.AgreementAcceptedMessage>(r);
