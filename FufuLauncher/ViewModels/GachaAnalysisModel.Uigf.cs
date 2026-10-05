@@ -241,6 +241,7 @@ public partial class GachaAnalysisModel
 
             if (!await HandleUidMismatchAsync(importUid)) { IsFetching = false; return; }
 
+            _archiveSelectionOverride = true;
             _currentUid = importUid;
 
             if (_savedMetadata.Count == 0)

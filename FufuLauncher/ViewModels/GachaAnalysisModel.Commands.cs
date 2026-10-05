@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Models;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
@@ -14,13 +15,18 @@ public partial class GachaAnalysisModel
     [RelayCommand]
     private async Task SwitchUidAsync(string uid)
     {
-        if (string.IsNullOrEmpty(uid) || uid == _currentUid) return;
+        if (IsFetching || IsScraping || string.IsNullOrEmpty(uid) || uid == _currentUid) return;
+        var account = _accountManager.GetActiveAccountEntry();
+        var role = account?.GameRoles?.FirstOrDefault(r => r.game_uid == uid);
+        _archiveSelectionOverride = true;
+        if (role != null) await RoleService.SelectAsync(account!.Id, role, RoleSelection);
         await SwitchToUidAsync(uid);
     }
 
     [RelayCommand]
     private async Task AddNewUserAsync()
     {
+        _archiveSelectionOverride = true;
         if (!string.IsNullOrEmpty(_currentUid))
         {
             SaveGachaLogsToDb();

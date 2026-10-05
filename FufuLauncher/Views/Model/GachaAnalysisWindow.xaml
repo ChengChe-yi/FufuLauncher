@@ -47,6 +47,7 @@
 
                 <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
                 <converters:BoolInverter x:Key="BoolInverter" />
+                <converters:GachaUidDisplayConverter x:Key="GachaUidDisplayConverter" />
                 <converters:CountToColorConverter x:Key="CountToColorConverter" />
                 <converters:TotalToPrimogemsConverter x:Key="TotalToPrimogemsConverter" />
                 <converters:EmptyCountToVisibilityConverter x:Key="CountToEmptyVisibilityConverter" />
@@ -321,6 +322,21 @@
         </Grid>
 
         <Grid Margin="24,64,24,12">
+            <ComboBox x:Name="UidComboBox"
+                                  ItemsSource="{x:Bind ViewModel.UidComboItems}"
+                                  SelectedItem="{x:Bind ViewModel.SelectedUid, Mode=TwoWay}"
+                                  PlaceholderText="{helpers:Loc Key=GameRole_Select}"
+                                  Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="1"
+                                  ToolTipService.ToolTip="{helpers:Loc Key=GameRole_Hint}"
+                                  IsEnabled="{Binding ViewModel.CanSwitchRole}"
+                                  SelectionChanged="OnUidComboBoxSelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource GachaUidDisplayConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
             <ProgressRing x:Name="LoadingRing" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40"
                           Height="40"
                           IsActive="{Binding ViewModel.IsDataLoaded, Converter={StaticResource BoolInverter}}" />
@@ -341,8 +357,12 @@
                                TextAlignment="Center" />
                 </StackPanel>
 
+                <ScrollViewer HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Disabled"
+                              MaxWidth="960" Padding="8">
                 <StackPanel Orientation="Horizontal" Spacing="16" HorizontalAlignment="Center">
                     <Button Click="OnMiYouSheLoginClick" HorizontalAlignment="Stretch" Padding="0"
+                            IsEnabled="{Binding ViewModel.IsFetching, Converter={StaticResource BoolInverter}}"
                             Shadow="{StaticResource SharedShadow}" Translation="0,0,8">
                         <Grid Width="220" Height="160" Padding="20">
                             <Grid.RowDefinitions>
@@ -367,7 +387,28 @@
                         </Grid>
                     </Button>
 
+                    <Button Click="OnGameCacheFetchClick" HorizontalAlignment="Stretch" Padding="0"
+                            IsEnabled="{Binding ViewModel.IsFetching, Converter={StaticResource BoolInverter}}"
+                            Shadow="{StaticResource SharedShadow}" Translation="0,0,8">
+                        <Grid Width="220" Height="160" Padding="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <FontIcon Glyph="&#xE7FC;" FontSize="32" HorizontalAlignment="Center" />
+                            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="4">
+                                <TextBlock Text="{helpers:Loc Key=GachaAnalysis_GetViaGame}" FontWeight="SemiBold"
+                                           FontSize="14" HorizontalAlignment="Center" />
+                                <TextBlock Text="{helpers:Loc Key=GachaAnalysis_GameDesc}" FontSize="12"
+                                           TextWrapping="Wrap" MaxWidth="180"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           HorizontalAlignment="Center" TextAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </Button>
+
                     <Button Click="OnUrlFetchClick" HorizontalAlignment="Stretch" Padding="0"
+                            IsEnabled="{Binding ViewModel.IsFetching, Converter={StaticResource BoolInverter}}"
                             Shadow="{StaticResource SharedShadow}" Translation="0,0,8">
                         <Grid Width="220" Height="160" Padding="20">
                             <Grid.RowDefinitions>
@@ -387,6 +428,7 @@
                     </Button>
 
                     <Button Command="{x:Bind ViewModel.ImportUigfCommand}" HorizontalAlignment="Stretch" Padding="0"
+                            IsEnabled="{Binding ViewModel.IsFetching, Converter={StaticResource BoolInverter}}"
                             Shadow="{StaticResource SharedShadow}" Translation="0,0,8">
                         <Grid Width="220" Height="160" Padding="20">
                             <Grid.RowDefinitions>
@@ -405,6 +447,7 @@
                         </Grid>
                     </Button>
                 </StackPanel>
+                </ScrollViewer>
 
                 <StackPanel x:Name="EmptyStateStatusPanel" Spacing="8" HorizontalAlignment="Center"
                             Visibility="{Binding ViewModel.IsFetching, Converter={StaticResource BoolToVisibilityConverter}}">
@@ -428,14 +471,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
-                        <ComboBox x:Name="UidComboBox"
-                                  ItemsSource="{x:Bind ViewModel.UidComboItems}"
-                                  SelectedItem="{x:Bind ViewModel.SelectedUid, Mode=TwoWay}"
-                                  Width="150"
-                                  IsEnabled="{Binding ViewModel.IsFetching, Converter={StaticResource BoolInverter}}"
-                                  SelectionChanged="OnUidComboBoxSelectionChanged" />
-
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8" Margin="208,0,0,0">
                         <Border CornerRadius="8" Padding="3"
                                 Background="{ThemeResource SafeCardBrush}"
                                 BorderBrush="{ThemeResource SafeBorderBrush}" BorderThickness="1"
@@ -486,6 +522,11 @@
                                             </MenuFlyoutItem.Icon>
                                         </MenuFlyoutItem>
                                     </MenuFlyoutSubItem>
+                                    <MenuFlyoutItem Text="{helpers:Loc Key=GachaAnalysis_GetViaGame}" Click="OnGameCacheFetchClick">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon Glyph="&#xE7FC;" FontSize="14" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
                                     <MenuFlyoutItem Text="{helpers:Loc Key=GachaAnalysis_GetViaUrl}" Click="OnUrlFetchClick">
                                         <MenuFlyoutItem.Icon>
                                             <FontIcon Glyph="&#xE71B;" FontSize="14" />
@@ -550,6 +591,8 @@
                                          Visibility="{Binding ViewModel.IsScraping, Converter={StaticResource BoolToVisibilityConverter}}" />
                         </Grid>
                         <TextBlock Text="{x:Bind ViewModel.CrawlerStatus, Mode=OneWay}" FontSize="11"
+                                   TextTrimming="CharacterEllipsis"
+                                   ToolTipService.ToolTip="{x:Bind ViewModel.CrawlerStatus, Mode=OneWay}"
                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextAlignment="Left" />
                     </StackPanel>
                 </Grid>

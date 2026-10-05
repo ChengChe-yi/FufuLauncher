@@ -104,6 +104,7 @@ public partial class App
                 services.AddSingleton<IUidLookupService, Services.UID.UidLookupService>();
 
                 services.AddSingleton<AccountManager>();
+                services.AddSingleton<GameRoleService>();
                 services.AddSingleton<Services.Device.MobileDeviceService>();
                 services.AddSingleton<Services.MiHoYo.MiHoYoDeviceStore>();
                 services.AddSingleton<Services.MiHoYo.Fingerprint.DeviceFpService>();

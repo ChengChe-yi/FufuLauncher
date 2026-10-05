@@ -34,6 +34,9 @@ public class AccountEntry
     {
         get; set;
     }
+    // Per community account: the selected Genshin role and the last verified bindings.
+    public string GameRegion { get; set; } = "";
+    public List<FufuLauncher.Contracts.Services.GameRoleInfo>? GameRoles { get; set; }
     public DateTime LastLoginTime
     {
         get; set;

@@ -7,6 +7,7 @@
     xmlns:helpers="using:FufuLauncher.Helpers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:FufuLauncher.Models"
+    xmlns:views="using:FufuLauncher.Views"
     x:Name="RootPage"
     Loaded="Page_Loaded"
     Unloaded="Page_Unloaded"
@@ -1111,6 +1112,7 @@
                                 <Grid RowSpacing="16">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <StackPanel
@@ -1124,8 +1126,9 @@
                                         <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{helpers:Loc Key=Account_BoundCharacters}" />
                                     </StackPanel>
 
+                                    <views:GameRoleSelector Grid.Row="1" />
                                     <ScrollViewer
-                                        Grid.Row="1"
+                                        Grid.Row="2"
                                         VerticalScrollBarVisibility="Auto"
                                         Visibility="{x:Bind ViewModel.CurrentAccount.HasBoundRole, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <ItemsControl ItemsSource="{x:Bind ViewModel.BoundRoles, Mode=OneWay}">

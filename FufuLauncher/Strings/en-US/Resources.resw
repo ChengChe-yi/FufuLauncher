@@ -3220,6 +3220,33 @@ Go to the Microsoft website to download and install it?</value>
   <data name="GachaAnalysis_GetViaMiyoushe" xml:space="preserve">
     <value>Get via MiYouShe Account</value>
   </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>Get from Game</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>Open wish history in the game
+Bilibili supported; no MiYouShe login</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>Sign in to the game account you want to export, open Wish History, and wait for the records to load. Then select “Start”.
+
+Official CN, Bilibili, and global servers are supported without signing in to MiYouShe. Check that you are using the intended game account.</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>Reading the wish history link from the game...</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>Set the correct game path in the launcher, then open Wish History in the game.</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>No wish history link found. Sign in to the intended game account, open Wish History, and wait for it to load before trying again.</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>Unable to read the wish history link from the game. Reopen Wish History and try again.</value>
+  </data>
   <data name="GachaAnalysis_GetViaUrl" xml:space="preserve">
     <value>Get via URL</value>
   </data>
@@ -6918,4 +6945,18 @@ Error: {0}</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>The duplicate DLL conflict has been resolved. You can restart the game now.</value>
   </data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve"><value>Checking game characters bound to MiYouShe...</value></data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve"><value>Select Game Character</value></data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve"><value>Choose the character whose wish history you want to fetch. Bilibili characters are listed under Irminsul. If your character is missing, cancel and check your MiYouShe bindings, or use Get from Game.</value></data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve"><value>Celestia (Official)</value></data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve"><value>Irminsul (Bilibili)</value></data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve"><value>Celestia</value></data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve"><value>Irminsul</value></data>
+  <data name="GameRole_Select" xml:space="preserve"><value>Switch game role</value></data>
+  <data name="GameRole_Hint" xml:space="preserve"><value>Set the default on Bound Roles. Each feature can independently select a server.</value></data>
+  <data name="GameRole_Refresh" xml:space="preserve"><value>Refresh bound roles</value></data>
+  <data name="GameRole_Unavailable" xml:space="preserve"><value>The selected role is no longer in the binding list. Select a role or refresh.</value></data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve"><value>The fallback Daily Notes response could not confirm the selected role. Enable this role&#x27;s Daily Notes and retry.</value></data>
+  <data name="GameRole_SkyIsland" xml:space="preserve"><value>Celestia</value></data>
+  <data name="GameRole_WorldTree" xml:space="preserve"><value>Irminsul</value></data>
 </root>

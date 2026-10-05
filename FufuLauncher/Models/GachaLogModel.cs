@@ -29,6 +29,9 @@ public class GachaLogResponse
 
 public class GachaLogData
 {
+    [JsonPropertyName("region")]
+    public string? Region { get; set; }
+
     [JsonPropertyName("list")]
     public List<GachaLogItem> List { get; set; } = new();
 }

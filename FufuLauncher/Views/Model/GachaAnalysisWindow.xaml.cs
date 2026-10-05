@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -26,6 +26,19 @@ using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FufuLauncher.Converters
 {
+    public class GachaUidDisplayConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            if (value is not string uid || uid.Length is not (9 or 10) || !uid.All(char.IsAsciiDigit))
+                return value;
+            var region = Models.MiHoYo.ServerRegion.Resolve(uid);
+            return Models.MiHoYo.ServerRegion.IsOversea(region) ? uid : GameRoleDisplay.Archive(uid);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+    }
+
     public class CountToColorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -418,6 +431,9 @@ namespace FufuLauncher.Views
                 });
                 await tcs.Task;
             };
+
+            ViewModel.SubscribeToRoleChanges();
+            Closed += (_, _) => ViewModel.CleanupRoleChanges();
 
             ViewModel.PropertyChanged += (s, e) =>
             {
@@ -826,6 +842,7 @@ namespace FufuLauncher.Views
 
         private async void OnDeleteGachaDataClick(object sender, RoutedEventArgs e)
         {
+            var deleteUid = ViewModel.SelectedUid;
             if (string.IsNullOrEmpty(ViewModel.SelectedUid))
             {
                 var noDataDialog = new ContentDialog
@@ -851,7 +868,7 @@ namespace FufuLauncher.Views
             };
 
             ContentDialogResult result = await deleteDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary) await ViewModel.ClearGachaDataAsync();
+            if (result == ContentDialogResult.Primary) await ViewModel.ClearGachaDataAsync(deleteUid);
         }
 
         private async void OnMiYouSheLoginClick(object sender, RoutedEventArgs e)
@@ -871,11 +888,11 @@ namespace FufuLauncher.Views
 
         private async Task PerformMiYouSheFetchAsync(bool incremental)
         {
-            var localSettingsService = App.GetService<ILocalSettingsService>();
-            var isOsObj = await localSettingsService.ReadSettingAsync("IsInternationalAccount");
-            bool isInternational = isOsObj is bool isOs && isOs;
+            if (ViewModel.IsFetching || ViewModel.IsScraping) return;
+            var accountManager = App.GetService<AccountManager>();
+            var hasCnAccount = accountManager.GetAllAccounts().Any(a => a.ServerType == "cn");
 
-            if (isInternational)
+            if (!hasCnAccount && accountManager.GetActiveAccountEntry()?.ServerType == "os")
             {
                 var osDialog = new ContentDialog
                 {
@@ -889,11 +906,7 @@ namespace FufuLauncher.Views
                 return;
             }
 
-            var accountManager = App.GetService<AccountManager>();
-            var activeAccount = accountManager.GetActiveAccountEntry();
-            var isLoggedIn = activeAccount != null && !string.IsNullOrEmpty(activeAccount.GameUid);
-
-            if (!isLoggedIn)
+            if (!hasCnAccount)
             {
                 var dialog = new ContentDialog
                 {
@@ -910,11 +923,33 @@ namespace FufuLauncher.Views
                 return;
             }
 
-            ViewModel.FetchFromMiYouSheCommand.Execute(incremental);
+            await ViewModel.FetchFromMiYouSheCommand.ExecuteAsync(incremental);
+        }
+
+        private async void OnGameCacheFetchClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsFetching || ViewModel.IsScraping) return;
+            var dialog = new ContentDialog
+            {
+                Title = "GachaAnalysis_GetViaGame".GetLocalized(),
+                Content = new TextBlock
+                {
+                    Text = "GachaAnalysis_CacheInstructions".GetLocalized(),
+                    TextWrapping = TextWrapping.Wrap,
+                    MaxWidth = 440
+                },
+                PrimaryButtonText = "GachaAnalysis_CacheStart".GetLocalized(),
+                CloseButtonText = "CancelBtn".GetLocalized(),
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = Content.XamlRoot
+            };
+            if (await dialog.ShowAsync() == ContentDialogResult.Primary)
+                await ViewModel.FetchFromGameCacheCommand.ExecuteAsync(null);
         }
 
         private async void OnUrlFetchClick(object sender, RoutedEventArgs e)
         {
+            if (ViewModel.IsFetching || ViewModel.IsScraping) return;
             var urlBox = new TextBox
             {
                 AcceptsReturn = true,
@@ -963,12 +998,13 @@ namespace FufuLauncher.Views
             DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, async () =>
             {
                 await ViewModel.LoadSavedGachaDataAsync();
+                await ViewModel.InitializeSharedRolesAsync();
             });
         }
 
         private async void OnUidComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sender is not ComboBox combo) return;
+            if (ViewModel.IsUpdatingRoleList || sender is not ComboBox combo) return;
             if (combo.SelectedItem is not string selected) return;
 
             System.Diagnostics.Debug.WriteLine($"[Gacha] OnUidComboBoxSelectionChanged: selected={selected}, ViewModel.SelectedUid={ViewModel.SelectedUid}");
