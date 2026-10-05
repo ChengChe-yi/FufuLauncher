@@ -99,7 +99,7 @@ public partial class SettingsViewModel : ObservableRecipient
         set
         {
             var clampedValue = double.IsNaN(value) ? 0.0 : Math.Clamp(value, 0.0, 60.0);
-            if (SetProperty(ref _betterGIStartupDelaySeconds, clampedValue))
+            if (SetProperty(ref _betterGIStartupDelaySeconds, clampedValue) && !_isInitializing)
             {
                 _ = _localSettingsService.SaveSettingAsync("BetterGIStartupDelaySeconds", clampedValue);
             }
@@ -317,6 +317,8 @@ public partial class SettingsViewModel : ObservableRecipient
         _accountManager = accountManager;
         _authTicketService = authTicketService;
         _dispatcherQueue = App.MainWindow.DispatcherQueue;
+
+        RegisterSettingSections();
 
         InitializeDefaultResolution();
 

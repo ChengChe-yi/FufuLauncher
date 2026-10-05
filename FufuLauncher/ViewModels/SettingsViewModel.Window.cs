@@ -43,18 +43,21 @@ public partial class SettingsViewModel
 
     partial void OnIsSaveWindowSizeEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         Debug.WriteLine($"SettingsViewModel: 保存窗口大小记忆设置 {value}");
         _ = _localSettingsService.SaveSettingAsync("IsSaveWindowSizeEnabled", value);
     }
 
     partial void OnIsMinWindowSizeLimitEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsMinWindowSizeLimitEnabled", value);
         WeakReferenceMessenger.Default.Send(new MinWindowSizeLimitChangedMessage(value));
     }
 
     partial void OnMinimizeToTrayChanged(bool value)
     {
+        if (_isInitializing) return;
         Debug.WriteLine($"SettingsViewModel: 保存托盘设置 {value}");
         _ = _localSettingsService.SaveSettingAsync("MinimizeToTray", value);
         WeakReferenceMessenger.Default.Send(new MinimizeToTrayChangedMessage(value));
@@ -74,9 +77,16 @@ public partial class SettingsViewModel
             return;
         }
 
+        var wasInitializing = _isInitializing;
         _isInitializing = true;
-        IsStartupEnabled = !enabled;
-        _isInitializing = false;
+        try
+        {
+            IsStartupEnabled = !enabled;
+        }
+        finally
+        {
+            _isInitializing = wasInitializing;
+        }
 
         await _localSettingsService.SaveSettingAsync(LocalSettingsService.IsStartupEnabledKey, !enabled);
 

@@ -34,7 +34,9 @@ public partial class SettingsViewModel
 
     partial void OnAppProcessPriorityChanged(AppProcessPriority value)
     {
-        _localSettingsService.SaveSettingAsync("AppProcessPriority", (int)value);
+        if (!_isInitializing)
+            _localSettingsService.SaveSettingAsync("AppProcessPriority", (int)value);
+
         ApplyProcessPriority(value);
     }
 
@@ -64,12 +66,14 @@ public partial class SettingsViewModel
 
     partial void OnIsBetterGIIntegrationEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         Debug.WriteLine($"SettingsViewModel: BetterGI联动设置变更为 {value}");
         _ = _localSettingsService.SaveSettingAsync("IsBetterGIIntegrationEnabled", value);
     }
 
     partial void OnIsBetterGICloseOnExitEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         Debug.WriteLine($"SettingsViewModel: BetterGI 关闭随游戏退出设置变更为 {value}");
         _ = _localSettingsService.SaveSettingAsync("IsBetterGICloseOnExitEnabled", value);
     }

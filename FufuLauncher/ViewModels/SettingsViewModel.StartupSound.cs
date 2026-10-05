@@ -46,6 +46,7 @@ public partial class SettingsViewModel
 
     partial void OnIsStartupSoundEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         Debug.WriteLine($"SettingsViewModel: 保存启动语音开关 {value}");
         _ = _localSettingsService.SaveSettingAsync("IsStartupSoundEnabled", value);
     }

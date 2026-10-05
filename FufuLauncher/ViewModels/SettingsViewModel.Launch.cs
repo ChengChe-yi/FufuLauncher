@@ -16,6 +16,7 @@ public partial class SettingsViewModel
     {
         if (value == null) return;
         _postLaunchBehavior = value.Value;
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("PostLaunchBehavior", value.Value.ToString());
     }
 
@@ -59,6 +60,7 @@ public partial class SettingsViewModel
 
     partial void OnCustomGameExeNameChanged(string value)
     {
+        if (_isInitializing) return;
         _localSettingsService.SaveSettingAsync(GameExeManager.CustomExeNameKey, value);
     }
 
@@ -142,6 +144,7 @@ public partial class SettingsViewModel
 
     partial void OnCustomLaunchParametersChanged(string value)
     {
+        if (_isInitializing) return;
         _localSettingsService.SaveSettingAsync("CustomLaunchParameters", value);
     }
 

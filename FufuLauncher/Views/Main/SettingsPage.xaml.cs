@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+using System.Diagnostics;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -20,11 +21,13 @@ public sealed partial class SettingsPage : Page
     private DispatcherTimer? _navLockTimer;
 
     private static readonly string[] _sectionTags =
-        { "AppearanceItem", "HomeCardsItem", "GameAnnouncementItem", "WidgetsItem", "NotesItem", "HomeTextItem",
-          "BackgroundItem", "WindowEffectsItem",
-          "LaunchConfigItem", "ScreenshotSettingsItem", "CheckinSettingsItem",
-          "LanguageItem", "WindowBehaviorItem", "StartupItem", "StartupSoundItem", "AdvancedOptionsItem", "StoragePathItem", "UpdateItem",
-          "AboutItem", "SecurityAuthItem" };
+        { SettingsSectionIds.Appearance, SettingsSectionIds.HomeCards, SettingsSectionIds.GameAnnouncement,
+          SettingsSectionIds.Widgets, SettingsSectionIds.Notes, SettingsSectionIds.HomeText,
+          SettingsSectionIds.Background, SettingsSectionIds.WindowEffects,
+          SettingsSectionIds.LaunchConfig, SettingsSectionIds.Screenshots, SettingsSectionIds.Checkin,
+          SettingsSectionIds.Language, SettingsSectionIds.WindowBehavior, SettingsSectionIds.Startup,
+          SettingsSectionIds.StartupSound, SettingsSectionIds.AdvancedOptions, SettingsSectionIds.StoragePaths,
+          SettingsSectionIds.Updates, SettingsSectionIds.About, SettingsSectionIds.SecurityAuth };
 
     private readonly List<SettingsSearchResult> _searchIndex = new();
     private FrameworkElement? _highlightedRow;
@@ -33,7 +36,8 @@ public sealed partial class SettingsPage : Page
 
     private bool _isRecordingHotkey;
 
-    private bool _injectionModuleLoaded = false;
+    private bool _injectionModuleSelectionReady;
+    private string? _appliedInjectionModuleId;
 
     #endregion
 
@@ -49,6 +53,8 @@ public sealed partial class SettingsPage : Page
         ViewModel = App.GetService<SettingsViewModel>();
         DataContext = ViewModel;
         InitializeComponent();
+
+        ViewModel.SectionLoadCompleted += OnSettingsSectionLoadCompletedAsync;
     }
 
     protected async override void OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
@@ -59,11 +65,6 @@ public sealed partial class SettingsPage : Page
         {
             await ViewModel.ReloadSettingsAsync();
         }
-
-        await LoadInjectionModuleSelectionAsync();
-        await UpdateApplyPredownloadRowVisibilityAsync();
-        await UpdateDeviceInfoRowVisibilityAsync();
-        await RefreshModTrustUiAsync();
     }
 
     private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -76,6 +77,35 @@ public sealed partial class SettingsPage : Page
             SettingsNavigationView.SelectedItem = SettingsNavigationView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault();
         }
         _isNavigatingFromMenu = false;
+    }
+
+    private async Task OnSettingsSectionLoadCompletedAsync(string sectionId)
+    {
+        try
+        {
+            switch (sectionId)
+            {
+                case SettingsSectionIds.LaunchConfig:
+                    await LoadInjectionModuleSelectionAsync();
+                    break;
+
+                case SettingsSectionIds.AdvancedOptions:
+                    await UpdateDeviceInfoRowVisibilityAsync();
+                    break;
+
+                case SettingsSectionIds.Updates:
+                    await UpdateApplyPredownloadRowVisibilityAsync();
+                    break;
+
+                case SettingsSectionIds.SecurityAuth:
+                    await RefreshModTrustUiAsync();
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[SettingsPage] 分区 {sectionId} 界面刷新失败: {ex.Message}");
+        }
     }
 
     #endregion
@@ -114,6 +144,8 @@ public sealed partial class SettingsPage : Page
             var saved = await settingsService.ReadSettingAsync("InjectionModule");
             var moduleId = saved?.ToString() ?? "DLL";
 
+            _appliedInjectionModuleId = moduleId;
+
             for (int i = 0; i < InjectionModuleComboBox.Items.Count; i++)
             {
                 if (InjectionModuleComboBox.Items[i] is ComboBoxItem item && item.Tag?.ToString() == moduleId)
@@ -122,21 +154,23 @@ public sealed partial class SettingsPage : Page
                     break;
                 }
             }
+
+            _injectionModuleSelectionReady = true;
         }
         catch { }
     }
 
     private async void InjectionModuleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (!_injectionModuleLoaded)
-        {
-            _injectionModuleLoaded = true;
-            return;
-        }
+        if (!_injectionModuleSelectionReady) return;
 
         if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
         {
             var moduleId = selectedItem.Tag?.ToString() ?? "DLL";
+            if (moduleId == _appliedInjectionModuleId) return;
+
+            _appliedInjectionModuleId = moduleId;
+
             var settingsService = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
             await settingsService.SaveSettingAsync("InjectionModule", moduleId);
         }

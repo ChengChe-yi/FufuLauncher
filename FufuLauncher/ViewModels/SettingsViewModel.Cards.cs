@@ -13,48 +13,57 @@ public partial class SettingsViewModel
 
     partial void OnIsShowWidgetCardEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsShowWidgetCardEnabled", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
 
     partial void OnShowWidgetGachaChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetGacha", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
     partial void OnShowWidgetAchievementChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetAchievement", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
     partial void OnShowWidgetInventoryChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetInventory", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
     partial void OnShowWidgetPlayerRoleChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetPlayerRole", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
     partial void OnShowWidgetDailyNoteWindowChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetDailyNoteWindow", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
     partial void OnShowWidgetVideoChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetVideo", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
     partial void OnShowWidgetBBSChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetBBS", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
 
     partial void OnIsShowPresetCardEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsShowPresetCardEnabled", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
@@ -100,18 +109,21 @@ public partial class SettingsViewModel
 
     partial void OnIsHideGameNewsCardEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsHideGameNewsCardEnabled", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
 
     partial void OnIsHideCheckinCardEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsHideCheckinCardEnabled", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
 
     partial void OnIsHideDailyNoteCardEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsHideDailyNoteCardEnabled", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }

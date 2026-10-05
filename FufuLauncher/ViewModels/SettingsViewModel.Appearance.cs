@@ -21,12 +21,14 @@ public partial class SettingsViewModel
 
     partial void OnLaunchButtonOverlayColorChanged(string value)
     {
+        if (_isInitializing) return;
         _localSettingsService.SaveSettingAsync("LaunchButtonOverlayColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
 
     partial void OnIsAcrylicOverlayEnabledChanged(bool value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsAcrylicOverlayEnabled", value);
         WeakReferenceMessenger.Default.Send(new OverlayStyleChangedMessage(value));
     }
@@ -53,7 +55,8 @@ public partial class SettingsViewModel
 
     partial void OnAppThemeColorChanged(string value)
     {
-        _localSettingsService.SaveSettingAsync("AppThemeColor", value);
+        if (!_isInitializing)
+            _localSettingsService.SaveSettingAsync("AppThemeColor", value);
         
         try
         {
@@ -109,6 +112,8 @@ public partial class SettingsViewModel
             return;
         }
 
+        if (_isInitializing) return;
+
         _ = _localSettingsService.SaveSettingAsync("GlobalBackgroundImageOpacity", clamped);
         WeakReferenceMessenger.Default.Send(new BackgroundImageOpacityChangedMessage(clamped));
     }
@@ -123,6 +128,8 @@ public partial class SettingsViewModel
             return;
         }
 
+        if (_isInitializing) return;
+
         _localSettingsService.SaveSettingAsync("PanelBackgroundOpacity", clamped);
 
         WeakReferenceMessenger.Default.Send(new PanelOpacityChangedMessage(clamped));
@@ -130,31 +137,37 @@ public partial class SettingsViewModel
 
     partial void OnGameNewsCardTextColorChanged(string value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("GameNewsCardTextColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
     partial void OnGameNewsCardTextOpacityChanged(double value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("GameNewsCardTextOpacity", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
     partial void OnLaunchButtonTextColorChanged(string value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("LaunchButtonTextColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
     partial void OnLaunchButtonTextOpacityChanged(double value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("LaunchButtonTextOpacity", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
     partial void OnGameCheckinTextColorChanged(string value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("GameCheckinTextColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
     partial void OnGameCheckinTextOpacityChanged(double value)
     {
+        if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("GameCheckinTextOpacity", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
@@ -169,6 +182,8 @@ public partial class SettingsViewModel
             return;
         }
 
+        if (_isInitializing) return;
+
         _ = _localSettingsService.SaveSettingAsync("GlobalBackgroundOverlayOpacity", clamped);
         WeakReferenceMessenger.Default.Send(new BackgroundOverlayOpacityChangedMessage(clamped));
     }
@@ -181,6 +196,8 @@ public partial class SettingsViewModel
             ContentFrameBackgroundOpacity = clamped;
             return;
         }
+
+        if (_isInitializing) return;
 
         _ = _localSettingsService.SaveSettingAsync("ContentFrameBackgroundOpacity", clamped);
         WeakReferenceMessenger.Default.Send(new FrameBackgroundOpacityChangedMessage(clamped));
