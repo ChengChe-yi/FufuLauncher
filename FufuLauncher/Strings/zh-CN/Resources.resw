@@ -6943,6 +6943,18 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>同名 DLL 冲突已处理完毕，可以重新启动游戏了。</value>
   </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>拒绝访问</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>此设备已被禁止使用芙芙启动器。{0}{0}UID：{1}{0}原因：{2}{0}{0}如果你认为这是误判，可以在此申诉：{0}{3}{0}{0}是否立即打开申诉页面？选择“否”将直接关闭启动器。</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>访问已被服务端撤销</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>该 UID 位于服务端封禁名单中</value>
+  </data>
   <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve"><value>正在查询米游社绑定的游戏角色...</value></data>
   <data name="GachaAnalysis_SelectRole" xml:space="preserve"><value>选择游戏角色</value></data>
   <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve"><value>请选择本次要获取祈愿记录的角色。B服角色显示为“世界树”。未看到目标角色时请取消，检查米游社绑定，或使用“从游戏获取”。</value></data>

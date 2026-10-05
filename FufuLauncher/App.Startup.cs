@@ -26,8 +26,6 @@ public partial class App
 
             _mainDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
 
-            _ = Task.Run(LoadUidLookupAsync);
-
             //全量加载设置
             GetService<ILocalSettingsService>().StartBackgroundLoad();
 
@@ -36,15 +34,20 @@ public partial class App
 
             await VerifyResourceFilesAsync();
 
+            await ApplyLanguageSettingAsync();
+
+            var localUids = await LoadUidLookupAsync();
+            if (await EnforceBanListAsync(localUids))
+            {
+                return;
+            }
+
             if (!AppPaths.IsFirstRun)
             {
-                await ApplyLanguageSettingAsync();
                 await SetDefaultThemeAsync();
             }
             else
             {
-                await ApplyLanguageSettingAsync();
-
                 WeakReferenceMessenger.Default.Register<Messages.AgreementAcceptedMessage>(this, (r, m) =>
                 {
                     WeakReferenceMessenger.Default.Unregister<Messages.AgreementAcceptedMessage>(r);

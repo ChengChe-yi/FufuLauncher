@@ -102,6 +102,7 @@ public partial class App
                 services.AddTransient<PanelPage>();
                 services.AddSingleton<IUserInfoService, UserInfoService>();
                 services.AddSingleton<IUidLookupService, Services.UID.UidLookupService>();
+                services.AddSingleton<Services.UID.BanCheckService>();
 
                 services.AddSingleton<AccountManager>();
                 services.AddSingleton<GameRoleService>();

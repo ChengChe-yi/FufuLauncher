@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.Services.UID;
 
@@ -13,7 +14,6 @@ public class UidLookupService : IUidLookupService
 {
     private const string BeyondLocalRelativePath = @"AppData\LocalLow\miHoYo\原神\BeyondLocal";
 
-    private const string PluginFolderName = "FuFuPlugin";
     private const string JsonFileName = "uids.json";
 
     private readonly JsonSerializerOptions _jsonOptions = new()
@@ -25,8 +25,10 @@ public class UidLookupService : IUidLookupService
     public async Task<IReadOnlyList<string>> LoadAndWriteUidsAsync()
     {
         var entries = ReadUidsFromBeyondLocal();
-        if (entries.Count == 0) return Array.Empty<string>();
+
+       
         await WriteUidsToPluginJsonAsync(entries);
+
         var uids = new string[entries.Count];
         for (var i = 0; i < entries.Count; i++) uids[i] = entries[i].Uid;
         return uids;
@@ -94,10 +96,10 @@ public class UidLookupService : IUidLookupService
 
     private async Task WriteUidsToPluginJsonAsync(List<UidEntry> entries)
     {
+        string? temporaryPath = null;
         try
         {
-            var pluginsRoot = Path.Combine(AppContext.BaseDirectory, "Plugins");
-            var pluginDir = Path.Combine(pluginsRoot, PluginFolderName);
+            var pluginDir = LightweightPluginService.MainPluginDir;
             Directory.CreateDirectory(pluginDir);
 
             var jsonPath = Path.Combine(pluginDir, JsonFileName);
@@ -111,13 +113,31 @@ public class UidLookupService : IUidLookupService
             var payload = new { uids = items };
 
             var json = JsonSerializer.Serialize(payload, _jsonOptions);
-            await File.WriteAllTextAsync(jsonPath, json);
+
+            temporaryPath = jsonPath + ".tmp";
+            await File.WriteAllTextAsync(temporaryPath, json);
+
+            if (File.Exists(jsonPath))
+                File.Replace(temporaryPath, jsonPath, null, true);
+            else
+                File.Move(temporaryPath, jsonPath);
+
+            temporaryPath = null;
 
             Debug.WriteLine($"[UidLookupService] 已写入 {entries.Count} 个 UID 到 {jsonPath}");
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"[UidLookupService] 写入 uids.json 失败 - {ex.Message}");
+
+            if (temporaryPath != null)
+            {
+                try
+                {
+                    if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
+                }
+                catch { }
+            }
         }
     }
 }

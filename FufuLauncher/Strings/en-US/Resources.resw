@@ -6945,6 +6945,18 @@ Error: {0}</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>The duplicate DLL conflict has been resolved. You can restart the game now.</value>
   </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>This device is blocked from using FufuLauncher.{0}{0}UID: {1}{0}Reason: {2}{0}{0}If you believe this is a mistake, you can appeal here:{0}{3}{0}{0}Open the appeal page now? Choosing No will close the launcher.</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>access revoked by the server</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>UID is on the server block list</value>
+  </data>
   <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve"><value>Checking game characters bound to MiYouShe...</value></data>
   <data name="GachaAnalysis_SelectRole" xml:space="preserve"><value>Select Game Character</value></data>
   <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve"><value>Choose the character whose wish history you want to fetch. Bilibili characters are listed under Irminsul. If your character is missing, cancel and check your MiYouShe bindings, or use Get from Game.</value></data>
