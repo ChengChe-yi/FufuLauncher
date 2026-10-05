@@ -2323,9 +2323,13 @@
                                                   IsOn="{x:Bind ViewModel.IsCaptchaNoticeEnabled, Mode=TwoWay}" />
                                 </Grid>
 
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+                                <Rectangle x:Name="DeviceInfoRowDivider"
+                                           Style="{StaticResource RowDividerStyle}"
+                                           Visibility="Collapsed" />
 
-                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                <Grid x:Name="DeviceInfoRow"
+                                      Style="{StaticResource SettingsRowStyle}"
+                                      Visibility="Collapsed">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />

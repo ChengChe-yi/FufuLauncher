@@ -62,6 +62,7 @@ public sealed partial class SettingsPage : Page
 
         await LoadInjectionModuleSelectionAsync();
         await UpdateApplyPredownloadRowVisibilityAsync();
+        await UpdateDeviceInfoRowVisibilityAsync();
         await RefreshModTrustUiAsync();
     }
 

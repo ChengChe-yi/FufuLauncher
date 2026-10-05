@@ -112,6 +112,7 @@ public sealed partial class SettingsPage
         }
 
         sender.ItemsSource = _searchIndex
+            .Where(item => item.Element is { Visibility: Visibility.Visible })
             .Where(item => item.Title.Contains(query, StringComparison.OrdinalIgnoreCase)
                            || item.Section.Contains(query, StringComparison.OrdinalIgnoreCase))
             .Take(12)
@@ -150,7 +151,8 @@ public sealed partial class SettingsPage
         }
 
         var first = _searchIndex.FirstOrDefault(
-            item => item.Title.Contains(query, StringComparison.OrdinalIgnoreCase));
+            item => item.Element is { Visibility: Visibility.Visible }
+                    && item.Title.Contains(query, StringComparison.OrdinalIgnoreCase));
 
         if (first != null)
         {
