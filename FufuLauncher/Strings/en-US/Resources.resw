@@ -6918,4 +6918,16 @@ Error: {0}</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>The duplicate DLL conflict has been resolved. You can restart the game now.</value>
   </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>This device is blocked from using FufuLauncher.{0}{0}UID: {1}{0}Reason: {2}</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>access revoked by the server</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>UID is on the server block list</value>
+  </data>
 </root>

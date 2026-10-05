@@ -6,6 +6,7 @@ using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
+using FufuLauncher.Services.UID;
 using FufuLauncher.Views;
 using Windows.Media.Core;
 using Windows.Media.Playback;
@@ -16,6 +17,9 @@ namespace FufuLauncher;
 public partial class App
 {
     #region Background Tasks
+
+   
+    private const int BanCheckExitCode = 4;
 
     private async Task LoadUidLookupAsync()
     {
@@ -28,6 +32,38 @@ public partial class App
         {
             Debug.WriteLine($"[UidLookup] 写入失败: {ex.Message}");
         }
+
+        await EnforceBanListAsync();
+    }
+
+
+    private async Task EnforceBanListAsync()
+    {
+        BanCheckResult result;
+        try
+        {
+            result = await GetService<Services.UID.BanCheckService>().CheckAsync();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[BanCheck] 检查失败，按放行处理 - {ex.Message}");
+            return;
+        }
+
+        if (!result.ShouldTerminate) return;
+
+        Debug.WriteLine($"[BanCheck] !!! TERMINATING - {result.Outcome} (UID: {result.Uid ?? "n/a"})");
+
+        var message = string.Format(
+            "BanCheck_KilledMessage".GetLocalized(),
+            Environment.NewLine,
+            result.Uid ?? "-",
+            result.Reason);
+
+     
+        MessageBox(IntPtr.Zero, message, "BanCheck_KilledTitle".GetLocalized(), MB_OK | MB_ICONERROR);
+
+        Environment.Exit(BanCheckExitCode);
     }
 
     private async Task PlayStartupSoundDelayedAsync()

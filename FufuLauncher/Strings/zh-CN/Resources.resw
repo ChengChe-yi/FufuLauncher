@@ -6916,4 +6916,16 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>同名 DLL 冲突已处理完毕，可以重新启动游戏了。</value>
   </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>拒绝访问</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>此设备已被禁止使用芙芙启动器。{0}{0}UID：{1}{0}原因：{2}</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>访问已被服务端撤销</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>该 UID 位于服务端封禁名单中</value>
+  </data>
 </root>
