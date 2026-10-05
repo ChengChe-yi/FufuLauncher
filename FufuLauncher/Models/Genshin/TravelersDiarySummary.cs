@@ -24,7 +24,7 @@ public class TravelersDiarySummary
 public class TravelersDiaryData
 {
     [JsonPropertyName("uid")]
-    public int Uid
+    public long Uid
     {
         get; set;
     }

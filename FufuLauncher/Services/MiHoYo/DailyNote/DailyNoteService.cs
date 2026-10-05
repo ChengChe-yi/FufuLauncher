@@ -36,13 +36,13 @@ public sealed class DailyNoteService
             ?? throw new InvalidOperationException("DailyNote_NoIdentityService".GetLocalized());
     }
 
-    public async Task<DailyNoteCardData?> GetDailyNoteAsync(string roleId, string server)
+    public async Task<DailyNoteCardData?> GetDailyNoteAsync(string roleId, string server, string? accountId = null)
     {
         await _semaphore.WaitAsync();
         try
         {
             AccountManager accountManager = App.GetService<AccountManager>();
-            string activeId = accountManager.ActiveAccountId
+            string activeId = accountId ?? accountManager.ActiveAccountId
                 ?? throw new InvalidOperationException("DailyNote_NoActiveAccount".GetLocalized());
 
             var ctx = await _identityService.BuildAsync(activeId);
@@ -92,6 +92,9 @@ public sealed class DailyNoteService
             {
                 json = await RequestWidgetAsync(ctx);
                 (retcode, message) = ParseResponse(json);
+                // The widget request does not specify a role; require proof of the selected role.
+                if (retcode == 0 && !GameRoleResponseValidator.MatchesWidget(json, roleId, server))
+                    throw new InvalidOperationException("GameRole_WidgetMismatch".GetLocalized());
             }
 
             if (retcode != 0)

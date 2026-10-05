@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -31,6 +32,8 @@ public partial class MainViewModel
     [ObservableProperty] private Visibility _showExpeditions = Visibility.Visible;
     [ObservableProperty] private Visibility _showTransformer = Visibility.Visible;
     [ObservableProperty] private bool _isDailyNoteLoaded;
+    [ObservableProperty] private string _dailyNoteStatus = "Home_NoData".GetLocalized();
+    private int _dailyNoteVersion;
 
     public async Task LoadDailyNoteAsync(bool force = false)
     {
@@ -49,41 +52,15 @@ public partial class MainViewModel
             return;
         }
 
+        var version = Interlocked.Increment(ref _dailyNoteVersion);
         try
         {
-            var accountManager = App.GetService<AccountManager>();
-            var activeId = accountManager.ActiveAccountId;
-
-            if (activeId == null)
-            {
-                Debug.WriteLine("[DailyNote] 未找到绑定账号");
-                await ClearDailyNoteDataAsync();
-                return;
-            }
-
-            var cookies = await accountManager.LoadCookiesAsync(activeId);
-            var entry = accountManager.GetActiveAccountEntry();
-            if (cookies == null || entry == null)
-            {
-                await ClearDailyNoteDataAsync();
-                return;
-            }
-
-            var customUid = await _localSettingsService.ReadSettingAsync("CustomCheckinUid");
-            string targetUid = customUid?.ToString()?.Trim();
-
-
-            var uids = await _checkinService.GetBoundUidsAsync(cookies, entry.ServerType);
-            if (uids.Count == 0)
-            {
-                Debug.WriteLine("[DailyNote] 未找到绑定账号");
-                return;
-            }
-
-            string roleId = string.IsNullOrEmpty(targetUid) ? uids[0] : targetUid;
-            string server = ServerRegion.Resolve(roleId);
-
-            var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(roleId, server);
+            await ClearDailyNoteDataAsync(invalidate: false);
+            var roles = App.GetService<GameRoleService>();
+            var selected = await roles.GetCurrentAsync();
+            if (version != _dailyNoteVersion || selected == null) return;
+            var dailyNoteData = await _dailyNoteCardService.LoadCardDataAsync(
+                selected.Role.game_uid, selected.Role.region, selected.AccountId);
 
             if (dailyNoteData == null)
             {
@@ -93,6 +70,7 @@ public partial class MainViewModel
 
             await UpdateUI(() =>
             {
+                if (version != _dailyNoteVersion || !roles.IsCurrent(selected)) return;
                 CurrentResin = dailyNoteData.CurrentResin;
                 MaxResin = dailyNoteData.MaxResin;
                 FinishedTaskNum = dailyNoteData.FinishedTaskNum;
@@ -112,13 +90,19 @@ public partial class MainViewModel
         catch (Exception ex)
         {
             Debug.WriteLine($"[DailyNote] 加载便签数据失败: {ex.Message}");
+            await UpdateUI(() =>
+            {
+                if (version == _dailyNoteVersion) DailyNoteStatus = ex.Message;
+            });
         }
     }
 
-    private async Task ClearDailyNoteDataAsync()
+    private async Task ClearDailyNoteDataAsync(bool invalidate = true)
     {
+        if (invalidate) Interlocked.Increment(ref _dailyNoteVersion);
         await UpdateUI(() =>
         {
+            DailyNoteStatus = "Home_NoData".GetLocalized();
             CurrentResin = 0;
             MaxResin = 0;
             FinishedTaskNum = 0;

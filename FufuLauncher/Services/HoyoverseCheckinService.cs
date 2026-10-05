@@ -93,6 +93,7 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
                 return ("Checkin_NotDetected".GetLocalized(), rolesResult.Message);
 
             var role = SelectRole(rolesResult.Roles, targetUid);
+            if (role == null) return ("Checkin_NotDetected".GetLocalized(), "Checkin_NoBoundAccount".GetLocalized());
             var os = new HoyolabCheckinService();
             await os.InitializeAsync(cookieStr, rolesResult.Roles.Select(ToOsAccountItem).ToList());
 
@@ -109,9 +110,8 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
         await genshin.InitializeAsync(config);
         if (genshin.AccountList.Count == 0)
             return ("Checkin_NotDetectedAccount".GetLocalized(), GameCheckin.LastApiError);
-        var cnAccount = string.IsNullOrEmpty(targetUid)
-            ? genshin.AccountList[0]
-            : genshin.AccountList.FirstOrDefault(a => a.GameUid == targetUid) ?? genshin.AccountList[0];
+        var cnAccount = SelectCnAccount(genshin.AccountList, targetUid);
+        if (cnAccount == null) return ("Checkin_NotDetectedAccount".GetLocalized(), "Checkin_NoBoundAccount".GetLocalized());
         var isSignData = await genshin.IsSignAsync(cnAccount.Region, cnAccount.GameUid, false);
         if (isSignData == null)
             return ("Checkin_GetStatusFailed".GetLocalized(), GameCheckin.LastApiError);
@@ -173,6 +173,7 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
                 return null;
 
             var role = SelectRole(rolesResult.Roles, targetUid);
+            if (role == null) return null;
             var os = new HoyolabCheckinService();
             await os.InitializeAsync(cookieStr, rolesResult.Roles.Select(ToOsAccountItem).ToList());
             return await os.GetResignInfoAsync(role.region, role.game_uid);
@@ -198,6 +199,7 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
                 return (false, rolesResult.Message);
 
             var role = SelectRole(rolesResult.Roles, targetUid);
+            if (role == null) return (false, "Checkin_NoBoundAccount".GetLocalized());
             var os = new HoyolabCheckinService();
             await os.InitializeAsync(cookieStr, rolesResult.Roles.Select(ToOsAccountItem).ToList());
             return await os.ResignAsync(role.region, role.game_uid);
@@ -233,15 +235,15 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
 
         return string.IsNullOrEmpty(targetUid)
             ? accounts[0]
-            : accounts.FirstOrDefault(a => a.GameUid == targetUid) ?? accounts[0];
+            : accounts.FirstOrDefault(a => a.GameUid == targetUid);
     }
 
-    private static GameRoleInfo SelectRole(List<GameRoleInfo> roles, string targetUid)
+    private static GameRoleInfo? SelectRole(List<GameRoleInfo> roles, string targetUid)
     {
         if (string.IsNullOrWhiteSpace(targetUid))
             return roles[0];
 
-        return roles.FirstOrDefault(r => r.game_uid == targetUid) ?? roles[0];
+        return roles.FirstOrDefault(r => r.game_uid == targetUid);
     }
 
     private static OsAccountItem ToOsAccountItem(GameRoleInfo role)

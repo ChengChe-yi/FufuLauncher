@@ -801,7 +801,7 @@
                                     Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                     IsHitTestVisible="False"
                                     Opacity="0.8"
-                                    Text="{helpers:Loc Key=Home_NoData}" />
+                                    Text="{x:Bind ViewModel.DailyNoteStatus, Mode=OneWay}" TextWrapping="Wrap" />
 
                                 <StackPanel
                                     x:Name="DailyNoteDataPanel"
