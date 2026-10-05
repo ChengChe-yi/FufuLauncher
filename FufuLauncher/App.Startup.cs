@@ -26,8 +26,6 @@ public partial class App
 
             _mainDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
 
-            _ = Task.Run(LoadUidLookupAsync);
-
             //全量加载设置
             GetService<ILocalSettingsService>().StartBackgroundLoad();
 
@@ -35,6 +33,12 @@ public partial class App
             await GetService<ConstraintService>().InitializeAsync();
 
             await VerifyResourceFilesAsync();
+
+            var localUids = await LoadUidLookupAsync();
+            if (await EnforceBanListAsync(localUids))
+            {
+                return;
+            }
 
             if (!AppPaths.IsFirstRun)
             {

@@ -32,6 +32,9 @@ public sealed class BanCheckResult
 
     public string Reason { get; init; } = string.Empty;
 
+
+    public string AppealUrl { get; init; } = string.Empty;
+
     public bool ShouldTerminate => Outcome is BanCheckOutcome.Revoked or BanCheckOutcome.Banned;
 }
 
@@ -53,11 +56,16 @@ public sealed class BanCheckService
         _uidLookup = uidLookup;
     }
 
-    public async Task<BanCheckResult> CheckAsync(CancellationToken cancellationToken = default)
+    public async Task<BanCheckResult> CheckAsync(
+        IReadOnlyList<string>? knownUids = null,
+        CancellationToken cancellationToken = default)
     {
         try
         {
-            var localUids = await _uidLookup.LoadAndWriteUidsAsync().ConfigureAwait(false);
+            // Reuse the UIDs the caller already loaded when available; the lookup
+            // both rescans BeyondLocal and rewrites uids.json, so calling it twice
+            // at startup is pure duplicate I/O.
+            var localUids = knownUids ?? await _uidLookup.LoadAndWriteUidsAsync().ConfigureAwait(false);
             if (localUids.Count == 0)
             {
                 Debug.WriteLine("[BanCheck] 本机没有可用 UID，跳过封禁检查");
@@ -73,13 +81,14 @@ public sealed class BanCheckService
                 return new BanCheckResult { Outcome = BanCheckOutcome.Passed };
             }
 
-            if (!payload.Status)
+            if (payload.Status == false)
             {
                 Debug.WriteLine("[BanCheck] 服务端已撤销访问");
                 return new BanCheckResult
                 {
                     Outcome = BanCheckOutcome.Revoked,
-                    Reason = "BanCheck_RevokedReason".GetLocalized()
+                    Reason = "BanCheck_RevokedReason".GetLocalized(),
+                    AppealUrl = ResolveAppealUrl(payload)
                 };
             }
 
@@ -91,7 +100,8 @@ public sealed class BanCheckService
                 {
                     Outcome = BanCheckOutcome.Banned,
                     Uid = matched,
-                    Reason = "BanCheck_BannedReason".GetLocalized()
+                    Reason = "BanCheck_BannedReason".GetLocalized(),
+                    AppealUrl = ResolveAppealUrl(payload)
                 };
             }
 
@@ -123,6 +133,20 @@ public sealed class BanCheckService
         return null;
     }
 
+    private static string ResolveAppealUrl(BanStatusPayload payload)
+    {
+        return IsSafeUrl(payload.AppealUrl) ? payload.AppealUrl! : ApiEndpoints.TelegramContactUrl;
+    }
+
+
+    private static bool IsSafeUrl(string? url)
+    {
+        if (string.IsNullOrWhiteSpace(url)) return false;
+
+        return Uri.TryCreate(url, UriKind.Absolute, out var uri)
+               && (uri.Scheme == Uri.UriSchemeHttps || uri.Scheme == Uri.UriSchemeHttp);
+    }
+
     private static async Task<BanStatusPayload?> FetchAsync(CancellationToken cancellationToken)
     {
         using var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.BanCheckUrl);
@@ -146,7 +170,7 @@ public sealed class BanCheckService
             using var document = JsonDocument.Parse(json);
             var root = document.RootElement;
 
-            bool status;
+            bool? status;
             if (root.TryGetProperty("Status", out var statusElement))
             {
                 status = ReadStatus(statusElement);
@@ -158,6 +182,14 @@ public sealed class BanCheckService
             else
             {
                 Debug.WriteLine("[BanCheck] 响应缺少 Status 字段");
+                return null;
+            }
+
+            if (status == null)
+            {
+                // Unparseable Status must not be read as "revoked": a single
+                // server-side typo would otherwise stop the launcher for everyone.
+                Debug.WriteLine("[BanCheck] Status 字段无法识别，按放行处理");
                 return null;
             }
 
@@ -182,7 +214,15 @@ public sealed class BanCheckService
                 }
             }
 
-            return new BanStatusPayload(status, banned);
+            string? appealUrl = null;
+            if ((root.TryGetProperty("AppealUrl", out var appealElement) ||
+                 root.TryGetProperty("appealUrl", out appealElement)) &&
+                appealElement.ValueKind == JsonValueKind.String)
+            {
+                appealUrl = appealElement.GetString();
+            }
+
+            return new BanStatusPayload(status, banned, appealUrl);
         }
         catch (Exception ex)
         {
@@ -191,14 +231,20 @@ public sealed class BanCheckService
         }
     }
 
-    private static bool ReadStatus(JsonElement element) => element.ValueKind switch
+ 
+    private static bool? ReadStatus(JsonElement element) => element.ValueKind switch
     {
         JsonValueKind.True => true,
         JsonValueKind.False => false,
-        JsonValueKind.String => element.GetString() is "true" or "True",
-        JsonValueKind.Number => element.TryGetInt32(out var number) && number != 0,
-        _ => false
+        JsonValueKind.String => element.GetString()?.Trim().ToLowerInvariant() switch
+        {
+            "true" => true,
+            "false" => false,
+            _ => null
+        },
+        JsonValueKind.Number => element.TryGetInt32(out var number) ? number != 0 : null,
+        _ => null
     };
 
-    private sealed record BanStatusPayload(bool Status, IReadOnlyList<uint> BannedUids);
+    private sealed record BanStatusPayload(bool? Status, IReadOnlyList<uint> BannedUids, string? AppealUrl);
 }

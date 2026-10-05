@@ -21,36 +21,40 @@ public partial class App
    
     private const int BanCheckExitCode = 4;
 
-    private async Task LoadUidLookupAsync()
+    private const uint MB_YESNO = 0x00000004;
+    private const int IDYES = 6;
+
+
+    private async Task<IReadOnlyList<string>> LoadUidLookupAsync()
     {
         try
         {
             var uidService = GetService<IUidLookupService>();
-            await uidService.LoadAndWriteUidsAsync();
+            return await uidService.LoadAndWriteUidsAsync();
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"[UidLookup] 写入失败: {ex.Message}");
+            return Array.Empty<string>();
         }
-
-        await EnforceBanListAsync();
     }
 
 
-    private async Task EnforceBanListAsync()
+
+    private async Task<bool> EnforceBanListAsync(IReadOnlyList<string>? knownUids = null)
     {
         BanCheckResult result;
         try
         {
-            result = await GetService<Services.UID.BanCheckService>().CheckAsync();
+            result = await GetService<Services.UID.BanCheckService>().CheckAsync(knownUids);
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"[BanCheck] 检查失败，按放行处理 - {ex.Message}");
-            return;
+            return false;
         }
 
-        if (!result.ShouldTerminate) return;
+        if (!result.ShouldTerminate) return false;
 
         Debug.WriteLine($"[BanCheck] !!! TERMINATING - {result.Outcome} (UID: {result.Uid ?? "n/a"})");
 
@@ -58,12 +62,80 @@ public partial class App
             "BanCheck_KilledMessage".GetLocalized(),
             Environment.NewLine,
             result.Uid ?? "-",
-            result.Reason);
+            result.Reason,
+            result.AppealUrl);
 
-     
-        MessageBox(IntPtr.Zero, message, "BanCheck_KilledTitle".GetLocalized(), MB_OK | MB_ICONERROR);
+        // MB_YESNO lets the blocked user jump straight to the appeal channel
+        // before the process exits, instead of hitting a dead end.
+        var choice = MessageBox(
+            IntPtr.Zero,
+            message,
+            "BanCheck_KilledTitle".GetLocalized(),
+            MB_YESNO | MB_ICONERROR);
+
+        if (choice == IDYES)
+        {
+            OpenAppealUrl(result.AppealUrl);
+        }
+
+        await RequestShutdownAsync();
+        return true;
+    }
+
+  
+    private async Task RequestShutdownAsync()
+    {
+        try
+        {
+            // Close the shell if it was already created; before that point there is
+            // nothing to close and OnLaunched returns without building one.
+            var window = MainWindow;
+            if (window != null)
+            {
+                await _mainDispatcherQueue.EnqueueAsync(() =>
+                {
+                    try
+                    {
+                        window.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[BanCheck] 关闭主窗口失败 - {ex.Message}");
+                    }
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[BanCheck] 调度关闭失败 - {ex.Message}");
+        }
+
+        // Give queued settings writes a brief window to complete.
+        await Task.Delay(150);
 
         Environment.Exit(BanCheckExitCode);
+    }
+
+  
+    private static void OpenAppealUrl(string? url)
+    {
+        try
+        {
+            if (string.IsNullOrWhiteSpace(url)) return;
+
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
+                (uri.Scheme != Uri.UriSchemeHttps && uri.Scheme != Uri.UriSchemeHttp))
+            {
+                Debug.WriteLine($"[BanCheck] 拒绝打开非 http(s) 申诉链接: {url}");
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo(uri.AbsoluteUri) { UseShellExecute = true });
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[BanCheck] 打开申诉链接失败 - {ex.Message}");
+        }
     }
 
     private async Task PlayStartupSoundDelayedAsync()

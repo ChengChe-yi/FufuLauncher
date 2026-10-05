@@ -6922,7 +6922,7 @@ Error: {0}</value>
     <value>Access Denied</value>
   </data>
   <data name="BanCheck_KilledMessage" xml:space="preserve">
-    <value>This device is blocked from using FufuLauncher.{0}{0}UID: {1}{0}Reason: {2}</value>
+    <value>This device is blocked from using FufuLauncher.{0}{0}UID: {1}{0}Reason: {2}{0}{0}If you believe this is a mistake, you can appeal here:{0}{3}{0}{0}Open the appeal page now? Choosing No will close the launcher.</value>
   </data>
   <data name="BanCheck_RevokedReason" xml:space="preserve">
     <value>access revoked by the server</value>
