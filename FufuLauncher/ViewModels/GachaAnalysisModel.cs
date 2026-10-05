@@ -58,8 +58,9 @@ public partial class GachaAnalysisModel : ObservableObject
     private bool _analysisDashboardDirty = true;
     [ObservableProperty] private string _gachaUrl;
     [ObservableProperty] private string _crawlerStatus = "等待获取数据...";
-    [ObservableProperty] private bool _isFetching;
-    [ObservableProperty] private bool _isScraping;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))] private bool _isFetching;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))] private bool _isScraping;
+    public bool CanSwitchRole => IsDataLoaded && !IsFetching && !IsScraping;
     [ObservableProperty] private GachaStatistic _characterStats = new() { PoolName = "角色活动" };
     [ObservableProperty] private GachaStatistic _weaponStats = new() { PoolName = "武器活动" };
     [ObservableProperty] private GachaStatistic _chronicledStats = new() { PoolName = "集录祈愿" };
@@ -93,7 +94,7 @@ public partial class GachaAnalysisModel : ObservableObject
 
     public const string AddNewUserItem = "＋ 添加新用户";
     [ObservableProperty] private bool _hasGachaData;
-    [ObservableProperty] private bool _isDataLoaded;
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))] private bool _isDataLoaded;
     [ObservableProperty] private bool _isOverviewSelected = true;
     [ObservableProperty] private bool _isAnalysisLoading;
     [ObservableProperty] private bool _isAnalysisReady;
@@ -122,6 +123,12 @@ public partial class GachaAnalysisModel : ObservableObject
         _metadataRepo = metadataRepo;
         _gachaService = new GachaService();
         _accountManager = accountManager;
+    }
+
+    partial void OnIsScrapingChanged(bool value)
+    {
+        if (!value && _pendingRoleSwitch)
+            App.MainWindow.DispatcherQueue.TryEnqueue(async () => await FinishPendingRoleSwitchAsync());
     }
 
     partial void OnIsCharacterFourStarVisibleChanged(bool value)

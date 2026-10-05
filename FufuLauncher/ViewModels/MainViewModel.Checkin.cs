@@ -16,6 +16,7 @@ public partial class MainViewModel
     #region 游戏签到
     private bool _hasAttemptedAutoCheckin = false;
     private bool _isInternationalAccount = false;
+    private int _checkinStatusVersion;
 
     [ObservableProperty] private string _checkinStatusText = "Checkin_LoadingStatus".GetLocalized();
     [ObservableProperty] private bool _isCheckinButtonEnabled = true;
@@ -56,19 +57,21 @@ public partial class MainViewModel
     private async Task LoadCheckinStatusAsync()
     {
         if (_localSettingsService == null) return;
+        var version = ++_checkinStatusVersion;
+        CheckinStatusText = "Checkin_LoadingStatus".GetLocalized();
+        CheckinSummary = "";
+        CheckinStateGlyph = "\uE730";
+        CheckinStateBrush = new SolidColorBrush(Microsoft.UI.Colors.Gray);
 
         var isIntlRaw = await _localSettingsService.ReadSettingAsync("IsInternationalAccount");
         _isInternationalAccount = isIntlRaw != null && isIntlRaw.ToString().ToLower() == "true";
 
         try
         {
-            var targetUidObj = await _localSettingsService.ReadSettingAsync("CustomCheckinUid");
-            string targetUid = targetUidObj?.ToString();
-
-
-            var accountManager = App.GetService<AccountManager>();
-            var activeId = accountManager.ActiveAccountId;
-            if (activeId == null)
+            var roleService = App.GetService<GameRoleService>();
+            var selected = await roleService.GetCurrentAsync();
+            if (version != _checkinStatusVersion) return;
+            if (selected == null)
             {
                 CheckinStatusText = "Checkin_NotLoggedIn".GetLocalized();
                 CheckinSummary = "Checkin_PleaseLogin".GetLocalized();
@@ -76,19 +79,9 @@ public partial class MainViewModel
                 return;
             }
 
-            var cookies = await accountManager.LoadCookiesAsync(activeId);
-            var entry = accountManager.GetActiveAccountEntry();
-            if (cookies == null || entry == null)
-            {
-                CheckinStatusText = "Checkin_CredentialFailed".GetLocalized();
-                CheckinSummary = "Checkin_CredentialUnavailable".GetLocalized();
-                UpdateCheckinIconState("Fail");
-                return;
-            }
-
-            string serverType = entry.ServerType;
-
-            var (status, summary) = await _checkinService.GetCheckinStatusAsync(targetUid, cookies, serverType);
+            var (status, summary) = await _checkinService.GetCheckinStatusAsync(
+                selected.Role.game_uid, selected.Cookies, selected.ServerType);
+            if (version != _checkinStatusVersion || !roleService.IsCurrent(selected)) return;
 
             CheckinStatusText = status;
             CheckinSummary = summary;
@@ -100,7 +93,7 @@ public partial class MainViewModel
                 bool isAutoCheckinEnabled = autoCheckinObj != null && Convert.ToBoolean(autoCheckinObj);
                 bool isSigned = !string.IsNullOrEmpty(status) && (status.Contains("成功") || status.Contains("已"));
 
-                if (isAutoCheckinEnabled && !isSigned)
+                if (version == _checkinStatusVersion && roleService.IsCurrent(selected) && isAutoCheckinEnabled && !isSigned)
                 {
                     _hasAttemptedAutoCheckin = true;
                     await ExecuteCheckinAsync();
@@ -109,6 +102,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
+            if (version != _checkinStatusVersion) return;
             CheckinStatusText = "Checkin_LoadFailed".GetLocalized();
             CheckinSummary = ex.Message;
             UpdateCheckinIconState("Fail");

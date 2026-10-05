@@ -72,8 +72,26 @@ namespace FufuLauncher.ViewModels
             WeakReferenceMessenger.Default.Register<AccountChangedMessage>(this, async (r, m) =>
             {
                 await ClearDailyNoteDataAsync();
-                await LoadDailyNoteAsync(force: true);
+                await Task.WhenAll(LoadDailyNoteAsync(force: true), LoadCheckinStatusAsync());
             });
+            WeakReferenceMessenger.Default.Register<GameRoleChangedMessage>(this, (r, m) =>
+                _dispatcherQueue.TryEnqueue(async () =>
+                {
+                    if (App.GetService<AccountManager>().ActiveAccountId != m.AccountId) return;
+                    await ClearDailyNoteDataAsync();
+                    await Task.WhenAll(LoadDailyNoteAsync(force: true), LoadCheckinStatusAsync());
+                }));
+            WeakReferenceMessenger.Default.Register<GameRolesUpdatedMessage>(this, (r, m) =>
+                _dispatcherQueue.TryEnqueue(async () =>
+                {
+                    var account = App.GetService<AccountManager>().GetActiveAccountEntry();
+                    if (account?.Id != m.AccountId) return;
+                    if (GameRoleSelection.Current(account) == null)
+                    {
+                        await ClearDailyNoteDataAsync();
+                        await Task.WhenAll(LoadDailyNoteAsync(force: true), LoadCheckinStatusAsync());
+                    }
+                }));
 
             WeakReferenceMessenger.Default.Register<DevBuildDetectionCompletedMessage>(this, async (r, m) =>
             {

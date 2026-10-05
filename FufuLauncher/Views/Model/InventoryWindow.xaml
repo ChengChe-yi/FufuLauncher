@@ -1,10 +1,11 @@
-﻿<Window
+<Window
     x:Class="FufuLauncher.Views.InventoryWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:views="using:FufuLauncher.Views"
     mc:Ignorable="d"
     Title="{helpers:Loc Key=InventoryWindow_Title}">
 
@@ -66,6 +67,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="48" />
                 <RowDefinition Height="60" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -115,7 +117,8 @@
                 </Button>
             </Grid>
 
-            <Pivot Grid.Row="2" Margin="0,0,0,0">
+            <views:GameRoleSelector Grid.Row="2" Margin="16,8,16,8" HorizontalAlignment="Left" MinWidth="140" Scope="{x:Bind RoleSelection}" />
+            <Pivot Grid.Row="3" Margin="0,0,0,0">
                 <PivotItem Header="{helpers:Loc Key=InventoryWindow_MyBag}">
                     <Grid Padding="20,12,20,0">
                         <Grid.RowDefinitions>
@@ -290,7 +293,7 @@
                 </PivotItem>
             </Pivot>
 
-            <Border Grid.Row="3" Padding="24,10" Background="{ThemeResource SidebarBackground}"
+            <Border Grid.Row="4" Padding="24,10" Background="{ThemeResource SidebarBackground}"
                     BorderBrush="{ThemeResource CardBorder}" BorderThickness="0,1,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="6">
                     <FontIcon Glyph="&#xE946;" FontSize="12" Foreground="{ThemeResource SubTextColor}" />

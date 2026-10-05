@@ -27,6 +27,7 @@ public sealed partial class GenshinDataWindow : WindowEx
         this.CenterOnScreen();
 
         this.Activated += GenshinDataWindow_Activated;
+        Closed += (_, _) => ViewModel.Dispose();
     }
 
     private async void GenshinDataWindow_Activated(object sender, WindowActivatedEventArgs args)

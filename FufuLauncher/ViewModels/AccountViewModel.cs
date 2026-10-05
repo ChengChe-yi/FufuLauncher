@@ -41,6 +41,7 @@ public partial class AccountViewModel : ObservableRecipient
     public void Cleanup()
     {
         _isDisposed = true;
+        WeakReferenceMessenger.Default.UnregisterAll(this);
         Interlocked.Increment(ref _loadVersion); 
     }
     #endregion
@@ -132,6 +133,15 @@ public partial class AccountViewModel : ObservableRecipient
         _notificationService = notificationService;
         _dispatcherQueue = App.MainWindow.DispatcherQueue;
         _accountManager = accountManager;
+        WeakReferenceMessenger.Default.Register<GameRoleChangedMessage>(this, (r, m) =>
+            RunOnUIThread(() =>
+            {
+                if (_isDisposed || CurrentAccount?.AccountId != m.AccountId || _accountManager.ActiveAccountId != m.AccountId) return;
+                var role = GameRoleSelection.Current(_accountManager.GetActiveAccountEntry()!);
+                CurrentAccount.GameUid = role?.game_uid ?? "";
+                CurrentAccount.Level = role?.level.ToString() ?? "";
+                CurrentAccount.Server = role?.region_name ?? "";
+            }));
         LoginCommand = new AsyncRelayCommand(LoginAsync);
         LogoutCommand = new AsyncRelayCommand(LogoutAsync);
         LoadUserInfoCommand = new AsyncRelayCommand(async () => await LoadUserInfoAsync());
@@ -231,7 +241,7 @@ public partial class AccountViewModel : ObservableRecipient
             var newRolesInfo = await rolesTask;
             var newUserFullInfo = await userInfoTask;
 
-            if (myVersion != _loadVersion)
+            if (myVersion != _loadVersion || _isDisposed || _accountManager.ActiveAccountId != activeId)
             {
                 Debug.WriteLine($"[LoadUserInfo][{entry.Id}] 结果已过期(v{myVersion}→{_loadVersion})，丢弃");
                 return false;
@@ -243,19 +253,22 @@ public partial class AccountViewModel : ObservableRecipient
 
             var userInfo = UserFullInfo?.data?.user_info;
             var hasBoundRole = GameRolesInfo?.data?.list?.Count > 0;
-            var role = GameRolesInfo?.data?.list?.FirstOrDefault();
+            if (newRolesInfo.retcode == 0 && newRolesInfo.data?.list != null)
+                await App.GetService<GameRoleService>().UpdateBindingsAsync(entry.Id, newRolesInfo.data.list);
+            if (_isDisposed || myVersion != _loadVersion || _accountManager.ActiveAccountId != entry.Id) return false;
+            var role = GameRoleSelection.Current(entry);
 
             var nickname = userInfo?.nickname ?? role?.nickname ?? $"用户 {entry.Stuid}";
             var avatarUrl = userInfo?.avatar_url ?? "ms-appx:///Assets/DefaultAvatar.png";
             var gameUid = role?.game_uid ?? "";
             var isOs = entry.Id.StartsWith("os_");
-            var server = isOs ? "国际服" : "国服";
+            var server = role?.region_name ?? (isOs ? "国际服" : "国服");
             var level = role?.level.ToString() ?? "";
             var sign = string.IsNullOrEmpty(userInfo?.introduce) ? "这个人很懒，什么都没有写..." : userInfo.introduce;
             var ipRegion = userInfo?.ip_region ?? "未知";
             var gender = userInfo?.gender ?? 0;
 
-            await _accountManager.UpdateAccountMetaAsync(entry.Id, nickname, avatarUrl, gameUid);
+            await _accountManager.UpdateAccountMetaAsync(entry.Id, nickname, avatarUrl);
 
             RunOnUIThread(() =>
             {

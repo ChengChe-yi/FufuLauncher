@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Data.Entities;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
@@ -87,14 +88,19 @@ public partial class GachaAnalysisModel
 
     private void RefreshKnownUidsUI(List<string> uids)
     {
+        IsUpdatingRoleList = true;
+        var selected = SelectedUid;
         KnownUids.Clear();
         UidComboItems.Clear();
         foreach (var uid in uids)
         {
             KnownUids.Add(uid);
-            UidComboItems.Add(uid);
         }
+        foreach (var uid in (_accountManager.GetActiveAccountEntry()?.GameRoles?.Select(r => r.game_uid) ?? [])
+            .Concat(uids).Distinct()) UidComboItems.Add(uid);
         UidComboItems.Add(AddNewUserItem);
+        SelectedUid = selected;
+        IsUpdatingRoleList = false;
     }
 
     private void LoadGachaLogsFromDb(string uid)
@@ -190,12 +196,14 @@ public partial class GachaAnalysisModel
             SaveGachaLogsToDb();
 
         _currentUid = uid;
+        ++_refreshVersion;
         LoadGachaLogsFromDb(uid);
 
         _ = _localSettingsService.SaveSettingAsync(LastSelectedUidKey, uid);
 
         App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         {
+            if (_currentUid != uid) return;
             SelectedUid = uid;
             if (_cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count + _cachedStandardLogs.Count > 0)
             {
@@ -236,8 +244,10 @@ public partial class GachaAnalysisModel
         return false;
     }
 
-    public async Task ClearGachaDataAsync()
+    public async Task ClearGachaDataAsync(string? expectedUid = null)
     {
+        if (IsFetching || IsScraping) return;
+        if (expectedUid != null && _currentUid != expectedUid) return;
         try
         {
             if (string.IsNullOrEmpty(_currentUid))
@@ -252,49 +262,28 @@ public partial class GachaAnalysisModel
 
             var remainingUids = QueryKnownUidsFromDb();
 
-            if (remainingUids.Count > 0)
-            {
-                var switchToUid = remainingUids[0];
-                _currentUid = switchToUid;
-                LoadGachaLogsFromDb(switchToUid);
-
-                _ = _localSettingsService.SaveSettingAsync(LastSelectedUidKey, switchToUid);
-
-                App.MainWindow.DispatcherQueue.TryEnqueue(() =>
-                {
-                    RefreshKnownUidsUI(remainingUids);
-                    SelectedUid = switchToUid;
-                    RefreshUIFromCache();
-                    HasGachaData = true;
-                    CrawlerStatus = $"已删除 UID: {deletedUid} 的记录，已切换到 UID: {switchToUid}";
-                });
-            }
-            else
-            {
-                _currentUid = "";
-                _cachedCharacterLogs.Clear();
-                _cachedWeaponLogs.Clear();
-                _cachedChronicledLogs.Clear();
-                _cachedNoviceLogs.Clear();
-                _cachedStandardLogs.Clear();
-
-                _ = _localSettingsService.SaveSettingAsync(LastSelectedUidKey, "");
-
-                App.MainWindow.DispatcherQueue.TryEnqueue(() =>
-                {
-                    RefreshKnownUidsUI(remainingUids);
-                    ClearCollections();
-                    CharacterStats = new GachaStatistic { PoolName = "角色活动" };
-                    WeaponStats = new GachaStatistic { PoolName = "武器活动" };
-                    ChronicledStats = new GachaStatistic { PoolName = "集录祈愿" };
-                    StandardStats = new GachaStatistic { PoolName = "常驻祈愿" };
-                    InvalidateAnalysisDashboard();
-                    GachaUrl = string.Empty;
-                    HasGachaData = false;
-                    SelectedUid = "";
-                    CrawlerStatus = "数据已清空";
-                });
-            }
+            var account = _accountManager.GetActiveAccountEntry();
+            var selectedRole = account == null ? null : RoleSelection.Current(account);
+            var nextUid = selectedRole?.game_uid ?? remainingUids.FirstOrDefault() ?? "";
+            _currentUid = "";
+            ++_refreshVersion;
+            _cachedCharacterLogs.Clear();
+            _cachedWeaponLogs.Clear();
+            _cachedChronicledLogs.Clear();
+            _cachedNoviceLogs.Clear();
+            _cachedStandardLogs.Clear();
+            RefreshKnownUidsUI(remainingUids);
+            ClearCollections();
+            CharacterStats = new GachaStatistic { PoolName = "角色活动" };
+            WeaponStats = new GachaStatistic { PoolName = "武器活动" };
+            ChronicledStats = new GachaStatistic { PoolName = "集录祈愿" };
+            StandardStats = new GachaStatistic { PoolName = "常驻祈愿" };
+            HasGachaData = false;
+            SelectedUid = "";
+            GachaUrl = "";
+            await _localSettingsService.SaveSettingAsync(LastSelectedUidKey, nextUid);
+            if (!string.IsNullOrEmpty(nextUid)) await SwitchToUidAsync(nextUid);
+            CrawlerStatus = $"已删除 UID: {deletedUid} 的记录";
 
             WeakReferenceMessenger.Default.Send(new NotificationMessage("删除成功", $"已删除 UID: {deletedUid} 的抽卡记录", NotificationType.Success, 3000));
         }

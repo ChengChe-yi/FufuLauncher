@@ -34,7 +34,7 @@ public class UserInfoService : IUserInfoService
         _httpClient.Timeout = TimeSpan.FromSeconds(15);
     }
 
-    private void ApplyCommonHeaders(string cookie)
+    private void ApplyCommonHeaders(HttpRequestMessage request, string cookie)
     {
         
         var keys = new[] { "ltoken", "ltuid", "cookie_token", "account_id", "ltoken_v2", "ltuid_v2", "cookie_token_v2", "account_id_v2" };
@@ -42,27 +42,25 @@ public class UserInfoService : IUserInfoService
         var missing = keys.Where(k => !found.Contains(k, StringComparer.OrdinalIgnoreCase)).ToArray();
         System.Diagnostics.Debug.WriteLine($"[UserInfoService] Cookie length={cookie.Length}, found=[{string.Join(", ", found)}], missing=[{string.Join(", ", missing)}]");
 
-        _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Cookie", cookie);
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("DS", GenerateDS());
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-client_type", "5");
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Referer", "https://act.mihoyo.com/");
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Origin", "https://act.mihoyo.com");
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent",
+        request.Headers.TryAddWithoutValidation("Cookie", cookie);
+        request.Headers.TryAddWithoutValidation("DS", GenerateDS());
+        request.Headers.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
+        request.Headers.TryAddWithoutValidation("x-rpc-client_type", "5");
+        request.Headers.TryAddWithoutValidation("Referer", "https://act.mihoyo.com/");
+        request.Headers.TryAddWithoutValidation("Origin", "https://act.mihoyo.com");
+        request.Headers.TryAddWithoutValidation("User-Agent",
             "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1");
     }
     
-    private void ApplyOverseaHeaders(string cookie)
+    private void ApplyOverseaHeaders(HttpRequestMessage request, string cookie)
     {
-        _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Cookie", cookie);
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("Accept", "application/json");
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-app_version", HeaderVersions.BbsOs254);
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-client_type", "5");
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-language", "zh-cn");
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
-        _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", UserAgents.WindowsBbsOversea254);
+        request.Headers.TryAddWithoutValidation("Cookie", cookie);
+        request.Headers.TryAddWithoutValidation("Accept", "application/json");
+        request.Headers.TryAddWithoutValidation("x-rpc-app_version", HeaderVersions.BbsOs254);
+        request.Headers.TryAddWithoutValidation("x-rpc-client_type", "5");
+        request.Headers.TryAddWithoutValidation("x-rpc-language", "zh-cn");
+        request.Headers.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
+        request.Headers.TryAddWithoutValidation("User-Agent", UserAgents.WindowsBbsOversea254);
     }
 
     private string GenerateDS()
@@ -98,8 +96,7 @@ public class UserInfoService : IUserInfoService
 
             if (isOs)
             {
-                ApplyOverseaHeaders(cookie);
-                var bindingRoles = await TryGetOverseaRolesFromBindingAsync();
+                var bindingRoles = await TryGetOverseaRolesFromBindingAsync(cookie);
                 if (bindingRoles != null)
                     return new GameRolesResponse(0, "OK", new GameRolesData(bindingRoles));
 
@@ -107,8 +104,9 @@ public class UserInfoService : IUserInfoService
                 return new GameRolesResponse(rolesResult.RetCode, rolesResult.Message, new GameRolesData(rolesResult.Roles));
             }
 
-            ApplyCommonHeaders(cookie);
-            var response = await _httpClient.GetAsync(ApiEndpoints.MihoyoBbsUserGameRolesUrl);
+            using var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.MihoyoBbsUserGameRolesUrl);
+            ApplyCommonHeaders(request, cookie);
+            using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
             System.Diagnostics.Debug.WriteLine($"[UserInfoService] GameRoles HTTP {response.StatusCode} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
             return JsonSerializer.Deserialize<GameRolesResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
@@ -120,11 +118,13 @@ public class UserInfoService : IUserInfoService
         }
     }
     
-    private async Task<List<GameRoleInfo>?> TryGetOverseaRolesFromBindingAsync()
+    private async Task<List<GameRoleInfo>?> TryGetOverseaRolesFromBindingAsync(string cookie)
     {
         try
         {
-            var response = await _httpClient.GetAsync(ApiEndpoints.OverseaUserGameRolesUrl);
+            using var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.OverseaUserGameRolesUrl);
+            ApplyOverseaHeaders(request, cookie);
+            using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
             var result = JsonSerializer.Deserialize<GameRolesResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             if (result == null || result.retcode != 0 || result.data?.list == null || result.data.list.Count == 0)
@@ -149,14 +149,14 @@ public class UserInfoService : IUserInfoService
         try
         {
             bool isOs = await IsInternationalAsync(cookie);
-            if (isOs)
-                ApplyOverseaHeaders(cookie);
-            else
-                ApplyCommonHeaders(cookie);
-
             var url = isOs ? ApiEndpoints.OverseaUserFullInfoUrl : ApiEndpoints.MiyousheUserFullInfoUrl;
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
+            if (isOs)
+                ApplyOverseaHeaders(request, cookie);
+            else
+                ApplyCommonHeaders(request, cookie);
 
-            var response = await _httpClient.GetAsync(url);
+            using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
             System.Diagnostics.Debug.WriteLine($"[UserInfoService] UserFullInfo HTTP {response.StatusCode} | URL: {url} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
             return JsonSerializer.Deserialize<UserFullInfoResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;

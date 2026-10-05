@@ -3358,6 +3358,33 @@
   <data name="GachaAnalysis_GetViaMiyoushe" xml:space="preserve">
     <value>通过米游社账号获取</value>
   </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>从游戏获取</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>进入游戏并打开祈愿历史
+支持 B 服，无需登录米游社</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>请先进入要导出的游戏账号，打开“祈愿历史记录”，等待记录加载完成，再点击“开始获取”。
+
+支持天空岛、世界树和国际服，无需登录米游社。请确认游戏中的账号是本次希望导出的账号。</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>开始获取</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>正在读取游戏中的祈愿链接...</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>请先在启动器中设置正确的游戏路径，再进入游戏打开祈愿历史记录。</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>未找到祈愿链接。请进入目标游戏账号，打开祈愿历史记录并等待加载完成后重试。</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>无法读取游戏中的祈愿链接，请重新打开祈愿历史记录后重试。</value>
+  </data>
   <data name="GachaAnalysis_GetViaUrl" xml:space="preserve">
     <value>通过 URL 获取</value>
   </data>
@@ -6928,4 +6955,18 @@ UIGF v4.x/3.0/2.x</value>
   <data name="BanCheck_BannedReason" xml:space="preserve">
     <value>该 UID 位于服务端封禁名单中</value>
   </data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve"><value>正在查询米游社绑定的游戏角色...</value></data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve"><value>选择游戏角色</value></data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve"><value>请选择本次要获取祈愿记录的角色。B服角色显示为“世界树”。未看到目标角色时请取消，检查米游社绑定，或使用“从游戏获取”。</value></data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve"><value>天空岛（官服）</value></data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve"><value>世界树（B服）</value></data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve"><value>天空岛</value></data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve"><value>世界树</value></data>
+  <data name="GameRole_Select" xml:space="preserve"><value>切换游戏角色</value></data>
+  <data name="GameRole_Hint" xml:space="preserve"><value>绑定角色页设置默认角色；各功能可独立切换服务器，互不影响。</value></data>
+  <data name="GameRole_Refresh" xml:space="preserve"><value>刷新绑定角色</value></data>
+  <data name="GameRole_Unavailable" xml:space="preserve"><value>所选角色不在绑定列表中，请重新选择角色或刷新。</value></data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve"><value>备用便签接口未确认所选角色，已停止显示。请开启该角色的便签权限后重试。</value></data>
+  <data name="GameRole_SkyIsland" xml:space="preserve"><value>天空岛</value></data>
+  <data name="GameRole_WorldTree" xml:space="preserve"><value>世界树</value></data>
 </root>

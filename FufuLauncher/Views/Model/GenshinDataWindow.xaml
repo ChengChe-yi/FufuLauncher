@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:windowex="using:WinUIEx"
     xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:views="using:FufuLauncher.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -35,7 +36,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="0,0,0,24">
+            <Grid Grid.Row="0" Margin="0,0,0,24" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -50,6 +55,7 @@
                         <TextBlock Text="{Binding StatusMessage}" Opacity="0.6" FontSize="12"/>
                     </Border>
                 </StackPanel>
+                <views:GameRoleSelector Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" MinWidth="140" Scope="{Binding RoleSelection}" />
             </Grid>
 
             <Grid Grid.Row="1" ColumnSpacing="20" 
