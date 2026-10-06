@@ -1,0 +1,101 @@
+name: 封禁申诉 (Ban Appeal)
+description: 对"此设备已被禁止使用芙芙启动器"的判定提出申诉
+title: "[Appeal]: "
+labels: ["appeal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 提交须知
+        本模板仅用于**封禁申诉**。若你遇到的不是封禁提示，请改用
+        [缺陷报告](https://github.com/FufuLauncher/FufuLauncher/issues/new?template=bug_report.yml)。
+
+        **提交前请先检索现有的 [Issues](https://github.com/FufuLauncher/FufuLauncher/issues?q=label%3Aappeal)，
+        避免重复提交。**
+
+  - type: checkboxes
+    id: pre_checks
+    attributes:
+      label: 前置确认 (Prerequisites)
+      description: 提交前请确认以下各项均已满足
+      options:
+        - label: 我在启动时确实看到了"拒绝访问 / 此设备已被禁止使用芙芙启动器"提示
+          required: true
+        - label: 已检索现有 Issues，确认此申诉未被提交过
+          required: true
+        - label: 我理解申诉需要提供下方信息，信息不足时可能无法受理
+          required: true
+
+  - type: input
+    id: uid
+    attributes:
+      label: UID
+      description: |
+        提示窗口"UID"一行显示的号码。
+        若显示为 `-`（通常出现在"访问已被服务端撤销"的提示中），
+        且你不确定涉及哪个账号，**请留空**，并在下方情况说明中写明你使用的账号。
+      placeholder: 例如：283006688（不确定时留空）
+    validations:
+      required: false
+
+  - type: dropdown
+    id: reason
+    attributes:
+      label: 提示中的原因 (Reason shown in the dialog)
+      description: 选择提示窗口中"原因"一行的内容
+      options:
+        - 该 UID 位于服务端封禁名单中
+        - 访问已被服务端撤销
+        - 不确定 / 未记录
+    validations:
+      required: true
+
+  - type: textarea
+    id: situation
+    attributes:
+      label: 情况说明 (Situation)
+      description: |
+        请客观说明你的情况。若认为属于误判，请给出可核查的依据。
+        **请勿粘贴账号密码、Cookie、Token 等敏感凭据。**
+      placeholder: |
+        例如：本机从未安装过第三方插件；该 UID 是我自己的账号；
+        或说明账号是否曾共享/借出、是否购买过成品号等。
+    validations:
+      required: true
+
+  - type: input
+    id: software_version
+    attributes:
+      label: 软件版本 (Software Version)
+      description: 触发该提示时的 FufuLauncher 完整版本号
+      placeholder: 例如：v1.7.1.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: game_server
+    attributes:
+      label: 游戏服务器 (Game Server)
+      description: 该 UID 所属的服务器
+      options:
+        - 国服官方服务器（天空岛）
+        - Bilibili 渠道服（世界树）
+        - 国际服
+        - 不清楚
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: 补充信息 (Additional Context)
+      description: 任何有助于核实的额外信息，例如获得该账号的时间、是否曾在其他设备登录等
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        > **提示**：封禁判定由服务端名单下发，申诉将以人工方式核实。
+        > 提交后请耐心等待，重复提交或催促不会加快处理进度。

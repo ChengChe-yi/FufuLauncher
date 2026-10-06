@@ -85,6 +85,8 @@ namespace FufuLauncher.Constants
         public const string BaikeActivitiesUrl = "https://baike.mihoyo.com/ys/obc/channel/position/48/53?bbs_presentation_style=no_header&visit_device=pc&no_page_view=1";
         public const string GithubFeatureRequestUrl = "https://github.com/FufuLauncher/FufuLauncher/issues/new?template=feature_request.yml";
         public const string GithubBugReportUrl = "https://github.com/FufuLauncher/FufuLauncher/issues/new?template=bug_report.yml";
+
+        public const string GithubBanAppealUrl = "https://github.com/FufuLauncher/FufuLauncher/issues/new?template=ban_appeal.yml";
         public const string GachaCalculatorCharacterUrl = "https://act.mihoyo.com/ys/event/calculator/index.html#/character";
         public const string GachaCalculatorWeaponUrl = "https://act.mihoyo.com/ys/event/calculator/index.html#/weapon";
         public const string WebstaticRefererUrl = "https://webstatic.mihoyo.com";
