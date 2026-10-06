@@ -2117,6 +2117,9 @@ Ir para o site da Microsoft para baixar e instalar?</value>
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Carregando anúncio...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Abrir no Edge</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>Voltar</value>
   </data>

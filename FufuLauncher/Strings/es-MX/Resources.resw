@@ -2117,6 +2117,9 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Cargando anuncio...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Abrir en Edge</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>Atrás</value>
   </data>

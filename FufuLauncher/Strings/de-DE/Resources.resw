@@ -2117,6 +2117,9 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Ankündigungen werden geladen...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>In Edge öffnen</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>Zurück</value>
   </data>

@@ -2117,6 +2117,9 @@
   <data name="Announcement_Loading" xml:space="preserve">
     <value>正在載入公告...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>在 Edge 中開啟</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>上一頁</value>
   </data>

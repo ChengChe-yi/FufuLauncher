@@ -2117,6 +2117,9 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Chargement des annonces...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Ouvrir dans Edge</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>Retour</value>
   </data>

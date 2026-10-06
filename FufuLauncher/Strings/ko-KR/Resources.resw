@@ -2117,6 +2117,9 @@ Microsoft 웹사이트로 이동하여 다운로드 및 설치하시겠습니까
   <data name="Announcement_Loading" xml:space="preserve">
     <value>공지사항 로딩 중...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Edge에서 열기</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>뒤로</value>
   </data>

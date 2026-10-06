@@ -12,6 +12,8 @@ namespace FufuLauncher.Views;
 
 public sealed partial class AnnouncementWindowL : Window
 {
+    private readonly string _url;
+
     public AnnouncementWindowL(string url)
     {
         InitializeComponent();
@@ -23,9 +25,19 @@ public sealed partial class AnnouncementWindowL : Window
 
         SetWindowSizeAndCenter();
 
+        _url = url;
+
         if (Uri.TryCreate(url, UriKind.Absolute, out var uri))
         {
             AnnouncementWebView.Source = uri;
+        }
+    }
+
+    private void OpenInEdgeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (AnnouncementLauncher.Open(_url))
+        {
+            Close();
         }
     }
 

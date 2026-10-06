@@ -2175,6 +2175,9 @@ Go to the Microsoft website to download and install it?</value>
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Loading announcement...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Open in Edge</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>Back</value>
   </data>

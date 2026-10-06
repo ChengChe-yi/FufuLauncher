@@ -2161,6 +2161,9 @@
   <data name="Announcement_Loading" xml:space="preserve">
     <value>घोषणा लोड हो रही है...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Edge में खोलें</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>पीछे</value>
   </data>

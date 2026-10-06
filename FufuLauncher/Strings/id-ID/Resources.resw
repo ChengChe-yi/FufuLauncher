@@ -2117,6 +2117,9 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Memuat pengumuman...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Buka di Edge</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>Kembali</value>
   </data>
