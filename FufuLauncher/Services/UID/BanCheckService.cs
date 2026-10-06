@@ -135,7 +135,7 @@ public sealed class BanCheckService
 
     private static string ResolveAppealUrl(BanStatusPayload payload)
     {
-        return IsSafeUrl(payload.AppealUrl) ? payload.AppealUrl! : ApiEndpoints.TelegramContactUrl;
+        return IsSafeUrl(payload.AppealUrl) ? payload.AppealUrl! : ApiEndpoints.GithubBanAppealUrl;
     }
 
 
