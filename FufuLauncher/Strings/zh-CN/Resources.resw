@@ -6958,10 +6958,10 @@ UIGF v4.x/3.0/2.x</value>
   <data name="GameRole_SkyIsland" xml:space="preserve"><value>天空岛</value></data>
   <data name="GameRole_WorldTree" xml:space="preserve"><value>世界树</value></data>
   <data name="MiyousheQr_Title" xml:space="preserve"><value>识屏扫码</value></data>
-  <data name="MiyousheQr_Instructions" xml:space="preserve"><value>「普通扫码」读取选中区域一次；「持续扫码」反复读取选中区域内的新二维码。识别后使用当前米游社账号确认登录。</value></data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve"><value>「普通扫码」仅读取选中区域一次；「持续扫码」反复读取选中区域内的新二维码。识别后将使用当前米游社账号登录。Esc或右键取消框选。</value></data>
   <data name="MiyousheQr_CurrentAccount" xml:space="preserve"><value>当前米游社账号</value></data>
   <data name="MiyousheQr_Target" xml:space="preserve"><value>登录目标</value></data>
-  <data name="MiyousheQr_ConfirmHint" xml:space="preserve"><value>确认后，显示这个二维码的设备将登录上方账号。</value></data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve"><value>确认后，显示该二维码的设备将登录上方账号。</value></data>
   <data name="MiyousheQr_Capture" xml:space="preserve"><value>普通扫码</value></data>
   <data name="MiyousheQr_Confirm" xml:space="preserve"><value>确认登录</value></data>
   <data name="MiyousheQr_SelectionHint" xml:space="preserve"><value>拖动鼠标框选二维码 · Esc 或鼠标右键取消</value></data>
@@ -6977,7 +6977,7 @@ UIGF v4.x/3.0/2.x</value>
   <data name="MiyousheQr_Expired" xml:space="preserve"><value>二维码已过期，请在目标设备上刷新后重新框选。</value></data>
   <data name="MiyousheQr_Unsupported" xml:space="preserve"><value>这不是支持的米哈游登录二维码。支持通行证及原神、星穹铁道、绝区零、崩坏3国服的登录二维码。</value></data>
   <data name="MiyousheQr_NotFound" xml:space="preserve"><value>选中区域内未识别到二维码，请完整框选二维码并留出四周空白。</value></data>
-  <data name="MiyousheQr_Multiple" xml:space="preserve"><value>发现多个二维码，请点击绿色区域选择需要登录的一个。Esc 或鼠标右键取消。</value></data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve"><value>识别到多个二维码，请点击选择需要登录的一个。</value></data>
   <data name="MiyousheQr_Cancelled" xml:space="preserve"><value>已取消框选。</value></data>
   <data name="MiyousheQr_Recognizing" xml:space="preserve"><value>正在识别二维码…</value></data>
   <data name="MiyousheQr_Ready" xml:space="preserve"><value>已识别二维码，请核对账号和登录目标后确认。</value></data>
