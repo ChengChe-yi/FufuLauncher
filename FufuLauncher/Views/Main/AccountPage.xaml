@@ -624,11 +624,17 @@
                                         </Ellipse.Fill>
                                     </Ellipse>
 
-                                    <StackPanel
-                                        Grid.Column="1"
-                                        VerticalAlignment="Center"
-                                        Spacing="6">
+                                    <Grid Grid.Column="1" VerticalAlignment="Center" RowSpacing="6" ColumnSpacing="16">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
                                         <StackPanel
+                                            Grid.ColumnSpan="2"
                                             VerticalAlignment="Bottom"
                                             Orientation="Horizontal"
                                             Spacing="8">
@@ -675,52 +681,67 @@
                                             </Border>
                                         </StackPanel>
 
-                                        <TextBlock
-                                            FontSize="13"
-                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                            MaxLines="1"
-                                            Text="{x:Bind ViewModel.CurrentAccount.Sign, Mode=OneWay}"
-                                            TextTrimming="CharacterEllipsis" />
-
-                                        <StackPanel Orientation="Horizontal" Spacing="8">
-                                            <TextBlock FontSize="12"
-                                                       Foreground="{ThemeResource TextFillColorTertiaryBrush}">
-                                                <Run Text="UID:" />
-                                                <Run FontWeight="SemiBold"
-                                                     Text="{x:Bind ViewModel.CurrentAccount.GameUidDisplay, Mode=OneWay}" />
-                                            </TextBlock>
-
-                                            <Border
-                                                Width="1"
-                                                Height="10"
-                                                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
-
+                                        <StackPanel Grid.Row="1" Spacing="6">
                                             <TextBlock
-                                                FontSize="12"
-                                                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                                Text="{x:Bind ViewModel.CurrentAccount.Server, Mode=OneWay}" />
+                                                FontSize="13"
+                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                MaxLines="1"
+                                                Text="{x:Bind ViewModel.CurrentAccount.Sign, Mode=OneWay}"
+                                                TextTrimming="CharacterEllipsis" />
 
-                                            <Border
-                                                Width="1"
-                                                Height="10"
-                                                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{ThemeResource TextFillColorTertiaryBrush}">
+                                                    <Run Text="UID:" />
+                                                    <Run FontWeight="SemiBold"
+                                                         Text="{x:Bind ViewModel.CurrentAccount.GameUidDisplay, Mode=OneWay}" />
+                                                </TextBlock>
 
-                                            <StackPanel
-                                                VerticalAlignment="Center"
-                                                Orientation="Horizontal"
-                                                Spacing="4">
-                                                <FontIcon
-                                                    FontFamily="Segoe Fluent Icons"
-                                                    FontSize="10"
-                                                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                                    Glyph="&#xE81D;" />
+                                                <Border
+                                                    Width="1"
+                                                    Height="10"
+                                                    Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
                                                 <TextBlock
                                                     FontSize="12"
                                                     Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                                    Text="{x:Bind ViewModel.CurrentAccount.IpRegion, Mode=OneWay}" />
+                                                    Text="{x:Bind ViewModel.CurrentAccount.Server, Mode=OneWay}" />
+
+                                                <Border
+                                                    Width="1"
+                                                    Height="10"
+                                                    Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+                                                <StackPanel
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Horizontal"
+                                                    Spacing="4">
+                                                    <FontIcon
+                                                        FontFamily="Segoe Fluent Icons"
+                                                        FontSize="10"
+                                                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                                        Glyph="&#xE81D;" />
+                                                    <TextBlock
+                                                        FontSize="12"
+                                                        Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                                        Text="{x:Bind ViewModel.CurrentAccount.IpRegion, Mode=OneWay}" />
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
-                                    </StackPanel>
+                                        <Button Grid.Row="1" Grid.Column="1" Padding="10,4"
+                                                HorizontalAlignment="Right" VerticalAlignment="Center" Command="{x:Bind ViewModel.OpenMiyousheQrCommand}">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <Viewbox Width="20" Height="20">
+                                                    <Canvas Width="32" Height="32">
+                                                        <Path Data="M4,10 L4,7 C4,5.34 5.34,4 7,4 L25,4 C26.66,4 28,5.34 28,7 L28,10 M4,22 L4,25 C4,26.66 5.34,28 7,28 L25,28 C26.66,28 28,26.66 28,25 L28,22 M9,16 L23,16"
+                                                              Stroke="{ThemeResource TextFillColorPrimaryBrush}" StrokeThickness="2.5"
+                                                              StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+                                                    </Canvas>
+                                                </Viewbox>
+                                                <TextBlock Text="{helpers:Loc Key=MiyousheQr_Title}" VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Button>
+                                    </Grid>
 
                                     <StackPanel Grid.Column="2" VerticalAlignment="Top">
                                         <ProgressRing
