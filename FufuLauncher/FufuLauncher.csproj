@@ -67,7 +67,6 @@
     <PackageReference Include="MoonSharp.Interpreter.netcore" Version="3.0.2" />
         <PackageReference Include="PuppeteerSharp" Version="25.3.1" />
         <PackageReference Include="QRCoder" Version="1.8.0" />
-        <PackageReference Include="ZXing.Net" Version="0.16.11" />
         <PackageReference Include="QuestPDF" Version="2026.7.1" />
         <PackageReference Include="Sentry" Version="6.6.0" />
         <PackageReference Include="Sentry.Profiling" Version="6.6.0" />
@@ -84,6 +83,7 @@
         </PackageReference>
         <PackageReference Include="YamlDotNet" Version="18.1.0" />
         <PackageReference Include="ZstdSharp.Port" Version="0.8.8" />
+        <PackageReference Include="ZXing.Net" Version="0.16.11" />
     </ItemGroup>
 
     <ItemGroup>

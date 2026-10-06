@@ -24,6 +24,45 @@ namespace Updater
         [DllImport("user32.dll")]
         private static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
 
+        [DllImport("wintrust.dll", ExactSpelling = true, SetLastError = false)]
+        private static extern uint WinVerifyTrust(IntPtr hwnd, ref Guid pgActionID, ref WinTrustData pWVTData);
+
+        private static readonly Guid WINTRUST_ACTION_GENERIC_VERIFY_V2 = new("00AAC56B-CD44-11d0-8CC2-00C04FC295EE");
+
+        private const uint WTD_UI_NONE = 2;
+        private const uint WTD_REVOKE_NONE = 0;
+        private const uint WTD_CHOICE_FILE = 1;
+        private const uint WTD_STATEACTION_VERIFY = 1;
+        private const uint WTD_STATEACTION_CLOSE = 2;
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        private struct WinTrustFileInfo
+        {
+            public uint cbStruct;
+            [MarshalAs(UnmanagedType.LPWStr)]
+            public string pcwszFilePath;
+            public IntPtr hFile;
+            public IntPtr pgKnownSubject;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        private struct WinTrustData
+        {
+            public uint cbStruct;
+            public IntPtr pPolicyCallbackData;
+            public IntPtr pSIPClientData;
+            public uint dwUIChoice;
+            public uint fdwRevocationChecks;
+            public uint dwUnionChoice;
+            public IntPtr pFile;
+            public uint dwStateAction;
+            public IntPtr hWVTStateData;
+            public IntPtr pwszURLReference;
+            public uint dwProvFlags;
+            public uint dwUIContext;
+            public IntPtr pSignatureSettings;
+        }
+
         private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
         private const int DWMWA_SYSTEMBACKDROP_TYPE = 38;
         private const int DWMWA_MICA_EFFECT = 1029;
@@ -69,6 +108,7 @@ namespace Updater
         private long _lastReceivedBytes = 0;
         private int _stuckTicks = 0;
         private bool _isDownloading = false;
+        private bool _isNodeDownload = false;
         private bool _useThirdPartyCDN = true;
         private bool _isPreviewMode = false;
         private bool _isRollbackMode = false;
@@ -78,6 +118,8 @@ namespace Updater
 
         private const string TestFileOfficialUrl = "https://raw.githubusercontent.com/moodlehq/moodle-exttests/master/test.html";
         private const string ExpectedTestFileMD5 = "47250a973d1b88d9445f94db4ef2c97a";
+        private const string NodeStatusUrl = "https://fufu.668851.xyz/api/status";
+        private const string NodeBaseUrl = "https://fufu.668851.xyz";
 
         public MainWindow()
         {
@@ -266,12 +308,11 @@ namespace Updater
 
                 if (currentVersion >= remoteVersion)
                 {
-                    // 预览版用户可无理由回退正式版
                     ShowNoUpdate("当前已是最新版本，无需更新", _isInstalledPreviewBuild);
                     return;
                 }
 
-                await FetchLatestOfficialReleaseAsync();
+                PrepareOfficialReleaseDownload();
                 await PrepareDownloadAsync("请选择下载线路", "直连GitHub下载...");
             }
             catch (Exception ex)
@@ -290,58 +331,117 @@ namespace Updater
             SubtitleText.Text = "检查完毕";
         }
 
-        private async Task FetchLatestOfficialReleaseAsync()
+        private void PrepareOfficialReleaseDownload()
         {
-            SubtitleText.Text = "获取GitHub最新Release...";
-            string githubApiUrl = "https://api.github.com/repos/FufuLauncher/FufuLauncher/releases/latest";
-            var ghResponse = await _httpClient.GetStringAsync(githubApiUrl);
-            JObject ghJson = JObject.Parse(ghResponse);
-            JToken targetAsset = ghJson["assets"]?.FirstOrDefault(a => a["name"]?.ToString().EndsWith(".exe", StringComparison.OrdinalIgnoreCase) == true);
-
-            if (targetAsset == null)
-            {
-                throw new Exception("最新的Release中不存在文件");
-            }
-
-            _targetExeUrl = targetAsset["browser_download_url"].ToString();
-            _fileName = targetAsset["name"].ToString();
-
-            // 从 GitHub API 的 asset 元数据中提取 SHA-256 哈希（格式: "sha256:xxxxx"）
-            string digest = targetAsset["digest"]?.ToString();
-            if (!string.IsNullOrEmpty(digest) && digest.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
-            {
-                _expectedSha256 = digest.Substring("sha256:".Length);
-            }
+            string version = _officialVersion.Trim();
+            _fileName = $"FufuLauncher_Setup_v{version}.exe";
+            _targetExeUrl = $"https://github.com/FufuLauncher/FufuLauncher/releases/latest/download/{_fileName}";
         }
 
         private async Task PrepareDownloadAsync(string selectionSubtitle, string directSubtitle)
         {
             if (_useThirdPartyCDN)
             {
-                SubtitleText.Text = "节点联通性校验...";
-                await TestMirrorsAsync();
-
-                LoadingPanel.Visibility = Visibility.Collapsed;
-                SelectionPanel.Visibility = Visibility.Visible;
-                ActionPanel.Visibility = Visibility.Visible;
-                MirrorListView.ItemsSource = _mirrors;
-
-                if (_mirrors.Count > 0)
+                if (await TryStartNodeDownloadAsync())
                 {
-                    MirrorListView.SelectedIndex = 0;
-                    SubtitleText.Text = selectionSubtitle;
+                    return;
                 }
-                else
-                {
-                    SubtitleText.Text = "所有节点均未通过校验";
-                    MessageBox.Show("所有镜像节点均未通过文件完整性校验或网络超时\n\n请更换网络环境，或尝试使用直连官方源下载", "网络不佳", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+
+                await ShowMirrorSelectionAsync(selectionSubtitle);
             }
             else
             {
                 // Skip mirror testing, directly download from GitHub
                 SubtitleText.Text = directSubtitle;
                 StartMultiThreadDownload(_targetExeUrl);
+            }
+        }
+
+        private async Task<bool> TryStartNodeDownloadAsync()
+        {
+            if (_isPreviewMode)
+            {
+                return false;
+            }
+
+            try
+            {
+                using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+                var statusResponse = await _httpClient.GetStringAsync(NodeStatusUrl, cts.Token);
+                var status = JObject.Parse(statusResponse);
+
+                if (status["download_available"]?.Value<bool>() != true)
+                {
+                    return false;
+                }
+
+                if ((status["quota"]?["remaining"]?.Value<long>() ?? 0) <= 0)
+                {
+                    return false;
+                }
+
+                string nodeVersion = status["current_version"]?.ToString()?.Trim() ?? string.Empty;
+                if (!string.Equals(nodeVersion, _officialVersion.Trim(), StringComparison.OrdinalIgnoreCase))
+                {
+                    return false;
+                }
+
+                if (Random.Shared.Next(100) != 0)
+                {
+                    return false;
+                }
+
+                string downloadPath = status["download_url"]?.ToString()?.Trim() ?? string.Empty;
+                if (downloadPath.Length == 0)
+                {
+                    return false;
+                }
+
+                string nodeDownloadUrl = downloadPath.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                    ? downloadPath
+                    : $"{NodeBaseUrl}/{(downloadPath.StartsWith('/') ? downloadPath.Substring(1) : downloadPath)}";
+
+                _isNodeDownload = true;
+                StartMultiThreadDownload(nodeDownloadUrl);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private async Task ShowMirrorSelectionAsync(string selectionSubtitle)
+        {
+            SubtitleText.Text = "节点联通性校验...";
+            await TestMirrorsAsync();
+
+            LoadingPanel.Visibility = Visibility.Collapsed;
+            SelectionPanel.Visibility = Visibility.Visible;
+            ActionPanel.Visibility = Visibility.Visible;
+            MirrorListView.ItemsSource = _mirrors;
+
+            if (_mirrors.Count > 0)
+            {
+                MirrorListView.SelectedIndex = 0;
+                SubtitleText.Text = selectionSubtitle;
+            }
+            else
+            {
+                SubtitleText.Text = "所有节点均未通过校验";
+                MessageBox.Show("所有镜像节点均未通过文件完整性校验或网络超时\n\n请更换网络环境，或尝试使用直连官方源下载", "网络不佳", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private async Task FallbackToMirrorSelectionAsync()
+        {
+            try
+            {
+                await ShowMirrorSelectionAsync("请选择下载线路");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"下载线路获取失败，请关闭更新器后重试\n错误详情: {ex.Message}", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -360,7 +460,7 @@ namespace Updater
                 return;
             }
 
-            await FetchLatestOfficialReleaseAsync();
+            PrepareOfficialReleaseDownload();
             await PrepareDownloadAsync("请选择下载线路（回退正式版）", "直连GitHub下载正式版...");
         }
 
@@ -574,6 +674,84 @@ namespace Updater
             }
         }
 
+        private static uint VerifyAuthenticodeSignature(string filePath)
+        {
+            IntPtr fileInfoPtr = IntPtr.Zero;
+            try
+            {
+                var fileInfo = new WinTrustFileInfo
+                {
+                    cbStruct = (uint)Marshal.SizeOf<WinTrustFileInfo>(),
+                    pcwszFilePath = filePath,
+                    hFile = IntPtr.Zero,
+                    pgKnownSubject = IntPtr.Zero
+                };
+
+                fileInfoPtr = Marshal.AllocHGlobal(Marshal.SizeOf<WinTrustFileInfo>());
+                Marshal.StructureToPtr(fileInfo, fileInfoPtr, false);
+
+                var trustData = new WinTrustData
+                {
+                    cbStruct = (uint)Marshal.SizeOf<WinTrustData>(),
+                    pPolicyCallbackData = IntPtr.Zero,
+                    pSIPClientData = IntPtr.Zero,
+                    dwUIChoice = WTD_UI_NONE,
+                    fdwRevocationChecks = WTD_REVOKE_NONE,
+                    dwUnionChoice = WTD_CHOICE_FILE,
+                    pFile = fileInfoPtr,
+                    dwStateAction = WTD_STATEACTION_VERIFY,
+                    hWVTStateData = IntPtr.Zero,
+                    pwszURLReference = IntPtr.Zero,
+                    dwProvFlags = 0,
+                    dwUIContext = 0,
+                    pSignatureSettings = IntPtr.Zero
+                };
+
+                var actionId = WINTRUST_ACTION_GENERIC_VERIFY_V2;
+                uint result = WinVerifyTrust(IntPtr.Zero, ref actionId, ref trustData);
+
+                trustData.dwStateAction = WTD_STATEACTION_CLOSE;
+                WinVerifyTrust(IntPtr.Zero, ref actionId, ref trustData);
+
+                return result;
+            }
+            catch
+            {
+                return 0x80004005;
+            }
+            finally
+            {
+                if (fileInfoPtr != IntPtr.Zero)
+                {
+                    Marshal.FreeHGlobal(fileInfoPtr);
+                }
+            }
+        }
+
+        private bool ConfirmUntrustedInstaller(string filePath)
+        {
+            var firstWarning = MessageBox.Show(
+                "这个安装包看起来好像有问题，没有通过数字签名校验。\n\n" +
+                $"文件: {Path.GetFileName(filePath)}\n\n" +
+                "可能是下载过程中出了差错，也可能被人动过手脚，不是官方原版。\n\n" +
+                "继续安装意味着运行一个被篡改过的程序，可能导致系统被植入恶意代码、账号或数据被窃取。\n\n" +
+                "要不要继续安装？",
+                "安装包好像有问题", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (firstWarning != MessageBoxResult.Yes)
+            {
+                return false;
+            }
+
+            var secondWarning = MessageBox.Show(
+                "再确认一下：这个安装包没能通过数字签名校验，若擅自安装后果可能非常严重！！！\n\n" +
+                "继续安装可能运行被篡改的程序，造成系统被植入恶意代码、数据或账号信息泄露，甚至系统损坏且无法恢复。\n\n" +
+                "建议换个节点重新下载。还是继续安装吗？",
+                "再确认一下", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            return secondWarning == MessageBoxResult.Yes;
+        }
+
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
@@ -664,12 +842,29 @@ namespace Updater
 
                     if (e.Cancelled)
                     {
-                        ResetToSelectionUI();
+                        if (_isNodeDownload)
+                        {
+                            _isNodeDownload = false;
+                            _ = FallbackToMirrorSelectionAsync();
+                        }
+                        else
+                        {
+                            ResetToSelectionUI();
+                        }
                     }
                     else if (e.Error != null)
                     {
-                        MessageBox.Show($"错误: {e.Error.Message}\n\n请选择其他节点继续下载\n或者去这里下载：https://wwaoi.lanzn.com/b00wnb99ef\n密码:6hnh", "失败", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        ResetToSelectionUI();
+                        if (_isNodeDownload)
+                        {
+                            _isNodeDownload = false;
+                            MessageBox.Show($"站点线路下载失败，已经切回GitHub线路\n\n请在列表里重新选择一个节点下载\n错误详情: {e.Error.Message}", "下载失败", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            _ = FallbackToMirrorSelectionAsync();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"错误: {e.Error.Message}\n\n请选择其他节点继续下载\n或者去这里下载：https://wwaoi.lanzn.com/b00wnb99ef\n密码:6hnh", "失败", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            ResetToSelectionUI();
+                        }
                     }
                     else
                     {
@@ -687,6 +882,18 @@ namespace Updater
 
                             ResetToSelectionUI();
                             return;
+                        }
+
+                        if (!_isPreviewMode)
+                        {
+                            DownloadMainText.Text = "正在校验数字签名...";
+
+                            uint trustResult = VerifyAuthenticodeSignature(savePath);
+                            if (trustResult != 0 && !ConfirmUntrustedInstaller(savePath))
+                            {
+                                ResetToSelectionUI();
+                                return;
+                            }
                         }
 
                         DownloadMainText.Text = "正在启动安装...";
