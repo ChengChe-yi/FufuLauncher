@@ -379,11 +379,7 @@ public sealed class CodeSigningTrustService
                 : $"已安装平台证书（{scopeText}）"
         };
     }
-
-    /// <summary>
-    /// Windows 对受信任根存储的写入有额外保护：非提升进程可能直接返回“拒绝访问”。
-    /// 这里把拒绝访问识别为“需要提升”，由调用方改用管理员权限重试。
-    /// </summary>
+    
     private static void TryStoreOperation(
         TrustStoreScope scope, string action, Action operation, ref bool denied, ref string? lastError)
     {
