@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -17,8 +18,7 @@ public partial class SettingsViewModel
     [ObservableProperty] private string _dataPath = AppPaths.DataDir;
     [ObservableProperty] private string _cachePath = AppPaths.CacheDir;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(HasPathError))]
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(HasPathError))]
     private string _pathError = string.Empty;
 
     public bool HasPathError => !string.IsNullOrEmpty(PathError);

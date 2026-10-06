@@ -729,16 +729,21 @@
                                             </StackPanel>
                                         </StackPanel>
                                         <Button Grid.Row="1" Grid.Column="1" Padding="10,4"
-                                                HorizontalAlignment="Right" VerticalAlignment="Center" Command="{x:Bind ViewModel.OpenMiyousheQrCommand}">
+                                                HorizontalAlignment="Right" VerticalAlignment="Center"
+                                                Command="{x:Bind ViewModel.OpenMiyousheQrCommand}">
                                             <StackPanel Orientation="Horizontal" Spacing="8">
                                                 <Viewbox Width="20" Height="20">
                                                     <Canvas Width="32" Height="32">
-                                                        <Path Data="M4,10 L4,7 C4,5.34 5.34,4 7,4 L25,4 C26.66,4 28,5.34 28,7 L28,10 M4,22 L4,25 C4,26.66 5.34,28 7,28 L25,28 C26.66,28 28,26.66 28,25 L28,22 M9,16 L23,16"
-                                                              Stroke="{ThemeResource TextFillColorPrimaryBrush}" StrokeThickness="2.5"
-                                                              StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+                                                        <Path
+                                                            Data="M4,10 L4,7 C4,5.34 5.34,4 7,4 L25,4 C26.66,4 28,5.34 28,7 L28,10 M4,22 L4,25 C4,26.66 5.34,28 7,28 L25,28 C26.66,28 28,26.66 28,25 L28,22 M9,16 L23,16"
+                                                            Stroke="{ThemeResource TextFillColorPrimaryBrush}"
+                                                            StrokeThickness="2.5"
+                                                            StrokeStartLineCap="Round" StrokeEndLineCap="Round"
+                                                            StrokeLineJoin="Round" />
                                                     </Canvas>
                                                 </Viewbox>
-                                                <TextBlock Text="{helpers:Loc Key=MiyousheQr_Title}" VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=MiyousheQr_Title}"
+                                                           VerticalAlignment="Center" />
                                             </StackPanel>
                                         </Button>
                                     </Grid>
@@ -786,7 +791,8 @@
                                             Orientation="Horizontal"
                                             Spacing="8">
                                             <FontIcon FontSize="16" Glyph="&#xE916;" />
-                                            <TextBlock x:Name="BtnCheckinText" Text="{helpers:Loc Key=Account_DailyCheckin}" />
+                                            <TextBlock x:Name="BtnCheckinText"
+                                                       Text="{helpers:Loc Key=Account_DailyCheckin}" />
                                         </StackPanel>
                                     </Grid>
                                 </Button>
@@ -1057,7 +1063,8 @@
                                             FontSize="16"
                                             Foreground="{ThemeResource AccentFillColorDefaultBrush}"
                                             Glyph="&#xE90A;" />
-                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{helpers:Loc Key=Account_CommunityFeed}" />
+                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
+                                                   Text="{helpers:Loc Key=Account_CommunityFeed}" />
                                     </StackPanel>
 
                                     <Grid ColumnSpacing="8">
@@ -1144,7 +1151,8 @@
                                             FontSize="16"
                                             Foreground="{ThemeResource AccentFillColorDefaultBrush}"
                                             Glyph="&#xE7FC;" />
-                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{helpers:Loc Key=Account_BoundCharacters}" />
+                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
+                                                   Text="{helpers:Loc Key=Account_BoundCharacters}" />
                                     </StackPanel>
 
                                     <views:GameRoleSelector Grid.Row="1" />
@@ -1270,7 +1278,8 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
                                         <StackPanel Spacing="4">
-                                            <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}" Text="{helpers:Loc Key=Account_PlayTime}" />
+                                            <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
+                                                       Text="{helpers:Loc Key=Account_PlayTime}" />
                                             <TextBlock
                                                 FontSize="12"
                                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"

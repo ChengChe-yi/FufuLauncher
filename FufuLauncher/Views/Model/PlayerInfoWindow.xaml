@@ -68,7 +68,8 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_RoleList}" Margin="15,10" FontWeight="SemiBold" Opacity="0.7" />
+                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_RoleList}" Margin="15,10" FontWeight="SemiBold"
+                               Opacity="0.7" />
 
                     <ListView x:Name="RoleListView" Grid.Row="1"
                               SelectionMode="Single"
@@ -143,7 +144,8 @@
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Spacing="10">
-                                            <TextBlock Text="{helpers:Loc Key=PlayerInfo_CoreStats}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                                            <TextBlock Text="{helpers:Loc Key=PlayerInfo_CoreStats}"
+                                                       Style="{StaticResource SubtitleTextBlockStyle}" />
                                             <Grid>
                                                 <TextBlock Text="{helpers:Loc Key=PlayerInfo_Hp}" />
                                                 <TextBlock Text="{x:Bind CurrentRole.Hp, Mode=OneWay}"
@@ -167,7 +169,8 @@
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="1" Spacing="10">
-                                            <TextBlock Text="{helpers:Loc Key=PlayerInfo_AdvancedStats}" Style="{StaticResource SubtitleTextBlockStyle}" />
+                                            <TextBlock Text="{helpers:Loc Key=PlayerInfo_AdvancedStats}"
+                                                       Style="{StaticResource SubtitleTextBlockStyle}" />
                                             <Grid>
                                                 <TextBlock Text="{helpers:Loc Key=PlayerInfo_CritRate}" />
                                                 <TextBlock Text="{x:Bind CurrentRole.CritRate, Mode=OneWay}"
@@ -228,7 +231,9 @@
                                                     <TextBlock Text="{x:Bind Type}" Opacity="0.5" FontSize="12"
                                                                VerticalAlignment="Center" />
 
-                                                    <HyperlinkButton Grid.Column="1" Content="{helpers:Loc Key=PlayerInfo_ViewSource}" FontSize="12"
+                                                    <HyperlinkButton Grid.Column="1"
+                                                                     Content="{helpers:Loc Key=PlayerInfo_ViewSource}"
+                                                                     FontSize="12"
                                                                      Margin="0,-5,-5,-5" Padding="5,0"
                                                                      Click="OnArtifactSearchClick" />
                                                 </Grid>
@@ -278,7 +283,8 @@
                                     </Grid>
 
                                     <StackPanel Spacing="10">
-                                        <TextBlock Text="{helpers:Loc Key=PlayerInfo_SkillLevels}" Style="{StaticResource BodyStrongTextBlockStyle}" />
+                                        <TextBlock Text="{helpers:Loc Key=PlayerInfo_SkillLevels}"
+                                                   Style="{StaticResource BodyStrongTextBlockStyle}" />
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition /><ColumnDefinition /><ColumnDefinition />
@@ -286,7 +292,8 @@
                                             <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
                                                     Padding="10" CornerRadius="4" Margin="0,0,5,0">
                                                 <StackPanel>
-                                                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_NormalAttack}" Opacity="0.6" FontSize="12" />
+                                                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_NormalAttack}"
+                                                               Opacity="0.6" FontSize="12" />
                                                     <TextBlock Text="{x:Bind CurrentRole.SkillA, Mode=OneWay}"
                                                                FontSize="20" HorizontalAlignment="Center" />
                                                 </StackPanel>
@@ -295,7 +302,8 @@
                                                     Background="{ThemeResource LayerFillColorDefaultBrush}"
                                                     Padding="10" CornerRadius="4" Margin="5,0,5,0">
                                                 <StackPanel>
-                                                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_ElementalSkill}" Opacity="0.6" FontSize="12" />
+                                                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_ElementalSkill}"
+                                                               Opacity="0.6" FontSize="12" />
                                                     <TextBlock Text="{x:Bind CurrentRole.SkillE, Mode=OneWay}"
                                                                FontSize="20" HorizontalAlignment="Center" />
                                                 </StackPanel>
@@ -304,7 +312,8 @@
                                                     Background="{ThemeResource LayerFillColorDefaultBrush}"
                                                     Padding="10" CornerRadius="4" Margin="5,0,0,0">
                                                 <StackPanel>
-                                                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_ElementalBurst}" Opacity="0.6" FontSize="12" />
+                                                    <TextBlock Text="{helpers:Loc Key=PlayerInfo_ElementalBurst}"
+                                                               Opacity="0.6" FontSize="12" />
                                                     <TextBlock Text="{x:Bind CurrentRole.SkillQ, Mode=OneWay}"
                                                                FontSize="20" HorizontalAlignment="Center" />
                                                 </StackPanel>

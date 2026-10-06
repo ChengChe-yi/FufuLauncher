@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using FufuLauncher.Helpers;
@@ -16,7 +17,8 @@ public partial class LuaPluginInstaller
     {
         if (string.IsNullOrWhiteSpace(rawPath))
         {
-            throw new SecurityViolationException(string.Format("PluginStoreSecurityEmptyPath".GetLocalized(), operation));
+            throw new SecurityViolationException(
+                string.Format("PluginStoreSecurityEmptyPath".GetLocalized(), operation));
         }
 
         if (rawPath.Contains(".."))

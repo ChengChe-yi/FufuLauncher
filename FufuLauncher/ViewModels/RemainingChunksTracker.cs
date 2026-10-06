@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using FufuLauncher.Models.GameServer;
 
@@ -9,7 +10,10 @@ namespace FufuLauncher.Views;
 
 public sealed class RemainingChunksTracker
 {
-    public ObservableCollection<string> Chunks { get; } = [];
+    public ObservableCollection<string> Chunks
+    {
+        get;
+    } = [];
 
     public void Reset() => Chunks.Clear();
 

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -18,15 +19,15 @@ namespace FufuLauncher.Views
         {
             InitializeComponent();
             _rawCookie = cookie;
-            
+
             IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             _appWindow = AppWindow.GetFromWindowId(windowId);
-            
+
             _appWindow.IsShownInSwitchers = false;
-            
+
             _appWindow.MoveAndResize(new Windows.Graphics.RectInt32(-10000, -10000, 1, 1));
-            
+
             Activated += (s, e) =>
             {
                 if (_appWindow.Presenter is OverlappedPresenter presenter)
@@ -46,7 +47,7 @@ namespace FufuLauncher.Views
             {
                 var cookieManager = CheckinWebView.CoreWebView2.CookieManager;
                 var domains = new[] { ".hoyolab.com", ".hoyoverse.com", ".mihoyo.com" };
-                
+
                 var cookiePairs = _rawCookie.Split(';', StringSplitOptions.RemoveEmptyEntries);
                 foreach (var domain in domains)
                 {
@@ -62,7 +63,8 @@ namespace FufuLauncher.Views
                 }
             }
 
-            CheckinWebView.CoreWebView2.Navigate("https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&lang=zh-cn");
+            CheckinWebView.CoreWebView2.Navigate(
+                "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&lang=zh-cn");
             CheckinWebView.NavigationCompleted += OnNavigationCompleted;
         }
 
@@ -72,7 +74,7 @@ namespace FufuLauncher.Views
 
             var webView = sender as WebView2;
             if (webView == null) return;
-            
+
             await Task.Delay(5000);
 
             string js = @"(async function() { 

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -61,12 +62,14 @@ public sealed partial class BlankPage
 
         if (isGlobalExe)
         {
-            stackPanel.Children.Add(new TextBlock { Text = "Msg_GlobalClientNoSwitchToBili".GetLocalized(), TextWrapping = TextWrapping.Wrap });
+            stackPanel.Children.Add(new TextBlock
+                { Text = "Msg_GlobalClientNoSwitchToBili".GetLocalized(), TextWrapping = TextWrapping.Wrap });
             dialog.PrimaryButtonText = "Btn_SwitchToOfficialServer".GetLocalized();
         }
         else
         {
-            stackPanel.Children.Add(new TextBlock { Text = "Label_ChooseTargetServer".GetLocalized(), TextWrapping = TextWrapping.Wrap });
+            stackPanel.Children.Add(new TextBlock
+                { Text = "Label_ChooseTargetServer".GetLocalized(), TextWrapping = TextWrapping.Wrap });
             dialog.PrimaryButtonText = "Btn_SwitchToBiliServer".GetLocalized();
             dialog.SecondaryButtonText = "Btn_SwitchToOfficialServer".GetLocalized();
         }
@@ -108,9 +111,23 @@ public sealed partial class BlankPage
 
     public class SwitchPageParams
     {
-        public string GameDir { get; set; }
-        public Window ParentWindow { get; set; }
-        public string TargetServer { get; set; }
+        public string GameDir
+        {
+            get;
+            set;
+        }
+
+        public Window ParentWindow
+        {
+            get;
+            set;
+        }
+
+        public string TargetServer
+        {
+            get;
+            set;
+        }
     }
 
     private void OpenAdvancedServerSwitchWindow(string gameDir, string targetServer = "")

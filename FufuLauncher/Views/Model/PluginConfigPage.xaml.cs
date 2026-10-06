@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -222,7 +223,8 @@ public sealed partial class PluginConfigPage : Page
             if (!cancellation.IsCancellationRequested && _isActive)
             {
                 ShowError("PluginConfigPage_LoadFailed".GetLocalized(),
-                    string.Format(CultureInfo.CurrentCulture, "PluginConfigPage_LoadFailedMessage".GetLocalized(), ex.Message),
+                    string.Format(CultureInfo.CurrentCulture, "PluginConfigPage_LoadFailedMessage".GetLocalized(),
+                        ex.Message),
                     LoadConfigAsync);
                 ShowEmptyState("PluginConfigPage_LoadFailed", "PluginConfigPage_LoadFailedHint", "\uE783", false);
             }
@@ -249,7 +251,8 @@ public sealed partial class PluginConfigPage : Page
 
         string GetInfo(string key, string fallback)
         {
-            return generalInfo != null && generalInfo.TryGetValue(key, out var value) && !string.IsNullOrWhiteSpace(value)
+            return generalInfo != null && generalInfo.TryGetValue(key, out var value) &&
+                   !string.IsNullOrWhiteSpace(value)
                 ? value
                 : fallback;
         }
@@ -264,7 +267,9 @@ public sealed partial class PluginConfigPage : Page
 
         ToolTipService.SetToolTip(DescriptionTextBlock, DescriptionTextBlock.Text);
         DeveloperTextBlock.Text = GetInfo("Developer", _pluginItem.Developer);
-        DeveloperTextBlock.Visibility = string.IsNullOrWhiteSpace(DeveloperTextBlock.Text) ? Visibility.Collapsed : Visibility.Visible;
+        DeveloperTextBlock.Visibility = string.IsNullOrWhiteSpace(DeveloperTextBlock.Text)
+            ? Visibility.Collapsed
+            : Visibility.Visible;
         ToolTipService.SetToolTip(DeveloperTextBlock, DeveloperTextBlock.Text);
         ModifiedDateTextBlock.Text = _pluginItem.DateModified.ToString("yyyy-MM-dd HH:mm", CultureInfo.CurrentCulture);
         ConfigPathTextBlock.Text = _pluginItem.ConfigFilePath ?? string.Empty;
@@ -287,9 +292,12 @@ public sealed partial class PluginConfigPage : Page
 
         var query = SettingsSearchBox.Text.Trim();
         var options = _configuration.Options.Where(option => query.Length == 0 ||
-            option.DisplayName.Contains(query, StringComparison.CurrentCultureIgnoreCase) ||
-            option.SectionName.Contains(query, StringComparison.CurrentCultureIgnoreCase) ||
-            option.Description.Contains(query, StringComparison.CurrentCultureIgnoreCase)).ToArray();
+                                                             option.DisplayName.Contains(query,
+                                                                 StringComparison.CurrentCultureIgnoreCase) ||
+                                                             option.SectionName.Contains(query,
+                                                                 StringComparison.CurrentCultureIgnoreCase) ||
+                                                             option.Description.Contains(query,
+                                                                 StringComparison.CurrentCultureIgnoreCase)).ToArray();
 
         _visibleOptions.Clear();
         foreach (var option in options)
@@ -299,7 +307,8 @@ public sealed partial class PluginConfigPage : Page
 
         OptionCountTextBlock.Text = query.Length == 0
             ? string.Format(CultureInfo.CurrentCulture, "PluginConfigPage_OptionCount".GetLocalized(), options.Length)
-            : string.Format(CultureInfo.CurrentCulture, "PluginConfigPage_FilteredOptionCount".GetLocalized(), options.Length, _configuration.Options.Count);
+            : string.Format(CultureInfo.CurrentCulture, "PluginConfigPage_FilteredOptionCount".GetLocalized(),
+                options.Length, _configuration.Options.Count);
         SettingsScrollViewer.ChangeView(null, 0, null, true);
         SettingsScrollViewer.Visibility = options.Length > 0 ? Visibility.Visible : Visibility.Collapsed;
         EmptyStatePanel.Visibility = options.Length > 0 ? Visibility.Collapsed : Visibility.Visible;
@@ -386,6 +395,7 @@ public sealed partial class PluginConfigPage : Page
                 {
                     SetSaveStatus("PluginConfigPage_Saving".GetLocalized(), "\uE895");
                 }
+
                 await configuration.SaveAsync(path);
             }
 
@@ -398,6 +408,7 @@ public sealed partial class PluginConfigPage : Page
                     _hasSaveError = false;
                 }
             }
+
             return true;
         }
         catch (Exception ex)
@@ -407,10 +418,12 @@ public sealed partial class PluginConfigPage : Page
             {
                 SetSaveStatus("PluginConfigPage_SaveFailed".GetLocalized(), "\uE783");
                 ShowError("PluginConfigPage_SaveFailed".GetLocalized(),
-                    string.Format(CultureInfo.CurrentCulture, "PluginConfigPage_SaveFailedMessage".GetLocalized(), ex.Message),
+                    string.Format(CultureInfo.CurrentCulture, "PluginConfigPage_SaveFailedMessage".GetLocalized(),
+                        ex.Message),
                     RetrySaveAsync);
                 _hasSaveError = true;
             }
+
             return false;
         }
     }
@@ -530,6 +543,7 @@ public sealed partial class PluginConfigPage : Page
             {
                 RestorePageInteraction();
             }
+
             UpdateBackButtonState();
         }
     }

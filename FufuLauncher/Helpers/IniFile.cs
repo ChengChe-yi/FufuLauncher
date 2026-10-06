@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 
 namespace FufuLauncher.Helpers;
@@ -36,6 +37,7 @@ public class IniFile
                 {
                     result[currentSection] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
                 }
+
                 continue;
             }
 
@@ -47,6 +49,7 @@ public class IniFile
                 result[currentSection][key] = value;
             }
         }
+
         return result;
     }
 
@@ -54,7 +57,7 @@ public class IniFile
     {
         if (!File.Exists(_path))
         {
-            throw new FileNotFoundException($"ÎÞ·¨±£´æÅäÖÃ£¬Î´ÕÒµ½Ä¿±êÎÄ¼þ: {_path}");
+            throw new FileNotFoundException($"ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½Î´ï¿½Òµï¿½Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½: {_path}");
         }
 
         var lines = new List<string>(File.ReadAllLines(_path, Encoding.UTF8));
@@ -66,7 +69,7 @@ public class IniFile
     {
         if (!File.Exists(_path))
         {
-            throw new FileNotFoundException($"ÎÞ·¨±£´æÅäÖÃ£¬Î´ÕÒµ½Ä¿±êÎÄ¼þ: {_path}");
+            throw new FileNotFoundException($"ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½Î´ï¿½Òµï¿½Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½: {_path}");
         }
 
         var lines = new List<string>(File.ReadAllLines(_path, Encoding.UTF8));
@@ -99,6 +102,7 @@ public class IniFile
                     keyFound = true;
                     break;
                 }
+
                 inTargetSection = currentSection.Equals(section, StringComparison.OrdinalIgnoreCase);
                 continue;
             }

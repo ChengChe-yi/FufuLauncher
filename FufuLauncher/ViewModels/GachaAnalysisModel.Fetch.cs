@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
@@ -70,11 +71,21 @@ public partial class GachaAnalysisModel
                 CacheFetchFailed("GachaAnalysis_CacheNoLink");
                 return;
             }
+
             await FetchFromLinkAsync(link);
         }
-        catch (DirectoryNotFoundException) { CacheFetchFailed("GachaAnalysis_CacheMissingPath"); }
-        catch (FileNotFoundException) { CacheFetchFailed("GachaAnalysis_CacheNoLink"); }
-        catch (IOException) { CacheFetchFailed("GachaAnalysis_CacheReadFailed"); }
+        catch (DirectoryNotFoundException)
+        {
+            CacheFetchFailed("GachaAnalysis_CacheMissingPath");
+        }
+        catch (FileNotFoundException)
+        {
+            CacheFetchFailed("GachaAnalysis_CacheNoLink");
+        }
+        catch (IOException)
+        {
+            CacheFetchFailed("GachaAnalysis_CacheReadFailed");
+        }
         catch (Exception ex)
         {
             CrawlerStatus = $"获取失败: {ex.Message}";
@@ -99,6 +110,7 @@ public partial class GachaAnalysisModel
         var roleVersion = _roleVersion;
         bool CanApply() => roleVersion == _roleVersion && !_pendingRoleSwitch;
         var useBaseline = incremental && !string.IsNullOrEmpty(expectedUid) && _currentUid == expectedUid;
+
         void OnProgress(string pool, int count) =>
             App.MainWindow.DispatcherQueue.TryEnqueue(() => CrawlerStatus = $"正在获取{pool}记录... (已获取 {count} 条)");
 
@@ -111,7 +123,8 @@ public partial class GachaAnalysisModel
             useBaseline ? GetNewestLogId(_cachedWeaponLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
         CrawlerStatus = $"武器活动 {weaponLogs.Count} 条，正在获取集录祈愿记录...";
-        var chronicledLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "500", count => OnProgress("集录祈愿", count),
+        var chronicledLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "500",
+            count => OnProgress("集录祈愿", count),
             useBaseline ? GetNewestLogId(_cachedChronicledLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
         CrawlerStatus = $"集录祈愿 {chronicledLogs.Count} 条，正在获取新手祈愿记录...";
@@ -119,17 +132,20 @@ public partial class GachaAnalysisModel
             useBaseline ? GetNewestLogId(_cachedNoviceLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
         CrawlerStatus = $"新手祈愿 {noviceLogs.Count} 条，正在获取常驻祈愿记录...";
-        var standardLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "200", count => OnProgress("常驻祈愿", count),
+        var standardLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "200",
+            count => OnProgress("常驻祈愿", count),
             useBaseline ? GetNewestLogId(_cachedStandardLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
 
         // Stage all pools before switching archives or modifying existing records.
-        var allFetched = charLogs.Concat(weaponLogs).Concat(chronicledLogs).Concat(noviceLogs).Concat(standardLogs).ToList();
+        var allFetched = charLogs.Concat(weaponLogs).Concat(chronicledLogs).Concat(noviceLogs).Concat(standardLogs)
+            .ToList();
         if (!CanApply())
         {
             CrawlerStatus = "角色已切换，已丢弃旧角色的获取结果。";
             return;
         }
+
         if (allFetched.Count == 0)
         {
             if (!string.IsNullOrEmpty(expectedUid) && _currentUid == expectedUid &&
@@ -139,10 +155,12 @@ public partial class GachaAnalysisModel
                 CrawlerStatus = $"UID {expectedUid} 未获取到新记录，已保留现有数据。";
                 return;
             }
+
             CrawlerStatus = "未获取到祈愿记录，已保留现有数据。请确认游戏内祈愿历史中有可查询的记录。";
             OnErrorAction?.Invoke(CrawlerStatus);
             return;
         }
+
         var uids = allFetched.Select(l => l.Uid).Distinct().ToList();
         if (uids.Count != 1)
             throw new GachaFetchException("不同卡池返回了不同账号的数据，已停止导入。", null);

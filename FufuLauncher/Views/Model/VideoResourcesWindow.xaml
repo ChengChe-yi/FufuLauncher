@@ -59,9 +59,11 @@
 
                                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right"
                                                     Margin="0,4,8,0" Spacing="8">
-                                            <Button Content="{helpers:Loc Key=VideoResources_Play}" Click="OnPlayClick" Tag="{Binding}" FontSize="10"
+                                            <Button Content="{helpers:Loc Key=VideoResources_Play}" Click="OnPlayClick"
+                                                    Tag="{Binding}" FontSize="10"
                                                     Padding="8,4" Height="28" />
-                                            <Button Content="{helpers:Loc Key=VideoResources_Download}" Click="OnDownloadClick" Tag="{Binding}" FontSize="10"
+                                            <Button Content="{helpers:Loc Key=VideoResources_Download}"
+                                                    Click="OnDownloadClick" Tag="{Binding}" FontSize="10"
                                                     Padding="8,4" Height="28" />
                                         </StackPanel>
                                     </Grid>
@@ -95,9 +97,11 @@
 
                                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right"
                                                     Margin="0,4,8,0" Spacing="8">
-                                            <Button Content="{helpers:Loc Key=VideoResources_Play}" Click="OnPlayClick" Tag="{Binding}" FontSize="10"
+                                            <Button Content="{helpers:Loc Key=VideoResources_Play}" Click="OnPlayClick"
+                                                    Tag="{Binding}" FontSize="10"
                                                     Padding="8,4" Height="28" />
-                                            <Button Content="{helpers:Loc Key=VideoResources_Download}" Click="OnDownloadClick" Tag="{Binding}" FontSize="10"
+                                            <Button Content="{helpers:Loc Key=VideoResources_Download}"
+                                                    Click="OnDownloadClick" Tag="{Binding}" FontSize="10"
                                                     Padding="8,4" Height="28" />
                                         </StackPanel>
                                     </Grid>

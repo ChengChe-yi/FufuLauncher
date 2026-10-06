@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Models.GameAnnouncement
@@ -53,7 +54,7 @@ namespace FufuLauncher.Models.GameAnnouncement
             return region is AnnouncementRegion.OSUSA or AnnouncementRegion.OSEURO
                 or AnnouncementRegion.OSASIA or AnnouncementRegion.OSCHT;
         }
-        
+
         public static AnnouncementRegion GetDefaultRegion(ServerType server)
         {
             return server == ServerType.OS ? AnnouncementRegion.OSUSA : AnnouncementRegion.CNGF01;
@@ -73,7 +74,7 @@ namespace FufuLauncher.Models.GameAnnouncement
             };
         }
     }
-    
+
     public sealed class AnnouncementRegionOption
     {
         public AnnouncementRegion Value

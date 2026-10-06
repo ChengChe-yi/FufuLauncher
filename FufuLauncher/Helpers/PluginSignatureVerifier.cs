@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
@@ -16,24 +17,53 @@ public sealed class PluginSignatureDetail
         Value = value;
     }
 
-    public string Label { get; }
+    public string Label
+    {
+        get;
+    }
 
-    public string Value { get; }
+    public string Value
+    {
+        get;
+    }
 }
 
 public sealed class PluginSignatureInfo
 {
-    public string DisplayName { get; set; } = string.Empty;
+    public string DisplayName
+    {
+        get;
+        set;
+    } = string.Empty;
 
-    public string FilePath { get; set; } = string.Empty;
+    public string FilePath
+    {
+        get;
+        set;
+    } = string.Empty;
 
-    public bool IsSigned { get; set; }
+    public bool IsSigned
+    {
+        get;
+        set;
+    }
 
-    public bool IsTrusted { get; set; }
+    public bool IsTrusted
+    {
+        get;
+        set;
+    }
 
-    public string TrustStatus { get; set; } = string.Empty;
+    public string TrustStatus
+    {
+        get;
+        set;
+    } = string.Empty;
 
-    public List<PluginSignatureDetail> Details { get; } = new();
+    public List<PluginSignatureDetail> Details
+    {
+        get;
+    } = new();
 }
 
 public static class PluginSignatureVerifier
@@ -84,7 +114,8 @@ public static class PluginSignatureVerifier
     }
 
     [DllImport("wintrust.dll", ExactSpelling = true, SetLastError = false, CharSet = CharSet.Unicode)]
-    private static extern uint WinVerifyTrust(IntPtr hwnd, [MarshalAs(UnmanagedType.LPStruct)] Guid actionId, IntPtr data);
+    private static extern uint WinVerifyTrust(IntPtr hwnd, [MarshalAs(UnmanagedType.LPStruct)] Guid actionId,
+        IntPtr data);
 
     public static IReadOnlyList<PluginSignatureInfo> VerifyInstalledPlugins()
     {
@@ -134,12 +165,18 @@ public static class PluginSignatureVerifier
         {
             info.Details.Add(new PluginSignatureDetail("PluginSignature_Signer".GetLocalized(), certificate.Subject));
             info.Details.Add(new PluginSignatureDetail("PluginSignature_Issuer".GetLocalized(), certificate.Issuer));
-            info.Details.Add(new PluginSignatureDetail("PluginSignature_SerialNumber".GetLocalized(), certificate.SerialNumber));
-            info.Details.Add(new PluginSignatureDetail("PluginSignature_Thumbprint".GetLocalized(), certificate.Thumbprint));
-            info.Details.Add(new PluginSignatureDetail("PluginSignature_ValidFrom".GetLocalized(), certificate.NotBefore.ToString("yyyy-MM-dd HH:mm:ss")));
-            info.Details.Add(new PluginSignatureDetail("PluginSignature_ValidTo".GetLocalized(), certificate.NotAfter.ToString("yyyy-MM-dd HH:mm:ss")));
-            info.Details.Add(new PluginSignatureDetail("PluginSignature_SignatureAlgorithm".GetLocalized(), GetAlgorithmName(certificate)));
-            info.Details.Add(new PluginSignatureDetail("PluginSignature_PublicKey".GetLocalized(), GetPublicKeyName(certificate)));
+            info.Details.Add(new PluginSignatureDetail("PluginSignature_SerialNumber".GetLocalized(),
+                certificate.SerialNumber));
+            info.Details.Add(new PluginSignatureDetail("PluginSignature_Thumbprint".GetLocalized(),
+                certificate.Thumbprint));
+            info.Details.Add(new PluginSignatureDetail("PluginSignature_ValidFrom".GetLocalized(),
+                certificate.NotBefore.ToString("yyyy-MM-dd HH:mm:ss")));
+            info.Details.Add(new PluginSignatureDetail("PluginSignature_ValidTo".GetLocalized(),
+                certificate.NotAfter.ToString("yyyy-MM-dd HH:mm:ss")));
+            info.Details.Add(new PluginSignatureDetail("PluginSignature_SignatureAlgorithm".GetLocalized(),
+                GetAlgorithmName(certificate)));
+            info.Details.Add(new PluginSignatureDetail("PluginSignature_PublicKey".GetLocalized(),
+                GetPublicKeyName(certificate)));
             certificate.Dispose();
         }
 
@@ -168,8 +205,8 @@ public static class PluginSignatureVerifier
         string name = Path.GetFileName(path);
 
         return name.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
-            || name.EndsWith(".dll.disabled", StringComparison.OrdinalIgnoreCase)
-            || name.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase);
+               || name.EndsWith(".dll.disabled", StringComparison.OrdinalIgnoreCase)
+               || name.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase);
     }
 
     private static X509Certificate2? TryReadCertificate(string filePath)

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services.CodeSigning;
@@ -36,7 +37,8 @@ public sealed partial class SettingsPage
                     : status.PackageError ?? "ModTrust_PackageMissing".GetLocalized();
 
                 ModTrustRootInfoText.Text = info;
-                ModTrustRootInfoText.Visibility = string.IsNullOrEmpty(info) ? Visibility.Collapsed : Visibility.Visible;
+                ModTrustRootInfoText.Visibility =
+                    string.IsNullOrEmpty(info) ? Visibility.Collapsed : Visibility.Visible;
             }
 
             if (ModTrustModeComboBox != null)

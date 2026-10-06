@@ -11,9 +11,12 @@ namespace FufuLauncher.Views;
 
 public sealed class MiyousheAvatar : Button
 {
-    public static readonly DependencyProperty AvatarProperty = DependencyProperty.Register(nameof(Avatar), typeof(string),
+    public static readonly DependencyProperty AvatarProperty = DependencyProperty.Register(nameof(Avatar),
+        typeof(string),
         typeof(MiyousheAvatar), new PropertyMetadata("", OnAvatarChanged));
-    public static readonly DependencyProperty DisplayNameProperty = DependencyProperty.Register(nameof(DisplayName), typeof(string),
+
+    public static readonly DependencyProperty DisplayNameProperty = DependencyProperty.Register(nameof(DisplayName),
+        typeof(string),
         typeof(MiyousheAvatar), new PropertyMetadata("", OnDisplayNameChanged));
 
     private readonly PersonPicture _picture = new();
@@ -31,8 +34,17 @@ public sealed class MiyousheAvatar : Button
         Content = _picture;
     }
 
-    public string Avatar { get => (string)GetValue(AvatarProperty); set => SetValue(AvatarProperty, value); }
-    public string DisplayName { get => (string)GetValue(DisplayNameProperty); set => SetValue(DisplayNameProperty, value); }
+    public string Avatar
+    {
+        get => (string)GetValue(AvatarProperty);
+        set => SetValue(AvatarProperty, value);
+    }
+
+    public string DisplayName
+    {
+        get => (string)GetValue(DisplayNameProperty);
+        set => SetValue(DisplayNameProperty, value);
+    }
 
     private static void OnAvatarChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
@@ -40,7 +52,10 @@ public sealed class MiyousheAvatar : Button
         control._picture.ProfilePicture = null;
         if (!CommunityContent.TryWebUri(args.NewValue as string ?? "", out var uri)) return;
         var image = new BitmapImage();
-        image.ImageFailed += (_, _) => { if (control._picture.ProfilePicture == image) control._picture.ProfilePicture = null; };
+        image.ImageFailed += (_, _) =>
+        {
+            if (control._picture.ProfilePicture == image) control._picture.ProfilePicture = null;
+        };
         control._picture.ProfilePicture = image;
         image.UriSource = uri;
     }

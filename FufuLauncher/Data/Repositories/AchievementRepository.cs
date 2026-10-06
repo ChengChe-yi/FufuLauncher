@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Data.Entities;
 using FufuLauncher.Helpers;
@@ -15,24 +16,27 @@ public class AchievementRepository
     private string? _overridePath;
     private string DbPath => _overridePath ?? Path.Combine(Helpers.AppPaths.DataDir, "achievements.db");
 
-    public AchievementRepository() { }
+    public AchievementRepository()
+    {
+    }
 
     public void ChangeDatabase(string? newDbPath)
     {
         _overridePath = newDbPath;
     }
-    
+
     public void InvalidateMigrationCache(string dbPath)
     {
         _migratedPaths.TryRemove(dbPath, out _);
     }
-    
+
     public static void ClearConnectionPool()
     {
         SqliteConnection.ClearAllPools();
     }
 
     private static readonly object _migrateLock = new();
+
     private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, bool> _migratedPaths
         = new(StringComparer.OrdinalIgnoreCase);
 
@@ -50,6 +54,7 @@ public class AchievementRepository
                 }
             }
         }
+
         return new AchievementDbContext(dbPath);
     }
 
@@ -71,7 +76,9 @@ public class AchievementRepository
                     "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='Categories';";
                 tableExists = (long)checkCmd.ExecuteScalar()! > 0;
             }
-            catch { }
+            catch
+            {
+            }
 
             if (tableExists)
             {
@@ -148,6 +155,7 @@ public class AchievementRepository
                 count++;
             }
         }
+
         context.SaveChanges();
         return count;
     }
@@ -188,7 +196,8 @@ public class AchievementRepository
         context.SaveChanges();
     }
 
-    public void UpdateAchievement(int uid, bool isCompleted, int currentProgress, int maxProgress, long completionTimestamp)
+    public void UpdateAchievement(int uid, bool isCompleted, int currentProgress, int maxProgress,
+        long completionTimestamp)
     {
         using var context = CreateContext();
         var entity = context.Achievements.Find(uid);
@@ -202,7 +211,8 @@ public class AchievementRepository
         }
     }
 
-    public void UpdateAchievementsBatch(Dictionary<int, (bool IsCompleted, int CurrentProgress, int MaxProgress, long CompletionTimestamp)> updates)
+    public void UpdateAchievementsBatch(
+        Dictionary<int, (bool IsCompleted, int CurrentProgress, int MaxProgress, long CompletionTimestamp)> updates)
     {
         using var context = CreateContext();
         foreach (var (uid, (isCompleted, currentProgress, maxProgress, completionTimestamp)) in updates)
@@ -216,6 +226,7 @@ public class AchievementRepository
                 entity.CompletionTimestamp = completionTimestamp;
             }
         }
+
         context.SaveChanges();
     }
 }

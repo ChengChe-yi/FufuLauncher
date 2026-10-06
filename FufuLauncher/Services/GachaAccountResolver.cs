@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
 using FufuLauncher.Models.MiHoYo;
@@ -9,6 +10,7 @@ using FufuLauncher.Models.MiHoYo;
 namespace FufuLauncher.Services;
 
 public sealed record GachaAccountRole(AccountEntry Account, GameRoleInfo Role, Dictionary<string, string> Cookies);
+
 public sealed record GachaAccountRolesResult(List<GachaAccountRole> Roles, List<string> Errors);
 
 /// <summary>Resolve credentials from live bindings, rather than the account's first cached GameUid.</summary>
@@ -62,6 +64,7 @@ public sealed class GachaAccountResolver(
                 errors.Add($"账号 {label} 的绑定角色查询未完成（{ex.GetType().Name}），请稍后重试。");
             }
         }
+
         return new GachaAccountRolesResult(roles, errors);
     }
 }

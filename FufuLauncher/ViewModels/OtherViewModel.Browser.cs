@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Views;
 
@@ -28,6 +29,7 @@ public partial class OtherViewModel
                     newWindow.Activate();
                 });
             }
+
             Debug.WriteLine("[OtherViewModel] 浏览器窗口已创建");
         }
         catch (Exception ex)

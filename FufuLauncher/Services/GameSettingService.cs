@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using System.Text.Json.Nodes;
 using Microsoft.Win32;
@@ -37,7 +38,10 @@ internal static class GameSettingService
                 return intValue == 1;
             }
         }
-        catch { }
+        catch
+        {
+        }
+
         return false;
     }
 
@@ -62,7 +66,9 @@ internal static class GameSettingService
                 }
             }
         }
-        catch { }
+        catch
+        {
+        }
 
         max = Math.Clamp(max, 300, 2000);
         scene = Math.Clamp(scene, 100, 500);
@@ -88,7 +94,9 @@ internal static class GameSettingService
                     node = JsonNode.Parse(str);
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         if (node == null) node = JsonNode.Parse("{}");

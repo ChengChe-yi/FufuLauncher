@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,9 +16,24 @@ namespace FufuLauncher.Services.Background
 {
     public class BackgroundUrlInfo
     {
-        public string Url { get; set; }
-        public bool IsVideo { get; set; }
-        public string ThumbnailUrl { get; set; }
+        public string Url
+        {
+            get;
+            set;
+        }
+
+        public bool IsVideo
+        {
+            get;
+            set;
+        }
+
+        public string ThumbnailUrl
+        {
+            get;
+            set;
+        }
+
         public string TypeText => IsVideo ? "视频" : "图片";
     }
 
@@ -34,7 +50,8 @@ namespace FufuLauncher.Services.Background
 
         static HoyoverseBackgroundService()
         {
-            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
         }
 
         private static string GetApiLanguage()
@@ -80,20 +97,20 @@ namespace FufuLauncher.Services.Background
 
                 var response = await _httpClient.GetStringAsync(apiUrl);
                 var currentHash = ComputeMD5(response);
-                
+
                 var localSettings = App.GetService<ILocalSettingsService>();
                 var savedHashObj = await localSettings.ReadSettingAsync("BackgroundJsonHash");
                 string savedHash = savedHashObj?.ToString();
-                
+
                 if (!string.IsNullOrEmpty(savedHash) && savedHash != currentHash)
                 {
                     Debug.WriteLine("HoyoverseBackgroundService: 识别到 JSON 发生变更，清空原先的背景切换");
                     await localSettings.SaveSettingAsync("SelectedOnlineBackgroundUrl", "");
                     await localSettings.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", false);
                 }
-                
+
                 await localSettings.SaveSettingAsync("BackgroundJsonHash", currentHash);
-                
+
                 var specificUrlObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundUrl");
                 string specificUrl = specificUrlObj?.ToString();
                 if (!string.IsNullOrEmpty(specificUrl))
@@ -102,7 +119,7 @@ namespace FufuLauncher.Services.Background
                     bool isVideo = isVideoObj != null && Convert.ToBoolean(isVideoObj);
                     return new BackgroundUrlInfo { Url = specificUrl, IsVideo = isVideo };
                 }
-                
+
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = false,
@@ -120,7 +137,8 @@ namespace FufuLauncher.Services.Background
                     {
                         if (preferVideo)
                         {
-                            var videoBgs = backgrounds.Where(b => b.Type == "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Video?.Url)).ToList();
+                            var videoBgs = backgrounds.Where(b =>
+                                b.Type == "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Video?.Url)).ToList();
                             if (videoBgs.Count > 0)
                             {
                                 var random = new Random();
@@ -129,7 +147,8 @@ namespace FufuLauncher.Services.Background
                             }
                         }
 
-                        var staticBgs = backgrounds.Where(b => b.Type != "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Background?.Url)).ToList();
+                        var staticBgs = backgrounds.Where(b =>
+                            b.Type != "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Background?.Url)).ToList();
 
                         if (staticBgs.Count > 0)
                         {
@@ -139,6 +158,7 @@ namespace FufuLauncher.Services.Background
                         }
                     }
                 }
+
                 return null;
             }
             catch (Exception ex)
@@ -155,7 +175,7 @@ namespace FufuLauncher.Services.Background
                 var apiUrl = await ResolveBackgroundApiUrlAsync(server);
 
                 var response = await _httpClient.GetStringAsync(apiUrl);
-                
+
                 var currentHash = ComputeMD5(response);
                 var localSettings = App.GetService<ILocalSettingsService>();
                 await localSettings.SaveSettingAsync("BackgroundJsonHash", currentHash);
@@ -178,26 +198,27 @@ namespace FufuLauncher.Services.Background
                         {
                             if (b.Type == "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Video?.Url))
                             {
-                                list.Add(new BackgroundUrlInfo 
-                                { 
-                                    Url = b.Video.Url, 
-                                    IsVideo = true, 
-                                    ThumbnailUrl = b.Background?.Url ?? "" 
+                                list.Add(new BackgroundUrlInfo
+                                {
+                                    Url = b.Video.Url,
+                                    IsVideo = true,
+                                    ThumbnailUrl = b.Background?.Url ?? ""
                                 });
                             }
 
                             if (!string.IsNullOrEmpty(b.Background?.Url))
                             {
-                                list.Add(new BackgroundUrlInfo 
-                                { 
-                                    Url = b.Background.Url, 
-                                    IsVideo = false, 
-                                    ThumbnailUrl = b.Background.Url 
+                                list.Add(new BackgroundUrlInfo
+                                {
+                                    Url = b.Background.Url,
+                                    IsVideo = false,
+                                    ThumbnailUrl = b.Background.Url
                                 });
                             }
                         }
                     }
                 }
+
                 return list;
             }
             catch (Exception ex)
@@ -229,12 +250,17 @@ namespace FufuLauncher.Services.Background
                     var backgrounds = result.Data.GameInfoList[0].Backgrounds;
                     if (backgrounds?.Length > 0)
                     {
-                        var staticBg = backgrounds.FirstOrDefault(b => b.Type != "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Background?.Url))?.Background?.Url;
-                        var videoBg = backgrounds.FirstOrDefault(b => b.Type == "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Video?.Url))?.Video?.Url;
+                        var staticBg = backgrounds.FirstOrDefault(b =>
+                                b.Type != "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Background?.Url))
+                            ?.Background
+                            ?.Url;
+                        var videoBg = backgrounds.FirstOrDefault(b =>
+                            b.Type == "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Video?.Url))?.Video?.Url;
 
                         return (staticBg, videoBg);
                     }
                 }
+
                 return (null, null);
             }
             catch (Exception ex)

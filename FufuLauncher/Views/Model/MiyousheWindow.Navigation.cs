@@ -16,8 +16,16 @@ public sealed partial class MiyousheWindow
         RootGrid.KeyboardAccelerators.Add(browserBack);
     }
 
-    private sealed record PageState(FeedRequest Feed, string Title, CommunityPost? Post,
-        CommunityPost[] Posts, string Cursor, Visibility More, string Description, double ScrollOffset, bool Loading);
+    private sealed record PageState(
+        FeedRequest Feed,
+        string Title,
+        CommunityPost? Post,
+        CommunityPost[] Posts,
+        string Cursor,
+        Visibility More,
+        string Description,
+        double ScrollOffset,
+        bool Loading);
 
     private PageState CapturePage() => new(_feed, FeedTitle.Text, _isPostOpen ? _post : null,
         _posts.ToArray(), _feedCursor, MorePostsButton.Visibility, FeedDescription.Text,
@@ -29,7 +37,8 @@ public sealed partial class MiyousheWindow
     {
         if (root is ScrollViewer scroll) return scroll;
         for (int i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
-            if (FindScroll(VisualTreeHelper.GetChild(root, i)) is { } child) return child;
+            if (FindScroll(VisualTreeHelper.GetChild(root, i)) is { } child)
+                return child;
         return null;
     }
 
@@ -40,19 +49,29 @@ public sealed partial class MiyousheWindow
         ReaderPane.Visibility = post ? Visibility.Visible : Visibility.Collapsed;
         ForumTabs.Visibility = !post && _feed.Kind == CommunityFeed.Forum ? Visibility.Visible : Visibility.Collapsed;
         SortTabs.Visibility = !post && SortTabs.Children.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
-        if (!post) { _readerTarget = null; _readerLoading = false; ReaderProgress.Visibility = Visibility.Collapsed; }
+        if (!post)
+        {
+            _readerTarget = null;
+            _readerLoading = false;
+            ReaderProgress.Visibility = Visibility.Collapsed;
+        }
+
         FeedTitle.Visibility = post || _feed.Kind != CommunityFeed.Forum ? Visibility.Visible : Visibility.Collapsed;
         UpdateNavigationSelection();
         UpdateRefreshButtonState();
     }
 
-    private void SetTabs(Panel panel, IEnumerable<(int Id, string Label)> choices, int selected, string group, RoutedEventHandler onChecked)
+    private void SetTabs(Panel panel, IEnumerable<(int Id, string Label)> choices, int selected, string group,
+        RoutedEventHandler onChecked)
     {
         panel.Children.Clear();
         foreach (var (id, label) in choices)
         {
-            var tab = new RadioButton { Content = label, Tag = id, GroupName = group,
-                Style = (Style)RootGrid.Resources["CapsuleTabStyle"], IsChecked = id == selected };
+            var tab = new RadioButton
+            {
+                Content = label, Tag = id, GroupName = group,
+                Style = (Style)RootGrid.Resources["CapsuleTabStyle"], IsChecked = id == selected
+            };
             tab.Checked += onChecked;
             panel.Children.Add(tab);
         }
@@ -62,7 +81,7 @@ public sealed partial class MiyousheWindow
     {
         foreach (var button in NavigationButtons.Children.OfType<RadioButton>())
             button.IsChecked = button.Tag is string kind && kind == _feed.Kind.ToString() &&
-                (_feed.Kind != CommunityFeed.User || _feed.Target == _client.AccountUid);
+                               (_feed.Kind != CommunityFeed.User || _feed.Target == _client.AccountUid);
         FeedBackButton.Visibility = _pageHistory.Count == 0 ? Visibility.Collapsed : Visibility.Visible;
     }
 
@@ -75,8 +94,10 @@ public sealed partial class MiyousheWindow
         if (sender.Key == VirtualKey.Back)
         {
             for (var element = focused; element != null; element = VisualTreeHelper.GetParent(element))
-                if (element is TextBox or RichEditBox or PasswordBox) return;
+                if (element is TextBox or RichEditBox or PasswordBox)
+                    return;
         }
+
         args.Handled = true;
         await GoBackAsync();
     }
@@ -87,9 +108,12 @@ public sealed partial class MiyousheWindow
         _goingBack = true;
         try
         {
-            _feedCancellation.Cancel(); _feedLoading = false; FeedProgress.Visibility = Visibility.Collapsed;
+            _feedCancellation.Cancel();
+            _feedLoading = false;
+            FeedProgress.Visibility = Visibility.Collapsed;
             await NavigateAsync(previous.Feed.Kind, previous.Feed.Target, previous.Title,
-                previous.Feed.GameId, previous.Feed.Sort, previous.Feed.ForumId, remember: false, load: previous.Loading);
+                previous.Feed.GameId, previous.Feed.Sort, previous.Feed.ForumId, remember: false,
+                load: previous.Loading);
             if (!previous.Loading)
             {
                 _posts.Clear();
@@ -97,9 +121,11 @@ public sealed partial class MiyousheWindow
                 _feedCursor = previous.Cursor;
                 MorePostsButton.Visibility = previous.More;
                 FeedDescription.Text = previous.Description;
-                FeedDescription.Visibility = previous.Description.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
+                FeedDescription.Visibility =
+                    previous.Description.Length == 0 ? Visibility.Collapsed : Visibility.Visible;
                 EmptyFeed.Visibility = _posts.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
             }
+
             if (previous.Post is { } selected) await OpenPostAsync(selected.Id, selected.GameId, remember: false);
             else
             {
@@ -108,6 +134,10 @@ public sealed partial class MiyousheWindow
                 FindFeedScroll()?.ChangeView(null, previous.ScrollOffset, null, true);
             }
         }
-        finally { _goingBack = false; UpdateRefreshButtonState(); }
+        finally
+        {
+            _goingBack = false;
+            UpdateRefreshButtonState();
+        }
     }
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
@@ -64,6 +65,7 @@ public sealed partial class BlankPage
                 {
                     isGlobal = true;
                 }
+
                 break;
             }
         }
@@ -243,7 +245,8 @@ public sealed partial class BlankPage
             null,
             new[] { ("可执行文件", new[] { ".exe" }) },
             PickerLocationId.ComputerFolder,
-            msg => WeakReferenceMessenger.Default.Send(new NotificationMessage("ErrorTitle".GetLocalized(), msg, NotificationType.Error)));
+            msg => WeakReferenceMessenger.Default.Send(new NotificationMessage("ErrorTitle".GetLocalized(), msg,
+                NotificationType.Error)));
         if (string.IsNullOrEmpty(path)) return;
 
         var folder = Path.GetDirectoryName(path);

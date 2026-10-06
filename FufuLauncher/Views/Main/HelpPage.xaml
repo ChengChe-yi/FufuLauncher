@@ -154,7 +154,7 @@
                                FontWeight="Bold"
                                TextWrapping="Wrap"
                                VerticalAlignment="Center" />
-                    
+
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 Spacing="8"

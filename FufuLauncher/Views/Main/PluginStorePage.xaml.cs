@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Reflection;
 using FufuLauncher.Helpers;
@@ -16,9 +17,15 @@ namespace FufuLauncher.Views;
 
 public sealed partial class PluginStorePage : Page
 {
-    public PluginStoreViewModel ViewModel { get; }
-    
-    public IReadOnlyList<int> SkeletonItems { get; } = new[] { 0, 1, 2, 3, 4, 5 };
+    public PluginStoreViewModel ViewModel
+    {
+        get;
+    }
+
+    public IReadOnlyList<int> SkeletonItems
+    {
+        get;
+    } = new[] { 0, 1, 2, 3, 4, 5 };
 
     private static readonly string CurrentAppVersion =
         Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "1.0.0.0";
@@ -30,11 +37,11 @@ public sealed partial class PluginStorePage : Page
         ViewModel = App.GetService<PluginStoreViewModel>();
         InitializeComponent();
     }
-    
+
     private async void Page_Loaded(object sender, RoutedEventArgs e)
     {
         EntranceStoryboard.Begin();
-        
+
         SyncSortUi();
         SubscribeViewModel();
         UpdateLoadingAnimations();
@@ -77,13 +84,13 @@ public sealed partial class PluginStorePage : Page
     private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName is nameof(PluginStoreViewModel.IsLoading)
-                           or nameof(PluginStoreViewModel.ShowSkeleton)
-                           or nameof(PluginStoreViewModel.IsRefreshing))
+            or nameof(PluginStoreViewModel.ShowSkeleton)
+            or nameof(PluginStoreViewModel.IsRefreshing))
         {
             UpdateLoadingAnimations();
         }
     }
-    
+
     private void UpdateLoadingAnimations()
     {
         if (ViewModel.ShowSkeleton)
@@ -110,12 +117,12 @@ public sealed partial class PluginStorePage : Page
             ResultsFadeInStoryboard.Begin();
         }
     }
-    
+
     private void OnContentScrollViewerSizeChanged(object sender, SizeChangedEventArgs e)
     {
         var horizontalMargin = ContentPanel.Margin.Left + ContentPanel.Margin.Right;
         var available = e.NewSize.Width - horizontalMargin;
-        
+
         ContentPanel.Width = Math.Max(320, Math.Min(ContentPanel.MaxWidth, available));
     }
 
@@ -273,6 +280,7 @@ public sealed partial class PluginStorePage : Page
                 valueBlock.TextWrapping = TextWrapping.Wrap;
                 valueBlock.TextTrimming = TextTrimming.None;
             }
+
             infoPanel.Children.Add(versionRow);
         }
 
@@ -300,6 +308,7 @@ public sealed partial class PluginStorePage : Page
                     TextWrapping = TextWrapping.Wrap
                 });
             }
+
             content.Children.Add(depsPanel);
         }
 
@@ -326,7 +335,8 @@ public sealed partial class PluginStorePage : Page
             HorizontalScrollMode = ScrollMode.Disabled
         };
 
-        var isInstalledOrUpdate = item.State == StorePluginState.Installed || item.State == StorePluginState.UpdateAvailable;
+        var isInstalledOrUpdate =
+            item.State == StorePluginState.Installed || item.State == StorePluginState.UpdateAvailable;
         var isUpdate = item.State == StorePluginState.UpdateAvailable;
 
         var dialog = new ContentDialog
@@ -335,7 +345,9 @@ public sealed partial class PluginStorePage : Page
             Content = scrollViewer,
             PrimaryButtonText = isUpdate
                 ? "PluginStoreUpdateNow".GetLocalized()
-                : (isInstalledOrUpdate ? "PluginStoreUninstall".GetLocalized() : "PluginStoreInstallPlugin".GetLocalized()),
+                : (isInstalledOrUpdate
+                    ? "PluginStoreUninstall".GetLocalized()
+                    : "PluginStoreInstallPlugin".GetLocalized()),
             SecondaryButtonText = "PluginStoreCancel".GetLocalized(),
             DefaultButton = ContentDialogButton.Primary,
             XamlRoot = XamlRoot
@@ -359,7 +371,7 @@ public sealed partial class PluginStorePage : Page
             }
         }
     }
-    
+
     private static Grid BuildDetailHeader(PluginStoreItem item)
     {
         var grid = new Grid();
@@ -377,7 +389,7 @@ public sealed partial class PluginStorePage : Page
 
         var iconLayers = new Grid();
         iconLayers.Children.Add(new FontIcon { Glyph = "", FontSize = 22, Opacity = 0.6 });
-        
+
         if (!string.IsNullOrWhiteSpace(item.IconUrl)
             && Uri.TryCreate(item.IconUrl, UriKind.Absolute, out var iconUri))
         {
@@ -427,7 +439,7 @@ public sealed partial class PluginStorePage : Page
         Opacity = 0.5,
         Background = TryGetBrush("DividerStrokeColorDefaultBrush")
     };
-    
+
     private static Microsoft.UI.Xaml.Media.Brush? TryGetBrush(string key)
         => Application.Current.Resources.TryGetValue(key, out var value)
             ? value as Microsoft.UI.Xaml.Media.Brush

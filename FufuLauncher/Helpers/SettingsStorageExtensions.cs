@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Windows.Storage;
 using Windows.Storage.Streams;
 
@@ -59,7 +60,8 @@ public static class SettingsStorageExtensions
         return default;
     }
 
-    public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName, CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
+    public static async Task<StorageFile> SaveFileAsync(this StorageFolder folder, byte[] content, string fileName,
+        CreationCollisionOption options = CreationCollisionOption.ReplaceExisting)
     {
         if (content == null)
         {
@@ -110,4 +112,3 @@ public static class SettingsStorageExtensions
         return string.Concat(name, FileExtension);
     }
 }
-

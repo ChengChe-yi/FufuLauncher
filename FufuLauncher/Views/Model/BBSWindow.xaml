@@ -41,7 +41,8 @@
                 <ComboBoxItem Content="Type 4" Tag="4" />
                 <ComboBoxItem Content="Type 5" Tag="5" />
             </ComboBox>
-            <TextBox Grid.Column="1" x:Name="UrlTextBox" PlaceholderText="{helpers:Loc Key=BBSWindow_EnterUrl}" VerticalAlignment="Center"
+            <TextBox Grid.Column="1" x:Name="UrlTextBox" PlaceholderText="{helpers:Loc Key=BBSWindow_EnterUrl}"
+                     VerticalAlignment="Center"
                      KeyDown="UrlTextBox_KeyDown" InputScope="Url" />
             <Button Grid.Column="2" Content="{helpers:Loc Key=BBSWindow_Go}" Click="GoButton_Click" />
         </Grid>

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using MoonSharp.Interpreter;
 
@@ -113,7 +114,8 @@ public partial class LuaPluginInstaller
             result["hash1"] = DynValue.NewString(hash1);
             result["hash2"] = DynValue.NewString(hash2);
 
-            var sameHash = string.Equals(hash1, hash2, StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(hash1);
+            var sameHash = string.Equals(hash1, hash2, StringComparison.OrdinalIgnoreCase) &&
+                           !string.IsNullOrEmpty(hash1);
             result["same_hash"] = DynValue.NewBoolean(sameHash);
             result["same"] = DynValue.NewBoolean(sameSize && sameHash);
 

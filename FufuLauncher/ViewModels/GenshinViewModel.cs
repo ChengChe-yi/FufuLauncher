@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -21,31 +22,41 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
 {
     private readonly IGenshinService _genshinService;
     private readonly GameRoleService _roles;
-    public GameRoleScope RoleSelection { get; } = new();
+
+    public GameRoleScope RoleSelection
+    {
+        get;
+    } = new();
+
     private int _loadVersion;
     private bool _disposed;
 
     private string _uid = string.Empty;
+
     public string Uid
     {
         get => _uid;
         set
         {
-            _uid = value; OnPropertyChanged();
+            _uid = value;
+            OnPropertyChanged();
         }
     }
 
     private string _nickname = string.Empty;
+
     public string Nickname
     {
         get => _nickname;
         set
         {
-            _nickname = value; OnPropertyChanged();
+            _nickname = value;
+            OnPropertyChanged();
         }
     }
 
     private TravelersDiarySummary? _travelersDiary;
+
     public TravelersDiarySummary? TravelersDiary
     {
         get => _travelersDiary;
@@ -65,22 +76,26 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
     public string FormattedMonthMora => _travelersDiary?.Data?.MonthData?.CurrentMora.ToString("N0") ?? "0";
 
     private bool _isLoading;
+
     public bool IsLoading
     {
         get => _isLoading;
         set
         {
-            _isLoading = value; OnPropertyChanged();
+            _isLoading = value;
+            OnPropertyChanged();
         }
     }
 
     private string _statusMessage = "等待加载数据...";
+
     public string StatusMessage
     {
         get => _statusMessage;
         set
         {
-            _statusMessage = value; OnPropertyChanged();
+            _statusMessage = value;
+            OnPropertyChanged();
         }
     }
 
@@ -111,12 +126,13 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    
+
     public GenshinViewModel(
         IGenshinService genshinService,
         GameRoleService roles)
@@ -165,7 +181,7 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
             IsLoading = true;
             StatusMessage = "正在连接米游社...";
 
-     
+
             var selected = await _roles.GetCurrentAsync(RoleSelection);
             if (version != _loadVersion || _disposed) return;
             if (selected == null)
@@ -221,15 +237,29 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
 
 public class IncomeSourceViewModel
 {
-    public string Action { get; set; } = "";
+    public string Action
+    {
+        get;
+        set;
+    } = "";
+
     public int Num
     {
-        get; set;
+        get;
+        set;
     }
+
     public int Percent
     {
-        get; set;
+        get;
+        set;
     }
+
     public string FormattedPercent => $"{Percent}%";
-    public string Color { get; set; } = "#000000";
+
+    public string Color
+    {
+        get;
+        set;
+    } = "#000000";
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Activation;
 using FufuLauncher.Contracts.Services;
@@ -23,13 +24,13 @@ public class PluginMirrorDownloadService
         _localSettingsService = localSettingsService;
         _mirrorProvider = mirrorProvider;
     }
-    
+
     public async Task<bool> IsEnabledAsync()
     {
         var json = await _localSettingsService.ReadSettingAsync(SettingKey);
         return json == null || Convert.ToBoolean(json);
     }
-    
+
     public async Task<bool> TryDownloadViaMirrorAsync(PluginStoreService storeService,
         string fileUrl, string destinationPath, IProgress<DownloadProgressInfo>? progress,
         string? expectedHash, CancellationToken cancellationToken)
@@ -40,7 +41,7 @@ public class PluginMirrorDownloadService
             Debug.WriteLine("[PluginMirrorDownloadService] No mirrors configured, use direct download");
             return false;
         }
-        
+
         var targetUrl = fileUrl;
         if (!MirrorSiteProvider.IsGitHubUrl(fileUrl))
         {
@@ -50,13 +51,13 @@ public class PluginMirrorDownloadService
             targetUrl = resolved;
             Debug.WriteLine($"[PluginMirrorDownloadService] Redirect to GitHub detected: {fileUrl} -> {targetUrl}");
         }
-        
+
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
             Debug.WriteLine("[PluginMirrorDownloadService] Main window dispatcher unavailable, use direct download");
             return false;
         }
-        
+
         if (_activeWindow != null)
         {
             _activeWindow.Activate();
@@ -72,7 +73,8 @@ public class PluginMirrorDownloadService
         {
             await dispatcherQueue.EnqueueAsync(() =>
             {
-                window = CreateWindow(storeService, targetUrl, destinationPath, progress, expectedHash, cancellationToken);
+                window = CreateWindow(storeService, targetUrl, destinationPath, progress, expectedHash,
+                    cancellationToken);
             });
         }
 

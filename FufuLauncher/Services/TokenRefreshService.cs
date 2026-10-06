@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -40,7 +41,8 @@ public class TokenRefreshService
         _httpClient = new HttpClient(handler);
     }
 
-    public async Task<Dictionary<string, string>?> RefreshCookieAsync(Dictionary<string, string> currentCookies, bool isManual = false)
+    public async Task<Dictionary<string, string>?> RefreshCookieAsync(Dictionary<string, string> currentCookies,
+        bool isManual = false)
     {
         try
         {
@@ -50,7 +52,7 @@ public class TokenRefreshService
                 return null;
             }
 
-           
+
             currentCookies.TryGetValue("stoken", out string stoken);
             currentCookies.TryGetValue("mid", out string mid);
 
@@ -61,7 +63,7 @@ public class TokenRefreshService
                 return null;
             }
 
-           
+
             string cookieStr = BuildCookieString(currentCookies);
 
             if (!isManual)
@@ -70,7 +72,7 @@ public class TokenRefreshService
                 if (isValid)
                 {
                     Debug.WriteLine("当前 Cookie 仍然有效，无需刷新");
-                    return null; 
+                    return null;
                 }
             }
 
@@ -99,7 +101,8 @@ public class TokenRefreshService
 
             await Task.Delay(500);
 
-            bool confirmResult = await SimulateAppActionAsync(ApiEndpoints.PassportConfirmQrLoginUrl, webTicket, authCookie);
+            bool confirmResult =
+                await SimulateAppActionAsync(ApiEndpoints.PassportConfirmQrLoginUrl, webTicket, authCookie);
             if (!confirmResult)
             {
                 if (isManual) SendErrorNotification("Token_ConfirmLoginFailed".GetLocalized());
@@ -109,7 +112,6 @@ public class TokenRefreshService
             var v2Cookies = await GetWebQrStatusAndExtractCookiesAsync(webTicket);
             if (v2Cookies != null && v2Cookies.Count > 0)
             {
-                
                 foreach (var kvp in v2Cookies)
                 {
                     currentCookies[kvp.Key] = kvp.Value;
@@ -120,7 +122,7 @@ public class TokenRefreshService
                     "Token_RefreshTitle".GetLocalized(),
                     isManual ? "Token_ManualRefreshDone".GetLocalized() : "Token_AutoRefreshDone".GetLocalized(),
                     NotificationType.Success, 3000));
-                return currentCookies; 
+                return currentCookies;
             }
             else
             {
@@ -141,7 +143,8 @@ public class TokenRefreshService
 
     private void SendErrorNotification(string message)
     {
-        WeakReferenceMessenger.Default.Send(new NotificationMessage("Token_RefreshFailed".GetLocalized(), message, NotificationType.Error, 4000));
+        WeakReferenceMessenger.Default.Send(new NotificationMessage("Token_RefreshFailed".GetLocalized(), message,
+            NotificationType.Error, 4000));
     }
 
     private async Task<bool> CheckCookieValidAsync(string cookie)
@@ -160,7 +163,8 @@ public class TokenRefreshService
             request.Headers.TryAddWithoutValidation("Referer", "https://act.mihoyo.com/");
             request.Headers.TryAddWithoutValidation("Cookie", cookie);
             request.Headers.TryAddWithoutValidation("x-rpc-device_id", _deviceId);
-            request.Headers.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1");
+            request.Headers.TryAddWithoutValidation("User-Agent",
+                "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1");
 
             var response = await _httpClient.SendAsync(request);
             var responseText = await response.Content.ReadAsStringAsync();
@@ -193,6 +197,7 @@ public class TokenRefreshService
                 dict[kv[0].Trim()] = kv[1].Trim();
             }
         }
+
         return dict;
     }
 
@@ -203,6 +208,7 @@ public class TokenRefreshService
         {
             list.Add($"{kvp.Key}={kvp.Value}");
         }
+
         return string.Join("; ", list);
     }
 
@@ -222,17 +228,19 @@ public class TokenRefreshService
         {
             var response = await _httpClient.SendAsync(request);
             var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
-            if (result["retcode"]?.GetValue<int>() == 0) 
+            if (result["retcode"]?.GetValue<int>() == 0)
                 return result["data"]["ticket"]?.GetValue<string>();
         }
-        catch { }
+        catch
+        {
+        }
 
         return null;
     }
 
     private async Task<bool> SimulateAppActionAsync(string url, string ticket, string authCookie)
     {
-        var tokenTypes = new JsonArray { "4" }; 
+        var tokenTypes = new JsonArray { "4" };
         var body = new JsonObject { ["ticket"] = ticket, ["token_types"] = tokenTypes };
         string bodyStr = body.ToJsonString(_jsonOptions);
 
@@ -246,7 +254,10 @@ public class TokenRefreshService
             var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
             return result["retcode"]?.GetValue<int>() == 0;
         }
-        catch { }
+        catch
+        {
+        }
+
         return false;
     }
 
@@ -282,17 +293,23 @@ public class TokenRefreshService
                                 if (kv.Length == 2) cookieDict[kv[0].Trim()] = kv[1].Trim();
                             }
                         }
+
                         return cookieDict;
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
+
             await Task.Delay(1000);
         }
+
         return null;
     }
 
-    private void AddCommonHeaders(HttpRequestMessage request, string body, string query, string clientType, string appId, string sdkVersion, string cookie = "")
+    private void AddCommonHeaders(HttpRequestMessage request, string body, string query, string clientType,
+        string appId, string sdkVersion, string cookie = "")
     {
         request.Headers.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 miHoYoBBS/2.90.1 Capture/2.2.0");
         request.Headers.TryAddWithoutValidation("Accept", "*/*");
@@ -334,9 +351,9 @@ public class TokenRefreshService
     {
         long t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         string r = GenerateRandomString(6, "abcdefghijklmnopqrstuvwxyz0123456789");
-        
+
         string b = string.IsNullOrEmpty(body) ? "" : body;
-        string q = string.IsNullOrEmpty(query) ? "" : query; 
+        string q = string.IsNullOrEmpty(query) ? "" : query;
 
         string signStr = $"salt={Salt}&t={t}&r={r}&b={b}&q={q}";
         string sign = CreateMD5(signStr);
@@ -349,7 +366,7 @@ public class TokenRefreshService
         long t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
         string r = GenerateRandomString(6, "abcdefghijklmnopqrstuvwxyz0123456789");
         string c = CreateMD5($"salt={WebSalt}&t={t}&r={r}");
-        
+
         return $"{t},{r},{c}";
     }
 
@@ -361,6 +378,7 @@ public class TokenRefreshService
         {
             result[i] = chars[random.Next(chars.Length)];
         }
+
         return new string(result);
     }
 
@@ -370,12 +388,13 @@ public class TokenRefreshService
         {
             byte[] inputBytes = Encoding.UTF8.GetBytes(input);
             byte[] hashBytes = md5.ComputeHash(inputBytes);
-            
+
             StringBuilder sb = new();
             for (int i = 0; i < hashBytes.Length; i++)
             {
                 sb.Append(hashBytes[i].ToString("x2"));
             }
+
             return sb.ToString();
         }
     }

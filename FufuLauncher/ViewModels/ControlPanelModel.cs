@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -36,19 +37,21 @@ public partial class ControlPanelModel : ObservableObject
             _cancellationTokenSource?.Cancel();
             _cancellationTokenSource?.Dispose();
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     public void UpdateAndSavePlayTime(int secondsToAdd)
     {
         var dateKey = DateTime.Now.ToString("yyyy-MM-dd");
-        
+
         if (_playTimeData.ContainsKey(dateKey)) _playTimeData[dateKey] += secondsToAdd;
         else _playTimeData[dateKey] = secondsToAdd;
-        
+
         _ = SaveConfigAsync();
     }
-    
+
     private async Task SaveConfigAsync()
     {
         try
@@ -82,6 +85,7 @@ public partial class ControlPanelModel : ObservableObject
                     {
                         foreach (var kvp in config.GamePlayTimeData) _playTimeData[kvp.Key] = kvp.Value;
                     }
+
                     _isLoaded = true;
                     CalculateMonthlyStats();
                 }
@@ -99,7 +103,7 @@ public partial class ControlPanelModel : ObservableObject
         var stats = new WeeklyPlayTimeStats();
         var today = DateTime.Now.Date;
         double totalSeconds = 0;
-        
+
         for (int i = 0; i < 30; i++)
         {
             var date = today.AddDays(-i);
@@ -123,7 +127,8 @@ public partial class ControlPanelModel : ObservableObject
         {
             try
             {
-                var isRunning = Process.GetProcessesByName("YuanShen").Any() || Process.GetProcessesByName("GenshinImpact").Any();
+                var isRunning = Process.GetProcessesByName("YuanShen").Any() ||
+                                Process.GetProcessesByName("GenshinImpact").Any();
 
                 if (App.MainWindow?.DispatcherQueue != null)
                 {
@@ -138,12 +143,14 @@ public partial class ControlPanelModel : ObservableObject
                                 if (WeeklyStats?.DailyRecords != null)
                                 {
                                     var today = DateTime.Today;
-                                    var todayRecord = WeeklyStats.DailyRecords.FirstOrDefault(r => r.Date.Date == today);
+                                    var todayRecord =
+                                        WeeklyStats.DailyRecords.FirstOrDefault(r => r.Date.Date == today);
                                     if (todayRecord == null)
                                     {
                                         todayRecord = new GamePlayTimeRecord { Date = today, PlayTimeSeconds = 0 };
                                         WeeklyStats.DailyRecords.Insert(0, todayRecord);
                                     }
+
                                     todayRecord.PlayTimeSeconds += 20;
                                 }
                             }
@@ -159,32 +166,82 @@ public partial class ControlPanelModel : ObservableObject
             {
                 Debug.WriteLine($"游戏监控外层异常: {ex.Message}");
             }
+
             await Task.Delay(20000, token);
         }
     }
 
     public class InventoryItem
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Category { get; set; }
-        public int OwnedCount { get; set; }
-        public int TotalRequired { get; set; }
+        public int Id
+        {
+            get;
+            set;
+        }
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public string Category
+        {
+            get;
+            set;
+        }
+
+        public int OwnedCount
+        {
+            get;
+            set;
+        }
+
+        public int TotalRequired
+        {
+            get;
+            set;
+        }
+
         public int LackCount => Math.Max(0, TotalRequired - OwnedCount);
-        public string IconUrl { get; set; }
+
+        public string IconUrl
+        {
+            get;
+            set;
+        }
+
         public string OwnedDisplay => OwnedCount >= 10000 ? $"{OwnedCount / 10000.0:F1}w" : OwnedCount.ToString();
         public string StatusColor => LackCount > 0 ? "#FF9664" : "#96FF96";
     }
 
     public class InventoryGroup
     {
-        public string Category { get; set; }
-        public List<InventoryItem> Items { get; set; }
+        public string Category
+        {
+            get;
+            set;
+        }
+
+        public List<InventoryItem> Items
+        {
+            get;
+            set;
+        }
     }
 }
 
 public class ControlPanelConfig
 {
-    public Dictionary<string, long> GamePlayTimeData { get; set; }
-    public string LastPlayDate { get; set; }
+    public Dictionary<string, long> GamePlayTimeData
+    {
+        get;
+        set;
+    }
+
+    public string LastPlayDate
+    {
+        get;
+        set;
+    }
 }

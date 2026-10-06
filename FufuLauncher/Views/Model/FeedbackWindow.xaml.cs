@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Windows.System;
 using FufuLauncher.Constants;
@@ -13,7 +14,7 @@ public sealed partial class FeedbackWindow : Window
     public FeedbackWindow()
     {
         InitializeComponent();
-        
+
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
 
@@ -22,11 +23,11 @@ public sealed partial class FeedbackWindow : Window
 
     private async void OnFeatureRequestClick(object sender, RoutedEventArgs e)
     {
-        await Launcher.LaunchUriAsync(new Uri(ApiEndpoints.GithubFeatureRequestUrl)); 
+        await Launcher.LaunchUriAsync(new Uri(ApiEndpoints.GithubFeatureRequestUrl));
     }
 
     private async void OnBugReportClick(object sender, RoutedEventArgs e)
     {
-        await Launcher.LaunchUriAsync(new Uri(ApiEndpoints.GithubBugReportUrl)); 
+        await Launcher.LaunchUriAsync(new Uri(ApiEndpoints.GithubBugReportUrl));
     }
 }

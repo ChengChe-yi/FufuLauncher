@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
@@ -25,8 +26,12 @@ namespace FufuLauncher.Services;
 
 public sealed class GeetestService
 {
-    private const string CreateVerificationUrl = "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/createVerification?is_high=true";
-    private const string VerifyVerificationUrl = "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/verifyVerification";
+    private const string CreateVerificationUrl =
+        "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/createVerification?is_high=true";
+
+    private const string VerifyVerificationUrl =
+        "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/verifyVerification";
+
     private const string DailyNoteChallengePath = "/game_record/app/genshin/api/dailyNote";
 
     private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
@@ -54,7 +59,8 @@ public sealed class GeetestService
 
             gt = data.TryGetProperty("gt", out JsonElement gtProp) ? gtProp.GetString() : null;
             challenge = data.TryGetProperty("challenge", out JsonElement chProp) ? chProp.GetString() : null;
-            Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: createVerification 成功 gt={gt}, challenge={challenge}");
+            Debug.WriteLine(
+                $"[GeetestService] TryVerifyForDailyNote: createVerification 成功 gt={gt}, challenge={challenge}");
         }
 
         if (string.IsNullOrEmpty(gt) || string.IsNullOrEmpty(challenge))
@@ -66,7 +72,9 @@ public sealed class GeetestService
             Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: 用户未完成验证 (result=null) 或 validate 为空");
             return null;
         }
-        Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: 验证码完成 challenge={result.Challenge}, validate={result.Validate}");
+
+        Debug.WriteLine(
+            $"[GeetestService] TryVerifyForDailyNote: 验证码完成 challenge={result.Challenge}, validate={result.Validate}");
 
         string verifyJson = await CallVerifyVerificationAsync(ctx, result.Challenge, result.Validate);
         using (JsonDocument doc = JsonDocument.Parse(verifyJson))
@@ -78,8 +86,10 @@ public sealed class GeetestService
                 return null;
             }
 
-            string finalChallenge = data.TryGetProperty("challenge", out JsonElement chProp) ? chProp.GetString() : null;
-            Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: verifyVerification 成功 xrpc_challenge={finalChallenge}");
+            string finalChallenge =
+                data.TryGetProperty("challenge", out JsonElement chProp) ? chProp.GetString() : null;
+            Debug.WriteLine(
+                $"[GeetestService] TryVerifyForDailyNote: verifyVerification 成功 xrpc_challenge={finalChallenge}");
             return finalChallenge;
         }
     }
@@ -155,7 +165,8 @@ public sealed class GeetestService
         return await resp.Content.ReadAsStringAsync();
     }
 
-    private static async Task<GeetestResult> ShowGeetestWebViewAsync(string gt, string challenge, bool isOversea, string? apiServerOverride = null, bool showNotice = false)
+    private static async Task<GeetestResult> ShowGeetestWebViewAsync(string gt, string challenge, bool isOversea,
+        string? apiServerOverride = null, bool showNotice = false)
     {
         string apiServer = apiServerOverride ?? (isOversea ? "api-na.geetest.com" : "api.geetest.com");
         TaskCompletionSource<GeetestResult> tcs = new();
@@ -185,7 +196,8 @@ public sealed class GeetestService
 
                 Image icon = new()
                 {
-                    Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri("ms-appx:///Assets/WindowIcon.ico")),
+                    Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(
+                        new Uri("ms-appx:///Assets/WindowIcon.ico")),
                     Height = 16,
                     Width = 16,
                     Margin = new Thickness(16, 0, 12, 0)
@@ -214,7 +226,7 @@ public sealed class GeetestService
                 rootGrid.Children.Add(webView);
 
                 geetestWindow.Content = rootGrid;
-                
+
                 AppWindow appWindow = geetestWindow.AppWindow;
                 if (appWindow != null)
                 {
@@ -291,54 +303,54 @@ public sealed class GeetestService
         if (showNotice)
         {
             noticeStyle = """
-                    .captcha-notice, .captcha-notice * {
-                        pointer-events: none;
-                        user-select: none;
-                        -webkit-user-select: none;
-                    }
-                    .captcha-notice {
-                        position: fixed;
-                        inset: 0;
-                        z-index: -1;
-                        overflow: hidden;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                    .captcha-notice .notice-watermark {
-                        font-size: clamp(44px, 7.5vw, 118px);
-                        font-weight: 900;
-                        letter-spacing: .06em;
-                        white-space: nowrap;
-                        color: transparent;
-                        -webkit-text-stroke: 2px rgba(128, 128, 128, .35);
-                    }
-                    .captcha-notice .notice-card {
-                        position: fixed;
-                        top: 16px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        width: min(1080px, 94vw);
-                        padding: 12px 26px 14px;
-                        border: 1px solid rgba(150, 150, 150, .55);
-                        border-radius: 14px;
-                        background: rgba(28, 28, 30, .82);
-                        text-align: center;
-                        color: #ffffff;
-                    }
-                    .captcha-notice .notice-card-title {
-                        font-size: clamp(20px, 1.9vw, 30px);
-                        font-weight: 800;
-                        letter-spacing: .02em;
-                        color: #ffffff;
-                        margin-bottom: 6px;
-                    }
-                    .captcha-notice .notice-card-line {
-                        font-size: clamp(14px, 1.15vw, 19px);
-                        line-height: 1.6;
-                        color: rgba(255, 255, 255, .88);
-                    }
-                """;
+                              .captcha-notice, .captcha-notice * {
+                                  pointer-events: none;
+                                  user-select: none;
+                                  -webkit-user-select: none;
+                              }
+                              .captcha-notice {
+                                  position: fixed;
+                                  inset: 0;
+                                  z-index: -1;
+                                  overflow: hidden;
+                                  display: flex;
+                                  align-items: center;
+                                  justify-content: center;
+                              }
+                              .captcha-notice .notice-watermark {
+                                  font-size: clamp(44px, 7.5vw, 118px);
+                                  font-weight: 900;
+                                  letter-spacing: .06em;
+                                  white-space: nowrap;
+                                  color: transparent;
+                                  -webkit-text-stroke: 2px rgba(128, 128, 128, .35);
+                              }
+                              .captcha-notice .notice-card {
+                                  position: fixed;
+                                  top: 16px;
+                                  left: 50%;
+                                  transform: translateX(-50%);
+                                  width: min(1080px, 94vw);
+                                  padding: 12px 26px 14px;
+                                  border: 1px solid rgba(150, 150, 150, .55);
+                                  border-radius: 14px;
+                                  background: rgba(28, 28, 30, .82);
+                                  text-align: center;
+                                  color: #ffffff;
+                              }
+                              .captcha-notice .notice-card-title {
+                                  font-size: clamp(20px, 1.9vw, 30px);
+                                  font-weight: 800;
+                                  letter-spacing: .02em;
+                                  color: #ffffff;
+                                  margin-bottom: 6px;
+                              }
+                              .captcha-notice .notice-card-line {
+                                  font-size: clamp(14px, 1.15vw, 19px);
+                                  line-height: 1.6;
+                                  color: rgba(255, 255, 255, .88);
+                              }
+                          """;
 
             string watermark = "CaptchaNoticeWatermark".GetLocalized();
             string noticeTitle = "CaptchaNoticeTitle".GetLocalized();
@@ -346,70 +358,70 @@ public sealed class GeetestService
             string noticeLine2 = "CaptchaNoticeLine2".GetLocalized();
 
             noticeMarkup = $"""
-                    <div class="captcha-notice">
-                        <div class="notice-watermark">{watermark}</div>
-                        <div class="notice-card">
-                            <div class="notice-card-title">{noticeTitle}</div>
-                            <div class="notice-card-line">{noticeLine1}</div>
-                            <div class="notice-card-line">{noticeLine2}</div>
-                        </div>
-                    </div>
-                """;
+                                <div class="captcha-notice">
+                                    <div class="notice-watermark">{watermark}</div>
+                                    <div class="notice-card">
+                                        <div class="notice-card-title">{noticeTitle}</div>
+                                        <div class="notice-card-line">{noticeLine1}</div>
+                                        <div class="notice-card-line">{noticeLine2}</div>
+                                    </div>
+                                </div>
+                            """;
         }
 
         return $$"""
-            <html>
-                <head>
-                    <meta charset="utf-8"/>
-                    <title>{{captchaTitle}}</title>
-                    <style>
-                        * { margin:0; padding:0; box-sizing:border-box; }
-                        body {
-                            background: transparent;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 100vh;
-                            overflow: hidden;
-                            font-family: 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
-                        }
-                        #geetest-div { }
-            {{noticeStyle}}
-                    </style>
-                </head>
-                <body>
-            {{noticeMarkup}}
-                    <div id="geetest-div"></div>
-                </body>
-                <script src="https://static.geetest.com/static/js/gt.0.5.2.js"></script>
-                <script>
-                    initGeetest(
-                        {
-                            protocol: "https://",
-                            gt: "{{gt}}",
-                            challenge: "{{challenge}}",
-                            new_captcha: true,
-                            product: 'bind',
-                            api_server: '{{apiServer}}'
-                        },
-                        function (captchaObj) {
-                            captchaObj.onReady(function () {
-                                captchaObj.verify();
-                            });
-                            captchaObj.onSuccess(function () {
-                                var result = captchaObj.getValidate();
-                                chrome.webview.postMessage(result);
-                            });
-                            captchaObj.onError(function () {
-                                chrome.webview.postMessage('{"geetest_error":1}');
-                            });
-                        }
-                    );
-                </script>
-            </html>
-            """;
+                 <html>
+                     <head>
+                         <meta charset="utf-8"/>
+                         <title>{{captchaTitle}}</title>
+                         <style>
+                             * { margin:0; padding:0; box-sizing:border-box; }
+                             body {
+                                 background: transparent;
+                                 display: flex;
+                                 align-items: center;
+                                 justify-content: center;
+                                 height: 100vh;
+                                 overflow: hidden;
+                                 font-family: 'Segoe UI', 'Microsoft YaHei UI', sans-serif;
+                             }
+                             #geetest-div { }
+                 {{noticeStyle}}
+                         </style>
+                     </head>
+                     <body>
+                 {{noticeMarkup}}
+                         <div id="geetest-div"></div>
+                     </body>
+                     <script src="https://static.geetest.com/static/js/gt.0.5.2.js"></script>
+                     <script>
+                         initGeetest(
+                             {
+                                 protocol: "https://",
+                                 gt: "{{gt}}",
+                                 challenge: "{{challenge}}",
+                                 new_captcha: true,
+                                 product: 'bind',
+                                 api_server: '{{apiServer}}'
+                             },
+                             function (captchaObj) {
+                                 captchaObj.onReady(function () {
+                                     captchaObj.verify();
+                                 });
+                                 captchaObj.onSuccess(function () {
+                                     var result = captchaObj.getValidate();
+                                     chrome.webview.postMessage(result);
+                                 });
+                                 captchaObj.onError(function () {
+                                     chrome.webview.postMessage('{"geetest_error":1}');
+                                 });
+                             }
+                         );
+                     </script>
+                 </html>
+                 """;
     }
-    
+
     public async Task<bool> TryVerifyAigisSessionAsync(IAigisProvider provider, string? rawSession, bool isOversea)
     {
         if (string.IsNullOrEmpty(rawSession))
@@ -432,20 +444,24 @@ public sealed class GeetestService
             JsonValueKind.Object => DeserializeElement<GeetestVerification>(session.Data),
             _ => null
         };
-        if (verification is null || string.IsNullOrEmpty(verification.Gt) || string.IsNullOrEmpty(verification.Challenge))
+        if (verification is null || string.IsNullOrEmpty(verification.Gt) ||
+            string.IsNullOrEmpty(verification.Challenge))
         {
-            Debug.WriteLine($"[GeetestService] TryVerifyAigisSession: 极验参数解析失败 data={Truncate(session.Data.ToString(), 500)}");
+            Debug.WriteLine(
+                $"[GeetestService] TryVerifyAigisSession: 极验参数解析失败 data={Truncate(session.Data.ToString(), 500)}");
             return false;
         }
 
-        Debug.WriteLine($"[GeetestService] TryVerifyAigisSession: gt={Truncate(verification.Gt, 32)}, challenge={Truncate(verification.Challenge, 32)}, isOversea={isOversea}");
+        Debug.WriteLine(
+            $"[GeetestService] TryVerifyAigisSession: gt={Truncate(verification.Gt, 32)}, challenge={Truncate(verification.Challenge, 32)}, isOversea={isOversea}");
 
         GeetestResult? result = await ShowGeetestWebViewAsync(verification.Gt, verification.Challenge, isOversea);
-        
+
         if (isOversea && (result is null || (result.Error == 1 && string.IsNullOrEmpty(result.Validate))))
         {
             Debug.WriteLine("[GeetestService] TryVerifyAigisSession: api-na 加载失败，回退 api.geetest.com 重试");
-            result = await ShowGeetestWebViewAsync(verification.Gt, verification.Challenge, isOversea, apiServerOverride: "api.geetest.com");
+            result = await ShowGeetestWebViewAsync(verification.Gt, verification.Challenge, isOversea,
+                apiServerOverride: "api.geetest.com");
         }
 
         if (result is null || string.IsNullOrEmpty(result.Validate))
@@ -461,7 +477,8 @@ public sealed class GeetestService
             Seccode = string.IsNullOrEmpty(result.Seccode) ? $"{result.Validate}|jordan" : result.Seccode,
         };
 
-        provider.Aigis = $"{session.SessionId};{Convert.ToBase64String(JsonSerializer.SerializeToUtf8Bytes(webResponse))}";
+        provider.Aigis =
+            $"{session.SessionId};{Convert.ToBase64String(JsonSerializer.SerializeToUtf8Bytes(webResponse))}";
         return true;
     }
 
@@ -497,19 +514,22 @@ public sealed class GeetestService
         [JsonPropertyName("geetest_challenge")]
         public string Challenge
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("geetest_validate")]
         public string Validate
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("geetest_seccode")]
         public string Seccode
         {
-            get; set;
+            get;
+            set;
         }
     }
 }
@@ -519,24 +539,28 @@ public sealed class GeetestResult
     [JsonPropertyName("geetest_challenge")]
     public string Challenge
     {
-        get; set;
+        get;
+        set;
     }
 
     [JsonPropertyName("geetest_validate")]
     public string Validate
     {
-        get; set;
+        get;
+        set;
     }
 
     [JsonPropertyName("geetest_seccode")]
     public string Seccode
     {
-        get; set;
+        get;
+        set;
     }
-    
+
     [JsonPropertyName("geetest_error")]
     public int Error
     {
-        get; set;
+        get;
+        set;
     }
 }

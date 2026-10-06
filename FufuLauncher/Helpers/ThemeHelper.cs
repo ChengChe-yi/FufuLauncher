@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using System;
@@ -24,7 +25,7 @@ namespace FufuLauncher.Helpers
                 }
 
                 Color color = ParseColor(hexColor);
-                
+
                 // Set main accent color
                 Application.Current.Resources["SystemAccentColor"] = color;
 
@@ -98,8 +99,8 @@ namespace FufuLauncher.Helpers
                 b = (255 - b) * factor + b;
             }
 
-            return Color.FromArgb(color.A, (byte)Math.Clamp(r, 0, 255), (byte)Math.Clamp(g, 0, 255), (byte)Math.Clamp(b, 0, 255));
+            return Color.FromArgb(color.A, (byte)Math.Clamp(r, 0, 255), (byte)Math.Clamp(g, 0, 255),
+                (byte)Math.Clamp(b, 0, 255));
         }
     }
 }
-

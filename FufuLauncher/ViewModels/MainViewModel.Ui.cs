@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -18,6 +19,7 @@ namespace FufuLauncher.ViewModels;
 public partial class MainViewModel
 {
     #region 界面样式与卡片可见性
+
     [ObservableProperty] private Visibility _widgetCardVisibility = Visibility.Collapsed;
     [ObservableProperty] private Visibility _widgetGachaVisibility = Visibility.Visible;
     [ObservableProperty] private Visibility _widgetAchievementVisibility = Visibility.Visible;
@@ -72,6 +74,7 @@ public partial class MainViewModel
         {
             InfoExpandIcon = "\uE70D";
         }
+
         InfoCardToggledRequested?.Invoke(_isInfoCardExpanded);
     }
 
@@ -140,12 +143,14 @@ public partial class MainViewModel
         ShowHomeCoin = showHomeCoin ? Visibility.Visible : Visibility.Collapsed;
 
         var showExpeditionsJson = await _localSettingsService.ReadSettingAsync("ShowDailyNoteExpeditions");
-        bool showExpeditions = (showExpeditionsJson == null || Convert.ToBoolean(showExpeditionsJson)) && activeCount < 3;
+        bool showExpeditions =
+            (showExpeditionsJson == null || Convert.ToBoolean(showExpeditionsJson)) && activeCount < 3;
         if (showExpeditions) activeCount++;
         ShowExpeditions = showExpeditions ? Visibility.Visible : Visibility.Collapsed;
 
         var showTransformerJson = await _localSettingsService.ReadSettingAsync("ShowDailyNoteTransformer");
-        bool showTransformer = (showTransformerJson == null || Convert.ToBoolean(showTransformerJson)) && activeCount < 3;
+        bool showTransformer =
+            (showTransformerJson == null || Convert.ToBoolean(showTransformerJson)) && activeCount < 3;
         ShowTransformer = showTransformer ? Visibility.Visible : Visibility.Collapsed;
 
         var showPresetCardJson = await _localSettingsService.ReadSettingAsync("IsShowPresetCardEnabled");
@@ -157,25 +162,41 @@ public partial class MainViewModel
         WidgetCardVisibility = isShowWidgetCard ? Visibility.Visible : Visibility.Collapsed;
 
         var showWidgetGachaJson = await _localSettingsService.ReadSettingAsync("ShowWidgetGacha");
-        WidgetGachaVisibility = (showWidgetGachaJson == null || Convert.ToBoolean(showWidgetGachaJson)) ? Visibility.Visible : Visibility.Collapsed;
+        WidgetGachaVisibility = (showWidgetGachaJson == null || Convert.ToBoolean(showWidgetGachaJson))
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         var showWidgetAchievementJson = await _localSettingsService.ReadSettingAsync("ShowWidgetAchievement");
-        WidgetAchievementVisibility = (showWidgetAchievementJson == null || Convert.ToBoolean(showWidgetAchievementJson)) ? Visibility.Visible : Visibility.Collapsed;
+        WidgetAchievementVisibility =
+            (showWidgetAchievementJson == null || Convert.ToBoolean(showWidgetAchievementJson))
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
         var showWidgetInventoryJson = await _localSettingsService.ReadSettingAsync("ShowWidgetInventory");
-        WidgetInventoryVisibility = (showWidgetInventoryJson == null || Convert.ToBoolean(showWidgetInventoryJson)) ? Visibility.Visible : Visibility.Collapsed;
+        WidgetInventoryVisibility = (showWidgetInventoryJson == null || Convert.ToBoolean(showWidgetInventoryJson))
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         var showWidgetPlayerRoleJson = await _localSettingsService.ReadSettingAsync("ShowWidgetPlayerRole");
-        WidgetPlayerRoleVisibility = (showWidgetPlayerRoleJson == null || Convert.ToBoolean(showWidgetPlayerRoleJson)) ? Visibility.Visible : Visibility.Collapsed;
+        WidgetPlayerRoleVisibility = (showWidgetPlayerRoleJson == null || Convert.ToBoolean(showWidgetPlayerRoleJson))
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         var showWidgetDailyNoteWindowJson = await _localSettingsService.ReadSettingAsync("ShowWidgetDailyNoteWindow");
-        WidgetDailyNoteWindowVisibility = (showWidgetDailyNoteWindowJson == null || Convert.ToBoolean(showWidgetDailyNoteWindowJson)) ? Visibility.Visible : Visibility.Collapsed;
+        WidgetDailyNoteWindowVisibility =
+            (showWidgetDailyNoteWindowJson == null || Convert.ToBoolean(showWidgetDailyNoteWindowJson))
+                ? Visibility.Visible
+                : Visibility.Collapsed;
 
         var showWidgetVideoJson = await _localSettingsService.ReadSettingAsync("ShowWidgetVideo");
-        WidgetVideoVisibility = (showWidgetVideoJson == null || Convert.ToBoolean(showWidgetVideoJson)) ? Visibility.Visible : Visibility.Collapsed;
+        WidgetVideoVisibility = (showWidgetVideoJson == null || Convert.ToBoolean(showWidgetVideoJson))
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         var showWidgetBBSJson = await _localSettingsService.ReadSettingAsync("ShowWidgetBBS");
-        WidgetBBSVisibility = (showWidgetBBSJson == null || Convert.ToBoolean(showWidgetBBSJson)) ? Visibility.Visible : Visibility.Collapsed;
+        WidgetBBSVisibility = (showWidgetBBSJson == null || Convert.ToBoolean(showWidgetBBSJson))
+            ? Visibility.Visible
+            : Visibility.Collapsed;
     }
 
     private async Task LoadUserPreferencesAsync()
@@ -209,18 +230,22 @@ public partial class MainViewModel
     private async Task LoadTextStylesAsync()
     {
         var newsColor = await _localSettingsService.ReadSettingAsync("GameNewsCardTextColor") as string ?? "#FFFFFF";
-        var newsOpacity = Convert.ToDouble(await _localSettingsService.ReadSettingAsync("GameNewsCardTextOpacity") ?? 1.0);
+        var newsOpacity =
+            Convert.ToDouble(await _localSettingsService.ReadSettingAsync("GameNewsCardTextOpacity") ?? 1.0);
         GameNewsCardTextBrush = CreateBrush(newsColor, newsOpacity);
 
         var launchColor = await _localSettingsService.ReadSettingAsync("LaunchButtonTextColor") as string ?? "#FFFFFF";
-        var launchOpacity = Convert.ToDouble(await _localSettingsService.ReadSettingAsync("LaunchButtonTextOpacity") ?? 1.0);
+        var launchOpacity =
+            Convert.ToDouble(await _localSettingsService.ReadSettingAsync("LaunchButtonTextOpacity") ?? 1.0);
         LaunchButtonTextBrush = CreateBrush(launchColor, launchOpacity);
 
         var checkinColor = await _localSettingsService.ReadSettingAsync("GameCheckinTextColor") as string ?? "#FFFFFF";
-        var checkinOpacity = Convert.ToDouble(await _localSettingsService.ReadSettingAsync("GameCheckinTextOpacity") ?? 1.0);
+        var checkinOpacity =
+            Convert.ToDouble(await _localSettingsService.ReadSettingAsync("GameCheckinTextOpacity") ?? 1.0);
         GameCheckinTextBrush = CreateBrush(checkinColor, checkinOpacity);
 
-        var launchOverlayColor = await _localSettingsService.ReadSettingAsync("LaunchButtonOverlayColor") as string ?? "#0078D7";
+        var launchOverlayColor = await _localSettingsService.ReadSettingAsync("LaunchButtonOverlayColor") as string ??
+                                 "#0078D7";
         LaunchButtonOverlayBrush = CreateBrush(launchOverlayColor, 0.4);
     }
 
@@ -234,6 +259,7 @@ public partial class MainViewModel
             {
                 hex = "#" + hex[1] + hex[1] + hex[2] + hex[2] + hex[3] + hex[3];
             }
+
             if (hex.Length != 7 && hex.Length != 9) hex = "#FFFFFF";
 
             byte a = 255;
@@ -288,7 +314,8 @@ public partial class MainViewModel
 
         if (!gameExists && !customExists)
         {
-            _notificationService.Show("Screenshot_FolderNotFound".GetLocalized(), "Screenshot_FolderNotFoundMsg".GetLocalized(), NotificationType.Error, 0);
+            _notificationService.Show("Screenshot_FolderNotFound".GetLocalized(),
+                "Screenshot_FolderNotFoundMsg".GetLocalized(), NotificationType.Error, 0);
             return;
         }
 
@@ -304,5 +331,6 @@ public partial class MainViewModel
             _notificationService.Show("打开失败", $"无法初始化截图窗口: {ex.Message}", NotificationType.Error, 0);
         }
     }
+
     #endregion
 }

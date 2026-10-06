@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Services;
 using Windows.System;
@@ -171,7 +172,8 @@ public partial class OtherViewModel
 
     private bool HasStopKey()
     {
-        return !string.IsNullOrWhiteSpace(StopKey) && Enum.TryParse<VirtualKey>(StopKey, out var key) && key != VirtualKey.None;
+        return !string.IsNullOrWhiteSpace(StopKey) && Enum.TryParse<VirtualKey>(StopKey, out var key) &&
+               key != VirtualKey.None;
     }
 
     private void RevertAutoClickerToggle(bool value)

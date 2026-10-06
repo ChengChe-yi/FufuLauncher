@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Helpers.Patch;
 
 internal sealed class PatchOutput
@@ -17,8 +18,11 @@ internal sealed class PatchOutput
         TargetSize = targetSize;
     }
 
-    public long TargetSize { get; }
-    
+    public long TargetSize
+    {
+        get;
+    }
+
     public long Written => _written;
 
     public void Write(byte[] data, int offset, int count)

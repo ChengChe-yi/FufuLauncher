@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text.Json;
@@ -17,15 +18,17 @@ public sealed class TranslationService
     private readonly HttpClient _httpClient = new();
     private const string ApiBaseUrl = "https://api.mymemory.translated.net/get";
     private const int MaxCharsPerRequest = 500;
-    
+
     private readonly ConcurrentDictionary<string, string> _cache = new();
 
     private static readonly Regex s_codeBlockRegex = new(
         @"(```[\s\S]*?```|`[^`\n]+`)",
         RegexOptions.Compiled);
 
-    private TranslationService() { }
-    
+    private TranslationService()
+    {
+    }
+
     public static string GetLangPair(string targetCulture)
     {
         var target = targetCulture.ToLowerInvariant() switch
@@ -46,13 +49,13 @@ public sealed class TranslationService
         };
         return $"zh-CN|{target}";
     }
-    
+
     public static List<(string Text, bool IsCode)> SplitMarkdownIntoParagraphs(string markdown)
     {
         var result = new List<(string Text, bool IsCode)>();
         if (string.IsNullOrEmpty(markdown))
             return result;
-        
+
         var segments = SplitByCodeBlocks(markdown);
         foreach (var (text, isCode) in segments)
         {
@@ -72,7 +75,7 @@ public sealed class TranslationService
 
         return result;
     }
-    
+
     private static List<(string Text, bool IsCode)> SplitByCodeBlocks(string text)
     {
         var result = new List<(string, bool)>();
@@ -100,6 +103,7 @@ public sealed class TranslationService
                     if (!string.IsNullOrEmpty(before))
                         result.Add((before, false));
                 }
+
                 codeStart = match.Index;
                 inCode = true;
             }
@@ -113,7 +117,7 @@ public sealed class TranslationService
                 inCode = false;
             }
         }
-        
+
         if (inCode)
         {
             result.Add((text[codeStart..], true));
@@ -125,7 +129,7 @@ public sealed class TranslationService
 
         return result;
     }
-    
+
     public static List<string> SplitLongText(string text, int maxLen = MaxCharsPerRequest)
     {
         if (string.IsNullOrEmpty(text) || text.Length <= maxLen)
@@ -148,7 +152,7 @@ public sealed class TranslationService
             {
                 if (!string.IsNullOrEmpty(current))
                     result.Add(current);
-                
+
                 if (sentence.Length > maxLen)
                 {
                     for (int i = 0; i < sentence.Length; i += maxLen)
@@ -156,6 +160,7 @@ public sealed class TranslationService
                         var chunk = sentence.Substring(i, Math.Min(maxLen, sentence.Length - i));
                         result.Add(chunk);
                     }
+
                     current = string.Empty;
                 }
                 else
@@ -170,12 +175,12 @@ public sealed class TranslationService
 
         return result;
     }
-    
+
     public async Task<string> TranslateTextAsync(string text, string langPair, CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(text))
             return text;
-        
+
         var cacheKey = $"{langPair}:{text.GetHashCode():X8}:{text.Length}";
         if (_cache.TryGetValue(cacheKey, out var cached))
             return cached;
@@ -216,7 +221,7 @@ public sealed class TranslationService
             return text;
         }
     }
-    
+
     public async Task<string> TranslateParagraphAsync(string paragraph, string langPair, CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(paragraph))
@@ -237,7 +242,7 @@ public sealed class TranslationService
 
         return string.Join("", translatedChunks);
     }
-    
+
     public async Task<string> TranslateMarkdownAsync(
         string markdown,
         string targetCulture,
@@ -249,7 +254,7 @@ public sealed class TranslationService
 
         var langPair = GetLangPair(targetCulture);
         var paragraphs = SplitMarkdownIntoParagraphs(markdown);
-        
+
         int totalTranslatable = paragraphs.Count(p => !p.IsCode && !string.IsNullOrWhiteSpace(p.Text));
         int completedCount = 0;
 
@@ -269,10 +274,10 @@ public sealed class TranslationService
                 var translated = await TranslateParagraphAsync(text, langPair, ct);
                 translatedParts.Add(translated);
                 completedCount++;
-                
+
                 var currentResult = JoinParagraphs(translatedParts, paragraphs, i + 1);
                 onProgress?.Invoke(completedCount, totalTranslatable, currentResult);
-                
+
                 if (i < paragraphs.Count - 1)
                     await Task.Delay(150, ct);
             }
@@ -280,8 +285,9 @@ public sealed class TranslationService
 
         return JoinParagraphs(translatedParts, paragraphs, paragraphs.Count);
     }
-    
-    private static string JoinParagraphs(List<string> translatedParts, List<(string Text, bool IsCode)> original, int upTo)
+
+    private static string JoinParagraphs(List<string> translatedParts, List<(string Text, bool IsCode)> original,
+        int upTo)
     {
         var result = new System.Text.StringBuilder();
 
@@ -290,11 +296,12 @@ public sealed class TranslationService
             if (i > 0 && !original[i].IsCode && !original[i - 1].IsCode)
                 result.Append("\n\n");
             else if (i > 0 && (original[i].IsCode || original[i - 1].IsCode))
-            {}
+            {
+            }
 
             result.Append(translatedParts[i]);
         }
-        
+
         for (int i = translatedParts.Count; i < Math.Min(upTo, original.Count); i++)
         {
             if (i > 0)
@@ -304,6 +311,6 @@ public sealed class TranslationService
 
         return result.ToString();
     }
-    
+
     public void ClearCache() => _cache.Clear();
 }

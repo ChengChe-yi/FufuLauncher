@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
@@ -27,7 +28,8 @@ public sealed partial class PluginSettingsPage
             return;
         }
 
-        if (!await ConfirmModeSwitchAsync("LightweightMode_EnterTitle", "LightweightMode_EnterContent", "LightweightMode_EnterConfirm"))
+        if (!await ConfirmModeSwitchAsync("LightweightMode_EnterTitle", "LightweightMode_EnterContent",
+                "LightweightMode_EnterConfirm"))
         {
             SyncModeTabs();
             return;
@@ -65,7 +67,8 @@ public sealed partial class PluginSettingsPage
             return;
         }
 
-        if (!await ConfirmModeSwitchAsync("LightweightMode_ExitTitle", "LightweightMode_ExitContent", "LightweightMode_ExitConfirm"))
+        if (!await ConfirmModeSwitchAsync("LightweightMode_ExitTitle", "LightweightMode_ExitContent",
+                "LightweightMode_ExitConfirm"))
         {
             SyncModeTabs();
             return;

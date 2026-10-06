@@ -60,12 +60,12 @@
               Padding="24,16"
               MaxWidth="650"
               Visibility="{x:Bind ViewModel.AgreementVisibility, Mode=OneWay}">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" /> 
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0"
@@ -184,7 +184,8 @@
                                   FontSize="40"
                                   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
                                   HorizontalAlignment="Center" />
-                        <TextBlock Text="{helpers:Loc Key=AgreementPage_Settings}" FontSize="12" HorizontalAlignment="Center" Opacity="0.7" />
+                        <TextBlock Text="{helpers:Loc Key=AgreementPage_Settings}" FontSize="12"
+                                   HorizontalAlignment="Center" Opacity="0.7" />
                     </StackPanel>
 
                     <StackPanel Spacing="12">
@@ -192,7 +193,8 @@
                                   FontSize="40"
                                   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
                                   HorizontalAlignment="Center" />
-                        <TextBlock Text="{helpers:Loc Key=AgreementPage_Home}" FontSize="12" HorizontalAlignment="Center" Opacity="0.7" />
+                        <TextBlock Text="{helpers:Loc Key=AgreementPage_Home}" FontSize="12"
+                                   HorizontalAlignment="Center" Opacity="0.7" />
                     </StackPanel>
 
                     <StackPanel Spacing="12">
@@ -200,7 +202,8 @@
                                   FontSize="40"
                                   FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets"
                                   HorizontalAlignment="Center" />
-                        <TextBlock Text="{helpers:Loc Key=AgreementPage_Files}" FontSize="12" HorizontalAlignment="Center" Opacity="0.7" />
+                        <TextBlock Text="{helpers:Loc Key=AgreementPage_Files}" FontSize="12"
+                                   HorizontalAlignment="Center" Opacity="0.7" />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -258,7 +261,8 @@
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Column="0" Text="{x:Bind ViewModel.DataPath, Mode=OneWay}" IsReadOnly="True"
                              FontSize="12" />
-                    <Button Grid.Column="1" Content="{helpers:Loc Key=AgreementPage_Change}" Command="{x:Bind ViewModel.BrowseDataPathCommand}"
+                    <Button Grid.Column="1" Content="{helpers:Loc Key=AgreementPage_Change}"
+                            Command="{x:Bind ViewModel.BrowseDataPathCommand}"
                             VerticalAlignment="Bottom" Padding="12,6" />
                 </Grid>
             </StackPanel>
@@ -272,7 +276,8 @@
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Column="0" Text="{x:Bind ViewModel.CachePath, Mode=OneWay}" IsReadOnly="True"
                              FontSize="12" />
-                    <Button Grid.Column="1" Content="{helpers:Loc Key=AgreementPage_Change}" Command="{x:Bind ViewModel.BrowseCachePathCommand}"
+                    <Button Grid.Column="1" Content="{helpers:Loc Key=AgreementPage_Change}"
+                            Command="{x:Bind ViewModel.BrowseCachePathCommand}"
                             VerticalAlignment="Bottom" Padding="12,6" />
                 </Grid>
             </StackPanel>

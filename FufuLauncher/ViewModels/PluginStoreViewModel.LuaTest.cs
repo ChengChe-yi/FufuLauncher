@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services;
@@ -17,7 +18,7 @@ public partial class PluginStoreViewModel
     public async Task ExecuteLuaTestAsync()
     {
         string? luaCode = null;
-        
+
         var dialogCompleted = new TaskCompletionSource<string?>();
 
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
@@ -94,7 +95,7 @@ public partial class PluginStoreViewModel
         luaCode = await dialogCompleted.Task;
         if (string.IsNullOrWhiteSpace(luaCode))
             return;
-        
+
         var securityResult = PluginVerifier.ValidateLuaSecurity(luaCode);
         if (!securityResult.IsValid)
         {
@@ -105,7 +106,7 @@ public partial class PluginStoreViewModel
                 return;
             }
         }
-        
+
         StatusMessage = "PluginStoreLuaTestExecuting".GetLocalized();
         bool success = false;
         string? errorMessage = null;
@@ -132,7 +133,7 @@ public partial class PluginStoreViewModel
         {
             errorMessage = string.Format("未预期的错误: {0}", ex.Message);
         }
-        
+
         var logDir = Path.Combine(AppContext.BaseDirectory, "Logs");
         var logFileName = $"lua_test_{DateTime.Now:yyyyMMdd_HHmmss}.log";
         var logFilePath = Path.Combine(logDir, logFileName);
@@ -148,7 +149,7 @@ public partial class PluginStoreViewModel
                 ? errorMessage + $"\n日志保存失败: {ex.Message}"
                 : $"日志保存失败: {ex.Message}";
         }
-        
+
         await ShowLuaTestResultDialogAsync(success, logFilePath, errorMessage);
 
         StatusMessage = success
@@ -243,7 +244,9 @@ public partial class PluginStoreViewModel
                 });
                 statusRow.Children.Add(new TextBlock
                 {
-                    Text = success ? "PluginStoreLuaTestSuccess".GetLocalized() : "PluginStoreLuaTestFailed".GetLocalized(),
+                    Text = success
+                        ? "PluginStoreLuaTestSuccess".GetLocalized()
+                        : "PluginStoreLuaTestFailed".GetLocalized(),
                     FontSize = 16,
                     FontWeight = Microsoft.UI.Text.FontWeights.SemiBold,
                     VerticalAlignment = VerticalAlignment.Center
@@ -272,7 +275,9 @@ public partial class PluginStoreViewModel
 
                 var dialog = new ContentDialog
                 {
-                    Title = success ? "PluginStoreLuaTestSuccess".GetLocalized() : "PluginStoreLuaTestFailed".GetLocalized(),
+                    Title = success
+                        ? "PluginStoreLuaTestSuccess".GetLocalized()
+                        : "PluginStoreLuaTestFailed".GetLocalized(),
                     Content = messagePanel,
                     PrimaryButtonText = "PluginStoreLuaTestOpenLog".GetLocalized(),
                     SecondaryButtonText = "PluginStoreLuaTestClose".GetLocalized(),

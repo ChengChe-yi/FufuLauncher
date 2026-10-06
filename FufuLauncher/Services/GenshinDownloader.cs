@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 using System.Security.Cryptography;
 using System.Text.Json;
@@ -13,44 +14,95 @@ using ZstdSharp;
 
 namespace FufuLauncher.Services
 {
-
     [ProtoContract]
     public class Manifest
     {
         [ProtoMember(1)]
-        public List<FileEntry> Files { get; set; } = new List<FileEntry>();
+        public List<FileEntry> Files
+        {
+            get;
+            set;
+        } = new List<FileEntry>();
     }
 
     [ProtoContract]
     public class FileEntry
     {
         [ProtoMember(1)]
-        public string Path { get; set; } = string.Empty;
+        public string Path
+        {
+            get;
+            set;
+        } = string.Empty;
+
         [ProtoMember(2)]
-        public List<Chunk> Chunks { get; set; } = new List<Chunk>();
+        public List<Chunk> Chunks
+        {
+            get;
+            set;
+        } = new List<Chunk>();
+
         [ProtoMember(3)]
-        public bool IsFolder { get; set; }
+        public bool IsFolder
+        {
+            get;
+            set;
+        }
+
         [ProtoMember(4)]
-        public long Size { get; set; }
+        public long Size
+        {
+            get;
+            set;
+        }
+
         [ProtoMember(5)]
-        public string Checksum { get; set; } = string.Empty;
+        public string Checksum
+        {
+            get;
+            set;
+        } = string.Empty;
     }
 
     [ProtoContract]
     public class Chunk
     {
         [ProtoMember(1)]
-        public string Id { get; set; } = string.Empty;
+        public string Id
+        {
+            get;
+            set;
+        } = string.Empty;
+
         [ProtoMember(2)]
-        public string Checksum { get; set; } = string.Empty;
+        public string Checksum
+        {
+            get;
+            set;
+        } = string.Empty;
+
         [ProtoMember(3)]
-        public long Offset { get; set; }
+        public long Offset
+        {
+            get;
+            set;
+        }
+
         [ProtoMember(4)]
-        public int CompressedSize { get; set; }
+        public int CompressedSize
+        {
+            get;
+            set;
+        }
+
         [ProtoMember(5)]
-        public int UncompressedSize { get; set; }
+        public int UncompressedSize
+        {
+            get;
+            set;
+        }
     }
-    
+
     public class GenshinDownloader
     {
         private readonly SophonBuildClient _sophonBuildClient;
@@ -62,20 +114,23 @@ namespace FufuLauncher.Services
         public event Action<long, long, int, int>? ProgressChanged;
         public event Action<string>? ErrorOccurred;
 
-        public GenshinDownloader(SophonBuildClient sophonBuildClient, ChunkDownloader chunkDownloader, GameServerScheme scheme)
+        public GenshinDownloader(SophonBuildClient sophonBuildClient, ChunkDownloader chunkDownloader,
+            GameServerScheme scheme)
         {
             _sophonBuildClient = sophonBuildClient;
             _chunkDownloader = chunkDownloader;
             _scheme = scheme;
         }
 
-        public async Task StartDownloadAsync(string installPath, string lang, bool downloadBaseGame, int maxThreads, CancellationToken token, GameServerDownloadMonitor? downloadMonitor = null)
+        public async Task StartDownloadAsync(string installPath, string lang, bool downloadBaseGame, int maxThreads,
+            CancellationToken token, GameServerDownloadMonitor? downloadMonitor = null)
         {
             try
             {
                 Log?.Invoke("Download_Connecting".GetLocalized());
 
-                using JsonDocument buildDoc = await _sophonBuildClient.GetBuildDocumentAsync(_scheme, false, token).ConfigureAwait(false);
+                using JsonDocument buildDoc = await _sophonBuildClient.GetBuildDocumentAsync(_scheme, false, token)
+                    .ConfigureAwait(false);
                 var dataProp = buildDoc.RootElement.GetProperty("data");
                 var manifestsProp = dataProp.GetProperty("manifests");
                 string versionTag = dataProp.GetProperty("tag").GetString()!;
@@ -103,15 +158,20 @@ namespace FufuLauncher.Services
                     if (config.ValueKind == JsonValueKind.Undefined) continue;
 
                     string mId = config.GetProperty("manifest").GetProperty("id").GetString()!;
-                    string mChecksum = config.GetProperty("manifest").TryGetProperty("checksum", out var checksumProp) && checksumProp.ValueKind == JsonValueKind.String
-                        ? checksumProp.GetString()!
-                        : string.Empty;
-                    string mDownloadPrefix = config.GetProperty("manifest_download").GetProperty("url_prefix").GetString()!;
-                    string chunkDownloadPrefix = config.GetProperty("chunk_download").GetProperty("url_prefix").GetString()!;
+                    string mChecksum =
+                        config.GetProperty("manifest").TryGetProperty("checksum", out var checksumProp) &&
+                        checksumProp.ValueKind == JsonValueKind.String
+                            ? checksumProp.GetString()!
+                            : string.Empty;
+                    string mDownloadPrefix =
+                        config.GetProperty("manifest_download").GetProperty("url_prefix").GetString()!;
+                    string chunkDownloadPrefix =
+                        config.GetProperty("chunk_download").GetProperty("url_prefix").GetString()!;
 
                     Log?.Invoke(string.Format("Download_FetchingManifest".GetLocalized(), asset));
 
-                    byte[] manifestBytes = await _sophonBuildClient.DownloadAndDecompressAsync($"{mDownloadPrefix}/{mId}", mChecksum, token).ConfigureAwait(false);
+                    byte[] manifestBytes = await _sophonBuildClient
+                        .DownloadAndDecompressAsync($"{mDownloadPrefix}/{mId}", mChecksum, token).ConfigureAwait(false);
 
                     using var ms = new MemoryStream(manifestBytes);
                     var protoManifest = Serializer.Deserialize<Manifest>(ms);
@@ -129,7 +189,8 @@ namespace FufuLauncher.Services
                 string stagingPath = Path.Combine(installPath, "staging");
                 if (!Directory.Exists(stagingPath)) Directory.CreateDirectory(stagingPath);
 
-                var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = maxThreads, CancellationToken = token };
+                var parallelOptions = new ParallelOptions
+                    { MaxDegreeOfParallelism = maxThreads, CancellationToken = token };
                 Action<long>? onBytesTransferred = downloadMonitor is null ? null : downloadMonitor.AddBytes;
 
                 await Parallel.ForEachAsync(filesToProcess, parallelOptions, async (item, ct) =>
@@ -144,7 +205,8 @@ namespace FufuLauncher.Services
                         ReportProgress(current, totalBytes, processedFiles, totalFiles);
                     };
 
-                    bool success = await ProcessFileAsync(item.File, item.UrlPrefix, localPath, onChunkWritten, onBytesTransferred, ct);
+                    bool success = await ProcessFileAsync(item.File, item.UrlPrefix, localPath, onChunkWritten,
+                        onBytesTransferred, ct);
 
                     if (!success)
                     {
@@ -153,17 +215,25 @@ namespace FufuLauncher.Services
                     }
 
                     Interlocked.Increment(ref processedFiles);
-                    ReportProgress(Interlocked.Read(ref processedBytes), totalBytes, processedFiles, totalFiles, force: true);
+                    ReportProgress(Interlocked.Read(ref processedBytes), totalBytes, processedFiles, totalFiles,
+                        force: true);
                 });
 
                 if (!failedFiles.IsEmpty)
                 {
-                    throw new InvalidOperationException(string.Format("Download_FileFailed".GetLocalized(), failedFiles.Count));
+                    throw new InvalidOperationException(string.Format("Download_FileFailed".GetLocalized(),
+                        failedFiles.Count));
                 }
 
                 Log?.Invoke("Download_MovingFiles".GetLocalized());
                 MoveFilesRecursively(new DirectoryInfo(stagingPath), new DirectoryInfo(installPath));
-                try { Directory.Delete(stagingPath, true); } catch { }
+                try
+                {
+                    Directory.Delete(stagingPath, true);
+                }
+                catch
+                {
+                }
 
                 string gidVerPath = Path.Combine(installPath, "gid_ver");
                 string configPath = Path.Combine(installPath, "config.ini");
@@ -177,17 +247,27 @@ namespace FufuLauncher.Services
                 }
                 else
                 {
-                    string configContent = $"[General]\ngame_version={versionTag}\nchannel={(int)_scheme.Channel}\nsub_channel={(int)_scheme.SubChannel}\ncps={_scheme.Cps}\n";
+                    string configContent =
+                        $"[General]\ngame_version={versionTag}\nchannel={(int)_scheme.Channel}\nsub_channel={(int)_scheme.SubChannel}\ncps={_scheme.Cps}\n";
                     await File.WriteAllTextAsync(configPath, configContent, token);
                 }
 
                 Log?.Invoke("Download_AllDone".GetLocalized());
             }
-            catch (OperationCanceledException) { Log?.Invoke("Download_UserCancelled".GetLocalized()); throw; }
-            catch (Exception ex) { ErrorOccurred?.Invoke(ex.Message); throw; }
+            catch (OperationCanceledException)
+            {
+                Log?.Invoke("Download_UserCancelled".GetLocalized());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                ErrorOccurred?.Invoke(ex.Message);
+                throw;
+            }
         }
 
-        private async Task<bool> ProcessFileAsync(FileEntry file, string urlPrefix, string localPath, Action<int> onProgress, Action<long>? onBytesTransferred, CancellationToken token)
+        private async Task<bool> ProcessFileAsync(FileEntry file, string urlPrefix, string localPath,
+            Action<int> onProgress, Action<long>? onBytesTransferred, CancellationToken token)
         {
             try
             {
@@ -206,6 +286,7 @@ namespace FufuLauncher.Services
                             return true;
                         }
                     }
+
                     File.Delete(localPath);
                 }
 
@@ -215,7 +296,8 @@ namespace FufuLauncher.Services
                     {
                         token.ThrowIfCancellationRequested();
 
-                        long written = await DownloadAndDecompressChunkAsync($"{urlPrefix}/{chunk.Id}", fs, chunk.CompressedSize, onBytesTransferred, token);
+                        long written = await DownloadAndDecompressChunkAsync($"{urlPrefix}/{chunk.Id}", fs,
+                            chunk.CompressedSize, onBytesTransferred, token);
                         onProgress?.Invoke((int)written);
                     }
                 }
@@ -223,7 +305,8 @@ namespace FufuLauncher.Services
                 string finalMd5 = await ComputeFileMd5Async(localPath, token);
                 if (!finalMd5.Equals(file.Checksum, StringComparison.OrdinalIgnoreCase))
                 {
-                    Log?.Invoke(string.Format("Download_VerifyFailed".GetLocalized(), file.Path, file.Checksum, finalMd5));
+                    Log?.Invoke(string.Format("Download_VerifyFailed".GetLocalized(), file.Path, file.Checksum,
+                        finalMd5));
                     if (File.Exists(localPath)) File.Delete(localPath);
                     return false;
                 }
@@ -240,15 +323,18 @@ namespace FufuLauncher.Services
                 return false;
             }
         }
-        
-        private async Task<long> DownloadAndDecompressChunkAsync(string url, Stream target, int compressedSize, Action<long>? onBytesTransferred, CancellationToken token)
+
+        private async Task<long> DownloadAndDecompressChunkAsync(string url, Stream target, int compressedSize,
+            Action<long>? onBytesTransferred, CancellationToken token)
         {
             string tempPath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid():N}.zst");
             try
             {
-                await _chunkDownloader.DownloadFileAsync(url, tempPath, compressedSize, null, token, onBytesTransferred).ConfigureAwait(false);
+                await _chunkDownloader.DownloadFileAsync(url, tempPath, compressedSize, null, token, onBytesTransferred)
+                    .ConfigureAwait(false);
 
-                using var compressedStream = new FileStream(tempPath, FileMode.Open, FileAccess.Read, FileShare.None, ChunkDownloader.BufferSize, true);
+                using var compressedStream = new FileStream(tempPath, FileMode.Open, FileAccess.Read, FileShare.None,
+                    ChunkDownloader.BufferSize, true);
                 using var decompressor = new DecompressionStream(compressedStream);
 
                 byte[] buffer = new byte[ChunkDownloader.BufferSize];
@@ -265,7 +351,13 @@ namespace FufuLauncher.Services
             }
             finally
             {
-                try { if (File.Exists(tempPath)) File.Delete(tempPath); } catch { }
+                try
+                {
+                    if (File.Exists(tempPath)) File.Delete(tempPath);
+                }
+                catch
+                {
+                }
             }
         }
 
@@ -296,6 +388,7 @@ namespace FufuLauncher.Services
                 if (File.Exists(targetPath)) File.Delete(targetPath);
                 file.MoveTo(targetPath);
             }
+
             foreach (var dir in source.GetDirectories())
             {
                 MoveFilesRecursively(dir, target.CreateSubdirectory(dir.Name));

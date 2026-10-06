@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Input;
@@ -134,7 +135,8 @@ public partial class GachaAnalysisModel
             if (string.IsNullOrEmpty(path)) return;
 
             await File.WriteAllTextAsync(path, json);
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("导出成功", $"已导出 {allLogs.Count} 条记录到 {Path.GetFileName(path)} ({version})", NotificationType.Success, 3000));
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("导出成功",
+                $"已导出 {allLogs.Count} 条记录到 {Path.GetFileName(path)} ({version})", NotificationType.Success, 3000));
         }
         catch (Exception ex)
         {
@@ -239,7 +241,11 @@ public partial class GachaAnalysisModel
                 }
             }
 
-            if (!await HandleUidMismatchAsync(importUid)) { IsFetching = false; return; }
+            if (!await HandleUidMismatchAsync(importUid))
+            {
+                IsFetching = false;
+                return;
+            }
 
             _archiveSelectionOverride = true;
             _currentUid = importUid;
@@ -268,7 +274,9 @@ public partial class GachaAnalysisModel
                             time = dt.ToString("yyyy-MM-dd HH:mm:ss");
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 }
 
                 return new GachaLogItem
@@ -286,16 +294,22 @@ public partial class GachaAnalysisModel
             }).ToList();
 
             FillMissingFieldsFromMetadata(newLogs);
-            _cachedCharacterLogs = MergeLogs(_cachedCharacterLogs, newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "301").ToList());
-            _cachedWeaponLogs = MergeLogs(_cachedWeaponLogs, newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "302").ToList());
-            _cachedChronicledLogs = MergeLogs(_cachedChronicledLogs, newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "500").ToList());
-            _cachedNoviceLogs = MergeLogs(_cachedNoviceLogs, newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "100").ToList());
-            _cachedStandardLogs = MergeLogs(_cachedStandardLogs, newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "200").ToList());
+            _cachedCharacterLogs = MergeLogs(_cachedCharacterLogs,
+                newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "301").ToList());
+            _cachedWeaponLogs = MergeLogs(_cachedWeaponLogs,
+                newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "302").ToList());
+            _cachedChronicledLogs = MergeLogs(_cachedChronicledLogs,
+                newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "500").ToList());
+            _cachedNoviceLogs = MergeLogs(_cachedNoviceLogs,
+                newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "100").ToList());
+            _cachedStandardLogs = MergeLogs(_cachedStandardLogs,
+                newLogs.Where(x => GetNormalizedGachaType(x.GachaType) == "200").ToList());
 
             HasGachaData = true;
             SaveGachaDataAsync();
 
-            var total = _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count + _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
+            var total = _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count +
+                        _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
             CrawlerStatus = $"导入完成，共 {total} 条记录，正在检查图片资源...";
             IsScraping = true;
             if (RequestMetadataScrapeAction != null)

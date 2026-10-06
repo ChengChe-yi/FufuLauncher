@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Data.Entities;
 using FufuLauncher.Helpers;
@@ -14,9 +15,12 @@ public class MetadataRepository
 {
     private string DbPath => AppPaths.MetadataDb;
 
-    public MetadataRepository() { }
+    public MetadataRepository()
+    {
+    }
 
     private static readonly object _migrateLock = new();
+
     private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, bool> _migratedPaths
         = new(StringComparer.OrdinalIgnoreCase);
 
@@ -34,6 +38,7 @@ public class MetadataRepository
                 }
             }
         }
+
         return new MetadataDbContext(dbPath);
     }
 
@@ -55,7 +60,9 @@ public class MetadataRepository
                     "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='Metadata';";
                 tableExists = (long)checkCmd.ExecuteScalar()! > 0;
             }
-            catch { }
+            catch
+            {
+            }
 
             if (tableExists)
             {
@@ -127,6 +134,7 @@ public class MetadataRepository
                 context.Metadata.Add(item);
             }
         }
+
         context.SaveChanges();
     }
 
@@ -175,6 +183,7 @@ public class MetadataRepository
             log.Uid = uid;
             context.GachaLogs.Add(log);
         }
+
         context.SaveChanges();
     }
 
@@ -193,6 +202,7 @@ public class MetadataRepository
                 context.GachaLogs.Add(log);
             }
         }
+
         context.SaveChanges();
     }
 
@@ -255,6 +265,7 @@ public class MetadataRepository
                 context.GachaPoolMetadata.Add(pool);
             }
         }
+
         context.SaveChanges();
     }
 }

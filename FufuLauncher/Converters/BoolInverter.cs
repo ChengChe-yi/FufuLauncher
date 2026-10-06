@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml.Data;
 
 namespace FufuLauncher.Converters;
@@ -14,6 +15,7 @@ public class BoolInverter : IValueConverter
         {
             return !b;
         }
+
         return true;
     }
 
@@ -23,6 +25,7 @@ public class BoolInverter : IValueConverter
         {
             return !b;
         }
+
         return false;
     }
 }

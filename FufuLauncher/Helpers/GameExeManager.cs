@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using FufuLauncher.Contracts.Services;
@@ -26,7 +27,9 @@ namespace FufuLauncher.Helpers
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
 
             return new List<string> { "YuanShen.exe", "GenshinImpact.exe" };
         }

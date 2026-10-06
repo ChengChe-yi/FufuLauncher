@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
@@ -44,6 +45,7 @@ public sealed class AuthTicketService : IAuthTicketService
                 result.ErrorMessage = "账号登录状态已失效";
                 return result;
             }
+
             if (string.IsNullOrEmpty(mid))
             {
                 result.ErrorMessage = "账号登录状态已失效";
@@ -135,7 +137,7 @@ public sealed class AuthTicketService : IAuthTicketService
             return result;
         }
     }
-    
+
     private static void ApplyHoyoPlayHeaders(
         HttpRequestMessage request,
         IReadOnlyDictionary<string, string> cookies,
@@ -160,7 +162,7 @@ public sealed class AuthTicketService : IAuthTicketService
                 request.Headers.Add(HeaderNames.Cookie, cookieStr);
         }
     }
-    
+
     private static string BuildLTokenCookie(IReadOnlyDictionary<string, string> cookies)
     {
         var pairs = new List<string>();
@@ -175,13 +177,15 @@ public sealed class AuthTicketService : IAuthTicketService
         return string.Join(";", pairs);
     }
 
-    private static (string Key, string Value)? TryFirstPair(IReadOnlyDictionary<string, string> dict, params string[] keys)
+    private static (string Key, string Value)? TryFirstPair(IReadOnlyDictionary<string, string> dict,
+        params string[] keys)
     {
         foreach (var key in keys)
         {
             if (dict.TryGetValue(key, out var value) && !string.IsNullOrEmpty(value))
                 return (key, value);
         }
+
         return null;
     }
 
@@ -192,6 +196,7 @@ public sealed class AuthTicketService : IAuthTicketService
             if (dict.TryGetValue(key, out var value) && !string.IsNullOrEmpty(value))
                 return value;
         }
+
         return string.Empty;
     }
 }

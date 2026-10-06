@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.IO.Compression;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -27,7 +28,8 @@ public partial class LuaPluginInstaller
                 _storeService.DownloadFileAsync(url, safePath,
                     new Progress<DownloadProgressInfo>(p =>
                     {
-                        ReportProgress(5 + p.Percent * 70 / 100, p.StatusText, p.BytesDownloaded, p.TotalBytes, p.SpeedBytesPerSecond);
+                        ReportProgress(5 + p.Percent * 70 / 100, p.StatusText, p.BytesDownloaded, p.TotalBytes,
+                            p.SpeedBytesPerSecond);
                     }),
                     _expectedFileHash, _dlToken, _accessToken,
                     cancellationToken).GetAwaiter().GetResult();
@@ -84,7 +86,8 @@ public partial class LuaPluginInstaller
                     _storeService.DownloadFileAsync(downloadUrl, zipPath,
                         new Progress<DownloadProgressInfo>(p =>
                         {
-                            ReportProgress(5 + p.Percent * 70 / 100, p.StatusText, p.BytesDownloaded, p.TotalBytes, p.SpeedBytesPerSecond);
+                            ReportProgress(5 + p.Percent * 70 / 100, p.StatusText, p.BytesDownloaded, p.TotalBytes,
+                                p.SpeedBytesPerSecond);
                         }),
                         _expectedFileHash, _dlToken, _accessToken,
                         cancellationToken).GetAwaiter().GetResult();
@@ -93,8 +96,13 @@ public partial class LuaPluginInstaller
                 {
                     LogMessage($"插件下载失败: {ex.Message}");
 
-                    try { if (File.Exists(zipPath)) File.Delete(zipPath); }
-                    catch { }
+                    try
+                    {
+                        if (File.Exists(zipPath)) File.Delete(zipPath);
+                    }
+                    catch
+                    {
+                    }
 
                     result["error"] = DynValue.NewString(ex.Message);
                     return DynValue.NewTable(result);

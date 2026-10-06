@@ -2,18 +2,42 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 
 namespace FufuLauncher.Views
 {
     public class BrowserConfig
     {
-        public string HomePage { get; set; } = "https://www.bing.com";
-        public double ZoomFactor { get; set; } = 1.0;
-        public string FastForwardKey { get; set; } = "ArrowRight"; 
-        public string RewindKey { get; set; } = "ArrowLeft";
-        
-        public bool EnableHighPriority { get; set; }
+        public string HomePage
+        {
+            get;
+            set;
+        } = "https://www.bing.com";
+
+        public double ZoomFactor
+        {
+            get;
+            set;
+        } = 1.0;
+
+        public string FastForwardKey
+        {
+            get;
+            set;
+        } = "ArrowRight";
+
+        public string RewindKey
+        {
+            get;
+            set;
+        } = "ArrowLeft";
+
+        public bool EnableHighPriority
+        {
+            get;
+            set;
+        }
 
         [System.Text.Json.Serialization.JsonIgnore]
         public static string ConfigPath => Path.Combine(Helpers.AppPaths.DataDir, "browser_config.json");

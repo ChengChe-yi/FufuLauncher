@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -17,7 +18,8 @@ internal static class ScreenRegionCaptureService
     internal static Task<ScreenRegionSelection?> CaptureAsync(string instruction, CancellationToken cancellationToken,
         Color? accentColor = null)
     {
-        var completion = new TaskCompletionSource<ScreenRegionSelection?>(TaskCreationOptions.RunContinuationsAsynchronously);
+        var completion =
+            new TaskCompletionSource<ScreenRegionSelection?>(TaskCreationOptions.RunContinuationsAsynchronously);
         var thread = new Thread(() =>
         {
             nint oldContext = SetThreadDpiAwarenessContext(new nint(-4)); // physical pixels, PerMonitorV2
@@ -40,9 +42,18 @@ internal static class ScreenRegionCaptureService
                 }
                 else if (!completion.TrySetResult(crop)) crop?.Dispose();
             }
-            catch (OperationCanceledException) { completion.TrySetCanceled(cancellationToken); }
-            catch (Exception ex) { completion.TrySetException(ex); }
-            finally { if (oldContext != 0) SetThreadDpiAwarenessContext(oldContext); }
+            catch (OperationCanceledException)
+            {
+                completion.TrySetCanceled(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                completion.TrySetException(ex);
+            }
+            finally
+            {
+                if (oldContext != 0) SetThreadDpiAwarenessContext(oldContext);
+            }
         }) { IsBackground = true, Name = "MiyousheQrScreenSelection" };
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
@@ -60,7 +71,8 @@ internal static class ScreenRegionCaptureService
         private readonly Rectangle _desktopBounds;
         private readonly Color _accentColor;
 
-        internal SelectionOverlay(Bitmap desktop, Rectangle bounds, string instruction, CancellationToken cancellationToken,
+        internal SelectionOverlay(Bitmap desktop, Rectangle bounds, string instruction,
+            CancellationToken cancellationToken,
             Color accentColor)
         {
             _desktop = desktop;
@@ -77,15 +89,29 @@ internal static class ScreenRegionCaptureService
             Cursor = Forms.Cursors.Cross;
             KeyPreview = true;
             DoubleBuffered = true;
-            Shown += (_, _) => { if (_cancellationToken.IsCancellationRequested) Close(); else Activate(); };
+            Shown += (_, _) =>
+            {
+                if (_cancellationToken.IsCancellationRequested) Close();
+                else Activate();
+            };
         }
 
-        internal ScreenRegionSelection? TakeSelection() { var crop = _crop; _crop = null; return crop; }
+        internal ScreenRegionSelection? TakeSelection()
+        {
+            var crop = _crop;
+            _crop = null;
+            return crop;
+        }
 
         internal void Cancel()
         {
-            try { if (IsHandleCreated && !IsDisposed) BeginInvoke(new Action(Close)); }
-            catch (InvalidOperationException) { }
+            try
+            {
+                if (IsHandleCreated && !IsDisposed) BeginInvoke(new Action(Close));
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         protected override void OnPaint(Forms.PaintEventArgs e)
@@ -100,6 +126,7 @@ internal static class ScreenRegionCaptureService
                 using var pen = new Pen(_accentColor, 2);
                 e.Graphics.DrawRectangle(pen, _selection);
             }
+
             // Keep instructions visible on the monitor containing the cursor, including negative origins.
             Rectangle monitor = Forms.Screen.FromPoint(Forms.Cursor.Position).Bounds;
             Point monitorOrigin = PointToClient(monitor.Location);
@@ -109,7 +136,12 @@ internal static class ScreenRegionCaptureService
 
         protected override void OnMouseDown(Forms.MouseEventArgs e)
         {
-            if (e.Button == Forms.MouseButtons.Right) { Close(); return; }
+            if (e.Button == Forms.MouseButtons.Right)
+            {
+                Close();
+                return;
+            }
+
             if (e.Button != Forms.MouseButtons.Left) return;
             _start = e.Location;
             Capture = true;
@@ -128,7 +160,13 @@ internal static class ScreenRegionCaptureService
             _selection = SelectionRectangle(_start.Value, e.Location, ClientRectangle);
             _start = null;
             Capture = false;
-            if (_selection.Width < 16 || _selection.Height < 16) { _selection = Rectangle.Empty; Invalidate(); return; }
+            if (_selection.Width < 16 || _selection.Height < 16)
+            {
+                _selection = Rectangle.Empty;
+                Invalidate();
+                return;
+            }
+
             _crop = new ScreenRegionSelection(_desktop.Clone(_selection, PixelFormat.Format32bppArgb),
                 new Rectangle(_desktopBounds.X + _selection.X, _desktopBounds.Y + _selection.Y,
                     _selection.Width, _selection.Height));
@@ -137,7 +175,11 @@ internal static class ScreenRegionCaptureService
 
         protected override void OnKeyDown(Forms.KeyEventArgs e)
         {
-            if (e.KeyCode == Forms.Keys.Escape) { e.Handled = true; Close(); }
+            if (e.KeyCode == Forms.Keys.Escape)
+            {
+                e.Handled = true;
+                Close();
+            }
             else base.OnKeyDown(e);
         }
 
@@ -165,14 +207,29 @@ internal static class ScreenRegionCaptureService
             graphics.CopyFromScreen(bounds.Location, Point.Empty, bounds.Size, CopyPixelOperation.SourceCopy);
             return frame;
         }
-        catch { frame?.Dispose(); throw; }
-        finally { if (oldContext != 0) SetThreadDpiAwarenessContext(oldContext); }
+        catch
+        {
+            frame?.Dispose();
+            throw;
+        }
+        finally
+        {
+            if (oldContext != 0) SetThreadDpiAwarenessContext(oldContext);
+        }
     }
 }
 
 internal sealed class ScreenRegionSelection(Bitmap image, Rectangle bounds) : IDisposable
 {
-    internal Bitmap Image { get; } = image;
-    internal Rectangle Bounds { get; } = bounds;
+    internal Bitmap Image
+    {
+        get;
+    } = image;
+
+    internal Rectangle Bounds
+    {
+        get;
+    } = bounds;
+
     public void Dispose() => Image.Dispose();
 }

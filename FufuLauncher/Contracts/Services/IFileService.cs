@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Contracts.Services;
 
 public interface IFileService
@@ -12,4 +13,3 @@ public interface IFileService
 
     void Delete(string folderPath, string fileName);
 }
-

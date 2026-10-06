@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
@@ -24,7 +25,7 @@ namespace FufuLauncher.Services
         private TraceEventSession _etwSession;
 
         private int _currentFps = 0;
-        private int _etwFrameCount = 0; 
+        private int _etwFrameCount = 0;
         private float _currentCpu = 0;
         private float _currentGpu = 0;
 
@@ -32,13 +33,17 @@ namespace FufuLauncher.Services
 
         // P/Invoke 定义
         [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr CreateWindowEx(uint dwExStyle, string lpClassName, string lpWindowName, uint dwStyle, int x, int y, int nWidth, int nHeight, IntPtr hWndParent, IntPtr hMenu, IntPtr hInstance, IntPtr lpParam);
+        private static extern IntPtr CreateWindowEx(uint dwExStyle, string lpClassName, string lpWindowName,
+            uint dwStyle, int x, int y, int nWidth, int nHeight, IntPtr hWndParent, IntPtr hMenu, IntPtr hInstance,
+            IntPtr lpParam);
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern bool SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
 
         [DllImport("gdi32.dll")]
-        private static extern IntPtr CreateFont(int cHeight, int cWidth, int cEscapement, int cOrientation, int cWeight, uint bItalic, uint bUnderline, uint bStrikeOut, uint iCharSet, uint iOutPrecision, uint iClipPrecision, uint iQuality, uint iPitchAndFamily, string pszFaceName);
+        private static extern IntPtr CreateFont(int cHeight, int cWidth, int cEscapement, int cOrientation, int cWeight,
+            uint bItalic, uint bUnderline, uint bStrikeOut, uint iCharSet, uint iOutPrecision, uint iClipPrecision,
+            uint iQuality, uint iPitchAndFamily, string pszFaceName);
 
         [DllImport("gdi32.dll")]
         private static extern IntPtr SelectObject(IntPtr hdc, IntPtr h);
@@ -98,7 +103,8 @@ namespace FufuLauncher.Services
         private static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        private static extern bool GetSystemTimes(out FILETIME lpIdleTime, out FILETIME lpKernelTime, out FILETIME lpUserTime);
+        private static extern bool GetSystemTimes(out FILETIME lpIdleTime, out FILETIME lpKernelTime,
+            out FILETIME lpUserTime);
 
         // 常量与结构体
         private const uint WS_EX_LAYERED = 0x00080000;
@@ -110,23 +116,59 @@ namespace FufuLauncher.Services
         private const int TRANSPARENT = 1;
         private const int SM_CXSCREEN = 0;
         private const int SM_CYSCREEN = 1;
-        
+
         private const uint WM_DESTROY = 0x0002;
         private const uint WM_PAINT = 0x000F;
         private const uint WM_CLOSE = 0x0010;
         private const uint WM_TIMER = 0x0113;
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct RECT { public int Left, Top, Right, Bottom; }
+        private struct RECT
+        {
+            public int Left, Top, Right, Bottom;
+        }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct MSG { public IntPtr hwnd; public uint message; public IntPtr wParam; public IntPtr lParam; public uint time; public int pt_x; public int pt_y; }
+        private struct MSG
+        {
+            public IntPtr hwnd;
+            public uint message;
+            public IntPtr wParam;
+            public IntPtr lParam;
+            public uint time;
+            public int pt_x;
+            public int pt_y;
+        }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct PAINTSTRUCT { public IntPtr hdc; public bool fErase; public RECT rcPaint; public bool fRestore; public bool fIncUpdate; [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)] public byte[] rgbReserved; }
+        private struct PAINTSTRUCT
+        {
+            public IntPtr hdc;
+            public bool fErase;
+            public RECT rcPaint;
+            public bool fRestore;
+            public bool fIncUpdate;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
+            public byte[] rgbReserved;
+        }
 
         [StructLayout(LayoutKind.Sequential)]
-        private struct WNDCLASSEX { public uint cbSize; public uint style; public IntPtr lpfnWndProc; public int cbClsExtra; public int cbWndExtra; public IntPtr hInstance; public IntPtr hIcon; public IntPtr hCursor; public IntPtr hbrBackground; public string lpszMenuName; public string lpszClassName; public IntPtr hIconSm; }
+        private struct WNDCLASSEX
+        {
+            public uint cbSize;
+            public uint style;
+            public IntPtr lpfnWndProc;
+            public int cbClsExtra;
+            public int cbWndExtra;
+            public IntPtr hInstance;
+            public IntPtr hIcon;
+            public IntPtr hCursor;
+            public IntPtr hbrBackground;
+            public string lpszMenuName;
+            public string lpszClassName;
+            public IntPtr hIconSm;
+        }
 
         [StructLayout(LayoutKind.Sequential)]
         private struct FILETIME
@@ -137,13 +179,20 @@ namespace FufuLauncher.Services
         }
 
         private delegate IntPtr WndProcDelegate(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
+
         private WndProcDelegate _wndProcDelegate;
 
         private void Log(string message)
         {
             string formattedMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}] {message}";
             Debug.WriteLine(formattedMessage);
-            try { File.AppendAllText(_logFilePath, formattedMessage + Environment.NewLine); } catch { }
+            try
+            {
+                File.AppendAllText(_logFilePath, formattedMessage + Environment.NewLine);
+            }
+            catch
+            {
+            }
         }
 
         public bool IsAdministrator()
@@ -156,9 +205,17 @@ namespace FufuLauncher.Services
         public void StartOverlay(int targetProcessId)
         {
             if (_isRunning) return;
-            if (!IsAdministrator()) throw new UnauthorizedAccessException("StartOverlay requires Administrator privileges.");
+            if (!IsAdministrator())
+                throw new UnauthorizedAccessException("StartOverlay requires Administrator privileges.");
 
-            try { File.WriteAllText(_logFilePath, $"--- Log Initialization (Target PID: {targetProcessId}) ---{Environment.NewLine}"); } catch { }
+            try
+            {
+                File.WriteAllText(_logFilePath,
+                    $"--- Log Initialization (Target PID: {targetProcessId}) ---{Environment.NewLine}");
+            }
+            catch
+            {
+            }
 
             _targetPid = targetProcessId;
             _isRunning = true;
@@ -183,7 +240,7 @@ namespace FufuLauncher.Services
             if (!_isRunning) return;
             Log("StopOverlay triggered, cleaning up resources.");
             _isRunning = false;
-            
+
             if (_overlayHwnd != IntPtr.Zero)
             {
                 PostMessage(_overlayHwnd, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
@@ -214,7 +271,7 @@ namespace FufuLauncher.Services
                 }
 
                 _etwSession = new TraceEventSession(sessionName);
-                
+
                 Guid dxgiProviderId = new Guid("CA11C036-0102-4A2D-A6AD-F03CFED5D3C9");
                 _etwSession.EnableProvider(dxgiProviderId);
 
@@ -224,13 +281,14 @@ namespace FufuLauncher.Services
                     {
                         if (data.ProcessID == _targetPid)
                         {
-                            if ((int)data.ID == 42 || string.Equals(data.EventName, "DXGIPresent/Start", StringComparison.OrdinalIgnoreCase))
+                            if ((int)data.ID == 42 || string.Equals(data.EventName, "DXGIPresent/Start",
+                                    StringComparison.OrdinalIgnoreCase))
                             {
                                 Interlocked.Increment(ref _etwFrameCount);
                             }
                         }
                     }
-                    catch 
+                    catch
                     {
                     }
                 };
@@ -241,6 +299,7 @@ namespace FufuLauncher.Services
             {
                 Log($"ETW Monitor initialization failed: {ex.Message}");
             }
+
             Log("ETW DXGI Monitor Thread Exited.");
         }
 
@@ -293,6 +352,7 @@ namespace FufuLauncher.Services
                                 _currentCpu = (float)((systemTimeDiff - idleTimeDiff) * 100.0 / systemTimeDiff);
                             }
                         }
+
                         lastIdleTime = currentIdleTime;
                         lastSystemTime = currentSystemTime;
                     }
@@ -307,7 +367,7 @@ namespace FufuLauncher.Services
 
                             float totalGpu = 0;
                             var toRemove = gpuCounters.Keys.Except(instances).ToList();
-                            
+
                             foreach (var key in toRemove)
                             {
                                 gpuCounters[key].Dispose();
@@ -318,8 +378,9 @@ namespace FufuLauncher.Services
                             {
                                 if (!gpuCounters.ContainsKey(instance))
                                 {
-                                    var pc = new PerformanceCounter("GPU Engine", "Utilization Percentage", instance, true);
-                                    pc.NextValue(); 
+                                    var pc = new PerformanceCounter("GPU Engine", "Utilization Percentage", instance,
+                                        true);
+                                    pc.NextValue();
                                     gpuCounters[instance] = pc;
                                 }
                                 else
@@ -327,9 +388,10 @@ namespace FufuLauncher.Services
                                     totalGpu += gpuCounters[instance].NextValue();
                                 }
                             }
+
                             _currentGpu = totalGpu;
                         }
-                        catch 
+                        catch
                         {
                             _currentGpu = -1;
                         }
@@ -356,11 +418,11 @@ namespace FufuLauncher.Services
             WNDCLASSEX wndClass = new WNDCLASSEX
             {
                 cbSize = (uint)Marshal.SizeOf(typeof(WNDCLASSEX)),
-                style = 0x0003, 
+                style = 0x0003,
                 lpfnWndProc = Marshal.GetFunctionPointerForDelegate(_wndProcDelegate),
                 hInstance = Process.GetCurrentProcess().Handle,
                 lpszClassName = className,
-                hbrBackground = CreateSolidBrush(0x000000) 
+                hbrBackground = CreateSolidBrush(0x000000)
             };
 
             RegisterClassEx(ref wndClass);
@@ -377,7 +439,7 @@ namespace FufuLauncher.Services
             if (_overlayHwnd == IntPtr.Zero) return;
 
             SetLayeredWindowAttributes(_overlayHwnd, 0x000000, 0, LWA_COLORKEY);
-            SetTimer(_overlayHwnd, (IntPtr)1, 1000, IntPtr.Zero); 
+            SetTimer(_overlayHwnd, (IntPtr)1, 1000, IntPtr.Zero);
 
             MSG msg;
             while (GetMessage(out msg, IntPtr.Zero, 0, 0) > 0)
@@ -404,14 +466,14 @@ namespace FufuLauncher.Services
                     IntPtr oldFont = SelectObject(hdc, hFont);
 
                     SetBkMode(hdc, TRANSPARENT);
-                    SetTextColor(hdc, 0x00FF00); 
+                    SetTextColor(hdc, 0x00FF00);
 
                     RECT rect = new RECT { Left = 20, Top = 20, Right = 400, Bottom = 200 };
-                    
+
                     string gpuText = _currentGpu < 0 ? "N/A" : $"{_currentGpu:F1}%";
                     string text = $"FPS: {_currentFps}\nCPU: {_currentCpu:F1}%\nGPU: {gpuText}";
-                    
-                    DrawText(hdc, text, text.Length, ref rect, 0x0100); 
+
+                    DrawText(hdc, text, text.Length, ref rect, 0x0100);
 
                     SelectObject(hdc, oldFont);
                     DeleteObject(hFont);
@@ -424,6 +486,7 @@ namespace FufuLauncher.Services
                     PostQuitMessage(0);
                     return IntPtr.Zero;
             }
+
             return DefWindowProc(hWnd, msg, wParam, lParam);
         }
     }

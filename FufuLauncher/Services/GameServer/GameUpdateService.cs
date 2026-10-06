@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 using System.Text.Json;
 using Microsoft.Win32.SafeHandles;
@@ -17,7 +18,7 @@ namespace FufuLauncher.Services.GameServer;
 public sealed class GameUpdateService
 {
     public const string ChunksDirectoryName = "chunks";
-    
+
     public const string PredownloadStatusFileName = "predownload_status.json";
 
     private const long TempFileMarginBytes = 1024L * 1024L * 1024L;
@@ -37,7 +38,7 @@ public sealed class GameUpdateService
     }
 
     #region 公开入口
-    
+
     public async Task<GameUpdateResult> PredownloadAsync(string gameDir, GameServerScheme currentScheme,
         IProgress<GameServerConversionProgress> progress, Action<string> log, CancellationToken token = default,
         GameServerDownloadMonitor? downloadMonitor = null, Func<GameUpdatePlan, Task<bool>>? confirmAsync = null)
@@ -55,26 +56,33 @@ public sealed class GameUpdateService
         }
 
         log("GameServer_StageFetchBranches".GetLocalized());
-        SophonBranchPayload preBranch = await _sophonBuildClient.GetBranchPayloadAsync(currentScheme, true, token).ConfigureAwait(false);
+        SophonBranchPayload preBranch = await _sophonBuildClient.GetBranchPayloadAsync(currentScheme, true, token)
+            .ConfigureAwait(false);
         if (string.Equals(preBranch.Tag, localVersion, StringComparison.Ordinal))
         {
             log("GameUpdate_NoPredownloadNeeded".GetLocalized());
             return GameUpdateResult.NothingToDo;
         }
 
-        SophonBranchInfo localInfo = await _sophonBuildClient.GetBranchInfoByTagAsync(currentScheme, localVersion, token).ConfigureAwait(false);
-        SophonBranchInfo preInfo = await _sophonBuildClient.GetBranchInfoAsync(currentScheme, true, token).ConfigureAwait(false);
+        SophonBranchInfo localInfo = await _sophonBuildClient
+            .GetBranchInfoByTagAsync(currentScheme, localVersion, token).ConfigureAwait(false);
+        SophonBranchInfo preInfo =
+            await _sophonBuildClient.GetBranchInfoAsync(currentScheme, true, token).ConfigureAwait(false);
 
         log("GameServer_StageDecodeManifests".GetLocalized());
-        SophonManifestProto localManifest = await _sophonBuildClient.DownloadManifestAsync(localInfo, token).ConfigureAwait(false);
-        SophonManifestProto preManifest = await _sophonBuildClient.DownloadManifestAsync(preInfo, token).ConfigureAwait(false);
+        SophonManifestProto localManifest =
+            await _sophonBuildClient.DownloadManifestAsync(localInfo, token).ConfigureAwait(false);
+        SophonManifestProto preManifest =
+            await _sophonBuildClient.DownloadManifestAsync(preInfo, token).ConfigureAwait(false);
 
         log("GameServer_StageDiff".GetLocalized());
-        List<GameUpdateAssetOperation> operations = BuildDiffOperations(localManifest, preManifest, preInfo.ChunkPrefix, preInfo.ChunkSuffix);
+        List<GameUpdateAssetOperation> operations =
+            BuildDiffOperations(localManifest, preManifest, preInfo.ChunkPrefix, preInfo.ChunkSuffix);
         List<GameUpdateAssetOperation> downloadOperations = operations
             .Where(operation => operation.Kind != GameUpdateAssetOperationKind.Delete)
             .ToList();
-        SophonDecodedPatchBuild? patchBuild = await TryDecodePatchBuildAsync(currentScheme, preBranch, localVersion, token).ConfigureAwait(false);
+        SophonDecodedPatchBuild? patchBuild =
+            await TryDecodePatchBuildAsync(currentScheme, preBranch, localVersion, token).ConfigureAwait(false);
         List<SophonPatchAsset> patchAssets = patchBuild is null ? [] : EnumeratePatchAssets(patchBuild);
 
         long downloadTotalBytes;
@@ -86,7 +94,8 @@ public sealed class GameUpdateService
         }
         else
         {
-            downloadTotalBytes = downloadOperations.Sum(operation => operation.Chunks.Sum(chunk => chunk.AssetChunk.ChunkSize));
+            downloadTotalBytes =
+                downloadOperations.Sum(operation => operation.Chunks.Sum(chunk => chunk.AssetChunk.ChunkSize));
             totalBlocks = downloadOperations.SelectMany(operation => operation.Chunks)
                 .Select(chunk => chunk.AssetChunk.ChunkName)
                 .Distinct(StringComparer.Ordinal)
@@ -101,7 +110,8 @@ public sealed class GameUpdateService
 
         EnsureFreeSpace(context, downloadTotalBytes);
 
-        var plan = new GameUpdatePlan(GameUpdateOperationKind.Predownload, preBranch.Tag, downloadTotalBytes, downloadTotalBytes, patchAssets.Count > 0);
+        var plan = new GameUpdatePlan(GameUpdateOperationKind.Predownload, preBranch.Tag, downloadTotalBytes,
+            downloadTotalBytes, patchAssets.Count > 0);
         if (confirmAsync is not null && !await confirmAsync(plan).ConfigureAwait(false))
         {
             log("AdvancedServerSwitch_Cancelled".GetLocalized());
@@ -121,7 +131,8 @@ public sealed class GameUpdateService
         }
         else
         {
-            await DownloadOperationChunksAsync(context, downloadOperations, "GameServer_StageDownloadChunks".GetLocalized()).ConfigureAwait(false);
+            await DownloadOperationChunksAsync(context, downloadOperations,
+                "GameServer_StageDownloadChunks".GetLocalized()).ConfigureAwait(false);
         }
 
         status.Finished = true;
@@ -130,8 +141,9 @@ public sealed class GameUpdateService
 
         return GameUpdateResult.Completed;
     }
-    
-    public async Task<GameUpdateResult> UpdateAsync(string gameDir, GameServerScheme currentScheme, bool usePredownloadAsTarget,
+
+    public async Task<GameUpdateResult> UpdateAsync(string gameDir, GameServerScheme currentScheme,
+        bool usePredownloadAsTarget,
         IProgress<GameServerConversionProgress> progress, Action<string> log, CancellationToken token = default,
         GameServerDownloadMonitor? downloadMonitor = null, Func<GameUpdatePlan, Task<bool>>? confirmAsync = null)
     {
@@ -148,32 +160,39 @@ public sealed class GameUpdateService
         }
 
         log("GameServer_StageFetchBranches".GetLocalized());
-        SophonBranchPayload targetBranch = await _sophonBuildClient.GetBranchPayloadAsync(currentScheme, usePredownloadAsTarget, token).ConfigureAwait(false);
+        SophonBranchPayload targetBranch = await _sophonBuildClient
+            .GetBranchPayloadAsync(currentScheme, usePredownloadAsTarget, token).ConfigureAwait(false);
         if (string.Equals(targetBranch.Tag, localVersion, StringComparison.Ordinal))
         {
             log("GameUpdate_AlreadyLatest".GetLocalized());
             return GameUpdateResult.NothingToDo;
         }
 
-        SophonBranchInfo localInfo = await _sophonBuildClient.GetBranchInfoByTagAsync(currentScheme, localVersion, token).ConfigureAwait(false);
-        SophonBranchInfo targetInfo = await _sophonBuildClient.GetBranchInfoAsync(currentScheme, usePredownloadAsTarget, token).ConfigureAwait(false);
+        SophonBranchInfo localInfo = await _sophonBuildClient
+            .GetBranchInfoByTagAsync(currentScheme, localVersion, token).ConfigureAwait(false);
+        SophonBranchInfo targetInfo = await _sophonBuildClient
+            .GetBranchInfoAsync(currentScheme, usePredownloadAsTarget, token).ConfigureAwait(false);
 
         log("GameServer_StageDecodeManifests".GetLocalized());
-        SophonManifestProto localManifest = await _sophonBuildClient.DownloadManifestAsync(localInfo, token).ConfigureAwait(false);
-        SophonManifestProto targetManifest = await _sophonBuildClient.DownloadManifestAsync(targetInfo, token).ConfigureAwait(false);
+        SophonManifestProto localManifest =
+            await _sophonBuildClient.DownloadManifestAsync(localInfo, token).ConfigureAwait(false);
+        SophonManifestProto targetManifest =
+            await _sophonBuildClient.DownloadManifestAsync(targetInfo, token).ConfigureAwait(false);
 
         log("GameServer_StageDiff".GetLocalized());
-        List<GameUpdateAssetOperation> operations = BuildDiffOperations(localManifest, targetManifest, targetInfo.ChunkPrefix, targetInfo.ChunkSuffix);
-        
-        SophonDecodedPatchBuild? patchBuild = await TryDecodePatchBuildAsync(currentScheme, targetBranch, localVersion, token).ConfigureAwait(false);
+        List<GameUpdateAssetOperation> operations = BuildDiffOperations(localManifest, targetManifest,
+            targetInfo.ChunkPrefix, targetInfo.ChunkSuffix);
+
+        SophonDecodedPatchBuild? patchBuild =
+            await TryDecodePatchBuildAsync(currentScheme, targetBranch, localVersion, token).ConfigureAwait(false);
         List<SophonPatchAsset> patchAssets = patchBuild is null ? [] : EnumeratePatchAssets(patchBuild);
 
         long downloadTotalBytes = patchAssets.Count > 0
             ? patchAssets.Sum(asset => asset.PatchInfo.PatchFileSize)
             : operations.Sum(operation => operation.Chunks.Sum(chunk => chunk.AssetChunk.ChunkSize));
         long installTotalBytes = patchBuild?.UncompressedTotalBytes
-            ?? operations.Where(operation => operation.Kind != GameUpdateAssetOperationKind.Delete)
-                .Sum(operation => operation.NewAsset!.AssetSize);
+                                 ?? operations.Where(operation => operation.Kind != GameUpdateAssetOperationKind.Delete)
+                                     .Sum(operation => operation.NewAsset!.AssetSize);
 
         EnsureFreeSpace(context, installTotalBytes);
 
@@ -201,7 +220,7 @@ public sealed class GameUpdateService
 
         await _gameChannelSdkService.EnsureSdkAndDeprecatedFilesAsync(gameDir, currentScheme, log, token,
             downloadMonitor is null ? null : downloadMonitor.AddBytes).ConfigureAwait(false);
-        
+
         log("GameServer_StageVerify".GetLocalized());
         List<AssetProperty> brokenAssets = await VerifyAssetsAsync(context, targetManifest).ConfigureAwait(false);
         if (brokenAssets.Count > 0)
@@ -217,7 +236,7 @@ public sealed class GameUpdateService
         {
             log("GameServer_VerifyOk".GetLocalized());
         }
-        
+
         WriteGameVersion(gameDir, targetBranch.Tag);
 
         log("GameServer_StageCleanup".GetLocalized());
@@ -225,7 +244,7 @@ public sealed class GameUpdateService
 
         return GameUpdateResult.Completed;
     }
-    
+
     public static PredownloadStatus? TryReadPredownloadStatus(string gameDir)
     {
         try
@@ -243,7 +262,7 @@ public sealed class GameUpdateService
             return null;
         }
     }
-    
+
     public static bool IsPredownloadFinished(string gameDir, out PredownloadStatus? status)
     {
         status = TryReadPredownloadStatus(gameDir);
@@ -260,8 +279,9 @@ public sealed class GameUpdateService
     #endregion
 
     #region 差异计算
-    
-    private static List<GameUpdateAssetOperation> BuildDiffOperations(SophonManifestProto localManifest, SophonManifestProto targetManifest,
+
+    private static List<GameUpdateAssetOperation> BuildDiffOperations(SophonManifestProto localManifest,
+        SophonManifestProto targetManifest,
         string urlPrefix, string urlSuffix)
     {
         var operations = new List<GameUpdateAssetOperation>();
@@ -275,7 +295,8 @@ public sealed class GameUpdateService
                 continue;
             }
 
-            if ((localAsset.AssetHashMd5 ?? string.Empty).Equals(targetAsset.AssetHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase))
+            if ((localAsset.AssetHashMd5 ?? string.Empty).Equals(targetAsset.AssetHashMd5 ?? string.Empty,
+                    StringComparison.OrdinalIgnoreCase))
             {
                 continue;
             }
@@ -284,7 +305,8 @@ public sealed class GameUpdateService
             operations.Add(GameUpdateAssetOperation.Modify(urlPrefix, urlSuffix, localAsset, targetAsset, diffChunks));
         }
 
-        var targetNames = targetManifest.Assets.Select(asset => asset.AssetName).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var targetNames = targetManifest.Assets.Select(asset => asset.AssetName)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
         foreach (var localAsset in localManifest.Assets)
         {
             if (!targetNames.Contains(localAsset.AssetName))
@@ -295,17 +317,20 @@ public sealed class GameUpdateService
 
         return operations;
     }
-    
-    private static List<SophonChunk> BuildDiffChunks(AssetProperty localAsset, AssetProperty targetAsset, string urlPrefix, string urlSuffix)
+
+    private static List<SophonChunk> BuildDiffChunks(AssetProperty localAsset, AssetProperty targetAsset,
+        string urlPrefix, string urlSuffix)
     {
         return targetAsset.AssetChunks
             .Where(chunk => localAsset.AssetChunks.FirstOrDefault(candidate =>
-                (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase)) is null)
+                (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(
+                    chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase)) is null)
             .Select(chunk => new SophonChunk(urlPrefix, urlSuffix, chunk))
             .ToList();
     }
-    
-    private static void InitializeDuplicatedChunkNames(GameUpdateContext context, IEnumerable<GameUpdateAssetOperation> operations)
+
+    private static void InitializeDuplicatedChunkNames(GameUpdateContext context,
+        IEnumerable<GameUpdateAssetOperation> operations)
     {
         IEnumerable<string> names = operations
             .SelectMany(operation => operation.Chunks)
@@ -323,8 +348,9 @@ public sealed class GameUpdateService
     #endregion
 
     #region 补丁构建与 LDiff 应用
-    
-    private async Task<SophonDecodedPatchBuild?> TryDecodePatchBuildAsync(GameServerScheme scheme, SophonBranchPayload payload,
+
+    private async Task<SophonDecodedPatchBuild?> TryDecodePatchBuildAsync(GameServerScheme scheme,
+        SophonBranchPayload payload,
         string localVersion, CancellationToken token)
     {
         if (!payload.DiffTags.Contains(localVersion, StringComparer.Ordinal))
@@ -364,15 +390,18 @@ public sealed class GameUpdateService
                 continue;
             }
 
-            if (item.DiffDownload is null || item.ManifestDownload is null || !item.Stats.TryGetValue(localVersion, out var stats))
+            if (item.DiffDownload is null || item.ManifestDownload is null ||
+                !item.Stats.TryGetValue(localVersion, out var stats))
             {
                 return null;
             }
 
-            string manifestUrl = $"{item.ManifestDownload.UrlPrefix}/{item.Manifest.Id}?{item.ManifestDownload.UrlSuffix ?? string.Empty}";
+            string manifestUrl =
+                $"{item.ManifestDownload.UrlPrefix}/{item.Manifest.Id}?{item.ManifestDownload.UrlSuffix ?? string.Empty}";
             try
             {
-                PatchManifest data = await _sophonBuildClient.DownloadPatchManifestAsync(manifestUrl, item.Manifest.Checksum, token).ConfigureAwait(false);
+                PatchManifest data = await _sophonBuildClient
+                    .DownloadPatchManifestAsync(manifestUrl, item.Manifest.Checksum, token).ConfigureAwait(false);
 
                 downloadTotalBytes += stats.CompressedSize;
                 downloadFileCount += stats.ChunkCount;
@@ -399,7 +428,7 @@ public sealed class GameUpdateService
         return new SophonDecodedPatchBuild(localVersion, response.Tag, downloadTotalBytes, downloadFileCount,
             uncompressedTotalBytes, installFileCount, manifests);
     }
-    
+
     private static List<SophonPatchAsset> EnumeratePatchAssets(SophonDecodedPatchBuild patchBuild)
     {
         var assets = new List<SophonPatchAsset>();
@@ -418,10 +447,11 @@ public sealed class GameUpdateService
 
         return assets;
     }
-    
+
     private async Task PredownloadPatchesAsync(GameUpdateContext context, List<SophonPatchAsset> assets)
     {
-        var distinct = assets.GroupBy(asset => asset.PatchInfo.Id, StringComparer.Ordinal).Select(group => group.First()).ToList();
+        var distinct = assets.GroupBy(asset => asset.PatchInfo.Id, StringComparer.Ordinal)
+            .Select(group => group.First()).ToList();
         if (distinct.Count == 0)
         {
             return;
@@ -439,10 +469,11 @@ public sealed class GameUpdateService
             SophonPatchAsset asset = distinct[i];
             await DownloadPatchAsync(context, asset).ConfigureAwait(false);
             doneBytes += asset.PatchInfo.PatchFileSize;
-            context.Progress.Report(new GameServerConversionProgress(stage, distinct.Count, i + 1, totalBytes, doneBytes, asset.PatchInfo.Id));
+            context.Progress.Report(new GameServerConversionProgress(stage, distinct.Count, i + 1, totalBytes,
+                doneBytes, asset.PatchInfo.Id));
         }
     }
-    
+
     private async Task DownloadPatchAsync(GameUpdateContext context, SophonPatchAsset asset)
     {
         if (context.DownloadedPatches.ContainsKey(asset.PatchInfo.Id))
@@ -450,13 +481,14 @@ public sealed class GameUpdateService
             return;
         }
 
-        await _chunkDownloader.DownloadBlobAsync(asset.PatchInfo.Id, asset.PatchInfo.PatchFileSize, asset.PatchDownloadUrl,
+        await _chunkDownloader.DownloadBlobAsync(asset.PatchInfo.Id, asset.PatchInfo.PatchFileSize,
+            asset.PatchDownloadUrl,
             context.ChunksDir, context.ChunkLocks, context.Token,
             context.DownloadMonitor is null ? null : context.DownloadMonitor.AddBytes).ConfigureAwait(false);
 
         context.DownloadedPatches.TryAdd(asset.PatchInfo.Id, 0);
     }
-    
+
     private async Task InstallOrPatchAssetsAsync(GameUpdateContext context, List<SophonPatchAsset> assets)
     {
         if (assets.Count == 0)
@@ -488,7 +520,7 @@ public sealed class GameUpdateService
                 assets.Count, i + 1, totalBytes, doneBytes, null));
         }
     }
-    
+
     private async Task<bool> InstallOrPatchAssetAsync(GameUpdateContext context, SophonPatchAsset asset)
     {
         PatchFileData fileData = asset.FileData;
@@ -496,7 +528,8 @@ public sealed class GameUpdateService
 
         string assetPath = context.GetGameFilePath(fileData.FileName);
         if (File.Exists(assetPath)
-            && fileData.FileHash.Equals(await HashUtility.Md5FileAsync(assetPath, context.Token).ConfigureAwait(false), StringComparison.OrdinalIgnoreCase))
+            && fileData.FileHash.Equals(await HashUtility.Md5FileAsync(assetPath, context.Token).ConfigureAwait(false),
+                StringComparison.OrdinalIgnoreCase))
         {
             return true;
         }
@@ -518,13 +551,15 @@ public sealed class GameUpdateService
 
         try
         {
-            using (FileStream patchStream = new(patchFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, ChunkDownloader.BufferSize, FileOptions.RandomAccess))
+            using (FileStream patchStream = new(patchFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite,
+                       ChunkDownloader.BufferSize, FileOptions.RandomAccess))
             {
                 if (string.IsNullOrEmpty(patchInfo.OriginalFileName))
                 {
                     using (FileStream target = new(assetPath, FileMode.Create, FileAccess.Write, FileShare.None))
                     {
-                        await CopyRangeAsync(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength, target, context.Token).ConfigureAwait(false);
+                        await CopyRangeAsync(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength, target,
+                            context.Token).ConfigureAwait(false);
                     }
 
                     return true;
@@ -535,9 +570,10 @@ public sealed class GameUpdateService
                 {
                     return false;
                 }
-                
+
                 using (FileStream oldStream = new(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (Stream diffView = FufuPatch.CreateSubStream(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength))
+                using (Stream diffView =
+                       FufuPatch.CreateSubStream(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength))
                 using (FileStream target = new(assetPath, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     return FufuPatch.MergeZstd(oldStream, diffView, target);
@@ -553,7 +589,7 @@ public sealed class GameUpdateService
             return false;
         }
     }
-    
+
     private static void DeletePatchDeprecatedFiles(GameUpdateContext context, SophonDecodedPatchBuild patchBuild)
     {
         foreach (var manifest in patchBuild.Manifests)
@@ -577,7 +613,8 @@ public sealed class GameUpdateService
         }
     }
 
-    private static async Task CopyRangeAsync(FileStream source, long offset, long length, FileStream target, CancellationToken token)
+    private static async Task CopyRangeAsync(FileStream source, long offset, long length, FileStream target,
+        CancellationToken token)
     {
         byte[] buffer = new byte[ChunkDownloader.BufferSize];
         source.Seek(offset, SeekOrigin.Begin);
@@ -598,11 +635,12 @@ public sealed class GameUpdateService
     #endregion
 
     #region 分片下载与组装
-    
+
     private async Task UpdateDiffAssetsAsync(GameUpdateContext context, List<GameUpdateAssetOperation> operations)
     {
         List<GameUpdateAssetOperation> mergeOperations = operations
-            .Where(operation => operation.Kind is GameUpdateAssetOperationKind.AddOrRepair or GameUpdateAssetOperationKind.Modify)
+            .Where(operation =>
+                operation.Kind is GameUpdateAssetOperationKind.AddOrRepair or GameUpdateAssetOperationKind.Modify)
             .ToList();
         List<GameUpdateAssetOperation> deleteOperations = operations
             .Where(operation => operation.Kind == GameUpdateAssetOperationKind.Delete)
@@ -613,7 +651,8 @@ public sealed class GameUpdateService
             InitializeDuplicatedChunkNames(context, mergeOperations);
             Directory.CreateDirectory(context.ChunksDir);
 
-            await DownloadOperationChunksAsync(context, mergeOperations, "GameServer_StageDownloadChunks".GetLocalized()).ConfigureAwait(false);
+            await DownloadOperationChunksAsync(context, mergeOperations,
+                "GameServer_StageDownloadChunks".GetLocalized()).ConfigureAwait(false);
             await MergeOperationAssetsAsync(context, mergeOperations).ConfigureAwait(false);
         }
 
@@ -627,8 +666,9 @@ public sealed class GameUpdateService
             }
         }
     }
-    
-    private async Task DownloadOperationChunksAsync(GameUpdateContext context, List<GameUpdateAssetOperation> operations, string stage)
+
+    private async Task DownloadOperationChunksAsync(GameUpdateContext context,
+        List<GameUpdateAssetOperation> operations, string stage)
     {
         List<SophonChunk> chunks = operations.SelectMany(operation => operation.Chunks).ToList();
         if (chunks.Count == 0)
@@ -646,14 +686,17 @@ public sealed class GameUpdateService
 
         await Parallel.ForEachAsync(chunks, context.ParallelOptions, async (chunk, token) =>
         {
-            await _chunkDownloader.DownloadChunkAsync(chunk, context.ChunksDir, context.ChunkLocks, token, onBytesTransferred).ConfigureAwait(false);
-            
+            await _chunkDownloader
+                .DownloadChunkAsync(chunk, context.ChunksDir, context.ChunkLocks, token, onBytesTransferred)
+                .ConfigureAwait(false);
+
             long current = Interlocked.Increment(ref doneChunks);
             long bytes = Interlocked.Add(ref doneBytes, chunk.AssetChunk.ChunkSize);
-            context.Progress.Report(new GameServerConversionProgress(stage, chunks.Count, (int)current, totalBytes, bytes, chunk.AssetChunk.ChunkName));
+            context.Progress.Report(new GameServerConversionProgress(stage, chunks.Count, (int)current, totalBytes,
+                bytes, chunk.AssetChunk.ChunkName));
         }).ConfigureAwait(false);
     }
-    
+
     private async Task MergeOperationAssetsAsync(GameUpdateContext context, List<GameUpdateAssetOperation> operations)
     {
         string stage = "GameUpdate_StageMerge".GetLocalized();
@@ -666,8 +709,10 @@ public sealed class GameUpdateService
             GameUpdateAssetOperation operation = operations[i];
             bool merged = operation.Kind switch
             {
-                GameUpdateAssetOperationKind.AddOrRepair => await MergeNewAssetAsync(context, operation.NewAsset!).ConfigureAwait(false),
-                GameUpdateAssetOperationKind.Modify => await MergeDiffAssetAsync(context, operation).ConfigureAwait(false),
+                GameUpdateAssetOperationKind.AddOrRepair => await MergeNewAssetAsync(context, operation.NewAsset!)
+                    .ConfigureAwait(false),
+                GameUpdateAssetOperationKind.Modify => await MergeDiffAssetAsync(context, operation)
+                    .ConfigureAwait(false),
                 _ => true,
             };
 
@@ -681,7 +726,7 @@ public sealed class GameUpdateService
             }
         }
     }
-    
+
     private async Task<bool> MergeNewAssetAsync(GameUpdateContext context, AssetProperty asset)
     {
         string targetPath = context.GetGameFilePath(asset.AssetName);
@@ -694,7 +739,8 @@ public sealed class GameUpdateService
         Directory.CreateDirectory(targetDirectory);
 
         int missingChunks = 0;
-        using (SafeFileHandle fileHandle = File.OpenHandle(targetPath, FileMode.Create, FileAccess.Write, FileShare.None, preallocationSize: asset.AssetSize))
+        using (SafeFileHandle fileHandle = File.OpenHandle(targetPath, FileMode.Create, FileAccess.Write,
+                   FileShare.None, preallocationSize: asset.AssetSize))
         {
             await Parallel.ForEachAsync(asset.AssetChunks, context.ParallelOptions, async (chunk, token) =>
             {
@@ -721,7 +767,8 @@ public sealed class GameUpdateService
                                 break;
                             }
 
-                            await RandomAccess.WriteAsync(fileHandle, buffer.AsMemory(0, read), offset, token).ConfigureAwait(false);
+                            await RandomAccess.WriteAsync(fileHandle, buffer.AsMemory(0, read), offset, token)
+                                .ConfigureAwait(false);
                             offset += read;
                         }
                     }
@@ -742,7 +789,7 @@ public sealed class GameUpdateService
 
         return true;
     }
-    
+
     private async Task<bool> MergeDiffAssetAsync(GameUpdateContext context, GameUpdateAssetOperation operation)
     {
         AssetProperty oldAsset = operation.OldAsset!;
@@ -775,16 +822,20 @@ public sealed class GameUpdateService
                 long remaining = chunk.ChunkSizeDecompressed;
 
                 var oldChunk = oldAsset.AssetChunks.FirstOrDefault(candidate =>
-                    (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase));
+                    (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(
+                        chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase));
 
                 if (oldChunk is not null)
                 {
-                    using (var localFile = new FileStream(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    using (var localFile =
+                           new FileStream(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     {
                         localFile.Seek(oldChunk.ChunkOnFileOffset, SeekOrigin.Begin);
                         while (remaining > 0)
                         {
-                            int read = await localFile.ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token).ConfigureAwait(false);
+                            int read = await localFile
+                                .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token)
+                                .ConfigureAwait(false);
                             if (read <= 0)
                             {
                                 break;
@@ -806,18 +857,22 @@ public sealed class GameUpdateService
 
                     using (await context.ChunkLocks.LockAsync(chunk.ChunkName, context.Token).ConfigureAwait(false))
                     {
-                        using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read,
+                                   FileShare.ReadWrite))
                         {
                             using var decompressor = new DecompressionStream(chunkFile);
                             while (remaining > 0)
                             {
-                                int read = await decompressor.ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token).ConfigureAwait(false);
+                                int read = await decompressor
+                                    .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)),
+                                        context.Token).ConfigureAwait(false);
                                 if (read <= 0)
                                 {
                                     break;
                                 }
 
-                                await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token).ConfigureAwait(false);
+                                await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token)
+                                    .ConfigureAwait(false);
                                 remaining -= read;
                             }
                         }
@@ -837,7 +892,7 @@ public sealed class GameUpdateService
     #endregion
 
     #region 校验修复
-    
+
     private async Task<List<AssetProperty>> VerifyAssetsAsync(GameUpdateContext context, SophonManifestProto manifest)
     {
         var brokenAssets = new ConcurrentBag<AssetProperty>();
@@ -856,24 +911,28 @@ public sealed class GameUpdateService
             {
                 try
                 {
-                    using SafeFileHandle fileHandle = File.OpenHandle(assetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, FileOptions.RandomAccess);
+                    using SafeFileHandle fileHandle = File.OpenHandle(assetPath, FileMode.Open, FileAccess.Read,
+                        FileShare.ReadWrite, FileOptions.RandomAccess);
 
                     foreach (var chunk in asset.AssetChunks)
                     {
                         token.ThrowIfCancellationRequested();
 
                         byte[] buffer = new byte[checked((int)chunk.ChunkSizeDecompressed)];
-                        await ReadExactlyAsync(fileHandle, buffer, chunk.ChunkOnFileOffset, token).ConfigureAwait(false);
+                        await ReadExactlyAsync(fileHandle, buffer, chunk.ChunkOnFileOffset, token)
+                            .ConfigureAwait(false);
 
                         string actualMd5 = HashUtility.Md5Bytes(buffer);
-                        if (!actualMd5.Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase))
+                        if (!actualMd5.Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty,
+                                StringComparison.OrdinalIgnoreCase))
                         {
                             isBroken = true;
                             break;
                         }
                     }
                 }
-                catch (Exception ex) when (ex is IOException or EndOfStreamException or ArgumentException or OverflowException or UnauthorizedAccessException)
+                catch (Exception ex) when (ex is IOException or EndOfStreamException or ArgumentException
+                                               or OverflowException or UnauthorizedAccessException)
                 {
                     isBroken = true;
                 }
@@ -895,13 +954,15 @@ public sealed class GameUpdateService
 
         return brokenAssets.ToList();
     }
-    
-    private static async Task ReadExactlyAsync(SafeFileHandle handle, Memory<byte> buffer, long offset, CancellationToken token)
+
+    private static async Task ReadExactlyAsync(SafeFileHandle handle, Memory<byte> buffer, long offset,
+        CancellationToken token)
     {
         int total = 0;
         while (total < buffer.Length)
         {
-            int read = await RandomAccess.ReadAsync(handle, buffer[total..], offset + total, token).ConfigureAwait(false);
+            int read = await RandomAccess.ReadAsync(handle, buffer[total..], offset + total, token)
+                .ConfigureAwait(false);
             if (read <= 0)
             {
                 throw new EndOfStreamException("文件末尾早于预期");
@@ -923,7 +984,8 @@ public sealed class GameUpdateService
             string tempFilePath = Path.Combine(gameDir, $"{Guid.NewGuid():N}.tmp");
             string movedFilePath = Path.Combine(gameDir, $"{Guid.NewGuid():N}.tmp");
 
-            using (SafeFileHandle handle = File.OpenHandle(tempFilePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, preallocationSize: 32 * 1024))
+            using (SafeFileHandle handle = File.OpenHandle(tempFilePath, FileMode.CreateNew, FileAccess.ReadWrite,
+                       FileShare.None, preallocationSize: 32 * 1024))
             {
                 RandomAccess.Write(handle, "FUFU LAUNCHER DIRECTORY PERMISSION CHECK"u8, 0);
                 RandomAccess.FlushToDisk(handle);
@@ -934,10 +996,11 @@ public sealed class GameUpdateService
         }
         catch (Exception ex)
         {
-            throw new UnauthorizedAccessException(string.Format("GameServer_InsufficientPermission".GetLocalized(), ex.Message), ex);
+            throw new UnauthorizedAccessException(
+                string.Format("GameServer_InsufficientPermission".GetLocalized(), ex.Message), ex);
         }
     }
-    
+
     private static void EnsureFreeSpace(GameUpdateContext context, long installTotalBytes)
     {
         long existingChunks = GetExistingChunksSize(context);
@@ -971,7 +1034,7 @@ public sealed class GameUpdateService
             // ignored
         }
     }
-    
+
     private static long GetExistingChunksSize(GameUpdateContext context)
     {
         if (!Directory.Exists(context.ChunksDir))
@@ -1009,7 +1072,7 @@ public sealed class GameUpdateService
 
         return size;
     }
-    
+
     private static void WriteGameVersion(string gameDir, string tag)
     {
         string configPath = Path.Combine(gameDir, GameConstants.CONFIG_FILE_NAME);
@@ -1028,7 +1091,8 @@ public sealed class GameUpdateService
         });
     }
 
-    private static async Task WritePredownloadStatusAsync(GameUpdateContext context, PredownloadStatus status, CancellationToken token)
+    private static async Task WritePredownloadStatusAsync(GameUpdateContext context, PredownloadStatus status,
+        CancellationToken token)
     {
         using FileStream stream = File.Create(context.PredownloadStatusFilePath);
         await JsonSerializer.SerializeAsync(stream, status, cancellationToken: token).ConfigureAwait(false);

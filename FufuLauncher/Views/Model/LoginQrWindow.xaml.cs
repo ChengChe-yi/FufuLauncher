@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -16,8 +17,8 @@ namespace FufuLauncher.Views;
 
 public sealed partial class LoginQrWindow : Window
 {
-
     #region 字段、常量、构造函数
+
     private const string Salt = "dDIQHbKOdaPaLuvQKVzUzqdeCaxjtaPV";
     private const string SaltGame = "t0qEgfub6cvueAPgR5m9aQWWVciEer7v";
     private readonly string _deviceId;
@@ -36,7 +37,8 @@ public sealed partial class LoginQrWindow : Window
 
     public bool IsLoginSuccessful
     {
-        get; private set;
+        get;
+        private set;
     }
 
     private static readonly JsonSerializerOptions _jsonOptions = new()
@@ -63,10 +65,12 @@ public sealed partial class LoginQrWindow : Window
 
         Closed += LoginQrWindow_Closed;
     }
+
     #endregion
 
 
     #region 窗口生命周期
+
     private async void RootContent_Loaded(object sender, RoutedEventArgs e)
     {
         if (sender is FrameworkElement rootContent)
@@ -79,7 +83,6 @@ public sealed partial class LoginQrWindow : Window
 
     private void LoginQrWindow_Closed(object sender, WindowEventArgs args)
     {
-
         _loginTcs?.TrySetCanceled();
 
         _currentSession?.Cancel();
@@ -95,10 +98,12 @@ public sealed partial class LoginQrWindow : Window
             PassportWebView.Close();
         }
     }
+
     #endregion
 
 
     #region 登录流程控制
+
     private async Task RestartLoginFlowAsync(bool isGameLogin = false)
     {
         _currentSession?.Cancel();
@@ -157,11 +162,12 @@ public sealed partial class LoginQrWindow : Window
 
         DispatcherQueue.TryEnqueue(() => Close());
     }
+
     #endregion
 
 
     #region 公共
-    
+
     public Task<(Dictionary<string, string> Cookies, string ServerType)> ShowAndWaitAsync()
     {
         _loginTcs?.TrySetCanceled();
@@ -170,7 +176,8 @@ public sealed partial class LoginQrWindow : Window
         return _loginTcs.Task;
     }
 
-    private void AddCommonHeaders(HttpRequestMessage request, string body, string query, string clientType, string appId, string sdkVersion, string cookie = "", string referer = "")
+    private void AddCommonHeaders(HttpRequestMessage request, string body, string query, string clientType,
+        string appId, string sdkVersion, string cookie = "", string referer = "")
     {
         request.Headers.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 miHoYoBBS/2.90.1 Capture/2.2.0");
         request.Headers.TryAddWithoutValidation("Accept", "*/*");
@@ -192,6 +199,7 @@ public sealed partial class LoginQrWindow : Window
 
         request.Headers.TryAddWithoutValidation("DS", GenerateDS(body, query));
     }
+
     private string GenerateDeviceFingerprint()
     {
         long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -210,6 +218,7 @@ public sealed partial class LoginQrWindow : Window
         string fpStr = JsonSerializer.Serialize(deviceInfo, _jsonOptions);
         return CreateMD5(fpStr);
     }
+
     private string GenerateDS(string body, string query)
     {
         long t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
@@ -223,6 +232,7 @@ public sealed partial class LoginQrWindow : Window
 
         return $"{t},{r},{sign}";
     }
+
     private string GenerateRandomString(int length, string chars)
     {
         var random = new Random();
@@ -231,8 +241,10 @@ public sealed partial class LoginQrWindow : Window
         {
             result[i] = chars[random.Next(chars.Length)];
         }
+
         return new string(result);
     }
+
     private string CreateMD5(string input)
     {
         using (MD5 md5 = MD5.Create())
@@ -245,9 +257,11 @@ public sealed partial class LoginQrWindow : Window
             {
                 sb.Append(hashBytes[i].ToString("x2"));
             }
+
             return sb.ToString();
         }
     }
+
     private Dictionary<string, string> ParseCookieString(string cookieString)
     {
         var dict = new Dictionary<string, string>();
@@ -263,12 +277,15 @@ public sealed partial class LoginQrWindow : Window
                     dict[key] = value;
             }
         }
+
         return dict;
     }
+
     #endregion
 
 
     #region 状态对话框管理
+
     private void UpdateStatus(string message, bool isProgress = false, bool closeDialog = false)
     {
         if (closeDialog && DispatcherQueue.HasThreadAccess)
@@ -297,7 +314,9 @@ public sealed partial class LoginQrWindow : Window
             {
                 sp.Children.Add(new ProgressRing { IsActive = true, Width = 24, Height = 24 });
             }
-            sp.Children.Add(new TextBlock { Text = message, VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap });
+
+            sp.Children.Add(new TextBlock
+                { Text = message, VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap });
 
             _statusDialog.Content = sp;
             _statusDialog.CloseButtonText = isProgress ? "" : "确定";
@@ -305,8 +324,14 @@ public sealed partial class LoginQrWindow : Window
             if (!_isDialogOpen)
             {
                 _isDialogOpen = true;
-                try { await _statusDialog.ShowAsync(); }
-                catch { _isDialogOpen = false; }
+                try
+                {
+                    await _statusDialog.ShowAsync();
+                }
+                catch
+                {
+                    _isDialogOpen = false;
+                }
             }
         });
     }
@@ -324,6 +349,7 @@ public sealed partial class LoginQrWindow : Window
 
 
     #region 二维码渲染
+
     private void RenderQrCode(string url)
     {
         DispatcherQueue.TryEnqueue(() =>
@@ -347,5 +373,6 @@ public sealed partial class LoginQrWindow : Window
             }
         });
     }
+
     #endregion
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Messages
 {
     public class GamePathChangedMessage
@@ -10,6 +11,7 @@ namespace FufuLauncher.Messages
         {
             get;
         }
+
         public GamePathChangedMessage(string path) => GamePath = path;
     }
 }

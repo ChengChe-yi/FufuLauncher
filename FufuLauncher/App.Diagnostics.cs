@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
@@ -86,16 +87,15 @@ public partial class App
             Directory.CreateDirectory(Path.GetDirectoryName(logPath)!);
 
             var log = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {source}\n" +
-                     $"Exception: {ex.GetType().Name}\n" +
-                     $"Message: {ex.Message}\n" +
-                     $"StackTrace: {ex.StackTrace}\n" +
-                     new string('-', 80) + "\n";
+                      $"Exception: {ex.GetType().Name}\n" +
+                      $"Message: {ex.Message}\n" +
+                      $"StackTrace: {ex.StackTrace}\n" +
+                      new string('-', 80) + "\n";
 
             File.AppendAllText(logPath, log);
         }
         catch
         {
-
         }
     }
 

@@ -12,312 +12,378 @@
 
     <Page.Resources>
         <ResourceDictionary>
-        <ResourceDictionary.ThemeDictionaries>
-            <ResourceDictionary x:Key="Light">
-                <AcrylicBrush x:Key="BatchActionAcrylicBrush" FallbackColor="#F2FFFFFF" TintColor="#FFFFFF" TintOpacity="0.5" TintLuminosityOpacity="0.85"/>
-            </ResourceDictionary>
-            <ResourceDictionary x:Key="Default">
-                <AcrylicBrush x:Key="BatchActionAcrylicBrush" FallbackColor="#F21F1F1F" TintColor="#1F1F1F" TintOpacity="0.5" TintLuminosityOpacity="0.85"/>
-            </ResourceDictionary>
-        </ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <AcrylicBrush x:Key="BatchActionAcrylicBrush" FallbackColor="#F2FFFFFF" TintColor="#FFFFFF"
+                                  TintOpacity="0.5" TintLuminosityOpacity="0.85" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Default">
+                    <AcrylicBrush x:Key="BatchActionAcrylicBrush" FallbackColor="#F21F1F1F" TintColor="#1F1F1F"
+                                  TintOpacity="0.5" TintLuminosityOpacity="0.85" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
 
-        <DataTemplate x:Key="BoolTemplate" x:DataType="viewmodels:PluginSettingItem">
-            <StackPanel Width="240" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
-                    <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center"/>
-                    <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;" FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent" BorderThickness="0" Opacity="0.5" VerticalAlignment="Center" ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
-                        <Button.Flyout>
-                            <Flyout Placement="Right">
-                                <Flyout.FlyoutPresenterStyle>
-                                    <Style TargetType="FlyoutPresenter">
-                                        <Setter Property="Padding" Value="4"/>
-                                        <Setter Property="CornerRadius" Value="8"/>
-                                        <Setter Property="MaxWidth" Value="640"/>
-                                        <Setter Property="MaxHeight" Value="480"/>
-                                    </Style>
-                                </Flyout.FlyoutPresenterStyle>
-                                <Grid MinWidth="120" MinHeight="120">
-                                    <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{helpers:Loc Key=GifInvalidError}" Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                    <Image Source="{x:Bind HelpImageSource, Mode=OneWay}" Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform" ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened"/>
-                                    <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}" Visibility="Collapsed" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                </Grid>
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
-                    <Button Click="OnPinSettingClick"
-                            Tag="{x:Bind}"
-                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
-                            Background="Transparent" BorderThickness="0"
-                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
-                            VerticalAlignment="Center"
-                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
-                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
-                    </Button>
-                    <FontIcon Glyph="&#xE73E;"
-                              FontSize="12"
-                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
-                              VerticalAlignment="Center"
-                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
+            <DataTemplate x:Key="BoolTemplate" x:DataType="viewmodels:PluginSettingItem">
+                <StackPanel Width="240" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
+                        <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center" />
+                        <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;"
+                                FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0"
+                                MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent"
+                                BorderThickness="0" Opacity="0.5" VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
+                            <Button.Flyout>
+                                <Flyout Placement="Right">
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="4" />
+                                            <Setter Property="CornerRadius" Value="8" />
+                                            <Setter Property="MaxWidth" Value="640" />
+                                            <Setter Property="MaxHeight" Value="480" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <Grid MinWidth="120" MinHeight="120">
+                                        <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40"
+                                                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock Text="{helpers:Loc Key=GifInvalidError}"
+                                                   Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <Image Source="{x:Bind HelpImageSource, Mode=OneWay}"
+                                               Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform"
+                                               ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened" />
+                                        <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}"
+                                                   Visibility="Collapsed" Margin="12" HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                    </Grid>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                        <Button Click="OnPinSettingClick"
+                                Tag="{x:Bind}"
+                                FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0"
+                                CornerRadius="10"
+                                Background="Transparent" BorderThickness="0"
+                                Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                                VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                            <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
+                        </Button>
+                        <FontIcon Glyph="&#xE73E;"
+                                  FontSize="12"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                  VerticalAlignment="Center"
+                                  Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}" />
+                    </StackPanel>
+                    <ToggleSwitch IsOn="{x:Bind BoolValue, Mode=TwoWay}" OnContent="{helpers:Loc Key=OnLabel}"
+                                  OffContent="{helpers:Loc Key=OffLabel}" MinWidth="0" Margin="0" />
                 </StackPanel>
-                <ToggleSwitch IsOn="{x:Bind BoolValue, Mode=TwoWay}" OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" MinWidth="0" Margin="0"/>
-            </StackPanel>
-        </DataTemplate>
-        
-        <DataTemplate x:Key="KeyTemplate" x:DataType="viewmodels:PluginSettingItem">
-            <StackPanel Width="240" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
-                    <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center"/>
-                    <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;" FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent" BorderThickness="0" Opacity="0.5" VerticalAlignment="Center" ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
-                        <Button.Flyout>
-                            <Flyout Placement="Right">
-                                <Flyout.FlyoutPresenterStyle>
-                                    <Style TargetType="FlyoutPresenter">
-                                        <Setter Property="Padding" Value="4"/>
-                                        <Setter Property="CornerRadius" Value="8"/>
-                                        <Setter Property="MaxWidth" Value="640"/>
-                                        <Setter Property="MaxHeight" Value="480"/>
-                                    </Style>
-                                </Flyout.FlyoutPresenterStyle>
-                                <Grid MinWidth="120" MinHeight="120">
-                                    <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{helpers:Loc Key=GifInvalidError}" Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                    <Image Source="{x:Bind HelpImageSource, Mode=OneWay}" Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform" ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened"/>
-                                    <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}" Visibility="Collapsed" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                </Grid>
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
-                    <Button Click="OnPinSettingClick"
-                            Tag="{x:Bind}"
-                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
-                            Background="Transparent" BorderThickness="0"
-                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
-                            VerticalAlignment="Center"
-                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
-                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
-                    </Button>
-                    <FontIcon Glyph="&#xE73E;"
-                              FontSize="12"
-                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
-                              VerticalAlignment="Center"
-                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="KeyTemplate" x:DataType="viewmodels:PluginSettingItem">
+                <StackPanel Width="240" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
+                        <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center" />
+                        <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;"
+                                FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0"
+                                MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent"
+                                BorderThickness="0" Opacity="0.5" VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
+                            <Button.Flyout>
+                                <Flyout Placement="Right">
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="4" />
+                                            <Setter Property="CornerRadius" Value="8" />
+                                            <Setter Property="MaxWidth" Value="640" />
+                                            <Setter Property="MaxHeight" Value="480" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <Grid MinWidth="120" MinHeight="120">
+                                        <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40"
+                                                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock Text="{helpers:Loc Key=GifInvalidError}"
+                                                   Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <Image Source="{x:Bind HelpImageSource, Mode=OneWay}"
+                                               Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform"
+                                               ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened" />
+                                        <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}"
+                                                   Visibility="Collapsed" Margin="12" HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                    </Grid>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                        <Button Click="OnPinSettingClick"
+                                Tag="{x:Bind}"
+                                FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0"
+                                CornerRadius="10"
+                                Background="Transparent" BorderThickness="0"
+                                Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                                VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                            <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
+                        </Button>
+                        <FontIcon Glyph="&#xE73E;"
+                                  FontSize="12"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                  VerticalAlignment="Center"
+                                  Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}" />
+                    </StackPanel>
+                    <Grid>
+                        <ComboBox ItemsSource="{x:Bind AvailableKeys}"
+                                  SelectedValuePath="KeyCode"
+                                  DisplayMemberPath="KeyName"
+                                  SelectedValue="{x:Bind KeyValue, Mode=TwoWay}"
+                                  Visibility="{x:Bind KeyListVisibility, Mode=OneWay}"
+                                  Width="200" HorizontalAlignment="Left" />
+                        <NumberBox Value="{x:Bind KeyNumberValue, Mode=TwoWay}"
+                                   SpinButtonPlacementMode="Inline"
+                                   SmallChange="1"
+                                   Minimum="1"
+                                   Visibility="{x:Bind KeyNumberVisibility, Mode=OneWay}"
+                                   Width="200" HorizontalAlignment="Left" />
+                    </Grid>
                 </StackPanel>
-                <Grid>
-                    <ComboBox ItemsSource="{x:Bind AvailableKeys}" 
-                              SelectedValuePath="KeyCode" 
-                              DisplayMemberPath="KeyName" 
-                              SelectedValue="{x:Bind KeyValue, Mode=TwoWay}" 
-                              Visibility="{x:Bind KeyListVisibility, Mode=OneWay}"
-                              Width="200" HorizontalAlignment="Left"/>
-                    <NumberBox Value="{x:Bind KeyNumberValue, Mode=TwoWay}"
-                              SpinButtonPlacementMode="Inline"
-                              SmallChange="1"
-                              Minimum="1"
-                              Visibility="{x:Bind KeyNumberVisibility, Mode=OneWay}"
-                              Width="200" HorizontalAlignment="Left"/>
-                </Grid>
-            </StackPanel>
-        </DataTemplate>
-        
-        <DataTemplate x:Key="NumberTemplate" x:DataType="viewmodels:PluginSettingItem">
-            <StackPanel Width="240" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
-                    <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center"/>
-                    <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;" FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent" BorderThickness="0" Opacity="0.5" VerticalAlignment="Center" ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
-                        <Button.Flyout>
-                            <Flyout Placement="Right">
-                                <Flyout.FlyoutPresenterStyle>
-                                    <Style TargetType="FlyoutPresenter">
-                                        <Setter Property="Padding" Value="4"/>
-                                        <Setter Property="CornerRadius" Value="8"/>
-                                        <Setter Property="MaxWidth" Value="640"/>
-                                        <Setter Property="MaxHeight" Value="480"/>
-                                    </Style>
-                                </Flyout.FlyoutPresenterStyle>
-                                <Grid MinWidth="120" MinHeight="120">
-                                    <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{helpers:Loc Key=GifInvalidError}" Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                    <Image Source="{x:Bind HelpImageSource, Mode=OneWay}" Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform" ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened"/>
-                                    <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}" Visibility="Collapsed" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                </Grid>
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
-                    <Button Click="OnPinSettingClick"
-                            Tag="{x:Bind}"
-                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
-                            Background="Transparent" BorderThickness="0"
-                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
-                            VerticalAlignment="Center"
-                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
-                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
-                    </Button>
-                    <FontIcon Glyph="&#xE73E;"
-                              FontSize="12"
-                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
-                              VerticalAlignment="Center"
-                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="NumberTemplate" x:DataType="viewmodels:PluginSettingItem">
+                <StackPanel Width="240" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
+                        <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center" />
+                        <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;"
+                                FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0"
+                                MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent"
+                                BorderThickness="0" Opacity="0.5" VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
+                            <Button.Flyout>
+                                <Flyout Placement="Right">
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="4" />
+                                            <Setter Property="CornerRadius" Value="8" />
+                                            <Setter Property="MaxWidth" Value="640" />
+                                            <Setter Property="MaxHeight" Value="480" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <Grid MinWidth="120" MinHeight="120">
+                                        <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40"
+                                                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock Text="{helpers:Loc Key=GifInvalidError}"
+                                                   Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <Image Source="{x:Bind HelpImageSource, Mode=OneWay}"
+                                               Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform"
+                                               ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened" />
+                                        <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}"
+                                                   Visibility="Collapsed" Margin="12" HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                    </Grid>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                        <Button Click="OnPinSettingClick"
+                                Tag="{x:Bind}"
+                                FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0"
+                                CornerRadius="10"
+                                Background="Transparent" BorderThickness="0"
+                                Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                                VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                            <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
+                        </Button>
+                        <FontIcon Glyph="&#xE73E;"
+                                  FontSize="12"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                  VerticalAlignment="Center"
+                                  Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}" />
+                    </StackPanel>
+                    <NumberBox Value="{x:Bind FloatValue, Mode=TwoWay}" SpinButtonPlacementMode="Inline" Width="200"
+                               HorizontalAlignment="Left" />
                 </StackPanel>
-                <NumberBox Value="{x:Bind FloatValue, Mode=TwoWay}" SpinButtonPlacementMode="Inline" Width="200" HorizontalAlignment="Left"/>
-            </StackPanel>
-        </DataTemplate>
+            </DataTemplate>
 
-        <DataTemplate x:Key="StringTemplate" x:DataType="viewmodels:PluginSettingItem">
-            <StackPanel Width="240" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
-                    <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center"/>
-                    <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;" FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent" BorderThickness="0" Opacity="0.5" VerticalAlignment="Center" ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
-                        <Button.Flyout>
-                            <Flyout Placement="Right">
-                                <Flyout.FlyoutPresenterStyle>
-                                    <Style TargetType="FlyoutPresenter">
-                                        <Setter Property="Padding" Value="4"/>
-                                        <Setter Property="CornerRadius" Value="8"/>
-                                        <Setter Property="MaxWidth" Value="640"/>
-                                        <Setter Property="MaxHeight" Value="480"/>
-                                    </Style>
-                                </Flyout.FlyoutPresenterStyle>
-                                <Grid MinWidth="120" MinHeight="120">
-                                    <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    <TextBlock Text="{helpers:Loc Key=GifInvalidError}" Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                    <Image Source="{x:Bind HelpImageSource, Mode=OneWay}" Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform" ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened"/>
-                                    <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}" Visibility="Collapsed" Margin="12" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
-                                </Grid>
-                            </Flyout>
-                        </Button.Flyout>
-                    </Button>
-                    <Button Click="OnPinSettingClick"
-                            Tag="{x:Bind}"
-                            FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0" CornerRadius="10"
-                            Background="Transparent" BorderThickness="0"
-                            Opacity="{x:Bind PinOpacity, Mode=OneWay}"
-                            VerticalAlignment="Center"
-                            ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
-                        <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
-                    </Button>
-                    <FontIcon Glyph="&#xE73E;"
-                              FontSize="12"
-                              Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
-                              VerticalAlignment="Center"
-                              Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}"/>
+            <DataTemplate x:Key="StringTemplate" x:DataType="viewmodels:PluginSettingItem">
+                <StackPanel Width="240" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
+                        <TextBlock Text="{x:Bind DisplayName}" FontSize="12" Opacity="0.9" VerticalAlignment="Center" />
+                        <Button Visibility="{x:Bind HelpVisibility, Mode=OneWay}" Content="&#xE9CE;"
+                                FontFamily="Segoe Fluent Icons" FontSize="12" Width="20" Height="20" MinWidth="0"
+                                MinHeight="0" Padding="0" CornerRadius="10" Background="Transparent"
+                                BorderThickness="0" Opacity="0.5" VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}">
+                            <Button.Flyout>
+                                <Flyout Placement="Right">
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="4" />
+                                            <Setter Property="CornerRadius" Value="8" />
+                                            <Setter Property="MaxWidth" Value="640" />
+                                            <Setter Property="MaxHeight" Value="480" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                    <Grid MinWidth="120" MinHeight="120">
+                                        <ProgressRing x:Name="LoadingRing" IsActive="True" Width="40" Height="40"
+                                                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock Text="{helpers:Loc Key=GifInvalidError}"
+                                                   Visibility="{x:Bind GifErrorVisibility, Mode=OneWay}" Margin="12"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                        <Image Source="{x:Bind HelpImageSource, Mode=OneWay}"
+                                               Visibility="{x:Bind GifImageVisibility, Mode=OneWay}" Stretch="Uniform"
+                                               ImageFailed="HelpImage_ImageFailed" ImageOpened="HelpImage_ImageOpened" />
+                                        <TextBlock x:Name="ErrorText" Text="{helpers:Loc Key=GifLoadFailedError}"
+                                                   Visibility="Collapsed" Margin="12" HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                    </Grid>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                        <Button Click="OnPinSettingClick"
+                                Tag="{x:Bind}"
+                                FontSize="12" Width="20" Height="20" MinWidth="0" MinHeight="0" Padding="0"
+                                CornerRadius="10"
+                                Background="Transparent" BorderThickness="0"
+                                Opacity="{x:Bind PinOpacity, Mode=OneWay}"
+                                VerticalAlignment="Center"
+                                ToolTipService.ToolTip="{x:Bind PinTooltip, Mode=OneWay}">
+                            <FontIcon Glyph="{x:Bind PinGlyph, Mode=OneWay}" FontSize="12" />
+                        </Button>
+                        <FontIcon Glyph="&#xE73E;"
+                                  FontSize="12"
+                                  Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                  VerticalAlignment="Center"
+                                  Visibility="{x:Bind SelectionMarkVisibility, Mode=OneWay}" />
+                    </StackPanel>
+                    <TextBox Text="{x:Bind StringValue, Mode=TwoWay}" Width="200" HorizontalAlignment="Left" />
                 </StackPanel>
-                <TextBox Text="{x:Bind StringValue, Mode=TwoWay}" Width="200" HorizontalAlignment="Left"/>
-            </StackPanel>
-        </DataTemplate>
+            </DataTemplate>
 
-        <selectors:SettingTemplateSelector x:Key="SettingSelector"
-                                           BoolTemplate="{StaticResource BoolTemplate}"
-                                           NumberTemplate="{StaticResource NumberTemplate}"
-                                           StringTemplate="{StaticResource StringTemplate}"
-                                           KeyTemplate="{StaticResource KeyTemplate}" />
+            <selectors:SettingTemplateSelector x:Key="SettingSelector"
+                                               BoolTemplate="{StaticResource BoolTemplate}"
+                                               NumberTemplate="{StaticResource NumberTemplate}"
+                                               StringTemplate="{StaticResource StringTemplate}"
+                                               KeyTemplate="{StaticResource KeyTemplate}" />
 
-        <Storyboard x:Name="EntranceStoryboard">
-            <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0" To="1" Duration="0:0:0.3">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseOut"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-        
-        <Storyboard x:Name="ExitStoryboard">
-            <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1" To="0" Duration="0:0:0.3">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseIn"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
+            <Storyboard x:Name="EntranceStoryboard">
+                <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0" To="1" Duration="0:0:0.3">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
 
-        <Storyboard x:Name="SelectionRectFadeIn">
-            <DoubleAnimation Storyboard.TargetName="SelectionRectangle"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0" To="1" Duration="0:0:0.18">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseOut"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
+            <Storyboard x:Name="ExitStoryboard">
+                <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="1" To="0" Duration="0:0:0.3">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseIn" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
 
-        <Storyboard x:Name="SelectionRectFadeOut" Completed="SelectionRectFadeOut_Completed">
-            <DoubleAnimation Storyboard.TargetName="SelectionRectangle"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1" To="0" Duration="0:0:0.18">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseIn"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
+            <Storyboard x:Name="SelectionRectFadeIn">
+                <DoubleAnimation Storyboard.TargetName="SelectionRectangle"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0" To="1" Duration="0:0:0.18">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
 
-        <Storyboard x:Name="BatchActionBarFadeIn">
-            <DoubleAnimation Storyboard.TargetName="BatchActionBar"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0" To="1" Duration="0:0:0.18">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseOut"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
+            <Storyboard x:Name="SelectionRectFadeOut" Completed="SelectionRectFadeOut_Completed">
+                <DoubleAnimation Storyboard.TargetName="SelectionRectangle"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="1" To="0" Duration="0:0:0.18">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseIn" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
 
-        <Storyboard x:Name="BatchActionBarFadeOut" Completed="BatchActionBarFadeOut_Completed">
-            <DoubleAnimation Storyboard.TargetName="BatchActionBar"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1" To="0" Duration="0:0:0.18">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseIn"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
+            <Storyboard x:Name="BatchActionBarFadeIn">
+                <DoubleAnimation Storyboard.TargetName="BatchActionBar"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0" To="1" Duration="0:0:0.18">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+
+            <Storyboard x:Name="BatchActionBarFadeOut" Completed="BatchActionBarFadeOut_Completed">
+                <DoubleAnimation Storyboard.TargetName="BatchActionBar"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="1" To="0" Duration="0:0:0.18">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseIn" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
 
     <Grid x:Name="RootLayoutGrid" Padding="32,24,32,24" Opacity="0">
         <Grid.Transitions>
             <TransitionCollection>
-                <EntranceThemeTransition FromVerticalOffset="40"/>
+                <EntranceThemeTransition FromVerticalOffset="40" />
             </TransitionCollection>
         </Grid.Transitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
             <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,0,0,16">
-                <TextBlock Text="{helpers:Loc Key=ConfigTargetLabel}" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                <TextBlock Text="{helpers:Loc Key=ConfigTargetLabel}" VerticalAlignment="Center" FontWeight="SemiBold" />
                 <ComboBox SelectedIndex="{x:Bind ViewModel.SelectedPluginIndex, Mode=TwoWay}" Width="200">
                     <ComboBoxItem>
-                        <TextBlock Text="{x:Bind ViewModel.SelectedPluginComboLabel, Mode=OneWay}"/>
+                        <TextBlock Text="{x:Bind ViewModel.SelectedPluginComboLabel, Mode=OneWay}" />
                     </ComboBoxItem>
-                    <ComboBoxItem Content="{helpers:Loc Key=PluginFPS}"/>
+                    <ComboBoxItem Content="{helpers:Loc Key=PluginFPS}" />
                 </ComboBox>
             </StackPanel>
 
             <Grid Margin="0,0,0,24">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="/Assets/WindowIcon.ico" Width="42" Height="42" VerticalAlignment="Center" Stretch="Uniform"/>
+                <Image Source="/Assets/WindowIcon.ico" Width="42" Height="42" VerticalAlignment="Center"
+                       Stretch="Uniform" />
 
                 <StackPanel Grid.Column="1" Margin="16,0,0,0" VerticalAlignment="Center">
-                    <TextBlock Text="{x:Bind ViewModel.PluginName, Mode=OneWay}" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                    <TextBlock Text="{x:Bind ViewModel.PluginDescription, Mode=OneWay}" FontSize="12" Opacity="0.6" TextWrapping="Wrap"/>
+                    <TextBlock Text="{x:Bind ViewModel.PluginName, Mode=OneWay}" FontSize="18" FontWeight="SemiBold"
+                               Margin="0,0,0,4" />
+                    <TextBlock Text="{x:Bind ViewModel.PluginDescription, Mode=OneWay}" FontSize="12" Opacity="0.6"
+                               TextWrapping="Wrap" />
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,24,0">
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center"
+                            HorizontalAlignment="Right" Margin="0,0,24,0">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <TextBlock Text="{x:Bind ViewModel.PluginDeveloper, Mode=OneWay}" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right" Margin="0,0,0,4"/>
+                        <TextBlock Text="{x:Bind ViewModel.PluginDeveloper, Mode=OneWay}" FontSize="12"
+                                   FontWeight="SemiBold" HorizontalAlignment="Right" Margin="0,0,0,4" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Text="{helpers:Loc Key=ModifiedDateLabel}" FontSize="12" Opacity="0.6"/>
-                            <TextBlock Text="{x:Bind ViewModel.LastModifiedDate, Mode=OneWay}" FontSize="12" Opacity="0.6"/>
+                            <TextBlock Text="{helpers:Loc Key=ModifiedDateLabel}" FontSize="12" Opacity="0.6" />
+                            <TextBlock Text="{x:Bind ViewModel.LastModifiedDate, Mode=OneWay}" FontSize="12"
+                                       Opacity="0.6" />
                         </StackPanel>
                     </StackPanel>
 
@@ -332,7 +398,7 @@
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                
+
                 <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="20" VerticalAlignment="Center">
                     <Border CornerRadius="8" Padding="3"
                             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
@@ -364,73 +430,85 @@
                         <Button.Flyout>
                             <Flyout>
                                 <StackPanel Spacing="6" MinWidth="200">
-                                    <Button Content="{helpers:Loc Key=DownloadPluginBtn}" 
-                                            Click="OnDownloadPluginClick" 
+                                    <Button Content="{helpers:Loc Key=DownloadPluginBtn}"
+                                            Click="OnDownloadPluginClick"
                                             HorizontalAlignment="Stretch"
-                                            IsEnabled="{x:Bind ViewModel.IsDownloadSupported, Mode=OneWay}"/>
+                                            IsEnabled="{x:Bind ViewModel.IsDownloadSupported, Mode=OneWay}" />
 
                                     <Button Content="{helpers:Loc Key=LightweightMode_ReinstallBtn}"
                                             Click="OnReinstallLightweightPluginClick"
                                             HorizontalAlignment="Stretch"
-                                            IsEnabled="{x:Bind ViewModel.IsLitePluginInstallSupported, Mode=OneWay}"/>
+                                            IsEnabled="{x:Bind ViewModel.IsLitePluginInstallSupported, Mode=OneWay}" />
 
-                                    
-                                    <Button Content="{helpers:Loc Key=RepairFpsPluginBtn}" 
-                                            Click="OnRepairFpsPluginClick" 
+
+                                    <Button Content="{helpers:Loc Key=RepairFpsPluginBtn}"
+                                            Click="OnRepairFpsPluginClick"
                                             HorizontalAlignment="Stretch" />
-                                    
-                                    <Border Height="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4,0,4" />
-                                    
+
+                                    <Border Height="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}"
+                                            Margin="0,4,0,4" />
+
                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="{x:Bind ViewModel.PluginToggleLabel, Mode=OneWay}" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold"/>
-                                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsMainPluginEnabled, Mode=OneWay}" 
-                                                      Toggled="OnMainPluginToggled" 
-                                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" 
-                                                      CornerRadius="16" 
-                                                      HorizontalAlignment="Right" 
-                                                      MinWidth="0" Margin="0"/>
+                                        <TextBlock Text="{x:Bind ViewModel.PluginToggleLabel, Mode=OneWay}"
+                                                   VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" />
+                                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsMainPluginEnabled, Mode=OneWay}"
+                                                      Toggled="OnMainPluginToggled"
+                                                      OnContent="{helpers:Loc Key=OnLabel}"
+                                                      OffContent="{helpers:Loc Key=OffLabel}"
+                                                      CornerRadius="16"
+                                                      HorizontalAlignment="Right"
+                                                      MinWidth="0" Margin="0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="{helpers:Loc Key=FpsPluginEnabledLabel}" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold"/>
-                                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsFpsPluginEnabled, Mode=TwoWay}" 
-                                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" 
-                                                      CornerRadius="16" 
-                                                      HorizontalAlignment="Right" 
-                                                      MinWidth="0" Margin="0"/>
+                                        <TextBlock Text="{helpers:Loc Key=FpsPluginEnabledLabel}"
+                                                   VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" />
+                                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsFpsPluginEnabled, Mode=TwoWay}"
+                                                      OnContent="{helpers:Loc Key=OnLabel}"
+                                                      OffContent="{helpers:Loc Key=OffLabel}"
+                                                      CornerRadius="16"
+                                                      HorizontalAlignment="Right"
+                                                      MinWidth="0" Margin="0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="{helpers:Loc Key=KeyInputModeLabel}" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{helpers:Loc Key=KeyInputModeLabel}"
+                                                   VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" />
                                         <ToggleSwitch IsOn="{x:Bind ViewModel.UseKeyListInput, Mode=TwoWay}"
-                                                      OnContent="{helpers:Loc Key=ListLabel}" OffContent="{helpers:Loc Key=NumberLabel}"
+                                                      OnContent="{helpers:Loc Key=ListLabel}"
+                                                      OffContent="{helpers:Loc Key=NumberLabel}"
                                                       CornerRadius="16"
                                                       HorizontalAlignment="Right"
-                                                      MinWidth="0" Margin="0"/>
+                                                      MinWidth="0" Margin="0" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="{helpers:Loc Key=AutoCreatePresetLabel}" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{helpers:Loc Key=AutoCreatePresetLabel}"
+                                                   VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" />
                                         <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoCreatePresetEnabled, Mode=TwoWay}"
-                                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}"
+                                                      OnContent="{helpers:Loc Key=OnLabel}"
+                                                      OffContent="{helpers:Loc Key=OffLabel}"
                                                       CornerRadius="16"
                                                       HorizontalAlignment="Right"
-                                                      MinWidth="0" Margin="0"/>
+                                                      MinWidth="0" Margin="0" />
                                     </StackPanel>
-                                    
+
                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <TextBlock Text="{helpers:Loc Key=ShowDevFeaturesLabel}" VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold"/>
+                                        <TextBlock Text="{helpers:Loc Key=ShowDevFeaturesLabel}"
+                                                   VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" />
                                         <ToggleSwitch IsOn="{x:Bind ViewModel.IsDevFeaturesEnabled, Mode=TwoWay}"
-                                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}"
+                                                      OnContent="{helpers:Loc Key=OnLabel}"
+                                                      OffContent="{helpers:Loc Key=OffLabel}"
                                                       CornerRadius="16"
                                                       HorizontalAlignment="Right"
-                                                      MinWidth="0" Margin="0"/>
+                                                      MinWidth="0" Margin="0" />
                                     </StackPanel>
-                                    
-                                    <Border Height="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,4,0,4" />
-                                    <Button Content="{helpers:Loc Key=FeedbackBtn}" 
-                                            Click="OnFeedbackClick" 
-                                            HorizontalAlignment="Stretch"/>
-                                    <Button Content="{helpers:Loc Key=SubmitPRBtn}" 
-                                            Click="OnPullRequestsClick" 
-                                            HorizontalAlignment="Stretch"/>
+
+                                    <Border Height="1" Background="{ThemeResource DividerStrokeColorDefaultBrush}"
+                                            Margin="0,4,0,4" />
+                                    <Button Content="{helpers:Loc Key=FeedbackBtn}"
+                                            Click="OnFeedbackClick"
+                                            HorizontalAlignment="Stretch" />
+                                    <Button Content="{helpers:Loc Key=SubmitPRBtn}"
+                                            Click="OnPullRequestsClick"
+                                            HorizontalAlignment="Stretch" />
                                 </StackPanel>
                             </Flyout>
                         </Button.Flyout>
@@ -438,24 +516,26 @@
 
                     <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="{helpers:Loc Key=EnableInjectionParenLabel}" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                            <TextBlock Text="{helpers:Loc Key=InjectionLoadCaption}" FontSize="11" Opacity="0.6" HorizontalAlignment="Right"/>
+                            <TextBlock Text="{helpers:Loc Key=EnableInjectionParenLabel}" FontWeight="SemiBold"
+                                       HorizontalAlignment="Right" />
+                            <TextBlock Text="{helpers:Loc Key=InjectionLoadCaption}" FontSize="11" Opacity="0.6"
+                                       HorizontalAlignment="Right" />
                         </StackPanel>
-                        <ToggleSwitch IsOn="{x:Bind MainVM.UseInjection, Mode=OneWay}" 
+                        <ToggleSwitch IsOn="{x:Bind MainVM.UseInjection, Mode=OneWay}"
                                       Toggled="OnInjectionToggled"
-                                      OnContent="" OffContent="" MinWidth="0" VerticalAlignment="Center"/>
+                                      OnContent="" OffContent="" MinWidth="0" VerticalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
 
-            <MenuFlyoutSeparator Margin="0,0,0,24"/>
+            <MenuFlyoutSeparator Margin="0,0,0,24" />
         </StackPanel>
 
         <Grid Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <ContentControl x:Name="SettingsContent"
-                                IsEnabled="{x:Bind ViewModel.IsSettingsInteractable, Mode=OneWay}" 
-                                HorizontalContentAlignment="Stretch" 
+                                IsEnabled="{x:Bind ViewModel.IsSettingsInteractable, Mode=OneWay}"
+                                HorizontalContentAlignment="Stretch"
                                 VerticalContentAlignment="Stretch"
                                 PointerPressed="OnSettingsPointerPressed"
                                 PointerMoved="OnSettingsPointerMoved"
@@ -465,58 +545,70 @@
                     <StackPanel>
                         <Grid Margin="0,0,0,32">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,16,0">
-                                <TextBlock Text="{helpers:Loc Key=ConfigPresetLabel}" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                                <TextBlock Text="{x:Bind ViewModel.CurrentPreset.Name, Mode=OneWay}" FontSize="12" Opacity="0.8" VerticalAlignment="Center"/>
+                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center"
+                                        Margin="0,0,16,0">
+                                <TextBlock Text="{helpers:Loc Key=ConfigPresetLabel}" FontWeight="SemiBold"
+                                           VerticalAlignment="Center" Margin="0,0,8,0" />
+                                <TextBlock Text="{x:Bind ViewModel.CurrentPreset.Name, Mode=OneWay}" FontSize="12"
+                                           Opacity="0.8" VerticalAlignment="Center" />
                             </StackPanel>
 
-                            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollBarVisibility="Disabled">
                                 <ItemsControl ItemsSource="{x:Bind ViewModel.AvailablePresets, Mode=OneWay}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" Spacing="8"/>
+                                            <StackPanel Orientation="Horizontal" Spacing="8" />
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate x:DataType="viewmodels:PresetModel">
-                                            <StackPanel Orientation="Horizontal" Spacing="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="4" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                                            <StackPanel Orientation="Horizontal" Spacing="0"
+                                                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                                        CornerRadius="4"
+                                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                                        BorderThickness="1">
                                                 <Button Content="{x:Bind Name, Mode=OneWay}"
-                                                        Click="OnSwitchPresetClick" 
-                                                        Background="Transparent" 
+                                                        Click="OnSwitchPresetClick"
+                                                        Background="Transparent"
                                                         BorderThickness="0"
                                                         ToolTipService.ToolTip="{helpers:Loc Key=SwitchPresetTooltip}">
                                                     <Button.ContextFlyout>
                                                         <MenuFlyout>
                                                             <MenuFlyoutItem Text="{helpers:Loc Key=Preset_Rename}"
                                                                             Tag="{x:Bind}"
-                                                                            Click="OnRenamePresetClick"/>
+                                                                            Click="OnRenamePresetClick" />
                                                         </MenuFlyout>
                                                     </Button.ContextFlyout>
                                                 </Button>
-                                                <TextBlock Text="{helpers:Loc Key=LockedTag}" 
-                                                           Visibility="{x:Bind IsLocked, Mode=OneWay}" 
-                                                           Foreground="Red" 
-                                                           FontSize="12" 
-                                                           VerticalAlignment="Center" 
-                                                           Margin="4,0,0,0"/>
+                                                <TextBlock Text="{helpers:Loc Key=LockedTag}"
+                                                           Visibility="{x:Bind IsLocked, Mode=OneWay}"
+                                                           Foreground="Red"
+                                                           FontSize="12"
+                                                           VerticalAlignment="Center"
+                                                           Margin="4,0,0,0" />
                                                 <Button Content="&#xE74D;"
-                                                        FontFamily="Segoe Fluent Icons" 
+                                                        FontFamily="Segoe Fluent Icons"
                                                         Click="OnDeletePresetClick"
-                                                        Background="Transparent" 
+                                                        Background="Transparent"
                                                         Foreground="Red"
                                                         BorderThickness="0"
                                                         Width="32" Padding="0"
                                                         ToolTipService.ToolTip="{helpers:Loc Key=DeletePresetTooltip}">
                                                     <Button.Resources>
-                                                        <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="Red"/>
-                                                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
-                                                        <SolidColorBrush x:Key="ButtonForegroundPressed" Color="DarkRed"/>
-                                                        <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="Transparent"/>
+                                                        <SolidColorBrush x:Key="ButtonForegroundPointerOver"
+                                                                         Color="Red" />
+                                                        <SolidColorBrush x:Key="ButtonBackgroundPointerOver"
+                                                                         Color="Transparent" />
+                                                        <SolidColorBrush x:Key="ButtonForegroundPressed"
+                                                                         Color="DarkRed" />
+                                                        <SolidColorBrush x:Key="ButtonBackgroundPressed"
+                                                                         Color="Transparent" />
                                                     </Button.Resources>
                                                 </Button>
                                             </StackPanel>
@@ -525,9 +617,10 @@
                                 </ItemsControl>
                             </ScrollViewer>
 
-                            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0" Spacing="8">
-                                <Button Content="{helpers:Loc Key=NewPresetBtn}" Click="OnCreateNewPresetClick"/>
-                                <Button Content="{helpers:Loc Key=ResetAllBtn}" Click="OnResetAllPresetsClick"/>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center"
+                                        Margin="16,0,0,0" Spacing="8">
+                                <Button Content="{helpers:Loc Key=NewPresetBtn}" Click="OnCreateNewPresetClick" />
+                                <Button Content="{helpers:Loc Key=ResetAllBtn}" Click="OnResetAllPresetsClick" />
                             </StackPanel>
                         </Grid>
 
@@ -540,12 +633,12 @@
                                   SelectionMode="None"
                                   IsItemClickEnabled="False"
                                   HorizontalAlignment="Stretch"
-                                  ScrollViewer.VerticalScrollMode="Disabled"/>
+                                  ScrollViewer.VerticalScrollMode="Disabled" />
 
                         <Rectangle Height="1"
                                    Margin="0,0,0,24"
                                    Fill="{ThemeResource DividerStrokeColorDefaultBrush}"
-                                   Visibility="{x:Bind ViewModel.PinnedSettingsVisibility, Mode=OneWay}"/>
+                                   Visibility="{x:Bind ViewModel.PinnedSettingsVisibility, Mode=OneWay}" />
 
                         <GridView x:Name="SettingsGrid"
                                   ItemsSource="{x:Bind ViewModel.Settings, Mode=OneWay}"
@@ -555,9 +648,9 @@
                                   SelectionMode="None"
                                   IsItemClickEnabled="False"
                                   HorizontalAlignment="Stretch"
-                                  ScrollViewer.VerticalScrollMode="Disabled"/>
-                        
-                        
+                                  ScrollViewer.VerticalScrollMode="Disabled" />
+
+
                     </StackPanel>
                 </ContentControl>
             </ScrollViewer>
@@ -570,7 +663,7 @@
                            RadiusY="6"
                            Fill="#33FFFFFF"
                            Stroke="#CCFFFFFF"
-                           StrokeThickness="1"/>
+                           StrokeThickness="1" />
             </Canvas>
 
             <Canvas x:Name="BatchActionHost">
@@ -588,53 +681,54 @@
                     </Border.Shadow>
                     <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                         <TextBlock Text="{x:Bind ViewModel.SelectionSummary, Mode=OneWay}"
-                                   FontSize="12" Opacity="0.8" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                        <Button Content="{helpers:Loc Key=BatchActions_Enable}" Click="OnBatchEnableClick"/>
-                        <Button Content="{helpers:Loc Key=BatchActions_Disable}" Click="OnBatchDisableClick"/>
-                        <Button Content="{helpers:Loc Key=BatchActions_Pin}" Click="OnBatchPinClick"/>
-                        <Button Content="{helpers:Loc Key=BatchActions_Unpin}" Click="OnBatchUnpinClick"/>
-                        <Button Content="{helpers:Loc Key=BatchActions_ClearSelection}" Click="OnBatchClearSelectionClick"/>
+                                   FontSize="12" Opacity="0.8" VerticalAlignment="Center" Margin="0,0,8,0" />
+                        <Button Content="{helpers:Loc Key=BatchActions_Enable}" Click="OnBatchEnableClick" />
+                        <Button Content="{helpers:Loc Key=BatchActions_Disable}" Click="OnBatchDisableClick" />
+                        <Button Content="{helpers:Loc Key=BatchActions_Pin}" Click="OnBatchPinClick" />
+                        <Button Content="{helpers:Loc Key=BatchActions_Unpin}" Click="OnBatchUnpinClick" />
+                        <Button Content="{helpers:Loc Key=BatchActions_ClearSelection}"
+                                Click="OnBatchClearSelectionClick" />
                     </StackPanel>
                 </Border>
             </Canvas>
-                
-            <Grid x:Name="SettingsOverlay" 
-                  Visibility="Collapsed" 
+
+            <Grid x:Name="SettingsOverlay"
+                  Visibility="Collapsed"
                   Opacity="0"
                   Margin="-16,-16,-16,0"
                   CornerRadius="8">
 
                 <Grid.Resources>
                     <Storyboard x:Name="OverlayFadeIn">
-                        <DoubleAnimation Storyboard.TargetName="SettingsOverlay" 
-                                         Storyboard.TargetProperty="Opacity" 
-                                         To="1" 
-                                         Duration="0:0:0.25"/>
+                        <DoubleAnimation Storyboard.TargetName="SettingsOverlay"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="1"
+                                         Duration="0:0:0.25" />
                     </Storyboard>
                     <Storyboard x:Name="OverlayFadeOut" Completed="OverlayFadeOut_Completed">
-                        <DoubleAnimation Storyboard.TargetName="SettingsOverlay" 
-                                         Storyboard.TargetProperty="Opacity" 
-                                         To="0" 
-                                         Duration="0:0:0.25"/>
-                     </Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="SettingsOverlay"
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0"
+                                         Duration="0:0:0.25" />
+                    </Storyboard>
                 </Grid.Resources>
 
                 <Grid.Background>
-                    <AcrylicBrush TintColor="Transparent" 
-                                  TintOpacity="0" 
-                                  TintLuminosityOpacity="0" 
-                                  FallbackColor="Transparent"/>
+                    <AcrylicBrush TintColor="Transparent"
+                                  TintOpacity="0"
+                                  TintLuminosityOpacity="0"
+                                  FallbackColor="Transparent" />
                 </Grid.Background>
 
-                <TextBlock Text="{x:Bind ViewModel.OverlayWarningText, Mode=OneWay}" 
-                           Foreground="{ThemeResource TextFillColorPrimaryBrush}" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Center" 
-                           FontSize="18" 
-                           FontWeight="SemiBold"/>
+                <TextBlock Text="{x:Bind ViewModel.OverlayWarningText, Mode=OneWay}"
+                           Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="18"
+                           FontWeight="SemiBold" />
             </Grid>
         </Grid>
-        
-        
+
+
     </Grid>
 </Page>

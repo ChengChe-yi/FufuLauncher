@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System;
 using System.Runtime.InteropServices;
 using Microsoft.UI.Windowing;
@@ -22,7 +23,8 @@ namespace FufuLauncher.Helpers
             return dpi / 96.0;
         }
 
-        public static void ResizeWithDpi(AppWindow appWindow, Microsoft.UI.Xaml.Window window, int logicalWidth, int logicalHeight)
+        public static void ResizeWithDpi(AppWindow appWindow, Microsoft.UI.Xaml.Window window, int logicalWidth,
+            int logicalHeight)
         {
             var hwnd = WindowNative.GetWindowHandle(window);
             var dpi = GetDpiForWindow(hwnd);
@@ -41,7 +43,7 @@ namespace FufuLauncher.Helpers
 
                 var workArea = displayArea.WorkArea;
                 var currentSize = appWindow.Size;
-                
+
                 if (currentSize.Width <= 0 || currentSize.Height <= 0)
                 {
                     currentSize = new SizeInt32((int)Math.Round(currentWidth), (int)Math.Round(currentHeight));
@@ -52,7 +54,9 @@ namespace FufuLauncher.Helpers
 
                 appWindow.Move(new PointInt32(targetX, targetY));
             }
-            catch { }
+            catch
+            {
+            }
         }
     }
 }

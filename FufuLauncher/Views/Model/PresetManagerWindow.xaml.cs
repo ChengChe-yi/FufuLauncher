@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,14 +21,24 @@ namespace FufuLauncher.Views;
 
 public class PresetWrapper : INotifyPropertyChanged
 {
-    public string Id { get; set; }
-    public string Name { get; set; }
-    
+    public string Id
+    {
+        get;
+        set;
+    }
+
+    public string Name
+    {
+        get;
+        set;
+    }
+
     private bool _isPinned;
-    public bool IsPinned 
-    { 
+
+    public bool IsPinned
+    {
         get => _isPinned;
-        set 
+        set
         {
             if (_isPinned != value)
             {
@@ -38,6 +49,7 @@ public class PresetWrapper : INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
+
     protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -46,7 +58,11 @@ public class PresetWrapper : INotifyPropertyChanged
 
 public sealed partial class PresetManagerWindow : Window
 {
-    public ObservableCollection<PresetWrapper> AllPresets { get; } = new();
+    public ObservableCollection<PresetWrapper> AllPresets
+    {
+        get;
+    } = new();
+
     private readonly ILocalSettingsService _localSettingsService;
 
     public PresetManagerWindow()
@@ -54,12 +70,18 @@ public sealed partial class PresetManagerWindow : Window
         InitializeComponent();
         _localSettingsService = App.GetService<ILocalSettingsService>();
         Title = "预设管理";
-        
+
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
-        
-        try { SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop(); } catch { }
-        
+
+        try
+        {
+            SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
+        }
+        catch
+        {
+        }
+
         IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
         var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
         var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
@@ -71,9 +93,10 @@ public sealed partial class PresetManagerWindow : Window
             {
                 appWindow.SetIcon(iconPath);
             }
+
             appWindow.Resize(new Windows.Graphics.SizeInt32(400, 500));
         }
-        
+
         LoadPresetsAsync();
     }
 
@@ -83,7 +106,13 @@ public sealed partial class PresetManagerWindow : Window
         List<string> pinnedIds = new();
         if (pinnedIdsJson != null)
         {
-            try { pinnedIds = JsonSerializer.Deserialize<List<string>>(pinnedIdsJson.ToString()); } catch { }
+            try
+            {
+                pinnedIds = JsonSerializer.Deserialize<List<string>>(pinnedIdsJson.ToString());
+            }
+            catch
+            {
+            }
         }
 
         string presetsDir = AppPaths.PluginPresetsDir;
@@ -106,7 +135,9 @@ public sealed partial class PresetManagerWindow : Window
                         });
                     }
                 }
-                catch { }
+                catch
+                {
+                }
             }
         }
     }
@@ -116,12 +147,12 @@ public sealed partial class PresetManagerWindow : Window
         if (sender is CheckBox cb && cb.DataContext is PresetWrapper wrapper)
         {
             var pinnedCount = AllPresets.Count(p => p.IsPinned);
-            
+
             if (cb.IsChecked == true && pinnedCount > 5)
             {
                 cb.IsChecked = false;
                 wrapper.IsPinned = false;
-                
+
                 var dialog = new ContentDialog
                 {
                     Title = "提示",
@@ -134,7 +165,7 @@ public sealed partial class PresetManagerWindow : Window
             }
 
             wrapper.IsPinned = cb.IsChecked == true;
-            
+
             var pinnedIds = AllPresets.Where(p => p.IsPinned).Select(p => p.Id).ToList();
             await _localSettingsService.SaveSettingAsync("PinnedPresetIds", JsonSerializer.Serialize(pinnedIds));
         }

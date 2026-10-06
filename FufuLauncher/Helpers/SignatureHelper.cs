@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using System.Text;
 
@@ -37,7 +38,7 @@ public static class SignatureHelper
         {
             result[i] = chars[random.Next(chars.Length)];
         }
+
         return new string(result);
     }
 }
-

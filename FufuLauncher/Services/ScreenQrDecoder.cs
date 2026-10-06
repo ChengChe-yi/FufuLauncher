@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -29,18 +30,24 @@ internal static class ScreenQrDecoder
             for (int row = 0; row < converted.Height; row++)
                 Marshal.Copy(data.Scan0 + row * data.Stride, pixels, row * rowBytes, rowBytes);
         }
-        finally { converted.UnlockBits(data); }
+        finally
+        {
+            converted.UnlockBits(data);
+        }
+
         var reader = new BarcodeReaderGeneric
         {
             // QR finder patterns identify orientation themselves. Keep coordinates in the original frame.
             AutoRotate = false,
             Options = new DecodingOptions { PossibleFormats = new[] { BarcodeFormat.QR_CODE }, TryHarder = true }
         };
-        var source = new RGBLuminanceSource(pixels, converted.Width, converted.Height, RGBLuminanceSource.BitmapFormat.BGRA32);
+        var source = new RGBLuminanceSource(pixels, converted.Width, converted.Height,
+            RGBLuminanceSource.BitmapFormat.BGRA32);
         // QRCodeMultiReader does not apply MultiFormatReader's inversion fallback.
         // Check both polarities so a mixed selection cannot silently hide a second code.
         var detections = new List<ScreenQrDetection>();
-        foreach (var result in (reader.DecodeMultiple(source) ?? []).Concat(reader.DecodeMultiple(source.invert()) ?? []))
+        foreach (var result in (reader.DecodeMultiple(source) ?? []).Concat(
+                     reader.DecodeMultiple(source.invert()) ?? []))
         {
             if (string.IsNullOrWhiteSpace(result.Text)) continue;
             var code = new ScreenQrDetection(result.Text, GetCorners(result, bitmap.Size));
@@ -48,6 +55,7 @@ internal static class ScreenQrDecoder
             if (!detections.Any(existing => existing.Text == code.Text && existing.IsSamePosition(code)))
                 detections.Add(code);
         }
+
         return detections.ToArray();
     }
 

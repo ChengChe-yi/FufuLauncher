@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -99,7 +100,8 @@ public static class CodeSigningPolicy
         var validityDays = (leaf.NotAfter - leaf.NotBefore).TotalDays;
         if (validityDays > maxValidityDays + 1)
         {
-            problems.Add($"certificate validity of {validityDays:F0} days exceeds the policy maximum of {maxValidityDays} days");
+            problems.Add(
+                $"certificate validity of {validityDays:F0} days exceeds the policy maximum of {maxValidityDays} days");
         }
 
         violations = problems;
@@ -153,7 +155,8 @@ public static class WinTrustInterop
     }
 
     [DllImport("wintrust.dll", ExactSpelling = true, SetLastError = false, CharSet = CharSet.Unicode)]
-    private static extern uint WinVerifyTrust(IntPtr hwnd, [MarshalAs(UnmanagedType.LPStruct)] Guid actionId, IntPtr data);
+    private static extern uint WinVerifyTrust(IntPtr hwnd, [MarshalAs(UnmanagedType.LPStruct)] Guid actionId,
+        IntPtr data);
 
     public static bool IsContentDigestVerified(uint trustResult) =>
         trustResult == 0 ||
@@ -218,13 +221,47 @@ public static class WinTrustInterop
 
 public sealed class ManifestSignatureEnvelope
 {
-    public int SchemaVersion { get; set; }
-    public string Algorithm { get; set; } = string.Empty;
-    public string SignerThumbprintSha256 { get; set; } = string.Empty;
-    public string SignedFile { get; set; } = string.Empty;
-    public string SignedFileSha256 { get; set; } = string.Empty;
-    public string SignatureBase64 { get; set; } = string.Empty;
-    public string SignedUtc { get; set; } = string.Empty;
+    public int SchemaVersion
+    {
+        get;
+        set;
+    }
+
+    public string Algorithm
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string SignerThumbprintSha256
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string SignedFile
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string SignedFileSha256
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string SignatureBase64
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string SignedUtc
+    {
+        get;
+        set;
+    } = string.Empty;
 }
 
 public static class ManifestSignatureVerifier

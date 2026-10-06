@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -122,183 +123,880 @@ public static class DataCenterJson
 
 public sealed class RoleAvgResponse
 {
-    [JsonPropertyName("code")] public int? Code { get; set; }
-    [JsonPropertyName("version")] public string? Version { get; set; }
-    [JsonPropertyName("data_from")] public string? DataFrom { get; set; }
-    [JsonPropertyName("last_update")] public string? LastUpdate { get; set; }
-    [JsonPropertyName("title")] public string? Title { get; set; }
-    [JsonPropertyName("result")] public List<RoleAvgEntry>? Result { get; set; }
+    [JsonPropertyName("code")]
+    public int? Code
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("version")]
+    public string? Version
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("data_from")]
+    public string? DataFrom
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("last_update")]
+    public string? LastUpdate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("title")]
+    public string? Title
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("result")]
+    public List<RoleAvgEntry>? Result
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class RoleAvgEntry
 {
-    [JsonPropertyName("role")] public string? Role { get; set; }
-    [JsonPropertyName("ename")] public string? Ename { get; set; }
-    [JsonPropertyName("role_sum")] public double? RoleSum { get; set; }
-    [JsonPropertyName("star")] public int? Star { get; set; }
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("avg_level")] public double? AvgLevel { get; set; }
-    [JsonPropertyName("avg_class")] public double? AvgConstellation { get; set; }
-    [JsonPropertyName("ability1")] public double? Ability1 { get; set; }
-    [JsonPropertyName("ability2")] public double? Ability2 { get; set; }
-    [JsonPropertyName("ability3")] public double? Ability3 { get; set; }
-    [JsonPropertyName("c0")] public double? C0 { get; set; }
-    [JsonPropertyName("c1")] public double? C1 { get; set; }
-    [JsonPropertyName("c2")] public double? C2 { get; set; }
-    [JsonPropertyName("c3")] public double? C3 { get; set; }
-    [JsonPropertyName("c4")] public double? C4 { get; set; }
-    [JsonPropertyName("c5")] public double? C5 { get; set; }
-    [JsonPropertyName("c6")] public double? C6 { get; set; }
-    [JsonPropertyName("artifacts")] public double? ArtifactScore { get; set; }
-    [JsonPropertyName("damage")] public double? Damage { get; set; }
-    [JsonPropertyName("damage_name")] public string? DamageName { get; set; }
-    [JsonPropertyName("weapon")] public List<WeaponUsageEntry>? Weapons { get; set; }
-    [JsonPropertyName("artifacts_set")] public List<ArtifactUsageEntry>? ArtifactSets { get; set; }
+    [JsonPropertyName("role")]
+    public string? Role
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("ename")]
+    public string? Ename
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("role_sum")]
+    public double? RoleSum
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star")]
+    public int? Star
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avg_level")]
+    public double? AvgLevel
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avg_class")]
+    public double? AvgConstellation
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("ability1")]
+    public double? Ability1
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("ability2")]
+    public double? Ability2
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("ability3")]
+    public double? Ability3
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c0")]
+    public double? C0
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c1")]
+    public double? C1
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c2")]
+    public double? C2
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c3")]
+    public double? C3
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c4")]
+    public double? C4
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c5")]
+    public double? C5
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c6")]
+    public double? C6
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("artifacts")]
+    public double? ArtifactScore
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("damage")]
+    public double? Damage
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("damage_name")]
+    public string? DamageName
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("weapon")]
+    public List<WeaponUsageEntry>? Weapons
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("artifacts_set")]
+    public List<ArtifactUsageEntry>? ArtifactSets
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class WeaponUsageEntry
 {
-    [JsonPropertyName("name")] public string? Name { get; set; }
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("rate")] public double? Rate { get; set; }
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("rate")]
+    public double? Rate
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class ArtifactUsageEntry
 {
-    [JsonPropertyName("name")] public string? Name { get; set; }
-    [JsonPropertyName("avatars")] public List<string>? Avatars { get; set; }
-    [JsonPropertyName("rate")] public double? Rate { get; set; }
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatars")]
+    public List<string>? Avatars
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("rate")]
+    public double? Rate
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssStatsResponse
 {
-    [JsonPropertyName("code")] public int? Code { get; set; }
-    [JsonPropertyName("title")] public string? Title { get; set; }
-    [JsonPropertyName("version")] public string? Version { get; set; }
-    [JsonPropertyName("now_version")] public string? NowVersionLabel { get; set; }
-    [JsonPropertyName("old_version")] public string? OldVersionLabel { get; set; }
-    [JsonPropertyName("last_update")] public string? LastUpdate { get; set; }
-    [JsonPropertyName("update")] public string? UpdateInfo { get; set; }
-    [JsonPropertyName("top_own")] public double? SampleCount { get; set; }
-    [JsonPropertyName("tips")] public string? Tips { get; set; }
-    [JsonPropertyName("tips2")] public string? Tips2 { get; set; }
-    [JsonPropertyName("star36_rate")] public string? FullStarRate { get; set; }
-    [JsonPropertyName("star36_once_rate")] public string? FullStarOnceRate { get; set; }
-    [JsonPropertyName("restart_times_avg")] public double? RestartTimesAvg { get; set; }
-    [JsonPropertyName("nandu")] public double? Difficulty { get; set; }
-    [JsonPropertyName("select_list")] public List<AbyssOption>? SelectList { get; set; }
-    [JsonPropertyName("history_list")] public List<AbyssOption>? HistoryList { get; set; }
-    [JsonPropertyName("has_list")] public List<AbyssCharacterEntry>? HasList { get; set; }
-    [JsonPropertyName("restart_info")] public List<AbyssRestartEntry>? RestartInfo { get; set; }
-    [JsonPropertyName("result")] public JsonElement? ResultRaw { get; set; }
+    [JsonPropertyName("code")]
+    public int? Code
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("title")]
+    public string? Title
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("version")]
+    public string? Version
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("now_version")]
+    public string? NowVersionLabel
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("old_version")]
+    public string? OldVersionLabel
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("last_update")]
+    public string? LastUpdate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("update")]
+    public string? UpdateInfo
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("top_own")]
+    public double? SampleCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("tips")]
+    public string? Tips
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("tips2")]
+    public string? Tips2
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star36_rate")]
+    public string? FullStarRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star36_once_rate")]
+    public string? FullStarOnceRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("restart_times_avg")]
+    public double? RestartTimesAvg
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("nandu")]
+    public double? Difficulty
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("select_list")]
+    public List<AbyssOption>? SelectList
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("history_list")]
+    public List<AbyssOption>? HistoryList
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("has_list")]
+    public List<AbyssCharacterEntry>? HasList
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("restart_info")]
+    public List<AbyssRestartEntry>? RestartInfo
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("result")]
+    public JsonElement? ResultRaw
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssOption
 {
-    [JsonPropertyName("title")] public string? Title { get; set; }
+    [JsonPropertyName("title")]
+    public string? Title
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("value")]
     [JsonConverter(typeof(LenientStringConverter))]
-    public string? Value { get; set; }
+    public string? Value
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssCharacterEntry
 {
-    [JsonPropertyName("name")] public string? Name { get; set; }
-    [JsonPropertyName("star")] public int? Star { get; set; }
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("use")] public double? UseCount { get; set; }
-    [JsonPropertyName("own")] public double? OwnCount { get; set; }
-    [JsonPropertyName("use_rate")] public double? UseRate { get; set; }
-    [JsonPropertyName("own_rate")] public double? OwnRate { get; set; }
-    [JsonPropertyName("collection")] public double? AvgConstellation { get; set; }
-    [JsonPropertyName("time")] public double? ClearTime { get; set; }
-    [JsonPropertyName("rank_class")] public string? RankClass { get; set; }
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star")]
+    public int? Star
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use")]
+    public double? UseCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("own")]
+    public double? OwnCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use_rate")]
+    public double? UseRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("own_rate")]
+    public double? OwnRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("collection")]
+    public double? AvgConstellation
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("time")]
+    public double? ClearTime
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("rank_class")]
+    public string? RankClass
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssTierGroup
 {
-    [JsonPropertyName("rank_name")] public string? RankName { get; set; }
-    [JsonPropertyName("rank_class")] public string? RankClass { get; set; }
-    [JsonPropertyName("list")] public List<AbyssTierEntry>? List { get; set; }
+    [JsonPropertyName("rank_name")]
+    public string? RankName
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("rank_class")]
+    public string? RankClass
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("list")]
+    public List<AbyssTierEntry>? List
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssTierEntry
 {
-    [JsonPropertyName("name")] public string? Name { get; set; }
-    [JsonPropertyName("ename")] public string? Ename { get; set; }
-    [JsonPropertyName("star")] public int? Star { get; set; }
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("use")] public double? UseCount { get; set; }
-    [JsonPropertyName("own")] public double? OwnCount { get; set; }
-    [JsonPropertyName("use_rate")] public double? UseRate { get; set; }
-    [JsonPropertyName("own_rate")] public double? OwnRate { get; set; }
-    [JsonPropertyName("collection")] public double? AvgConstellation { get; set; }
-    [JsonPropertyName("time")] public double? ClearTime { get; set; }
-    [JsonPropertyName("c0_rate")] public double? C0Rate { get; set; }
-    [JsonPropertyName("c1_rate")] public double? C1Rate { get; set; }
-    [JsonPropertyName("c2_rate")] public double? C2Rate { get; set; }
-    [JsonPropertyName("c3_rate")] public double? C3Rate { get; set; }
-    [JsonPropertyName("c4_rate")] public double? C4Rate { get; set; }
-    [JsonPropertyName("c5_rate")] public double? C5Rate { get; set; }
-    [JsonPropertyName("c6_rate")] public double? C6Rate { get; set; }
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("ename")]
+    public string? Ename
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star")]
+    public int? Star
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use")]
+    public double? UseCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("own")]
+    public double? OwnCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use_rate")]
+    public double? UseRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("own_rate")]
+    public double? OwnRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("collection")]
+    public double? AvgConstellation
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("time")]
+    public double? ClearTime
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c0_rate")]
+    public double? C0Rate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c1_rate")]
+    public double? C1Rate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c2_rate")]
+    public double? C2Rate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c3_rate")]
+    public double? C3Rate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c4_rate")]
+    public double? C4Rate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c5_rate")]
+    public double? C5Rate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("c6_rate")]
+    public double? C6Rate
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssRankEntry
 {
-    [JsonPropertyName("name")] public string? Name { get; set; }
-    [JsonPropertyName("star")] public int? Star { get; set; }
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("use")] public double? UseCount { get; set; }
-    [JsonPropertyName("own")] public double? OwnCount { get; set; }
-    [JsonPropertyName("use_rate")] public double? UseRate { get; set; }
-    [JsonPropertyName("own_rate")] public double? OwnRate { get; set; }
-    [JsonPropertyName("collection")] public double? AvgConstellation { get; set; }
-    [JsonPropertyName("time")] public double? ClearTime { get; set; }
-    [JsonPropertyName("rank_class")] public string? RankClass { get; set; }
-    [JsonPropertyName("use_rate_old")] public double? UseRateOld { get; set; }
-    [JsonPropertyName("use_rate_change")] public double? UseRateChange { get; set; }
+    [JsonPropertyName("name")]
+    public string? Name
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star")]
+    public int? Star
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use")]
+    public double? UseCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("own")]
+    public double? OwnCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use_rate")]
+    public double? UseRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("own_rate")]
+    public double? OwnRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("collection")]
+    public double? AvgConstellation
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("time")]
+    public double? ClearTime
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("rank_class")]
+    public string? RankClass
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use_rate_old")]
+    public double? UseRateOld
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use_rate_change")]
+    public double? UseRateChange
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssTeamEntry
 {
-    [JsonPropertyName("role")] public List<AbyssTeamMember>? Members { get; set; }
-    [JsonPropertyName("use")] public double? UseCount { get; set; }
-    [JsonPropertyName("use_rate")] public double? UseRate { get; set; }
-    [JsonPropertyName("has")] public double? HasCount { get; set; }
-    [JsonPropertyName("has_rate")] public double? HasRate { get; set; }
-    [JsonPropertyName("attend_rate")] public double? AttendRate { get; set; }
-    [JsonPropertyName("time")] public double? ClearTime { get; set; }
-    [JsonPropertyName("up_use")] public double? FirstHalfRate { get; set; }
-    [JsonPropertyName("mid_use")] public double? MidHalfRate { get; set; }
-    [JsonPropertyName("down_use")] public double? SecondHalfRate { get; set; }
-    [JsonPropertyName("up_use_num")] public double? FirstHalfCount { get; set; }
-    [JsonPropertyName("mid_use_num")] public double? MidHalfCount { get; set; }
-    [JsonPropertyName("down_use_num")] public double? SecondHalfCount { get; set; }
+    [JsonPropertyName("role")]
+    public List<AbyssTeamMember>? Members
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use")]
+    public double? UseCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("use_rate")]
+    public double? UseRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("has")]
+    public double? HasCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("has_rate")]
+    public double? HasRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("attend_rate")]
+    public double? AttendRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("time")]
+    public double? ClearTime
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("up_use")]
+    public double? FirstHalfRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("mid_use")]
+    public double? MidHalfRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("down_use")]
+    public double? SecondHalfRate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("up_use_num")]
+    public double? FirstHalfCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("mid_use_num")]
+    public double? MidHalfCount
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("down_use_num")]
+    public double? SecondHalfCount
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssTeamMember
 {
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("star")] public int? Star { get; set; }
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star")]
+    public int? Star
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssRestartEntry
 {
-    [JsonPropertyName("intro")] public string? Intro { get; set; }
-    [JsonPropertyName("rate")] public double? Rate { get; set; }
-    [JsonPropertyName("width")] public double? Width { get; set; }
+    [JsonPropertyName("intro")]
+    public string? Intro
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("rate")]
+    public double? Rate
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("width")]
+    public double? Width
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class AbyssStatsBundle
 {
-    public AbyssStatsResponse Response { get; }
-    public List<AbyssTierGroup> Tiers { get; }
-    public List<AbyssRankEntry> Ranks { get; }
-    public List<AbyssTeamEntry> Teams { get; }
-    public Dictionary<string, AbyssCharacterEntry> ByAvatar { get; }
+    public AbyssStatsResponse Response
+    {
+        get;
+    }
 
-    public Dictionary<string, AbyssCharacterEntry> ByName { get; }
+    public List<AbyssTierGroup> Tiers
+    {
+        get;
+    }
+
+    public List<AbyssRankEntry> Ranks
+    {
+        get;
+    }
+
+    public List<AbyssTeamEntry> Teams
+    {
+        get;
+    }
+
+    public Dictionary<string, AbyssCharacterEntry> ByAvatar
+    {
+        get;
+    }
+
+    public Dictionary<string, AbyssCharacterEntry> ByName
+    {
+        get;
+    }
 
     public AbyssStatsBundle(AbyssStatsResponse response)
     {
@@ -317,7 +1015,7 @@ public sealed class AbyssStatsBundle
 
         Split(response.ResultRaw);
     }
-    
+
     private void Split(JsonElement? raw)
     {
         if (raw is not { ValueKind: JsonValueKind.Array } root) return;
@@ -359,7 +1057,7 @@ public sealed class AbyssStatsBundle
                 }
             }
         }
-        
+
         if (Ranks.Count == 0 && Response.HasList is { Count: > 0 } fallback)
         {
             foreach (var entry in fallback)
@@ -387,42 +1085,194 @@ public sealed class AbyssStatsBundle
 
 public sealed class WishHistoryResponse
 {
-    [JsonPropertyName("code")] public int? Code { get; set; }
-    [JsonPropertyName("result")] public List<WishBannerEntry>? Characters { get; set; }
-    [JsonPropertyName("weapon")] public List<WishBannerEntry>? Weapons { get; set; }
-    [JsonPropertyName("avatar_list")] public Dictionary<string, string>? AvatarList { get; set; }
+    [JsonPropertyName("code")]
+    public int? Code
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("result")]
+    public List<WishBannerEntry>? Characters
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("weapon")]
+    public List<WishBannerEntry>? Weapons
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatar_list")]
+    public Dictionary<string, string>? AvatarList
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class WishBannerEntry
 {
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("version")] public string? Version { get; set; }
-    [JsonPropertyName("time")] public string? Time { get; set; }
-    [JsonPropertyName("star5_role")] public List<string>? Star5 { get; set; }
-    [JsonPropertyName("star4_role")] public List<string>? Star4 { get; set; }
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("version")]
+    public string? Version
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("time")]
+    public string? Time
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star5_role")]
+    public List<string>? Star5
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star4_role")]
+    public List<string>? Star4
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class RerunResponse
 {
-    [JsonPropertyName("code")] public int? Code { get; set; }
-    [JsonPropertyName("version")] public string? Version { get; set; }
-    [JsonPropertyName("result")] public List<List<RerunEntry>>? Result { get; set; }
+    [JsonPropertyName("code")]
+    public int? Code
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("version")]
+    public string? Version
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("result")]
+    public List<List<RerunEntry>>? Result
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class RerunEntry
 {
-    [JsonPropertyName("role")] public string? Name { get; set; }
-    [JsonPropertyName("avatar")] public string? Avatar { get; set; }
-    [JsonPropertyName("star")] public int? Star { get; set; }
-    [JsonPropertyName("days")] public double? Days { get; set; }
-    [JsonPropertyName("intro")] public string? Intro { get; set; }
-    [JsonPropertyName("avg_days")] public double? AvgDays { get; set; }
-    [JsonPropertyName("up_times")] public int? UpTimes { get; set; }
-    [JsonPropertyName("history")] public List<string>? History { get; set; }
-    [JsonPropertyName("tags")] public string? Tags { get; set; }
-    [JsonPropertyName("max_gap_days")] public double? MaxGapDays { get; set; }
-    [JsonPropertyName("max_gap_pool")] public string? MaxGapPool { get; set; }
-    [JsonPropertyName("min_gap_days")] public double? MinGapDays { get; set; }
-    [JsonPropertyName("min_gap_pool")] public string? MinGapPool { get; set; }
-    [JsonPropertyName("width_rate")] public double? WidthRate { get; set; }
+    [JsonPropertyName("role")]
+    public string? Name
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avatar")]
+    public string? Avatar
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("star")]
+    public int? Star
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("days")]
+    public double? Days
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("intro")]
+    public string? Intro
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("avg_days")]
+    public double? AvgDays
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("up_times")]
+    public int? UpTimes
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("history")]
+    public List<string>? History
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("tags")]
+    public string? Tags
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("max_gap_days")]
+    public double? MaxGapDays
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("max_gap_pool")]
+    public string? MaxGapPool
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("min_gap_days")]
+    public double? MinGapDays
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("min_gap_pool")]
+    public string? MinGapPool
+    {
+        get;
+        set;
+    }
+
+    [JsonPropertyName("width_rate")]
+    public double? WidthRate
+    {
+        get;
+        set;
+    }
 }

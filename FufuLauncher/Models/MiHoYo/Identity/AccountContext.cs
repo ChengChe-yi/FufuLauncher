@@ -6,8 +6,8 @@ Licensed under the MIT License.
 namespace FufuLauncher.Models.MiHoYo.Identity;
 
 /// <summary>
-/// 单账号运行期身份聚合：业务 service 拿到这一个对象就能完成"我是谁、在哪个服、带什么设备、用什么 UA"的所有组装。
-/// 不可变 record；如需更新（如指纹刷新），由身份服务返回新实例。
+///     单账号运行期身份聚合：业务 service 拿到这一个对象就能完成"我是谁、在哪个服、带什么设备、用什么 UA"的所有组装。
+///     不可变 record；如需更新（如指纹刷新），由身份服务返回新实例。
 /// </summary>
 public sealed record AccountContext(
     string AccountId,
@@ -28,9 +28,9 @@ public sealed record AccountContext(
 public sealed record AccountIdentity(string Stuid, string Mid);
 
 /// <summary>
-/// 设备指纹与设备档案的并集：服务端鉴权需要的 device_id / bbs_device_id / device_fp，
-/// 以及请求头可能用到的设备型号 / 系统版本字段。
-/// <para><c>DeviceName</c> 为未编码形式（如 "Xiaomi 2605EPN8EC"），发送时由请求头构建方做 URL 编码。</para>
+///     设备指纹与设备档案的并集：服务端鉴权需要的 device_id / bbs_device_id / device_fp，
+///     以及请求头可能用到的设备型号 / 系统版本字段。
+///     <para><c>DeviceName</c> 为未编码形式（如 "Xiaomi 2605EPN8EC"），发送时由请求头构建方做 URL 编码。</para>
 /// </summary>
 public sealed record DeviceIdentity(
     string DeviceId,

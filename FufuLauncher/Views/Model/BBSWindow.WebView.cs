@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Constants;
 using Microsoft.Web.WebView2.Core;
 
@@ -14,58 +15,59 @@ public sealed partial class BBSWindow
     private const string DefaultUrl = ApiEndpoints.BbsDefaultUrl;
 
     private const string HideScrollBarScript = """
-        let hideStyle = document.createElement('style');
-        hideStyle.innerHTML = '::-webkit-scrollbar{ display:none }';
-        document.querySelector('body').appendChild(hideStyle);
-        """;
+                                               let hideStyle = document.createElement('style');
+                                               hideStyle.innerHTML = '::-webkit-scrollbar{ display:none }';
+                                               document.querySelector('body').appendChild(hideStyle);
+                                               """;
 
     private const string MiHoYoJSInterfaceScript = """
-        if (typeof window.MiHoYoJSInterface === 'undefined') {
-            window.MiHoYoJSInterface = {
-                postMessage: function(arg) { window.chrome.webview.postMessage(arg) },
-                closePage: function() { this.postMessage('{"method":"closePage"}') }
-            };
-        }
-        """;
+                                                   if (typeof window.MiHoYoJSInterface === 'undefined') {
+                                                       window.MiHoYoJSInterface = {
+                                                           postMessage: function(arg) { window.chrome.webview.postMessage(arg) },
+                                                           closePage: function() { this.postMessage('{"method":"closePage"}') }
+                                                       };
+                                                   }
+                                                   """;
 
     private const string ConvertMouseToTouchScript = """
-        function mouseListener (e, event) {
-            let touch = new Touch({ identifier: Date.now(), target: e.target, clientX: e.clientX, clientY: e.clientY, screenX: e.screenX, screenY: e.screenY, pageX: e.pageX, pageY: e.pageY });
-            let touchEvent = new TouchEvent(event, { cancelable: true, bubbles: true, touches: [touch], targetTouches: [touch], changedTouches: [touch] });
-            e.target.dispatchEvent(touchEvent);
-        }
-        let mouseMoveListener = (e) => { mouseListener(e, 'touchmove'); };
-        let mouseUpListener = (e) => { mouseListener(e, 'touchend'); document.removeEventListener('mousemove', mouseMoveListener); document.removeEventListener('mouseup', mouseUpListener); };
-        let mouseDownListener = (e) => { mouseListener(e, 'touchstart'); document.addEventListener('mousemove', mouseMoveListener); document.addEventListener('mouseup', mouseUpListener); };
-        document.addEventListener('mousedown', mouseDownListener);
-        """;
+                                                     function mouseListener (e, event) {
+                                                         let touch = new Touch({ identifier: Date.now(), target: e.target, clientX: e.clientX, clientY: e.clientY, screenX: e.screenX, screenY: e.screenY, pageX: e.pageX, pageY: e.pageY });
+                                                         let touchEvent = new TouchEvent(event, { cancelable: true, bubbles: true, touches: [touch], targetTouches: [touch], changedTouches: [touch] });
+                                                         e.target.dispatchEvent(touchEvent);
+                                                     }
+                                                     let mouseMoveListener = (e) => { mouseListener(e, 'touchmove'); };
+                                                     let mouseUpListener = (e) => { mouseListener(e, 'touchend'); document.removeEventListener('mousemove', mouseMoveListener); document.removeEventListener('mouseup', mouseUpListener); };
+                                                     let mouseDownListener = (e) => { mouseListener(e, 'touchstart'); document.addEventListener('mousemove', mouseMoveListener); document.addEventListener('mouseup', mouseUpListener); };
+                                                     document.addEventListener('mousedown', mouseDownListener);
+                                                     """;
 
     private const string HideWebViewTracesScript = """
-        Object.defineProperty(navigator, 'webdriver', { get: () => false });
-        Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-        """;
+                                                   Object.defineProperty(navigator, 'webdriver', { get: () => false });
+                                                   Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
+                                                   """;
 
     private const string TabKeyInterceptorScript = """
-        window.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                e.preventDefault();
-                window.chrome.webview.postMessage('{"method":"toggleTopBar"}');
-            }
-        });
-        """;
+                                                   window.addEventListener('keydown', function(e) {
+                                                       if (e.key === 'Tab') {
+                                                           e.preventDefault();
+                                                           window.chrome.webview.postMessage('{"method":"toggleTopBar"}');
+                                                       }
+                                                   });
+                                                   """;
 
     private async Task InitializeWebViewAsync()
     {
         try
         {
-           
             await EnsureDeviceFpAsync();
 
             await BBSWebView.EnsureCoreWebView2Async();
             UpdateWebViewSettings();
 
-            BBSWebView.CoreWebView2.AddWebResourceRequestedFilter("*://*.mihoyo.com/*", CoreWebView2WebResourceContext.All);
-            BBSWebView.CoreWebView2.AddWebResourceRequestedFilter("*://*.hoyolab.com/*", CoreWebView2WebResourceContext.All);
+            BBSWebView.CoreWebView2.AddWebResourceRequestedFilter("*://*.mihoyo.com/*",
+                CoreWebView2WebResourceContext.All);
+            BBSWebView.CoreWebView2.AddWebResourceRequestedFilter("*://*.hoyolab.com/*",
+                CoreWebView2WebResourceContext.All);
 
             BBSWebView.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
             BBSWebView.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;

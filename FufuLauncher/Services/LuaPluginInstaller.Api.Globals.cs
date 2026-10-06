@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Reflection;
 using MoonSharp.Interpreter;
 
@@ -17,7 +18,8 @@ public partial class LuaPluginInstaller
         {
             if (value.IsNil()) return "nil";
             if (value.Type == DataType.String) return value.String ?? "";
-            if (value.Type == DataType.Number) return value.Number.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            if (value.Type == DataType.Number)
+                return value.Number.ToString(System.Globalization.CultureInfo.InvariantCulture);
             if (value.Type == DataType.Boolean) return value.Boolean ? "true" : "false";
             if (value.Type == DataType.Function) return "(function)";
             if (value.Type == DataType.Table) return "(table)";
@@ -56,7 +58,11 @@ public partial class LuaPluginInstaller
                     else
                         msg = ex.Message ?? ex.GetType().Name;
                 }
-                catch { msg = "Unknown error"; }
+                catch
+                {
+                    msg = "Unknown error";
+                }
+
                 LogMessage($"pcall caught: {msg}");
             }
 

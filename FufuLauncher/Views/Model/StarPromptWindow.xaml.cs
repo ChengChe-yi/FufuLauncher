@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 using FufuLauncher.Contracts.Services;
@@ -17,15 +18,15 @@ public sealed partial class StarPromptWindow : WindowEx
     {
         InitializeComponent();
         _settingsService = settingsService;
-        
+
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
-        
+
         SystemBackdrop = new MicaBackdrop();
-        
+
         Width = 500;
         Height = 320;
-        
+
         WindowManagerHelper.CenterWindowOnScreen(AppWindow, Width, Height);
     }
 

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -32,7 +33,10 @@ public sealed partial class MainWindow
             if (valueObj != null && double.TryParse(valueObj.ToString(), out var parsed)) opacity = parsed;
             ApplyBackgroundImageOpacity(opacity);
         }
-        catch { ApplyBackgroundImageOpacity(1.0); }
+        catch
+        {
+            ApplyBackgroundImageOpacity(1.0);
+        }
     }
 
     private void ApplyBackgroundImageOpacity(double value)
@@ -51,7 +55,9 @@ public sealed partial class MainWindow
 
             var currentTheme = rootElement.ActualTheme;
             if (currentTheme == ElementTheme.Default)
-                currentTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+                currentTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark
+                    ? ElementTheme.Dark
+                    : ElementTheme.Light;
 
             var themeBgColor = currentTheme == ElementTheme.Dark
                 ? Color.FromArgb(255, 32, 32, 32)
@@ -75,8 +81,12 @@ public sealed partial class MainWindow
 
             ApplyFrameBackgroundOpacity(_frameBackgroundOpacity);
         }
-        catch (ObjectDisposedException) { }
-        catch (System.Runtime.InteropServices.COMException) { }
+        catch (ObjectDisposedException)
+        {
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+        }
     }
 
     private async Task LoadGlobalBackgroundAsync()
@@ -88,7 +98,8 @@ public sealed partial class MainWindow
 
             if (isCustomEnabled)
             {
-                var isSlideshowEnabledJson = await _localSettingsService.ReadSettingAsync("IsBackgroundSlideshowEnabled");
+                var isSlideshowEnabledJson =
+                    await _localSettingsService.ReadSettingAsync("IsBackgroundSlideshowEnabled");
                 var isSlideshowEnabled = isSlideshowEnabledJson != null && Convert.ToBoolean(isSlideshowEnabledJson);
 
                 if (isSlideshowEnabled)
@@ -98,7 +109,8 @@ public sealed partial class MainWindow
 
                     if (!string.IsNullOrEmpty(slideshowFolder) && Directory.Exists(slideshowFolder))
                     {
-                        var slideshowIntervalJson = await _localSettingsService.ReadSettingAsync("BackgroundSlideshowInterval");
+                        var slideshowIntervalJson =
+                            await _localSettingsService.ReadSettingAsync("BackgroundSlideshowInterval");
                         var interval = slideshowIntervalJson != null ? Convert.ToInt32(slideshowIntervalJson) : 60;
                         if (interval < 1) interval = 1;
 
@@ -213,7 +225,9 @@ public sealed partial class MainWindow
         {
             GlobalBackgroundVideo.SetMediaPlayer(null);
         }
-        catch { }
+        catch
+        {
+        }
 
         if (player != null)
         {
@@ -221,13 +235,21 @@ public sealed partial class MainWindow
             {
                 player.MediaFailed -= _bgVideoFailedHandler;
             }
+
             player.Pause();
             player.Source = null;
             _ = Task.Run(() =>
             {
-                try { player.Dispose(); } catch { }
+                try
+                {
+                    player.Dispose();
+                }
+                catch
+                {
+                }
             });
         }
+
         _bgVideoFailedHandler = null;
     }
 
@@ -248,7 +270,9 @@ public sealed partial class MainWindow
                 finalOpacity = Math.Clamp(parsed, 0.0, 1.0);
             }
         }
-        catch { }
+        catch
+        {
+        }
 
         await RunOnUIThreadAsync(() =>
         {
@@ -267,6 +291,7 @@ public sealed partial class MainWindow
                     _globalBackgroundPlayer.MediaFailed += _bgVideoFailedHandler;
                     GlobalBackgroundVideo.SetMediaPlayer(_globalBackgroundPlayer);
                 }
+
                 if (!ReferenceEquals(_globalBackgroundPlayer.Source, result.VideoSource))
                 {
                     _globalBackgroundPlayer.Pause();
@@ -304,6 +329,7 @@ public sealed partial class MainWindow
                 storyboard.Children.Add(anim);
 
                 bool isAnimationStarted = false;
+
                 void StartFadeInAnimation()
                 {
                     if (isAnimationStarted) return;
@@ -465,6 +491,7 @@ public sealed partial class MainWindow
             GlobalBackgroundImage.ImageOpened -= _bgImageOpenedHandler;
             _bgImageOpenedHandler = null;
         }
+
         if (_bgImageFailedHandler != null)
         {
             GlobalBackgroundImage.ImageFailed -= _bgImageFailedHandler;

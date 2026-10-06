@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using FufuLauncher.Activation;
 using FufuLauncher.Models;
@@ -127,7 +128,7 @@ public sealed partial class ScreenshotGalleryWindow : Window
         _flatItems.Clear();
 
         var allFiles = new List<(FileInfo file, string sourceLabel)>();
-        
+
         if (Directory.Exists(_gameScreenshotDirectory))
         {
             var gameFiles = await Task.Run(() =>
@@ -138,11 +139,14 @@ public sealed partial class ScreenshotGalleryWindow : Window
                         .Select(f => new FileInfo(f))
                         .ToList();
                 }
-                catch { return new List<FileInfo>(); }
+                catch
+                {
+                    return new List<FileInfo>();
+                }
             });
             allFiles.AddRange(gameFiles.Select(f => (f, "游戏截图")));
         }
-        
+
         if (Directory.Exists(_customScreenshotDirectory))
         {
             var customFiles = await Task.Run(() =>
@@ -153,13 +157,16 @@ public sealed partial class ScreenshotGalleryWindow : Window
                         .Select(f => new FileInfo(f))
                         .ToList();
                 }
-                catch { return new List<FileInfo>(); }
+                catch
+                {
+                    return new List<FileInfo>();
+                }
             });
             allFiles.AddRange(customFiles.Select(f => (f, "启动器截图")));
         }
 
         if (!allFiles.Any()) return;
-        
+
         var sorted = allFiles.OrderByDescending(x => x.file.CreationTime).ToList();
         var groupedFiles = sorted.GroupBy(x => x.file.CreationTime.ToString("yyyy年MM月dd日"));
 
@@ -180,6 +187,7 @@ public sealed partial class ScreenshotGalleryWindow : Window
                 folderGroup.Items.Add(item);
                 _flatItems.Add(item);
             }
+
             _galleryData.Add(folderGroup);
         }
 
@@ -206,8 +214,16 @@ public sealed partial class ScreenshotGalleryWindow : Window
     {
         var storyboard = new Storyboard();
 
-        var animX = new DoubleAnimation { To = toScale, Duration = new Duration(TimeSpan.FromMilliseconds(200)), EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut } };
-        var animY = new DoubleAnimation { To = toScale, Duration = new Duration(TimeSpan.FromMilliseconds(200)), EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut } };
+        var animX = new DoubleAnimation
+        {
+            To = toScale, Duration = new Duration(TimeSpan.FromMilliseconds(200)),
+            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
+        };
+        var animY = new DoubleAnimation
+        {
+            To = toScale, Duration = new Duration(TimeSpan.FromMilliseconds(200)),
+            EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
+        };
 
         Storyboard.SetTarget(animX, target);
         Storyboard.SetTargetProperty(animX, "ScaleX");
@@ -252,8 +268,8 @@ public sealed partial class ScreenshotGalleryWindow : Window
                 anim.Configuration = new BasicConnectedAnimationConfiguration();
                 anim.TryStart(DetailImageViewer);
             }
-            DetailOverlayGrid.Opacity = 1;
 
+            DetailOverlayGrid.Opacity = 1;
         }
     }
 
@@ -358,26 +374,26 @@ public sealed partial class ScreenshotGalleryWindow : Window
 
         bool gameExists = Directory.Exists(_gameScreenshotDirectory);
         bool customExists = Directory.Exists(_customScreenshotDirectory);
-        
+
         if (!gameExists && !customExists)
         {
             EmptyStateGrid.Visibility = Visibility.Visible;
             GalleryGridView.Visibility = Visibility.Collapsed;
             return;
         }
-        
+
         var hasItems = _galleryData.Count > 0;
         EmptyStateGrid.Visibility = hasItems ? Visibility.Collapsed : Visibility.Visible;
         GalleryGridView.Visibility = hasItems ? Visibility.Visible : Visibility.Collapsed;
 
-        
+
         if (DetailOverlayGrid.Visibility != Visibility.Visible)
         {
             _currentDetailItem = null;
             DetailImageViewer.SelectedItem = null;
             return;
         }
-        
+
         if (_flatItems.Count == 0)
         {
             DetailOverlayGrid.Visibility = Visibility.Collapsed;
@@ -459,12 +475,14 @@ public sealed partial class ScreenshotGalleryWindow : Window
             {
                 return child;
             }
+
             DependencyObject descendant = FindDescendantByName(child, name);
             if (descendant != null)
             {
                 return descendant;
             }
         }
+
         return null;
     }
 
@@ -472,12 +490,26 @@ public sealed partial class ScreenshotGalleryWindow : Window
     {
         if (Directory.Exists(_gameScreenshotDirectory))
         {
-            try { System.Diagnostics.Process.Start("explorer.exe", _gameScreenshotDirectory); } catch { }
+            try
+            {
+                System.Diagnostics.Process.Start("explorer.exe", _gameScreenshotDirectory);
+            }
+            catch
+            {
+            }
+
             return;
         }
+
         if (Directory.Exists(_customScreenshotDirectory))
         {
-            try { System.Diagnostics.Process.Start("explorer.exe", _customScreenshotDirectory); } catch { }
+            try
+            {
+                System.Diagnostics.Process.Start("explorer.exe", _customScreenshotDirectory);
+            }
+            catch
+            {
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Windows.Graphics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
@@ -18,7 +19,7 @@ public sealed partial class SecurityWebWindow : Window
         _cookieString = cookieString;
         _targetUrl = targetUrl;
         InitializeComponent();
-    
+
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
         SystemBackdrop = new MicaBackdrop();
@@ -30,7 +31,7 @@ public sealed partial class SecurityWebWindow : Window
     private async void InitializeWebViewAsync()
     {
         await SecurityWebView.EnsureCoreWebView2Async();
-    
+
         var cookieManager = SecurityWebView.CoreWebView2.CookieManager;
         var cookies = _cookieString.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         foreach (var cookieKV in cookies)
@@ -42,7 +43,7 @@ public sealed partial class SecurityWebWindow : Window
                 cookieManager.AddOrUpdateCookie(cookie);
             }
         }
-        
+
         SecurityWebView.Source = new Uri(_targetUrl);
     }
 }

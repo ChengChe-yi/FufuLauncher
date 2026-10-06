@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Activation;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Data.Repositories;
@@ -164,7 +165,8 @@ public partial class App
                 services.AddSingleton<Services.CodeSigning.CodeSigningTrustService>();
                 services.AddSingleton<Services.CodeSigning.ModTrustGate>();
 
-                services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
+                services.Configure<LocalSettingsOptions>(
+                    context.Configuration.GetSection(nameof(LocalSettingsOptions)));
             })
             .Build();
     }

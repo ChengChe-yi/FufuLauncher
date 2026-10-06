@@ -7,6 +7,15 @@ namespace FufuLauncher.ViewModels;
 
 public class VirtualKeyOption
 {
-    public int KeyCode { get; set; }
-    public string KeyName { get; set; }
+    public int KeyCode
+    {
+        get;
+        set;
+    }
+
+    public string KeyName
+    {
+        get;
+        set;
+    }
 }

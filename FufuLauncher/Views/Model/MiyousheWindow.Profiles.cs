@@ -6,6 +6,7 @@ namespace FufuLauncher.Views;
 public sealed partial class MiyousheWindow
 {
     private sealed record ProfileTarget(string Id, string Name, int Game);
+
     private ProfileTarget? _queuedProfile;
 
     private async void OnPostAuthorAvatar(object sender, RoutedEventArgs args)
@@ -19,10 +20,12 @@ public sealed partial class MiyousheWindow
         if (_closed || !CommunityUser.IsValidId(id)) return;
         if (_replyDialog != null)
         {
-            _queuedReply = null; _queuedProfile = new(id, name, game);
+            _queuedReply = null;
+            _queuedProfile = new(id, name, game);
             _replyDialog.Hide();
             return;
         }
+
         await NavigateAsync(CommunityFeed.User, id, name.Length > 0 ? name : null, game);
     }
 }

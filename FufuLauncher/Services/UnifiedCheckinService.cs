@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +12,6 @@ using FufuLauncher.Models;
 using MihoyoBBS;
 
 namespace FufuLauncher.Services;
-
 
 public class UnifiedCheckinService : IUnifiedCheckinService
 {
@@ -50,7 +50,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
         var communityShare = await GetBoolSettingAsync("IsCommunityShareEnabled", false);
         var isBatchCheckinEnabled = await GetBoolSettingAsync("IsBatchCheckinEnabled", false);
 
-       
+
         var allEntries = _accountManager.GetAllAccounts();
         var credentialsList = new List<AccountCredentials>();
         foreach (var entry in allEntries)
@@ -63,7 +63,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             cookies.TryGetValue("stoken", out var stoken);
             cookies.TryGetValue("mid", out var mid);
 
-            
+
             string cloudTokenKey = $"CloudComboToken_{entry.Stuid}";
             var cloudTokenObj = await _localSettingsService.ReadSettingAsync(cloudTokenKey);
             string cloudComboToken = cloudTokenObj?.ToString() ?? "";
@@ -76,7 +76,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 Stoken = stoken ?? "",
                 Mid = mid ?? "",
                 Nickname = entry.Nickname ?? string.Format("Checkin_DefaultUser".GetLocalized(), entry.Stuid),
-                ConfigPath = entry.Id,          
+                ConfigPath = entry.Id,
                 CloudComboToken = cloudComboToken
             });
         }
@@ -90,7 +90,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
 
         var disabledUids = await LoadDisabledUidsAsync();
 
-        
+
         List<AccountCredentials> activeAccounts;
         if (isBatchCheckinEnabled)
         {
@@ -104,7 +104,9 @@ public class UnifiedCheckinService : IUnifiedCheckinService
 
         if (activeAccounts.Count == 0)
         {
-            result.SummaryMessage = isBatchCheckinEnabled ? "Checkin_AllDisabled".GetLocalized() : "Checkin_AccountNotFound".GetLocalized();
+            result.SummaryMessage = isBatchCheckinEnabled
+                ? "Checkin_AllDisabled".GetLocalized()
+                : "Checkin_AccountNotFound".GetLocalized();
             result.GameResult.Message = result.SummaryMessage;
             result.GameResult.Executed = true;
             return result;
@@ -112,7 +114,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
 
         void Report(string msg) => progress?.Report(msg);
 
-        
+
         if (gameEnabled)
         {
             var gameSw = Stopwatch.StartNew();
@@ -124,7 +126,6 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                     Report($"[{account.Nickname}] {"Checkin_GameCheckinProgress".GetLocalized()}");
                     try
                     {
-                        
                         var config = new Config
                         {
                             Account = new AccountConfig
@@ -136,7 +137,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                             }
                         };
 
-                        
+
                         bool isOs = account.ConfigPath.StartsWith("os_");
                         string signResult;
                         bool success;
@@ -152,7 +153,8 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                             else
                             {
                                 var os = new HoyolabCheckinService();
-                                await os.InitializeAsync(account.Cookie, rolesResult.Roles.Select(ToOsAccountItem).ToList());
+                                await os.InitializeAsync(account.Cookie,
+                                    rolesResult.Roles.Select(ToOsAccountItem).ToList());
                                 var osSignResult = await os.SignAccountWithResultAsync(account.Cookie, disabledUids);
                                 signResult = osSignResult.Message;
                                 success = osSignResult.Success;
@@ -172,7 +174,11 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                         result.AccountResults.Add(new AccountCheckinDetail
                         {
                             Nickname = account.Nickname,
-                            Items = { ("Checkin_GameCheckin".GetLocalized(), success, success ? "Status_Completed".GetLocalized() : signResult) }
+                            Items =
+                            {
+                                ("Checkin_GameCheckin".GetLocalized(), success,
+                                    success ? "Status_Completed".GetLocalized() : signResult)
+                            }
                         });
                     }
                     catch (Exception ex)
@@ -184,6 +190,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                             Items = { ("Checkin_GameCheckin".GetLocalized(), false, ex.Message) }
                         });
                     }
+
                     if (activeAccounts.Count > 1)
                         await Task.Delay(new Random().Next(2000, 5000));
                 }
@@ -197,7 +204,8 @@ public class UnifiedCheckinService : IUnifiedCheckinService
 
                 result.GameResult.Message = result.GameResult.Success
                     ? string.Format("Checkin_ConsecutiveDays".GetLocalized(), signDays, rewardItem)
-                    : string.Format("Checkin_SuccessFailCount".GetLocalized(), result.GameResult.SuccessCount, result.GameResult.FailCount);
+                    : string.Format("Checkin_SuccessFailCount".GetLocalized(), result.GameResult.SuccessCount,
+                        result.GameResult.FailCount);
             }
             catch (Exception ex)
             {
@@ -205,6 +213,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 result.GameResult.Message = string.Format("CheckinGame_Exception".GetLocalized(), ex.Message);
                 Debug.WriteLine($"[统一签到] 游戏签到异常: {ex.Message}");
             }
+
             gameSw.Stop();
             Debug.WriteLine($"[统一签到] 游戏签到耗时 {gameSw.ElapsedMilliseconds}ms");
         }
@@ -224,12 +233,17 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                         Report($"[{account.Nickname}] {"Checkin_OSAccountSkippedCommunity".GetLocalized()}");
                         var acct = result.AccountResults.FirstOrDefault(a => a.Nickname == account.Nickname);
                         if (acct != null)
-                            acct.Items.Add(("Checkin_CommunityCheckin".GetLocalized(), null, "Checkin_OSAccountSkipped".GetLocalized()));
+                            acct.Items.Add(("Checkin_CommunityCheckin".GetLocalized(), null,
+                                "Checkin_OSAccountSkipped".GetLocalized()));
                         else
                             result.AccountResults.Add(new AccountCheckinDetail
                             {
                                 Nickname = account.Nickname,
-                                Items = { ("Checkin_CommunityCheckin".GetLocalized(), null, "Checkin_OSAccountSkipped".GetLocalized()) }
+                                Items =
+                                {
+                                    ("Checkin_CommunityCheckin".GetLocalized(), null,
+                                        "Checkin_OSAccountSkipped".GetLocalized())
+                                }
                             });
                         continue;
                     }
@@ -246,12 +260,17 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                     bool success = communityResult.FailCount == 0;
                     var detail = result.AccountResults.FirstOrDefault(a => a.Nickname == account.Nickname);
                     if (detail != null)
-                        detail.Items.Add(("Checkin_CommunityCheckin".GetLocalized(), success, success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized()));
+                        detail.Items.Add(("Checkin_CommunityCheckin".GetLocalized(), success,
+                            success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized()));
                     else
                         result.AccountResults.Add(new AccountCheckinDetail
                         {
                             Nickname = account.Nickname,
-                            Items = { ("Checkin_CommunityCheckin".GetLocalized(), success, success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized()) }
+                            Items =
+                            {
+                                ("Checkin_CommunityCheckin".GetLocalized(), success,
+                                    success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized())
+                            }
                         });
 
                     if (activeAccounts.Count > 1)
@@ -269,6 +288,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 result.CommunityResult.Message = string.Format("CheckinCommunity_Exception".GetLocalized(), ex.Message);
                 Debug.WriteLine($"[统一签到] 社区签到异常: {ex.Message}");
             }
+
             communitySw.Stop();
             Debug.WriteLine($"[统一签到] 社区签到耗时 {communitySw.ElapsedMilliseconds}ms");
         }
@@ -295,16 +315,20 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                             result.CloudGameResult.SkippedCount++;
                             continue;
                         }
+
                         if (string.IsNullOrEmpty(account.CloudComboToken))
                         {
                             result.CloudGameResult.SkippedCount++;
                             var cd = result.AccountResults.FirstOrDefault(a => a.Nickname == account.Nickname);
-                            if (cd != null) cd.Items.Add(("Checkin_CloudGameCheckin".GetLocalized(), null, "Checkin_NotConfiguredCredential".GetLocalized()));
+                            if (cd != null)
+                                cd.Items.Add(("Checkin_CloudGameCheckin".GetLocalized(), null,
+                                    "Checkin_NotConfiguredCredential".GetLocalized()));
                             continue;
                         }
 
                         Report($"[{account.Nickname}] {"Checkin_CloudGameCheckinProgress".GetLocalized()}");
-                        var cloudResult = await _cloudGameCheckinService.ExecuteCheckinAsync(account.Uid, account.CloudComboToken);
+                        var cloudResult =
+                            await _cloudGameCheckinService.ExecuteCheckinAsync(account.Uid, account.CloudComboToken);
                         result.CloudGameResult.SuccessCount += cloudResult.SuccessCount;
                         result.CloudGameResult.FailCount += cloudResult.FailCount;
                         result.CloudGameResult.SkippedCount += cloudResult.SkippedCount;
@@ -313,12 +337,17 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                         bool success = cloudResult.FailCount == 0;
                         var cdd = result.AccountResults.FirstOrDefault(a => a.Nickname == account.Nickname);
                         if (cdd != null)
-                            cdd.Items.Add(("Checkin_CloudGameCheckin".GetLocalized(), success, success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized()));
+                            cdd.Items.Add(("Checkin_CloudGameCheckin".GetLocalized(), success,
+                                success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized()));
                         else
                             result.AccountResults.Add(new AccountCheckinDetail
                             {
                                 Nickname = account.Nickname,
-                                Items = { ("Checkin_CloudGameCheckin".GetLocalized(), success, success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized()) }
+                                Items =
+                                {
+                                    ("Checkin_CloudGameCheckin".GetLocalized(), success,
+                                        success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized())
+                                }
                             });
 
                         if (activeAccounts.Count > 1)
@@ -337,6 +366,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 result.CloudGameResult.Message = string.Format("CheckinCloud_Exception".GetLocalized(), ex.Message);
                 Debug.WriteLine($"[统一签到] 云原神签到异常: {ex.Message}");
             }
+
             cloudSw.Stop();
             Debug.WriteLine($"[统一签到] 云游戏签到耗时 {cloudSw.ElapsedMilliseconds}ms");
         }
@@ -372,8 +402,11 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 var list = JsonSerializer.Deserialize<List<string>>(disabledUidsJson.ToString() ?? "[]");
                 if (list != null) return new HashSet<string>(list);
             }
-            catch { }
+            catch
+            {
+            }
         }
+
         return new HashSet<string>();
     }
 
@@ -386,6 +419,4 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             Nickname = role.nickname
         };
     }
-
 }
-

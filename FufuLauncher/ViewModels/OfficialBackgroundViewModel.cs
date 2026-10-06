@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -60,7 +61,10 @@ public partial class OfficialBackgroundViewModel : ObservableObject
         _backgroundService = App.GetService<IHoyoverseBackgroundService>();
     }
 
-    public ObservableCollection<OfficialBackgroundItem> Backgrounds { get; } = new();
+    public ObservableCollection<OfficialBackgroundItem> Backgrounds
+    {
+        get;
+    } = new();
 
     #region 状态属性
 
@@ -96,34 +100,31 @@ public partial class OfficialBackgroundViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(PreviewButtonText))]
     private bool _isPreviewPlaying;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(PreviewLoadingVisibility))]
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(PreviewLoadingVisibility))]
     private bool _isPreviewLoading;
 
-    [ObservableProperty]
-    private MediaPlayer? _previewPlayer;
+    [ObservableProperty] private MediaPlayer? _previewPlayer;
 
-    [ObservableProperty]
-    private string _summaryText = string.Empty;
+    [ObservableProperty] private string _summaryText = string.Empty;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CustomBackgroundHintVisibility))]
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(CustomBackgroundHintVisibility))]
     private bool _isCustomBackgroundInEffect;
 
-    [ObservableProperty]
-    private bool _isStatusOpen;
+    [ObservableProperty] private bool _isStatusOpen;
 
-    [ObservableProperty]
-    private string _statusMessage = string.Empty;
+    [ObservableProperty] private string _statusMessage = string.Empty;
 
-    [ObservableProperty]
-    private InfoBarSeverity _statusSeverity = InfoBarSeverity.Success;
+    [ObservableProperty] private InfoBarSeverity _statusSeverity = InfoBarSeverity.Success;
 
     public Visibility LoadingVisibility => IsLoading ? Visibility.Visible : Visibility.Collapsed;
 
-    public Visibility ContentVisibility => !IsLoading && !HasLoadError && Backgrounds.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility ContentVisibility => !IsLoading && !HasLoadError && Backgrounds.Count > 0
+        ? Visibility.Visible
+        : Visibility.Collapsed;
 
-    public Visibility EmptyVisibility => !IsLoading && !HasLoadError && Backgrounds.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility EmptyVisibility => !IsLoading && !HasLoadError && Backgrounds.Count == 0
+        ? Visibility.Visible
+        : Visibility.Collapsed;
 
     public Visibility ErrorVisibility => !IsLoading && HasLoadError ? Visibility.Visible : Visibility.Collapsed;
 
@@ -139,17 +140,23 @@ public partial class OfficialBackgroundViewModel : ObservableObject
 
     public Visibility PreviewLoadingVisibility => IsPreviewLoading ? Visibility.Visible : Visibility.Collapsed;
 
-    public Visibility PlayPreviewVisibility => SelectedItem is { IsVideo: true } ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility PlayPreviewVisibility =>
+        SelectedItem is { IsVideo: true } ? Visibility.Visible : Visibility.Collapsed;
 
     public Visibility ApplyVisibility => SelectedItem is { IsVideo: false } ? Visibility.Visible : Visibility.Collapsed;
 
-    public Visibility VideoHintVisibility => SelectedItem is { IsVideo: true } ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility VideoHintVisibility =>
+        SelectedItem is { IsVideo: true } ? Visibility.Visible : Visibility.Collapsed;
 
-    public Visibility PosterNoteVisibility => SelectedItem is { IsVideo: false, IsVideoPoster: true } ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility PosterNoteVisibility => SelectedItem is { IsVideo: false, IsVideoPoster: true }
+        ? Visibility.Visible
+        : Visibility.Collapsed;
 
-    public Visibility CurrentBadgeVisibility => SelectedItem is { IsCurrent: true } ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility CurrentBadgeVisibility =>
+        SelectedItem is { IsCurrent: true } ? Visibility.Visible : Visibility.Collapsed;
 
-    public Visibility CustomBackgroundHintVisibility => IsCustomBackgroundInEffect ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility CustomBackgroundHintVisibility =>
+        IsCustomBackgroundInEffect ? Visibility.Visible : Visibility.Collapsed;
 
     public string SelectedUrl => SelectedItem?.Url ?? string.Empty;
 
@@ -180,7 +187,9 @@ public partial class OfficialBackgroundViewModel : ObservableObject
             var server = await GetServerAsync();
             var backgrounds = await _backgroundService.GetAvailableBackgroundsAsync(server);
 
-            var currentUrl = (await _localSettingsService.ReadSettingAsync("SelectedOnlineBackgroundUrl"))?.ToString() ?? string.Empty;
+            var currentUrl =
+                (await _localSettingsService.ReadSettingAsync("SelectedOnlineBackgroundUrl"))?.ToString() ??
+                string.Empty;
             var hasCustomBackground = await IsCustomBackgroundInEffectAsync();
 
             var previousSelectionUrl = SelectedItem?.Url;
@@ -282,7 +291,8 @@ public partial class OfficialBackgroundViewModel : ObservableObject
                 IsVideo = bg.IsVideo,
                 ThumbnailUrl = string.IsNullOrEmpty(bg.ThumbnailUrl) ? bg.Url : bg.ThumbnailUrl,
                 IsVideoPoster = !bg.IsVideo && videoPosterUrls.Contains(bg.Url),
-                IsCurrent = !string.IsNullOrEmpty(currentUrl) && string.Equals(bg.Url, currentUrl, StringComparison.OrdinalIgnoreCase)
+                IsCurrent = !string.IsNullOrEmpty(currentUrl) &&
+                            string.Equals(bg.Url, currentUrl, StringComparison.OrdinalIgnoreCase)
             });
         }
 
@@ -308,7 +318,8 @@ public partial class OfficialBackgroundViewModel : ObservableObject
             var isVideo = item.IsVideo;
             var extension = GuessExtension(item.Url, isVideo);
             var filters = BuildSaveFilters(extension, isVideo);
-            var defaultName = $"FufuLauncher_{(isVideo ? "BackgroundVideo" : "BackgroundImage")}_{DateTime.Now:yyyyMMddHHmmss}{extension}";
+            var defaultName =
+                $"FufuLauncher_{(isVideo ? "BackgroundVideo" : "BackgroundImage")}_{DateTime.Now:yyyyMMddHHmmss}{extension}";
             var startLocation = isVideo ? PickerLocationId.VideosLibrary : PickerLocationId.PicturesLibrary;
 
             var path = await FilePickerService.PickSaveFileAsync(
@@ -326,12 +337,14 @@ public partial class OfficialBackgroundViewModel : ObservableObject
             await using var target = new FileStream(path, FileMode.Create, FileAccess.Write);
             await source.CopyToAsync(target);
 
-            ShowStatus(string.Format("OfficialBgWindow_SaveSuccessFormat".GetLocalized(), Path.GetFileName(path)), InfoBarSeverity.Success);
+            ShowStatus(string.Format("OfficialBgWindow_SaveSuccessFormat".GetLocalized(), Path.GetFileName(path)),
+                InfoBarSeverity.Success);
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"[OfficialBgWindow] 保存背景失败: {ex.Message}");
-            ShowStatus(string.Format("OfficialBgWindow_SaveFailedFormat".GetLocalized(), ex.Message), InfoBarSeverity.Error);
+            ShowStatus(string.Format("OfficialBgWindow_SaveFailedFormat".GetLocalized(), ex.Message),
+                InfoBarSeverity.Error);
         }
         finally
         {
@@ -365,7 +378,8 @@ public partial class OfficialBackgroundViewModel : ObservableObject
         catch (Exception ex)
         {
             Debug.WriteLine($"[OfficialBgWindow] 设为启动器背景失败: {ex.Message}");
-            ShowStatus(string.Format("OfficialBgWindow_SaveFailedFormat".GetLocalized(), ex.Message), InfoBarSeverity.Error);
+            ShowStatus(string.Format("OfficialBgWindow_SaveFailedFormat".GetLocalized(), ex.Message),
+                InfoBarSeverity.Error);
         }
     }
 
@@ -404,7 +418,9 @@ public partial class OfficialBackgroundViewModel : ObservableObject
             }
         }
 
-        var label = isVideo ? "OfficialBgWindow_VideoFilter".GetLocalized() : "OfficialBgWindow_ImageFilter".GetLocalized();
+        var label = isVideo
+            ? "OfficialBgWindow_VideoFilter".GetLocalized()
+            : "OfficialBgWindow_ImageFilter".GetLocalized();
         return new[] { (label, extensions.ToArray()) };
     }
 
@@ -458,7 +474,7 @@ public partial class OfficialBackgroundViewModel : ObservableObject
             IsPreviewLoading = false;
         }
     }
-    
+
     private async Task<MediaSource?> GetOrCreatePreviewSourceAsync(string url)
     {
         if (_previewSource != null && string.Equals(_previewSourceUrl, url, StringComparison.Ordinal))
@@ -493,7 +509,14 @@ public partial class OfficialBackgroundViewModel : ObservableObject
         }
         catch
         {
-            try { stream.Dispose(); } catch { }
+            try
+            {
+                stream.Dispose();
+            }
+            catch
+            {
+            }
+
             throw;
         }
     }
@@ -548,7 +571,14 @@ public partial class OfficialBackgroundViewModel : ObservableObject
     {
         _previewSource = null;
         _previewSourceUrl = null;
-        try { _previewStream?.Dispose(); } catch { }
+        try
+        {
+            _previewStream?.Dispose();
+        }
+        catch
+        {
+        }
+
         _previewStream = null;
     }
 

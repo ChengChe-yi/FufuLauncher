@@ -4,5 +4,9 @@ public interface IScreenshotService
 {
     Task StartAsync(int gamePid);
     Task StopAsync();
-    bool IsRunning { get; }
+
+    bool IsRunning
+    {
+        get;
+    }
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 
 namespace FufuLauncher.Services;
@@ -21,5 +22,6 @@ public static class GameRoleResponseValidator
 
     private static string? Read(JsonElement data, string key) =>
         data.ValueKind == JsonValueKind.Object && data.TryGetProperty(key, out var value)
-            ? value.ToString() : null;
+            ? value.ToString()
+            : null;
 }

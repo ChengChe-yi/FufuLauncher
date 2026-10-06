@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 
 namespace FufuLauncher.ViewModels;
@@ -23,6 +24,7 @@ public partial class SettingsViewModel
             number /= 1024;
             counter++;
         }
+
         return string.Format("{0:n2} {1}", number, suffixes[counter]);
     }
 
@@ -64,7 +66,7 @@ public partial class SettingsViewModel
             {
                 size += fi.Length;
             }
-            
+
             DirectoryInfo[] dis = d.GetDirectories();
             foreach (DirectoryInfo di in dis)
             {
@@ -84,12 +86,12 @@ public partial class SettingsViewModel
         try
         {
             var cacheFolder = Path.Combine(AppContext.BaseDirectory, "FufuLauncher.exe.WebView2");
-    
+
             if (Directory.Exists(cacheFolder))
             {
                 await Task.Run(() => SafeDeleteDirectory(cacheFolder));
             }
-            
+
             UpdateWebView2CacheSizeAsync(true);
         }
         catch (Exception ex)
@@ -104,7 +106,7 @@ public partial class SettingsViewModel
         {
             var files = Directory.GetFiles(targetDir);
             var dirs = Directory.GetDirectories(targetDir);
-            
+
             foreach (var file in files)
             {
                 try
@@ -117,7 +119,7 @@ public partial class SettingsViewModel
                     // ignored
                 }
             }
-            
+
             foreach (var dir in dirs)
             {
                 SafeDeleteDirectory(dir);

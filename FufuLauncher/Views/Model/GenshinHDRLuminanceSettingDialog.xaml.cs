@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -85,6 +86,7 @@ public sealed partial class GenshinHDRLuminanceSettingDialog : ContentDialog
             {
                 _displayInformation.AdvancedColorInfoChanged -= _displayInformation_AdvancedColorInfoChanged;
             }
+
             XamlRoot.Changed -= XamlRoot_Changed;
         }
         catch (Exception ex)
@@ -128,11 +130,11 @@ public sealed partial class GenshinHDRLuminanceSettingDialog : ContentDialog
             };
 
             DisplayInfomation = $"""
-                色彩空间: {kind}
-                峰值亮度: {info.MaxLuminanceInNits:F0} nits
-                最大全屏亮度: {info.MaxAverageFullFrameLuminanceInNits:F0} nits
-                SDR白色亮度: {info.SdrWhiteLevelInNits:F0} nits
-                """;
+                                 色彩空间: {kind}
+                                 峰值亮度: {info.MaxLuminanceInNits:F0} nits
+                                 最大全屏亮度: {info.MaxAverageFullFrameLuminanceInNits:F0} nits
+                                 SDR白色亮度: {info.SdrWhiteLevelInNits:F0} nits
+                                 """;
         }
         catch
         {
@@ -188,6 +190,5 @@ public sealed partial class GenshinHDRLuminanceSettingDialog : ContentDialog
     [RelayCommand]
     private void Close()
     {
-
     }
 }

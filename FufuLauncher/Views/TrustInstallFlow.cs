@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
@@ -35,7 +36,8 @@ internal static class TrustInstallFlow
 
         if (!result.Ok && result.NeedsElevation)
         {
-            result = await RunElevatedAsync(xamlRoot, "install", scope == TrustStoreScope.CurrentUser ? "user" : "machine");
+            result = await RunElevatedAsync(xamlRoot, "install",
+                scope == TrustStoreScope.CurrentUser ? "user" : "machine");
         }
 
         return result;
@@ -55,7 +57,8 @@ internal static class TrustInstallFlow
 
         if (!result.Ok && result.NeedsElevation)
         {
-            result = await RunElevatedAsync(xamlRoot, "uninstall", scope == TrustStoreScope.CurrentUser ? "user" : "machine");
+            result = await RunElevatedAsync(xamlRoot, "uninstall",
+                scope == TrustStoreScope.CurrentUser ? "user" : "machine");
         }
 
         return result;
@@ -99,7 +102,8 @@ internal static class TrustInstallFlow
         stack.Children.Add(new TextBlock { Text = title, FontWeight = FontWeights.SemiBold });
         stack.Children.Add(BuildCertificateField("颁发给", certificate.Subject));
         stack.Children.Add(BuildCertificateField("颁发者", certificate.Issuer));
-        stack.Children.Add(BuildCertificateField("SHA-256 指纹", ManifestSignatureVerifier.Sha256Thumbprint(certificate)));
+        stack.Children.Add(BuildCertificateField("SHA-256 指纹",
+            ManifestSignatureVerifier.Sha256Thumbprint(certificate)));
         stack.Children.Add(BuildCertificateField("有效期至", certificate.NotAfter.ToString("yyyy-MM-dd")));
 
         return new Border

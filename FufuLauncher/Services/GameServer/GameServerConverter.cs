@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 using Microsoft.Win32.SafeHandles;
 using FufuLauncher.Constants;
@@ -29,32 +30,38 @@ public sealed class GameServerConverter
     }
 
     #region 公开入口
-    
+
     public async Task ConvertAsync(string gameDir, GameServerScheme currentScheme, GameServerScheme targetScheme,
         IProgress<GameServerConversionProgress> progress, Action<string> log, CancellationToken token = default,
         GameServerDownloadMonitor? downloadMonitor = null)
     {
         ArgumentNullException.ThrowIfNull(currentScheme);
         ArgumentNullException.ThrowIfNull(targetScheme);
-        
+
         EnsureDirectoryPermissions(gameDir);
 
-        var context = new GameServerConversionContext(gameDir, currentScheme, targetScheme, AppPaths.ServerCacheDir, progress, log, token, downloadMonitor);
-        
+        var context = new GameServerConversionContext(gameDir, currentScheme, targetScheme, AppPaths.ServerCacheDir,
+            progress, log, token, downloadMonitor);
+
         _configurationService.BackupConfig(gameDir, currentScheme.IsOversea);
 
         log("GameServer_StageFetchBranches".GetLocalized());
-        SophonBranchInfo currentInfo = await _sophonBuildClient.GetBranchInfoAsync(currentScheme, false, token).ConfigureAwait(false);
-        SophonBranchInfo targetInfo = await _sophonBuildClient.GetBranchInfoAsync(targetScheme, false, token).ConfigureAwait(false);
+        SophonBranchInfo currentInfo =
+            await _sophonBuildClient.GetBranchInfoAsync(currentScheme, false, token).ConfigureAwait(false);
+        SophonBranchInfo targetInfo =
+            await _sophonBuildClient.GetBranchInfoAsync(targetScheme, false, token).ConfigureAwait(false);
 
         log("GameServer_StageDecodeManifests".GetLocalized());
-        SophonManifestProto currentManifest = await _sophonBuildClient.DownloadManifestAsync(currentInfo, token).ConfigureAwait(false);
-        SophonManifestProto targetManifest = await _sophonBuildClient.DownloadManifestAsync(targetInfo, token).ConfigureAwait(false);
+        SophonManifestProto currentManifest =
+            await _sophonBuildClient.DownloadManifestAsync(currentInfo, token).ConfigureAwait(false);
+        SophonManifestProto targetManifest =
+            await _sophonBuildClient.DownloadManifestAsync(targetInfo, token).ConfigureAwait(false);
 
         CleanPluginsFolder(context);
 
         log("GameServer_StageDiff".GetLocalized());
-        List<GameServerAssetOperation> operations = BuildDiffOperations(currentManifest, targetManifest, targetInfo.ChunkPrefix, targetInfo.ChunkSuffix, gameDir);
+        List<GameServerAssetOperation> operations = BuildDiffOperations(currentManifest, targetManifest,
+            targetInfo.ChunkPrefix, targetInfo.ChunkSuffix, gameDir);
 
         log("GameServer_StageDownloadChunks".GetLocalized());
         await PrepareCacheFilesAsync(context, operations).ConfigureAwait(false);
@@ -65,7 +72,7 @@ public sealed class GameServerConverter
         log("GameServer_StageCleanup".GetLocalized());
         CleanupChunksFolder(context);
     }
-    
+
     public async Task VerifyAndRepairAsync(string gameDir, GameServerScheme currentScheme,
         IProgress<GameServerConversionProgress> progress, Action<string> log, CancellationToken token = default,
         GameServerDownloadMonitor? downloadMonitor = null)
@@ -74,16 +81,19 @@ public sealed class GameServerConverter
 
         EnsureDirectoryPermissions(gameDir);
 
-        var context = new GameServerConversionContext(gameDir, currentScheme, currentScheme, AppPaths.ServerCacheDir, progress, log, token, downloadMonitor);
+        var context = new GameServerConversionContext(gameDir, currentScheme, currentScheme, AppPaths.ServerCacheDir,
+            progress, log, token, downloadMonitor);
 
         log("GameServer_StageFetchBranches".GetLocalized());
-        SophonBranchInfo branchInfo = await _sophonBuildClient.GetBranchInfoAsync(currentScheme, false, token).ConfigureAwait(false);
+        SophonBranchInfo branchInfo =
+            await _sophonBuildClient.GetBranchInfoAsync(currentScheme, false, token).ConfigureAwait(false);
 
         log("GameServer_StageDecodeManifests".GetLocalized());
-        SophonManifestProto manifest = await _sophonBuildClient.DownloadManifestAsync(branchInfo, token).ConfigureAwait(false);
+        SophonManifestProto manifest =
+            await _sophonBuildClient.DownloadManifestAsync(branchInfo, token).ConfigureAwait(false);
 
         CleanPluginsFolder(context);
-        
+
         await _gameChannelSdkService.VerifyAndRepairChannelSdkAsync(
             context.GameDir, currentScheme, context.Log, context.Token,
             context.DownloadMonitor is null ? null : context.DownloadMonitor.AddBytes).ConfigureAwait(false);
@@ -117,11 +127,13 @@ public sealed class GameServerConverter
 
     #region 差异计算
 
-    private static List<GameServerAssetOperation> BuildDiffOperations(SophonManifestProto currentManifest, SophonManifestProto targetManifest,
+    private static List<GameServerAssetOperation> BuildDiffOperations(SophonManifestProto currentManifest,
+        SophonManifestProto targetManifest,
         string urlPrefix, string urlSuffix, string gameDir)
     {
         var operations = new List<GameServerAssetOperation>();
-        var currentMap = currentManifest.Assets.ToDictionary(asset => NormalizeAssetName(asset.AssetName), StringComparer.OrdinalIgnoreCase);
+        var currentMap = currentManifest.Assets.ToDictionary(asset => NormalizeAssetName(asset.AssetName),
+            StringComparer.OrdinalIgnoreCase);
 
         foreach (var targetAsset in targetManifest.Assets)
         {
@@ -132,10 +144,11 @@ public sealed class GameServerConverter
                 operations.Add(GameServerAssetOperation.Add(urlPrefix, urlSuffix, targetAsset));
                 continue;
             }
-            
+
             bool hasLocalFile = File.Exists(Path.Combine(gameDir, currentAsset.AssetName));
 
-            if ((currentAsset.AssetHashMd5 ?? string.Empty).Equals(targetAsset.AssetHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase)
+            if ((currentAsset.AssetHashMd5 ?? string.Empty).Equals(targetAsset.AssetHashMd5 ?? string.Empty,
+                    StringComparison.OrdinalIgnoreCase)
                 && hasLocalFile)
             {
                 continue;
@@ -144,7 +157,8 @@ public sealed class GameServerConverter
             if (hasLocalFile)
             {
                 List<SophonChunk> diffChunks = BuildDiffChunks(currentAsset, targetAsset, urlPrefix, urlSuffix);
-                operations.Add(GameServerAssetOperation.ModifyOrReplace(urlPrefix, urlSuffix, currentAsset, targetAsset, diffChunks));
+                operations.Add(GameServerAssetOperation.ModifyOrReplace(urlPrefix, urlSuffix, currentAsset, targetAsset,
+                    diffChunks));
             }
             else
             {
@@ -152,7 +166,8 @@ public sealed class GameServerConverter
             }
         }
 
-        var targetNames = targetManifest.Assets.Select(asset => NormalizeAssetName(asset.AssetName)).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var targetNames = targetManifest.Assets.Select(asset => NormalizeAssetName(asset.AssetName))
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
         foreach (var currentAsset in currentManifest.Assets)
         {
             if (!targetNames.Contains(NormalizeAssetName(currentAsset.AssetName)))
@@ -163,24 +178,27 @@ public sealed class GameServerConverter
 
         return operations;
     }
-    
-    private static List<SophonChunk> BuildDiffChunks(AssetProperty currentAsset, AssetProperty targetAsset, string urlPrefix, string urlSuffix)
+
+    private static List<SophonChunk> BuildDiffChunks(AssetProperty currentAsset, AssetProperty targetAsset,
+        string urlPrefix, string urlSuffix)
     {
         return targetAsset.AssetChunks
             .Where(chunk => currentAsset.AssetChunks.FirstOrDefault(candidate =>
-                (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase)) is null)
+                (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(
+                    chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase)) is null)
             .Select(chunk => new SophonChunk(urlPrefix, urlSuffix, chunk))
             .ToList();
     }
-    
+
     private static string NormalizeAssetName(string? assetName)
     {
         string name = assetName ?? string.Empty;
         int separatorIndex = name.IndexOf('/');
         return separatorIndex >= 0 ? name[(separatorIndex + 1)..] : name;
     }
-    
-    private static void InitializeDuplicatedChunkNames(GameServerConversionContext context, IEnumerable<GameServerAssetOperation> operations)
+
+    private static void InitializeDuplicatedChunkNames(GameServerConversionContext context,
+        IEnumerable<GameServerAssetOperation> operations)
     {
         IEnumerable<string> names = operations
             .SelectMany(operation => operation.Chunks)
@@ -198,11 +216,13 @@ public sealed class GameServerConverter
     #endregion
 
     #region 下载组装
-    
-    private async Task PrepareCacheFilesAsync(GameServerConversionContext context, List<GameServerAssetOperation> operations)
+
+    private async Task PrepareCacheFilesAsync(GameServerConversionContext context,
+        List<GameServerAssetOperation> operations)
     {
         var toProcess = operations
-            .Where(operation => operation.Kind is GameServerAssetOperationKind.Add or GameServerAssetOperationKind.ModifyOrReplace)
+            .Where(operation =>
+                operation.Kind is GameServerAssetOperationKind.Add or GameServerAssetOperationKind.ModifyOrReplace)
             .ToList();
 
         if (toProcess.Count == 0)
@@ -212,7 +232,7 @@ public sealed class GameServerConverter
 
         InitializeDuplicatedChunkNames(context, toProcess);
         Directory.CreateDirectory(context.ChunksFolder);
-        
+
         var pending = new List<(GameServerAssetOperation Operation, List<SophonChunk> Chunks)>();
         foreach (var operation in toProcess)
         {
@@ -220,7 +240,7 @@ public sealed class GameServerConverter
 
             AssetProperty newAsset = operation.NewAsset!;
             string cacheFile = context.GetTargetFilePath(newAsset.AssetName);
-            
+
             if (File.Exists(cacheFile) && new FileInfo(cacheFile).Length == newAsset.AssetSize)
             {
                 string cacheMd5 = await HashUtility.Md5FileAsync(cacheFile, context.Token).ConfigureAwait(false);
@@ -247,7 +267,7 @@ public sealed class GameServerConverter
         string stage = "GameServer_StageDownloadChunks".GetLocalized();
         int totalChunks = pending.Sum(item => item.Chunks.Count);
         long totalBytes = pending.Sum(item => item.Chunks.Sum(chunk => chunk.AssetChunk.ChunkSize));
-        
+
         var pendingChunkNames = pending
             .SelectMany(item => item.Chunks)
             .Select(chunk => chunk.AssetChunk.ChunkName)
@@ -276,7 +296,8 @@ public sealed class GameServerConverter
                     string mergedMd5 = await HashUtility.Md5FileAsync(cacheFile, context.Token).ConfigureAwait(false);
                     if (!mergedMd5.Equals(newAsset.AssetHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase))
                     {
-                        context.Log(string.Format("GameServer_AssembleVerifyFailed".GetLocalized(), newAsset.AssetName));
+                        context.Log(string.Format("GameServer_AssembleVerifyFailed".GetLocalized(),
+                            newAsset.AssetName));
                         File.Delete(cacheFile);
                         continue;
                     }
@@ -284,7 +305,7 @@ public sealed class GameServerConverter
 
                 continue;
             }
-            
+
             context.Log(string.Format("GameServer_SkipAssetNoCache".GetLocalized(), newAsset.AssetName));
             if (File.Exists(cacheFile))
             {
@@ -292,7 +313,7 @@ public sealed class GameServerConverter
             }
         }
     }
-    
+
     private sealed class DownloadCounters
     {
         public long DoneChunks;
@@ -311,11 +332,14 @@ public sealed class GameServerConverter
 
         await Parallel.ForEachAsync(chunks, context.ParallelOptions, async (chunk, token) =>
         {
-            await _chunkDownloader.DownloadChunkAsync(chunk, context.ChunksFolder, context.ChunkLocks, token, onBytesTransferred).ConfigureAwait(false);
-            
+            await _chunkDownloader
+                .DownloadChunkAsync(chunk, context.ChunksFolder, context.ChunkLocks, token, onBytesTransferred)
+                .ConfigureAwait(false);
+
             long current = Interlocked.Increment(ref counters.DoneChunks);
             long bytes = Interlocked.Add(ref counters.DoneBytes, chunk.AssetChunk.ChunkSize);
-            context.Progress.Report(new GameServerConversionProgress(stage, totalChunks, (int)current, totalBytes, bytes, chunk.AssetChunk.ChunkName));
+            context.Progress.Report(new GameServerConversionProgress(stage, totalChunks, (int)current, totalBytes,
+                bytes, chunk.AssetChunk.ChunkName));
         }).ConfigureAwait(false);
     }
 
@@ -328,7 +352,7 @@ public sealed class GameServerConverter
             _ => Task.FromResult(true),
         };
     }
-    
+
     private async Task<bool> MergeNewAssetAsync(GameServerConversionContext context, AssetProperty asset)
     {
         string targetPath = context.GetTargetFilePath(asset.AssetName);
@@ -338,7 +362,8 @@ public sealed class GameServerConverter
 
         int missingChunks = 0;
 
-        using (SafeFileHandle fileHandle = File.OpenHandle(targetPath, FileMode.Create, FileAccess.Write, FileShare.None, preallocationSize: asset.AssetSize))
+        using (SafeFileHandle fileHandle = File.OpenHandle(targetPath, FileMode.Create, FileAccess.Write,
+                   FileShare.None, preallocationSize: asset.AssetSize))
         {
             await Parallel.ForEachAsync(asset.AssetChunks, context.ParallelOptions, async (chunk, token) =>
             {
@@ -365,7 +390,8 @@ public sealed class GameServerConverter
                                 break;
                             }
 
-                            await RandomAccess.WriteAsync(fileHandle, buffer.AsMemory(0, read), offset, token).ConfigureAwait(false);
+                            await RandomAccess.WriteAsync(fileHandle, buffer.AsMemory(0, read), offset, token)
+                                .ConfigureAwait(false);
                             offset += read;
                         }
                     }
@@ -401,8 +427,9 @@ public sealed class GameServerConverter
 
         return true;
     }
-    
-    private async Task<bool> MergeDiffAssetAsync(GameServerConversionContext context, GameServerAssetOperation operation)
+
+    private async Task<bool> MergeDiffAssetAsync(GameServerConversionContext context,
+        GameServerAssetOperation operation)
     {
         AssetProperty oldAsset = operation.OldAsset!;
         AssetProperty newAsset = operation.NewAsset!;
@@ -431,16 +458,20 @@ public sealed class GameServerConverter
                 long remaining = chunk.ChunkSizeDecompressed;
 
                 var oldChunk = oldAsset.AssetChunks.FirstOrDefault(candidate =>
-                    (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase));
+                    (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(
+                        chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase));
 
                 if (oldChunk is not null)
                 {
-                    using (var localFile = new FileStream(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    using (var localFile =
+                           new FileStream(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                     {
                         localFile.Seek(oldChunk.ChunkOnFileOffset, SeekOrigin.Begin);
                         while (remaining > 0)
                         {
-                            int read = await localFile.ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token).ConfigureAwait(false);
+                            int read = await localFile
+                                .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token)
+                                .ConfigureAwait(false);
                             if (read <= 0)
                             {
                                 break;
@@ -470,18 +501,22 @@ public sealed class GameServerConverter
 
                     using (await context.ChunkLocks.LockAsync(chunk.ChunkName, context.Token).ConfigureAwait(false))
                     {
-                        using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read,
+                                   FileShare.ReadWrite))
                         {
                             using var decompressor = new DecompressionStream(chunkFile);
                             while (remaining > 0)
                             {
-                                int read = await decompressor.ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token).ConfigureAwait(false);
+                                int read = await decompressor
+                                    .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)),
+                                        context.Token).ConfigureAwait(false);
                                 if (read <= 0)
                                 {
                                     break;
                                 }
 
-                                await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token).ConfigureAwait(false);
+                                await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token)
+                                    .ConfigureAwait(false);
                                 remaining -= read;
                             }
                         }
@@ -508,8 +543,9 @@ public sealed class GameServerConverter
     #endregion
 
     #region 落盘替换
-    
-    private async Task ReplaceGameResourceAsync(GameServerConversionContext context, List<GameServerAssetOperation> operations, GameServerScheme targetScheme)
+
+    private async Task ReplaceGameResourceAsync(GameServerConversionContext context,
+        List<GameServerAssetOperation> operations, GameServerScheme targetScheme)
     {
         var orderedOperations = operations.OrderBy(operation => operation.Kind switch
         {
@@ -517,7 +553,7 @@ public sealed class GameServerConverter
             GameServerAssetOperationKind.ModifyOrReplace => 1,
             _ => 2,
         }).ToList();
-        
+
         string stage = "GameServer_StageReplace".GetLocalized();
         int totalFiles = orderedOperations.Count;
         int doneFiles = 0;
@@ -532,7 +568,8 @@ public sealed class GameServerConverter
                 ? operation.OldAsset?.AssetName
                 : operation.NewAsset?.AssetName;
             context.Progress.Report(new GameServerConversionProgress(
-                string.Format("GameServer_ReplacingFile".GetLocalized(), doneFiles, totalFiles, currentFileName ?? string.Empty),
+                string.Format("GameServer_ReplacingFile".GetLocalized(), doneFiles, totalFiles,
+                    currentFileName ?? string.Empty),
                 totalFiles, doneFiles, 0, 0, null));
 
             (bool moveToBackup, bool moveToTarget) = operation.Kind switch
@@ -541,7 +578,7 @@ public sealed class GameServerConverter
                 GameServerAssetOperationKind.ModifyOrReplace => (true, true),
                 _ => (false, true),
             };
-            
+
             if (moveToBackup && operation.OldAsset is { } oldAsset)
             {
                 string localPath = context.GetGameFilePath(oldAsset.AssetName);
@@ -556,7 +593,7 @@ public sealed class GameServerConverter
                     MoveFile(localPath, backupPath);
                 }
             }
-            
+
             if (moveToTarget && operation.NewAsset is { } newAsset)
             {
                 string cachePath = context.GetTargetFilePath(newAsset.AssetName);
@@ -580,7 +617,7 @@ public sealed class GameServerConverter
                 MoveFile(cachePath, targetPath);
             }
         }
-        
+
         if (!string.Equals(context.FromDataFolderName, context.ToDataFolderName, StringComparison.OrdinalIgnoreCase))
         {
             string fromDataDir = Path.Combine(context.GameDir, context.FromDataFolderName);
@@ -597,24 +634,28 @@ public sealed class GameServerConverter
                 }
             }
         }
-        
-        string currentExe = Path.Combine(context.GameDir, context.CurrentScheme.IsOversea ? GameConstants.OS_EXE : GameConstants.CN_EXE);
-        string targetExe = Path.Combine(context.GameDir, targetScheme.IsOversea ? GameConstants.OS_EXE : GameConstants.CN_EXE);
-        if (!string.Equals(Path.GetFileName(currentExe), Path.GetFileName(targetExe), StringComparison.OrdinalIgnoreCase)
+
+        string currentExe = Path.Combine(context.GameDir,
+            context.CurrentScheme.IsOversea ? GameConstants.OS_EXE : GameConstants.CN_EXE);
+        string targetExe = Path.Combine(context.GameDir,
+            targetScheme.IsOversea ? GameConstants.OS_EXE : GameConstants.CN_EXE);
+        if (!string.Equals(Path.GetFileName(currentExe), Path.GetFileName(targetExe),
+                StringComparison.OrdinalIgnoreCase)
             && File.Exists(currentExe)
             && !File.Exists(targetExe))
         {
             File.Move(currentExe, targetExe);
         }
-        
+
         _configurationService.ApplyScheme(context.GameDir, targetScheme);
-        
+
         await _gameChannelSdkService.EnsureSdkAndDeprecatedFilesAsync(
             context.GameDir, targetScheme, context.Log, context.Token,
             context.DownloadMonitor is null ? null : context.DownloadMonitor.AddBytes).ConfigureAwait(false);
     }
-    
-    private static void MovePreparedFilesToGame(GameServerConversionContext context, IEnumerable<GameServerAssetOperation> operations)
+
+    private static void MovePreparedFilesToGame(GameServerConversionContext context,
+        IEnumerable<GameServerAssetOperation> operations)
     {
         foreach (var operation in operations.Where(operation => operation.NewAsset is not null))
         {
@@ -644,8 +685,9 @@ public sealed class GameServerConverter
     #endregion
 
     #region 校验
-    
-    private async Task<List<AssetProperty>> VerifyAssetsAsync(GameServerConversionContext context, SophonManifestProto manifest)
+
+    private async Task<List<AssetProperty>> VerifyAssetsAsync(GameServerConversionContext context,
+        SophonManifestProto manifest)
     {
         var brokenAssets = new ConcurrentBag<AssetProperty>();
         int totalAssets = manifest.Assets.Count;
@@ -663,24 +705,28 @@ public sealed class GameServerConverter
             {
                 try
                 {
-                    using SafeFileHandle fileHandle = File.OpenHandle(assetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, FileOptions.RandomAccess);
+                    using SafeFileHandle fileHandle = File.OpenHandle(assetPath, FileMode.Open, FileAccess.Read,
+                        FileShare.ReadWrite, FileOptions.RandomAccess);
 
                     foreach (var chunk in asset.AssetChunks)
                     {
                         token.ThrowIfCancellationRequested();
 
                         byte[] buffer = new byte[checked((int)chunk.ChunkSizeDecompressed)];
-                        await ReadExactlyAsync(fileHandle, buffer, chunk.ChunkOnFileOffset, token).ConfigureAwait(false);
+                        await ReadExactlyAsync(fileHandle, buffer, chunk.ChunkOnFileOffset, token)
+                            .ConfigureAwait(false);
 
                         string actualMd5 = HashUtility.Md5Bytes(buffer);
-                        if (!actualMd5.Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase))
+                        if (!actualMd5.Equals(chunk.ChunkDecompressedHashMd5 ?? string.Empty,
+                                StringComparison.OrdinalIgnoreCase))
                         {
                             isBroken = true;
                             break;
                         }
                     }
                 }
-                catch (Exception ex) when (ex is IOException or EndOfStreamException or ArgumentException or OverflowException or UnauthorizedAccessException)
+                catch (Exception ex) when (ex is IOException or EndOfStreamException or ArgumentException
+                                               or OverflowException or UnauthorizedAccessException)
                 {
                     isBroken = true;
                 }
@@ -702,13 +748,15 @@ public sealed class GameServerConverter
 
         return brokenAssets.ToList();
     }
-    
-    private static async Task ReadExactlyAsync(SafeFileHandle handle, Memory<byte> buffer, long offset, CancellationToken token)
+
+    private static async Task ReadExactlyAsync(SafeFileHandle handle, Memory<byte> buffer, long offset,
+        CancellationToken token)
     {
         int total = 0;
         while (total < buffer.Length)
         {
-            int read = await RandomAccess.ReadAsync(handle, buffer[total..], offset + total, token).ConfigureAwait(false);
+            int read = await RandomAccess.ReadAsync(handle, buffer[total..], offset + total, token)
+                .ConfigureAwait(false);
             if (read <= 0)
             {
                 throw new EndOfStreamException("文件末尾早于预期（文件可能被截断）。");
@@ -721,7 +769,7 @@ public sealed class GameServerConverter
     #endregion
 
     #region 辅助
-    
+
     private static void EnsureDirectoryPermissions(string gameDir)
     {
         try
@@ -730,7 +778,8 @@ public sealed class GameServerConverter
             string tempFilePath = Path.Combine(gameDir, $"{Guid.NewGuid():N}.tmp");
             string movedFilePath = Path.Combine(gameDir, $"{Guid.NewGuid():N}.tmp");
 
-            using (SafeFileHandle handle = File.OpenHandle(tempFilePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, preallocationSize: 32 * 1024))
+            using (SafeFileHandle handle = File.OpenHandle(tempFilePath, FileMode.CreateNew, FileAccess.ReadWrite,
+                       FileShare.None, preallocationSize: 32 * 1024))
             {
                 RandomAccess.Write(handle, "FUFU LAUNCHER DIRECTORY PERMISSION CHECK"u8, 0);
                 RandomAccess.FlushToDisk(handle);
@@ -741,10 +790,11 @@ public sealed class GameServerConverter
         }
         catch (Exception ex)
         {
-            throw new UnauthorizedAccessException(string.Format("GameServer_InsufficientPermission".GetLocalized(), ex.Message), ex);
+            throw new UnauthorizedAccessException(
+                string.Format("GameServer_InsufficientPermission".GetLocalized(), ex.Message), ex);
         }
     }
-    
+
     private static void MoveFile(string source, string destination, bool overwrite = true)
     {
         if (!string.Equals(Path.GetPathRoot(source), Path.GetPathRoot(destination), StringComparison.OrdinalIgnoreCase))
@@ -762,7 +812,7 @@ public sealed class GameServerConverter
 
         File.Move(source, destination, overwrite);
     }
-    
+
     private static void MergeDirectoryContents(string sourceDir, string targetDir)
     {
         foreach (string file in Directory.GetFiles(sourceDir, "*", SearchOption.AllDirectories))
@@ -804,7 +854,8 @@ public sealed class GameServerConverter
 
     private void CleanPluginsFolder(GameServerConversionContext context)
     {
-        string localDataDirName = context.CurrentScheme.IsOversea ? GameConstants.OS_DATA_DIR : GameConstants.CN_DATA_DIR;
+        string localDataDirName =
+            context.CurrentScheme.IsOversea ? GameConstants.OS_DATA_DIR : GameConstants.CN_DATA_DIR;
         string pluginsDir = Path.Combine(context.GameDir, localDataDirName, "Plugins");
         if (Directory.Exists(pluginsDir))
         {

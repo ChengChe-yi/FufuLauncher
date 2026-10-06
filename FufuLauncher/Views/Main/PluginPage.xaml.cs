@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
 using FufuLauncher.ViewModels;
@@ -20,6 +21,7 @@ public sealed partial class PluginPage : Page
     {
         get;
     }
+
     public ControlPanelModel ControlPanelViewModel
     {
         get;

@@ -2,20 +2,47 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Models;
 
 public class DownloadProgressInfo
 {
-    public double Percent { get; set; }
-    public long BytesDownloaded { get; set; }
-    public long TotalBytes { get; set; }
-    public long SpeedBytesPerSecond { get; set; }
-    public string StatusText { get; set; } = string.Empty;
+    public double Percent
+    {
+        get;
+        set;
+    }
+
+    public long BytesDownloaded
+    {
+        get;
+        set;
+    }
+
+    public long TotalBytes
+    {
+        get;
+        set;
+    }
+
+    public long SpeedBytesPerSecond
+    {
+        get;
+        set;
+    }
+
+    public string StatusText
+    {
+        get;
+        set;
+    } = string.Empty;
+
     public bool HasTotalSize => TotalBytes > 0;
     public string DownloadedSizeDisplay => FormatSize(BytesDownloaded);
     public string TotalSizeDisplay => HasTotalSize ? FormatSize(TotalBytes) : "???";
     public string SpeedDisplay => FormatSpeed(SpeedBytesPerSecond);
     public string PercentDisplay => $"{Percent:F1}%";
+
     private static string FormatSize(long bytes)
     {
         return bytes switch
@@ -26,6 +53,7 @@ public class DownloadProgressInfo
             _ => $"{bytes} B"
         };
     }
+
     private static string FormatSpeed(long bytesPerSecond)
     {
         if (bytesPerSecond <= 0) return "—";

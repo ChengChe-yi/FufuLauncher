@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -32,7 +33,8 @@ public class PluginViewModel : INotifyPropertyChanged
         get => _plugins;
         set
         {
-            _plugins = value; OnPropertyChanged();
+            _plugins = value;
+            OnPropertyChanged();
         }
     }
 
@@ -41,7 +43,8 @@ public class PluginViewModel : INotifyPropertyChanged
         get => _statusMessage;
         set
         {
-            _statusMessage = value; OnPropertyChanged();
+            _statusMessage = value;
+            OnPropertyChanged();
         }
     }
 
@@ -50,7 +53,8 @@ public class PluginViewModel : INotifyPropertyChanged
         get => _isLoading;
         set
         {
-            _isLoading = value; OnPropertyChanged();
+            _isLoading = value;
+            OnPropertyChanged();
         }
     }
 
@@ -59,7 +63,8 @@ public class PluginViewModel : INotifyPropertyChanged
         get => _isEmpty;
         set
         {
-            _isEmpty = value; OnPropertyChanged();
+            _isEmpty = value;
+            OnPropertyChanged();
         }
     }
 
@@ -67,22 +72,27 @@ public class PluginViewModel : INotifyPropertyChanged
     {
         get;
     }
+
     public ICommand AddPluginCommand
     {
         get;
     }
+
     public ICommand TogglePluginCommand
     {
         get;
     }
+
     public ICommand DeletePluginCommand
     {
         get;
     }
+
     public ICommand SortCommand
     {
         get;
     }
+
     public ICommand OpenFolderCommand
     {
         get;
@@ -153,7 +163,10 @@ public class PluginViewModel : INotifyPropertyChanged
                 }
             }
         }
-        catch { }
+        catch
+        {
+        }
+
         return (name, dev, desc);
     }
 
@@ -168,7 +181,7 @@ public class PluginViewModel : INotifyPropertyChanged
             var rootDir = new DirectoryInfo(_pluginsPath);
             var subDirs = rootDir.GetDirectories();
             var nameConflictTracker = new Dictionary<string, List<string>>();
-            
+
             foreach (var dir in subDirs)
             {
                 var dllFile = dir.GetFiles("*.dll").FirstOrDefault();
@@ -181,11 +194,12 @@ public class PluginViewModel : INotifyPropertyChanged
 
                 var iniFile = dir.GetFiles("config.ini").FirstOrDefault()
                               ?? dir.GetFiles("*.ini").FirstOrDefault();
-                
+
                 if (iniFile == null)
                 {
                     string newConfigPath = Path.Combine(dir.FullName, "config.ini");
-                    string configContent = $"[General]\r\nFile = {targetFile.Name}\r\nName = {dir.Name}\r\nDescription = Auto-generated config\r\n";
+                    string configContent =
+                        $"[General]\r\nFile = {targetFile.Name}\r\nName = {dir.Name}\r\nDescription = Auto-generated config\r\n";
                     File.WriteAllText(newConfigPath, configContent, Encoding.UTF8);
                     iniFile = new FileInfo(newConfigPath);
                 }
@@ -201,10 +215,12 @@ public class PluginViewModel : INotifyPropertyChanged
                     if (!string.IsNullOrEmpty(info.Developer)) developer = info.Developer;
                     if (!string.IsNullOrEmpty(info.Description)) description = info.Description;
                 }
+
                 if (!nameConflictTracker.ContainsKey(displayName))
                 {
                     nameConflictTracker[displayName] = new List<string>();
                 }
+
                 nameConflictTracker[displayName].Add(dir.Name);
 
                 Plugins.Add(new PluginItem
@@ -221,6 +237,7 @@ public class PluginViewModel : INotifyPropertyChanged
                     DateModified = targetFile.LastWriteTime
                 });
             }
+
             StatusMessage = $"加载完成，共 {Plugins.Count} 个插件";
             CheckForDuplicates(nameConflictTracker);
         }
@@ -254,10 +271,12 @@ public class PluginViewModel : INotifyPropertyChanged
                 {
                     sb.AppendLine(string.Format("PluginPage_DuplicateFolderItemFormat".GetLocalized(), folder));
                 }
+
                 sb.AppendLine();
             }
+
             sb.AppendLine("PluginPage_DuplicateHint".GetLocalized());
-            
+
             DuplicateDetected?.Invoke(this, sb.ToString());
         }
     }
@@ -279,7 +298,8 @@ public class PluginViewModel : INotifyPropertyChanged
                 var folderName = Path.GetFileNameWithoutExtension(fileName);
                 var destFolderPath = Path.Combine(_pluginsPath, folderName);
 
-                var blockReason = App.GetService<LightweightPluginService>().GetInstallBlockReason(folderName, fileName);
+                var blockReason = App.GetService<LightweightPluginService>()
+                    .GetInstallBlockReason(folderName, fileName);
                 if (blockReason != null)
                 {
                     StatusMessage = blockReason;
@@ -294,11 +314,12 @@ public class PluginViewModel : INotifyPropertyChanged
 
                 var destPath = Path.Combine(destFolderPath, fileName);
                 File.Copy(path, destPath, true);
-                
+
                 var configPath = Path.Combine(destFolderPath, "config.ini");
                 if (!File.Exists(configPath))
                 {
-                    string configContent = $"[General]\r\nFile = {fileName}\r\nName = {folderName}\r\nDescription = Auto-generated config\r\n";
+                    string configContent =
+                        $"[General]\r\nFile = {fileName}\r\nName = {folderName}\r\nDescription = Auto-generated config\r\n";
                     File.WriteAllText(configPath, configContent, Encoding.UTF8);
                 }
 
@@ -322,7 +343,8 @@ public class PluginViewModel : INotifyPropertyChanged
         {
             var constraint = App.GetService<ConstraintService>();
             if (constraint.IsRestricted &&
-                LightweightPluginService.IsMainPluginPackage(Path.GetFileName(item.DirectoryPath), Path.GetFileName(item.FullPath)))
+                LightweightPluginService.IsMainPluginPackage(Path.GetFileName(item.DirectoryPath),
+                    Path.GetFileName(item.FullPath)))
             {
                 StatusMessage = constraint.BlockMessage;
                 NotifyPluginOperationBlocked(constraint.BlockMessage);
@@ -330,7 +352,8 @@ public class PluginViewModel : INotifyPropertyChanged
                 return;
             }
 
-            var blockReason = App.GetService<LightweightPluginService>().GetInstallBlockReason(null, Path.GetFileName(item.FullPath));
+            var blockReason = App.GetService<LightweightPluginService>()
+                .GetInstallBlockReason(null, Path.GetFileName(item.FullPath));
             if (blockReason != null)
             {
                 StatusMessage = blockReason;
@@ -358,6 +381,7 @@ public class PluginViewModel : INotifyPropertyChanged
                     StatusMessage = "无法识别的文件类型";
                     return;
                 }
+
                 newPath = item.FullPath + ".disabled";
                 targetState = false;
             }
@@ -527,10 +551,13 @@ public class PluginViewModel : INotifyPropertyChanged
                 Verb = "open"
             });
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

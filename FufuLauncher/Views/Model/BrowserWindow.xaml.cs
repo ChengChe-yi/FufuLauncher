@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -27,15 +28,15 @@ namespace FufuLauncher.Views
             InitializeWebView();
             ApplyProcessPriority();
         }
-        
+
         private void ApplyProcessPriority()
         {
             try
             {
                 using (var process = System.Diagnostics.Process.GetCurrentProcess())
                 {
-                    process.PriorityClass = _config.EnableHighPriority 
-                        ? System.Diagnostics.ProcessPriorityClass.High 
+                    process.PriorityClass = _config.EnableHighPriority
+                        ? System.Diagnostics.ProcessPriorityClass.High
                         : System.Diagnostics.ProcessPriorityClass.Normal;
                 }
             }
@@ -61,31 +62,32 @@ namespace FufuLauncher.Views
             await WebView.EnsureCoreWebView2Async();
 
             WebView.NavigationStarting += (s, e) => LoadingBar.Visibility = Visibility.Visible;
-            
-            WebView.NavigationCompleted += async (s, e) => {
+
+            WebView.NavigationCompleted += async (s, e) =>
+            {
                 LoadingBar.Visibility = Visibility.Collapsed;
                 UrlTextBox.Text = WebView.Source.ToString();
-                
+
                 await SetWebZoomAsync(_config.ZoomFactor);
             };
-            
+
             ApplyScriptsToWebView();
-            
+
             if (Uri.TryCreate(_config.HomePage, UriKind.Absolute, out var uri))
             {
                 WebView.Source = uri;
             }
         }
-        
+
         private async void ApplyScriptsToWebView()
         {
             if (WebView.CoreWebView2 == null) return;
-            
+
             if (!string.IsNullOrEmpty(_currentScriptId))
             {
                 WebView.CoreWebView2.RemoveScriptToExecuteOnDocumentCreated(_currentScriptId);
             }
-            
+
             string script = $@"
                 document.addEventListener('keydown', (e) => {{
                     const videos = document.getElementsByTagName('video');
@@ -101,15 +103,16 @@ namespace FufuLauncher.Views
             ";
 
             _currentScriptId = await WebView.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(script);
-            
+
             await SetWebZoomAsync(_config.ZoomFactor);
         }
-        
+
         private async Task SetWebZoomAsync(double zoom)
         {
             if (WebView.CoreWebView2 != null)
             {
-                string js = $"if (document.body) document.body.style.zoom = '{zoom.ToString(CultureInfo.InvariantCulture)}';";
+                string js =
+                    $"if (document.body) document.body.style.zoom = '{zoom.ToString(CultureInfo.InvariantCulture)}';";
                 try
                 {
                     await WebView.CoreWebView2.ExecuteScriptAsync(js);
@@ -140,7 +143,7 @@ namespace FufuLauncher.Views
                 _config.FastForwardKey = SettingForwardBox.Text;
                 _config.EnableHighPriority = SettingHighPriorityToggle.IsOn;
                 _config.Save();
-                
+
                 ApplyProcessPriority();
                 ApplyScriptsToWebView();
             }
@@ -151,7 +154,7 @@ namespace FufuLauncher.Views
             if (_appWindow.Presenter is OverlappedPresenter presenter)
             {
                 presenter.IsAlwaysOnTop = (sender as ToggleButton)!.IsChecked ?? false;
-                PinButton.Background = presenter.IsAlwaysOnTop 
+                PinButton.Background = presenter.IsAlwaysOnTop
                     ? (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["AccentFillColorDefaultBrush"]
                     : (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["SubtleFillColorTransparentBrush"];
             }
@@ -166,7 +169,11 @@ namespace FufuLauncher.Views
                 {
                     url = "https://" + url;
                 }
-                try { WebView.Source = new Uri(url); }
+
+                try
+                {
+                    WebView.Source = new Uri(url);
+                }
                 catch
                 {
                     // ignored

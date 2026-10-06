@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services.PluginMirror;
@@ -50,7 +51,7 @@ public partial class SettingsViewModel
         try
         {
             string updaterPath = Path.Combine(AppContext.BaseDirectory, "UpdateFufuLauncher.exe");
-            
+
             if (File.Exists(updaterPath))
             {
                 var arguments = $"--use-third-party-cdn={IsUseThirdPartyCDNEnabled.ToString().ToLower()}" +
@@ -59,6 +60,7 @@ public partial class SettingsViewModel
                 {
                     arguments += " --preview";
                 }
+
                 if (rollback)
                 {
                     arguments += " --rollback";

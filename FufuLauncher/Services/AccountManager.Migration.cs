@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
@@ -215,7 +216,9 @@ public partial class AccountManager
                     var isOsObj = await settings.ReadSettingAsync("IsInternationalAccount");
                     isInternationalAccount = isOsObj is bool b && b;
                 }
-                catch { }
+                catch
+                {
+                }
 
                 string mainConfigPath = isInternationalAccount
                     ? Path.Combine(DataDir, "config.lab.json")
@@ -341,7 +344,9 @@ public partial class AccountManager
                 var isOsObj = await settings.ReadSettingAsync("IsInternationalAccount");
                 isInternationalAccount = isOsObj is bool b && b;
             }
-            catch { }
+            catch
+            {
+            }
 
             string mainConfigPath = isInternationalAccount
                 ? Path.Combine(DataDir, "config.lab.json")

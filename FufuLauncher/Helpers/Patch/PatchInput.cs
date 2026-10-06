@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 
 namespace FufuLauncher.Helpers.Patch;
@@ -16,8 +17,11 @@ internal sealed class PatchInput
         Length = stream.Length;
     }
 
-    public long Length { get; }
-    
+    public long Length
+    {
+        get;
+    }
+
     public int Read(long position, byte[] buffer, int offset, int count)
     {
         _stream.Position = position;
@@ -146,7 +150,7 @@ internal sealed class PatchSectionReader : IDisposable
     }
 
     public bool IsFinished => LeaveSize == 0;
-    
+
     public long Position => _streamPos - (_cacheEnd - _cacheBegin);
 
     private long LeaveSize => (_streamEnd - _streamPos) + (_cacheEnd - _cacheBegin);
@@ -158,7 +162,7 @@ internal sealed class PatchSectionReader : IDisposable
             throw new PatchFormatException("section not fully consumed");
         }
     }
-    
+
     private bool UpdateCache()
     {
         long streamSize = _streamEnd - _streamPos;
@@ -209,7 +213,7 @@ internal sealed class PatchSectionReader : IDisposable
 
         return true;
     }
-    
+
     private bool EnsureCached(int need)
     {
         if (_cacheEnd - _cacheBegin >= need)
@@ -236,7 +240,7 @@ internal sealed class PatchSectionReader : IDisposable
 
         return _cache[_cacheBegin];
     }
-    
+
     public byte ReadByteValue()
     {
         if (!EnsureCached(1))
@@ -246,7 +250,7 @@ internal sealed class PatchSectionReader : IDisposable
 
         return _cache[_cacheBegin++];
     }
-    
+
     public long ReadVarInt(int tagBit = 0)
     {
         int valueBits = 7 - tagBit;
@@ -266,13 +270,12 @@ internal sealed class PatchSectionReader : IDisposable
 
                 code = ReadByteValue();
                 value = (value << 7) | (uint)(code & 0x7F);
-            }
-            while ((code & 0x80) != 0);
+            } while ((code & 0x80) != 0);
         }
 
         return value;
     }
-    
+
     public string ReadTypeEnd(char endTag)
     {
         int readLen = FufuPatch.MaxPluginTypeLength + 1;
@@ -301,7 +304,7 @@ internal sealed class PatchSectionReader : IDisposable
 
         throw new PatchFormatException("type string terminator not found");
     }
-    
+
     public void CopyTo(PatchOutput output, long count)
     {
         while (count > 0)
@@ -317,7 +320,7 @@ internal sealed class PatchSectionReader : IDisposable
             count -= step;
         }
     }
-    
+
     public void CopyTo(byte[] dst, int offset, long count)
     {
         while (count > 0)
@@ -334,7 +337,7 @@ internal sealed class PatchSectionReader : IDisposable
             count -= step;
         }
     }
-    
+
     public void Skip(long count)
     {
         while (count > 0)
@@ -349,7 +352,7 @@ internal sealed class PatchSectionReader : IDisposable
             count -= step;
         }
     }
-    
+
     public void Dispose()
     {
         if (Interlocked.Exchange(ref _disposed, 1) != 0)

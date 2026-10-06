@@ -84,8 +84,10 @@
         <Grid x:Name="EmptyStateGrid" Grid.Row="1" Visibility="Visible" Background="Transparent">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="16">
                 <TextBlock Text="📁" FontSize="64" TextAlignment="Center" />
-                <TextBlock Text="{helpers:Loc Key=ScreenshotGallery_NoScreenshots}" FontSize="24" FontWeight="SemiBold" TextAlignment="Center" />
-                <Button Content="{helpers:Loc Key=ScreenshotGallery_OpenScreenshotFolder}" Click="OpenEmptyFolder_Click" HorizontalAlignment="Center" />
+                <TextBlock Text="{helpers:Loc Key=ScreenshotGallery_NoScreenshots}" FontSize="24" FontWeight="SemiBold"
+                           TextAlignment="Center" />
+                <Button Content="{helpers:Loc Key=ScreenshotGallery_OpenScreenshotFolder}"
+                        Click="OpenEmptyFolder_Click" HorizontalAlignment="Center" />
             </StackPanel>
         </Grid>
 
@@ -103,18 +105,23 @@
 
                 <CommandBar Grid.Column="0" DefaultLabelPosition="Right">
                     <CommandBar.PrimaryCommands>
-                        <AppBarButton Icon="Back" Label="{helpers:Loc Key=ScreenshotGallery_BackToGallery}" Click="CloseDetailView_Click" />
+                        <AppBarButton Icon="Back" Label="{helpers:Loc Key=ScreenshotGallery_BackToGallery}"
+                                      Click="CloseDetailView_Click" />
                     </CommandBar.PrimaryCommands>
                 </CommandBar>
 
                 <CommandBar Grid.Column="1" DefaultLabelPosition="Right">
                     <CommandBar.PrimaryCommands>
-                        <AppBarButton Icon="Copy" Label="{helpers:Loc Key=ScreenshotGallery_Copy}" Click="CopyImage_Click" />
+                        <AppBarButton Icon="Copy" Label="{helpers:Loc Key=ScreenshotGallery_Copy}"
+                                      Click="CopyImage_Click" />
                         <AppBarButton Icon="Cut" Label="{helpers:Loc Key=ScreenshotGallery_Cut}" Click="CutImage_Click" />
-                        <AppBarButton Icon="Delete" Label="{helpers:Loc Key=ScreenshotGallery_Delete}" Click="DeleteImage_Click" />
+                        <AppBarButton Icon="Delete" Label="{helpers:Loc Key=ScreenshotGallery_Delete}"
+                                      Click="DeleteImage_Click" />
                         <AppBarSeparator />
-                        <AppBarButton Icon="Folder" Label="{helpers:Loc Key=ScreenshotGallery_OpenFolder}" Click="OpenFolder_Click" />
-                        <AppBarButton Icon="OpenFile" Label="{helpers:Loc Key=ScreenshotGallery_OpenWithApp}" Click="OpenWithSystemApp_Click" />
+                        <AppBarButton Icon="Folder" Label="{helpers:Loc Key=ScreenshotGallery_OpenFolder}"
+                                      Click="OpenFolder_Click" />
+                        <AppBarButton Icon="OpenFile" Label="{helpers:Loc Key=ScreenshotGallery_OpenWithApp}"
+                                      Click="OpenWithSystemApp_Click" />
                     </CommandBar.PrimaryCommands>
                 </CommandBar>
             </Grid>

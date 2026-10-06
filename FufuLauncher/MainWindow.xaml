@@ -17,19 +17,19 @@
                         <AcrylicBrush x:Key="IosGlassBrush"
                                       TintColor="#FFFFFF"
                                       TintOpacity="0.6"
-                                      FallbackColor="#E5FFFFFF"/>
+                                      FallbackColor="#E5FFFFFF" />
                     </ResourceDictionary>
                     <ResourceDictionary x:Key="Default">
-                        <AcrylicBrush x:Key="IosGlassBrush" 
-                                      TintColor="#000000" 
-                                      TintOpacity="0.15" 
-                                      FallbackColor="#CC000000"/>
+                        <AcrylicBrush x:Key="IosGlassBrush"
+                                      TintColor="#000000"
+                                      TintOpacity="0.15"
+                                      FallbackColor="#CC000000" />
                     </ResourceDictionary>
                     <ResourceDictionary x:Key="Dark">
-                        <AcrylicBrush x:Key="IosGlassBrush" 
-                                      TintColor="#000000" 
-                                      TintOpacity="0.15" 
-                                      FallbackColor="#CC000000"/>
+                        <AcrylicBrush x:Key="IosGlassBrush"
+                                      TintColor="#000000"
+                                      TintOpacity="0.15"
+                                      FallbackColor="#CC000000" />
                     </ResourceDictionary>
                 </ResourceDictionary.ThemeDictionaries>
             </ResourceDictionary>
@@ -38,7 +38,7 @@
         <tb:TaskbarIcon x:Name="TrayIcon"
                         IconSource="/Assets/WindowIcon.ico"
                         ToolTipText="{helpers:Loc Key=AppDisplayName}"
-                        LeftClickCommand="{x:Bind ShowWindowCommand}" 
+                        LeftClickCommand="{x:Bind ShowWindowCommand}"
                         DoubleClickCommand="{x:Bind ShowWindowCommand}">
             <tb:TaskbarIcon.ContextFlyout>
                 <MenuFlyout>
@@ -53,29 +53,29 @@
                    Stretch="UniformToFill"
                    VerticalAlignment="Top"
                    Margin="0,-25,0,0"
-                   Opacity="1"/>
+                   Opacity="1" />
             <MediaPlayerElement x:Name="GlobalBackgroundVideo"
                                 Stretch="UniformToFill"
                                 Opacity="1"
                                 AutoPlay="False"
                                 AreTransportControlsEnabled="False"
-                                Visibility="Collapsed"/>
+                                Visibility="Collapsed" />
             <Rectangle x:Name="GlobalBackgroundOverlay"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
-                       Opacity="0.2"/> 
+                       Opacity="0.2" />
         </Grid>
 
-       <Grid x:Name="PageBackgroundOverlay" 
-              HorizontalAlignment="Stretch" 
-              VerticalAlignment="Stretch" 
+        <Grid x:Name="PageBackgroundOverlay"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
               IsHitTestVisible="False">
             <Grid.RenderTransform>
-                <TranslateTransform x:Name="OverlayTranslate" Y="2000"/>
+                <TranslateTransform x:Name="OverlayTranslate" Y="2000" />
             </Grid.RenderTransform>
-       </Grid>
+        </Grid>
 
-        <Frame x:Name="AgreementFrame" Visibility="Collapsed" Background="Transparent"/>
+        <Frame x:Name="AgreementFrame" Visibility="Collapsed" Background="Transparent" />
 
         <NavigationView x:Name="NavigationView"
                         Visibility="Collapsed"
@@ -101,24 +101,24 @@
                             <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
                                           TintColor="#FFFFFF"
                                           TintOpacity="0.6"
-                                          FallbackColor="#E5FFFFFF"/>
+                                          FallbackColor="#E5FFFFFF" />
                             <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
                                           TintColor="#FFFFFF"
                                           TintOpacity="0.6"
-                                          FallbackColor="#E5FFFFFF"/>
+                                          FallbackColor="#E5FFFFFF" />
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="Dark">
-                             <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" 
-                                          TintColor="#000000" 
-                                          TintOpacity="0.15" 
-                                          FallbackColor="#CC000000"/>
-                            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" 
-                                          TintColor="#000000" 
-                                          TintOpacity="0.15" 
-                                          FallbackColor="#CC000000"/>
+                            <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
+                                          TintColor="#000000"
+                                          TintOpacity="0.15"
+                                          FallbackColor="#CC000000" />
+                            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
+                                          TintColor="#000000"
+                                          TintOpacity="0.15"
+                                          FallbackColor="#CC000000" />
                         </ResourceDictionary>
                     </ResourceDictionary.ThemeDictionaries>
-                    
+
                     <FontFamily x:Key="ActionIconFont">Segoe Fluent Icons, Segoe MDL2 Assets, Segoe UI Symbol</FontFamily>
 
                     <CornerRadius x:Key="OverlayCornerRadius">0</CornerRadius>
@@ -126,111 +126,121 @@
                     <CornerRadius x:Key="NavigationViewItemCornerRadius">0</CornerRadius>
                     <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
                     <Thickness x:Key="NavigationViewBorderThickness">0</Thickness>
-                    
+
                     <Style TargetType="NavigationViewItem">
-                        <Setter Property="MinHeight" Value="48"/>
-                        <Setter Property="Margin" Value="0,1,0,1"/>
+                        <Setter Property="MinHeight" Value="48" />
+                        <Setter Property="Margin" Value="0,1,0,1" />
                     </Style>
                     <Style TargetType="FontIcon">
-                        <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}"/>
+                        <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
                     </Style>
-                    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent"/>
-                    <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent"/>
-               </ResourceDictionary>
+                    <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
+                    <SolidColorBrush x:Key="NavigationViewContentGridBorderBrush" Color="Transparent" />
+                </ResourceDictionary>
             </NavigationView.Resources>
 
             <NavigationView.PaneHeader>
-                <TextBlock Text="" 
-                           FontSize="13" 
-                           FontWeight="SemiBold" 
+                <TextBlock Text=""
+                           FontSize="13"
+                           FontWeight="SemiBold"
                            Margin="12,68,0,8"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center" />
             </NavigationView.PaneHeader>
 
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="{helpers:Loc Key=NavHome}" Tag="FufuLauncher.ViewModels.MainViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE80F;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE80F;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=InjectionSettingsNav}" Tag="FufuLauncher.ViewModels.PluginSettingsViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=InjectionSettingsNav}"
+                                    Tag="FufuLauncher.ViewModels.PluginSettingsViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEA86;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xEA86;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=NavControlPanel}" Tag="FufuLauncher.ViewModels.ControlPanelModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=NavControlPanel}"
+                                    Tag="FufuLauncher.ViewModels.ControlPanelModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE80A;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE80A;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=PageTitle_GameSettings}" Tag="FufuLauncher.ViewModels.BlankViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=PageTitle_GameSettings}"
+                                    Tag="FufuLauncher.ViewModels.BlankViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=NavAccountSettings}" Tag="FufuLauncher.ViewModels.AccountViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=NavAccountSettings}"
+                                    Tag="FufuLauncher.ViewModels.AccountViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE77B;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE77B;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=NavOtherFeatures}" Tag="FufuLauncher.ViewModels.OtherViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=NavOtherFeatures}"
+                                    Tag="FufuLauncher.ViewModels.OtherViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE71D;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE71D;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=PluginMgmtTitle}" Tag="FufuLauncher.ViewModels.PluginViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=PluginMgmtTitle}"
+                                    Tag="FufuLauncher.ViewModels.PluginViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE7B5;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE7B5;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=PluginStoreTitle}" Tag="FufuLauncher.ViewModels.PluginStoreViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=PluginStoreTitle}"
+                                    Tag="FufuLauncher.ViewModels.PluginStoreViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE90F;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE90F;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=NavDataCenter}" Tag="FufuLauncher.ViewModels.DataViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=NavDataCenter}"
+                                    Tag="FufuLauncher.ViewModels.DataViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE9D9;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE9D9;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
                 <NavigationViewItem Content="{helpers:Loc Key=NavHelpDocs}" Tag="FufuLauncher.ViewModels.HelpViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE82D;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE82D;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                
-                <NavigationViewItem Content="{helpers:Loc Key=NavCalculator}" Tag="FufuLauncher.ViewModels.CalculatorViewModel">
+
+                <NavigationViewItem Content="{helpers:Loc Key=NavCalculator}"
+                                    Tag="FufuLauncher.ViewModels.CalculatorViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE1D0;" FontFamily="{StaticResource ActionIconFont}" FontSize="24"/>
+                        <FontIcon Glyph="&#xE1D0;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.FooterMenuItems>
-                <NavigationViewItem Content="{helpers:Loc Key=NavSettings}" Tag="FufuLauncher.ViewModels.SettingsViewModel">
+                <NavigationViewItem Content="{helpers:Loc Key=NavSettings}"
+                                    Tag="FufuLauncher.ViewModels.SettingsViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon x:Name="SettingsIcon" 
-                                  Glyph="&#xE713;" FontFamily="{StaticResource ActionIconFont}" 
+                        <FontIcon x:Name="SettingsIcon"
+                                  Glyph="&#xE713;" FontFamily="{StaticResource ActionIconFont}"
                                   FontSize="24"
                                   RenderTransformOrigin="0.5,0.5">
                             <FontIcon.RenderTransform>
-                               <RotateTransform x:Name="SettingsIconRotation" Angle="0"/>
+                                <RotateTransform x:Name="SettingsIconRotation" Angle="0" />
                             </FontIcon.RenderTransform>
                         </FontIcon>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.FooterMenuItems>
 
-            <Frame x:Name="ContentFrame" Background="Transparent"/>
+            <Frame x:Name="ContentFrame" Background="Transparent" />
         </NavigationView>
 
         <Grid x:Name="SystemMessageBar"
@@ -240,29 +250,30 @@
               Height="40"
               CornerRadius="20"
               IsHitTestVisible="False"
-              Visibility="Collapsed" 
+              Visibility="Collapsed"
               Canvas.ZIndex="2000">
-            
+
             <Grid.RenderTransform>
-               <TranslateTransform x:Name="SystemMessageTranslate" Y="100"/>
+                <TranslateTransform x:Name="SystemMessageTranslate" Y="100" />
             </Grid.RenderTransform>
 
             <Border CornerRadius="20" BorderThickness="1" BorderBrush="#1A000000">
                 <Border.Background>
-                    <AcrylicBrush TintColor="#000000" 
-                                  TintOpacity="0.0" 
+                    <AcrylicBrush TintColor="#000000"
+                                  TintOpacity="0.0"
                                   FallbackColor="#CC000000"
-                                  Opacity="0.6"/>
+                                  Opacity="0.6" />
                 </Border.Background>
-            
+
                 <Border.Shadow>
-                    <ThemeShadow/>
+                    <ThemeShadow />
                 </Border.Shadow>
             </Border>
 
             <StackPanel Orientation="Horizontal" Spacing="8" Padding="16,0,16,0" VerticalAlignment="Center">
-                <FontIcon x:Name="SystemMessageIcon" Glyph="&#xE774;" FontSize="16"/>
-                <TextBlock x:Name="SystemMessageText" Text="{helpers:Loc Key=SysStatusChecking}" FontSize="13" FontWeight="Medium"/>
+                <FontIcon x:Name="SystemMessageIcon" Glyph="&#xE774;" FontSize="16" />
+                <TextBlock x:Name="SystemMessageText" Text="{helpers:Loc Key=SysStatusChecking}" FontSize="13"
+                           FontWeight="Medium" />
             </StackPanel>
         </Grid>
 
@@ -277,16 +288,16 @@
 
             <Border CornerRadius="10" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
                 <Border.Background>
-                    <ThemeResource ResourceKey="IosGlassBrush"/>
+                    <ThemeResource ResourceKey="IosGlassBrush" />
                 </Border.Background>
                 <Border.Shadow>
-                    <ThemeShadow/>
+                    <ThemeShadow />
                 </Border.Shadow>
 
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Padding="16,12,16,8">
@@ -294,9 +305,10 @@
                                    FontSize="14"
                                    FontWeight="SemiBold"
                                    VerticalAlignment="Center"
-                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
-                
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="4">
+                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center"
+                                    Spacing="4">
                             <Button ToolTipService.ToolTip="{helpers:Loc Key=NotificationPositionTitle}"
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
@@ -305,7 +317,7 @@
                                     Padding="6,4"
                                     Click="NotificationSettings_Click">
                                 <FontIcon Glyph="&#xE713;" FontSize="14"
-                                          Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                          Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                             </Button>
                             <Button Content="{helpers:Loc Key=ClearAllBtn}"
                                     HorizontalAlignment="Right"
@@ -315,53 +327,53 @@
                                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                     FontSize="12"
                                     Padding="8,4"
-                                    Click="ClearAllNotifications_Click"/>
+                                    Click="ClearAllNotifications_Click" />
                         </StackPanel>
                     </Grid>
 
-                    <ScrollViewer Grid.Row="1" 
-                                  VerticalScrollBarVisibility="Auto" 
+                    <ScrollViewer Grid.Row="1"
+                                  VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Disabled"
                                   Padding="12,12,12,12">
-                        <StackPanel x:Name="NotificationPanel" 
-                                    Orientation="Vertical" 
-                                    Spacing="8"/>
+                        <StackPanel x:Name="NotificationPanel"
+                                    Orientation="Vertical"
+                                    Spacing="8" />
                     </ScrollViewer>
                 </Grid>
             </Border>
         </Grid>
 
-        <Grid x:Name="AppTitleBar" 
-              Height="40" 
+        <Grid x:Name="AppTitleBar"
+              Height="40"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Top"
               Canvas.ZIndex="1000"
               Margin="80,0,140,0"
               IsHitTestVisible="False">
-            
-            <Border HorizontalAlignment="Left" 
-                    VerticalAlignment="Center" 
-                    CornerRadius="8" 
+
+            <Border HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    CornerRadius="8"
                     Padding="8,4,12,4"
                     Background="{ThemeResource IosGlassBrush}"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                     BorderThickness="1">
 
                 <StackPanel Orientation="Horizontal" Spacing="0">
-                    <Image x:Name="TitleBarIcon" Width="20" Height="20" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                    <Image x:Name="TitleBarIcon" Width="20" Height="20" Margin="0,0,8,0" VerticalAlignment="Center" />
                     <TextBlock x:Name="TitleBarText"
                                Text="{helpers:Loc Key=AppDisplayName}"
                                FontSize="12"
                                FontWeight="SemiBold"
                                VerticalAlignment="Center"
-                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                               Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
                     <TextBlock x:Name="TitleBarVersionText"
                                FontSize="12"
                                FontWeight="SemiBold"
                                VerticalAlignment="Center"
                                Margin="8,0,0,0"
                                Foreground="#FFD700"
-                               Visibility="Collapsed"/>
+                               Visibility="Collapsed" />
                 </StackPanel>
             </Border>
         </Grid>

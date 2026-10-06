@@ -6,9 +6,23 @@ namespace FufuLauncher.Selectors;
 
 public sealed class PluginConfigTemplateSelector : DataTemplateSelector
 {
-    public DataTemplate? BooleanTemplate { get; set; }
-    public DataTemplate? NumberTemplate { get; set; }
-    public DataTemplate? TextTemplate { get; set; }
+    public DataTemplate? BooleanTemplate
+    {
+        get;
+        set;
+    }
+
+    public DataTemplate? NumberTemplate
+    {
+        get;
+        set;
+    }
+
+    public DataTemplate? TextTemplate
+    {
+        get;
+        set;
+    }
 
     protected override DataTemplate SelectTemplateCore(object item)
     {

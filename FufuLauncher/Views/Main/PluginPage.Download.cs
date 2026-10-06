@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.IO.Compression;
 using Windows.System;
 using Microsoft.UI.Xaml;
@@ -29,60 +30,72 @@ public sealed partial class PluginPage
             Directory.Move(sourceDir, destDir);
             return;
         }
-    
+
         if (!Directory.Exists(destDir))
         {
             Directory.CreateDirectory(destDir);
         }
-    
+
         foreach (var file in Directory.GetFiles(sourceDir))
         {
             var destFile = Path.Combine(destDir, Path.GetFileName(file));
             File.Copy(file, destFile, true);
         }
-    
+
         foreach (var dir in Directory.GetDirectories(sourceDir))
         {
             var destSubDir = Path.Combine(destDir, Path.GetFileName(dir));
             MoveDirectorySafe(dir, destSubDir);
         }
-    
+
         Directory.Delete(sourceDir, true);
     }
 
     private async void OnGetPluginsClick(object sender, RoutedEventArgs e)
     {
-        string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
-        string urlOld = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin-old.zip";
-        string urlHotSwitch = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/input_hot_switch.zip";
-        
+        string urlLatest =
+            "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+        string urlOld =
+            "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin-old.zip";
+        string urlHotSwitch =
+            "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/input_hot_switch.zip";
+
         var stackPanel = new StackPanel { Spacing = 10 };
 
         bool lightweight = App.GetService<LightweightPluginService>().IsLightweightMode;
 
-        var rbLatest = new RadioButton { Content = "PluginPage_DownloadLatestOption".GetLocalized(), IsChecked = !lightweight, IsEnabled = !lightweight, GroupName = "PluginSelect", Tag = urlLatest };
-        
-        var rbCustom = new RadioButton { Content = "PluginPage_DownloadCustomOption".GetLocalized(), IsChecked = lightweight, GroupName = "PluginSelect", Tag = "Custom" };
-        var txtCustomUrl = new TextBox 
-        { 
-            PlaceholderText = "PluginPage_DownloadCustomPlaceholder".GetLocalized(), 
+        var rbLatest = new RadioButton
+        {
+            Content = "PluginPage_DownloadLatestOption".GetLocalized(), IsChecked = !lightweight,
+            IsEnabled = !lightweight, GroupName = "PluginSelect", Tag = urlLatest
+        };
+
+        var rbCustom = new RadioButton
+        {
+            Content = "PluginPage_DownloadCustomOption".GetLocalized(), IsChecked = lightweight,
+            GroupName = "PluginSelect", Tag = "Custom"
+        };
+        var txtCustomUrl = new TextBox
+        {
+            PlaceholderText = "PluginPage_DownloadCustomPlaceholder".GetLocalized(),
             Visibility = lightweight ? Visibility.Visible : Visibility.Collapsed,
             Margin = new Thickness(28, 0, 0, 0)
         };
-        
+
         rbCustom.Checked += (_, _) => txtCustomUrl.Visibility = Visibility.Visible;
         rbCustom.Unchecked += (_, _) => txtCustomUrl.Visibility = Visibility.Collapsed;
 
-        var warningText = new TextBlock 
-        { 
-            Text = "PluginPage_DownloadNotice".GetLocalized(), 
+        var warningText = new TextBlock
+        {
+            Text = "PluginPage_DownloadNotice".GetLocalized(),
             Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red),
             TextWrapping = TextWrapping.Wrap,
             FontSize = 13,
             Margin = new Thickness(0, 5, 0, 5)
         };
-        
-        stackPanel.Children.Add(new TextBlock { Text = "PluginPage_DownloadChooseHint".GetLocalized(), Margin = new Thickness(0, 0, 0, 5) });
+
+        stackPanel.Children.Add(new TextBlock
+            { Text = "PluginPage_DownloadChooseHint".GetLocalized(), Margin = new Thickness(0, 0, 0, 5) });
         stackPanel.Children.Add(rbLatest);
         stackPanel.Children.Add(warningText);
 
@@ -100,11 +113,11 @@ public sealed partial class PluginPage
 
         stackPanel.Children.Add(rbCustom);
         stackPanel.Children.Add(txtCustomUrl);
-        
-        stackPanel.Children.Add(new TextBlock 
-        { 
-            Text = "PluginPage_DownloadProxyHint".GetLocalized(), 
-            FontSize = 12, 
+
+        stackPanel.Children.Add(new TextBlock
+        {
+            Text = "PluginPage_DownloadProxyHint".GetLocalized(),
+            FontSize = 12,
             Opacity = 0.7,
             Margin = new Thickness(0, 10, 0, 0)
         });
@@ -127,7 +140,7 @@ public sealed partial class PluginPage
             if (rbCustom.IsChecked == true)
             {
                 selectedUrl = txtCustomUrl.Text.Trim();
-                
+
                 if (string.IsNullOrEmpty(selectedUrl))
                 {
                     var errDialog = new ContentDialog
@@ -145,7 +158,7 @@ public sealed partial class PluginPage
             await DownloadAndInstallPluginAsync(selectedUrl);
         }
     }
-    
+
     private async Task ShowInstallBlockedDialogAsync(string message)
     {
         var dialog = new ContentDialog
@@ -178,7 +191,7 @@ public sealed partial class PluginPage
 
         var fileName = proxyUrl.Split('/').Last();
         if (fileName.Contains("?")) fileName = fileName.Split('?')[0];
-        if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) 
+        if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
             fileName = "CustomPlugin.zip";
 
         var preBlockReason = lightweightPlugin.GetInstallBlockReason(Path.GetFileNameWithoutExtension(fileName), null);
@@ -187,29 +200,31 @@ public sealed partial class PluginPage
             await ShowInstallBlockedDialogAsync(preBlockReason);
             return;
         }
-        
+
         var rawGithubUrl = proxyUrl.Replace("https://gh-proxy.com/", "");
-        
-        if (rawGithubUrl.Contains("github.com") && rawGithubUrl.Contains("/blob/") && !rawGithubUrl.Contains("?raw=true"))
+
+        if (rawGithubUrl.Contains("github.com") && rawGithubUrl.Contains("/blob/") &&
+            !rawGithubUrl.Contains("?raw=true"))
         {
             rawGithubUrl += "?raw=true";
         }
-        
+
         var tempPath = Path.Combine(Path.GetTempPath(), fileName);
-        var extractPath = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(fileName) + "_Extract_" + Guid.NewGuid());
+        var extractPath = Path.Combine(Path.GetTempPath(),
+            Path.GetFileNameWithoutExtension(fileName) + "_Extract_" + Guid.NewGuid());
         var pluginsDir = Path.Combine(AppContext.BaseDirectory, "Plugins");
         if (!Directory.Exists(pluginsDir))
         {
             Directory.CreateDirectory(pluginsDir);
         }
-        
-        var progressBar = new ProgressBar 
-        { 
-            Minimum = 0, Maximum = 100, Value = 0, Height = 20, Margin = new Thickness(0, 10, 0, 0) 
+
+        var progressBar = new ProgressBar
+        {
+            Minimum = 0, Maximum = 100, Value = 0, Height = 20, Margin = new Thickness(0, 10, 0, 0)
         };
-        var statusText = new TextBlock 
-        { 
-            Text = "PluginPage_StatusConnecting".GetLocalized(), HorizontalAlignment = HorizontalAlignment.Center 
+        var statusText = new TextBlock
+        {
+            Text = "PluginPage_StatusConnecting".GetLocalized(), HorizontalAlignment = HorizontalAlignment.Center
         };
         var stackPanel = new StackPanel();
         stackPanel.Children.Add(statusText);
@@ -235,8 +250,8 @@ public sealed partial class PluginPage
             {
                 HttpResponseMessage response;
                 bool usedFallback = false;
-                
-                try 
+
+                try
                 {
                     response = await client.GetAsync(proxyUrl, HttpCompletionOption.ResponseHeadersRead);
                     if (!response.IsSuccessStatusCode) throw new Exception("First attempt failed");
@@ -245,24 +260,26 @@ public sealed partial class PluginPage
                 {
                     statusText.Text = "PluginPage_StatusSwitchingLine".GetLocalized();
                     usedFallback = true;
-                    await Task.Delay(1000); 
+                    await Task.Delay(1000);
                     response = await client.GetAsync(rawGithubUrl, HttpCompletionOption.ResponseHeadersRead);
-                    
+
                     if (!response.IsSuccessStatusCode)
                     {
-                        throw new Exception(string.Format("PluginPage_DownloadHttpFailedFormat".GetLocalized(), response.StatusCode));
+                        throw new Exception(string.Format("PluginPage_DownloadHttpFailedFormat".GetLocalized(),
+                            response.StatusCode));
                     }
                 }
-                
+
                 using (response)
                 {
                     var totalBytes = response.Content.Headers.ContentLength ?? -1L;
                     var totalRead = 0L;
                     var buffer = new byte[8192];
                     var isMoreToRead = true;
-                    
+
                     using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var fileStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
+                    using (var fileStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None,
+                               8192, true))
                     {
                         while (isMoreToRead)
                         {
@@ -275,42 +292,48 @@ public sealed partial class PluginPage
                                 if (totalBytes != -1)
                                 {
                                     var percent = Math.Round((double)totalRead / totalBytes * 100, 0);
-                                    
+
                                     progressBar.Value = percent;
-                                    var source = usedFallback ? "PluginPage_LineBackup".GetLocalized() : "PluginPage_LineMain".GetLocalized();
-                                    statusText.Text = string.Format("PluginPage_StatusDownloadingFormat".GetLocalized(), source, percent);
+                                    var source = usedFallback
+                                        ? "PluginPage_LineBackup".GetLocalized()
+                                        : "PluginPage_LineMain".GetLocalized();
+                                    statusText.Text = string.Format("PluginPage_StatusDownloadingFormat".GetLocalized(),
+                                        source, percent);
                                 }
                             }
                         }
                     }
                 }
             }
-            
+
             statusText.Text = "PluginPage_StatusExtracting".GetLocalized();
             progressBar.IsIndeterminate = true;
-            await Task.Delay(500); 
-            
+            await Task.Delay(500);
+
             if (Directory.Exists(extractPath)) Directory.Delete(extractPath, true);
             Directory.CreateDirectory(extractPath);
 
             await Task.Run(() => ZipFile.ExtractToDirectory(tempPath, extractPath));
-            
-            try { File.Delete(tempPath); }
+
+            try
+            {
+                File.Delete(tempPath);
+            }
             catch
             {
                 // ignored
             }
 
             statusText.Text = "PluginPage_StatusInstalling".GetLocalized();
-            
-            var targetFolderName = Path.GetFileNameWithoutExtension(tempPath); 
+
+            var targetFolderName = Path.GetFileNameWithoutExtension(tempPath);
             var finalDestDir = Path.Combine(pluginsDir, targetFolderName);
-            
+
             var subDirs = Directory.GetDirectories(extractPath);
             var files = Directory.GetFiles(extractPath);
 
             string sourceDirToMove;
-            
+
             if (subDirs.Length == 1 && files.Length == 0)
             {
                 sourceDirToMove = subDirs[0];
@@ -343,15 +366,15 @@ public sealed partial class PluginPage
                 await ShowLockedFileDialogAsync(lockedFile);
                 return;
             }
-            
+
             if (Directory.Exists(finalDestDir))
             {
                 Directory.Delete(finalDestDir, true);
             }
-            
+
             await Task.Run(() => MoveDirectorySafe(sourceDirToMove, finalDestDir));
-            
-            try 
+
+            try
             {
                 if (Directory.Exists(extractPath)) Directory.Delete(extractPath, true);
             }
@@ -362,7 +385,7 @@ public sealed partial class PluginPage
 
             ViewModel.StatusMessage = $"{targetFolderName} 安装成功！";
             ViewModel.LoadPlugins();
-            
+
             progressDialog.Hide();
         }
         catch (Exception ex)
@@ -387,7 +410,10 @@ public sealed partial class PluginPage
             };
             if (await failDialog.ShowAsync() == ContentDialogResult.Primary)
             {
-                try { await Launcher.LaunchUriAsync(new Uri(rawGithubUrl)); }
+                try
+                {
+                    await Launcher.LaunchUriAsync(new Uri(rawGithubUrl));
+                }
                 catch
                 {
                     // ignored

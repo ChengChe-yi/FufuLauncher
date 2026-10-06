@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -42,7 +43,7 @@ namespace FufuLauncher.Views
             SizeChanged += GameAnnouncementBanner_SizeChanged;
             Unloaded += GameAnnouncementBanner_Unloaded;
         }
-        
+
         public void AnimateZoom(double target)
         {
             Storyboard storyboard = new();
@@ -73,7 +74,7 @@ namespace FufuLauncher.Views
         {
             _loadCancellation?.Cancel();
         }
-        
+
         private void UpdateRoundedClip()
         {
             try

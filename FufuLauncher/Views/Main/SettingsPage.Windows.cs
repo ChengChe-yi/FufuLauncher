@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Windowing;
@@ -183,7 +184,13 @@ public sealed partial class SettingsPage
 
         window.Title = "关于 FufuLauncher";
 
-        try { window.SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop(); } catch { }
+        try
+        {
+            window.SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
+        }
+        catch
+        {
+        }
 
         IntPtr hWnd = WindowNative.GetWindowHandle(window);
         WindowId windowId = Win32Interop.GetWindowIdFromWindow(hWnd);

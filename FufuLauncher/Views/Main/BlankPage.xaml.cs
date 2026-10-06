@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
@@ -21,6 +22,7 @@ public class StringToInitialConverter : IValueConverter
         {
             return name.Substring(0, 1).ToUpper();
         }
+
         return "?";
     }
 
@@ -120,6 +122,7 @@ public sealed partial class BlankPage : Page
         {
             Debug.WriteLine($"[Debug] BlankPage_Loaded 发生异常: {ex.Message}\n{ex.StackTrace}");
         }
+
         await LoadRedeemCodesAsync();
         Debug.WriteLine("========== [Debug] BlankPage_Loaded 结束 ==========");
     }

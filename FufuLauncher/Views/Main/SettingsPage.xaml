@@ -57,7 +57,7 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
-            
+
             <Style x:Key="SettingsCardStyle" TargetType="Border">
                 <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}" />
                 <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -65,7 +65,7 @@
                 <Setter Property="CornerRadius" Value="14" />
                 <Setter Property="Padding" Value="24" />
             </Style>
-            
+
             <Style x:Key="SectionHeaderStyle" TargetType="TextBlock">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FontWeight" Value="SemiBold" />
@@ -77,7 +77,7 @@
             <Style x:Key="SectionBlockStyle" TargetType="StackPanel">
                 <Setter Property="Margin" Value="0,0,0,24" />
             </Style>
-            
+
             <Style x:Key="SettingsRowStyle" TargetType="Grid">
                 <Setter Property="MinHeight" Value="44" />
                 <Setter Property="Margin" Value="-10,0,-10,0" />
@@ -112,20 +112,20 @@
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
             </Style>
-            
+
             <Style x:Key="CardIntroStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
                 <Setter Property="Opacity" Value="0.65" />
                 <Setter Property="TextWrapping" Value="Wrap" />
                 <Setter Property="Margin" Value="0,0,0,2" />
                 <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
             </Style>
-            
+
             <Style x:Key="RowDividerStyle" TargetType="Rectangle">
                 <Setter Property="Height" Value="1" />
                 <Setter Property="Fill" Value="{ThemeResource SafeBorderBrush}" />
                 <Setter Property="Margin" Value="-24,6,-24,6" />
             </Style>
-            
+
             <Style x:Key="RowSubPanelStyle" TargetType="StackPanel">
                 <Setter Property="Margin" Value="36,0,0,10" />
                 <Setter Property="Spacing" Value="8" />
@@ -136,7 +136,7 @@
                 <Setter Property="Spacing" Value="12" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            
+
             <Style x:Key="RowToggleStyle" TargetType="ToggleSwitch">
                 <Setter Property="OnContent" Value="" />
                 <Setter Property="OffContent" Value="" />
@@ -175,7 +175,7 @@
                 <Setter Property="HorizontalAlignment" Value="Right" />
                 <Setter Property="VerticalAlignment" Value="Center" />
             </Style>
-            
+
             <Style x:Key="PresetButtonStyle" TargetType="Button">
                 <Setter Property="Background" Value="{ThemeResource SafeCardBrush}" />
                 <Setter Property="Foreground" Value="{ThemeResource SafeTextBrush}" />
@@ -186,7 +186,7 @@
                 <Setter Property="Height" Value="32" />
                 <Setter Property="CornerRadius" Value="8" />
             </Style>
-            
+
             <Style x:Key="DangerButtonStyle" TargetType="Button" BasedOn="{StaticResource AccentButtonStyle}">
                 <Setter Property="Background" Value="{ThemeResource SystemFillColorCriticalBrush}" />
                 <Setter Property="Padding" Value="14,6" />
@@ -199,7 +199,7 @@
                 <Setter Property="CornerRadius" Value="6" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
-            
+
             <Style x:Key="RowInfoButtonStyle" TargetType="Button">
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="BorderThickness" Value="0" />
@@ -244,7 +244,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <NavigationView x:Name="SettingsNavigationView"
                         Grid.Column="0"
                         PaneDisplayMode="Left"
@@ -370,7 +370,7 @@
                 </NavigationViewItem>
             </NavigationView.MenuItems>
         </NavigationView>
-        
+
         <Grid Grid.Column="1">
 
             <ScrollViewer x:Name="SettingsScrollViewer"
@@ -379,7 +379,7 @@
                           HorizontalScrollMode="Disabled"
                           ViewChanged="SettingsScrollViewer_ViewChanged">
                 <StackPanel MaxWidth="980" HorizontalAlignment="Center">
-                    
+
                     <Border Style="{StaticResource SettingsCardStyle}"
                             Padding="24,14"
                             Margin="0,0,0,24"
@@ -394,7 +394,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            
+
                             <Rectangle Width="4"
                                        Height="24"
                                        RadiusX="2"
@@ -433,9 +433,10 @@
                             </AutoSuggestBox>
                         </Grid>
                     </Border>
-                    
+
                     <StackPanel x:Name="AppearanceItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionAppearance}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionAppearance}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -449,11 +450,14 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE706;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ThemeTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ThemeCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ThemeTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ThemeCaption}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="20">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="20">
                                     <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                  Content="{helpers:Loc Key=ThemeLight}"
                                                  GroupName="AppTheme"
@@ -493,8 +497,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE790;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=CustomThemeColorTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=CustomThemeColorCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=CustomThemeColorTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=CustomThemeColorCaption}" />
                                     </StackPanel>
                                     <TextBox Grid.Column="2"
                                              Style="{StaticResource RowTextBoxStyle}"
@@ -513,10 +519,13 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=LaunchButtonBgColorTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ColorHex}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=LaunchButtonBgColorTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ColorHex}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}" Margin="16,0,0,0" Spacing="8">
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
+                                                Margin="16,0,0,0" Spacing="8">
                                         <TextBox Width="140"
                                                  VerticalAlignment="Center"
                                                  PlaceholderText="#0078D7"
@@ -530,15 +539,17 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="HomeCardsItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=HomeCardDisplayTitle}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=HomeCardDisplayTitle}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
                             </Border.Shadow>
                             <StackPanel>
-                                <TextBlock Style="{StaticResource CardIntroStyle}" Text="{helpers:Loc Key=HomeCardDisplayCaption}" />
+                                <TextBlock Style="{StaticResource CardIntroStyle}"
+                                           Text="{helpers:Loc Key=HomeCardDisplayCaption}" />
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
 
                                 <Grid Style="{StaticResource SettingsRowStyle}">
@@ -549,7 +560,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7C3;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=HideGameNewsCard}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=HideGameNewsCard}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsHideGameNewsCardEnabled, Mode=TwoWay}" />
@@ -565,7 +577,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE73E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=HideCheckinCard}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=HideCheckinCard}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsHideCheckinCardEnabled, Mode=TwoWay}" />
@@ -581,7 +594,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowPresetCard}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowPresetCard}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsShowPresetCardEnabled, Mode=TwoWay}" />
@@ -597,7 +611,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8FD;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowWidgetCard}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowWidgetCard}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsShowWidgetCardEnabled, Mode=TwoWay}" />
@@ -606,15 +621,17 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="GameAnnouncementItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionGameAnnouncement}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionGameAnnouncement}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
                             </Border.Shadow>
                             <StackPanel>
-                                <TextBlock Style="{StaticResource CardIntroStyle}" Text="{helpers:Loc Key=GameAnnouncementViewModeCaption}" />
+                                <TextBlock Style="{StaticResource CardIntroStyle}"
+                                           Text="{helpers:Loc Key=GameAnnouncementViewModeCaption}" />
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
 
                                 <Grid Style="{StaticResource SettingsRowStyle}">
@@ -625,7 +642,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=GameAnnouncementViewModeTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=GameAnnouncementViewModeTitle}" />
                                     </StackPanel>
                                     <ComboBox Grid.Column="2"
                                               Style="{StaticResource RowComboBoxStyle}"
@@ -638,15 +656,17 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="WidgetsItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=WidgetItemsTitle}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=WidgetItemsTitle}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
                             </Border.Shadow>
                             <StackPanel>
-                                <TextBlock Style="{StaticResource CardIntroStyle}" Text="{helpers:Loc Key=WidgetItemsCaption}" />
+                                <TextBlock Style="{StaticResource CardIntroStyle}"
+                                           Text="{helpers:Loc Key=WidgetItemsCaption}" />
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
 
                                 <Grid Style="{StaticResource SettingsRowStyle}">
@@ -657,7 +677,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE734;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=WidgetGacha}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=WidgetGacha}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowWidgetGacha, Mode=TwoWay}" />
@@ -673,7 +694,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE73E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=WidgetAchievement}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=WidgetAchievement}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowWidgetAchievement, Mode=TwoWay}" />
@@ -689,7 +711,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8F1;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=WidgetInventory}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=WidgetInventory}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowWidgetInventory, Mode=TwoWay}" />
@@ -705,7 +728,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE77B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=WidgetPlayerRole}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=WidgetPlayerRole}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowWidgetPlayerRole, Mode=TwoWay}" />
@@ -721,7 +745,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE70F;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=WidgetDailyNoteWindow}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=WidgetDailyNoteWindow}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowWidgetDailyNoteWindow, Mode=TwoWay}" />
@@ -737,7 +762,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE714;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=WidgetVideo}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=WidgetVideo}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowWidgetVideo, Mode=TwoWay}" />
@@ -753,7 +779,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=WidgetBBS}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=WidgetBBS}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowWidgetBBS, Mode=TwoWay}" />
@@ -762,7 +789,7 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="NotesItem" Style="{StaticResource SectionBlockStyle}">
                         <TextBlock Text="{helpers:Loc Key=NotesItemsTitle}" Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
@@ -770,7 +797,8 @@
                                 <ThemeShadow />
                             </Border.Shadow>
                             <StackPanel>
-                                <TextBlock Style="{StaticResource CardIntroStyle}" Text="{helpers:Loc Key=NotesItemsCaption}" />
+                                <TextBlock Style="{StaticResource CardIntroStyle}"
+                                           Text="{helpers:Loc Key=NotesItemsCaption}" />
                                 <InfoBar Style="{StaticResource RowInfoBarStyle}"
                                          Severity="Warning"
                                          Title="{helpers:Loc Key=NotesWarningTitle}"
@@ -785,7 +813,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE70F;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=HideNotesCard}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=HideNotesCard}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsHideDailyNoteCardEnabled, Mode=TwoWay}" />
@@ -801,7 +830,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE706;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowResin}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowResin}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowDailyNoteResin, Mode=TwoWay}" />
@@ -817,7 +847,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE73E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowDailyTasks}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowDailyTasks}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowDailyNoteDailyTasks, Mode=TwoWay}" />
@@ -833,7 +864,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE80F;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowHomeCoin}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowHomeCoin}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowDailyNoteHomeCoin, Mode=TwoWay}" />
@@ -849,7 +881,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE774;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowExpeditions}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowExpeditions}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowDailyNoteExpeditions, Mode=TwoWay}" />
@@ -865,7 +898,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE72C;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowTransformer}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowTransformer}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.ShowDailyNoteTransformer, Mode=TwoWay}" />
@@ -874,7 +908,7 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="HomeTextItem" Style="{StaticResource SectionBlockStyle}">
                         <TextBlock Text="{helpers:Loc Key=SectionHomeText}" Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
@@ -890,16 +924,19 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7C3;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=GameNewsTextColorTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=GameNewsTextColorTitle}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="20">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="20">
                                     <TextBox Header="{helpers:Loc Key=ColorHex}"
                                              Width="140"
                                              PlaceholderText="#FFFFFF"
                                              Text="{x:Bind ViewModel.GameNewsCardTextColor, Mode=TwoWay}" />
                                     <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock Text="{helpers:Loc Key=Opacity}" Margin="0,0,0,6" FontSize="12" Opacity="0.75" />
+                                        <TextBlock Text="{helpers:Loc Key=Opacity}" Margin="0,0,0,6" FontSize="12"
+                                                   Opacity="0.75" />
                                         <Slider Width="220" Minimum="0" Maximum="1" StepFrequency="0.05"
                                                 Value="{x:Bind ViewModel.GameNewsCardTextOpacity, Mode=TwoWay}" />
                                     </StackPanel>
@@ -914,16 +951,19 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=LaunchBtnTextColorTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=LaunchBtnTextColorTitle}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="20">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="20">
                                     <TextBox Header="{helpers:Loc Key=ColorHex}"
                                              Width="140"
                                              PlaceholderText="#FFFFFF"
                                              Text="{x:Bind ViewModel.LaunchButtonTextColor, Mode=TwoWay}" />
                                     <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock Text="{helpers:Loc Key=Opacity}" Margin="0,0,0,6" FontSize="12" Opacity="0.75" />
+                                        <TextBlock Text="{helpers:Loc Key=Opacity}" Margin="0,0,0,6" FontSize="12"
+                                                   Opacity="0.75" />
                                         <Slider Width="220" Minimum="0" Maximum="1" StepFrequency="0.05"
                                                 Value="{x:Bind ViewModel.LaunchButtonTextOpacity, Mode=TwoWay}" />
                                     </StackPanel>
@@ -938,16 +978,19 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE73E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=CheckinTextColorTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=CheckinTextColorTitle}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="20" Margin="36,0,0,0">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="20" Margin="36,0,0,0">
                                     <TextBox Header="{helpers:Loc Key=ColorHex}"
                                              Width="140"
                                              PlaceholderText="#FFFFFF"
                                              Text="{x:Bind ViewModel.GameCheckinTextColor, Mode=TwoWay}" />
                                     <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock Text="{helpers:Loc Key=Opacity}" Margin="0,0,0,6" FontSize="12" Opacity="0.75" />
+                                        <TextBlock Text="{helpers:Loc Key=Opacity}" Margin="0,0,0,6" FontSize="12"
+                                                   Opacity="0.75" />
                                         <Slider Width="220" Minimum="0" Maximum="1" StepFrequency="0.05"
                                                 Value="{x:Bind ViewModel.GameCheckinTextOpacity, Mode=TwoWay}" />
                                     </StackPanel>
@@ -956,9 +999,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="BackgroundItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionBackground}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionBackground}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -973,7 +1017,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE91B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableCustomBg}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=EnableCustomBg}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsBackgroundEnabled, Mode=TwoWay}" />
@@ -988,7 +1033,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B7;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BgSourceTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BgSourceTitle}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
@@ -1011,7 +1057,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE786;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BgSlideshowTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BgSlideshowTitle}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsBackgroundSlideshowEnabled, Mode=TwoWay}" />
@@ -1047,7 +1094,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE774;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=OfficialBgServerTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=OfficialBgServerTitle}" />
                                     </StackPanel>
                                     <ComboBox Grid.Column="2"
                                               Style="{StaticResource RowComboBoxStyle}"
@@ -1066,15 +1114,18 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=OfficialBgApiTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=OfficialBgApiCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=OfficialBgApiTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=OfficialBgApiCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
-                                    <TextBox Text="{x:Bind ViewModel.CustomBackgroundApiUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                             PlaceholderText="{helpers:Loc Key=OfficialBgApiPlaceholder}"
-                                             MaxWidth="640"
-                                             HorizontalAlignment="Left" />
+                                    <TextBox
+                                        Text="{x:Bind ViewModel.CustomBackgroundApiUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        PlaceholderText="{helpers:Loc Key=OfficialBgApiPlaceholder}"
+                                        MaxWidth="640"
+                                        HorizontalAlignment="Left" />
                                     <TextBlock Style="{StaticResource PathTextStyle}"
                                                MaxWidth="640"
                                                Text="{x:Bind ViewModel.CurrentBackgroundApiUrl, Mode=OneWay}" />
@@ -1092,8 +1143,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=FetchBgAssetsTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BrowseOfficialBgCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=FetchBgAssetsTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BrowseOfficialBgCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal">
@@ -1112,8 +1165,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE890;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableAcrylicOverlay}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=AcrylicOverlayNote}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=EnableAcrylicOverlay}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=AcrylicOverlayNote}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsAcrylicOverlayEnabled, Mode=TwoWay}" />
@@ -1129,8 +1184,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE706;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=SemiTransparentOverlay}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=SemiTransparentCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=SemiTransparentOverlay}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=SemiTransparentCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsPageOverlaySemiTransparentEnabled, Mode=TwoWay}" />
@@ -1160,9 +1217,11 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE890;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BgOverlayOpacityTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BgOverlayOpacityTitle}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}" Margin="16,0,0,0">
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
+                                                Margin="16,0,0,0">
                                         <Slider x:Name="OverlayOpacitySlider"
                                                 Width="220" Minimum="0" Maximum="1" StepFrequency="0.05"
                                                 Value="{x:Bind ViewModel.GlobalBackgroundOverlayOpacity, Mode=TwoWay}" />
@@ -1182,9 +1241,11 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7C3;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=FrameOpacityTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=FrameOpacityTitle}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}" Margin="16,0,0,0">
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
+                                                Margin="16,0,0,0">
                                         <Slider x:Name="FrameOpacitySlider"
                                                 Width="220" Minimum="0" Maximum="1" StepFrequency="0.05"
                                                 Value="{x:Bind ViewModel.ContentFrameBackgroundOpacity, Mode=TwoWay}" />
@@ -1204,9 +1265,11 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE91B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BgImageOpacityTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BgImageOpacityTitle}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}" Margin="16,0,0,0">
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
+                                                Margin="16,0,0,0">
                                         <Slider x:Name="BgImageOpacitySlider"
                                                 Width="220" Minimum="0" Maximum="1" StepFrequency="0.05"
                                                 Value="{x:Bind ViewModel.GlobalBackgroundImageOpacity, Mode=TwoWay}" />
@@ -1219,9 +1282,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="WindowEffectsItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionWindowEffects}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionWindowEffects}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -1235,11 +1299,14 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B3;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BackdropTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BackdropCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BackdropTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BackdropCaption}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="20">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="20">
                                     <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                  Content="{helpers:Loc Key=MicaOption}"
                                                  GroupName="WindowBackdrop"
@@ -1263,8 +1330,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE700;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ShowHamburger}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ShowHamburgerCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ShowHamburger}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ShowHamburgerCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsHamburgerButtonEnabled, Mode=TwoWay}" />
@@ -1273,9 +1342,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="LaunchConfigItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionLaunchConfig}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionLaunchConfig}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -1289,10 +1359,12 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7FC;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=LaunchWindowModeTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=LaunchWindowModeTitle}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="20">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="20">
                                     <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                  Content="{helpers:Loc Key=WindowModeNormal}"
                                                  GroupName="LaunchWindowMode"
@@ -1312,8 +1384,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE740;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ResolutionTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ResolutionCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ResolutionTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ResolutionCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
@@ -1338,17 +1412,26 @@
                                                Margin="0,4,0,0" />
                                     <StackPanel Orientation="Horizontal" Spacing="8">
                                         <Button Style="{StaticResource PresetButtonStyle}" Content="1280&#215;720 (HD)"
-                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}" CommandParameter="1280 720" />
-                                        <Button Style="{StaticResource PresetButtonStyle}" Content="1920&#215;1080 (FHD)"
-                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}" CommandParameter="1920 1080" />
-                                        <Button Style="{StaticResource PresetButtonStyle}" Content="2560&#215;1440 (QHD)"
-                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}" CommandParameter="2560 1440" />
-                                        <Button Style="{StaticResource PresetButtonStyle}" Content="3840&#215;2160 (4K)"
-                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}" CommandParameter="3840 2160" />
+                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}"
+                                                CommandParameter="1280 720" />
+                                        <Button Style="{StaticResource PresetButtonStyle}"
+                                                Content="1920&#215;1080 (FHD)"
+                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}"
+                                                CommandParameter="1920 1080" />
+                                        <Button Style="{StaticResource PresetButtonStyle}"
+                                                Content="2560&#215;1440 (QHD)"
+                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}"
+                                                CommandParameter="2560 1440" />
+                                        <Button Style="{StaticResource PresetButtonStyle}"
+                                                Content="3840&#215;2160 (4K)"
+                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}"
+                                                CommandParameter="3840 2160" />
                                         <Button Style="{StaticResource PresetButtonStyle}" Content="1440&#215;900"
-                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}" CommandParameter="1440 900" />
+                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}"
+                                                CommandParameter="1440 900" />
                                         <Button Style="{StaticResource PresetButtonStyle}" Content="1920&#215;1200"
-                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}" CommandParameter="1920 1200" />
+                                                Command="{x:Bind ViewModel.SetResolutionPresetCommand}"
+                                                CommandParameter="1920 1200" />
                                     </StackPanel>
                                 </StackPanel>
 
@@ -1362,8 +1445,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE706;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=HdrTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=HdrCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=HdrTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=HdrCaption}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowButtonStyle}"
@@ -1380,11 +1465,14 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7F4;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=TargetMonitorTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=TargetMonitorCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=TargetMonitorTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=TargetMonitorCaption}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="12">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="12">
                                     <ComboBox ItemsSource="{x:Bind ViewModel.AvailableMonitors, Mode=OneWay}"
                                               SelectedItem="{x:Bind ViewModel.SelectedMonitor, Mode=TwoWay}"
                                               DisplayMemberPath="DisplayName"
@@ -1403,8 +1491,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE70F;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AdvLaunchArgsTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=AdvLaunchArgsCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=AdvLaunchArgsTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=AdvLaunchArgsCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
@@ -1428,11 +1518,14 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=CustomExeNameTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=CustomExeNameCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=CustomExeNameTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=CustomExeNameCaption}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="12">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="12">
                                     <TextBox Text="{x:Bind ViewModel.CustomGameExeName, Mode=TwoWay}"
                                              PlaceholderText="{helpers:Loc Key=CustomExeNamePlaceholder}"
                                              Width="260"
@@ -1452,8 +1545,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE74C;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=InjectionModuleTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=InjectionCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=InjectionModuleTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=InjectionCaption}" />
                                     </StackPanel>
                                     <ComboBox x:Name="InjectionModuleComboBox"
                                               Grid.Column="2"
@@ -1475,8 +1570,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PluginConflictCheckTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PluginConflictCheckCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=PluginConflictCheckTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=PluginConflictCheckCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=TwoWay}" />
@@ -1492,8 +1589,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE721;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PluginConflictMainOnlyTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PluginConflictMainOnlyCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=PluginConflictMainOnlyTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=PluginConflictMainOnlyCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsEnabled="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=OneWay}"
@@ -1510,8 +1609,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE77B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=UsingHoyolabAccountTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=UsingHoyolabAccountCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=UsingHoyolabAccountTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=UsingHoyolabAccountCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsUsingHoyolabAccount, Mode=TwoWay}" />
@@ -1527,8 +1628,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE787;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=RedeemReminderTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=RedeemReminderCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=RedeemReminderTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=RedeemReminderCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsRedeemCodeNotificationEnabled, Mode=TwoWay}" />
@@ -1544,8 +1647,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PostLaunchTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PostLaunchCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=PostLaunchTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=PostLaunchCaption}" />
                                     </StackPanel>
                                     <ComboBox Grid.Column="2"
                                               Style="{StaticResource RowComboBoxStyle}"
@@ -1558,9 +1663,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="ScreenshotSettingsItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionScreenshotSettings}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionScreenshotSettings}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -1575,8 +1681,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE722;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableInGameScreenshot}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ScreenshotCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=EnableInGameScreenshot}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ScreenshotCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsScreenshotEnabled, Mode=TwoWay}" />
@@ -1592,10 +1700,13 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE765;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ScreenshotHotkeyTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ScreenshotHotkeyCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ScreenshotHotkeyTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ScreenshotHotkeyCaption}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}" Margin="16,0,0,0">
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
+                                                Margin="16,0,0,0">
                                         <TextBlock x:Name="HotkeyRecordingHint"
                                                    Text="{helpers:Loc Key=RecordingHint}"
                                                    VerticalAlignment="Center"
@@ -1619,8 +1730,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B7;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ScreenshotSaveLocTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ScreenshotSaveLocCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ScreenshotSaveLocTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ScreenshotSaveLocCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
@@ -1645,9 +1758,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="CheckinSettingsItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionCheckinSettings}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionCheckinSettings}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -1662,8 +1776,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE73E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=GameCheckin}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=GameCheckinCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=GameCheckin}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=GameCheckinCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsGameCheckinEnabled, Mode=TwoWay}" />
@@ -1680,8 +1796,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE77B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=CommunityCheckin}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=CommunityCheckinCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=CommunityCheckin}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=CommunityCheckinCaption}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowInfoButtonStyle}"
@@ -1716,8 +1834,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE753;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=CloudGameCheckin}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=CloudGameCheckinCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=CloudGameCheckin}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=CloudGameCheckinCaption}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowInfoButtonStyle}"
@@ -1740,8 +1860,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AutoCheckinOnLaunch}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=AutoCheckinCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=AutoCheckinOnLaunch}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=AutoCheckinCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsAutoCheckinEnabled, Mode=TwoWay}" />
@@ -1757,8 +1879,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8FD;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BatchCheckin}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BatchCheckinCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BatchCheckin}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BatchCheckinCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsBatchCheckinEnabled, Mode=TwoWay}" />
@@ -1774,7 +1898,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE77B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AccountListTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=AccountListTitle}" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4"
                                                 VerticalAlignment="Center" Margin="16,0,0,0">
@@ -1824,24 +1949,27 @@
                                                                       VerticalAlignment="Center" />
                                                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                                                 <TextBlock Text="{Binding Nickname}" FontSize="14" />
-                                                                <TextBlock Text="{Binding Uid}" FontSize="12" Opacity="0.7" />
+                                                                <TextBlock Text="{Binding Uid}" FontSize="12"
+                                                                           Opacity="0.7" />
                                                             </StackPanel>
-                                                            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4">
+                                                            <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                                                        Spacing="4">
                                                                 <Button Click="OnCloudCredentialClick"
                                                                         Tag="{Binding Uid}"
                                                                         Padding="8" CornerRadius="6"
                                                                         Background="Transparent"
                                                                         BorderThickness="0">
                                                                     <ToolTipService.ToolTip>
-                                                                        <ToolTip Content="{helpers:Loc Key=AddCloudCredentialTooltip}" />
+                                                                        <ToolTip
+                                                                            Content="{helpers:Loc Key=AddCloudCredentialTooltip}" />
                                                                     </ToolTipService.ToolTip>
                                                                     <Grid>
                                                                         <FontIcon Glyph="&#xE753;" FontSize="14"
-                                                                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                                                  Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
+                                                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                                                Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
                                                                         <FontIcon Glyph="&#xE753;" FontSize="14"
-                                                                                  Foreground="{ThemeResource SystemAccentColor}"
-                                                                                  Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                                                                Foreground="{ThemeResource SystemAccentColor}"
+                                                                                Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
                                                                     </Grid>
                                                                 </Button>
                                                                 <Button Click="OnRemoveCloudCredentialClick"
@@ -1851,7 +1979,8 @@
                                                                         BorderThickness="0"
                                                                         Visibility="{Binding HasCloudCredential, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                                                                     <ToolTipService.ToolTip>
-                                                                        <ToolTip Content="{helpers:Loc Key=RemoveCloudCredentialTooltip}" />
+                                                                        <ToolTip
+                                                                            Content="{helpers:Loc Key=RemoveCloudCredentialTooltip}" />
                                                                     </ToolTipService.ToolTip>
                                                                     <FontIcon Glyph="&#xE74D;" FontSize="14"
                                                                               Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
@@ -1868,7 +1997,7 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="LanguageItem" Style="{StaticResource SectionBlockStyle}">
                         <TextBlock Text="{helpers:Loc Key=SectionLanguage}" Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
@@ -1884,72 +2013,90 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE774;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AppLangTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=AppLangCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=AppLangTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=AppLangCaption}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="48">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="48">
                                     <StackPanel Spacing="10">
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangZhCN}" GroupName="AppLanguage" CommandParameter="1"
+                                                     Content="{helpers:Loc Key=LangZhCN}" GroupName="AppLanguage"
+                                                     CommandParameter="1"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=1}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangZhTW}" GroupName="AppLanguage" CommandParameter="2"
+                                                     Content="{helpers:Loc Key=LangZhTW}" GroupName="AppLanguage"
+                                                     CommandParameter="2"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=2}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangEnUS}" GroupName="AppLanguage" CommandParameter="3"
+                                                     Content="{helpers:Loc Key=LangEnUS}" GroupName="AppLanguage"
+                                                     CommandParameter="3"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=3}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangJa}" GroupName="AppLanguage" CommandParameter="7"
+                                                     Content="{helpers:Loc Key=LangJa}" GroupName="AppLanguage"
+                                                     CommandParameter="7"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=7}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangKo}" GroupName="AppLanguage" CommandParameter="9"
+                                                     Content="{helpers:Loc Key=LangKo}" GroupName="AppLanguage"
+                                                     CommandParameter="9"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=9}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangRu}" GroupName="AppLanguage" CommandParameter="6"
+                                                     Content="{helpers:Loc Key=LangRu}" GroupName="AppLanguage"
+                                                     CommandParameter="6"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=6}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangId}" GroupName="AppLanguage" CommandParameter="11"
+                                                     Content="{helpers:Loc Key=LangId}" GroupName="AppLanguage"
+                                                     CommandParameter="11"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=11}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                     </StackPanel>
                                     <StackPanel Spacing="10">
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangFr}" GroupName="AppLanguage" CommandParameter="4"
+                                                     Content="{helpers:Loc Key=LangFr}" GroupName="AppLanguage"
+                                                     CommandParameter="4"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=4}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangDe}" GroupName="AppLanguage" CommandParameter="5"
+                                                     Content="{helpers:Loc Key=LangDe}" GroupName="AppLanguage"
+                                                     CommandParameter="5"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=5}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangEs}" GroupName="AppLanguage" CommandParameter="8"
+                                                     Content="{helpers:Loc Key=LangEs}" GroupName="AppLanguage"
+                                                     CommandParameter="8"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=8}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangEsMX}" GroupName="AppLanguage" CommandParameter="13"
+                                                     Content="{helpers:Loc Key=LangEsMX}" GroupName="AppLanguage"
+                                                     CommandParameter="13"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=13}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangIt}" GroupName="AppLanguage" CommandParameter="10"
+                                                     Content="{helpers:Loc Key=LangIt}" GroupName="AppLanguage"
+                                                     CommandParameter="10"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=10}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangPt}" GroupName="AppLanguage" CommandParameter="12"
+                                                     Content="{helpers:Loc Key=LangPt}" GroupName="AppLanguage"
+                                                     CommandParameter="12"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=12}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangHi}" GroupName="AppLanguage" CommandParameter="14"
+                                                     Content="{helpers:Loc Key=LangHi}" GroupName="AppLanguage"
+                                                     CommandParameter="14"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=14}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                         <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                     Content="{helpers:Loc Key=LangDefault}" GroupName="AppLanguage" CommandParameter="0"
+                                                     Content="{helpers:Loc Key=LangDefault}" GroupName="AppLanguage"
+                                                     CommandParameter="0"
                                                      IsChecked="{x:Bind ViewModel.SelectedLanguage, Converter={StaticResource LanguageEnumToBooleanConverter}, ConverterParameter=0}"
                                                      Command="{x:Bind ViewModel.SwitchLanguageCommand}" />
                                     </StackPanel>
@@ -1958,9 +2105,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="WindowBehaviorItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionWindowBehavior}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionWindowBehavior}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -1974,15 +2122,18 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8FD;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=NavItemsTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=NavItemsCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=NavItemsTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=NavItemsCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}" Spacing="0">
                                     <ItemsRepeater ItemsSource="{x:Bind ViewModel.NavItems}">
                                         <ItemsRepeater.ItemTemplate>
                                             <DataTemplate x:DataType="models:NavItemConfig">
-                                                <Grid MinHeight="40" Padding="0,4" MaxWidth="560" HorizontalAlignment="Left">
+                                                <Grid MinHeight="40" Padding="0,4" MaxWidth="560"
+                                                      HorizontalAlignment="Left">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*" />
                                                         <ColumnDefinition Width="Auto" />
@@ -2015,7 +2166,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE921;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=MinimizeToTrayTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=MinimizeToTrayTitle}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.MinimizeToTray, Mode=TwoWay}" />
@@ -2031,7 +2183,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE740;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=RememberWindowSizeTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=RememberWindowSizeTitle}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsSaveWindowSizeEnabled, Mode=TwoWay}" />
@@ -2047,7 +2200,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE73F;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=MinWindowSizeLimitTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=MinWindowSizeLimitTitle}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsMinWindowSizeLimitEnabled, Mode=TwoWay}" />
@@ -2062,11 +2216,14 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7E7;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=NotificationPositionTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=NotificationPositionCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=NotificationPositionTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=NotificationPositionCaption}" />
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="20">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="20">
                                     <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                  Content="{helpers:Loc Key=PositionBottomRight}"
                                                  GroupName="NotificationPosition"
@@ -2088,7 +2245,7 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="StartupItem" Style="{StaticResource SectionBlockStyle}">
                         <TextBlock Text="{helpers:Loc Key=SectionStartup}" Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
@@ -2105,8 +2262,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7E8;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=RunAtStartupTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=RunAtStartupCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=RunAtStartupTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=RunAtStartupCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsStartupEnabled, Mode=TwoWay}" />
@@ -2115,9 +2274,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="StartupSoundItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionStartupSound}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionStartupSound}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -2132,7 +2292,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE767;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableStartupSound}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=EnableStartupSound}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsStartupSoundEnabled, Mode=TwoWay}" />
@@ -2154,9 +2315,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="AdvancedOptionsItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionAdvancedOptions}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionAdvancedOptions}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -2171,8 +2333,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE71B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableBetterGI}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BetterGICaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=EnableBetterGI}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BetterGICaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsBetterGIIntegrationEnabled, Mode=TwoWay}" />
@@ -2188,8 +2352,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE916;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BetterGIDelayLabel}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BetterGIDelayCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BetterGIDelayLabel}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BetterGIDelayCaption}" />
                                     </StackPanel>
                                     <NumberBox Grid.Column="2"
                                                Style="{StaticResource RowNumberBoxStyle}"
@@ -2207,8 +2373,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE711;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BetterGICloseOnExit}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BetterGICloseOnExitCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BetterGICloseOnExit}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BetterGICloseOnExitCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsBetterGICloseOnExitEnabled, Mode=TwoWay}" />
@@ -2224,10 +2392,13 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE74D;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=BrowserCacheTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=BrowserCacheCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BrowserCacheTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BrowserCacheCaption}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}" Margin="16,0,0,0">
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
+                                                Margin="16,0,0,0">
                                         <TextBlock Text="{x:Bind ViewModel.WebView2CacheSize, Mode=OneWay}"
                                                    VerticalAlignment="Center"
                                                    FontSize="14"
@@ -2248,8 +2419,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE9D9;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ProcessPriorityTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=ProcessPriorityCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ProcessPriorityTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=ProcessPriorityCaption}" />
                                     </StackPanel>
                                     <ComboBox Grid.Column="2"
                                               Style="{StaticResource RowComboBoxStyle}"
@@ -2270,14 +2443,17 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableCpuWarning}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=CpuWarningCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=EnableCpuWarning}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=CpuWarningCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsCpuUsageWarningEnabled, Mode=TwoWay}"
                                                   Toggled="OnCpuUsageWarningToggled" />
                                 </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal" Spacing="12">
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                            Spacing="12">
                                     <NumberBox Header="{helpers:Loc Key=CpuWarningThreshold}"
                                                Width="180"
                                                Minimum="5" Maximum="100" SmallChange="1" LargeChange="5"
@@ -2299,8 +2475,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE72E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=DisableCaptchaPopup}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=DisableCaptchaPopupCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=DisableCaptchaPopup}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=DisableCaptchaPopupCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsCaptchaPopupDisabled, Mode=TwoWay}" />
@@ -2316,8 +2494,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE946;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=EnableCaptchaNotice}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=EnableCaptchaNoticeCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=EnableCaptchaNotice}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=EnableCaptchaNoticeCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsCaptchaNoticeEnabled, Mode=TwoWay}" />
@@ -2337,8 +2517,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE772;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=DeviceInfo_Title}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=DeviceInfo_Caption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=DeviceInfo_Title}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=DeviceInfo_Caption}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowButtonStyle}"
@@ -2360,7 +2542,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE70F;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ConfigEditorBtn}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ConfigEditorBtn}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowButtonStyle}"
@@ -2382,7 +2565,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=UpdateAchievementDbBtn}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=UpdateAchievementDbBtn}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowButtonStyle}"
@@ -2402,7 +2586,8 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;"
+                                              Foreground="{ThemeResource SystemFillColorCriticalBrush}" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}"
                                                    Foreground="{ThemeResource SystemFillColorCriticalBrush}"
@@ -2419,9 +2604,10 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="StoragePathItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionStoragePaths}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionStoragePaths}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -2435,8 +2621,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B7;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AgreementPage_UserDataDir}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=StorageDataDirCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=AgreementPage_UserDataDir}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=StorageDataDirCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
@@ -2458,8 +2646,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=AgreementPage_CacheDir}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=StorageCacheDirCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=AgreementPage_CacheDir}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=StorageCacheDirCaption}" />
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
@@ -2499,8 +2689,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE895;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=VersionUpdateTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=VersionUpdateCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=VersionUpdateTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=VersionUpdateCaption}" />
                                     </StackPanel>
                                     <Button x:Name="CheckUpdateButton"
                                             Grid.Column="2"
@@ -2519,8 +2711,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PreviewUpdateTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PreviewUpdateCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=PreviewUpdateTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=PreviewUpdateCaption}" />
                                     </StackPanel>
                                     <Button x:Name="CheckPreviewUpdateButton"
                                             Grid.Column="2"
@@ -2539,8 +2733,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=UseThirdPartyCDNTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=UseThirdPartyCDNCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=UseThirdPartyCDNTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=UseThirdPartyCDNCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsUseThirdPartyCDNEnabled, Mode=TwoWay}" />
@@ -2556,8 +2752,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE789;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PreviewUpdateAnnouncementTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PreviewUpdateAnnouncementCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=PreviewUpdateAnnouncementTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=PreviewUpdateAnnouncementCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsPreviewUpdateAnnouncementEnabled, Mode=TwoWay}" />
@@ -2573,8 +2771,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE769;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=SuppressAnnouncementInGameTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=SuppressAnnouncementInGameCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=SuppressAnnouncementInGameTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=SuppressAnnouncementInGameCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsSuppressAnnouncementInGameEnabled, Mode=TwoWay}" />
@@ -2592,8 +2792,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE72C;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=RollbackToStableTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=RollbackToStableCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=RollbackToStableTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=RollbackToStableCaption}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowButtonStyle}"
@@ -2611,8 +2813,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=PluginMirrorAccelerationTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=PluginMirrorAccelerationCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=PluginMirrorAccelerationTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=PluginMirrorAccelerationCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
                                                   IsOn="{x:Bind ViewModel.IsPluginMirrorAccelerationEnabled, Mode=TwoWay}" />
@@ -2629,8 +2833,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=GameUpdate_ApplyBtnTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=GameUpdate_ApplyBtnCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=GameUpdate_ApplyBtnTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=GameUpdate_ApplyBtnCaption}" />
                                     </StackPanel>
                                     <Button x:Name="BtnApplyPredownload"
                                             Grid.Column="2"
@@ -2642,7 +2848,7 @@
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="AboutItem" Style="{StaticResource SectionBlockStyle}">
                         <TextBlock Text="{helpers:Loc Key=SectionAbout}" Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
@@ -2681,17 +2887,20 @@
                                         Click="OnEasterEggClick"
                                         ToolTipService.ToolTip="???">
                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <FontIcon Glyph="&#xEB52;" FontFamily="{ThemeResource SymbolThemeFontFamily}" Foreground="#FFB6C1" />
-                                        <TextBlock Text="Remember me" Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                        <FontIcon Glyph="&#xEB52;" FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                  Foreground="#FFB6C1" />
+                                        <TextBlock Text="Remember me"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                                    FontSize="12" />
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    
+
                     <StackPanel x:Name="SecurityAuthItem" Style="{StaticResource SectionBlockStyle}">
-                        <TextBlock Text="{helpers:Loc Key=SectionSecurityAuth}" Style="{StaticResource SectionHeaderStyle}" />
+                        <TextBlock Text="{helpers:Loc Key=SectionSecurityAuth}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
                         <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                             <Border.Shadow>
                                 <ThemeShadow />
@@ -2706,8 +2915,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE72E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=SectionSecurityAuth}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=SecurityAuthCaption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=SectionSecurityAuth}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=SecurityAuthCaption}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowButtonStyle}"
@@ -2725,8 +2936,10 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE73E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=Settings_PluginSignature_Title}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}" Text="{helpers:Loc Key=Settings_PluginSignature_Caption}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=Settings_PluginSignature_Title}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=Settings_PluginSignature_Caption}" />
                                     </StackPanel>
                                     <Button Grid.Column="2"
                                             Style="{StaticResource RowButtonStyle}"
@@ -2735,7 +2948,7 @@
                                 </Grid>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
-                                
+
                                 <Grid Style="{StaticResource SettingsRowStyle}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -2744,7 +2957,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8D7;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ModTrust_Title}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ModTrust_Title}" />
                                         <TextBlock x:Name="ModTrustStatusText"
                                                    Style="{StaticResource RowCaptionStyle}"
                                                    TextWrapping="Wrap"
@@ -2761,7 +2975,7 @@
                                 </Grid>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
-                                
+
                                 <Grid x:Name="ModTrustInstallRow" Style="{StaticResource SettingsRowStyle}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -2770,12 +2984,14 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE723;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ModTrust_InstallTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ModTrust_InstallTitle}" />
                                         <TextBlock Style="{StaticResource RowCaptionStyle}"
                                                    TextWrapping="Wrap"
                                                    Text="{helpers:Loc Key=ModTrust_InstallCaption}" />
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8"
+                                                VerticalAlignment="Center">
                                         <Button x:Name="ModTrustInstallUserButton"
                                                 Style="{StaticResource RowButtonStyle}"
                                                 Content="{helpers:Loc Key=ModTrust_InstallUserBtn}"
@@ -2796,7 +3012,7 @@
                                 </Grid>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
-                                
+
                                 <Grid Style="{StaticResource SettingsRowStyle}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -2805,7 +3021,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE72E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ModTrust_ModeTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ModTrust_ModeTitle}" />
                                         <TextBlock Style="{StaticResource RowCaptionStyle}"
                                                    TextWrapping="Wrap"
                                                    Text="{helpers:Loc Key=ModTrust_ModeCaption}" />
@@ -2822,7 +3039,7 @@
                                 </Grid>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
-                                
+
                                 <Grid Style="{StaticResource SettingsRowStyle}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -2831,7 +3048,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE895;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}" Text="{helpers:Loc Key=ModTrust_SyncTitle}" />
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=ModTrust_SyncTitle}" />
                                         <TextBlock Style="{StaticResource RowCaptionStyle}"
                                                    TextWrapping="Wrap"
                                                    Text="{helpers:Loc Key=ModTrust_SyncCaption}" />

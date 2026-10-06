@@ -2,11 +2,12 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Services.CodeSigning;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml; 
+using Microsoft.UI.Xaml;
 
 namespace FufuLauncher.Views
 {

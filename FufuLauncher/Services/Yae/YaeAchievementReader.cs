@@ -8,6 +8,7 @@ Yae 成就读取编排：
 - 提权子进程：读配置 → 建管道 → 注入 Yae DLL → 收集数据 → 解析 → 写 UIAF 结果文件。
 架构复用背包功能的"提权子进程 + 配置文件/结果文件交换"模式。
 */
+
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text.Json;
@@ -27,14 +28,16 @@ public static class YaeAchievementReader
     }
 
     /// <summary>
-    /// 通过 Embedded Yae 从游戏内导入成就并返回 UIAF 结果（主进程入口）。
+    ///     通过 Embedded Yae 从游戏内导入成就并返回 UIAF 结果（主进程入口）。
     /// </summary>
-    public static async Task<YaeUiafResult?> ReadAchievementsAsync(string gameExePath, CancellationToken cancellationToken = default)
+    public static async Task<YaeUiafResult?> ReadAchievementsAsync(string gameExePath,
+        CancellationToken cancellationToken = default)
     {
         if (IsGameRunning())
         {
             throw new ApplicationException("检测到游戏正在运行，请先退出游戏后再读取成就。");
         }
+
         if (!File.Exists(gameExePath))
         {
             throw new ApplicationException("未找到游戏主程序，请在设置中确认游戏安装目录。");
@@ -43,7 +46,7 @@ public static class YaeAchievementReader
         // 直接注入安装目录下的 YaeAchievementLib.dll，与背包模块（modules\backpack.dll）一致，
         // 不做 AppData 临时拷贝。
         var dllPath = ResolveYaeDll()
-            ?? throw new ApplicationException("未找到 YaeAchievementLib.dll 组件，请重新安装本程序。");
+                      ?? throw new ApplicationException("未找到 YaeAchievementLib.dll 组件，请重新安装本程序。");
 
         var metadata = await YaeMetadataService.GetMetadataAsync(cancellationToken).ConfigureAwait(false);
         var gameHash = YaeMetadataService.ComputeGameHash(gameExePath);
@@ -67,7 +70,7 @@ public static class YaeAchievementReader
             });
 
             var currentExe = Environment.ProcessPath
-                ?? throw new InvalidOperationException("无法定位当前程序路径。");
+                             ?? throw new InvalidOperationException("无法定位当前程序路径。");
             var psi = new ProcessStartInfo
             {
                 FileName = currentExe,
@@ -129,7 +132,7 @@ public static class YaeAchievementReader
     }
 
     /// <summary>
-    /// 提权子进程入口（--yae-inject）。
+    ///     提权子进程入口（--yae-inject）。
     /// </summary>
     public static int RunElevatedInjection(string configFile)
     {
@@ -146,6 +149,7 @@ public static class YaeAchievementReader
             {
                 return ExitCode.InvalidConfig;
             }
+
             errorFilePath = cfg.ErrorFilePath;
 
             var pipe = new YaeNamedPipeServer(cfg.NativeConfig);
@@ -173,7 +177,8 @@ public static class YaeAchievementReader
                 List = items,
             };
 
-            File.WriteAllText(cfg.ResultFilePath, JsonSerializer.Serialize(result, new JsonSerializerOptions { WriteIndented = true }));
+            File.WriteAllText(cfg.ResultFilePath,
+                JsonSerializer.Serialize(result, new JsonSerializerOptions { WriteIndented = true }));
             return ExitCode.Success;
         }
         catch (YaeGameCreateException ex)
@@ -210,11 +215,25 @@ public static class YaeAchievementReader
     private static void WriteError(string? errorFilePath, string message)
     {
         if (string.IsNullOrEmpty(errorFilePath)) return;
-        try { File.WriteAllText(errorFilePath, message); } catch { /* ignore */ }
+        try
+        {
+            File.WriteAllText(errorFilePath, message);
+        }
+        catch
+        {
+            /* ignore */
+        }
     }
 
     private static void TryDelete(string path)
     {
-        try { File.Delete(path); } catch { /* ignore */ }
+        try
+        {
+            File.Delete(path);
+        }
+        catch
+        {
+            /* ignore */
+        }
     }
 }

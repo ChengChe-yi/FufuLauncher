@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
@@ -115,7 +116,8 @@ public sealed partial class BlankPage
                     preDownload.ValueKind != JsonValueKind.Null)
                 {
                     var preVersion = preDownload.GetProperty("tag").GetString() ?? "UnknownGeneric".GetLocalized();
-                    DispatcherQueue.TryEnqueue(() => PreDownloadText.Text = string.Format("Msg_HasVersion_Format".GetLocalized(), preVersion));
+                    DispatcherQueue.TryEnqueue(() =>
+                        PreDownloadText.Text = string.Format("Msg_HasVersion_Format".GetLocalized(), preVersion));
                 }
                 else
                 {

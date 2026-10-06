@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Helpers;
@@ -14,6 +15,7 @@ namespace FufuLauncher.ViewModels;
 public partial class MainViewModel
 {
     #region 每日便签
+
     [ObservableProperty] private int _currentResin;
     [ObservableProperty] private int _maxResin;
     [ObservableProperty] private string _resinRecoveryTime = "";
@@ -116,5 +118,6 @@ public partial class MainViewModel
             IsDailyNoteLoaded = false;
         });
     }
+
     #endregion
 }

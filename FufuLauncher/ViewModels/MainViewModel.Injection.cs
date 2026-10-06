@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -13,11 +14,16 @@ namespace FufuLauncher.ViewModels;
 public partial class MainViewModel
 {
     #region 注入模块
+
     [ObservableProperty] private bool _useInjection;
 
     [ObservableProperty] private string _injectionModule = "DLL";
     [ObservableProperty] private ObservableCollection<InjectionModuleInfo> _availableInjectionModules = new();
-    public IRelayCommand<InjectionModuleInfo> SelectInjectionModuleCommand { get; }
+
+    public IRelayCommand<InjectionModuleInfo> SelectInjectionModuleCommand
+    {
+        get;
+    }
 
     partial void OnUseInjectionChanged(bool value)
     {
@@ -38,8 +44,16 @@ public partial class MainViewModel
     {
         AvailableInjectionModules = new ObservableCollection<InjectionModuleInfo>
         {
-            new() { Id = "DLL", Name = "InjectionBuiltIn".GetLocalized(), Description = "InjectionBuiltInDesc".GetLocalized(), IsSelected = true },
-            new() { Id = "EXE", Name = "InjectionStandalone".GetLocalized(), Description = "InjectionStandaloneDesc".GetLocalized(), IsSelected = false }
+            new()
+            {
+                Id = "DLL", Name = "InjectionBuiltIn".GetLocalized(),
+                Description = "InjectionBuiltInDesc".GetLocalized(), IsSelected = true
+            },
+            new()
+            {
+                Id = "EXE", Name = "InjectionStandalone".GetLocalized(),
+                Description = "InjectionStandaloneDesc".GetLocalized(), IsSelected = false
+            }
         };
     }
 
@@ -75,5 +89,6 @@ public partial class MainViewModel
             // ignored
         }
     }
+
     #endregion
 }

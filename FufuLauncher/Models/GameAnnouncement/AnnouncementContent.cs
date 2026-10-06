@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models.GameAnnouncement
@@ -11,37 +12,43 @@ namespace FufuLauncher.Models.GameAnnouncement
         [JsonPropertyName("ann_id")]
         public int AnnId
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("title")]
         public string Title
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("subtitle")]
         public string Subtitle
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("banner")]
         public string Banner
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("content")]
         public string Content
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("lang")]
         public string Lang
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
     }
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml.Media;
 using Windows.Foundation;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
@@ -29,8 +30,17 @@ public sealed class SpeedGraphData
 
     public sealed class SetSpeedResult
     {
-        public float NewScaleRatio { get; set; } = 1.0f;
-        public bool NeedAnimation { get; set; }
+        public float NewScaleRatio
+        {
+            get;
+            set;
+        } = 1.0f;
+
+        public bool NeedAnimation
+        {
+            get;
+            set;
+        }
     }
 
     public SetSpeedResult SetSpeed(double percent, ulong speed)
@@ -47,7 +57,7 @@ public sealed class SpeedGraphData
             result.NewScaleRatio = (float)_currentMax / speed;
             _currentMax = speed;
         }
-        
+
         double x = Math.Clamp(percent, 0, 100);
         float y = 1.0f - (float)speed / _currentMax / _ratio;
 
@@ -69,6 +79,7 @@ public sealed class SpeedGraphData
                 _samples[^1] = new Point(last.X, y);
             }
         }
+
         if (!isFirstSample)
         {
             result.NeedAnimation = true;
@@ -99,7 +110,7 @@ public sealed class SpeedGraphData
         _graphSize = size;
         RebuildGeometry();
     }
-    
+
     private void RebuildGeometry()
     {
         var areaFigure = new PathFigure { IsClosed = true, IsFilled = true };
@@ -149,8 +160,9 @@ public sealed class SpeedGraphData
         lineGeometry.Figures.Add(lineFigure);
         _speedLinePath.Data = lineGeometry;
     }
-    
-    private static void AddSmoothSegments(PathSegmentCollection segments, IReadOnlyList<Point> points, double maxX, double maxY)
+
+    private static void AddSmoothSegments(PathSegmentCollection segments, IReadOnlyList<Point> points, double maxX,
+        double maxY)
     {
         if (points.Count == 2)
         {

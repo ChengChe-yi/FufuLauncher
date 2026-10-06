@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Models;
@@ -11,11 +12,9 @@ namespace FufuLauncher.ViewModels;
 
 public partial class DiagnosticsViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private SystemDiagnosticsInfo _info = new();
+    [ObservableProperty] private SystemDiagnosticsInfo _info = new();
 
-    [ObservableProperty]
-    private bool _isLoading = true;
+    [ObservableProperty] private bool _isLoading = true;
 
     public async void InitializeAsync()
     {

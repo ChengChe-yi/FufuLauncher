@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -36,7 +37,8 @@ namespace FufuLauncher.Converters
             return Models.MiHoYo.ServerRegion.IsOversea(region) ? uid : GameRoleDisplay.Archive(uid);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotImplementedException();
     }
 
     public class CountToColorConverter : IValueConverter
@@ -52,7 +54,8 @@ namespace FufuLauncher.Converters
             return new SolidColorBrush(Colors.Red);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotImplementedException();
     }
 
     public class TotalToPrimogemsConverter : IValueConverter
@@ -66,7 +69,8 @@ namespace FufuLauncher.Converters
             return (total * 160).ToString();
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotImplementedException();
     }
 
     public class PityStatusToVisibilityConverter : IValueConverter
@@ -170,10 +174,12 @@ namespace FufuLauncher.Views
             DependencyProperty.Register(nameof(Columns), typeof(int), typeof(GachaKpiPanel), new PropertyMetadata(5));
 
         public static readonly DependencyProperty ColumnSpacingProperty =
-            DependencyProperty.Register(nameof(ColumnSpacing), typeof(double), typeof(GachaKpiPanel), new PropertyMetadata(10d));
+            DependencyProperty.Register(nameof(ColumnSpacing), typeof(double), typeof(GachaKpiPanel),
+                new PropertyMetadata(10d));
 
         public static readonly DependencyProperty RowSpacingProperty =
-            DependencyProperty.Register(nameof(RowSpacing), typeof(double), typeof(GachaKpiPanel), new PropertyMetadata(10d));
+            DependencyProperty.Register(nameof(RowSpacing), typeof(double), typeof(GachaKpiPanel),
+                new PropertyMetadata(10d));
 
         public int Columns
         {
@@ -260,10 +266,12 @@ namespace FufuLauncher.Views
     public sealed class GachaChartPanel : Panel
     {
         public static readonly DependencyProperty MinSlotWidthProperty =
-            DependencyProperty.Register(nameof(MinSlotWidth), typeof(double), typeof(GachaChartPanel), new PropertyMetadata(72d));
+            DependencyProperty.Register(nameof(MinSlotWidth), typeof(double), typeof(GachaChartPanel),
+                new PropertyMetadata(72d));
 
         public static readonly DependencyProperty ChartHeightProperty =
-            DependencyProperty.Register(nameof(ChartHeight), typeof(double), typeof(GachaChartPanel), new PropertyMetadata(174d));
+            DependencyProperty.Register(nameof(ChartHeight), typeof(double), typeof(GachaChartPanel),
+                new PropertyMetadata(174d));
 
         public double MinSlotWidth
         {
@@ -332,16 +340,20 @@ namespace FufuLauncher.Views
 
     public sealed partial class GachaAnalysisWindow : Window
     {
-        public GachaAnalysisModel ViewModel { get; }
+        public GachaAnalysisModel ViewModel
+        {
+            get;
+        }
+
         private bool _updatingTabSelection = true;
         private Storyboard _analysisChartStoryboard;
 
         public GachaAnalysisWindow()
         {
             ViewModel = App.GetService<GachaAnalysisModel>();
-            
+
             InitializeComponent();
-            
+
             RootGrid.DataContext = this;
             ExtendsContentIntoTitleBar = true;
             WindowManagerHelper.ResizeWithDpi(AppWindow, this, 1120, 720);
@@ -359,7 +371,8 @@ namespace FufuLauncher.Views
                     var dialog = new ContentDialog
                     {
                         Title = "检测到不同账号",
-                        Content = $"当前数据属于 UID: {currentUid}\n即将导入的数据来自 UID: {incomingUid}\n\n是否为 UID {incomingUid} 创建新的数据存档？",
+                        Content =
+                            $"当前数据属于 UID: {currentUid}\n即将导入的数据来自 UID: {incomingUid}\n\n是否为 UID {incomingUid} 创建新的数据存档？",
                         PrimaryButtonText = "创建新存档",
                         CloseButtonText = "取消",
                         DefaultButton = ContentDialogButton.Primary,
@@ -452,7 +465,8 @@ namespace FufuLauncher.Views
                     DispatcherQueue.TryEnqueue(() =>
                     {
                         if (ViewModel.IsDataLoaded)
-                            EmptyStatePanel.Visibility = ViewModel.HasGachaData ? Visibility.Collapsed : Visibility.Visible;
+                            EmptyStatePanel.Visibility =
+                                ViewModel.HasGachaData ? Visibility.Collapsed : Visibility.Visible;
                     });
                 }
                 else if (e.PropertyName == nameof(ViewModel.IsOverviewSelected))
@@ -477,15 +491,15 @@ namespace FufuLauncher.Views
             await ViewModel.ShowAnalysisAsync();
             UpdateTabIndicator();
         }
-        
+
         private async void OnAboutButtonClick(object sender, RoutedEventArgs e)
         {
             var contentPanel = new StackPanel { Spacing = 8 };
-    
-            contentPanel.Children.Add(new TextBlock 
-            { 
+
+            contentPanel.Children.Add(new TextBlock
+            {
                 Text = "该项目使用UIGF v4.2/v4.1/v4.0/v3.0/v2.4/v2.3/v2.2标准格式处理祈愿数据",
-                TextWrapping = TextWrapping.Wrap 
+                TextWrapping = TextWrapping.Wrap
             });
 
             contentPanel.Children.Add(new HyperlinkButton
@@ -493,23 +507,23 @@ namespace FufuLauncher.Views
                 Content = "UIGF-Org",
                 NavigateUri = new Uri("https://uigf.org/")
             });
-            
-            var badgePanel = new StackPanel 
-            { 
-                Orientation = Orientation.Horizontal, 
+
+            var badgePanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
                 Spacing = 8,
                 Margin = new Thickness(0, 4, 0, 0)
             };
-    
-            badgePanel.Children.Add(new FontIcon 
-            { 
+
+            badgePanel.Children.Add(new FontIcon
+            {
                 Glyph = "\uE734",
                 FontSize = 16,
                 Foreground = (Brush)Application.Current.Resources["SystemFillColorCautionBrush"]
             });
-    
-            badgePanel.Children.Add(new TextBlock 
-            { 
+
+            badgePanel.Children.Add(new TextBlock
+            {
                 Text = "已获UIGF/UIAF标准项目合作",
                 VerticalAlignment = VerticalAlignment.Center,
                 FontWeight = Microsoft.UI.Text.FontWeights.SemiBold
@@ -612,7 +626,8 @@ namespace FufuLauncher.Views
             storyboard.Begin();
         }
 
-        private static void AddViewModeAnimation(Storyboard storyboard, DependencyObject target, string property, double from, double to, int delayMs, int durationMs)
+        private static void AddViewModeAnimation(Storyboard storyboard, DependencyObject target, string property,
+            double from, double to, int delayMs, int durationMs)
         {
             var animation = new DoubleAnimation
             {
@@ -676,7 +691,8 @@ namespace FufuLauncher.Views
             AddDoubleAnimation(transform, "ScaleY", 0.94, 1, delayMs, 340);
         }
 
-        private void AddDoubleAnimation(DependencyObject target, string property, double from, double to, int delayMs, int durationMs)
+        private void AddDoubleAnimation(DependencyObject target, string property, double from, double to, int delayMs,
+            int durationMs)
         {
             var animation = new DoubleAnimation
             {
@@ -707,12 +723,13 @@ namespace FufuLauncher.Views
                 StretchChartContentToViewport(scrollViewer);
             }
         }
-        
+
         private async Task<InMemoryRandomAccessStream> RenderElementToStreamAsync(UIElement element)
         {
             AnalysisExportButtons.Visibility = Visibility.Collapsed;
             AnalysisExportLogo.Visibility = Visibility.Visible;
-            AnalysisExportTarget.Background = (Brush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"]
+            AnalysisExportTarget.Background =
+                (Brush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"]
                 ?? new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Transparent);
 
             var tcs = new TaskCompletionSource();
@@ -964,7 +981,8 @@ namespace FufuLauncher.Views
             {
                 Text = "粘贴从米游社或其他工具获取的抽卡记录链接，链接应包含 authkey 参数。",
                 FontSize = 12,
-                Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TextFillColorSecondaryBrush"],
+                Foreground =
+                    (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TextFillColorSecondaryBrush"],
                 TextWrapping = TextWrapping.Wrap
             });
             panel.Children.Add(urlBox);
@@ -1007,7 +1025,8 @@ namespace FufuLauncher.Views
             if (ViewModel.IsUpdatingRoleList || sender is not ComboBox combo) return;
             if (combo.SelectedItem is not string selected) return;
 
-            System.Diagnostics.Debug.WriteLine($"[Gacha] OnUidComboBoxSelectionChanged: selected={selected}, ViewModel.SelectedUid={ViewModel.SelectedUid}");
+            System.Diagnostics.Debug.WriteLine(
+                $"[Gacha] OnUidComboBoxSelectionChanged: selected={selected}, ViewModel.SelectedUid={ViewModel.SelectedUid}");
 
             if (selected == GachaAnalysisModel.AddNewUserItem)
             {
@@ -1022,4 +1041,3 @@ namespace FufuLauncher.Views
         }
     }
 }
-

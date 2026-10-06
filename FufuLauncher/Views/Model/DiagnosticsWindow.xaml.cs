@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -40,7 +41,9 @@ public sealed partial class DiagnosticsWindow : Window
                 }
             }
         }
-        catch { }
+        catch
+        {
+        }
 
         ViewModel.InitializeAsync();
     }

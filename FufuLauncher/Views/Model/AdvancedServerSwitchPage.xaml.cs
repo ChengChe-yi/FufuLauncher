@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -49,12 +50,14 @@ namespace FufuLauncher.Views
         private void InitializeServerSelector()
         {
             GameServerConfigurationService configurationService = App.GetService<GameServerConfigurationService>();
-            _currentScheme = string.IsNullOrEmpty(_gameDir) ? null : configurationService.TryDetectCurrentScheme(_gameDir);
+            _currentScheme = string.IsNullOrEmpty(_gameDir)
+                ? null
+                : configurationService.TryDetectCurrentScheme(_gameDir);
 
             CurrentServerText.Text = _currentScheme is null
                 ? "AdvancedServerSwitch_UnknownCurrent".GetLocalized()
                 : string.Format("AdvancedServerSwitch_CurrentServer".GetLocalized(), _currentScheme.DisplayName);
-            
+
             TargetServerCombo.ItemsSource = GameServerScheme.Selectable;
 
             TargetServerCombo.SelectedItem = ResolvePreferredTarget();
@@ -70,14 +73,16 @@ namespace FufuLauncher.Views
                     return preset;
                 }
             }
-            
+
             return GameServerScheme.Selectable.FirstOrDefault(scheme =>
-                _currentScheme is null || !scheme.Equals(_currentScheme)) ?? GameServerScheme.Selectable.FirstOrDefault();
+                       _currentScheme is null || !scheme.Equals(_currentScheme)) ??
+                   GameServerScheme.Selectable.FirstOrDefault();
         }
 
         private async void StartBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (TargetServerCombo.SelectedItem is not GameServerScheme target || _currentScheme is null || string.IsNullOrEmpty(_gameDir))
+            if (TargetServerCombo.SelectedItem is not GameServerScheme target || _currentScheme is null ||
+                string.IsNullOrEmpty(_gameDir))
             {
                 await ShowMessageAsync("AdvancedServerSwitch_SelectTarget".GetLocalized());
                 return;
@@ -108,11 +113,13 @@ namespace FufuLauncher.Views
             CancellationToken token = _cts.Token;
 
             var converter = App.GetService<GameServerConverter>();
-            var progress = new Progress<GameServerConversionProgress>(p => DispatcherQueue.TryEnqueue(() => UpdateProgress(p)));
+            var progress =
+                new Progress<GameServerConversionProgress>(p => DispatcherQueue.TryEnqueue(() => UpdateProgress(p)));
 
             try
             {
-                await Task.Run(() => converter.ConvertAsync(_gameDir, _currentScheme, target, progress, AppendStatus, token, _downloadMonitor));
+                await Task.Run(() => converter.ConvertAsync(_gameDir, _currentScheme, target, progress, AppendStatus,
+                    token, _downloadMonitor));
 
                 _chartController.Stop();
                 ProgressPanel.Visibility = Visibility.Collapsed;
@@ -163,11 +170,13 @@ namespace FufuLauncher.Views
         {
             _chartController?.UpdateProgress(p);
             _remainingChunksTracker.Update(p);
-            RemainingCountText.Text = string.Format("AdvancedServerSwitch_RemainingChunks".GetLocalized(), _remainingChunksTracker.Chunks.Count);
+            RemainingCountText.Text = string.Format("AdvancedServerSwitch_RemainingChunks".GetLocalized(),
+                _remainingChunksTracker.Chunks.Count);
 
             StatusText.Text = p.ChunkName is null
                 ? p.Stage
-                : string.Format("AdvancedServerSwitch_Progress".GetLocalized(), p.DoneChunks, p.TotalChunks, p.ChunkName);
+                : string.Format("AdvancedServerSwitch_Progress".GetLocalized(), p.DoneChunks, p.TotalChunks,
+                    p.ChunkName);
 
             if (p.TotalChunks > 0)
             {

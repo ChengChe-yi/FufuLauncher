@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
@@ -114,7 +115,8 @@ public sealed partial class CommunityWindow : Window
                 var dialog = new ContentDialog
                 {
                     Title = "CommunityPage_WelcomeTitle".GetLocalized(),
-                    Content = "该论坛由CodeCubist和Vanilla联合策划，FufuLauncher作为平台发布。\n\n它不同于QQ频道和米游社，不是为了替代它们而生，它的目的是为了更方便玩家的分享和更快的解答疑问，你可以在这里发布你的游戏内容，也可以询问一切关于软件的问题，或者是分享你的生活，只要遵守社区规定，我们都欢迎进行发帖交流。\n\n对于软件更新我们也会在这里发布通知，同时你也可以直接与我们的开发者交流。\n\n目前网站仅在试运行，如实际表现效果较好，我们会进行正式的人工重构上线。",
+                    Content =
+                        "该论坛由CodeCubist和Vanilla联合策划，FufuLauncher作为平台发布。\n\n它不同于QQ频道和米游社，不是为了替代它们而生，它的目的是为了更方便玩家的分享和更快的解答疑问，你可以在这里发布你的游戏内容，也可以询问一切关于软件的问题，或者是分享你的生活，只要遵守社区规定，我们都欢迎进行发帖交流。\n\n对于软件更新我们也会在这里发布通知，同时你也可以直接与我们的开发者交流。\n\n目前网站仅在试运行，如实际表现效果较好，我们会进行正式的人工重构上线。",
                     CloseButtonText = "GotItBtn".GetLocalized(),
                     XamlRoot = Content.XamlRoot
                 };

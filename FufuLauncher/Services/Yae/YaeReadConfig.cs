@@ -4,6 +4,7 @@ Licensed under the MIT License.
 
 主进程与提权子进程交换的配置：22 行文本文件（路径/命令 ID/RVA/pb 字段号）。
 */
+
 using FufuLauncher.Services.Yae.Proto;
 
 namespace FufuLauncher.Services.Yae;
@@ -11,13 +12,47 @@ namespace FufuLauncher.Services.Yae;
 /// <summary>主进程与提权子进程交换的配置。</summary>
 internal sealed class YaeReadConfig
 {
-    public string GameExePath { get; set; } = string.Empty;
-    public string DllPath { get; set; } = string.Empty;
-    public string GameDir { get; set; } = string.Empty;
-    public string ResultFilePath { get; set; } = string.Empty;
-    public string ErrorFilePath { get; set; } = string.Empty;
-    public YaeNativeConfiguration NativeConfig { get; set; } = new();
-    public AchievementProtoFieldInfo PbInfo { get; set; } = new();
+    public string GameExePath
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string DllPath
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string GameDir
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string ResultFilePath
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public string ErrorFilePath
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public YaeNativeConfiguration NativeConfig
+    {
+        get;
+        set;
+    } = new();
+
+    public AchievementProtoFieldInfo PbInfo
+    {
+        get;
+        set;
+    } = new();
 
     public static void Write(string path, YaeReadConfig cfg)
     {

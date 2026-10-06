@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models.MiHoYo.Passport;
@@ -13,13 +14,25 @@ public sealed class ThirdPartyToken : IVerifyProvider
         ThirdPartyType = thirdPartyType;
         Token = token;
     }
-    
+
     [JsonPropertyName("thirdparty_type")]
-    public string ThirdPartyType { get; set; }
-    
+    public string ThirdPartyType
+    {
+        get;
+        set;
+    }
+
     [JsonPropertyName("token")]
-    public string Token { get; set; }
-    
+    public string Token
+    {
+        get;
+        set;
+    }
+
     [JsonIgnore]
-    public string? Verify { get; set; }
+    public string? Verify
+    {
+        get;
+        set;
+    }
 }

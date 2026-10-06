@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json.Nodes;
@@ -12,6 +13,7 @@ namespace FufuLauncher.Views;
 public sealed partial class LoginQrWindow
 {
     #region 游戏扫码登录
+
     private async Task StartGameLoginFlowAsync(LoginSession session)
     {
         _isLoginCompleting = false;
@@ -55,9 +57,10 @@ public sealed partial class LoginQrWindow
                 string qrUrl = result["data"]["url"]?.GetValue<string>();
                 var uri = new Uri(qrUrl);
                 var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-                session.Ticket = query["ticket"];  // 存入 session
+                session.Ticket = query["ticket"]; // 存入 session
                 return (true, qrUrl, "Success");
             }
+
             return (false, null, result["message"]?.GetValue<string>());
         }
         catch (Exception ex)
@@ -121,6 +124,7 @@ public sealed partial class LoginQrWindow
                     {
                         UpdateStatus("已扫码，请在手机端确认登录...", true);
                     }
+
                     consecutiveErrors = 0;
                 }
                 else
@@ -193,9 +197,11 @@ public sealed partial class LoginQrWindow
                     {
                         OnLoginSuccess(cookies, "cn");
                     }
+
                     return;
                 }
             }
+
             UpdateStatus($"SToken换取失败: {result["message"]?.GetValue<string>()}", false);
         }
         catch (Exception ex)
@@ -228,5 +234,6 @@ public sealed partial class LoginQrWindow
         string sign = CreateMD5(signStr);
         return $"{t},{r},{sign}";
     }
+
     #endregion
 }

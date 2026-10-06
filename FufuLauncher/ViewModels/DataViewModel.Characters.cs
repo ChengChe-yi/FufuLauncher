@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Globalization;
 using FufuLauncher.Models.DataCenter;
@@ -14,20 +15,49 @@ public sealed partial class DataViewModel
 
     private List<DcCharacterCard> _filteredCharacters = new();
 
-    public ObservableCollection<DcCharacterCard> Characters { get; } = new();
+    public ObservableCollection<DcCharacterCard> Characters
+    {
+        get;
+    } = new();
 
-    public List<DcOption> CharacterSortOptions { get; }
-    public List<DcOption> StarFilterOptions { get; }
+    public List<DcOption> CharacterSortOptions
+    {
+        get;
+    }
+
+    public List<DcOption> StarFilterOptions
+    {
+        get;
+    }
 
     private string _characterSearch = string.Empty;
     private int _characterStarFilter;
     private string _characterSort = "heat";
     private int _characterShown;
 
-    public string CharacterCountText { get; private set; } = string.Empty;
-    public bool HasMoreCharacters { get; private set; }
-    public bool HasNoCharacters { get; private set; }
-    public string CharacterMoreText { get; private set; } = string.Empty;
+    public string CharacterCountText
+    {
+        get;
+        private set;
+    } = string.Empty;
+
+    public bool HasMoreCharacters
+    {
+        get;
+        private set;
+    }
+
+    public bool HasNoCharacters
+    {
+        get;
+        private set;
+    }
+
+    public string CharacterMoreText
+    {
+        get;
+        private set;
+    } = string.Empty;
 
     public void SearchCharacters(string? keyword)
     {
@@ -259,7 +289,8 @@ public sealed partial class DataViewModel
         detail.Metrics.Add(new DcKpiTile
         {
             Glyph = GlyphStar, Title = L("DataPage_MetricAvgConst"), Value = "C" + Fmt(entry.AvgConstellation, 2),
-            Caption = L("DataPage_ZeroConstellation") + " " + PctText(tierEntry?.C0Rate ?? entry.C0), ColorTag = "accent"
+            Caption = L("DataPage_ZeroConstellation") + " " + PctText(tierEntry?.C0Rate ?? entry.C0),
+            ColorTag = "accent"
         });
         detail.Metrics.Add(new DcKpiTile
         {

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -26,13 +27,13 @@ public sealed partial class PluginSettingsPage
         if (sender is Microsoft.UI.Xaml.Controls.Image img && img.Parent is Grid grid)
         {
             img.Visibility = Visibility.Collapsed;
-        
+
             if (grid.FindName("LoadingRing") is ProgressRing loadingRing)
             {
                 loadingRing.IsActive = false;
                 loadingRing.Visibility = Visibility.Collapsed;
             }
-        
+
             if (grid.FindName("ErrorText") is TextBlock errorText)
             {
                 errorText.Visibility = Visibility.Visible;

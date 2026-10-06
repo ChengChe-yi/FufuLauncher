@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.Json;
 using FufuLauncher.Models;
@@ -23,18 +24,21 @@ namespace FufuLauncher.Views
         {
             return string.Format((string)parameter, value);
         }
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotImplementedException();
     }
 
     public sealed partial class PlayerInfoWindow : Window, System.ComponentModel.INotifyPropertyChanged
     {
         private readonly HttpClient _httpClient = new();
-        
+
         private readonly string _cacheFilePath;
         private readonly string _userConfigPath;
         private string _myUid;
 
         private RoleData _currentRole;
+
         public RoleData CurrentRole
         {
             get => _currentRole;
@@ -43,8 +47,9 @@ namespace FufuLauncher.Views
                 if (_currentRole != value)
                 {
                     _currentRole = value;
-                    PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(nameof(CurrentRole)));
-                    
+                    PropertyChanged?.Invoke(this,
+                        new System.ComponentModel.PropertyChangedEventArgs(nameof(CurrentRole)));
+
                     if (_currentRole != null)
                     {
                         CurrentRoleGradient = new SolidColorBrush(Colors.Transparent);
@@ -53,15 +58,17 @@ namespace FufuLauncher.Views
                 }
             }
         }
-        
+
         private Brush _currentRoleGradient;
+
         public Brush CurrentRoleGradient
         {
             get => _currentRoleGradient;
             set
             {
                 _currentRoleGradient = value;
-                PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(nameof(CurrentRoleGradient)));
+                PropertyChanged?.Invoke(this,
+                    new System.ComponentModel.PropertyChangedEventArgs(nameof(CurrentRoleGradient)));
             }
         }
 
@@ -70,23 +77,23 @@ namespace FufuLauncher.Views
         public PlayerInfoWindow()
         {
             InitializeComponent();
-            
+
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(AppTitleBar);
-            
+
             _userConfigPath = Path.Combine(Helpers.AppPaths.DataDir, "config.json");
-            
+
             string folder = Helpers.AppPaths.DataDir;
-            
+
             _cacheFilePath = Path.Combine(folder, "player_roles.json");
-            
+
             _ = InitializeAsync();
         }
 
         private async Task InitializeAsync()
         {
             await LoadUserConfigAsync();
-            
+
             if (!string.IsNullOrEmpty(_myUid))
             {
                 UidTextBox.Text = _myUid;
@@ -147,7 +154,7 @@ namespace FufuLauncher.Views
 
             try
             {
-                string url = string.Format(ApiEndpoints.LelaerPlayerRecordApiUrl, uid); 
+                string url = string.Format(ApiEndpoints.LelaerPlayerRecordApiUrl, uid);
                 string json = await _httpClient.GetStringAsync(url);
 
                 var response = JsonSerializer.Deserialize<PlayerRecordResponse>(json);
@@ -156,7 +163,7 @@ namespace FufuLauncher.Views
                 {
                     var roles = response.Result.RoleData;
                     DisplayData(roles);
-                    
+
                     if (isSave)
                     {
                         await SaveToCacheAsync(roles);
@@ -198,7 +205,7 @@ namespace FufuLauncher.Views
                 // ignored
             }
         }
-        
+
 
         private async void OnQueryClick(object sender, RoutedEventArgs e)
         {
@@ -234,13 +241,15 @@ namespace FufuLauncher.Views
             {
                 return Visibility.Collapsed;
             }
+
             return Visibility.Visible;
         }
+
         private async void OnTeamWikiClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                string url = ApiEndpoints.TeamWikiUrl; 
+                string url = ApiEndpoints.TeamWikiUrl;
                 await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
             }
             catch (Exception ex)
@@ -248,19 +257,19 @@ namespace FufuLauncher.Views
                 System.Diagnostics.Debug.WriteLine($"Launch URL failed: {ex.Message}");
             }
         }
-        
+
         private async void OnArtifactSearchClick(object sender, RoutedEventArgs e)
         {
             if (sender is FrameworkElement element && element.DataContext is ArtifactDetail artifact)
             {
                 if (!string.IsNullOrEmpty(artifact.Name))
                 {
-                    string url = $"{ApiEndpoints.MiyousheSearchUrl}{Uri.EscapeDataString(artifact.Name)}"; 
+                    string url = $"{ApiEndpoints.MiyousheSearchUrl}{Uri.EscapeDataString(artifact.Name)}";
                     await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
                 }
             }
         }
-        
+
         private async Task UpdateRoleGradientAsync(string imageUrl)
         {
             if (string.IsNullOrEmpty(imageUrl))
@@ -274,10 +283,13 @@ namespace FufuLauncher.Views
                 using var stream = new InMemoryRandomAccessStream();
                 await stream.WriteAsync(imageBytes.AsBuffer());
                 stream.Seek(0);
-                
+
                 var decoder = await BitmapDecoder.CreateAsync(stream);
 
-                var transform = new BitmapTransform { ScaledWidth = 50, ScaledHeight = 50, InterpolationMode = BitmapInterpolationMode.NearestNeighbor };
+                var transform = new BitmapTransform
+                {
+                    ScaledWidth = 50, ScaledHeight = 50, InterpolationMode = BitmapInterpolationMode.NearestNeighbor
+                };
                 var pixelData = await decoder.GetPixelDataAsync(
                     BitmapPixelFormat.Rgba8,
                     BitmapAlphaMode.Premultiplied,
@@ -287,7 +299,7 @@ namespace FufuLauncher.Views
                 );
 
                 byte[] pixels = pixelData.DetachPixelData();
-                
+
                 var colorCounts = new Dictionary<uint, int>();
 
                 for (int i = 0; i < pixels.Length; i += 4)
@@ -296,12 +308,12 @@ namespace FufuLauncher.Views
                     byte g = pixels[i + 1];
                     byte b = pixels[i + 2];
                     byte a = pixels[i + 3];
-                    
+
                     if (a < 100) continue;
-                    
+
                     int brightness = r + g + b;
                     if (brightness < 50 || brightness > 700) continue;
-                    
+
                     uint quantizedColor = (uint)((r / 32) << 16 | (g / 32) << 8 | (b / 32));
 
                     if (colorCounts.ContainsKey(quantizedColor))
@@ -309,28 +321,28 @@ namespace FufuLauncher.Views
                     else
                         colorCounts[quantizedColor] = 1;
                 }
-                
+
                 var topColors = colorCounts.OrderByDescending(x => x.Value).Take(3).Select(x => x.Key).ToList();
-                
+
                 while (topColors.Count < 3)
                 {
                     if (topColors.Count > 0) topColors.Add(topColors[0]);
                     else topColors.Add(0x00808080);
                 }
-                
+
                 Color GetColorFromUint(uint c)
                 {
                     byte r = (byte)((c >> 16) & 0xFF);
                     byte g = (byte)((c >> 8) & 0xFF);
                     byte b = (byte)(c & 0xFF);
-                    
+
                     return Color.FromArgb(120, (byte)(r * 32), (byte)(g * 32), (byte)(b * 32));
                 }
 
                 var color1 = GetColorFromUint(topColors[0]);
                 var color2 = GetColorFromUint(topColors[1]);
                 var color3 = GetColorFromUint(topColors[2]);
-                
+
                 var gradient = new LinearGradientBrush
                 {
                     StartPoint = new Windows.Foundation.Point(0, 0),
@@ -339,7 +351,7 @@ namespace FufuLauncher.Views
                 gradient.GradientStops.Add(new GradientStop { Color = color1, Offset = 0.0 });
                 gradient.GradientStops.Add(new GradientStop { Color = color2, Offset = 0.5 });
                 gradient.GradientStops.Add(new GradientStop { Color = color3, Offset = 1.0 });
-                
+
                 CurrentRoleGradient = gradient;
             }
             catch

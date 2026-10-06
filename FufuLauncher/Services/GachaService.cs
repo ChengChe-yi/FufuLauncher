@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -54,18 +55,21 @@ public class GachaService
         using var response = await _httpClient.SendAsync(request);
         response.EnsureSuccessStatusCode();
         return JsonSerializer.Deserialize<GameRolesResponse>(await response.Content.ReadAsStringAsync())
-            ?? throw new JsonException("Invalid role-binding response.");
+               ?? throw new JsonException("Invalid role-binding response.");
     }
 
     public Task<GachaLink> GenerateAuthKeyAsync(IReadOnlyDictionary<string, string> cookies, GameRoleInfo role)
     {
-        string Read(params string[] names) => names.Select(name => cookies.TryGetValue(name, out var value) ? value : null)
+        string Read(params string[] names) => names
+            .Select(name => cookies.TryGetValue(name, out var value) ? value : null)
             .FirstOrDefault(value => !string.IsNullOrWhiteSpace(value))?.Trim() ?? "";
+
         var stoken = Read("stoken_v2", "stoken");
         var mid = Read("mid", "account_mid_v2", "ltmid_v2");
         var stuid = Read("stuid", "stuid_v2", "account_id", "account_id_v2", "ltuid", "ltuid_v2");
         if (string.IsNullOrEmpty(stoken) || string.IsNullOrEmpty(mid) || string.IsNullOrEmpty(stuid))
-            throw new GachaAuthKeyException("米游社抽卡登录凭证不完整。请在账号页使用「米游社 APP 扫码」或短信验证码重新登录绑定了目标角色的账号。", requiresReLogin: true);
+            throw new GachaAuthKeyException("米游社抽卡登录凭证不完整。请在账号页使用「米游社 APP 扫码」或短信验证码重新登录绑定了目标角色的账号。",
+                requiresReLogin: true);
         return GenerateAuthKeyAsync(stoken, mid, stuid, role);
     }
 
@@ -91,7 +95,8 @@ public class GachaService
         request.Headers.TryAddWithoutValidation("x-rpc-client_type", "5");
         request.Headers.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
         request.Headers.TryAddWithoutValidation("Referer", "https://app.mihoyo.com");
-        request.Headers.TryAddWithoutValidation("User-Agent", $"Mozilla/5.0 (Windows NT 10.0; Win64; x64) miHoYoBBS/{AppVersion}");
+        request.Headers.TryAddWithoutValidation("User-Agent",
+            $"Mozilla/5.0 (Windows NT 10.0; Win64; x64) miHoYoBBS/{AppVersion}");
 
         using var response = await _httpClient.SendAsync(request);
         if (!response.IsSuccessStatusCode)
@@ -117,8 +122,8 @@ public class GachaService
                 throw new GachaAuthKeyException("米游社认证接口未返回完整的祈愿认证信息。");
 
             var url = "https://public-operation-hk4e.mihoyo.com/gacha_info/api/getGachaLog" +
-                $"?authkey={Uri.EscapeDataString(key.GetString()!)}&authkey_ver={authkeyVersion}" +
-                $"&sign_type={signType}&region={role.region}&lang=zh-cn";
+                      $"?authkey={Uri.EscapeDataString(key.GetString()!)}&authkey_ver={authkeyVersion}" +
+                      $"&sign_type={signType}&region={role.region}&lang=zh-cn";
             return GachaUrlHelper.Parse(url) ?? throw new GachaAuthKeyException("米游社返回的祈愿认证信息无效。");
         }
         catch (JsonException)
@@ -137,7 +142,8 @@ public class GachaService
     private static string CalculateDs(string salt, string r)
     {
         var t = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-        var check = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes($"salt={salt}&t={t}&r={r}"))).ToLowerInvariant();
+        var check = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes($"salt={salt}&t={t}&r={r}")))
+            .ToLowerInvariant();
         return $"{t},{r},{check}";
     }
 
@@ -189,14 +195,17 @@ public class GachaService
                     {
                         if (requireComplete && response?.Retcode == -100)
                             throw new GachaFetchException("祈愿链接已过期或无效，请在游戏中重新打开祈愿历史记录后再试。", -100);
-                        Debug.WriteLine($"[Gacha] type={gachaType} page={page} 重试 {retry + 1}/{maxRetry}, retcode={response?.Retcode}, message={response?.Message}");
+                        Debug.WriteLine(
+                            $"[Gacha] type={gachaType} page={page} 重试 {retry + 1}/{maxRetry}, retcode={response?.Retcode}, message={response?.Message}");
                         if (retry < maxRetry - 1)
                         {
                             await Task.Delay(retryDelays[retry]);
                             continue;
                         }
+
                         if (requireComplete)
-                            throw new GachaFetchException($"祈愿记录获取失败（返回码 {response?.Retcode}），请稍后重试。", response?.Retcode);
+                            throw new GachaFetchException($"祈愿记录获取失败（返回码 {response?.Retcode}），请稍后重试。",
+                                response?.Retcode);
                         Debug.WriteLine($"[Gacha] type={gachaType} page={page} 重试耗尽，跳过");
                         break;
                     }
@@ -211,7 +220,8 @@ public class GachaService
                         break;
                     }
 
-                    Debug.WriteLine($"[Gacha] type={gachaType} page={page} 获取 {response.Data.List.Count} 条, end_id={response.Data.List.Last().Id}{(knownEndId > 0 ? $", 增量基线={knownEndId}" : "")}");
+                    Debug.WriteLine(
+                        $"[Gacha] type={gachaType} page={page} 获取 {response.Data.List.Count} 条, end_id={response.Data.List.Last().Id}{(knownEndId > 0 ? $", 增量基线={knownEndId}" : "")}");
 
                     if (knownEndId > 0)
                     {
@@ -223,6 +233,7 @@ public class GachaService
                                 reachedBoundary = true;
                                 break;
                             }
+
                             allItems.Add(item);
                         }
 
@@ -239,6 +250,7 @@ public class GachaService
                         {
                             page++;
                         }
+
                         gotData = true;
                     }
                     else
@@ -250,17 +262,23 @@ public class GachaService
                         await Task.Delay(500);
                         gotData = true;
                     }
+
                     break;
                 }
-                catch (GachaFetchException) { throw; }
+                catch (GachaFetchException)
+                {
+                    throw;
+                }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[Gacha] type={gachaType} page={page} 重试 {retry + 1}/{maxRetry}, 异常: {ex.GetType().Name}: {ex.Message}");
+                    Debug.WriteLine(
+                        $"[Gacha] type={gachaType} page={page} 重试 {retry + 1}/{maxRetry}, 异常: {ex.GetType().Name}: {ex.Message}");
                     if (retry < maxRetry - 1)
                     {
                         await Task.Delay(retryDelays[retry]);
                         continue;
                     }
+
                     if (requireComplete)
                         throw new GachaFetchException("祈愿记录请求失败，请检查网络后重试。", null);
                     Debug.WriteLine($"[Gacha] type={gachaType} page={page} 重试耗尽，跳过");
@@ -274,7 +292,8 @@ public class GachaService
         return allItems;
     }
 
-    private static void ValidateIdentity(GachaLogData? data, string? expectedRegion, string? expectedUid, ref string? observedUid)
+    private static void ValidateIdentity(GachaLogData? data, string? expectedRegion, string? expectedUid,
+        ref string? observedUid)
     {
         if (data?.List == null)
             throw new GachaFetchException("服务器返回了无效的祈愿记录数据。", null);
@@ -356,5 +375,8 @@ public class GachaService
 
 public sealed class GachaFetchException(string message, int? returnCode) : Exception(message)
 {
-    public int? ReturnCode { get; } = returnCode;
+    public int? ReturnCode
+    {
+        get;
+    } = returnCode;
 }

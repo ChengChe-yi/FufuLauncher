@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Services.MiHoYo.Passport;
 using Microsoft.UI.Xaml;
@@ -33,7 +34,7 @@ public sealed partial class OverseaOAuthWindow : Window
             rootContent.Loaded += RootContent_Loaded;
         }
     }
-    
+
     public Task<ThirdPartyToken?> ShowAndWaitAsync()
     {
         Activate();
@@ -61,7 +62,7 @@ public sealed partial class OverseaOAuthWindow : Window
             settings.AreDefaultContextMenusEnabled = false;
             settings.IsPasswordAutosaveEnabled = false;
             settings.IsGeneralAutofillEnabled = false;
-            
+
             var cookieManager = OAuthWebView.CoreWebView2.CookieManager;
             var cookies = await cookieManager.GetCookiesAsync("https://account.hoyoverse.com");
             foreach (var cookie in cookies)
@@ -72,7 +73,8 @@ public sealed partial class OverseaOAuthWindow : Window
             OAuthWebView.CoreWebView2.NavigationStarting -= OnNavigationStarting;
             OAuthWebView.CoreWebView2.NavigationStarting += OnNavigationStarting;
 
-            string languageCode = (FufuLauncher.Helpers.ResourceExtensions.CurrentCulture ?? "zh-cn").ToLowerInvariant();
+            string languageCode =
+                (FufuLauncher.Helpers.ResourceExtensions.CurrentCulture ?? "zh-cn").ToLowerInvariant();
             OAuthWebView.CoreWebView2.Navigate(OverseaThirdPartyOAuth.BuildLoginUrl(_kind, languageCode));
         }
         catch (Exception ex)
@@ -88,11 +90,12 @@ public sealed partial class OverseaOAuthWindow : Window
         if (e.Uri.StartsWith("about:blank", StringComparison.OrdinalIgnoreCase))
         {
             e.Cancel = true;
-            
+
             ReadOnlySpan<char> uriSpan = e.Uri.AsSpan()[CallbackPrefixLength..];
             int ampIndex = uriSpan.IndexOf('&');
             ReadOnlySpan<char> tokenSpan = ampIndex >= 0 ? uriSpan[..ampIndex] : uriSpan;
-            _result = new ThirdPartyToken(OverseaThirdPartyOAuth.GetTypeCode(_kind), Uri.UnescapeDataString(tokenSpan.ToString()));
+            _result = new ThirdPartyToken(OverseaThirdPartyOAuth.GetTypeCode(_kind),
+                Uri.UnescapeDataString(tokenSpan.ToString()));
 
             _resultTcs.TrySetResult(_result);
             DispatcherQueue.TryEnqueue(Close);

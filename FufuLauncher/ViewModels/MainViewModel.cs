@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -20,6 +21,7 @@ namespace FufuLauncher.ViewModels
     public partial class MainViewModel : ObservableRecipient
     {
         #region 服务字段
+
         private readonly IHoyoverseContentService _contentService;
         private readonly IBackgroundRenderer _backgroundRenderer;
         private readonly IDevBuildDetectionService _devBuildDetectionService;
@@ -31,9 +33,11 @@ namespace FufuLauncher.ViewModels
         private readonly DailyNoteCardService _dailyNoteCardService;
         private readonly DispatcherQueue _dispatcherQueue;
         private static bool _isFirstLoad = true;
+
         #endregion
 
         #region 构造函数与消息订阅
+
         public MainViewModel(
             IHoyoverseBackgroundService backgroundService,
             IHoyoverseContentService contentService,
@@ -123,7 +127,8 @@ namespace FufuLauncher.ViewModels
             ToggleInfoCardCommand = new RelayCommand(ToggleInfoCard);
             ToggleBackgroundTypeCommand = new RelayCommand(ToggleBackgroundType);
             ExecuteCheckinCommand = new AsyncRelayCommand(ExecuteCheckinAsync);
-            LaunchGameCommand = new AsyncRelayCommand(LaunchGameAsync, AsyncRelayCommandOptions.AllowConcurrentExecutions);
+            LaunchGameCommand =
+                new AsyncRelayCommand(LaunchGameAsync, AsyncRelayCommandOptions.AllowConcurrentExecutions);
             OpenScreenshotFolderCommand = new AsyncRelayCommand(OpenScreenshotFolderAsync);
             SelectSpecificBackgroundCommand = new AsyncRelayCommand<BackgroundUrlInfo>(SelectSpecificBackgroundAsync);
 
@@ -150,9 +155,11 @@ namespace FufuLauncher.ViewModels
                 });
             });
         }
+
         #endregion
 
         #region 生命周期
+
         public async Task InitializeAsync()
         {
             await LoadTextStylesAsync();
@@ -229,7 +236,9 @@ namespace FufuLauncher.ViewModels
                 _gameMonitoringCts?.Cancel();
                 _gameMonitoringCts?.Dispose();
             }
-            catch { }
+            catch
+            {
+            }
 
             if (BackgroundVideoPlayer != null)
             {
@@ -238,14 +247,18 @@ namespace FufuLauncher.ViewModels
                     BackgroundVideoPlayer.Pause();
                     BackgroundVideoPlayer = null;
                 }
-                catch { }
+                catch
+                {
+                }
             }
 
             WeakReferenceMessenger.Default.UnregisterAll(this);
         }
+
         #endregion
 
         #region UI 线程调度
+
         private Task UpdateUI(Action uiAction)
         {
             if (_dispatcherQueue == null)
@@ -256,6 +269,7 @@ namespace FufuLauncher.ViewModels
 
             return _dispatcherQueue.EnqueueAsync(() => uiAction());
         }
+
         #endregion
     }
 }

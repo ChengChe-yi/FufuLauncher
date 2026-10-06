@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -20,7 +21,7 @@ internal sealed class MiyousheQrLoginService : IDisposable
     {
         // Redirects must never forward account credentials to a host supplied by a response.
         _http = new HttpClient(handler ?? new HttpClientHandler { UseCookies = false, AllowAutoRedirect = false })
-        { Timeout = TimeSpan.FromSeconds(20) };
+            { Timeout = TimeSpan.FromSeconds(20) };
         _deviceFp = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new
         {
             device_id = _deviceId, seed_id = Guid.NewGuid().ToString("N")[..16],
@@ -41,9 +42,13 @@ internal sealed class MiyousheQrLoginService : IDisposable
             device = _deviceId, ts = DateTimeOffset.UtcNow.ToUnixTimeSeconds()
         }, null, cancellationToken);
         string? passportUrl = result.TryGetProperty("data", out var data) && data.ValueKind == JsonValueKind.Object
-            && data.TryGetProperty("passport_qr_url", out var urlElement) && urlElement.ValueKind == JsonValueKind.String
-            ? urlElement.GetString() : null;
-        if (passportUrl == null || !MiyousheLoginQr.TryParse(passportUrl, out var passport) || passport!.GameBiz != null)
+                                                                          && data.TryGetProperty("passport_qr_url",
+                                                                              out var urlElement) &&
+                                                                          urlElement.ValueKind == JsonValueKind.String
+            ? urlElement.GetString()
+            : null;
+        if (passportUrl == null || !MiyousheLoginQr.TryParse(passportUrl, out var passport) ||
+            passport!.GameBiz != null)
             throw new MiyousheQrException("MiyousheQr_Unsupported");
         return passport;
     }
@@ -71,11 +76,12 @@ internal sealed class MiyousheQrLoginService : IDisposable
         }
     }
 
-    private async Task<JsonElement> PostAsync(string url, object body, string? cookie, CancellationToken cancellationToken)
+    private async Task<JsonElement> PostAsync(string url, object body, string? cookie,
+        CancellationToken cancellationToken)
     {
         string json = JsonSerializer.Serialize(body);
         using var request = new HttpRequestMessage(HttpMethod.Post, url)
-        { Content = new StringContent(json, Encoding.UTF8, "application/json") };
+            { Content = new StringContent(json, Encoding.UTF8, "application/json") };
         request.Headers.TryAddWithoutValidation("x-rpc-app_id", "bll8iq97cem8");
         request.Headers.TryAddWithoutValidation("x-rpc-device_id", _deviceId);
         if (cookie != null)
@@ -92,10 +98,13 @@ internal sealed class MiyousheQrLoginService : IDisposable
             request.Headers.TryAddWithoutValidation("x-rpc-account_version", "2.90.1");
             request.Headers.TryAddWithoutValidation("x-rpc-device_model", "Mi 14");
             request.Headers.TryAddWithoutValidation("x-rpc-device_name", "Mihoyo Capture");
-            request.Headers.TryAddWithoutValidation("DS", MiHoYoHeaderFactory.CalculateDsGen2("dDIQHbKOdaPaLuvQKVzUzqdeCaxjtaPV", json));
+            request.Headers.TryAddWithoutValidation("DS",
+                MiHoYoHeaderFactory.CalculateDsGen2("dDIQHbKOdaPaLuvQKVzUzqdeCaxjtaPV", json));
         }
+
         using var response = await _http.SendAsync(request, cancellationToken);
-        if (!response.IsSuccessStatusCode) throw new MiyousheQrException("MiyousheQr_HttpError", (int)response.StatusCode);
+        if (!response.IsSuccessStatusCode)
+            throw new MiyousheQrException("MiyousheQr_HttpError", (int)response.StatusCode);
         using var doc = JsonDocument.Parse(await response.Content.ReadAsStringAsync(cancellationToken));
         if (!doc.RootElement.TryGetProperty("retcode", out var code) || !code.TryGetInt32(out int retcode))
             throw new MiyousheQrException("MiyousheQr_ResponseError");
@@ -104,13 +113,22 @@ internal sealed class MiyousheQrLoginService : IDisposable
     }
 
     private static string FindCookie(IReadOnlyDictionary<string, string> cookies, params string[] keys)
-        => keys.Select(k => cookies.TryGetValue(k, out var value) ? value : "").FirstOrDefault(v => !string.IsNullOrWhiteSpace(v)) ?? "";
+        => keys.Select(k => cookies.TryGetValue(k, out var value) ? value : "")
+            .FirstOrDefault(v => !string.IsNullOrWhiteSpace(v)) ?? "";
+
     private static bool IsCookieValue(string value) => value.All(c => c is >= '!' and <= '~' && c != ';');
     public void Dispose() => _http.Dispose();
 }
 
 internal sealed class MiyousheQrException(string resourceKey, int? code = null) : Exception(resourceKey)
 {
-    internal string ResourceKey { get; } = resourceKey;
-    internal int? Code { get; } = code;
+    internal string ResourceKey
+    {
+        get;
+    } = resourceKey;
+
+    internal int? Code
+    {
+        get;
+    } = code;
 }

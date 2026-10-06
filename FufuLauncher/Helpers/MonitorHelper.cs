@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Runtime.InteropServices;
 
 namespace FufuLauncher.Helpers;
@@ -69,7 +70,8 @@ public static class MonitorHelper
             }, IntPtr.Zero);
         }
         catch
-        {}
+        {
+        }
 
         var result = new List<GameMonitor>(monitors.Count);
         int index = 0;

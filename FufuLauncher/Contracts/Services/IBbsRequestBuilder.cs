@@ -36,39 +36,79 @@ public enum BbsRequestScene
 public sealed class BbsRequestOptions
 {
     /// <summary>WebLogin：x-rpc-app_id（如 ddxf5dufpuyo / bll8iq97cem8）。</summary>
-    public string? AppId { get; init; }
+    public string? AppId
+    {
+        get;
+        init;
+    }
 
     /// <summary>WebLogin：x-rpc-client_type（2 / 3）。</summary>
-    public string? ClientType { get; init; }
+    public string? ClientType
+    {
+        get;
+        init;
+    }
 
     /// <summary>WebLogin：x-rpc-sdk_version，默认 "2.42.0"。</summary>
-    public string? SdkVersion { get; init; }
+    public string? SdkVersion
+    {
+        get;
+        init;
+    }
 
     /// <summary>WebLogin：完整 Cookie 串（可选）。</summary>
-    public string? Cookie { get; init; }
+    public string? Cookie
+    {
+        get;
+        init;
+    }
 
     /// <summary>WebLogin：Referer（可选）。</summary>
-    public string? Referer { get; init; }
+    public string? Referer
+    {
+        get;
+        init;
+    }
 
     /// <summary>WebLogin：x-rpc-lifecycle_id，默认随机 Guid。</summary>
-    public string? LifecycleId { get; init; }
+    public string? LifecycleId
+    {
+        get;
+        init;
+    }
 
     /// <summary>Geetest：x-rpc-challenge_game，默认 "2"。</summary>
-    public string? ChallengeGame { get; init; }
+    public string? ChallengeGame
+    {
+        get;
+        init;
+    }
 
     /// <summary>Geetest：x-rpc-challenge_path。</summary>
-    public string? ChallengePath { get; init; }
+    public string? ChallengePath
+    {
+        get;
+        init;
+    }
 
     /// <summary>WebLogin：是否带 DS。扫码建码/轮询不带，扫码确认/换 token 带。</summary>
-    public bool IncludeDs { get; init; }
+    public bool IncludeDs
+    {
+        get;
+        init;
+    }
 
     /// <summary>WebLogin：极简头（无版本/画像头）。</summary>
-    public bool Minimal { get; init; }
+    public bool Minimal
+    {
+        get;
+        init;
+    }
 }
 
 /// <summary>
-/// 统一请求头构建服务：所有业务请求的请求头（版本号 / 设备指纹 / UA / DS / cookie）从这里出，
-/// 一处管理，避免各服务自行拼头导致版本/指纹不一致。
+///     统一请求头构建服务：所有业务请求的请求头（版本号 / 设备指纹 / UA / DS / cookie）从这里出，
+///     一处管理，避免各服务自行拼头导致版本/指纹不一致。
 /// </summary>
 public interface IBbsRequestBuilder
 {

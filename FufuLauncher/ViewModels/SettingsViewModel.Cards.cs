@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
 
@@ -24,36 +25,42 @@ public partial class SettingsViewModel
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetGacha", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
+
     partial void OnShowWidgetAchievementChanged(bool value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetAchievement", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
+
     partial void OnShowWidgetInventoryChanged(bool value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetInventory", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
+
     partial void OnShowWidgetPlayerRoleChanged(bool value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetPlayerRole", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
+
     partial void OnShowWidgetDailyNoteWindowChanged(bool value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetDailyNoteWindow", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
+
     partial void OnShowWidgetVideoChanged(bool value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("ShowWidgetVideo", value);
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
+
     partial void OnShowWidgetBBSChanged(bool value)
     {
         if (_isInitializing) return;
@@ -101,11 +108,20 @@ public partial class SettingsViewModel
         WeakReferenceMessenger.Default.Send(new CardVisibilityChangedMessage());
     }
 
-    partial void OnShowDailyNoteResinChanged(bool value) => CheckAndLimitDailyNoteItems("ShowDailyNoteResin", () => ShowDailyNoteResin = false);
-    partial void OnShowDailyNoteDailyTasksChanged(bool value) => CheckAndLimitDailyNoteItems("ShowDailyNoteDailyTasks", () => ShowDailyNoteDailyTasks = false);
-    partial void OnShowDailyNoteHomeCoinChanged(bool value) => CheckAndLimitDailyNoteItems("ShowDailyNoteHomeCoin", () => ShowDailyNoteHomeCoin = false);
-    partial void OnShowDailyNoteExpeditionsChanged(bool value) => CheckAndLimitDailyNoteItems("ShowDailyNoteExpeditions", () => ShowDailyNoteExpeditions = false);
-    partial void OnShowDailyNoteTransformerChanged(bool value) => CheckAndLimitDailyNoteItems("ShowDailyNoteTransformer", () => ShowDailyNoteTransformer = false);
+    partial void OnShowDailyNoteResinChanged(bool value) =>
+        CheckAndLimitDailyNoteItems("ShowDailyNoteResin", () => ShowDailyNoteResin = false);
+
+    partial void OnShowDailyNoteDailyTasksChanged(bool value) =>
+        CheckAndLimitDailyNoteItems("ShowDailyNoteDailyTasks", () => ShowDailyNoteDailyTasks = false);
+
+    partial void OnShowDailyNoteHomeCoinChanged(bool value) =>
+        CheckAndLimitDailyNoteItems("ShowDailyNoteHomeCoin", () => ShowDailyNoteHomeCoin = false);
+
+    partial void OnShowDailyNoteExpeditionsChanged(bool value) =>
+        CheckAndLimitDailyNoteItems("ShowDailyNoteExpeditions", () => ShowDailyNoteExpeditions = false);
+
+    partial void OnShowDailyNoteTransformerChanged(bool value) =>
+        CheckAndLimitDailyNoteItems("ShowDailyNoteTransformer", () => ShowDailyNoteTransformer = false);
 
     partial void OnIsHideGameNewsCardEnabledChanged(bool value)
     {

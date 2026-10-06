@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Views;
 using Microsoft.UI.Dispatching;
@@ -40,7 +41,7 @@ public class StarPromotionService
         {
             if (DateTime.Now >= nextPromptDate)
             {
-                _dispatcherQueue.TryEnqueue(() => 
+                _dispatcherQueue.TryEnqueue(() =>
                 {
                     var window = new StarPromptWindow(_settingsService);
                     window.Activate();
@@ -51,7 +52,7 @@ public class StarPromotionService
         {
             if ((DateTime.Now - firstLaunchDate).TotalDays >= 7)
             {
-                _dispatcherQueue.TryEnqueue(() => 
+                _dispatcherQueue.TryEnqueue(() =>
                 {
                     var window = new StarPromptWindow(_settingsService);
                     window.Activate();

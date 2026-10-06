@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models.GameAnnouncement
@@ -11,40 +12,46 @@ namespace FufuLauncher.Models.GameAnnouncement
         [JsonPropertyName("retcode")]
         public int Retcode
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("message")]
         public string Message
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("data")]
         public AnnouncementWrapper Data
         {
-            get; set;
+            get;
+            set;
         }
     }
-    
+
     public class GameAnnouncementContentResponse
     {
         [JsonPropertyName("retcode")]
         public int Retcode
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("message")]
         public string Message
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("data")]
         public AnnouncementContentList Data
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -53,7 +60,8 @@ namespace FufuLauncher.Models.GameAnnouncement
         [JsonPropertyName("list")]
         public List<AnnouncementContent> List
         {
-            get; set;
+            get;
+            set;
         } = new();
     }
 }

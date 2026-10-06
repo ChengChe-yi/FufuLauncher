@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Globalization;
 using FufuLauncher.Models.DataCenter;
 
@@ -11,8 +12,15 @@ public sealed partial class DataViewModel
 {
     #region Abyss
 
-    public DcAbyssSection Spiral { get; }
-    public DcAbyssSection Stygian { get; }
+    public DcAbyssSection Spiral
+    {
+        get;
+    }
+
+    public DcAbyssSection Stygian
+    {
+        get;
+    }
 
     public void SetAbyssSubView(DcAbyssSection? section, int subView) => section?.SetSubView(subView);
 

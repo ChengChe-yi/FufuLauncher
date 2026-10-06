@@ -29,7 +29,8 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="AppTitleBar" x:FieldModifier="public" Grid.Row="0" Background="Transparent">
-            <TextBlock Text="{helpers:Loc Key=LoginQR_Title}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="14" Opacity="0.8" />
+            <TextBlock Text="{helpers:Loc Key=LoginQR_Title}" VerticalAlignment="Center" Margin="16,0,0,0"
+                       FontSize="14" Opacity="0.8" />
         </Grid>
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="16">
@@ -38,7 +39,7 @@
                 <ComboBoxItem Content="{helpers:Loc Key=LoginQR_ServerCn}" />
                 <ComboBoxItem Content="{helpers:Loc Key=LoginQR_ServerOs}" />
             </ComboBox>
-            
+
             <StackPanel x:Name="CnLoginPanel" Spacing="20">
                 <ComboBox x:Name="LoginMethodComboBox" SelectedIndex="0" HorizontalAlignment="Center"
                           SelectionChanged="LoginMethodComboBox_SelectionChanged">
@@ -50,7 +51,8 @@
                 <StackPanel x:Name="GameLoginPanel" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center"
                             Visibility="Collapsed">
                     <TextBlock Text="{helpers:Loc Key=LoginQR_GameAppId}" VerticalAlignment="Center" />
-                    <TextBox x:Name="GameAppIdTextBox" Text="7" Width="100" PlaceholderText="{helpers:Loc Key=LoginQR_EnterAppId}" />
+                    <TextBox x:Name="GameAppIdTextBox" Text="7" Width="100"
+                             PlaceholderText="{helpers:Loc Key=LoginQR_EnterAppId}" />
                     <Button Content="{helpers:Loc Key=LoginQR_ConfirmGenerate}" Click="GameLoginButton_Click" />
                 </StackPanel>
 
@@ -59,7 +61,8 @@
                             HorizontalAlignment="Center">
                         <Image x:Name="QrCodeImage" Stretch="Uniform" Opacity="0" />
                     </Border>
-                    <Button x:Name="RefreshButton" Content="{helpers:Loc Key=LoginQR_RefreshQR}" Click="RefreshButton_Click" HorizontalAlignment="Center" />
+                    <Button x:Name="RefreshButton" Content="{helpers:Loc Key=LoginQR_RefreshQR}"
+                            Click="RefreshButton_Click" HorizontalAlignment="Center" />
                 </StackPanel>
 
                 <Grid x:Name="PassportWebViewBorder" Visibility="Collapsed" HorizontalAlignment="Stretch"
@@ -89,7 +92,7 @@
                            HorizontalAlignment="Center"
                            Visibility="Collapsed" />
             </StackPanel>
-            
+
             <StackPanel x:Name="OsLoginPanel" Spacing="12" Visibility="Collapsed">
                 <Button x:Name="OverseaPasswordButton" MinWidth="280"
                         Content="{helpers:Loc Key=LoginQR_OverseaPassword}"
@@ -108,9 +111,11 @@
                            MaxWidth="280" HorizontalAlignment="Center" TextWrapping="Wrap" />
             </StackPanel>
 
-            <Button x:Name="ManualCookieButton" Content="{helpers:Loc Key=LoginQR_ManualCookie}" Click="ManualCookieButton_Click"
+            <Button x:Name="ManualCookieButton" Content="{helpers:Loc Key=LoginQR_ManualCookie}"
+                    Click="ManualCookieButton_Click"
                     HorizontalAlignment="Center" />
-            <Button x:Name="ClearCacheButton" Content="{helpers:Loc Key=LoginQR_ClearHistory}" Click="ClearCacheButton_Click"
+            <Button x:Name="ClearCacheButton" Content="{helpers:Loc Key=LoginQR_ClearHistory}"
+                    Click="ClearCacheButton_Click"
                     HorizontalAlignment="Center" />
         </StackPanel>
     </Grid>

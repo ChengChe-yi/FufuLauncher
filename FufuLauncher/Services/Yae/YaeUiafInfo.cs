@@ -4,6 +4,7 @@ Licensed under the MIT License.
 
 UIAF v1.1 结果文件的 info 部分，与成就窗口的导入/导出格式一致。
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Services.Yae;
@@ -11,14 +12,30 @@ namespace FufuLauncher.Services.Yae;
 public sealed class YaeUiafInfo
 {
     [JsonPropertyName("export_app")]
-    public string ExportApp { get; set; } = "FufuLauncher";
+    public string ExportApp
+    {
+        get;
+        set;
+    } = "FufuLauncher";
 
     [JsonPropertyName("export_app_version")]
-    public string ExportAppVersion { get; set; } = "1.0.0";
+    public string ExportAppVersion
+    {
+        get;
+        set;
+    } = "1.0.0";
 
     [JsonPropertyName("uiaf_version")]
-    public string UiafVersion { get; set; } = "v1.1";
+    public string UiafVersion
+    {
+        get;
+        set;
+    } = "v1.1";
 
     [JsonPropertyName("export_timestamp")]
-    public long ExportTimestamp { get; set; }
+    public long ExportTimestamp
+    {
+        get;
+        set;
+    }
 }

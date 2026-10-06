@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Helpers.Patch;
 
 public static class FufuPatch
@@ -11,14 +12,18 @@ public static class FufuPatch
 
     private const string VersionMagic = "HDIFF13";
     private const int SignTagBit = 1;
-    
-    internal static Action<string>? Diagnostics { get; set; }
+
+    internal static Action<string>? Diagnostics
+    {
+        get;
+        set;
+    }
 
     internal static void Diag(string message)
     {
         Diagnostics?.Invoke(message);
     }
-    
+
     public static long GetDataSize(Stream diff)
     {
         ArgumentNullException.ThrowIfNull(diff);
@@ -37,17 +42,17 @@ public static class FufuPatch
             throw new InvalidOperationException("Patch_ReadHeaderFailed".GetLocalized());
         }
     }
-    
+
     public static bool Merge(Stream source, Stream diff, Stream target)
     {
         return Apply(source, diff, target, null);
     }
-    
+
     public static bool MergeZstd(Stream source, Stream diff, Stream target)
     {
         return Apply(source, diff, target, ZstdPatchDecompressor.Instance);
     }
-    
+
     public static Stream CreateSubStream(Stream stream, long offset, long length)
     {
         ArgumentNullException.ThrowIfNull(stream);
@@ -76,7 +81,8 @@ public static class FufuPatch
         {
             PatchInput input = new(diff);
             DiffHead head = ReadHead(input);
-            Diag($"head ok: new={head.NewDataSize} old={head.OldDataSize} covers={head.CoverCount} type='{head.CompressType}' compressedCount={head.CompressedCount} headEnd={head.HeadEndPos}");
+            Diag(
+                $"head ok: new={head.NewDataSize} old={head.OldDataSize} covers={head.CoverCount} type='{head.CompressType}' compressedCount={head.CompressedCount} headEnd={head.HeadEndPos}");
 
             if (head.OldDataSize != source.Length)
             {
@@ -96,9 +102,12 @@ public static class FufuPatch
             step = "sections";
             long diffPos = head.HeadEndPos;
             covers = CreateSection(input, ref diffPos, head.CoverBufSize, head.CompressedCoverBufSize, decompressor);
-            rleCtrl = CreateSection(input, ref diffPos, head.RleCtrlBufSize, head.CompressedRleCtrlBufSize, decompressor);
-            rleCode = CreateSection(input, ref diffPos, head.RleCodeBufSize, head.CompressedRleCodeBufSize, decompressor);
-            newDataDiff = CreateSection(input, ref diffPos, head.NewDataDiffSize, head.CompressedNewDataDiffSize, decompressor);
+            rleCtrl = CreateSection(input, ref diffPos, head.RleCtrlBufSize, head.CompressedRleCtrlBufSize,
+                decompressor);
+            rleCode = CreateSection(input, ref diffPos, head.RleCodeBufSize, head.CompressedRleCodeBufSize,
+                decompressor);
+            newDataDiff = CreateSection(input, ref diffPos, head.NewDataDiffSize, head.CompressedNewDataDiffSize,
+                decompressor);
             Diag($"sections ok: diffPos={diffPos} total={input.Length}");
 
             if (diffPos != input.Length)
@@ -118,7 +127,8 @@ public static class FufuPatch
                       && rle.IsFinished
                       && coverReader.IsFinished
                       && newDataDiff.IsFinished;
-            Diag($"apply done: written={output.Written}/{head.NewDataSize} rleFinished={rle.IsFinished} coversFinished={coverReader.IsFinished} newDataFinished={newDataDiff.IsFinished} ok={ok}");
+            Diag(
+                $"apply done: written={output.Written}/{head.NewDataSize} rleFinished={rle.IsFinished} coversFinished={coverReader.IsFinished} newDataFinished={newDataDiff.IsFinished} ok={ok}");
             return ok;
         }
         catch (PatchFormatException ex)
@@ -149,7 +159,7 @@ public static class FufuPatch
             newDataDiff?.Dispose();
         }
     }
-    
+
     private static DiffHead ReadHead(PatchInput input)
     {
         PatchSectionReader reader = PatchSectionReader.CreateRaw(input, 0, input.Length);
@@ -186,13 +196,15 @@ public static class FufuPatch
             rleCtrlBufSize, compressedRleCtrlBufSize, rleCodeBufSize, compressedRleCodeBufSize,
             newDataDiffSize, compressedNewDataDiffSize, headEndPos, coverEndPos, compressedCount, compressType);
     }
-    
-    private static PatchSectionReader CreateSection(PatchInput input, ref long diffPos, long rawSize, long compressedSize, IPatchDecompressor? decompressor)
+
+    private static PatchSectionReader CreateSection(PatchInput input, ref long diffPos, long rawSize,
+        long compressedSize, IPatchDecompressor? decompressor)
     {
         long sectionPos = diffPos;
         long sectionLength = compressedSize > 0 ? compressedSize : rawSize;
 
-        if (sectionPos < 0 || sectionLength < 0 || sectionPos + sectionLength < sectionPos || sectionPos + sectionLength > input.Length)
+        if (sectionPos < 0 || sectionLength < 0 || sectionPos + sectionLength < sectionPos ||
+            sectionPos + sectionLength > input.Length)
         {
             throw new PatchFormatException("section out of range");
         }
@@ -207,8 +219,9 @@ public static class FufuPatch
 
         return PatchSectionReader.CreateRaw(input, sectionPos, sectionPos + rawSize);
     }
-    
-    private static void ApplyCovers(Stream oldData, CoverReader covers, PatchSectionReader newDataDiff, RleDecoder rle, PatchOutput output, long newDataSize)
+
+    private static void ApplyCovers(Stream oldData, CoverReader covers, PatchSectionReader newDataDiff, RleDecoder rle,
+        PatchOutput output, long newDataSize)
     {
         long oldDataSize = oldData.Length;
         long newPosBack = 0;
@@ -221,7 +234,7 @@ public static class FufuPatch
             Diag($"cover {coverIndex}: old={cover.OldPos} new={cover.NewPos} len={cover.Length}");
 
             if (cover.NewPos < newPosBack || cover.Length > newDataSize - cover.NewPos
-                || cover.OldPos > oldDataSize || cover.Length > oldDataSize - cover.OldPos)
+                                          || cover.OldPos > oldDataSize || cover.Length > oldDataSize - cover.OldPos)
             {
                 throw new PatchFormatException("invalid cover bounds");
             }
@@ -276,7 +289,7 @@ public static class FufuPatch
             total += read;
         }
     }
-    
+
     private readonly record struct DiffHead(
         long NewDataSize,
         long OldDataSize,
@@ -295,7 +308,7 @@ public static class FufuPatch
         string CompressType);
 
     private readonly record struct Cover(long OldPos, long NewPos, long Length);
-    
+
     private sealed class CoverReader
     {
         private readonly PatchSectionReader _stream;
@@ -344,7 +357,6 @@ public static class FufuPatch
         }
     }
 }
-
 
 internal sealed class PatchFormatException : Exception
 {

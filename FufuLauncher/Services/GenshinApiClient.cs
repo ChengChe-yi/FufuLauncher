@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -18,8 +19,13 @@ public class GenshinApiClient
     private readonly HttpClient _httpClient;
     private const string CnAppVersion = "2.90.1";
     private const string OsAppVersion = "3.13.0";
-    private const string CnUserAgent = "Mozilla/5.0 (Linux; Android 13; Pixel 5 Build/TQ3A.230901.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBS/2.90.1";
-    private const string OsUserAgent = "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/3.13.0";
+
+    private const string CnUserAgent =
+        "Mozilla/5.0 (Linux; Android 13; Pixel 5 Build/TQ3A.230901.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBS/2.90.1";
+
+    private const string OsUserAgent =
+        "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/3.13.0";
+
     private const string CnSalt = "xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs";
     private const string OsSalt = "h4c1d6ywfq5bsbnbhm1bzq7bxzzv6srt";
     private readonly string _deviceId = Guid.NewGuid().ToString("D");
@@ -29,7 +35,8 @@ public class GenshinApiClient
         _httpClient = httpClient ?? new HttpClient();
     }
 
-    public async Task<TravelersDiarySummary> GetTravelersDiarySummaryAsync(string uid, string cookie, string region, int month = 0, CancellationToken cancellationToken = default)
+    public async Task<TravelersDiarySummary> GetTravelersDiarySummaryAsync(string uid, string cookie, string region,
+        int month = 0, CancellationToken cancellationToken = default)
     {
         var isOs = region.StartsWith("os_");
 
@@ -40,7 +47,8 @@ public class GenshinApiClient
         }
         else
         {
-            url = $"{ApiEndpoints.TravelersDiaryMonthInfoUrl}?month={month}&bind_uid={uid}&bind_region={region}&bbs_presentation_style=fullscreen&bbs_auth_required=true&utm_source=bbs&utm_medium=mys&utm_campaign=icon";
+            url =
+                $"{ApiEndpoints.TravelersDiaryMonthInfoUrl}?month={month}&bind_uid={uid}&bind_region={region}&bbs_presentation_style=fullscreen&bbs_auth_required=true&utm_source=bbs&utm_medium=mys&utm_campaign=icon";
         }
 
         var request = CreateRequest(HttpMethod.Get, url, cookie, isOs);
@@ -115,4 +123,3 @@ public class GenshinApiClient
         return $"{t},{r},{check}";
     }
 }
-

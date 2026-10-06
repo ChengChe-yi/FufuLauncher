@@ -9,7 +9,8 @@
     <Grid Padding="32">
         <StackPanel VerticalAlignment="Center" Spacing="16" MaxWidth="480" HorizontalAlignment="Center">
             <FontIcon Glyph="&#xE9F5;" FontSize="48" Opacity="0.8" />
-            <TextBlock Text="{helpers:Loc Key=VerifyGame_Title}" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" />
+            <TextBlock Text="{helpers:Loc Key=VerifyGame_Title}" FontSize="24" FontWeight="SemiBold"
+                       HorizontalAlignment="Center" />
             <TextBlock Text="{helpers:Loc Key=VerifyGame_Description}"
                        TextWrapping="Wrap" HorizontalAlignment="Center" Opacity="0.6" TextAlignment="Center"
                        MaxWidth="400" />
@@ -20,14 +21,16 @@
                 <TextBlock x:Name="StatusText" TextWrapping="Wrap" />
                 <ProgressBar x:Name="ProgressBar" IsIndeterminate="True" Height="8" />
                 <TextBlock x:Name="ProgressDetailText" Opacity="0.7" />
-                <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
+                <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
+                        Padding="8">
                     <StackPanel Spacing="4">
                         <TextBlock Text="{helpers:Loc Key=AdvancedServerSwitch_DownloadSpeed}" FontWeight="SemiBold" />
                         <controls:SpeedGraph x:Name="SpeedGraphChart" Height="120" />
                     </StackPanel>
                 </Border>
                 <TextBlock x:Name="RemainingCountText" FontWeight="SemiBold" />
-                <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
+                <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
+                        Padding="8">
                     <ListView x:Name="RemainingChunksList" Height="110" SelectionMode="None" IsItemClickEnabled="False">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -36,7 +39,8 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Border>
-                <Button x:Name="CancelBtn" Content="{helpers:Loc Key=AdvancedServerSwitch_Cancel}" Width="120" Height="36" HorizontalAlignment="Center"
+                <Button x:Name="CancelBtn" Content="{helpers:Loc Key=AdvancedServerSwitch_Cancel}" Width="120"
+                        Height="36" HorizontalAlignment="Center"
                         Click="CancelBtn_Click" />
             </StackPanel>
         </StackPanel>

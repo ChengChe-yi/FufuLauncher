@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models
@@ -11,19 +12,22 @@ namespace FufuLauncher.Models
         [JsonPropertyName("retcode")]
         public int Retcode
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("message")]
         public string Message
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("data")]
         public ContentData Data
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -32,7 +36,8 @@ namespace FufuLauncher.Models
         [JsonPropertyName("content")]
         public ContentInfo Content
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -41,31 +46,36 @@ namespace FufuLauncher.Models
         [JsonPropertyName("game")]
         public GameInfo Game
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("language")]
         public string Language
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("banners")]
         public BannerItem[] Banners
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("posts")]
         public PostItem[] Posts
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("social_media_list")]
         public SocialMediaItem[] SocialMediaList
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -74,19 +84,22 @@ namespace FufuLauncher.Models
         [JsonPropertyName("id")]
         public string Id
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("image")]
         public ImageInfo Image
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("i18n_identifier")]
         public string I18nIdentifier
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -95,37 +108,43 @@ namespace FufuLauncher.Models
         [JsonPropertyName("id")]
         public string Id
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("type")]
         public string Type
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("title")]
         public string Title
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("link")]
         public string Link
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("date")]
         public string Date
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("i18n_identifier")]
         public string I18nIdentifier
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -134,43 +153,50 @@ namespace FufuLauncher.Models
         [JsonPropertyName("id")]
         public string Id
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("icon")]
         public ImageInfo Icon
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("qr_image")]
         public ImageInfo QrImage
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("qr_desc")]
         public string QrDesc
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("links")]
         public SocialLink[] Links
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("enable_red_dot")]
         public bool EnableRedDot
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("red_dot_content")]
         public string RedDotContent
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -179,19 +205,22 @@ namespace FufuLauncher.Models
         [JsonPropertyName("title")]
         public string Title
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("link")]
         public string Link
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("login_state_in_link")]
         public bool LoginStateInLink
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -200,37 +229,43 @@ namespace FufuLauncher.Models
         [JsonPropertyName("url")]
         public string Url
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("link")]
         public string Link
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("login_state_in_link")]
         public bool LoginStateInLink
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("md5")]
         public string Md5
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("size")]
         public long Size
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("hover_url")]
         public string HoverUrl
         {
-            get; set;
+            get;
+            set;
         }
     }
 }

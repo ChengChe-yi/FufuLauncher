@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Windows.Graphics;
@@ -62,4 +63,3 @@ public sealed partial class HighCpuUsageWarningWindow : Window
         App.Current.Exit();
     }
 }
-

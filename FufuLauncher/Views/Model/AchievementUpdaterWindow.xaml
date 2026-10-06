@@ -10,7 +10,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="20">
-            <TextBlock Text="{helpers:Loc Key=AchievementUpdater_Title}" Style="{ThemeResource TitleTextBlockStyle}" HorizontalAlignment="Center" />
+            <TextBlock Text="{helpers:Loc Key=AchievementUpdater_Title}" Style="{ThemeResource TitleTextBlockStyle}"
+                       HorizontalAlignment="Center" />
 
             <Button x:Name="StartButton"
                     Content="{helpers:Loc Key=AchievementUpdater_StartFetch}"

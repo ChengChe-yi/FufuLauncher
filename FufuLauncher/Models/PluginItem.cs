@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using FufuLauncher.Helpers;
@@ -27,7 +28,8 @@ public class PluginItem : INotifyPropertyChanged
         get => _fileName;
         set
         {
-            _fileName = value; OnPropertyChanged();
+            _fileName = value;
+            OnPropertyChanged();
         }
     }
 
@@ -36,7 +38,8 @@ public class PluginItem : INotifyPropertyChanged
         get => _displayName;
         set
         {
-            _displayName = value; OnPropertyChanged();
+            _displayName = value;
+            OnPropertyChanged();
         }
     }
 
@@ -67,7 +70,8 @@ public class PluginItem : INotifyPropertyChanged
         get => _fullPath;
         set
         {
-            _fullPath = value; OnPropertyChanged();
+            _fullPath = value;
+            OnPropertyChanged();
         }
     }
 
@@ -76,7 +80,8 @@ public class PluginItem : INotifyPropertyChanged
         get => _directoryPath;
         set
         {
-            _directoryPath = value; OnPropertyChanged();
+            _directoryPath = value;
+            OnPropertyChanged();
         }
     }
 
@@ -121,7 +126,9 @@ public class PluginItem : INotifyPropertyChanged
         get => _fileSize;
         set
         {
-            _fileSize = value; OnPropertyChanged(); OnPropertyChanged(nameof(FileSizeDisplay));
+            _fileSize = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(FileSizeDisplay));
         }
     }
 
@@ -130,7 +137,8 @@ public class PluginItem : INotifyPropertyChanged
         get => _dateModified;
         set
         {
-            _dateModified = value; OnPropertyChanged();
+            _dateModified = value;
+            OnPropertyChanged();
         }
     }
 
@@ -146,6 +154,7 @@ public class PluginItem : INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
     protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

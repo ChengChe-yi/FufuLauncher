@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml.Data;
 
@@ -18,12 +19,12 @@ namespace FufuLauncher.Helpers
                     return enumValue == paramValue;
                 }
             }
+
             return false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-
             if (value is bool boolValue && boolValue && parameter is string parameterString)
             {
                 if (Enum.TryParse<WindowModeType>(parameterString, out var paramValue))

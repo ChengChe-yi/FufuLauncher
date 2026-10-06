@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Services;
 
 internal static class ContinuousQrScanService
@@ -33,6 +34,7 @@ internal static class ContinuousQrScanService
                     }
                 }
             }
+
             await Task.Delay(delay, cancellationToken);
         }
     }

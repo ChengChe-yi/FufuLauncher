@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics.CodeAnalysis;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Contracts.ViewModels;
@@ -86,7 +87,8 @@ public class NavigationService : INavigationService
     {
         var pageType = _pageService.GetPageType(pageKey);
 
-        if (_frame != null && (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed))))
+        if (_frame != null && (_frame.Content?.GetType() != pageType ||
+                               (parameter != null && !parameter.Equals(_lastParameterUsed))))
         {
             _frame.Tag = clearNavigation;
             var vmBeforeNavigation = _frame.GetPageViewModel();
@@ -125,4 +127,3 @@ public class NavigationService : INavigationService
         }
     }
 }
-

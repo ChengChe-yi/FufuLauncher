@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http.Headers;
@@ -40,7 +41,7 @@ public sealed class GameStatsService
 
         return client;
     }
-    
+
     public bool HasAnyCache
     {
         get
@@ -78,7 +79,7 @@ public sealed class GameStatsService
         var response = await GetAsync<AbyssStatsResponse>(url, forceRefresh, token).ConfigureAwait(false);
         return response == null ? null : new AbyssStatsBundle(response);
     }
-    
+
     private static string BuildQuery(string baseUrl, string? version, string? role)
     {
         var url = baseUrl;
@@ -127,7 +128,7 @@ public sealed class GameStatsService
                 }
             }
         }
-        
+
         await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
@@ -159,7 +160,7 @@ public sealed class GameStatsService
         catch (Exception ex)
         {
             Debug.WriteLine($"[GameStatsService] 请求失败 {url}: {ex.Message}");
-            
+
             lock (_cache)
             {
                 if (_cache.TryGetValue(url, out var stale)) return stale.Payload;

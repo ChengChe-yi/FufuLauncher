@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -59,6 +60,7 @@ public sealed partial class SettingsPage
                         Element = row
                     });
                 }
+
                 continue;
             }
 
@@ -150,9 +152,9 @@ public sealed partial class SettingsPage
             return;
         }
 
-        var first = _searchIndex.FirstOrDefault(
-            item => item.Element is { Visibility: Visibility.Visible }
-                    && item.Title.Contains(query, StringComparison.OrdinalIgnoreCase));
+        var first = _searchIndex.FirstOrDefault(item => item.Element is { Visibility: Visibility.Visible }
+                                                        && item.Title.Contains(query,
+                                                            StringComparison.OrdinalIgnoreCase));
 
         if (first != null)
         {

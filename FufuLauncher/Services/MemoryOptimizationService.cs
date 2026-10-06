@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -11,7 +12,8 @@ namespace FufuLauncher.Services
     public static class MemoryOptimizationService
     {
         [DllImport("kernel32.dll")]
-        private static extern bool SetProcessWorkingSetSize(IntPtr process, int minimumWorkingSetSize, int maximumWorkingSetSize);
+        private static extern bool SetProcessWorkingSetSize(IntPtr process, int minimumWorkingSetSize,
+            int maximumWorkingSetSize);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern IntPtr GetCurrentProcess();

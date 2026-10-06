@@ -10,7 +10,8 @@ public sealed partial class MiyousheWindow
     private void UpdateRefreshButtonState()
     {
         if (_closed) return;
-        RefreshButton.IsEnabled = !_initializing && !_refreshing && !_feedLoading && !_readerLoading && !_goingBack && !_interactionBusy;
+        RefreshButton.IsEnabled = !_initializing && !_refreshing && !_feedLoading && !_readerLoading && !_goingBack &&
+                                  !_interactionBusy;
         RefreshSpinner.IsActive = _refreshing;
         RefreshSpinner.Visibility = _refreshing ? Visibility.Visible : Visibility.Collapsed;
         RefreshIcon.Visibility = _refreshing ? Visibility.Collapsed : Visibility.Visible;
@@ -26,8 +27,13 @@ public sealed partial class MiyousheWindow
     private async Task<bool> RefreshCurrentPageAsync()
     {
         if (_closed || _dialogOpen || !RefreshButton.IsEnabled) return false;
-        var client = _client; var feed = _feed; var target = _readerTarget; bool postOpen = _isPostOpen;
-        _refreshing = true; UpdateRefreshButtonState(); ClearNavigationError();
+        var client = _client;
+        var feed = _feed;
+        var target = _readerTarget;
+        bool postOpen = _isPostOpen;
+        _refreshing = true;
+        UpdateRefreshButtonState();
+        ClearNavigationError();
         try
         {
             bool completed;
@@ -41,9 +47,20 @@ public sealed partial class MiyousheWindow
             ShowRefreshFeedback();
             return true;
         }
-        catch (OperationCanceledException) { return false; }
-        catch (Exception ex) { if (!_closed) ReportError(ex, RefreshCurrentPageAsync); return false; }
-        finally { _refreshing = false; UpdateRefreshButtonState(); }
+        catch (OperationCanceledException)
+        {
+            return false;
+        }
+        catch (Exception ex)
+        {
+            if (!_closed) ReportError(ex, RefreshCurrentPageAsync);
+            return false;
+        }
+        finally
+        {
+            _refreshing = false;
+            UpdateRefreshButtonState();
+        }
     }
 
     private void ShowRefreshFeedback()
@@ -53,10 +70,12 @@ public sealed partial class MiyousheWindow
         long version = ++_refreshFeedbackVersion;
         ShowStatus(message, InfoBarSeverity.Success);
         var timer = DispatcherQueue.CreateTimer();
-        timer.Interval = TimeSpan.FromSeconds(3); timer.IsRepeating = false;
+        timer.Interval = TimeSpan.FromSeconds(3);
+        timer.IsRepeating = false;
         timer.Tick += (_, _) =>
         {
-            if (!_closed && version == _refreshFeedbackVersion && StatusBar.Severity == InfoBarSeverity.Success && StatusBar.Message == message)
+            if (!_closed && version == _refreshFeedbackVersion && StatusBar.Severity == InfoBarSeverity.Success &&
+                StatusBar.Message == message)
                 StatusBar.IsOpen = false;
         };
         timer.Start();

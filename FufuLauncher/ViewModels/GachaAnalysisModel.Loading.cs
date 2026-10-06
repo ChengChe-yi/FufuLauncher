@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Data.Entities;
@@ -40,7 +41,10 @@ public partial class GachaAnalysisModel
                         }
                     }
                 }
-                catch (Exception ex) { Debug.WriteLine($"[Gacha] JSON 迁移失败: {ex.Message}"); }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[Gacha] JSON 迁移失败: {ex.Message}");
+                }
             }
 
             var uids = QueryKnownUidsFromDb();
@@ -52,7 +56,9 @@ public partial class GachaAnalysisModel
                 var lastUidObj = _localSettingsService.ReadSettingAsync(LastSelectedUidKey).GetAwaiter().GetResult();
                 lastUid = lastUidObj as string ?? "";
             }
-            catch { }
+            catch
+            {
+            }
 
             if (uids.Count > 0)
             {
@@ -63,6 +69,7 @@ public partial class GachaAnalysisModel
                 LoadGachaLogsFromDb(_currentUid);
                 _ = _localSettingsService.SaveSettingAsync(LastSelectedUidKey, _currentUid);
             }
+
             return (uids, _savedMetadata.Count);
         });
 
@@ -149,6 +156,7 @@ public partial class GachaAnalysisModel
         {
             if (!dict.ContainsKey(item.Id)) dict[item.Id] = item;
         }
+
         return dict.Values.OrderBy(x => x.Id).ToList();
     }
 

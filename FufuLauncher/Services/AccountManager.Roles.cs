@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 
 namespace FufuLauncher.Services;
@@ -14,12 +15,15 @@ public partial class AccountManager
         try
         {
             var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId)
-                ?? throw new InvalidOperationException("社区账号已移除。");
+                        ?? throw new InvalidOperationException("社区账号已移除。");
             var oldRoles = entry.GameRoles;
             var oldUid = entry.GameUid;
             var oldRegion = entry.GameRegion;
             GameRoleSelection.UpdateBindings(entry, roles);
-            try { await SaveAccountListAsync(); }
+            try
+            {
+                await SaveAccountListAsync();
+            }
             catch
             {
                 entry.GameRoles = oldRoles;
@@ -28,7 +32,10 @@ public partial class AccountManager
                 throw;
             }
         }
-        finally { _lock.Release(); }
+        finally
+        {
+            _lock.Release();
+        }
     }
 
     public async Task SelectGameRoleAsync(string accountId, string uid, string region)
@@ -42,7 +49,10 @@ public partial class AccountManager
             var oldUid = entry.GameUid;
             var oldRegion = entry.GameRegion;
             GameRoleSelection.Select(entry, uid, region);
-            try { await SaveAccountListAsync(); }
+            try
+            {
+                await SaveAccountListAsync();
+            }
             catch
             {
                 entry.GameUid = oldUid;
@@ -50,6 +60,9 @@ public partial class AccountManager
                 throw;
             }
         }
-        finally { _lock.Release(); }
+        finally
+        {
+            _lock.Release();
+        }
     }
 }

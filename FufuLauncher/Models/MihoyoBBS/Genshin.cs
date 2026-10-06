@@ -7,7 +7,10 @@ namespace MihoyoBBS;
 
 public class Genshin : GameCheckin
 {
-    public Genshin() : base("hk4e_cn", "原神", "e202311201442471", "旅行者") {}
+    public Genshin() : base("hk4e_cn", "原神", "e202311201442471", "旅行者")
+    {
+    }
+
     public override async Task InitializeAsync(Config config)
     {
         SetHeaders(config);
@@ -21,5 +24,4 @@ public class Genshin : GameCheckin
             CheckinRewards = await GetCheckinRewardsAsync().ConfigureAwait(false);
         }
     }
-
 }

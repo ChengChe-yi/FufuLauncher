@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using System.Text.Json;
 using FufuLauncher.Helpers;
@@ -41,7 +42,9 @@ public sealed partial class SettingsPage
                 }
             }
         }
-        catch { }
+        catch
+        {
+        }
 
         var uidBox = new TextBox { PlaceholderText = "游戏 UID", Margin = new Thickness(0, 8, 0, 0) };
         var nameBox = new TextBox { PlaceholderText = "用户名", Margin = new Thickness(0, 8, 0, 0) };

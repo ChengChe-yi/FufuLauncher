@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using FufuLauncher.ViewModels;
@@ -36,6 +37,7 @@ public sealed partial class PluginSettingsPage
                 ViewModel.ForceUnlockAndSwitchPreset(preset);
                 return;
             }
+
             ViewModel.SwitchPreset(preset);
         }
     }
@@ -56,7 +58,7 @@ public sealed partial class PluginSettingsPage
         {
             var currentData = ViewModel.CurrentPreset?.ConfigData;
             var currentHash = ViewModel.CurrentPreset?.DllHash ?? "";
-            
+
             if (currentData != null)
             {
                 var newPreset = ViewModel.CreateNewPreset(inputTextBox.Text.Trim(), currentData, currentHash);
@@ -152,7 +154,8 @@ public sealed partial class PluginSettingsPage
                     return;
                 }
 
-                string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+                string urlLatest =
+                    "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
                 await DownloadAndInstallPluginAsync(urlLatest);
             }
             else if (ViewModel.SelectedPluginIndex == 1)

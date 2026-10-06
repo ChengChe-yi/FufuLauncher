@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
@@ -18,8 +19,16 @@ namespace FufuLauncher.Views
 {
     public sealed partial class CheckinCalendarWindow : Window
     {
-        public ObservableCollection<CalendarRewardItem> Rewards { get; } = new();
-        public GameRoleScope RoleSelection { get; }
+        public ObservableCollection<CalendarRewardItem> Rewards
+        {
+            get;
+        } = new();
+
+        public GameRoleScope RoleSelection
+        {
+            get;
+        }
+
         private int _calendarVersion;
         private bool _closed;
 
@@ -51,36 +60,40 @@ namespace FufuLauncher.Views
             Rewards.Clear();
             try
             {
-            
-            var accountManager = App.GetService<AccountManager>();
-            var activeId = accountManager.ActiveAccountId;
-            if (activeId == null) return;
-            var cookies = await accountManager.LoadCookiesAsync(activeId);
-            if (cookies == null || cookies.Count == 0) return;
+                var accountManager = App.GetService<AccountManager>();
+                var activeId = accountManager.ActiveAccountId;
+                if (activeId == null) return;
+                var cookies = await accountManager.LoadCookiesAsync(activeId);
+                if (cookies == null || cookies.Count == 0) return;
 
-            
-            var checkinService = App.GetService<IHoyoverseCheckinService>();
-            var entry = accountManager.GetActiveAccountEntry();
-            if (entry == null) return;
 
-        
-            var calendarData = await checkinService.GetCalendarDataAsync(cookies, entry.ServerType);  
-            if (calendarData != null && !_closed && version == _calendarVersion && accountManager.ActiveAccountId == activeId)
-            {
-                DispatcherQueue.TryEnqueue(() =>
+                var checkinService = App.GetService<IHoyoverseCheckinService>();
+                var entry = accountManager.GetActiveAccountEntry();
+                if (entry == null) return;
+
+
+                var calendarData = await checkinService.GetCalendarDataAsync(cookies, entry.ServerType);
+                if (calendarData != null && !_closed && version == _calendarVersion &&
+                    accountManager.ActiveAccountId == activeId)
                 {
-                    if (_closed || version != _calendarVersion || accountManager.ActiveAccountId != activeId) return;
-                    TitleText.Text = $"{calendarData.Month}月 签到奖励日历";
-                    Rewards.Clear();
-                    foreach (var item in calendarData.Awards)
-                        Rewards.Add(item);
-                    CalendarGridView.ItemsSource = Rewards;
-                });
+                    DispatcherQueue.TryEnqueue(() =>
+                    {
+                        if (_closed || version != _calendarVersion ||
+                            accountManager.ActiveAccountId != activeId) return;
+                        TitleText.Text = $"{calendarData.Month}月 签到奖励日历";
+                        Rewards.Clear();
+                        foreach (var item in calendarData.Awards)
+                            Rewards.Add(item);
+                        CalendarGridView.ItemsSource = Rewards;
+                    });
+                }
             }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"[CheckinCalendar] {ex.Message}");
             }
-            catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"[CheckinCalendar] {ex.Message}"); }
         }
-        
+
         private async void ResignButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -99,7 +112,8 @@ namespace FufuLauncher.Views
                     if (!roles.IsCurrent(selected, RoleSelection)) return;
                     if (resignInfo == null)
                     {
-                        string lastError = isOs ? HoyolabCheckinService.LastApiError : MihoyoBBS.GameCheckin.LastApiError;
+                        string lastError =
+                            isOs ? HoyolabCheckinService.LastApiError : MihoyoBBS.GameCheckin.LastApiError;
                         await ShowMessageAsync(string.IsNullOrEmpty(lastError)
                             ? "Checkin_ResignQueryFailed".GetLocalized()
                             : lastError);
@@ -112,7 +126,8 @@ namespace FufuLauncher.Views
                     var confirmDialog = new ContentDialog
                     {
                         Title = "Checkin_ResignTitle".GetLocalized(),
-                        Content = $"{selected.Role.region_name} · {uid}\n" + string.Format(confirmKey.GetLocalized(), resignInfo.RemainingMonthly, cost),
+                        Content = $"{selected.Role.region_name} · {uid}\n" + string.Format(confirmKey.GetLocalized(),
+                            resignInfo.RemainingMonthly, cost),
                         PrimaryButtonText = "OkBtn".GetLocalized(),
                         CloseButtonText = "CancelBtn".GetLocalized(),
                         DefaultButton = ContentDialogButton.Primary,

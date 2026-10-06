@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.IO.Compression;
 using System.Text.Json;
 using FufuLauncher.Constants;
@@ -22,7 +23,7 @@ public sealed class GameChannelSdkService
         _chunkDownloader = chunkDownloader;
         _sophonBuildClient = sophonBuildClient;
     }
-    
+
     public async Task EnsureSdkAndDeprecatedFilesAsync(string gameDir, GameServerScheme scheme,
         Action<string>? print = null, CancellationToken token = default, Action<long>? onBytesTransferred = null)
     {
@@ -60,12 +61,13 @@ public sealed class GameChannelSdkService
         await EnsureChannelSdkAsync(gameDir, scheme, print, token, onBytesTransferred).ConfigureAwait(false);
         await ProcessDeprecatedFilesAsync(gameDir, scheme, print, token).ConfigureAwait(false);
     }
-    
+
     public async Task EnsureChannelSdkAsync(string gameDir, GameServerScheme scheme,
         Action<string>? print = null, CancellationToken token = default, Action<long>? onBytesTransferred = null)
     {
         print?.Invoke("GameServer_FetchingChannelSdk".GetLocalized());
-        (string? sdkPkgUrl, long sdkSize, string sdkMd5) = await GetChannelSdkPackageAsync(scheme, token).ConfigureAwait(false);
+        (string? sdkPkgUrl, long sdkSize, string sdkMd5) =
+            await GetChannelSdkPackageAsync(scheme, token).ConfigureAwait(false);
         if (sdkPkgUrl is null)
         {
             return;
@@ -119,7 +121,7 @@ public sealed class GameChannelSdkService
             }
         }
     }
-    
+
     public async Task VerifyAndRepairChannelSdkAsync(string gameDir, GameServerScheme scheme,
         Action<string>? print = null, CancellationToken token = default, Action<long>? onBytesTransferred = null)
     {
@@ -167,14 +169,16 @@ public sealed class GameChannelSdkService
             await EnsureChannelSdkAsync(gameDir, scheme, print, token, onBytesTransferred).ConfigureAwait(false);
         }
     }
-    
-    private async Task ProcessDeprecatedFilesAsync(string gameDir, GameServerScheme scheme, Action<string>? print, CancellationToken token)
+
+    private async Task ProcessDeprecatedFilesAsync(string gameDir, GameServerScheme scheme, Action<string>? print,
+        CancellationToken token)
     {
         try
         {
             print?.Invoke("GameServer_ProcessingDeprecatedFiles".GetLocalized());
 
-            string url = $"{scheme.HypApi}/getGameDeprecatedFileConfigs?channel={(int)scheme.Channel}&game_ids[]={scheme.GameId}&launcher_id={scheme.LauncherId}&sub_channel={(int)scheme.SubChannel}";
+            string url =
+                $"{scheme.HypApi}/getGameDeprecatedFileConfigs?channel={(int)scheme.Channel}&game_ids[]={scheme.GameId}&launcher_id={scheme.LauncherId}&sub_channel={(int)scheme.SubChannel}";
             string jsonResp = await _sophonBuildClient.GetStringWithRetryAsync(url, token).ConfigureAwait(false);
 
             using var doc = JsonDocument.Parse(jsonResp);
@@ -183,14 +187,16 @@ public sealed class GameChannelSdkService
                 return;
             }
 
-            if (!dataProp.TryGetProperty("deprecated_file_configs", out var configsProp) || configsProp.ValueKind != JsonValueKind.Array)
+            if (!dataProp.TryGetProperty("deprecated_file_configs", out var configsProp) ||
+                configsProp.ValueKind != JsonValueKind.Array)
             {
                 return;
             }
 
             foreach (var configs in configsProp.EnumerateArray())
             {
-                if (!configs.TryGetProperty("deprecated_files", out var filesProp) || filesProp.ValueKind != JsonValueKind.Array)
+                if (!configs.TryGetProperty("deprecated_files", out var filesProp) ||
+                    filesProp.ValueKind != JsonValueKind.Array)
                 {
                     continue;
                 }
@@ -233,9 +239,11 @@ public sealed class GameChannelSdkService
     }
 
 
-    private async Task<(string? Url, long Size, string Md5)> GetChannelSdkPackageAsync(GameServerScheme scheme, CancellationToken token)
+    private async Task<(string? Url, long Size, string Md5)> GetChannelSdkPackageAsync(GameServerScheme scheme,
+        CancellationToken token)
     {
-        string url = $"{scheme.HypApi}/getGameChannelSDKs?channel={(int)scheme.Channel}&game_ids[]={scheme.GameId}&launcher_id={scheme.LauncherId}&sub_channel={(int)scheme.SubChannel}";
+        string url =
+            $"{scheme.HypApi}/getGameChannelSDKs?channel={(int)scheme.Channel}&game_ids[]={scheme.GameId}&launcher_id={scheme.LauncherId}&sub_channel={(int)scheme.SubChannel}";
         string jsonResp = await _sophonBuildClient.GetStringWithRetryAsync(url, token).ConfigureAwait(false);
 
         using var doc = JsonDocument.Parse(jsonResp);
@@ -244,11 +252,12 @@ public sealed class GameChannelSdkService
             return (null, 0, string.Empty);
         }
 
-        if (!dataProp.TryGetProperty("game_channel_sdks", out var sdksProp) || sdksProp.ValueKind != JsonValueKind.Array)
+        if (!dataProp.TryGetProperty("game_channel_sdks", out var sdksProp) ||
+            sdksProp.ValueKind != JsonValueKind.Array)
         {
             return (null, 0, string.Empty);
         }
-        
+
         foreach (var sdk in sdksProp.EnumerateArray())
         {
             if (!sdk.TryGetProperty("channel_sdk_pkg", out var pkgProp) || pkgProp.ValueKind != JsonValueKind.Object)
@@ -267,8 +276,12 @@ public sealed class GameChannelSdkService
                 continue;
             }
 
-            long size = pkgProp.TryGetProperty("size", out var sizeProp) && sizeProp.ValueKind == JsonValueKind.Number ? sizeProp.GetInt64() : 0;
-            string md5 = pkgProp.TryGetProperty("md5", out var md5Prop) && md5Prop.ValueKind == JsonValueKind.String ? md5Prop.GetString() ?? string.Empty : string.Empty;
+            long size = pkgProp.TryGetProperty("size", out var sizeProp) && sizeProp.ValueKind == JsonValueKind.Number
+                ? sizeProp.GetInt64()
+                : 0;
+            string md5 = pkgProp.TryGetProperty("md5", out var md5Prop) && md5Prop.ValueKind == JsonValueKind.String
+                ? md5Prop.GetString() ?? string.Empty
+                : string.Empty;
             return (sdkPkgUrl, size, md5);
         }
 

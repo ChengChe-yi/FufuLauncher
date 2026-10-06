@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Services;
 
 // Keep identities, not the full QR URL: changing expiry/display parameters is not a new login ticket.

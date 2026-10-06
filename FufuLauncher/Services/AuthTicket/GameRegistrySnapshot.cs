@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using Microsoft.Win32;
 
@@ -11,14 +12,14 @@ public sealed class GameRegistrySnapshot
 {
     private const string CnRegistryKey = @"HKEY_CURRENT_USER\Software\miHoYo\原神";
     private const string CnRegistryValue = "MIHOYOSDK_ADL_PROD_CN_h3123967166";
-    
+
     private const string OsRegistryKey = @"HKEY_CURRENT_USER\Software\miHoYo\Genshin Impact";
     private const string OsRegistryValue = "MIHOYOSDK_ADL_PROD_OVERSEA_h1158948810";
 
     private byte[]? _snapshot;
     private string? _keyName;
     private string? _valueName;
-    
+
     public void TakeSnapshot(bool isOversea)
     {
         _keyName = isOversea ? OsRegistryKey : CnRegistryKey;
@@ -35,7 +36,7 @@ public sealed class GameRegistrySnapshot
             _snapshot = null;
         }
     }
-    
+
     public void RestoreSnapshot()
     {
         if (_keyName == null || _valueName == null)
@@ -66,6 +67,6 @@ public sealed class GameRegistrySnapshot
             _valueName = null;
         }
     }
-    
+
     public bool HasSnapshot => _snapshot is { Length: > 0 };
 }

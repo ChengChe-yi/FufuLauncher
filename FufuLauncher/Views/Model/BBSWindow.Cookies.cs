@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Services;
 
 namespace FufuLauncher.Views;
@@ -52,6 +53,7 @@ public sealed partial class BBSWindow
             var cookie = manager.CreateCookie(kv.Key, kv.Value, ".mihoyo.com", "/");
             manager.AddOrUpdateCookie(cookie);
         }
+
         System.Diagnostics.Debug.WriteLine($"[BBSWindow] Added {cookieDic.Count} cookies to WebView2");
         BBSWebView.CoreWebView2.Navigate(url);
     }

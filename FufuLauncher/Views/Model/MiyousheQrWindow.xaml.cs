@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Drawing;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services;
@@ -65,6 +66,7 @@ public sealed partial class MiyousheQrWindow : Window
                 ResetTarget();
                 ShowStatus("MiyousheQr_AccountChanged", InfoBarSeverity.Warning);
             }
+
             if (!_busy) RefreshAccount();
         };
     }
@@ -75,34 +77,48 @@ public sealed partial class MiyousheQrWindow : Window
     {
         if (_closed) return;
         // Use the launcher's shared accent resources, including custom colors applied by ThemeHelper.
-        foreach (string key in new[] { "SystemAccentColor", "SystemAccentColorLight1", "SystemAccentColorLight2",
-                     "SystemAccentColorLight3", "SystemAccentColorDark1", "SystemAccentColorDark2", "SystemAccentColorDark3",
-                     "AccentFillColorDefaultBrush" })
-            if (Application.Current.Resources.TryGetValue(key, out var resource)) ScanRootGrid.Resources[key] = resource;
-        var accent = ((Microsoft.UI.Xaml.Media.SolidColorBrush)Application.Current.Resources["AccentFillColorDefaultBrush"]).Color;
+        foreach (string key in new[]
+                 {
+                     "SystemAccentColor", "SystemAccentColorLight1", "SystemAccentColorLight2",
+                     "SystemAccentColorLight3", "SystemAccentColorDark1", "SystemAccentColorDark2",
+                     "SystemAccentColorDark3",
+                     "AccentFillColorDefaultBrush"
+                 })
+            if (Application.Current.Resources.TryGetValue(key, out var resource))
+                ScanRootGrid.Resources[key] = resource;
+        var accent =
+            ((Microsoft.UI.Xaml.Media.SolidColorBrush)Application.Current.Resources["AccentFillColorDefaultBrush"])
+            .Color;
         _accentColor = Color.FromArgb(255, accent.R, accent.G, accent.B);
         _indicator?.SetAccentColor(_accentColor);
         var theme = _launcherRoot?.ActualTheme ?? ElementTheme.Default;
         if (theme == ElementTheme.Default)
-            theme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+            theme = Application.Current.RequestedTheme == ApplicationTheme.Dark
+                ? ElementTheme.Dark
+                : ElementTheme.Light;
         ScanRootGrid.RequestedTheme = theme;
         // Match MainWindow.UpdateBackgroundOverlayTheme, without a separate tinted backdrop.
-        var color = theme == ElementTheme.Dark ? Windows.UI.Color.FromArgb(255, 32, 32, 32)
+        var color = theme == ElementTheme.Dark
+            ? Windows.UI.Color.FromArgb(255, 32, 32, 32)
             : Windows.UI.Color.FromArgb(255, 243, 243, 243);
         ScanRootGrid.Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(color);
         AppWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
         AppWindow.TitleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
-        AppWindow.TitleBar.ButtonForegroundColor = theme == ElementTheme.Dark ? Microsoft.UI.Colors.White : Microsoft.UI.Colors.Black;
-        AppWindow.TitleBar.ButtonInactiveForegroundColor = theme == ElementTheme.Dark ? Microsoft.UI.Colors.LightGray : Microsoft.UI.Colors.Gray;
+        AppWindow.TitleBar.ButtonForegroundColor =
+            theme == ElementTheme.Dark ? Microsoft.UI.Colors.White : Microsoft.UI.Colors.Black;
+        AppWindow.TitleBar.ButtonInactiveForegroundColor =
+            theme == ElementTheme.Dark ? Microsoft.UI.Colors.LightGray : Microsoft.UI.Colors.Gray;
     }
 
     private bool RefreshAccount()
     {
         var account = _accounts.GetActiveAccountEntry();
-        AccountText.Text = account == null ? "MiyousheQr_NoAccount".GetLocalized()
+        AccountText.Text = account == null
+            ? "MiyousheQr_NoAccount".GetLocalized()
             : $"{account.Nickname} · {account.Stuid}";
         bool available = account != null && account.ServerType == "cn";
-        if (!available) ShowStatus(account == null ? "MiyousheQr_NoAccount" : "MiyousheQr_CnOnly", InfoBarSeverity.Warning);
+        if (!available)
+            ShowStatus(account == null ? "MiyousheQr_NoAccount" : "MiyousheQr_CnOnly", InfoBarSeverity.Warning);
         return available;
     }
 
@@ -117,14 +133,25 @@ public sealed partial class MiyousheQrWindow : Window
         try
         {
             using var selection = await SelectRegionAsync(false, _lifetime.Token);
-            if (selection == null) { ShowStatus("MiyousheQr_Cancelled", InfoBarSeverity.Informational); return; }
+            if (selection == null)
+            {
+                ShowStatus("MiyousheQr_Cancelled", InfoBarSeverity.Informational);
+                return;
+            }
+
             _region = selection.Bounds;
             ShowStatus("MiyousheQr_Recognizing", InfoBarSeverity.Informational);
             var decoded = await Task.Run(() => ScreenQrDecoder.DecodeRegions(selection.Image), _lifetime.Token);
             if (decoded.Length == 0) throw new MiyousheQrException("MiyousheQr_NotFound");
             var selected = await ChooseCodeAsync(selection.Image, selection.Bounds, decoded, _lifetime.Token);
-            if (selected == null) { ShowStatus("MiyousheQr_Cancelled", InfoBarSeverity.Informational); return; }
-            if (!MiyousheLoginQr.TryParse(selected.Text, out var qr)) throw new MiyousheQrException("MiyousheQr_Unsupported");
+            if (selected == null)
+            {
+                ShowStatus("MiyousheQr_Cancelled", InfoBarSeverity.Informational);
+                return;
+            }
+
+            if (!MiyousheLoginQr.TryParse(selected.Text, out var qr))
+                throw new MiyousheQrException("MiyousheQr_Unsupported");
             await PrepareCodeAsync(qr!, _lifetime.Token);
             if (automatic)
             {
@@ -134,10 +161,18 @@ public sealed partial class MiyousheQrWindow : Window
         }
         catch (OperationCanceledException)
         {
-            if (!_closed) ShowStatus(attemptedConfirmation ? "MiyousheQr_ResultUnknown" : "MiyousheQr_HttpError", InfoBarSeverity.Error);
+            if (!_closed)
+                ShowStatus(attemptedConfirmation ? "MiyousheQr_ResultUnknown" : "MiyousheQr_HttpError",
+                    InfoBarSeverity.Error);
         }
-        catch (Exception ex) { ShowError(ex, attemptedConfirmation); }
-        finally { if (!_closed) SetBusy(false); }
+        catch (Exception ex)
+        {
+            ShowError(ex, attemptedConfirmation);
+        }
+        finally
+        {
+            if (!_closed) SetBusy(false);
+        }
     }
 
     private async void Continuous_Click(object sender, RoutedEventArgs e)
@@ -149,6 +184,7 @@ public sealed partial class MiyousheQrWindow : Window
             UpdateControls();
             return;
         }
+
         if (_busy || !RefreshAccount()) return;
         bool automatic = AutoConfirmCheckBox.IsChecked == true;
         ResetTarget();
@@ -166,17 +202,24 @@ public sealed partial class MiyousheQrWindow : Window
         {
             // Always select afresh when starting continuous mode, so the user chooses the watched area explicitly.
             using var selection = await SelectRegionAsync(true, scanCts.Token);
-            if (selection == null) { ShowStatus("MiyousheQr_Cancelled", InfoBarSeverity.Informational); return; }
+            if (selection == null)
+            {
+                ShowStatus("MiyousheQr_Cancelled", InfoBarSeverity.Informational);
+                return;
+            }
+
             _region = selection.Bounds;
             EnsureCurrentAccount();
-            await using var indicator = await ScreenScanRegionIndicator.ShowAsync(_region.Value, scanCts.Token, _accentColor);
+            await using var indicator =
+                await ScreenScanRegionIndicator.ShowAsync(_region.Value, scanCts.Token, _accentColor);
             _indicator = indicator;
             SetBusy(false);
             ShowScanningStatus();
             await ContinuousQrScanService.ScanAsync(
                 async token =>
                 {
-                    using var frame = await Task.Run(() => ScreenRegionCaptureService.CaptureRegion(_region.Value), token);
+                    using var frame = await Task.Run(() => ScreenRegionCaptureService.CaptureRegion(_region.Value),
+                        token);
                     var decoded = await Task.Run(() => ScreenQrDecoder.DecodeRegions(frame), token);
                     var selected = await ChooseCodeAsync(frame, _region.Value, decoded, token);
                     if (decoded.Length > 1 && selected == null) scanCts.Cancel();
@@ -195,12 +238,16 @@ public sealed partial class MiyousheQrWindow : Window
                             await AuthorizePendingAsync(token);
                         }
                     }
-                    catch (MiyousheQrException ex) when (ex.ResourceKey is "MiyousheQr_Expired" or "MiyousheQr_Rejected")
+                    catch (MiyousheQrException ex) when
+                        (ex.ResourceKey is "MiyousheQr_Expired" or "MiyousheQr_Rejected")
                     {
                         ShowError(ex, false);
                         if (ex.Code == -100) throw;
                     }
-                    finally { if (!_closed) SetBusy(false); }
+                    finally
+                    {
+                        if (!_closed) SetBusy(false);
+                    }
                 },
                 () => _busy || _pending != null,
                 () => _accountId == _accounts.ActiveAccountId,
@@ -217,7 +264,10 @@ public sealed partial class MiyousheQrWindow : Window
                 ShowStatus(key, key == "MiyousheQr_Success" ? InfoBarSeverity.Success : InfoBarSeverity.Informational);
             }
         }
-        catch (Exception ex) { ShowError(ex, _scanFailureWasConfirmation); }
+        catch (Exception ex)
+        {
+            ShowError(ex, _scanFailureWasConfirmation);
+        }
         finally
         {
             _indicator = null;
@@ -254,12 +304,17 @@ public sealed partial class MiyousheQrWindow : Window
         {
             AppWindow.Hide();
             await Task.Delay(250, token);
-            return await ScreenRegionCaptureService.CaptureAsync("MiyousheQr_SelectionHint".GetLocalized(), token, _accentColor);
+            return await ScreenRegionCaptureService.CaptureAsync("MiyousheQr_SelectionHint".GetLocalized(), token,
+                _accentColor);
         }
         finally
         {
             if (!keepMainHidden) RestoreMainWindow();
-            if (!_closed) { AppWindow.Show(); Activate(); }
+            if (!_closed)
+            {
+                AppWindow.Show();
+                Activate();
+            }
         }
     }
 
@@ -283,14 +338,20 @@ public sealed partial class MiyousheQrWindow : Window
         if (_busy || _pending == null) return;
         var token = _scanCts?.Token ?? _lifetime.Token;
         SetBusy(true);
-        try { await AuthorizePendingAsync(token); }
+        try
+        {
+            await AuthorizePendingAsync(token);
+        }
         catch (Exception ex)
         {
             _scanHadFailure = IsScanning;
             ShowError(ex, true);
             _scanCts?.Cancel();
         }
-        finally { if (!_closed) SetBusy(false); }
+        finally
+        {
+            if (!_closed) SetBusy(false);
+        }
     }
 
     private async Task AuthorizePendingAsync(CancellationToken token)
@@ -330,7 +391,10 @@ public sealed partial class MiyousheQrWindow : Window
             if (ex is not MiyousheQrException) _uncertainAuthorization = true;
             throw;
         }
-        finally { _confirming = false; }
+        finally
+        {
+            _confirming = false;
+        }
     }
 
     private void HideMainWindow()

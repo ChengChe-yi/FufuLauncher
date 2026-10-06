@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Net.Http.Json;
 using System.Text.Json;
 using FufuLauncher.Constants;
@@ -14,12 +15,16 @@ using Microsoft.UI.Xaml.Controls;
 
 namespace FufuLauncher.Views
 {
-
     public sealed partial class InventoryWindow : Window
     {
         private string _cachePath = "";
         private readonly GameRoleService _roles = App.GetService<GameRoleService>();
-        public GameRoleScope RoleSelection { get; } = new();
+
+        public GameRoleScope RoleSelection
+        {
+            get;
+        } = new();
+
         private SelectedGameRole? _loadedRole;
         private int _loadVersion;
         private bool _closed;
@@ -43,7 +48,8 @@ namespace FufuLauncher.Views
             });
             WeakReferenceMessenger.Default.Register<FeatureGameRoleChangedMessage>(this, (r, m) =>
             {
-                if (ReferenceEquals(m.Scope, RoleSelection)) DispatcherQueue.TryEnqueue(async () => await LoadInitialDataAsync());
+                if (ReferenceEquals(m.Scope, RoleSelection))
+                    DispatcherQueue.TryEnqueue(async () => await LoadInitialDataAsync());
             });
             WeakReferenceMessenger.Default.Register<GameRolesUpdatedMessage>(this, (r, m) =>
             {
@@ -65,7 +71,8 @@ namespace FufuLauncher.Views
 
             if (_httpClient.DefaultRequestHeaders.UserAgent.Count == 0)
             {
-                _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+                _httpClient.DefaultRequestHeaders.Add("User-Agent",
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
                 _httpClient.DefaultRequestHeaders.Add("Referer", ApiEndpoints.WebstaticRefererUrl);
             }
 
@@ -95,10 +102,12 @@ namespace FufuLauncher.Views
                         _loadedRole = selected;
                         _currentItems = data.Items;
                         RefreshUiBindings();
-                        StatusText.Text = $"上次更新: {DateTimeOffset.FromUnixTimeSeconds(data.LastUpdateTime).LocalDateTime:MM-dd HH:mm}";
+                        StatusText.Text =
+                            $"上次更新: {DateTimeOffset.FromUnixTimeSeconds(data.LastUpdateTime).LocalDateTime:MM-dd HH:mm}";
                         return;
                     }
                 }
+
                 await LoadInventoryDataAsync(false);
             }
             catch (Exception ex)
@@ -121,7 +130,7 @@ namespace FufuLauncher.Views
         {
             await LoadInventoryDataAsync(true);
         }
-        
+
         private async void OnTargetValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
         {
             await SaveToCacheAsync();
@@ -160,11 +169,12 @@ namespace FufuLauncher.Views
             {
                 StatusText.Text = isManualRefresh ? "正在请求米游社..." : "正在获取数据...";
                 var selected = await _roles.GetCurrentAsync(RoleSelection)
-                    ?? throw new InvalidOperationException("请先登录米游社账号");
+                               ?? throw new InvalidOperationException("请先登录米游社账号");
                 if (selected.ServerType != "cn")
                     throw new InvalidOperationException("背包同步暂仅支持天空岛和世界树角色。");
                 if (version != _loadVersion || _closed) return;
-                if (_loadedRole == null || _loadedRole.Role.game_uid != selected.Role.game_uid || _loadedRole.Role.region != selected.Role.region)
+                if (_loadedRole == null || _loadedRole.Role.game_uid != selected.Role.game_uid ||
+                    _loadedRole.Role.region != selected.Role.region)
                     existingItems.Clear();
                 var cookie = string.Join("; ", selected.Cookies.Select(x => $"{x.Key}={x.Value}"));
                 var newItems = await SyncInventoryFromApiAsync(cookie, selected.Role.game_uid, selected.Role.region);
@@ -174,6 +184,7 @@ namespace FufuLauncher.Views
                     var existing = existingItems.FirstOrDefault(i => i.Id == newItem.Id);
                     if (existing != null) newItem.TargetCount = existing.TargetCount;
                 }
+
                 _loadedRole = selected;
                 _cachePath = GetCachePath(selected);
                 _currentItems = newItems;
@@ -195,7 +206,7 @@ namespace FufuLauncher.Views
         private async Task<List<InventoryItemModel>> SyncInventoryFromApiAsync(string cookie, string uid, string region)
         {
             var avatarPayload = new { page = 1, size = 1000, is_all = true };
-            var avatarResp = await PostWithCookieAsync(ApiEndpoints.CalculateAvatarListUrl, avatarPayload, cookie); 
+            var avatarResp = await PostWithCookieAsync(ApiEndpoints.CalculateAvatarListUrl, avatarPayload, cookie);
             using var avatarDoc = JsonDocument.Parse(avatarResp);
 
             var avatars = new List<(int Id, List<int> SkillIds, int WeaponCatId)>();
@@ -206,7 +217,8 @@ namespace FufuLauncher.Views
                     .Where(s => s.GetProperty("max_level").GetInt32() > 1)
                     .Select(s => s.GetProperty("group_id").GetInt32()).ToList();
                 if (skillIds.Count > 0)
-                    avatars.Add((avatar.GetProperty("id").GetInt32(), skillIds, avatar.GetProperty("weapon_cat_id").GetInt32()));
+                    avatars.Add((avatar.GetProperty("id").GetInt32(), skillIds,
+                        avatar.GetProperty("weapon_cat_id").GetInt32()));
             }
 
             var weaponPayload = new { page = 1, size = 1000, weapon_levels = new[] { 1, 2, 3, 4, 5 } };
@@ -230,7 +242,7 @@ namespace FufuLauncher.Views
             }).ToList();
 
             var computePayload = new { items = deltas, region, uid };
-            var computeResp = await PostWithCookieAsync(ApiEndpoints.CalculateBatchComputeUrl, computePayload, cookie); 
+            var computeResp = await PostWithCookieAsync(ApiEndpoints.CalculateBatchComputeUrl, computePayload, cookie);
             using var computeDoc = JsonDocument.Parse(computeResp);
 
             var items = new List<InventoryItemModel>();
@@ -247,6 +259,7 @@ namespace FufuLauncher.Views
                     IconUrl = item.TryGetProperty("icon", out var icon) ? icon.GetString() : ""
                 });
             }
+
             return items;
         }
 

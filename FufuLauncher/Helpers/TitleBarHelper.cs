@@ -2,17 +2,14 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
-using System.Runtime.InteropServices;
 
+using System.Runtime.InteropServices;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
-
 using Windows.UI;
 using Windows.UI.ViewManagement;
 
 namespace FufuLauncher.Helpers;
-
-
 
 internal class TitleBarHelper
 {
@@ -40,7 +37,9 @@ internal class TitleBarHelper
 
             if (theme == ElementTheme.Default)
             {
-                theme = Application.Current.RequestedTheme == ApplicationTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
+                theme = Application.Current.RequestedTheme == ApplicationTheme.Light
+                    ? ElementTheme.Light
+                    : ElementTheme.Dark;
             }
 
             App.MainWindow.AppWindow.TitleBar.ButtonForegroundColor = theme switch
@@ -96,4 +95,3 @@ internal class TitleBarHelper
         }
     }
 }
-

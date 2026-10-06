@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -14,18 +15,20 @@ namespace FufuLauncher.ViewModels;
 public partial class MainViewModel
 {
     #region 资讯内容与轮播
+
     [ObservableProperty] private ObservableCollection<BannerItem> _banners = new();
     [ObservableProperty] private ObservableCollection<PostItem> _activityPosts = new();
     [ObservableProperty] private ObservableCollection<PostItem> _announcementPosts = new();
     [ObservableProperty] private ObservableCollection<PostItem> _infoPosts = new();
     [ObservableProperty] private ObservableCollection<SocialMediaItem> _socialMediaList = new();
-    
+
     [ObservableProperty] private bool _isNewsLoaded;
 
     private DispatcherQueueTimer _bannerTimer;
 
     private BannerItem _currentBanner;
     public string CurrentDayText => DateTime.Now.Day.ToString();
+
     public BannerItem CurrentBanner
     {
         get => _currentBanner;
@@ -151,5 +154,6 @@ public partial class MainViewModel
             Debug.WriteLine($"轮播图切换错误: {ex.Message}");
         }
     }
+
     #endregion
 }

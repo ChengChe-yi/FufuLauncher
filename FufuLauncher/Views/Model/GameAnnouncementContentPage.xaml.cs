@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net;
 using System.Text;
@@ -19,12 +20,12 @@ namespace FufuLauncher.Views;
 public sealed partial class GameAnnouncementContentPage : Page
 {
     private const string MihoyoSDKDefinition = """
-        window.miHoYoGameJSSDK = {
-            openInBrowser: function(url){ window.chrome.webview.postMessage(url); },
-            openInWebview: function(url){ location.href = url }
-        }
-        """;
-    
+                                               window.miHoYoGameJSSDK = {
+                                                   openInBrowser: function(url){ window.chrome.webview.postMessage(url); },
+                                                   openInWebview: function(url){ location.href = url }
+                                               }
+                                               """;
+
     private static readonly IReadOnlyDictionary<string, string> DarkLightReverts = new Dictionary<string, string>
     {
         ["color:rgba(0,0,0,1)"] = "color:rgba(255,255,255,1)",
@@ -200,13 +201,13 @@ public sealed partial class GameAnnouncementContentPage : Page
         string bodyColor = isDarkMode ? "rgba(255,255,255,1)" : "rgba(0,0,0,1)";
 
         return "<!DOCTYPE html><html><head>" +
-            $"<title>{subtitle} - {title}</title>" +
-            "<style>body::-webkit-scrollbar{display:none}img{border:none;vertical-align:middle;width:100%}</style>" +
-            "</head>" +
-            $"<body style=\"color:{bodyColor}; background-color: transparent;\">" +
-            $"<h3>{title}</h3>" +
-            $"<img src=\"{banner}\"/><br>" +
-            content +
-            "</body></html>";
+               $"<title>{subtitle} - {title}</title>" +
+               "<style>body::-webkit-scrollbar{display:none}img{border:none;vertical-align:middle;width:100%}</style>" +
+               "</head>" +
+               $"<body style=\"color:{bodyColor}; background-color: transparent;\">" +
+               $"<h3>{title}</h3>" +
+               $"<img src=\"{banner}\"/><br>" +
+               content +
+               "</body></html>";
     }
 }

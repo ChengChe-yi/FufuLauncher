@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
@@ -12,8 +13,7 @@ public partial class PluginSettingsViewModel
 {
     #region 配置加载
 
-
-public void LoadConfiguration()
+    public void LoadConfiguration()
     {
         Settings.Clear();
         PinnedSettings.Clear();
@@ -32,6 +32,7 @@ public void LoadConfiguration()
             {
                 PluginName = "未安装 FPS 插件";
             }
+
             PluginDescription = "请确保Plugins目录下存在对应的文件夹及config.ini文件";
             AvailablePresets.Clear();
             CurrentPreset = null;
@@ -82,11 +83,13 @@ public void LoadConfiguration()
                     var localizedName = localizationKey.GetLocalized();
                     name = localizedName != localizationKey ? localizedName : iniName;
                 }
+
                 var type = dic.GetValueOrDefault("Type", "string");
                 var value = dic.GetValueOrDefault("Value", "");
                 var help = dic.GetValueOrDefault("help", "");
-                
-                var settingItem = new PluginSettingItem(_iniFile, section.Key, name, type, value, help, OnSettingValueChanged, UseKeyListInput);
+
+                var settingItem = new PluginSettingItem(_iniFile, section.Key, name, type, value, help,
+                    OnSettingValueChanged, UseKeyListInput);
 
                 _settingOrder.Add(section.Key);
 
@@ -111,5 +114,6 @@ public void LoadConfiguration()
             ));
         }
     }
+
     #endregion
 }

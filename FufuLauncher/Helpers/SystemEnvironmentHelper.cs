@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System;
 using System.Linq;
 using System.Management;
@@ -23,7 +24,9 @@ namespace FufuLauncher.Helpers
         private static extern IntPtr GetCurrentProcess();
 
         [DllImport("advapi32.dll", SetLastError = true)]
-        private static extern bool GetTokenInformation(IntPtr TokenHandle, TOKEN_INFORMATION_CLASS TokenInformationClass, IntPtr TokenInformation, uint TokenInformationLength, out uint ReturnLength);
+        private static extern bool GetTokenInformation(IntPtr TokenHandle,
+            TOKEN_INFORMATION_CLASS TokenInformationClass, IntPtr TokenInformation, uint TokenInformationLength,
+            out uint ReturnLength);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool CloseHandle(IntPtr hObject);
@@ -48,7 +51,10 @@ namespace FufuLauncher.Helpers
                     return principal.IsInRole(WindowsBuiltInRole.Administrator);
                 }
             }
-            catch { return false; }
+            catch
+            {
+                return false;
+            }
         }
 
         public static bool IsUacElevatedWithConsent()
@@ -62,16 +68,17 @@ namespace FufuLauncher.Helpers
                     var ptr = Marshal.AllocHGlobal(size);
                     try
                     {
-                        if (GetTokenInformation(tokenHandle, TOKEN_INFORMATION_CLASS.TokenElevationType, ptr, (uint)size, out _))
+                        if (GetTokenInformation(tokenHandle, TOKEN_INFORMATION_CLASS.TokenElevationType, ptr,
+                                (uint)size, out _))
                         {
                             var type = (TOKEN_ELEVATION_TYPE)Marshal.ReadInt32(ptr);
                             return type == TOKEN_ELEVATION_TYPE.TokenElevationTypeFull;
                         }
                     }
-                    finally 
-                    { 
-                        Marshal.FreeHGlobal(ptr); 
-                        if (tokenHandle != IntPtr.Zero) CloseHandle(tokenHandle); 
+                    finally
+                    {
+                        Marshal.FreeHGlobal(ptr);
+                        if (tokenHandle != IntPtr.Zero) CloseHandle(tokenHandle);
                     }
                 }
             }
@@ -87,12 +94,14 @@ namespace FufuLauncher.Helpers
         {
             try
             {
-                using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"))
+                using (var key = Registry.LocalMachine.OpenSubKey(
+                           @"SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64"))
                 {
                     if (key != null && key.GetValue("Installed") is int installed && installed == 1) return true;
                 }
-                
-                using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86"))
+
+                using (var key = Registry.LocalMachine.OpenSubKey(
+                           @"SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86"))
                 {
                     if (key != null && key.GetValue("Installed") is int installed && installed == 1) return true;
                 }
@@ -101,11 +110,12 @@ namespace FufuLauncher.Helpers
             {
                 // ignored
             }
-            
+
             return false;
         }
 
-        private static readonly string[] InvalidValues = {
+        private static readonly string[] InvalidValues =
+        {
             "To Be Filled By O.E.M.",
             "System Serial Number",
             "Default string",
@@ -123,7 +133,8 @@ namespace FufuLauncher.Helpers
                 string diskSn = GetSystemDiskSerial();
 
                 var parts = new[] { cpuId, boardSn, biosSn, diskSn }
-                    .Where(s => !string.IsNullOrWhiteSpace(s) && !InvalidValues.Contains(s, StringComparer.OrdinalIgnoreCase))
+                    .Where(s => !string.IsNullOrWhiteSpace(s) &&
+                                !InvalidValues.Contains(s, StringComparer.OrdinalIgnoreCase))
                     .ToList();
 
                 if (parts.Count == 0) return "Unknown";
@@ -144,14 +155,18 @@ namespace FufuLauncher.Helpers
         {
             try
             {
-                using var searcher = new System.Management.ManagementObjectSearcher($"SELECT {property} FROM {wmiClass}");
+                using var searcher =
+                    new System.Management.ManagementObjectSearcher($"SELECT {property} FROM {wmiClass}");
                 foreach (var obj in searcher.Get())
                 {
                     var val = obj[property]?.ToString()?.Trim();
                     if (!string.IsNullOrWhiteSpace(val)) return val;
                 }
             }
-            catch { }
+            catch
+            {
+            }
+
             return string.Empty;
         }
 
@@ -179,10 +194,13 @@ namespace FufuLauncher.Helpers
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
+
             return string.Empty;
         }
-        
+
         public static string GetGpuName()
         {
             try
@@ -205,6 +223,7 @@ namespace FufuLauncher.Helpers
                         }
                     }
                 }
+
                 return string.IsNullOrEmpty(fallback) ? "Unknown" : fallback;
             }
             catch
@@ -212,7 +231,7 @@ namespace FufuLauncher.Helpers
                 return "Unknown";
             }
         }
-        
+
         public static string GetGpuVendor()
         {
             var name = GetGpuName();
@@ -229,7 +248,7 @@ namespace FufuLauncher.Helpers
 
             return "Unknown";
         }
-        
+
         private static readonly string[] KnownFamilies =
         {
             // NVIDIA
@@ -239,7 +258,7 @@ namespace FufuLauncher.Helpers
             // Intel
             "Arc", "Iris Xe", "Iris", "UHD", "HD", "Xe"
         };
-        
+
         private static readonly Regex NvidiaSeriesRegex = new(
             @"(?:RTX|GTX|Quadro|Tesla)\s+(\d{4})",
             RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -255,7 +274,7 @@ namespace FufuLauncher.Helpers
         private static readonly Regex IntelUhdSeriesRegex = new(
             @"(?:UHD|HD)\s*(?:Graphics\s*)?(\d{3,4})",
             RegexOptions.IgnoreCase | RegexOptions.Compiled);
-        
+
         public static GpuInfo GetGpuInfo()
         {
             var name = GetGpuName();
@@ -279,6 +298,7 @@ namespace FufuLauncher.Helpers
                     return family;
                 }
             }
+
             return "Unknown";
         }
 
@@ -286,27 +306,27 @@ namespace FufuLauncher.Helpers
         {
             if (string.IsNullOrEmpty(name))
                 return string.Empty;
-            
+
             var m = NvidiaSeriesRegex.Match(name);
             if (m.Success)
             {
                 var digits = m.Groups[1].Value;
                 return digits.Substring(0, 2);
             }
-            
+
             m = AmdRxSeriesRegex.Match(name);
             if (m.Success)
             {
                 var digits = m.Groups[1].Value;
                 return digits.Substring(0, 1) + "000";
             }
-            
+
             m = IntelArcSeriesRegex.Match(name);
             if (m.Success)
             {
                 return m.Groups[1].Value;
             }
-            
+
             m = IntelUhdSeriesRegex.Match(name);
             if (m.Success)
             {
@@ -315,7 +335,7 @@ namespace FufuLauncher.Helpers
 
             return string.Empty;
         }
-        
+
         public static string GetCpuName()
         {
             try
@@ -330,10 +350,13 @@ namespace FufuLauncher.Helpers
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
+
             return "Unknown";
         }
-        
+
         public static long GetTotalMemoryGB()
         {
             try
@@ -347,6 +370,7 @@ namespace FufuLauncher.Helpers
                             totalBytes += capacity;
                     }
                 }
+
                 return totalBytes > 0 ? totalBytes / (1024 * 1024 * 1024) : 0;
             }
             catch
@@ -354,7 +378,7 @@ namespace FufuLauncher.Helpers
                 return 0;
             }
         }
-        
+
         public static string GetOsVersion()
         {
             try

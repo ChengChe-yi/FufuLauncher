@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,10 +25,29 @@ namespace FufuLauncher.Views;
 
 public class ContributorItem
 {
-    public string Name { get; set; }
-    public string Url { get; set; }
-    public string AvatarUrl { get; set; }
-    public int Contributions { get; set; }
+    public string Name
+    {
+        get;
+        set;
+    }
+
+    public string Url
+    {
+        get;
+        set;
+    }
+
+    public string AvatarUrl
+    {
+        get;
+        set;
+    }
+
+    public int Contributions
+    {
+        get;
+        set;
+    }
 }
 
 public sealed partial class AboutPage : Page
@@ -42,7 +62,8 @@ public sealed partial class AboutPage : Page
 
         if (!httpClient.DefaultRequestHeaders.UserAgent.Any())
         {
-            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0");
+            httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0");
         }
 
         _ = LoadContributorsAsync();
@@ -75,6 +96,7 @@ public sealed partial class AboutPage : Page
                         {
                             errorMessage = messageElement.GetString();
                         }
+
                         Debug.WriteLine($"[LoadContributorsAsync] 获取贡献者失败 ({apiUrl}): {errorMessage}");
                         continue;
                     }
@@ -100,7 +122,8 @@ public sealed partial class AboutPage : Page
                         }
                         else
                         {
-                            allContributors[login] = new ContributorItem { Name = login, Url = url, AvatarUrl = avatarUrl, Contributions = contributions };
+                            allContributors[login] = new ContributorItem
+                                { Name = login, Url = url, AvatarUrl = avatarUrl, Contributions = contributions };
                         }
                     }
                 }
@@ -118,10 +141,15 @@ public sealed partial class AboutPage : Page
                 return;
             }
 
-            var owner = allContributors.Values.FirstOrDefault(c => c.Name.Equals("CodeCubist", StringComparison.OrdinalIgnoreCase));
+            var owner = allContributors.Values.FirstOrDefault(c =>
+                c.Name.Equals("CodeCubist", StringComparison.OrdinalIgnoreCase));
             if (owner == null)
             {
-                owner = new ContributorItem { Name = "CodeCubist", Url = "https://github.com/CodeCubist", AvatarUrl = "https://avatars.githubusercontent.com/u/249788103?v=4", Contributions = 999 };
+                owner = new ContributorItem
+                {
+                    Name = "CodeCubist", Url = "https://github.com/CodeCubist",
+                    AvatarUrl = "https://avatars.githubusercontent.com/u/249788103?v=4", Contributions = 999
+                };
             }
 
             var others = allContributors.Values
@@ -146,17 +174,32 @@ public sealed partial class AboutPage : Page
 
                     var flyout = new Flyout();
                     var flyoutContentPanel = new StackPanel { Spacing = 12, Width = 260, Padding = new Thickness(8) };
-                    
+
                     var flyoutHeaderPanel = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 12 };
                     var flyoutAvatar = new Ellipse { Width = 48, Height = 48 };
-                    flyoutAvatar.Fill = new ImageBrush { ImageSource = new BitmapImage(new Uri(contributor.AvatarUrl)), Stretch = Stretch.UniformToFill };
-                    var flyoutName = new TextBlock { Text = contributor.Name, FontSize = 16, FontWeight = FontWeights.Bold, VerticalAlignment = VerticalAlignment.Center };
+                    flyoutAvatar.Fill = new ImageBrush
+                    {
+                        ImageSource = new BitmapImage(new Uri(contributor.AvatarUrl)), Stretch = Stretch.UniformToFill
+                    };
+                    var flyoutName = new TextBlock
+                    {
+                        Text = contributor.Name, FontSize = 16, FontWeight = FontWeights.Bold,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
                     flyoutHeaderPanel.Children.Add(flyoutAvatar);
                     flyoutHeaderPanel.Children.Add(flyoutName);
 
-                    var flyoutBio = new TextBlock { Text = "AboutPage_LoadingBio".GetLocalized(), TextWrapping = TextWrapping.Wrap, Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"] };
-                    
-                    var openBrowserBtn = new Button { Content = "AboutPage_OpenInBrowser".GetLocalized(), HorizontalAlignment = HorizontalAlignment.Stretch };
+                    var flyoutBio = new TextBlock
+                    {
+                        Text = "AboutPage_LoadingBio".GetLocalized(), TextWrapping = TextWrapping.Wrap,
+                        Foreground = (Brush)Application.Current.Resources["TextFillColorSecondaryBrush"]
+                    };
+
+                    var openBrowserBtn = new Button
+                    {
+                        Content = "AboutPage_OpenInBrowser".GetLocalized(),
+                        HorizontalAlignment = HorizontalAlignment.Stretch
+                    };
                     openBrowserBtn.Click += (s, e) =>
                     {
                         Process.Start(new ProcessStartInfo { FileName = contributor.Url, UseShellExecute = true });
@@ -175,11 +218,13 @@ public sealed partial class AboutPage : Page
                         {
                             var userJson = await GetJsonFromUrl($"https://api.github.com/users/{contributor.Name}");
                             string bioStr = "AboutPage_NoBio".GetLocalized();
-                            if (userJson.RootElement.TryGetProperty("bio", out JsonElement bioElement) && bioElement.ValueKind != JsonValueKind.Null)
+                            if (userJson.RootElement.TryGetProperty("bio", out JsonElement bioElement) &&
+                                bioElement.ValueKind != JsonValueKind.Null)
                             {
                                 string rawBio = bioElement.GetString();
                                 if (!string.IsNullOrWhiteSpace(rawBio)) bioStr = rawBio;
                             }
+
                             flyoutBio.Text = $"贡献次数: {contributor.Contributions} 次\n\n简介: {bioStr}";
                             isBioLoaded = true;
                         }
@@ -218,7 +263,7 @@ public sealed partial class AboutPage : Page
                         ImageSource = new BitmapImage(new Uri(contributor.AvatarUrl)),
                         Stretch = Stretch.UniformToFill
                     };
-                    
+
                     ellipse.Fill = imageBrush;
 
                     ellipse.Loaded += (s, e) =>
@@ -279,7 +324,8 @@ public sealed partial class AboutPage : Page
         {
             Text = "请注意：联系时请直入主题，说明来意\n请不要发送“在吗”、“你好”等无意义的开场白",
             TextWrapping = TextWrapping.Wrap,
-            Foreground = (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["SystemControlErrorTextForegroundBrush"]
+            Foreground =
+                (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["SystemControlErrorTextForegroundBrush"]
         };
 
         ComboBox platformCombo = new()
@@ -343,5 +389,4 @@ public sealed partial class AboutPage : Page
         Debug.WriteLine("[GetBuildFromActions] 从<" + url + ">获取到: " + responseContent);
         return JsonDocument.Parse(responseContent);
     }
-
 }

@@ -6,6 +6,7 @@ Licensed under the MIT License.
 支持三镜像下载、ETag 缓存、GIF8 混淆解密与游戏哈希解析。
 镜像与协议参考 HolographicHat/YaeAchievement。
 */
+
 using System.IO.Compression;
 using System.Net;
 using System.Net.Sockets;
@@ -29,7 +30,7 @@ public static class YaeMetadataService
     };
 
     /// <summary>
-    /// 获取并解析 Yae 成就元数据。使用本地 ETag 缓存，若 CDN 不可用则回退到缓存。
+    ///     获取并解析 Yae 成就元数据。使用本地 ETag 缓存，若 CDN 不可用则回退到缓存。
     /// </summary>
     public static async Task<AchievementInfo> GetMetadataAsync(CancellationToken cancellationToken = default)
     {
@@ -47,7 +48,8 @@ public static class YaeMetadataService
                 var data = DecryptIfNeeded(raw);
                 return AchievementInfo.Parser.ParseFrom(data);
             }
-            catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or IOException or SocketException or InvalidDataException)
+            catch (Exception ex) when (ex is HttpRequestException or TaskCanceledException or IOException
+                                           or SocketException or InvalidDataException)
             {
                 lastError = ex.Message;
             }
@@ -61,14 +63,17 @@ public static class YaeMetadataService
                 var data = DecryptIfNeeded(File.ReadAllBytes(binPath));
                 return AchievementInfo.Parser.ParseFrom(data);
             }
-            catch (Exception) { /* ignore */ }
+            catch (Exception)
+            {
+                /* ignore */
+            }
         }
 
         throw new ApplicationException(lastError ?? "无法获取 Yae 成就元数据，请检查网络连接。");
     }
 
     /// <summary>
-    /// 计算游戏进程哈希：CRC-32 对 exe 前 0x10000 字节。
+    ///     计算游戏进程哈希：CRC-32 对 exe 前 0x10000 字节。
     /// </summary>
     public static uint ComputeGameHash(string exePath)
     {
@@ -86,7 +91,7 @@ public static class YaeMetadataService
     }
 
     /// <summary>
-    /// 根据游戏哈希解析目标版本的命令 ID 与 RVA 配置。
+    ///     根据游戏哈希解析目标版本的命令 ID 与 RVA 配置。
     /// </summary>
     public static YaeNativeConfiguration Resolve(AchievementInfo metadata, uint gameHash)
     {
@@ -112,14 +117,18 @@ public static class YaeMetadataService
         };
     }
 
-    private static async Task<byte[]> FetchWithEtagAsync(string url, string binPath, string etagPath, CancellationToken cancellationToken)
+    private static async Task<byte[]> FetchWithEtagAsync(string url, string binPath, string etagPath,
+        CancellationToken cancellationToken)
     {
-        byte[] cached = File.Exists(binPath) ? await File.ReadAllBytesAsync(binPath, cancellationToken).ConfigureAwait(false) : [];
+        byte[] cached = File.Exists(binPath)
+            ? await File.ReadAllBytesAsync(binPath, cancellationToken).ConfigureAwait(false)
+            : [];
 
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
         if (File.Exists(etagPath))
         {
-            request.Headers.TryAddWithoutValidation("If-None-Match", await File.ReadAllTextAsync(etagPath, cancellationToken).ConfigureAwait(false));
+            request.Headers.TryAddWithoutValidation("If-None-Match",
+                await File.ReadAllTextAsync(etagPath, cancellationToken).ConfigureAwait(false));
         }
 
         using var response = await HttpClient.SendAsync(request, cancellationToken).ConfigureAwait(false);
@@ -134,13 +143,14 @@ public static class YaeMetadataService
         {
             await File.WriteAllTextAsync(etagPath, etag, cancellationToken).ConfigureAwait(false);
         }
+
         await File.WriteAllBytesAsync(binPath, bytes, cancellationToken).ConfigureAwait(false);
         return bytes;
     }
 
     /// <summary>
-    /// Yae CDN 可能返回 GIF8 混淆的数据：异或 + Brotli 解压 + CRC 校验。
-    /// 普通 protobuf 响应原样返回。
+    ///     Yae CDN 可能返回 GIF8 混淆的数据：异或 + Brotli 解压 + CRC 校验。
+    ///     普通 protobuf 响应原样返回。
     /// </summary>
     private static byte[] DecryptIfNeeded(byte[] data)
     {
@@ -166,11 +176,13 @@ public static class YaeMetadataService
         {
             decompressor.CopyTo(output);
         }
+
         var result = output.ToArray();
         if (YaeCrc32.Compute(result) != hush)
         {
             throw new InvalidDataException("Yae 元数据解密校验失败。");
         }
+
         return result;
     }
 }

@@ -7,8 +7,15 @@ namespace FufuLauncher.Models;
 
 public sealed class PluginConfigInfoItem(string key, string value)
 {
-    public string Key { get; } = key;
-    public string Value { get; } = value;
+    public string Key
+    {
+        get;
+    } = key;
+
+    public string Value
+    {
+        get;
+    } = value;
 }
 
 public enum PluginConfigValueKind
@@ -38,11 +45,28 @@ public sealed class PluginConfigOption : ObservableObject
         _value = value;
     }
 
-    public string SectionName { get; }
-    public string DisplayName { get; }
-    public string Description { get; }
+    public string SectionName
+    {
+        get;
+    }
+
+    public string DisplayName
+    {
+        get;
+    }
+
+    public string Description
+    {
+        get;
+    }
+
     public string ToolTipText => DisplayName == SectionName ? DisplayName : $"{DisplayName}\n{SectionName}";
-    public PluginConfigValueKind Kind { get; }
+
+    public PluginConfigValueKind Kind
+    {
+        get;
+    }
+
     public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
     public double Minimum => Kind == PluginConfigValueKind.Integer ? int.MinValue : double.MinValue;
     public double Maximum => Kind == PluginConfigValueKind.Integer ? int.MaxValue : double.MaxValue;
@@ -119,7 +143,11 @@ public sealed class PluginConfiguration
         _encoding = encoding;
         _lineEnding = text.Contains("\r\n", StringComparison.Ordinal)
             ? "\r\n"
-            : text.Contains('\r') ? "\r" : text.Contains('\n') ? "\n" : Environment.NewLine;
+            : text.Contains('\r')
+                ? "\r"
+                : text.Contains('\n')
+                    ? "\n"
+                    : Environment.NewLine;
         _lines = text.Replace("\r\n", "\n", StringComparison.Ordinal).Replace('\r', '\n').Split('\n');
 
         var general = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -166,8 +194,16 @@ public sealed class PluginConfiguration
         }
     }
 
-    public IReadOnlyDictionary<string, string> GeneralInfo { get; }
-    public IReadOnlyList<PluginConfigOption> Options { get; }
+    public IReadOnlyDictionary<string, string> GeneralInfo
+    {
+        get;
+    }
+
+    public IReadOnlyList<PluginConfigOption> Options
+    {
+        get;
+    }
+
     public bool HasChanges => _version != _savedVersion;
 
     public static async Task<PluginConfiguration> LoadAsync(string path, CancellationToken cancellationToken)
@@ -275,6 +311,7 @@ public sealed class PluginConfiguration
             {
                 general[item.Key] = item.Value;
             }
+
             return;
         }
 
@@ -288,13 +325,32 @@ public sealed class PluginConfiguration
         sources.Add(new OptionSource(option, section.HeaderLine, section.ValueLines, value));
     }
 
-    private sealed record OptionSource(PluginConfigOption Option, int HeaderLine, IReadOnlyList<int> ValueLines, string OriginalValue);
+    private sealed record OptionSource(
+        PluginConfigOption Option,
+        int HeaderLine,
+        IReadOnlyList<int> ValueLines,
+        string OriginalValue);
 
     private sealed class Section(string name, int headerLine)
     {
-        public string Name { get; } = name;
-        public int HeaderLine { get; } = headerLine;
-        public Dictionary<string, string> Items { get; } = new(StringComparer.OrdinalIgnoreCase);
-        public List<int> ValueLines { get; } = new();
+        public string Name
+        {
+            get;
+        } = name;
+
+        public int HeaderLine
+        {
+            get;
+        } = headerLine;
+
+        public Dictionary<string, string> Items
+        {
+            get;
+        } = new(StringComparer.OrdinalIgnoreCase);
+
+        public List<int> ValueLines
+        {
+            get;
+        } = new();
     }
 }

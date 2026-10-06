@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.GameServer;
@@ -83,7 +84,8 @@ public sealed partial class MainPage
 
             var serverName = toBilibili ? "Home_BilibiliServer".GetLocalized() : "Home_OfficialServer".GetLocalized();
             var action = toBilibili ? "Home_Deployed".GetLocalized() : "Home_Cleaned".GetLocalized();
-            await ShowDialog("Home_SwitchSuccess".GetLocalized(), string.Format("Home_SwitchedTo_Format".GetLocalized(), serverName, action));
+            await ShowDialog("Home_SwitchSuccess".GetLocalized(),
+                string.Format("Home_SwitchedTo_Format".GetLocalized(), serverName, action));
         }
         catch (Exception ex)
         {

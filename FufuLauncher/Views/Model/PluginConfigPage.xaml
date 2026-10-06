@@ -78,9 +78,9 @@
         </DataTemplate>
 
         <selectors:PluginConfigTemplateSelector x:Key="OptionTemplateSelector"
-                                               BooleanTemplate="{StaticResource BooleanOptionTemplate}"
-                                               NumberTemplate="{StaticResource NumberOptionTemplate}"
-                                               TextTemplate="{StaticResource TextOptionTemplate}" />
+                                                BooleanTemplate="{StaticResource BooleanOptionTemplate}"
+                                                NumberTemplate="{StaticResource NumberOptionTemplate}"
+                                                TextTemplate="{StaticResource TextOptionTemplate}" />
 
         <Storyboard x:Name="EntranceStoryboard">
             <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
@@ -186,7 +186,8 @@
                     <TextBlock x:Name="TitleTextBlock" Text="{helpers:Loc Key=PluginConfigPage_Title}"
                                FontSize="18" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
                     <TextBlock x:Name="DescriptionTextBlock" Text="{helpers:Loc Key=PluginConfigPage_AdjustParams}"
-                               FontSize="12" Opacity="0.6" TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+                               FontSize="12" Opacity="0.6" TextWrapping="Wrap" MaxLines="2"
+                               TextTrimming="CharacterEllipsis" />
                 </StackPanel>
                 <StackPanel x:Name="PluginMetadataPanel" Grid.Column="1" Margin="24,0,20,0"
                             VerticalAlignment="Center" HorizontalAlignment="Right" Spacing="4">
@@ -207,7 +208,8 @@
                             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
                                           MaxHeight="420">
                                 <StackPanel Spacing="16" MinWidth="240" MaxWidth="360">
-                                    <TextBlock Text="{helpers:Loc Key=PluginConfigPage_PluginInfo}" FontWeight="SemiBold" />
+                                    <TextBlock Text="{helpers:Loc Key=PluginConfigPage_PluginInfo}"
+                                               FontWeight="SemiBold" />
                                     <ItemsControl x:Name="InfoItemsControl">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate x:DataType="models:PluginConfigInfoItem">
@@ -219,17 +221,21 @@
                                                     <TextBlock Text="{x:Bind Key}" FontSize="12" TextWrapping="Wrap"
                                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                                                     <TextBlock Grid.Column="1" Text="{x:Bind Value}" FontSize="12"
-                                                               Margin="12,0,0,0" TextWrapping="Wrap" IsTextSelectionEnabled="True" />
+                                                               Margin="12,0,0,0" TextWrapping="Wrap"
+                                                               IsTextSelectionEnabled="True" />
                                                 </Grid>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
                                     <StackPanel Spacing="8">
-                                        <TextBlock Text="{helpers:Loc Key=PluginConfigPage_ConfigFile}" FontSize="12" FontWeight="SemiBold" />
+                                        <TextBlock Text="{helpers:Loc Key=PluginConfigPage_ConfigFile}" FontSize="12"
+                                                   FontWeight="SemiBold" />
                                         <TextBlock x:Name="ConfigPathTextBlock" FontSize="12" TextWrapping="Wrap"
-                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" IsTextSelectionEnabled="True" />
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                   IsTextSelectionEnabled="True" />
                                     </StackPanel>
-                                    <Button Content="{helpers:Loc Key=OpenFolderLabel}" Click="OnOpenFolderClick" HorizontalAlignment="Left" />
+                                    <Button Content="{helpers:Loc Key=OpenFolderLabel}" Click="OnOpenFolderClick"
+                                            HorizontalAlignment="Left" />
                                 </StackPanel>
                             </ScrollViewer>
                         </Flyout>

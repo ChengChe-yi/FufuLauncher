@@ -2,11 +2,11 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
 namespace FufuLauncher.Converters;
-
 
 public class RatingToStarsConverter : IValueConverter
 {
@@ -22,6 +22,7 @@ public class RatingToStarsConverter : IValueConverter
 
             return result;
         }
+
         return "—";
     }
 
@@ -81,6 +82,7 @@ public class StringToImageSourceConverter : IValueConverter
         {
             return new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(uri);
         }
+
         return null;
     }
 

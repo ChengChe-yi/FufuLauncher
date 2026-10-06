@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Views;
 
@@ -19,6 +20,7 @@ public partial class AccountViewModel
             _miyousheQrWindow = new MiyousheQrWindow();
             _miyousheQrWindow.Closed += (_, _) => _miyousheQrWindow = null;
         }
+
         _miyousheQrWindow.Activate();
     }
 }

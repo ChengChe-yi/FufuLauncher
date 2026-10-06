@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Xml.Linq;
 
@@ -15,16 +16,22 @@ public static class ResourceExtensions
     private static bool _loaded;
 
     /// <summary>
-    /// Gets the currently active effective culture name (e.g., "zh-CN", "en-US").
+    ///     Gets the currently active effective culture name (e.g., "zh-CN", "en-US").
     /// </summary>
     public static string? CurrentCulture
     {
-        get { lock (_lock) { return _currentCulture; } }
+        get
+        {
+            lock (_lock)
+            {
+                return _currentCulture;
+            }
+        }
     }
 
     /// <summary>
-    /// Sets the effective language for resource resolution.
-    /// Callers in default-language mode must resolve a supported system culture first.
+    ///     Sets the effective language for resource resolution.
+    ///     Callers in default-language mode must resolve a supported system culture first.
     /// </summary>
     public static void SetLanguage(string? culture)
     {
@@ -62,7 +69,8 @@ public static class ResourceExtensions
                 LoadResw(Path.Combine(exeDir, "Strings", "es-MX", "Resources.resw"), "es-MX");
                 LoadResw(Path.Combine(exeDir, "Strings", "hi-IN", "Resources.resw"), "hi-IN");
 
-                Debug.WriteLine($"[ResourceExt] Loaded {_resources.Count} language(s): {string.Join(", ", _resources.Keys)}");
+                Debug.WriteLine(
+                    $"[ResourceExt] Loaded {_resources.Count} language(s): {string.Join(", ", _resources.Keys)}");
             }
             catch (Exception ex)
             {
@@ -114,7 +122,10 @@ public static class ResourceExtensions
 
             // 1) Use the explicitly-set language
             string? culture;
-            lock (_lock) { culture = _currentCulture; }
+            lock (_lock)
+            {
+                culture = _currentCulture;
+            }
 
             if (culture != null &&
                 _resources.TryGetValue(culture, out var dict) &&

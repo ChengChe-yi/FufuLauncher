@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
@@ -24,24 +25,46 @@ namespace FufuLauncher.ViewModels
 {
     public class GameAccount
     {
-        public Guid InnerId { get; set; } = Guid.NewGuid();
-        public string Name { get; set; } = string.Empty;
-        public string MihoyoSDK { get; set; } = string.Empty;
+        public Guid InnerId
+        {
+            get;
+            set;
+        } = Guid.NewGuid();
+
+        public string Name
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public string MihoyoSDK
+        {
+            get;
+            set;
+        } = string.Empty;
+
         public string? Mid
         {
-            get; set;
+            get;
+            set;
         }
+
         public string? MacAddress
         {
-            get; set;
+            get;
+            set;
         }
+
         public bool IsExpired
         {
-            get; set;
+            get;
+            set;
         }
+
         public DateTime? LastUsed
         {
-            get; set;
+            get;
+            set;
         }
 
         public static GameAccount Create(string name, string sdk, string? mid, string? mac) => new()
@@ -62,20 +85,15 @@ namespace FufuLauncher.ViewModels
         private const string RegistryKey = @"HKEY_CURRENT_USER\Software\miHoYo\原神";
         private const string RegistryValueName = "MIHOYOSDK_ADL_PROD_CN_h3123967166";
 
-        [ObservableProperty]
-        private GameConfig? currentGameConfig;
+        [ObservableProperty] private GameConfig? currentGameConfig;
 
-        [ObservableProperty]
-        private bool isLoading;
+        [ObservableProperty] private bool isLoading;
 
-        [ObservableProperty]
-        private ObservableCollection<GameAccount> accounts = new();
+        [ObservableProperty] private ObservableCollection<GameAccount> accounts = new();
 
-        [ObservableProperty]
-        private GameAccount? selectedAccount;
+        [ObservableProperty] private GameAccount? selectedAccount;
 
-        [ObservableProperty]
-        private bool canAccessRegistry;
+        [ObservableProperty] private bool canAccessRegistry;
 
         private string? _lastLoadedPath;
         private readonly DispatcherQueue _dispatcherQueue;
@@ -85,23 +103,26 @@ namespace FufuLauncher.ViewModels
         {
             get;
         }
+
         public IAsyncRelayCommand LoadAccountsCommand
         {
             get;
         }
+
         public IAsyncRelayCommand AddCurrentAccountCommand
         {
             get;
         }
+
         public IAsyncRelayCommand<GameAccount> SwitchAccountCommand
         {
             get;
         }
+
         public IAsyncRelayCommand<GameAccount> DeleteAccountCommand
         {
             get;
         }
-
 
 
         public BlankViewModel(IGameConfigService gameConfigService, ILocalSettingsService localSettingsService)
@@ -125,7 +146,6 @@ namespace FufuLauncher.ViewModels
         {
             try
             {
-
                 var savedPath = await _localSettingsService.ReadSettingAsync(GamePathKey) as string;
                 if (!string.IsNullOrEmpty(savedPath))
                 {
@@ -134,6 +154,7 @@ namespace FufuLauncher.ViewModels
                     _lastLoadedPath = savedPath;
                     await LoadGameInfoAsync(savedPath);
                 }
+
                 await LoadAccountsAsync();
             }
             catch (Exception ex)
@@ -143,49 +164,50 @@ namespace FufuLauncher.ViewModels
         }
 
         private async Task SelectGamePathAsync()
-{
-    try
-    {
-        if (!_dispatcherQueue.HasThreadAccess)
         {
-            Debug.WriteLine("[错误] 不在UI线程上执行");
-            return;
-        }
-
-        var path = await FilePickerService.PickOpenFileAsync(
-            null,
-            new[] { ("可执行文件", new[] { ".exe" }) },
-            PickerLocationId.ComputerFolder,
-            msg => _ = ShowError(msg));
-
-        if (!string.IsNullOrEmpty(path))
-        {
-            var folder = Path.GetDirectoryName(path)?.Trim('"').Trim();
-
-            if (!string.IsNullOrEmpty(folder))
+            try
             {
-                Debug.WriteLine($"[游戏信息页] 用户选择程序文件: '{path}', 提取目录路径: '{folder}'");
+                if (!_dispatcherQueue.HasThreadAccess)
+                {
+                    Debug.WriteLine("[错误] 不在UI线程上执行");
+                    return;
+                }
 
-                await LoadGameInfoAsync(folder);
-                await _localSettingsService.SaveSettingAsync(GamePathKey, folder);
-                _lastLoadedPath = folder;
+                var path = await FilePickerService.PickOpenFileAsync(
+                    null,
+                    new[] { ("可执行文件", new[] { ".exe" }) },
+                    PickerLocationId.ComputerFolder,
+                    msg => _ = ShowError(msg));
 
-                WeakReferenceMessenger.Default.Send(new GamePathChangedMessage(folder));
-                Debug.WriteLine("[游戏信息页] 已发送路径变更消息");
+                if (!string.IsNullOrEmpty(path))
+                {
+                    var folder = Path.GetDirectoryName(path)?.Trim('"').Trim();
+
+                    if (!string.IsNullOrEmpty(folder))
+                    {
+                        Debug.WriteLine($"[游戏信息页] 用户选择程序文件: '{path}', 提取目录路径: '{folder}'");
+
+                        await LoadGameInfoAsync(folder);
+                        await _localSettingsService.SaveSettingAsync(GamePathKey, folder);
+                        _lastLoadedPath = folder;
+
+                        WeakReferenceMessenger.Default.Send(new GamePathChangedMessage(folder));
+                        Debug.WriteLine("[游戏信息页] 已发送路径变更消息");
+                    }
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                await ShowError("权限错误：请以普通用户身份运行程序选择游戏路径");
+                Debug.WriteLine("[严重错误] 管理员模式权限问题");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"选择路径失败: {ex.Message}\n堆栈: {ex.StackTrace}");
+                await ShowError($"选择路径失败: {ex.Message}");
             }
         }
-    }
-    catch (UnauthorizedAccessException)
-    {
-        await ShowError("权限错误：请以普通用户身份运行程序选择游戏路径");
-        Debug.WriteLine("[严重错误] 管理员模式权限问题");
-    }
-    catch (Exception ex)
-    {
-        Debug.WriteLine($"选择路径失败: {ex.Message}\n堆栈: {ex.StackTrace}");
-        await ShowError($"选择路径失败: {ex.Message}");
-    }
-}
+
         private async Task ShowError(string message)
         {
             try
@@ -207,6 +229,7 @@ namespace FufuLauncher.ViewModels
                 Debug.WriteLine($"显示错误对话框失败: {ex.Message}");
             }
         }
+
         private async Task LoadGameInfoAsync(string path)
         {
             if (string.IsNullOrEmpty(path)) return;
@@ -229,6 +252,7 @@ namespace FufuLauncher.ViewModels
         }
 
         #region 账号管理
+
         private async Task LoadAccountsAsync()
         {
             try
@@ -341,9 +365,11 @@ namespace FufuLauncher.ViewModels
                 Debug.WriteLine($"删除账号失败: {ex.Message}");
             }
         }
+
         #endregion
 
         #region 注册表和文件操作
+
         private async Task<bool> TestRegistryAccessAsync()
         {
             return await Task.Run(() =>
@@ -442,6 +468,7 @@ namespace FufuLauncher.ViewModels
                 File.WriteAllText(_accountsFilePath, json, Encoding.UTF8);
             });
         }
+
         #endregion
     }
 }

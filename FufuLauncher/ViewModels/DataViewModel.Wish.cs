@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Globalization;
 using FufuLauncher.Models.DataCenter;
@@ -14,9 +15,20 @@ public sealed partial class DataViewModel
 
     private List<DcWishBanner> _filteredBanners = new();
 
-    public ObservableCollection<DcWishBanner> WishBanners { get; } = new();
-    public ObservableCollection<DcCountRow> WishTopReruns { get; } = new();
-    public ObservableCollection<DcCountRow> WishTopCompanions { get; } = new();
+    public ObservableCollection<DcWishBanner> WishBanners
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcCountRow> WishTopReruns
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcCountRow> WishTopCompanions
+    {
+        get;
+    } = new();
 
     private bool _wishShowWeapons;
     private string _wishSearch = string.Empty;
@@ -24,10 +36,30 @@ public sealed partial class DataViewModel
 
     public bool WishShowWeapons => _wishShowWeapons;
     public bool WishShowCharacters => !_wishShowWeapons;
-    public string WishCountText { get; private set; } = string.Empty;
-    public bool WishHasMore { get; private set; }
-    public bool WishHasNone { get; private set; }
-    public string WishMoreText { get; private set; } = string.Empty;
+
+    public string WishCountText
+    {
+        get;
+        private set;
+    } = string.Empty;
+
+    public bool WishHasMore
+    {
+        get;
+        private set;
+    }
+
+    public bool WishHasNone
+    {
+        get;
+        private set;
+    }
+
+    public string WishMoreText
+    {
+        get;
+        private set;
+    } = string.Empty;
 
     public void SetWishCategory(bool weapons)
     {
@@ -83,13 +115,45 @@ public sealed partial class DataViewModel
 
     private sealed class WishCharacterStat
     {
-        public int Count { get; set; }
-        public string LatestVersion { get; set; } = Dash;
-        public DateTime? LatestDate { get; set; }
-        public double? DaysSince { get; set; }
-        public double? AverageGap { get; set; }
-        public List<string> Banners { get; } = new();
-        public List<DateTime> Dates { get; } = new();
+        public int Count
+        {
+            get;
+            set;
+        }
+
+        public string LatestVersion
+        {
+            get;
+            set;
+        } = Dash;
+
+        public DateTime? LatestDate
+        {
+            get;
+            set;
+        }
+
+        public double? DaysSince
+        {
+            get;
+            set;
+        }
+
+        public double? AverageGap
+        {
+            get;
+            set;
+        }
+
+        public List<string> Banners
+        {
+            get;
+        } = new();
+
+        public List<DateTime> Dates
+        {
+            get;
+        } = new();
     }
 
     private Dictionary<string, WishCharacterStat> BuildWishStats()

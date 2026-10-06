@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -26,7 +27,7 @@ public class UidLookupService : IUidLookupService
     {
         var entries = ReadUidsFromBeyondLocal();
 
-       
+
         await WriteUidsToPluginJsonAsync(entries);
 
         var uids = new string[entries.Count];
@@ -80,8 +81,17 @@ public class UidLookupService : IUidLookupService
 
     private sealed class UidEntry
     {
-        public string Uid { get; set; } = string.Empty;
-        public DateTime UpdatedAt { get; set; }
+        public string Uid
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public DateTime UpdatedAt
+        {
+            get;
+            set;
+        }
     }
 
     private static bool IsAllDigits(string s)
@@ -91,6 +101,7 @@ public class UidLookupService : IUidLookupService
         {
             if (!char.IsDigit(s[i])) return false;
         }
+
         return true;
     }
 
@@ -136,7 +147,9 @@ public class UidLookupService : IUidLookupService
                 {
                     if (File.Exists(temporaryPath)) File.Delete(temporaryPath);
                 }
-                catch { }
+                catch
+                {
+                }
             }
         }
     }

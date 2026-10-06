@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.IO.Compression;
 using System.Text;
 using FufuLauncher.Constants;
@@ -12,7 +13,9 @@ namespace FufuLauncher.Services
     public interface IPluginUpdateService
     {
         Task ExecuteAutoUpdateAsync(StringBuilder logBuilder);
-        Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null, CancellationToken cancellationToken = default);
+
+        Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null,
+            CancellationToken cancellationToken = default);
     }
 
     public class PluginUpdateService : IPluginUpdateService
@@ -53,7 +56,8 @@ namespace FufuLauncher.Services
             }
         }
 
-        public async Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null, CancellationToken cancellationToken = default)
+        public async Task<bool> InstallOrUpdateMainPluginAsync(StringBuilder? logBuilder = null,
+            CancellationToken cancellationToken = default)
         {
             await InstallGate.WaitAsync(cancellationToken);
 
@@ -67,7 +71,8 @@ namespace FufuLauncher.Services
             }
         }
 
-        private async Task<bool> InstallOrUpdateMainPluginCoreAsync(StringBuilder? logBuilder, CancellationToken cancellationToken)
+        private async Task<bool> InstallOrUpdateMainPluginCoreAsync(StringBuilder? logBuilder,
+            CancellationToken cancellationToken)
         {
             string tempPath = Path.Combine(Path.GetTempPath(), $"FuFuPlugin_Install_{Guid.NewGuid():N}.zip");
             string extractPath = Path.Combine(Path.GetTempPath(), $"FuFuPlugin_Install_Extract_{Guid.NewGuid():N}");
@@ -91,19 +96,22 @@ namespace FufuLauncher.Services
                     HttpResponseMessage response;
                     try
                     {
-                        response = await client.GetAsync(ApiEndpoints.PluginProxyUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                        response = await client.GetAsync(ApiEndpoints.PluginProxyUrl,
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                         response.EnsureSuccessStatusCode();
                     }
                     catch (Exception) when (!cancellationToken.IsCancellationRequested)
                     {
                         logBuilder?.AppendLine("[插件更新] 主线路请求失败，正在尝试备用线路...");
-                        response = await client.GetAsync(ApiEndpoints.PluginRawUrl, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                        response = await client.GetAsync(ApiEndpoints.PluginRawUrl,
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken);
                         response.EnsureSuccessStatusCode();
                     }
 
                     using (response)
                     using (var stream = await response.Content.ReadAsStreamAsync(cancellationToken))
-                    using (var fileStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
+                    using (var fileStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None,
+                               8192, true))
                     {
                         await stream.CopyToAsync(fileStream, cancellationToken);
                     }
@@ -116,7 +124,9 @@ namespace FufuLauncher.Services
                 await Task.Run(() => ZipFile.ExtractToDirectory(tempPath, extractPath));
 
                 var subDirs = Directory.GetDirectories(extractPath);
-                string sourceDir = (subDirs.Length == 1 && Directory.GetFiles(extractPath).Length == 0) ? subDirs[0] : extractPath;
+                string sourceDir = (subDirs.Length == 1 && Directory.GetFiles(extractPath).Length == 0)
+                    ? subDirs[0]
+                    : extractPath;
 
                 cancellationToken.ThrowIfCancellationRequested();
 
@@ -129,6 +139,7 @@ namespace FufuLauncher.Services
                     {
                         Directory.CreateDirectory(dirPath.Replace(sourceDir, targetDir));
                     }
+
                     foreach (var newPath in Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories))
                     {
                         File.Copy(newPath, newPath.Replace(sourceDir, targetDir), true);

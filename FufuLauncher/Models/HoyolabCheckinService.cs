@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -12,104 +13,342 @@ using MihoyoBBS;
 
 namespace FufuLauncher.Models
 {
-  
     public class OsRewardItem
     {
-        [JsonPropertyName("icon")] public string Icon { get; set; }
-        [JsonPropertyName("name")] public string Name { get; set; }
-        [JsonPropertyName("cnt")] public int Count { get; set; }
+        [JsonPropertyName("icon")]
+        public string Icon
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("name")]
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("cnt")]
+        public int Count
+        {
+            get;
+            set;
+        }
     }
 
     public class OsCheckinRewardsData
     {
-        [JsonPropertyName("awards")] public List<OsRewardItem> Awards { get; set; }
+        [JsonPropertyName("awards")]
+        public List<OsRewardItem> Awards
+        {
+            get;
+            set;
+        }
     }
-    
+
     public class OsCheckinCalendarData
     {
-        [JsonPropertyName("month")] public int Month { get; set; }
+        [JsonPropertyName("month")]
+        public int Month
+        {
+            get;
+            set;
+        }
 
-        [JsonPropertyName("awards")] public List<OsRewardItem> Awards { get; set; }
+        [JsonPropertyName("awards")]
+        public List<OsRewardItem> Awards
+        {
+            get;
+            set;
+        }
     }
-    
+
     public class CheckinResignInfo
     {
-        [JsonPropertyName("resign_cnt_daily")] public int ResignCountDaily { get; set; }
-        [JsonPropertyName("resign_cnt_monthly")] public int ResignCountMonthly { get; set; }
-        [JsonPropertyName("resign_limit_daily")] public int ResignLimitDaily { get; set; }
-        [JsonPropertyName("resign_limit_monthly")] public int ResignLimitMonthly { get; set; }
-        [JsonPropertyName("sign_cnt_missed")] public int SignCountMissed { get; set; }
-        [JsonPropertyName("coin_cnt")] public int CoinCount { get; set; }
-        [JsonPropertyName("coin_cost")] public int CoinCost { get; set; }
-        [JsonPropertyName("rule")] public string Rule { get; set; } = "";
-        [JsonPropertyName("signed")] public bool Signed { get; set; }
-        [JsonPropertyName("sign_days")] public int SignDays { get; set; }
-        [JsonPropertyName("cost")] public int Cost { get; set; }
-        [JsonPropertyName("month_quality_cnt")] public int MonthQualityCount { get; set; }
-        [JsonPropertyName("quality_cnt")] public int QualityCount { get; set; }
-        
+        [JsonPropertyName("resign_cnt_daily")]
+        public int ResignCountDaily
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("resign_cnt_monthly")]
+        public int ResignCountMonthly
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("resign_limit_daily")]
+        public int ResignLimitDaily
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("resign_limit_monthly")]
+        public int ResignLimitMonthly
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("sign_cnt_missed")]
+        public int SignCountMissed
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("coin_cnt")]
+        public int CoinCount
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("coin_cost")]
+        public int CoinCost
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("rule")]
+        public string Rule
+        {
+            get;
+            set;
+        } = "";
+
+        [JsonPropertyName("signed")]
+        public bool Signed
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("sign_days")]
+        public int SignDays
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("cost")]
+        public int Cost
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("month_quality_cnt")]
+        public int MonthQualityCount
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("quality_cnt")]
+        public int QualityCount
+        {
+            get;
+            set;
+        }
+
         public int RemainingMonthly => Math.Max(0, ResignLimitMonthly - ResignCountMonthly);
     }
 
     public class OsAccountItem
     {
-        [JsonPropertyName("nickname")] public string Nickname { get; set; }
-        [JsonPropertyName("game_uid")] public string GameUid { get; set; }
-        [JsonPropertyName("region")] public string Region { get; set; }
+        [JsonPropertyName("nickname")]
+        public string Nickname
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("game_uid")]
+        public string GameUid
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("region")]
+        public string Region
+        {
+            get;
+            set;
+        }
     }
 
     public class OsAccountInfoData
     {
-        [JsonPropertyName("list")] public List<OsAccountItem> List { get; set; }
+        [JsonPropertyName("list")]
+        public List<OsAccountItem> List
+        {
+            get;
+            set;
+        }
     }
 
-   
+
     public class OsIsSignData
     {
-        [JsonPropertyName("total_sign_day")] public int TotalSignDay { get; set; }
-        [JsonPropertyName("today")] public string Today { get; set; }
-        [JsonPropertyName("is_sign")] public bool IsSign { get; set; }
-        [JsonPropertyName("first_bind")] public bool FirstBind { get; set; }
+        [JsonPropertyName("total_sign_day")]
+        public int TotalSignDay
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("today")]
+        public string Today
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("is_sign")]
+        public bool IsSign
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("first_bind")]
+        public bool FirstBind
+        {
+            get;
+            set;
+        }
     }
 
 
     public class OsApiResponse<T>
     {
-        [JsonPropertyName("retcode")] public int RetCode { get; set; }
-        [JsonPropertyName("message")] public string Message { get; set; }
-        [JsonPropertyName("data")] public T Data { get; set; }
+        [JsonPropertyName("retcode")]
+        public int RetCode
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("message")]
+        public string Message
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("data")]
+        public T Data
+        {
+            get;
+            set;
+        }
     }
 
-    
+
     public class OsSignResponseData
     {
-        [JsonPropertyName("code")] public string Code { get; set; }
-        [JsonPropertyName("first_bind")] public bool FirstBind { get; set; }
+        [JsonPropertyName("code")]
+        public string Code
+        {
+            get;
+            set;
+        }
+
+        [JsonPropertyName("first_bind")]
+        public bool FirstBind
+        {
+            get;
+            set;
+        }
     }
 
     public class HoyolabSignResult
     {
-        public bool Success { get; set; }
-        public string Message { get; set; } = string.Empty;
-        public int SuccessCount { get; set; }
-        public int FailCount { get; set; }
-        public int SkippedCount { get; set; }
+        public bool Success
+        {
+            get;
+            set;
+        }
+
+        public string Message
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public int SuccessCount
+        {
+            get;
+            set;
+        }
+
+        public int FailCount
+        {
+            get;
+            set;
+        }
+
+        public int SkippedCount
+        {
+            get;
+            set;
+        }
     }
-    
+
     public class HoyolabCheckinService
     {
-        public string BaseApi { get; set; } = ApiEndpoints.OverseaSignBaseApi;
-        public string ActId { get; set; } = ApiEndpoints.OverseaSignActId;
-        public string GameBiz { get; set; } = "hk4e_global";
+        public string BaseApi
+        {
+            get;
+            set;
+        } = ApiEndpoints.OverseaSignBaseApi;
+
+        public string ActId
+        {
+            get;
+            set;
+        } = ApiEndpoints.OverseaSignActId;
+
+        public string GameBiz
+        {
+            get;
+            set;
+        } = "hk4e_global";
 
         private HttpClient _httpClient;
         private Dictionary<string, string> _headers;
 
-        public static string LastApiError { get; set; } = string.Empty;
-        public static int LastSignDays { get; set; } = 0;
-        public static string LastRewardItem { get; set; } = "Status_None".GetLocalized();
+        public static string LastApiError
+        {
+            get;
+            set;
+        } = string.Empty;
 
-        public List<OsAccountItem> AccountList { get; private set; } = new();
+        public static int LastSignDays
+        {
+            get;
+            set;
+        } = 0;
+
+        public static string LastRewardItem
+        {
+            get;
+            set;
+        } = "Status_None".GetLocalized();
+
+        public List<OsAccountItem> AccountList
+        {
+            get;
+            private set;
+        } = new();
+
         private List<OsRewardItem> _checkinRewards;
 
         public HoyolabCheckinService()
@@ -121,7 +360,7 @@ namespace FufuLauncher.Models
             _httpClient.Timeout = TimeSpan.FromSeconds(30);
         }
 
-       
+
         private void SetHeaders(string cookie)
         {
             var deviceId = Guid.NewGuid().ToString("N");
@@ -140,7 +379,8 @@ namespace FufuLauncher.Models
                 ["x-rpc-device_id"] = deviceId,
                 ["x-rpc-game_biz"] = GameBiz,
                 ["X-Requested-With"] = "com.mihoyo.hoyolab",
-                ["User-Agent"] = "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/2.54.0"
+                ["User-Agent"] =
+                    "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/2.54.0"
             };
         }
 
@@ -174,7 +414,7 @@ namespace FufuLauncher.Models
             }
         }
 
-   
+
         public async Task InitializeAsync(string cookie, List<OsAccountItem>? fallbackAccounts = null)
         {
             LastApiError = string.Empty;
@@ -205,6 +445,7 @@ namespace FufuLauncher.Models
             {
                 LastApiError = string.Format("Checkin_GetAccountListException".GetLocalized(), ex.Message);
             }
+
             return new List<OsAccountItem>();
         }
 
@@ -224,12 +465,16 @@ namespace FufuLauncher.Models
                     if (result != null && result.RetCode == 0 && result.Data?.Awards != null)
                         return result.Data.Awards;
                 }
-                catch { }
+                catch
+                {
+                }
+
                 await Task.Delay(5000);
             }
+
             return new List<OsRewardItem>();
         }
-        
+
         public async Task<CheckinCalendarData?> GetCheckinCalendarAsync()
         {
             try
@@ -251,15 +496,17 @@ namespace FufuLauncher.Models
                             .ToList() ?? new List<CalendarRewardItem>()
                     };
                 }
+
                 LastApiError = result?.Message ?? "Checkin_GetCalendarException".GetLocalized();
             }
             catch (Exception ex)
             {
                 LastApiError = string.Format("Checkin_GetCalendarException".GetLocalized(), ex.Message);
             }
+
             return null;
         }
-        
+
         public async Task<CheckinResignInfo?> GetResignInfoAsync(string region, string uid)
         {
             try
@@ -279,9 +526,10 @@ namespace FufuLauncher.Models
             {
                 LastApiError = string.Format("Checkin_ResignQueryFailed".GetLocalized(), ex.Message);
             }
+
             return null;
         }
-        
+
         public async Task<(bool success, string message)> ResignAsync(string region, string uid)
         {
             try
@@ -339,10 +587,11 @@ namespace FufuLauncher.Models
             {
                 LastApiError = string.Format("Checkin_RequestSignStatusException".GetLocalized(), ex.Message);
             }
+
             return null;
         }
 
-      
+
         private async Task<HttpResponseMessage> DoSignAsync(OsAccountItem account)
         {
             var headers = new Dictionary<string, string>(_headers);
@@ -366,21 +615,27 @@ namespace FufuLauncher.Models
                         await Task.Delay(10000);
                         continue;
                     }
+
                     return resp;
                 }
-                catch { return null; }
+                catch
+                {
+                    return null;
+                }
             }
+
             return null;
         }
 
-   
+
         public async Task<string> SignAccountAsync(string cookie, HashSet<string> disabledUids = null)
         {
             var signResult = await SignAccountWithResultAsync(cookie, disabledUids);
             return signResult.Message;
         }
 
-        public async Task<HoyolabSignResult> SignAccountWithResultAsync(string cookie, HashSet<string> disabledUids = null, string targetUid = null)
+        public async Task<HoyolabSignResult> SignAccountWithResultAsync(string cookie,
+            HashSet<string> disabledUids = null, string targetUid = null)
         {
             LastApiError = string.Empty;
             var message = "HoYoLAB: ";
@@ -436,7 +691,8 @@ namespace FufuLauncher.Models
                     message += "\n" + account.Nickname + "Checkin_AlreadySignedToday".GetLocalized();
                     var idx = signDays - 1;
                     if (_checkinRewards != null && idx >= 0 && idx < _checkinRewards.Count)
-                        message += "\n" + string.Format("Checkin_TodayReward".GetLocalized(), FormatItem(_checkinRewards[idx]));
+                        message += "\n" + string.Format("Checkin_TodayReward".GetLocalized(),
+                            FormatItem(_checkinRewards[idx]));
                 }
                 else
                 {
@@ -480,7 +736,8 @@ namespace FufuLauncher.Models
                     }
                     else
                     {
-                        message += "\n" + account.Nickname + string.Format("Checkin_SignFailedApi".GetLocalized(), data.Message);
+                        message += "\n" + account.Nickname +
+                                   string.Format("Checkin_SignFailedApi".GetLocalized(), data.Message);
                         signResult.FailCount++;
                         continue;
                     }

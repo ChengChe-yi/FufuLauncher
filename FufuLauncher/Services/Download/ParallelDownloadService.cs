@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Buffers;
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -246,7 +247,7 @@ public sealed class ParallelDownloadService
             {
                 var itemOpt = (item.Options ?? batchOpt).Validate();
                 string path = await DownloadCoreAsync(
-                    client, item.Url, item.DestinationPath, itemOpt, progress, token)
+                        client, item.Url, item.DestinationPath, itemOpt, progress, token)
                     .ConfigureAwait(false);
                 results[index] = new ParallelDownloadResult(item.Url, path, null);
             }
@@ -334,7 +335,8 @@ public sealed class ParallelDownloadService
             // HEAD 不被支持 → 用 1 字节的 Range GET 探测
             using var probeReq = CreateRequest(HttpMethod.Get, url, opt);
             probeReq.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(0, 0);
-            using var probeResp = await client.SendAsync(probeReq, HttpCompletionOption.ResponseHeadersRead, probeCts.Token)
+            using var probeResp = await client
+                .SendAsync(probeReq, HttpCompletionOption.ResponseHeadersRead, probeCts.Token)
                 .ConfigureAwait(false);
 
             if (!probeResp.IsSuccessStatusCode)
@@ -469,8 +471,14 @@ public sealed class ParallelDownloadService
             stallTimer?.Dispose();
             if (watchdog != null)
             {
-                try { await watchdog.ConfigureAwait(false); }
-                catch { /* 看门狗自身异常一律忽略 */ }
+                try
+                {
+                    await watchdog.ConfigureAwait(false);
+                }
+                catch
+                {
+                    /* 看门狗自身异常一律忽略 */
+                }
             }
         }
     }
@@ -573,8 +581,8 @@ public sealed class ParallelDownloadService
                         try
                         {
                             await DownloadChunkAsync(
-                                client, url, start, end, handle, parallelAbort.Token,
-                                state, totalSize, opt, progress, globalLimiter, segmentLimiter)
+                                    client, url, start, end, handle, parallelAbort.Token,
+                                    state, totalSize, opt, progress, globalLimiter, segmentLimiter)
                                 .ConfigureAwait(false);
 
                             Interlocked.Increment(ref state.CompletedChunks);
@@ -847,8 +855,14 @@ public sealed class ParallelDownloadService
                 stallTimer?.Dispose();
                 if (watchdog != null)
                 {
-                    try { await watchdog.ConfigureAwait(false); }
-                    catch { /* 看门狗自身异常一律忽略 */ }
+                    try
+                    {
+                        await watchdog.ConfigureAwait(false);
+                    }
+                    catch
+                    {
+                        /* 看门狗自身异常一律忽略 */
+                    }
                 }
             }
 
@@ -895,8 +909,12 @@ public sealed class ParallelDownloadService
                 }
             }
         }
-        catch (OperationCanceledException) { }
-        catch (ObjectDisposedException) { }
+        catch (OperationCanceledException)
+        {
+        }
+        catch (ObjectDisposedException)
+        {
+        }
     }
 
     private static void ReportProgress(

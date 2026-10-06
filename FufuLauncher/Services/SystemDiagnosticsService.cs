@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Management;
 using System.Runtime.InteropServices;
@@ -20,8 +21,10 @@ public class SystemDiagnosticsService
     {
         private const int CCHDEVICENAME = 32;
         private const int CCHFORMNAME = 32;
+
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = CCHDEVICENAME)]
         public string dmDeviceName;
+
         public short dmSpecVersion;
         public short dmDriverVersion;
         public short dmSize;
@@ -36,8 +39,10 @@ public class SystemDiagnosticsService
         public short dmYResolution;
         public short dmTTOption;
         public short dmCollate;
+
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = CCHFORMNAME)]
         public string dmFormName;
+
         public short dmLogPixels;
         public int dmBitsPerPel;
         public int dmPelsWidth;
@@ -65,7 +70,9 @@ public class SystemDiagnosticsService
         try
         {
             isNetworkAvailable = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
-            info.NetworkStatus = isNetworkAvailable ? "Diagnostics_Connected".GetLocalized() : "Diagnostics_Disconnected".GetLocalized();
+            info.NetworkStatus = isNetworkAvailable
+                ? "Diagnostics_Connected".GetLocalized()
+                : "Diagnostics_Disconnected".GetLocalized();
 
             if (isNetworkAvailable)
             {
@@ -74,12 +81,16 @@ public class SystemDiagnosticsService
                     using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
                     regionCode = await client.GetStringAsync("http://ip-api.com/line/?fields=countryCode");
                     regionCode = regionCode.Trim();
-                    info.NetworkRegion = regionCode == "CN" ? "Diagnostics_Domestic".GetLocalized() : "Diagnostics_Overseas".GetLocalized();
+                    info.NetworkRegion = regionCode == "CN"
+                        ? "Diagnostics_Domestic".GetLocalized()
+                        : "Diagnostics_Overseas".GetLocalized();
                 }
                 catch
                 {
                     regionCode = System.Globalization.RegionInfo.CurrentRegion.TwoLetterISORegionName;
-                    info.NetworkRegion = regionCode == "CN" ? "Diagnostics_DomesticSystem".GetLocalized() : "Diagnostics_OverseasSystem".GetLocalized();
+                    info.NetworkRegion = regionCode == "CN"
+                        ? "Diagnostics_DomesticSystem".GetLocalized()
+                        : "Diagnostics_OverseasSystem".GetLocalized();
                 }
             }
             else
@@ -117,6 +128,7 @@ public class SystemDiagnosticsService
                             totalCapacity += capacity;
                         }
                     }
+
                     totalMemoryGB = totalCapacity / (1024 * 1024 * 1024);
                     info.TotalMemory = $"{totalMemoryGB} GB";
                 }
@@ -147,15 +159,19 @@ public class SystemDiagnosticsService
 
                 try
                 {
-                    using (var searcher = new ManagementObjectSearcher("select State from Win32_Service where Name='WinDefend'"))
+                    using (var searcher =
+                           new ManagementObjectSearcher("select State from Win32_Service where Name='WinDefend'"))
                     {
                         bool found = false;
                         foreach (var item in searcher.Get())
                         {
-                            info.SecurityCenterStatus = item["State"]?.ToString() == "Running" ? "Diagnostics_Enabled".GetLocalized() : "Diagnostics_Disabled".GetLocalized();
+                            info.SecurityCenterStatus = item["State"]?.ToString() == "Running"
+                                ? "Diagnostics_Enabled".GetLocalized()
+                                : "Diagnostics_Disabled".GetLocalized();
                             found = true;
                             break;
                         }
+
                         if (!found) info.SecurityCenterStatus = "Diagnostics_NotInstalled".GetLocalized();
                     }
                 }
@@ -181,8 +197,10 @@ public class SystemDiagnosticsService
                     {
                         maxHz = dm.dmDisplayFrequency;
                     }
+
                     i++;
                 }
+
                 info.MaxRefreshRate = maxHz > 0 ? $"{maxHz} Hz" : "Diagnostics_CannotDetect".GetLocalized();
 
                 info.Suggestion = GenerateSuggestion(info, totalMemoryGB, freeDiskGB, isNetworkAvailable, regionCode);
@@ -197,7 +215,8 @@ public class SystemDiagnosticsService
         });
     }
 
-    private string GenerateSuggestion(SystemDiagnosticsInfo info, long totalMemoryGB, long freeDiskGB, bool isNetworkAvailable, string regionCode)
+    private string GenerateSuggestion(SystemDiagnosticsInfo info, long totalMemoryGB, long freeDiskGB,
+        bool isNetworkAvailable, string regionCode)
     {
         var suggestions = new List<string>();
 
@@ -209,7 +228,7 @@ public class SystemDiagnosticsService
         {
             suggestions.Add("Diagnostics_SuggestDomesticSlow".GetLocalized());
         }
-        
+
         if (info.SecurityCenterStatus == "Diagnostics_Enabled".GetLocalized())
         {
             suggestions.Add("Diagnostics_SuggestSecurityCenter".GetLocalized());

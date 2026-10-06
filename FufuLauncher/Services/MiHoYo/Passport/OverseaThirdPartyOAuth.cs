@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using FufuLauncher.Constants;
 using FufuLauncher.Models.MiHoYo.Passport;
@@ -18,7 +19,7 @@ public static class OverseaThirdPartyOAuth
         OverseaThirdPartyKind.Twitter => "tw",
         _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null),
     };
-    
+
     public static string GetClientId(OverseaThirdPartyKind kind) => kind switch
     {
         OverseaThirdPartyKind.Google => "332303543001-mt3n63m59a8o33vs496a55ct6l42vipc.apps.googleusercontent.com",
@@ -27,7 +28,7 @@ public static class OverseaThirdPartyOAuth
         OverseaThirdPartyKind.Twitter => "R1liQ2o1TE8xWW43MUJaRFZzenE6MTpjaQ",
         _ => throw new ArgumentOutOfRangeException(nameof(kind), kind, null),
     };
-    
+
     public static string BuildLoginUrl(OverseaThirdPartyKind kind, string languageCode)
     {
         var query = new StringBuilder(

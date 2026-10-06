@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -35,7 +36,8 @@ public sealed partial class PluginPage
             var folderName = new DirectoryInfo(item.DirectoryPath).Name;
             var isOfficialPlugin = folderName.Contains("FuFuPlugin", StringComparison.OrdinalIgnoreCase) ||
                                    folderName.Contains("FPS", StringComparison.OrdinalIgnoreCase) ||
-                                   folderName.Contains(LightweightPluginService.LitePluginFolderName, StringComparison.OrdinalIgnoreCase);
+                                   folderName.Contains(LightweightPluginService.LitePluginFolderName,
+                                       StringComparison.OrdinalIgnoreCase);
             var navView = isOfficialPlugin ? FindParentNavigationView(this) : null;
             var pageType = isOfficialPlugin ? typeof(PluginSettingsPage) : typeof(PluginConfigPage);
 
@@ -46,7 +48,8 @@ public sealed partial class PluginPage
                 return;
             }
 
-            if (!frame.Navigate(pageType, item, new Microsoft.UI.Xaml.Media.Animation.SuppressNavigationTransitionInfo()))
+            if (!frame.Navigate(pageType, item,
+                    new Microsoft.UI.Xaml.Media.Animation.SuppressNavigationTransitionInfo()))
             {
                 ExitStoryboard.Stop();
                 EntranceStoryboard.Begin();
@@ -76,9 +79,9 @@ public sealed partial class PluginPage
     {
         DependencyObject parentObject = VisualTreeHelper.GetParent(child);
         if (parentObject == null) return null;
-        
+
         if (parentObject is NavigationView parent) return parent;
-        
+
         return FindParentNavigationView(parentObject);
     }
 

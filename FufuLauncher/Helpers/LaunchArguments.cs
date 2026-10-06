@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Helpers;
 
 public enum LaunchTriggerAction
@@ -15,7 +16,7 @@ public static class LaunchArguments
 {
     public const string PredownloadArgument = "--predownload";
     public const string GameUpdateArgument = "--game-update";
-    
+
     public static LaunchTriggerAction ParseTrigger(string[] args)
     {
         if (args is null || args.Length == 0)
@@ -38,7 +39,7 @@ public static class LaunchArguments
 
         return LaunchTriggerAction.None;
     }
-    
+
     public static LaunchTriggerAction ParseTrigger(string? commandLine)
     {
         if (string.IsNullOrWhiteSpace(commandLine))

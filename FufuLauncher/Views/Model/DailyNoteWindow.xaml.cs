@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -19,45 +20,68 @@ namespace FufuLauncher.Views
     {
         public string CategoryName
         {
-            get; set;
+            get;
+            set;
         }
-        public ObservableCollection<MaterialItem> Items { get; set; } = new();
+
+        public ObservableCollection<MaterialItem> Items
+        {
+            get;
+            set;
+        } = new();
     }
 
     public class MaterialItem
     {
         public string? Name
         {
-            get; set;
+            get;
+            set;
         }
+
         public ImageSource IconImage
         {
-            get; set;
+            get;
+            set;
         }
+
         public string? DomainName
         {
-            get; set;
+            get;
+            set;
         }
-        public List<ImageSource> Materials { get; set; } = new();
+
+        public List<ImageSource> Materials
+        {
+            get;
+            set;
+        } = new();
     }
 
     public class ActivityItem
     {
         public string Title
         {
-            get; set;
+            get;
+            set;
         }
+
         public string Subtitle
         {
-            get; set;
+            get;
+            set;
         }
+
         public ImageSource Image
         {
-            get; set;
+            get;
+            set;
         }
+
         public string Countdown
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -65,19 +89,26 @@ namespace FufuLauncher.Views
     {
         public string name
         {
-            get; set;
+            get;
+            set;
         }
+
         public string icon
         {
-            get; set;
+            get;
+            set;
         }
+
         public string domain
         {
-            get; set;
+            get;
+            set;
         }
+
         public List<string> materials
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -85,94 +116,123 @@ namespace FufuLauncher.Views
     {
         public string title
         {
-            get; set;
+            get;
+            set;
         }
+
         public string subtitle
         {
-            get; set;
+            get;
+            set;
         }
+
         public string img
         {
-            get; set;
+            get;
+            set;
         }
+
         public string time
         {
-            get; set;
+            get;
+            set;
         }
     }
 
     public sealed partial class DailyNoteWindow : Window, INotifyPropertyChanged
     {
-        public ObservableCollection<MaterialGroup> MaterialGroups { get; } = new();
-        public ObservableCollection<ActivityItem> Activities { get; } = new();
+        public ObservableCollection<MaterialGroup> MaterialGroups
+        {
+            get;
+        } = new();
+
+        public ObservableCollection<ActivityItem> Activities
+        {
+            get;
+        } = new();
 
         private string _todayDate = "---";
+
         public string TodayDate
         {
             get => _todayDate;
             set
             {
-                _todayDate = value; OnPropertyChanged(nameof(TodayDate));
+                _todayDate = value;
+                OnPropertyChanged(nameof(TodayDate));
             }
         }
 
         private string _statusText = "初始化...";
+
         public string StatusText
         {
             get => _statusText;
             set
             {
-                _statusText = value; OnPropertyChanged(nameof(StatusText));
+                _statusText = value;
+                OnPropertyChanged(nameof(StatusText));
             }
         }
 
         private string _birthdayRoleName;
+
         public string? BirthdayRoleName
         {
             get => _birthdayRoleName;
             set
             {
-                _birthdayRoleName = value; OnPropertyChanged(nameof(BirthdayRoleName)); UpdateBirthdayVisibility();
+                _birthdayRoleName = value;
+                OnPropertyChanged(nameof(BirthdayRoleName));
+                UpdateBirthdayVisibility();
             }
         }
 
         private ImageSource _birthdayRoleIcon;
+
         public ImageSource BirthdayRoleIcon
         {
             get => _birthdayRoleIcon;
             set
             {
-                _birthdayRoleIcon = value; OnPropertyChanged(nameof(BirthdayRoleIcon));
+                _birthdayRoleIcon = value;
+                OnPropertyChanged(nameof(BirthdayRoleIcon));
             }
         }
 
         private Visibility _birthdayInfoVisibility = Visibility.Collapsed;
+
         public Visibility BirthdayInfoVisibility
         {
             get => _birthdayInfoVisibility;
             set
             {
-                _birthdayInfoVisibility = value; OnPropertyChanged(nameof(BirthdayInfoVisibility));
+                _birthdayInfoVisibility = value;
+                OnPropertyChanged(nameof(BirthdayInfoVisibility));
             }
         }
 
         private bool _isLoadingMaterials = true;
+
         public bool IsLoadingMaterials
         {
             get => _isLoadingMaterials;
             set
             {
-                _isLoadingMaterials = value; OnPropertyChanged(nameof(IsLoadingMaterials));
+                _isLoadingMaterials = value;
+                OnPropertyChanged(nameof(IsLoadingMaterials));
             }
         }
 
         private bool _isLoadingActivities = true;
+
         public bool IsLoadingActivities
         {
             get => _isLoadingActivities;
             set
             {
-                _isLoadingActivities = value; OnPropertyChanged(nameof(IsLoadingActivities));
+                _isLoadingActivities = value;
+                OnPropertyChanged(nameof(IsLoadingActivities));
             }
         }
 
@@ -210,13 +270,14 @@ namespace FufuLauncher.Views
                 Activities.Clear();
 
                 await ScraperWebView.EnsureCoreWebView2Async();
-                
-                ScraperWebView.CoreWebView2.Settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
+
+                ScraperWebView.CoreWebView2.Settings.UserAgent =
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
                 ScraperWebView.CoreWebView2.Settings.IsScriptEnabled = true;
-                
+
                 await ScraperWebView.CoreWebView2.CallDevToolsProtocolMethodAsync("Emulation.setDeviceMetricsOverride",
                     "{\"width\": 1920, \"height\": 1080, \"deviceScaleFactor\": 1, \"mobile\": false}");
-                
+
                 bool materialsSuccess = false;
                 int retryCountMat = 0;
                 IsLoadingMaterials = true;
@@ -228,7 +289,7 @@ namespace FufuLauncher.Views
                         StatusText = $"正在连接...";
                         await Task.Delay(300);
                     }
-                    
+
                     materialsSuccess = await FetchDailyMaterialsAsync();
 
                     if (!materialsSuccess)
@@ -237,6 +298,7 @@ namespace FufuLauncher.Views
                         // if (retryCountMat > 10) break; 
                     }
                 }
+
                 IsLoadingMaterials = false;
 
                 bool activitiesSuccess = false;
@@ -258,6 +320,7 @@ namespace FufuLauncher.Views
                         retryCountAct++;
                     }
                 }
+
                 IsLoadingActivities = false;
                 StatusText = "更新完毕";
             }
@@ -285,14 +348,19 @@ namespace FufuLauncher.Views
                     string result = await ScraperWebView.ExecuteScriptAsync(script);
                     if (int.TryParse(result, out int count) && count > 0) return true;
                 }
-                catch { /* ignored */ }
+                catch
+                {
+                    /* ignored */
+                }
+
                 await Task.Delay(200);
                 elapsed += 200;
             }
+
             Debug.WriteLine($"[DailyNote] Timeout waiting for: {selector}");
             return false;
         }
-        
+
         private async Task<bool> FetchDailyMaterialsAsync()
         {
             StatusText = "获取素材...";
@@ -307,7 +375,7 @@ namespace FufuLauncher.Views
 
                 ScraperWebView.NavigationCompleted += NavHandler;
                 ScraperWebView.Source = new Uri(url);
-                
+
                 var navTask = tcs.Task;
                 var delayTask = Task.Delay(20000);
                 var completedTask = await Task.WhenAny(navTask, delayTask);
@@ -319,7 +387,7 @@ namespace FufuLauncher.Views
                     Debug.WriteLine("[DailyNote] Navigation Timeout");
                     return false;
                 }
-                
+
                 if (!await WaitForElementAsync(".channel__calendar"))
                 {
                     Debug.WriteLine("[DailyNote] Wait Element Timeout");
@@ -419,13 +487,15 @@ namespace FufuLauncher.Views
                                     if (!string.IsNullOrEmpty(matUrl))
                                         mItem.Materials.Add(new BitmapImage(new Uri(matUrl)));
                                 }
+
                                 groupObj.Items.Add(mItem);
                             }
+
                             MaterialGroups.Add(groupObj);
                         }
                     }
                 }
-                
+
                 return MaterialGroups.Count > 0;
             }
             catch (Exception ex)
@@ -434,7 +504,7 @@ namespace FufuLauncher.Views
                 return false;
             }
         }
-        
+
         private async Task<bool> FetchActivitiesAsync()
         {
             StatusText = "获取活动...";
@@ -448,7 +518,7 @@ namespace FufuLauncher.Views
                 void NavHandler(WebView2 s, CoreWebView2NavigationCompletedEventArgs e) => tcs.TrySetResult(true);
                 ScraperWebView.NavigationCompleted += NavHandler;
                 ScraperWebView.Source = new Uri(url);
-                
+
                 var navTask = tcs.Task;
                 var delayTask = Task.Delay(20000);
                 var completedTask = await Task.WhenAny(navTask, delayTask);
@@ -524,7 +594,7 @@ namespace FufuLauncher.Views
                         }
                     }
                 }
-                
+
                 return Activities.Count > 0;
             }
             catch (Exception ex)
@@ -540,6 +610,8 @@ namespace FufuLauncher.Views
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using Windows.Graphics;
@@ -56,7 +57,8 @@ public sealed partial class CloudCredentialWindow : Window
         }
     }
 
-    private async void CoreWebView2_WebResourceRequested(CoreWebView2 sender, CoreWebView2WebResourceRequestedEventArgs args)
+    private async void CoreWebView2_WebResourceRequested(CoreWebView2 sender,
+        CoreWebView2WebResourceRequestedEventArgs args)
     {
         if (_captured) return;
 
@@ -73,7 +75,8 @@ public sealed partial class CloudCredentialWindow : Window
                 DispatcherQueue.TryEnqueue(() =>
                 {
                     TitleText.Text = $"添加云游戏凭证 - {_uid} (已获取)";
-                    WeakReferenceMessenger.Default.Send(new NotificationMessage("云游戏凭证", "凭证获取成功", NotificationType.Success, 2000));
+                    WeakReferenceMessenger.Default.Send(new NotificationMessage("云游戏凭证", "凭证获取成功",
+                        NotificationType.Success, 2000));
                     Task.Delay(1500).ContinueWith(_ => DispatcherQueue.TryEnqueue(() => Close()));
                 });
             }
@@ -98,9 +101,11 @@ public sealed partial class CloudCredentialWindow : Window
                 CloudWebView.CoreWebView2.ContextMenuRequested -= CoreWebView2_ContextMenuRequested;
                 CloudWebView.CoreWebView2.WebResourceRequested -= CoreWebView2_WebResourceRequested;
             }
+
             CloudWebView.Close();
         }
-        catch { }
+        catch
+        {
+        }
     }
 }
-

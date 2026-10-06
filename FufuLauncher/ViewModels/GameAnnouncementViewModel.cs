@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -21,7 +22,7 @@ public sealed class GameAnnouncementTab : ObservableObject
     {
         get;
     }
-    
+
     public IReadOnlyList<GameAnnouncement> AllItems
     {
         get;
@@ -59,20 +60,15 @@ public partial class GameAnnouncementViewModel : ObservableObject
         get;
     } = new();
 
-    [ObservableProperty]
-    private string _searchText = string.Empty;
+    [ObservableProperty] private string _searchText = string.Empty;
 
-    [ObservableProperty]
-    private bool _isLoading;
+    [ObservableProperty] private bool _isLoading;
 
-    [ObservableProperty]
-    private bool _hasError;
+    [ObservableProperty] private bool _hasError;
 
-    [ObservableProperty]
-    private bool _isEmpty;
+    [ObservableProperty] private bool _isEmpty;
 
-    [ObservableProperty]
-    private AnnouncementRegionOption? _selectedRegion;
+    [ObservableProperty] private AnnouncementRegionOption? _selectedRegion;
 
     public GameAnnouncementViewModel(
         IGameAnnouncementService gameAnnouncementService,
@@ -95,7 +91,7 @@ public partial class GameAnnouncementViewModel : ObservableObject
         }
 
         AnnouncementRegion region = await ResolveInitialRegionAsync();
-        
+
         _selectedRegion = Regions.First(option => option.Value == region);
         OnPropertyChanged(nameof(SelectedRegion));
         _regionInitialized = true;
@@ -275,11 +271,12 @@ public partial class GameAnnouncementViewModel : ObservableObject
             string? saved = (await _localSettingsService
                 .ReadSettingAsync(LocalSettingsService.AnnouncementRegionKey))?.ToString();
 
-            if (!string.IsNullOrEmpty(saved) && AnnouncementRegionExtensions.TryParse(saved, out AnnouncementRegion region))
+            if (!string.IsNullOrEmpty(saved) &&
+                AnnouncementRegionExtensions.TryParse(saved, out AnnouncementRegion region))
             {
                 return region;
             }
-            
+
             var serverValue = await _localSettingsService.ReadSettingAsync(LocalSettingsService.BackgroundServerKey);
             ServerType server = serverValue != null && Convert.ToInt32(serverValue) == 1
                 ? ServerType.OS

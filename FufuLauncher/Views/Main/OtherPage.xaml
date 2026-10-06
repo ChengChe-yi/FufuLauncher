@@ -93,7 +93,8 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="{helpers:Loc Key=OtherPage_ExternalPrograms}" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock Text="{helpers:Loc Key=OtherPage_ExternalPrograms}"
+                               Style="{StaticResource SectionHeaderStyle}" />
 
                     <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                         <Grid.Shadow>
@@ -116,9 +117,11 @@
                                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Margin="0,0,16,0" />
 
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="{helpers:Loc Key=OtherPage_AdditionalProgramLaunch}" Style="{StaticResource BodyStrongTextBlockStyle}"
+                                <TextBlock Text="{helpers:Loc Key=OtherPage_AdditionalProgramLaunch}"
+                                           Style="{StaticResource BodyStrongTextBlockStyle}"
                                            FontFamily="{StaticResource AppGlobalFont}" />
-                                <TextBlock Text="{helpers:Loc Key=OtherPage_AutostartExeDesc}" Style="{StaticResource CaptionTextBlockStyle}"
+                                <TextBlock Text="{helpers:Loc Key=OtherPage_AutostartExeDesc}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
                                            Opacity="0.6" FontFamily="{StaticResource AppGlobalFont}" />
                             </StackPanel>
 
@@ -175,7 +178,8 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="{helpers:Loc Key=OtherPage_AccessibilityTools}" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock Text="{helpers:Loc Key=OtherPage_AccessibilityTools}"
+                               Style="{StaticResource SectionHeaderStyle}" />
 
                     <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                         <Grid.Shadow>
@@ -199,9 +203,11 @@
                                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Margin="0,0,16,0" />
 
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="{helpers:Loc Key=OtherPage_AutoClicker}" Style="{StaticResource BodyStrongTextBlockStyle}"
+                                <TextBlock Text="{helpers:Loc Key=OtherPage_AutoClicker}"
+                                           Style="{StaticResource BodyStrongTextBlockStyle}"
                                            FontFamily="{StaticResource AppGlobalFont}" />
-                                <TextBlock Text="{helpers:Loc Key=OtherPage_AutoClickerDesc}" Style="{StaticResource CaptionTextBlockStyle}"
+                                <TextBlock Text="{helpers:Loc Key=OtherPage_AutoClickerDesc}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
                                            Opacity="0.6" FontFamily="{StaticResource AppGlobalFont}" />
                             </StackPanel>
 
@@ -229,7 +235,8 @@
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Spacing="8">
-                                    <TextBlock Text="{helpers:Loc Key=OtherPage_ClickMode}" Style="{StaticResource BodyStrongTextBlockStyle}"
+                                    <TextBlock Text="{helpers:Loc Key=OtherPage_ClickMode}"
+                                               Style="{StaticResource BodyStrongTextBlockStyle}"
                                                FontFamily="{StaticResource AppGlobalFont}" />
                                     <StackPanel Orientation="Horizontal" Spacing="8">
                                         <ToggleSwitch Header="{helpers:Loc Key=OtherPage_MouseLeft}"
@@ -315,7 +322,8 @@
                 </StackPanel>
 
                 <StackPanel>
-                    <TextBlock Text="{helpers:Loc Key=OtherPage_UtilityTools}" Style="{StaticResource SectionHeaderStyle}" />
+                    <TextBlock Text="{helpers:Loc Key=OtherPage_UtilityTools}"
+                               Style="{StaticResource SectionHeaderStyle}" />
 
                     <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                         <Grid.Shadow>
@@ -331,9 +339,11 @@
                                   Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" Margin="0,0,16,0" />
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="{helpers:Loc Key=OtherPage_Browser}" Style="{StaticResource BodyStrongTextBlockStyle}"
+                            <TextBlock Text="{helpers:Loc Key=OtherPage_Browser}"
+                                       Style="{StaticResource BodyStrongTextBlockStyle}"
                                        FontFamily="{StaticResource AppGlobalFont}" />
-                            <TextBlock Text="{helpers:Loc Key=OtherPage_BrowserDesc}" Style="{StaticResource CaptionTextBlockStyle}"
+                            <TextBlock Text="{helpers:Loc Key=OtherPage_BrowserDesc}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
                                        Opacity="0.6" FontFamily="{StaticResource AppGlobalFont}" />
                         </StackPanel>
 

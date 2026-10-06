@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using FufuLauncher.Helpers;
@@ -56,14 +57,17 @@ namespace FufuLauncher.Views
                 BeginOperation();
             }
         }
-        
+
         private void ApplyKindTexts()
         {
             (string titleKey, string descriptionKey, string startKey) = _kind switch
             {
-                GameUpdateOperationKind.Predownload => ("PreDownload_Title", "PreDownload_Description", "PreDownload_Start"),
-                GameUpdateOperationKind.Update => ("GameUpdate_UpdateTitle", "GameUpdate_UpdateDescription", "GameUpdate_UpdateStart"),
-                _ => ("GameUpdate_ApplyPredownloadTitle", "GameUpdate_ApplyPredownloadDescription", "GameUpdate_ApplyPredownloadStart"),
+                GameUpdateOperationKind.Predownload => ("PreDownload_Title", "PreDownload_Description",
+                    "PreDownload_Start"),
+                GameUpdateOperationKind.Update => ("GameUpdate_UpdateTitle", "GameUpdate_UpdateDescription",
+                    "GameUpdate_UpdateStart"),
+                _ => ("GameUpdate_ApplyPredownloadTitle", "GameUpdate_ApplyPredownloadDescription",
+                    "GameUpdate_ApplyPredownloadStart"),
             };
 
             Title = titleKey.GetLocalized();
@@ -98,7 +102,8 @@ namespace FufuLauncher.Views
 
             _cts = new CancellationTokenSource();
             CancellationToken token = _cts.Token;
-            var progress = new Progress<GameServerConversionProgress>(p => DispatcherQueue.TryEnqueue(() => UpdateProgress(p)));
+            var progress =
+                new Progress<GameServerConversionProgress>(p => DispatcherQueue.TryEnqueue(() => UpdateProgress(p)));
 
             try
             {
@@ -107,11 +112,14 @@ namespace FufuLauncher.Views
                 GameUpdateResult result = await Task.Run(() => _kind switch
                 {
                     GameUpdateOperationKind.Predownload =>
-                        updateService.PredownloadAsync(_gameDir, currentScheme, progress, UpdateStatus, token, _downloadMonitor, ShowConfirmAsync),
+                        updateService.PredownloadAsync(_gameDir, currentScheme, progress, UpdateStatus, token,
+                            _downloadMonitor, ShowConfirmAsync),
                     GameUpdateOperationKind.Update =>
-                        updateService.UpdateAsync(_gameDir, currentScheme, false, progress, UpdateStatus, token, _downloadMonitor, ShowConfirmAsync),
+                        updateService.UpdateAsync(_gameDir, currentScheme, false, progress, UpdateStatus, token,
+                            _downloadMonitor, ShowConfirmAsync),
                     _ =>
-                        updateService.UpdateAsync(_gameDir, currentScheme, true, progress, UpdateStatus, token, _downloadMonitor, ShowConfirmAsync),
+                        updateService.UpdateAsync(_gameDir, currentScheme, true, progress, UpdateStatus, token,
+                            _downloadMonitor, ShowConfirmAsync),
                 });
 
                 _chartController.Stop();
@@ -147,7 +155,9 @@ namespace FufuLauncher.Views
                     case GameUpdateResult.Failed:
                     {
                         _chartController.SetFailed();
-                        string failureKey = _kind == GameUpdateOperationKind.Predownload ? "PreDownload_Failed" : "GameUpdate_UpdateFailed";
+                        string failureKey = _kind == GameUpdateOperationKind.Predownload
+                            ? "PreDownload_Failed"
+                            : "GameUpdate_UpdateFailed";
                         string message = string.IsNullOrWhiteSpace(StatusText.Text)
                             ? failureKey.GetLocalized()
                             : StatusText.Text;
@@ -166,7 +176,9 @@ namespace FufuLauncher.Views
             {
                 _chartController.SetFailed();
                 ProgressPanel.Visibility = Visibility.Collapsed;
-                string failureKey = _kind == GameUpdateOperationKind.Predownload ? "PreDownload_Failed" : "GameUpdate_UpdateFailed";
+                string failureKey = _kind == GameUpdateOperationKind.Predownload
+                    ? "PreDownload_Failed"
+                    : "GameUpdate_UpdateFailed";
                 await ShowMessageAsync(ex.Message, failureKey.GetLocalized());
             }
             finally
@@ -177,7 +189,7 @@ namespace FufuLauncher.Views
                 CancelBtn.IsEnabled = false;
             }
         }
-        
+
         private Task<bool> ShowConfirmAsync(GameUpdatePlan plan)
         {
             var tcs = new TaskCompletionSource<bool>();
@@ -196,7 +208,8 @@ namespace FufuLauncher.Views
                     {
                         Title = titleKey.GetLocalized(),
                         Content = string.Format("GameUpdate_ConfirmMessage".GetLocalized(),
-                            ToSizeString(plan.DownloadTotalBytes), ToSizeString(plan.InstallTotalBytes), plan.TargetTag),
+                            ToSizeString(plan.DownloadTotalBytes), ToSizeString(plan.InstallTotalBytes),
+                            plan.TargetTag),
                         PrimaryButtonText = "OkBtn".GetLocalized(),
                         CloseButtonText = "CloseBtn".GetLocalized(),
                         DefaultButton = ContentDialogButton.Primary,
@@ -225,11 +238,13 @@ namespace FufuLauncher.Views
         {
             _chartController?.UpdateProgress(p);
             _remainingChunksTracker.Update(p);
-            RemainingCountText.Text = string.Format("AdvancedServerSwitch_RemainingChunks".GetLocalized(), _remainingChunksTracker.Chunks.Count);
+            RemainingCountText.Text = string.Format("AdvancedServerSwitch_RemainingChunks".GetLocalized(),
+                _remainingChunksTracker.Chunks.Count);
 
             StatusText.Text = p.ChunkName is null
                 ? p.Stage
-                : string.Format("AdvancedServerSwitch_Progress".GetLocalized(), p.DoneChunks, p.TotalChunks, p.ChunkName);
+                : string.Format("AdvancedServerSwitch_Progress".GetLocalized(), p.DoneChunks, p.TotalChunks,
+                    p.ChunkName);
 
             if (p.TotalChunks > 0)
             {

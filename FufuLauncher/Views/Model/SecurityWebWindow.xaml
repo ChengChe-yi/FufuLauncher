@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
 
         <Border x:Name="AppTitleBar" Height="32" VerticalAlignment="Top" Background="Transparent">
-            <TextBlock Text="{helpers:Loc Key=SecurityWeb_Title}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="12" />
+            <TextBlock Text="{helpers:Loc Key=SecurityWeb_Title}" VerticalAlignment="Center" Margin="16,0,0,0"
+                       FontSize="12" />
         </Border>
 
         <WebView2 x:Name="SecurityWebView" Grid.Row="1" Source="about:blank" />

@@ -2,13 +2,13 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Dispatching;
 
 namespace FufuLauncher.Activation;
 
 public static class DispatcherExtensions
 {
-
     public static Task EnqueueAsync(this DispatcherQueue dispatcher, Func<Task> callback)
     {
         var tcs = new TaskCompletionSource();

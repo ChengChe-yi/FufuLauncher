@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.Data.Sqlite;
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
@@ -42,15 +43,24 @@ public sealed partial class AchievementWindow
 
         var rootPanel = new StackPanel { Spacing = 12, MinWidth = 340 };
 
-        var btnContent = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 8, HorizontalAlignment = HorizontalAlignment.Center };
-        btnContent.Children.Add(new FontIcon { Glyph = "\uE710", FontFamily = new Microsoft.UI.Xaml.Media.FontFamily("Segoe Fluent Icons"), FontSize = 12 });
+        var btnContent = new StackPanel
+            { Orientation = Orientation.Horizontal, Spacing = 8, HorizontalAlignment = HorizontalAlignment.Center };
+        btnContent.Children.Add(new FontIcon
+        {
+            Glyph = "\uE710", FontFamily = new Microsoft.UI.Xaml.Media.FontFamily("Segoe Fluent Icons"), FontSize = 12
+        });
         btnContent.Children.Add(new TextBlock { Text = "AchievementWindow_NewBlank".GetLocalized() });
         var createBtn = new Button { Content = btnContent, HorizontalAlignment = HorizontalAlignment.Stretch };
 
-        var listHeader = new TextBlock { Text = "AchievementWindow_ExistingProfiles".GetLocalized(), Opacity = 0.7, FontSize = 12, Margin = new Thickness(0, 10, 0, 0) };
+        var listHeader = new TextBlock
+        {
+            Text = "AchievementWindow_ExistingProfiles".GetLocalized(), Opacity = 0.7, FontSize = 12,
+            Margin = new Thickness(0, 10, 0, 0)
+        };
 
         var listContainer = new StackPanel { Spacing = 8 };
-        var scrollViewer = new ScrollViewer { Content = listContainer, MaxHeight = 250, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
+        var scrollViewer = new ScrollViewer
+            { Content = listContainer, MaxHeight = 250, VerticalScrollBarVisibility = ScrollBarVisibility.Auto };
 
         rootPanel.Children.Add(createBtn);
         rootPanel.Children.Add(listHeader);
@@ -69,9 +79,9 @@ public sealed partial class AchievementWindow
             listContainer.Children.Clear();
 
             var files = Directory.GetFiles(_archivesDir, "*.db")
-                                 .Select(Path.GetFileNameWithoutExtension)
-                                 .OrderBy(x => x)
-                                 .ToList();
+                .Select(Path.GetFileNameWithoutExtension)
+                .OrderBy(x => x)
+                .ToList();
 
             if (files.Count == 0)
             {
@@ -100,7 +110,8 @@ public sealed partial class AchievementWindow
                 {
                     HorizontalAlignment = HorizontalAlignment.Stretch,
                     HorizontalContentAlignment = HorizontalAlignment.Left,
-                    Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(10, 255, 255, 255)),
+                    Background =
+                        new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(10, 255, 255, 255)),
                     BorderThickness = new Thickness(0),
                     Padding = new Thickness(10, 8, 10, 8)
                 };
@@ -111,7 +122,8 @@ public sealed partial class AchievementWindow
                 var txtBlock = new TextBlock { Text = displayText, VerticalAlignment = VerticalAlignment.Center };
                 if (isCurrent)
                 {
-                    txtBlock.Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 100, 255, 100));
+                    txtBlock.Foreground =
+                        new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 100, 255, 100));
                     txtBlock.FontWeight = Microsoft.UI.Text.FontWeights.SemiBold;
                 }
 
@@ -138,7 +150,8 @@ public sealed partial class AchievementWindow
                     Glyph = "\uE74D",
                     FontFamily = new Microsoft.UI.Xaml.Media.FontFamily("Segoe Fluent Icons"),
                     FontSize = 14,
-                    Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 80, 80))
+                    Foreground =
+                        new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 80, 80))
                 };
 
                 if (isCurrent)
@@ -149,12 +162,14 @@ public sealed partial class AchievementWindow
                 else
                 {
                     var confirmPanel = new StackPanel { Spacing = 10, Padding = new Thickness(10) };
-                    confirmPanel.Children.Add(new TextBlock { Text = "AchievementWindow_ConfirmDeleteMsg".GetLocalized(), FontSize = 12 });
+                    confirmPanel.Children.Add(new TextBlock
+                        { Text = "AchievementWindow_ConfirmDeleteMsg".GetLocalized(), FontSize = 12 });
 
                     var confirmDeleteBtn = new Button
                     {
                         Content = "确认删除",
-                        Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 200, 50, 50)),
+                        Background =
+                            new Microsoft.UI.Xaml.Media.SolidColorBrush(Windows.UI.Color.FromArgb(255, 200, 50, 50)),
                         Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.White),
                         HorizontalAlignment = HorizontalAlignment.Stretch,
                         FontSize = 12
@@ -174,6 +189,7 @@ public sealed partial class AchievementWindow
                             {
                                 File.Delete(pathToDelete);
                             }
+
                             flyout.Hide();
                             RefreshList();
                         }
@@ -239,6 +255,7 @@ public sealed partial class AchievementWindow
                     await ShowDialogAsync("ErrorTitle".GetLocalized(), "找不到目标存档文件！");
                     return;
                 }
+
                 File.Copy(sourceArchive, _workFilePath, true);
             }
 

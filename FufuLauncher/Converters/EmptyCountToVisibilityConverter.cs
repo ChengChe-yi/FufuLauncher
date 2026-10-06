@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
@@ -15,6 +16,7 @@ public class EmptyCountToVisibilityConverter : IValueConverter
         {
             return count == 0 ? Visibility.Visible : Visibility.Collapsed;
         }
+
         return Visibility.Collapsed;
     }
 

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
@@ -16,11 +17,11 @@ public sealed partial class BackgroundInitWindow : Window
     public BackgroundInitWindow()
     {
         InitializeComponent();
-        
+
         SystemBackdrop = new MicaBackdrop();
-        
+
         ExtendsContentIntoTitleBar = true;
-        
+
         if (AppWindow.Presenter is OverlappedPresenter presenter)
         {
             presenter.IsMaximizable = false;
@@ -28,9 +29,9 @@ public sealed partial class BackgroundInitWindow : Window
             presenter.IsResizable = false;
             presenter.IsAlwaysOnTop = true;
         }
-        
+
         AppWindow.Resize(new SizeInt32(460, 280));
-        
+
         WindowManagerHelper.CenterWindowOnScreen(AppWindow, 460, 280);
     }
 }

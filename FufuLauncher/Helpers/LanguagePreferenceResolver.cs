@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.ViewModels;
 
 namespace FufuLauncher.Helpers;
@@ -23,8 +24,10 @@ public static class LanguagePreferenceResolver
         };
 
     private static readonly string[] SupportedCultures =
-        ["zh-CN", "zh-TW", "en-US", "fr-FR", "de-DE", "ru-RU", "ja-JP",
-         "es-ES", "es-MX", "ko-KR", "it-IT", "id-ID", "pt-BR", "hi-IN"];
+    [
+        "zh-CN", "zh-TW", "en-US", "fr-FR", "de-DE", "ru-RU", "ja-JP",
+        "es-ES", "es-MX", "ko-KR", "it-IT", "id-ID", "pt-BR", "hi-IN"
+    ];
 
     public static string Resolve(AppLanguage language, IEnumerable<string>? systemLanguagePreferences)
     {

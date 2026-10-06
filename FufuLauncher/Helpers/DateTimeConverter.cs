@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml.Data;
 
 namespace FufuLauncher.Helpers
@@ -14,6 +15,7 @@ namespace FufuLauncher.Helpers
             {
                 return dateTime.ToString("yyyy-MM-dd HH:mm:ss");
             }
+
             return "从未使用";
         }
 

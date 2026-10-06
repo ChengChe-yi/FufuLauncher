@@ -2,13 +2,13 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models.MiHoYo.Identity;
-
 
 public sealed record MiHoYoDeviceIdentity
 {
@@ -17,24 +17,43 @@ public sealed record MiHoYoDeviceIdentity
     public const int CurrentVersion = 1;
 
     [JsonPropertyName("version")]
-    public int Version { get; init; } = CurrentVersion;
+    public int Version
+    {
+        get;
+        init;
+    } = CurrentVersion;
 
     [JsonPropertyName("device_id")]
-    public string DeviceId { get; init; } = "";
+    public string DeviceId
+    {
+        get;
+        init;
+    } = "";
 
     [JsonPropertyName("device_fp")]
-    public string DeviceFp { get; init; } = "";
+    public string DeviceFp
+    {
+        get;
+        init;
+    } = "";
 
     [JsonPropertyName("seed_id")]
-    public string SeedId { get; init; } = "";
+    public string SeedId
+    {
+        get;
+        init;
+    } = "";
 
     [JsonPropertyName("seed_time")]
-    public string SeedTime { get; init; } = "";
+    public string SeedTime
+    {
+        get;
+        init;
+    } = "";
 
-    [JsonIgnore]
-    public string BbsDeviceId => NameUuidFromBytes(Encoding.UTF8.GetBytes(DeviceId)).ToString();
+    [JsonIgnore] public string BbsDeviceId => NameUuidFromBytes(Encoding.UTF8.GetBytes(DeviceId)).ToString();
 
- 
+
     [JsonIgnore]
     public bool IsUsable =>
         IsValidDeviceId(DeviceId)

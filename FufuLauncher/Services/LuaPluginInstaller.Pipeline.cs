@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using MoonSharp.Interpreter;
@@ -59,8 +60,10 @@ public partial class LuaPluginInstaller
         if (!securityResult.IsValid)
         {
             LogMessage($"SECURITY BLOCK: {securityResult.Reason}");
-            throw new SecurityViolationException(securityResult.Reason ?? "PluginStoreLuaSecurityFailed".GetLocalized());
+            throw new SecurityViolationException(securityResult.Reason ??
+                                                 "PluginStoreLuaSecurityFailed".GetLocalized());
         }
+
         LogMessage("Lua security scan passed.");
 
         ReportProgress(5, "PluginStoreScriptExecuting".GetLocalized());
@@ -118,9 +121,11 @@ public partial class LuaPluginInstaller
                     LogMessage("脚本执行被取消");
                     throw oce;
                 }
+
                 Debug.WriteLine($"[LuaInstaller] Lua error: {ex.Message}");
                 LogMessage($"Lua脚本错误: {ex.Message}");
-                throw new InvalidOperationException(string.Format("PluginStoreLuaScriptFailed".GetLocalized(), ex.Message), ex);
+                throw new InvalidOperationException(
+                    string.Format("PluginStoreLuaScriptFailed".GetLocalized(), ex.Message), ex);
             }
         }, cancellationToken);
     }

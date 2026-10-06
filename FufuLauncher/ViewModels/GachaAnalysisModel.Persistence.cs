@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Data.Entities;
@@ -77,7 +78,8 @@ public partial class GachaAnalysisModel
     {
         var uids = QueryKnownUidsFromDb();
         var current = _currentUid;
-        Debug.WriteLine($"[Gacha] RefreshKnownUids: 查询到 {uids.Count} 个 UID: [{string.Join(", ", uids)}], current={current}");
+        Debug.WriteLine(
+            $"[Gacha] RefreshKnownUids: 查询到 {uids.Count} 个 UID: [{string.Join(", ", uids)}], current={current}");
         App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         {
             RefreshKnownUidsUI(uids);
@@ -96,8 +98,9 @@ public partial class GachaAnalysisModel
         {
             KnownUids.Add(uid);
         }
+
         foreach (var uid in (_accountManager.GetActiveAccountEntry()?.GameRoles?.Select(r => r.game_uid) ?? [])
-            .Concat(uids).Distinct()) UidComboItems.Add(uid);
+                 .Concat(uids).Distinct()) UidComboItems.Add(uid);
         UidComboItems.Add(AddNewUserItem);
         SelectedUid = selected;
         IsUpdatingRoleList = false;
@@ -138,7 +141,9 @@ public partial class GachaAnalysisModel
                 else if (gt == "100") _cachedNoviceLogs.Add(item);
                 else _cachedStandardLogs.Add(item);
             }
-            Debug.WriteLine($"[Gacha] 加载完成 UID={uid}: 角色{_cachedCharacterLogs.Count} 武器{_cachedWeaponLogs.Count} 集录{_cachedChronicledLogs.Count} 新手{_cachedNoviceLogs.Count} 常驻{_cachedStandardLogs.Count}");
+
+            Debug.WriteLine(
+                $"[Gacha] 加载完成 UID={uid}: 角色{_cachedCharacterLogs.Count} 武器{_cachedWeaponLogs.Count} 集录{_cachedChronicledLogs.Count} 新手{_cachedNoviceLogs.Count} 常驻{_cachedStandardLogs.Count}");
         }
         catch (Exception ex)
         {
@@ -148,10 +153,16 @@ public partial class GachaAnalysisModel
 
     private void SaveGachaLogsToDb()
     {
-        if (string.IsNullOrEmpty(_currentUid)) { Debug.WriteLine("[Gacha] SaveGachaLogsToDb: _currentUid 为空，跳过保存"); return; }
+        if (string.IsNullOrEmpty(_currentUid))
+        {
+            Debug.WriteLine("[Gacha] SaveGachaLogsToDb: _currentUid 为空，跳过保存");
+            return;
+        }
+
         try
         {
-            var totalBefore = _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count + _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
+            var totalBefore = _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count +
+                              _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
             Debug.WriteLine($"[Gacha] SaveGachaLogsToDb: 开始保存 UID={_currentUid}, 共 {totalBefore} 条记录");
 
             var allLogs = new List<GachaLogEntity>();
@@ -162,7 +173,8 @@ public partial class GachaAnalysisModel
             AddLogItems(allLogs, _cachedStandardLogs);
 
             _metadataRepo.ReplaceGachaLogs(_currentUid, allLogs);
-            Debug.WriteLine($"[Gacha] 保存完成 UID={_currentUid}: 角色{_cachedCharacterLogs.Count} 武器{_cachedWeaponLogs.Count} 集录{_cachedChronicledLogs.Count} 新手{_cachedNoviceLogs.Count} 常驻{_cachedStandardLogs.Count}");
+            Debug.WriteLine(
+                $"[Gacha] 保存完成 UID={_currentUid}: 角色{_cachedCharacterLogs.Count} 武器{_cachedWeaponLogs.Count} 集录{_cachedChronicledLogs.Count} 新手{_cachedNoviceLogs.Count} 常驻{_cachedStandardLogs.Count}");
         }
         catch (Exception ex)
         {
@@ -205,7 +217,8 @@ public partial class GachaAnalysisModel
         {
             if (_currentUid != uid) return;
             SelectedUid = uid;
-            if (_cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count + _cachedStandardLogs.Count > 0)
+            if (_cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count +
+                _cachedStandardLogs.Count > 0)
             {
                 RefreshUIFromCache();
                 HasGachaData = true;
@@ -239,8 +252,10 @@ public partial class GachaAnalysisModel
                 await SwitchToUidAsync(incomingUid);
                 return true;
             }
+
             return false;
         }
+
         return false;
     }
 
@@ -252,7 +267,8 @@ public partial class GachaAnalysisModel
         {
             if (string.IsNullOrEmpty(_currentUid))
             {
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("删除失败", "当前没有选中任何账号", NotificationType.Error, 3000));
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("删除失败", "当前没有选中任何账号",
+                    NotificationType.Error, 3000));
                 return;
             }
 
@@ -285,11 +301,13 @@ public partial class GachaAnalysisModel
             if (!string.IsNullOrEmpty(nextUid)) await SwitchToUidAsync(nextUid);
             CrawlerStatus = $"已删除 UID: {deletedUid} 的记录";
 
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("删除成功", $"已删除 UID: {deletedUid} 的抽卡记录", NotificationType.Success, 3000));
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("删除成功", $"已删除 UID: {deletedUid} 的抽卡记录",
+                NotificationType.Success, 3000));
         }
         catch (Exception ex)
         {
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("删除失败", $"详细信息: {ex.Message}", NotificationType.Error, 5000));
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("删除失败", $"详细信息: {ex.Message}",
+                NotificationType.Error, 5000));
         }
     }
 

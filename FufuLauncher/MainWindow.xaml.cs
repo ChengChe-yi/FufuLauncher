@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using Windows.Foundation;
 using CommunityToolkit.Mvvm.Input;
@@ -71,12 +72,17 @@ public sealed partial class MainWindow : WindowEx
 
     private readonly Dictionary<string, bool> _navItemVisibility = new();
 
-    public bool IsAgreementShowing { get; private set; }
+    public bool IsAgreementShowing
+    {
+        get;
+        private set;
+    }
 
     public IRelayCommand ShowWindowCommand
     {
         get;
     }
+
     public IRelayCommand ExitApplicationCommand
     {
         get;
@@ -90,12 +96,14 @@ public sealed partial class MainWindow : WindowEx
             {
                 page.RequestedTheme = rootElement.RequestedTheme;
             }
+
             if (AgreementFrame.Content is FrameworkElement agreementPage)
             {
                 agreementPage.RequestedTheme = rootElement.RequestedTheme;
             }
         }
     }
+
     #endregion
 
     #region Initialization
@@ -124,13 +132,15 @@ public sealed partial class MainWindow : WindowEx
         {
             InitializeComponent();
         }
-        catch (Exception ex) when (ex is Microsoft.UI.Xaml.Markup.XamlParseException || ex is System.IO.FileNotFoundException)
+        catch (Exception ex) when (ex is Microsoft.UI.Xaml.Markup.XamlParseException ||
+                                   ex is System.IO.FileNotFoundException)
         {
             Debug.WriteLine($"XAML解析失败: {ex.Message}");
             if (ex.InnerException != null)
             {
                 Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
             }
+
             // Retry once - XAML parse can fail transiently when assemblies are still loading from single-file extraction
             try
             {
@@ -149,6 +159,7 @@ public sealed partial class MainWindow : WindowEx
             {
                 Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
             }
+
             throw;
         }
 
@@ -191,7 +202,10 @@ public sealed partial class MainWindow : WindowEx
                     _announcementCheckTimer.Start();
                     await CheckAndWarnVCRedistAsync();
                 }
-                catch (Exception ex) { Debug.WriteLine($"消息处理异常: {ex.Message}"); }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"消息处理异常: {ex.Message}");
+                }
             });
 
             _ = Task.Run(async () =>
@@ -201,7 +215,10 @@ public sealed partial class MainWindow : WindowEx
                     await Task.Delay(800);
                     await ((App)App.Current).PlayStartupSoundAsync();
                 }
-                catch (Exception ex) { Debug.WriteLine($"启动语音播放失败: {ex.Message}"); }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"启动语音播放失败: {ex.Message}");
+                }
             });
 
             _ = Task.Run(async () =>
@@ -220,7 +237,10 @@ public sealed partial class MainWindow : WindowEx
                         });
                     }
                 }
-                catch (Exception ex) { Debug.WriteLine($"[Announcement] 公告检查失败: {ex.Message}"); }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"[Announcement] 公告检查失败: {ex.Message}");
+                }
             });
         });
 
@@ -294,7 +314,10 @@ public sealed partial class MainWindow : WindowEx
 
         WeakReferenceMessenger.Default.Register<BackgroundRefreshMessage>(this, (_, _) =>
         {
-            dispatcherQueue.TryEnqueue(async void () => { await LoadGlobalBackgroundAsync(); });
+            dispatcherQueue.TryEnqueue(async void () =>
+            {
+                await LoadGlobalBackgroundAsync();
+            });
         });
 
         WeakReferenceMessenger.Default.Register<BackgroundOverlayOpacityChangedMessage>(this, (_, m) =>
@@ -378,7 +401,7 @@ public sealed partial class MainWindow : WindowEx
         {
             _constraintCheckTimer.Start();
         }
-
     }
+
     #endregion
 }

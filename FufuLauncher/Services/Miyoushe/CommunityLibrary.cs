@@ -6,6 +6,7 @@ namespace FufuLauncher.Services.Miyoushe;
 public sealed class CommunityLibrary(string path)
 {
     private sealed record LibraryData(List<CommunityPost> Bookmarks, List<CommunityPost> History);
+
     private List<CommunityPost> _bookmarks = [];
     private List<CommunityPost> _history = [];
     private readonly SemaphoreSlim _gate = new(1, 1);
@@ -26,7 +27,10 @@ public sealed class CommunityLibrary(string path)
             _loadFailed = false;
         }
         catch (Exception ex) when (ex is IOException or JsonException)
-        { _loadFailed = true; throw; }
+        {
+            _loadFailed = true;
+            throw;
+        }
     }
 
     public Task ToggleAsync(CommunityPost post, CancellationToken ct) => UpdateAsync(() =>
@@ -57,7 +61,15 @@ public sealed class CommunityLibrary(string path)
                 await JsonSerializer.SerializeAsync(file, new LibraryData(_bookmarks, _history), cancellationToken: ct);
             File.Move(temp, path, true);
         }
-        catch { _bookmarks = previousBookmarks; _history = previousHistory; throw; }
-        finally { _gate.Release(); }
+        catch
+        {
+            _bookmarks = previousBookmarks;
+            _history = previousHistory;
+            throw;
+        }
+        finally
+        {
+            _gate.Release();
+        }
     }
 }

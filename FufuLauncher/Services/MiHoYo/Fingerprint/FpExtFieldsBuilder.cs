@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using FufuLauncher.Models.MiHoYo.Fingerprint;
 using FufuLauncher.Services.Device;
@@ -113,7 +114,7 @@ public static class FpExtFieldsBuilder
         }
 
         return all.Where(kv => allowedKeys.Contains(kv.Key))
-                  .ToDictionary(kv => kv.Key, kv => kv.Value);
+            .ToDictionary(kv => kv.Key, kv => kv.Value);
     }
 
     public static string BuildJson(

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using FufuLauncher.Helpers;
@@ -25,7 +26,10 @@ namespace FufuLauncher.Services
             new[] { ("音频文件", new[] { "*.mp3", "*.wav", "*.wma", "*.m4a", "*.flac", "*.aac" }) };
 
         private static readonly IReadOnlyList<(string Label, string[] Extensions)> ImageOrVideoFilters =
-            new[] { ("图片或视频", new[] { "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.mp4", "*.webm", "*.mkv", "*.avi", "*.mov" }) };
+            new[]
+            {
+                ("图片或视频", new[] { "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.mp4", "*.webm", "*.mkv", "*.avi", "*.mov" })
+            };
 
         public static bool InitializeWithValidWindow(object target, out string? errorMessage, Window? window = null)
         {
@@ -91,8 +95,8 @@ namespace FufuLauncher.Services
                     picker.SuggestedStartLocation = startLocation.Value;
 
                 foreach (var (label, exts) in filters)
-                    foreach (var ext in exts)
-                        picker.FileTypeFilter.Add(NormalizeWinRtExtension(ext));
+                foreach (var ext in exts)
+                    picker.FileTypeFilter.Add(NormalizeWinRtExtension(ext));
 
                 var file = await picker.PickSingleFileAsync();
                 return file?.Path;
@@ -252,7 +256,8 @@ namespace FufuLauncher.Services
         }
 
         private static void ApplySaveDialogSettings(System.Windows.Forms.SaveFileDialog dlg,
-            IReadOnlyList<(string Label, string[] Extensions)> filters, string defaultFileName, PickerLocationId? startLocation)
+            IReadOnlyList<(string Label, string[] Extensions)> filters, string defaultFileName,
+            PickerLocationId? startLocation)
         {
             dlg.Filter = BuildWinFormsFilter(filters);
             if (string.IsNullOrEmpty(dlg.Filter))
@@ -280,6 +285,7 @@ namespace FufuLauncher.Services
                 var spec = string.Join(";", exts.Select(e => e.StartsWith("*") ? e : "*" + e));
                 parts.Add($"{label}|{spec}");
             }
+
             parts.Add("所有文件|*.*");
             return string.Join("|", parts);
         }

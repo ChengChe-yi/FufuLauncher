@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using FufuLauncher.Models;
 
@@ -24,7 +25,8 @@ public partial class GachaAnalysisModel
         InvalidateAnalysisDashboard();
     }
 
-    private ObservableCollection<GachaDisplayItem> BuildDisplayCollection(List<FiveStarRecord> records, string typeHint, List<GachaPoolMetadata> pools = null, string poolType = "")
+    private ObservableCollection<GachaDisplayItem> BuildDisplayCollection(List<FiveStarRecord> records, string typeHint,
+        List<GachaPoolMetadata> pools = null, string poolType = "")
     {
         var pityStatuses = new PityStatus[records.Count];
         bool wasPreviousLost = false;
@@ -41,9 +43,9 @@ public partial class GachaAnalysisModel
                 ItemId = record.ItemId ?? ""
             };
 
-            var pityStatus = pools != null ?
-                DeterminePityStatus(logItem, pools, record.PityUsed, wasPreviousLost) :
-                PityStatus.None;
+            var pityStatus = pools != null
+                ? DeterminePityStatus(logItem, pools, record.PityUsed, wasPreviousLost)
+                : PityStatus.None;
 
             if (record.Rank == 5)
             {
@@ -69,10 +71,12 @@ public partial class GachaAnalysisModel
                 PityStatus = pityStatuses[i]
             };
         }
+
         return new ObservableCollection<GachaDisplayItem>(items);
     }
 
-    private PityStatus DeterminePityStatus(GachaLogItem item, List<GachaPoolMetadata> pools, int pityCount, bool wasPreviousLost)
+    private PityStatus DeterminePityStatus(GachaLogItem item, List<GachaPoolMetadata> pools, int pityCount,
+        bool wasPreviousLost)
     {
         if (pools == null || pools.Count == 0)
             return PityStatus.None;

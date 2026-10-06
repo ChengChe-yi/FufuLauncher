@@ -10,6 +10,7 @@ Licensed under the MIT License.
 4. 在目标进程以 base + YaeMainRVA 创建远程线程执行入口。
 注入流程参考 HolographicHat/YaeAchievement (GPL-3.0)。
 */
+
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -22,6 +23,7 @@ internal sealed class YaeGameProcess : IDisposable
     {
         get;
     }
+
     public nint MainThreadHandle
     {
         get;
@@ -145,6 +147,7 @@ internal sealed class YaeGameProcess : IDisposable
         {
             throw new Win32Exception($"未在目标进程中找到已加载模块：{dllPath}");
         }
+
         return moduleBase;
     }
 
@@ -168,8 +171,7 @@ internal sealed class YaeGameProcess : IDisposable
             {
                 break;
             }
-        }
-        while (snapshot == -1);
+        } while (snapshot == -1);
 
         if (snapshot == -1)
         {
@@ -201,12 +203,12 @@ internal sealed class YaeGameProcess : IDisposable
                 // 先按完整路径比较；失败再退化为文件名比较，
                 // 兼容某些进程返回短路径或 \??\ 前缀路径的情况。
                 if (string.Equals(moduleFullPath, targetFullPath, StringComparison.OrdinalIgnoreCase)
-                    || string.Equals(Path.GetFileName(moduleFullPath), targetFileName, StringComparison.OrdinalIgnoreCase))
+                    || string.Equals(Path.GetFileName(moduleFullPath), targetFileName,
+                        StringComparison.OrdinalIgnoreCase))
                 {
                     return entry.modBaseAddr;
                 }
-            }
-            while (YaeNative.Module32Next(snapshot, ref entry));
+            } while (YaeNative.Module32Next(snapshot, ref entry));
         }
         finally
         {
@@ -252,6 +254,7 @@ internal sealed class YaeGameProcess : IDisposable
         {
             throw new Win32Exception("CreateRemoteThread(YaeMain) failed.");
         }
+
         return thread;
     }
 }

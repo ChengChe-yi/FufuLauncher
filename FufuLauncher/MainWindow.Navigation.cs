@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Numerics;
 using FufuLauncher.Contracts.Services;
@@ -29,7 +30,9 @@ public sealed partial class MainWindow
             var accepted = await _localSettingsService.ReadSettingAsync("UserAgreementAccepted");
             isAccepted = accepted != null && Convert.ToBoolean(accepted);
         }
-        catch { }
+        catch
+        {
+        }
 
         if (!isAccepted)
         {
@@ -47,6 +50,7 @@ public sealed partial class MainWindow
             {
                 if (item is FrameworkElement uiItem) SetupSpringAnimation(uiItem);
             }
+
             foreach (var item in NavigationView.FooterMenuItems)
             {
                 if (item is FrameworkElement uiItem) SetupSpringAnimation(uiItem);
@@ -98,7 +102,10 @@ public sealed partial class MainWindow
             });
             _ = Task.Run(async () => await HashValidationService.ValidateFilesAsync());
         }
-        catch { ShowMainContent(); }
+        catch
+        {
+            ShowMainContent();
+        }
     }
 
     private void SetupSpringAnimation(FrameworkElement element)
@@ -221,7 +228,8 @@ public sealed partial class MainWindow
 
     private void NavigationView_PaneOpened(NavigationView sender, object args)
     {
-        if (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft)
+        if (_notificationPosition == NotificationPosition.TopLeft ||
+            _notificationPosition == NotificationPosition.BottomLeft)
         {
             ApplyNotificationPosition(_notificationPosition);
         }
@@ -229,7 +237,8 @@ public sealed partial class MainWindow
 
     private void NavigationView_PaneClosed(NavigationView sender, object args)
     {
-        if (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft)
+        if (_notificationPosition == NotificationPosition.TopLeft ||
+            _notificationPosition == NotificationPosition.BottomLeft)
         {
             ApplyNotificationPosition(_notificationPosition);
         }
@@ -237,10 +246,10 @@ public sealed partial class MainWindow
 
     internal async void NavigateToPage(string viewModelTag)
     {
-
         if (!IsNavItemVisible(viewModelTag))
         {
-            ShowNotification(new NotificationMessage("HiddenFeatureTitle".GetLocalized(), "HiddenFeatureMessage".GetLocalized(), NotificationType.Warning, 3000));
+            ShowNotification(new NotificationMessage("HiddenFeatureTitle".GetLocalized(),
+                "HiddenFeatureMessage".GetLocalized(), NotificationType.Warning, 3000));
             NavigationView.SelectedItem = null;
             ContentFrame.Navigate(typeof(Views.HiddenPage), null, new SuppressNavigationTransitionInfo());
             SyncPageTheme();
@@ -292,7 +301,8 @@ public sealed partial class MainWindow
 
             if (isMainPage)
             {
-                var mainItem = GetAllNavItems().FirstOrDefault(i => i.Tag?.ToString() == "FufuLauncher.ViewModels.MainViewModel");
+                var mainItem = GetAllNavItems()
+                    .FirstOrDefault(i => i.Tag?.ToString() == "FufuLauncher.ViewModels.MainViewModel");
                 if (mainItem != null)
                     NavigationView.SelectedItem = mainItem;
             }
@@ -302,7 +312,14 @@ public sealed partial class MainWindow
     public async Task NavigateToSettingsUpdateSectionAsync()
     {
         if (_isExit) return;
-        try { Activate(); } catch (System.Runtime.InteropServices.COMException) { return; }
+        try
+        {
+            Activate();
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+            return;
+        }
 
         for (var i = 0; i < 40 && !_isMainUiLoaded; i++)
         {
@@ -337,7 +354,14 @@ public sealed partial class MainWindow
     public async Task NavigateToSettingsPageAsync()
     {
         if (_isExit) return;
-        try { Activate(); } catch (System.Runtime.InteropServices.COMException) { return; }
+        try
+        {
+            Activate();
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+            return;
+        }
 
         for (var i = 0; i < 40 && !_isMainUiLoaded; i++)
         {
@@ -372,7 +396,14 @@ public sealed partial class MainWindow
     public async Task NavigateToSettingsTrustSectionAsync()
     {
         if (_isExit) return;
-        try { Activate(); } catch (System.Runtime.InteropServices.COMException) { return; }
+        try
+        {
+            Activate();
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+            return;
+        }
 
         for (var i = 0; i < 40 && !_isMainUiLoaded; i++)
         {
@@ -407,7 +438,14 @@ public sealed partial class MainWindow
     public async Task NavigateToAccountPageAsync()
     {
         if (_isExit) return;
-        try { Activate(); } catch (System.Runtime.InteropServices.COMException) { return; }
+        try
+        {
+            Activate();
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+            return;
+        }
 
         for (var i = 0; i < 40 && !_isMainUiLoaded; i++)
         {
@@ -579,7 +617,10 @@ public sealed partial class MainWindow
             _isHamburgerButtonEnabled = valueObj != null && Convert.ToBoolean(valueObj);
             ApplyHamburgerButtonVisibility(_isHamburgerButtonEnabled);
         }
-        catch { _isHamburgerButtonEnabled = false; }
+        catch
+        {
+            _isHamburgerButtonEnabled = false;
+        }
     }
 
     private void ApplyHamburgerButtonVisibility(bool isEnabled)

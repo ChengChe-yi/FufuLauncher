@@ -16,6 +16,7 @@ namespace FufuLauncher.Views
     public sealed partial class BBSWindow : Window
     {
         #region 构造函数与窗口初始化
+
         private AppWindow m_AppWindow;
 
         private readonly DeviceFpService _deviceFpService;
@@ -76,6 +77,7 @@ namespace FufuLauncher.Views
                     (displayArea.WorkArea.Height - targetHeight) / 2 + displayArea.WorkArea.Y
                 ));
             }
+
             if (AppTitleBar != null)
             {
                 m_AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
@@ -87,8 +89,22 @@ namespace FufuLauncher.Views
 
         #endregion
 
-        public class AppConfig { public AccountConfig Account { get; set; }
- }
-        public class AccountConfig { public string Cookie { get; set; } }
+        public class AppConfig
+        {
+            public AccountConfig Account
+            {
+                get;
+                set;
+            }
+        }
+
+        public class AccountConfig
+        {
+            public string Cookie
+            {
+                get;
+                set;
+            }
+        }
     }
 }

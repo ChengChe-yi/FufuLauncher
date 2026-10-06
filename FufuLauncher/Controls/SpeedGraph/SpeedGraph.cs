@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -12,7 +13,6 @@ using Windows.Foundation;
 using Path = Microsoft.UI.Xaml.Shapes.Path;
 
 namespace FufuLauncher.Controls;
-
 
 [TemplatePart(Name = PartCanvas, Type = typeof(CanvasControl))]
 [TemplatePart(Name = PartNoDataText, Type = typeof(TextBlock))]
@@ -81,7 +81,7 @@ public sealed class SpeedGraph : Control
 
         UpdateBackgroundShape();
     }
-    
+
     public void SetSpeed(double percent, ulong speed)
     {
         if (_graphData is null || _shapePath is null)
@@ -114,17 +114,17 @@ public sealed class SpeedGraph : Control
             _hasData = true;
         }
     }
-    
+
     public void ResetGraph()
     {
         _graphData?.Reset();
         SetSpeed(0, 0);
     }
-    
+
     public void NormalGraph() => VisualStateManager.GoToState(this, "Normal", false);
-    
+
     public void PauseGraph() => VisualStateManager.GoToState(this, "Pause", false);
-    
+
     public void ErrorGraph() => VisualStateManager.GoToState(this, "Error", false);
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -180,7 +180,7 @@ public sealed class SpeedGraph : Control
                 break;
         }
     }
-    
+
     private void ResizeGraphPoint(float ratio)
     {
         if (_graphData is null)
@@ -215,7 +215,7 @@ public sealed class SpeedGraph : Control
         storyboard.Children.Add(scaleYAnimation);
         return storyboard;
     }
-    
+
     private void MakeAnimation()
     {
         if (_graphData is null || _hostGrid is null)

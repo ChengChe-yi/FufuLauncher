@@ -17,7 +17,8 @@
         <Grid x:Name="AppTitleBar" Height="40" Background="Transparent">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0" Spacing="8">
                 <FontIcon Glyph="&#xE774;" FontSize="14" VerticalAlignment="Center" />
-                <TextBlock Text="{helpers:Loc Key=PluginMirrorWindowTitle}" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Text="{helpers:Loc Key=PluginMirrorWindowTitle}" VerticalAlignment="Center"
+                           FontWeight="SemiBold" />
             </StackPanel>
         </Grid>
 
@@ -30,14 +31,14 @@
             <StackPanel Grid.Row="0" Margin="0,0,0,16">
                 <TextBlock Text="{helpers:Loc Key=PluginMirrorWindowDesc}" FontWeight="Bold" FontSize="18" />
             </StackPanel>
-            
+
             <StackPanel x:Name="TestingPanel" Grid.Row="1" Spacing="16" VerticalAlignment="Center">
                 <TextBlock x:Name="TestStatusText"
                            Text="{helpers:Loc Key=PluginMirrorTesting}"
                            TextAlignment="Center" Opacity="0.7" />
                 <ProgressBar IsIndeterminate="True" Height="4" CornerRadius="2" />
             </StackPanel>
-            
+
             <Grid x:Name="SelectionPanel" Grid.Row="1" Visibility="Collapsed" RowSpacing="12">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -87,7 +88,7 @@
                             Height="36" MinWidth="88" />
                 </StackPanel>
             </Grid>
-            
+
             <Grid x:Name="DownloadPanel" Grid.Row="1" Visibility="Collapsed" RowSpacing="14">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

@@ -61,7 +61,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <Grid x:Name="AppTitleBar"
               Grid.Row="0"
               Height="48"
@@ -92,7 +92,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="340" />
             </Grid.ColumnDefinitions>
-            
+
             <Grid Grid.Column="0" RowSpacing="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -138,7 +138,7 @@
                             Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                             Text="{helpers:Loc Key=OfficialBgWindow_Loading}" />
                     </StackPanel>
-                    
+
                     <StackPanel
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -159,7 +159,7 @@
                             Command="{x:Bind ViewModel.LoadCommand}"
                             Content="{helpers:Loc Key=OfficialBgWindow_Retry}" />
                     </StackPanel>
-                    
+
                     <StackPanel
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
@@ -186,7 +186,7 @@
                             Command="{x:Bind ViewModel.LoadCommand}"
                             Content="{helpers:Loc Key=OfficialBgWindow_Retry}" />
                     </StackPanel>
-                    
+
                     <GridView
                         Padding="0,4,0,0"
                         IsItemClickEnabled="True"
@@ -233,7 +233,8 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Style="{StaticResource OfficialBgBadgeStyle}">
-                                        <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{x:Bind TypeText}" />
+                                        <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}"
+                                                   Text="{x:Bind TypeText}" />
                                     </Border>
 
                                     <Border
@@ -243,7 +244,8 @@
                                         Background="#CC0F7B0F"
                                         Style="{StaticResource OfficialBgBadgeStyle}"
                                         Visibility="{x:Bind CurrentBadgeVisibility, Mode=OneWay}">
-                                        <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{helpers:Loc Key=OfficialBgWindow_Current}" />
+                                        <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}"
+                                                   Text="{helpers:Loc Key=OfficialBgWindow_Current}" />
                                     </Border>
 
                                     <Button
@@ -279,7 +281,7 @@
                     </GridView>
                 </Grid>
             </Grid>
-            
+
             <Border
                 Grid.Column="1"
                 Padding="16"
@@ -299,7 +301,8 @@
                         TextWrapping="Wrap"
                         Visibility="{x:Bind ViewModel.NoSelectionVisibility, Mode=OneWay}" />
 
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" Visibility="{x:Bind ViewModel.DetailVisibility, Mode=OneWay}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  Visibility="{x:Bind ViewModel.DetailVisibility, Mode=OneWay}">
                         <StackPanel Spacing="12">
                             <Grid
                                 Height="180"
@@ -327,13 +330,15 @@
 
                             <StackPanel Orientation="Horizontal" Spacing="8">
                                 <Border Style="{StaticResource OfficialBgBadgeStyle}">
-                                    <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{x:Bind ViewModel.SelectedItem.TypeText, Mode=OneWay}" />
+                                    <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}"
+                                               Text="{x:Bind ViewModel.SelectedItem.TypeText, Mode=OneWay}" />
                                 </Border>
                                 <Border
                                     Background="#CC0F7B0F"
                                     Style="{StaticResource OfficialBgBadgeStyle}"
                                     Visibility="{x:Bind ViewModel.CurrentBadgeVisibility, Mode=OneWay}">
-                                    <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}" Text="{helpers:Loc Key=OfficialBgWindow_Current}" />
+                                    <TextBlock Style="{StaticResource OfficialBgBadgeTextStyle}"
+                                               Text="{helpers:Loc Key=OfficialBgWindow_Current}" />
                                 </Border>
                             </StackPanel>
 

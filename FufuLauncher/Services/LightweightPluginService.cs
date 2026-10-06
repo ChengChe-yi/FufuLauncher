@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.IO.Compression;
 using System.Text.Json;
@@ -20,8 +21,12 @@ namespace FufuLauncher.Services
         public const string MainPluginFolderName = "FuFuPlugin";
         public const string MainPluginDllName = "FufuLauncher.UnlockerIsland.dll";
 
-        private const string ReleaseApiUrl = "https://api.github.com/repos/FufuLauncher/YuanShen-UnlockerLite/releases/latest";
-        private const string ReleaseZipDirectUrl = "https://github.com/FufuLauncher/YuanShen-UnlockerLite/releases/latest/download/YuanShen-UnlockerLite.zip";
+        private const string ReleaseApiUrl =
+            "https://api.github.com/repos/FufuLauncher/YuanShen-UnlockerLite/releases/latest";
+
+        private const string ReleaseZipDirectUrl =
+            "https://github.com/FufuLauncher/YuanShen-UnlockerLite/releases/latest/download/YuanShen-UnlockerLite.zip";
+
         private const string ZipAssetName = "YuanShen-UnlockerLite.zip";
         private const string ProxyPrefix = "https://gh-proxy.com/";
 
@@ -40,13 +45,18 @@ namespace FufuLauncher.Services
         public static string LitePluginDir => Path.Combine(PluginsDir, LitePluginFolderName);
         public static string LitePluginDllPath => Path.Combine(LitePluginDir, LitePluginDllName);
         public static string LitePluginDisabledPath => LitePluginDllPath + ".disabled";
-        public static string LitePluginShortDisabledPath => Path.Combine(LitePluginDir, Path.GetFileNameWithoutExtension(LitePluginDllName) + ".disabled");
+
+        public static string LitePluginShortDisabledPath => Path.Combine(LitePluginDir,
+            Path.GetFileNameWithoutExtension(LitePluginDllName) + ".disabled");
+
         public static string LitePluginConfigPath => Path.Combine(LitePluginDir, LitePluginConfigName);
 
         public static string MainPluginDir => Path.Combine(PluginsDir, MainPluginFolderName);
         public static string MainPluginDllPath => Path.Combine(MainPluginDir, MainPluginDllName);
         public static string MainPluginDisabledPath => MainPluginDllPath + ".disabled";
-        public static string MainPluginShortDisabledPath => Path.Combine(MainPluginDir, Path.GetFileNameWithoutExtension(MainPluginDllName) + ".disabled");
+
+        public static string MainPluginShortDisabledPath => Path.Combine(MainPluginDir,
+            Path.GetFileNameWithoutExtension(MainPluginDllName) + ".disabled");
 
         public static string? FindLitePluginDisabledPath()
         {
@@ -299,11 +309,13 @@ namespace FufuLauncher.Services
             return true;
         }
 
-        public async Task InstallOrUpdateLitePluginAsync(IProgress<double>? progress = null, Action<string>? status = null, CancellationToken cancellationToken = default)
+        public async Task InstallOrUpdateLitePluginAsync(IProgress<double>? progress = null,
+            Action<string>? status = null, CancellationToken cancellationToken = default)
         {
             string tempZip = Path.Combine(Path.GetTempPath(), $"YuanShen-UnlockerLite_{Guid.NewGuid():N}.zip");
             string extractDir = Path.Combine(Path.GetTempPath(), $"YuanShen-UnlockerLite_Extract_{Guid.NewGuid():N}");
-            string configBackup = Path.Combine(Path.GetTempPath(), $"YuanShen-UnlockerLite_Config_{Guid.NewGuid():N}.ini");
+            string configBackup =
+                Path.Combine(Path.GetTempPath(), $"YuanShen-UnlockerLite_Config_{Guid.NewGuid():N}.ini");
 
             try
             {
@@ -347,7 +359,8 @@ namespace FufuLauncher.Services
                 if (!downloaded)
                 {
                     throw new IOException(
-                        string.Format("LightweightMode_DownloadFailed".GetLocalized(), lastError?.Message ?? string.Empty),
+                        string.Format("LightweightMode_DownloadFailed".GetLocalized(),
+                            lastError?.Message ?? string.Empty),
                         lastError);
                 }
 
@@ -381,7 +394,13 @@ namespace FufuLauncher.Services
                     File.Copy(configBackup, LitePluginConfigPath, true);
                 }
 
-                try { File.Delete(tempZip); } catch { }
+                try
+                {
+                    File.Delete(tempZip);
+                }
+                catch
+                {
+                }
 
                 TryEnableLitePlugin();
             }
@@ -457,9 +476,11 @@ namespace FufuLauncher.Services
             return null;
         }
 
-        private static async Task DownloadAsync(HttpClient client, string url, string destination, IProgress<double>? progress, CancellationToken cancellationToken)
+        private static async Task DownloadAsync(HttpClient client, string url, string destination,
+            IProgress<double>? progress, CancellationToken cancellationToken)
         {
-            using var response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            using var response =
+                await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             response.EnsureSuccessStatusCode();
 
             var totalBytes = response.Content.Headers.ContentLength ?? -1L;
@@ -467,7 +488,8 @@ namespace FufuLauncher.Services
             var buffer = new byte[81920];
 
             await using var source = await response.Content.ReadAsStreamAsync(cancellationToken);
-            await using var target = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None, 81920, true);
+            await using var target = new FileStream(destination, FileMode.Create, FileAccess.Write, FileShare.None,
+                81920, true);
 
             int read;
             while ((read = await source.ReadAsync(buffer, cancellationToken)) > 0)

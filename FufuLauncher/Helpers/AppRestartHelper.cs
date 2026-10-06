@@ -2,20 +2,21 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 
 namespace FufuLauncher.Helpers;
 
 /// <summary>
-/// 进程重启。存储路径、语言等只在启动时确定的配置，改动后需要重启才能生效。
+///     进程重启。存储路径、语言等只在启动时确定的配置，改动后需要重启才能生效。
 /// </summary>
 public static class AppRestartHelper
 {
     private const string RestartArgument = "restart";
 
     /// <summary>
-    /// 启动新进程并退出当前进程。返回 true 表示重启已发起（当前进程随即退出）；
-    /// 返回 false 表示启动失败，调用方应继续以当前路径运行并提示用户手动重启。
+    ///     启动新进程并退出当前进程。返回 true 表示重启已发起（当前进程随即退出）；
+    ///     返回 false 表示启动失败，调用方应继续以当前路径运行并提示用户手动重启。
     /// </summary>
     public static bool TryRestart()
     {

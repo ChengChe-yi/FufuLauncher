@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
@@ -86,6 +87,7 @@ public sealed partial class MainPage
                 InfoCardPivot.IsHitTestVisible = isExpanded && ViewModel.IsNewsLoaded;
                 InfoCardPivot.Opacity = pivotTargetOpacity;
             }
+
             BannerImageArea.CornerRadius = targetCornerRadius;
         };
 
@@ -161,6 +163,7 @@ public sealed partial class MainPage
                 Storyboard.SetTargetProperty(shimmer, "Opacity");
                 _newsSkeletonShimmerStoryboard.Children.Add(shimmer);
             }
+
             _newsSkeletonShimmerStoryboard.Begin();
         }
 

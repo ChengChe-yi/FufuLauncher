@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
@@ -18,7 +19,6 @@ public partial class App
 {
     #region Background Tasks
 
-   
     private const int BanCheckExitCode = 4;
 
     private const uint MB_YESNO = 0x00000004;
@@ -38,7 +38,6 @@ public partial class App
             return Array.Empty<string>();
         }
     }
-
 
 
     private async Task<bool> EnforceBanListAsync(IReadOnlyList<string>? knownUids = null)
@@ -82,7 +81,7 @@ public partial class App
         return true;
     }
 
-  
+
     private async Task RequestShutdownAsync()
     {
         try
@@ -116,7 +115,7 @@ public partial class App
         Environment.Exit(BanCheckExitCode);
     }
 
-  
+
     private static void OpenAppealUrl(string? url)
     {
         try
@@ -282,11 +281,18 @@ public partial class App
                     mediaPlayer.Volume = 0.7;
 
                     int disposed = 0;
+
                     void DisposeOnce()
                     {
                         if (Interlocked.Exchange(ref disposed, 1) == 0)
                         {
-                            try { mediaPlayer.Dispose(); } catch { }
+                            try
+                            {
+                                mediaPlayer.Dispose();
+                            }
+                            catch
+                            {
+                            }
                         }
                     }
 
@@ -323,7 +329,8 @@ public partial class App
             var result = await updateService.CheckUpdateAsync();
 
             var devBuildService = GetService<IDevBuildDetectionService>();
-            WeakReferenceMessenger.Default.Send(new Messages.DevBuildDetectionCompletedMessage(devBuildService.IsDevBuild));
+            WeakReferenceMessenger.Default.Send(
+                new Messages.DevBuildDetectionCompletedMessage(devBuildService.IsDevBuild));
 
             if (result.IsDevBuild && MainWindow is MainWindow mainWindow)
             {

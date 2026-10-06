@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -60,11 +61,13 @@ namespace FufuLauncher.Views
 
             _cts = new CancellationTokenSource();
             CancellationToken token = _cts.Token;
-            var progress = new Progress<GameServerConversionProgress>(p => DispatcherQueue.TryEnqueue(() => UpdateProgress(p)));
+            var progress =
+                new Progress<GameServerConversionProgress>(p => DispatcherQueue.TryEnqueue(() => UpdateProgress(p)));
 
             try
             {
-                await Task.Run(() => App.GetService<GameServerConverter>().VerifyAndRepairAsync(_gameDir, currentScheme, progress, UpdateStatus, token, _downloadMonitor));
+                await Task.Run(() => App.GetService<GameServerConverter>().VerifyAndRepairAsync(_gameDir, currentScheme,
+                    progress, UpdateStatus, token, _downloadMonitor));
 
                 _chartController.Stop();
                 ProgressPanel.Visibility = Visibility.Collapsed;
@@ -111,11 +114,13 @@ namespace FufuLauncher.Views
         {
             _chartController?.UpdateProgress(p);
             _remainingChunksTracker.Update(p);
-            RemainingCountText.Text = string.Format("AdvancedServerSwitch_RemainingChunks".GetLocalized(), _remainingChunksTracker.Chunks.Count);
+            RemainingCountText.Text = string.Format("AdvancedServerSwitch_RemainingChunks".GetLocalized(),
+                _remainingChunksTracker.Chunks.Count);
 
             StatusText.Text = p.ChunkName is null
                 ? p.Stage
-                : string.Format("AdvancedServerSwitch_Progress".GetLocalized(), p.DoneChunks, p.TotalChunks, p.ChunkName);
+                : string.Format("AdvancedServerSwitch_Progress".GetLocalized(), p.DoneChunks, p.TotalChunks,
+                    p.ChunkName);
 
             if (p.TotalChunks > 0)
             {

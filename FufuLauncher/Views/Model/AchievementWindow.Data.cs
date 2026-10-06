@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.Json;
@@ -65,12 +66,14 @@ public sealed partial class AchievementWindow
                     _itemUids[item] = ach.Uid;
                 }
             }
+
             ViewModel.Categories.Clear();
 
             foreach (var cat in rawCategories)
             {
                 var groupedList = new ObservableCollection<AchievementItem>();
-                var groups = cat.Achievements.GroupBy(x => !string.IsNullOrEmpty(x.SeriesId) ? x.SeriesId : Guid.NewGuid().ToString());
+                var groups = cat.Achievements.GroupBy(x =>
+                    !string.IsNullOrEmpty(x.SeriesId) ? x.SeriesId : Guid.NewGuid().ToString());
 
                 foreach (var g in groups)
                 {
@@ -88,7 +91,9 @@ public sealed partial class AchievementWindow
 
                         var parentItem = new AchievementItem
                         {
-                            Title = !string.IsNullOrEmpty(firstChild.SeriesMasterTitle) ? firstChild.SeriesMasterTitle : firstChild.Title,
+                            Title = !string.IsNullOrEmpty(firstChild.SeriesMasterTitle)
+                                ? firstChild.SeriesMasterTitle
+                                : firstChild.Title,
                             Description = firstChild.Description,
                             Version = firstChild.Version,
                             ItemIconUrl = firstChild.ItemIconUrl,
@@ -116,9 +121,11 @@ public sealed partial class AchievementWindow
             {
                 foreach (var item in cat.Achievements)
                 {
-                    if(item.IsGroup)
+                    if (item.IsGroup)
                     {
-                        foreach(var child in item.Children) if (!string.IsNullOrEmpty(child.Version)) versions.Add(child.Version);
+                        foreach (var child in item.Children)
+                            if (!string.IsNullOrEmpty(child.Version))
+                                versions.Add(child.Version);
                     }
                     else
                     {
@@ -188,9 +195,13 @@ public sealed partial class AchievementWindow
 
         try
         {
-            _achievementRepo.UpdateAchievement(uid, item.IsCompleted, item.CurrentProgress, item.MaxProgress, item.CompletionTimestamp);
+            _achievementRepo.UpdateAchievement(uid, item.IsCompleted, item.CurrentProgress, item.MaxProgress,
+                item.CompletionTimestamp);
         }
-        catch(Exception ex) { Debug.WriteLine(ex); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+        }
     }
 
     private void SaveData()
@@ -198,7 +209,9 @@ public sealed partial class AchievementWindow
         if (!_isDataLoaded) return;
         try
         {
-            var updates = new Dictionary<int, (bool IsCompleted, int CurrentProgress, int MaxProgress, long CompletionTimestamp)>();
+            var updates =
+                new Dictionary<int, (bool IsCompleted, int CurrentProgress, int MaxProgress, long CompletionTimestamp
+                    )>();
             foreach (var uiCat in ViewModel.Categories)
             {
                 foreach (var item in uiCat.Achievements)
@@ -208,16 +221,19 @@ public sealed partial class AchievementWindow
                         foreach (var child in item.Children)
                         {
                             if (_itemUids.TryGetValue(child, out int uid))
-                                updates[uid] = (child.IsCompleted, child.CurrentProgress, child.MaxProgress, child.CompletionTimestamp);
+                                updates[uid] = (child.IsCompleted, child.CurrentProgress, child.MaxProgress,
+                                    child.CompletionTimestamp);
                         }
                     }
                     else
                     {
                         if (_itemUids.TryGetValue(item, out int uid))
-                            updates[uid] = (item.IsCompleted, item.CurrentProgress, item.MaxProgress, item.CompletionTimestamp);
+                            updates[uid] = (item.IsCompleted, item.CurrentProgress, item.MaxProgress,
+                                item.CompletionTimestamp);
                     }
                 }
             }
+
             _achievementRepo.UpdateAchievementsBatch(updates);
         }
         catch (Exception ex)

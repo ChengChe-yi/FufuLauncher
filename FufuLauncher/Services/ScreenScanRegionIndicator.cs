@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Drawing;
 using System.Runtime.InteropServices;
 using Forms = System.Windows.Forms;
@@ -22,7 +23,8 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
         Color? accentColor = null)
     {
         var indicator = new ScreenScanRegionIndicator();
-        var ready = new TaskCompletionSource<ScreenScanRegionIndicator>(TaskCreationOptions.RunContinuationsAsynchronously);
+        var ready = new TaskCompletionSource<ScreenScanRegionIndicator>(TaskCreationOptions
+            .RunContinuationsAsynchronously);
         var thread = new Thread(() =>
         {
             nint oldContext = SetThreadDpiAwarenessContext(new nint(-4));
@@ -44,8 +46,14 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
                 Forms.Application.Run(form);
                 ready.TrySetCanceled(token);
             }
-            catch (OperationCanceledException) { ready.TrySetCanceled(token); }
-            catch (Exception ex) { ready.TrySetException(ex); }
+            catch (OperationCanceledException)
+            {
+                ready.TrySetCanceled(token);
+            }
+            catch (Exception ex)
+            {
+                ready.TrySetException(ex);
+            }
             finally
             {
                 indicator._form = null;
@@ -55,7 +63,10 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
         }) { IsBackground = true, Name = "MiyousheQrScanRegionIndicator" };
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
-        try { return await ready.Task; }
+        try
+        {
+            return await ready.Task;
+        }
         catch
         {
             // A cancelled startup must also finish removing its window before the caller restores the launcher.
@@ -67,8 +78,13 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
     private void Close()
     {
         var form = _form;
-        try { if (form?.IsHandleCreated == true && !form.IsDisposed) form.BeginInvoke(new Action(form.Close)); }
-        catch (InvalidOperationException) { }
+        try
+        {
+            if (form?.IsHandleCreated == true && !form.IsDisposed) form.BeginInvoke(new Action(form.Close));
+        }
+        catch (InvalidOperationException)
+        {
+        }
     }
 
     internal void SetAccentColor(Color color)
@@ -77,9 +93,14 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
         try
         {
             if (form?.IsHandleCreated == true && !form.IsDisposed)
-                form.BeginInvoke(new Action(() => { if (!form.IsDisposed) form.BackColor = color; }));
+                form.BeginInvoke(new Action(() =>
+                {
+                    if (!form.IsDisposed) form.BackColor = color;
+                }));
         }
-        catch (InvalidOperationException) { }
+        catch (InvalidOperationException)
+        {
+        }
     }
 
     public async ValueTask DisposeAsync()

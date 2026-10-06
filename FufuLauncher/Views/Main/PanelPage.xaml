@@ -14,7 +14,8 @@
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
-                    <AcrylicBrush x:Key="PanelGlassBrush" FallbackColor="#E5FFFFFF" TintColor="#FFFFFF" TintOpacity="0.6" />
+                    <AcrylicBrush x:Key="PanelGlassBrush" FallbackColor="#E5FFFFFF" TintColor="#FFFFFF"
+                                  TintOpacity="0.6" />
                     <SolidColorBrush x:Key="PanelCardBrush" Color="#0A000000" />
                     <SolidColorBrush x:Key="PanelCardHoverBrush" Color="#14000000" />
                     <SolidColorBrush x:Key="PanelTextBrush" Color="#FF000000" />
@@ -50,22 +51,22 @@
                         <ControlTemplate TargetType="Button">
                             <Grid>
                                 <ContentPresenter x:Name="ContentPresenter"
-                                    AutomationProperties.AccessibilityView="Raw"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Content="{TemplateBinding Content}"
-                                    ContentTransitions="{TemplateBinding ContentTransitions}"
-                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                    Padding="{TemplateBinding Padding}"
-                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                  AutomationProperties.AccessibilityView="Raw"
+                                                  Background="{TemplateBinding Background}"
+                                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                                  Content="{TemplateBinding Content}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  CornerRadius="{TemplateBinding CornerRadius}"
+                                                  Padding="{TemplateBinding Padding}"
+                                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
                                 <Border x:Name="HighlightBorder"
-                                    BorderBrush="{ThemeResource TextFillColorPrimaryBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="{TemplateBinding CornerRadius}"
-                                    IsHitTestVisible="False"
-                                    Opacity="0" />
+                                        BorderBrush="{ThemeResource TextFillColorPrimaryBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        CornerRadius="{TemplateBinding CornerRadius}"
+                                        IsHitTestVisible="False"
+                                        Opacity="0" />
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
                                         <VisualState x:Name="Normal">
@@ -89,8 +90,10 @@
                                         <VisualState x:Name="Pressed" />
                                         <VisualState x:Name="Disabled">
                                             <Storyboard>
-                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                               Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{ThemeResource TextFillColorTertiaryBrush}" />
                                                 </ObjectAnimationUsingKeyFrames>
                                             </Storyboard>
                                         </VisualState>
@@ -180,7 +183,7 @@
                     CornerRadius="14"
                     Translation="0,0,32">
                     <Border.Shadow>
-                        <ThemeShadow/>
+                        <ThemeShadow />
                     </Border.Shadow>
                     <StackPanel Spacing="14">
                         <StackPanel Spacing="2">
@@ -201,34 +204,48 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Button Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenGachaAnalysisClick">
+                            <Button Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="OnOpenGachaAnalysisClick">
                                 <Grid ColumnSpacing="14">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <Image Margin="9" Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/4e65638b8b81ca7556f0fd42612d0be2_6482084243159257686.png" Stretch="Uniform" />
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <Image Margin="9"
+                                               Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/4e65638b8b81ca7556f0fd42612d0be2_6482084243159257686.png"
+                                               Stretch="Uniform" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetGacha}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_GachaTooltip}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_WidgetGacha}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_GachaTooltip}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
 
-                            <Button Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenAchievementsClick">
+                            <Button Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="OnOpenAchievementsClick">
                                 <Grid ColumnSpacing="14">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <Image Margin="9" Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/b097c597c8e957e5c29ebba956be7b77_3600296528699504897.png" Stretch="Uniform" />
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <Image Margin="9"
+                                               Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/b097c597c8e957e5c29ebba956be7b77_3600296528699504897.png"
+                                               Stretch="Uniform" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetAchievement}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_AchievementTooltip}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_WidgetAchievement}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_AchievementTooltip}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
@@ -271,66 +288,94 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenInventoryClick">
+                            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="OnOpenInventoryClick">
                                 <Grid ColumnSpacing="14">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <Image Margin="9" Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/746e735b9968d0a7496393809653bf9b_3827123919585554136.png" Stretch="Uniform" />
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <Image Margin="9"
+                                               Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/746e735b9968d0a7496393809653bf9b_3827123919585554136.png"
+                                               Stretch="Uniform" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetInventory}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_InventoryTooltip}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_WidgetInventory}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_InventoryTooltip}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
 
-                            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenPlayerRolesClick">
+                            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="OnOpenPlayerRolesClick">
                                 <Grid ColumnSpacing="14">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <Image Margin="9" Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/816696c690ea7d95d8c13e67f794c807_6317738625095616930.png" Stretch="Uniform" />
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <Image Margin="9"
+                                               Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/816696c690ea7d95d8c13e67f794c807_6317738625095616930.png"
+                                               Stretch="Uniform" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetPlayerRole}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_PlayerRoleTooltip}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_WidgetPlayerRole}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_PlayerRoleTooltip}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
 
-                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenDailyNoteClick">
+                            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="OnOpenDailyNoteClick">
                                 <Grid ColumnSpacing="14">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <Image Margin="9" Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/35990ccaac57819dbaf39a47db133a59_6427418972247587857.png" Stretch="Uniform" />
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <Image Margin="9"
+                                               Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/35990ccaac57819dbaf39a47db133a59_6427418972247587857.png"
+                                               Stretch="Uniform" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetNotes}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_NotesTooltip}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_WidgetNotes}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_NotesTooltip}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
 
-                            <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}" Click="BBSButton_Click">
+                            <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="BBSButton_Click">
                                 <Grid ColumnSpacing="14">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <Image Margin="9" Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/aae53df95bd8d8f437729545e3a287ab_8614980669390833989.png" Stretch="Uniform" />
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <Image Margin="9"
+                                               Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/aae53df95bd8d8f437729545e3a287ab_8614980669390833989.png"
+                                               Stretch="Uniform" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetBBS}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_BBSTooltip}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_WidgetBBS}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Home_BBSTooltip}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
@@ -368,12 +413,18 @@
                                     <ColumnDefinition Width="48" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                    <Image Margin="9" Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/6ba109a0c67067ce3f16c18147c91f03_2613518829063232490.png" Stretch="Uniform" />
+                                <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                        CornerRadius="10">
+                                    <Image Margin="9"
+                                           Source="https://act-upload.mihoyo.com/ys-obc/2025/01/21/73740358/6ba109a0c67067ce3f16c18147c91f03_2613518829063232490.png"
+                                           Stretch="Uniform" />
                                 </Border>
                                 <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                    <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Home_WidgetVideo}" />
-                                    <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Home_VideoTooltip}" TextWrapping="Wrap" />
+                                    <TextBlock FontSize="17" FontWeight="SemiBold"
+                                               Foreground="{ThemeResource PanelTextBrush}"
+                                               Text="{helpers:Loc Key=Home_WidgetVideo}" />
+                                    <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                               Text="{helpers:Loc Key=Home_VideoTooltip}" TextWrapping="Wrap" />
                                 </StackPanel>
                             </Grid>
                         </Button>
@@ -415,7 +466,8 @@
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
                                         <FontIcon
                                             Glyph="&#xE716;"
                                             FontSize="22"
@@ -424,23 +476,33 @@
                                             VerticalAlignment="Center" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=CommunityWindow_Title}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Panel_CommunityTooltip}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=CommunityWindow_Title}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Panel_CommunityTooltip}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
-                            <Button Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}" Click="OnOpenMiyousheClick">
+                            <Button Grid.Column="1" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="OnOpenMiyousheClick">
                                 <Grid ColumnSpacing="14">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="48" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}" CornerRadius="10">
-                                        <FontIcon Glyph="&#xE8F2;" FontSize="22" Foreground="{ThemeResource PanelTextBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <FontIcon Glyph="&#xE8F2;" FontSize="22"
+                                                  Foreground="{ThemeResource PanelTextBrush}"
+                                                  HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Border>
                                     <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
-                                        <TextBlock FontSize="17" FontWeight="SemiBold" Foreground="{ThemeResource PanelTextBrush}" Text="{helpers:Loc Key=Miyoushe_Title}" />
-                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}" Text="{helpers:Loc Key=Miyoushe_CardHint}" TextWrapping="Wrap" />
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=Miyoushe_Title}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=Miyoushe_CardHint}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>

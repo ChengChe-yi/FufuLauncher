@@ -2,29 +2,55 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace FufuLauncher.ViewModels;
 
 public class PresetModel : ObservableObject
 {
-    public string Id { get; set; }
+    public string Id
+    {
+        get;
+        set;
+    }
+
     private string _name = string.Empty;
+
     public string Name
     {
         get => _name;
         set => SetProperty(ref _name, value);
     }
-    public string DllHash { get; set; }
-    public Dictionary<string, Dictionary<string, string>> ConfigData { get; set; } = new(StringComparer.OrdinalIgnoreCase);
-    
-    [System.Text.Json.Serialization.JsonIgnore]
-    public string FilePath { get; set; }
+
+    public string DllHash
+    {
+        get;
+        set;
+    }
+
+    public Dictionary<string, Dictionary<string, string>> ConfigData
+    {
+        get;
+        set;
+    } = new(StringComparer.OrdinalIgnoreCase);
 
     [System.Text.Json.Serialization.JsonIgnore]
-    public bool IsLocked { get; set; }
+    public string FilePath
+    {
+        get;
+        set;
+    }
+
+    [System.Text.Json.Serialization.JsonIgnore]
+    public bool IsLocked
+    {
+        get;
+        set;
+    }
 
     private bool _isActive;
+
     [System.Text.Json.Serialization.JsonIgnore]
     public bool IsActive
     {

@@ -2,14 +2,18 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Messages;
 
 namespace FufuLauncher.Services;
 
-public sealed record SelectedGameRole(string AccountId, string ServerType,
-    GameRoleInfo Role, Dictionary<string, string> Cookies);
+public sealed record SelectedGameRole(
+    string AccountId,
+    string ServerType,
+    GameRoleInfo Role,
+    Dictionary<string, string> Cookies);
 
 public sealed class GameRoleService(AccountManager accounts, IUserInfoService userInfo)
 {
@@ -33,13 +37,17 @@ public sealed class GameRoleService(AccountManager accounts, IUserInfoService us
             if (accounts.ActiveAccountId != accountId) return;
             await UpdateBindingsAsync(accountId, response.data.list);
         }
-        finally { _refreshLock.Release(); }
+        finally
+        {
+            _refreshLock.Release();
+        }
     }
 
     public async Task UpdateBindingsAsync(string accountId, IEnumerable<GameRoleInfo> roles)
     {
         var oldRole = accounts.GetAllAccounts().FirstOrDefault(a => a.Id == accountId) is { } oldAccount
-            ? GameRoleSelection.Current(oldAccount) : null;
+            ? GameRoleSelection.Current(oldAccount)
+            : null;
         await accounts.UpdateGameRolesAsync(accountId, roles);
         WeakReferenceMessenger.Default.Send(new GameRolesUpdatedMessage(accountId));
         if (accounts.GetActiveAccountEntry() is { } current && current.Id == accountId && oldRole != null)
@@ -84,6 +92,7 @@ public sealed class GameRoleService(AccountManager accounts, IUserInfoService us
             WeakReferenceMessenger.Default.Send(new FeatureGameRoleChangedMessage(scope));
             return;
         }
+
         if (account?.Id == accountId && GameRoleSelection.Current(account) is { } current &&
             current.game_uid == role.game_uid && current.region == role.region)
             return;

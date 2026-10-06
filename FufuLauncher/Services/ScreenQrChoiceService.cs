@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
@@ -18,7 +19,8 @@ internal static class ScreenQrChoiceService
     internal static Task<ScreenQrDetection?> ChooseAsync(Bitmap frame, Rectangle screenBounds,
         IReadOnlyList<ScreenQrDetection> codes, CancellationToken token)
     {
-        var completion = new TaskCompletionSource<ScreenQrDetection?>(TaskCreationOptions.RunContinuationsAsynchronously);
+        var completion =
+            new TaskCompletionSource<ScreenQrDetection?>(TaskCreationOptions.RunContinuationsAsynchronously);
         var thread = new Thread(() =>
         {
             nint oldContext = SetThreadDpiAwarenessContext(new nint(-4));
@@ -33,11 +35,21 @@ internal static class ScreenQrChoiceService
                     token.ThrowIfCancellationRequested();
                     selected = overlay.Selected;
                 }
+
                 completion.TrySetResult(selected);
             }
-            catch (OperationCanceledException) { completion.TrySetCanceled(token); }
-            catch (Exception ex) { completion.TrySetException(ex); }
-            finally { if (oldContext != 0) SetThreadDpiAwarenessContext(oldContext); }
+            catch (OperationCanceledException)
+            {
+                completion.TrySetCanceled(token);
+            }
+            catch (Exception ex)
+            {
+                completion.TrySetException(ex);
+            }
+            finally
+            {
+                if (oldContext != 0) SetThreadDpiAwarenessContext(oldContext);
+            }
         }) { IsBackground = true, Name = "MiyousheQrChoice" };
         thread.SetApartmentState(ApartmentState.STA);
         thread.Start();
@@ -68,7 +80,12 @@ internal static class ScreenQrChoiceService
         private readonly Bitmap _frame;
         private readonly IReadOnlyList<ScreenQrDetection> _codes;
         private ScreenQrDetection? _hovered;
-        internal ScreenQrDetection? Selected { get; private set; }
+
+        internal ScreenQrDetection? Selected
+        {
+            get;
+            private set;
+        }
 
         internal ChoiceOverlay(Bitmap frame, Rectangle bounds, IReadOnlyList<ScreenQrDetection> codes,
             CancellationToken token)
@@ -83,13 +100,22 @@ internal static class ScreenQrChoiceService
             ShowInTaskbar = false;
             KeyPreview = true;
             DoubleBuffered = true;
-            Shown += (_, _) => { if (token.IsCancellationRequested) Close(); else Activate(); };
+            Shown += (_, _) =>
+            {
+                if (token.IsCancellationRequested) Close();
+                else Activate();
+            };
         }
 
         internal void Cancel()
         {
-            try { if (IsHandleCreated && !IsDisposed) BeginInvoke(new Action(Close)); }
-            catch (InvalidOperationException) { }
+            try
+            {
+                if (IsHandleCreated && !IsDisposed) BeginInvoke(new Action(Close));
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
 
         protected override void OnPaint(Forms.PaintEventArgs e) => DrawChoices(e.Graphics, _frame, _codes, _hovered);
@@ -103,7 +129,12 @@ internal static class ScreenQrChoiceService
 
         protected override void OnMouseDown(Forms.MouseEventArgs e)
         {
-            if (e.Button == Forms.MouseButtons.Right) { Close(); return; }
+            if (e.Button == Forms.MouseButtons.Right)
+            {
+                Close();
+                return;
+            }
+
             if (e.Button != Forms.MouseButtons.Left) return;
             Selected = HitTest(_codes, e.Location);
             if (Selected != null) Close();
@@ -111,7 +142,11 @@ internal static class ScreenQrChoiceService
 
         protected override void OnKeyDown(Forms.KeyEventArgs e)
         {
-            if (e.KeyCode == Forms.Keys.Escape) { e.Handled = true; Close(); }
+            if (e.KeyCode == Forms.Keys.Escape)
+            {
+                e.Handled = true;
+                Close();
+            }
             else base.OnKeyDown(e);
         }
     }

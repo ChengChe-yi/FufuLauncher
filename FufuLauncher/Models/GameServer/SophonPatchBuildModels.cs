@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models.GameServer;
@@ -9,112 +10,232 @@ namespace FufuLauncher.Models.GameServer;
 public sealed class SophonBranchPayload
 {
     [JsonPropertyName("package_id")]
-    public string? PackageId { get; set; }
+    public string? PackageId
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("branch")]
-    public string? Branch { get; set; }
+    public string? Branch
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("password")]
-    public string? Password { get; set; }
+    public string? Password
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("tag")]
-    public string Tag { get; set; } = string.Empty;
-    
+    public string Tag
+    {
+        get;
+        set;
+    } = string.Empty;
+
     [JsonPropertyName("diff_tags")]
-    public List<string> DiffTags { get; set; } = [];
+    public List<string> DiffTags
+    {
+        get;
+        set;
+    } = [];
 
     [JsonPropertyName("categories")]
-    public List<SophonBranchCategory>? Categories { get; set; }
+    public List<SophonBranchCategory>? Categories
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class SophonBranchCategory
 {
     [JsonPropertyName("category_id")]
-    public string? CategoryId { get; set; }
+    public string? CategoryId
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("matching_field")]
-    public string? MatchingField { get; set; }
+    public string? MatchingField
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class SophonPatchBuildResponse
 {
     [JsonPropertyName("build_id")]
-    public string BuildId { get; set; } = string.Empty;
+    public string BuildId
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("patch_id")]
-    public string PatchId { get; set; } = string.Empty;
+    public string PatchId
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("tag")]
-    public string Tag { get; set; } = string.Empty;
+    public string Tag
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("manifests")]
-    public List<SophonPatchManifestInfo> Manifests { get; set; } = [];
+    public List<SophonPatchManifestInfo> Manifests
+    {
+        get;
+        set;
+    } = [];
 }
 
 public sealed class SophonPatchManifestInfo
 {
     [JsonPropertyName("category_id")]
-    public string CategoryId { get; set; } = string.Empty;
+    public string CategoryId
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("category_name")]
-    public string CategoryName { get; set; } = string.Empty;
+    public string CategoryName
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("manifest")]
-    public SophonPatchManifestRef Manifest { get; set; } = new();
-    
+    public SophonPatchManifestRef Manifest
+    {
+        get;
+        set;
+    } = new();
+
     [JsonPropertyName("diff_download")]
-    public SophonPatchDownloadInfo? DiffDownload { get; set; }
-    
+    public SophonPatchDownloadInfo? DiffDownload
+    {
+        get;
+        set;
+    }
+
     [JsonPropertyName("manifest_download")]
-    public SophonPatchDownloadInfo? ManifestDownload { get; set; }
+    public SophonPatchDownloadInfo? ManifestDownload
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("matching_field")]
-    public string MatchingField { get; set; } = string.Empty;
-    
+    public string MatchingField
+    {
+        get;
+        set;
+    } = string.Empty;
+
     [JsonPropertyName("stats")]
-    public Dictionary<string, SophonPatchStats> Stats { get; set; } = [];
+    public Dictionary<string, SophonPatchStats> Stats
+    {
+        get;
+        set;
+    } = [];
 }
 
 public sealed class SophonPatchManifestRef
 {
     [JsonPropertyName("id")]
-    public string Id { get; set; } = string.Empty;
+    public string Id
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("checksum")]
-    public string Checksum { get; set; } = string.Empty;
+    public string Checksum
+    {
+        get;
+        set;
+    } = string.Empty;
 }
 
 public sealed class SophonPatchDownloadInfo
 {
     [JsonPropertyName("encryption")]
-    public uint Encryption { get; set; }
+    public uint Encryption
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("password")]
-    public string? Password { get; set; }
+    public string? Password
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("compression")]
-    public uint Compression { get; set; }
+    public uint Compression
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("url_prefix")]
-    public string UrlPrefix { get; set; } = string.Empty;
+    public string UrlPrefix
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("url_suffix")]
-    public string? UrlSuffix { get; set; }
+    public string? UrlSuffix
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class SophonPatchStats
 {
     [JsonPropertyName("compressed_size")]
-    public long CompressedSize { get; set; }
+    public long CompressedSize
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("uncompressed_size")]
-    public long UncompressedSize { get; set; }
+    public long UncompressedSize
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("file_count")]
-    public uint FileCount { get; set; }
+    public uint FileCount
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("chunk_count")]
-    public uint ChunkCount { get; set; }
+    public uint ChunkCount
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class SophonDecodedPatchBuild
@@ -130,25 +251,47 @@ public sealed class SophonDecodedPatchBuild
         InstallFileCount = installFileCount;
         Manifests = manifests;
     }
-    
-    public string OriginalTag { get; }
-    
-    public string Tag { get; }
-    
-    public long DownloadTotalBytes { get; }
-    
-    public long DownloadFileCount { get; }
-    
-    public long UncompressedTotalBytes { get; }
-    
-    public long InstallFileCount { get; }
 
-    public List<SophonDecodedPatchManifest> Manifests { get; }
+    public string OriginalTag
+    {
+        get;
+    }
+
+    public string Tag
+    {
+        get;
+    }
+
+    public long DownloadTotalBytes
+    {
+        get;
+    }
+
+    public long DownloadFileCount
+    {
+        get;
+    }
+
+    public long UncompressedTotalBytes
+    {
+        get;
+    }
+
+    public long InstallFileCount
+    {
+        get;
+    }
+
+    public List<SophonDecodedPatchManifest> Manifests
+    {
+        get;
+    }
 }
 
 public sealed class SophonDecodedPatchManifest
 {
-    public SophonDecodedPatchManifest(string originalTag, string tag, string urlPrefix, string urlSuffix, PatchManifest data)
+    public SophonDecodedPatchManifest(string originalTag, string tag, string urlPrefix, string urlSuffix,
+        PatchManifest data)
     {
         OriginalTag = originalTag;
         Tag = tag;
@@ -157,15 +300,30 @@ public sealed class SophonDecodedPatchManifest
         Data = data;
     }
 
-    public string OriginalTag { get; }
+    public string OriginalTag
+    {
+        get;
+    }
 
-    public string Tag { get; }
-    
-    public string UrlPrefix { get; }
-    
-    public string UrlSuffix { get; }
+    public string Tag
+    {
+        get;
+    }
 
-    public PatchManifest Data { get; }
+    public string UrlPrefix
+    {
+        get;
+    }
+
+    public string UrlSuffix
+    {
+        get;
+    }
+
+    public PatchManifest Data
+    {
+        get;
+    }
 }
 
 public sealed class SophonPatchAsset
@@ -178,15 +336,27 @@ public sealed class SophonPatchAsset
         PatchInfo = patchInfo;
     }
 
-    public string UrlPrefix { get; }
+    public string UrlPrefix
+    {
+        get;
+    }
 
-    public string UrlSuffix { get; }
+    public string UrlSuffix
+    {
+        get;
+    }
 
-    public PatchFileData FileData { get; }
+    public PatchFileData FileData
+    {
+        get;
+    }
 
-    public PatchInfo PatchInfo { get; }
+    public PatchInfo PatchInfo
+    {
+        get;
+    }
 
     public string PatchDownloadUrl => $"{UrlPrefix}/{PatchInfo.Id}{UrlSuffix}";
-    
+
     public string ExpectedHashPrefix => PatchInfo.Id.Split('_')[0];
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 using FufuLauncher.Helpers.Serialization;
 
@@ -12,43 +13,50 @@ namespace FufuLauncher.Models.GameAnnouncement
         [JsonPropertyName("list")]
         public List<AnnouncementListWrapper> List
         {
-            get; set;
+            get;
+            set;
         } = new();
 
         [JsonPropertyName("total")]
         public int Total
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("type_list")]
         public List<AnnouncementType> TypeList
         {
-            get; set;
+            get;
+            set;
         } = new();
 
         [JsonPropertyName("alert")]
         public bool Alert
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("alert_id")]
         public int AlertId
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("timezone")]
         public int TimeZone
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("t")]
         public string TimeStamp
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         public void OnDeserialized()

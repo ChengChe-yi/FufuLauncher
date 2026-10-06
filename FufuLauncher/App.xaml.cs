@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services.Background;
@@ -33,18 +34,28 @@ public partial class App : Application
         return service;
     }
 
-    public static WindowEx MainWindow { get; private set; }
+    public static WindowEx MainWindow
+    {
+        get;
+        private set;
+    }
 
     /// <summary>
-    /// Tracks the language selected on the first-run language selection page,
-    /// so the AgreementPage can show the appropriate agreement text.
+    ///     Tracks the language selected on the first-run language selection page,
+    ///     so the AgreementPage can show the appropriate agreement text.
     /// </summary>
-    public static ViewModels.AppLanguage? FirstRunSelectedLanguage { get; set; }
+    public static ViewModels.AppLanguage? FirstRunSelectedLanguage
+    {
+        get;
+        set;
+    }
 
     public static UIElement? AppTitlebar
     {
-        get; set;
+        get;
+        set;
     }
+
     private static Microsoft.UI.Dispatching.DispatcherQueue _mainDispatcherQueue = null!;
     private ProcessCpuUsageMonitor? _cpuUsageMonitor;
 
@@ -73,7 +84,9 @@ public partial class App : Application
                 Debug.WriteLine("[App] 已删除残留的 resources.pri");
             }
         }
-        catch { }
+        catch
+        {
+        }
 
         var appInstance = AppInstance.GetCurrent();
         appInstance.Activated += App_Activated!;

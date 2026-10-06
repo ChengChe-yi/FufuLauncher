@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Windows.Foundation;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -160,6 +161,7 @@ public sealed partial class EasterEggPage : Page
                 _isDeleting = true;
                 _pauseTicks = 0;
             }
+
             return;
         }
 
@@ -285,7 +287,9 @@ public sealed partial class EasterEggPage : Page
                     videoPlayer?.Pause();
                     videoPlayer?.Dispose();
                 }
-                catch { }
+                catch
+                {
+                }
             });
         }
         catch (Exception ex)

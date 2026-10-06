@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Runtime.InteropServices;
 
 namespace FufuLauncher.Services.Backpack;
@@ -11,11 +12,11 @@ internal static partial class GameLaunchService
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     private struct STARTUPINFOW
     {
-        public uint   cb;
-        public nint   lpReserved, lpDesktop, lpTitle;
-        public uint   dwX, dwY, dwXSize, dwYSize, dwXCountChars, dwYCountChars, dwFillAttribute, dwFlags;
+        public uint cb;
+        public nint lpReserved, lpDesktop, lpTitle;
+        public uint dwX, dwY, dwXSize, dwYSize, dwXCountChars, dwYCountChars, dwFillAttribute, dwFlags;
         public ushort wShowWindow, cbReserved2;
-        public nint   lpReserved2, hStdInput, hStdOutput, hStdError;
+        public nint lpReserved2, hStdInput, hStdOutput, hStdError;
     }
 
     [StructLayout(LayoutKind.Sequential)]

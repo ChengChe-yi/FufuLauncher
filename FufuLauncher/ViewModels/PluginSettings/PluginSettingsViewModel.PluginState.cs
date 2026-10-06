@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
@@ -14,7 +15,9 @@ public partial class PluginSettingsViewModel
     #region 插件状态与路径管理
 
     private string GetMainPluginFolderName() =>
-        IsLightweightMode ? LightweightPluginService.LitePluginFolderName : LightweightPluginService.MainPluginFolderName;
+        IsLightweightMode
+            ? LightweightPluginService.LitePluginFolderName
+            : LightweightPluginService.MainPluginFolderName;
 
     private string GetMainPluginDirectory() =>
         IsLightweightMode ? LightweightPluginService.LitePluginDir : LightweightPluginService.MainPluginDir;
@@ -28,6 +31,7 @@ public partial class PluginSettingsViewModel
             : LightweightPluginService.FindMainPluginDisabledPath() ?? LightweightPluginService.MainPluginDisabledPath;
 
     private bool _isMainPluginEnabled;
+
     public bool IsMainPluginEnabled
     {
         get => _isMainPluginEnabled;
@@ -41,6 +45,7 @@ public partial class PluginSettingsViewModel
     }
 
     private bool _isFpsPluginEnabled;
+
     public bool IsFpsPluginEnabled
     {
         get => _isFpsPluginEnabled;
@@ -53,11 +58,13 @@ public partial class PluginSettingsViewModel
         }
     }
 
-    public Microsoft.UI.Xaml.Visibility SettingsOverlayVisibility => 
+    public Microsoft.UI.Xaml.Visibility SettingsOverlayVisibility =>
         (SelectedPluginIndex == 0 && !_isMainPluginEnabled) || (SelectedPluginIndex == 1 && !_isFpsPluginEnabled)
-            ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+            ? Microsoft.UI.Xaml.Visibility.Visible
+            : Microsoft.UI.Xaml.Visibility.Collapsed;
 
-    public bool IsSettingsInteractable => (SelectedPluginIndex == 0 && _isMainPluginEnabled) || (SelectedPluginIndex == 1 && _isFpsPluginEnabled);
+    public bool IsSettingsInteractable => (SelectedPluginIndex == 0 && _isMainPluginEnabled) ||
+                                          (SelectedPluginIndex == 1 && _isFpsPluginEnabled);
 
     public string OverlayWarningText
     {
@@ -69,45 +76,58 @@ public partial class PluginSettingsViewModel
                     ? "LightweightMode_LiteDisabledOverlay".GetLocalized()
                     : "已被禁用，请启用主插件才能调试配置";
             }
+
             if (SelectedPluginIndex == 1) return "已被禁用，请启用FPS插件才能调试插件配置";
             return string.Empty;
         }
     }
 
-private void CheckPluginStates()
-{
-    string fpsDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS");
-    string fpsEnabledPath = Path.Combine(fpsDir, "FPS.dll");
-    string fpsDisabledPath = Path.Combine(fpsDir, "FPS.disabled");
-    
-    string mainEnabledPath = GetMainPluginEnabledPath();
-    string mainDisabledPath = GetMainPluginDisabledPath();
-
-    if (File.Exists(mainEnabledPath) && File.Exists(mainDisabledPath))
+    private void CheckPluginStates()
     {
-        try { File.Delete(mainDisabledPath); } catch { }
+        string fpsDir = Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS");
+        string fpsEnabledPath = Path.Combine(fpsDir, "FPS.dll");
+        string fpsDisabledPath = Path.Combine(fpsDir, "FPS.disabled");
+
+        string mainEnabledPath = GetMainPluginEnabledPath();
+        string mainDisabledPath = GetMainPluginDisabledPath();
+
+        if (File.Exists(mainEnabledPath) && File.Exists(mainDisabledPath))
+        {
+            try
+            {
+                File.Delete(mainDisabledPath);
+            }
+            catch
+            {
+            }
+        }
+
+        _isMainPluginEnabled = File.Exists(mainEnabledPath);
+        OnPropertyChanged(nameof(IsMainPluginEnabled));
+
+        if (File.Exists(fpsEnabledPath) && File.Exists(fpsDisabledPath))
+        {
+            try
+            {
+                File.Delete(fpsDisabledPath);
+            }
+            catch
+            {
+            }
+        }
+
+        bool fpsEnabled = File.Exists(fpsEnabledPath);
+
+        if (_isFpsPluginEnabled != fpsEnabled)
+        {
+            _isFpsPluginEnabled = fpsEnabled;
+            OnPropertyChanged(nameof(IsFpsPluginEnabled));
+        }
+
+        RefreshUIState();
     }
 
-    _isMainPluginEnabled = File.Exists(mainEnabledPath);
-    OnPropertyChanged(nameof(IsMainPluginEnabled));
 
-    if (File.Exists(fpsEnabledPath) && File.Exists(fpsDisabledPath))
-    {
-        try { File.Delete(fpsDisabledPath); } catch { }
-    }
-
-    bool fpsEnabled = File.Exists(fpsEnabledPath);
-    
-    if (_isFpsPluginEnabled != fpsEnabled)
-    {
-        _isFpsPluginEnabled = fpsEnabled;
-        OnPropertyChanged(nameof(IsFpsPluginEnabled));
-    }
-
-    RefreshUIState();
-}
-
-    
     private void ChangeMainPluginState(bool enable)
     {
         if (enable && App.GetService<ConstraintService>().IsRestricted)
@@ -132,7 +152,7 @@ private void CheckPluginStates()
             {
                 File.Move(enabledPath, disabledPath);
             }
-        
+
             SetProperty(ref _isMainPluginEnabled, enable, nameof(IsMainPluginEnabled));
             RefreshUIState();
         }
@@ -172,7 +192,7 @@ private void CheckPluginStates()
             {
                 File.Move(enabledPath, disabledPath);
             }
-            
+
             SetProperty(ref _isFpsPluginEnabled, enable, nameof(IsFpsPluginEnabled));
             RefreshUIState();
         }
@@ -215,7 +235,7 @@ private void CheckPluginStates()
         OnPropertyChanged(nameof(OverlayWarningText));
         UpdatePaths();
     }
-    
+
     private void UpdatePaths()
     {
         bool isLightweightMain = SelectedPluginIndex == 0 && IsLightweightMode;
@@ -223,11 +243,12 @@ private void CheckPluginStates()
             ? GetMainPluginFolderName()
             : "FPS";
         _pluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", subDir);
-        
+
         if (isLightweightMain)
         {
             _iniPath = LightweightPluginService.LitePluginConfigPath;
-            _dllPath = LightweightPluginService.FindLitePluginDisabledPath() ?? LightweightPluginService.LitePluginDllPath;
+            _dllPath = LightweightPluginService.FindLitePluginDisabledPath() ??
+                       LightweightPluginService.LitePluginDllPath;
         }
         else
         {
@@ -245,9 +266,9 @@ private void CheckPluginStates()
                 _dllPath = File.Exists(fpsDisabledPath) ? fpsDisabledPath : fpsEnabledPath;
             }
         }
-        
+
         _presetsDir = Path.Combine(AppPaths.PluginPresetsDir, subDir);
-        
+
         if (!string.IsNullOrEmpty(_iniPath))
         {
             _iniFile = new IniFile(_iniPath);
@@ -287,7 +308,9 @@ private void CheckPluginStates()
             var fileInfo = new FileInfo(_dllPath);
             return fileInfo.Length < 10 * 1024;
         }
-        return false; 
+
+        return false;
     }
+
     #endregion
 }

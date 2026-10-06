@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,7 +17,7 @@ public partial class PluginSettingsViewModel
     private string GetTargetDllHash()
     {
         if (!File.Exists(_dllPath)) return string.Empty;
-        
+
         try
         {
             using var sha256 = SHA256.Create();
@@ -29,6 +30,7 @@ public partial class PluginSettingsViewModel
             return string.Empty;
         }
     }
+
     private void ManagePresets(Dictionary<string, Dictionary<string, string>> currentIniData)
     {
         AvailablePresets.Clear();
@@ -56,7 +58,8 @@ public partial class PluginSettingsViewModel
         {
             if (Directory.Exists(_presetsDir))
             {
-                var presetFiles = Directory.GetFiles(_presetsDir, "*.json").Where(f => !f.EndsWith("active_state.json"));
+                var presetFiles = Directory.GetFiles(_presetsDir, "*.json")
+                    .Where(f => !f.EndsWith("active_state.json"));
                 PresetModel activeModel = null;
 
                 foreach (var file in presetFiles)
@@ -68,29 +71,31 @@ public partial class PluginSettingsViewModel
                         if (preset != null)
                         {
                             preset.FilePath = file;
-                            
+
                             bool presetModified = false;
-                            
+
                             if (preset.ConfigData.Remove("General"))
                             {
                                 presetModified = true;
                             }
-                            
+
                             foreach (var sectionKey in preset.ConfigData.Keys.ToList())
                             {
                                 if (currentIniData.TryGetValue(sectionKey, out var currentSectionData))
                                 {
                                     preset.ConfigData[sectionKey].TryGetValue("Name", out var presetName);
                                     currentSectionData.TryGetValue("Name", out var currentName);
-                                    
+
                                     if (presetName != currentName)
                                     {
-                                        preset.ConfigData[sectionKey] = new Dictionary<string, string>(currentSectionData, StringComparer.OrdinalIgnoreCase);
+                                        preset.ConfigData[sectionKey] =
+                                            new Dictionary<string, string>(currentSectionData,
+                                                StringComparer.OrdinalIgnoreCase);
                                         presetModified = true;
                                     }
                                 }
                             }
-                            
+
                             if (preset.DllHash != currentHash)
                             {
                                 if (IsAutoCreatePresetEnabled)
@@ -121,7 +126,9 @@ public partial class PluginSettingsViewModel
                             }
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 }
 
                 if (activeModel != null && activeModel.IsLocked)
@@ -168,7 +175,7 @@ public partial class PluginSettingsViewModel
             ));
         }
     }
-    
+
     public void ClearAllPresets()
     {
         try
@@ -181,6 +188,7 @@ public partial class PluginSettingsViewModel
                     File.Delete(file);
                 }
             }
+
             AvailablePresets.Clear();
             CurrentPreset = null;
         }
@@ -280,7 +288,8 @@ public partial class PluginSettingsViewModel
     {
         if (preset == null) return;
 
-        var configData = new Dictionary<string, Dictionary<string, string>>(preset.ConfigData, StringComparer.OrdinalIgnoreCase);
+        var configData =
+            new Dictionary<string, Dictionary<string, string>>(preset.ConfigData, StringComparer.OrdinalIgnoreCase);
         configData.Remove("General");
         _iniFile.UpdateMultiple(configData);
     }
@@ -288,13 +297,14 @@ public partial class PluginSettingsViewModel
     private void OnSettingValueChanged(string section, string key, string value)
     {
         if (CurrentPreset == null) return;
-        
+
         if (section.Equals("General", StringComparison.OrdinalIgnoreCase)) return;
 
         if (!CurrentPreset.ConfigData.ContainsKey(section))
         {
             CurrentPreset.ConfigData[section] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         }
+
         CurrentPreset.ConfigData[section][key] = value;
         SavePresetToFile(CurrentPreset);
     }
@@ -338,7 +348,7 @@ public partial class PluginSettingsViewModel
 
         CurrentPreset = targetPreset;
         SaveActiveState();
-        
+
         try
         {
             ApplyPresetConfigToIni(CurrentPreset);
@@ -352,9 +362,9 @@ public partial class PluginSettingsViewModel
                 6000
             ));
         }
-        
+
         LoadConfiguration();
-        
+
         WeakReferenceMessenger.Default.Send(new NotificationMessage(
             "预设已切换",
             $"当前预设: {targetPreset.Name}",
@@ -362,20 +372,20 @@ public partial class PluginSettingsViewModel
             3000
         ));
     }
-    
+
     public void DeletePreset(PresetModel targetPreset)
     {
         if (targetPreset == null || string.IsNullOrEmpty(targetPreset.FilePath)) return;
-        
+
         try
         {
             if (File.Exists(targetPreset.FilePath))
             {
                 File.Delete(targetPreset.FilePath);
             }
-            
+
             AvailablePresets.Remove(targetPreset);
-            
+
             if (CurrentPreset?.Id == targetPreset.Id)
             {
                 LoadConfiguration();
@@ -391,5 +401,6 @@ public partial class PluginSettingsViewModel
             ));
         }
     }
+
     #endregion
 }

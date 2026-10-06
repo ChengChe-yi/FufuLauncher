@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Constants.MiHoYo;
@@ -33,7 +34,7 @@ public sealed class DailyNoteService
     public DailyNoteService()
     {
         _identityService = App.GetService<AccountIdentityService>()
-            ?? throw new InvalidOperationException("DailyNote_NoIdentityService".GetLocalized());
+                           ?? throw new InvalidOperationException("DailyNote_NoIdentityService".GetLocalized());
     }
 
     public async Task<DailyNoteCardData?> GetDailyNoteAsync(string roleId, string server, string? accountId = null)
@@ -103,7 +104,10 @@ public sealed class DailyNoteService
 
             return DailyNoteParser.Parse(json);
         }
-        finally { _semaphore.Release(); }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     private async Task WarmUpPlayerInfoAsync(string playerQuery, AccountContext ctx)

@@ -13,7 +13,7 @@ public static class ServerRegion
     public const string OsEuro = "os_euro";
     public const string OsAsia = "os_asia";
     public const string OsCht = "os_cht";
-    
+
     public static string Resolve(string uid)
     {
         if (string.IsNullOrEmpty(uid) || uid.Length < 9)
@@ -30,7 +30,7 @@ public static class ServerRegion
             _ => CnGf01,
         };
     }
-    
+
     public static bool IsOversea(string server) =>
         server.StartsWith("os_", StringComparison.OrdinalIgnoreCase);
 }

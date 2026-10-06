@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Contracts.Services;
 using Microsoft.UI.Dispatching;
@@ -124,7 +125,8 @@ public sealed class ProcessCpuUsageMonitor : IDisposable
                 return 0;
             }
 
-            return processorDelta.TotalMilliseconds / (timeDelta.TotalMilliseconds * Environment.ProcessorCount) * 100.0;
+            return processorDelta.TotalMilliseconds / (timeDelta.TotalMilliseconds * Environment.ProcessorCount) *
+                   100.0;
         }
         catch (Exception ex)
         {
@@ -162,9 +164,9 @@ public sealed class ProcessCpuUsageMonitor : IDisposable
     private static bool IsObsRunning()
     {
         return Process.GetProcessesByName("obs64").Length > 0
-            || Process.GetProcessesByName("obs32").Length > 0
-            || Process.GetProcessesByName("obs").Length > 0
-            || Process.GetProcessesByName("obs-studio").Length > 0;
+               || Process.GetProcessesByName("obs32").Length > 0
+               || Process.GetProcessesByName("obs").Length > 0
+               || Process.GetProcessesByName("obs-studio").Length > 0;
     }
 
     public void Dispose()
@@ -174,4 +176,3 @@ public sealed class ProcessCpuUsageMonitor : IDisposable
         _currentProcess.Dispose();
     }
 }
-

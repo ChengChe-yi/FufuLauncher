@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.GameServer;
 
@@ -20,19 +21,21 @@ public sealed class ChunkDownloader
     {
         _httpClient = httpClientProvider.ChunkClient;
     }
-    
+
     public Task<string> DownloadChunkAsync(SophonChunk chunk, string chunksDir, KeyedSemaphoreSlim chunkLocks,
         CancellationToken token = default, Action<long>? onBytesTransferred = null)
     {
-        return DownloadBlobAsync(chunk.AssetChunk.ChunkName, chunk.AssetChunk.ChunkSize, chunk.DownloadUrl, chunksDir, chunkLocks, token, onBytesTransferred);
+        return DownloadBlobAsync(chunk.AssetChunk.ChunkName, chunk.AssetChunk.ChunkSize, chunk.DownloadUrl, chunksDir,
+            chunkLocks, token, onBytesTransferred);
     }
-    
-    public async Task<string> DownloadBlobAsync(string name, long expectedSize, string url, string chunksDir, KeyedSemaphoreSlim chunkLocks,
+
+    public async Task<string> DownloadBlobAsync(string name, long expectedSize, string url, string chunksDir,
+        KeyedSemaphoreSlim chunkLocks,
         CancellationToken token = default, Action<long>? onBytesTransferred = null)
     {
         string chunkPath = Path.Combine(chunksDir, name);
         string expectedHashPrefix = name.Split('_')[0];
-        
+
         using (await chunkLocks.LockAsync(name, token).ConfigureAwait(false))
         {
             if (File.Exists(chunkPath))
@@ -52,14 +55,15 @@ public sealed class ChunkDownloader
                 string tempPath = chunkPath + ".tmp";
                 try
                 {
-                    await DownloadFileCoreAsync(url, tempPath, expectedSize, token, onBytesTransferred).ConfigureAwait(false);
+                    await DownloadFileCoreAsync(url, tempPath, expectedSize, token, onBytesTransferred)
+                        .ConfigureAwait(false);
 
                     if (await IsValidChunkAsync(tempPath, expectedHashPrefix, token).ConfigureAwait(false))
                     {
                         File.Move(tempPath, chunkPath, overwrite: true);
                         return chunkPath;
                     }
-                    
+
                     TryDeleteFile(tempPath);
                 }
                 catch (OperationCanceledException) when (!token.IsCancellationRequested)
@@ -84,7 +88,7 @@ public sealed class ChunkDownloader
             throw new InvalidOperationException(string.Format("GameServer_ChunkDownloadFailed".GetLocalized(), name));
         }
     }
-    
+
     public async Task DownloadFileAsync(string url, string destPath, long? expectedSize, string? expectedMd5Hex,
         CancellationToken token = default, Action<long>? onBytesTransferred = null)
     {
@@ -94,7 +98,8 @@ public sealed class ChunkDownloader
 
             try
             {
-                await DownloadFileCoreAsync(url, destPath, expectedSize, token, onBytesTransferred).ConfigureAwait(false);
+                await DownloadFileCoreAsync(url, destPath, expectedSize, token, onBytesTransferred)
+                    .ConfigureAwait(false);
 
                 if (!string.IsNullOrEmpty(expectedMd5Hex))
                 {
@@ -105,7 +110,8 @@ public sealed class ChunkDownloader
                     }
 
                     TryDeleteFile(destPath);
-                    throw new InvalidOperationException(string.Format("GameServer_FileChecksumMismatch".GetLocalized(), url));
+                    throw new InvalidOperationException(string.Format("GameServer_FileChecksumMismatch".GetLocalized(),
+                        url));
                 }
 
                 return;
@@ -130,27 +136,34 @@ public sealed class ChunkDownloader
         }
     }
 
-    private async Task DownloadFileCoreAsync(string url, string destPath, long? expectedSize, CancellationToken token, Action<long>? onBytesTransferred)
+    private async Task DownloadFileCoreAsync(string url, string destPath, long? expectedSize, CancellationToken token,
+        Action<long>? onBytesTransferred)
     {
         using var attemptCts = CancellationTokenSource.CreateLinkedTokenSource(token);
         attemptCts.CancelAfter(AttemptAbsoluteTimeout);
 
-        using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, attemptCts.Token).ConfigureAwait(false);
+        using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, attemptCts.Token)
+            .ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
 
-        await using var contentStream = await response.Content.ReadAsStreamAsync(attemptCts.Token).ConfigureAwait(false);
-        await using var fileStream = new FileStream(destPath, FileMode.Create, FileAccess.Write, FileShare.None, BufferSize, useAsync: true);
+        await using var contentStream =
+            await response.Content.ReadAsStreamAsync(attemptCts.Token).ConfigureAwait(false);
+        await using var fileStream = new FileStream(destPath, FileMode.Create, FileAccess.Write, FileShare.None,
+            BufferSize, useAsync: true);
 
-        await CopyWithStallWatchdogAsync(contentStream, fileStream, attemptCts, onBytesTransferred).ConfigureAwait(false);
+        await CopyWithStallWatchdogAsync(contentStream, fileStream, attemptCts, onBytesTransferred)
+            .ConfigureAwait(false);
         await fileStream.FlushAsync(attemptCts.Token).ConfigureAwait(false);
 
         if (expectedSize.HasValue && fileStream.Length != expectedSize.Value)
         {
-            throw new InvalidOperationException(string.Format("GameServer_FileSizeMismatch".GetLocalized(), url, fileStream.Length, expectedSize.Value));
+            throw new InvalidOperationException(string.Format("GameServer_FileSizeMismatch".GetLocalized(), url,
+                fileStream.Length, expectedSize.Value));
         }
     }
-    
-    private static async Task CopyWithStallWatchdogAsync(Stream source, Stream destination, CancellationTokenSource attemptCts, Action<long>? onBytesTransferred)
+
+    private static async Task CopyWithStallWatchdogAsync(Stream source, Stream destination,
+        CancellationTokenSource attemptCts, Action<long>? onBytesTransferred)
     {
         byte[] buffer = new byte[BufferSize];
         long lastProgressTicks = Environment.TickCount64;
@@ -162,7 +175,8 @@ public sealed class ChunkDownloader
             {
                 while (await timer.WaitForNextTickAsync(CancellationToken.None).ConfigureAwait(false))
                 {
-                    if (Environment.TickCount64 - Volatile.Read(ref lastProgressTicks) >= (long)StallThreshold.TotalMilliseconds)
+                    if (Environment.TickCount64 - Volatile.Read(ref lastProgressTicks) >=
+                        (long)StallThreshold.TotalMilliseconds)
                     {
                         attemptCts.Cancel();
                         return;
@@ -206,7 +220,8 @@ public sealed class ChunkDownloader
         }
     }
 
-    private static async Task<bool> IsValidChunkAsync(string chunkPath, string expectedHashPrefix, CancellationToken token)
+    private static async Task<bool> IsValidChunkAsync(string chunkPath, string expectedHashPrefix,
+        CancellationToken token)
     {
         try
         {

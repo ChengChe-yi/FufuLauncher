@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
@@ -40,7 +41,10 @@ public sealed partial class BlankPage
             }
             catch
             {
-                try { File.Delete(_accountsFilePath); }
+                try
+                {
+                    File.Delete(_accountsFilePath);
+                }
                 catch
                 {
                     // ignored
@@ -64,10 +68,18 @@ public sealed partial class BlankPage
         try
         {
             using var key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\miHoYo\原神");
-            if (key == null) { await ShowError("Err_CannotAccessRegistry".GetLocalized()); return; }
+            if (key == null)
+            {
+                await ShowError("Err_CannotAccessRegistry".GetLocalized());
+                return;
+            }
 
             var sdkData = key.GetValue("MIHOYOSDK_ADL_PROD_CN_h3123967166") as byte[];
-            if (sdkData == null) { await ShowError("Err_NoLoggedInAccount".GetLocalized()); return; }
+            if (sdkData == null)
+            {
+                await ShowError("Err_NoLoggedInAccount".GetLocalized());
+                return;
+            }
 
             int nullIndex = Array.IndexOf(sdkData, (byte)0);
             int length = nullIndex >= 0 ? nullIndex : sdkData.Length;
@@ -104,7 +116,8 @@ public sealed partial class BlankPage
             string accountName = inputTextBox.Text.Trim();
             if (string.IsNullOrEmpty(accountName))
             {
-                accountName = string.Format("Prefix_Account_Format".GetLocalized(), DateTime.Now.ToString("MMdd_HHmmss"));
+                accountName = string.Format("Prefix_Account_Format".GetLocalized(),
+                    DateTime.Now.ToString("MMdd_HHmmss"));
             }
 
             accounts.Add(new GameAccountData
@@ -135,7 +148,11 @@ public sealed partial class BlankPage
             if ((sender as Button)?.Tag is not GameAccountData account) return;
 
             using var key = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(@"Software\miHoYo\原神");
-            if (key == null) { await ShowError("Err_CannotAccessRegistry".GetLocalized()); return; }
+            if (key == null)
+            {
+                await ShowError("Err_CannotAccessRegistry".GetLocalized());
+                return;
+            }
 
             var sdkBytes = Encoding.UTF8.GetBytes(account.SdkData);
             var target = new byte[sdkBytes.Length + 1];
@@ -204,7 +221,9 @@ public sealed partial class BlankPage
                 await SaveAccountsToFileAsync(accounts);
             }
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     private async Task<List<GameAccountData>> LoadAccountsFromFileAsync()
@@ -215,7 +234,10 @@ public sealed partial class BlankPage
             var json = await File.ReadAllTextAsync(_accountsFilePath, Encoding.UTF8);
             return JsonSerializer.Deserialize<List<GameAccountData>>(json) ?? new List<GameAccountData>();
         }
-        catch { return new List<GameAccountData>(); }
+        catch
+        {
+            return new List<GameAccountData>();
+        }
     }
 
     private async Task SaveAccountsToFileAsync(List<GameAccountData> accounts)
@@ -227,7 +249,10 @@ public sealed partial class BlankPage
             var options = new JsonSerializerOptions { WriteIndented = true };
             await File.WriteAllTextAsync(_accountsFilePath, JsonSerializer.Serialize(accounts, options), Encoding.UTF8);
         }
-        catch (Exception ex) { Debug.WriteLine($"[SaveAccountsToFileAsync] 失败: {ex.Message}"); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[SaveAccountsToFileAsync] 失败: {ex.Message}");
+        }
     }
 
     #endregion

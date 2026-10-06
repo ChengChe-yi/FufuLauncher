@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using System.Text.RegularExpressions;
 using FufuLauncher.Helpers;
@@ -22,8 +23,8 @@ public static class GachaCacheService
         var isDirectory = Directory.Exists(gamePath);
         var executable = Path.GetFileName(gamePath);
         if (!isDirectory && (!File.Exists(gamePath) ||
-            (!executable.Equals("YuanShen.exe", StringComparison.OrdinalIgnoreCase) &&
-             !executable.Equals("GenshinImpact.exe", StringComparison.OrdinalIgnoreCase))))
+                             (!executable.Equals("YuanShen.exe", StringComparison.OrdinalIgnoreCase) &&
+                              !executable.Equals("GenshinImpact.exe", StringComparison.OrdinalIgnoreCase))))
             throw new DirectoryNotFoundException();
         var gameDirectory = isDirectory ? gamePath : Path.GetDirectoryName(gamePath);
         if (string.IsNullOrEmpty(gameDirectory) || !Directory.Exists(gameDirectory))
@@ -38,7 +39,8 @@ public static class GachaCacheService
         var files = new List<FileInfo>();
         foreach (var dataDirectory in new[] { "YuanShen_Data", "GenshinImpact_Data" })
         {
-            if (!isDirectory && !dataDirectory.StartsWith(Path.GetFileNameWithoutExtension(executable), StringComparison.OrdinalIgnoreCase))
+            if (!isDirectory && !dataDirectory.StartsWith(Path.GetFileNameWithoutExtension(executable),
+                    StringComparison.OrdinalIgnoreCase))
                 continue;
             var cacheRoot = Path.Combine(gameDirectory, dataDirectory, "webCaches");
             if (!Directory.Exists(cacheRoot)) continue;
@@ -47,11 +49,13 @@ public static class GachaCacheService
                 foreach (var file in Directory.EnumerateFiles(cacheDirectory))
                 {
                     var name = Path.GetFileName(file);
-                    if (name.StartsWith("data_", StringComparison.Ordinal) || name.EndsWith("_0", StringComparison.Ordinal))
+                    if (name.StartsWith("data_", StringComparison.Ordinal) ||
+                        name.EndsWith("_0", StringComparison.Ordinal))
                         files.Add(new FileInfo(file));
                 }
             }
         }
+
         if (files.Count == 0) throw new FileNotFoundException();
 
         GachaLink? latest = null;
@@ -81,11 +85,14 @@ public static class GachaCacheService
                             if (match.Length <= MaxUrlLength) tail = match.Value;
                             continue;
                         }
+
                         Consider(match.Value, file.LastWriteTimeUtc);
                     }
+
                     // Preserve a split "https://" prefix as well as a URL split across buffers.
                     if (tail.Length == 0) tail = text[^Math.Min(7, text.Length)..];
                 }
+
                 Consider(tail, file.LastWriteTimeUtc);
                 readAnyFile = true;
             }
@@ -100,6 +107,7 @@ public static class GachaCacheService
                 unreadFileTime = file.LastWriteTimeUtc > unreadFileTime ? file.LastWriteTimeUtc : unreadFileTime;
             }
         }
+
         // An unreadable newer cache could contain another account; do not silently use an older link.
         if (readError != null && (!readAnyFile || unreadFileTime >= latestFileTime)) throw readError;
         return latest;

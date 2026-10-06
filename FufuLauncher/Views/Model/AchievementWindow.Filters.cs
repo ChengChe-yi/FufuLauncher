@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Net;
@@ -83,11 +84,13 @@ public sealed partial class AchievementWindow
                 ViewModel.FilteredAchievements.Clear();
                 return;
             }
+
             sourceList = ViewModel.SelectedCategory.Achievements;
         }
 
         var resultList = new List<AchievementItem>();
-        bool isFilterVer = ViewModel.SelectedVersion != "AchievementWindow_AllVersions".GetLocalized() && !string.IsNullOrEmpty(ViewModel.SelectedVersion);
+        bool isFilterVer = ViewModel.SelectedVersion != "AchievementWindow_AllVersions".GetLocalized() &&
+                           !string.IsNullOrEmpty(ViewModel.SelectedVersion);
 
         foreach (var item in sourceList)
         {
@@ -98,7 +101,8 @@ public sealed partial class AchievementWindow
                 if (isGlobalSearch)
                 {
                     if (item.Title != null && item.Title.ToLower().Contains(search)) matchGroup = true;
-                    else if (item.Children.Any(c => c.Description != null && c.Description.ToLower().Contains(search))) matchGroup = true;
+                    else if (item.Children.Any(c => c.Description != null && c.Description.ToLower().Contains(search)))
+                        matchGroup = true;
                 }
                 else
                 {
@@ -107,7 +111,8 @@ public sealed partial class AchievementWindow
 
                 if (isFilterVer)
                 {
-                    if (item.Version != ViewModel.SelectedVersion && !item.Children.Any(c => c.Version == ViewModel.SelectedVersion))
+                    if (item.Version != ViewModel.SelectedVersion &&
+                        !item.Children.Any(c => c.Version == ViewModel.SelectedVersion))
                         matchGroup = false;
                 }
 
@@ -142,7 +147,9 @@ public sealed partial class AchievementWindow
     }
 
     private void OnCategorySelectionChanged(object sender, SelectionChangedEventArgs e) => ApplyFilters();
-    private void OnToggleViewMode(object sender, RoutedEventArgs e) => ViewModel.IsCategoryGridMode = !ViewModel.IsCategoryGridMode;
+
+    private void OnToggleViewMode(object sender, RoutedEventArgs e) =>
+        ViewModel.IsCategoryGridMode = !ViewModel.IsCategoryGridMode;
 
     private void OnCategoryGridItemClick(object sender, ItemClickEventArgs e)
     {

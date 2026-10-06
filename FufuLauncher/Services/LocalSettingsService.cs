@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text.Json;
@@ -15,13 +16,12 @@ using Sentry;
 namespace FufuLauncher.Services
 {
     /// <summary>
-    /// 本地设置存储。读取采用"懒加载 + 后台全量加载"两段式：
-    /// <list type="number">
-    /// <item>首次触碰时立即返回，不读表；</item>
-    /// <item>同时在后台线程全量加载，填充快照；</item>
-    /// <item>快照就绪前的读取按需单键查库（懒加载），命中后并入快照。</item>
-    /// </list>
-
+    ///     本地设置存储。读取采用"懒加载 + 后台全量加载"两段式：
+    ///     <list type="number">
+    ///         <item>首次触碰时立即返回，不读表；</item>
+    ///         <item>同时在后台线程全量加载，填充快照；</item>
+    ///         <item>快照就绪前的读取按需单键查库（懒加载），命中后并入快照。</item>
+    ///     </list>
     /// </summary>
     public class LocalSettingsService : ILocalSettingsService
     {
@@ -40,7 +40,7 @@ namespace FufuLauncher.Services
         /// <summary>加载窗口内被删除的键；合并快照时不得重新填回，在途懒加载也不得写回。</summary>
         private readonly ConcurrentDictionary<string, byte> _removedDuringLoad = new();
 
-       
+
         private readonly object _stateLock = new();
 
 
@@ -49,10 +49,10 @@ namespace FufuLauncher.Services
 
         private readonly SemaphoreSlim _fullLoadGate = new(1, 1);
 
-      
+
         private bool _fullLoadCompleted;
 
-     
+
         private Task? _backgroundLoadTask;
 
         private DateTime? _lastLoadFailureUtc;
@@ -178,6 +178,7 @@ namespace FufuLauncher.Services
                         4000
                     ));
                 }
+
                 return;
             }
 
@@ -208,6 +209,7 @@ namespace FufuLauncher.Services
                             kept++;
                             SettingsLog.Write($"LocalSettingsService: '{key}' 内存值与快照不一致，保留内存值");
                         }
+
                         continue;
                     }
 
@@ -221,9 +223,9 @@ namespace FufuLauncher.Services
                 _lastLoadFailureUtc = null;
             }
 
-            Debug.WriteLine($"LocalSettingsService: 全量加载完成，共 {all.Count} 项（新增 {added}，保留内存值 {kept}，跳过已删除 {skippedRemoved}）");
+            Debug.WriteLine(
+                $"LocalSettingsService: 全量加载完成，共 {all.Count} 项（新增 {added}，保留内存值 {kept}，跳过已删除 {skippedRemoved}）");
         }
-
 
 
         public async Task<bool> InvalidateAndReloadAsync()
@@ -329,7 +331,7 @@ namespace FufuLauncher.Services
             }
         }
 
-      
+
         private bool IsKnownAbsentLocked(string key) =>
             _fullLoadCompleted || _removedDuringLoad.ContainsKey(key) || _missingDuringLoad.ContainsKey(key);
 
@@ -402,8 +404,8 @@ namespace FufuLauncher.Services
                 WeakReferenceMessenger.Default.Send(new NotificationMessage(
                     "Settings_ConfigSaveFailed".GetLocalized(),
                     string.Format("Settings_ConfigSaveFailedMsg".GetLocalized(), ex.Message)
-                        + Environment.NewLine
-                        + string.Format("Settings_ConfigSaveFailedPathHint".GetLocalized(), AppPaths.LocalSettingsDb),
+                    + Environment.NewLine
+                    + string.Format("Settings_ConfigSaveFailedPathHint".GetLocalized(), AppPaths.LocalSettingsDb),
                     NotificationType.Error,
                     5000));
                 return false;

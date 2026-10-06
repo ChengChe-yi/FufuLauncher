@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Models;
 
@@ -32,7 +33,7 @@ public partial class GachaAnalysisModel
             foreach (var log in logs)
             {
                 if (string.IsNullOrEmpty(log.ItemId) && !string.IsNullOrEmpty(log.Name)
-                    && byName.TryGetValue(log.Name, out var byNameMeta))
+                                                     && byName.TryGetValue(log.Name, out var byNameMeta))
                 {
                     log.ItemId = byNameMeta.ItemId;
                     filledItemId++;
@@ -40,7 +41,7 @@ public partial class GachaAnalysisModel
                 }
 
                 if (string.IsNullOrEmpty(log.Name) && !string.IsNullOrEmpty(log.ItemId)
-                    && byItemId.TryGetValue(log.ItemId, out var byIdMeta))
+                                                   && byItemId.TryGetValue(log.ItemId, out var byIdMeta))
                 {
                     log.Name = byIdMeta.Name;
                     filledName++;
@@ -48,8 +49,8 @@ public partial class GachaAnalysisModel
                 }
 
                 if (string.IsNullOrEmpty(log.RankType) && !string.IsNullOrEmpty(log.ItemId)
-                    && byItemId.TryGetValue(log.ItemId, out var byIdRankMeta)
-                    && !string.IsNullOrEmpty(byIdRankMeta.Rank))
+                                                       && byItemId.TryGetValue(log.ItemId, out var byIdRankMeta)
+                                                       && !string.IsNullOrEmpty(byIdRankMeta.Rank))
                 {
                     log.RankType = byIdRankMeta.Rank;
                     changed = true;
@@ -57,7 +58,8 @@ public partial class GachaAnalysisModel
             }
         }
 
-        Debug.WriteLine($"[Gacha] 通过缓存元数据补全记录：name→id 映射 {byName.Count} 条（补全 {filledItemId} 条）、id→name 映射 {byItemId.Count} 条（补全 {filledName} 条）");
+        Debug.WriteLine(
+            $"[Gacha] 通过缓存元数据补全记录：name→id 映射 {byName.Count} 条（补全 {filledItemId} 条）、id→name 映射 {byItemId.Count} 条（补全 {filledName} 条）");
 
         return changed;
     }
@@ -70,6 +72,7 @@ public partial class GachaAnalysisModel
         {
             if (long.TryParse(log.Id, out var id) && id > max) max = id;
         }
+
         return max;
     }
 
