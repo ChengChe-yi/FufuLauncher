@@ -6947,7 +6947,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>拒绝访问</value>
   </data>
   <data name="BanCheck_KilledMessage" xml:space="preserve">
-    <value>此设备已被禁止使用芙芙启动器。{0}{0}UID：{1}{0}原因：{2}{0}{0}如果你认为这是误判，可以在 GitHub 提交申诉：{0}{3}{0}{0}是否立即打开申诉页面？选择“否”将直接关闭启动器。</value>
+    <value>此设备已被禁止使用芙芙启动器。{0}{0}UID：{1}{0}原因：{2}{0}{0}如果你认为这是误判，可以前往以下地址提交申诉（若 UID 显示为“-”，申诉时可不填）：{0}{3}{0}{0}是否立即打开申诉页面？选择“否”将直接关闭启动器。</value>
   </data>
   <data name="BanCheck_RevokedReason" xml:space="preserve">
     <value>访问已被服务端撤销</value>

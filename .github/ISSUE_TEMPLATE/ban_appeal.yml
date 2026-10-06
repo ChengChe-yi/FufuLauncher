@@ -30,10 +30,13 @@ body:
     id: uid
     attributes:
       label: UID
-      description: 请填写提示窗口中显示的 UID（通常是触发封禁的那个账号）
-      placeholder: 例如：283006688
+      description: |
+        提示窗口"UID"一行显示的号码。
+        若显示为 `-`（通常出现在"访问已被服务端撤销"的提示中），
+        且你不确定涉及哪个账号，**请留空**，并在下方情况说明中写明你使用的账号。
+      placeholder: 例如：283006688（不确定时留空）
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: reason
