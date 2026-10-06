@@ -6190,4 +6190,21 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Конфликт одинаковых DLL устранён. Можно перезапустить игру.</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Изменения сохраняются автоматически</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Сохранение…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Не удалось сохранить конфигурацию</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Не удалось записать файл конфигурации. Проверьте права доступа и повторите попытку. Подробности: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Не удалось загрузить конфигурацию</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Не удалось прочитать файл конфигурации плагина. Подробности: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Убедитесь, что файл конфигурации существует и доступен для чтения, затем загрузите его заново.</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>Файл конфигурации не существует: {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Нет доступных настроек</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Этот плагин не предоставляет изменяемых настроек.</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Подходящие настройки не найдены</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Попробуйте другое ключевое слово или очистите поиск.</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Очистить поиск</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>Настроек: {0}</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>Настроек: {0} / {1}</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>Файл конфигурации</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Введите значение…</value></data>
 </root>

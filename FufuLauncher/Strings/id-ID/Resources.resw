@@ -6190,4 +6190,21 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Konflik DLL dengan nama sama sudah teratasi. Anda dapat memulai ulang game.</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Perubahan disimpan secara otomatis</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Menyimpan…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Gagal menyimpan konfigurasi</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Tidak dapat menulis file konfigurasi. Periksa izin file dan coba lagi. Detail: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Gagal memuat konfigurasi</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Tidak dapat membaca file konfigurasi plugin. Detail: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Pastikan file konfigurasi tersedia dan dapat dibaca, lalu muat ulang.</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>File konfigurasi tidak ditemukan: {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Tidak ada pengaturan yang dapat dikonfigurasi</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Plugin ini tidak menyediakan pengaturan yang dapat disesuaikan.</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Tidak ada pengaturan yang cocok</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Coba kata kunci lain atau hapus pencarian.</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Hapus pencarian</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} pengaturan</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} pengaturan</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>File konfigurasi</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Masukkan nilai…</value></data>
 </root>

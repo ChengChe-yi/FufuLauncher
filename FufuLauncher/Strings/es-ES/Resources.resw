@@ -6190,4 +6190,21 @@ Puedes reintentar con otro nodo o usar la fuente oficial directa.</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>El conflicto de DLL duplicadas se ha resuelto. Ya puedes reiniciar el juego.</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Los cambios se guardan automáticamente</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Guardando…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>No se pudo guardar la configuración</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>No se pudo escribir el archivo de configuración. Comprueba los permisos del archivo e inténtalo de nuevo. Detalles: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>No se pudo cargar la configuración</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>No se pudo leer el archivo de configuración del complemento. Detalles: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Comprueba que el archivo de configuración existe y se puede leer, y vuelve a cargarlo.</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>El archivo de configuración no existe: {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>No hay ajustes configurables</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Este complemento no ofrece ajustes modificables.</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>No hay ajustes coincidentes</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Prueba otra palabra clave o borra la búsqueda.</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Borrar búsqueda</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} ajustes</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} ajustes</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>Archivo de configuración</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Introduce un valor…</value></data>
 </root>

@@ -6667,4 +6667,21 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>एक ही नाम की DLL का टकराव हल हो गया है। अब आप गेम दोबारा शुरू कर सकते हैं।</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>बदलाव अपने आप सहेजे जाते हैं</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>सहेजा जा रहा है…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>कॉन्फ़िगरेशन सहेजने में विफल</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>कॉन्फ़िगरेशन फ़ाइल में लिखा नहीं जा सका। फ़ाइल की अनुमतियाँ जाँचें और फिर प्रयास करें। विवरण: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>कॉन्फ़िगरेशन लोड करने में विफल</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>प्लगइन की कॉन्फ़िगरेशन फ़ाइल पढ़ी नहीं जा सकी। विवरण: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>सुनिश्चित करें कि कॉन्फ़िगरेशन फ़ाइल मौजूद है और पढ़ी जा सकती है, फिर उसे दोबारा लोड करें।</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>कॉन्फ़िगरेशन फ़ाइल मौजूद नहीं है: {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>कोई कॉन्फ़िगर करने योग्य सेटिंग नहीं</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>यह प्लगइन बदलने योग्य सेटिंग प्रदान नहीं करता है।</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>कोई मेल खाती सेटिंग नहीं मिली</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>कोई दूसरा कीवर्ड आज़माएँ या खोज साफ़ करें।</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>खोज साफ़ करें</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} सेटिंग</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} सेटिंग</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>कॉन्फ़िगरेशन फ़ाइल</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>मान दर्ज करें…</value></data>
 </root>

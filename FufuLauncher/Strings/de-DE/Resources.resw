@@ -1001,7 +1001,7 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
     <value>PR einreichen</value>
   </data>
   <data name="EnableInjectionParenLabel" xml:space="preserve">
-    <value>Injektion aktivieren (Injection)</value>
+    <value>Injektion aktivieren </value>
   </data>
   <data name="ConfigPresetLabel" xml:space="preserve">
     <value>Konfigurationsvorgabe:</value>
@@ -6190,4 +6190,21 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Der Konflikt mit gleichnamigen DLLs wurde behoben. Sie können das Spiel jetzt neu starten.</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Änderungen werden automatisch gespeichert</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Wird gespeichert…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Konfiguration konnte nicht gespeichert werden</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Die Konfigurationsdatei konnte nicht geschrieben werden. Prüfen Sie die Dateiberechtigungen und versuchen Sie es erneut. Details: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Konfiguration konnte nicht geladen werden</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Die Plugin-Konfigurationsdatei konnte nicht gelesen werden. Details: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Stellen Sie sicher, dass die Konfigurationsdatei vorhanden und lesbar ist, und laden Sie sie erneut.</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>Die Konfigurationsdatei ist nicht vorhanden: {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Keine konfigurierbaren Einstellungen</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Dieses Plugin bietet keine anpassbaren Einstellungen.</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Keine passenden Einstellungen</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Versuchen Sie einen anderen Suchbegriff oder leeren Sie die Suche.</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Suche leeren</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} Einstellungen</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} Einstellungen</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>Konfigurationsdatei</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Wert eingeben…</value></data>
 </root>

@@ -889,13 +889,13 @@
     <value>修改日期: </value>
   </data>
   <data name="FunctionsMenuBtn" xml:space="preserve">
-    <value>功能(Download/Repair)</value>
+    <value>功能</value>
   </data>
   <data name="DownloadPluginBtn" xml:space="preserve">
-    <value>下载插件(Download)</value>
+    <value>下载插件</value>
   </data>
   <data name="RepairFpsPluginBtn" xml:space="preserve">
-    <value>修复FPS显示插件(Repair)</value>
+    <value>修复FPS显示插件</value>
   </data>
   <data name="MainPluginEnabledLabel" xml:space="preserve">
     <value>主插件启用</value>
@@ -949,7 +949,7 @@
     <value>提交PR</value>
   </data>
   <data name="EnableInjectionParenLabel" xml:space="preserve">
-    <value>启用注入(Injection)</value>
+    <value>启用注入</value>
   </data>
   <data name="ConfigPresetLabel" xml:space="preserve">
     <value>配置预设:</value>
@@ -7013,4 +7013,21 @@ UIGF v4.x/3.0/2.x</value>
   <data name="MiyousheQr_Stopped" xml:space="preserve"><value>已停止扫描。</value></data>
   <data name="MiyousheQr_RegionUnavailable" xml:space="preserve"><value>选中区域已不可用，请重新框选二维码区域。</value></data>
   <data name="MiyousheQr_SessionLimit" xml:space="preserve"><value>本次持续扫描已达到上限，请重新开始扫描。</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>修改将自动保存</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>正在保存…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>配置保存失败</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>无法写入配置文件，请检查文件权限后重试。错误详情：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>配置加载失败</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>无法读取插件配置文件。错误详情：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>请确认配置文件存在且可读取，然后重新加载。</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>配置文件不存在：{0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>暂无可配置的参数</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>此插件尚未提供可调整的配置参数。</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>未找到匹配的配置项</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>请尝试其他关键词，或清空搜索条件。</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>清空搜索</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} 个配置项</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} 个配置项</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>配置文件</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>请输入配置值…</value></data>
 </root>

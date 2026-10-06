@@ -212,27 +212,6 @@
                                            StringTemplate="{StaticResource StringTemplate}"
                                            KeyTemplate="{StaticResource KeyTemplate}" />
 
-        <Style x:Key="SettingGridViewItemStyle" TargetType="GridViewItem">
-            <Setter Property="Margin" Value="0,0,24,24"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="MinHeight" Value="0"/>
-            <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="GridViewItem">
-                        <ContentPresenter />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <ItemsPanelTemplate x:Key="SettingItemsPanel">
-            <ItemsWrapGrid Orientation="Horizontal" />
-        </ItemsPanelTemplate>
-        
         <Storyboard x:Name="EntranceStoryboard">
             <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
                              Storyboard.TargetProperty="Opacity"

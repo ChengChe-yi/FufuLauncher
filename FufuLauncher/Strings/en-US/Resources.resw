@@ -7015,4 +7015,21 @@ Error: {0}</value>
   <data name="MiyousheQr_Stopped" xml:space="preserve"><value>Scanning stopped.</value></data>
   <data name="MiyousheQr_RegionUnavailable" xml:space="preserve"><value>The selected region is unavailable. Select the QR region again.</value></data>
   <data name="MiyousheQr_SessionLimit" xml:space="preserve"><value>The continuous scan session reached its limit. Start a new session.</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Changes are saved automatically</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Saving…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Configuration save failed</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Unable to write the configuration file. Check file permissions and try again. Details: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Configuration load failed</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Unable to read the plugin configuration file. Details: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Make sure the configuration file exists and is readable, then reload it.</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>The configuration file does not exist: {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>No configurable settings</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>This plugin does not expose any adjustable settings.</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>No matching settings</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Try another keyword or clear the search.</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Clear search</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} settings</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} settings</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>Configuration file</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Enter a value…</value></data>
 </root>
