@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -29,14 +30,52 @@ public enum ModTrustStatus
 
 public sealed class ModTrustResult
 {
-    public required string FilePath { get; init; }
-    public required ModTrustStatus Status { get; init; }
-    public string SignerSubject { get; init; } = string.Empty;
-    public string? SignerId { get; init; }
-    public string SerialNumberHex { get; init; } = string.Empty;
-    public string ThumbprintSha256 { get; init; } = string.Empty;
-    public bool OsChainTrusted { get; init; }
-    public List<string> Details { get; } = new();
+    public required string FilePath
+    {
+        get;
+        init;
+    }
+
+    public required ModTrustStatus Status
+    {
+        get;
+        init;
+    }
+
+    public string SignerSubject
+    {
+        get;
+        init;
+    } = string.Empty;
+
+    public string? SignerId
+    {
+        get;
+        init;
+    }
+
+    public string SerialNumberHex
+    {
+        get;
+        init;
+    } = string.Empty;
+
+    public string ThumbprintSha256
+    {
+        get;
+        init;
+    } = string.Empty;
+
+    public bool OsChainTrusted
+    {
+        get;
+        init;
+    }
+
+    public List<string> Details
+    {
+        get;
+    } = new();
 
     public bool IsAllowed => Status is ModTrustStatus.TrustedPlatform or ModTrustStatus.TrustedAllowlisted;
 
@@ -141,7 +180,8 @@ public static class CodeSignatureVerifier
                 return result.Clone(ModTrustStatus.Revoked);
             }
 
-            if (!CodeSigningPolicy.IsLeafPolicyCompliant(leaf, package.Manifest.MaxLeafValidityDays, out var violations))
+            if (!CodeSigningPolicy.IsLeafPolicyCompliant(leaf, package.Manifest.MaxLeafValidityDays,
+                    out var violations))
             {
                 foreach (var violation in violations) result.Details.Add(violation);
                 return result.Clone(ModTrustStatus.PolicyViolation);
@@ -149,7 +189,8 @@ public static class CodeSignatureVerifier
 
             if (!osTrusted)
             {
-                result.Details.Add("OS trust chain not established (root certificate not installed); verified against the platform root certificate instead");
+                result.Details.Add(
+                    "OS trust chain not established (root certificate not installed); verified against the platform root certificate instead");
             }
 
             result.Details.Add("issued by the platform code signing CA and compliant with policy");

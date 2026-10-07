@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Models.GameAnnouncement;
 using FufuLauncher.ViewModels;
@@ -56,7 +57,7 @@ public sealed partial class GameAnnouncementListPage : Page
     {
         ZoomCardImage((FrameworkElement)sender, 1.0);
     }
-    
+
     private static void ZoomCardImage(FrameworkElement card, double target)
     {
         if (card.FindName("BannerImage") is GameAnnouncementBanner banner)

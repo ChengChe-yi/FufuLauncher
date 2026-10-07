@@ -11,6 +11,7 @@ YaeAchievementPipe 命名管道服务端，运行在提权子进程中。
 - 0x03：读取 12 字节属性对
 - 0xFF：写入 true，结束游戏
 */
+
 using System.IO.Pipes;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -26,7 +27,7 @@ internal sealed class YaeNamedPipeServer
     private YaeGameProcess? _game;
 
     /// <summary>
-    /// 构造函数即创建管道实例，确保注入的游戏 DLL 连接时管道已存在。
+    ///     构造函数即创建管道实例，确保注入的游戏 DLL 连接时管道已存在。
     /// </summary>
     public YaeNamedPipeServer(YaeNativeConfiguration config)
     {
@@ -38,7 +39,7 @@ internal sealed class YaeNamedPipeServer
     public void AttachGame(YaeGameProcess game) => _game = game;
 
     /// <summary>
-    /// 等待游戏内注入的 Yae 客户端连接并收集全部数据，直到会话结束。
+    ///     等待游戏内注入的 Yae 客户端连接并收集全部数据，直到会话结束。
     /// </summary>
     public List<YaeData> Collect()
     {
@@ -91,30 +92,30 @@ internal sealed class YaeNamedPipeServer
 
                 case YaeCommandKind.ResponseAchievement:
                 case YaeCommandKind.ResponsePlayerStore:
-                    {
-                        int contentLength = reader.ReadInt32();
-                        var payload = new byte[contentLength];
-                        reader.BaseStream.ReadExactly(payload);
-                        list.Add(new YaeData((YaeCommandKind)rawKind, payload));
-                        break;
-                    }
+                {
+                    int contentLength = reader.ReadInt32();
+                    var payload = new byte[contentLength];
+                    reader.BaseStream.ReadExactly(payload);
+                    list.Add(new YaeData((YaeCommandKind)rawKind, payload));
+                    break;
+                }
 
                 case YaeCommandKind.ResponsePlayerProp:
-                    {
-                        var payload = new byte[Marshal.SizeOf<YaePropertyTypeValue>()];
-                        reader.BaseStream.ReadExactly(payload);
-                        list.Add(new YaeData(YaeCommandKind.ResponsePlayerProp, payload));
-                        break;
-                    }
+                {
+                    var payload = new byte[Marshal.SizeOf<YaePropertyTypeValue>()];
+                    reader.BaseStream.ReadExactly(payload);
+                    list.Add(new YaeData(YaeCommandKind.ResponsePlayerProp, payload));
+                    break;
+                }
 
                 case YaeCommandKind.SessionEnd:
-                    {
-                        writer.Write(true);
-                        writer.Flush();
-                        _game.Kill();
-                        list.Add(YaeData.SessionEnd);
-                        return list;
-                    }
+                {
+                    writer.Write(true);
+                    writer.Flush();
+                    _game.Kill();
+                    list.Add(YaeData.SessionEnd);
+                    return list;
+                }
             }
         }
 

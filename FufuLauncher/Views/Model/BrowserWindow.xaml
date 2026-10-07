@@ -24,7 +24,8 @@
             <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center" Margin="16,0,0,0"
                         Spacing="12">
                 <Image Source="/Assets/WindowIcon.ico" Width="16" Height="16" />
-                <TextBlock Text="{helpers:Loc Key=BrowserWindow_Title}" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" />
+                <TextBlock Text="{helpers:Loc Key=BrowserWindow_Title}" Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center" />
             </StackPanel>
 
             <TextBox x:Name="UrlTextBox" Grid.Column="1" Margin="16,4"
@@ -43,7 +44,8 @@
                     <FontIcon Glyph="&#xE713;" FontSize="14" />
                 </Button>
 
-                <ToggleButton x:Name="PinButton" Click="PinButton_Click" ToolTipService.ToolTip="{helpers:Loc Key=BrowserWindow_PinWindow}">
+                <ToggleButton x:Name="PinButton" Click="PinButton_Click"
+                              ToolTipService.ToolTip="{helpers:Loc Key=BrowserWindow_PinWindow}">
                     <FontIcon Glyph="&#xE840;" FontSize="14" />
                 </ToggleButton>
             </StackPanel>
@@ -78,8 +80,10 @@
                     <StackPanel Spacing="8">
                         <TextBlock Text="{helpers:Loc Key=BrowserWindow_VideoHotkeys}" FontWeight="SemiBold" />
                         <Grid ColumnDefinitions="*,10,*">
-                            <TextBox x:Name="SettingRewindBox" Header="{helpers:Loc Key=BrowserWindow_RewindKey}" PlaceholderText="ArrowLeft" Grid.Column="0" />
-                            <TextBox x:Name="SettingForwardBox" Header="{helpers:Loc Key=BrowserWindow_ForwardKey}" PlaceholderText="ArrowRight"
+                            <TextBox x:Name="SettingRewindBox" Header="{helpers:Loc Key=BrowserWindow_RewindKey}"
+                                     PlaceholderText="ArrowLeft" Grid.Column="0" />
+                            <TextBox x:Name="SettingForwardBox" Header="{helpers:Loc Key=BrowserWindow_ForwardKey}"
+                                     PlaceholderText="ArrowRight"
                                      Grid.Column="2" />
                         </Grid>
                         <TextBlock Text="{helpers:Loc Key=BrowserWindow_HotkeyHint}" FontSize="12" Foreground="Gray"
@@ -88,7 +92,8 @@
 
                     <StackPanel Spacing="8">
                         <TextBlock Text="{helpers:Loc Key=BrowserWindow_PerformanceSettings}" FontWeight="SemiBold" />
-                        <ToggleSwitch x:Name="SettingHighPriorityToggle" Header="{helpers:Loc Key=BrowserWindow_RaisePriority}" />
+                        <ToggleSwitch x:Name="SettingHighPriorityToggle"
+                                      Header="{helpers:Loc Key=BrowserWindow_RaisePriority}" />
                     </StackPanel>
 
                 </StackPanel>

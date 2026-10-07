@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Services;
 using Microsoft.UI.Windowing;
@@ -55,12 +56,12 @@ public sealed partial class MainWindow
                     {
                         _globalBackgroundPlayer.Pause();
                     }
+
                     _suspendedVideoSource = _globalBackgroundPlayer.Source;
                     _globalBackgroundPlayer.Source = null;
                 }
                 catch (System.Runtime.InteropServices.COMException)
                 {
-
                 }
             }
         }
@@ -96,10 +97,13 @@ public sealed partial class MainWindow
                     _globalBackgroundPlayer.Source = _suspendedVideoSource;
                     _suspendedVideoSource = null;
                 }
+
                 _globalBackgroundPlayer.Play();
             }
         }
-        catch (System.Runtime.InteropServices.COMException) {}
+        catch (System.Runtime.InteropServices.COMException)
+        {
+        }
         catch (Exception ex)
         {
             Debug.WriteLine($"恢复媒体播放时发生异常: {ex.Message}");

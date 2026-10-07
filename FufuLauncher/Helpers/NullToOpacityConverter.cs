@@ -2,12 +2,13 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml.Data;
 
 namespace FufuLauncher.Helpers;
 
 /// <summary>
-/// null → Opacity=0（占位但透明），not-null → Opacity=1（正常显示）
+///     null → Opacity=0（占位但透明），not-null → Opacity=1（正常显示）
 /// </summary>
 public class NullToOpacityConverter : IValueConverter
 {

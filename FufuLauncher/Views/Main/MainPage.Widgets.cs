@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -30,13 +31,22 @@ public sealed partial class MainPage
         _isWidgetFlyoutEnabled = !_isWidgetFlyoutEnabled;
         WidgetEyeIcon.Glyph = _isWidgetFlyoutEnabled ? "\uE8CB" : "\uE890";
 
-        ToolTipService.SetToolTip(BtnWidgetGacha, _isWidgetFlyoutEnabled ? "Home_GachaTooltip".GetLocalized() : "Home_WidgetGacha".GetLocalized());
-        ToolTipService.SetToolTip(BtnWidgetAchievement, _isWidgetFlyoutEnabled ? "Home_AchievementTooltip".GetLocalized() : "Home_WidgetAchievement".GetLocalized());
-        ToolTipService.SetToolTip(BtnWidgetInventory, _isWidgetFlyoutEnabled ? "Home_InventoryTooltip".GetLocalized() : "Home_WidgetInventory".GetLocalized());
-        ToolTipService.SetToolTip(BtnWidgetPlayerRole, _isWidgetFlyoutEnabled ? "Home_PlayerRoleTooltip".GetLocalized() : "Home_WidgetPlayerRole".GetLocalized());
-        ToolTipService.SetToolTip(BtnWidgetDailyNote, _isWidgetFlyoutEnabled ? "Home_NotesTooltip".GetLocalized() : "Home_WidgetNotes".GetLocalized());
-        ToolTipService.SetToolTip(BtnWidgetVideo, _isWidgetFlyoutEnabled ? "Home_VideoTooltip".GetLocalized() : "Home_WidgetVideo".GetLocalized());
-        ToolTipService.SetToolTip(BtnWidgetBBS, _isWidgetFlyoutEnabled ? "Home_BBSTooltip".GetLocalized() : "Home_WidgetBBS".GetLocalized());
+        ToolTipService.SetToolTip(BtnWidgetGacha,
+            _isWidgetFlyoutEnabled ? "Home_GachaTooltip".GetLocalized() : "Home_WidgetGacha".GetLocalized());
+        ToolTipService.SetToolTip(BtnWidgetAchievement,
+            _isWidgetFlyoutEnabled
+                ? "Home_AchievementTooltip".GetLocalized()
+                : "Home_WidgetAchievement".GetLocalized());
+        ToolTipService.SetToolTip(BtnWidgetInventory,
+            _isWidgetFlyoutEnabled ? "Home_InventoryTooltip".GetLocalized() : "Home_WidgetInventory".GetLocalized());
+        ToolTipService.SetToolTip(BtnWidgetPlayerRole,
+            _isWidgetFlyoutEnabled ? "Home_PlayerRoleTooltip".GetLocalized() : "Home_WidgetPlayerRole".GetLocalized());
+        ToolTipService.SetToolTip(BtnWidgetDailyNote,
+            _isWidgetFlyoutEnabled ? "Home_NotesTooltip".GetLocalized() : "Home_WidgetNotes".GetLocalized());
+        ToolTipService.SetToolTip(BtnWidgetVideo,
+            _isWidgetFlyoutEnabled ? "Home_VideoTooltip".GetLocalized() : "Home_WidgetVideo".GetLocalized());
+        ToolTipService.SetToolTip(BtnWidgetBBS,
+            _isWidgetFlyoutEnabled ? "Home_BBSTooltip".GetLocalized() : "Home_WidgetBBS".GetLocalized());
     }
 
     private void WidgetButton_PointerExited(object sender, PointerRoutedEventArgs e)

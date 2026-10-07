@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using FufuLauncher.Models;
 
@@ -41,7 +42,8 @@ public partial class GachaAnalysisModel
 
         try
         {
-            var dashboard = await Task.Run(() => BuildAnalysisDashboard(charLogs, weaponLogs, chronicledLogs, noviceLogs, standardLogs));
+            var dashboard = await Task.Run(() =>
+                BuildAnalysisDashboard(charLogs, weaponLogs, chronicledLogs, noviceLogs, standardLogs));
 
             if (_refreshVersion == version)
             {
@@ -87,7 +89,8 @@ public partial class GachaAnalysisModel
         var primogems = totalCount * 160;
         var fiveStarRate = FormatRate(fiveStarCount, totalCount);
         var fourStarRate = FormatRate(fourStarCount, totalCount);
-        var averageCharacterPities = CalculateFiveStarCharacterPities(charLogs, weaponLogs, chronicledLogs, noviceLogs, standardLogs);
+        var averageCharacterPities =
+            CalculateFiveStarCharacterPities(charLogs, weaponLogs, chronicledLogs, noviceLogs, standardLogs);
         var averageCharacterPulls = averageCharacterPities.Count == 0 ? 0 : averageCharacterPities.Average();
         var fiveStarTimeline = BuildFiveStarTimeline(charLogs, "角色活动")
             .Concat(BuildFiveStarTimeline(weaponLogs, "武器活动"))
@@ -119,7 +122,8 @@ public partial class GachaAnalysisModel
             .ToList();
         var activeMonthCount = monthlyGroups.Count;
         var monthlyAveragePulls = activeMonthCount == 0 ? 0 : monthlyGroups.Average(x => x.Count());
-        var busiestMonth = monthlyGroups.OrderByDescending(x => x.Count()).ThenByDescending(x => x.Key).FirstOrDefault();
+        var busiestMonth = monthlyGroups.OrderByDescending(x => x.Count()).ThenByDescending(x => x.Key)
+            .FirstOrDefault();
 
         var groupedByTime = allLogs
             .Where(x => !string.IsNullOrWhiteSpace(x.Time))
@@ -139,16 +143,22 @@ public partial class GachaAnalysisModel
             SinglePullGoldCount = singlePullGoldCount,
             SinglePullGoldRateText = FormatRate(singlePullGoldCount, singlePullGroups.Count),
             AverageFiveStarCharacterPulls = averageCharacterPulls,
-            AverageFiveStarCharacterPullsText = averageCharacterPulls <= 0 ? "0" : averageCharacterPulls.ToString("0.#"),
+            AverageFiveStarCharacterPullsText =
+                averageCharacterPulls <= 0 ? "0" : averageCharacterPulls.ToString("0.#"),
             AverageFiveStarCharacterPrimogems = (int)Math.Round(averageCharacterPulls * 160),
-            AverageFiveStarCharacterPrimogemsText = averageCharacterPulls <= 0 ? "0" : ((int)Math.Round(averageCharacterPulls * 160)).ToString("N0"),
+            AverageFiveStarCharacterPrimogemsText = averageCharacterPulls <= 0
+                ? "0"
+                : ((int)Math.Round(averageCharacterPulls * 160)).ToString("N0"),
             AverageFiveStarPullsText = averageFiveStarPulls <= 0 ? "0" : averageFiveStarPulls.ToString("0.#"),
             CurrentDeepestPityText = $"{deepestPity.Item2} 抽",
             CurrentDeepestPityHint = deepestPity.Item2 <= 0 ? "暂无五星垫数" : $"当前最深：{deepestPity.Item1}",
             BestFiveStarPityText = fiveStarTimeline.Count == 0 ? "0 抽" : $"{bestFiveStar.Pity} 抽",
-            BestFiveStarPityHint = fiveStarTimeline.Count == 0 ? "暂无五星记录" : $"{bestFiveStar.PoolName} · {bestFiveStar.Name}",
+            BestFiveStarPityHint =
+                fiveStarTimeline.Count == 0 ? "暂无五星记录" : $"{bestFiveStar.PoolName} · {bestFiveStar.Name}",
             WorstFiveStarPityText = fiveStarTimeline.Count == 0 ? "0 抽" : $"{worstFiveStar.Pity} 抽",
-            WorstFiveStarPityHint = fiveStarTimeline.Count == 0 ? "暂无五星记录" : $"{worstFiveStar.PoolName} · {worstFiveStar.Name}",
+            WorstFiveStarPityHint = fiveStarTimeline.Count == 0
+                ? "暂无五星记录"
+                : $"{worstFiveStar.PoolName} · {worstFiveStar.Name}",
             ActiveMonthCountText = activeMonthCount.ToString(),
             MonthlyAveragePullsText = monthlyAveragePulls <= 0 ? "0" : monthlyAveragePulls.ToString("0.#"),
             BusiestMonthText = busiestMonth == null ? "暂无" : busiestMonth.Key,
@@ -158,16 +168,43 @@ public partial class GachaAnalysisModel
 
         dashboard.KpiItems = new ObservableCollection<GachaKpiItem>
         {
-            new GachaKpiItem { Glyph = "\uE8EF", Label = "总抽数", Value = totalCount.ToString(), Hint = $"约 {primogems:N0} 原石" },
-            new GachaKpiItem { Glyph = "\uE8C7", Label = "原石估算", Value = primogems.ToString("N0"), Hint = "按每抽 160 原石" },
-            new GachaKpiItem { Glyph = "\uE735", Label = "五星出货", Value = fiveStarCount.ToString(), Hint = fiveStarRate },
-            new GachaKpiItem { Glyph = "\uE734", Label = "四星出货", Value = fourStarCount.ToString(), Hint = fourStarRate },
-            new GachaKpiItem { Glyph = "\uE7C1", Label = "五星角色均耗", Value = $"{dashboard.AverageFiveStarCharacterPullsText} 抽", Hint = $"约 {dashboard.AverageFiveStarCharacterPrimogemsText} 原石" },
-            new GachaKpiItem { Glyph = "\uE7C1", Label = "五星均抽", Value = $"{dashboard.AverageFiveStarPullsText} 抽", Hint = "全部卡池五星" },
-            new GachaKpiItem { Glyph = "\uE8A5", Label = "当前最深垫数", Value = dashboard.CurrentDeepestPityText, Hint = dashboard.CurrentDeepestPityHint },
-            new GachaKpiItem { Glyph = "\uE74C", Label = "最欧五星", Value = dashboard.BestFiveStarPityText, Hint = dashboard.BestFiveStarPityHint },
-            new GachaKpiItem { Glyph = "\uE7BA", Label = "最非五星", Value = dashboard.WorstFiveStarPityText, Hint = dashboard.WorstFiveStarPityHint },
-            new GachaKpiItem { Glyph = "\uE787", Label = "活跃月份", Value = dashboard.ActiveMonthCountText, Hint = $"月均 {dashboard.MonthlyAveragePullsText} 抽" }
+            new GachaKpiItem
+                { Glyph = "\uE8EF", Label = "总抽数", Value = totalCount.ToString(), Hint = $"约 {primogems:N0} 原石" },
+            new GachaKpiItem
+                { Glyph = "\uE8C7", Label = "原石估算", Value = primogems.ToString("N0"), Hint = "按每抽 160 原石" },
+            new GachaKpiItem
+                { Glyph = "\uE735", Label = "五星出货", Value = fiveStarCount.ToString(), Hint = fiveStarRate },
+            new GachaKpiItem
+                { Glyph = "\uE734", Label = "四星出货", Value = fourStarCount.ToString(), Hint = fourStarRate },
+            new GachaKpiItem
+            {
+                Glyph = "\uE7C1", Label = "五星角色均耗", Value = $"{dashboard.AverageFiveStarCharacterPullsText} 抽",
+                Hint = $"约 {dashboard.AverageFiveStarCharacterPrimogemsText} 原石"
+            },
+            new GachaKpiItem
+            {
+                Glyph = "\uE7C1", Label = "五星均抽", Value = $"{dashboard.AverageFiveStarPullsText} 抽", Hint = "全部卡池五星"
+            },
+            new GachaKpiItem
+            {
+                Glyph = "\uE8A5", Label = "当前最深垫数", Value = dashboard.CurrentDeepestPityText,
+                Hint = dashboard.CurrentDeepestPityHint
+            },
+            new GachaKpiItem
+            {
+                Glyph = "\uE74C", Label = "最欧五星", Value = dashboard.BestFiveStarPityText,
+                Hint = dashboard.BestFiveStarPityHint
+            },
+            new GachaKpiItem
+            {
+                Glyph = "\uE7BA", Label = "最非五星", Value = dashboard.WorstFiveStarPityText,
+                Hint = dashboard.WorstFiveStarPityHint
+            },
+            new GachaKpiItem
+            {
+                Glyph = "\uE787", Label = "活跃月份", Value = dashboard.ActiveMonthCountText,
+                Hint = $"月均 {dashboard.MonthlyAveragePullsText} 抽"
+            }
         };
 
         dashboard.PoolDistribution = BuildSharePoints(new[]
@@ -230,7 +267,8 @@ public partial class GachaAnalysisModel
         return pity;
     }
 
-    private static ObservableCollection<GachaChartPoint> BuildSharePoints(IEnumerable<(string Label, double Value, string Display)> values)
+    private static ObservableCollection<GachaChartPoint> BuildSharePoints(
+        IEnumerable<(string Label, double Value, string Display)> values)
     {
         var list = values.ToList();
         var total = list.Sum(x => x.Value);
@@ -250,7 +288,8 @@ public partial class GachaAnalysisModel
         }));
     }
 
-    private static ObservableCollection<GachaChartPoint> BuildRelativePoints(IEnumerable<(string Label, double Value, string Display, string SubLabel)> values)
+    private static ObservableCollection<GachaChartPoint> BuildRelativePoints(
+        IEnumerable<(string Label, double Value, string Display, string SubLabel)> values)
     {
         var list = values.ToList();
         var max = list.Count == 0 ? 0 : list.Max(x => x.Value);
@@ -332,10 +371,12 @@ public partial class GachaAnalysisModel
                 pity = 0;
             }
         }
+
         return pities;
     }
 
-    private static List<(string Name, string PoolName, int Pity, DateTime Time, string TimeText)> BuildFiveStarTimeline(List<GachaLogItem> logs, string poolName)
+    private static List<(string Name, string PoolName, int Pity, DateTime Time, string TimeText)> BuildFiveStarTimeline(
+        List<GachaLogItem> logs, string poolName)
     {
         var result = new List<(string Name, string PoolName, int Pity, DateTime Time, string TimeText)>();
         var pity = 0;
@@ -352,6 +393,7 @@ public partial class GachaAnalysisModel
                 item.Time ?? ""));
             pity = 0;
         }
+
         return result;
     }
 

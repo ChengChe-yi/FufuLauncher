@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using Microsoft.UI.Xaml.Controls;
 
@@ -86,7 +87,7 @@ public partial class PluginStoreViewModel
             {
                 accessResult.Plugin.AccessToken = accessResult.AccessToken;
                 UpdateLocalState(accessResult.Plugin);
-                
+
                 Plugins.Insert(0, accessResult.Plugin);
                 TotalPlugins++;
                 // 与 IsEmpty 一起维护，否则下次刷新会在已有内容上盖一层骨架屏。

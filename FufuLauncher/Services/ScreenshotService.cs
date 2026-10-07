@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using CommunityToolkit.Mvvm.Messaging;
@@ -39,7 +40,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
     private IntPtr _gameWindowHandle = IntPtr.Zero;
     private bool _isRunning;
     private bool _isCapturing;
-    
+
     private VirtualKey _hotkey = VirtualKey.F12;
     private bool _hotkeyCtrl;
     private bool _hotkeyAlt;
@@ -64,7 +65,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
         _gamePid = gamePid;
         await LoadHotkeySettingsAsync();
-        
+
         _gameWindowHandle = FindMainWindowByPid(gamePid);
         if (_gameWindowHandle == IntPtr.Zero)
         {
@@ -78,7 +79,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
             Debug.WriteLine("[截图服务] 无法找到游戏窗口，截图服务启动中止");
             return;
         }
-        
+
         _hookThread = new Thread(HookThreadProc)
         {
             IsBackground = true,
@@ -220,6 +221,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
                 }
             }
         }
+
         return CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
     }
 
@@ -257,7 +259,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
                 await StopAsync();
                 return;
             }
-            
+
             if (!IsWindow(_gameWindowHandle))
             {
                 _gameWindowHandle = FindMainWindowByPid(_gamePid);
@@ -267,13 +269,13 @@ public class ScreenshotService : IScreenshotService, IDisposable
                     return;
                 }
             }
-            
+
             var savePath = await GetSavePathAsync();
             Directory.CreateDirectory(savePath);
 
             var fileName = $"Screenshot_{DateTime.Now:yyyyMMdd_HHmmss_fff}.png";
             var filePath = Path.Combine(savePath, fileName);
-            
+
             var success = await CaptureWindowAsync(_gameWindowHandle, filePath);
 
             if (success)
@@ -285,7 +287,8 @@ public class ScreenshotService : IScreenshotService, IDisposable
             else
             {
                 Debug.WriteLine("[截图服务] 截图失败");
-                WeakReferenceMessenger.Default.Send(new ScreenshotTakenMessage("", false, "Screenshot_CaptureFailed".GetLocalized()));
+                WeakReferenceMessenger.Default.Send(new ScreenshotTakenMessage("", false,
+                    "Screenshot_CaptureFailed".GetLocalized()));
             }
         }
         catch (Exception ex)
@@ -375,13 +378,40 @@ public class ScreenshotService : IScreenshotService, IDisposable
         }
         finally
         {
-            try { frame?.Dispose(); } catch { }
-            try { framePool?.Dispose(); } catch { }
-            try { session?.Dispose(); } catch { }
+            try
+            {
+                frame?.Dispose();
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                framePool?.Dispose();
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                session?.Dispose();
+            }
+            catch
+            {
+            }
+
             if (device != null)
             {
-                try { device.Dispose(); }
-                catch { Marshal.FinalReleaseComObject(device); }
+                try
+                {
+                    device.Dispose();
+                }
+                catch
+                {
+                    Marshal.FinalReleaseComObject(device);
+                }
             }
         }
     }
@@ -390,12 +420,13 @@ public class ScreenshotService : IScreenshotService, IDisposable
     {
         try
         {
-            var softwareBitmap = await SoftwareBitmap.CreateCopyFromSurfaceAsync(frame.Surface, BitmapAlphaMode.Premultiplied);
+            var softwareBitmap =
+                await SoftwareBitmap.CreateCopyFromSurfaceAsync(frame.Surface, BitmapAlphaMode.Premultiplied);
 
             using var stream = new InMemoryRandomAccessStream();
             var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
             encoder.SetSoftwareBitmap(softwareBitmap);
-            
+
             if (size.Width > 0 && size.Height > 0)
             {
                 encoder.BitmapTransform.Bounds = new BitmapBounds
@@ -434,7 +465,9 @@ public class ScreenshotService : IScreenshotService, IDisposable
             if (!string.IsNullOrEmpty(path))
                 return path;
         }
-        catch { }
+        catch
+        {
+        }
 
         return Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
@@ -465,6 +498,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
                     }
                 }
             }
+
             return true;
         }, IntPtr.Zero);
 
@@ -497,7 +531,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
     }
 
     /// <summary>
-    /// 创建一个正确的 WinRT IDirect3DDevice，使用 CsWinRT interop 兼容的方式
+    ///     创建一个正确的 WinRT IDirect3DDevice，使用 CsWinRT interop 兼容的方式
     /// </summary>
     private static IDirect3DDevice CreateDirect3DDevice()
     {
@@ -624,6 +658,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
             var proc = GetProcAddress(hModule, "CreateDirect3D11DeviceFromDXGIDevice");
             if (proc != IntPtr.Zero) return proc;
         }
+
         return IntPtr.Zero;
     }
 
@@ -650,6 +685,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
     #region P/Invoke
 
     private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
     private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
 
     [StructLayout(LayoutKind.Sequential)]

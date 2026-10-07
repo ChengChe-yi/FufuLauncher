@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Services.MiHoYo.Passport;
 using Microsoft.UI.Xaml;
@@ -11,6 +12,7 @@ namespace FufuLauncher.Views;
 public sealed partial class LoginQrWindow
 {
     #region 国际服登录
+
     private async void OverseaPasswordButton_Click(object sender, RoutedEventArgs e)
         => await StartOverseaPasswordLoginAsync();
 
@@ -56,12 +58,13 @@ public sealed partial class LoginQrWindow
 
         UpdateStatus("正在换取登录凭证...", true);
         var passportClient = App.GetService<OverseaPassportClient>();
-        (string? rawRisk, PassportResponse<LoginResult> response) = await passportClient.LoginByThirdPartyAsync(token, verify: null);
+        (string? rawRisk, PassportResponse<LoginResult> response) =
+            await passportClient.LoginByThirdPartyAsync(token, verify: null);
 
         if (!string.IsNullOrEmpty(rawRisk))
         {
             UpdateStatus("", false, true);
-            
+
             var riskService = App.GetService<OverseaRiskVerificationService>();
             if (await riskService.TryVerifyAsync(token, rawRisk, Content?.XamlRoot))
             {
@@ -82,7 +85,7 @@ public sealed partial class LoginQrWindow
 
         await CompleteOverseaLoginAsync(response.Data);
     }
-    
+
     private async Task CompleteOverseaLoginAsync(LoginResult loginResult)
     {
         string stoken = loginResult.Token!.Token;
@@ -122,5 +125,6 @@ public sealed partial class LoginQrWindow
 
         OnLoginSuccess(cookies, "os");
     }
+
     #endregion
 }

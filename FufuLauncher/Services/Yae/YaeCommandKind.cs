@@ -5,10 +5,11 @@ Licensed under the MIT License.
 Yae 命名管道协议命令类型。
 协议定义参见 HolographicHat/YaeAchievement (GPL-3.0) 与 Snap Hutao (MIT)。
 */
+
 namespace FufuLauncher.Services.Yae;
 
 /// <summary>
-/// YaeAchievementLib 注入游戏后，通过命名管道与宿主通信的命令类型。
+///     YaeAchievementLib 注入游戏后，通过命名管道与宿主通信的命令类型。
 /// </summary>
 public enum YaeCommandKind : byte
 {

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Newtonsoft.Json;
 
 namespace FufuLauncher.Helpers;
@@ -24,4 +25,3 @@ public static class Json
         });
     }
 }
-

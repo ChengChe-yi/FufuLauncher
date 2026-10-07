@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Services;
 using Windows.System;
@@ -29,7 +30,8 @@ public partial class OtherViewModel
             var stopKey = _localSettingsService.ReadSettingAsync("AutoClickerStopKey").Result;
             var mode = _localSettingsService.ReadSettingAsync("AutoClickerMode").Result;
 
-            Debug.WriteLine($"[OtherViewModel] 原始配置 - Enabled: {autoClickerEnabled}, TriggerKey: {triggerKey}, ClickKey: {clickKey}, StopKey: {stopKey}, Mode: {mode}");
+            Debug.WriteLine(
+                $"[OtherViewModel] 原始配置 - Enabled: {autoClickerEnabled}, TriggerKey: {triggerKey}, ClickKey: {clickKey}, StopKey: {stopKey}, Mode: {mode}");
 
             _isInitializing = true;
             TriggerKey = triggerKey?.ToString()?.Trim('"') ?? "F";
@@ -84,7 +86,8 @@ public partial class OtherViewModel
                 _autoClickerService.IsEnabled = IsAutoClickerEnabled;
             }
 
-            Debug.WriteLine($"[OtherViewModel] 最终配置 - 启用: {IsAutoClickerEnabled}, 模式: {GetCurrentMode()}, 触发键: {TriggerKey}, 连点键: {ClickKey}, 停止键: {StopKey}");
+            Debug.WriteLine(
+                $"[OtherViewModel] 最终配置 - 启用: {IsAutoClickerEnabled}, 模式: {GetCurrentMode()}, 触发键: {TriggerKey}, 连点键: {ClickKey}, 停止键: {StopKey}");
         }
         catch (Exception ex)
         {
@@ -107,7 +110,8 @@ public partial class OtherViewModel
             await _localSettingsService.SaveSettingAsync("AutoClickerStopKey", StopKey);
             await _localSettingsService.SaveSettingAsync("AutoClickerMode", GetCurrentMode().ToString());
 
-            Debug.WriteLine($"[连点器] 配置保存成功 - 启用: {IsAutoClickerEnabled}, 模式: {GetCurrentMode()}, 触发键: {TriggerKey}, 连点键: {ClickKey}, 停止键: {StopKey}");
+            Debug.WriteLine(
+                $"[连点器] 配置保存成功 - 启用: {IsAutoClickerEnabled}, 模式: {GetCurrentMode()}, 触发键: {TriggerKey}, 连点键: {ClickKey}, 停止键: {StopKey}");
 
             _ = Task.Delay(2000).ContinueWith(_ =>
                 _dispatcherQueue?.TryEnqueue(() => StatusMessage = string.Empty));

@@ -16,7 +16,8 @@
 
         <Grid x:Name="AppTitleBar" Height="40" Background="Transparent">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0" Spacing="8">
-                <TextBlock Text="{helpers:Loc Key=DownloadWindow_Title}" VerticalAlignment="Center" FontWeight="SemiBold" />
+                <TextBlock Text="{helpers:Loc Key=DownloadWindow_Title}" VerticalAlignment="Center"
+                           FontWeight="SemiBold" />
             </StackPanel>
         </Grid>
 
@@ -42,8 +43,10 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="PathBox" Grid.Row="0" Grid.Column="0" Header="{helpers:Loc Key=DownloadWindow_InstallDir}" IsReadOnly="True" />
-                <ComboBox x:Name="LanguageCombo" Grid.Row="0" Grid.Column="1" Header="{helpers:Loc Key=DownloadWindow_VoiceLanguage}" SelectedIndex="0"
+                <TextBox x:Name="PathBox" Grid.Row="0" Grid.Column="0"
+                         Header="{helpers:Loc Key=DownloadWindow_InstallDir}" IsReadOnly="True" />
+                <ComboBox x:Name="LanguageCombo" Grid.Row="0" Grid.Column="1"
+                          Header="{helpers:Loc Key=DownloadWindow_VoiceLanguage}" SelectedIndex="0"
                           HorizontalAlignment="Stretch">
                     <ComboBoxItem Content="简体中文 (zh-cn)" Tag="zh-cn" />
                     <ComboBoxItem Content="English (en-us)" Tag="en-us" />
@@ -51,7 +54,8 @@
                     <ComboBoxItem Content="한국어 (ko-kr)" Tag="ko-kr" />
                 </ComboBox>
 
-                <ComboBox x:Name="ServerCombo" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Header="{helpers:Loc Key=DownloadWindow_Server}" SelectedIndex="0"
+                <ComboBox x:Name="ServerCombo" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                          Header="{helpers:Loc Key=DownloadWindow_Server}" SelectedIndex="0"
                           DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
 
                 <CheckBox x:Name="BaseGameCheck" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
@@ -60,7 +64,8 @@
             </Grid>
 
             <Border Grid.Row="2" Margin="0,0,0,16" VerticalAlignment="Top"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4" Padding="8">
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
+                    Padding="8">
                 <StackPanel Spacing="4">
                     <TextBlock Text="{helpers:Loc Key=DownloadWindow_DownloadSpeed}" FontWeight="SemiBold" />
                     <controls:SpeedGraph x:Name="SpeedGraphChart" Height="120" />
@@ -75,8 +80,10 @@
                 <ProgressBar x:Name="MainProgressBar" Maximum="100" Height="8" CornerRadius="4" />
                 <Grid Margin="0,16,0,0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="16">
-                        <Button x:Name="StartButton" Content="{helpers:Loc Key=DownloadWindow_StartDownload}" Click="StartButton_Click" Width="120" Height="36" />
-                        <Button x:Name="CancelButton" Content="{helpers:Loc Key=DownloadWindow_Cancel}" Click="CancelButton_Click" IsEnabled="False"
+                        <Button x:Name="StartButton" Content="{helpers:Loc Key=DownloadWindow_StartDownload}"
+                                Click="StartButton_Click" Width="120" Height="36" />
+                        <Button x:Name="CancelButton" Content="{helpers:Loc Key=DownloadWindow_Cancel}"
+                                Click="CancelButton_Click" IsEnabled="False"
                                 Width="100" Height="36" />
                     </StackPanel>
                 </Grid>

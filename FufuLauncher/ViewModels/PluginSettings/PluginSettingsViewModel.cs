@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -19,13 +20,13 @@ public partial class PluginSettingsViewModel : ObservableObject
     private IniFile _iniFile;
     private bool _useKeyListInput = true;
     private readonly LightweightPluginService _lightweightPlugin;
-    
+
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsDownloadSupported))]
     [NotifyPropertyChangedFor(nameof(ModeTabVisibility))]
     [NotifyPropertyChangedFor(nameof(SelectedPluginComboLabel))]
     private int selectedPluginIndex = 0;
-    
+
     public bool IsDownloadSupported => SelectedPluginIndex == 0 && !IsLightweightMode;
 
     public bool IsLightweightMode => _lightweightPlugin.IsLightweightMode;
@@ -45,23 +46,17 @@ public partial class PluginSettingsViewModel : ObservableObject
     public string PluginToggleLabel =>
         IsLightweightMode ? "LightweightMode_LiteEnabledLabel".GetLocalized() : "MainPluginEnabledLabel".GetLocalized();
 
-    [ObservableProperty]
-    private string pluginName;
+    [ObservableProperty] private string pluginName;
 
-    [ObservableProperty]
-    private string pluginDescription;
+    [ObservableProperty] private string pluginDescription;
 
-    [ObservableProperty]
-    private string pluginDeveloper;
+    [ObservableProperty] private string pluginDeveloper;
 
-    [ObservableProperty]
-    private string lastModifiedDate;
+    [ObservableProperty] private string lastModifiedDate;
 
-    [ObservableProperty]
-    private ObservableCollection<PresetModel> availablePresets = new();
+    [ObservableProperty] private ObservableCollection<PresetModel> availablePresets = new();
 
-    [ObservableProperty]
-    private PresetModel currentPreset;
+    [ObservableProperty] private PresetModel currentPreset;
 
     private bool _isAutoCreatePresetEnabled = false;
 
@@ -80,10 +75,16 @@ public partial class PluginSettingsViewModel : ObservableObject
             }
         }
     }
-    
-    public ObservableCollection<PluginSettingItem> Settings { get; } = new();
 
-    public ObservableCollection<PluginSettingItem> PinnedSettings { get; } = new();
+    public ObservableCollection<PluginSettingItem> Settings
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<PluginSettingItem> PinnedSettings
+    {
+        get;
+    } = new();
 
     public Microsoft.UI.Xaml.Visibility PinnedSettingsVisibility =>
         PinnedSettings.Count > 0 ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
@@ -101,7 +102,7 @@ public partial class PluginSettingsViewModel : ObservableObject
         LoadConfiguration();
         RefreshUIState();
     }
-    
+
 
     public PluginSettingsViewModel()
     {
@@ -119,9 +120,9 @@ public partial class PluginSettingsViewModel : ObservableObject
         _presetsDir = IsLightweightMode
             ? Path.Combine(AppPaths.PluginPresetsDir, LightweightPluginService.LitePluginFolderName)
             : AppPaths.PluginPresetsDir;
-    
+
         _iniFile = new IniFile(_iniPath);
-    
+
         try
         {
             if (!Directory.Exists(_presetsDir))
@@ -132,25 +133,31 @@ public partial class PluginSettingsViewModel : ObservableObject
         catch (UnauthorizedAccessException)
         {
             _presetsDir = Path.Combine(AppPaths.RootDir, "Data", "PluginPresets");
-            try { Directory.CreateDirectory(_presetsDir); }
-            catch (Exception inner) { System.Diagnostics.Debug.WriteLine($"目录创建失败: {inner.Message}"); }
+            try
+            {
+                Directory.CreateDirectory(_presetsDir);
+            }
+            catch (Exception inner)
+            {
+                System.Diagnostics.Debug.WriteLine($"目录创建失败: {inner.Message}");
+            }
         }
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"目录创建失败: {ex.Message}");
         }
-        
+
         var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
         if (localSettings != null)
         {
             var keyInputTask = localSettings.ReadSettingAsync("UseKeyListInput");
             keyInputTask.Wait();
             _useKeyListInput = keyInputTask.Result == null || Convert.ToBoolean(keyInputTask.Result);
-            
+
             var autoCreateTask = localSettings.ReadSettingAsync("IsAutoCreatePresetEnabled");
             autoCreateTask.Wait();
             _isAutoCreatePresetEnabled = autoCreateTask.Result != null && Convert.ToBoolean(autoCreateTask.Result);
-            
+
             var devFeaturesTask = localSettings.ReadSettingAsync("IsDevFeaturesEnabled");
             devFeaturesTask.Wait();
             bool savedDevFeatures = devFeaturesTask.Result != null && Convert.ToBoolean(devFeaturesTask.Result);
@@ -169,10 +176,10 @@ public partial class PluginSettingsViewModel : ObservableObject
                 _isDevFeaturesEnabled = false;
             }
         }
-        
+
         LoadConfiguration();
     }
-    
+
 
     public bool UseKeyListInput
     {
@@ -181,7 +188,8 @@ public partial class PluginSettingsViewModel : ObservableObject
         {
             if (SetProperty(ref _useKeyListInput, value))
             {
-                foreach (var setting in Settings.Concat(PinnedSettings).Where(s => string.Equals(s.Type, "key", StringComparison.OrdinalIgnoreCase)))
+                foreach (var setting in Settings.Concat(PinnedSettings)
+                             .Where(s => string.Equals(s.Type, "key", StringComparison.OrdinalIgnoreCase)))
                 {
                     setting.SetKeyInputMode(value);
                 }
@@ -195,8 +203,9 @@ public partial class PluginSettingsViewModel : ObservableObject
         }
     }
 
-    
+
     private bool _isDevFeaturesEnabled;
+
     public bool IsDevFeaturesEnabled
     {
         get => _isDevFeaturesEnabled;
@@ -386,7 +395,8 @@ public partial class PluginSettingsViewModel : ObservableObject
 
         try
         {
-            var parsed = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(stored.ToString() ?? string.Empty);
+            var parsed =
+                JsonSerializer.Deserialize<Dictionary<string, List<string>>>(stored.ToString() ?? string.Empty);
             if (parsed == null) return result;
 
             foreach (var pair in parsed)
@@ -401,5 +411,4 @@ public partial class PluginSettingsViewModel : ObservableObject
 
         return result;
     }
-
 }

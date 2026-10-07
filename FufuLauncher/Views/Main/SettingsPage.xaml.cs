@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
@@ -21,13 +22,15 @@ public sealed partial class SettingsPage : Page
     private DispatcherTimer? _navLockTimer;
 
     private static readonly string[] _sectionTags =
-        { SettingsSectionIds.Appearance, SettingsSectionIds.HomeCards, SettingsSectionIds.GameAnnouncement,
-          SettingsSectionIds.Widgets, SettingsSectionIds.Notes, SettingsSectionIds.HomeText,
-          SettingsSectionIds.Background, SettingsSectionIds.WindowEffects,
-          SettingsSectionIds.LaunchConfig, SettingsSectionIds.Screenshots, SettingsSectionIds.Checkin,
-          SettingsSectionIds.Language, SettingsSectionIds.WindowBehavior, SettingsSectionIds.Startup,
-          SettingsSectionIds.StartupSound, SettingsSectionIds.AdvancedOptions, SettingsSectionIds.StoragePaths,
-          SettingsSectionIds.Updates, SettingsSectionIds.About, SettingsSectionIds.SecurityAuth };
+    {
+        SettingsSectionIds.Appearance, SettingsSectionIds.HomeCards, SettingsSectionIds.GameAnnouncement,
+        SettingsSectionIds.Widgets, SettingsSectionIds.Notes, SettingsSectionIds.HomeText,
+        SettingsSectionIds.Background, SettingsSectionIds.WindowEffects,
+        SettingsSectionIds.LaunchConfig, SettingsSectionIds.Screenshots, SettingsSectionIds.Checkin,
+        SettingsSectionIds.Language, SettingsSectionIds.WindowBehavior, SettingsSectionIds.Startup,
+        SettingsSectionIds.StartupSound, SettingsSectionIds.AdvancedOptions, SettingsSectionIds.StoragePaths,
+        SettingsSectionIds.Updates, SettingsSectionIds.About, SettingsSectionIds.SecurityAuth
+    };
 
     private readonly List<SettingsSearchResult> _searchIndex = new();
     private FrameworkElement? _highlightedRow;
@@ -74,8 +77,10 @@ public sealed partial class SettingsPage : Page
         _isNavigatingFromMenu = true;
         if (SettingsNavigationView.SelectedItem == null)
         {
-            SettingsNavigationView.SelectedItem = SettingsNavigationView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault();
+            SettingsNavigationView.SelectedItem =
+                SettingsNavigationView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault();
         }
+
         _isNavigatingFromMenu = false;
     }
 
@@ -157,7 +162,9 @@ public sealed partial class SettingsPage : Page
 
             _injectionModuleSelectionReady = true;
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     private async void InjectionModuleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

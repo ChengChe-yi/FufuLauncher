@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging.Messages;
 
 namespace FufuLauncher.Messages
@@ -20,26 +21,31 @@ namespace FufuLauncher.Messages
         {
             get;
         }
+
         public string Message
         {
             get;
         }
+
         public NotificationType Type
         {
             get;
         }
+
         public int Duration
         {
             get;
         }
+
         public bool IsPersistent => Duration == 0;
-        
+
         public string CopyText
         {
             get;
         }
 
-        public NotificationMessage(string title, string message, NotificationType type, int duration = 5000, string copyText = "")
+        public NotificationMessage(string title, string message, NotificationType type, int duration = 5000,
+            string copyText = "")
             : base(null)
         {
             Title = title;

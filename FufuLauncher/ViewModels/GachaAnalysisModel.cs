@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using FufuLauncher.Contracts.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -14,15 +15,33 @@ namespace FufuLauncher.ViewModels;
 
 public class LocalGachaData
 {
-    public string Url { get; set; }
-    public List<GachaLogItem> CharacterLogs { get; set; } = new();
-    public List<GachaLogItem> WeaponLogs { get; set; } = new();
-    public List<GachaLogItem> StandardLogs { get; set; } = new();
+    public string Url
+    {
+        get;
+        set;
+    }
+
+    public List<GachaLogItem> CharacterLogs
+    {
+        get;
+        set;
+    } = new();
+
+    public List<GachaLogItem> WeaponLogs
+    {
+        get;
+        set;
+    } = new();
+
+    public List<GachaLogItem> StandardLogs
+    {
+        get;
+        set;
+    } = new();
 }
 
 public partial class GachaAnalysisModel : ObservableObject
 {
-
     private bool _isFetchingPoolMetadata;
     private Dictionary<string, int> _charNameToIdMap;
     private Dictionary<string, int> _weaponNameToIdMap;
@@ -32,6 +51,7 @@ public partial class GachaAnalysisModel : ObservableObject
     private readonly AccountManager _accountManager;
     private readonly ILocalSettingsService _localSettingsService;
     private const string LastSelectedUidKey = "GachaLastSelectedUid";
+
     private static readonly HttpClient _httpClient = new(new HttpClientHandler
     {
         AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate
@@ -41,7 +61,8 @@ public partial class GachaAnalysisModel : ObservableObject
     {
         if (_httpClient.DefaultRequestHeaders.UserAgent.Count == 0)
         {
-            _httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
+            _httpClient.DefaultRequestHeaders.Add("User-Agent",
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
             _httpClient.DefaultRequestHeaders.Add("Referer", "https://webstatic.mihoyo.com");
         }
     }
@@ -58,8 +79,13 @@ public partial class GachaAnalysisModel : ObservableObject
     private bool _analysisDashboardDirty = true;
     [ObservableProperty] private string _gachaUrl;
     [ObservableProperty] private string _crawlerStatus = "等待获取数据...";
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))] private bool _isFetching;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))] private bool _isScraping;
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))]
+    private bool _isFetching;
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))]
+    private bool _isScraping;
+
     public bool CanSwitchRole => IsDataLoaded && !IsFetching && !IsScraping;
     [ObservableProperty] private GachaStatistic _characterStats = new() { PoolName = "角色活动" };
     [ObservableProperty] private GachaStatistic _weaponStats = new() { PoolName = "武器活动" };
@@ -87,14 +113,25 @@ public partial class GachaAnalysisModel : ObservableObject
     public bool ShowWeaponFourDivider => IsWeaponFourStarVisible && WeaponFourStars?.Count > 0;
     public bool ShowChronicledFourDivider => IsChronicledFourStarVisible && ChronicledFourStars?.Count > 0;
     public bool ShowStandardFourDivider => IsStandardFourStarVisible && StandardFourStars?.Count > 0;
-    public bool ShowCharacterNoRecords => CharacterStats?.FiveStarCount == 0 && (!IsCharacterFourStarVisible || CharacterFourStars?.Count == 0);
-    public bool ShowWeaponNoRecords => WeaponStats?.FiveStarCount == 0 && (!IsWeaponFourStarVisible || WeaponFourStars?.Count == 0);
-    public bool ShowChronicledNoRecords => ChronicledStats?.FiveStarCount == 0 && (!IsChronicledFourStarVisible || ChronicledFourStars?.Count == 0);
-    public bool ShowStandardNoRecords => StandardStats?.FiveStarCount == 0 && (!IsStandardFourStarVisible || StandardFourStars?.Count == 0);
+
+    public bool ShowCharacterNoRecords => CharacterStats?.FiveStarCount == 0 &&
+                                          (!IsCharacterFourStarVisible || CharacterFourStars?.Count == 0);
+
+    public bool ShowWeaponNoRecords =>
+        WeaponStats?.FiveStarCount == 0 && (!IsWeaponFourStarVisible || WeaponFourStars?.Count == 0);
+
+    public bool ShowChronicledNoRecords => ChronicledStats?.FiveStarCount == 0 &&
+                                           (!IsChronicledFourStarVisible || ChronicledFourStars?.Count == 0);
+
+    public bool ShowStandardNoRecords => StandardStats?.FiveStarCount == 0 &&
+                                         (!IsStandardFourStarVisible || StandardFourStars?.Count == 0);
 
     public const string AddNewUserItem = "＋ 添加新用户";
     [ObservableProperty] private bool _hasGachaData;
-    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))] private bool _isDataLoaded;
+
+    [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))]
+    private bool _isDataLoaded;
+
     [ObservableProperty] private bool _isOverviewSelected = true;
     [ObservableProperty] private bool _isAnalysisLoading;
     [ObservableProperty] private bool _isAnalysisReady;
@@ -115,7 +152,8 @@ public partial class GachaAnalysisModel : ObservableObject
     public Func<string, string, string, Task> OnShowConfirmDialogAsync;
     public Func<string, Task> OnRequireReLoginAsync;
 
-    public GachaAnalysisModel(ILocalSettingsService localSettingsService, AccountManager accountManager, MetadataRepository metadataRepo)
+    public GachaAnalysisModel(ILocalSettingsService localSettingsService, AccountManager accountManager,
+        MetadataRepository metadataRepo)
     {
         _localSettingsService = localSettingsService;
 

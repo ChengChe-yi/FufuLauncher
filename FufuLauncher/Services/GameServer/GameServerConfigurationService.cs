@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
@@ -19,7 +20,7 @@ public sealed class GameServerConfigurationService
         {
             return null;
         }
-        
+
         bool isOversea = hasOsExe;
         if (hasCnExe && hasOsExe)
         {
@@ -37,7 +38,7 @@ public sealed class GameServerConfigurationService
         {
             return matched;
         }
-        
+
         if (channel == ChannelType.Bili)
         {
             return GameServerScheme.BilibiliDefault;
@@ -45,7 +46,7 @@ public sealed class GameServerConfigurationService
 
         return isOversea ? GameServerScheme.OverseaOfficialDefault : GameServerScheme.ChineseOfficialOfficial;
     }
-    
+
     public string? TryGetGameVersion(string gameDir)
     {
         var ini = new IniFile(Path.Combine(gameDir, GameConstants.CONFIG_FILE_NAME));
@@ -54,13 +55,14 @@ public sealed class GameServerConfigurationService
             ? version
             : null;
     }
-    
+
     public void ApplyScheme(string gameDir, GameServerScheme scheme)
     {
         string configPath = Path.Combine(gameDir, GameConstants.CONFIG_FILE_NAME);
         if (!File.Exists(configPath))
         {
-            string backupPath = Path.Combine(AppPaths.ServerCacheDir, scheme.IsOversea ? "config_oversea.ini" : "config_cn.ini");
+            string backupPath = Path.Combine(AppPaths.ServerCacheDir,
+                scheme.IsOversea ? "config_oversea.ini" : "config_cn.ini");
             if (!File.Exists(backupPath) || !TryRestoreConfigBackup(backupPath, configPath))
             {
                 File.WriteAllText(configPath, BuildNewConfigContent(scheme, TryGetGameVersion(gameDir)));
@@ -74,7 +76,7 @@ public sealed class GameServerConfigurationService
             ["channel"] = ((int)scheme.Channel).ToString(),
             ["sub_channel"] = ((int)scheme.SubChannel).ToString(),
         };
-        
+
         var all = ini.ReadAll();
         string? currentCps = null;
         bool hasCps = false;
@@ -93,7 +95,7 @@ public sealed class GameServerConfigurationService
             ["General"] = updates,
         });
     }
-    
+
     public void BackupConfig(string gameDir, bool isOversea)
     {
         string configPath = Path.Combine(gameDir, GameConstants.CONFIG_FILE_NAME);
@@ -105,7 +107,8 @@ public sealed class GameServerConfigurationService
         try
         {
             Directory.CreateDirectory(AppPaths.ServerCacheDir);
-            File.Copy(configPath, Path.Combine(AppPaths.ServerCacheDir, isOversea ? "config_oversea.ini" : "config_cn.ini"), true);
+            File.Copy(configPath,
+                Path.Combine(AppPaths.ServerCacheDir, isOversea ? "config_oversea.ini" : "config_cn.ini"), true);
         }
         catch
         {
@@ -124,8 +127,10 @@ public sealed class GameServerConfigurationService
             return false;
         }
 
-        bool hasChannel = general.TryGetValue("channel", out var channelValue) && Enum.TryParse(channelValue, out channel);
-        bool hasSubChannel = general.TryGetValue("sub_channel", out var subChannelValue) && Enum.TryParse(subChannelValue, out subChannel);
+        bool hasChannel = general.TryGetValue("channel", out var channelValue) &&
+                          Enum.TryParse(channelValue, out channel);
+        bool hasSubChannel = general.TryGetValue("sub_channel", out var subChannelValue) &&
+                             Enum.TryParse(subChannelValue, out subChannel);
         return hasChannel || hasSubChannel;
     }
 

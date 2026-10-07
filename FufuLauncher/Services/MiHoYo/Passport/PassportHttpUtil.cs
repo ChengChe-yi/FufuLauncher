@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Models.MiHoYo.Passport;
@@ -16,8 +17,9 @@ internal static class PassportHttpUtil
             ? values.FirstOrDefault()
             : null;
     }
-    
-    public static async Task<PassportResponse<TData>> DeserializeAsync<TData>(HttpResponseMessage response, CancellationToken token)
+
+    public static async Task<PassportResponse<TData>> DeserializeAsync<TData>(HttpResponseMessage response,
+        CancellationToken token)
     {
         string json = await response.Content.ReadAsStringAsync(token).ConfigureAwait(false);
         try
@@ -31,7 +33,7 @@ internal static class PassportHttpUtil
             return CreateFailure<TData>($"响应解析失败: {ex.Message}");
         }
     }
-    
+
     public static async Task<PassportResponse> DeserializeAsync(HttpResponseMessage response, CancellationToken token)
     {
         string json = await response.Content.ReadAsStringAsync(token).ConfigureAwait(false);

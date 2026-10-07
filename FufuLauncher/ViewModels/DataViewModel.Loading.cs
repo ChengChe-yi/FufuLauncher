@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Models.DataCenter;
 
@@ -75,7 +76,9 @@ public sealed partial class DataViewModel
                 StatusMessage = LF("DataPage_PartialData", 5 - loaded);
             }
         }
-        catch (OperationCanceledException) {}
+        catch (OperationCanceledException)
+        {
+        }
         catch (Exception ex)
         {
             Debug.WriteLine($"[DataViewModel] 加载失败: {ex}");

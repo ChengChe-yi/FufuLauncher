@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -55,7 +56,8 @@ public class UpdateService : IUpdateService
                 return new UpdateCheckResult { ShouldShowUpdate = false };
             }
 
-            var json = await GetWithRetryAsync(ApiEndpoints.UpdateJsonUrl, ApiEndpoints.UpdateJsonFallbackUrl, maxRetries: 3);
+            var json = await GetWithRetryAsync(ApiEndpoints.UpdateJsonUrl, ApiEndpoints.UpdateJsonFallbackUrl,
+                maxRetries: 3);
             Debug.WriteLine($"[UpdateService] 服务器响应: {json}");
 
             var updateInfo = JsonSerializer.Deserialize<UpdateInfo>(json);
@@ -70,19 +72,21 @@ public class UpdateService : IUpdateService
             Debug.WriteLine($"[UpdateService] 解析后的预览版版本: '{previewVersion}'");
             Debug.WriteLine($"[UpdateService] 更新公告URL: {updateInfoUrl}");
             Debug.WriteLine($"[UpdateService] 预览版更新公告URL: {previewUpdateInfoUrl}");
-            
+
             var isDevBuild = await _devBuildDetectionService.DetectAsync(serverVersion);
             Debug.WriteLine($"[UpdateService] 是否开发版: {isDevBuild}");
 
-            var lastVersionObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedVersionKey);
+            var lastVersionObj =
+                await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedVersionKey);
             var lastVersion = lastVersionObj?.ToString() ?? string.Empty;
 
             Debug.WriteLine($"[UpdateService] 上次记录版本: '{lastVersion}'");
-            
+
             if (AppVersionHelper.IsNewerVersion(serverVersion, CurrentVersion) && serverVersion != lastVersion)
             {
                 Debug.WriteLine($"[UpdateService] 发现新版本，准备显示更新窗口");
-                await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedVersionKey, serverVersion);
+                await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedVersionKey,
+                    serverVersion);
 
                 return new UpdateCheckResult
                 {
@@ -92,14 +96,18 @@ public class UpdateService : IUpdateService
                     UpdateInfoUrl = updateInfoUrl
                 };
             }
-            
-            var previewAnnouncementEnabledObj = await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
-            var previewAnnouncementEnabled = previewAnnouncementEnabledObj == null || Convert.ToBoolean(previewAnnouncementEnabledObj);
+
+            var previewAnnouncementEnabledObj =
+                await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
+            var previewAnnouncementEnabled = previewAnnouncementEnabledObj == null ||
+                                             Convert.ToBoolean(previewAnnouncementEnabledObj);
 
             if (previewAnnouncementEnabled &&
-                AppVersionHelper.IsNewerVersion(previewVersion, serverVersion) && AppVersionHelper.IsNewerVersion(previewVersion, CurrentVersion))
+                AppVersionHelper.IsNewerVersion(previewVersion, serverVersion) &&
+                AppVersionHelper.IsNewerVersion(previewVersion, CurrentVersion))
             {
-                var lastPreviewVersionObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey);
+                var lastPreviewVersionObj =
+                    await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey);
                 var lastPreviewVersion = lastPreviewVersionObj?.ToString() ?? string.Empty;
 
                 Debug.WriteLine($"[UpdateService] 上次记录预览版版本: '{lastPreviewVersion}'");
@@ -107,7 +115,8 @@ public class UpdateService : IUpdateService
                 if (previewVersion != lastPreviewVersion)
                 {
                     Debug.WriteLine($"[UpdateService] 发现新预览版，准备显示更新窗口");
-                    await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey, previewVersion);
+                    await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey,
+                        previewVersion);
 
                     return new UpdateCheckResult
                     {
@@ -138,15 +147,19 @@ public class UpdateService : IUpdateService
         try
         {
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-            var response = await _httpClient.GetAsync(ApiEndpoints.AgreementUrl, HttpCompletionOption.ResponseHeadersRead, cts.Token);
+            var response = await _httpClient.GetAsync(ApiEndpoints.AgreementUrl,
+                HttpCompletionOption.ResponseHeadersRead, cts.Token);
             if (response.IsSuccessStatusCode) return true;
         }
-        catch { }
+        catch
+        {
+        }
 
         try
         {
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10));
-            var response = await _httpClient.GetAsync(ApiEndpoints.AgreementFallbackUrl, HttpCompletionOption.ResponseHeadersRead, cts.Token);
+            var response = await _httpClient.GetAsync(ApiEndpoints.AgreementFallbackUrl,
+                HttpCompletionOption.ResponseHeadersRead, cts.Token);
             return response.IsSuccessStatusCode;
         }
         catch
@@ -197,15 +210,31 @@ public class UpdateService : IUpdateService
     private class UpdateInfo
     {
         [JsonPropertyName("Version")]
-        public string Version { get; set; } = string.Empty;
+        public string Version
+        {
+            get;
+            set;
+        } = string.Empty;
 
         [JsonPropertyName("updateInfoUrl")]
-        public string UpdateInfoUrl { get; set; } = string.Empty;
+        public string UpdateInfoUrl
+        {
+            get;
+            set;
+        } = string.Empty;
 
         [JsonPropertyName("PreReleaseVersion")]
-        public string PreReleaseVersion { get; set; } = string.Empty;
+        public string PreReleaseVersion
+        {
+            get;
+            set;
+        } = string.Empty;
 
         [JsonPropertyName("PreReleaseUpdateInfoUrl")]
-        public string PreReleaseUpdateInfoUrl { get; set; } = string.Empty;
+        public string PreReleaseUpdateInfoUrl
+        {
+            get;
+            set;
+        } = string.Empty;
     }
 }

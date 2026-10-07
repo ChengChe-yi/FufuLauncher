@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Constants;
@@ -24,7 +25,8 @@ namespace FufuLauncher.Services.Background
 
         static HoyoverseContentService()
         {
-            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
             Debug.WriteLine("HoyoverseContentService: HttpClient 初始化完成");
         }
 
@@ -33,7 +35,7 @@ namespace FufuLauncher.Services.Background
             var culture = ResourceExtensions.CurrentCulture;
             return string.IsNullOrEmpty(culture) ? "zh-cn" : culture.ToLowerInvariant();
         }
-        
+
 
         public async Task<ContentInfo> GetGameContentAsync(ServerType server)
         {
@@ -44,7 +46,8 @@ namespace FufuLauncher.Services.Background
                 var apiUrl = server switch
                 {
                     ServerType.CN => ApiEndpoints.ContentCnApi,
-                    ServerType.OS => ApiEndpoints.ContentOsApi.Replace("language=zh-cn", $"language={GetApiLanguage()}"),
+                    ServerType.OS =>
+                        ApiEndpoints.ContentOsApi.Replace("language=zh-cn", $"language={GetApiLanguage()}"),
                     _ => ApiEndpoints.ContentCnApi
                 };
 

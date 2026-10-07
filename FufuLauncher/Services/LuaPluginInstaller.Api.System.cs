@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using MoonSharp.Interpreter;
 
@@ -40,6 +41,7 @@ public partial class LuaPluginInstaller
                 {
                     return true;
                 }
+
                 return MatchesGpuRule(info, dict);
             }
             catch (Exception ex)
@@ -75,6 +77,7 @@ public partial class LuaPluginInstaller
                         return true;
                     }
                 }
+
                 return !anyRule;
             }
             catch (Exception ex)
@@ -182,6 +185,7 @@ public partial class LuaPluginInstaller
                 familyOk = info.Name != null
                            && info.Name.Contains(familyValue, StringComparison.OrdinalIgnoreCase);
             }
+
             if (!familyOk) return false;
         }
 
@@ -195,6 +199,7 @@ public partial class LuaPluginInstaller
                 seriesOk = info.Name != null
                            && info.Name.Contains(seriesValue, StringComparison.OrdinalIgnoreCase);
             }
+
             if (!seriesOk) return false;
         }
 

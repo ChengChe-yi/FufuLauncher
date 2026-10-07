@@ -40,14 +40,22 @@ public class PluginStoreItem : INotifyPropertyChanged
     public string Id
     {
         get => _id;
-        set { _id = value; OnPropertyChanged(); }
+        set
+        {
+            _id = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("name")]
     public string Name
     {
         get => _name;
-        set { _name = value; OnPropertyChanged(); }
+        set
+        {
+            _name = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("developer")]
@@ -67,42 +75,71 @@ public class PluginStoreItem : INotifyPropertyChanged
     public string Description
     {
         get => _description;
-        set { _description = value; OnPropertyChanged(); }
+        set
+        {
+            _description = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("long_description")]
     public string LongDescription
     {
         get => _longDescription;
-        set { _longDescription = value; OnPropertyChanged(); }
+        set
+        {
+            _longDescription = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("version")]
     public string Version
     {
         get => _version;
-        set { _version = value; OnPropertyChanged(); OnPropertyChanged(nameof(VersionDisplay)); OnPropertyChanged(nameof(DeveloperVersionDisplay)); }
+        set
+        {
+            _version = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(VersionDisplay));
+            OnPropertyChanged(nameof(DeveloperVersionDisplay));
+        }
     }
 
     [JsonPropertyName("icon_url")]
     public string IconUrl
     {
         get => _iconUrl;
-        set { _iconUrl = value; OnPropertyChanged(); }
+        set
+        {
+            _iconUrl = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("screenshots")]
     public List<string> Screenshots
     {
         get => _screenshots;
-        set { _screenshots = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasScreenshots)); }
+        set
+        {
+            _screenshots = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(HasScreenshots));
+        }
     }
 
     [JsonPropertyName("category")]
     public string Category
     {
         get => _category;
-        set { _category = value; OnPropertyChanged(); OnPropertyChanged(nameof(CategoryDisplay)); OnPropertyChanged(nameof(HasCategory)); }
+        set
+        {
+            _category = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(CategoryDisplay));
+            OnPropertyChanged(nameof(HasCategory));
+        }
     }
 
     private static readonly Dictionary<string, string> CategoryResourceKeys = new(StringComparer.OrdinalIgnoreCase)
@@ -121,119 +158,188 @@ public class PluginStoreItem : INotifyPropertyChanged
     public List<string> Tags
     {
         get => _tags;
-        set { _tags = value; OnPropertyChanged(); OnPropertyChanged(nameof(TagsDisplay)); }
+        set
+        {
+            _tags = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(TagsDisplay));
+        }
     }
 
     [JsonPropertyName("downloads")]
     public long Downloads
     {
         get => _downloads;
-        set { _downloads = value; OnPropertyChanged(); OnPropertyChanged(nameof(DownloadsDisplay)); }
+        set
+        {
+            _downloads = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(DownloadsDisplay));
+        }
     }
 
     [JsonPropertyName("size_bytes")]
     public long SizeBytes
     {
         get => _sizeBytes;
-        set { _sizeBytes = value; OnPropertyChanged(); OnPropertyChanged(nameof(SizeDisplay)); }
+        set
+        {
+            _sizeBytes = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(SizeDisplay));
+        }
     }
 
     [JsonPropertyName("min_app_version")]
     public string MinAppVersion
     {
         get => _minAppVersion;
-        set { _minAppVersion = value; OnPropertyChanged(); }
+        set
+        {
+            _minAppVersion = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("updated_at")]
     public DateTime UpdatedAt
     {
         get => _updatedAt;
-        set { _updatedAt = value; OnPropertyChanged(); }
+        set
+        {
+            _updatedAt = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("lua_install_url")]
     public string LuaInstallUrl
     {
         get => _luaInstallUrl;
-        set { _luaInstallUrl = value; OnPropertyChanged(); }
+        set
+        {
+            _luaInstallUrl = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("lua_uninstall_url")]
     public string LuaUninstallUrl
     {
         get => _luaUninstallUrl;
-        set { _luaUninstallUrl = value; OnPropertyChanged(); }
+        set
+        {
+            _luaUninstallUrl = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonPropertyName("download_url")]
     public string DownloadUrl
     {
         get => _downloadUrl;
-        set { _downloadUrl = value; OnPropertyChanged(); }
+        set
+        {
+            _downloadUrl = value;
+            OnPropertyChanged();
+        }
     }
-    
+
     [JsonPropertyName("file_hash")]
     public string FileHash
     {
         get => _fileHash;
-        set { _fileHash = value; OnPropertyChanged(); }
+        set
+        {
+            _fileHash = value;
+            OnPropertyChanged();
+        }
     }
-    
+
     [JsonPropertyName("lua_hash")]
     public string LuaHash
     {
         get => _luaHash;
-        set { _luaHash = value; OnPropertyChanged(); }
+        set
+        {
+            _luaHash = value;
+            OnPropertyChanged();
+        }
     }
 
     private string _dllFileName = string.Empty;
-    
+
     [JsonPropertyName("dll_file_name")]
     public string DllFileName
     {
         get => _dllFileName;
-        set { _dllFileName = value; OnPropertyChanged(); }
+        set
+        {
+            _dllFileName = value;
+            OnPropertyChanged();
+        }
     }
 
     private string _visibility = "public";
-    
+
     [JsonPropertyName("visibility")]
     public string Visibility
     {
         get => _visibility;
-        set { _visibility = value; OnPropertyChanged(); OnPropertyChanged(nameof(IsPrivate)); }
+        set
+        {
+            _visibility = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(IsPrivate));
+        }
     }
 
     private string _updateType = string.Empty;
-    
+
     [JsonPropertyName("update_type")]
     public string UpdateType
     {
         get => _updateType;
-        set { _updateType = value; OnPropertyChanged(); OnPropertyChanged(nameof(UpdateTypeDisplay)); }
+        set
+        {
+            _updateType = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(UpdateTypeDisplay));
+        }
     }
 
     private List<PluginDependency> _dependencies = new();
-    
+
     [JsonPropertyName("dependencies")]
     public List<PluginDependency> Dependencies
     {
         get => _dependencies;
-        set { _dependencies = value; OnPropertyChanged(); OnPropertyChanged(nameof(HasDependencies)); OnPropertyChanged(nameof(DependenciesDisplay)); }
+        set
+        {
+            _dependencies = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(HasDependencies));
+            OnPropertyChanged(nameof(DependenciesDisplay));
+        }
     }
-    
-    [JsonIgnore]
-    public string AccessToken { get; set; } = string.Empty;
-    
-    [JsonIgnore]
-    public string DlToken { get; set; } = string.Empty;
 
     [JsonIgnore]
-    public bool IsPrivate => Visibility == "private";
+    public string AccessToken
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonIgnore]
-    public bool HasDependencies => Dependencies?.Any(d => !d.IsEmpty) ?? false;
+    public string DlToken
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    [JsonIgnore] public bool IsPrivate => Visibility == "private";
+
+    [JsonIgnore] public bool HasDependencies => Dependencies?.Any(d => !d.IsEmpty) ?? false;
 
     [JsonIgnore]
     public string DependenciesDisplay
@@ -241,16 +347,15 @@ public class PluginStoreItem : INotifyPropertyChanged
         get
         {
             if (Dependencies == null || Dependencies.Count == 0) return string.Empty;
-            var real = Dependencies.Where(d => !d.IsEmpty).Select(d => d.ToString()).Where(s => !string.IsNullOrEmpty(s));
+            var real = Dependencies.Where(d => !d.IsEmpty).Select(d => d.ToString())
+                .Where(s => !string.IsNullOrEmpty(s));
             return string.Join("; ", real);
         }
     }
 
-    [JsonIgnore]
-    public string UpdateTypeDisplay => string.IsNullOrEmpty(UpdateType) ? "" : UpdateType;
+    [JsonIgnore] public string UpdateTypeDisplay => string.IsNullOrEmpty(UpdateType) ? "" : UpdateType;
 
-    [JsonIgnore]
-    public bool HasUpdateType => !string.IsNullOrEmpty(UpdateType);
+    [JsonIgnore] public bool HasUpdateType => !string.IsNullOrEmpty(UpdateType);
 
     [JsonIgnore]
     public StorePluginState State
@@ -275,21 +380,30 @@ public class PluginStoreItem : INotifyPropertyChanged
     public int InstallProgress
     {
         get => _installProgress;
-        set { _installProgress = value; OnPropertyChanged(); OnPropertyChanged(nameof(InstallProgressPercent)); }
+        set
+        {
+            _installProgress = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(InstallProgressPercent));
+        }
     }
-    
+
     private double _installProgressPercent;
 
     [JsonIgnore]
     public double InstallProgressPercent
     {
         get => _installProgressPercent;
-        set { _installProgressPercent = value; OnPropertyChanged(); OnPropertyChanged(nameof(InstallProgressPercentDisplay)); }
+        set
+        {
+            _installProgressPercent = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(InstallProgressPercentDisplay));
+        }
     }
 
-    [JsonIgnore]
-    public string InstallProgressPercentDisplay => $"{InstallProgressPercent:F1}%";
-    
+    [JsonIgnore] public string InstallProgressPercentDisplay => $"{InstallProgressPercent:F1}%";
+
     private long _downloadedBytes;
 
     [JsonIgnore]
@@ -304,7 +418,7 @@ public class PluginStoreItem : INotifyPropertyChanged
             OnPropertyChanged(nameof(DownloadSizeProgressDisplay));
         }
     }
-    
+
     private long _totalDownloadBytes = -1;
 
     [JsonIgnore]
@@ -320,21 +434,24 @@ public class PluginStoreItem : INotifyPropertyChanged
             OnPropertyChanged(nameof(DownloadSizeProgressDisplay));
         }
     }
-    
+
     private long _downloadSpeed;
 
     [JsonIgnore]
     public long DownloadSpeedBytesPerSecond
     {
         get => _downloadSpeed;
-        set { _downloadSpeed = value; OnPropertyChanged(); OnPropertyChanged(nameof(DownloadSpeedDisplay)); }
+        set
+        {
+            _downloadSpeed = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(DownloadSpeedDisplay));
+        }
     }
 
-    [JsonIgnore]
-    public bool HasTotalDownloadSize => TotalDownloadBytes > 0;
+    [JsonIgnore] public bool HasTotalDownloadSize => TotalDownloadBytes > 0;
 
-    [JsonIgnore]
-    public string DownloadedSizeDisplay => FormatSizeHuman(DownloadedBytes);
+    [JsonIgnore] public string DownloadedSizeDisplay => FormatSizeHuman(DownloadedBytes);
 
     [JsonIgnore]
     public string TotalDownloadSizeDisplay => HasTotalDownloadSize ? FormatSizeHuman(TotalDownloadBytes) : "???";
@@ -347,7 +464,7 @@ public class PluginStoreItem : INotifyPropertyChanged
         >= 1_024 => $"{DownloadSpeedBytesPerSecond / 1_024.0:F1} KB/s",
         _ => $"{DownloadSpeedBytesPerSecond} B/s"
     };
-    
+
     [JsonIgnore]
     public string DownloadSizeProgressDisplay =>
         HasTotalDownloadSize ? $"{DownloadedSizeDisplay} / {TotalDownloadSizeDisplay}" : DownloadedSizeDisplay;
@@ -356,14 +473,24 @@ public class PluginStoreItem : INotifyPropertyChanged
     public string InstallStatusText
     {
         get => _installStatusText;
-        set { _installStatusText = value; OnPropertyChanged(); }
+        set
+        {
+            _installStatusText = value;
+            OnPropertyChanged();
+        }
     }
 
     [JsonIgnore]
     public bool IsInstallInProgress
     {
         get => _isInstallInProgress;
-        set { _isInstallInProgress = value; OnPropertyChanged(); OnPropertyChanged(nameof(CanInstall)); OnPropertyChanged(nameof(CanUninstall)); }
+        set
+        {
+            _isInstallInProgress = value;
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(CanInstall));
+            OnPropertyChanged(nameof(CanUninstall));
+        }
     }
 
     public bool HasDeveloper => !string.IsNullOrWhiteSpace(Developer);
@@ -371,7 +498,7 @@ public class PluginStoreItem : INotifyPropertyChanged
     public bool HasCategory => !string.IsNullOrEmpty(CategoryDisplay);
 
     public string VersionDisplay => string.IsNullOrEmpty(Version) ? "" : $"v{Version}";
-    
+
     [JsonIgnore]
     public string DeveloperVersionDisplay => (HasDeveloper, VersionDisplay) switch
     {
@@ -388,9 +515,15 @@ public class PluginStoreItem : INotifyPropertyChanged
     public string TagsDisplay => Tags.Count > 0 ? string.Join(" · ", Tags) : "";
 
     public bool CanInstall => State == StorePluginState.Available && !IsInstallInProgress;
-    public bool CanUninstall => (State == StorePluginState.Installed || State == StorePluginState.UpdateAvailable) && !IsInstallInProgress;
+
+    public bool CanUninstall => (State == StorePluginState.Installed || State == StorePluginState.UpdateAvailable) &&
+                                !IsInstallInProgress;
+
     public bool StateIsInstalled => State == StorePluginState.Installed;
-    public bool StateIsInstalledOrUpdate => State == StorePluginState.Installed || State == StorePluginState.UpdateAvailable;
+
+    public bool StateIsInstalledOrUpdate =>
+        State == StorePluginState.Installed || State == StorePluginState.UpdateAvailable;
+
     public bool StateIsUpdateAvailable => State == StorePluginState.UpdateAvailable;
     public bool StateIsInProgress => State == StorePluginState.Installing;
 

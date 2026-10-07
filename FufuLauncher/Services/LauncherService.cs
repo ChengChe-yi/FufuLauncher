@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Diagnostics;
@@ -13,11 +14,15 @@ namespace FufuLauncher.Services
     {
         bool ValidateGamePath(string gamePath);
         bool ValidateDllPath(string dllPath);
-        int LaunchGameAndInject(string gamePath, string dllPath, string commandLineArgs, out string errorMessage, out int processId);
+
+        int LaunchGameAndInject(string gamePath, string dllPath, string commandLineArgs, out string errorMessage,
+            out int processId);
+
         string GetDefaultDllPath();
+
         void UpdateConfig(string gamePath, bool hideQuestBanner, bool disableDamageText, bool useTouchScreen,
-                         bool disableEventCameraMove, bool removeTeamProgress, bool redirectCombineEntry,
-                         bool resin106, bool resin201, bool resin107009, bool resin107012, bool resin220007);
+            bool disableEventCameraMove, bool removeTeamProgress, bool redirectCombineEntry,
+            bool resin106, bool resin201, bool resin107009, bool resin107012, bool resin220007);
     }
 
     public enum LauncherDllLoadError
@@ -31,9 +36,18 @@ namespace FufuLauncher.Services
     public class LauncherService : ILauncherService
     {
         private const string DllName = "Launcher.dll";
-        
-        public static bool IsLauncherDllLoaded { get; private set; } = false;
-        public static LauncherDllLoadError DllLoadError { get; private set; } = LauncherDllLoadError.None;
+
+        public static bool IsLauncherDllLoaded
+        {
+            get;
+            private set;
+        } = false;
+
+        public static LauncherDllLoadError DllLoadError
+        {
+            get;
+            private set;
+        } = LauncherDllLoadError.None;
 
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr LoadLibrary(string lpFileName);
@@ -48,9 +62,9 @@ namespace FufuLauncher.Services
                 string extractDirectory = AppContext.BaseDirectory;
                 Environment.CurrentDirectory = extractDirectory;
                 SetDllDirectory(extractDirectory);
-        
+
                 string absoluteDllPath = Path.Combine(extractDirectory, DllName);
-                
+
                 if (!File.Exists(absoluteDllPath))
                 {
                     Debug.WriteLine($"找不到核心文件: {absoluteDllPath}");
@@ -68,7 +82,7 @@ namespace FufuLauncher.Services
                     DllLoadError = LauncherDllLoadError.LoadFailed;
                     return;
                 }
-                
+
                 IsLauncherDllLoaded = true;
                 DllLoadError = LauncherDllLoadError.None;
             }
@@ -115,7 +129,7 @@ namespace FufuLauncher.Services
             int resin107009,
             int resin107012,
             int resin220007);
-        
+
 
         public bool ValidateGamePath(string gamePath)
         {
@@ -129,7 +143,8 @@ namespace FufuLauncher.Services
             return ValidateDllPathInternal(dllPath);
         }
 
-        public int LaunchGameAndInject(string gamePath, string dllPath, string commandLineArgs, out string errorMessage, out int processId)
+        public int LaunchGameAndInject(string gamePath, string dllPath, string commandLineArgs, out string errorMessage,
+            out int processId)
         {
             if (!IsLauncherDllLoaded)
             {
@@ -142,7 +157,8 @@ namespace FufuLauncher.Services
 
             var errorBuffer = new StringBuilder(1024);
 
-            int result = LaunchGameAndInject(gamePath, dllPath ?? "", commandLineArgs ?? "", errorBuffer, errorBuffer.Capacity);
+            int result = LaunchGameAndInject(gamePath, dllPath ?? "", commandLineArgs ?? "", errorBuffer,
+                errorBuffer.Capacity);
 
             errorMessage = errorBuffer.ToString();
 
@@ -170,8 +186,8 @@ namespace FufuLauncher.Services
         }
 
         public void UpdateConfig(string gamePath, bool hideQuestBanner, bool disableDamageText, bool useTouchScreen,
-                                bool disableEventCameraMove, bool removeTeamProgress, bool redirectCombineEntry,
-                                bool resin106, bool resin201, bool resin107009, bool resin107012, bool resin220007)
+            bool disableEventCameraMove, bool removeTeamProgress, bool redirectCombineEntry,
+            bool resin106, bool resin201, bool resin107009, bool resin107012, bool resin220007)
         {
             if (!IsLauncherDllLoaded) return;
 

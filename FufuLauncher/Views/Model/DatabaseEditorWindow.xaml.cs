@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Diagnostics;
@@ -21,23 +22,38 @@ namespace FufuLauncher.Views
         public string Key
         {
             get => _key;
-            set { _key = value; OnPropertyChanged(nameof(Key)); }
+            set
+            {
+                _key = value;
+                OnPropertyChanged(nameof(Key));
+            }
         }
+
         public string Value
         {
             get => _value;
-            set { _value = value; OnPropertyChanged(nameof(Value)); }
+            set
+            {
+                _value = value;
+                OnPropertyChanged(nameof(Value));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+        protected void OnPropertyChanged(string name) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 
     public sealed partial class DatabaseEditorWindow : Window
     {
         private readonly LocalSettingsRepository _repository;
         private readonly ILocalSettingsService _localSettingsService;
-        public ObservableCollection<SettingItem> SettingsItems { get; } = new();
+
+        public ObservableCollection<SettingItem> SettingsItems
+        {
+            get;
+        } = new();
 
         public DatabaseEditorWindow()
         {

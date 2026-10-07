@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using FufuLauncher.Controls;
 using FufuLauncher.Models.GameServer;
@@ -13,7 +14,7 @@ public sealed class DownloadSpeedChartController
     private static readonly TimeSpan ChartTickInterval = TimeSpan.FromMilliseconds(200);
     private static readonly TimeSpan SpeedSampleInterval = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan StalledThreshold = TimeSpan.FromSeconds(5);
-    
+
     private const double SpeedSmoothingFactor = 0.3;
 
     private readonly SpeedGraph _chart;
@@ -34,7 +35,7 @@ public sealed class DownloadSpeedChartController
         _timer = new DispatcherTimer { Interval = ChartTickInterval };
         _timer.Tick += OnTimerTick;
     }
-    
+
     public void Start()
     {
         _monitor.Reset();
@@ -53,24 +54,24 @@ public sealed class DownloadSpeedChartController
             _timer.Start();
         }
     }
-    
+
     public void Stop()
     {
         _timer.Stop();
     }
-    
+
     public void SetPaused()
     {
         _timer.Stop();
         _chart.PauseGraph();
     }
-    
+
     public void SetFailed()
     {
         _timer.Stop();
         _chart.ErrorGraph();
     }
-    
+
     public void UpdateProgress(GameServerConversionProgress progress)
     {
         if (progress.TotalChunks > 0)
@@ -94,7 +95,7 @@ public sealed class DownloadSpeedChartController
         {
             _lastBytesTicks = nowTicks;
         }
-        
+
         if (nowTicks - _lastBytesTicks >= StalledThreshold.TotalMilliseconds)
         {
             _smoothedSpeed = 0;
@@ -110,13 +111,14 @@ public sealed class DownloadSpeedChartController
             _chart.SetSpeed(_lastPercent, 0);
             return;
         }
-        
+
         if (nowTicks - _lastSampleTicks >= SpeedSampleInterval.TotalMilliseconds)
         {
             double elapsedSeconds = (nowTicks - _lastSampleTicks) / 1000.0;
             long deltaBytes = totalBytes - _lastSampleBytes;
             double rawSpeed = deltaBytes > 0 ? deltaBytes / elapsedSeconds : 0.0;
-            _smoothedSpeed = _smoothedSpeed <= 0 ? rawSpeed
+            _smoothedSpeed = _smoothedSpeed <= 0
+                ? rawSpeed
                 : rawSpeed * SpeedSmoothingFactor + _smoothedSpeed * (1.0 - SpeedSmoothingFactor);
             _lastSampleBytes = totalBytes;
             _lastSampleTicks = nowTicks;

@@ -49,14 +49,15 @@
 
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="CustomPanelBackgroundBrush" Color="#D9101010" />
-                    <AcrylicBrush x:Key="IosGlassBrush" FallbackColor="#CC000000" TintColor="#000000" TintOpacity="0.15" />
+                    <AcrylicBrush x:Key="IosGlassBrush" FallbackColor="#CC000000" TintColor="#000000"
+                                  TintOpacity="0.15" />
                     <SolidColorBrush x:Key="CardButtonBackgroundBrush" Color="#1AFFFFFF" />
                     <SolidColorBrush x:Key="CardButtonHoverBrush" Color="#26FFFFFF" />
                     <SolidColorBrush x:Key="BannerOverlayButtonBackgroundBrush" Color="#99000000" />
                     <SolidColorBrush x:Key="NewsSkeletonBarBrush" Color="#2EFFFFFF" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
-            
+
             <AcrylicBrush
                 x:Key="LaunchButtonBackgroundBrush"
                 FallbackColor="#CC000000"
@@ -429,7 +430,7 @@
                                 </Grid>
                             </PivotItem>
                         </Pivot>
-                        
+
                         <Grid
                             x:Name="NewsSkeletonPanel"
                             Grid.Row="1"

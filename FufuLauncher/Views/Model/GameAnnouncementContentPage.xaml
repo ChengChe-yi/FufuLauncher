@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0" Padding="12,10,12,8" ColumnSpacing="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -32,7 +32,7 @@
                        VerticalAlignment="Center"
                        TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" />
         </Grid>
-        
+
         <Grid Grid.Row="1">
             <controls:WebView2 x:Name="ContentWebView" DefaultBackgroundColor="Transparent" />
 

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -19,9 +20,24 @@ public abstract class GameCheckin
     protected readonly string PlayerName;
     protected HttpClient HttpClient;
     protected Dictionary<string, string> Headers;
-    public static string LastApiError { get; set; } = string.Empty;
-    public static int LastSignDays { get; set; } = 0;
-    public static string LastRewardItem { get; set; } = "Status_None".GetLocalized();
+
+    public static string LastApiError
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public static int LastSignDays
+    {
+        get;
+        set;
+    } = 0;
+
+    public static string LastRewardItem
+    {
+        get;
+        set;
+    } = "Status_None".GetLocalized();
 
     public List<AccountItem> AccountList
     {
@@ -74,6 +90,7 @@ public abstract class GameCheckin
         {
             LastApiError = string.Format("Checkin_GetCalendarException".GetLocalized(), ex.Message);
         }
+
         return null;
     }
 
@@ -93,7 +110,6 @@ public abstract class GameCheckin
         var hasCookieToken = cookieParts.Any(p => p.StartsWith("cookie_token="));
         if (!hasCookieToken)
         {
-
         }
 
         var userAgent = Tools.GetUserAgent(config.Games.Cn.UserAgent);
@@ -250,6 +266,7 @@ public abstract class GameCheckin
                 {
                     return result.Data;
                 }
+
                 LastApiError = result?.Message ?? "Checkin_ResignQueryFailed".GetLocalized();
             }
         }
@@ -257,6 +274,7 @@ public abstract class GameCheckin
         {
             LastApiError = string.Format("Checkin_ResignQueryFailed".GetLocalized(), ex.Message);
         }
+
         return null;
     }
 
@@ -278,6 +296,7 @@ public abstract class GameCheckin
                 {
                     AddHeaderToRequest(request, h.Key, h.Value);
                 }
+
                 request.Content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 var response = await HttpClient.SendAsync(request).ConfigureAwait(false);
@@ -287,10 +306,12 @@ public abstract class GameCheckin
                 {
                     return (false, "Checkin_ParseResultFailed".GetLocalized(), -1);
                 }
+
                 if (data.RetCode == 0)
                 {
                     return (true, "Checkin_ResignSuccess".GetLocalized(), 0);
                 }
+
                 return (false, data.Message, data.RetCode);
             }
         }
@@ -346,7 +367,6 @@ public abstract class GameCheckin
                     if (data != null && data.RetCode == 0 && data.Data != null && data.Data.Success == 1 &&
                         i <= retries)
                     {
-
                         await Task.Delay(new Random().Next(6000, 15000));
                     }
                     else
@@ -364,7 +384,8 @@ public abstract class GameCheckin
         return result;
     }
 
-    public async Task<string> SignAccountAsync(Config config, string targetUid = null, HashSet<string> disabledUids = null)
+    public async Task<string> SignAccountAsync(Config config, string targetUid = null,
+        HashSet<string> disabledUids = null)
     {
         LastApiError = string.Empty;
         var returnData = $"{GameName}: ";
@@ -376,6 +397,7 @@ public abstract class GameCheckin
             {
                 returnData += string.Format("Checkin_Reason".GetLocalized(), LastApiError);
             }
+
             return returnData;
         }
 
@@ -411,6 +433,7 @@ public abstract class GameCheckin
                 {
                     returnData += string.Format("Checkin_Detail".GetLocalized(), LastApiError);
                 }
+
                 continue;
             }
 
@@ -427,7 +450,8 @@ public abstract class GameCheckin
                 if (CheckinRewards != null && CheckinRewards.Count > signDays)
                 {
                     returnData += "\n" + account.Nickname + "Checkin_AlreadySignedToday".GetLocalized();
-                    returnData += "\n" + string.Format("Checkin_TodayReward".GetLocalized(), Tools.GetItem(CheckinRewards[signDays]));
+                    returnData += "\n" + string.Format("Checkin_TodayReward".GetLocalized(),
+                        Tools.GetItem(CheckinRewards[signDays]));
                     signDays += 1;
                 }
                 else
@@ -449,6 +473,7 @@ public abstract class GameCheckin
                     {
                         returnData += string.Format("Checkin_Detail".GetLocalized(), LastApiError);
                     }
+
                     continue;
                 }
 
@@ -465,7 +490,8 @@ public abstract class GameCheckin
                             if (CheckinRewards != null && CheckinRewards.Count > rewardIndex)
                             {
                                 returnData += "\n" + account.Nickname + "Checkin_SignSuccess".GetLocalized();
-                                returnData += "\n" + string.Format("Checkin_RewardIs".GetLocalized(), Tools.GetItem(CheckinRewards[rewardIndex]));
+                                returnData += "\n" + string.Format("Checkin_RewardIs".GetLocalized(),
+                                    Tools.GetItem(CheckinRewards[rewardIndex]));
                                 signDays += 2;
                             }
                             else
@@ -479,12 +505,14 @@ public abstract class GameCheckin
                             if (CheckinRewards != null && CheckinRewards.Count > signDays)
                             {
                                 returnData += "\n" + account.Nickname + "Checkin_AlreadySignedToday".GetLocalized();
-                                returnData += "\n" + string.Format("Checkin_RewardIs".GetLocalized(), Tools.GetItem(CheckinRewards[signDays]));
+                                returnData += "\n" + string.Format("Checkin_RewardIs".GetLocalized(),
+                                    Tools.GetItem(CheckinRewards[signDays]));
                             }
                         }
                         else
                         {
-                            returnData += "\n" + account.Nickname + string.Format("Checkin_SignFailedApi".GetLocalized(), data.Message);
+                            returnData += "\n" + account.Nickname +
+                                          string.Format("Checkin_SignFailedApi".GetLocalized(), data.Message);
                             continue;
                         }
                     }

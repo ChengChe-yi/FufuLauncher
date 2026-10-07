@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Models;
 
 namespace FufuLauncher.Services;
@@ -130,6 +131,7 @@ public partial class AccountManager
         {
             if (cookies.TryGetValue("ltuid_v2", out var ltuidV2)) return ltuidV2;
         }
+
         throw new ArgumentException("无法提取账户 ID");
     }
 

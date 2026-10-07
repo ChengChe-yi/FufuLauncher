@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json.Nodes;
@@ -12,6 +13,7 @@ namespace FufuLauncher.Views;
 public sealed partial class LoginQrWindow
 {
     #region 米游社APP扫码登录
+
     private async Task StartAppLoginFlowAsync(LoginSession session)
     {
         _isLoginCompleting = false;
@@ -49,9 +51,10 @@ public sealed partial class LoginQrWindow
             if (result["retcode"]?.GetValue<int>() == 0)
             {
                 string qrUrl = result["data"]["url"]?.GetValue<string>();
-                session.Ticket = result["data"]["ticket"]?.GetValue<string>(); 
+                session.Ticket = result["data"]["ticket"]?.GetValue<string>();
                 return (true, qrUrl, "Success");
             }
+
             return (false, null, result["message"]?.GetValue<string>());
         }
         catch (Exception ex)
@@ -107,11 +110,13 @@ public sealed partial class LoginQrWindow
                         confirmedData = result["data"];
                         break;
                     }
+
                     if (status?.ToLower() == "scanned")
                     {
                         UpdateStatus("已扫码，请在手机端确认登录...", true);
                     }
-                    consecutiveErrors = 0; 
+
+                    consecutiveErrors = 0;
                 }
                 else
                 {
@@ -154,5 +159,6 @@ public sealed partial class LoginQrWindow
             await ProcessAndExchangeV2TokensAsync(confirmedData);
         }
     }
+
     #endregion
 }

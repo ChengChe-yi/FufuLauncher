@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models
@@ -11,19 +12,22 @@ namespace FufuLauncher.Models
         [JsonPropertyName("retcode")]
         public int Retcode
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("message")]
         public string Message
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("data")]
         public BackgroundData Data
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -32,7 +36,8 @@ namespace FufuLauncher.Models
         [JsonPropertyName("game_info_list")]
         public GameInfoItem[] GameInfoList
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -41,13 +46,15 @@ namespace FufuLauncher.Models
         [JsonPropertyName("game")]
         public GameInfo Game
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("backgrounds")]
         public BackgroundItem[] Backgrounds
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -56,13 +63,15 @@ namespace FufuLauncher.Models
         [JsonPropertyName("id")]
         public string Id
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("biz")]
         public string Biz
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -71,19 +80,22 @@ namespace FufuLauncher.Models
         [JsonPropertyName("background")]
         public BackgroundInfo Background
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("video")]
         public VideoInfo Video
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("type")]
         public string Type
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -92,7 +104,8 @@ namespace FufuLauncher.Models
         [JsonPropertyName("url")]
         public string Url
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -101,13 +114,15 @@ namespace FufuLauncher.Models
         [JsonPropertyName("url")]
         public string Url
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("size")]
         public long Size
         {
-            get; set;
+            get;
+            set;
         }
     }
 }

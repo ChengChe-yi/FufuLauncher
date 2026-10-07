@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Helpers;
@@ -19,10 +20,29 @@ public enum ModTrustEnforcement
 
 public sealed class ModTrustDecision
 {
-    public required bool Allowed { get; init; }
-    public required ModTrustResult Result { get; init; }
-    public required ModTrustEnforcement Mode { get; init; }
-    public string Reason { get; init; } = string.Empty;
+    public required bool Allowed
+    {
+        get;
+        init;
+    }
+
+    public required ModTrustResult Result
+    {
+        get;
+        init;
+    }
+
+    public required ModTrustEnforcement Mode
+    {
+        get;
+        init;
+    }
+
+    public string Reason
+    {
+        get;
+        init;
+    } = string.Empty;
 
     public bool ShouldNotify => Mode switch
     {
@@ -55,7 +75,9 @@ public sealed class ModTrustGate
         {
             var path = File.Exists(PolicyFilePath)
                 ? PolicyFilePath
-                : File.Exists(LegacyPolicyFilePath) ? LegacyPolicyFilePath : null;
+                : File.Exists(LegacyPolicyFilePath)
+                    ? LegacyPolicyFilePath
+                    : null;
 
             if (path == null) return ModTrustEnforcement.Off;
 
@@ -120,7 +142,8 @@ public sealed class ModTrustGate
 
         if (mode == ModTrustEnforcement.Off)
         {
-            return new ModTrustDecision { Allowed = true, Result = result, Mode = mode, Reason = "trust check disabled" };
+            return new ModTrustDecision
+                { Allowed = true, Result = result, Mode = mode, Reason = "trust check disabled" };
         }
 
         var allowed = mode switch
@@ -152,7 +175,8 @@ public sealed class ModTrustGate
             ModTrustStatus.Unsigned => "unsigned: publisher cannot be verified",
             ModTrustStatus.Tampered => "signature does not match the file content, the file may be tampered",
             ModTrustStatus.Revoked => $"signing certificate is revoked by the platform: {signer}",
-            ModTrustStatus.PolicyViolation => $"signing certificate violates the platform policy (basic code signing certificates only): {signer}",
+            ModTrustStatus.PolicyViolation =>
+                $"signing certificate violates the platform policy (basic code signing certificates only): {signer}",
             ModTrustStatus.PackageUnavailable =>
                 mode == ModTrustEnforcement.Enforce
                     ? "trust package unavailable, strict mode refuses to load unverified files"

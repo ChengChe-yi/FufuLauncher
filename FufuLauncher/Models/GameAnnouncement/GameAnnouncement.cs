@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 using FufuLauncher.Helpers;
 using FufuLauncher.Helpers.Serialization;
@@ -11,7 +12,7 @@ namespace FufuLauncher.Models.GameAnnouncement
     public class GameAnnouncement : AnnouncementContent
     {
         #region 界面绑定辅助
-        
+
         public bool ShouldShowTimeDescription
         {
             get => Type == 1;
@@ -82,81 +83,94 @@ namespace FufuLauncher.Models.GameAnnouncement
         [JsonPropertyName("type_label")]
         public string TypeLabel
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("tag_label")]
         public string TagLabel
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("tag_icon")]
         public string TagIcon
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("login_alert")]
         public int LoginAlert
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("start_time")]
         [JsonConverter(typeof(SimpleDateTimeOffsetConverter))]
         public DateTimeOffset StartTime
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("end_time")]
         [JsonConverter(typeof(SimpleDateTimeOffsetConverter))]
         public DateTimeOffset EndTime
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("type")]
         public int Type
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("remind")]
         public int Remind
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("alert")]
         public int Alert
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("tag_start_time")]
         public string TagStartTime
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("tag_end_time")]
         public string TagEndTime
         {
-            get; set;
+            get;
+            set;
         } = string.Empty;
 
         [JsonPropertyName("remind_ver")]
         public int RemindVersion
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("has_content")]
         public bool HasContent
         {
-            get; set;
+            get;
+            set;
         }
     }
 }

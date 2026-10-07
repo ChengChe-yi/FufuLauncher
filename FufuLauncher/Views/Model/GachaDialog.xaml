@@ -148,7 +148,8 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{helpers:Loc Key=GachaDialog_FiveStarRecords}" Style="{StaticResource BodyStrongTextBlockStyle}"
+                            <TextBlock Text="{helpers:Loc Key=GachaDialog_FiveStarRecords}"
+                                       Style="{StaticResource BodyStrongTextBlockStyle}"
                                        Margin="0,0,0,12" />
 
                             <ListView Grid.Row="1" ItemsSource="{x:Bind FiveStarRecords}" SelectionMode="None">
@@ -179,7 +180,8 @@
                                                             Spacing="2">
                                                     <TextBlock Text="{x:Bind PityUsed}" FontWeight="Bold"
                                                                Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
-                                                    <TextBlock Text="{helpers:Loc Key=GachaDialog_Pulls}" FontSize="10" VerticalAlignment="Bottom"
+                                                    <TextBlock Text="{helpers:Loc Key=GachaDialog_Pulls}" FontSize="10"
+                                                               VerticalAlignment="Bottom"
                                                                Margin="0,0,0,2"
                                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                                                 </StackPanel>

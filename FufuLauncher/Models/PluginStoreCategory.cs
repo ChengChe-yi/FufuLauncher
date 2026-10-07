@@ -14,19 +14,35 @@ public class PluginStoreCategory : INotifyPropertyChanged
     private bool _isSelected;
 
     [JsonPropertyName("key")]
-    public string Key { get; set; } = string.Empty;
+    public string Key
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("display_name")]
-    public string DisplayName { get; set; } = string.Empty;
+    public string DisplayName
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("icon")]
-    public string Icon { get; set; } = string.Empty;
-    
+    public string Icon
+    {
+        get;
+        set;
+    } = string.Empty;
+
     [JsonIgnore]
     public bool IsSelected
     {
         get => _isSelected;
-        set { _isSelected = value; OnPropertyChanged(); }
+        set
+        {
+            _isSelected = value;
+            OnPropertyChanged();
+        }
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

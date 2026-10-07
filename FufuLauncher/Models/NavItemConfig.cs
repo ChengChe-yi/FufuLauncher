@@ -5,12 +5,28 @@ namespace FufuLauncher.Models;
 
 public class NavItemConfig : INotifyPropertyChanged
 {
-    public string ViewModelKey { get; init; } = "";
-    public string DisplayNameKey { get; init; } = "";
+    public string ViewModelKey
+    {
+        get;
+        init;
+    } = "";
+
+    public string DisplayNameKey
+    {
+        get;
+        init;
+    } = "";
+
     public string DisplayName => string.IsNullOrEmpty(DisplayNameKey) ? string.Empty : DisplayNameKey.GetLocalized();
-    public string IconGlyph { get; init; } = "";
+
+    public string IconGlyph
+    {
+        get;
+        init;
+    } = "";
 
     private bool _isUserVisible = true;
+
     public bool IsUserVisible
     {
         get => _isUserVisible;
@@ -23,7 +39,11 @@ public class NavItemConfig : INotifyPropertyChanged
         }
     }
 
-    public bool IsForceVisible { get; init; }
+    public bool IsForceVisible
+    {
+        get;
+        init;
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
     public event EventHandler? VisibilityChanged;

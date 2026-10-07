@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -12,7 +13,8 @@ namespace FufuLauncher.Helpers.Serialization
     {
         private const string Format = "yyyy-MM-dd HH:mm:ss";
 
-        public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert,
+            JsonSerializerOptions options)
         {
             if (reader.GetString() is { } dataTimeString)
             {

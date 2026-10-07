@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -151,6 +152,7 @@ public sealed partial class BlankPage
             if (current is T typedParent)
                 return typedParent;
         }
+
         return null;
     }
 

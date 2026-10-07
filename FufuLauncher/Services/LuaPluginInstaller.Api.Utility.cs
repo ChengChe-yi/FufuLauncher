@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using MoonSharp.Interpreter;
 
@@ -50,6 +51,7 @@ public partial class LuaPluginInstaller
                         var val = kvp.Value.String;
                         iniLines.AppendLine($"{key} = {val}");
                     }
+
                     iniLines.AppendLine();
                 }
             }

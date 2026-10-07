@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Constants;
@@ -16,14 +17,14 @@ public class AnnouncementService : IAnnouncementService
     private readonly HttpClient _httpClient;
     private readonly ILocalSettingsService _localSettingsService;
     private readonly SemaphoreSlim _checkGate = new(1, 1);
-    
+
     public AnnouncementService(ILocalSettingsService localSettingsService)
     {
         _localSettingsService = localSettingsService;
         _httpClient = new HttpClient();
         _httpClient.Timeout = TimeSpan.FromSeconds(10);
     }
-    
+
     public async Task<string?> GetCurrentAnnouncementUrlAsync()
     {
         try
@@ -35,7 +36,7 @@ public class AnnouncementService : IAnnouncementService
             {
                 return data.Info;
             }
-            
+
             return null;
         }
         catch (Exception ex)
@@ -56,7 +57,7 @@ public class AnnouncementService : IAnnouncementService
             return await _httpClient.GetStringAsync(ApiEndpoints.AnnouncementFallbackUrl);
         }
     }
-    
+
     public async Task<string?> CheckForNewAnnouncementAsync()
     {
         await _checkGate.WaitAsync();
@@ -68,14 +69,15 @@ public class AnnouncementService : IAnnouncementService
             {
                 return null;
             }
-            
+
             string localUrl = string.Empty;
-            var cachedUrlObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncementUrlKey);
+            var cachedUrlObj =
+                await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncementUrlKey);
             if (cachedUrlObj is string cachedUrl)
             {
                 localUrl = cachedUrl;
             }
-            
+
             if (string.Equals(remoteUrl, localUrl, StringComparison.OrdinalIgnoreCase))
             {
                 return null;
@@ -104,7 +106,8 @@ public class AnnouncementService : IAnnouncementService
     {
         try
         {
-            var settingObj = await _localSettingsService.ReadSettingAsync(LocalSettingsService.SuppressAnnouncementInGameKey);
+            var settingObj =
+                await _localSettingsService.ReadSettingAsync(LocalSettingsService.SuppressAnnouncementInGameKey);
             bool isEnabled = settingObj == null || Convert.ToBoolean(settingObj);
 
             if (!isEnabled)

@@ -15,19 +15,23 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="AppTitleBar" Height="32" Background="Transparent">
-            <TextBlock Text="{helpers:Loc Key=FeedbackWindow_Title}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="12" Opacity="0.8" />
+            <TextBlock Text="{helpers:Loc Key=FeedbackWindow_Title}" VerticalAlignment="Center" Margin="16,0,0,0"
+                       FontSize="12" Opacity="0.8" />
         </Grid>
 
         <Grid Grid.Row="1" Padding="32,16,32,32">
             <StackPanel Spacing="16" VerticalAlignment="Center">
-                <TextBlock Text="{helpers:Loc Key=FeedbackWindow_SelectType}" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,8" />
+                <TextBlock Text="{helpers:Loc Key=FeedbackWindow_SelectType}" FontSize="16" FontWeight="SemiBold"
+                           Margin="0,0,0,8" />
 
                 <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Padding="16"
                         Click="OnFeatureRequestClick" BorderThickness="0"
                         Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
                     <StackPanel>
-                        <TextBlock Text="{helpers:Loc Key=FeedbackWindow_FeatureRequest}" FontWeight="Bold" FontSize="14" />
-                        <TextBlock Text="{helpers:Loc Key=FeedbackWindow_FeatureRequestDesc}" FontSize="12" Opacity="0.7" Margin="0,4,0,0"
+                        <TextBlock Text="{helpers:Loc Key=FeedbackWindow_FeatureRequest}" FontWeight="Bold"
+                                   FontSize="14" />
+                        <TextBlock Text="{helpers:Loc Key=FeedbackWindow_FeatureRequestDesc}" FontSize="12"
+                                   Opacity="0.7" Margin="0,4,0,0"
                                    TextWrapping="Wrap" />
                     </StackPanel>
                 </Button>

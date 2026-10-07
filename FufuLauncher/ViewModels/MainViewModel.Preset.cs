@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -16,12 +17,20 @@ namespace FufuLauncher.ViewModels;
 public partial class MainViewModel
 {
     #region 置顶预设
+
     [ObservableProperty] private Visibility _presetCardVisibility = Visibility.Collapsed;
     [ObservableProperty] private ObservableCollection<PresetModel> _pinnedPresets = new();
     public bool IsPinnedPresetsEmpty => PinnedPresets.Count == 0;
 
-    public IAsyncRelayCommand OpenPresetManagerCommand { get; }
-    public IRelayCommand<PresetModel> QuickSwitchPresetCommand { get; }
+    public IAsyncRelayCommand OpenPresetManagerCommand
+    {
+        get;
+    }
+
+    public IRelayCommand<PresetModel> QuickSwitchPresetCommand
+    {
+        get;
+    }
 
     private async Task OpenPresetManagerAsync()
     {
@@ -55,8 +64,11 @@ public partial class MainViewModel
                     return id;
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
+
         return string.Empty;
     }
 
@@ -66,7 +78,13 @@ public partial class MainViewModel
         List<string> pinnedIds = new();
         if (pinnedIdsJson != null)
         {
-            try { pinnedIds = JsonSerializer.Deserialize<List<string>>(pinnedIdsJson.ToString()); } catch { }
+            try
+            {
+                pinnedIds = JsonSerializer.Deserialize<List<string>>(pinnedIdsJson.ToString());
+            }
+            catch
+            {
+            }
         }
 
         string presetsDir = Helpers.AppPaths.PluginPresetsDir;
@@ -91,9 +109,12 @@ public partial class MainViewModel
                             PinnedPresets.Add(preset);
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 }
             }
+
             OnPropertyChanged(nameof(IsPinnedPresetsEmpty));
         });
     }
@@ -122,5 +143,6 @@ public partial class MainViewModel
             _notificationService.Show("预设切换失败", ex.Message, NotificationType.Error, 3000);
         }
     }
+
     #endregion
 }

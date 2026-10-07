@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -13,7 +14,10 @@ namespace FufuLauncher.Views
 {
     public sealed partial class LanguageSelectionPage : Page
     {
-        public LanguageSelectionViewModel ViewModel { get; }
+        public LanguageSelectionViewModel ViewModel
+        {
+            get;
+        }
 
         public LanguageSelectionPage()
         {
@@ -55,7 +59,7 @@ namespace FufuLauncher.Views
         private void OnCardLoaded(object sender, RoutedEventArgs e)
         {
             if (sender is not FrameworkElement element) return;
-    
+
             if (element.Tag is string s && s == "animSet") return;
             element.Tag = "animSet";
 
@@ -65,7 +69,7 @@ namespace FufuLauncher.Views
                 if (visual == null) return;
 
                 var compositor = visual.Compositor;
-        
+
                 var fade = compositor.CreateScalarKeyFrameAnimation();
                 fade.Target = "Opacity";
                 fade.InsertExpressionKeyFrame(1f, "this.FinalValue");
@@ -92,6 +96,7 @@ namespace FufuLauncher.Views
             {
                 Frame.BackStack.Clear();
             }
+
             Frame.Navigate(typeof(AgreementPage));
         }
     }

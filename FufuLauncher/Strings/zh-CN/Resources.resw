@@ -889,13 +889,13 @@
     <value>修改日期: </value>
   </data>
   <data name="FunctionsMenuBtn" xml:space="preserve">
-    <value>功能(Download/Repair)</value>
+    <value>功能</value>
   </data>
   <data name="DownloadPluginBtn" xml:space="preserve">
-    <value>下载插件(Download)</value>
+    <value>下载插件</value>
   </data>
   <data name="RepairFpsPluginBtn" xml:space="preserve">
-    <value>修复FPS显示插件(Repair)</value>
+    <value>修复FPS显示插件</value>
   </data>
   <data name="MainPluginEnabledLabel" xml:space="preserve">
     <value>主插件启用</value>
@@ -949,7 +949,7 @@
     <value>提交PR</value>
   </data>
   <data name="EnableInjectionParenLabel" xml:space="preserve">
-    <value>启用注入(Injection)</value>
+    <value>启用注入</value>
   </data>
   <data name="ConfigPresetLabel" xml:space="preserve">
     <value>配置预设:</value>
@@ -2276,6 +2276,9 @@
   </data>
   <data name="Announcement_Loading" xml:space="preserve">
     <value>正在加载公告...</value>
+  </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>在 Edge 中打开</value>
   </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>后退</value>
@@ -6969,4 +6972,62 @@ UIGF v4.x/3.0/2.x</value>
   <data name="GameRole_WidgetMismatch" xml:space="preserve"><value>备用便签接口未确认所选角色，已停止显示。请开启该角色的便签权限后重试。</value></data>
   <data name="GameRole_SkyIsland" xml:space="preserve"><value>天空岛</value></data>
   <data name="GameRole_WorldTree" xml:space="preserve"><value>世界树</value></data>
+  <data name="MiyousheQr_Title" xml:space="preserve"><value>识屏扫码</value></data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve"><value>「普通扫码」仅读取选中区域一次；「持续扫码」反复读取选中区域内的新二维码。识别后将使用当前米游社账号登录。Esc或右键取消框选。</value></data>
+  <data name="MiyousheQr_CurrentAccount" xml:space="preserve"><value>当前米游社账号</value></data>
+  <data name="MiyousheQr_Target" xml:space="preserve"><value>登录目标</value></data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve"><value>确认后，显示该二维码的设备将登录上方账号。</value></data>
+  <data name="MiyousheQr_Capture" xml:space="preserve"><value>普通扫码</value></data>
+  <data name="MiyousheQr_Confirm" xml:space="preserve"><value>确认登录</value></data>
+  <data name="MiyousheQr_SelectionHint" xml:space="preserve"><value>拖动鼠标框选二维码 · Esc 或鼠标右键取消</value></data>
+  <data name="MiyousheQr_Genshin" xml:space="preserve"><value>原神</value></data>
+  <data name="MiyousheQr_StarRail" xml:space="preserve"><value>崩坏：星穹铁道</value></data>
+  <data name="MiyousheQr_Zzz" xml:space="preserve"><value>绝区零</value></data>
+  <data name="MiyousheQr_Honkai3" xml:space="preserve"><value>崩坏3</value></data>
+  <data name="MiyousheQr_Passport" xml:space="preserve"><value>米哈游通行证</value></data>
+  <data name="MiyousheQr_NoAccount" xml:space="preserve"><value>请先在启动器中登录米游社账号。</value></data>
+  <data name="MiyousheQr_CnOnly" xml:space="preserve"><value>请切换到米游社国服账号后扫码。</value></data>
+  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve"><value>当前账号缺少扫码所需的凭证，请使用米游社 APP 重新扫码登录启动器。</value></data>
+  <data name="MiyousheQr_AccountChanged" xml:space="preserve"><value>当前米游社账号已改变，请重新框选二维码。</value></data>
+  <data name="MiyousheQr_Expired" xml:space="preserve"><value>二维码已过期，请在目标设备上刷新后重新框选。</value></data>
+  <data name="MiyousheQr_Unsupported" xml:space="preserve"><value>这不是支持的米哈游登录二维码。支持通行证及原神、星穹铁道、绝区零、崩坏3国服的登录二维码。</value></data>
+  <data name="MiyousheQr_NotFound" xml:space="preserve"><value>选中区域内未识别到二维码，请完整框选二维码并留出四周空白。</value></data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve"><value>识别到多个二维码，请点击选择需要登录的一个。</value></data>
+  <data name="MiyousheQr_Cancelled" xml:space="preserve"><value>已取消框选。</value></data>
+  <data name="MiyousheQr_Recognizing" xml:space="preserve"><value>正在识别二维码…</value></data>
+  <data name="MiyousheQr_Ready" xml:space="preserve"><value>已识别二维码，请核对账号和登录目标后确认。</value></data>
+  <data name="MiyousheQr_Confirming" xml:space="preserve"><value>正在确认登录…</value></data>
+  <data name="MiyousheQr_Success" xml:space="preserve"><value>已确认登录，请查看目标设备。</value></data>
+  <data name="MiyousheQr_ResultUnknown" xml:space="preserve"><value>未能确定登录结果，请先查看目标设备。若未登录，请刷新二维码后重新框选。</value></data>
+  <data name="MiyousheQr_CaptureFailed" xml:space="preserve"><value>屏幕框选或二维码读取失败，请重试。</value></data>
+  <data name="MiyousheQr_HttpError" xml:space="preserve"><value>扫码服务网络请求失败，请刷新二维码后重试。</value></data>
+  <data name="MiyousheQr_ResponseError" xml:space="preserve"><value>扫码服务返回了无法识别的结果，请刷新二维码后重试。</value></data>
+  <data name="MiyousheQr_Rejected" xml:space="preserve"><value>扫码请求被拒绝，二维码可能已过期或凭证已失效。请刷新二维码；仍失败时重新登录米游社账号。</value></data>
+  <data name="MiyousheQr_Continuous" xml:space="preserve"><value>持续扫码</value></data>
+  <data name="MiyousheQr_Stop" xml:space="preserve"><value>停止扫描</value></data>
+  <data name="MiyousheQr_AutoConfirm" xml:space="preserve"><value>自动确认登录</value></data>
+  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve"><value>扫描前勾选后，识别到支持的新二维码会立即用当前米游社账号确认登录。</value></data>
+  <data name="MiyousheQr_Scanning" xml:space="preserve"><value>正在等待区域内的新二维码，已确认 {0} 次。可点击「停止扫描」结束。</value></data>
+  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve"><value>登录成功后停止扫描</value></data>
+  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve"><value>勾选后，登录成功会停止持续扫描并移除扫描范围。取消勾选可继续扫描后续二维码。</value></data>
+  <data name="MiyousheQr_Stopped" xml:space="preserve"><value>已停止扫描。</value></data>
+  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve"><value>选中区域已不可用，请重新框选二维码区域。</value></data>
+  <data name="MiyousheQr_SessionLimit" xml:space="preserve"><value>本次持续扫描已达到上限，请重新开始扫描。</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>修改将自动保存</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>正在保存…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>配置保存失败</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>无法写入配置文件，请检查文件权限后重试。错误详情：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>配置加载失败</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>无法读取插件配置文件。错误详情：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>请确认配置文件存在且可读取，然后重新加载。</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>配置文件不存在：{0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>暂无可配置的参数</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>此插件尚未提供可调整的配置参数。</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>未找到匹配的配置项</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>请尝试其他关键词，或清空搜索条件。</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>清空搜索</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} 个配置项</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} 个配置项</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>配置文件</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>请输入配置值…</value></data>
 </root>

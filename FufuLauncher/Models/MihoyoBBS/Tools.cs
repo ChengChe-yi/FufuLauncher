@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using System.Text;
 
@@ -39,7 +40,6 @@ public static class Tools
 
     public static string GetDs(bool web = true)
     {
-
         var salt = web ? "G1ktdwFL4IyGkHuuWSmz0wUe9Db9scyK" : "idMMaGYmVgPzh3wxmWudUXKUPGidO7GM";
         var t = Timestamp().ToString();
         var r = RandomString(6);
@@ -66,7 +66,8 @@ public static class Tools
     {
         if (string.IsNullOrEmpty(useragent))
         {
-            return "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1";
+            return
+                "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1";
         }
 
         useragent = useragent.Replace("; ", " ").Replace(";", " ");

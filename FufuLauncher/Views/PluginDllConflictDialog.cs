@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services;
@@ -127,7 +128,8 @@ internal static class PluginDllConflictDialog
         return shown;
     }
 
-    private static Border BuildConflictCard(PluginDllConflict conflict, Action<PluginDllConflict, PluginDllCandidate> onDelete)
+    private static Border BuildConflictCard(PluginDllConflict conflict,
+        Action<PluginDllConflict, PluginDllCandidate> onDelete)
     {
         var panel = new StackPanel { Spacing = 10 };
 

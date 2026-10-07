@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
 
@@ -21,22 +22,56 @@ public sealed class GameServerScheme : IEquatable<GameServerScheme>
         SophonApi = sophonApi;
         IsNotCompatOnly = isNotCompatOnly;
     }
-    public ChannelType Channel { get; }
-    public SubChannelType SubChannel { get; }
-    public bool IsOversea { get; }
-    public string LauncherId { get; }
-    public string GameId { get; }
-    public string HypApi { get; }
-    public string SophonApi { get; }
-    public bool IsNotCompatOnly { get; }
+
+    public ChannelType Channel
+    {
+        get;
+    }
+
+    public SubChannelType SubChannel
+    {
+        get;
+    }
+
+    public bool IsOversea
+    {
+        get;
+    }
+
+    public string LauncherId
+    {
+        get;
+    }
+
+    public string GameId
+    {
+        get;
+    }
+
+    public string HypApi
+    {
+        get;
+    }
+
+    public string SophonApi
+    {
+        get;
+    }
+
+    public bool IsNotCompatOnly
+    {
+        get;
+    }
+
     public string Cps => Channel == ChannelType.Bili ? "bilibili" : "mihoyo";
+
     public GameServerKind Kind => (Channel, IsOversea) switch
     {
         (ChannelType.Bili, false) => GameServerKind.ChineseBilibili,
         (_, false) => GameServerKind.ChineseOfficial,
         (_, true) => GameServerKind.Oversea,
     };
-    
+
     public string DisplayName
     {
         get
@@ -93,34 +128,81 @@ public sealed class GameServerScheme : IEquatable<GameServerScheme>
 
     #region 方案
 
-    private static readonly GameServerScheme ServerChineseChannel00SubChannel00Compat = Chinese(ChannelType.Default, SubChannelType.Default, false);
-    private static readonly GameServerScheme ServerChineseChannel00SubChannel01Compat = Chinese(ChannelType.Default, SubChannelType.Official, false);
-    private static readonly GameServerScheme ServerChineseChannel01SubChannel00 = Chinese(ChannelType.Official, SubChannelType.Default);
-    private static readonly GameServerScheme ServerChineseChannel01SubChannel01 = Chinese(ChannelType.Official, SubChannelType.Official);
-    private static readonly GameServerScheme ServerChineseChannel01SubChannel02 = Chinese(ChannelType.Official, SubChannelType.NoTapTap);
-    private static readonly GameServerScheme ServerChineseChannel01SubChannel03Compat = Chinese(ChannelType.Official, SubChannelType.Epic, false);
-    private static readonly GameServerScheme ServerChineseChannel01SubChannel06Compat = Chinese(ChannelType.Official, SubChannelType.Google, false);
-    private static readonly GameServerScheme ServerChineseChannel01SubChannel14Compat = Chinese(ChannelType.Official, (SubChannelType)14, false);
-    private static readonly GameServerScheme ServerChineseChannel02SubChannel01Compat = Chinese(ChannelType.MiHoYoSONY, SubChannelType.Official, false);
+    private static readonly GameServerScheme ServerChineseChannel00SubChannel00Compat =
+        Chinese(ChannelType.Default, SubChannelType.Default, false);
+
+    private static readonly GameServerScheme ServerChineseChannel00SubChannel01Compat =
+        Chinese(ChannelType.Default, SubChannelType.Official, false);
+
+    private static readonly GameServerScheme ServerChineseChannel01SubChannel00 =
+        Chinese(ChannelType.Official, SubChannelType.Default);
+
+    private static readonly GameServerScheme ServerChineseChannel01SubChannel01 =
+        Chinese(ChannelType.Official, SubChannelType.Official);
+
+    private static readonly GameServerScheme ServerChineseChannel01SubChannel02 =
+        Chinese(ChannelType.Official, SubChannelType.NoTapTap);
+
+    private static readonly GameServerScheme ServerChineseChannel01SubChannel03Compat =
+        Chinese(ChannelType.Official, SubChannelType.Epic, false);
+
+    private static readonly GameServerScheme ServerChineseChannel01SubChannel06Compat =
+        Chinese(ChannelType.Official, SubChannelType.Google, false);
+
+    private static readonly GameServerScheme ServerChineseChannel01SubChannel14Compat =
+        Chinese(ChannelType.Official, (SubChannelType)14, false);
+
+    private static readonly GameServerScheme ServerChineseChannel02SubChannel01Compat =
+        Chinese(ChannelType.MiHoYoSONY, SubChannelType.Official, false);
 
     private static readonly GameServerScheme ServerChineseChannel14SubChannel00 = Bilibili(SubChannelType.Default);
-    private static readonly GameServerScheme ServerChineseChannel14SubChannel01Compat = Bilibili(SubChannelType.Official, false);
-    private static readonly GameServerScheme ServerChineseChannel14SubChannel02Compat = Bilibili(SubChannelType.NoTapTap, false);
-    private static readonly GameServerScheme ServerChineseChannel14SubChannel06Compat = Bilibili(SubChannelType.Google, false);
-    private static readonly GameServerScheme ServerChineseChannel14SubChannel14Compat = Bilibili((SubChannelType)14, false);
-    private static readonly GameServerScheme ServerChineseChannel14SubChannel16Compat = Bilibili((SubChannelType)16, false);
 
-    private static readonly GameServerScheme ServerOverseaChannel00SubChannel00Compat = Oversea(ChannelType.Default, SubChannelType.Default, false);
-    private static readonly GameServerScheme ServerOverseaChannel01SubChannel00 = Oversea(ChannelType.Official, SubChannelType.Default);
-    private static readonly GameServerScheme ServerOverseaChannel01SubChannel01 = Oversea(ChannelType.Official, SubChannelType.Official);
-    private static readonly GameServerScheme ServerOverseaChannel01SubChannel02Compat = Oversea(ChannelType.Official, SubChannelType.NoTapTap, false);
-    private static readonly GameServerScheme ServerOverseaChannel01SubChannel03 = Oversea(ChannelType.Official, SubChannelType.Epic);
-    private static readonly GameServerScheme ServerOverseaChannel01SubChannel06 = Oversea(ChannelType.Official, SubChannelType.Google);
-    private static readonly GameServerScheme ServerOverseaChannel02SubChannel01Compat = Oversea(ChannelType.MiHoYoSONY, SubChannelType.Official, false);
-    private static readonly GameServerScheme ServerOverseaChannel14SubChannel00Compat = Oversea(ChannelType.Bili, SubChannelType.Default, false);
-    private static readonly GameServerScheme ServerOverseaChannel14SubChannel14Compat = Oversea(ChannelType.Bili, (SubChannelType)14, false);
-    
-    public static IReadOnlyList<GameServerScheme> Known { get; } =
+    private static readonly GameServerScheme ServerChineseChannel14SubChannel01Compat =
+        Bilibili(SubChannelType.Official, false);
+
+    private static readonly GameServerScheme ServerChineseChannel14SubChannel02Compat =
+        Bilibili(SubChannelType.NoTapTap, false);
+
+    private static readonly GameServerScheme ServerChineseChannel14SubChannel06Compat =
+        Bilibili(SubChannelType.Google, false);
+
+    private static readonly GameServerScheme ServerChineseChannel14SubChannel14Compat =
+        Bilibili((SubChannelType)14, false);
+
+    private static readonly GameServerScheme ServerChineseChannel14SubChannel16Compat =
+        Bilibili((SubChannelType)16, false);
+
+    private static readonly GameServerScheme ServerOverseaChannel00SubChannel00Compat =
+        Oversea(ChannelType.Default, SubChannelType.Default, false);
+
+    private static readonly GameServerScheme ServerOverseaChannel01SubChannel00 =
+        Oversea(ChannelType.Official, SubChannelType.Default);
+
+    private static readonly GameServerScheme ServerOverseaChannel01SubChannel01 =
+        Oversea(ChannelType.Official, SubChannelType.Official);
+
+    private static readonly GameServerScheme ServerOverseaChannel01SubChannel02Compat =
+        Oversea(ChannelType.Official, SubChannelType.NoTapTap, false);
+
+    private static readonly GameServerScheme ServerOverseaChannel01SubChannel03 =
+        Oversea(ChannelType.Official, SubChannelType.Epic);
+
+    private static readonly GameServerScheme ServerOverseaChannel01SubChannel06 =
+        Oversea(ChannelType.Official, SubChannelType.Google);
+
+    private static readonly GameServerScheme ServerOverseaChannel02SubChannel01Compat =
+        Oversea(ChannelType.MiHoYoSONY, SubChannelType.Official, false);
+
+    private static readonly GameServerScheme ServerOverseaChannel14SubChannel00Compat =
+        Oversea(ChannelType.Bili, SubChannelType.Default, false);
+
+    private static readonly GameServerScheme ServerOverseaChannel14SubChannel14Compat =
+        Oversea(ChannelType.Bili, (SubChannelType)14, false);
+
+    public static IReadOnlyList<GameServerScheme> Known
+    {
+        get;
+    } =
     [
         ServerChineseChannel00SubChannel00Compat,
         ServerChineseChannel00SubChannel01Compat,
@@ -149,10 +231,16 @@ public sealed class GameServerScheme : IEquatable<GameServerScheme>
         ServerOverseaChannel14SubChannel00Compat,
         ServerOverseaChannel14SubChannel14Compat,
     ];
-    
-    public static IReadOnlyList<GameServerScheme> Selectable { get; } = Known.Where(scheme => scheme.IsNotCompatOnly).ToList();
-    
-    public static IReadOnlyList<GameServerScheme> BetaValues { get; } =
+
+    public static IReadOnlyList<GameServerScheme> Selectable
+    {
+        get;
+    } = Known.Where(scheme => scheme.IsNotCompatOnly).ToList();
+
+    public static IReadOnlyList<GameServerScheme> BetaValues
+    {
+        get;
+    } =
     [
         ServerChineseChannel01SubChannel01,
         ServerOverseaChannel01SubChannel00,
@@ -166,7 +254,7 @@ public sealed class GameServerScheme : IEquatable<GameServerScheme>
     public static GameServerScheme OverseaOfficialOfficial => ServerOverseaChannel01SubChannel01;
     public static GameServerScheme OverseaOfficialEpic => ServerOverseaChannel01SubChannel03;
     public static GameServerScheme OverseaOfficialGoogle => ServerOverseaChannel01SubChannel06;
-    
+
     public static GameServerScheme FromPreset(string preset)
     {
         return preset switch

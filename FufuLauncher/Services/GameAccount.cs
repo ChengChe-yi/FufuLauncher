@@ -2,39 +2,61 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models
 {
     public class GameAccount
     {
-        public Guid InnerId { get; set; } = Guid.NewGuid();
+        public Guid InnerId
+        {
+            get;
+            set;
+        } = Guid.NewGuid();
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public SchemeType Type
         {
-            get; set;
+            get;
+            set;
         }
 
-        public string Name { get; set; } = string.Empty;
-        public string MihoyoSDK { get; set; } = string.Empty;
+        public string Name
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public string MihoyoSDK
+        {
+            get;
+            set;
+        } = string.Empty;
+
         public string? Mid
         {
-            get; set;
+            get;
+            set;
         }
+
         public string? MacAddress
         {
-            get; set;
+            get;
+            set;
         }
+
         public bool IsExpired
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("lastUsed")]
         public DateTime? LastUsed
         {
-            get; set;
+            get;
+            set;
         }
 
         public void UpdateName(string name)
@@ -42,7 +64,8 @@ namespace FufuLauncher.Models
             Name = name;
         }
 
-        public static GameAccount Create(SchemeType type, string name, string mihoyoSdk, string? mid, string? macAddress)
+        public static GameAccount Create(SchemeType type, string name, string mihoyoSdk, string? mid,
+            string? macAddress)
         {
             return new GameAccount
             {

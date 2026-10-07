@@ -12,7 +12,9 @@ namespace FufuLauncher.Views;
 public sealed partial class MiyousheWindow
 {
     private bool _interactionBusy;
+
     private sealed record CommentDraft(string Text, bool Uncertain = false);
+
     private readonly Dictionary<string, CommentDraft> _commentDrafts = [];
     private readonly Dictionary<string, (bool Liked, long Count)> _replyLikeOverrides = [];
     private ContentDialog? _replyDialog;
@@ -29,10 +31,14 @@ public sealed partial class MiyousheWindow
         ToolTipService.SetToolTip(button, label);
         var content = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 5 };
         var icon = new MiyousheIcon { Kind = "Like" };
-        icon.SetBinding(Control.ForegroundProperty, new Binding { Source = button, Path = new PropertyPath(nameof(Control.Foreground)) });
-        var number = new TextBlock { Text = count.ToString(), FontSize = 12, VerticalAlignment = VerticalAlignment.Center };
-        number.SetBinding(TextBlock.ForegroundProperty, new Binding { Source = button, Path = new PropertyPath(nameof(Control.Foreground)) });
-        content.Children.Add(icon); content.Children.Add(number);
+        icon.SetBinding(Control.ForegroundProperty,
+            new Binding { Source = button, Path = new PropertyPath(nameof(Control.Foreground)) });
+        var number = new TextBlock
+            { Text = count.ToString(), FontSize = 12, VerticalAlignment = VerticalAlignment.Center };
+        number.SetBinding(TextBlock.ForegroundProperty,
+            new Binding { Source = button, Path = new PropertyPath(nameof(Control.Foreground)) });
+        content.Children.Add(icon);
+        content.Children.Add(number);
         button.Content = content;
     }
 
@@ -62,21 +68,33 @@ public sealed partial class MiyousheWindow
     private async Task SetPostLikeAsync(MiyousheClient client, string postId, bool liked, CancellationToken ct)
     {
         if (_interactionBusy || !IsCurrentInteraction(client, postId, ct)) return;
-        _interactionBusy = true; UpdatePostInteractionState();
+        _interactionBusy = true;
+        UpdatePostInteractionState();
         try
         {
             await client.SetPostLikeAsync(postId, liked, ct);
             if (!IsCurrentInteraction(client, postId, ct)) return;
             var post = _post!;
-            _post = post with { IsLiked = liked, HasLikeState = true, LikeCount = Math.Max(0, (post.LikeCount ?? 0) + (liked == post.IsLiked ? 0 : liked ? 1 : -1)) };
+            _post = post with
+            {
+                IsLiked = liked, HasLikeState = true,
+                LikeCount = Math.Max(0, (post.LikeCount ?? 0) + (liked == post.IsLiked ? 0 : liked ? 1 : -1))
+            };
             RememberPostInteraction(_post);
         }
-        catch (OperationCanceledException) when (ct.IsCancellationRequested) { }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested)
+        {
+        }
         catch (Exception ex)
         {
-            if (IsCurrentInteraction(client, postId, ct)) ReportError(ex, () => SetPostLikeAsync(client, postId, liked, ct));
+            if (IsCurrentInteraction(client, postId, ct))
+                ReportError(ex, () => SetPostLikeAsync(client, postId, liked, ct));
         }
-        finally { _interactionBusy = false; UpdatePostInteractionState(); }
+        finally
+        {
+            _interactionBusy = false;
+            UpdatePostInteractionState();
+        }
     }
 
     private CommunityReply ApplyReplyLikeState(CommunityReply reply) => reply with
@@ -93,18 +111,21 @@ public sealed partial class MiyousheWindow
             if (reply.Id == id) return ApplyReplyLikeState(reply);
             if (reply.Children.FirstOrDefault(r => r.Id == id) is { } child) return ApplyReplyLikeState(child);
         }
+
         return null;
     }
 
     private async Task SetReplyLikeAsync(CommunityPost post, CommunityReply reply, ToggleButton? button = null,
         MiyousheClient? expectedClient = null, CancellationToken? token = null, bool? desired = null)
     {
-        var client = expectedClient ?? _client; var ct = token ?? _readerCancellation.Token;
+        var client = expectedClient ?? _client;
+        var ct = token ?? _readerCancellation.Token;
         reply = ApplyReplyLikeState(reply);
         bool liked = desired ?? !reply.IsLiked;
         if (button != null) button.IsChecked = reply.IsLiked;
         if (_interactionBusy || !IsCurrentInteraction(client, post.Id, ct)) return;
-        _interactionBusy = true; UpdatePostInteractionState();
+        _interactionBusy = true;
+        UpdatePostInteractionState();
         if (button != null) button.IsEnabled = false;
         try
         {
@@ -116,14 +137,18 @@ public sealed partial class MiyousheWindow
             RebuildReplies();
             await UpdateInlineCommentsAsync();
         }
-        catch (OperationCanceledException) when (ct.IsCancellationRequested) { }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested)
+        {
+        }
         catch (Exception ex)
         {
-            if (IsCurrentInteraction(client, post.Id, ct)) ReportError(ex, () => SetReplyLikeAsync(post, reply, button, client, ct, liked));
+            if (IsCurrentInteraction(client, post.Id, ct))
+                ReportError(ex, () => SetReplyLikeAsync(post, reply, button, client, ct, liked));
         }
         finally
         {
-            _interactionBusy = false; UpdatePostInteractionState();
+            _interactionBusy = false;
+            UpdatePostInteractionState();
             if (!_closed && button != null) button.IsEnabled = true;
         }
     }
@@ -151,29 +176,61 @@ public sealed partial class MiyousheWindow
     private async Task ShowCommentComposerAsync(CommunityReply? reply = null)
     {
         if (_dialogOpen || _interactionBusy || _closed || _post == null) return;
-        var post = _post; var client = _client; var ct = _readerCancellation.Token;
-        try { client.RequireInteractionAccount(); }
-        catch (Exception ex) { ReportError(ex, null); return; }
-        string key = ((AccountSelector.SelectedItem as Choice)?.Id ?? client.AccountUid) + "/" + post.Id + "/" + reply?.Id;
+        var post = _post;
+        var client = _client;
+        var ct = _readerCancellation.Token;
+        try
+        {
+            client.RequireInteractionAccount();
+        }
+        catch (Exception ex)
+        {
+            ReportError(ex, null);
+            return;
+        }
+
+        string key = ((AccountSelector.SelectedItem as Choice)?.Id ?? client.AccountUid) + "/" + post.Id + "/" +
+                     reply?.Id;
         var draft = _commentDrafts.GetValueOrDefault(key) ?? new CommentDraft("");
         bool uncertain = draft.Uncertain, posted = false, sending = false;
-        var editor = new TextBox { Text = draft.Text, AcceptsReturn = true, TextWrapping = TextWrapping.Wrap,
-            MaxLength = 1000, MinHeight = 150, MaxHeight = 300, PlaceholderText = "Miyoushe_CommentHint".GetLocalized() };
-        var count = new TextBlock { Text = editor.Text.Length + "/1000", FontSize = 12, Opacity = .6, HorizontalAlignment = HorizontalAlignment.Right };
-        var feedback = new InfoBar { IsOpen = uncertain, IsClosable = false, Severity = InfoBarSeverity.Warning,
-            Message = uncertain ? "Miyoushe_SubmissionUncertain".GetLocalized() : "" };
+        var editor = new TextBox
+        {
+            Text = draft.Text, AcceptsReturn = true, TextWrapping = TextWrapping.Wrap,
+            MaxLength = 1000, MinHeight = 150, MaxHeight = 300, PlaceholderText = "Miyoushe_CommentHint".GetLocalized()
+        };
+        var count = new TextBlock
+        {
+            Text = editor.Text.Length + "/1000", FontSize = 12, Opacity = .6,
+            HorizontalAlignment = HorizontalAlignment.Right
+        };
+        var feedback = new InfoBar
+        {
+            IsOpen = uncertain, IsClosable = false, Severity = InfoBarSeverity.Warning,
+            Message = uncertain ? "Miyoushe_SubmissionUncertain".GetLocalized() : ""
+        };
         var panel = new StackPanel { Spacing = 12, Width = 440 };
-        panel.Children.Add(new TextBlock { Text = (AccountSelector.SelectedItem as Choice)?.Label ?? client.AccountUid, Opacity = .7 });
-        if (reply != null) panel.Children.Add(new TextBlock { Text = string.Format("Miyoushe_ReplyTo".GetLocalized(), reply.Author), TextWrapping = TextWrapping.Wrap });
-        panel.Children.Add(editor); panel.Children.Add(count); panel.Children.Add(feedback);
+        panel.Children.Add(new TextBlock
+            { Text = (AccountSelector.SelectedItem as Choice)?.Label ?? client.AccountUid, Opacity = .7 });
+        if (reply != null)
+            panel.Children.Add(new TextBlock
+            {
+                Text = string.Format("Miyoushe_ReplyTo".GetLocalized(), reply.Author), TextWrapping = TextWrapping.Wrap
+            });
+        panel.Children.Add(editor);
+        panel.Children.Add(count);
+        panel.Children.Add(feedback);
         var original = new HyperlinkButton { Content = "Miyoushe_Original".GetLocalized(), Padding = new Thickness(0) };
         var originalUri = OriginalUri;
         original.Click += async (_, _) => await Windows.System.Launcher.LaunchUriAsync(originalUri);
         panel.Children.Add(original);
-        var dialog = new ContentDialog { XamlRoot = RootGrid.XamlRoot,
+        var dialog = new ContentDialog
+        {
+            XamlRoot = RootGrid.XamlRoot,
             Title = (reply == null ? "Miyoushe_PublishComment" : "Miyoushe_Reply").GetLocalized(),
-            Content = panel, PrimaryButtonText = (uncertain ? "Miyoushe_Resubmit" : "Miyoushe_SendComment").GetLocalized(),
-            CloseButtonText = "Miyoushe_Cancel".GetLocalized(), DefaultButton = ContentDialogButton.None };
+            Content = panel,
+            PrimaryButtonText = (uncertain ? "Miyoushe_Resubmit" : "Miyoushe_SendComment").GetLocalized(),
+            CloseButtonText = "Miyoushe_Cancel".GetLocalized(), DefaultButton = ContentDialogButton.None
+        };
         editor.TextChanged += (_, _) =>
         {
             count.Text = editor.Text.Length + "/1000";
@@ -181,13 +238,18 @@ public sealed partial class MiyousheWindow
             dialog.IsPrimaryButtonEnabled = !sending && !string.IsNullOrWhiteSpace(editor.Text);
         };
         dialog.IsPrimaryButtonEnabled = !string.IsNullOrWhiteSpace(editor.Text);
-        dialog.Closing += (_, args) => { if (sending && !_closed) args.Cancel = true; };
+        dialog.Closing += (_, args) =>
+        {
+            if (sending && !_closed) args.Cancel = true;
+        };
         dialog.PrimaryButtonClick += async (_, args) =>
         {
             args.Cancel = true;
             if (sending || !IsCurrentInteraction(client, post.Id, ct)) return;
             var deferral = args.GetDeferral();
-            sending = _interactionBusy = true; dialog.IsPrimaryButtonEnabled = false; editor.IsReadOnly = true;
+            sending = _interactionBusy = true;
+            dialog.IsPrimaryButtonEnabled = false;
+            editor.IsReadOnly = true;
             UpdatePostInteractionState();
             string content = editor.Text;
             _commentDrafts[key] = new(content, uncertain);
@@ -196,24 +258,39 @@ public sealed partial class MiyousheWindow
                 if (client.NeedsVerification) await client.VerifyAsync(MiyousheVerificationWindow.ShowAsync, ct);
                 ct.ThrowIfCancellationRequested();
                 await client.PublishReplyAsync(post, content, reply?.Id, ct);
-                _commentDrafts.Remove(key); posted = true; args.Cancel = false;
-                if (IsCurrentInteraction(client, post.Id, ct)) _post = _post! with { ReplyCount = (_post!.ReplyCount ?? 0) + 1 };
+                _commentDrafts.Remove(key);
+                posted = true;
+                args.Cancel = false;
+                if (IsCurrentInteraction(client, post.Id, ct))
+                    _post = _post! with { ReplyCount = (_post!.ReplyCount ?? 0) + 1 };
             }
             catch (CommunitySubmissionException)
             {
-                uncertain = true; _commentDrafts[key] = new(content, true);
-                if (!_closed) { feedback.Message = "Miyoushe_SubmissionUncertain".GetLocalized(); feedback.IsOpen = true; }
+                uncertain = true;
+                _commentDrafts[key] = new(content, true);
+                if (!_closed)
+                {
+                    feedback.Message = "Miyoushe_SubmissionUncertain".GetLocalized();
+                    feedback.IsOpen = true;
+                }
             }
             catch (OperationCanceledException)
             {
-                if (!ct.IsCancellationRequested && !_closed) { feedback.Message = "Miyoushe_VerifyCancelled".GetLocalized(); feedback.IsOpen = true; }
+                if (!ct.IsCancellationRequested && !_closed)
+                {
+                    feedback.Message = "Miyoushe_VerifyCancelled".GetLocalized();
+                    feedback.IsOpen = true;
+                }
             }
             catch (Exception ex)
             {
                 if (!_closed && !ct.IsCancellationRequested)
                 {
-                    feedback.Message = ex is CommunityApiException api && api.NeedsVerification ? "Miyoushe_CommentRiskHint".GetLocalized()
-                        : ex is CommunityApiException login && login.LoginExpired ? "Miyoushe_LoginHint".GetLocalized() : ex.Message;
+                    feedback.Message = ex is CommunityApiException api && api.NeedsVerification
+                        ? "Miyoushe_CommentRiskHint".GetLocalized()
+                        : ex is CommunityApiException login && login.LoginExpired
+                            ? "Miyoushe_LoginHint".GetLocalized()
+                            : ex.Message;
                     feedback.IsOpen = true;
                 }
             }
@@ -223,23 +300,39 @@ public sealed partial class MiyousheWindow
                 if (!_closed)
                 {
                     editor.IsReadOnly = client.NeedsVerification;
-                    dialog.PrimaryButtonText = (client.NeedsVerification ? "Miyoushe_VerifyAndSend" : uncertain ? "Miyoushe_Resubmit" : "Miyoushe_SendComment").GetLocalized();
+                    dialog.PrimaryButtonText =
+                        (client.NeedsVerification ? "Miyoushe_VerifyAndSend" :
+                            uncertain ? "Miyoushe_Resubmit" : "Miyoushe_SendComment").GetLocalized();
                     dialog.IsPrimaryButtonEnabled = !string.IsNullOrWhiteSpace(editor.Text);
                     UpdatePostInteractionState();
                 }
+
                 deferral.Complete();
             }
         };
         _dialogOpen = true;
-        try { await dialog.ShowAsync(); }
-        catch (Exception ex) { if (!_closed) ReportError(ex, null); }
-        finally { _dialogOpen = false; }
+        try
+        {
+            await dialog.ShowAsync();
+        }
+        catch (Exception ex)
+        {
+            if (!_closed) ReportError(ex, null);
+        }
+        finally
+        {
+            _dialogOpen = false;
+        }
+
         if (posted && IsCurrentInteraction(client, post.Id, ct))
         {
-            RememberPostInteraction(_post); UpdatePostInteractionState();
+            RememberPostInteraction(_post);
+            UpdatePostInteractionState();
             _changingReplyOptions = true;
-            _replyOrder = 2; ReplySortSelector.SelectedItem = ReplySortSelector.Items.OfType<SortChoice>().First(s => s.Value == 2);
-            OnlyAuthor.IsChecked = false; _changingReplyOptions = false;
+            _replyOrder = 2;
+            ReplySortSelector.SelectedItem = ReplySortSelector.Items.OfType<SortChoice>().First(s => s.Value == 2);
+            OnlyAuthor.IsChecked = false;
+            _changingReplyOptions = false;
             ShowStatus("Miyoushe_CommentSent".GetLocalized(), InfoBarSeverity.Success);
             await LoadRepliesAsync(true);
         }

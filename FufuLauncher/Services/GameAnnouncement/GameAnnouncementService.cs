@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text;
@@ -49,7 +50,8 @@ namespace FufuLauncher.Services.GameAnnouncement
                 return cached.Data;
             }
 
-            AnnouncementWrapper? wrapper = await FetchAnnouncementsAsync(languageCode, region, token).ConfigureAwait(false);
+            AnnouncementWrapper? wrapper =
+                await FetchAnnouncementsAsync(languageCode, region, token).ConfigureAwait(false);
             if (wrapper is not null)
             {
                 _cache[cacheKey] = new CachedAnnouncements(wrapper, DateTimeOffset.UtcNow + CacheLifetime);
@@ -72,7 +74,8 @@ namespace FufuLauncher.Services.GameAnnouncement
                     region.ToCode());
 
                 string listJson = await HttpClient.GetStringAsync(listUrl, token).ConfigureAwait(false);
-                GameAnnouncementListResponse? listResponse = JsonSerializer.Deserialize<GameAnnouncementListResponse>(listJson, JsonOptions);
+                GameAnnouncementListResponse? listResponse =
+                    JsonSerializer.Deserialize<GameAnnouncementListResponse>(listJson, JsonOptions);
 
                 if (listResponse?.Retcode != 0 || listResponse.Data is null)
                 {
@@ -81,13 +84,15 @@ namespace FufuLauncher.Services.GameAnnouncement
                 }
 
                 AnnouncementWrapper wrapper = listResponse.Data;
-                
+
                 Dictionary<int, string> contentMap = new();
                 if (wrapper.List is not null
                     && wrapper.List.Any(item => item.List?.Any(announcement => announcement.HasContent) == true))
                 {
                     string contentUrl = string.Format(
-                        isOversea ? ApiEndpoints.GameAnnouncementContentOsUrl : ApiEndpoints.GameAnnouncementContentCnUrl,
+                        isOversea
+                            ? ApiEndpoints.GameAnnouncementContentOsUrl
+                            : ApiEndpoints.GameAnnouncementContentCnUrl,
                         languageCode,
                         region.ToCode());
 
@@ -133,7 +138,7 @@ namespace FufuLauncher.Services.GameAnnouncement
                 {
                     continue;
                 }
-                
+
                 foreach (Models.GameAnnouncement.GameAnnouncement item in listWrapper.List)
                 {
                     item.Subtitle = new StringBuilder(item.Subtitle)

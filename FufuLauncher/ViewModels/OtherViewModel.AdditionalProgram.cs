@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Services;
 using Windows.Storage.Pickers;
@@ -19,7 +20,8 @@ public partial class OtherViewModel
         if (!string.IsNullOrWhiteSpace(value))
         {
             var trimmedPath = value.Trim('"');
-            if (File.Exists(trimmedPath) && Path.GetExtension(trimmedPath).Equals(".exe", StringComparison.OrdinalIgnoreCase))
+            if (File.Exists(trimmedPath) &&
+                Path.GetExtension(trimmedPath).Equals(".exe", StringComparison.OrdinalIgnoreCase))
             {
                 StatusMessage = "路径有效";
             }
@@ -46,7 +48,8 @@ public partial class OtherViewModel
 
             var trimmedPath = AdditionalProgramPath.Trim('"');
 
-            if (File.Exists(trimmedPath) && System.IO.Path.GetExtension(trimmedPath).Equals(".exe", StringComparison.OrdinalIgnoreCase))
+            if (File.Exists(trimmedPath) && System.IO.Path.GetExtension(trimmedPath)
+                    .Equals(".exe", StringComparison.OrdinalIgnoreCase))
             {
                 StatusMessage = "路径已应用";
 
@@ -87,7 +90,11 @@ public partial class OtherViewModel
                 null,
                 new[] { ("可执行文件", new[] { ".exe" }) },
                 PickerLocationId.Desktop,
-                async msg => { StatusMessage = msg; await ShowErrorAsync(msg); });
+                async msg =>
+                {
+                    StatusMessage = msg;
+                    await ShowErrorAsync(msg);
+                });
 
             if (!string.IsNullOrEmpty(path))
             {

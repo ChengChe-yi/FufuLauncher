@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
@@ -63,14 +64,16 @@ public sealed partial class MainPage
             var activeId = accountManager.ActiveAccountId;
             if (activeId == null)
             {
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("Home_RefreshFailed".GetLocalized(), "Home_NoActiveAccount".GetLocalized(), NotificationType.Error));
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("Home_RefreshFailed".GetLocalized(),
+                    "Home_NoActiveAccount".GetLocalized(), NotificationType.Error));
                 return;
             }
 
             var cookies = await accountManager.LoadCookiesAsync(activeId);
             if (cookies == null || cookies.Count == 0)
             {
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("Home_RefreshFailed".GetLocalized(), "Home_CannotLoadCredentials".GetLocalized(), NotificationType.Error));
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("Home_RefreshFailed".GetLocalized(),
+                    "Home_CannotLoadCredentials".GetLocalized(), NotificationType.Error));
                 return;
             }
 

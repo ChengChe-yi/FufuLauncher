@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using System.Diagnostics;
 using Microsoft.UI.Xaml;
@@ -14,9 +15,20 @@ namespace FufuLauncher.Views;
 
 public sealed partial class PluginSettingsPage : Page
 {
-    public PluginSettingsViewModel ViewModel { get; }
-    public MainViewModel MainVM { get; }
-    public ControlPanelModel ControlPanelVM { get; }
+    public PluginSettingsViewModel ViewModel
+    {
+        get;
+    }
+
+    public MainViewModel MainVM
+    {
+        get;
+    }
+
+    public ControlPanelModel ControlPanelVM
+    {
+        get;
+    }
 
     private bool _isInitializing = true;
 
@@ -28,7 +40,7 @@ public sealed partial class PluginSettingsPage : Page
         InitializeComponent();
         Loaded += PluginSettingsPage_Loaded;
         Unloaded += PluginSettingsPage_Unloaded;
-        
+
         ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
         WeakReferenceMessenger.Default.Register<ConstraintStateChangedMessage>(this, (_, _) =>
@@ -61,15 +73,15 @@ public sealed partial class PluginSettingsPage : Page
         }
 
         await VerifyFpsPluginHashAsync();
-        
+
         await CheckAndShowFpsWarningAsync();
-        
+
         if (ViewModel.SettingsOverlayVisibility == Visibility.Visible)
         {
             SettingsOverlay.Visibility = Visibility.Visible;
             SettingsOverlay.Opacity = 1;
         }
-        
+
         _isInitializing = false;
     }
 
@@ -82,11 +94,11 @@ public sealed partial class PluginSettingsPage : Page
     protected override void OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-    
+
         if (e.Parameter is Models.PluginItem item)
         {
             var folderName = new DirectoryInfo(item.DirectoryPath).Name;
-        
+
             if (folderName.Contains("FPS", StringComparison.OrdinalIgnoreCase))
             {
                 ViewModel.SelectedPluginIndex = 1;
@@ -174,10 +186,12 @@ public sealed partial class PluginSettingsPage : Page
         {
             File.Copy(file, Path.Combine(destDir, Path.GetFileName(file)), true);
         }
+
         foreach (var dir in Directory.GetDirectories(sourceDir))
         {
             MoveDirectorySafe(dir, Path.Combine(destDir, Path.GetFileName(dir)));
         }
+
         Directory.Delete(sourceDir, true);
     }
 }

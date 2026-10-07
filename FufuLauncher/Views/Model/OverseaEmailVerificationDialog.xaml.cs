@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Services;
@@ -20,10 +21,11 @@ public sealed partial class OverseaEmailVerificationDialog : ContentDialog, IAig
     private readonly DispatcherTimer _countdownTimer = new();
     private int _countdownSeconds;
     private string? _ticket;
-    
+
     public string? Aigis
     {
-        get; set;
+        get;
+        set;
     }
 
     public OverseaEmailVerificationDialog()
@@ -33,7 +35,7 @@ public sealed partial class OverseaEmailVerificationDialog : ContentDialog, IAig
         _countdownTimer.Tick += CountdownTimer_Tick;
         Closed += (s, e) => _countdownTimer.Stop();
     }
-    
+
     public async Task<bool> TryValidateAsync(string ticket, CancellationToken token = default)
     {
         _ticket = ticket;
@@ -75,7 +77,8 @@ public sealed partial class OverseaEmailVerificationDialog : ContentDialog, IAig
                 continue;
             }
 
-            PassportResponse<ActionTicketInfo> finalInfo = await _passportClient.GetActionTicketInfoAsync(ticket, token);
+            PassportResponse<ActionTicketInfo>
+                finalInfo = await _passportClient.GetActionTicketInfoAsync(ticket, token);
             if (finalInfo.IsSuccess && finalInfo.Data is not null)
             {
                 return finalInfo.Data.VerifyInfo.Status == VerifyStatus.StatusVerified;
@@ -108,7 +111,8 @@ public sealed partial class OverseaEmailVerificationDialog : ContentDialog, IAig
                     await _passportClient.CreateEmailCaptchaByActionTicketAsync(_ticket, Aigis);
                 response = current;
 
-                System.Diagnostics.Debug.WriteLine($"[OverseaEmailVerification] 发送邮箱验证码 第{attempt + 1}轮: retcode={current.RetCode}, aigis={(rawAigis is null ? "无" : "有")}");
+                System.Diagnostics.Debug.WriteLine(
+                    $"[OverseaEmailVerification] 发送邮箱验证码 第{attempt + 1}轮: retcode={current.RetCode}, aigis={(rawAigis is null ? "无" : "有")}");
 
                 if (current.IsSuccess)
                 {
@@ -132,7 +136,8 @@ public sealed partial class OverseaEmailVerificationDialog : ContentDialog, IAig
 
                 if (aigisWasUsed)
                 {
-                    System.Diagnostics.Debug.WriteLine($"[OverseaEmailVerification] aigis 被拒绝(retcode={current.RetCode})，清空后重新发起");
+                    System.Diagnostics.Debug.WriteLine(
+                        $"[OverseaEmailVerification] aigis 被拒绝(retcode={current.RetCode})，清空后重新发起");
                     aigisWasUsed = false;
                     Aigis = null;
                     continue;

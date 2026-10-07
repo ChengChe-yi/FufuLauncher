@@ -13,8 +13,11 @@ using FufuLauncher.Services.MiHoYo.Networking;
 namespace FufuLauncher.Services.MiHoYo.Transport;
 
 /// <summary>
-/// <see cref="IBbsRequestBuilder"/> 默认实现：按场景从 <see cref="AccountContext"/> 组装请求头。
-/// <para>已接入场景：DailyNote / DailyNoteWidget / Geetest / GetFpNative；BBS 社区系（UserFullInfo / CommunitySign）与登录系（WebLogin）待迁移后实现。</para>
+///     <see cref="IBbsRequestBuilder" /> 默认实现：按场景从 <see cref="AccountContext" /> 组装请求头。
+///     <para>
+///         已接入场景：DailyNote / DailyNoteWidget / Geetest / GetFpNative；BBS 社区系（UserFullInfo /
+///         CommunitySign）与登录系（WebLogin）待迁移后实现。
+///     </para>
 /// </summary>
 public sealed class BbsRequestBuilder : IBbsRequestBuilder
 {
@@ -32,11 +35,13 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
         return scene switch
         {
             BbsRequestScene.DailyNote => BuildGameRecord(ctx, method, url, body, challenge, options,
-                dsSalt: HeaderSalts.CnX4, cookieMode: CookieMode.Cookie, acceptLanguage: true, toolVersion: HeaderVersions.ToolVersionCn, page: Page),
+                dsSalt: HeaderSalts.CnX4, cookieMode: CookieMode.Cookie, acceptLanguage: true,
+                toolVersion: HeaderVersions.ToolVersionCn, page: Page),
             BbsRequestScene.DailyNoteWidget => BuildGameRecord(ctx, method, url, body, challenge, options,
                 dsSalt: HeaderSalts.CnX6, cookieMode: CookieMode.SToken, acceptLanguage: true),
             BbsRequestScene.Geetest => BuildGameRecord(ctx, method, url, body, challenge, options,
-                dsSalt: HeaderSalts.CnX4, cookieMode: CookieMode.Cookie, acceptLanguage: false, defaultChallengeGame: "2"),
+                dsSalt: HeaderSalts.CnX4, cookieMode: CookieMode.Cookie, acceptLanguage: false,
+                defaultChallengeGame: "2"),
             BbsRequestScene.GetFpNative => BuildGetFp(ctx, method, url, body),
 
             BbsRequestScene.UserFullInfo or BbsRequestScene.CommunitySign or BbsRequestScene.WebLogin =>
@@ -47,7 +52,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
     }
 
     /// <summary>
-    /// game_record 系（client_type=5，X4/X6 + DS2，WebView 头）。
+    ///     game_record 系（client_type=5，X4/X6 + DS2，WebView 头）。
     /// </summary>
     private static HttpRequestMessage BuildGameRecord(
         AccountContext ctx,
@@ -112,9 +117,9 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
     }
 
     /// <summary>
-    /// cookie 拼接（单一实现；各服务统一走此方法）。
-    /// <para>Full = CookieToken | LToken：v1 键优先，缺 v1 时逐键独立回退 v2（保留各自键名）；</para>
-    /// <para>SToken：stoken/mid/stuid 成列表拼接，避免缺 stoken 时以分号开头产生畸形 Cookie 头。</para>
+    ///     cookie 拼接（单一实现；各服务统一走此方法）。
+    ///     <para>Full = CookieToken | LToken：v1 键优先，缺 v1 时逐键独立回退 v2（保留各自键名）；</para>
+    ///     <para>SToken：stoken/mid/stuid 成列表拼接，避免缺 stoken 时以分号开头产生畸形 Cookie 头。</para>
     /// </summary>
     internal static string BuildCookieString(IReadOnlyDictionary<string, string> cookies, CookieMode mode)
     {
@@ -143,6 +148,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
             full.Add($"{ltp.Key}={ltp.Value}");
             full.Add($"{lup.Key}={lup.Value}");
         }
+
         return string.Join(";", full);
     }
 
@@ -156,7 +162,8 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
     }
 
     /// <summary>按顺序取第一个非空键值对（保留原始键名，用于 v1/v2 逐键回退）。</summary>
-    private static (string Key, string Value)? FirstPair(IReadOnlyDictionary<string, string> cookies, params string[] keys)
+    private static (string Key, string Value)? FirstPair(IReadOnlyDictionary<string, string> cookies,
+        params string[] keys)
     {
         foreach (var key in keys)
             if (cookies.TryGetValue(key, out var v) && !string.IsNullOrEmpty(v))
@@ -167,6 +174,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
     /// <summary>cookie 模式：Full = CookieToken | LToken；SToken = stoken 系。</summary>
     internal enum CookieMode
     {
-        Cookie, SToken
+        Cookie,
+        SToken
     }
 }

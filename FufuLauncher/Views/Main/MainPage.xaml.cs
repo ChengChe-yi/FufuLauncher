@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Diagnostics;
 using FufuLauncher.Contracts.Services;
@@ -23,6 +24,7 @@ public sealed partial class MainPage : Page
     {
         get;
     }
+
     public XamlUICommand OpenLinkCommand
     {
         get;
@@ -125,7 +127,8 @@ public sealed partial class MainPage : Page
         }
     }
 
-    private static DoubleAnimation CreateDoubleAnimation(DependencyObject target, string property, double to, Duration duration, EasingFunctionBase easing)
+    private static DoubleAnimation CreateDoubleAnimation(DependencyObject target, string property, double to,
+        Duration duration, EasingFunctionBase easing)
     {
         var animation = new DoubleAnimation
         {

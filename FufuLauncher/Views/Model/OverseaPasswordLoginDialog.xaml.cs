@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Services;
 using FufuLauncher.Services.MiHoYo.Passport;
@@ -16,20 +17,24 @@ public sealed partial class OverseaPasswordLoginDialog : ContentDialog, IPasspor
 
     private readonly OverseaPassportClient _passportClient = App.GetService<OverseaPassportClient>();
     private readonly GeetestService _geetestService = App.GetService<GeetestService>();
-    private readonly OverseaRiskVerificationService _riskVerificationService = App.GetService<OverseaRiskVerificationService>();
-    
+
+    private readonly OverseaRiskVerificationService _riskVerificationService =
+        App.GetService<OverseaRiskVerificationService>();
+
     public string? Account => AccountTextBox?.Text?.Trim();
-    
+
     public string? Password => PasswordBox?.Password;
-    
+
     public string? Aigis
     {
-        get; set;
+        get;
+        set;
     }
-    
+
     public string? Verify
     {
-        get; set;
+        get;
+        set;
     }
 
     public OverseaPasswordLoginDialog()
@@ -37,7 +42,7 @@ public sealed partial class OverseaPasswordLoginDialog : ContentDialog, IPasspor
         InitializeComponent();
         IsPrimaryButtonEnabled = false;
     }
-    
+
     public async Task<(LoginResult? Result, string? Error)> ShowAndLoginAsync(XamlRoot xamlRoot)
     {
         XamlRoot = xamlRoot;
@@ -66,7 +71,7 @@ public sealed partial class OverseaPasswordLoginDialog : ContentDialog, IPasspor
                 {
                     continue;
                 }
-                
+
                 return (null, "安全验证未完成");
             }
 
@@ -77,7 +82,8 @@ public sealed partial class OverseaPasswordLoginDialog : ContentDialog, IPasspor
 
             if (!string.IsNullOrEmpty(Aigis))
             {
-                System.Diagnostics.Debug.WriteLine($"[OverseaPasswordLogin] aigis 被拒绝(retcode={response.RetCode})，清空后重新验证");
+                System.Diagnostics.Debug.WriteLine(
+                    $"[OverseaPasswordLogin] aigis 被拒绝(retcode={response.RetCode})，清空后重新验证");
                 Aigis = null;
                 continue;
             }

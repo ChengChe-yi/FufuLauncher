@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
@@ -18,17 +19,61 @@ public partial class SettingsViewModel
 
         var allItems = new List<NavItemConfig>
         {
-            new() { ViewModelKey = "FufuLauncher.ViewModels.MainViewModel",       DisplayNameKey = "NavHome",            IconGlyph = "\uE80F", IsForceVisible = true },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.PluginSettingsViewModel", DisplayNameKey = "InjectionSettingsNav", IconGlyph = "\uEA86" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.ControlPanelModel",   DisplayNameKey = "NavControlPanel",    IconGlyph = "\uE80A" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.BlankViewModel",      DisplayNameKey = "PageTitle_GameSettings", IconGlyph = "\uE7FC" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.AccountViewModel",    DisplayNameKey = "NavAccountSettings", IconGlyph = "\uE77B" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.OtherViewModel",      DisplayNameKey = "NavOtherFeatures",   IconGlyph = "\uE71D" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.PluginViewModel",     DisplayNameKey = "PluginMgmtTitle",    IconGlyph = "\uE7B5" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.DataViewModel",       DisplayNameKey = "NavDataCenter",      IconGlyph = "\uE9D9" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.HelpViewModel",       DisplayNameKey = "NavHelpDocs",        IconGlyph = "\uE82D" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.CalculatorViewModel", DisplayNameKey = "NavCalculator",      IconGlyph = "\uE1D0" },
-            new() { ViewModelKey = "FufuLauncher.ViewModels.SettingsViewModel",   DisplayNameKey = "NavSettings",        IconGlyph = "\uE713", IsForceVisible = true },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.MainViewModel", DisplayNameKey = "NavHome",
+                IconGlyph = "\uE80F", IsForceVisible = true
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.PluginSettingsViewModel",
+                DisplayNameKey = "InjectionSettingsNav", IconGlyph = "\uEA86"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.ControlPanelModel", DisplayNameKey = "NavControlPanel",
+                IconGlyph = "\uE80A"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.BlankViewModel", DisplayNameKey = "PageTitle_GameSettings",
+                IconGlyph = "\uE7FC"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.AccountViewModel", DisplayNameKey = "NavAccountSettings",
+                IconGlyph = "\uE77B"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.OtherViewModel", DisplayNameKey = "NavOtherFeatures",
+                IconGlyph = "\uE71D"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.PluginViewModel", DisplayNameKey = "PluginMgmtTitle",
+                IconGlyph = "\uE7B5"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.DataViewModel", DisplayNameKey = "NavDataCenter",
+                IconGlyph = "\uE9D9"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.HelpViewModel", DisplayNameKey = "NavHelpDocs",
+                IconGlyph = "\uE82D"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.CalculatorViewModel", DisplayNameKey = "NavCalculator",
+                IconGlyph = "\uE1D0"
+            },
+            new()
+            {
+                ViewModelKey = "FufuLauncher.ViewModels.SettingsViewModel", DisplayNameKey = "NavSettings",
+                IconGlyph = "\uE713", IsForceVisible = true
+            },
         };
 
         foreach (var item in allItems)
@@ -39,7 +84,7 @@ public partial class SettingsViewModel
             else if (val is string str && bool.TryParse(str, out var parsed))
                 item.IsUserVisible = parsed;
 
-    
+
             var captured = item;
             item.VisibilityChanged += async (_, _) =>
             {
@@ -54,7 +99,6 @@ public partial class SettingsViewModel
 
     private static string SanitizeKey(string viewModelKey)
     {
-
         var parts = viewModelKey.Split('.');
         return parts[^1];
     }

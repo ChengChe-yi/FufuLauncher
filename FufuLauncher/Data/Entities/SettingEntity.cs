@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,8 +13,16 @@ public class SettingEntity
 {
     [Key]
     [Column("Key")]
-    public string Key { get; set; } = string.Empty;
+    public string Key
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [Column("Value")]
-    public string? Value { get; set; }
+    public string? Value
+    {
+        get;
+        set;
+    }
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net;
 using System.Text.Json;
@@ -59,6 +60,7 @@ public class CloudGameCheckinService : ICloudGameCheckinService
                 result.Message = "CheckinCloud_TokenExpired".GetLocalized();
                 return result;
             }
+
             if (retcode != 0)
             {
                 var msg = TryGetString(data, "message") ?? "Status_UnknownError".GetLocalized();
@@ -82,19 +84,22 @@ public class CloudGameCheckinService : ICloudGameCheckinService
                 result.Success = true;
                 result.SuccessCount++;
                 result.Message = string.Format("CheckinCloud_GainedTime".GetLocalized(), gained);
-                result.Details.Add(string.Format("CheckinCloud_CurrentFreeTime".GetLocalized(), FormatMinutes(freeTime + gained)));
+                result.Details.Add(string.Format("CheckinCloud_CurrentFreeTime".GetLocalized(),
+                    FormatMinutes(freeTime + gained)));
             }
             else
             {
                 result.Success = true;
                 result.SkippedCount++;
                 result.Message = "CheckinCloud_AlreadyCheckedIn".GetLocalized();
-                result.Details.Add(string.Format("CheckinCloud_CurrentFreeTime".GetLocalized(), FormatMinutes(freeTime)));
+                result.Details.Add(
+                    string.Format("CheckinCloud_CurrentFreeTime".GetLocalized(), FormatMinutes(freeTime)));
             }
 
             if (wallet.HasValue)
             {
-                var playCardMsg = TryGetString(wallet.Value, "play_card", "short_msg") ?? "Status_Unknown".GetLocalized();
+                var playCardMsg = TryGetString(wallet.Value, "play_card", "short_msg") ??
+                                  "Status_Unknown".GetLocalized();
                 int coinNum = 0;
                 var coinProp = TryGetProperty(wallet.Value, "coin");
                 if (coinProp != null)
@@ -140,7 +145,10 @@ public class CloudGameCheckinService : ICloudGameCheckinService
         {
             data = await RequestWalletAsync(comboToken);
         }
-        catch { return 0; }
+        catch
+        {
+            return 0;
+        }
 
         if (TryGetInt(data, "retcode") != 0) return 0;
 
@@ -184,13 +192,22 @@ public class CloudGameCheckinService : ICloudGameCheckinService
                 return result;
             return 0;
         }
-        catch { return 0; }
+        catch
+        {
+            return 0;
+        }
     }
 
     private static string? TryGetString(JsonElement element, string propertyName)
     {
-        try { return element.GetProperty(propertyName).GetString(); }
-        catch { return null; }
+        try
+        {
+            return element.GetProperty(propertyName).GetString();
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private static string? TryGetString(JsonElement element, string parentProperty, string childProperty)
@@ -200,13 +217,21 @@ public class CloudGameCheckinService : ICloudGameCheckinService
             var parent = element.GetProperty(parentProperty);
             return parent.GetProperty(childProperty).GetString();
         }
-        catch { return null; }
+        catch
+        {
+            return null;
+        }
     }
 
     private static JsonElement? TryGetProperty(JsonElement element, string propertyName)
     {
-        try { return element.GetProperty(propertyName); }
-        catch { return null; }
+        try
+        {
+            return element.GetProperty(propertyName);
+        }
+        catch
+        {
+            return null;
+        }
     }
 }
-

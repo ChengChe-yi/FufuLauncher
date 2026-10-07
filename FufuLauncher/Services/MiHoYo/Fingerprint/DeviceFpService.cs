@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +12,6 @@ using FufuLauncher.Services.Device;
 using FufuLauncher.Services.MiHoYo.Networking;
 
 namespace FufuLauncher.Services.MiHoYo.Fingerprint;
-
 
 public sealed class DeviceFpService
 {
@@ -24,6 +24,7 @@ public sealed class DeviceFpService
     public const string Platform = "2";
 
     private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
+
     private static readonly JsonSerializerOptions _jsonOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
@@ -86,7 +87,7 @@ public sealed class DeviceFpService
             // 只把指纹回填到发起注册时用的那个 device_id 上。
             // 若期间发生过重置，写入会被拒绝，避免旧指纹挂到新设备号。
             var updated = await _store.WithFingerprintAsync(identity.DeviceId, issued, token)
-                                     .ConfigureAwait(false);
+                .ConfigureAwait(false);
             if (updated is null)
             {
                 Debug.WriteLine("[DeviceFp] 身份已重置，丢弃本次注册结果");
@@ -184,7 +185,6 @@ public sealed class DeviceFpService
             return null;
         }
     }
-
 
 
     private string ResolveInitialDeviceId() => _device.Device.AndroidId;

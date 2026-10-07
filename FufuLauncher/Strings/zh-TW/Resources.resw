@@ -965,10 +965,10 @@
     <value>功能</value>
   </data>
   <data name="DownloadPluginBtn" xml:space="preserve">
-    <value>下載插件(Download)</value>
+    <value>下載插件</value>
   </data>
   <data name="RepairFpsPluginBtn" xml:space="preserve">
-    <value>修復FPS顯示插件(Repair)</value>
+    <value>修復FPS顯示插件</value>
   </data>
   <data name="MainPluginEnabledLabel" xml:space="preserve">
     <value>主插件啟用</value>
@@ -1001,7 +1001,7 @@
     <value>提交PR</value>
   </data>
   <data name="EnableInjectionParenLabel" xml:space="preserve">
-    <value>啟用注入(Injection)</value>
+    <value>啟用注入</value>
   </data>
   <data name="ConfigPresetLabel" xml:space="preserve">
     <value>設定預設:</value>
@@ -2116,6 +2116,9 @@
   </data>
   <data name="Announcement_Loading" xml:space="preserve">
     <value>正在載入公告...</value>
+  </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>在 Edge 中開啟</value>
   </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>上一頁</value>
@@ -6187,4 +6190,21 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>同名 DLL 衝突已處理完畢，可以重新啟動遊戲了。</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>變更將自動儲存</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>正在儲存…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>設定儲存失敗</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>無法寫入設定檔，請檢查檔案權限後重試。錯誤詳細資訊：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>設定載入失敗</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>無法讀取外掛設定檔。錯誤詳細資訊：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>請確認設定檔存在且可讀取，然後重新載入。</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>設定檔不存在：{0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>目前沒有可設定的參數</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>此外掛尚未提供可調整的設定參數。</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>找不到符合的設定項目</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>請嘗試其他關鍵字，或清除搜尋條件。</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>清除搜尋</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} 個設定項目</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} 個設定項目</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>設定檔</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>請輸入設定值…</value></data>
 </root>

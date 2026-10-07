@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,29 +14,65 @@ public class AchievementEntity
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("Uid")]
-    public int Uid { get; set; }
+    public int Uid
+    {
+        get;
+        set;
+    }
 
     [Column("Id")]
-    public int Id { get; set; }
+    public int Id
+    {
+        get;
+        set;
+    }
 
     [Column("Title")]
-    public string? Title { get; set; }
+    public string? Title
+    {
+        get;
+        set;
+    }
 
     [Column("CategoryName")]
-    public string? CategoryName { get; set; }
+    public string? CategoryName
+    {
+        get;
+        set;
+    }
 
     [Column("RawJson")]
-    public string? RawJson { get; set; }
+    public string? RawJson
+    {
+        get;
+        set;
+    }
 
     [Column("IsCompleted")]
-    public int IsCompleted { get; set; }
+    public int IsCompleted
+    {
+        get;
+        set;
+    }
 
     [Column("CurrentProgress")]
-    public int CurrentProgress { get; set; }
+    public int CurrentProgress
+    {
+        get;
+        set;
+    }
 
     [Column("MaxProgress")]
-    public int MaxProgress { get; set; }
+    public int MaxProgress
+    {
+        get;
+        set;
+    }
 
     [Column("CompletionTimestamp")]
-    public long CompletionTimestamp { get; set; }
+    public long CompletionTimestamp
+    {
+        get;
+        set;
+    }
 }

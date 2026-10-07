@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.Json;
@@ -18,7 +19,8 @@ public class GachaConfig
 {
     public string? Url
     {
-        get; set;
+        get;
+        set;
     }
 }
 
@@ -35,9 +37,14 @@ public partial class GachaViewModel : ObservableRecipient
 
     [ObservableProperty] private string _inputUrl;
     [ObservableProperty] private string _statusMessage = "准备就绪";
-    [ObservableProperty][NotifyPropertyChangedFor(nameof(CanExport))] private bool _isAnalyzing;
+
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(CanExport))]
+    private bool _isAnalyzing;
+
     [ObservableProperty] private bool _isCapturing;
-    [ObservableProperty][NotifyPropertyChangedFor(nameof(CaptureButtonText))] private ObservableCollection<GachaStatistic> _statistics = new();
+
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(CaptureButtonText))]
+    private ObservableCollection<GachaStatistic> _statistics = new();
 
     public string CaptureButtonText => IsCapturing ? "停止抓取" : "启动抓包工具";
 
@@ -105,6 +112,7 @@ public partial class GachaViewModel : ObservableRecipient
                     }
                 }
             }
+
             StatusMessage = "分析完成！";
             OnPropertyChanged(nameof(CanExport));
         }
@@ -248,6 +256,7 @@ public partial class GachaViewModel : ObservableRecipient
             {
                 StatusMessage = $"停止失败: {ex.Message}";
             }
+
             return;
         }
 

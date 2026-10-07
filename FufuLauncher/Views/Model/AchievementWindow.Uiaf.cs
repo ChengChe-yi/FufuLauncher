@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using FufuLauncher.Contracts.Services;
@@ -19,40 +20,80 @@ public sealed partial class AchievementWindow
     private class UiafInfo
     {
         [JsonPropertyName("export_app")]
-        public string ExportApp { get; set; } = "FufuLauncher";
+        public string ExportApp
+        {
+            get;
+            set;
+        } = "FufuLauncher";
 
         [JsonPropertyName("export_app_version")]
-        public string ExportAppVersion { get; set; } = "1.0.0";
+        public string ExportAppVersion
+        {
+            get;
+            set;
+        } = "1.0.0";
 
         [JsonPropertyName("uiaf_version")]
-        public string UiafVersion { get; set; } = "v1.1";
+        public string UiafVersion
+        {
+            get;
+            set;
+        } = "v1.1";
 
         [JsonPropertyName("export_timestamp")]
-        public long ExportTimestamp { get; set; }
+        public long ExportTimestamp
+        {
+            get;
+            set;
+        }
     }
 
     private class UiafItem
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int Id
+        {
+            get;
+            set;
+        }
 
         [JsonPropertyName("current")]
-        public int Current { get; set; }
+        public int Current
+        {
+            get;
+            set;
+        }
 
         [JsonPropertyName("status")]
-        public int Status { get; set; }
+        public int Status
+        {
+            get;
+            set;
+        }
 
         [JsonPropertyName("timestamp")]
-        public long Timestamp { get; set; }
+        public long Timestamp
+        {
+            get;
+            set;
+        }
     }
 
     private class UiafData
     {
         [JsonPropertyName("info")]
-        public UiafInfo Info { get; set; } = new();
+        public UiafInfo Info
+        {
+            get;
+            set;
+        } = new();
 
         [JsonPropertyName("list")]
-        public List<UiafItem> List { get; set; } = new();
+        public List<UiafItem> List
+        {
+            get;
+            set;
+        } = new();
     }
 
     private async void OnYaeImportClick(object sender, RoutedEventArgs e)
@@ -67,7 +108,8 @@ public sealed partial class AchievementWindow
 
         contentPanel.Children.Add(new TextBlock
         {
-            Text = "1. 请自行下载并运行 YaeAchievement 工具。\n2. 在 Yae 中扫描完您的成就后，点击将其导出为 Excel 或 CSV 表格。\n3. 回到本界面，点击【导入记录】按钮，选择刚才导出的文件即可完成导入。",
+            Text =
+                "1. 请自行下载并运行 YaeAchievement 工具。\n2. 在 Yae 中扫描完您的成就后，点击将其导出为 Excel 或 CSV 表格。\n3. 回到本界面，点击【导入记录】按钮，选择刚才导出的文件即可完成导入。",
             TextWrapping = TextWrapping.Wrap,
             Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.LightGray)
         });
@@ -151,7 +193,7 @@ public sealed partial class AchievementWindow
 
             bool isCompleted = uiafItem.Status == 2 || uiafItem.Status == 3;
             bool needUpdate = uiafItem.Current > targetItem.CurrentProgress
-                || (isCompleted && !targetItem.IsCompleted);
+                              || (isCompleted && !targetItem.IsCompleted);
 
             if (!needUpdate) continue;
 
@@ -169,6 +211,7 @@ public sealed partial class AchievementWindow
                     targetItem.CompletionTimestamp = ((DateTimeOffset)DateTime.UtcNow).ToUnixTimeSeconds();
                 }
             }
+
             updatedCount++;
         }
 
@@ -181,6 +224,7 @@ public sealed partial class AchievementWindow
                     item.RefreshGroupStatus();
                 }
             }
+
             cat.RefreshProgress();
         }
 
@@ -255,8 +299,10 @@ public sealed partial class AchievementWindow
 
             int updatedCount = ApplyUiafData(uiafData);
 
-            ViewModel.StatusMessage = string.Format("AchievementWindow_YaeReadDone".GetLocalized(), result.List.Count, updatedCount);
-            await ShowDialogAsync("导入成功", string.Format("AchievementWindow_YaeReadDone".GetLocalized(), result.List.Count, updatedCount));
+            ViewModel.StatusMessage = string.Format("AchievementWindow_YaeReadDone".GetLocalized(), result.List.Count,
+                updatedCount);
+            await ShowDialogAsync("导入成功",
+                string.Format("AchievementWindow_YaeReadDone".GetLocalized(), result.List.Count, updatedCount));
         }
         catch (Exception ex)
         {

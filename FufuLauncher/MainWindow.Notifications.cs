@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using Windows.Foundation;
 using FufuLauncher.Helpers;
@@ -47,7 +48,11 @@ public sealed partial class MainWindow
 
     private InfoBar CreateInfoBar(NotificationMessage message)
     {
-        var slideOffset = (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft) ? -380 : 380;
+        var slideOffset =
+            (_notificationPosition == NotificationPosition.TopLeft ||
+             _notificationPosition == NotificationPosition.BottomLeft)
+                ? -380
+                : 380;
         var infoBar = new InfoBar
         {
             Title = message.Title,
@@ -134,7 +139,11 @@ public sealed partial class MainWindow
 
     private void PlayEntranceAnimation(FrameworkElement element)
     {
-        var slideOffset = (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft) ? -380 : 380;
+        var slideOffset =
+            (_notificationPosition == NotificationPosition.TopLeft ||
+             _notificationPosition == NotificationPosition.BottomLeft)
+                ? -380
+                : 380;
         var transformAnim = new DoubleAnimation
         {
             From = slideOffset,
@@ -163,13 +172,21 @@ public sealed partial class MainWindow
 
     private void DismissInfoBar(FrameworkElement element)
     {
-        if (element is InfoBar infoBar && (infoBar.Title == "RedeemCodeExpired".GetLocalized() || infoBar.Title == "RedeemCodeToday".GetLocalized() || infoBar.Title == "RedeemCodeNew".GetLocalized() || infoBar.Title == "RedeemCodeExpiring".GetLocalized()))
+        if (element is InfoBar infoBar && (infoBar.Title == "RedeemCodeExpired".GetLocalized() ||
+                                           infoBar.Title == "RedeemCodeToday".GetLocalized() ||
+                                           infoBar.Title == "RedeemCodeNew".GetLocalized() ||
+                                           infoBar.Title == "RedeemCodeExpiring".GetLocalized()))
         {
-            _ = _localSettingsService.SaveSettingAsync("LastRedeemCodeReminderDate", DateTime.Now.ToString("yyyy-MM-dd"));
+            _ = _localSettingsService.SaveSettingAsync("LastRedeemCodeReminderDate",
+                DateTime.Now.ToString("yyyy-MM-dd"));
             Debug.WriteLine("[RedeemCodes] 已将关闭状态写入数据库");
         }
 
-        var slideOffset = (_notificationPosition == NotificationPosition.TopLeft || _notificationPosition == NotificationPosition.BottomLeft) ? -380 : 380;
+        var slideOffset =
+            (_notificationPosition == NotificationPosition.TopLeft ||
+             _notificationPosition == NotificationPosition.BottomLeft)
+                ? -380
+                : 380;
         var transformAnim = new DoubleAnimation
         {
             From = 0,
@@ -410,7 +427,10 @@ public sealed partial class MainWindow
                 : NotificationPosition.BottomRight;
             ApplyNotificationPosition(position);
         }
-        catch { ApplyNotificationPosition(NotificationPosition.BottomRight); }
+        catch
+        {
+            ApplyNotificationPosition(NotificationPosition.BottomRight);
+        }
     }
 
     private void ApplyNotificationPosition(NotificationPosition position)

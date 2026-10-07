@@ -11,273 +11,303 @@
     mc:Ignorable="d"
     Background="Transparent"
     Loaded="Page_Loaded">
-    
+
     <Page.Resources>
         <ResourceDictionary>
-        <ResourceDictionary.ThemeDictionaries>
-            <ResourceDictionary x:Key="Light">
-                <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#E5FFFFFF" TintColor="#FFFFFF" TintOpacity="0.6" />
-                <SolidColorBrush x:Key="SafeCardBrush" Color="#0A000000" />
-                <SolidColorBrush x:Key="SafeBorderBrush" Color="#1A000000" />
-                <SolidColorBrush x:Key="SafeTextBrush" Color="#FF000000" />
-                <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#99000000" />
-            </ResourceDictionary>
-            <ResourceDictionary x:Key="Default">
-                <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#CC000000" TintColor="#000000" TintOpacity="0.15" />
-                <SolidColorBrush x:Key="SafeCardBrush" Color="#14FFFFFF" />
-                <SolidColorBrush x:Key="SafeBorderBrush" Color="#20FFFFFF" />
-                <SolidColorBrush x:Key="SafeTextBrush" Color="White" />
-                <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#B3FFFFFF" />
-            </ResourceDictionary>
-        </ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#E5FFFFFF" TintColor="#FFFFFF"
+                                  TintOpacity="0.6" />
+                    <SolidColorBrush x:Key="SafeCardBrush" Color="#0A000000" />
+                    <SolidColorBrush x:Key="SafeBorderBrush" Color="#1A000000" />
+                    <SolidColorBrush x:Key="SafeTextBrush" Color="#FF000000" />
+                    <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#99000000" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Default">
+                    <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#CC000000" TintColor="#000000"
+                                  TintOpacity="0.15" />
+                    <SolidColorBrush x:Key="SafeCardBrush" Color="#14FFFFFF" />
+                    <SolidColorBrush x:Key="SafeBorderBrush" Color="#20FFFFFF" />
+                    <SolidColorBrush x:Key="SafeTextBrush" Color="White" />
+                    <SolidColorBrush x:Key="SafeSecondaryTextBrush" Color="#B3FFFFFF" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
 
-        <Style x:Key="SafePluginCardStyle" TargetType="Grid">
-            <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}"/>
-            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="14"/>
-            <Setter Property="Padding" Value="24"/>
-            <Setter Property="Margin" Value="0,0,0,16"/>
-        </Style>
+            <Style x:Key="SafePluginCardStyle" TargetType="Grid">
+                <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="Padding" Value="24" />
+                <Setter Property="Margin" Value="0,0,0,16" />
+            </Style>
 
-        <Style x:Key="SafeCommandBarStyle" TargetType="CommandBar">
-            <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}"/>
-            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="14"/>
-            <Setter Property="Padding" Value="8,4"/>
-        </Style>
+            <Style x:Key="SafeCommandBarStyle" TargetType="CommandBar">
+                <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}" />
+                <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="14" />
+                <Setter Property="Padding" Value="8,4" />
+            </Style>
 
-        <converters:BoolInverter x:Key="BoolInverter"/>
+            <converters:BoolInverter x:Key="BoolInverter" />
 
-        <Storyboard x:Name="EntranceStoryboard">
-            <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
-                             Storyboard.TargetProperty="Opacity"
-                             From="0" To="1" Duration="0:0:0.6">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseOut"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-        <Storyboard x:Name="ExitStoryboard">
-            <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
-                             Storyboard.TargetProperty="Opacity"
-                             From="1" To="0" Duration="0:0:0.3">
-                <DoubleAnimation.EasingFunction>
-                    <CubicEase EasingMode="EaseIn"/>
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
+            <Storyboard x:Name="EntranceStoryboard">
+                <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0" To="1" Duration="0:0:0.6">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseOut" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
+            <Storyboard x:Name="ExitStoryboard">
+                <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="1" To="0" Duration="0:0:0.3">
+                    <DoubleAnimation.EasingFunction>
+                        <CubicEase EasingMode="EaseIn" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid x:Name="RootLayoutGrid" 
-          Padding="24" 
-          Opacity="0" 
+    <Grid x:Name="RootLayoutGrid"
+          Padding="24"
+          Opacity="0"
           RenderTransformOrigin="0.5,0.5">
         <Grid.Transitions>
             <TransitionCollection>
-                <EntranceThemeTransition FromVerticalOffset="40"/>
+                <EntranceThemeTransition FromVerticalOffset="40" />
             </TransitionCollection>
         </Grid.Transitions>
-        
+
         <Grid.RenderTransform>
-            <ScaleTransform x:Name="RootLayoutScale" ScaleX="1" ScaleY="1"/>
+            <ScaleTransform x:Name="RootLayoutScale" ScaleX="1" ScaleY="1" />
         </Grid.RenderTransform>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Margin="0,0,0,16">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/> 
-                <ColumnDefinition Width="*"/>    
-                <ColumnDefinition Width="Auto"/> 
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" 
-                       Text="{helpers:Loc Key=PluginMgmtTitle}" 
-                       Style="{StaticResource TitleTextBlockStyle}" 
+            <TextBlock Grid.Column="0"
+                       Text="{helpers:Loc Key=PluginMgmtTitle}"
+                       Style="{StaticResource TitleTextBlockStyle}"
                        VerticalAlignment="Center"
-                       FontFamily="{StaticResource AppGlobalFont}"/>
+                       FontFamily="{StaticResource AppGlobalFont}" />
 
             <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="12" VerticalAlignment="Center">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="{helpers:Loc Key=EnableInjectionTitle}" FontWeight="SemiBold" Foreground="{ThemeResource SafeTextBrush}" HorizontalAlignment="Right" FontFamily="{StaticResource AppGlobalFont}"/>
-                    <TextBlock Text="{helpers:Loc Key=InjectionLoadCaption}" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Right" FontFamily="{StaticResource AppGlobalFont}"/>
+                    <TextBlock Text="{helpers:Loc Key=EnableInjectionTitle}" FontWeight="SemiBold"
+                               Foreground="{ThemeResource SafeTextBrush}" HorizontalAlignment="Right"
+                               FontFamily="{StaticResource AppGlobalFont}" />
+                    <TextBlock Text="{helpers:Loc Key=InjectionLoadCaption}" FontSize="11"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Right"
+                               FontFamily="{StaticResource AppGlobalFont}" />
                 </StackPanel>
-                
-                <ToggleSwitch IsOn="{x:Bind MainViewModel.UseInjection, Mode=OneWay}" 
+
+                <ToggleSwitch IsOn="{x:Bind MainViewModel.UseInjection, Mode=OneWay}"
                               Toggled="OnInjectionToggled"
-                              OnContent="" OffContent="" 
+                              OnContent="" OffContent=""
                               MinWidth="0"
-                              VerticalAlignment="Center"/>
+                              VerticalAlignment="Center" />
             </StackPanel>
         </Grid>
 
         <CommandBar Grid.Row="1" DefaultLabelPosition="Right" Background="Transparent" IsOpen="False">
-            <AppBarButton x:Name="GetPluginsBtn" 
-                          Icon="Download" 
+            <AppBarButton x:Name="GetPluginsBtn"
+                          Icon="Download"
                           Label="{helpers:Loc Key=GetPluginsLabel}"
                           Click="OnGetPluginsClick" />
 
-            <AppBarButton Label="{helpers:Loc Key=FreeCamHelpLabel}" 
+            <AppBarButton Label="{helpers:Loc Key=FreeCamHelpLabel}"
                           Click="OnFreeCamHelpClick">
-                 <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE9CE;"/>
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE9CE;" />
                 </AppBarButton.Icon>
             </AppBarButton>
 
-            <AppBarButton Icon="Add" Label="{helpers:Loc Key=AddPluginLabel}" Command="{x:Bind ViewModel.AddPluginCommand}"/>
-            <AppBarButton Icon="Refresh" Label="{helpers:Loc Key=RefreshLabel}" Command="{x:Bind ViewModel.RefreshCommand}"/>
-            <AppBarButton Icon="Folder" Label="{helpers:Loc Key=OpenFolderLabel}" Command="{x:Bind ViewModel.OpenFolderCommand}"/>
-            
+            <AppBarButton Icon="Add" Label="{helpers:Loc Key=AddPluginLabel}"
+                          Command="{x:Bind ViewModel.AddPluginCommand}" />
+            <AppBarButton Icon="Refresh" Label="{helpers:Loc Key=RefreshLabel}"
+                          Command="{x:Bind ViewModel.RefreshCommand}" />
+            <AppBarButton Icon="Folder" Label="{helpers:Loc Key=OpenFolderLabel}"
+                          Command="{x:Bind ViewModel.OpenFolderCommand}" />
+
             <AppBarButton Icon="Sort" Label="{helpers:Loc Key=SortLabel}">
                 <AppBarButton.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="{helpers:Loc Key=SortByName}" Command="{x:Bind ViewModel.SortCommand}" CommandParameter="Name"/>
-                        <MenuFlyoutItem Text="{helpers:Loc Key=SortByStatus}" Command="{x:Bind ViewModel.SortCommand}" CommandParameter="Status"/>
-                        <MenuFlyoutItem Text="{helpers:Loc Key=SortBySize}" Command="{x:Bind ViewModel.SortCommand}" CommandParameter="Size"/>
-                        <MenuFlyoutItem Text="{helpers:Loc Key=SortByDate}" Command="{x:Bind ViewModel.SortCommand}" CommandParameter="Date"/>
+                        <MenuFlyoutItem Text="{helpers:Loc Key=SortByName}" Command="{x:Bind ViewModel.SortCommand}"
+                                        CommandParameter="Name" />
+                        <MenuFlyoutItem Text="{helpers:Loc Key=SortByStatus}" Command="{x:Bind ViewModel.SortCommand}"
+                                        CommandParameter="Status" />
+                        <MenuFlyoutItem Text="{helpers:Loc Key=SortBySize}" Command="{x:Bind ViewModel.SortCommand}"
+                                        CommandParameter="Size" />
+                        <MenuFlyoutItem Text="{helpers:Loc Key=SortByDate}" Command="{x:Bind ViewModel.SortCommand}"
+                                        CommandParameter="Date" />
                     </MenuFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
 
-        <ListView 
+        <ListView
             Grid.Row="2"
             ItemsSource="{x:Bind ViewModel.Plugins, Mode=OneWay}"
-            SelectionMode="None"  Padding="0,12,0,0">
+            SelectionMode="None" Padding="0,12,0,0">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:PluginItem">
                     <Grid Style="{StaticResource SafePluginCardStyle}" Translation="0,0,32">
                         <Grid.Shadow>
-                            <ThemeShadow/>
+                            <ThemeShadow />
                         </Grid.Shadow>
                         <Grid.ContextFlyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="{helpers:Loc Key=RenameFolderLabel}" Click="OnRenameClick" Tag="{x:Bind}"/>
-                                <MenuFlyoutItem Text="{helpers:Loc Key=DeleteLabel}" Click="OnDeleteClick" Icon="Delete" Tag="{x:Bind}"/>
+                                <MenuFlyoutItem Text="{helpers:Loc Key=RenameFolderLabel}" Click="OnRenameClick"
+                                                Tag="{x:Bind}" />
+                                <MenuFlyoutItem Text="{helpers:Loc Key=DeleteLabel}" Click="OnDeleteClick"
+                                                Icon="Delete" Tag="{x:Bind}" />
                             </MenuFlyout>
                         </Grid.ContextFlyout>
-                        
+
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/> 
-                            <ColumnDefinition Width="*"/>    
-                            <ColumnDefinition Width="Auto"/> 
-                            <ColumnDefinition Width="Auto"/> 
-                            <ColumnDefinition Width="Auto"/> 
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <FontIcon Glyph="&#xE74C;" FontFamily="Segoe MDL2 Assets" FontSize="24" 
-                                  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" 
-                                  Margin="0,0,16,0" VerticalAlignment="Center"/>
+                        <FontIcon Glyph="&#xE74C;" FontFamily="Segoe MDL2 Assets" FontSize="24"
+                                  Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                                  Margin="0,0,16,0" VerticalAlignment="Center" />
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="4">
-                            <TextBlock Text="{x:Bind DisplayName, Mode=OneWay}" Style="{StaticResource BodyStrongTextBlockStyle}" Foreground="{ThemeResource SafeTextBrush}" FontFamily="{StaticResource AppGlobalFont}"/>
-                            
-                            <TextBlock Text="{x:Bind Description, Mode=OneWay}" 
+                            <TextBlock Text="{x:Bind DisplayName, Mode=OneWay}"
+                                       Style="{StaticResource BodyStrongTextBlockStyle}"
+                                       Foreground="{ThemeResource SafeTextBrush}"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+
+                            <TextBlock Text="{x:Bind Description, Mode=OneWay}"
                                        Visibility="{x:Bind DescriptionVisibility, Mode=OneWay}"
-                                       Style="{StaticResource CaptionTextBlockStyle}" 
+                                       Style="{StaticResource CaptionTextBlockStyle}"
                                        Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
                                        TextWrapping="Wrap"
                                        TextTrimming="CharacterEllipsis"
                                        MaxLines="2"
                                        Margin="0,0,8,4"
-                                       FontFamily="{StaticResource AppGlobalFont}"/>
+                                       FontFamily="{StaticResource AppGlobalFont}" />
 
                             <StackPanel Orientation="Horizontal" Spacing="8">
-                                
-                                <StackPanel Orientation="Horizontal" Spacing="8" Visibility="{x:Bind DeveloperVisibility, Mode=OneWay}">
-                                    <TextBlock Text="{x:Bind Developer, Mode=OneWay}" 
-                                               Style="{StaticResource CaptionTextBlockStyle}" 
+
+                                <StackPanel Orientation="Horizontal" Spacing="8"
+                                            Visibility="{x:Bind DeveloperVisibility, Mode=OneWay}">
+                                    <TextBlock Text="{x:Bind Developer, Mode=OneWay}"
+                                               Style="{StaticResource CaptionTextBlockStyle}"
                                                Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
-                                               MaxWidth="120" 
+                                               MaxWidth="120"
                                                TextTrimming="CharacterEllipsis"
                                                ToolTipService.ToolTip="{x:Bind Developer, Mode=OneWay}"
-                                               FontFamily="{StaticResource AppGlobalFont}"/>
-                                    <TextBlock Text="|" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" FontFamily="{StaticResource AppGlobalFont}"/>
+                                               FontFamily="{StaticResource AppGlobalFont}" />
+                                    <TextBlock Text="|" Style="{StaticResource CaptionTextBlockStyle}"
+                                               Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                                               FontFamily="{StaticResource AppGlobalFont}" />
                                 </StackPanel>
 
-                                <TextBlock Text="{x:Bind FileSizeDisplay, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" FontFamily="{StaticResource AppGlobalFont}"/>
-                                <TextBlock Text="|" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" FontFamily="{StaticResource AppGlobalFont}"/>
-                                <TextBlock Text="{x:Bind DateModified, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" FontFamily="{StaticResource AppGlobalFont}"/>
+                                <TextBlock Text="{x:Bind FileSizeDisplay, Mode=OneWay}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                                           FontFamily="{StaticResource AppGlobalFont}" />
+                                <TextBlock Text="|" Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                                           FontFamily="{StaticResource AppGlobalFont}" />
+                                <TextBlock Text="{x:Bind DateModified, Mode=OneWay}"
+                                           Style="{StaticResource CaptionTextBlockStyle}"
+                                           Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
+                                           FontFamily="{StaticResource AppGlobalFont}" />
                             </StackPanel>
                         </StackPanel>
 
-                        <Button Grid.Column="2" 
+                        <Button Grid.Column="2"
                                 Click="OnConfigClick"
                                 Tag="{x:Bind}"
                                 Visibility="{x:Bind ConfigVisibility, Mode=OneWay}"
-                                Background="Transparent" 
+                                Background="Transparent"
                                 BorderThickness="0"
                                 Margin="0,0,8,0"
                                 VerticalAlignment="Center"
                                 ToolTipService.ToolTip="{helpers:Loc Key=EditConfigTooltip}">
                             <StackPanel Orientation="Horizontal" Spacing="6">
-                                <FontIcon Glyph="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="16"/>
-                                <TextBlock Text="{helpers:Loc Key=PluginSettingsLabel}" VerticalAlignment="Center" FontSize="12" FontFamily="{StaticResource AppGlobalFont}"/>
+                                <FontIcon Glyph="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="16" />
+                                <TextBlock Text="{helpers:Loc Key=PluginSettingsLabel}" VerticalAlignment="Center"
+                                           FontSize="12" FontFamily="{StaticResource AppGlobalFont}" />
                             </StackPanel>
                         </Button>
 
-                        <TextBlock Grid.Column="3" 
-                                   Text="{x:Bind StatusText, Mode=OneWay}" 
+                        <TextBlock Grid.Column="3"
+                                   Text="{x:Bind StatusText, Mode=OneWay}"
                                    Foreground="{x:Bind StatusColor, Mode=OneWay}"
-                                   VerticalAlignment="Center" 
+                                   VerticalAlignment="Center"
                                    Margin="0,0,16,0"
                                    Style="{StaticResource CaptionTextBlockStyle}"
-                                   FontFamily="{StaticResource AppGlobalFont}"/>
+                                   FontFamily="{StaticResource AppGlobalFont}" />
 
-                        <ToggleSwitch Grid.Column="4" 
-                                      IsOn="{x:Bind IsEnabled, Mode=OneWay}" 
+                        <ToggleSwitch Grid.Column="4"
+                                      IsOn="{x:Bind IsEnabled, Mode=OneWay}"
                                       Toggled="OnPluginToggled"
                                       Tag="{x:Bind}"
-                                      OffContent="" OnContent="" 
-                                      VerticalAlignment="Center" 
-                                      MinWidth="0"/>
+                                      OffContent="" OnContent=""
+                                      VerticalAlignment="Center"
+                                      MinWidth="0" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
-        <TextBlock Grid.Row="2" 
-                   Text="{helpers:Loc Key=EmptyPluginLibrary}" 
+
+        <TextBlock Grid.Row="2"
+                   Text="{helpers:Loc Key=EmptyPluginLibrary}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
                    Visibility="{x:Bind ViewModel.IsEmpty, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
-                   FontFamily="{StaticResource AppGlobalFont}"/>
-        
+                   FontFamily="{StaticResource AppGlobalFont}" />
+
         <Grid Grid.Row="3" Margin="0,12,0,0">
-            <StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Center" 
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         Spacing="8">
-                <FontIcon Glyph="&#xE7BA;" FontFamily="Segoe MDL2 Assets" 
+                <FontIcon Glyph="&#xE7BA;" FontFamily="Segoe MDL2 Assets"
                           Foreground="{ThemeResource SystemFillColorCautionBrush}"
-                          FontSize="14"/>
-                <TextBlock Text="{helpers:Loc Key=PluginSafetyDisclaimer}" 
+                          FontSize="14" />
+                <TextBlock Text="{helpers:Loc Key=PluginSafetyDisclaimer}"
                            Style="{StaticResource CaptionTextBlockStyle}"
                            Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
                            VerticalAlignment="Center"
-                           FontFamily="{StaticResource AppGlobalFont}"/>
+                           FontFamily="{StaticResource AppGlobalFont}" />
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" 
-                        HorizontalAlignment="Right" 
-                        VerticalAlignment="Bottom" 
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
                         Spacing="8">
-                <TextBlock Text="{helpers:Loc Key=DiagnosticsHint}" 
-                           VerticalAlignment="Center" 
-                           Style="{StaticResource CaptionTextBlockStyle}" 
+                <TextBlock Text="{helpers:Loc Key=DiagnosticsHint}"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource CaptionTextBlockStyle}"
                            Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"
-                           FontFamily="{StaticResource AppGlobalFont}"/>
-                <Button Content="{helpers:Loc Key=DiagnosticsBtn}" 
+                           FontFamily="{StaticResource AppGlobalFont}" />
+                <Button Content="{helpers:Loc Key=DiagnosticsBtn}"
                         Click="OnOpenDiagnosticsClick"
-                        VerticalAlignment="Center"/>
+                        VerticalAlignment="Center" />
             </StackPanel>
         </Grid>
     </Grid>

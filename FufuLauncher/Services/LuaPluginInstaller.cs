@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using FufuLauncher.Models;
@@ -23,11 +24,22 @@ public partial class LuaPluginInstaller
     public event Action<DownloadProgressInfo>? ProgressChanged;
     public event Action<string>? LogReceived;
 
-    public static DispatcherQueue? UIDispatcher { get; set; }
+    public static DispatcherQueue? UIDispatcher
+    {
+        get;
+        set;
+    }
 
-    public static XamlRoot? MainXamlRoot { get; set; }
+    public static XamlRoot? MainXamlRoot
+    {
+        get;
+        set;
+    }
 
-    public List<string> CollectedLogs { get; } = new();
+    public List<string> CollectedLogs
+    {
+        get;
+    } = new();
 
     public LuaPluginInstaller(PluginStoreService storeService)
     {
@@ -55,7 +67,8 @@ public partial class LuaPluginInstaller
         }
     }
 
-    private void ReportProgress(double percent, string status, long bytesDownloaded = 0, long totalBytes = -1, long speed = 0)
+    private void ReportProgress(double percent, string status, long bytesDownloaded = 0, long totalBytes = -1,
+        long speed = 0)
     {
         var info = new DownloadProgressInfo
         {
@@ -65,7 +78,8 @@ public partial class LuaPluginInstaller
             SpeedBytesPerSecond = speed,
             StatusText = status
         };
-        Debug.WriteLine($"[LuaInstaller] Progress {percent:F1}% ({FormatSize(bytesDownloaded)}/{FormatSize(totalBytes)} @ {FormatSpeed(speed)}): {status}");
+        Debug.WriteLine(
+            $"[LuaInstaller] Progress {percent:F1}% ({FormatSize(bytesDownloaded)}/{FormatSize(totalBytes)} @ {FormatSpeed(speed)}): {status}");
         ProgressChanged?.Invoke(info);
     }
 

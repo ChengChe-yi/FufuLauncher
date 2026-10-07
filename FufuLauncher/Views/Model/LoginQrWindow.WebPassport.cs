@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Constants;
 using Microsoft.Web.WebView2.Core;
@@ -14,7 +15,6 @@ public sealed partial class LoginQrWindow
 
     private async Task StartWebPassportLoginAsync()
     {
-       
         _currentSession?.Cancel();
 
         UpdateStatus("正在加载通行证登录页面...", true);
@@ -29,7 +29,13 @@ public sealed partial class LoginQrWindow
 
             PassportWebView.CoreWebView2.Stop();
             PassportWebView.CoreWebView2.CookieManager.DeleteAllCookies();
-            try { await PassportWebView.CoreWebView2.Profile.ClearBrowsingDataAsync(); } catch { }
+            try
+            {
+                await PassportWebView.CoreWebView2.Profile.ClearBrowsingDataAsync();
+            }
+            catch
+            {
+            }
 
             PassportWebView.CoreWebView2.Navigate("about:blank");
 
@@ -40,7 +46,8 @@ public sealed partial class LoginQrWindow
             PassportWebView.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
 
             long timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            string url = $"{ApiEndpoints.UserMihoyoLoginPlatformUrl}?app_id=dw9y09jqjpxc&theme=passport&token_type=4&game_biz=plat_cn&ux_mode=popup&iframe_level=1&t={timestamp}#/login";
+            string url =
+                $"{ApiEndpoints.UserMihoyoLoginPlatformUrl}?app_id=dw9y09jqjpxc&theme=passport&token_type=4&game_biz=plat_cn&ux_mode=popup&iframe_level=1&t={timestamp}#/login";
             await Task.Delay(100);
             PassportWebView.CoreWebView2.Navigate(url);
 
@@ -84,7 +91,8 @@ public sealed partial class LoginQrWindow
         await PassportWebView.CoreWebView2.ExecuteScriptAsync(script);
     }
 
-    private async void CoreWebView2_WebResourceResponseReceived(object sender, CoreWebView2WebResourceResponseReceivedEventArgs e)
+    private async void CoreWebView2_WebResourceResponseReceived(object sender,
+        CoreWebView2WebResourceResponseReceivedEventArgs e)
     {
         try
         {
@@ -96,24 +104,29 @@ public sealed partial class LoginQrWindow
             {
                 if (e.Response.StatusCode == 200)
                 {
-                    var cookies = await PassportWebView.CoreWebView2.CookieManager.GetCookiesAsync("https://mihoyo.com");
+                    var cookies =
+                        await PassportWebView.CoreWebView2.CookieManager.GetCookiesAsync("https://mihoyo.com");
                     var cookieDict = new Dictionary<string, string>();
 
                     foreach (var cookie in cookies)
                     {
                         cookieDict[cookie.Name] = cookie.Value;
                     }
-                    
-                    bool hasLoginToken = cookieDict.ContainsKey("cookie_token") || cookieDict.ContainsKey("cookie_token_v2");
+
+                    bool hasLoginToken = cookieDict.ContainsKey("cookie_token") ||
+                                         cookieDict.ContainsKey("cookie_token_v2");
                     bool hasAccountId = cookieDict.ContainsKey("ltuid") || cookieDict.ContainsKey("stuid");
 
                     if (hasLoginToken && hasAccountId)
                     {
                         try
                         {
-                            PassportWebView.CoreWebView2.WebResourceResponseReceived -= CoreWebView2_WebResourceResponseReceived;
+                            PassportWebView.CoreWebView2.WebResourceResponseReceived -=
+                                CoreWebView2_WebResourceResponseReceived;
                         }
-                        catch (ObjectDisposedException) { }
+                        catch (ObjectDisposedException)
+                        {
+                        }
 
                         bool enqueued = DispatcherQueue.TryEnqueue(() =>
                         {

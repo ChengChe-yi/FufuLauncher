@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Net;
 
 namespace FufuLauncher.Services.GameServer;
@@ -13,9 +14,9 @@ public sealed class GameServerHttpClientProvider
 
     private HttpClient? _apiClient;
     private HttpClient? _chunkClient;
-    
+
     public HttpClient ApiClient => _apiClient ??= CreateApiClientCore();
-    
+
     public HttpClient ChunkClient => _chunkClient ??= CreateChunkClientCore();
 
     private static HttpClient CreateApiClientCore()

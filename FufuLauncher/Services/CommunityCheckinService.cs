@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net;
 using System.Text;
@@ -255,12 +256,14 @@ public class CommunityCheckinService : ICommunityCheckinService
         {
             Debug.WriteLine($"[社区签到] 获取任务状态失败: {ex.Message}");
         }
+
         return null;
     }
 
     private static Dictionary<string, int> ParseTaskFlags(JsonElement? state)
     {
-        var flags = new Dictionary<string, int> { ["sign"] = 0, ["read"] = 0, ["read_num"] = 3, ["like"] = 0, ["like_num"] = 5, ["share"] = 0 };
+        var flags = new Dictionary<string, int>
+            { ["sign"] = 0, ["read"] = 0, ["read_num"] = 3, ["like"] = 0, ["like_num"] = 5, ["share"] = 0 };
         if (state == null) return flags;
 
         try
@@ -292,25 +295,41 @@ public class CommunityCheckinService : ICommunityCheckinService
                 }
             }
         }
-        catch { }
+        catch
+        {
+        }
+
         return flags;
     }
 
     private static int GetIntValue(JsonElement? element, string propertyName)
     {
         if (element == null || !element.HasValue) return 0;
-        try { return element.Value.GetProperty(propertyName).GetInt32(); }
-        catch { return 0; }
+        try
+        {
+            return element.Value.GetProperty(propertyName).GetInt32();
+        }
+        catch
+        {
+            return 0;
+        }
     }
 
     private static string? TryGetString(JsonElement? element, string propertyName)
     {
         if (element == null || !element.HasValue) return null;
-        try { return element.Value.GetProperty(propertyName).GetString(); }
-        catch { return null; }
+        try
+        {
+            return element.Value.GetProperty(propertyName).GetString();
+        }
+        catch
+        {
+            return null;
+        }
     }
 
-    private async Task<(bool Success, List<string> Details)> CommunitySignAsync(Dictionary<string, string> headers, string uid)
+    private async Task<(bool Success, List<string> Details)> CommunitySignAsync(Dictionary<string, string> headers,
+        string uid)
     {
         var details = new List<string>();
         bool success = true;
@@ -356,7 +375,8 @@ public class CommunityCheckinService : ICommunityCheckinService
     {
         try
         {
-            var url = $"{GenshinApiEndpoints.BbsPostListUrl}?forum_id={GenshinApiEndpoints.GenshinForumId}&is_good=false&is_hot=false&page_size=20&sort_type=1";
+            var url =
+                $"{GenshinApiEndpoints.BbsPostListUrl}?forum_id={GenshinApiEndpoints.GenshinForumId}&is_good=false&is_hot=false&page_size=20&sort_type=1";
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             AddHeaders(request, headers);
 
@@ -392,7 +412,8 @@ public class CommunityCheckinService : ICommunityCheckinService
         }
     }
 
-    private async Task<(bool Success, List<string> Details)> ReadPostsAsync(Dictionary<string, string> headers, List<(string PostId, string Title)> posts)
+    private async Task<(bool Success, List<string> Details)> ReadPostsAsync(Dictionary<string, string> headers,
+        List<(string PostId, string Title)> posts)
     {
         var details = new List<string>();
         bool success = true;
@@ -424,13 +445,15 @@ public class CommunityCheckinService : ICommunityCheckinService
                 details.Add(string.Format("CheckinCommunity_ReadException".GetLocalized(), title, ex.Message));
                 success = false;
             }
+
             await DelayAsync();
         }
 
         return (success, details);
     }
 
-    private async Task<(bool Success, List<string> Details)> LikePostsAsync(Dictionary<string, string> headers, List<(string PostId, string Title)> posts)
+    private async Task<(bool Success, List<string> Details)> LikePostsAsync(Dictionary<string, string> headers,
+        List<(string PostId, string Title)> posts)
     {
         var details = new List<string>();
         bool success = true;
@@ -462,13 +485,15 @@ public class CommunityCheckinService : ICommunityCheckinService
                 details.Add(string.Format("CheckinCommunity_LikeException".GetLocalized(), title, ex.Message));
                 success = false;
             }
+
             await DelayAsync();
         }
 
         return (success, details);
     }
 
-    private async Task<(bool Success, List<string> Details)> SharePostAsync(Dictionary<string, string> headers, (string PostId, string Title) post)
+    private async Task<(bool Success, List<string> Details)> SharePostAsync(Dictionary<string, string> headers,
+        (string PostId, string Title) post)
     {
         var details = new List<string>();
         try
@@ -550,4 +575,3 @@ public class CommunityCheckinService : ICommunityCheckinService
         await Task.Delay(random.Next(1000, 3000));
     }
 }
-

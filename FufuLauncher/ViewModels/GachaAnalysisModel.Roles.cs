@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
@@ -12,9 +13,20 @@ namespace FufuLauncher.ViewModels;
 public partial class GachaAnalysisModel
 {
     private GameRoleService RoleService => App.GetService<GameRoleService>();
-    public GameRoleScope RoleSelection { get; } = new();
+
+    public GameRoleScope RoleSelection
+    {
+        get;
+    } = new();
+
     private bool _archiveSelectionOverride;
-    public bool IsUpdatingRoleList { get; private set; }
+
+    public bool IsUpdatingRoleList
+    {
+        get;
+        private set;
+    }
+
     private bool _pendingRoleSwitch;
     private int _roleVersion;
 
@@ -56,8 +68,15 @@ public partial class GachaAnalysisModel
 
     public async Task InitializeSharedRolesAsync()
     {
-        try { await RoleService.RefreshAsync(); }
-        catch (Exception ex) { CrawlerStatus = ex.Message; }
+        try
+        {
+            await RoleService.RefreshAsync();
+        }
+        catch (Exception ex)
+        {
+            CrawlerStatus = ex.Message;
+        }
+
         if (!_archiveSelectionOverride)
         {
             _pendingRoleSwitch = true;

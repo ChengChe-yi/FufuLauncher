@@ -7,23 +7,35 @@ namespace FufuLauncher.Views;
 
 internal class LoginSession
 {
-    public CancellationTokenSource Cts { get; } = new();
+    public CancellationTokenSource Cts
+    {
+        get;
+    } = new();
+
     public string Ticket
     {
-        get; set;
-    }      
+        get;
+        set;
+    }
+
     public string GameAppId
     {
-        get; set;
+        get;
+        set;
     }
+
     public string GameDevice
     {
-        get; set;
+        get;
+        set;
     }
+
     public LoginType Type
     {
-        get; set;
+        get;
+        set;
     }
+
     public void Cancel() => Cts.Cancel();
 }
 

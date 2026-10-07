@@ -2117,6 +2117,9 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Chargement des annonces...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Ouvrir dans Edge</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>Retour</value>
   </data>
@@ -6186,4 +6189,21 @@ Réessayez avec un autre nœud ou utilisez la source officielle directe.</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Le conflit de DLL en double a été résolu. Vous pouvez redémarrer le jeu.</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Les modifications sont enregistrées automatiquement</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Enregistrement…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Échec de l’enregistrement de la configuration</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Impossible d’écrire le fichier de configuration. Vérifiez les autorisations du fichier et réessayez. Détails : {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Échec du chargement de la configuration</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Impossible de lire le fichier de configuration du plugin. Détails : {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Vérifiez que le fichier de configuration existe et est lisible, puis rechargez-le.</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>Le fichier de configuration n’existe pas : {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Aucun paramètre configurable</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Ce plugin ne propose aucun paramètre modifiable.</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Aucun paramètre correspondant</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Essayez un autre mot-clé ou effacez la recherche.</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Effacer la recherche</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} paramètres</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} paramètres</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>Fichier de configuration</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Saisissez une valeur…</value></data>
 </root>

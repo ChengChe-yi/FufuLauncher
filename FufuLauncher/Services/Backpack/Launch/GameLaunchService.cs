@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using FufuLauncher.Helpers;
@@ -27,11 +28,11 @@ internal static partial class GameLaunchService
             throw new PlatformNotSupportedException("Backpack_ErrX64Required".GetLocalized());
 
         var dllPath = GetDllPath()
-            ?? throw new FileNotFoundException("Backpack_ErrDllMissing".GetLocalized());
-        var gameDir    = Path.GetDirectoryName(gameExePath) ?? AppContext.BaseDirectory;
-        var cfgFile    = Path.Combine(Path.GetTempPath(), $"BackpackViewer_{Guid.NewGuid():N}.tmp");
+                      ?? throw new FileNotFoundException("Backpack_ErrDllMissing".GetLocalized());
+        var gameDir = Path.GetDirectoryName(gameExePath) ?? AppContext.BaseDirectory;
+        var cfgFile = Path.Combine(Path.GetTempPath(), $"BackpackViewer_{Guid.NewGuid():N}.tmp");
         var currentExe = Environment.ProcessPath
-            ?? throw new InvalidOperationException("Backpack_ErrNoProcessPath".GetLocalized());
+                         ?? throw new InvalidOperationException("Backpack_ErrNoProcessPath".GetLocalized());
 
         File.WriteAllLines(cfgFile, [
             gameExePath,
@@ -43,10 +44,10 @@ internal static partial class GameLaunchService
 
         var psi = new ProcessStartInfo
         {
-            FileName         = currentExe,
-            Arguments        = $"--backpack-elevated-inject \"{cfgFile}\"",
-            UseShellExecute  = true,
-            Verb             = "runas",
+            FileName = currentExe,
+            Arguments = $"--backpack-elevated-inject \"{cfgFile}\"",
+            UseShellExecute = true,
+            Verb = "runas",
             WorkingDirectory = Path.GetDirectoryName(currentExe),
         };
 
@@ -86,7 +87,14 @@ internal static partial class GameLaunchService
                 }
 
                 int gamePid = 0;
-                try { int.TryParse(File.ReadAllText(cfgFile).Trim(), out gamePid); } catch { }
+                try
+                {
+                    int.TryParse(File.ReadAllText(cfgFile).Trim(), out gamePid);
+                }
+                catch
+                {
+                }
+
                 TryDelete(cfgFile);
                 return gamePid;
             }
@@ -103,12 +111,12 @@ internal static partial class GameLaunchService
             if (lines.Length < 5) return 1;
 
             string gameExePath = lines[0];
-            string dllPath     = lines[1];
-            string workDir     = lines[2];
-            string cmdArgs     = lines[3];
+            string dllPath = lines[1];
+            string workDir = lines[2];
+            string cmdArgs = lines[3];
 
             int customCount = int.TryParse(lines[4], out int cnt) ? cnt : 0;
-            var customDlls  = new List<string>();
+            var customDlls = new List<string>();
             for (int i = 0; i < customCount && (5 + i) < lines.Length; i++)
                 if (File.Exists(lines[5 + i]))
                     customDlls.Add(lines[5 + i]);
@@ -121,7 +129,7 @@ internal static partial class GameLaunchService
             si.cb = (uint)System.Runtime.InteropServices.Marshal.SizeOf<STARTUPINFOW>();
 
             if (!NativeMethods.CreateProcessW(
-                gameExePath, fullCmd, 0, 0, false, 0x4, 0, workDir, ref si, out PROCESS_INFORMATION pi))
+                    gameExePath, fullCmd, 0, 0, false, 0x4, 0, workDir, ref si, out PROCESS_INFORMATION pi))
                 return 2;
 
             if (!string.IsNullOrEmpty(dllPath) && !InjectDll(pi.hProcess, dllPath))
@@ -149,6 +157,12 @@ internal static partial class GameLaunchService
 
     private static void TryDelete(string path)
     {
-        try { File.Delete(path); } catch { }
+        try
+        {
+            File.Delete(path);
+        }
+        catch
+        {
+        }
     }
 }

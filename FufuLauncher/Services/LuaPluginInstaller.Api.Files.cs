@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using MoonSharp.Interpreter;
 
 namespace FufuLauncher.Services;
@@ -179,6 +180,7 @@ public partial class LuaPluginInstaller
                 {
                     LogMessage($"  目标目录已存在，尝试合并或覆盖...");
                 }
+
                 Directory.Move(safeOldPath, newPath);
                 LogMessage("目录重命名完成");
             }
@@ -204,7 +206,7 @@ public partial class LuaPluginInstaller
         }
 
         var table = tableValue.Table;
-        for (int i = 1; ; i++)
+        for (int i = 1;; i++)
         {
             var entry = table.Get(i);
             if (entry.IsNil())

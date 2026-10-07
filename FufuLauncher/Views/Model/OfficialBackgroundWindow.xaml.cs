@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Diagnostics;
 using FufuLauncher.Contracts.Services;
@@ -21,8 +22,11 @@ public sealed partial class OfficialBackgroundWindow : Window
 {
     private static OfficialBackgroundWindow? _current;
 
-    public OfficialBackgroundViewModel ViewModel { get; }
-    
+    public OfficialBackgroundViewModel ViewModel
+    {
+        get;
+    }
+
     public static void ShowOrActivate()
     {
         if (_current != null)
@@ -123,7 +127,7 @@ public sealed partial class OfficialBackgroundWindow : Window
             Debug.WriteLine($"[OfficialBgWindow] 主题应用失败: {ex.Message}");
         }
     }
-    
+
     private async Task ApplyBackdropFromSettingsAsync()
     {
         try

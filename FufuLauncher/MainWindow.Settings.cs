@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
@@ -21,7 +22,10 @@ public sealed partial class MainWindow
             if (valueObj != null && double.TryParse(valueObj.ToString(), out var parsed)) opacity = parsed;
             ApplyOverlayOpacity(opacity);
         }
-        catch { ApplyOverlayOpacity(0.0); }
+        catch
+        {
+            ApplyOverlayOpacity(0.0);
+        }
     }
 
     private async Task LoadFrameBackgroundOpacityAsync()
@@ -33,7 +37,10 @@ public sealed partial class MainWindow
             if (valueObj != null && double.TryParse(valueObj.ToString(), out var parsed)) opacity = parsed;
             ApplyFrameBackgroundOpacity(opacity);
         }
-        catch { ApplyFrameBackgroundOpacity(0.0); }
+        catch
+        {
+            ApplyFrameBackgroundOpacity(0.0);
+        }
     }
 
     private void ApplyOverlayOpacity(double value)
@@ -54,14 +61,22 @@ public sealed partial class MainWindow
 
         SolidColorBrush brush;
         if (ContentFrame.Background is SolidColorBrush existingBrush) brush = existingBrush;
-        else { brush = new SolidColorBrush(); ContentFrame.Background = brush; }
+        else
+        {
+            brush = new SolidColorBrush();
+            ContentFrame.Background = brush;
+        }
 
         var theme = ElementTheme.Default;
         if (Content is FrameworkElement root)
         {
             theme = root.ActualTheme;
-            if (theme == ElementTheme.Default) theme = Application.Current.RequestedTheme == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+            if (theme == ElementTheme.Default)
+                theme = Application.Current.RequestedTheme == ApplicationTheme.Dark
+                    ? ElementTheme.Dark
+                    : ElementTheme.Light;
         }
+
         var baseColor = theme == ElementTheme.Dark ? Colors.Black : Colors.White;
         baseColor.A = (byte)(_frameBackgroundOpacity * 255);
         brush.Color = baseColor;
@@ -75,7 +90,10 @@ public sealed partial class MainWindow
             _isAcrylicOverlayEnabled = valueObj != null && Convert.ToBoolean(valueObj);
             UpdateBackgroundOverlayTheme();
         }
-        catch { _isAcrylicOverlayEnabled = false; }
+        catch
+        {
+            _isAcrylicOverlayEnabled = false;
+        }
     }
 
     private async Task LoadPageOverlayOpacitySettingAsync()

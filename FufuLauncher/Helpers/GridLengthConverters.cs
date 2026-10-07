@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
@@ -18,7 +19,8 @@ public class IntToGridLengthConverter : IValueConverter
         return new GridLength(1, GridUnitType.Star);
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+    public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+        throw new NotImplementedException();
 }
 
 public class IntInverseToGridLengthConverter : IValueConverter
@@ -35,5 +37,6 @@ public class IntInverseToGridLengthConverter : IValueConverter
         return new GridLength(remain, GridUnitType.Star);
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+    public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+        throw new NotImplementedException();
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -21,15 +22,33 @@ namespace FufuLauncher.Services
     {
         public bool Success
         {
-            get; set;
+            get;
+            set;
         }
+
         public bool Cancelled
         {
-            get; set;
+            get;
+            set;
         }
-        public string ErrorMessage { get; set; } = string.Empty;
-        public string DetailLog { get; set; } = string.Empty;
-        public IReadOnlyList<PluginDllConflict> PluginDllConflicts { get; set; } = Array.Empty<PluginDllConflict>();
+
+        public string ErrorMessage
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public string DetailLog
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public IReadOnlyList<PluginDllConflict> PluginDllConflicts
+        {
+            get;
+            set;
+        } = Array.Empty<PluginDllConflict>();
     }
 
     public class GameLauncherService : IGameLauncherService
@@ -219,8 +238,9 @@ namespace FufuLauncher.Services
                     Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
                     return 0;
                 }
+
                 elapsedMs += delayMs;
-                
+
                 var processes = Process.GetProcesses();
                 foreach (var process in processes)
                 {
@@ -235,18 +255,20 @@ namespace FufuLauncher.Services
                             Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
                             return 0;
                         }
+
                         return process.Id;
                     }
                 }
             }
-    
+
             Trace.WriteLine("[启动流程] 警告：等待游戏主程序超时 (1分钟)");
             return 0;
         }
 
         public async Task<LaunchResult> LaunchGameAsync(CancellationToken cancellationToken = default)
         {
-            var result = new LaunchResult { Success = false, ErrorMessage = "LaunchErr_UnknownError".GetLocalized(), DetailLog = "" };
+            var result = new LaunchResult
+                { Success = false, ErrorMessage = "LaunchErr_UnknownError".GetLocalized(), DetailLog = "" };
             var logBuilder = new StringBuilder();
             string gamePath = null;
             List<string> processNames = null;
@@ -272,7 +294,8 @@ namespace FufuLauncher.Services
 
                 if (foundExes.Count == 0)
                 {
-                    result.ErrorMessage = string.Format("LaunchErr_ExeNotFound".GetLocalized(), string.Join("\n", exeNames));
+                    result.ErrorMessage =
+                        string.Format("LaunchErr_ExeNotFound".GetLocalized(), string.Join("\n", exeNames));
                     logBuilder.AppendLine($"[启动流程] 错误: {result.ErrorMessage}");
                     result.DetailLog = logBuilder.ToString();
                     return result;
@@ -304,7 +327,7 @@ namespace FufuLauncher.Services
                 }
 
                 await ApplyGenshinHDRConfigAsync(logBuilder);
-                
+
                 string? authTicket = null;
                 bool usingHoyolabAccount = await GetUsingHoyolabAccountAsync();
                 if (usingHoyolabAccount)
@@ -314,7 +337,7 @@ namespace FufuLauncher.Services
                     if (!string.IsNullOrEmpty(activeAccountId))
                     {
                         bool isOversea = activeAccountId.StartsWith("os", StringComparison.OrdinalIgnoreCase);
-                        
+
                         bool isBilibili = false;
                         try
                         {
@@ -322,13 +345,17 @@ namespace FufuLauncher.Services
                             if (File.Exists(configIniPath))
                             {
                                 var configContent = await File.ReadAllTextAsync(configIniPath);
-                                isBilibili = configContent.Contains("channel=14") || configContent.Contains("cps=bilibili");
+                                isBilibili = configContent.Contains("channel=14") ||
+                                             configContent.Contains("cps=bilibili");
                             }
                         }
-                        catch { }
-                        
-                        bool isGameOversea = _gameServerConfigurationService.TryDetectCurrentScheme(gamePath)?.IsOversea == true;
-                        
+                        catch
+                        {
+                        }
+
+                        bool isGameOversea =
+                            _gameServerConfigurationService.TryDetectCurrentScheme(gamePath)?.IsOversea == true;
+
                         if (isBilibili)
                         {
                             logBuilder.AppendLine("[启动流程] 跳过");
@@ -435,138 +462,142 @@ namespace FufuLauncher.Services
                     }
                     else
                     {
-                    int configMask = 0;
+                        int configMask = 0;
 
-                    logBuilder.AppendLine($"[启动流程] 配置掩码: {configMask}");
+                        logBuilder.AppendLine($"[启动流程] 配置掩码: {configMask}");
 
-                    string targetDllPath = null;
-                    var defaultDllPath = _launcherService.GetDefaultDllPath();
+                        string targetDllPath = null;
+                        var defaultDllPath = _launcherService.GetDefaultDllPath();
 
-                    if (_lightweightPluginService.IsLightweightMode &&
-                        File.Exists(LightweightPluginService.LitePluginDllPath))
-                    {
-                        targetDllPath = LightweightPluginService.LitePluginDllPath;
-                        logBuilder.AppendLine($"[启动流程] 轻量模式已启用，使用轻量插件DLL: {targetDllPath}");
-                    }
-                    else if (!string.IsNullOrEmpty(defaultDllPath) && File.Exists(defaultDllPath))
-                    {
-                        targetDllPath = defaultDllPath;
-                        logBuilder.AppendLine($"[启动流程] 发现默认DLL: {targetDllPath}");
-                    }
-                    else
-                    {
-                        try
+                        if (_lightweightPluginService.IsLightweightMode &&
+                            File.Exists(LightweightPluginService.LitePluginDllPath))
                         {
-                            var pluginsDir = Path.Combine(AppContext.BaseDirectory, "Plugins");
-                            if (Directory.Exists(pluginsDir))
+                            targetDllPath = LightweightPluginService.LitePluginDllPath;
+                            logBuilder.AppendLine($"[启动流程] 轻量模式已启用，使用轻量插件DLL: {targetDllPath}");
+                        }
+                        else if (!string.IsNullOrEmpty(defaultDllPath) && File.Exists(defaultDllPath))
+                        {
+                            targetDllPath = defaultDllPath;
+                            logBuilder.AppendLine($"[启动流程] 发现默认DLL: {targetDllPath}");
+                        }
+                        else
+                        {
+                            try
                             {
-                                logBuilder.AppendLine($"[启动流程] 在扫描插件目录: {pluginsDir}");
-
-                                var pluginDll = Directory.GetFiles(pluginsDir, "*.dll", SearchOption.AllDirectories)
-                                    .FirstOrDefault(f => !f.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase));
-
-                                if (!string.IsNullOrEmpty(pluginDll))
+                                var pluginsDir = Path.Combine(AppContext.BaseDirectory, "Plugins");
+                                if (Directory.Exists(pluginsDir))
                                 {
-                                    targetDllPath = pluginDll;
-                                    logBuilder.AppendLine($"[启动流程] 扫描到可用插件DLL，将使用: {targetDllPath}");
+                                    logBuilder.AppendLine($"[启动流程] 在扫描插件目录: {pluginsDir}");
+
+                                    var pluginDll = Directory.GetFiles(pluginsDir, "*.dll", SearchOption.AllDirectories)
+                                        .FirstOrDefault(f =>
+                                            !f.EndsWith(".disabled", StringComparison.OrdinalIgnoreCase));
+
+                                    if (!string.IsNullOrEmpty(pluginDll))
+                                    {
+                                        targetDllPath = pluginDll;
+                                        logBuilder.AppendLine($"[启动流程] 扫描到可用插件DLL，将使用: {targetDllPath}");
+                                    }
+                                    else
+                                    {
+                                        logBuilder.AppendLine($"[启动流程] 插件目录中未发现有效DLL");
+                                    }
                                 }
                                 else
                                 {
-                                    logBuilder.AppendLine($"[启动流程] 插件目录中未发现有效DLL");
+                                    logBuilder.AppendLine($"[启动流程] 插件目录不存在");
                                 }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                logBuilder.AppendLine($"[启动流程] 插件目录不存在");
+                                logBuilder.AppendLine($"[启动流程] 扫描插件目录时发生异常: {ex.Message}");
                             }
                         }
-                        catch (Exception ex)
+
+                        if (!string.IsNullOrEmpty(targetDllPath) && File.Exists(targetDllPath))
                         {
-                            logBuilder.AppendLine($"[启动流程] 扫描插件目录时发生异常: {ex.Message}");
-                        }
-                    }
-                    
-                    if (!string.IsNullOrEmpty(targetDllPath) && File.Exists(targetDllPath))
-                    {
-                        try
-                        {
-                            var fileInfo = new FileInfo(targetDllPath);
-                            if (fileInfo.Length < 10 * 1024)
+                            try
                             {
-                                logBuilder.AppendLine($"[启动流程] ! 警告: 插件文件({fileInfo.Length} bytes)大小异常，可能已经损坏");
-                                WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                                    "LaunchErr_PluginDamagedTitle".GetLocalized(),
-                                    "LaunchErr_PluginDamagedMsg".GetLocalized(),
-                                    NotificationType.Warning,
-                                    6000));
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            logBuilder.AppendLine($"[启动流程] 检查插件大小失败: {ex.Message}");
-                        }
-
-                        // 平台代码签名信任闸门：严格模式下拒绝未由平台签发（或已被吊销）的 DLL 注入。
-                        try
-                        {
-                            var trustDecision = _modTrustGate.EvaluateForLoading(targetDllPath);
-                            logBuilder.AppendLine($"[启动流程] 签名信任判定：{trustDecision.Result.Status} - {trustDecision.Reason}");
-
-                            if (!trustDecision.Allowed)
-                            {
-                                logBuilder.AppendLine("[启动流程] 严格信任模式已拦截该 DLL，取消注入");
-                                WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                                    "ModTrust_BlockedTitle".GetLocalized(),
-                                    string.Format("ModTrust_BlockedMsg".GetLocalized(), trustDecision.Reason),
-                                    NotificationType.Warning,
-                                    8000));
-
-                                if (_registrySnapshot.HasSnapshot)
+                                var fileInfo = new FileInfo(targetDllPath);
+                                if (fileInfo.Length < 10 * 1024)
                                 {
-                                    try
+                                    logBuilder.AppendLine($"[启动流程] ! 警告: 插件文件({fileInfo.Length} bytes)大小异常，可能已经损坏");
+                                    WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                        "LaunchErr_PluginDamagedTitle".GetLocalized(),
+                                        "LaunchErr_PluginDamagedMsg".GetLocalized(),
+                                        NotificationType.Warning,
+                                        6000));
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                logBuilder.AppendLine($"[启动流程] 检查插件大小失败: {ex.Message}");
+                            }
+
+                            // 平台代码签名信任闸门：严格模式下拒绝未由平台签发（或已被吊销）的 DLL 注入。
+                            try
+                            {
+                                var trustDecision = _modTrustGate.EvaluateForLoading(targetDllPath);
+                                logBuilder.AppendLine(
+                                    $"[启动流程] 签名信任判定：{trustDecision.Result.Status} - {trustDecision.Reason}");
+
+                                if (!trustDecision.Allowed)
+                                {
+                                    logBuilder.AppendLine("[启动流程] 严格信任模式已拦截该 DLL，取消注入");
+                                    WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                        "ModTrust_BlockedTitle".GetLocalized(),
+                                        string.Format("ModTrust_BlockedMsg".GetLocalized(), trustDecision.Reason),
+                                        NotificationType.Warning,
+                                        8000));
+
+                                    if (_registrySnapshot.HasSnapshot)
                                     {
-                                        _registrySnapshot.RestoreSnapshot();
+                                        try
+                                        {
+                                            _registrySnapshot.RestoreSnapshot();
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            logBuilder.AppendLine($"[启动流程] 恢复注册表快照失败: {ex.Message}");
+                                        }
                                     }
-                                    catch (Exception ex)
+
+                                    var blockedMessage = string.Format("ModTrust_BlockedMsg".GetLocalized(),
+                                        trustDecision.Reason);
+                                    var blockedResult = new LaunchResult
                                     {
-                                        logBuilder.AppendLine($"[启动流程] 恢复注册表快照失败: {ex.Message}");
-                                    }
+                                        Success = false,
+                                        Cancelled = false,
+                                        ErrorMessage = blockedMessage,
+                                        DetailLog = logBuilder.ToString()
+                                    };
+                                    Debug.WriteLine(blockedResult.DetailLog);
+                                    return blockedResult;
                                 }
 
-                                var blockedMessage = string.Format("ModTrust_BlockedMsg".GetLocalized(), trustDecision.Reason);
-                                var blockedResult = new LaunchResult
+                                if (trustDecision.ShouldNotify)
                                 {
-                                    Success = false,
-                                    Cancelled = false,
-                                    ErrorMessage = blockedMessage,
-                                    DetailLog = logBuilder.ToString()
-                                };
-                                Debug.WriteLine(blockedResult.DetailLog);
-                                return blockedResult;
+                                    WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                                        "ModTrust_WarnTitle".GetLocalized(),
+                                        trustDecision.Reason,
+                                        NotificationType.Warning,
+                                        6000));
+                                }
                             }
-
-                            if (trustDecision.ShouldNotify)
+                            catch (Exception ex)
                             {
-                                WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                                    "ModTrust_WarnTitle".GetLocalized(),
-                                    trustDecision.Reason,
-                                    NotificationType.Warning,
-                                    6000));
+                                logBuilder.AppendLine($"[启动流程] 签名信任校验异常（不影响启动）: {ex.Message}");
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            logBuilder.AppendLine($"[启动流程] 签名信任校验异常（不影响启动）: {ex.Message}");
-                        }
 
-                        logBuilder.AppendLine($"[启动流程] 准备注入 DLL: {targetDllPath}");
-                        gameStarted = await LaunchViaElevatedProcessAsync(gameExePath, targetDllPath, configMask, arguments, logBuilder, cancellationToken);
-                    }
-                    else
-                    {
-                        logBuilder.AppendLine($"[启动流程] 未找到任何可用的注入DLL (默认路径无效且无插件)，降级为普通启动");
-                        gameStarted = StartGameNormally(gameExePath, arguments, gamePath, logBuilder);
-                    }
+                            logBuilder.AppendLine($"[启动流程] 准备注入 DLL: {targetDllPath}");
+                            gameStarted = await LaunchViaElevatedProcessAsync(gameExePath, targetDllPath, configMask,
+                                arguments, logBuilder, cancellationToken);
+                        }
+                        else
+                        {
+                            logBuilder.AppendLine($"[启动流程] 未找到任何可用的注入DLL (默认路径无效且无插件)，降级为普通启动");
+                            gameStarted = StartGameNormally(gameExePath, arguments, gamePath, logBuilder);
+                        }
                     }
                 }
                 else
@@ -598,7 +629,7 @@ namespace FufuLauncher.Services
                         _ = LaunchBetterGIAsync(cancellationToken);
                         await CheckAndLaunchFpsOverlayAsync(logBuilder, gamePid);
                         await CheckAndLaunchScreenshotServiceAsync(logBuilder, gamePid);
-                        
+
                         if (_registrySnapshot.HasSnapshot)
                         {
                             _ = Task.Run(async () =>
@@ -608,7 +639,9 @@ namespace FufuLauncher.Services
                                     var proc = Process.GetProcessById(gamePid);
                                     await proc.WaitForExitAsync();
                                 }
-                                catch { }
+                                catch
+                                {
+                                }
                                 finally
                                 {
                                     _registrySnapshot.RestoreSnapshot();
@@ -638,6 +671,7 @@ namespace FufuLauncher.Services
                     logBuilder.AppendLine("[启动流程] 用户取消启动，清理已启动的游戏进程...");
                     KillGameProcesses(processNames, gamePath);
                 }
+
                 return BuildCancelledResult(logBuilder);
             }
             catch (Exception ex)
@@ -665,7 +699,8 @@ namespace FufuLauncher.Services
                 logBuilder.AppendLine($"[启动流程]   {conflict.DllName}");
                 foreach (var candidate in conflict.Candidates)
                 {
-                    logBuilder.AppendLine($"[启动流程]     {candidate.FilePath} ({candidate.LastWriteTime:yyyy-MM-dd HH:mm:ss})");
+                    logBuilder.AppendLine(
+                        $"[启动流程]     {candidate.FilePath} ({candidate.LastWriteTime:yyyy-MM-dd HH:mm:ss})");
                 }
             }
 
@@ -750,7 +785,10 @@ namespace FufuLauncher.Services
                             {
                                 // ignored
                             }
-                            catch (InvalidOperationException) { continue; }
+                            catch (InvalidOperationException)
+                            {
+                                continue;
+                            }
                         }
 
                         process.Kill();
@@ -838,7 +876,7 @@ namespace FufuLauncher.Services
                     }
                 }
             }
-            
+
             if (!string.IsNullOrEmpty(authTicket))
             {
                 if (args.Length > 0) args.Append(' ');
@@ -922,7 +960,8 @@ namespace FufuLauncher.Services
             }
         }
 
-        private async Task<bool> LaunchViaElevatedProcessAsync(string gameExePath, string dllPath, int configMask, string arguments, StringBuilder log, CancellationToken cancellationToken)
+        private async Task<bool> LaunchViaElevatedProcessAsync(string gameExePath, string dllPath, int configMask,
+            string arguments, StringBuilder log, CancellationToken cancellationToken)
         {
             try
             {
@@ -969,6 +1008,7 @@ namespace FufuLauncher.Services
                     {
                         log.AppendLine($"[启动流程] 终止管理员注入进程失败: {killEx.Message}");
                     }
+
                     return false;
                 }
 
@@ -998,7 +1038,8 @@ namespace FufuLauncher.Services
         {
             if (string.IsNullOrEmpty(argument)) return "\"\"";
             if (!forceQuotes &&
-                !argument.Contains(' ') && !argument.Contains('\t') && !argument.Contains('\n') && !argument.Contains('\v') && !argument.Contains('\"'))
+                !argument.Contains(' ') && !argument.Contains('\t') && !argument.Contains('\n') &&
+                !argument.Contains('\v') && !argument.Contains('\"'))
             {
                 return argument;
             }
@@ -1088,7 +1129,9 @@ namespace FufuLauncher.Services
                 if (enabled != null && Convert.ToBoolean(enabled))
                 {
                     var delaySetting = await _localSettingsService.ReadSettingAsync("BetterGIStartupDelaySeconds");
-                    var delaySeconds = delaySetting != null ? Math.Clamp(Convert.ToDouble(delaySetting), 0.0, 60.0) : 0.0;
+                    var delaySeconds = delaySetting != null
+                        ? Math.Clamp(Convert.ToDouble(delaySetting), 0.0, 60.0)
+                        : 0.0;
 
                     Debug.WriteLine($"[BetterGI] 配置已启用，将在 {delaySeconds:0.#} 秒后通过URL Scheme启动 bettergi://start");
 
@@ -1134,7 +1177,8 @@ namespace FufuLauncher.Services
             {
                 var enabled = await _localSettingsService.ReadSettingAsync("IsBetterGIIntegrationEnabled");
                 var closeOnExit = await _localSettingsService.ReadSettingAsync("IsBetterGICloseOnExitEnabled");
-                if (enabled == null || !Convert.ToBoolean(enabled) || closeOnExit == null || !Convert.ToBoolean(closeOnExit)) return;
+                if (enabled == null || !Convert.ToBoolean(enabled) || closeOnExit == null ||
+                    !Convert.ToBoolean(closeOnExit)) return;
 
                 var processes = Process.GetProcessesByName("BetterGI");
                 if (processes.Length > 0)
@@ -1152,6 +1196,7 @@ namespace FufuLauncher.Services
                             Debug.WriteLine($"[BetterGI] 终止进程失败: {ex.Message}");
                         }
                     }
+
                     return;
                 }
 

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Constants;
@@ -45,7 +46,7 @@ public partial class SettingsViewModel
             await _localSettingsService.SaveSettingAsync<string>("CustomBackgroundPath", null);
             CustomBackgroundPath = null;
             HasCustomBackground = false;
-    
+
             WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
         }
         catch (Exception ex)
@@ -67,7 +68,9 @@ public partial class SettingsViewModel
             };
             await dialog.ShowAsync();
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     private async Task LoadCustomBackgroundSettingsAsync()
@@ -122,7 +125,9 @@ public partial class SettingsViewModel
         }
 
         _ = _localSettingsService.SaveSettingAsync("CustomBackgroundApiUrl", normalized);
-        CurrentBackgroundApiUrl = string.IsNullOrWhiteSpace(normalized) ? GetDefaultBackgroundApiUrl(SelectedServer) : normalized;
+        CurrentBackgroundApiUrl = string.IsNullOrWhiteSpace(normalized)
+            ? GetDefaultBackgroundApiUrl(SelectedServer)
+            : normalized;
         _ = _localSettingsService.SaveSettingAsync("BackgroundJsonHash", string.Empty);
         _ = _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundUrl", string.Empty);
         _ = _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", false);
@@ -133,7 +138,9 @@ public partial class SettingsViewModel
     {
         if (_isInitializing) return;
         Debug.WriteLine($"SettingsViewModel: 保存服务器设置 {value}");
-        CurrentBackgroundApiUrl = string.IsNullOrWhiteSpace(CustomBackgroundApiUrl) ? GetDefaultBackgroundApiUrl(value) : CustomBackgroundApiUrl;
+        CurrentBackgroundApiUrl = string.IsNullOrWhiteSpace(CustomBackgroundApiUrl)
+            ? GetDefaultBackgroundApiUrl(value)
+            : CustomBackgroundApiUrl;
         _ = _localSettingsService.SaveSettingAsync(LocalSettingsService.BackgroundServerKey, (int)value);
         WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
     }
@@ -189,7 +196,6 @@ public partial class SettingsViewModel
 
                 WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
                 await RefreshMainPageBackground();
-
             }
         }
         catch (Exception ex)

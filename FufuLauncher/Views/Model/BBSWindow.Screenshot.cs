@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text.Json.Nodes;
@@ -28,18 +29,23 @@ public sealed partial class BBSWindow
         {
             try
             {
-                string resultJson = await BBSWebView.CoreWebView2.CallDevToolsProtocolMethodAsync("Page.captureScreenshot", """{"format":"png","captureBeyondViewport":true}""");
+                string resultJson =
+                    await BBSWebView.CoreWebView2.CallDevToolsProtocolMethodAsync("Page.captureScreenshot",
+                        """{"format":"png","captureBeyondViewport":true}""");
                 var node = JsonNode.Parse(resultJson);
                 string base64 = node?["data"]?.ToString();
                 if (!string.IsNullOrEmpty(base64)) await ShowScreenshotAsync(base64);
             }
-            catch { }
+            catch
+            {
+            }
         }
         else if (type == "image")
         {
             string base64 = param.Payload?["content"]?["image_base64"]?.ToString();
             if (!string.IsNullOrEmpty(base64)) await ShowScreenshotAsync(base64);
         }
+
         return new JsResult { Data = new() { ["type"] = type } };
     }
 
@@ -56,7 +62,9 @@ public sealed partial class BBSWindow
             ScreenshotImage.Source = bitmap;
             ScreenshotGrid.Visibility = Visibility.Visible;
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     private async void SaveScreenshot_Click(object sender, RoutedEventArgs e)
@@ -94,7 +102,9 @@ public sealed partial class BBSWindow
             Clipboard.SetContent(dataPackage);
             CloseScreenshot_Click(null, null);
         }
-        catch { }
+        catch
+        {
+        }
     }
 
     private void CloseScreenshot_Click(object sender, RoutedEventArgs e)

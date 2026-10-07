@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -96,7 +97,8 @@ public static class TrustCertCli
 
         builder.AppendLine("FufuLauncher Code Signing Trust Diagnostics");
         builder.AppendLine($"Time                 : {DateTimeOffset.Now:u}");
-        builder.AppendLine($"Pinned root file     : {CodeSigningTrustService.PinnedRootCertificatePath ?? "(not shipped with the app)"}");
+        builder.AppendLine(
+            $"Pinned root file     : {CodeSigningTrustService.PinnedRootCertificatePath ?? "(not shipped with the app)"}");
         builder.AppendLine($"Pinned root SHA-256  : {status.PinnedRootThumbprintSha256 ?? "(none)"}");
         builder.AppendLine($"Trust package dir    : {status.PackageDirectory ?? "(none)"}");
         builder.AppendLine($"Package verified     : {(status.PackageVerified ? "yes" : "no")} {status.PackageError}");

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
@@ -23,6 +24,7 @@ public partial class AccountManager
     private AccountList _accountList;
     private string? _activeAccountId;
     public string? ActiveAccountId => _activeAccountId;
+
     public AccountManager()
     {
         try
@@ -37,6 +39,7 @@ public partial class AccountManager
         {
             System.Diagnostics.Debug.WriteLine($"[AccountManager] 创建 cookies 目录时发生IO异常: {ex.Message}");
         }
+
         _accountList = new AccountList();
     }
 
@@ -73,7 +76,10 @@ public partial class AccountManager
                     var backupPath = AccountsFilePath + $".corrupt.{DateTime.Now:yyyyMMddHHmmss}.bak";
                     File.Copy(AccountsFilePath, backupPath, overwrite: true);
                 }
-                catch { }
+                catch
+                {
+                }
+
                 _accountList = new AccountList();
             }
         }
@@ -100,6 +106,7 @@ public partial class AccountManager
                     metadataChanged = true;
                 }
             }
+
             if (account.UpdatedAt == default)
             {
                 account.UpdatedAt = account.LastLoginTime == default ? DateTime.Now : account.LastLoginTime;

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
@@ -57,8 +58,21 @@ public sealed partial class MainWindow
         _networkMonitorService.Stop();
 
         // 通知 ViewModel 取消后台任务
-        try { App.GetService<MainViewModel>()?.Cleanup(); } catch { }
-        try { App.GetService<ControlPanelModel>()?.Cleanup(); } catch { }
+        try
+        {
+            App.GetService<MainViewModel>()?.Cleanup();
+        }
+        catch
+        {
+        }
+
+        try
+        {
+            App.GetService<ControlPanelModel>()?.Cleanup();
+        }
+        catch
+        {
+        }
 
         DisposeGlobalBackgroundPlayer();
         GlobalBackgroundImage.Source = null;
@@ -73,7 +87,9 @@ public sealed partial class MainWindow
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(3));
             await SaveWindowSizeAsync().WaitAsync(cts.Token);
         }
-        catch { }
+        catch
+        {
+        }
 
         _isExit = true;
         CleanupWindowResources();
@@ -107,7 +123,9 @@ public sealed partial class MainWindow
                 using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(3));
                 await SaveWindowSizeAsync().WaitAsync(cts.Token);
             }
-            catch { }
+            catch
+            {
+            }
 
             _isExit = true;
             CleanupWindowResources();
@@ -130,7 +148,7 @@ public sealed partial class MainWindow
                     if (Width > 0 && Height > 0)
                     {
                         await localSettings.SaveSettingAsync("SavedWindowWidth", Width);
-                await localSettings.SaveSettingAsync("SavedWindowHeight", Height);
+                        await localSettings.SaveSettingAsync("SavedWindowHeight", Height);
                     }
                 }
             }
@@ -193,6 +211,7 @@ public sealed partial class MainWindow
                     return;
                 }
             }
+
             Width = 1360;
             Height = 768;
             if (!_isOverlayShown) OverlayTranslate.Y = Height + 100;
@@ -212,7 +231,8 @@ public sealed partial class MainWindow
         {
             SetTitleBar(AppTitleBar);
             var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets/WindowIcon.ico");
-            if (File.Exists(iconPath)) TitleBarIcon.Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri(iconPath));
+            if (File.Exists(iconPath))
+                TitleBarIcon.Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri(iconPath));
             UpdateTitleBarWithAdminStatus();
         }
         catch
@@ -232,7 +252,8 @@ public sealed partial class MainWindow
 
             if (AppVersionHelper.IsPreviewBuild)
             {
-                TitleBarVersionText.Text = string.Format("PreviewVersionBadgeFormat".GetLocalized(), AppVersionHelper.NumericVersion);
+                TitleBarVersionText.Text = string.Format("PreviewVersionBadgeFormat".GetLocalized(),
+                    AppVersionHelper.NumericVersion);
                 TitleBarVersionText.Visibility = Visibility.Visible;
             }
         }
@@ -246,7 +267,8 @@ public sealed partial class MainWindow
     {
         try
         {
-            TitleBarVersionText.Text = string.Format("DevVersionBadgeFormat".GetLocalized(), AppVersionHelper.NumericVersion);
+            TitleBarVersionText.Text =
+                string.Format("DevVersionBadgeFormat".GetLocalized(), AppVersionHelper.NumericVersion);
             TitleBarVersionText.Visibility = Visibility.Visible;
         }
         catch
@@ -257,7 +279,10 @@ public sealed partial class MainWindow
 
     private void Settings_ColorValuesChanged(UISettings sender, object args)
     {
-        dispatcherQueue.TryEnqueue(() => { TitleBarHelper.ApplySystemThemeToCaptionButtons(); });
+        dispatcherQueue.TryEnqueue(() =>
+        {
+            TitleBarHelper.ApplySystemThemeToCaptionButtons();
+        });
     }
 
     private void ApplyBackdrop(WindowBackdropType type)
@@ -297,9 +322,13 @@ public sealed partial class MainWindow
                 var isEnabled = acrylicEnabled != null && Convert.ToBoolean(acrylicEnabled);
                 backdropType = isEnabled ? WindowBackdropType.Acrylic : WindowBackdropType.Acrylic;
             }
+
             ApplyBackdrop(backdropType);
         }
-        catch { ApplyBackdrop(WindowBackdropType.Acrylic); }
+        catch
+        {
+            ApplyBackdrop(WindowBackdropType.Acrylic);
+        }
     }
 
     private async Task LoadMinimizeToTraySettingAsync()
@@ -309,7 +338,10 @@ public sealed partial class MainWindow
             var value = await _localSettingsService.ReadSettingAsync("MinimizeToTray");
             _minimizeToTray = value != null && Convert.ToBoolean(value);
         }
-        catch { _minimizeToTray = false; }
+        catch
+        {
+            _minimizeToTray = false;
+        }
     }
 
     private async Task LoadMinWindowSizeLimitSettingAsync()
@@ -320,7 +352,10 @@ public sealed partial class MainWindow
             var enabled = value == null || Convert.ToBoolean(value);
             ApplyMinWindowSizeLimit(enabled);
         }
-        catch { ApplyMinWindowSizeLimit(true); }
+        catch
+        {
+            ApplyMinWindowSizeLimit(true);
+        }
     }
 
     private void ApplyMinWindowSizeLimit(bool enabled)

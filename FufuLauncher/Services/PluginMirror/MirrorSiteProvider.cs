@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net;
 using System.Security.Cryptography;
@@ -14,21 +15,52 @@ namespace FufuLauncher.Services.PluginMirror;
 public class MirrorSiteConfig
 {
     [JsonPropertyName("ProbeUrl")]
-    public string ProbeUrl { get; set; } = string.Empty;
+    public string ProbeUrl
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("ProbeMd5")]
-    public string ProbeMd5 { get; set; } = string.Empty;
+    public string ProbeMd5
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("Mirrors")]
-    public List<string> Mirrors { get; set; } = new();
+    public List<string> Mirrors
+    {
+        get;
+        set;
+    } = new();
 }
 
 public class MirrorTestResult
 {
-    public string Domain { get; set; } = string.Empty;
-    public bool IsSuccess { get; set; }
-    public long ResponseTimeMs { get; set; } = long.MaxValue;
-    public string StatusDesc { get; set; } = string.Empty;
+    public string Domain
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    public bool IsSuccess
+    {
+        get;
+        set;
+    }
+
+    public long ResponseTimeMs
+    {
+        get;
+        set;
+    } = long.MaxValue;
+
+    public string StatusDesc
+    {
+        get;
+        set;
+    } = string.Empty;
 }
 
 public readonly record struct MirrorTestProgress(int Tested, int Total);
@@ -42,9 +74,9 @@ public class MirrorSiteProvider
     {
         PropertyNameCaseInsensitive = true
     };
-    
+
     private static readonly HttpClient SpeedTestClient = CreateClient(autoRedirect: true);
-    
+
     private static readonly HttpClient RedirectProbeClient = CreateClient(autoRedirect: false);
 
     private static HttpClient CreateClient(bool autoRedirect)
@@ -64,7 +96,7 @@ public class MirrorSiteProvider
 
     private static readonly string ConfigPath =
         Path.Combine(AppContext.BaseDirectory, "Assets", "mirrors.json");
-    
+
     public MirrorSiteConfig LoadConfig()
     {
         try
@@ -86,32 +118,32 @@ public class MirrorSiteProvider
             return new MirrorSiteConfig();
         }
     }
-    
+
     public static bool IsGitHubUrl(string url)
     {
         try
         {
             var host = new Uri(url).Host;
             return host.Equals("github.com", StringComparison.OrdinalIgnoreCase)
-                || host.Equals("raw.githubusercontent.com", StringComparison.OrdinalIgnoreCase)
-                || host.Equals("objects.githubusercontent.com", StringComparison.OrdinalIgnoreCase)
-                || host.Equals("releases-assets.githubusercontent.com", StringComparison.OrdinalIgnoreCase)
-                || host.Equals("codeload.github.com", StringComparison.OrdinalIgnoreCase)
-                || host.EndsWith(".github.com", StringComparison.OrdinalIgnoreCase)
-                || host.Equals("github.io", StringComparison.OrdinalIgnoreCase)
-                || host.EndsWith(".github.io", StringComparison.OrdinalIgnoreCase);
+                   || host.Equals("raw.githubusercontent.com", StringComparison.OrdinalIgnoreCase)
+                   || host.Equals("objects.githubusercontent.com", StringComparison.OrdinalIgnoreCase)
+                   || host.Equals("releases-assets.githubusercontent.com", StringComparison.OrdinalIgnoreCase)
+                   || host.Equals("codeload.github.com", StringComparison.OrdinalIgnoreCase)
+                   || host.EndsWith(".github.com", StringComparison.OrdinalIgnoreCase)
+                   || host.Equals("github.io", StringComparison.OrdinalIgnoreCase)
+                   || host.EndsWith(".github.io", StringComparison.OrdinalIgnoreCase);
         }
         catch
         {
             return false;
         }
     }
-    
+
     public static string BuildMirrorUrl(string domain, string originalUrl)
     {
         return $"https://{domain}/{originalUrl}";
     }
-    
+
     public static async Task<string?> ResolveRedirectUrlAsync(string url)
     {
         try
@@ -120,7 +152,8 @@ public class MirrorSiteProvider
             for (int hop = 0; hop < 5; hop++)
             {
                 using var request = new HttpRequestMessage(HttpMethod.Get, current);
-                using var response = await RedirectProbeClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+                using var response =
+                    await RedirectProbeClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
                 if (response.StatusCode is HttpStatusCode.MovedPermanently or HttpStatusCode.Redirect
                     or HttpStatusCode.SeeOther or HttpStatusCode.TemporaryRedirect or HttpStatusCode.PermanentRedirect)
@@ -130,13 +163,13 @@ public class MirrorSiteProvider
                     var next = location.IsAbsoluteUri
                         ? location.ToString()
                         : new Uri(new Uri(current), location).ToString();
-                    
+
                     if (IsGitHubUrl(next)) return next;
 
                     current = next;
                     continue;
                 }
-                
+
                 return current;
             }
 
@@ -148,7 +181,7 @@ public class MirrorSiteProvider
             return null;
         }
     }
-    
+
     public async Task<List<MirrorTestResult>> TestMirrorsAsync(MirrorSiteConfig config,
         IProgress<MirrorTestProgress>? progress = null, CancellationToken cancellationToken = default)
     {
@@ -180,8 +213,8 @@ public class MirrorSiteProvider
 
         var results = await Task.WhenAll(tasks);
         return results.Where(r => r.IsSuccess)
-                      .OrderBy(r => r.ResponseTimeMs)
-                      .ToList();
+            .OrderBy(r => r.ResponseTimeMs)
+            .ToList();
     }
 
     private static async Task<MirrorTestResult> TestSingleMirrorAsync(string domain, MirrorSiteConfig config)
@@ -215,6 +248,7 @@ public class MirrorSiteProvider
             result.IsSuccess = false;
             result.ResponseTimeMs = long.MaxValue;
         }
+
         return result;
     }
 

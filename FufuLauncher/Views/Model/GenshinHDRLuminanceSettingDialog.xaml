@@ -32,10 +32,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{helpers:Loc Key=HDR_BrightnessConfig}" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,0,20" />
+        <TextBlock Grid.Row="0" Text="{helpers:Loc Key=HDR_BrightnessConfig}"
+                   Style="{ThemeResource TitleTextBlockStyle}" Margin="0,0,0,20" />
 
         <StackPanel Grid.Row="1" Spacing="8" Margin="0,0,0,12">
-            <InfoBar IsOpen="{x:Bind HDRNotSupported}" Severity="Warning" Title="{helpers:Loc Key=HDR_NotSupported}" Message="{helpers:Loc Key=HDR_NotSupportedMsg}"
+            <InfoBar IsOpen="{x:Bind HDRNotSupported}" Severity="Warning" Title="{helpers:Loc Key=HDR_NotSupported}"
+                     Message="{helpers:Loc Key=HDR_NotSupportedMsg}"
                      IsClosable="False" />
             <InfoBar IsOpen="{x:Bind HDRNotEnabled}" Severity="Informational" Title="{helpers:Loc Key=HDR_NotEnabled}"
                      Message="{helpers:Loc Key=HDR_NotEnabledMsg}" IsClosable="False" />
@@ -44,7 +46,8 @@
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
                     Padding="12">
                 <StackPanel>
-                    <TextBlock Text="{helpers:Loc Key=HDR_DisplayInfo}" Style="{ThemeResource BodyStrongTextBlockStyle}" Margin="0,0,0,8" />
+                    <TextBlock Text="{helpers:Loc Key=HDR_DisplayInfo}"
+                               Style="{ThemeResource BodyStrongTextBlockStyle}" Margin="0,0,0,8" />
                     <TextBlock Text="{x:Bind DisplayInfomation}" Style="{ThemeResource CaptionTextBlockStyle}"
                                TextWrapping="Wrap" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                 </StackPanel>
@@ -54,7 +57,8 @@
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Padding="0,0,12,0">
             <StackPanel Spacing="24" Padding="0,8">
                 <StackPanel>
-                    <TextBlock Text="{helpers:Loc Key=HDR_SwitchSetting}" Style="{ThemeResource BodyStrongTextBlockStyle}"
+                    <TextBlock Text="{helpers:Loc Key=HDR_SwitchSetting}"
+                               Style="{ThemeResource BodyStrongTextBlockStyle}"
                                Margin="0,0,0,8" />
                     <ToggleSwitch IsOn="{x:Bind IsGenshinHDRForceEnabled, Mode=TwoWay}"
                                   OffContent="{helpers:Loc Key=HDR_OffContent}"
@@ -101,8 +105,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="{helpers:Loc Key=HDR_ResetDefault}" Command="{x:Bind ResetCommand}" HorizontalAlignment="Stretch" />
-            <Button Grid.Column="1" Content="{helpers:Loc Key=HDR_AutoAdjust}" Command="{x:Bind AutoAdjustCommand}" HorizontalAlignment="Stretch"
+            <Button Grid.Column="0" Content="{helpers:Loc Key=HDR_ResetDefault}" Command="{x:Bind ResetCommand}"
+                    HorizontalAlignment="Stretch" />
+            <Button Grid.Column="1" Content="{helpers:Loc Key=HDR_AutoAdjust}" Command="{x:Bind AutoAdjustCommand}"
+                    HorizontalAlignment="Stretch"
                     ToolTipService.ToolTip="{helpers:Loc Key=HDR_AutoAdjustTooltip}" />
         </Grid>
     </Grid>

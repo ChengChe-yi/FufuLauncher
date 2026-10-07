@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 
 namespace FufuLauncher.Helpers
@@ -13,7 +14,7 @@ namespace FufuLauncher.Helpers
             try
             {
                 var pluginsPath = Path.Combine(AppContext.BaseDirectory, "Plugins");
-                
+
                 if (!Directory.Exists(pluginsPath))
                 {
                     Directory.CreateDirectory(pluginsPath);

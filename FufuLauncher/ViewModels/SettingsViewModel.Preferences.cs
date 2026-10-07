@@ -44,8 +44,10 @@ public partial class SettingsViewModel
 
     private async Task LoadGameAnnouncementSectionAsync()
     {
-        var announcementViewModeJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.AnnouncementViewModeKey);
-        AnnouncementViewMode = announcementViewModeJson is string modeStr && Enum.TryParse<AnnouncementViewMode>(modeStr, out var parsedMode)
+        var announcementViewModeJson =
+            await _localSettingsService.ReadSettingAsync(LocalSettingsService.AnnouncementViewModeKey);
+        AnnouncementViewMode = announcementViewModeJson is string modeStr &&
+                               Enum.TryParse<AnnouncementViewMode>(modeStr, out var parsedMode)
             ? parsedMode
             : AnnouncementViewMode.New;
     }
@@ -65,7 +67,8 @@ public partial class SettingsViewModel
         ShowWidgetPlayerRole = showWidgetPlayerRoleJson == null || Convert.ToBoolean(showWidgetPlayerRoleJson);
 
         var showWidgetDailyNoteWindowJson = await _localSettingsService.ReadSettingAsync("ShowWidgetDailyNoteWindow");
-        ShowWidgetDailyNoteWindow = showWidgetDailyNoteWindowJson == null || Convert.ToBoolean(showWidgetDailyNoteWindowJson);
+        ShowWidgetDailyNoteWindow =
+            showWidgetDailyNoteWindowJson == null || Convert.ToBoolean(showWidgetDailyNoteWindowJson);
 
         var showWidgetVideoJson = await _localSettingsService.ReadSettingAsync("ShowWidgetVideo");
         ShowWidgetVideo = showWidgetVideoJson == null || Convert.ToBoolean(showWidgetVideoJson);
@@ -90,19 +93,23 @@ public partial class SettingsViewModel
             if (ShowDailyNoteResin) activeCount++;
 
             var showDailyTasksJson = await _localSettingsService.ReadSettingAsync("ShowDailyNoteDailyTasks");
-            ShowDailyNoteDailyTasks = (showDailyTasksJson == null || Convert.ToBoolean(showDailyTasksJson)) && activeCount < 3;
+            ShowDailyNoteDailyTasks =
+                (showDailyTasksJson == null || Convert.ToBoolean(showDailyTasksJson)) && activeCount < 3;
             if (ShowDailyNoteDailyTasks) activeCount++;
 
             var showHomeCoinJson = await _localSettingsService.ReadSettingAsync("ShowDailyNoteHomeCoin");
-            ShowDailyNoteHomeCoin = (showHomeCoinJson == null || Convert.ToBoolean(showHomeCoinJson)) && activeCount < 3;
+            ShowDailyNoteHomeCoin =
+                (showHomeCoinJson == null || Convert.ToBoolean(showHomeCoinJson)) && activeCount < 3;
             if (ShowDailyNoteHomeCoin) activeCount++;
 
             var showExpeditionsJson = await _localSettingsService.ReadSettingAsync("ShowDailyNoteExpeditions");
-            ShowDailyNoteExpeditions = (showExpeditionsJson == null || Convert.ToBoolean(showExpeditionsJson)) && activeCount < 3;
+            ShowDailyNoteExpeditions = (showExpeditionsJson == null || Convert.ToBoolean(showExpeditionsJson)) &&
+                                       activeCount < 3;
             if (ShowDailyNoteExpeditions) activeCount++;
 
             var showTransformerJson = await _localSettingsService.ReadSettingAsync("ShowDailyNoteTransformer");
-            ShowDailyNoteTransformer = (showTransformerJson == null || Convert.ToBoolean(showTransformerJson)) && activeCount < 3;
+            ShowDailyNoteTransformer = (showTransformerJson == null || Convert.ToBoolean(showTransformerJson)) &&
+                                       activeCount < 3;
         }
         finally
         {
@@ -148,14 +155,17 @@ public partial class SettingsViewModel
         var acrylicOverlayJson = await _localSettingsService.ReadSettingAsync("IsAcrylicOverlayEnabled");
         IsAcrylicOverlayEnabled = acrylicOverlayJson == null || Convert.ToBoolean(acrylicOverlayJson);
 
-        var pageOverlaySemiTransparentJson = await _localSettingsService.ReadSettingAsync("IsPageOverlaySemiTransparentEnabled");
-        IsPageOverlaySemiTransparentEnabled = pageOverlaySemiTransparentJson != null && Convert.ToBoolean(pageOverlaySemiTransparentJson);
+        var pageOverlaySemiTransparentJson =
+            await _localSettingsService.ReadSettingAsync("IsPageOverlaySemiTransparentEnabled");
+        IsPageOverlaySemiTransparentEnabled = pageOverlaySemiTransparentJson != null &&
+                                              Convert.ToBoolean(pageOverlaySemiTransparentJson);
 
         var pageOverlayTargetOpacityJson = await _localSettingsService.ReadSettingAsync("PageOverlayTargetOpacity");
         PageOverlayTargetOpacity = pageOverlayTargetOpacityJson != null
-            && double.TryParse(pageOverlayTargetOpacityJson.ToString(), out var pageOverlayOpacity)
-                ? Math.Clamp(pageOverlayOpacity, 0.1, 1.0)
-                : 0.7;
+                                   && double.TryParse(pageOverlayTargetOpacityJson.ToString(),
+                                       out var pageOverlayOpacity)
+            ? Math.Clamp(pageOverlayOpacity, 0.1, 1.0)
+            : 0.7;
 
         GlobalBackgroundOverlayOpacity = await ReadDoubleSettingAsync("GlobalBackgroundOverlayOpacity", 0);
         ContentFrameBackgroundOpacity = await ReadDoubleSettingAsync("ContentFrameBackgroundOpacity", 0.5);
@@ -222,10 +232,12 @@ public partial class SettingsViewModel
             var redeemNotifyJson = await _localSettingsService.ReadSettingAsync("IsRedeemCodeNotificationEnabled");
             IsRedeemCodeNotificationEnabled = redeemNotifyJson == null || Convert.ToBoolean(redeemNotifyJson);
 
-            var conflictCheckJson = await _localSettingsService.ReadSettingAsync(PluginConflictSettings.CheckEnabledKey);
+            var conflictCheckJson =
+                await _localSettingsService.ReadSettingAsync(PluginConflictSettings.CheckEnabledKey);
             IsPluginConflictCheckEnabled = conflictCheckJson == null || Convert.ToBoolean(conflictCheckJson);
 
-            var conflictMainOnlyJson = await _localSettingsService.ReadSettingAsync(PluginConflictSettings.MainDllOnlyKey);
+            var conflictMainOnlyJson =
+                await _localSettingsService.ReadSettingAsync(PluginConflictSettings.MainDllOnlyKey);
             IsPluginConflictMainDllOnly = conflictMainOnlyJson == null || Convert.ToBoolean(conflictMainOnlyJson);
 
             LoadMonitors();
@@ -338,10 +350,12 @@ public partial class SettingsViewModel
     {
         UpdateWebView2CacheSizeAsync();
 
-        var cpuWarningEnabledJson = await _localSettingsService.ReadSettingAsync(ProcessCpuUsageMonitor.IsEnabledSettingKey);
+        var cpuWarningEnabledJson =
+            await _localSettingsService.ReadSettingAsync(ProcessCpuUsageMonitor.IsEnabledSettingKey);
         IsCpuUsageWarningEnabled = cpuWarningEnabledJson == null || Convert.ToBoolean(cpuWarningEnabledJson);
 
-        var cpuWarningThresholdJson = await _localSettingsService.ReadSettingAsync(ProcessCpuUsageMonitor.ThresholdSettingKey);
+        var cpuWarningThresholdJson =
+            await _localSettingsService.ReadSettingAsync(ProcessCpuUsageMonitor.ThresholdSettingKey);
         CpuUsageWarningThreshold = cpuWarningThresholdJson != null
             ? Math.Clamp(Convert.ToDouble(cpuWarningThresholdJson), 5.0, 100.0)
             : ProcessCpuUsageMonitor.DefaultCpuThreshold;
@@ -386,11 +400,15 @@ public partial class SettingsViewModel
         var useThirdPartyCDNJson = await _localSettingsService.ReadSettingAsync("IsUseThirdPartyCDNEnabled");
         IsUseThirdPartyCDNEnabled = useThirdPartyCDNJson == null || Convert.ToBoolean(useThirdPartyCDNJson);
 
-        var previewAnnouncementJson = await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
-        IsPreviewUpdateAnnouncementEnabled = previewAnnouncementJson == null || Convert.ToBoolean(previewAnnouncementJson);
+        var previewAnnouncementJson =
+            await _localSettingsService.ReadSettingAsync("IsPreviewUpdateAnnouncementEnabled");
+        IsPreviewUpdateAnnouncementEnabled =
+            previewAnnouncementJson == null || Convert.ToBoolean(previewAnnouncementJson);
 
-        var suppressAnnouncementJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.SuppressAnnouncementInGameKey);
-        IsSuppressAnnouncementInGameEnabled = suppressAnnouncementJson == null || Convert.ToBoolean(suppressAnnouncementJson);
+        var suppressAnnouncementJson =
+            await _localSettingsService.ReadSettingAsync(LocalSettingsService.SuppressAnnouncementInGameKey);
+        IsSuppressAnnouncementInGameEnabled =
+            suppressAnnouncementJson == null || Convert.ToBoolean(suppressAnnouncementJson);
 
         var pluginMirrorJson = await _localSettingsService.ReadSettingAsync(PluginMirrorDownloadService.SettingKey);
         IsPluginMirrorAccelerationEnabled = pluginMirrorJson == null || Convert.ToBoolean(pluginMirrorJson);

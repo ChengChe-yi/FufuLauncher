@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FufuLauncher.Data.Entities;
@@ -10,32 +11,72 @@ namespace FufuLauncher.Data.Entities;
 public class GachaLogEntity
 {
     [Column("Id")]
-    public string Id { get; set; } = string.Empty;
+    public string Id
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [Column("Uid")]
-    public string Uid { get; set; } = string.Empty;
+    public string Uid
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [Column("GachaType")]
-    public string GachaType { get; set; } = string.Empty;
+    public string GachaType
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [Column("ItemId")]
-    public string? ItemId { get; set; }
+    public string? ItemId
+    {
+        get;
+        set;
+    }
 
     [Column("Count")]
-    public string? Count { get; set; }
+    public string? Count
+    {
+        get;
+        set;
+    }
 
     [Column("Time")]
-    public string? Time { get; set; }
+    public string? Time
+    {
+        get;
+        set;
+    }
 
     [Column("Name")]
-    public string? Name { get; set; }
+    public string? Name
+    {
+        get;
+        set;
+    }
 
     [Column("Lang")]
-    public string? Lang { get; set; }
+    public string? Lang
+    {
+        get;
+        set;
+    }
 
     [Column("ItemType")]
-    public string? ItemType { get; set; }
+    public string? ItemType
+    {
+        get;
+        set;
+    }
 
     [Column("RankType")]
-    public string? RankType { get; set; }
+    public string? RankType
+    {
+        get;
+        set;
+    }
 }

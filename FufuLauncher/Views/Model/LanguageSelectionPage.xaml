@@ -41,16 +41,18 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
 
-            <DoubleAnimation Storyboard.TargetName="LanguageGridArea" Storyboard.TargetProperty="Opacity" From="0" To="1"
+            <DoubleAnimation Storyboard.TargetName="LanguageGridArea" Storyboard.TargetProperty="Opacity" From="0"
+                             To="1"
                              BeginTime="0:0:0.3" Duration="0:0:0.6" />
-            <DoubleAnimation Storyboard.TargetName="LanguageGridTransform" Storyboard.TargetProperty="Y" From="30" To="0"
+            <DoubleAnimation Storyboard.TargetName="LanguageGridTransform" Storyboard.TargetProperty="Y" From="30"
+                             To="0"
                              BeginTime="0:0:0.3" Duration="0:0:0.6">
                 <DoubleAnimation.EasingFunction>
                     <CubicEase EasingMode="EaseOut" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
-        
+
         <DataTemplate x:Key="LanguageCardTemplate">
             <Border x:Name="CardBorder"
                     Width="135"
@@ -102,7 +104,7 @@
                 <Border.RenderTransform>
                     <ScaleTransform x:Name="CardScale" CenterX="67.5" CenterY="47.5" ScaleX="1.0" ScaleY="1.0" />
                 </Border.RenderTransform>
-                
+
                 <Grid>
                     <Grid RowSpacing="2"
                           Opacity="{Binding NormalOpacity}"
@@ -112,7 +114,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <FontIcon Grid.Row="0"
                                   Glyph="{Binding Glyph}"
                                   FontSize="20"
@@ -129,7 +131,7 @@
                                HorizontalAlignment="Center"
                                Stretch="Uniform"
                                Margin="0,1,0,2" />
-                        
+
                         <TextBlock Grid.Row="1"
                                    Text="{Binding NativeName}"
                                    FontSize="12"
@@ -148,7 +150,7 @@
                                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
                                    Opacity="0.6" />
                     </Grid>
-                    
+
                     <Grid VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           Opacity="{Binding SelectedOpacity}"
@@ -171,7 +173,7 @@
                 </Grid>
             </Border>
         </DataTemplate>
-        
+
         <Style x:Key="GridViewItemCardStyle" TargetType="GridViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -191,7 +193,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -206,7 +208,7 @@
                         Spacing="8"
                         Padding="24,16"
                         MaxWidth="680">
-                
+
                 <Image x:Name="IconImage"
                        Source="ms-appx:///Assets/icon.png"
                        Width="48"
@@ -218,7 +220,7 @@
                         <TranslateTransform x:Name="IconTransform" Y="30" />
                     </Image.RenderTransform>
                 </Image>
-                
+
                 <TextBlock x:Name="TitleText"
                            Text="{helpers:Loc Key=LanguageSelection_Title}"
                            FontSize="20"
@@ -229,7 +231,7 @@
                         <TranslateTransform x:Name="TitleTransform" Y="30" />
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                
+
                 <TextBlock x:Name="SubtitleText"
                            Text="{helpers:Loc Key=LanguageSelection_Subtitle}"
                            FontSize="12"
@@ -242,7 +244,7 @@
                         <TranslateTransform x:Name="SubtitleTransform" Y="30" />
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                
+
                 <Grid x:Name="LanguageGridArea" Opacity="0" Margin="0,8,0,0">
                     <Grid.RenderTransform>
                         <TranslateTransform x:Name="LanguageGridTransform" Y="30" />
@@ -267,7 +269,7 @@
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        
+
         <Grid Grid.Row="1"
               Padding="20,12"
               BorderThickness="1,1,0,0"

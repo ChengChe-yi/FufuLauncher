@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
@@ -18,7 +19,7 @@ namespace FufuLauncher.Views
         private TextBlock _dialogStatusText;
         private TextBlock _currentAchievementText;
         private JsonArray _allCategoriesData;
-        
+
         private Window _browserWindow;
         private WebView2 _scraperWebView;
 
@@ -36,7 +37,7 @@ namespace FufuLauncher.Views
 
             CreateProgressDialog();
             _ = _progressDialog.ShowAsync();
-            
+
             await Task.Delay(2000);
             await RunUpdateScript();
         }
@@ -45,7 +46,7 @@ namespace FufuLauncher.Views
         {
             _browserWindow = new Window();
             _browserWindow.Title = "请勿操作此窗口！";
-            
+
             _browserWindow.SystemBackdrop = new MicaBackdrop();
 
             _scraperWebView = new WebView2();
@@ -54,10 +55,10 @@ namespace FufuLauncher.Views
             IntPtr hWnd = WinRT.Interop.WindowNative.GetWindowHandle(_browserWindow);
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
-            
+
             appWindow.SetIcon("WindowIcon.ico");
             appWindow.Resize(new Windows.Graphics.SizeInt32(1280, 800));
-            
+
             _browserWindow.Closed += (s, args) =>
             {
                 if (!StartButton.IsEnabled && _progressDialog != null)
@@ -77,19 +78,21 @@ namespace FufuLauncher.Views
         private void CreateProgressDialog()
         {
             var stackPanel = new StackPanel { Spacing = 10, Width = 400 };
-            
+
             _dialogStatusText = new TextBlock { Text = "正在初始化组件...", TextWrapping = TextWrapping.Wrap };
             _dialogProgressBar = new ProgressBar { Minimum = 0, Maximum = 100, Value = 0, IsIndeterminate = true };
-            _currentAchievementText = new TextBlock { 
-                Text = "等待页面响应", 
-                FontSize = 12, 
-                Opacity = 0.6, 
-                FontStyle = Windows.UI.Text.FontStyle.Italic 
+            _currentAchievementText = new TextBlock
+            {
+                Text = "等待页面响应",
+                FontSize = 12,
+                Opacity = 0.6,
+                FontStyle = Windows.UI.Text.FontStyle.Italic
             };
 
             stackPanel.Children.Add(_dialogStatusText);
             stackPanel.Children.Add(_dialogProgressBar);
-            stackPanel.Children.Add(new TextBlock { Text = "当前进度状态：", FontSize = 12, Margin = new Thickness(0,10,0,0) });
+            stackPanel.Children.Add(new TextBlock
+                { Text = "当前进度状态：", FontSize = 12, Margin = new Thickness(0, 10, 0, 0) });
             stackPanel.Children.Add(_currentAchievementText);
 
             _progressDialog = new ContentDialog
@@ -253,7 +256,8 @@ namespace FufuLauncher.Views
             }
         }
 
-        private void ScraperWebView_WebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
+        private void ScraperWebView_WebMessageReceived(object sender,
+            Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
         {
             try
             {
@@ -285,7 +289,8 @@ namespace FufuLauncher.Views
                     {
                         if (t.IsFaulted)
                         {
-                            System.Diagnostics.Debug.WriteLine($"[AchievementUpdater] 异步合并异常: {t.Exception?.InnerException?.Message}");
+                            System.Diagnostics.Debug.WriteLine(
+                                $"[AchievementUpdater] 异步合并异常: {t.Exception?.InnerException?.Message}");
                         }
                     }, TaskScheduler.Default);
                 }
@@ -296,8 +301,9 @@ namespace FufuLauncher.Views
                     string errorMsg = root.GetProperty("msg").GetString();
 
                     if (_browserWindow != null) _browserWindow.Close();
-                    
-                    var errorDialog = new ContentDialog {
+
+                    var errorDialog = new ContentDialog
+                    {
                         Title = "执行异常",
                         Content = $"获取脚本发生错误: {errorMsg}",
                         CloseButtonText = "关闭",
@@ -314,8 +320,9 @@ namespace FufuLauncher.Views
 
         private async Task FetchAndMergeGithubDataAsync()
         {
-            string apiUrl = "https://api.github.com/repos/dvaJi/genshin-data/contents/src/data/chinese-simplified/achievements";
-            
+            string apiUrl =
+                "https://api.github.com/repos/dvaJi/genshin-data/contents/src/data/chinese-simplified/achievements";
+
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "FufuLauncher-AchievementUpdater");
 
@@ -335,7 +342,7 @@ namespace FufuLauncher.Views
                 foreach (var fileNode in files)
                 {
                     string fileName = fileNode["name"]?.ToString();
-                    
+
                     if (!string.IsNullOrEmpty(fileName) && fileName.EndsWith(".json"))
                     {
                         string downloadUrl = fileNode["download_url"]?.ToString();
@@ -347,7 +354,7 @@ namespace FufuLauncher.Views
                         string fileContent = await client.GetStringAsync(downloadUrl);
                         var categoryData = JsonNode.Parse(fileContent);
                         var achArray = categoryData["achievements"]?.AsArray();
-                        
+
                         if (achArray != null)
                         {
                             foreach (var ach in achArray)
@@ -359,11 +366,13 @@ namespace FufuLauncher.Views
                                     {
                                         githubDict[name] = new List<JsonNode>();
                                     }
+
                                     githubDict[name].Add(ach);
                                 }
                             }
                         }
                     }
+
                     currentIndex++;
                 }
 
@@ -397,22 +406,22 @@ namespace FufuLauncher.Views
                             if (!string.IsNullOrEmpty(title) && githubDict.TryGetValue(title, out var ghList))
                             {
                                 if (!consumedCounts.ContainsKey(title)) consumedCounts[title] = 0;
-                                
+
                                 int idx = consumedCounts[title];
                                 if (idx < ghList.Count)
                                 {
                                     var ghAch = ghList[idx];
-                                    
+
                                     // 追加详细字段
                                     ach["id"] = ghAch["id"]?.GetValue<int>();
                                     ach["hidden"] = ghAch["hidden"]?.GetValue<bool>();
                                     ach["order"] = ghAch["order"]?.GetValue<int>();
-                                    
+
                                     if (ghAch["preStage"] != null)
                                     {
                                         ach["preStage"] = ghAch["preStage"]?.GetValue<int>();
                                     }
-                                    
+
                                     consumedCounts[title]++;
                                 }
                             }
@@ -426,24 +435,26 @@ namespace FufuLauncher.Views
                 _currentAchievementText.Text = "完成";
 
                 // 5. 序列化并保存
-                var options = new JsonSerializerOptions { 
-                    WriteIndented = true, 
-                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping 
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
                 };
                 string finalJsonData = _allCategoriesData.ToJsonString(options);
 
                 string assetsDir = Path.Combine(AppContext.BaseDirectory, "Assets");
                 if (!Directory.Exists(assetsDir)) Directory.CreateDirectory(assetsDir);
-                
+
                 string filePath = Path.Combine(assetsDir, "genshin_achievements_linked.json");
                 await File.WriteAllTextAsync(filePath, finalJsonData);
 
                 _progressDialog.Hide();
                 StartButton.IsEnabled = true;
-                
+
                 if (_browserWindow != null) _browserWindow.Close();
-                
-                var completeDialog = new ContentDialog {
+
+                var completeDialog = new ContentDialog
+                {
                     Title = "执行完毕",
                     Content = "成就数据已成功从 Web 及 GitHub 双端拉取并完成拼合，本地文件已覆盖。",
                     CloseButtonText = "确认退出",
@@ -461,8 +472,9 @@ namespace FufuLauncher.Views
                     if (_browserWindow != null) _browserWindow.Close();
 
                     if (Content?.XamlRoot == null) return;
-                    
-                    var errorDialog = new ContentDialog {
+
+                    var errorDialog = new ContentDialog
+                    {
                         Title = "执行异常",
                         Content = $"获取或整合数据时发生错误: {ex.Message}",
                         CloseButtonText = "关闭",

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -22,15 +23,20 @@ public class VideoItem
 {
     public string Title
     {
-        get; set;
+        get;
+        set;
     }
+
     public string Cover
     {
-        get; set;
+        get;
+        set;
     }
+
     public string PageUrl
     {
-        get; set;
+        get;
+        set;
     }
 }
 
@@ -38,16 +44,28 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
 {
     public event PropertyChangedEventHandler PropertyChanged;
 
-    public ObservableCollection<VideoItem> CharacterVideos { get; } = new();
-    public ObservableCollection<VideoItem> CutsceneVideos { get; } = new();
+    public ObservableCollection<VideoItem> CharacterVideos
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<VideoItem> CutsceneVideos
+    {
+        get;
+    } = new();
 
     private bool _isLoading;
+
     public bool IsLoading
     {
         get => _isLoading;
         set
         {
-            if (_isLoading != value) { _isLoading = value; OnPropertyChanged(); }
+            if (_isLoading != value)
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
         }
     }
 
@@ -78,7 +96,10 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
             await CrawlerWebView.EnsureCoreWebView2Async();
             await LoadVideosAsync(CHAR_VIDEO_URL, CharacterVideos);
         }
-        catch (Exception ex) { Debug.WriteLine($"Init failed: {ex.Message}"); }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Init failed: {ex.Message}");
+        }
     }
 
     private async void OnPivotSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,24 +113,24 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
     }
 
     private async Task LoadVideosAsync(string url, ObservableCollection<VideoItem> targetCollection)
-{
-    if (IsLoading) return;
-    IsLoading = true;
-    try
     {
-        await CrawlerWebView.EnsureCoreWebView2Async();
+        if (IsLoading) return;
+        IsLoading = true;
+        try
+        {
+            await CrawlerWebView.EnsureCoreWebView2Async();
 
-        var tcs = new TaskCompletionSource<bool>();
-        void OnNav(CoreWebView2 s, CoreWebView2NavigationCompletedEventArgs a) => tcs.TrySetResult(true);
+            var tcs = new TaskCompletionSource<bool>();
+            void OnNav(CoreWebView2 s, CoreWebView2NavigationCompletedEventArgs a) => tcs.TrySetResult(true);
 
-        CrawlerWebView.CoreWebView2.NavigationCompleted += OnNav;
-        CrawlerWebView.CoreWebView2.Navigate(url);
-        await tcs.Task;
-        CrawlerWebView.CoreWebView2.NavigationCompleted -= OnNav;
+            CrawlerWebView.CoreWebView2.NavigationCompleted += OnNav;
+            CrawlerWebView.CoreWebView2.Navigate(url);
+            await tcs.Task;
+            CrawlerWebView.CoreWebView2.NavigationCompleted -= OnNav;
 
-        await Task.Delay(4000);
+            await Task.Delay(4000);
 
-        string jsCode = @"
+            string jsCode = @"
     (function() {
         var items = [];
         var nodes = document.querySelectorAll('a[href*=""/ys/obc/content/""]');
@@ -138,34 +159,34 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
     })();
 ";
 
-        var json = await CrawlerWebView.ExecuteScriptAsync(jsCode);
-        if (!string.IsNullOrEmpty(json) && json != "null")
-        {
-            var unescapedJson = JsonSerializer.Deserialize<string>(json);
-            var items = JsonSerializer.Deserialize<List<VideoItem>>(unescapedJson);
-            if (items != null)
+            var json = await CrawlerWebView.ExecuteScriptAsync(jsCode);
+            if (!string.IsNullOrEmpty(json) && json != "null")
             {
-                targetCollection.Clear();
-                foreach (var item in items) targetCollection.Add(item);
+                var unescapedJson = JsonSerializer.Deserialize<string>(json);
+                var items = JsonSerializer.Deserialize<List<VideoItem>>(unescapedJson);
+                if (items != null)
+                {
+                    targetCollection.Clear();
+                    foreach (var item in items) targetCollection.Add(item);
+                }
             }
         }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[VideoResource] Load List Failed: {ex.Message}");
+        }
+        finally
+        {
+            IsLoading = false;
+        }
     }
-    catch (Exception ex)
-    {
-        Debug.WriteLine($"[VideoResource] Load List Failed: {ex.Message}");
-    }
-    finally
-    {
-        IsLoading = false;
-    }
-}
 
     private async Task<string> GetVideoSourceUrlAsync(string pageUrl)
     {
         try
         {
             await CrawlerWebView.EnsureCoreWebView2Async();
-            
+
             var tcs = new TaskCompletionSource<bool>();
             void OnNav(CoreWebView2 s, CoreWebView2NavigationCompletedEventArgs a) => tcs.TrySetResult(true);
 

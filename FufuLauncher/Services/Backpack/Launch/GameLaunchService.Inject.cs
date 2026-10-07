@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 
 namespace FufuLauncher.Services.Backpack;
@@ -21,7 +22,7 @@ internal static partial class GameLaunchService
             return false;
         }
 
-        nint k32   = NativeMethods.GetModuleHandleW("kernel32.dll");
+        nint k32 = NativeMethods.GetModuleHandleW("kernel32.dll");
         nint loadW = NativeMethods.GetProcAddress(k32, "LoadLibraryW");
         if (loadW == 0)
         {

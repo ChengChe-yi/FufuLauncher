@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -11,9 +12,9 @@ namespace FufuLauncher.Views;
 public sealed partial class LoginQrWindow
 {
     #region UI事件处理
+
     private async void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
-
         if (LoginMethodComboBox.SelectedIndex == 2)
         {
             await StartMobileCaptchaLoginAsync();
@@ -91,7 +92,10 @@ public sealed partial class LoginQrWindow
                     errorTextBlock.Visibility = Visibility.Visible;
                     return;
                 }
-                string serverType = cookies.ContainsKey("ltuid_v2") || cookies.ContainsKey("cookie_token_v2") ? "os" : "cn";
+
+                string serverType = cookies.ContainsKey("ltuid_v2") || cookies.ContainsKey("cookie_token_v2")
+                    ? "os"
+                    : "cn";
                 OnLoginSuccess(cookies, serverType);
             }
             catch (Exception ex)
@@ -114,7 +118,6 @@ public sealed partial class LoginQrWindow
 
     private async void LoginMethodComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
         _currentSession?.Cancel();
 
         if (GameLoginPanel != null)
@@ -125,6 +128,7 @@ public sealed partial class LoginQrWindow
             PassportWebViewBorder.MinWidth = 420;
             PassportWebViewBorder.MinHeight = 480;
         }
+
         if (QrCodeContainer != null)
             QrCodeContainer.Visibility = Visibility.Visible;
         if (WebLoginWarningTextBlock != null)
@@ -132,7 +136,6 @@ public sealed partial class LoginQrWindow
 
         if (LoginMethodComboBox.SelectedIndex == 1)
         {
-
             if (QrCodeContainer != null)
                 QrCodeContainer.Visibility = Visibility.Collapsed;
             if (PassportWebViewBorder != null)
@@ -145,7 +148,6 @@ public sealed partial class LoginQrWindow
 
         if (LoginMethodComboBox.SelectedIndex == 2)
         {
-
             if (QrCodeContainer != null)
                 QrCodeContainer.Visibility = Visibility.Collapsed;
             await StartMobileCaptchaLoginAsync();
@@ -170,7 +172,7 @@ public sealed partial class LoginQrWindow
 
         _currentSession?.Cancel();
         bool isCn = ServerComboBox.SelectedIndex == 0;
-        
+
         if (GameLoginPanel != null)
         {
             GameLoginPanel.Visibility = Visibility.Collapsed;
@@ -180,9 +182,9 @@ public sealed partial class LoginQrWindow
 
         CnLoginPanel.Visibility = isCn ? Visibility.Visible : Visibility.Collapsed;
         OsLoginPanel.Visibility = isCn ? Visibility.Collapsed : Visibility.Visible;
-        
+
         UpdateStatus("", false, true);
-        
+
         if (PassportWebView != null && PassportWebView.CoreWebView2 != null)
         {
             PassportWebView.CoreWebView2.WebResourceResponseReceived -= CoreWebView2_WebResourceResponseReceived;
@@ -340,5 +342,6 @@ public sealed partial class LoginQrWindow
             _gameAppId = GameAppIdTextBox.Text.Trim();
         }
     }
+
     #endregion
 }

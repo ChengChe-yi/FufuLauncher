@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -25,7 +26,9 @@ public sealed partial class UpdateNotificationWindow : WindowEx
     {
         Timeout = TimeSpan.FromSeconds(30)
     };
-    private static readonly Regex UrlRegex = new(@"https?://[A-Za-z0-9\-._~:/?#\[\]@!$&()*+,;=%]+", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly Regex UrlRegex = new(@"https?://[A-Za-z0-9\-._~:/?#\[\]@!$&()*+,;=%]+",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private readonly bool _isPreview;
     private readonly string _updateInfoUrl;
@@ -119,12 +122,15 @@ public sealed partial class UpdateNotificationWindow : WindowEx
                     }
                 }
             }
+
             _initialHeightAdjustmentPending = true;
             StatusPanel.Visibility = Visibility.Collapsed;
             AnnouncementScrollViewer.Visibility = Visibility.Visible;
             DispatcherQueue.TryEnqueue(() => TryAdjustInitialHeight(AnnouncementContent.ActualHeight));
         }
-        catch (OperationCanceledException) when (_loadCancellation.IsCancellationRequested) { }
+        catch (OperationCanceledException) when (_loadCancellation.IsCancellationRequested)
+        {
+        }
         catch (Exception ex)
         {
             Debug.WriteLine($"[UpdateNotificationWindow] {ex.Message}");
@@ -258,6 +264,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
                     ResolveFontSize(document, node, defaultSize, bodyFontSize),
                     ResolveTextAlignment(document, node)));
             }
+
             return;
         }
 
@@ -403,6 +410,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
                     declarations.Append(rule.Groups["rules"].Value).Append(';');
             }
         }
+
         declarations.Append(node.GetAttributeValue("style", string.Empty));
         return declarations.ToString();
     }

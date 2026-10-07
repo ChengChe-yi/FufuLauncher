@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
@@ -49,6 +50,7 @@ public partial class SettingsViewModel
             PageOverlayTargetOpacity = clamped;
             return;
         }
+
         _ = _localSettingsService.SaveSettingAsync("PageOverlayTargetOpacity", clamped);
         WeakReferenceMessenger.Default.Send(new PageOverlayTargetOpacityChangedMessage(clamped));
     }
@@ -57,7 +59,7 @@ public partial class SettingsViewModel
     {
         if (!_isInitializing)
             _localSettingsService.SaveSettingAsync("AppThemeColor", value);
-        
+
         try
         {
             if (!string.IsNullOrEmpty(value) && value.StartsWith("#") && (value.Length == 7 || value.Length == 9))
@@ -80,6 +82,7 @@ public partial class SettingsViewModel
                     g = Convert.ToByte(hex.Substring(2, 2), 16);
                     b = Convert.ToByte(hex.Substring(4, 2), 16);
                 }
+
                 var color = Windows.UI.Color.FromArgb(a, r, g, b);
                 if (_appThemeColorObj != color)
                 {
@@ -88,7 +91,9 @@ public partial class SettingsViewModel
                 }
             }
         }
-        catch { }
+        catch
+        {
+        }
 
         WeakReferenceMessenger.Default.Send(new AcrylicSettingChangedMessage(true)); // reuse or create new msg
         ThemeHelper.ApplyThemeColor(value);
@@ -141,30 +146,35 @@ public partial class SettingsViewModel
         _ = _localSettingsService.SaveSettingAsync("GameNewsCardTextColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
+
     partial void OnGameNewsCardTextOpacityChanged(double value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("GameNewsCardTextOpacity", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
+
     partial void OnLaunchButtonTextColorChanged(string value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("LaunchButtonTextColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
+
     partial void OnLaunchButtonTextOpacityChanged(double value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("LaunchButtonTextOpacity", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
+
     partial void OnGameCheckinTextColorChanged(string value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("GameCheckinTextColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
+
     partial void OnGameCheckinTextOpacityChanged(double value)
     {
         if (_isInitializing) return;

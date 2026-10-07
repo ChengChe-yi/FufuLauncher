@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Net;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -50,7 +51,10 @@ namespace FufuLauncher.Views
             {
                 page.ResizeRequested += OnResizeRequested;
 
-                page.CloseRequested += () => { Close(); };
+                page.CloseRequested += () =>
+                {
+                    Close();
+                };
             }
         }
 
@@ -152,9 +156,18 @@ namespace FufuLauncher.Views
                         var context = await _listener.GetContextAsync();
                         ProcessRequest(context);
                     }
-                    catch (HttpListenerException) { break; }
-                    catch (ObjectDisposedException) { break; }
-                    catch (Exception) { break; }
+                    catch (HttpListenerException)
+                    {
+                        break;
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        break;
+                    }
+                    catch (Exception)
+                    {
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -180,7 +193,6 @@ namespace FufuLauncher.Views
                 }
                 catch
                 {
-
                 }
                 finally
                 {
@@ -215,7 +227,13 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                try { context.Response.Abort(); } catch { }
+                try
+                {
+                    context.Response.Abort();
+                }
+                catch
+                {
+                }
             }
         }
     }

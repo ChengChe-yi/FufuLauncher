@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Data.Entities;
 using FufuLauncher.Helpers;
@@ -14,9 +15,12 @@ public class LocalSettingsRepository
 {
     private string DbPath => AppPaths.LocalSettingsDb;
 
-    public LocalSettingsRepository() { }
+    public LocalSettingsRepository()
+    {
+    }
 
     private static readonly object _migrateLock = new();
+
     private static readonly System.Collections.Concurrent.ConcurrentDictionary<string, bool> _migratedPaths
         = new(StringComparer.OrdinalIgnoreCase);
 
@@ -34,6 +38,7 @@ public class LocalSettingsRepository
                 }
             }
         }
+
         return new LocalSettingsDbContext(dbPath);
     }
 
@@ -146,6 +151,7 @@ public class LocalSettingsRepository
         {
             context.Settings.Add(new SettingEntity { Key = key, Value = value });
         }
+
         await context.SaveChangesAsync();
         SettingsLog.Write($"LocalSettingsRepository: 已保存 '{key}'");
     }
@@ -163,6 +169,7 @@ public class LocalSettingsRepository
                 await context.SaveChangesAsync();
                 SettingsLog.Write($"LocalSettingsRepository: 已删除 '{key}'");
             }
+
             return true;
         }
         catch (Exception ex)
@@ -195,6 +202,7 @@ public class LocalSettingsRepository
             if (!string.IsNullOrWhiteSpace(setting.Key))
                 context.Settings.Add(setting);
         }
+
         await context.SaveChangesAsync();
     }
 }

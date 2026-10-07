@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -22,20 +23,20 @@ public static class PluginVerifier
 
         return BytesToHex(hashBytes);
     }
-    
+
     public static string ComputeSha256(string content)
     {
         var bytes = Encoding.UTF8.GetBytes(content);
         var hashBytes = SHA256.HashData(bytes);
         return BytesToHex(hashBytes);
     }
-    
+
     public static string ComputeFileSha256(string filePath)
     {
         using var stream = File.OpenRead(filePath);
         return ComputeSha256(stream);
     }
-    
+
     public static void VerifyFileHash(string filePath, string expectedHash, string description = "file")
     {
         if (string.IsNullOrWhiteSpace(expectedHash))
@@ -60,9 +61,15 @@ public static class PluginVerifier
             Debug.WriteLine($"[PluginVerifier] HASH MISMATCH for {description}:");
             Debug.WriteLine($"  Expected: {expectedHash}");
             Debug.WriteLine($"  Actual:   {actualHash}");
-            
-            try { File.Delete(filePath); }
-            catch (Exception ex) { Debug.WriteLine($"[PluginVerifier] Failed to delete bad file: {ex.Message}"); }
+
+            try
+            {
+                File.Delete(filePath);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[PluginVerifier] Failed to delete bad file: {ex.Message}");
+            }
 
             throw new HashMismatchException(
                 "PluginStoreHashMismatch".GetLocalized());
@@ -70,7 +77,7 @@ public static class PluginVerifier
 
         Debug.WriteLine($"[PluginVerifier] Hash verified OK for {description}");
     }
-    
+
     public static void VerifyLuaHash(string luaScript, string expectedHash)
     {
         if (string.IsNullOrWhiteSpace(expectedHash))
@@ -92,7 +99,7 @@ public static class PluginVerifier
 
         Debug.WriteLine("[PluginVerifier] Lua hash verified OK");
     }
-    
+
     public static SecurityValidationResult ValidateLuaSecurity(string luaScript)
     {
         if (string.IsNullOrWhiteSpace(luaScript))
@@ -101,18 +108,18 @@ public static class PluginVerifier
         }
 
         var lowerScript = luaScript.ToLowerInvariant();
-        
+
         var bannedFunctions = new (string Pattern, string Description)[]
         {
-            ("os.execute",    "os.execute() — arbitrary command execution"),
-            ("io.popen",      "io.popen() — process spawning"),
-            ("dofile(",       "dofile() — loading external Lua files"),
-            ("loadfile(",     "loadfile() — loading external Lua files"),
-            ("require(",      "require() — loading modules"),
-            ("os.exit",       "os.exit() — terminating the process"),
-            ("os.remove",     "os.remove() — deleting files outside sandbox"),
-            ("os.rename",     "os.rename() — moving files outside sandbox"),
-            ("os.tmpname",    "os.tmpname() — temp file access"),
+            ("os.execute", "os.execute() — arbitrary command execution"),
+            ("io.popen", "io.popen() — process spawning"),
+            ("dofile(", "dofile() — loading external Lua files"),
+            ("loadfile(", "loadfile() — loading external Lua files"),
+            ("require(", "require() — loading modules"),
+            ("os.exit", "os.exit() — terminating the process"),
+            ("os.remove", "os.remove() — deleting files outside sandbox"),
+            ("os.rename", "os.rename() — moving files outside sandbox"),
+            ("os.tmpname", "os.tmpname() — temp file access"),
         };
 
         foreach (var (pattern, description) in bannedFunctions)
@@ -120,17 +127,18 @@ public static class PluginVerifier
             if (lowerScript.Contains(pattern))
             {
                 Debug.WriteLine($"[PluginVerifier] SECURITY BLOCK: {description}");
-                return SecurityValidationResult.Fail(string.Format("PluginStoreSecurityBannedOp".GetLocalized(), description));
+                return SecurityValidationResult.Fail(string.Format("PluginStoreSecurityBannedOp".GetLocalized(),
+                    description));
             }
         }
-        
+
         if (lowerScript.Contains("\"..\"") ||
             lowerScript.Contains("'..'") ||
             lowerScript.Contains("..\\\\") ||
             lowerScript.Contains("../"))
         {
             var hasPathTraversal = false;
-            
+
             if (lowerScript.Contains("..\\\\") || lowerScript.Contains("../"))
             {
                 hasPathTraversal = true;
@@ -142,7 +150,7 @@ public static class PluginVerifier
                 return SecurityValidationResult.Fail("PluginStoreSecurityPathTraversalShort".GetLocalized());
             }
         }
-        
+
         var httpMatches = System.Text.RegularExpressions.Regex.Matches(
             lowerScript, @"https?://[^\s""']+");
         foreach (System.Text.RegularExpressions.Match match in httpMatches)
@@ -156,20 +164,20 @@ public static class PluginVerifier
             {
                 continue;
             }
-            
+
             if (url.StartsWith("http://") && !url.StartsWith("http://localhost"))
             {
                 Debug.WriteLine($"[PluginVerifier] WARNING: Non-HTTPS URL detected: {url}");
             }
         }
-        
+
         const int maxScriptLength = 100_000;
         if (luaScript.Length > maxScriptLength)
         {
             Debug.WriteLine($"[PluginVerifier] SECURITY BLOCK: Script too large ({luaScript.Length} bytes)");
             return SecurityValidationResult.Fail("PluginStoreSecurityScriptTooLarge".GetLocalized());
         }
-        
+
         var base64Pattern = new System.Text.RegularExpressions.Regex(@"[A-Za-z0-9+/]{200,}={0,2}");
         if (base64Pattern.IsMatch(luaScript))
         {
@@ -179,7 +187,7 @@ public static class PluginVerifier
         Debug.WriteLine("[PluginVerifier] Lua security scan PASSED");
         return SecurityValidationResult.Pass();
     }
-    
+
     public static string BytesToHex(byte[] bytes)
     {
         var sb = new StringBuilder(bytes.Length * 2);
@@ -187,25 +195,40 @@ public static class PluginVerifier
         {
             sb.Append(b.ToString("x2"));
         }
+
         return sb.ToString();
     }
 }
 
 public class HashMismatchException : Exception
 {
-    public HashMismatchException(string message) : base(message) { }
-    public HashMismatchException(string message, Exception inner) : base(message, inner) { }
+    public HashMismatchException(string message) : base(message)
+    {
+    }
+
+    public HashMismatchException(string message, Exception inner) : base(message, inner)
+    {
+    }
 }
 
 public class SecurityViolationException : Exception
 {
-    public SecurityViolationException(string message) : base(message) { }
+    public SecurityViolationException(string message) : base(message)
+    {
+    }
 }
 
 public class SecurityValidationResult
 {
-    public bool IsValid { get; }
-    public string? Reason { get; }
+    public bool IsValid
+    {
+        get;
+    }
+
+    public string? Reason
+    {
+        get;
+    }
 
     private SecurityValidationResult(bool isValid, string? reason = null)
     {

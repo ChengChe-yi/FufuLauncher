@@ -2117,6 +2117,9 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
   <data name="Announcement_Loading" xml:space="preserve">
     <value>お知らせを読み込み中...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Edge で開く</value>
+  </data>
   <data name="CommunityPage_Back" xml:space="preserve">
     <value>戻る</value>
   </data>
@@ -6187,4 +6190,21 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>同名 DLL の競合を解消しました。ゲームを再起動できます。</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>変更は自動的に保存されます</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>保存中…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>設定の保存に失敗しました</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>設定ファイルに書き込めませんでした。ファイルのアクセス権を確認して再試行してください。詳細：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>設定の読み込みに失敗しました</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>プラグインの設定ファイルを読み込めませんでした。詳細：{0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>設定ファイルが存在し、読み取り可能であることを確認してから再読み込みしてください。</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>設定ファイルが存在しません：{0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>変更可能な設定はありません</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>このプラグインには調整可能な設定がありません。</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>一致する設定がありません</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>別のキーワードを試すか、検索をクリアしてください。</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>検索をクリア</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} 件の設定</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} 件の設定</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>設定ファイル</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>値を入力…</value></data>
 </root>

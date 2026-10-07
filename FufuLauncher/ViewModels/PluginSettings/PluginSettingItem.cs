@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
@@ -14,13 +15,35 @@ public class PluginSettingItem : ObservableObject
 {
     private readonly IniFile _iniFile;
     private readonly Action<string, string, string> _onValueChanged;
-    public string SectionKey { get; }
-    public string DisplayName { get; }
-    public string Type { get; }
-    public string HelpUrl { get; }
 
-    public Microsoft.UI.Xaml.Visibility HelpVisibility => !string.IsNullOrEmpty(HelpUrl) ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
-    public Microsoft.UI.Xaml.Visibility GifImageVisibility => !string.IsNullOrEmpty(HelpUrl) ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
+    public string SectionKey
+    {
+        get;
+    }
+
+    public string DisplayName
+    {
+        get;
+    }
+
+    public string Type
+    {
+        get;
+    }
+
+    public string HelpUrl
+    {
+        get;
+    }
+
+    public Microsoft.UI.Xaml.Visibility HelpVisibility => !string.IsNullOrEmpty(HelpUrl)
+        ? Microsoft.UI.Xaml.Visibility.Visible
+        : Microsoft.UI.Xaml.Visibility.Collapsed;
+
+    public Microsoft.UI.Xaml.Visibility GifImageVisibility => !string.IsNullOrEmpty(HelpUrl)
+        ? Microsoft.UI.Xaml.Visibility.Visible
+        : Microsoft.UI.Xaml.Visibility.Collapsed;
+
     public Microsoft.UI.Xaml.Visibility GifErrorVisibility => Microsoft.UI.Xaml.Visibility.Collapsed;
 
     private bool _isPinned;
@@ -63,11 +86,14 @@ public class PluginSettingItem : ObservableObject
         IsSelected ? Microsoft.UI.Xaml.Visibility.Visible : Microsoft.UI.Xaml.Visibility.Collapsed;
 
     private string _rawValue;
-    private static readonly ObservableCollection<VirtualKeyOption> _availableKeys = new ObservableCollection<VirtualKeyOption>(GetAvailableKeys());
+
+    private static readonly ObservableCollection<VirtualKeyOption> _availableKeys =
+        new ObservableCollection<VirtualKeyOption>(GetAvailableKeys());
+
     private bool _useKeyListInput;
 
     public ObservableCollection<VirtualKeyOption> AvailableKeys => _availableKeys;
-    
+
     public Microsoft.UI.Xaml.Media.ImageSource HelpImageSource
     {
         get
@@ -80,6 +106,7 @@ public class PluginSettingItem : ObservableObject
                 {
                     resolvedPath = Path.Combine(AppContext.BaseDirectory, HelpUrl);
                 }
+
                 return new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(new Uri(resolvedPath));
             }
             catch
@@ -88,8 +115,9 @@ public class PluginSettingItem : ObservableObject
             }
         }
     }
-    
-    public PluginSettingItem(IniFile iniFile, string sectionKey, string displayName, string type, string value, string helpUrl, Action<string, string, string> onValueChanged, bool useKeyListInput)
+
+    public PluginSettingItem(IniFile iniFile, string sectionKey, string displayName, string type, string value,
+        string helpUrl, Action<string, string, string> onValueChanged, bool useKeyListInput)
     {
         _iniFile = iniFile;
         SectionKey = sectionKey;
@@ -99,12 +127,13 @@ public class PluginSettingItem : ObservableObject
         HelpUrl = helpUrl;
         _onValueChanged = onValueChanged;
         _useKeyListInput = useKeyListInput;
-        if (string.Equals(Type, "key", StringComparison.OrdinalIgnoreCase) && int.TryParse(_rawValue, out var currentKey))
+        if (string.Equals(Type, "key", StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(_rawValue, out var currentKey))
         {
             EnsureKeyOption(currentKey);
         }
     }
-    
+
     private static List<VirtualKeyOption> GetAvailableKeys()
     {
         var list = new List<VirtualKeyOption>();
@@ -113,22 +142,23 @@ public class PluginSettingItem : ObservableObject
             if (key == Windows.System.VirtualKey.None) continue;
             list.Add(new VirtualKeyOption { KeyCode = (int)key, KeyName = key.ToString() });
         }
+
         return list.GroupBy(k => k.KeyCode).Select(g => g.First()).OrderBy(k => k.KeyCode).ToList();
     }
-    
+
     public int? KeyValue
     {
         get => int.TryParse(_rawValue, out var result) ? result : 0;
         set
         {
             if (value == null) return;
-            
+
             var targetValue = value.Value.ToString();
             if (_rawValue != targetValue)
             {
                 var previousValue = _rawValue;
                 _rawValue = targetValue;
-                
+
                 bool isNew = EnsureKeyOption(value.Value);
 
                 if (isNew)
@@ -139,7 +169,7 @@ public class PluginSettingItem : ObservableObject
                         NotificationType.Success,
                         3000
                     ));
-                    
+
                     var dispatcher = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
                     if (dispatcher != null)
                     {
@@ -166,7 +196,8 @@ public class PluginSettingItem : ObservableObject
         }
     }
 
-    public PluginSettingItem(IniFile iniFile, string sectionKey, string displayName, string type, string value, Action<string, string, string> onValueChanged, bool useKeyListInput)
+    public PluginSettingItem(IniFile iniFile, string sectionKey, string displayName, string type, string value,
+        Action<string, string, string> onValueChanged, bool useKeyListInput)
     {
         _iniFile = iniFile;
         SectionKey = sectionKey;
@@ -175,7 +206,8 @@ public class PluginSettingItem : ObservableObject
         _rawValue = value;
         _onValueChanged = onValueChanged;
         _useKeyListInput = useKeyListInput;
-        if (string.Equals(Type, "key", StringComparison.OrdinalIgnoreCase) && int.TryParse(_rawValue, out var currentKey))
+        if (string.Equals(Type, "key", StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(_rawValue, out var currentKey))
         {
             EnsureKeyOption(currentKey);
         }
@@ -273,7 +305,7 @@ public class PluginSettingItem : ObservableObject
         {
             _rawValue = previousValue;
             OnPropertyChanged(propertyName);
-            
+
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
                 "配置保存失败",
                 $"无法应用当前设置修改\n详细信息: {ex.Message}",
@@ -293,7 +325,7 @@ public class PluginSettingItem : ObservableObject
             KeyCode = keyCode,
             KeyName = $"Custom({keyCode})"
         });
-        
+
         return true;
     }
 }

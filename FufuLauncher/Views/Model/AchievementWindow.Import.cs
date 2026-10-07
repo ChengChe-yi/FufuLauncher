@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net;
 using FufuLauncher.Helpers;
@@ -35,7 +36,10 @@ public sealed partial class AchievementWindow
                                 Debug.WriteLine($"处理请求异常: {t.Exception?.InnerException?.Message}");
                         }, TaskContinuationOptions.OnlyOnFaulted);
                     }
-                    catch { break; }
+                    catch
+                    {
+                        break;
+                    }
                 }
             });
         }
@@ -70,7 +74,13 @@ public sealed partial class AchievementWindow
                 {
                     await RunImportLogic(tempFile);
 
-                    try { File.Delete(tempFile); } catch { }
+                    try
+                    {
+                        File.Delete(tempFile);
+                    }
+                    catch
+                    {
+                    }
                 });
 
                 byte[] b = "Import Started"u8.ToArray();
@@ -108,8 +118,10 @@ public sealed partial class AchievementWindow
         if (_isBatchProcessing) return;
         _isBatchProcessing = true;
 
-        var progressBar = new ProgressBar { Value = 0, Maximum = 100, Height = 10, Margin = new Thickness(0, 15, 0, 5) };
-        var statusText = new TextBlock { Text = "AchievementWindow_PreparingRead".GetLocalized(), FontSize = 13, Opacity = 0.8 };
+        var progressBar = new ProgressBar
+            { Value = 0, Maximum = 100, Height = 10, Margin = new Thickness(0, 15, 0, 5) };
+        var statusText = new TextBlock
+            { Text = "AchievementWindow_PreparingRead".GetLocalized(), FontSize = 13, Opacity = 0.8 };
         var stackPanel = new StackPanel { Width = 380, Spacing = 5 };
         stackPanel.Children.Add(statusText);
         stackPanel.Children.Add(progressBar);
@@ -181,7 +193,7 @@ public sealed partial class AchievementWindow
                     }
                 }
 
-                foreach(var cat in ViewModel.Categories) cat.RefreshProgress();
+                foreach (var cat in ViewModel.Categories) cat.RefreshProgress();
 
                 CalculateGlobalStats();
                 SaveData();
@@ -317,20 +329,73 @@ public sealed partial class AchievementWindow
 
     private class ImportStats
     {
-        public int TotalScanned { get; set; }
-        public int SkippedIncomplete { get; set; }
-        public int UpdatedCount { get; set; }
-        public int AlreadyDone { get; set; }
-        public int FailedCount { get; set; }
-        public List<string> Errors { get; set; } = new();
-        public List<AchievementUpdateData> PendingUpdates { get; set; } = new();
+        public int TotalScanned
+        {
+            get;
+            set;
+        }
+
+        public int SkippedIncomplete
+        {
+            get;
+            set;
+        }
+
+        public int UpdatedCount
+        {
+            get;
+            set;
+        }
+
+        public int AlreadyDone
+        {
+            get;
+            set;
+        }
+
+        public int FailedCount
+        {
+            get;
+            set;
+        }
+
+        public List<string> Errors
+        {
+            get;
+            set;
+        } = new();
+
+        public List<AchievementUpdateData> PendingUpdates
+        {
+            get;
+            set;
+        } = new();
     }
 
     private class AchievementUpdateData
     {
-        public AchievementItem Item { get; set; }
-        public bool ShouldComplete { get; set; }
-        public int Current { get; set; }
-        public int Max { get; set; }
+        public AchievementItem Item
+        {
+            get;
+            set;
+        }
+
+        public bool ShouldComplete
+        {
+            get;
+            set;
+        }
+
+        public int Current
+        {
+            get;
+            set;
+        }
+
+        public int Max
+        {
+            get;
+            set;
+        }
     }
 }

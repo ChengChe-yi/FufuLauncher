@@ -4,6 +4,7 @@ Licensed under the MIT License.
 
 Yae 集成所需的本机 API（用于 CREATE_SUSPENDED 启动游戏、注入 Yae DLL 等）。
 */
+
 using System.Runtime.InteropServices;
 
 namespace FufuLauncher.Services.Yae;
@@ -66,7 +67,8 @@ internal static class YaeNative
     public static extern bool CloseHandle(nint hObject);
 
     [DllImport("kernel32.dll")]
-    public static extern nint VirtualAllocEx(nint hProcess, nint lpAddress, nuint dwSize, uint flAllocationType, uint flProtect);
+    public static extern nint VirtualAllocEx(nint hProcess, nint lpAddress, nuint dwSize, uint flAllocationType,
+        uint flProtect);
 
     [DllImport("kernel32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
@@ -74,10 +76,12 @@ internal static class YaeNative
 
     [DllImport("kernel32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool WriteProcessMemory(nint hProcess, nint lpBaseAddress, byte[] lpBuffer, nuint nSize, out nuint lpNumberOfBytesWritten);
+    public static extern bool WriteProcessMemory(nint hProcess, nint lpBaseAddress, byte[] lpBuffer, nuint nSize,
+        out nuint lpNumberOfBytesWritten);
 
     [DllImport("kernel32.dll")]
-    public static extern nint CreateRemoteThread(nint hProcess, nint lpThreadAttributes, nuint dwStackSize, nint lpStartAddress, nint lpParameter, uint dwCreationFlags, out uint lpThreadId);
+    public static extern nint CreateRemoteThread(nint hProcess, nint lpThreadAttributes, nuint dwStackSize,
+        nint lpStartAddress, nint lpParameter, uint dwCreationFlags, out uint lpThreadId);
 
     [DllImport("kernel32.dll")]
     public static extern uint WaitForSingleObject(nint hHandle, uint dwMilliseconds);
@@ -120,8 +124,10 @@ internal static class YaeNative
         public nint modBaseAddr;
         public uint modBaseSize;
         public nint hModule;
+
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string szModule;
+
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
         public string szExePath;
     }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services;
@@ -24,6 +25,7 @@ public partial class GachaAnalysisModel
                 var current = await RoleService.GetCurrentAsync(RoleSelection);
                 targetUid = current?.Role.game_uid;
             }
+
             if (string.IsNullOrEmpty(targetUid))
                 throw new InvalidOperationException("请先在角色切换开关中选择游戏角色。");
             var resolver = new GachaAccountResolver(async id => await _accountManager.LoadCookiesAsync(id),
@@ -55,6 +57,7 @@ public partial class GachaAnalysisModel
                 else OnErrorAction?.Invoke(CrawlerStatus);
                 return;
             }
+
             CrawlerStatus = ex.ReturnCode switch
             {
                 1002 => "米游社未接受所选角色的认证参数（返回码 1002）。可使用「从游戏获取」读取游戏生成的链接。",

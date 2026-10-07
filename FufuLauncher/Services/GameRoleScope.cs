@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
 
@@ -22,15 +23,17 @@ public sealed class GameRoleScope
             _accountId = account.Id;
             _uid = _region = null;
         }
-        return _uid == null ? GameRoleSelection.Current(account) :
-            GameRoleSelection.Filter(account.GameRoles ?? [], account.ServerType)
+
+        return _uid == null
+            ? GameRoleSelection.Current(account)
+            : GameRoleSelection.Filter(account.GameRoles ?? [], account.ServerType)
                 .FirstOrDefault(r => r.game_uid == _uid && r.region == _region);
     }
 
     public void Select(AccountEntry account, GameRoleInfo role)
     {
         if (!GameRoleSelection.Filter(account.GameRoles ?? [], account.ServerType)
-            .Any(r => r.game_uid == role.game_uid && r.region == role.region))
+                .Any(r => r.game_uid == role.game_uid && r.region == role.region))
             throw new InvalidOperationException("所选角色未绑定到当前社区账号，请刷新角色列表。");
         _accountId = account.Id;
         _uid = role.game_uid;

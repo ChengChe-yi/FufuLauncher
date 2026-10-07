@@ -15,23 +15,28 @@ public sealed partial class MiyousheClient
 
     public async Task SetPostLikeAsync(string postId, bool liked, CancellationToken ct)
     {
-        RequireInteractionAccount(); ValidateId(postId);
+        RequireInteractionAccount();
+        ValidateId(postId);
         string body = JsonSerializer.Serialize(new { is_cancel = !liked, post_id = postId });
         await SendAsync("apihub/api/upvotePost", [], Profile.K2Sign, ct, body);
     }
 
     public async Task SetReplyLikeAsync(string postId, string replyId, bool liked, CancellationToken ct)
     {
-        RequireInteractionAccount(); ValidateId(postId); ValidateId(replyId);
+        RequireInteractionAccount();
+        ValidateId(postId);
+        ValidateId(replyId);
         string body = JsonSerializer.Serialize(new { is_cancel = !liked, post_id = postId, reply_id = replyId });
         await SendAsync("apihub/api/upvoteReply", [], Profile.K2Sign, ct, body);
     }
 
     public async Task PublishReplyAsync(CommunityPost post, string content, string? replyId, CancellationToken ct)
     {
-        RequireInteractionAccount(); ValidateId(post.Id);
+        RequireInteractionAccount();
+        ValidateId(post.Id);
         if (replyId != null) ValidateId(replyId);
-        if (string.IsNullOrWhiteSpace(content) || content.Length > 1000) throw new ArgumentException("评论需包含 1 至 1000 个字符");
+        if (string.IsNullOrWhiteSpace(content) || content.Length > 1000)
+            throw new ArgumentException("评论需包含 1 至 1000 个字符");
         content = content.Replace("\r\n", "\n").Replace("\r", "\n");
         var body = new Dictionary<string, object>
         {
@@ -39,6 +44,7 @@ public sealed partial class MiyousheClient
             ["structured_content"] = JsonSerializer.Serialize(new[] { new { insert = content + "\n" } })
         };
         if (replyId != null) body["reply_id"] = replyId;
-        await SendAsync("post/wapi/releaseReply", [], Profile.WebSign, ct, JsonSerializer.Serialize(body), submission: true);
+        await SendAsync("post/wapi/releaseReply", [], Profile.WebSign, ct, JsonSerializer.Serialize(body),
+            submission: true);
     }
 }

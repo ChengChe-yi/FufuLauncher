@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Models.GameAnnouncement;
 using FufuLauncher.Services;
@@ -12,8 +13,7 @@ public partial class SettingsViewModel
 {
     #region 游戏公告
 
-    [ObservableProperty]
-    private AnnouncementViewMode _announcementViewMode = AnnouncementViewMode.New;
+    [ObservableProperty] private AnnouncementViewMode _announcementViewMode = AnnouncementViewMode.New;
 
     partial void OnAnnouncementViewModeChanged(AnnouncementViewMode value)
     {
@@ -25,8 +25,7 @@ public partial class SettingsViewModel
 
     #region 启动器公告
 
-    [ObservableProperty]
-    private bool _isSuppressAnnouncementInGameEnabled = true;
+    [ObservableProperty] private bool _isSuppressAnnouncementInGameEnabled = true;
 
     partial void OnIsSuppressAnnouncementInGameEnabledChanged(bool value)
     {

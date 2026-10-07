@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Services.MiHoYo.Passport;
 using Microsoft.UI.Xaml.Controls;
@@ -11,6 +12,7 @@ namespace FufuLauncher.Views;
 public sealed partial class LoginQrWindow
 {
     #region 手机验证码登录
+
     private async Task StartMobileCaptchaLoginAsync()
     {
         _isLoginCompleting = false;
@@ -23,7 +25,8 @@ public sealed partial class LoginQrWindow
             return;
         }
 
-        if (string.IsNullOrEmpty(dialog.ActionType) || string.IsNullOrEmpty(dialog.Mobile) || string.IsNullOrEmpty(dialog.Captcha))
+        if (string.IsNullOrEmpty(dialog.ActionType) || string.IsNullOrEmpty(dialog.Mobile) ||
+            string.IsNullOrEmpty(dialog.Captcha))
         {
             UpdateStatus("请先获取短信验证码", false);
             return;
@@ -32,7 +35,8 @@ public sealed partial class LoginQrWindow
         UpdateStatus("正在登录...", true);
         var passportClient = App.GetService<PassportClient>();
         PassportResponse<LoginResult> response =
-            await passportClient.LoginByMobileCaptchaAsync(dialog.ActionType, dialog.Mobile, dialog.Captcha, dialog.Aigis);
+            await passportClient.LoginByMobileCaptchaAsync(dialog.ActionType, dialog.Mobile, dialog.Captcha,
+                dialog.Aigis);
 
         if (!response.IsSuccess || response.Data?.Token?.Token == null || response.Data.UserInfo == null)
         {
@@ -56,5 +60,6 @@ public sealed partial class LoginQrWindow
             OnLoginSuccess(cookies, "cn");
         }
     }
+
     #endregion
 }

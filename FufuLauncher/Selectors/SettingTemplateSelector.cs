@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using FufuLauncher.ViewModels;
@@ -10,10 +11,29 @@ namespace FufuLauncher.Selectors;
 
 public class SettingTemplateSelector : DataTemplateSelector
 {
-    public DataTemplate BoolTemplate { get; set; }
-    public DataTemplate NumberTemplate { get; set; }
-    public DataTemplate StringTemplate { get; set; }
-    public DataTemplate KeyTemplate { get; set; }
+    public DataTemplate BoolTemplate
+    {
+        get;
+        set;
+    }
+
+    public DataTemplate NumberTemplate
+    {
+        get;
+        set;
+    }
+
+    public DataTemplate StringTemplate
+    {
+        get;
+        set;
+    }
+
+    public DataTemplate KeyTemplate
+    {
+        get;
+        set;
+    }
 
     protected override DataTemplate SelectTemplateCore(object item)
     {
@@ -39,6 +59,7 @@ public class SettingTemplateSelector : DataTemplateSelector
                 _ => StringTemplate
             };
         }
+
         return null;
     }
 }

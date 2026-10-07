@@ -4,6 +4,7 @@ Licensed under the MIT License.
 
 CRC-32-IEEE 802.3 标准实现，用于计算游戏进程哈希（对 exe 前 0x10000 字节）。
 */
+
 namespace FufuLauncher.Services.Yae;
 
 public static class YaeCrc32
@@ -20,6 +21,7 @@ public static class YaeCrc32
             {
                 value = (value >> 1) ^ ((value & 1) * Polynomial);
             }
+
             Table[i] = value;
         }
     }
@@ -31,6 +33,7 @@ public static class YaeCrc32
         {
             checksum = (checksum >> 8) ^ Table[(b ^ checksum) & 0xFF];
         }
+
         return ~checksum;
     }
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -18,35 +19,143 @@ public enum TrustStoreScope
 
 public sealed class TrustServiceStatus
 {
-    public bool PackageAvailable { get; init; }
-    public bool PackageVerified { get; init; }
-    public bool MatchesPinnedRoot { get; init; }
-    public string? PackageDirectory { get; init; }
-    public string? PackageError { get; init; }
-    public string? RootSubject { get; init; }
-    public string? RootThumbprintSha256 { get; init; }
-    public DateTime? RootNotAfter { get; init; }
-    public int RevokedCount { get; init; }
-    public bool InstalledForCurrentUser { get; init; }
-    public bool InstalledForLocalMachine { get; init; }
-    public bool UserScopeManaged { get; init; }
-    public bool MachineScopeManaged { get; init; }
-    public bool MachineProvidesTrust { get; init; }
-    public string? PinnedRootThumbprintSha256 { get; init; }
-    public string? SyncEndpoint { get; init; }
+    public bool PackageAvailable
+    {
+        get;
+        init;
+    }
+
+    public bool PackageVerified
+    {
+        get;
+        init;
+    }
+
+    public bool MatchesPinnedRoot
+    {
+        get;
+        init;
+    }
+
+    public string? PackageDirectory
+    {
+        get;
+        init;
+    }
+
+    public string? PackageError
+    {
+        get;
+        init;
+    }
+
+    public string? RootSubject
+    {
+        get;
+        init;
+    }
+
+    public string? RootThumbprintSha256
+    {
+        get;
+        init;
+    }
+
+    public DateTime? RootNotAfter
+    {
+        get;
+        init;
+    }
+
+    public int RevokedCount
+    {
+        get;
+        init;
+    }
+
+    public bool InstalledForCurrentUser
+    {
+        get;
+        init;
+    }
+
+    public bool InstalledForLocalMachine
+    {
+        get;
+        init;
+    }
+
+    public bool UserScopeManaged
+    {
+        get;
+        init;
+    }
+
+    public bool MachineScopeManaged
+    {
+        get;
+        init;
+    }
+
+    public bool MachineProvidesTrust
+    {
+        get;
+        init;
+    }
+
+    public string? PinnedRootThumbprintSha256
+    {
+        get;
+        init;
+    }
+
+    public string? SyncEndpoint
+    {
+        get;
+        init;
+    }
 }
 
 public sealed class TrustOperationResult
 {
-    public bool Ok { get; init; }
-    public string Message { get; init; } = string.Empty;
-    public bool NeedsElevation { get; init; }}
+    public bool Ok
+    {
+        get;
+        init;
+    }
+
+    public string Message
+    {
+        get;
+        init;
+    } = string.Empty;
+
+    public bool NeedsElevation
+    {
+        get;
+        init;
+    }
+}
 
 internal sealed class TrustInstallState
 {
-    public string? RootThumbprintSha256 { get; set; }
-    public DateTimeOffset? UserInstalledUtc { get; set; }
-    public DateTimeOffset? MachineInstalledUtc { get; set; }
+    public string? RootThumbprintSha256
+    {
+        get;
+        set;
+    }
+
+    public DateTimeOffset? UserInstalledUtc
+    {
+        get;
+        set;
+    }
+
+    public DateTimeOffset? MachineInstalledUtc
+    {
+        get;
+        set;
+    }
 }
 
 public sealed class CodeSigningTrustService
@@ -62,7 +171,13 @@ public sealed class CodeSigningTrustService
 
     public string? LastLoadError
     {
-        get { lock (_sync) { return _lastLoadError; } }
+        get
+        {
+            lock (_sync)
+            {
+                return _lastLoadError;
+            }
+        }
     }
 
     public CodeSigningTrustService()
@@ -70,7 +185,11 @@ public sealed class CodeSigningTrustService
         SyncEndpoint = DefaultSyncEndpoint;
     }
 
-    public string SyncEndpoint { get; set; }
+    public string SyncEndpoint
+    {
+        get;
+        set;
+    }
 
     public static string? PinnedRootCertificatePath
     {
@@ -129,7 +248,8 @@ public sealed class CodeSigningTrustService
                     var package = TrustPackageLoader.Load(directory, pin);
                     if (!package.MatchesPinnedRoot)
                     {
-                        _lastLoadError = $"trust package root certificate does not match the pinned root ({package.RootThumbprintSha256}), rejected";
+                        _lastLoadError =
+                            $"trust package root certificate does not match the pinned root ({package.RootThumbprintSha256}), rejected";
                         Debug.WriteLine($"[TrustService] {_lastLoadError}");
                         package.Dispose();
                         continue;
@@ -380,10 +500,6 @@ public sealed class CodeSigningTrustService
         };
     }
 
-    /// <summary>
-    /// Windows 对受信任根存储的写入有额外保护：非提升进程可能直接返回“拒绝访问”。
-    /// 这里把拒绝访问识别为“需要提升”，由调用方改用管理员权限重试。
-    /// </summary>
     private static void TryStoreOperation(
         TrustStoreScope scope, string action, Action operation, ref bool denied, ref string? lastError)
     {
@@ -534,7 +650,8 @@ public sealed class CodeSigningTrustService
         foreach (var match in matches)
         {
             store.Remove(match);
-            Debug.WriteLine($"[TrustService] removed certificate {match.Subject} ({ManifestSignatureVerifier.Sha256Thumbprint(match)})");
+            Debug.WriteLine(
+                $"[TrustService] removed certificate {match.Subject} ({ManifestSignatureVerifier.Sha256Thumbprint(match)})");
         }
 
         return matches.Count;
@@ -664,16 +781,44 @@ public sealed class CodeSigningTrustService
 
     private sealed class TrustIndex
     {
-        public bool Ok { get; set; }
-        public string? ReleaseId { get; set; }
-        public List<TrustIndexFile> Files { get; set; } = new();
+        public bool Ok
+        {
+            get;
+            set;
+        }
+
+        public string? ReleaseId
+        {
+            get;
+            set;
+        }
+
+        public List<TrustIndexFile> Files
+        {
+            get;
+            set;
+        } = new();
     }
 
     private sealed class TrustIndexFile
     {
-        public string Name { get; set; } = string.Empty;
-        public string Sha256 { get; set; } = string.Empty;
-        public long Size { get; set; }
+        public string Name
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public string Sha256
+        {
+            get;
+            set;
+        } = string.Empty;
+
+        public long Size
+        {
+            get;
+            set;
+        }
     }
 
     #endregion

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using System.Text.Json;
 using FufuLauncher.Constants;
@@ -21,7 +22,7 @@ public sealed class PassportClient
     };
 
     private readonly string _deviceId = Guid.NewGuid().ToString();
-    
+
     public async Task<(string? Aigis, PassportResponse<MobileCaptcha> Response)> CreateLoginCaptchaAsync(
         string mobile, string? aigis, CancellationToken token = default)
     {
@@ -31,12 +32,14 @@ public sealed class PassportClient
             ["mobile"] = PassportRsaCrypto.EncryptCn(mobile),
         };
 
-        using var request = CreateCnJsonRequest(HttpMethod.Post, ApiEndpoints.AccountCreateLoginCaptchaUrl, data, aigis);
+        using var request =
+            CreateCnJsonRequest(HttpMethod.Post, ApiEndpoints.AccountCreateLoginCaptchaUrl, data, aigis);
         using HttpResponseMessage response = await _httpClient.SendAsync(request, token).ConfigureAwait(false);
-        PassportResponse<MobileCaptcha> body = await PassportHttpUtil.DeserializeAsync<MobileCaptcha>(response, token).ConfigureAwait(false);
+        PassportResponse<MobileCaptcha> body =
+            await PassportHttpUtil.DeserializeAsync<MobileCaptcha>(response, token).ConfigureAwait(false);
         return (PassportHttpUtil.GetSingleHeader(response, AigisHeader), body);
     }
-    
+
     public async Task<PassportResponse<LoginResult>> LoginByMobileCaptchaAsync(
         string actionType, string mobile, string captcha, string? aigis, CancellationToken token = default)
     {
@@ -48,28 +51,36 @@ public sealed class PassportClient
             ["mobile"] = PassportRsaCrypto.EncryptCn(mobile),
         };
 
-        using var request = CreateCnJsonRequest(HttpMethod.Post, ApiEndpoints.AccountLoginByMobileCaptchaUrl, data, aigis);
+        using var request =
+            CreateCnJsonRequest(HttpMethod.Post, ApiEndpoints.AccountLoginByMobileCaptchaUrl, data, aigis);
         using HttpResponseMessage response = await _httpClient.SendAsync(request, token).ConfigureAwait(false);
         return await PassportHttpUtil.DeserializeAsync<LoginResult>(response, token).ConfigureAwait(false);
     }
-    
-    public async Task<string> GetLTokenBySTokenAsync(string stoken, string mid, string aid, CancellationToken token = default)
+
+    public async Task<string> GetLTokenBySTokenAsync(string stoken, string mid, string aid,
+        CancellationToken token = default)
     {
-        using var request = CreateCnAuthRequest(ApiEndpoints.GetLTokenBySTokenUrl, $"mid={mid}; stoken={stoken}; stuid={aid}");
+        using var request =
+            CreateCnAuthRequest(ApiEndpoints.GetLTokenBySTokenUrl, $"mid={mid}; stoken={stoken}; stuid={aid}");
         using HttpResponseMessage response = await _httpClient.SendAsync(request, token).ConfigureAwait(false);
-        PassportResponse<LTokenWrapper> body = await PassportHttpUtil.DeserializeAsync<LTokenWrapper>(response, token).ConfigureAwait(false);
+        PassportResponse<LTokenWrapper> body =
+            await PassportHttpUtil.DeserializeAsync<LTokenWrapper>(response, token).ConfigureAwait(false);
         return body.IsSuccess ? body.Data?.LToken ?? string.Empty : string.Empty;
     }
-    
-    public async Task<string> GetCookieAccountInfoBySTokenAsync(string stoken, string mid, string aid, CancellationToken token = default)
+
+    public async Task<string> GetCookieAccountInfoBySTokenAsync(string stoken, string mid, string aid,
+        CancellationToken token = default)
     {
-        using var request = CreateCnAuthRequest(ApiEndpoints.GetCookieAccountInfoBySTokenUrl, $"mid={mid}; stoken={stoken}; stuid={aid}");
+        using var request = CreateCnAuthRequest(ApiEndpoints.GetCookieAccountInfoBySTokenUrl,
+            $"mid={mid}; stoken={stoken}; stuid={aid}");
         using HttpResponseMessage response = await _httpClient.SendAsync(request, token).ConfigureAwait(false);
-        PassportResponse<UidCookieToken> body = await PassportHttpUtil.DeserializeAsync<UidCookieToken>(response, token).ConfigureAwait(false);
+        PassportResponse<UidCookieToken> body =
+            await PassportHttpUtil.DeserializeAsync<UidCookieToken>(response, token).ConfigureAwait(false);
         return body.IsSuccess ? body.Data?.CookieToken ?? string.Empty : string.Empty;
     }
-    
-    private HttpRequestMessage CreateCnJsonRequest(HttpMethod method, string url, Dictionary<string, string> data, string? aigis)
+
+    private HttpRequestMessage CreateCnJsonRequest(HttpMethod method, string url, Dictionary<string, string> data,
+        string? aigis)
     {
         string body = JsonSerializer.Serialize(data);
         var request = new HttpRequestMessage(method, url);
@@ -77,14 +88,14 @@ public sealed class PassportClient
         ApplyCnHeaders(request, body, aigis, cookie: null);
         return request;
     }
-    
+
     private HttpRequestMessage CreateCnAuthRequest(string url, string cookie)
     {
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         ApplyCnHeaders(request, body: string.Empty, aigis: null, cookie);
         return request;
     }
-    
+
     private void ApplyCnHeaders(HttpRequestMessage request, string body, string? aigis, string? cookie)
     {
         request.Headers.TryAddWithoutValidation(HeaderNames.UserAgent, UserAgents.WindowsBbs295);
@@ -103,6 +114,7 @@ public sealed class PassportClient
         request.Headers.TryAddWithoutValidation(HeaderNames.RpcDeviceName, string.Empty);
         request.Headers.TryAddWithoutValidation(HeaderNames.RpcGameBiz, GameBizValues.BbsCn);
         request.Headers.TryAddWithoutValidation(HeaderNames.RpcSdkVersion, HeaderVersions.PassportSdkVersion);
-        request.Headers.TryAddWithoutValidation(HeaderNames.DS, MiHoYoHeaderFactory.CalculateDsGen2(HeaderSalts.PassportProd, body));
+        request.Headers.TryAddWithoutValidation(HeaderNames.DS,
+            MiHoYoHeaderFactory.CalculateDsGen2(HeaderSalts.PassportProd, body));
     }
 }

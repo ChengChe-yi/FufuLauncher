@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Numerics;
 using System.Text.Json.Nodes;
@@ -92,6 +93,7 @@ namespace FufuLauncher.Views
                 ViewModel.IsLoading = false;
             }
         }
+
         private async Task<string> GetCurrentCookieAsync()
         {
             var accountManager = App.GetService<AccountManager>();
@@ -101,6 +103,7 @@ namespace FufuLauncher.Views
             if (cookies == null || cookies.Count == 0) return null;
             return string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
         }
+
         private async Task LoadCalculatorPageAsync()
         {
             try
@@ -117,7 +120,8 @@ namespace FufuLauncher.Views
                     var cookies = await manager.GetCookiesAsync("https://act.mihoyo.com");
                     foreach (var c in cookies) manager.DeleteCookie(c);
 
-                    foreach (var item in cookieStr.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                    foreach (var item in cookieStr.Split(';',
+                                 StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
                     {
                         var kv = item.Split('=', 2);
                         if (kv.Length == 2)
@@ -126,8 +130,10 @@ namespace FufuLauncher.Views
                             manager.AddOrUpdateCookie(cookie);
                         }
                     }
+
                     Debug.WriteLine($"已注入 {cookieStr.Split(';').Length} 个 cookie");
                 }
+
                 StartLoadingTimeout();
                 StartMinDisplayTimer();
 

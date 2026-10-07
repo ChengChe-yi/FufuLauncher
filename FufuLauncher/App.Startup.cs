@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
@@ -57,6 +58,7 @@ public partial class App
                     });
                 });
             }
+
             var accountManager = GetService<AccountManager>();
             await accountManager.InitializeAsync();
             MainWindow = new MainWindow();
@@ -71,8 +73,8 @@ public partial class App
             await activationService.ActivateAsync(args);
 
             Debug.WriteLine("App主窗口已激活");
-            var shouldRunBackgroundTasks = !AppPaths.IsFirstRun && 
-                !(MainWindow is MainWindow mw && mw.IsAgreementShowing);
+            var shouldRunBackgroundTasks = !AppPaths.IsFirstRun &&
+                                           !(MainWindow is MainWindow mw && mw.IsAgreementShowing);
             if (shouldRunBackgroundTasks)
             {
                 _ = Task.Run(PlayStartupSoundDelayedAsync);
@@ -176,7 +178,8 @@ public partial class App
             var localSettingsService = GetService<ILocalSettingsService>();
             var languageValue = await localSettingsService.ReadSettingAsync("AppLanguage");
 
-            Debug.WriteLine($"[App] ApplyLanguageSettingAsync: raw value='{languageValue}' (type={languageValue?.GetType().Name ?? "null"})");
+            Debug.WriteLine(
+                $"[App] ApplyLanguageSettingAsync: raw value='{languageValue}' (type={languageValue?.GetType().Name ?? "null"})");
 
             var language = languageValue != null && int.TryParse(languageValue.ToString(), out var languageCode)
                 ? (AppLanguage)languageCode

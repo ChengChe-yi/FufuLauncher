@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -24,9 +25,9 @@ namespace FufuLauncher.Views
         {
             ViewModel = App.GetService<OtherViewModel>();
             InitializeComponent();
-            
+
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-            
+
             Unloaded += OtherPage_Unloaded;
         }
 
@@ -47,8 +48,9 @@ namespace FufuLauncher.Views
                 if (App.MainWindow?.Content is UIElement content)
                 {
                     content.KeyDown -= GlobalKeyDown;
-                    
-                    if (ViewModel.IsRecordingTriggerKey || ViewModel.IsRecordingClickKey || ViewModel.IsRecordingStopKey)
+
+                    if (ViewModel.IsRecordingTriggerKey || ViewModel.IsRecordingClickKey ||
+                        ViewModel.IsRecordingStopKey)
                     {
                         content.KeyDown += GlobalKeyDown;
                         Debug.WriteLine("[OtherPage] 按键录制配置开启，全局按键事件已注册到Window.Content");
@@ -68,7 +70,7 @@ namespace FufuLauncher.Views
         private void OtherPage_Unloaded(object sender, RoutedEventArgs e)
         {
             ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
-            
+
             try
             {
                 if (App.MainWindow?.Content is UIElement content)
@@ -127,6 +129,7 @@ namespace FufuLauncher.Views
                         ViewModel.UpdateKey("Stop", key);
                         Debug.WriteLine($"[OtherPage] 停止快捷键设置完成: {key}");
                     }
+
                     args.Handled = true;
                 }
             }

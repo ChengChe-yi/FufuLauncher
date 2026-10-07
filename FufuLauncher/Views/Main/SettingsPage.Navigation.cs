@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -12,7 +13,8 @@ public sealed partial class SettingsPage
 {
     #region 导航与滚动联动
 
-    private void SettingsNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+    private void SettingsNavigationView_SelectionChanged(NavigationView sender,
+        NavigationViewSelectionChangedEventArgs args)
     {
         if (_isNavigatingFromMenu) return;
 
@@ -97,6 +99,7 @@ public sealed partial class SettingsPage
             {
                 SettingsNavigationView.SelectedItem = targetItem;
             }
+
             _isNavigatingFromMenu = false;
         }
     }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Globalization;
 using FufuLauncher.Models.DataCenter;
@@ -12,16 +13,36 @@ public sealed partial class DataViewModel
 {
     #region Rerun
 
-    public ObservableCollection<DcRerunCard> RerunCards { get; } = new();
-    public List<DcOption> RerunGroupOptions { get; }
-    public List<DcOption> RerunSortOptions { get; }
+    public ObservableCollection<DcRerunCard> RerunCards
+    {
+        get;
+    } = new();
+
+    public List<DcOption> RerunGroupOptions
+    {
+        get;
+    }
+
+    public List<DcOption> RerunSortOptions
+    {
+        get;
+    }
 
     private int _rerunGroup;
     private string _rerunSort = "urgency";
     private string _rerunSearch = string.Empty;
 
-    public string RerunCountText { get; private set; } = string.Empty;
-    public bool RerunHasNone { get; private set; }
+    public string RerunCountText
+    {
+        get;
+        private set;
+    } = string.Empty;
+
+    public bool RerunHasNone
+    {
+        get;
+        private set;
+    }
 
     public void SetRerunGroup(int group)
     {

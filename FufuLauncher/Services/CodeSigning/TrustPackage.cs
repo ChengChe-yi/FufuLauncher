@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -12,40 +13,182 @@ namespace FufuLauncher.Services.CodeSigning;
 
 public sealed class TrustManifest
 {
-    public int SchemaVersion { get; set; }
-    public string? Product { get; set; }
-    public string? Purpose { get; set; }
-    public string? GeneratedUtc { get; set; }
-    public string? RootCertificateFile { get; set; }
-    public string? IssuerCertificateFile { get; set; }
-    public string? ManifestSignerCertificateFile { get; set; }
-    public string? RootThumbprintSha256 { get; set; }
-    public string? RootSubject { get; set; }
-    public string? RootNotAfterUtc { get; set; }
-    public string? IssuerThumbprintSha256 { get; set; }
-    public string? IssuerSubject { get; set; }
-    public string? ManifestSignerThumbprintSha256 { get; set; }
-    public List<string> AllowedEkuOids { get; set; } = new();
-    public string? CustomPolicyOid { get; set; }
-    public string? SignerIdOuPrefix { get; set; }
-    public int MaxLeafValidityDays { get; set; } = CodeSigningPolicy.MaxLeafValidityDaysDefault;
-    public string? RevocationListFile { get; set; }
-    public string? RevocationListUrl { get; set; }
-    public List<string> RevokedSerialNumbers { get; set; } = new();
-    public List<string> AdditionalTrustedLeafThumbprintsSha256 { get; set; } = new();
+    public int SchemaVersion
+    {
+        get;
+        set;
+    }
+
+    public string? Product
+    {
+        get;
+        set;
+    }
+
+    public string? Purpose
+    {
+        get;
+        set;
+    }
+
+    public string? GeneratedUtc
+    {
+        get;
+        set;
+    }
+
+    public string? RootCertificateFile
+    {
+        get;
+        set;
+    }
+
+    public string? IssuerCertificateFile
+    {
+        get;
+        set;
+    }
+
+    public string? ManifestSignerCertificateFile
+    {
+        get;
+        set;
+    }
+
+    public string? RootThumbprintSha256
+    {
+        get;
+        set;
+    }
+
+    public string? RootSubject
+    {
+        get;
+        set;
+    }
+
+    public string? RootNotAfterUtc
+    {
+        get;
+        set;
+    }
+
+    public string? IssuerThumbprintSha256
+    {
+        get;
+        set;
+    }
+
+    public string? IssuerSubject
+    {
+        get;
+        set;
+    }
+
+    public string? ManifestSignerThumbprintSha256
+    {
+        get;
+        set;
+    }
+
+    public List<string> AllowedEkuOids
+    {
+        get;
+        set;
+    } = new();
+
+    public string? CustomPolicyOid
+    {
+        get;
+        set;
+    }
+
+    public string? SignerIdOuPrefix
+    {
+        get;
+        set;
+    }
+
+    public int MaxLeafValidityDays
+    {
+        get;
+        set;
+    } = CodeSigningPolicy.MaxLeafValidityDaysDefault;
+
+    public string? RevocationListFile
+    {
+        get;
+        set;
+    }
+
+    public string? RevocationListUrl
+    {
+        get;
+        set;
+    }
+
+    public List<string> RevokedSerialNumbers
+    {
+        get;
+        set;
+    } = new();
+
+    public List<string> AdditionalTrustedLeafThumbprintsSha256
+    {
+        get;
+        set;
+    } = new();
 }
 
 public sealed class VerifiedTrustPackage : IDisposable
 {
-    public required string Directory { get; init; }
-    public required TrustManifest Manifest { get; init; }
-    public required X509Certificate2 Root { get; init; }
-    public required X509Certificate2 Issuer { get; init; }
-    public X509Certificate2? ManifestSigner { get; init; }
-    public string RootThumbprintSha256 { get; init; } = string.Empty;
-    public string ManifestSignatureReason { get; init; } = string.Empty;
+    public required string Directory
+    {
+        get;
+        init;
+    }
 
-    public bool MatchesPinnedRoot { get; init; }
+    public required TrustManifest Manifest
+    {
+        get;
+        init;
+    }
+
+    public required X509Certificate2 Root
+    {
+        get;
+        init;
+    }
+
+    public required X509Certificate2 Issuer
+    {
+        get;
+        init;
+    }
+
+    public X509Certificate2? ManifestSigner
+    {
+        get;
+        init;
+    }
+
+    public string RootThumbprintSha256
+    {
+        get;
+        init;
+    } = string.Empty;
+
+    public string ManifestSignatureReason
+    {
+        get;
+        init;
+    } = string.Empty;
+
+    public bool MatchesPinnedRoot
+    {
+        get;
+        init;
+    }
 
     public string SignerIdPrefix =>
         string.IsNullOrWhiteSpace(Manifest.SignerIdOuPrefix)
@@ -86,7 +229,8 @@ public static class TrustPackageLoader
         var signerPath = Path.Combine(directory, SignerCerFileName);
 
         if (!File.Exists(manifestPath)) throw new TrustPackageException($"missing {ManifestFileName}");
-        if (!File.Exists(signaturePath)) throw new TrustPackageException($"missing {ManifestSignatureFileName} (unsigned manifests are rejected)");
+        if (!File.Exists(signaturePath))
+            throw new TrustPackageException($"missing {ManifestSignatureFileName} (unsigned manifests are rejected)");
         if (!File.Exists(rootPath)) throw new TrustPackageException($"missing {RootCerFileName}");
         if (!File.Exists(issuerPath)) throw new TrustPackageException($"missing {IssuerCerFileName}");
 
@@ -128,7 +272,8 @@ public static class TrustPackageLoader
 
             if (root.HasPrivateKey)
             {
-                throw new TrustPackageException("root certificate in the trust package contains a private key, rejected");
+                throw new TrustPackageException(
+                    "root certificate in the trust package contains a private key, rejected");
             }
 
             var signatureReason = "manifest signer certificate not provided";
@@ -150,7 +295,8 @@ public static class TrustPackageLoader
                     if (!chain.Build(signer))
                     {
                         signatureOk = false;
-                        signatureReason = "manifest signer certificate does not chain to the root of this trust package";
+                        signatureReason =
+                            "manifest signer certificate does not chain to the root of this trust package";
                     }
                     else if (!string.IsNullOrWhiteSpace(manifest.ManifestSignerThumbprintSha256) &&
                              !string.Equals(manifest.ManifestSignerThumbprintSha256,
@@ -202,7 +348,8 @@ public static class TrustPackageLoader
             var manifestPath = Path.Combine(directory, ManifestFileName);
             if (!File.Exists(manifestPath)) return Array.Empty<string>();
 
-            var manifest = JsonSerializer.Deserialize<TrustManifest>(File.ReadAllBytes(manifestPath), ManifestJsonOptions);
+            var manifest =
+                JsonSerializer.Deserialize<TrustManifest>(File.ReadAllBytes(manifestPath), ManifestJsonOptions);
             return manifest?.RevokedSerialNumbers ?? (IReadOnlyList<string>)Array.Empty<string>();
         }
         catch (Exception ex)
@@ -221,5 +368,7 @@ public static class TrustPackageLoader
 
 public sealed class TrustPackageException : Exception
 {
-    public TrustPackageException(string message) : base(message) { }
+    public TrustPackageException(string message) : base(message)
+    {
+    }
 }

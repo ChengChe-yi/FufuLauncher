@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 
 namespace FufuLauncher.Services;
@@ -20,6 +21,7 @@ public partial class AccountManager
                 return true;
             }
         }
+
         value = default;
         return false;
     }
@@ -34,6 +36,7 @@ public partial class AccountManager
 
             dict[prop.Name] = prop.Value.GetString() ?? string.Empty;
         }
+
         return dict;
     }
 
@@ -59,6 +62,7 @@ public partial class AccountManager
                     cookieDict[key] = value;
             }
         }
+
         return cookieDict;
     }
 

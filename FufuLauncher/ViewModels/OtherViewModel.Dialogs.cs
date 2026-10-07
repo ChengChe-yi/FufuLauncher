@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Principal;
 using FufuLauncher.Activation;
@@ -90,6 +91,7 @@ public partial class OtherViewModel
         {
             Debug.WriteLine($"显示延迟警告对话框失败: {ex.Message}");
         }
+
         return result;
     }
 

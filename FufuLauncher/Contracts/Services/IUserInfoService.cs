@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Contracts.Services;
 
 public record GameRoleInfo(
@@ -14,6 +15,7 @@ public record GameRoleInfo(
 );
 
 public record GameRolesData(List<GameRoleInfo> list);
+
 public record GameRolesResponse(int retcode, string message, GameRolesData? data);
 
 public record UserInfo(
@@ -27,9 +29,11 @@ public record UserInfo(
 );
 
 public record UserFullInfoData(UserInfo user_info);
+
 public record UserFullInfoResponse(int retcode, string message, UserFullInfoData? data);
 
 public record GameDataItem(string name, int type, string value);
+
 public record GameRecordCardInfo(
     string game_role_id,
     string nickname,
@@ -38,10 +42,9 @@ public record GameRecordCardInfo(
     List<GameDataItem> data
 );
 
-
 public record GameRecordCardData(List<GameRecordCardInfo> list);
-public record GameRecordCardResponse(int retcode, string message, GameRecordCardData? data);
 
+public record GameRecordCardResponse(int retcode, string message, GameRecordCardData? data);
 
 public interface IUserInfoService
 {

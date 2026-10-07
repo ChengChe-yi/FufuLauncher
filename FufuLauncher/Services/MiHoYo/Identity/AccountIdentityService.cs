@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Models.MiHoYo.Identity;
@@ -11,7 +12,7 @@ using FufuLauncher.Services.MiHoYo.Fingerprint;
 namespace FufuLauncher.Services.MiHoYo;
 
 /// <summary>
-/// 单账号运行期身份聚合：cookies（账号级）+ 设备身份（App 级）。
+///     单账号运行期身份聚合：cookies（账号级）+ 设备身份（App 级）。
 /// </summary>
 public sealed class AccountIdentityService
 {
@@ -100,6 +101,7 @@ public sealed class AccountIdentityService
             if (cookies.TryGetValue("stuid", out var stuid) && !string.IsNullOrEmpty(stuid))
                 return stuid;
         }
+
         return "";
     }
 }

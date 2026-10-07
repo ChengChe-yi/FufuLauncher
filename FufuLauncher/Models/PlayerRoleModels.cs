@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 using Microsoft.UI.Xaml.Media.Imaging;
 
@@ -12,13 +13,15 @@ namespace FufuLauncher.Models
         [JsonPropertyName("code")]
         public int Code
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("result")]
         public PlayerRecordResult Result
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -27,47 +30,55 @@ namespace FufuLauncher.Models
         [JsonPropertyName("role_data")]
         public List<RoleData> RoleData
         {
-            get; set;
+            get;
+            set;
         }
     }
-    
+
     public class RoleData
     {
         [JsonPropertyName("uid")]
         public string Uid
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("role")]
         public string Name
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("level")]
         public int Level
         {
-            get; set;
+            get;
+            set;
         }
-        [JsonIgnore]
-        public string LevelDisplay => $"Lv.{Level}";
+
+        [JsonIgnore] public string LevelDisplay => $"Lv.{Level}";
+
         [JsonPropertyName("element")]
         public int ElementType
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("fetter")]
         public int Fetter
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         [JsonPropertyName("role_img")]
         public string IconUrl
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonIgnore]
@@ -87,129 +98,169 @@ namespace FufuLauncher.Models
         [JsonPropertyName("role_side_img")]
         public string PortraitUrl
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         [JsonPropertyName("weapon")]
         public string WeaponName
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("weapon_level")]
         public int WeaponLevel
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("weapon_class")]
         public string WeaponRefinement
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         [JsonPropertyName("hp")]
         public double Hp
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("attack")]
         public double Attack
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("defend")]
         public double Defend
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("crit")]
         public string CritRate
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("crit_dmg")]
         public string CritDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("recharge")]
         public string Recharge
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("element_mastery")]
         public int ElementMastery
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         [JsonPropertyName("fire_dmg")]
         public string FireDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("water_dmg")]
         public string WaterDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("wind_dmg")]
         public string WindDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("thunder_dmg")]
         public string ElectroDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("ice_dmg")]
         public string CryoDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("rock_dmg")]
         public string GeoDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("grass_dmg")]
         public string DendroDmg
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("physical_dmg")]
         public string PhysicalDmg
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         [JsonPropertyName("artifacts")]
         public string ArtifactsSetSummary
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         [JsonPropertyName("artifacts_detail")]
         public List<ArtifactDetail> Artifacts
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         [JsonPropertyName("ability1")]
         public int SkillA
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("ability2")]
         public int SkillE
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("ability3")]
         public int SkillQ
         {
-            get; set;
+            get;
+            set;
         }
     }
 
@@ -218,66 +269,81 @@ namespace FufuLauncher.Models
         [JsonPropertyName("artifacts_name")]
         public string Name
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("artifacts_type")]
         public string Type
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("level")]
         public int Level
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("maintips")]
         public string MainStatName
         {
-            get; set;
+            get;
+            set;
         }
 
         [JsonPropertyName("mainvalue")]
         public object MainStatValueRaw
         {
-            get; set;
+            get;
+            set;
         }
-        
+
         public string MainStatDisplay => $"{MainStatName}: {MainStatValueRaw}";
-        
+
         [JsonPropertyName("tips1")]
         public string SubStat1
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("tips2")]
         public string SubStat2
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("tips3")]
         public string SubStat3
         {
-            get; set;
+            get;
+            set;
         }
+
         [JsonPropertyName("tips4")]
         public string SubStat4
         {
-            get; set;
+            get;
+            set;
         }
     }
-    
+
     public class UserConfig
     {
         public string GameUid
         {
-            get; set;
+            get;
+            set;
         }
+
         public string Nickname
         {
-            get; set;
+            get;
+            set;
         }
     }
 }

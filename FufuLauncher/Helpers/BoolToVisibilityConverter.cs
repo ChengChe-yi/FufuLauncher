@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
@@ -13,10 +14,10 @@ public class BoolToVisibilityConverter : IValueConverter
     {
         if (value is bool boolValue)
         {
-
             var invert = parameter?.ToString().ToLower() is "inverse" or "true";
             return (boolValue ^ invert) ? Visibility.Visible : Visibility.Collapsed;
         }
+
         return Visibility.Collapsed;
     }
 
@@ -28,6 +29,7 @@ public class BoolToVisibilityConverter : IValueConverter
             var result = visibility == Visibility.Visible;
             return result ^ invert;
         }
+
         return false;
     }
 }

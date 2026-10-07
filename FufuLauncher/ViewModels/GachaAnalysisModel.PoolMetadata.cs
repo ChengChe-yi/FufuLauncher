@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Constants;
@@ -107,6 +108,7 @@ public partial class GachaAnalysisModel
             if (!map.ContainsKey(m.Name) && int.TryParse(m.ItemId, out var id))
                 map[m.Name] = id;
         }
+
         return map;
     }
 
@@ -213,12 +215,24 @@ public partial class GachaAnalysisModel
         foreach (var entity in entities)
         {
             List<int> ids;
-            try { ids = JsonSerializer.Deserialize<List<int>>(entity.UpItems) ?? new List<int>(); }
-            catch (JsonException) { ids = new List<int>(); }
+            try
+            {
+                ids = JsonSerializer.Deserialize<List<int>>(entity.UpItems) ?? new List<int>();
+            }
+            catch (JsonException)
+            {
+                ids = new List<int>();
+            }
 
             List<string> names;
-            try { names = JsonSerializer.Deserialize<List<string>>(entity.UpItemNames) ?? new List<string>(); }
-            catch (JsonException) { names = new List<string>(); }
+            try
+            {
+                names = JsonSerializer.Deserialize<List<string>>(entity.UpItemNames) ?? new List<string>();
+            }
+            catch (JsonException)
+            {
+                names = new List<string>();
+            }
 
             var upItems = new List<GachaPoolItem>();
             for (var i = 0; i < ids.Count; i++)

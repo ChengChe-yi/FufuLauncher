@@ -109,7 +109,7 @@
                                  Storyboard.TargetProperty="Angle"
                                  From="0" To="360" Duration="0:0:1" />
             </Storyboard>
-            
+
             <Style x:Key="SettingsCardStyle" TargetType="Grid">
                 <Setter Property="Background" Value="{ThemeResource SafeGlassBrush}" />
                 <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -179,7 +179,7 @@
                 <Setter Property="CornerRadius" Value="14" />
                 <Setter Property="Padding" Value="20" />
             </Style>
-            
+
             <Style x:Key="DcChipStyle" TargetType="primitives:ToggleButton">
                 <Setter Property="Foreground" Value="{ThemeResource SafeTextBrush}" />
                 <Setter Property="FontSize" Value="13" />
@@ -574,7 +574,7 @@
                     </StackPanel>
 
                     <StackPanel Grid.Column="6" VerticalAlignment="Center"
-                               Visibility="{x:Bind HasClearTime, Converter={StaticResource BoolToVis}}">
+                                Visibility="{x:Bind HasClearTime, Converter={StaticResource BoolToVis}}">
                         <TextBlock Text="{helpers:Loc Key=DataPage_ClearTime}" Style="{StaticResource DcLabelStyle}" />
                         <TextBlock Text="{x:Bind ClearTimeText}" Style="{StaticResource DcValueStyle}" />
                     </StackPanel>
@@ -1487,335 +1487,515 @@
                 <StackPanel Margin="36,24,36,48" MaxWidth="1060"
                             HorizontalAlignment="Center" VerticalAlignment="Top">
                     <StackPanel Spacing="16">
-            <StackPanel Spacing="4">
-                <TextBlock Text="{helpers:Loc Key=DataPage_Title}"
-                           Style="{StaticResource TitleTextBlockStyle}"
-                           FontFamily="{StaticResource AppGlobalFont}" />
-                <TextBlock Text="{helpers:Loc Key=DataPage_Subtitle}"
-                           Style="{StaticResource CaptionTextBlockStyle}"
-                           Opacity="0.65"
-                           FontFamily="{StaticResource AppGlobalFont}" />
-            </StackPanel>
-
-            <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
-                <Grid.Shadow>
-                    <ThemeShadow />
-                </Grid.Shadow>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Grid ColumnSpacing="12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled"
-                                  VerticalAlignment="Center" Padding="0,2">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                     IsChecked="{x:Bind ViewModel.IsOverview, Mode=OneWay}"
-                                                     Click="OnTabClick" Tag="0">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE80F;" FontSize="13"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              VerticalAlignment="Center" />
-                                    <TextBlock Text="{helpers:Loc Key=DataPage_TabOverview}"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                            </primitives:ToggleButton>
-
-                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                     IsChecked="{x:Bind ViewModel.IsCharacters, Mode=OneWay}"
-                                                     Click="OnTabClick" Tag="1">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE77B;" FontSize="13"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              VerticalAlignment="Center" />
-                                    <TextBlock Text="{helpers:Loc Key=DataPage_TabCharacters}"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                            </primitives:ToggleButton>
-
-                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                     IsChecked="{x:Bind ViewModel.IsSpiralAbyss, Mode=OneWay}"
-                                                     Click="OnTabClick" Tag="2">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE945;" FontSize="13"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              VerticalAlignment="Center" />
-                                    <TextBlock Text="{helpers:Loc Key=DataPage_TabSpiral}"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                            </primitives:ToggleButton>
-
-                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                     IsChecked="{x:Bind ViewModel.IsStygian, Mode=OneWay}"
-                                                     Click="OnTabClick" Tag="3">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE7C1;" FontSize="13"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              VerticalAlignment="Center" />
-                                    <TextBlock Text="{helpers:Loc Key=DataPage_TabStygian}"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                            </primitives:ToggleButton>
-
-                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                     IsChecked="{x:Bind ViewModel.IsWish, Mode=OneWay}"
-                                                     Click="OnTabClick" Tag="4">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE734;" FontSize="13"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              VerticalAlignment="Center" />
-                                    <TextBlock Text="{helpers:Loc Key=DataPage_TabWish}"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                            </primitives:ToggleButton>
-
-                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                     IsChecked="{x:Bind ViewModel.IsRerun, Mode=OneWay}"
-                                                     Click="OnTabClick" Tag="5">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE81C;" FontSize="13"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              VerticalAlignment="Center" />
-                                    <TextBlock Text="{helpers:Loc Key=DataPage_TabRerun}"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                            </primitives:ToggleButton>
-
-                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                     IsChecked="{x:Bind ViewModel.IsTimeline, Mode=OneWay}"
-                                                     Click="OnTabClick" Tag="6">
-                                <StackPanel Orientation="Horizontal" Spacing="6">
-                                    <FontIcon Glyph="&#xE787;" FontSize="13"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              VerticalAlignment="Center" />
-                                    <TextBlock Text="{helpers:Loc Key=DataPage_TabTimeline}"
-                                               VerticalAlignment="Center" />
-                                </StackPanel>
-                            </primitives:ToggleButton>
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="{helpers:Loc Key=DataPage_Title}"
+                                       Style="{StaticResource TitleTextBlockStyle}"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
+                            <TextBlock Text="{helpers:Loc Key=DataPage_Subtitle}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Opacity="0.65"
+                                       FontFamily="{StaticResource AppGlobalFont}" />
                         </StackPanel>
-                    </ScrollViewer>
 
-                    <Button Grid.Column="1" Style="{StaticResource DcIconButtonStyle}"
-                            Click="OnExportPdfClick"
-                            IsEnabled="{x:Bind ViewModel.CanExportPdf, Mode=OneWay}"
-                            ToolTipService.ToolTip="{helpers:Loc Key=DataPage_ExportPdf}">
-                        <FontIcon Glyph="&#xE7C3;" FontSize="14"
-                                  FontFamily="{StaticResource SegoeFluentIconsFont}" />
-                    </Button>
+                        <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
+                            <Grid.Shadow>
+                                <ThemeShadow />
+                            </Grid.Shadow>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                    <Button Grid.Column="2" Style="{StaticResource DcIconButtonStyle}"
-                            Click="OnRefreshClick"
-                            IsEnabled="{x:Bind ViewModel.IsLoading, Mode=OneWay, Converter={StaticResource InverseBool}}"
-                            ToolTipService.ToolTip="{helpers:Loc Key=DataPage_Refresh}">
-                        <FontIcon x:Name="RefreshIcon" Glyph="&#xE72C;" FontSize="14"
-                                  FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                  RenderTransformOrigin="0.5,0.5">
-                            <FontIcon.RenderTransform>
-                                <RotateTransform x:Name="RefreshIconRotate" Angle="0" />
-                            </FontIcon.RenderTransform>
-                        </FontIcon>
-                    </Button>
-                </Grid>
+                            <Grid ColumnSpacing="12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="1" Margin="0,12,0,0" ColumnSpacing="12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                                              VerticalScrollBarVisibility="Disabled"
+                                              VerticalAlignment="Center" Padding="0,2">
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                 IsChecked="{x:Bind ViewModel.IsOverview, Mode=OneWay}"
+                                                                 Click="OnTabClick" Tag="0">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE80F;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_TabOverview}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </primitives:ToggleButton>
 
-                    <TextBlock Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}"
-                               Style="{StaticResource DcLabelStyle}"
-                               VerticalAlignment="Center" MaxLines="1" />
-                    <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DataSourceText, Mode=OneWay}"
-                               Style="{StaticResource DcLabelStyle}"
-                               VerticalAlignment="Center" MaxLines="1" HorizontalAlignment="Right" />
-                </Grid>
-            </Grid>
+                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                 IsChecked="{x:Bind ViewModel.IsCharacters, Mode=OneWay}"
+                                                                 Click="OnTabClick" Tag="1">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE77B;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_TabCharacters}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </primitives:ToggleButton>
+
+                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                 IsChecked="{x:Bind ViewModel.IsSpiralAbyss, Mode=OneWay}"
+                                                                 Click="OnTabClick" Tag="2">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE945;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_TabSpiral}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </primitives:ToggleButton>
+
+                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                 IsChecked="{x:Bind ViewModel.IsStygian, Mode=OneWay}"
+                                                                 Click="OnTabClick" Tag="3">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE7C1;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_TabStygian}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </primitives:ToggleButton>
+
+                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                 IsChecked="{x:Bind ViewModel.IsWish, Mode=OneWay}"
+                                                                 Click="OnTabClick" Tag="4">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE734;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_TabWish}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </primitives:ToggleButton>
+
+                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                 IsChecked="{x:Bind ViewModel.IsRerun, Mode=OneWay}"
+                                                                 Click="OnTabClick" Tag="5">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE81C;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_TabRerun}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </primitives:ToggleButton>
+
+                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                 IsChecked="{x:Bind ViewModel.IsTimeline, Mode=OneWay}"
+                                                                 Click="OnTabClick" Tag="6">
+                                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                                <FontIcon Glyph="&#xE787;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_TabTimeline}"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </primitives:ToggleButton>
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <Button Grid.Column="1" Style="{StaticResource DcIconButtonStyle}"
+                                        Click="OnExportPdfClick"
+                                        IsEnabled="{x:Bind ViewModel.CanExportPdf, Mode=OneWay}"
+                                        ToolTipService.ToolTip="{helpers:Loc Key=DataPage_ExportPdf}">
+                                    <FontIcon Glyph="&#xE7C3;" FontSize="14"
+                                              FontFamily="{StaticResource SegoeFluentIconsFont}" />
+                                </Button>
+
+                                <Button Grid.Column="2" Style="{StaticResource DcIconButtonStyle}"
+                                        Click="OnRefreshClick"
+                                        IsEnabled="{x:Bind ViewModel.IsLoading, Mode=OneWay, Converter={StaticResource InverseBool}}"
+                                        ToolTipService.ToolTip="{helpers:Loc Key=DataPage_Refresh}">
+                                    <FontIcon x:Name="RefreshIcon" Glyph="&#xE72C;" FontSize="14"
+                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                              RenderTransformOrigin="0.5,0.5">
+                                        <FontIcon.RenderTransform>
+                                            <RotateTransform x:Name="RefreshIconRotate" Angle="0" />
+                                        </FontIcon.RenderTransform>
+                                    </FontIcon>
+                                </Button>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Margin="0,12,0,0" ColumnSpacing="12">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}"
+                                           Style="{StaticResource DcLabelStyle}"
+                                           VerticalAlignment="Center" MaxLines="1" />
+                                <TextBlock Grid.Column="1" Text="{x:Bind ViewModel.DataSourceText, Mode=OneWay}"
+                                           Style="{StaticResource DcLabelStyle}"
+                                           VerticalAlignment="Center" MaxLines="1" HorizontalAlignment="Right" />
+                            </Grid>
+                        </Grid>
                     </StackPanel>
 
                     <Grid Margin="0,24,0,0">
-                    
-                    <StackPanel Spacing="24"
-                                Visibility="{x:Bind ViewModel.IsOverview, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                        <StackPanel.Transitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromVerticalOffset="24" />
-                            </TransitionCollection>
-                        </StackPanel.Transitions>
 
-                        <StackPanel>
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionEnvironment}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <GridView ItemsSource="{x:Bind ViewModel.OverviewKpis, Mode=OneWay}"
-                                          ItemTemplate="{StaticResource KpiTileTemplate}"
-                                          ItemContainerStyle="{StaticResource DcGridItemStyle}"
-                                          SelectionMode="None" IsItemClickEnabled="False" Padding="0"
-                                          Margin="-6,0,-6,0"
-                                          ScrollViewer.VerticalScrollMode="Disabled"
-                                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                          ScrollViewer.HorizontalScrollMode="Disabled">
-                                    <GridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left"
-                                                           ItemWidth="186" />
-                                        </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                </GridView>
-                            </Grid>
-                        </StackPanel>
+                        <StackPanel Spacing="24"
+                                    Visibility="{x:Bind ViewModel.IsOverview, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                            <StackPanel.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="24" />
+                                </TransitionCollection>
+                            </StackPanel.Transitions>
 
-                        <StackPanel>
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionInsight}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewInsights, Mode=OneWay}"
-                                              ItemTemplate="{StaticResource InsightTemplate}" />
-                            </Grid>
-                        </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionEnvironment}"
+                                           Style="{StaticResource SectionHeaderStyle}" />
+                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                    <Grid.Shadow>
+                                        <ThemeShadow />
+                                    </Grid.Shadow>
+                                    <GridView ItemsSource="{x:Bind ViewModel.OverviewKpis, Mode=OneWay}"
+                                              ItemTemplate="{StaticResource KpiTileTemplate}"
+                                              ItemContainerStyle="{StaticResource DcGridItemStyle}"
+                                              SelectionMode="None" IsItemClickEnabled="False" Padding="0"
+                                              Margin="-6,0,-6,0"
+                                              ScrollViewer.VerticalScrollMode="Disabled"
+                                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                              ScrollViewer.HorizontalScrollMode="Disabled">
+                                        <GridView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left"
+                                                               ItemWidth="186" />
+                                            </ItemsPanelTemplate>
+                                        </GridView.ItemsPanel>
+                                    </GridView>
+                                </Grid>
+                            </StackPanel>
 
-                        <StackPanel
-                            Visibility="{x:Bind ViewModel.HasOverviewBanners, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionCurrentBanner}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <GridView ItemsSource="{x:Bind ViewModel.OverviewBanners, Mode=OneWay}"
-                                          ItemTemplate="{StaticResource WishBannerTemplate}"
-                                          ItemContainerStyle="{StaticResource DcGridItemStyle}"
-                                          SelectionMode="None" IsItemClickEnabled="False" Padding="0"
-                                          Margin="-6,0,-6,0"
-                                          ScrollViewer.VerticalScrollMode="Disabled"
-                                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                          ScrollViewer.HorizontalScrollMode="Disabled">
-                                    <GridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
-                                        </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                </GridView>
-                            </Grid>
-                        </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionInsight}"
+                                           Style="{StaticResource SectionHeaderStyle}" />
+                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                    <Grid.Shadow>
+                                        <ThemeShadow />
+                                    </Grid.Shadow>
+                                    <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewInsights, Mode=OneWay}"
+                                                  ItemTemplate="{StaticResource InsightTemplate}" />
+                                </Grid>
+                            </StackPanel>
 
-                        <StackPanel
-                            Visibility="{x:Bind ViewModel.HasOverviewMovers, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionMovers}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
+                            <StackPanel
+                                Visibility="{x:Bind ViewModel.HasOverviewBanners, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionCurrentBanner}"
+                                           Style="{StaticResource SectionHeaderStyle}" />
+                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                    <Grid.Shadow>
+                                        <ThemeShadow />
+                                    </Grid.Shadow>
+                                    <GridView ItemsSource="{x:Bind ViewModel.OverviewBanners, Mode=OneWay}"
+                                              ItemTemplate="{StaticResource WishBannerTemplate}"
+                                              ItemContainerStyle="{StaticResource DcGridItemStyle}"
+                                              SelectionMode="None" IsItemClickEnabled="False" Padding="0"
+                                              Margin="-6,0,-6,0"
+                                              ScrollViewer.VerticalScrollMode="Disabled"
+                                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                              ScrollViewer.HorizontalScrollMode="Disabled">
+                                        <GridView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
+                                            </ItemsPanelTemplate>
+                                        </GridView.ItemsPanel>
+                                    </GridView>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel
+                                Visibility="{x:Bind ViewModel.HasOverviewMovers, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionMovers}"
+                                           Style="{StaticResource SectionHeaderStyle}" />
+                                <Grid ColumnSpacing="16">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                        <Grid.Shadow>
+                                            <ThemeShadow />
+                                        </Grid.Shadow>
+                                        <StackPanel Spacing="12">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <FontIcon Glyph="&#xE74A;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          Foreground="#2FBF6B" VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_Risers}"
+                                                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                                                           FontFamily="{StaticResource AppGlobalFont}" />
+                                            </StackPanel>
+                                            <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewRisers, Mode=OneWay}"
+                                                          ItemTemplate="{StaticResource MoverRowTemplate}" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Style="{StaticResource SettingsCardStyle}"
+                                          Translation="0,0,32">
+                                        <Grid.Shadow>
+                                            <ThemeShadow />
+                                        </Grid.Shadow>
+                                        <StackPanel Spacing="12">
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <FontIcon Glyph="&#xE74B;" FontSize="13"
+                                                          FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                          Foreground="#E15C62" VerticalAlignment="Center" />
+                                                <TextBlock Text="{helpers:Loc Key=DataPage_Fallers}"
+                                                           Style="{StaticResource BodyStrongTextBlockStyle}"
+                                                           FontFamily="{StaticResource AppGlobalFont}" />
+                                            </StackPanel>
+                                            <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewFallers, Mode=OneWay}"
+                                                          ItemTemplate="{StaticResource MoverRowTemplate}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel>
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionTopTier}"
+                                           Style="{StaticResource SectionHeaderStyle}" />
+                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                    <Grid.Shadow>
+                                        <ThemeShadow />
+                                    </Grid.Shadow>
+                                    <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewTopTier, Mode=OneWay}"
+                                                  ItemTemplate="{StaticResource RankRowTemplate}" />
+                                </Grid>
+                            </StackPanel>
+
                             <Grid ColumnSpacing="16">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                                    <Grid.Shadow>
-                                        <ThemeShadow />
-                                    </Grid.Shadow>
-                                    <StackPanel Spacing="12">
-                                        <StackPanel Orientation="Horizontal" Spacing="8">
-                                            <FontIcon Glyph="&#xE74A;" FontSize="13"
-                                                      FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                                      Foreground="#2FBF6B" VerticalAlignment="Center" />
-                                            <TextBlock Text="{helpers:Loc Key=DataPage_Risers}"
-                                                       Style="{StaticResource BodyStrongTextBlockStyle}"
-                                                       FontFamily="{StaticResource AppGlobalFont}" />
-                                        </StackPanel>
-                                        <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewRisers, Mode=OneWay}"
-                                                      ItemTemplate="{StaticResource MoverRowTemplate}" />
-                                    </StackPanel>
-                                </Grid>
+                                <StackPanel>
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_SectionValuePick}"
+                                               Style="{StaticResource SectionHeaderStyle}" />
+                                    <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                        <Grid.Shadow>
+                                            <ThemeShadow />
+                                        </Grid.Shadow>
+                                        <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewValuePicks, Mode=OneWay}"
+                                                      ItemTemplate="{StaticResource CountRowTemplate}" />
+                                    </Grid>
+                                </StackPanel>
 
-                                <Grid Grid.Column="1" Style="{StaticResource SettingsCardStyle}"
-                                      Translation="0,0,32">
-                                    <Grid.Shadow>
-                                        <ThemeShadow />
-                                    </Grid.Shadow>
-                                    <StackPanel Spacing="12">
-                                        <StackPanel Orientation="Horizontal" Spacing="8">
-                                            <FontIcon Glyph="&#xE74B;" FontSize="13"
-                                                      FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                                      Foreground="#E15C62" VerticalAlignment="Center" />
-                                            <TextBlock Text="{helpers:Loc Key=DataPage_Fallers}"
-                                                       Style="{StaticResource BodyStrongTextBlockStyle}"
-                                                       FontFamily="{StaticResource AppGlobalFont}" />
-                                        </StackPanel>
-                                        <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewFallers, Mode=OneWay}"
-                                                      ItemTemplate="{StaticResource MoverRowTemplate}" />
-                                    </StackPanel>
-                                </Grid>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_WishTopRerun}"
+                                               Style="{StaticResource SectionHeaderStyle}" />
+                                    <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                        <Grid.Shadow>
+                                            <ThemeShadow />
+                                        </Grid.Shadow>
+                                        <ItemsControl ItemsSource="{x:Bind ViewModel.WishTopReruns, Mode=OneWay}"
+                                                      ItemTemplate="{StaticResource CountRowTemplate}" />
+                                    </Grid>
+                                </StackPanel>
                             </Grid>
-                        </StackPanel>
-
-                        <StackPanel>
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionTopTier}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewTopTier, Mode=OneWay}"
-                                              ItemTemplate="{StaticResource RankRowTemplate}" />
-                            </Grid>
-                        </StackPanel>
-
-                        <Grid ColumnSpacing="16">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
 
                             <StackPanel>
-                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionValuePick}"
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionOverdue}"
                                            Style="{StaticResource SectionHeaderStyle}" />
                                 <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
                                     <Grid.Shadow>
                                         <ThemeShadow />
                                     </Grid.Shadow>
-                                    <ItemsControl ItemsSource="{x:Bind ViewModel.OverviewValuePicks, Mode=OneWay}"
-                                                  ItemTemplate="{StaticResource CountRowTemplate}" />
+                                    <GridView ItemsSource="{x:Bind ViewModel.OverviewOverdue, Mode=OneWay}"
+                                              ItemTemplate="{StaticResource RerunCardTemplate}"
+                                              ItemContainerStyle="{StaticResource DcGridItemStyle}"
+                                              SelectionMode="None" IsItemClickEnabled="False" Padding="0"
+                                              Margin="-6,0,-6,0"
+                                              ScrollViewer.VerticalScrollMode="Disabled"
+                                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                              ScrollViewer.HorizontalScrollMode="Disabled">
+                                        <GridView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
+                                            </ItemsPanelTemplate>
+                                        </GridView.ItemsPanel>
+                                    </GridView>
                                 </Grid>
                             </StackPanel>
+                        </StackPanel>
 
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="{helpers:Loc Key=DataPage_WishTopRerun}"
+                        <StackPanel Spacing="24"
+                                    Visibility="{x:Bind ViewModel.IsCharacters, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                            <StackPanel.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="24" />
+                                </TransitionCollection>
+                            </StackPanel.Transitions>
+
+                            <StackPanel>
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionFilter}"
                                            Style="{StaticResource SectionHeaderStyle}" />
-                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
                                     <Grid.Shadow>
                                         <ThemeShadow />
                                     </Grid.Shadow>
-                                    <ItemsControl ItemsSource="{x:Bind ViewModel.WishTopReruns, Mode=OneWay}"
-                                                  ItemTemplate="{StaticResource CountRowTemplate}" />
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <AutoSuggestBox x:Name="CharacterSearchBox" Grid.Column="0"
+                                                        MaxWidth="360" HorizontalAlignment="Left" MinWidth="200"
+                                                        QueryIcon="Find" CornerRadius="8" Height="36"
+                                                        VerticalAlignment="Bottom"
+                                                        PlaceholderText="{helpers:Loc Key=DataPage_SearchRole}"
+                                                        TextChanged="OnCharacterSearchTextChanged" />
+
+                                        <ComboBox Grid.Column="1" MinWidth="120" VerticalAlignment="Bottom"
+                                                  Header="{helpers:Loc Key=DataPage_StarFilter}"
+                                                  ItemsSource="{x:Bind ViewModel.StarFilterOptions}"
+                                                  DisplayMemberPath="Title" SelectedIndex="0"
+                                                  SelectionChanged="OnCharacterStarFilterChanged" />
+
+                                        <ComboBox Grid.Column="2" MinWidth="140" VerticalAlignment="Bottom"
+                                                  Header="{helpers:Loc Key=DataPage_SortBy}"
+                                                  ItemsSource="{x:Bind ViewModel.CharacterSortOptions}"
+                                                  DisplayMemberPath="Title" SelectedIndex="0"
+                                                  SelectionChanged="OnCharacterSortChanged" />
+                                    </Grid>
                                 </Grid>
                             </StackPanel>
-                        </Grid>
 
-                        <StackPanel>
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionOverdue}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <GridView ItemsSource="{x:Bind ViewModel.OverviewOverdue, Mode=OneWay}"
-                                          ItemTemplate="{StaticResource RerunCardTemplate}"
+                            <StackPanel Spacing="12">
+                                <Grid>
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_SectionCharacters}"
+                                               Style="{StaticResource SectionHeaderStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.CharacterCountText, Mode=OneWay}"
+                                               Style="{StaticResource SectionCaptionStyle}"
+                                               HorizontalAlignment="Right" />
+                                </Grid>
+
+                                <GridView x:Name="CharacterGridView"
+                                          ItemsSource="{x:Bind ViewModel.Characters, Mode=OneWay}"
+                                          ItemTemplate="{StaticResource CharacterCardTemplate}"
                                           ItemContainerStyle="{StaticResource DcGridItemStyle}"
-                                          SelectionMode="None" IsItemClickEnabled="False" Padding="0"
-                                          Margin="-6,0,-6,0"
+                                          SelectionMode="None" IsItemClickEnabled="True"
+                                          ItemClick="OnCharacterItemClick"
+                                          Padding="0" Margin="-6,0,-6,0"
+                                          ScrollViewer.VerticalScrollMode="Disabled"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                          ScrollViewer.HorizontalScrollMode="Disabled">
+                                    <GridView.ItemContainerTransitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition FromVerticalOffset="24" IsStaggeringEnabled="True" />
+                                            <RepositionThemeTransition />
+                                        </TransitionCollection>
+                                    </GridView.ItemContainerTransitions>
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                </GridView>
+
+                                <Button Style="{StaticResource DcSubtleButtonStyle}" HorizontalAlignment="Center"
+                                        Content="{x:Bind ViewModel.CharacterMoreText, Mode=OneWay}"
+                                        Click="OnShowMoreCharactersClick"
+                                        Visibility="{x:Bind ViewModel.HasMoreCharacters, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
+
+                                <StackPanel Spacing="10" HorizontalAlignment="Center" Margin="0,32,0,0"
+                                            Visibility="{x:Bind ViewModel.HasNoCharacters, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                                    <Border Width="72" Height="72" CornerRadius="36" HorizontalAlignment="Center"
+                                            Background="{ThemeResource SafeCardBrush}"
+                                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                            BorderThickness="1">
+                                        <FontIcon Glyph="&#xE721;" FontSize="26"
+                                                  FontFamily="{StaticResource SegoeFluentIconsFont}"
+                                                  Foreground="{ThemeResource SafeSecondaryTextBrush}" />
+                                    </Border>
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_NoResult}"
+                                               Style="{StaticResource BodyStrongTextBlockStyle}"
+                                               HorizontalAlignment="Center"
+                                               FontFamily="{StaticResource AppGlobalFont}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
+                                        HorizontalAlignment="Stretch"
+                                        Content="{x:Bind ViewModel.Spiral}"
+                                        ContentTemplate="{StaticResource AbyssSectionTemplate}"
+                                        Visibility="{x:Bind ViewModel.IsSpiralAbyss, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
+
+                        <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
+                                        HorizontalAlignment="Stretch"
+                                        Content="{x:Bind ViewModel.Stygian}"
+                                        ContentTemplate="{StaticResource AbyssSectionTemplate}"
+                                        Visibility="{x:Bind ViewModel.IsStygian, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
+
+                        <StackPanel Spacing="24"
+                                    Visibility="{x:Bind ViewModel.IsWish, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                            <StackPanel.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="24" />
+                                </TransitionCollection>
+                            </StackPanel.Transitions>
+
+                            <StackPanel>
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionFilter}"
+                                           Style="{StaticResource SectionHeaderStyle}" />
+                                <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
+                                    <Grid.Shadow>
+                                        <ThemeShadow />
+                                    </Grid.Shadow>
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                     Content="{helpers:Loc Key=DataPage_WishCharacters}"
+                                                                     IsChecked="{x:Bind ViewModel.WishShowCharacters, Mode=OneWay}"
+                                                                     Click="OnWishCategoryClick" Tag="0" />
+                                            <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
+                                                                     Content="{helpers:Loc Key=DataPage_WishWeapons}"
+                                                                     IsChecked="{x:Bind ViewModel.WishShowWeapons, Mode=OneWay}"
+                                                                     Click="OnWishCategoryClick" Tag="1" />
+                                        </StackPanel>
+
+                                        <AutoSuggestBox Grid.Column="1" MaxWidth="360" HorizontalAlignment="Right"
+                                                        MinWidth="200" QueryIcon="Find" CornerRadius="8" Height="36"
+                                                        VerticalAlignment="Center"
+                                                        PlaceholderText="{helpers:Loc Key=DataPage_WishSearchPlaceholder}"
+                                                        TextChanged="OnWishSearchTextChanged" />
+                                    </Grid>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel Spacing="12">
+                                <Grid>
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_SectionBanners}"
+                                               Style="{StaticResource SectionHeaderStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.WishCountText, Mode=OneWay}"
+                                               Style="{StaticResource SectionCaptionStyle}"
+                                               HorizontalAlignment="Right" />
+                                </Grid>
+
+                                <GridView ItemsSource="{x:Bind ViewModel.WishBanners, Mode=OneWay}"
+                                          ItemTemplate="{StaticResource WishBannerTemplate}"
+                                          ItemContainerStyle="{StaticResource DcGridItemStyle}"
+                                          SelectionMode="None" IsItemClickEnabled="False"
+                                          Padding="0" Margin="-6,0,-6,0"
                                           ScrollViewer.VerticalScrollMode="Disabled"
                                           ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                           ScrollViewer.HorizontalScrollMode="Disabled">
@@ -1825,306 +2005,127 @@
                                         </ItemsPanelTemplate>
                                     </GridView.ItemsPanel>
                                 </GridView>
-                            </Grid>
-                        </StackPanel>
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="24"
-                                Visibility="{x:Bind ViewModel.IsCharacters, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                        <StackPanel.Transitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromVerticalOffset="24" />
-                            </TransitionCollection>
-                        </StackPanel.Transitions>
 
-                        <StackPanel>
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionFilter}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <Grid ColumnSpacing="12">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                                <Button Style="{StaticResource DcSubtleButtonStyle}" HorizontalAlignment="Center"
+                                        Content="{x:Bind ViewModel.WishMoreText, Mode=OneWay}"
+                                        Click="OnShowMoreWishClick"
+                                        Visibility="{x:Bind ViewModel.WishHasMore, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
 
-                                    <AutoSuggestBox x:Name="CharacterSearchBox" Grid.Column="0"
-                                                    MaxWidth="360" HorizontalAlignment="Left" MinWidth="200"
-                                                    QueryIcon="Find" CornerRadius="8" Height="36"
-                                                    VerticalAlignment="Bottom"
-                                                    PlaceholderText="{helpers:Loc Key=DataPage_SearchRole}"
-                                                    TextChanged="OnCharacterSearchTextChanged" />
-
-                                    <ComboBox Grid.Column="1" MinWidth="120" VerticalAlignment="Bottom"
-                                              Header="{helpers:Loc Key=DataPage_StarFilter}"
-                                              ItemsSource="{x:Bind ViewModel.StarFilterOptions}"
-                                              DisplayMemberPath="Title" SelectedIndex="0"
-                                              SelectionChanged="OnCharacterStarFilterChanged" />
-
-                                    <ComboBox Grid.Column="2" MinWidth="140" VerticalAlignment="Bottom"
-                                              Header="{helpers:Loc Key=DataPage_SortBy}"
-                                              ItemsSource="{x:Bind ViewModel.CharacterSortOptions}"
-                                              DisplayMemberPath="Title" SelectedIndex="0"
-                                              SelectionChanged="OnCharacterSortChanged" />
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
-
-                        <StackPanel Spacing="12">
-                            <Grid>
-                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionCharacters}"
-                                           Style="{StaticResource SectionHeaderStyle}" />
-                                <TextBlock Text="{x:Bind ViewModel.CharacterCountText, Mode=OneWay}"
-                                           Style="{StaticResource SectionCaptionStyle}"
-                                           HorizontalAlignment="Right" />
-                            </Grid>
-
-                            <GridView x:Name="CharacterGridView"
-                                      ItemsSource="{x:Bind ViewModel.Characters, Mode=OneWay}"
-                                      ItemTemplate="{StaticResource CharacterCardTemplate}"
-                                      ItemContainerStyle="{StaticResource DcGridItemStyle}"
-                                      SelectionMode="None" IsItemClickEnabled="True"
-                                      ItemClick="OnCharacterItemClick"
-                                      Padding="0" Margin="-6,0,-6,0"
-                                      ScrollViewer.VerticalScrollMode="Disabled"
-                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                      ScrollViewer.HorizontalScrollMode="Disabled">
-                                <GridView.ItemContainerTransitions>
-                                    <TransitionCollection>
-                                        <EntranceThemeTransition FromVerticalOffset="24" IsStaggeringEnabled="True" />
-                                        <RepositionThemeTransition />
-                                    </TransitionCollection>
-                                </GridView.ItemContainerTransitions>
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
-
-                            <Button Style="{StaticResource DcSubtleButtonStyle}" HorizontalAlignment="Center"
-                                    Content="{x:Bind ViewModel.CharacterMoreText, Mode=OneWay}"
-                                    Click="OnShowMoreCharactersClick"
-                                    Visibility="{x:Bind ViewModel.HasMoreCharacters, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
-
-                            <StackPanel Spacing="10" HorizontalAlignment="Center" Margin="0,32,0,0"
-                                        Visibility="{x:Bind ViewModel.HasNoCharacters, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                                <Border Width="72" Height="72" CornerRadius="36" HorizontalAlignment="Center"
-                                        Background="{ThemeResource SafeCardBrush}"
-                                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                        BorderThickness="1">
-                                    <FontIcon Glyph="&#xE721;" FontSize="26"
-                                              FontFamily="{StaticResource SegoeFluentIconsFont}"
-                                              Foreground="{ThemeResource SafeSecondaryTextBrush}" />
-                                </Border>
                                 <TextBlock Text="{helpers:Loc Key=DataPage_NoResult}"
-                                           Style="{StaticResource BodyStrongTextBlockStyle}"
-                                           HorizontalAlignment="Center"
-                                           FontFamily="{StaticResource AppGlobalFont}" />
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                    
-                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
-                                    HorizontalAlignment="Stretch"
-                                    Content="{x:Bind ViewModel.Spiral}"
-                                    ContentTemplate="{StaticResource AbyssSectionTemplate}"
-                                    Visibility="{x:Bind ViewModel.IsSpiralAbyss, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
-                    
-                    <ContentControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
-                                    HorizontalAlignment="Stretch"
-                                    Content="{x:Bind ViewModel.Stygian}"
-                                    ContentTemplate="{StaticResource AbyssSectionTemplate}"
-                                    Visibility="{x:Bind ViewModel.IsStygian, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
-                    
-                    <StackPanel Spacing="24"
-                                Visibility="{x:Bind ViewModel.IsWish, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                        <StackPanel.Transitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromVerticalOffset="24" />
-                            </TransitionCollection>
-                        </StackPanel.Transitions>
-
-                        <StackPanel>
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionFilter}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <Grid ColumnSpacing="12">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                                 Content="{helpers:Loc Key=DataPage_WishCharacters}"
-                                                                 IsChecked="{x:Bind ViewModel.WishShowCharacters, Mode=OneWay}"
-                                                                 Click="OnWishCategoryClick" Tag="0" />
-                                        <primitives:ToggleButton Style="{StaticResource DcChipStyle}"
-                                                                 Content="{helpers:Loc Key=DataPage_WishWeapons}"
-                                                                 IsChecked="{x:Bind ViewModel.WishShowWeapons, Mode=OneWay}"
-                                                                 Click="OnWishCategoryClick" Tag="1" />
-                                    </StackPanel>
-
-                                    <AutoSuggestBox Grid.Column="1" MaxWidth="360" HorizontalAlignment="Right"
-                                                    MinWidth="200" QueryIcon="Find" CornerRadius="8" Height="36"
-                                                    VerticalAlignment="Center"
-                                                    PlaceholderText="{helpers:Loc Key=DataPage_WishSearchPlaceholder}"
-                                                    TextChanged="OnWishSearchTextChanged" />
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
-
-                        <StackPanel Spacing="12">
-                            <Grid>
-                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionBanners}"
-                                           Style="{StaticResource SectionHeaderStyle}" />
-                                <TextBlock Text="{x:Bind ViewModel.WishCountText, Mode=OneWay}"
                                            Style="{StaticResource SectionCaptionStyle}"
-                                           HorizontalAlignment="Right" />
+                                           HorizontalAlignment="Center" Margin="0,32,0,0"
+                                           Visibility="{x:Bind ViewModel.WishHasNone, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
+                            </StackPanel>
+
+                            <Grid ColumnSpacing="16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_WishTopRerun}"
+                                               Style="{StaticResource SectionHeaderStyle}" />
+                                    <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                        <Grid.Shadow>
+                                            <ThemeShadow />
+                                        </Grid.Shadow>
+                                        <ItemsControl ItemsSource="{x:Bind ViewModel.WishTopReruns, Mode=OneWay}"
+                                                      ItemTemplate="{StaticResource CountRowTemplate}" />
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_WishTopCompanion}"
+                                               Style="{StaticResource SectionHeaderStyle}" />
+                                    <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                        <Grid.Shadow>
+                                            <ThemeShadow />
+                                        </Grid.Shadow>
+                                        <ItemsControl ItemsSource="{x:Bind ViewModel.WishTopCompanions, Mode=OneWay}"
+                                                      ItemTemplate="{StaticResource CountRowTemplate}" />
+                                    </Grid>
+                                </StackPanel>
                             </Grid>
-
-                            <GridView ItemsSource="{x:Bind ViewModel.WishBanners, Mode=OneWay}"
-                                      ItemTemplate="{StaticResource WishBannerTemplate}"
-                                      ItemContainerStyle="{StaticResource DcGridItemStyle}"
-                                      SelectionMode="None" IsItemClickEnabled="False"
-                                      Padding="0" Margin="-6,0,-6,0"
-                                      ScrollViewer.VerticalScrollMode="Disabled"
-                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                      ScrollViewer.HorizontalScrollMode="Disabled">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
-
-                            <Button Style="{StaticResource DcSubtleButtonStyle}" HorizontalAlignment="Center"
-                                    Content="{x:Bind ViewModel.WishMoreText, Mode=OneWay}"
-                                    Click="OnShowMoreWishClick"
-                                    Visibility="{x:Bind ViewModel.WishHasMore, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
-
-                            <TextBlock Text="{helpers:Loc Key=DataPage_NoResult}"
-                                       Style="{StaticResource SectionCaptionStyle}"
-                                       HorizontalAlignment="Center" Margin="0,32,0,0"
-                                       Visibility="{x:Bind ViewModel.WishHasNone, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
                         </StackPanel>
 
-                        <Grid ColumnSpacing="16">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Spacing="24"
+                                    Visibility="{x:Bind ViewModel.IsRerun, Mode=OneWay, Converter={StaticResource BoolToVis}}">
+                            <StackPanel.Transitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition FromVerticalOffset="24" />
+                                </TransitionCollection>
+                            </StackPanel.Transitions>
 
                             <StackPanel>
-                                <TextBlock Text="{helpers:Loc Key=DataPage_WishTopRerun}"
+                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionFilter}"
                                            Style="{StaticResource SectionHeaderStyle}" />
-                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
                                     <Grid.Shadow>
                                         <ThemeShadow />
                                     </Grid.Shadow>
-                                    <ItemsControl ItemsSource="{x:Bind ViewModel.WishTopReruns, Mode=OneWay}"
-                                                  ItemTemplate="{StaticResource CountRowTemplate}" />
+                                    <Grid ColumnSpacing="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <AutoSuggestBox Grid.Column="0" MaxWidth="360" HorizontalAlignment="Left"
+                                                        MinWidth="200" QueryIcon="Find" CornerRadius="8" Height="36"
+                                                        VerticalAlignment="Bottom"
+                                                        PlaceholderText="{helpers:Loc Key=DataPage_RerunSearchPlaceholder}"
+                                                        TextChanged="OnRerunSearchTextChanged" />
+
+                                        <ComboBox Grid.Column="1" MinWidth="130" VerticalAlignment="Bottom"
+                                                  Header="{helpers:Loc Key=DataPage_RerunCategory}"
+                                                  ItemsSource="{x:Bind ViewModel.RerunGroupOptions}"
+                                                  DisplayMemberPath="Title" SelectedIndex="0"
+                                                  SelectionChanged="OnRerunGroupChanged" />
+
+                                        <ComboBox Grid.Column="2" MinWidth="130" VerticalAlignment="Bottom"
+                                                  Header="{helpers:Loc Key=DataPage_SortBy}"
+                                                  ItemsSource="{x:Bind ViewModel.RerunSortOptions}"
+                                                  DisplayMemberPath="Title" SelectedIndex="0"
+                                                  SelectionChanged="OnRerunSortChanged" />
+                                    </Grid>
                                 </Grid>
                             </StackPanel>
 
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="{helpers:Loc Key=DataPage_WishTopCompanion}"
-                                           Style="{StaticResource SectionHeaderStyle}" />
-                                <Grid Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                                    <Grid.Shadow>
-                                        <ThemeShadow />
-                                    </Grid.Shadow>
-                                    <ItemsControl ItemsSource="{x:Bind ViewModel.WishTopCompanions, Mode=OneWay}"
-                                                  ItemTemplate="{StaticResource CountRowTemplate}" />
+                            <StackPanel Spacing="12">
+                                <Grid>
+                                    <TextBlock Text="{helpers:Loc Key=DataPage_SectionRerun}"
+                                               Style="{StaticResource SectionHeaderStyle}" />
+                                    <TextBlock Text="{x:Bind ViewModel.RerunCountText, Mode=OneWay}"
+                                               Style="{StaticResource SectionCaptionStyle}"
+                                               HorizontalAlignment="Right" />
                                 </Grid>
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
-                    
-                    <StackPanel Spacing="24"
-                                Visibility="{x:Bind ViewModel.IsRerun, Mode=OneWay, Converter={StaticResource BoolToVis}}">
-                        <StackPanel.Transitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition FromVerticalOffset="24" />
-                            </TransitionCollection>
-                        </StackPanel.Transitions>
 
-                        <StackPanel>
-                            <TextBlock Text="{helpers:Loc Key=DataPage_SectionFilter}"
-                                       Style="{StaticResource SectionHeaderStyle}" />
-                            <Grid Style="{StaticResource SettingsCardStyle}" Padding="16" Translation="0,0,32">
-                                <Grid.Shadow>
-                                    <ThemeShadow />
-                                </Grid.Shadow>
-                                <Grid ColumnSpacing="12">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                                <GridView ItemsSource="{x:Bind ViewModel.RerunCards, Mode=OneWay}"
+                                          ItemTemplate="{StaticResource RerunCardTemplate}"
+                                          ItemContainerStyle="{StaticResource DcGridItemStyle}"
+                                          SelectionMode="None" IsItemClickEnabled="False"
+                                          Padding="0" Margin="-6,0,-6,0"
+                                          ScrollViewer.VerticalScrollMode="Disabled"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                          ScrollViewer.HorizontalScrollMode="Disabled">
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                </GridView>
 
-                                    <AutoSuggestBox Grid.Column="0" MaxWidth="360" HorizontalAlignment="Left"
-                                                    MinWidth="200" QueryIcon="Find" CornerRadius="8" Height="36"
-                                                    VerticalAlignment="Bottom"
-                                                    PlaceholderText="{helpers:Loc Key=DataPage_RerunSearchPlaceholder}"
-                                                    TextChanged="OnRerunSearchTextChanged" />
-
-                                    <ComboBox Grid.Column="1" MinWidth="130" VerticalAlignment="Bottom"
-                                              Header="{helpers:Loc Key=DataPage_RerunCategory}"
-                                              ItemsSource="{x:Bind ViewModel.RerunGroupOptions}"
-                                              DisplayMemberPath="Title" SelectedIndex="0"
-                                              SelectionChanged="OnRerunGroupChanged" />
-
-                                    <ComboBox Grid.Column="2" MinWidth="130" VerticalAlignment="Bottom"
-                                              Header="{helpers:Loc Key=DataPage_SortBy}"
-                                              ItemsSource="{x:Bind ViewModel.RerunSortOptions}"
-                                              DisplayMemberPath="Title" SelectedIndex="0"
-                                              SelectionChanged="OnRerunSortChanged" />
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
-
-                        <StackPanel Spacing="12">
-                            <Grid>
-                                <TextBlock Text="{helpers:Loc Key=DataPage_SectionRerun}"
-                                           Style="{StaticResource SectionHeaderStyle}" />
-                                <TextBlock Text="{x:Bind ViewModel.RerunCountText, Mode=OneWay}"
+                                <TextBlock Text="{helpers:Loc Key=DataPage_NoResult}"
                                            Style="{StaticResource SectionCaptionStyle}"
-                                           HorizontalAlignment="Right" />
-                            </Grid>
-
-                            <GridView ItemsSource="{x:Bind ViewModel.RerunCards, Mode=OneWay}"
-                                      ItemTemplate="{StaticResource RerunCardTemplate}"
-                                      ItemContainerStyle="{StaticResource DcGridItemStyle}"
-                                      SelectionMode="None" IsItemClickEnabled="False"
-                                      Padding="0" Margin="-6,0,-6,0"
-                                      ScrollViewer.VerticalScrollMode="Disabled"
-                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                      ScrollViewer.HorizontalScrollMode="Disabled">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Left" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
-
-                            <TextBlock Text="{helpers:Loc Key=DataPage_NoResult}"
-                                       Style="{StaticResource SectionCaptionStyle}"
-                                       HorizontalAlignment="Center" Margin="0,32,0,0"
-                                       Visibility="{x:Bind ViewModel.RerunHasNone, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
+                                           HorizontalAlignment="Center" Margin="0,32,0,0"
+                                           Visibility="{x:Bind ViewModel.RerunHasNone, Mode=OneWay, Converter={StaticResource BoolToVis}}" />
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
-            
+
             <Grid Margin="36,24,36,24"
                   Visibility="{x:Bind ViewModel.IsTimeline, Mode=OneWay, Converter={StaticResource BoolToVis}}">
                 <Border CornerRadius="14" BorderThickness="1"
@@ -2145,7 +2146,7 @@
                     </Grid>
                 </Border>
             </Grid>
-            
+
             <Grid x:Name="InitialSkeletonHost"
                   IsHitTestVisible="False"
                   IsTabStop="False"
@@ -2244,7 +2245,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
-            
+
             <StackPanel Spacing="12" MaxWidth="420" HorizontalAlignment="Center" VerticalAlignment="Center"
                         Visibility="{x:Bind ViewModel.HasError, Mode=OneWay, Converter={StaticResource BoolToVis}}">
                 <Border Width="76" Height="76" CornerRadius="38" HorizontalAlignment="Center"

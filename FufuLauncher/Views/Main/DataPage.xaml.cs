@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
@@ -21,7 +22,10 @@ namespace FufuLauncher.Views;
 
 public sealed partial class DataPage : Page
 {
-    public DataViewModel ViewModel { get; }
+    public DataViewModel ViewModel
+    {
+        get;
+    }
 
     private bool _isSubscribed;
     private bool _hasShownInitialSkeleton;
@@ -114,14 +118,14 @@ public sealed partial class DataPage : Page
     private void OnTabClick(object sender, RoutedEventArgs e)
     {
         if (sender is not ToggleButton button) return;
-        
+
         button.IsChecked = true;
 
         if (!int.TryParse(button.Tag?.ToString(), out var index)) return;
 
         var view = (DataCenterView)index;
         ViewModel.SetView(view);
-        
+
         if (view == DataCenterView.Timeline) EnsureTimelineLoaded();
     }
 
@@ -192,7 +196,7 @@ public sealed partial class DataPage : Page
             CloseButtonText = "DataPage_Close".GetLocalized(),
             DefaultButton = ContentDialogButton.Close
         };
-        
+
         dialog.Resources["ContentDialogMaxWidth"] = 900d;
 
         await dialog.ShowAsync();
@@ -220,7 +224,7 @@ public sealed partial class DataPage : Page
     private async void OnAbyssVersionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (sender is not ComboBox { SelectedItem: DcOption option, DataContext: DcAbyssSection section }) return;
-        
+
         if (string.Equals(option.Value, section.LoadedVersion, StringComparison.Ordinal)) return;
 
         section.LoadedVersion = option.Value;
@@ -306,7 +310,7 @@ public sealed partial class DataPage : Page
         if (args.Reason == AutoSuggestionBoxTextChangeReason.ProgrammaticChange) return;
         ViewModel.SearchRerun(sender.Text);
     }
-    
+
     private void EnsureTimelineLoaded()
     {
         if (TimelineWebView.Source != null)
@@ -342,32 +346,32 @@ public sealed partial class DataPage : Page
         }
 
         const string script = """
-            (function () {
-                var maxRetries = 50;
-                var attempts = 0;
-                var checkExist = setInterval(function () {
-                    var target = document.querySelector('div.w-full.overflow-x-auto.px-4.md\\:px-8.svelte-1ga4ett');
-                    if (target) {
-                        clearInterval(checkExist);
-                        document.body.innerHTML = '';
-                        document.body.appendChild(target);
-                        document.body.style.backgroundColor = '#1c1c22';
-                        document.body.style.paddingTop = '20px';
-                        target.style.display = 'block';
-                        target.style.width = '100%';
-                        setTimeout(function () {
-                            window.chrome.webview.postMessage('TimelineReady');
-                        }, 50);
-                    } else {
-                        attempts++;
-                        if (attempts >= maxRetries) {
-                            clearInterval(checkExist);
-                            window.chrome.webview.postMessage('TimelineReady');
-                        }
-                    }
-                }, 100);
-            })();
-            """;
+                              (function () {
+                                  var maxRetries = 50;
+                                  var attempts = 0;
+                                  var checkExist = setInterval(function () {
+                                      var target = document.querySelector('div.w-full.overflow-x-auto.px-4.md\\:px-8.svelte-1ga4ett');
+                                      if (target) {
+                                          clearInterval(checkExist);
+                                          document.body.innerHTML = '';
+                                          document.body.appendChild(target);
+                                          document.body.style.backgroundColor = '#1c1c22';
+                                          document.body.style.paddingTop = '20px';
+                                          target.style.display = 'block';
+                                          target.style.width = '100%';
+                                          setTimeout(function () {
+                                              window.chrome.webview.postMessage('TimelineReady');
+                                          }, 50);
+                                      } else {
+                                          attempts++;
+                                          if (attempts >= maxRetries) {
+                                              clearInterval(checkExist);
+                                              window.chrome.webview.postMessage('TimelineReady');
+                                          }
+                                      }
+                                  }, 100);
+                              })();
+                              """;
 
         await sender.ExecuteScriptAsync(script);
     }
@@ -392,7 +396,7 @@ public class DataCenterBrushConverter : IValueConverter
         ["down"] = 0xFFE15C62,
         ["flat"] = 0xFF8D94A0,
         ["muted"] = 0xFF8D94A0,
-        
+
         ["s1"] = 0xFFFF6B6B,
         ["s"] = 0xFFFF9F45,
         ["a"] = 0xFFE0A917,

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Helpers;
@@ -16,18 +17,20 @@ public class HashValidationService
         try
         {
             string baseDirectory = AppContext.BaseDirectory;
-            string hashFilePath = Path.Combine(baseDirectory, "Assets", "Launcher" , "hash.txt");
+            string hashFilePath = Path.Combine(baseDirectory, "Assets", "Launcher", "hash.txt");
 
             if (!File.Exists(hashFilePath))
             {
-                SendNotification("HashCheck_Failed".GetLocalized(), "HashCheck_FileNotFound".GetLocalized(), NotificationType.Error);
+                SendNotification("HashCheck_Failed".GetLocalized(), "HashCheck_FileNotFound".GetLocalized(),
+                    NotificationType.Error);
                 return;
             }
 
             string[] hashLines = await File.ReadAllLinesAsync(hashFilePath);
             if (hashLines.Length < 2)
             {
-                SendNotification("HashCheck_Failed".GetLocalized(), "HashCheck_FormatError".GetLocalized(), NotificationType.Error);
+                SendNotification("HashCheck_Failed".GetLocalized(), "HashCheck_FormatError".GetLocalized(),
+                    NotificationType.Error);
                 return;
             }
 
@@ -40,12 +43,14 @@ public class HashValidationService
             if (!captureAppValid)
             {
                 string errorMessage = "HashCheck_ComponentModified".GetLocalized();
-                SendNotification("HashCheck_NotPassed".GetLocalized(), errorMessage.TrimEnd(), NotificationType.Warning);
+                SendNotification("HashCheck_NotPassed".GetLocalized(), errorMessage.TrimEnd(),
+                    NotificationType.Warning);
             }
         }
         catch (Exception ex)
         {
-            SendNotification("HashCheck_Exception".GetLocalized(), string.Format("HashCheck_ExceptionMsg".GetLocalized(), ex.Message), NotificationType.Error);
+            SendNotification("HashCheck_Exception".GetLocalized(),
+                string.Format("HashCheck_ExceptionMsg".GetLocalized(), ex.Message), NotificationType.Error);
         }
     }
 
@@ -55,7 +60,7 @@ public class HashValidationService
 
         using var sha512 = SHA512.Create();
         using var stream = File.OpenRead(filePath);
-        
+
         byte[] hashBytes = await sha512.ComputeHashAsync(stream);
         string actualHash = BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
 

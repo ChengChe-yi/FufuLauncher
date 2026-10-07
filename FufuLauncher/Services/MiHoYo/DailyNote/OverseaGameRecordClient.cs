@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Constants;
 using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Services.MiHoYo.Networking;
@@ -23,9 +24,12 @@ public sealed class OverseaGameRecordClient
     {
         string roleQuery = $"role_id={Uri.EscapeDataString(uid)}&server={Uri.EscapeDataString(region)}";
 
-        await GetAsync($"{ApiEndpoints.OverseaGameRecordApiBase}/index?{roleQuery}", roleQuery, cookies, token).ConfigureAwait(false);
+        await GetAsync($"{ApiEndpoints.OverseaGameRecordApiBase}/index?{roleQuery}", roleQuery, cookies, token)
+            .ConfigureAwait(false);
 
-        string json = await GetAsync($"{ApiEndpoints.OverseaGameRecordApiBase}/dailyNote?{roleQuery}", roleQuery, cookies, token).ConfigureAwait(false);
+        string json =
+            await GetAsync($"{ApiEndpoints.OverseaGameRecordApiBase}/dailyNote?{roleQuery}", roleQuery, cookies, token)
+                .ConfigureAwait(false);
         return DailyNoteParser.Parse(json);
     }
 
@@ -43,7 +47,8 @@ public sealed class OverseaGameRecordClient
         request.Headers.TryAddWithoutValidation(HeaderNames.RpcDeviceId, _deviceId);
         if (!string.IsNullOrEmpty(cookieStr))
             request.Headers.TryAddWithoutValidation(HeaderNames.Cookie, cookieStr);
-        request.Headers.TryAddWithoutValidation(HeaderNames.DS, MiHoYoHeaderFactory.CalculateDs2(HeaderSalts.OsGameRecord, sortedQuery));
+        request.Headers.TryAddWithoutValidation(HeaderNames.DS,
+            MiHoYoHeaderFactory.CalculateDs2(HeaderSalts.OsGameRecord, sortedQuery));
 
         using HttpResponseMessage response = await _httpClient.SendAsync(request, token).ConfigureAwait(false);
         return await response.Content.ReadAsStringAsync(token).ConfigureAwait(false);

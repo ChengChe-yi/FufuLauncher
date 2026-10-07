@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.IO.Compression;
 using System.Runtime.InteropServices;
 using Microsoft.UI.Xaml;
@@ -29,7 +30,7 @@ public sealed partial class PluginSettingsPage
             if (toggleSwitch.IsOn)
             {
                 var osArch = RuntimeInformation.OSArchitecture;
-                if (osArch == Architecture.Arm || 
+                if (osArch == Architecture.Arm ||
                     osArch == Architecture.Arm64)
                 {
                     var dialog = new ContentDialog
@@ -42,15 +43,15 @@ public sealed partial class PluginSettingsPage
                     };
 
                     var result = await dialog.ShowAsync();
-                    
+
                     if (result != ContentDialogResult.Primary)
                     {
                         toggleSwitch.IsOn = false;
-                        return; 
+                        return;
                     }
                 }
             }
-            
+
             MainVM.UseInjection = toggleSwitch.IsOn;
         }
     }
@@ -124,8 +125,12 @@ public sealed partial class PluginSettingsPage
         if (_mainPluginWatcher != null) return;
 
         bool lightweight = ViewModel.IsLightweightMode;
-        string subDir = lightweight ? LightweightPluginService.LitePluginFolderName : LightweightPluginService.MainPluginFolderName;
-        string dllName = lightweight ? LightweightPluginService.LitePluginDllName : LightweightPluginService.MainPluginDllName;
+        string subDir = lightweight
+            ? LightweightPluginService.LitePluginFolderName
+            : LightweightPluginService.MainPluginFolderName;
+        string dllName = lightweight
+            ? LightweightPluginService.LitePluginDllName
+            : LightweightPluginService.MainPluginDllName;
 
         string mainPluginDir = Path.Combine(AppContext.BaseDirectory, "Plugins", subDir);
         if (!Directory.Exists(mainPluginDir))
@@ -177,8 +182,12 @@ public sealed partial class PluginSettingsPage
 
         bool lightweight = ViewModel.IsLightweightMode;
         WeakReferenceMessenger.Default.Send(new NotificationMessage(
-            lightweight ? "LightweightMode_LiteMissing_Title".GetLocalized() : "Plugin_MainMissing_Title".GetLocalized(),
-            lightweight ? "LightweightMode_LiteMissing_Content".GetLocalized() : "Plugin_MainMissing_Content".GetLocalized(),
+            lightweight
+                ? "LightweightMode_LiteMissing_Title".GetLocalized()
+                : "Plugin_MainMissing_Title".GetLocalized(),
+            lightweight
+                ? "LightweightMode_LiteMissing_Content".GetLocalized()
+                : "Plugin_MainMissing_Content".GetLocalized(),
             NotificationType.Error,
             6000));
     }
@@ -195,14 +204,16 @@ public sealed partial class PluginSettingsPage
             return;
         }
 
-        string urlLatest = "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+        string urlLatest =
+            "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
         await DownloadAndInstallPluginAsync(urlLatest);
     }
 
 
     private async Task DownloadAndInstallPluginAsync(string proxyUrl)
     {
-        var blockReason = App.GetService<LightweightPluginService>().GetInstallBlockReason(LightweightPluginService.MainPluginFolderName, null);
+        var blockReason = App.GetService<LightweightPluginService>()
+            .GetInstallBlockReason(LightweightPluginService.MainPluginFolderName, null);
         if (blockReason != null)
         {
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
@@ -222,23 +233,27 @@ public sealed partial class PluginSettingsPage
 
         var fileName = proxyUrl.Split('/').Last();
         if (fileName.Contains("?")) fileName = fileName.Split('?')[0];
-        if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase)) 
+        if (string.IsNullOrEmpty(fileName) || !fileName.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
             fileName = "FuFuPlugin.zip";
-        
+
         var rawGithubUrl = proxyUrl.Replace("https://gh-proxy.com/", "");
-        if (rawGithubUrl.Contains("github.com") && rawGithubUrl.Contains("/blob/") && !rawGithubUrl.Contains("?raw=true"))
+        if (rawGithubUrl.Contains("github.com") && rawGithubUrl.Contains("/blob/") &&
+            !rawGithubUrl.Contains("?raw=true"))
         {
             rawGithubUrl += "?raw=true";
         }
-        
+
         var tempPath = Path.Combine(Path.GetTempPath(), fileName);
-        var extractPath = Path.Combine(Path.GetTempPath(), Path.GetFileNameWithoutExtension(fileName) + "_Extract_" + Guid.NewGuid());
+        var extractPath = Path.Combine(Path.GetTempPath(),
+            Path.GetFileNameWithoutExtension(fileName) + "_Extract_" + Guid.NewGuid());
         var pluginsDir = Path.Combine(AppContext.BaseDirectory, "Plugins");
 
         if (!Directory.Exists(pluginsDir)) Directory.CreateDirectory(pluginsDir);
-        
-        var progressBar = new ProgressBar { Minimum = 0, Maximum = 100, Value = 0, Height = 20, Margin = new Thickness(0, 10, 0, 0) };
-        var statusText = new TextBlock { Text = "Plugin_Download_Connecting".GetLocalized(), HorizontalAlignment = HorizontalAlignment.Center };
+
+        var progressBar = new ProgressBar
+            { Minimum = 0, Maximum = 100, Value = 0, Height = 20, Margin = new Thickness(0, 10, 0, 0) };
+        var statusText = new TextBlock
+            { Text = "Plugin_Download_Connecting".GetLocalized(), HorizontalAlignment = HorizontalAlignment.Center };
         var stackPanel = new StackPanel();
         stackPanel.Children.Add(statusText);
         stackPanel.Children.Add(progressBar);
@@ -260,8 +275,8 @@ public sealed partial class PluginSettingsPage
             {
                 HttpResponseMessage response;
                 bool usedFallback = false;
-                
-                try 
+
+                try
                 {
                     response = await client.GetAsync(proxyUrl, HttpCompletionOption.ResponseHeadersRead);
                     if (!response.IsSuccessStatusCode) throw new Exception("主线路失败");
@@ -273,15 +288,16 @@ public sealed partial class PluginSettingsPage
                     response = await client.GetAsync(rawGithubUrl, HttpCompletionOption.ResponseHeadersRead);
                     if (!response.IsSuccessStatusCode) throw new Exception($"下载失败 (HTTP {response.StatusCode})");
                 }
-                
+
                 using (response)
                 {
                     var totalBytes = response.Content.Headers.ContentLength ?? -1L;
                     var totalRead = 0L;
                     var buffer = new byte[8192];
-                    
+
                     using (var stream = await response.Content.ReadAsStreamAsync())
-                    using (var fileStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true))
+                    using (var fileStream = new FileStream(tempPath, FileMode.Create, FileAccess.Write, FileShare.None,
+                               8192, true))
                     {
                         int read;
                         while ((read = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
@@ -291,37 +307,43 @@ public sealed partial class PluginSettingsPage
                             if (totalBytes != -1)
                             {
                                 progressBar.Value = Math.Round((double)totalRead / totalBytes * 100, 0);
-                                var lineName = usedFallback ? "Plugin_Download_BackupLine".GetLocalized() : "Plugin_Download_MainLine".GetLocalized();
-                                statusText.Text = string.Format("Plugin_Download_Progress_Format".GetLocalized(), lineName, progressBar.Value);
+                                var lineName = usedFallback
+                                    ? "Plugin_Download_BackupLine".GetLocalized()
+                                    : "Plugin_Download_MainLine".GetLocalized();
+                                statusText.Text = string.Format("Plugin_Download_Progress_Format".GetLocalized(),
+                                    lineName, progressBar.Value);
                             }
                         }
                     }
                 }
             }
-            
+
             statusText.Text = "Plugin_Download_Extracting".GetLocalized();
             progressBar.IsIndeterminate = true;
-            
+
             if (Directory.Exists(extractPath)) Directory.Delete(extractPath, true);
             Directory.CreateDirectory(extractPath);
 
             await Task.Run(() => ZipFile.ExtractToDirectory(tempPath, extractPath));
-            
-            var targetFolderName = "FuFuPlugin"; 
+
+            var targetFolderName = "FuFuPlugin";
             var finalDestDir = Path.Combine(pluginsDir, targetFolderName);
-            
+
             var subDirs = Directory.GetDirectories(extractPath);
-            string sourceDirToMove = (subDirs.Length == 1 && Directory.GetFiles(extractPath).Length == 0) ? subDirs[0] : extractPath;
+            string sourceDirToMove = (subDirs.Length == 1 && Directory.GetFiles(extractPath).Length == 0)
+                ? subDirs[0]
+                : extractPath;
 
             if (Directory.Exists(finalDestDir)) Directory.Delete(finalDestDir, true);
-            
+
             await Task.Run(() => MoveDirectorySafe(sourceDirToMove, finalDestDir));
-            
+
             progressDialog.Hide();
             ViewModel.LoadConfiguration();
 
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("Success".GetLocalized(), "Plugin_Download_Success".GetLocalized(), NotificationType.Success));
-            
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("Success".GetLocalized(),
+                "Plugin_Download_Success".GetLocalized(), NotificationType.Success));
+
             ViewModel.RefreshPluginStates();
         }
         catch (Exception ex)

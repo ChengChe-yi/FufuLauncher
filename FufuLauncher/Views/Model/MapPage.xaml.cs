@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -56,7 +57,8 @@ namespace FufuLauncher.Views
             }
         }
 
-        private async void MapWebView_NavigationStarting(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs args)
+        private async void MapWebView_NavigationStarting(WebView2 sender,
+            Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs args)
         {
             if (args.Uri.Contains("act.mihoyo.com"))
             {
@@ -75,7 +77,8 @@ namespace FufuLauncher.Views
             }
         }
 
-        private async void MapWebView_NavigationCompleted(WebView2 sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
+        private async void MapWebView_NavigationCompleted(WebView2 sender,
+            Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs args)
         {
             if (args.IsSuccess)
             {

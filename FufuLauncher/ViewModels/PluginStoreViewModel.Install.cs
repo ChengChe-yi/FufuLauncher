@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -18,7 +19,7 @@ public partial class PluginStoreViewModel
         if (item == null || !item.IsInstallInProgress) return;
 
         Debug.WriteLine($"[PluginStoreVM] User cancelled install for plugin: {item.Id}");
-        
+
         _installCts?.Cancel();
 
         item.InstallStatusText = "PluginStoreCancelling".GetLocalized();
@@ -40,7 +41,7 @@ public partial class PluginStoreViewModel
             item.IsInstallInProgress = true;
             item.InstallProgress = 0;
             item.InstallStatusText = "PluginStoreVerifying".GetLocalized();
-            
+
             if (!string.IsNullOrWhiteSpace(item.MinAppVersion))
             {
                 if (!IsVersionSatisfied(CurrentAppVersion, item.MinAppVersion))
@@ -53,7 +54,7 @@ public partial class PluginStoreViewModel
                     return;
                 }
             }
-            
+
             if (item.IsPrivate && string.IsNullOrWhiteSpace(item.AccessToken))
             {
                 var accessKey = await ShowPrivateAccessDialogAsync(item);
@@ -70,7 +71,7 @@ public partial class PluginStoreViewModel
                 {
                     var accessResult = await _storeService.GetPrivateAccessAsync(item.Id, accessKey);
                     item.AccessToken = accessResult.AccessToken;
-                    
+
                     if (accessResult.Plugin != null)
                     {
                         item.Version = accessResult.Plugin.Version;
@@ -105,7 +106,7 @@ public partial class PluginStoreViewModel
             item.InstallProgress = 0;
             item.InstallStatusText = "PluginStoreInstallFailedShort".GetLocalized();
             StatusMessage = string.Format("PluginStoreInstallFailed".GetLocalized(), ex.Message);
-            
+
             CleanupPluginDir(item.Id);
         }
         finally
@@ -116,7 +117,7 @@ public partial class PluginStoreViewModel
             _installCts = null;
         }
     }
-    
+
     private async Task DoInstallAsync(PluginStoreItem item)
     {
         var maxCaptchaRetries = 3;
@@ -142,14 +143,16 @@ public partial class PluginStoreViewModel
 
                 var pluginDir = Path.Combine(_pluginsDir, item.Id);
                 _luaInstaller.EnsureConfigFileEntry(pluginDir, item.DllFileName);
-                
+
                 if (!IsPluginInstalledOnDisk(item.Id, out _))
                 {
-                    Debug.WriteLine($"[PluginStoreVM] Install verification failed: plugin '{item.Id}' not found on disk after install script");
+                    Debug.WriteLine(
+                        $"[PluginStoreVM] Install verification failed: plugin '{item.Id}' not found on disk after install script");
                     item.State = StorePluginState.Available;
                     item.InstallProgress = 0;
                     item.InstallStatusText = "PluginStoreInstallFailedShort".GetLocalized();
-                    StatusMessage = string.Format("PluginStoreInstallFailed".GetLocalized(), "PluginStoreInstallVerifyFailed".GetLocalized());
+                    StatusMessage = string.Format("PluginStoreInstallFailed".GetLocalized(),
+                        "PluginStoreInstallVerifyFailed".GetLocalized());
                     CleanupPluginDir(item.Id);
                     return;
                 }
@@ -163,9 +166,9 @@ public partial class PluginStoreViewModel
                         capturedItem.InstallProgressPercent = 100.0;
                         capturedItem.InstallStatusText = "PluginStoreInstallComplete".GetLocalized();
                         capturedItem.DownloadSpeedBytesPerSecond = 0;
-                        
+
                         await Task.Delay(600);
-                        
+
                         capturedItem.State = StorePluginState.Installed;
                     });
                 }
@@ -176,6 +179,7 @@ public partial class PluginStoreViewModel
                     item.InstallStatusText = "PluginStoreInstallComplete".GetLocalized();
                     item.State = StorePluginState.Installed;
                 }
+
                 StatusMessage = string.Format("PluginStoreInstallSuccess".GetLocalized(), item.Name);
                 return;
             }
@@ -183,7 +187,7 @@ public partial class PluginStoreViewModel
             {
                 Debug.WriteLine($"[PluginStoreVM] Captcha required: {captchaEx.VerifyUrl}");
                 item.InstallStatusText = "PluginStoreCaptchaRequired".GetLocalized();
-                
+
                 var dlToken = await ShowGeetestCaptchaAsync(captchaEx.VerifyUrl);
 
                 if (string.IsNullOrWhiteSpace(dlToken))
@@ -211,6 +215,7 @@ public partial class PluginStoreViewModel
                     item.FileHash = accessResult.Plugin.FileHash;
                     item.LuaHash = accessResult.Plugin.LuaHash;
                 }
+
                 attempt++;
             }
             catch (HashMismatchException ex)
@@ -241,7 +246,8 @@ public partial class PluginStoreViewModel
                 CleanupPluginDir(item.Id);
                 return;
             }
-            catch (InvalidOperationException ex) when (ex.Message.Contains("download") || ex.Message.Contains("Download"))
+            catch (InvalidOperationException ex) when (ex.Message.Contains("download") ||
+                                                       ex.Message.Contains("Download"))
             {
                 Debug.WriteLine($"[PluginStoreVM] Download error (may need captcha): {ex.Message}");
                 attempt++;

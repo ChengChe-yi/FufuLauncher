@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using System.Text.Json;
 using FufuLauncher.Helpers;
@@ -14,7 +15,7 @@ public sealed class DeveloperAuthorizationService
 
     private bool _hasChecked;
     private bool _isAuthorized;
-    
+
     public async Task<bool> IsAuthorizedAsync()
     {
         if (_hasChecked && _isAuthorized)
@@ -30,13 +31,15 @@ public sealed class DeveloperAuthorizationService
             try
             {
                 using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(5) };
-                var content = new StringContent(JsonSerializer.Serialize(new { hwid }), Encoding.UTF8, "application/json");
+                var content = new StringContent(JsonSerializer.Serialize(new { hwid }), Encoding.UTF8,
+                    "application/json");
                 using var response = await client.PostAsync(VerifyHwidUrl, content).ConfigureAwait(false);
                 if (response.IsSuccessStatusCode)
                 {
                     string responseString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     using var result = JsonDocument.Parse(responseString);
-                    if (result.RootElement.TryGetProperty("authorized", out var authElement) && authElement.GetBoolean())
+                    if (result.RootElement.TryGetProperty("authorized", out var authElement) &&
+                        authElement.GetBoolean())
                     {
                         authorized = true;
                     }

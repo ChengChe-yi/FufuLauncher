@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -53,8 +54,10 @@ public sealed partial class AchievementWindow
                 await ShowDialogAsync("名称无效", "名称包含非法字符，请重试。");
                 return null;
             }
+
             return text;
         }
+
         return null;
     }
 }

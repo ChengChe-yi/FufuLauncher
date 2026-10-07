@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -23,6 +24,7 @@ namespace FufuLauncher.ViewModels;
 public partial class MainViewModel
 {
     #region 背景管理
+
     [ObservableProperty] private ImageSource _backgroundImageSource;
     [ObservableProperty] private MediaPlayer _backgroundVideoPlayer;
     private InMemoryRandomAccessStream _backgroundVideoStream;
@@ -33,7 +35,11 @@ public partial class MainViewModel
     [ObservableProperty] private bool _hasCustomBackground;
 
     [ObservableProperty] private ObservableCollection<BackgroundUrlInfo> _availableBackgrounds = new();
-    public IAsyncRelayCommand<BackgroundUrlInfo> SelectSpecificBackgroundCommand { get; }
+
+    public IAsyncRelayCommand<BackgroundUrlInfo> SelectSpecificBackgroundCommand
+    {
+        get;
+    }
 
     [ObservableProperty] private bool _preferVideoBackground = true;
 
@@ -173,7 +179,13 @@ public partial class MainViewModel
             {
                 var serverJson = await _localSettingsService.ReadSettingAsync("BackgroundServerKey");
                 var server = Models.ServerType.CN;
-                try { if (serverJson != null) server = (Models.ServerType)Convert.ToInt32(serverJson); } catch { }
+                try
+                {
+                    if (serverJson != null) server = (Models.ServerType)Convert.ToInt32(serverJson);
+                }
+                catch
+                {
+                }
 
                 var preferVideo = PreferVideoBackground && _devBuildDetectionService.IsDevBuild;
                 var bgResult = await _backgroundRenderer.GetBackgroundAsync(server, preferVideo);
@@ -231,6 +243,7 @@ public partial class MainViewModel
             BackgroundVideoPlayer = MediaPlayerHelper.CreateLoopingMutedPlayer();
             BackgroundVideoPlayer.MediaFailed += BackgroundVideoPlayer_MediaFailed;
         }
+
         BackgroundVideoPlayer.Source = source;
         BackgroundVideoPlayer.Play();
         IsVideoBackground = true;
@@ -247,9 +260,13 @@ public partial class MainViewModel
             {
                 BackgroundVideoPlayer.Dispose();
             }
-            catch { }
+            catch
+            {
+            }
+
             BackgroundVideoPlayer = null;
         }
+
         _backgroundVideoStream?.Dispose();
         _backgroundVideoStream = null;
         IsVideoBackground = false;
@@ -328,5 +345,6 @@ public partial class MainViewModel
         _ = _localSettingsService.SaveSettingAsync("PreferVideoBackground", PreferVideoBackground);
         WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
     }
+
     #endregion
 }

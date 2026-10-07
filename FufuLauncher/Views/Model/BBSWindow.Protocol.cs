@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -25,11 +26,35 @@ public sealed partial class BBSWindow
 
     private class ClientConfig
     {
-        public string ClientType { get; set; }
-        public string AppVersion { get; set; }
-        public string Salt { get; set; }
-        public string UserAgent { get; set; }
-        public bool UseDS2 { get; set; }
+        public string ClientType
+        {
+            get;
+            set;
+        }
+
+        public string AppVersion
+        {
+            get;
+            set;
+        }
+
+        public string Salt
+        {
+            get;
+            set;
+        }
+
+        public string UserAgent
+        {
+            get;
+            set;
+        }
+
+        public bool UseDS2
+        {
+            get;
+            set;
+        }
     }
 
     private readonly Dictionary<string, ClientConfig> _clientConfigs = new()
@@ -52,7 +77,7 @@ public sealed partial class BBSWindow
         }
     };
 
-   
+
     private static readonly (string prefix, string clientType)[] ApiRouteMap =
     {
         ("/game_record/app/genshin/api/", "5"),
@@ -71,10 +96,12 @@ public sealed partial class BBSWindow
             if (uri.Contains(prefix))
                 return _clientConfigs[clientType];
         }
+
         return _clientConfigs["2"]; // 默认 DS1
     }
 
-    private async void CoreWebView2_WebResourceRequested(CoreWebView2 sender, CoreWebView2WebResourceRequestedEventArgs args)
+    private async void CoreWebView2_WebResourceRequested(CoreWebView2 sender,
+        CoreWebView2WebResourceRequestedEventArgs args)
     {
         var deferral = args.GetDeferral();
         try
@@ -85,14 +112,15 @@ public sealed partial class BBSWindow
             }
 
             var uri = args.Request.Uri;
-            bool isApiRequest = uri.Contains("/api/") || uri.Contains("/community/") || uri.Contains("/record/") || uri.Contains("/event/");
+            bool isApiRequest = uri.Contains("/api/") || uri.Contains("/community/") || uri.Contains("/record/") ||
+                                uri.Contains("/event/");
 
             if (isApiRequest && (uri.Contains("mihoyo.com") || uri.Contains("hoyolab.com")))
             {
                 var headers = args.Request.Headers;
                 var config = SelectConfig(uri);
 
-               
+
                 headers.RemoveHeader("x-rpc-client_type");
                 headers.RemoveHeader("x-rpc-app_version");
                 headers.RemoveHeader("DS");
@@ -105,7 +133,7 @@ public sealed partial class BBSWindow
                 headers.RemoveHeader("x-rpc-sdk_version");
                 headers.RemoveHeader("X-Requested-With");
 
-              
+
                 headers.SetHeader("x-rpc-client_type", config.ClientType);
                 headers.SetHeader("x-rpc-app_version", config.AppVersion);
                 headers.SetHeader("x-rpc-device_id", _deviceId);
@@ -123,6 +151,7 @@ public sealed partial class BBSWindow
                     System.Diagnostics.Debug.WriteLine("[BBSWindow] 警告：_activeDeviceFp 为空，使用临时随机值");
                     fp = Convert.ToHexString(RandomNumberGenerator.GetBytes(7)).ToLowerInvariant();
                 }
+
                 headers.SetHeader("x-rpc-device_fp", fp);
 
 
@@ -135,15 +164,17 @@ public sealed partial class BBSWindow
                     {
                         body = await GetJsonBodyAsync(args.Request.Content);
                     }
+
                     ds = CalculateDS2(config.Salt, query, body);
                 }
                 else
                 {
                     ds = CalculateDS1(config.Salt);
                 }
+
                 headers.SetHeader("DS", ds);
 
-               
+
                 headers.SetHeader("Origin", "https://webstatic.mihoyo.com");
                 headers.SetHeader("Referer", "https://webstatic.mihoyo.com/");
                 headers.SetHeader("Accept", "application/json, text/plain, */*");
@@ -164,6 +195,7 @@ public sealed partial class BBSWindow
             System.Diagnostics.Debug.WriteLine("[BBSWindow] GetHttpRequestHeader: _activeDeviceFp 为空，使用随机回退");
             fp = Convert.ToHexString(RandomNumberGenerator.GetBytes(7)).ToLowerInvariant();
         }
+
         var data = new Dictionary<string, object>
         {
             ["x-rpc-app_id"] = "bll8iq97cem8",
@@ -171,7 +203,7 @@ public sealed partial class BBSWindow
             ["x-rpc-app_version"] = _currentConfig.AppVersion,
             ["x-rpc-device_id"] = _deviceId,
             ["x-rpc-sdk_version"] = "2.16.0",
-            ["x-rpc-device_fp"] = fp   
+            ["x-rpc-device_fp"] = fp
         };
         return new JsResult { Data = data };
     }
@@ -184,6 +216,7 @@ public sealed partial class BBSWindow
             System.Diagnostics.Debug.WriteLine("[BBSWindow] GetCookieInfoMinimal: _activeDeviceFp 为空，使用随机回退");
             fp = Convert.ToHexString(RandomNumberGenerator.GetBytes(7)).ToLowerInvariant();
         }
+
         return new JsResult
         {
             Data = new Dictionary<string, object>
@@ -196,7 +229,7 @@ public sealed partial class BBSWindow
                 ["ltoken_v2"] = cookieDic.GetValueOrDefault("ltoken_v2") ?? "",
                 ["account_mid_v2"] = cookieDic.GetValueOrDefault("account_mid_v2") ?? "",
                 ["cookie_token_v2"] = cookieDic.GetValueOrDefault("cookie_token_v2") ?? "",
-                ["DEVICEFP"] = fp 
+                ["DEVICEFP"] = fp
             }
         };
     }
@@ -214,7 +247,10 @@ public sealed partial class BBSWindow
             if (jsonNode is JsonObject jsonObj) return SortJson(jsonObj);
             return jsonNode?.ToJsonString(new JsonSerializerOptions { WriteIndented = false }) ?? "";
         }
-        catch { return ""; }
+        catch
+        {
+            return "";
+        }
     }
 
     private string SortJson(JsonObject jsonObj)
@@ -228,9 +264,15 @@ public sealed partial class BBSWindow
             var value = jsonObj[key];
             sb.Append($"\"{key}\":");
             if (value is JsonObject nestedObj) sb.Append(SortJson(nestedObj));
-            else sb.Append(value?.ToJsonString(new JsonSerializerOptions { WriteIndented = false, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping }));
+            else
+                sb.Append(value?.ToJsonString(new JsonSerializerOptions
+                {
+                    WriteIndented = false,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                }));
             if (i < sortedKeys.Count - 1) sb.Append(',');
         }
+
         sb.Append('}');
         return sb.ToString();
     }
@@ -243,6 +285,7 @@ public sealed partial class BBSWindow
         {
             pairs.Add($"{key}={queryObj[key]?.ToString()}");
         }
+
         return string.Join("&", pairs);
     }
 
@@ -277,9 +320,13 @@ public sealed partial class BBSWindow
             {
                 pairs.Add($"{key}={dict[key]}");
             }
+
             return string.Join("&", pairs);
         }
-        catch { return ""; }
+        catch
+        {
+            return "";
+        }
     }
 
     private static string GetRandomString(int length)

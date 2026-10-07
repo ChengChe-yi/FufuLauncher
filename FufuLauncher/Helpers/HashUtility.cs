@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.IO.Hashing;
 using System.Security.Cryptography;
 
@@ -30,7 +31,7 @@ public static class HashUtility
         using var md5 = MD5.Create();
         return BitConverter.ToString(md5.ComputeHash(data)).Replace("-", "").ToLowerInvariant();
     }
-    
+
     public static string XxHash64Hex(Stream stream)
     {
         var algorithm = new XxHash64();

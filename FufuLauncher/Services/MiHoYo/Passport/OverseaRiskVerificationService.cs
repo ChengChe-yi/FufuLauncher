@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using FufuLauncher.Models.MiHoYo.Passport;
 using FufuLauncher.Views;
@@ -11,7 +12,8 @@ namespace FufuLauncher.Services.MiHoYo.Passport;
 
 public sealed class OverseaRiskVerificationService
 {
-    public async Task<bool> TryVerifyAsync(IVerifyProvider provider, string? rawRisk, XamlRoot? xamlRoot, CancellationToken token = default)
+    public async Task<bool> TryVerifyAsync(IVerifyProvider provider, string? rawRisk, XamlRoot? xamlRoot,
+        CancellationToken token = default)
     {
         if (string.IsNullOrEmpty(rawRisk) || xamlRoot is null)
         {

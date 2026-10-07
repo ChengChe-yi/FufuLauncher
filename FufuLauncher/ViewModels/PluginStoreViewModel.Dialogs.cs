@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Models;
@@ -38,7 +39,7 @@ public partial class PluginStoreViewModel
                 var rootGrid = new Grid();
                 rootGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(32) });
                 rootGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                
+
                 var titleBar = new Grid { Height = 32 };
                 titleBar.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
                 titleBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
@@ -64,7 +65,7 @@ public partial class PluginStoreViewModel
                 rootGrid.Children.Add(webView);
 
                 captchaWindow.Content = rootGrid;
-                
+
                 // Configure AppWindow with null guard
                 if (captchaWindow.AppWindow is { } appWindow)
                 {
@@ -87,7 +88,7 @@ public partial class PluginStoreViewModel
                 captchaWindow.SetTitleBar(titleBar);
 
                 await webView.EnsureCoreWebView2Async();
-                
+
                 // Guard: CoreWebView2 must be non-null after initialization
                 if (webView.CoreWebView2 is not { } coreWebView)
                 {
@@ -102,7 +103,7 @@ public partial class PluginStoreViewModel
 
                 pollCts = new CancellationTokenSource();
                 var pollToken = pollCts.Token;
-                
+
                 coreWebView.NavigationCompleted += async (s, e) =>
                 {
                     if (!e.IsSuccess) return;
@@ -115,11 +116,17 @@ public partial class PluginStoreViewModel
                             await Task.Delay(500, pollToken);
 
                             string raw;
-                            try { raw = await webView.CoreWebView2.ExecuteScriptAsync("document.body.textContent"); }
-                            catch { continue; }
+                            try
+                            {
+                                raw = await webView.CoreWebView2.ExecuteScriptAsync("document.body.textContent");
+                            }
+                            catch
+                            {
+                                continue;
+                            }
 
                             if (string.IsNullOrWhiteSpace(raw)) continue;
-                            
+
                             var unescaped = raw.Trim('"').Replace("\\\"", "\"").Replace("\\\\", "\\");
 
                             if (!unescaped.StartsWith("{")) continue;
@@ -143,10 +150,14 @@ public partial class PluginStoreViewModel
                                     }
                                 }
                             }
-                            catch (JsonException) { }
+                            catch (JsonException)
+                            {
+                            }
                         }
                     }
-                    catch (TaskCanceledException) { }
+                    catch (TaskCanceledException)
+                    {
+                    }
                 };
 
                 captchaWindow.Closed += (_, _) =>
@@ -167,8 +178,14 @@ public partial class PluginStoreViewModel
                 // Best-effort close the window if it was created
                 if (captchaWindow is not null)
                 {
-                    try { captchaWindow.DispatcherQueue.TryEnqueue(() => captchaWindow.Close()); }
-                    catch { /* ignore cleanup failures */ }
+                    try
+                    {
+                        captchaWindow.DispatcherQueue.TryEnqueue(() => captchaWindow.Close());
+                    }
+                    catch
+                    {
+                        /* ignore cleanup failures */
+                    }
                 }
             }
         });
@@ -181,7 +198,7 @@ public partial class PluginStoreViewModel
 
         return await tcs.Task;
     }
-    
+
     private static async Task<string?> ShowPrivateAccessDialogAsync(PluginStoreItem item)
     {
         var tcs = new TaskCompletionSource<string?>();
@@ -255,7 +272,7 @@ public partial class PluginStoreViewModel
 
         return await tcs.Task;
     }
-    
+
     private static async Task ShowMinVersionWarningAsync(PluginStoreItem item)
     {
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
@@ -277,7 +294,8 @@ public partial class PluginStoreViewModel
                 var dialog = new ContentDialog
                 {
                     Title = "版本过低",
-                    Content = $"插件 \"{item.Name}\" 要求启动器版本≥ {item.MinAppVersion}，当前版本为 {CurrentAppVersion}\n\n请先更新启动器后再安装此插件",
+                    Content =
+                        $"插件 \"{item.Name}\" 要求启动器版本≥ {item.MinAppVersion}，当前版本为 {CurrentAppVersion}\n\n请先更新启动器后再安装此插件",
                     CloseButtonText = "知道了",
                     DefaultButton = ContentDialogButton.Close,
                     XamlRoot = xamlRoot

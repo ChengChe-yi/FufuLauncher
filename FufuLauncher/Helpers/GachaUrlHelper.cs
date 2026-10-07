@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -10,9 +11,23 @@ namespace FufuLauncher.Helpers;
 
 public sealed class GachaLink
 {
-    public required string ApiUrl { get; init; }
-    public string? Region { get; init; }
-    public DateTimeOffset? CreatedAt { get; init; }
+    public required string ApiUrl
+    {
+        get;
+        init;
+    }
+
+    public string? Region
+    {
+        get;
+        init;
+    }
+
+    public DateTimeOffset? CreatedAt
+    {
+        get;
+        init;
+    }
 }
 
 public static class GachaUrlHelper
@@ -31,6 +46,7 @@ public static class GachaUrlHelper
             var link = ParseUrl(match.Value);
             if (link != null) return link;
         }
+
         return null;
     }
 
@@ -70,7 +86,7 @@ public static class GachaUrlHelper
         if (!string.IsNullOrEmpty(region))
         {
             if (query.GetValues("region")?.Length != 1 || region is not
-                ("cn_gf01" or "cn_qd01" or "os_usa" or "os_euro" or "os_asia" or "os_cht"))
+                    ("cn_gf01" or "cn_qd01" or "os_usa" or "os_euro" or "os_asia" or "os_cht"))
                 return null;
             if (isOversea != region.StartsWith("os_", StringComparison.Ordinal)) return null;
         }

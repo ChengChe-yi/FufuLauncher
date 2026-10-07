@@ -24,6 +24,7 @@ public partial class GachaAnalysisModel
         if (cookies == null || cookies.Count == 0) return null;
         return string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
     }
+
     public async Task FetchMetadataFromApiAsync()
     {
         IsScraping = true;
@@ -58,7 +59,8 @@ public partial class GachaAnalysisModel
         }
     }
 
-    private async Task<List<ScrapedMetadata>> FetchCalculatorListWithRetryAsync(string url, object payload, string? cookie, string type)
+    private async Task<List<ScrapedMetadata>> FetchCalculatorListWithRetryAsync(string url, object payload,
+        string? cookie, string type)
     {
         const int maxAttempts = 3;
         int[] delays = { 1000, 2000, 4000 };
@@ -79,10 +81,12 @@ public partial class GachaAnalysisModel
                 Debug.WriteLine($"[Gacha] {typeName}元数据获取失败，已重试 {maxAttempts} 次仍为空");
             }
         }
+
         return new List<ScrapedMetadata>();
     }
 
-    private async Task<List<ScrapedMetadata>> FetchCalculatorListAsync(string url, object payload, string? cookie, string type)
+    private async Task<List<ScrapedMetadata>> FetchCalculatorListAsync(string url, object payload, string? cookie,
+        string type)
     {
         var list = new List<ScrapedMetadata>();
         try
@@ -139,6 +143,7 @@ public partial class GachaAnalysisModel
         {
             Debug.WriteLine($"[Gacha] 获取 {type} 列表失败: {ex.Message}");
         }
+
         return list;
     }
 
@@ -168,7 +173,7 @@ public partial class GachaAnalysisModel
         if (string.IsNullOrEmpty(_currentUid)) return;
 
         var total = _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count
-                  + _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
+                    + _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
         if (total == 0) return;
 
         var changed = FillMissingFieldsFromMetadata(
@@ -195,7 +200,8 @@ public partial class GachaAnalysisModel
         await UpdateCollectionImagesAsync(StandardFourStars, metaDict);
     }
 
-    private async Task UpdateCollectionImagesAsync(ObservableCollection<GachaDisplayItem> collection, Dictionary<string, ScrapedMetadata> metaDict)
+    private async Task UpdateCollectionImagesAsync(ObservableCollection<GachaDisplayItem> collection,
+        Dictionary<string, ScrapedMetadata> metaDict)
     {
         if (collection == null || collection.Count == 0) return;
 
@@ -221,7 +227,9 @@ public partial class GachaAnalysisModel
                 if (match != null)
                 {
                     var imgUrl = !string.IsNullOrEmpty(match.ImgSrc) ? match.ImgSrc : null;
-                    var elementUrl = (item.Type == "角色" || item.Type == "常驻") && !string.IsNullOrEmpty(match.ElementSrc) ? match.ElementSrc : null;
+                    var elementUrl = (item.Type == "角色" || item.Type == "常驻") && !string.IsNullOrEmpty(match.ElementSrc)
+                        ? match.ElementSrc
+                        : null;
                     if (imgUrl != null || elementUrl != null)
                     {
                         updates.Add((item, imgUrl, elementUrl));

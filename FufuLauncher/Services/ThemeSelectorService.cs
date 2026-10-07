@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
@@ -15,7 +16,11 @@ namespace FufuLauncher.Services
     {
         private const string SettingsKey = "AppBackgroundRequestedTheme";
 
-        public ElementTheme Theme { get; set; } = ElementTheme.Default;
+        public ElementTheme Theme
+        {
+            get;
+            set;
+        } = ElementTheme.Default;
 
         private readonly ILocalSettingsService _localSettingsService;
 
@@ -41,7 +46,9 @@ namespace FufuLauncher.Services
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         public async Task SetThemeAsync(ElementTheme theme)
@@ -118,7 +125,6 @@ namespace FufuLauncher.Services
 
         private async Task<ElementTheme> LoadThemeFromSettingsAsync()
         {
-
             var themeObj = await _localSettingsService.ReadSettingAsync(SettingsKey);
 
             if (themeObj != null)

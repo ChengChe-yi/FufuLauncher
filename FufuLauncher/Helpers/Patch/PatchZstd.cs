@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using ZstdSharp;
 
 namespace FufuLauncher.Helpers.Patch;
@@ -9,7 +10,7 @@ namespace FufuLauncher.Helpers.Patch;
 internal interface IPatchDecompressor
 {
     bool CanOpen(string compressType);
-    
+
     Stream Open(long uncompressedSize, PatchInput diff, long codeBegin, long codeEnd);
 }
 

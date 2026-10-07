@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 using System.Text.Json.Nodes;
 using FufuLauncher.Constants;
@@ -58,7 +59,8 @@ public sealed partial class LoginQrWindow
 
             await Task.Delay(1000);
 
-            bool confirmResult = await SimulateAppActionAsync(ApiEndpoints.PassportConfirmQrLoginUrl, webTicket, authCookie);
+            bool confirmResult =
+                await SimulateAppActionAsync(ApiEndpoints.PassportConfirmQrLoginUrl, webTicket, authCookie);
             if (!confirmResult)
             {
                 UpdateStatus("请求被拒绝");
@@ -142,14 +144,16 @@ public sealed partial class LoginQrWindow
             var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
             if (result["retcode"]?.GetValue<int>() == 0) return result["data"]["ticket"]?.GetValue<string>();
         }
-        catch { }
+        catch
+        {
+        }
 
         return null!;
     }
 
     private async Task<bool> SimulateAppActionAsync(string url, string ticket, string authCookie)
     {
-        var tokenTypes = new JsonArray { "4" }; 
+        var tokenTypes = new JsonArray { "4" };
         var body = new JsonObject { ["ticket"] = ticket, ["token_types"] = tokenTypes };
         string bodyStr = body.ToJsonString(_jsonOptions);
 
@@ -163,7 +167,10 @@ public sealed partial class LoginQrWindow
             var result = JsonNode.Parse(await response.Content.ReadAsStringAsync());
             return result["retcode"]?.GetValue<int>() == 0;
         }
-        catch { }
+        catch
+        {
+        }
+
         return false;
     }
 
@@ -199,14 +206,20 @@ public sealed partial class LoginQrWindow
                                 if (kv.Length == 2) cookieDict[kv[0].Trim()] = kv[1].Trim();
                             }
                         }
+
                         return cookieDict;
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
+
             await Task.Delay(1000);
         }
+
         return null;
     }
+
     #endregion
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using FufuLauncher.ViewModels;
@@ -14,7 +15,10 @@ namespace FufuLauncher.Views;
 
 public sealed partial class HelpPage : Page
 {
-    public HelpViewModel ViewModel { get; } = new();
+    public HelpViewModel ViewModel
+    {
+        get;
+    } = new();
 
     private readonly Dictionary<TreeViewNode, DocItem> _nodeToDocItemMap = new();
 
@@ -25,7 +29,7 @@ public sealed partial class HelpPage : Page
         this.InitializeComponent();
         this.Loaded += HelpPage_Loaded;
     }
-    
+
     private void HelpMarkdown_SizeChanged(object sender, SizeChangedEventArgs e)
     {
         if (sender is not MarkdownTextBlock md)
@@ -77,8 +81,10 @@ public sealed partial class HelpPage : Page
                     _nodeToDocItemMap[itemNode] = item;
                     categoryNode.Children.Add(itemNode);
                 }
+
                 DirectoryTreeView.RootNodes.Add(categoryNode);
             }
+
             return;
         }
 
@@ -91,6 +97,7 @@ public sealed partial class HelpPage : Page
                 _nodeToDocItemMap[itemNode] = hit.Item;
                 categoryNode.Children.Add(itemNode);
             }
+
             if (categoryNode.Children.Count > 0)
                 DirectoryTreeView.RootNodes.Add(categoryNode);
         }

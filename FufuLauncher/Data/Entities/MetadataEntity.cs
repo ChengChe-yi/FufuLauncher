@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,20 +13,44 @@ public class MetadataEntity
 {
     [Key]
     [Column("Name")]
-    public string Name { get; set; } = string.Empty;
+    public string Name
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [Column("ImgSrc")]
-    public string? ImgSrc { get; set; }
+    public string? ImgSrc
+    {
+        get;
+        set;
+    }
 
     [Column("ElementSrc")]
-    public string? ElementSrc { get; set; }
+    public string? ElementSrc
+    {
+        get;
+        set;
+    }
 
     [Column("Type")]
-    public string? Type { get; set; }
+    public string? Type
+    {
+        get;
+        set;
+    }
 
     [Column("Rank")]
-    public string? Rank { get; set; }
+    public string? Rank
+    {
+        get;
+        set;
+    }
 
     [Column("ItemId")]
-    public string? ItemId { get; set; }
+    public string? ItemId
+    {
+        get;
+        set;
+    }
 }

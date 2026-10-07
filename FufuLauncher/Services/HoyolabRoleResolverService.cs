@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -29,7 +30,8 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
         _httpClient.Timeout = TimeSpan.FromSeconds(15);
     }
 
-    public async Task<HoyolabRoleResolveResult> ResolveRolesAsync(string cookie, CancellationToken cancellationToken = default)
+    public async Task<HoyolabRoleResolveResult> ResolveRolesAsync(string cookie,
+        CancellationToken cancellationToken = default)
     {
         var bindingResult = await TryResolveFromBindingAsync(cookie, cancellationToken);
         if (bindingResult.HasRoles)
@@ -52,7 +54,8 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
             new List<GameRoleInfo>());
     }
 
-    private async Task<HoyolabRoleResolveResult> TryResolveFromBindingAsync(string cookie, CancellationToken cancellationToken)
+    private async Task<HoyolabRoleResolveResult> TryResolveFromBindingAsync(string cookie,
+        CancellationToken cancellationToken)
     {
         try
         {
@@ -94,7 +97,8 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
         }
     }
 
-    private async Task<HoyolabRoleResolveResult> TryResolveFromGameRecordCardAsync(string cookie, CancellationToken cancellationToken)
+    private async Task<HoyolabRoleResolveResult> TryResolveFromGameRecordCardAsync(string cookie,
+        CancellationToken cancellationToken)
     {
         try
         {
@@ -102,7 +106,8 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
                       ?? ExtractCookieValue(cookie, "ltuid_v2")
                       ?? ExtractCookieValue(cookie, "account_id");
             if (string.IsNullOrWhiteSpace(uid))
-                return new HoyolabRoleResolveResult(-1, "Cookie 中缺少 HoYoLAB UID", "game_record_card", new List<GameRoleInfo>());
+                return new HoyolabRoleResolveResult(-1, "Cookie 中缺少 HoYoLAB UID", "game_record_card",
+                    new List<GameRoleInfo>());
 
             var url = $"https://bbs-api-os.hoyolab.com/game_record/card/wapi/getGameRecordCard?uid={uid}";
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -189,7 +194,8 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
         request.Headers.TryAddWithoutValidation("X-Requested-With", "com.mihoyo.hoyolab");
         request.Headers.TryAddWithoutValidation("Referer", referer);
         request.Headers.TryAddWithoutValidation("Origin", origin);
-        request.Headers.UserAgent.ParseAdd("Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/3.13.0");
+        request.Headers.UserAgent.ParseAdd(
+            "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/3.13.0");
     }
 
     private static string GenerateDs(string body = "", string query = "")
@@ -225,4 +231,3 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
         return $"{result.Source}: {result.Message}";
     }
 }
-

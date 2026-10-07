@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models.UIGF;
@@ -9,23 +10,51 @@ namespace FufuLauncher.Models.UIGF;
 public class UIGFInfo
 {
     [JsonPropertyName("export_timestamp")]
-    public long ExportTimestamp { get; set; }
+    public long ExportTimestamp
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("export_app")]
-    public string ExportApp { get; set; } = "FufuLauncher";
+    public string ExportApp
+    {
+        get;
+        set;
+    } = "FufuLauncher";
 
     [JsonPropertyName("export_app_version")]
-    public string ExportAppVersion { get; set; }
+    public string ExportAppVersion
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("version")]
-    public string Version { get; set; }
+    public string Version
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("uigf_version")]
-    public string UigfVersion { get; set; }
+    public string UigfVersion
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("uid")]
-    public string Uid { get; set; }
+    public string Uid
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("lang")]
-    public string Lang { get; set; }
+    public string Lang
+    {
+        get;
+        set;
+    }
 }

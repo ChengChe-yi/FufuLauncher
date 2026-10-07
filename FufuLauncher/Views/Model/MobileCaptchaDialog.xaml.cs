@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.RegularExpressions;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.MiHoYo.Passport;
@@ -21,19 +22,21 @@ public sealed partial class MobileCaptchaDialog : ContentDialog, IPassportMobile
     private readonly DispatcherTimer _countdownTimer = new();
     private int _countdownSeconds;
     private bool _isSending;
-    
+
     public string? Mobile => MobileTextBox?.Text?.Trim();
-    
+
     public string? Captcha => CaptchaTextBox?.Text?.Trim();
-    
+
     public string? ActionType
     {
-        get; private set;
+        get;
+        private set;
     }
 
     public string? Aigis
     {
-        get; set;
+        get;
+        set;
     }
 
     public MobileCaptchaDialog()
@@ -66,7 +69,8 @@ public sealed partial class MobileCaptchaDialog : ContentDialog, IPassportMobile
             (string? rawAigis, PassportResponse<MobileCaptcha> response) =
                 await _passportClient.CreateLoginCaptchaAsync(mobile, aigis: null);
 
-            System.Diagnostics.Debug.WriteLine($"[MobileCaptcha] 发送验证码: retcode={response.RetCode}, aigis={(rawAigis is null ? "无" : "有")}");
+            System.Diagnostics.Debug.WriteLine(
+                $"[MobileCaptcha] 发送验证码: retcode={response.RetCode}, aigis={(rawAigis is null ? "无" : "有")}");
 
             if (await _geetestService.TryVerifyAigisSessionAsync(this, rawAigis, isOversea: false))
             {
@@ -123,7 +127,7 @@ public sealed partial class MobileCaptchaDialog : ContentDialog, IPassportMobile
     private void UpdatePrimaryButtonState()
     {
         IsPrimaryButtonEnabled = _mobileRegex.IsMatch(Mobile ?? string.Empty)
-            && !string.IsNullOrEmpty(Captcha);
+                                 && !string.IsNullOrEmpty(Captcha);
     }
 
     private void ShowError(string message)

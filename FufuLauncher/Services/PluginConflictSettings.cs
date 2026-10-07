@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.Data.Sqlite;
@@ -69,7 +70,8 @@ public static class PluginConflictSettings
 
     private static string GetSettingsDbPath()
     {
-        var root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "FufuLauncher");
+        var root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "FufuLauncher");
         var dataDir = Path.Combine(root, "Data");
 
         try
@@ -78,7 +80,8 @@ public static class PluginConflictSettings
             if (File.Exists(pathsFile))
             {
                 var config = JsonSerializer.Deserialize<Dictionary<string, string>>(File.ReadAllText(pathsFile));
-                if (config != null && config.TryGetValue("DataDir", out var custom) && !string.IsNullOrWhiteSpace(custom))
+                if (config != null && config.TryGetValue("DataDir", out var custom) &&
+                    !string.IsNullOrWhiteSpace(custom))
                 {
                     dataDir = custom;
                 }

@@ -8,27 +8,31 @@
 
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid x:Name="AppTitleBar" Grid.Row="0" Background="Transparent" IsHitTestVisible="True">
-            <TextBlock x:Name="TitleText" Text="{helpers:Loc Key=CheckinCalendar_Title}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="14" FontWeight="SemiBold"/>
+            <TextBlock x:Name="TitleText" Text="{helpers:Loc Key=CheckinCalendar_Title}" VerticalAlignment="Center"
+                       Margin="16,0,0,0" FontSize="14" FontWeight="SemiBold" />
         </Grid>
 
         <views:GameRoleSelector Grid.Row="1" Margin="16,8,16,16" Scope="{x:Bind RoleSelection}" />
-        <GridView Grid.Row="2" x:Name="CalendarGridView" Padding="16,0,16,16" SelectionMode="None" HorizontalAlignment="Center">
+        <GridView Grid.Row="2" x:Name="CalendarGridView" Padding="16,0,16,16" SelectionMode="None"
+                  HorizontalAlignment="Center">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="models:CalendarRewardItem">
-                    <Grid Width="72" Height="88" Margin="4" Background="#1A888888" CornerRadius="8" ToolTipService.ToolTip="{x:Bind Name}">
+                    <Grid Width="72" Height="88" Margin="4" Background="#1A888888" CornerRadius="8"
+                          ToolTipService.ToolTip="{x:Bind Name}">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="{x:Bind Icon}" Stretch="Uniform" Margin="8,8,8,4"/>
-                        <TextBlock Grid.Row="1" Text="{x:Bind CountText}" HorizontalAlignment="Center" FontSize="12" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                        <Image Grid.Row="0" Source="{x:Bind Icon}" Stretch="Uniform" Margin="8,8,8,4" />
+                        <TextBlock Grid.Row="1" Text="{x:Bind CountText}" HorizontalAlignment="Center" FontSize="12"
+                                   FontWeight="SemiBold" Margin="0,0,0,8" />
                     </Grid>
                 </DataTemplate>
             </GridView.ItemTemplate>

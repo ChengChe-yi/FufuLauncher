@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text.Json;
@@ -13,7 +14,6 @@ namespace FufuLauncher.Services.UID;
 
 public enum BanCheckOutcome
 {
-
     Passed,
 
 
@@ -25,19 +25,34 @@ public enum BanCheckOutcome
 
 public sealed class BanCheckResult
 {
-    public BanCheckOutcome Outcome { get; init; } = BanCheckOutcome.Passed;
+    public BanCheckOutcome Outcome
+    {
+        get;
+        init;
+    } = BanCheckOutcome.Passed;
 
 
-    public string? Uid { get; init; }
+    public string? Uid
+    {
+        get;
+        init;
+    }
 
-    public string Reason { get; init; } = string.Empty;
+    public string Reason
+    {
+        get;
+        init;
+    } = string.Empty;
 
 
-    public string AppealUrl { get; init; } = string.Empty;
+    public string AppealUrl
+    {
+        get;
+        init;
+    } = string.Empty;
 
     public bool ShouldTerminate => Outcome is BanCheckOutcome.Revoked or BanCheckOutcome.Banned;
 }
-
 
 public sealed class BanCheckService
 {
@@ -231,7 +246,7 @@ public sealed class BanCheckService
         }
     }
 
- 
+
     private static bool? ReadStatus(JsonElement element) => element.ValueKind switch
     {
         JsonValueKind.True => true,

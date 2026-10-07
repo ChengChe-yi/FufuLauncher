@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -21,7 +22,7 @@ public sealed partial class PluginPage
             if (toggleSwitch.IsOn)
             {
                 var osArch = System.Runtime.InteropServices.RuntimeInformation.OSArchitecture;
-                if (osArch == System.Runtime.InteropServices.Architecture.Arm || 
+                if (osArch == System.Runtime.InteropServices.Architecture.Arm ||
                     osArch == System.Runtime.InteropServices.Architecture.Arm64)
                 {
                     var dialog = new ContentDialog
@@ -34,11 +35,11 @@ public sealed partial class PluginPage
                     };
 
                     var result = await dialog.ShowAsync();
-                
+
                     if (result != ContentDialogResult.Primary)
                     {
                         toggleSwitch.IsOn = false;
-                        return; 
+                        return;
                     }
                 }
             }
@@ -46,7 +47,7 @@ public sealed partial class PluginPage
             MainViewModel.UseInjection = toggleSwitch.IsOn;
         }
     }
-    
+
     private void OnOpenDiagnosticsClick(object sender, RoutedEventArgs e)
     {
         var diagnosticsWindow = new DiagnosticsWindow();

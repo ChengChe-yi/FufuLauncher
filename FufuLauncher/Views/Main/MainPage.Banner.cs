@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Numerics;
 using FufuLauncher.Models;
@@ -59,6 +60,7 @@ public sealed partial class MainPage
         {
             return;
         }
+
         if (targetBanner == null)
         {
             return;
@@ -70,7 +72,8 @@ public sealed partial class MainPage
             return;
         }
 
-        if (!forceEntranceAnimation && ReferenceEquals(_displayedBanner, targetBanner) && BannerCurrentImage.Source != null)
+        if (!forceEntranceAnimation && ReferenceEquals(_displayedBanner, targetBanner) &&
+            BannerCurrentImage.Source != null)
         {
             return;
         }

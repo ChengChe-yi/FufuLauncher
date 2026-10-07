@@ -31,7 +31,8 @@ public sealed partial class MainPage
         var duration = new Duration(TimeSpan.FromMilliseconds(200));
         var easing = new CubicEase { EasingMode = EasingMode.EaseOut };
 
-        storyboard.Children.Add(CreateDoubleAnimation(LaunchButtonHoverLayer, "Opacity", targetOpacity, duration, easing));
+        storyboard.Children.Add(CreateDoubleAnimation(LaunchButtonHoverLayer, "Opacity", targetOpacity, duration,
+            easing));
 
         storyboard.Begin();
     }
@@ -85,12 +86,10 @@ public sealed partial class MainPage
 
     private void ScreenshotButton_PointerEntered(object sender, PointerRoutedEventArgs e)
     {
-
     }
 
     private void ScreenshotButton_PointerExited(object sender, PointerRoutedEventArgs e)
     {
-
     }
 
     #endregion

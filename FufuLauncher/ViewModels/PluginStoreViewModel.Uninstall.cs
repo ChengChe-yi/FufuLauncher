@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -24,7 +25,7 @@ public partial class PluginStoreViewModel
             item.IsInstallInProgress = true;
             item.State = StorePluginState.Installing;
             item.InstallStatusText = "PluginStoreUninstalling".GetLocalized();
-            
+
             if (!string.IsNullOrEmpty(item.LuaUninstallUrl))
             {
                 var maxCaptchaRetries = 3;
@@ -62,7 +63,8 @@ public partial class PluginStoreViewModel
 
                         if (string.IsNullOrWhiteSpace(dlToken))
                         {
-                            Debug.WriteLine("[PluginStoreVM] Uninstall captcha cancelled, falling back to directory delete");
+                            Debug.WriteLine(
+                                "[PluginStoreVM] Uninstall captcha cancelled, falling back to directory delete");
                             break;
                         }
 
@@ -78,7 +80,8 @@ public partial class PluginStoreViewModel
                         var accessKey = await ShowPrivateAccessDialogAsync(item);
                         if (string.IsNullOrWhiteSpace(accessKey))
                         {
-                            Debug.WriteLine("[PluginStoreVM] Uninstall private access cancelled, falling back to directory delete");
+                            Debug.WriteLine(
+                                "[PluginStoreVM] Uninstall private access cancelled, falling back to directory delete");
                             break;
                         }
 
@@ -86,19 +89,22 @@ public partial class PluginStoreViewModel
                         item.AccessToken = accessResult.AccessToken;
                         attempt++;
                     }
-                    catch (InvalidOperationException ex) when (ex.Message.Contains("download") || ex.Message.Contains("Download"))
+                    catch (InvalidOperationException ex) when (ex.Message.Contains("download") ||
+                                                               ex.Message.Contains("Download"))
                     {
                         Debug.WriteLine($"[PluginStoreVM] Uninstall download error (may need captcha): {ex.Message}");
                         attempt++;
                         if (attempt >= maxCaptchaRetries)
                         {
-                            Debug.WriteLine("[PluginStoreVM] Uninstall captcha retries exhausted, falling back to directory delete");
+                            Debug.WriteLine(
+                                "[PluginStoreVM] Uninstall captcha retries exhausted, falling back to directory delete");
                             break;
                         }
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[PluginStoreVM] Lua uninstall error, falling back to directory delete: {ex.Message}");
+                        Debug.WriteLine(
+                            $"[PluginStoreVM] Lua uninstall error, falling back to directory delete: {ex.Message}");
                         break;
                     }
                 }
@@ -108,7 +114,7 @@ public partial class PluginStoreViewModel
                     Debug.WriteLine("[PluginStoreVM] Lua uninstall script completed successfully");
                 }
             }
-            
+
             var pluginDir = Path.Combine(_pluginsDir, item.Id);
             if (Directory.Exists(pluginDir))
             {
@@ -133,7 +139,7 @@ public partial class PluginStoreViewModel
             item.IsInstallInProgress = false;
         }
     }
-    
+
     private void CleanupPluginDir(string pluginId)
     {
         try
@@ -150,7 +156,7 @@ public partial class PluginStoreViewModel
             Debug.WriteLine($"[PluginStoreVM] Failed to clean up plugin dir: {ex.Message}");
         }
     }
-    
+
     private bool IsPluginInstalledOnDisk(string pluginId, out string? localVersion)
     {
         localVersion = null;
@@ -177,6 +183,7 @@ public partial class PluginStoreViewModel
                     inGeneral = trimmed.Equals("[General]", StringComparison.OrdinalIgnoreCase);
                     continue;
                 }
+
                 if (!inGeneral) continue;
 
                 var parts = trimmed.Split('=', 2);
@@ -194,7 +201,7 @@ public partial class PluginStoreViewModel
                     dllFileName = value;
                 }
             }
-            
+
             if (!string.IsNullOrEmpty(dllFileName))
             {
                 var dllPath = Path.Combine(pluginDir, dllFileName);

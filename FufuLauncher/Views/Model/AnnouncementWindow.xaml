@@ -21,7 +21,8 @@
 
             <StackPanel Orientation="Horizontal" Grid.Column="0" Spacing="8" Margin="12,0,0,0"
                         VerticalAlignment="Center">
-                <TextBlock Text="{helpers:Loc Key=AnnouncementWindow_GameAnnouncement}" FontSize="12" VerticalAlignment="Center" Opacity="0.9" />
+                <TextBlock Text="{helpers:Loc Key=AnnouncementWindow_GameAnnouncement}" FontSize="12"
+                           VerticalAlignment="Center" Opacity="0.9" />
             </StackPanel>
         </Grid>
 

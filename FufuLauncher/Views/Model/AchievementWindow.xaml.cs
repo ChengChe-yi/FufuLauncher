@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -13,14 +14,17 @@ using Microsoft.UI.Xaml;
 namespace FufuLauncher.Views;
 
 /// <summary>
-/// 成就窗口核心部分：状态字段、配置文件路径与窗口生命周期。
-/// 其余功能拆分在同目录的 partial 文件中：
-/// Database(数据库初始化与同步)、Archives(存档管理)、Data(加载/保存/统计)、
-/// Filters(筛选与视图切换)、Import(CSV 导入与本地服务)、Uiaf(UIAF/Yae 导入导出)、Dialogs(对话框)。
+///     成就窗口核心部分：状态字段、配置文件路径与窗口生命周期。
+///     其余功能拆分在同目录的 partial 文件中：
+///     Database(数据库初始化与同步)、Archives(存档管理)、Data(加载/保存/统计)、
+///     Filters(筛选与视图切换)、Import(CSV 导入与本地服务)、Uiaf(UIAF/Yae 导入导出)、Dialogs(对话框)。
 /// </summary>
 public sealed partial class AchievementWindow : Window
 {
-    public AchievementViewModel ViewModel { get; } = new();
+    public AchievementViewModel ViewModel
+    {
+        get;
+    } = new();
 
     private readonly string _workFilePath;
     private readonly string _assetsFilePath;
@@ -33,6 +37,7 @@ public sealed partial class AchievementWindow : Window
     private readonly string _archivesDir;
     private readonly string _profileRecordPath;
     private string _currentProfileName = "AchievementWindow_DefaultProfile".GetLocalized();
+
     public string CurrentProfileName
     {
         get => _currentProfileName;
@@ -81,12 +86,17 @@ public sealed partial class AchievementWindow : Window
         }
 
         _workFilePath = Path.Combine(docPath, "achievements.db");
-        _assetsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "genshin_achievements_linked.json");
+        _assetsFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets",
+            "genshin_achievements_linked.json");
         _achievementRepo = App.GetService<AchievementRepository>();
 
         LoadData();
         StartLocalServer();
-        Closed += (s, e) => { _keepRunning = false; _listener?.Close(); };
+        Closed += (s, e) =>
+        {
+            _keepRunning = false;
+            _listener?.Close();
+        };
         ViewModel.PropertyChanged += ViewModel_PropertyChanged;
     }
 

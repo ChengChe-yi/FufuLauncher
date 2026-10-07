@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.Json;
@@ -96,7 +97,9 @@ public partial class SettingsViewModel
                     var list = JsonSerializer.Deserialize<List<string>>(disabledUidsJson.ToString() ?? "[]");
                     if (list != null) disabledUids = new HashSet<string>(list);
                 }
-                catch { }
+                catch
+                {
+                }
             }
 
             var accounts = new ObservableCollection<CheckinAccountItem>();

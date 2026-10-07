@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,8 +13,16 @@ public class AchievementCategoryEntity
 {
     [Key]
     [Column("Name")]
-    public string Name { get; set; } = string.Empty;
+    public string Name
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [Column("IconUrl")]
-    public string? IconUrl { get; set; }
+    public string? IconUrl
+    {
+        get;
+        set;
+    }
 }

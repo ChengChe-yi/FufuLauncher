@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -51,7 +52,8 @@ public sealed partial class AchievementWindow
             return;
         }
 
-        var options = new JsonSerializerOptions {
+        var options = new JsonSerializerOptions
+        {
             PropertyNameCaseInsensitive = true,
             NumberHandling = JsonNumberHandling.AllowReadingFromString,
             ReadCommentHandling = JsonCommentHandling.Skip,
@@ -69,9 +71,11 @@ public sealed partial class AchievementWindow
                 $"[AchievementWindow] 成就 JSON 解析失败 ({jsonPath}): {ex.Message}");
             return;
         }
+
         if (rawCategories == null) return;
 
-        var writeOptions = new JsonSerializerOptions { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+        var writeOptions = new JsonSerializerOptions
+            { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
 
         var categoryEntries = rawCategories.Select(cat => (GetCategoryName(cat), cat.IconUrl)).ToList();
         _achievementRepo.InsertOrIgnoreCategories(categoryEntries);
@@ -97,6 +101,7 @@ public sealed partial class AchievementWindow
                 });
             }
         }
+
         _achievementRepo.InsertAchievements(achievements);
     }
 
@@ -116,7 +121,11 @@ public sealed partial class AchievementWindow
             }
 
             string masterJson = await File.ReadAllTextAsync(_assetsFilePath);
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true, NumberHandling = JsonNumberHandling.AllowReadingFromString, ReadCommentHandling = JsonCommentHandling.Skip, PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true, NumberHandling = JsonNumberHandling.AllowReadingFromString,
+                ReadCommentHandling = JsonCommentHandling.Skip, PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
             var masterCategories = JsonSerializer.Deserialize<List<AchievementCategory>>(masterJson, options);
 
             EnsureDatabaseExists(_workFilePath);
@@ -127,7 +136,8 @@ public sealed partial class AchievementWindow
 
             int addedCount = 0;
             int newCategoriesCount = 0;
-            var writeOptions = new JsonSerializerOptions { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+            var writeOptions = new JsonSerializerOptions
+                { Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
 
             var newCategories = new List<(string, string?)>();
             var newAchievements = new List<AchievementEntity>();

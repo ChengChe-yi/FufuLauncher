@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Reflection;
 
 namespace FufuLauncher.Helpers
@@ -9,10 +10,11 @@ namespace FufuLauncher.Helpers
     public static class AppVersionHelper
     {
         public const string PreReleaseSuffix = "Pre-release";
-        
+
         public static readonly string FullVersion = ReadFullVersion();
         public static readonly string NumericVersion = StripPreReleaseSuffix(FullVersion);
         public static bool IsPreviewBuild => FullVersion.Contains(PreReleaseSuffix, StringComparison.OrdinalIgnoreCase);
+
         public static string StripPreReleaseSuffix(string? version)
         {
             if (string.IsNullOrWhiteSpace(version))
@@ -25,9 +27,10 @@ namespace FufuLauncher.Helpers
             {
                 trimmed = trimmed.Substring(0, trimmed.Length - PreReleaseSuffix.Length).Trim();
             }
+
             return trimmed;
         }
-        
+
         public static bool TryParseVersion(string? input, out Version version)
         {
             if (!Version.TryParse(StripPreReleaseSuffix(input), out Version? parsed) || parsed == null)

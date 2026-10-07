@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
@@ -21,8 +22,12 @@ public class EnumToBooleanConverter : IValueConverter
                     var parsedValue = Enum.Parse(value.GetType(), enumString);
                     return parsedValue.Equals(value);
                 }
-                catch { return false; }
+                catch
+                {
+                    return false;
+                }
             }
+
             if (value is int intValue)
             {
                 foreach (var enumType in _knownEnumTypes)
@@ -32,9 +37,11 @@ public class EnumToBooleanConverter : IValueConverter
                         return (int)result == intValue;
                     }
                 }
+
                 return false;
             }
         }
+
         return false;
     }
 
@@ -65,6 +72,7 @@ public class EnumToBooleanConverter : IValueConverter
                 return DependencyProperty.UnsetValue;
             }
         }
+
         return DependencyProperty.UnsetValue;
     }
 

@@ -16,10 +16,12 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="AppTitleBar" Grid.Row="0" Background="Transparent">
-            <TextBlock Text="{helpers:Loc Key=PresetManager_Title}" VerticalAlignment="Center" Margin="16,0,0,0" FontSize="12" />
+            <TextBlock Text="{helpers:Loc Key=PresetManager_Title}" VerticalAlignment="Center" Margin="16,0,0,0"
+                       FontSize="12" />
         </Grid>
 
-        <TextBlock Grid.Row="1" Text="{helpers:Loc Key=PresetManager_SelectHint}" FontSize="16" FontWeight="SemiBold" Margin="20,10,20,10" />
+        <TextBlock Grid.Row="1" Text="{helpers:Loc Key=PresetManager_SelectHint}" FontSize="16" FontWeight="SemiBold"
+                   Margin="20,10,20,10" />
 
         <ListView Grid.Row="2" ItemsSource="{x:Bind AllPresets}" Margin="20,0,20,20" SelectionMode="None">
             <ListView.ItemTemplate>

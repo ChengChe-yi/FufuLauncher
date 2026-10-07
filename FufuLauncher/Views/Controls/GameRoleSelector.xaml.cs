@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
@@ -20,11 +21,13 @@ public sealed partial class GameRoleSelector : UserControl
         {
             if (sender is GameRoleSelector selector && selector.IsLoaded) selector.UpdateItems();
         }));
+
     public GameRoleScope? Scope
     {
         get => (GameRoleScope?)GetValue(ScopeProperty);
         set => SetValue(ScopeProperty, value);
     }
+
     private readonly AccountManager _accounts = App.GetService<AccountManager>();
     private readonly GameRoleService _roles = App.GetService<GameRoleService>();
     private List<GameRoleInfo> _items = new();
@@ -68,14 +71,21 @@ public sealed partial class GameRoleSelector : UserControl
             _accountId = account?.Id;
             _items = account == null ? new() : GameRoleSelection.Filter(account.GameRoles ?? [], account.ServerType);
             if (Scope != null) _items = _items.DistinctBy(r => r.region).ToList();
-            RoleBox.ItemsSource = _items.Select(role => Scope == null ? GameRoleDisplay.BoundRole(role) :
-                GameRoleDisplay.ServerName(role.region, role.region_name)).ToList();
-            var selected = account == null ? null : Scope == null ? GameRoleSelection.Current(account) : Scope.Current(account);
-            RoleBox.SelectedIndex = _items.FindIndex(r => r.game_uid == selected?.game_uid && r.region == selected?.region);
+            RoleBox.ItemsSource = _items.Select(role =>
+                Scope == null
+                    ? GameRoleDisplay.BoundRole(role)
+                    : GameRoleDisplay.ServerName(role.region, role.region_name)).ToList();
+            var selected = account == null ? null :
+                Scope == null ? GameRoleSelection.Current(account) : Scope.Current(account);
+            RoleBox.SelectedIndex =
+                _items.FindIndex(r => r.game_uid == selected?.game_uid && r.region == selected?.region);
             RoleBox.IsEnabled = _items.Count > 0;
             if (RoleBox.SelectedIndex >= 0) ErrorText.Visibility = Visibility.Collapsed;
         }
-        finally { _updating = false; }
+        finally
+        {
+            _updating = false;
+        }
     }
 
     private async Task LoadAsync(bool refresh)
@@ -106,10 +116,15 @@ public sealed partial class GameRoleSelector : UserControl
             await _roles.SelectAsync(_accountId, role, Scope);
             ErrorText.Visibility = Visibility.Collapsed;
         }
-        catch (Exception ex) { UpdateItems(); ShowError(ex.Message); }
+        catch (Exception ex)
+        {
+            UpdateItems();
+            ShowError(ex.Message);
+        }
     }
 
     private async void Refresh_Click(object sender, RoutedEventArgs e) => await LoadAsync(true);
+
     private void ShowError(string error)
     {
         ErrorText.Text = error;

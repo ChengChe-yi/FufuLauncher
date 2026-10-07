@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Helpers.Patch;
 
 internal sealed class RleDecoder
@@ -27,10 +28,11 @@ internal sealed class RleDecoder
     {
         if (!IsFinished)
         {
-            throw new PatchFormatException($"rle not finished: memSet={_memSetLength} memCopy={_memCopyLength} ctrlFinished={_ctrl.IsFinished} codeFinished={_code.IsFinished}");
+            throw new PatchFormatException(
+                $"rle not finished: memSet={_memSetLength} memCopy={_memCopyLength} ctrlFinished={_ctrl.IsFinished} codeFinished={_code.IsFinished}");
         }
     }
-    
+
     public void Decode(byte[] dst, int count)
     {
         int offset = 0;
@@ -71,7 +73,7 @@ internal sealed class RleDecoder
             }
         }
     }
-    
+
     public void Skip(long count)
     {
         long remaining = count;
@@ -96,7 +98,7 @@ internal sealed class RleDecoder
             }
         }
     }
-    
+
     private void EnsureData()
     {
         while (_memSetLength == 0 && _memCopyLength == 0 && !_ctrl.IsFinished)

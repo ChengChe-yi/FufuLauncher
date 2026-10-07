@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Helpers;
@@ -14,6 +15,7 @@ namespace FufuLauncher.ViewModels;
 public partial class MainViewModel
 {
     #region 游戏签到
+
     private bool _hasAttemptedAutoCheckin = false;
     private bool _isInternationalAccount = false;
     private int _checkinStatusVersion;
@@ -93,7 +95,8 @@ public partial class MainViewModel
                 bool isAutoCheckinEnabled = autoCheckinObj != null && Convert.ToBoolean(autoCheckinObj);
                 bool isSigned = !string.IsNullOrEmpty(status) && (status.Contains("成功") || status.Contains("已"));
 
-                if (version == _checkinStatusVersion && roleService.IsCurrent(selected) && isAutoCheckinEnabled && !isSigned)
+                if (version == _checkinStatusVersion && roleService.IsCurrent(selected) && isAutoCheckinEnabled &&
+                    !isSigned)
                 {
                     _hasAttemptedAutoCheckin = true;
                     await ExecuteCheckinAsync();
@@ -131,7 +134,9 @@ public partial class MainViewModel
 
             var unifiedResult = await _unifiedCheckinService.ExecuteAllCheckinsAsync(progress);
 
-            CheckinStatusText = unifiedResult.OverallSuccess ? "Checkin_Complete".GetLocalized() : "Checkin_PartialFailed".GetLocalized();
+            CheckinStatusText = unifiedResult.OverallSuccess
+                ? "Checkin_Complete".GetLocalized()
+                : "Checkin_PartialFailed".GetLocalized();
             CheckinSummary = unifiedResult.SummaryMessage;
             UpdateCheckinIconState(unifiedResult.OverallSuccess ? "已签到" : "Fail");
 
@@ -141,14 +146,16 @@ public partial class MainViewModel
                 NotificationType.Warning => "Checkin_PartialFailed".GetLocalized(),
                 _ => "Account_CheckinFailed".GetLocalized()
             };
-            _notificationService.Show(notificationTitle, unifiedResult.GetDetailedSummary(), unifiedResult.NotificationType, 5000);
+            _notificationService.Show(notificationTitle, unifiedResult.GetDetailedSummary(),
+                unifiedResult.NotificationType, 5000);
         }
         catch (Exception ex)
         {
             CheckinStatusText = "Checkin_ExecuteFailed".GetLocalized();
             CheckinSummary = ex.Message;
             UpdateCheckinIconState("Fail");
-            _notificationService.Show("Account_CheckinException".GetLocalized(), ex.Message, NotificationType.Error, 3000);
+            _notificationService.Show("Account_CheckinException".GetLocalized(), ex.Message, NotificationType.Error,
+                3000);
         }
         finally
         {
@@ -156,5 +163,6 @@ public partial class MainViewModel
             await LoadCheckinStatusAsync();
         }
     }
+
     #endregion
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -43,10 +44,14 @@ public partial class PluginStoreViewModel
             if (Categories.Count == 0)
             {
                 Categories.Clear();
-                Categories.Add(new PluginStoreCategory { Key = "", DisplayName = "PluginStoreAll".GetLocalized(), Icon = "\uE71D" });
-                Categories.Add(new PluginStoreCategory { Key = "utility", DisplayName = "PluginStoreCategoryUtility".GetLocalized(), Icon = "\uE90F" });
-                Categories.Add(new PluginStoreCategory { Key = "gameplay", DisplayName = "PluginStoreCategoryGameplay".GetLocalized(), Icon = "\uE7FC" });
-                Categories.Add(new PluginStoreCategory { Key = "visuals", DisplayName = "PluginStoreCategoryVisuals".GetLocalized(), Icon = "\uE790" });
+                Categories.Add(new PluginStoreCategory
+                    { Key = "", DisplayName = "PluginStoreAll".GetLocalized(), Icon = "\uE71D" });
+                Categories.Add(new PluginStoreCategory
+                    { Key = "utility", DisplayName = "PluginStoreCategoryUtility".GetLocalized(), Icon = "\uE90F" });
+                Categories.Add(new PluginStoreCategory
+                    { Key = "gameplay", DisplayName = "PluginStoreCategoryGameplay".GetLocalized(), Icon = "\uE7FC" });
+                Categories.Add(new PluginStoreCategory
+                    { Key = "visuals", DisplayName = "PluginStoreCategoryVisuals".GetLocalized(), Icon = "\uE790" });
                 SelectedCategory = Categories.FirstOrDefault();
             }
         }
@@ -70,8 +75,10 @@ public partial class PluginStoreViewModel
                 sort: SortMode,
                 page: CurrentPage,
                 pageSize: 20);
-            
-            var savedInstallingStates = new Dictionary<string, (double percent, string status, long downloaded, long total, long speed)>(StringComparer.Ordinal);
+
+            var savedInstallingStates =
+                new Dictionary<string, (double percent, string status, long downloaded, long total, long speed)>(
+                    StringComparer.Ordinal);
             if (_installingPluginIds.Count > 0)
             {
                 foreach (var plugin in Plugins)
@@ -113,6 +120,7 @@ public partial class PluginStoreViewModel
                     {
                         UpdateLocalState(plugin);
                     }
+
                     Plugins.Add(plugin);
                 }
             }
@@ -126,7 +134,8 @@ public partial class PluginStoreViewModel
             IsEmpty = Plugins.Count == 0;
             if (IsEmpty)
             {
-                if (!string.IsNullOrWhiteSpace(SearchText) || (SelectedCategory != null && !string.IsNullOrEmpty(SelectedCategory.Key)))
+                if (!string.IsNullOrWhiteSpace(SearchText) ||
+                    (SelectedCategory != null && !string.IsNullOrEmpty(SelectedCategory.Key)))
                     StatusMessage = "PluginStoreNoMatch".GetLocalized();
                 else
                     StatusMessage = "PluginStoreNoAvailable".GetLocalized();

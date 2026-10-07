@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.ComponentModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
@@ -26,6 +27,7 @@ namespace FufuLauncher.Views;
 public sealed partial class AccountPage : Page
 {
     #region 字段
+
     private readonly IUnifiedCheckinService _unifiedCheckinService;
     private readonly INotificationService _notificationService;
     private bool _isDeleting;
@@ -33,9 +35,11 @@ public sealed partial class AccountPage : Page
     private bool _hasAnimatedProfileCard;
     private bool _hasAnimatedRightCards;
     private bool _wasLoggedInOnLoad;
+
     #endregion
 
     #region 属性
+
     public AccountViewModel ViewModel
     {
         get;
@@ -45,9 +49,11 @@ public sealed partial class AccountPage : Page
     {
         get;
     }
+
     #endregion
 
     #region 构造函数
+
     public AccountPage()
     {
         ViewModel = App.GetService<AccountViewModel>();
@@ -59,9 +65,11 @@ public sealed partial class AccountPage : Page
         RegisterRippleHandlers();
         Debug.WriteLine("AccountPage initialized");
     }
+
     #endregion
 
     #region 页面加载与动画
+
     private void Page_Unloaded(object sender, RoutedEventArgs e)
     {
         ViewModel.Cleanup();
@@ -76,13 +84,12 @@ public sealed partial class AccountPage : Page
         ViewModel.PropertyChanged += OnViewModelPropertyChanged;
         _wasLoggedInOnLoad = ViewModel.IsLoggedIn;
 
-      
+
         this.SizeChanged += OnPageSizeChanged;
 
         await Task.Delay(250);
         if (ViewModel.IsLoggedIn)
         {
-          
             AdjustButtonSpacing();
             PlayEntranceAnimations();
         }
@@ -113,7 +120,6 @@ public sealed partial class AccountPage : Page
                 _wasLoggedInOnLoad = true;
                 DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, async () =>
                 {
-
                     ProfileCard.Opacity = 0;
                     ProfileCardTransform.Y = -30;
 
@@ -143,7 +149,11 @@ public sealed partial class AccountPage : Page
 
     private void RegisterRippleHandlers()
     {
-        var rippleButtons = new[] { BtnSwitchAccount, BtnRefreshInfo, BtnGenshinData, BtnGachaAnalysis, BtnSecurityCenter, BtnLockAccount, BtnCopyCookie, BtnRefreshCookie, BtnDeleteAccount, BtnLogout };
+        var rippleButtons = new[]
+        {
+            BtnSwitchAccount, BtnRefreshInfo, BtnGenshinData, BtnGachaAnalysis, BtnSecurityCenter, BtnLockAccount,
+            BtnCopyCookie, BtnRefreshCookie, BtnDeleteAccount, BtnLogout
+        };
         foreach (var btn in rippleButtons)
         {
             btn.AddHandler(UIElement.PointerPressedEvent, new PointerEventHandler(Btn_RipplePressed), true);
@@ -184,8 +194,10 @@ public sealed partial class AccountPage : Page
         var sb = new Storyboard();
         var ease = new CubicEase { EasingMode = EasingMode.EaseOut };
 
-        var scaleX = new DoubleAnimation { From = 0, To = 1, Duration = TimeSpan.FromMilliseconds(400), EasingFunction = ease };
-        var scaleY = new DoubleAnimation { From = 0, To = 1, Duration = TimeSpan.FromMilliseconds(400), EasingFunction = ease };
+        var scaleX = new DoubleAnimation
+            { From = 0, To = 1, Duration = TimeSpan.FromMilliseconds(400), EasingFunction = ease };
+        var scaleY = new DoubleAnimation
+            { From = 0, To = 1, Duration = TimeSpan.FromMilliseconds(400), EasingFunction = ease };
         var fade = new DoubleAnimation { From = 1, To = 0, Duration = TimeSpan.FromMilliseconds(500) };
 
         Storyboard.SetTarget(scaleX, ripple);
@@ -196,7 +208,16 @@ public sealed partial class AccountPage : Page
         Storyboard.SetTargetProperty(fade, "Opacity");
 
         var task = ripple;
-        sb.Completed += (_, _) => { try { host.Children.Remove(task); } catch { } };
+        sb.Completed += (_, _) =>
+        {
+            try
+            {
+                host.Children.Remove(task);
+            }
+            catch
+            {
+            }
+        };
         sb.Children.Add(scaleX);
         sb.Children.Add(scaleY);
         sb.Children.Add(fade);
@@ -205,29 +226,42 @@ public sealed partial class AccountPage : Page
 
     private void ResetAnimationState()
     {
-
         ButtonsStaggerStoryboard?.Stop();
         RightCardsEntranceStoryboard?.Stop();
         ProfileCardEntranceStoryboard?.Stop();
 
         // 按钮复位
-        BtnSwitchAccount.Opacity = 0; BtnSwitchAccountTransform.Y = -80;
-        BtnRefreshInfo.Opacity = 0; BtnRefreshInfoTransform.Y = -80;
-        BtnGenshinData.Opacity = 0; BtnGenshinDataTransform.Y = -80;
-        BtnGachaAnalysis.Opacity = 0; BtnGachaAnalysisTransform.Y = -80;
-        BtnSecurityCenter.Opacity = 0; BtnSecurityCenterTransform.Y = -80;
-        BtnLockAccount.Opacity = 0; BtnLockAccountTransform.Y = -80;
-        BtnCopyCookie.Opacity = 0; BtnCopyCookieTransform.Y = -80;
-        BtnRefreshCookie.Opacity = 0; BtnRefreshCookieTransform.Y = -80;
-        BtnDeleteAccount.Opacity = 0; BtnDeleteAccountTransform.Y = -80;
-        BtnLogout.Opacity = 0; BtnLogoutTransform.Y = -80;
+        BtnSwitchAccount.Opacity = 0;
+        BtnSwitchAccountTransform.Y = -80;
+        BtnRefreshInfo.Opacity = 0;
+        BtnRefreshInfoTransform.Y = -80;
+        BtnGenshinData.Opacity = 0;
+        BtnGenshinDataTransform.Y = -80;
+        BtnGachaAnalysis.Opacity = 0;
+        BtnGachaAnalysisTransform.Y = -80;
+        BtnSecurityCenter.Opacity = 0;
+        BtnSecurityCenterTransform.Y = -80;
+        BtnLockAccount.Opacity = 0;
+        BtnLockAccountTransform.Y = -80;
+        BtnCopyCookie.Opacity = 0;
+        BtnCopyCookieTransform.Y = -80;
+        BtnRefreshCookie.Opacity = 0;
+        BtnRefreshCookieTransform.Y = -80;
+        BtnDeleteAccount.Opacity = 0;
+        BtnDeleteAccountTransform.Y = -80;
+        BtnLogout.Opacity = 0;
+        BtnLogoutTransform.Y = -80;
 
         // 角色卡片复位
-        ProfileCard.Opacity = 0; ProfileCardTransform.Y = -30;
+        ProfileCard.Opacity = 0;
+        ProfileCardTransform.Y = -30;
 
-        CommunityFeedCard.Opacity = 0; CommunityFeedCardTransform.X = 50;
-        BoundRolesCard.Opacity = 0; BoundRolesCardTransform.X = 50;
-        GameTimeCard.Opacity = 0; GameTimeCardTransform.X = 50;
+        CommunityFeedCard.Opacity = 0;
+        CommunityFeedCardTransform.X = 50;
+        BoundRolesCard.Opacity = 0;
+        BoundRolesCardTransform.X = 50;
+        GameTimeCard.Opacity = 0;
+        GameTimeCardTransform.X = 50;
     }
 
     private void PlayEntranceAnimations()
@@ -254,6 +288,7 @@ public sealed partial class AccountPage : Page
     #endregion
 
     #region 账户登录
+
     private async void OnSwitchAccountClicked(object sender, RoutedEventArgs e)
     {
         if (sender is Button button && button.DataContext is AccountInfo account)
@@ -265,13 +300,16 @@ public sealed partial class AccountPage : Page
             }
             catch (Exception ex)
             {
-                _notificationService.Show("Account_LoginFailed".GetLocalized(), ex.Message, NotificationType.Error, 3000);
+                _notificationService.Show("Account_LoginFailed".GetLocalized(), ex.Message, NotificationType.Error,
+                    3000);
             }
         }
     }
+
     #endregion
 
     #region 账户删除
+
     private async void OnDeleteSavedAccountClicked(object sender, RoutedEventArgs e)
     {
         if (_isDeleting) return;
@@ -295,10 +333,13 @@ public sealed partial class AccountPage : Page
         _isDeleting = true;
         try
         {
-            string title = isCurrentAccount ? "Account_DeleteCurrent".GetLocalized() : "Account_DeleteAccount".GetLocalized();
+            string title = isCurrentAccount
+                ? "Account_DeleteCurrent".GetLocalized()
+                : "Account_DeleteAccount".GetLocalized();
             string content = isCurrentAccount
                 ? string.Format("Account_DeleteCurrentConfirm_Format".GetLocalized(), account.Nickname, account.GameUid)
-                : string.Format("Account_DeleteAccountConfirm_Format".GetLocalized(), account.Nickname, account.GameUid);
+                : string.Format("Account_DeleteAccountConfirm_Format".GetLocalized(), account.Nickname,
+                    account.GameUid);
 
             var result = await ShowDeleteConfirmationDialogAsync(title, content);
             if (result == ContentDialogResult.Primary)
@@ -330,9 +371,11 @@ public sealed partial class AccountPage : Page
         };
         return await dialog.ShowAsync();
     }
+
     #endregion
 
     #region 签到
+
     private async void OnCheckinClicked(object sender, RoutedEventArgs e)
     {
         if (sender is Button btn) btn.IsEnabled = false;
@@ -344,10 +387,14 @@ public sealed partial class AccountPage : Page
                 DispatcherQueue.TryEnqueue(() => BtnCheckinText.Text = msg);
             });
             var result = await _unifiedCheckinService.ExecuteAllCheckinsAsync(progress);
-            BtnCheckinText.Text = result.OverallSuccess ? "Account_CheckinComplete".GetLocalized() : "Account_CheckinFailed".GetLocalized();
+            BtnCheckinText.Text = result.OverallSuccess
+                ? "Account_CheckinComplete".GetLocalized()
+                : "Account_CheckinFailed".GetLocalized();
 
             _notificationService.Show(
-                result.OverallSuccess ? "Account_CheckinComplete".GetLocalized() : "Account_CheckinFailed".GetLocalized(),
+                result.OverallSuccess
+                    ? "Account_CheckinComplete".GetLocalized()
+                    : "Account_CheckinFailed".GetLocalized(),
                 result.SummaryMessage,
                 result.OverallSuccess ? NotificationType.Success : NotificationType.Warning,
                 5000);
@@ -355,7 +402,8 @@ public sealed partial class AccountPage : Page
         catch (Exception ex)
         {
             BtnCheckinText.Text = "Account_CheckinException".GetLocalized();
-            _notificationService.Show("Account_CheckinException".GetLocalized(), ex.Message, NotificationType.Error, 3000);
+            _notificationService.Show("Account_CheckinException".GetLocalized(), ex.Message, NotificationType.Error,
+                3000);
             Debug.WriteLine($"签到异常: {ex.Message}");
         }
         finally
@@ -363,62 +411,65 @@ public sealed partial class AccountPage : Page
             if (sender is Button btn2) btn2.IsEnabled = true;
         }
     }
+
     #endregion
 
     #region 右侧高度自适应
+
     private void LeftColumnGrid_SizeChanged(object sender, SizeChangedEventArgs e)
     {
-        
         if (e.NewSize.Height > 100)
             RightGrid.Height = e.NewSize.Height;
     }
 
-  
+
     private void AdjustButtonSpacing()
     {
         if (BtnGrid == null || ProfileCard == null) return;
 
-            const int baseSpacing = 8;
-            const int maxSpacing = 28;
-            const int buttonCount = 10;
-            const double titleBarOffset = 40;  
-            const double outerMargin = 36;  
-            const double safetyMargin = 16; 
+        const int baseSpacing = 8;
+        const int maxSpacing = 28;
+        const int buttonCount = 10;
+        const double titleBarOffset = 40;
+        const double outerMargin = 36;
+        const double safetyMargin = 16;
 
-         
-            double viewportHeight = this.ActualHeight - titleBarOffset - outerMargin - safetyMargin;
-            if (viewportHeight <= 0) return;
 
-           
-            double profileHeight = ProfileCard.ActualHeight;
-            double buttonAreaHeight = viewportHeight - profileHeight - 24;
+        double viewportHeight = this.ActualHeight - titleBarOffset - outerMargin - safetyMargin;
+        if (viewportHeight <= 0) return;
 
-        
-            double totalButtonsHeight = 0;
-            totalButtonsHeight += BtnSwitchAccount?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnRefreshInfo?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnGenshinData?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnGachaAnalysis?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnSecurityCenter?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnLockAccount?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnCopyCookie?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnRefreshCookie?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnDeleteAccount?.ActualHeight ?? 44;
-            totalButtonsHeight += BtnLogout?.ActualHeight ?? 44;
 
-            double spacing;
-            const double minSpacing = 2;
-          
-            if (buttonAreaHeight > totalButtonsHeight + (buttonCount - 1) * minSpacing)
-                spacing = Math.Min((buttonAreaHeight - totalButtonsHeight) / (buttonCount - 1), maxSpacing);
-            else
-                spacing = minSpacing;
+        double profileHeight = ProfileCard.ActualHeight;
+        double buttonAreaHeight = viewportHeight - profileHeight - 24;
 
-            BtnGrid.RowSpacing = spacing;
+
+        double totalButtonsHeight = 0;
+        totalButtonsHeight += BtnSwitchAccount?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnRefreshInfo?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnGenshinData?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnGachaAnalysis?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnSecurityCenter?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnLockAccount?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnCopyCookie?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnRefreshCookie?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnDeleteAccount?.ActualHeight ?? 44;
+        totalButtonsHeight += BtnLogout?.ActualHeight ?? 44;
+
+        double spacing;
+        const double minSpacing = 2;
+
+        if (buttonAreaHeight > totalButtonsHeight + (buttonCount - 1) * minSpacing)
+            spacing = Math.Min((buttonAreaHeight - totalButtonsHeight) / (buttonCount - 1), maxSpacing);
+        else
+            spacing = minSpacing;
+
+        BtnGrid.RowSpacing = spacing;
     }
+
     #endregion
 
     #region 其他 UI 操作
+
     private void OnGachaAnalysisClicked(object sender, RoutedEventArgs e)
     {
         var window = new GachaAnalysisWindow();
@@ -443,6 +494,6 @@ public sealed partial class AccountPage : Page
             }
         }
     }
+
     #endregion
 }
-

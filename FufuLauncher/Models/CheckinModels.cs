@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 
@@ -33,13 +34,48 @@ public class UnifiedCheckinResult
             return NotificationType.Error;
         }
     }
-    public CheckinTypeResult GameResult { get; set; } = new() { TypeName = "Checkin_GameCheckin".GetLocalized() };
-    public CheckinTypeResult CommunityResult { get; set; } = new() { TypeName = "Checkin_CommunityCheckin".GetLocalized() };
-    public CheckinTypeResult CloudGameResult { get; set; } = new() { TypeName = "CheckinCloud_Title".GetLocalized() };
-    public string SummaryMessage { get; set; } = "";
-    public string GameSignDays { get; set; } = "";
-    public string GameRewardItem { get; set; } = "";
-    public List<AccountCheckinDetail> AccountResults { get; set; } = new();
+
+    public CheckinTypeResult GameResult
+    {
+        get;
+        set;
+    } = new() { TypeName = "Checkin_GameCheckin".GetLocalized() };
+
+    public CheckinTypeResult CommunityResult
+    {
+        get;
+        set;
+    } = new() { TypeName = "Checkin_CommunityCheckin".GetLocalized() };
+
+    public CheckinTypeResult CloudGameResult
+    {
+        get;
+        set;
+    } = new() { TypeName = "CheckinCloud_Title".GetLocalized() };
+
+    public string SummaryMessage
+    {
+        get;
+        set;
+    } = "";
+
+    public string GameSignDays
+    {
+        get;
+        set;
+    } = "";
+
+    public string GameRewardItem
+    {
+        get;
+        set;
+    } = "";
+
+    public List<AccountCheckinDetail> AccountResults
+    {
+        get;
+        set;
+    } = new();
 
     public string GetDetailedSummary()
     {
@@ -50,11 +86,12 @@ public class UnifiedCheckinResult
             foreach (var item in account.Items)
             {
                 string status = item.Success == true ? "Status_Completed".GetLocalized() :
-                                item.Success == false ? "Status_Failure".GetLocalized() : "Status_Skipped".GetLocalized();
+                    item.Success == false ? "Status_Failure".GetLocalized() : "Status_Skipped".GetLocalized();
                 string extra = string.IsNullOrEmpty(item.Message) ? "" : $" - {item.Message}";
                 sb.AppendLine($"  {item.TypeName}: {status}{extra}");
             }
         }
+
         sb.AppendLine(SummaryMessage);
         return sb.ToString().TrimEnd();
     }
@@ -62,14 +99,53 @@ public class UnifiedCheckinResult
 
 public class CheckinTypeResult
 {
-    public string TypeName { get; set; } = "";
-    public bool Executed { get; set; }
-    public bool Success { get; set; }
-    public string Message { get; set; } = "";
-    public int SuccessCount { get; set; }
-    public int FailCount { get; set; }
-    public int SkippedCount { get; set; }
-    public List<string> Details { get; set; } = new();
+    public string TypeName
+    {
+        get;
+        set;
+    } = "";
+
+    public bool Executed
+    {
+        get;
+        set;
+    }
+
+    public bool Success
+    {
+        get;
+        set;
+    }
+
+    public string Message
+    {
+        get;
+        set;
+    } = "";
+
+    public int SuccessCount
+    {
+        get;
+        set;
+    }
+
+    public int FailCount
+    {
+        get;
+        set;
+    }
+
+    public int SkippedCount
+    {
+        get;
+        set;
+    }
+
+    public List<string> Details
+    {
+        get;
+        set;
+    } = new();
 
     public string GetSummary()
     {
@@ -84,21 +160,68 @@ public class CheckinTypeResult
 
 public class AccountCheckinDetail
 {
-    public string Nickname { get; set; } = "";
-    public List<(string TypeName, bool? Success, string Message)> Items { get; set; } = new();
+    public string Nickname
+    {
+        get;
+        set;
+    } = "";
+
+    public List<(string TypeName, bool? Success, string Message)> Items
+    {
+        get;
+        set;
+    } = new();
 }
 
 public class AccountCredentials
 {
-    public string Uid { get; set; } = "";
-    public string Cookie { get; set; } = "";
-    public string Stuid { get; set; } = "";
-    public string Stoken { get; set; } = "";
-    public string Mid { get; set; } = "";
-    public string Nickname { get; set; } = "";
-    public string ConfigPath { get; set; } = "";
-    public string CloudComboToken { get; set; } = "";
+    public string Uid
+    {
+        get;
+        set;
+    } = "";
+
+    public string Cookie
+    {
+        get;
+        set;
+    } = "";
+
+    public string Stuid
+    {
+        get;
+        set;
+    } = "";
+
+    public string Stoken
+    {
+        get;
+        set;
+    } = "";
+
+    public string Mid
+    {
+        get;
+        set;
+    } = "";
+
+    public string Nickname
+    {
+        get;
+        set;
+    } = "";
+
+    public string ConfigPath
+    {
+        get;
+        set;
+    } = "";
+
+    public string CloudComboToken
+    {
+        get;
+        set;
+    } = "";
 
     public string GetStokenCookie() => $"stuid={Stuid};stoken={Stoken};mid={Mid}";
 }
-

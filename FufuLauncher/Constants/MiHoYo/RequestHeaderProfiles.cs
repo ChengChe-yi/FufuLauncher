@@ -2,10 +2,11 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 namespace FufuLauncher.Constants.MiHoYo;
 
 /// <summary>
-/// 端点分类（用于 HeaderBuilder 按 family 选取预设值）。
+///     端点分类（用于 HeaderBuilder 按 family 选取预设值）。
 /// </summary>
 public enum HeaderProfileKind
 {
@@ -53,9 +54,9 @@ public enum HeaderProfileKind
 }
 
 /// <summary>
-/// 一组端点固定的请求头预设值。
-/// 供 HeaderBuilder 按 <see cref="HeaderProfileKind"/> 直接查表消费，
-/// 避免业务代码再各自散落拼装版本号 / UA / client_type / game_biz。
+///     一组端点固定的请求头预设值。
+///     供 HeaderBuilder 按 <see cref="HeaderProfileKind" /> 直接查表消费，
+///     避免业务代码再各自散落拼装版本号 / UA / client_type / game_biz。
 /// </summary>
 public sealed record HeaderProfile(
     HeaderProfileKind Kind,
@@ -69,8 +70,8 @@ public sealed record HeaderProfile(
     string SaltType);
 
 /// <summary>
-/// 按 <see cref="HeaderProfileKind"/> 提供所有常用 Profile 预设。
-/// 仅承载静态值，不进行任何 IO / DS 计算。
+///     按 <see cref="HeaderProfileKind" /> 提供所有常用 Profile 预设。
+///     仅承载静态值，不进行任何 IO / DS 计算。
 /// </summary>
 public static class RequestHeaderProfiles
 {

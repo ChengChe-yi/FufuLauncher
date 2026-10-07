@@ -16,11 +16,17 @@ public sealed class MiyousheWrapPanel : Panel
             child.Measure(new Size(availableSize.Width, double.PositiveInfinity));
             var size = child.DesiredSize;
             if (x > 0 && x + size.Width > availableSize.Width)
-            { x = 0; y += rowHeight + Gap; rowHeight = 0; }
+            {
+                x = 0;
+                y += rowHeight + Gap;
+                rowHeight = 0;
+            }
+
             width = Math.Max(width, x + size.Width);
             x += size.Width + Gap;
             rowHeight = Math.Max(rowHeight, size.Height);
         }
+
         return new Size(Math.Ceiling(width), Math.Ceiling(y + rowHeight));
     }
 
@@ -31,11 +37,17 @@ public sealed class MiyousheWrapPanel : Panel
         {
             var size = child.DesiredSize;
             if (x > 0 && x + size.Width > finalSize.Width + 0.5)
-            { x = 0; y += rowHeight + Gap; rowHeight = 0; }
+            {
+                x = 0;
+                y += rowHeight + Gap;
+                rowHeight = 0;
+            }
+
             child.Arrange(new Rect(x, y, size.Width, size.Height));
             x += size.Width + Gap;
             rowHeight = Math.Max(rowHeight, size.Height);
         }
+
         return finalSize;
     }
 }

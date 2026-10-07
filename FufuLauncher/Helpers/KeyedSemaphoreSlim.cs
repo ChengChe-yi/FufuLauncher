@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 
 namespace FufuLauncher.Helpers;
@@ -9,7 +10,7 @@ namespace FufuLauncher.Helpers;
 public sealed class KeyedSemaphoreSlim
 {
     private readonly ConcurrentDictionary<string, SemaphoreSlim> _semaphores = new(StringComparer.Ordinal);
-    
+
     public async ValueTask<IDisposable> LockAsync(string key, CancellationToken token = default)
     {
         SemaphoreSlim semaphore = _semaphores.GetOrAdd(key, static _ => new SemaphoreSlim(1, 1));

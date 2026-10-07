@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models;
@@ -9,16 +10,27 @@ namespace FufuLauncher.Models;
 public class PluginDependency
 {
     [JsonPropertyName("plugin_name")]
-    public string PluginName { get; set; } = string.Empty;
+    public string PluginName
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("project_name")]
-    public string ProjectName { get; set; } = string.Empty;
+    public string ProjectName
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonPropertyName("project_version")]
-    public string ProjectVersion { get; set; } = string.Empty;
-    
-    [JsonIgnore]
-    public bool IsEmpty => PluginName == "无" && ProjectName == "无" && ProjectVersion == "无";
+    public string ProjectVersion
+    {
+        get;
+        set;
+    } = string.Empty;
+
+    [JsonIgnore] public bool IsEmpty => PluginName == "无" && ProjectName == "无" && ProjectVersion == "无";
 
     public override string ToString()
     {

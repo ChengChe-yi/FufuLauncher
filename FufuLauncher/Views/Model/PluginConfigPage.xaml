@@ -4,127 +4,319 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="using:FufuLauncher.Views"
+    xmlns:models="using:FufuLauncher.Models"
+    xmlns:selectors="using:FufuLauncher.Selectors"
     xmlns:helpers="using:FufuLauncher.Helpers"
     mc:Ignorable="d"
     Background="Transparent">
 
     <Page.Resources>
-        <ThemeShadow x:Name="SharedShadow" />
+        <DataTemplate x:Key="OptionHeaderTemplate" x:DataType="models:PluginConfigOption">
+            <Grid MinHeight="20" Margin="0,0,0,8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Bind DisplayName}"
+                           Style="{StaticResource PluginSettingLabelStyle}"
+                           ToolTipService.ToolTip="{x:Bind ToolTipText}" />
+                <Button Grid.Column="1"
+                        Margin="4,0,0,0"
+                        Width="20" Height="20" MinWidth="0" MinHeight="0"
+                        Padding="0" CornerRadius="10"
+                        Background="Transparent" BorderThickness="0" Opacity="0.5"
+                        Visibility="{x:Bind HasDescription, Converter={StaticResource BoolToVisibilityConverter}}"
+                        ToolTipService.ToolTip="{helpers:Loc Key=ViewHelpTooltip}"
+                        AutomationProperties.Name="{helpers:Loc Key=ViewHelpTooltip}">
+                    <FontIcon Glyph="&#xE9CE;" FontSize="12" />
+                    <Button.Flyout>
+                        <Flyout Placement="Right">
+                            <StackPanel Spacing="8" MaxWidth="320">
+                                <TextBlock Text="{x:Bind DisplayName}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                <TextBlock Text="{x:Bind Description}" TextWrapping="Wrap"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </Grid>
+        </DataTemplate>
 
-        <AcrylicBrush x:Key="CardAcrylicBrush"
-                      TintColor="{ThemeResource SolidBackgroundFillColorBase}"
-                      TintOpacity="0.6"
-                      FallbackColor="{ThemeResource SolidBackgroundFillColorBase}" />
+        <DataTemplate x:Key="BooleanOptionTemplate" x:DataType="models:PluginConfigOption">
+            <StackPanel Style="{StaticResource PluginSettingContainerStyle}">
+                <ContentControl Content="{x:Bind}" ContentTemplate="{StaticResource OptionHeaderTemplate}"
+                                HorizontalContentAlignment="Stretch" IsTabStop="False" />
+                <ToggleSwitch IsOn="{x:Bind BooleanValue, Mode=TwoWay}"
+                              OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}"
+                              MinWidth="0" Margin="0"
+                              AutomationProperties.Name="{x:Bind DisplayName}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NumberOptionTemplate" x:DataType="models:PluginConfigOption">
+            <StackPanel Style="{StaticResource PluginSettingContainerStyle}">
+                <ContentControl Content="{x:Bind}" ContentTemplate="{StaticResource OptionHeaderTemplate}"
+                                HorizontalContentAlignment="Stretch" IsTabStop="False" />
+                <NumberBox Value="{x:Bind NumberValue, Mode=TwoWay}"
+                           Minimum="{x:Bind Minimum}" Maximum="{x:Bind Maximum}"
+                           SmallChange="{x:Bind SmallChange}" LargeChange="10"
+                           SpinButtonPlacementMode="Inline" Width="200" HorizontalAlignment="Left"
+                           AutomationProperties.Name="{x:Bind DisplayName}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TextOptionTemplate" x:DataType="models:PluginConfigOption">
+            <StackPanel Style="{StaticResource PluginSettingContainerStyle}">
+                <ContentControl Content="{x:Bind}" ContentTemplate="{StaticResource OptionHeaderTemplate}"
+                                HorizontalContentAlignment="Stretch" IsTabStop="False" />
+                <TextBox Text="{x:Bind Value, Mode=OneWay}" Tag="{x:Bind}"
+                         TextChanged="OnTextOptionChanged"
+                         PlaceholderText="{helpers:Loc Key=PluginConfigPage_ValuePlaceholder}"
+                         Width="200" HorizontalAlignment="Left"
+                         AutomationProperties.Name="{x:Bind DisplayName}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <selectors:PluginConfigTemplateSelector x:Key="OptionTemplateSelector"
+                                                BooleanTemplate="{StaticResource BooleanOptionTemplate}"
+                                                NumberTemplate="{StaticResource NumberOptionTemplate}"
+                                                TextTemplate="{StaticResource TextOptionTemplate}" />
+
+        <Storyboard x:Name="EntranceStoryboard">
+            <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="PageTranslation"
+                             Storyboard.TargetProperty="Y"
+                             From="40" To="0" Duration="0:0:0.3"
+                             EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+
+        <Storyboard x:Name="ExitStoryboard" Completed="OnExitStoryboardCompleted">
+            <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="PageTranslation"
+                             Storyboard.TargetProperty="Y"
+                             To="40" Duration="0:0:0.3"
+                             EnableDependentAnimation="True">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </Page.Resources>
 
-    <Grid Padding="36,32,36,0">
+    <Grid x:Name="RootLayoutGrid" Padding="32,24,32,24" Opacity="0">
+        <Grid.RenderTransform>
+            <TranslateTransform x:Name="PageTranslation" Y="40" />
+        </Grid.RenderTransform>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="CompactLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RootLayoutGrid.Padding" Value="24" />
+                        <Setter Target="PluginMetadataPanel.(Grid.Row)" Value="1" />
+                        <Setter Target="PluginMetadataPanel.(Grid.Column)" Value="0" />
+                        <Setter Target="PluginMetadataPanel.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="PluginMetadataPanel.HorizontalAlignment" Value="Left" />
+                        <Setter Target="PluginMetadataPanel.Margin" Value="0,12,0,0" />
+                        <Setter Target="DeveloperTextBlock.HorizontalAlignment" Value="Left" />
+                        <Setter Target="ModifiedDatePanel.HorizontalAlignment" Value="Left" />
+                        <Setter Target="SettingsSearchBox.(Grid.Row)" Value="1" />
+                        <Setter Target="SettingsSearchBox.(Grid.Column)" Value="0" />
+                        <Setter Target="SettingsSearchBox.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="SettingsSearchBox.Width" Value="Auto" />
+                        <Setter Target="SettingsSearchBox.Margin" Value="0,16,0,0" />
+                        <Setter Target="ReloadButton.(Grid.Row)" Value="1" />
+                        <Setter Target="ReloadButton.Margin" Value="12,16,0,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="WideLayout">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1100" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" /> <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Spacing="8" Margin="0,0,0,24">
-            <StackPanel Orientation="Horizontal" Spacing="16">
-                <Button Click="OnBackClick" Style="{StaticResource NavigationBackButtonNormalStyle}" />
-                <StackPanel Spacing="2">
-                    <TextBlock x:Name="TitleTextBlock" Text="{helpers:Loc Key=PluginConfigPage_Title}" Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{helpers:Loc Key=PluginConfigPage_AdjustParams}" Style="{StaticResource CaptionTextBlockStyle}" Opacity="0.6" />
-                </StackPanel>
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Spacing="12" Margin="0,0,0,16">
+                <Button x:Name="BackButton" Click="OnBackClick"
+                        Width="32" Height="32" MinWidth="0" MinHeight="0"
+                        Padding="0" CornerRadius="8" Background="Transparent" BorderThickness="0"
+                        ToolTipService.ToolTip="{helpers:Loc Key=GameAnnouncement_Back}"
+                        AutomationProperties.Name="{helpers:Loc Key=GameAnnouncement_Back}">
+                    <FontIcon Glyph="&#xE72B;" FontSize="14" />
+                </Button>
+                <TextBlock Text="{helpers:Loc Key=PluginConfigPage_Title}"
+                           FontWeight="SemiBold" VerticalAlignment="Center" />
             </StackPanel>
+
+            <Grid Margin="0,0,0,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center" Spacing="4">
+                    <TextBlock x:Name="TitleTextBlock" Text="{helpers:Loc Key=PluginConfigPage_Title}"
+                               FontSize="18" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                    <TextBlock x:Name="DescriptionTextBlock" Text="{helpers:Loc Key=PluginConfigPage_AdjustParams}"
+                               FontSize="12" Opacity="0.6" TextWrapping="Wrap" MaxLines="2"
+                               TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+                <StackPanel x:Name="PluginMetadataPanel" Grid.Column="1" Margin="24,0,20,0"
+                            VerticalAlignment="Center" HorizontalAlignment="Right" Spacing="4">
+                    <TextBlock x:Name="DeveloperTextBlock" FontSize="12" FontWeight="SemiBold"
+                               MaxWidth="220" TextTrimming="CharacterEllipsis" HorizontalAlignment="Right" />
+                    <StackPanel x:Name="ModifiedDatePanel" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock Text="{helpers:Loc Key=ModifiedDateLabel}" FontSize="12" Opacity="0.6" />
+                        <TextBlock x:Name="ModifiedDateTextBlock" FontSize="12" Opacity="0.6" />
+                    </StackPanel>
+                </StackPanel>
+                <Button x:Name="PluginInfoButton" Grid.Column="2" Width="34" Height="34" MinWidth="0"
+                        Padding="0" VerticalAlignment="Center"
+                        ToolTipService.ToolTip="{helpers:Loc Key=PluginConfigPage_PluginInfo}"
+                        AutomationProperties.Name="{helpers:Loc Key=PluginConfigPage_PluginInfo}">
+                    <FontIcon Glyph="&#xE946;" FontSize="16" />
+                    <Button.Flyout>
+                        <Flyout Placement="BottomEdgeAlignedRight">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                                          MaxHeight="420">
+                                <StackPanel Spacing="16" MinWidth="240" MaxWidth="360">
+                                    <TextBlock Text="{helpers:Loc Key=PluginConfigPage_PluginInfo}"
+                                               FontWeight="SemiBold" />
+                                    <ItemsControl x:Name="InfoItemsControl">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate x:DataType="models:PluginConfigInfoItem">
+                                                <Grid Margin="0,0,0,12">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="100" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{x:Bind Key}" FontSize="12" TextWrapping="Wrap"
+                                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                                    <TextBlock Grid.Column="1" Text="{x:Bind Value}" FontSize="12"
+                                                               Margin="12,0,0,0" TextWrapping="Wrap"
+                                                               IsTextSelectionEnabled="True" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <StackPanel Spacing="8">
+                                        <TextBlock Text="{helpers:Loc Key=PluginConfigPage_ConfigFile}" FontSize="12"
+                                                   FontWeight="SemiBold" />
+                                        <TextBlock x:Name="ConfigPathTextBlock" FontSize="12" TextWrapping="Wrap"
+                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                   IsTextSelectionEnabled="True" />
+                                    </StackPanel>
+                                    <Button Content="{helpers:Loc Key=OpenFolderLabel}" Click="OnOpenFolderClick"
+                                            HorizontalAlignment="Left" />
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </Grid>
+            <Rectangle Height="1" Fill="{ThemeResource DividerStrokeColorDefaultBrush}" Margin="0,0,0,24" />
         </StackPanel>
 
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,16,32">
-            <StackPanel Spacing="24">
-
-                <Grid x:Name="InfoBanner"
-                      Background="{ThemeResource LayerFillColorAltBrush}"
-                      CornerRadius="8" Padding="16">
-                    <StackPanel Spacing="12">
-                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-                            <FontIcon Glyph="&#xE946;" FontSize="16"
-                                      Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
-                            <TextBlock Text="{helpers:Loc Key=PluginConfigPage_PluginInfo}" Style="{StaticResource BodyStrongTextBlockStyle}" />
-                        </StackPanel>
-                        <ItemsControl x:Name="InfoItemsControl">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="0,2">
-                                        <TextBlock Text="{Binding}" Style="{StaticResource BodyTextBlockStyle}"
-                                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                   FontSize="13" />
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Margin="0,0,0,24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Spacing="6" VerticalAlignment="Center">
+                    <TextBlock x:Name="OptionCountTextBlock" FontWeight="SemiBold" />
+                    <StackPanel x:Name="SaveStatusPanel" Orientation="Horizontal" Spacing="6">
+                        <FontIcon x:Name="SaveStatusIcon" Glyph="&#xE73E;" FontSize="12" VerticalAlignment="Center"
+                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                        <TextBlock x:Name="SaveStatusTextBlock" Text="{helpers:Loc Key=PluginConfigPage_AutoSaveHint}"
+                                   FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   AutomationProperties.LiveSetting="Polite" />
                     </StackPanel>
-                </Grid>
+                </StackPanel>
+                <AutoSuggestBox x:Name="SettingsSearchBox" Grid.Column="1" Width="280" Margin="16,0,0,0"
+                                VerticalAlignment="Center" QueryIcon="Find" TextChanged="OnSearchTextChanged"
+                                PlaceholderText="{helpers:Loc Key=SettingsSearchPlaceholder}"
+                                AutomationProperties.Name="{helpers:Loc Key=SettingsSearchPlaceholder}" />
+                <Button x:Name="ReloadButton" Grid.Column="2" Margin="12,0,0,0"
+                        Width="34" Height="34" MinWidth="0" Padding="0" VerticalAlignment="Center"
+                        Click="OnReloadClick" ToolTipService.ToolTip="{helpers:Loc Key=DeviceInfo_Reload}"
+                        AutomationProperties.Name="{helpers:Loc Key=DeviceInfo_Reload}">
+                    <FontIcon Glyph="&#xE72C;" FontSize="14" />
+                </Button>
+            </Grid>
 
-                <GridView x:Name="ConfigGridView" SelectionMode="None" IsItemClickEnabled="False">
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
-                            <Setter Property="Margin" Value="0,0,16,16" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="CornerRadius" Value="12" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="GridViewItem">
-                                        <ContentPresenter />
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </GridView.ItemContainerStyle>
+            <InfoBar x:Name="ConfigMessageBar" Grid.Row="1" IsOpen="False" Severity="Error" Margin="0,0,0,16">
+                <InfoBar.ActionButton>
+                    <Button Content="{helpers:Loc Key=PluginStoreRetry}" Click="OnRetryClick" />
+                </InfoBar.ActionButton>
+            </InfoBar>
 
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal" ItemWidth="340" MaximumRowsOrColumns="-1" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="local:ConfigOption">
-                            <Grid CornerRadius="12"
-                                  Background="{StaticResource CardAcrylicBrush}"
-                                  BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                  BorderThickness="1"
-                                  Shadow="{StaticResource SharedShadow}"
-                                  Translation="0,0,8">
-
-                                <VisualStateManager.VisualStateGroups>
-                                    <VisualStateGroup x:Name="CommonStates">
-                                        <VisualState x:Name="Normal" />
-                                        <VisualState x:Name="PointerOver">
-                                            <VisualState.Setters>
-                                                <Setter Target="RootGrid.Translation" Value="0,-2,16" />
-                                            </VisualState.Setters>
-                                        </VisualState>
-                                    </VisualStateGroup>
-                                </VisualStateManager.VisualStateGroups>
-
-                                <Grid x:Name="RootGrid" Padding="20" MinHeight="130">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Text="{x:Bind NameDisplay}"
-                                               Style="{StaticResource BodyStrongTextBlockStyle}"
-                                               TextTrimming="CharacterEllipsis"
-                                               ToolTipService.ToolTip="{x:Bind NameDisplay}"
-                                               FontSize="15" />
-
-                                    <ContentControl Grid.Row="2"
-                                                    Margin="0,16,0,0"
-                                                    Content="{x:Bind EditControl}"
-                                                    HorizontalContentAlignment="Stretch"
-                                                    VerticalAlignment="Bottom" />
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-            </StackPanel>
-        </ScrollViewer>
+            <Grid Grid.Row="2">
+                <ScrollViewer x:Name="SettingsScrollViewer" VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled">
+                    <GridView x:Name="ConfigGridView"
+                              ItemTemplateSelector="{StaticResource OptionTemplateSelector}"
+                              ItemContainerStyle="{StaticResource SettingGridViewItemStyle}"
+                              ItemsPanel="{StaticResource SettingItemsPanel}"
+                              SelectionMode="None" IsItemClickEnabled="False" HorizontalAlignment="Stretch"
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              ScrollViewer.HorizontalScrollMode="Disabled" />
+                </ScrollViewer>
+                <StackPanel x:Name="EmptyStatePanel" Visibility="Collapsed" Spacing="12" Margin="24"
+                            MaxWidth="420" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <FontIcon x:Name="EmptyStateIcon" Glyph="&#xE9CE;" FontSize="32" Opacity="0.5" Margin="0,0,0,4" />
+                    <TextBlock x:Name="EmptyStateTitleTextBlock" FontSize="16" FontWeight="SemiBold"
+                               TextAlignment="Center" TextWrapping="Wrap" />
+                    <TextBlock x:Name="EmptyStateHintTextBlock" FontSize="12" TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    <Button x:Name="ClearSearchButton" Content="{helpers:Loc Key=PluginConfigPage_ClearSearch}"
+                            Click="OnClearSearchClick" HorizontalAlignment="Center" Visibility="Collapsed" />
+                </StackPanel>
+                <StackPanel x:Name="LoadingPanel" Visibility="Collapsed" Spacing="12"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ProgressRing x:Name="LoadingRing" Width="32" Height="32" IsActive="False" />
+                    <TextBlock Text="{helpers:Loc Key=PluginStoreLoading}" FontSize="12"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

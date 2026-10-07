@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Helpers;
@@ -10,16 +11,65 @@ namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
 public class DailyNoteCardData
 {
-    public int CurrentResin { get; set; }
-    public int MaxResin { get; set; }
-    public int FinishedTaskNum { get; set; }
-    public int TotalTaskNum { get; set; }
-    public int CurrentHomeCoin { get; set; }
-    public int MaxHomeCoin { get; set; }
-    public int CurrentExpeditionNum { get; set; }
-    public int MaxExpeditionNum { get; set; }
-    public bool IsTransformerObtained { get; set; }
-    public string TransformerRecoveryTime { get; set; } = "";
+    public int CurrentResin
+    {
+        get;
+        set;
+    }
+
+    public int MaxResin
+    {
+        get;
+        set;
+    }
+
+    public int FinishedTaskNum
+    {
+        get;
+        set;
+    }
+
+    public int TotalTaskNum
+    {
+        get;
+        set;
+    }
+
+    public int CurrentHomeCoin
+    {
+        get;
+        set;
+    }
+
+    public int MaxHomeCoin
+    {
+        get;
+        set;
+    }
+
+    public int CurrentExpeditionNum
+    {
+        get;
+        set;
+    }
+
+    public int MaxExpeditionNum
+    {
+        get;
+        set;
+    }
+
+    public bool IsTransformerObtained
+    {
+        get;
+        set;
+    }
+
+    public string TransformerRecoveryTime
+    {
+        get;
+        set;
+    } = "";
 }
 
 public static class DailyNoteParser
@@ -36,7 +86,9 @@ public static class DailyNoteParser
 
         if (retcode != 0)
         {
-            string message = root.TryGetProperty("message", out var msgProp) ? msgProp.GetString() : "Status_UnknownError".GetLocalized();
+            string message = root.TryGetProperty("message", out var msgProp)
+                ? msgProp.GetString()
+                : "Status_UnknownError".GetLocalized();
             string error = string.IsNullOrWhiteSpace(message)
                 ? string.Format("DailyNote_ApiError".GetLocalized(), retcode)
                 : $"{message}，retcode={retcode}";
@@ -52,17 +104,24 @@ public static class DailyNoteParser
         {
             CurrentResin = data.TryGetProperty("current_resin", out var resin) ? resin.GetInt32() : 0,
             MaxResin = data.TryGetProperty("max_resin", out var maxResin) ? maxResin.GetInt32() : 160,
-            FinishedTaskNum = data.TryGetProperty("finished_task_num", out var finishedTask) ? finishedTask.GetInt32() : 0,
+            FinishedTaskNum = data.TryGetProperty("finished_task_num", out var finishedTask)
+                ? finishedTask.GetInt32()
+                : 0,
             TotalTaskNum = data.TryGetProperty("total_task_num", out var totalTask) ? totalTask.GetInt32() : 4,
             CurrentHomeCoin = data.TryGetProperty("current_home_coin", out var homeCoin) ? homeCoin.GetInt32() : 0,
             MaxHomeCoin = data.TryGetProperty("max_home_coin", out var maxHomeCoin) ? maxHomeCoin.GetInt32() : 2400,
-            CurrentExpeditionNum = data.TryGetProperty("current_expedition_num", out var expeditionNum) ? expeditionNum.GetInt32() : 0,
-            MaxExpeditionNum = data.TryGetProperty("max_expedition_num", out var maxExpedition) ? maxExpedition.GetInt32() : 5
+            CurrentExpeditionNum = data.TryGetProperty("current_expedition_num", out var expeditionNum)
+                ? expeditionNum.GetInt32()
+                : 0,
+            MaxExpeditionNum = data.TryGetProperty("max_expedition_num", out var maxExpedition)
+                ? maxExpedition.GetInt32()
+                : 5
         };
 
         if (data.TryGetProperty("transformer", out var transformer))
         {
-            result.IsTransformerObtained = transformer.TryGetProperty("obtained", out var obtained) && obtained.GetBoolean();
+            result.IsTransformerObtained =
+                transformer.TryGetProperty("obtained", out var obtained) && obtained.GetBoolean();
 
             if (transformer.TryGetProperty("recovery_time", out var recoveryTime))
             {
@@ -72,11 +131,14 @@ public static class DailyNoteParser
                     int day = recoveryTime.TryGetProperty("Day", out var d) ? d.GetInt32() : 0;
                     int hour = recoveryTime.TryGetProperty("Hour", out var h) ? h.GetInt32() : 0;
                     int minute = recoveryTime.TryGetProperty("Minute", out var m) ? m.GetInt32() : 0;
-                    result.TransformerRecoveryTime = string.Format("DailyNote_TransformerTime".GetLocalized(), day, hour, minute);
+                    result.TransformerRecoveryTime =
+                        string.Format("DailyNote_TransformerTime".GetLocalized(), day, hour, minute);
                 }
                 else
                 {
-                    result.TransformerRecoveryTime = result.IsTransformerObtained ? "DailyNote_Claimed".GetLocalized() : "DailyNote_Unclaimed".GetLocalized();
+                    result.TransformerRecoveryTime = result.IsTransformerObtained
+                        ? "DailyNote_Claimed".GetLocalized()
+                        : "DailyNote_Unclaimed".GetLocalized();
                 }
             }
         }

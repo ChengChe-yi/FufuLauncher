@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Net.NetworkInformation;
 using Microsoft.UI.Xaml;
 using Microsoft.Win32;
@@ -10,8 +11,15 @@ namespace FufuLauncher.Services;
 
 public class NetworkStatusChangedEventArgs : EventArgs
 {
-    public bool IsNetworkLost { get; }
-    public bool IsProxyNewlyEnabled { get; }
+    public bool IsNetworkLost
+    {
+        get;
+    }
+
+    public bool IsProxyNewlyEnabled
+    {
+        get;
+    }
 
     public NetworkStatusChangedEventArgs(bool isNetworkLost, bool isProxyNewlyEnabled)
     {
@@ -52,11 +60,13 @@ public class NetworkMonitorService
             var currentProxy = currentNetwork && IsSystemProxyEnabled();
 
             var isNetworkLost = !currentNetwork && (_lastNetworkAvailable == null || _lastNetworkAvailable == true);
-            var isProxyNewlyEnabled = currentNetwork && currentProxy && (_lastProxyEnabled == null || _lastProxyEnabled == false);
+            var isProxyNewlyEnabled = currentNetwork && currentProxy &&
+                                      (_lastProxyEnabled == null || _lastProxyEnabled == false);
 
             if (isNetworkLost || isProxyNewlyEnabled)
             {
-                NetworkStatusChanged?.Invoke(this, new NetworkStatusChangedEventArgs(isNetworkLost, isProxyNewlyEnabled));
+                NetworkStatusChanged?.Invoke(this,
+                    new NetworkStatusChangedEventArgs(isNetworkLost, isProxyNewlyEnabled));
             }
 
             _lastNetworkAvailable = currentNetwork;
@@ -72,7 +82,8 @@ public class NetworkMonitorService
 
     private static bool IsSystemProxyEnabled()
     {
-        using var internetSettings = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Internet Settings");
+        using var internetSettings =
+            Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Internet Settings");
         return internetSettings?.GetValue("ProxyEnable") is int proxyEnable && proxyEnable != 0;
     }
 }

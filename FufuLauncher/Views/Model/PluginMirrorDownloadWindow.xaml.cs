@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -24,6 +25,7 @@ public sealed partial class PluginMirrorDownloadWindow : Window
     private readonly IProgress<DownloadProgressInfo>? _progress;
     private readonly string? _expectedHash;
     private readonly CancellationToken _outerToken;
+
     private readonly TaskCompletionSource<bool> _completionTcs =
         new(TaskCreationOptions.RunContinuationsAsynchronously);
 
@@ -36,7 +38,7 @@ public sealed partial class PluginMirrorDownloadWindow : Window
     private bool _isDownloading;
     private bool _isTesting;
     private long _currentReceivedBytes;
-    
+
     private readonly DispatcherTimer _stuckTimer = new() { Interval = TimeSpan.FromSeconds(2) };
     private long _lastTickBytes;
     private int _stuckTicks;
@@ -70,10 +72,10 @@ public sealed partial class PluginMirrorDownloadWindow : Window
 
         Closed += OnWindowClosed;
         _stuckTimer.Tick += OnStuckTimerTick;
-        
+
         _ = RunSpeedTestAsync();
     }
-    
+
     public Task<bool> CompletionTask => _completionTcs.Task;
 
     private async Task RunSpeedTestAsync()
@@ -181,7 +183,7 @@ public sealed partial class PluginMirrorDownloadWindow : Window
 
         _attemptCts?.Dispose();
         _attemptCts = CancellationTokenSource.CreateLinkedTokenSource(_outerToken, _windowCts.Token);
-        
+
         var downloadProgress = new Progress<DownloadProgressInfo>(OnDownloadProgress);
         try
         {
@@ -242,7 +244,7 @@ public sealed partial class PluginMirrorDownloadWindow : Window
             double tMB = info.TotalBytes / 1024.0 / 1024.0;
             double speedMB = info.SpeedBytesPerSecond / 1024.0 / 1024.0;
             DetailText.Text = $"{dMB:F2} MB / {tMB:F2} MB • {speedMB:F2} MB/s";
-            
+
             _progress?.Report(info);
         });
     }

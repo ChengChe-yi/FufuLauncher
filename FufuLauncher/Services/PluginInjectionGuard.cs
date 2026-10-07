@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text;
 using FufuLauncher.Helpers;
@@ -135,7 +136,8 @@ public static class PluginInjectionGuard
         string.Equals(Path.GetExtension(path), ".dll", StringComparison.OrdinalIgnoreCase);
 
     private static bool IsMainPluginDll(string path) =>
-        string.Equals(Path.GetFileName(path), LightweightPluginService.MainPluginDllName, StringComparison.OrdinalIgnoreCase);
+        string.Equals(Path.GetFileName(path), LightweightPluginService.MainPluginDllName,
+            StringComparison.OrdinalIgnoreCase);
 
     private static bool IsPluginDll(string dllPath)
     {
@@ -151,7 +153,8 @@ public static class PluginInjectionGuard
             if (!config.TryGetValue("General", out var general)) return false;
             if (!general.TryGetValue("File", out var fileName) || string.IsNullOrWhiteSpace(fileName)) return false;
 
-            return string.Equals(Path.GetFileName(fileName.Trim()), Path.GetFileName(dllPath), StringComparison.OrdinalIgnoreCase);
+            return string.Equals(Path.GetFileName(fileName.Trim()), Path.GetFileName(dllPath),
+                StringComparison.OrdinalIgnoreCase);
         }
         catch (Exception ex)
         {

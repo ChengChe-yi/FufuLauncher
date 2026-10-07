@@ -47,7 +47,10 @@ namespace FufuLauncher.Views
                 appWindow.Resize(new Windows.Graphics.SizeInt32(900, 700));
             }
 
-            Closed += (s, e) => { if (_isDownloading) _cts?.Cancel(); };
+            Closed += (s, e) =>
+            {
+                if (_isDownloading) _cts?.Cancel();
+            };
         }
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
@@ -89,7 +92,8 @@ namespace FufuLauncher.Views
                 var lang = ((ComboBoxItem)LanguageCombo.SelectedItem).Tag?.ToString() ?? "zh-cn";
                 var downloadBase = BaseGameCheck.IsChecked == true;
 
-                await Task.Run(() => downloader.StartDownloadAsync(_installPath, lang, downloadBase, 16, _cts.Token, _downloadMonitor));
+                await Task.Run(() =>
+                    downloader.StartDownloadAsync(_installPath, lang, downloadBase, 16, _cts.Token, _downloadMonitor));
                 _chartController.Stop();
 
                 DispatcherQueue.TryEnqueue(async () =>

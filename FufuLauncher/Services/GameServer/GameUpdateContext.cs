@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.Concurrent;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.GameServer;
@@ -30,18 +31,66 @@ public sealed class GameUpdateContext
         PredownloadStatusFilePath = Path.Combine(ChunksDir, GameUpdateService.PredownloadStatusFileName);
     }
 
-    public string GameDir { get; }
-    public GameServerScheme Scheme { get; }
-    public IProgress<GameServerConversionProgress> Progress { get; }
-    public Action<string> Log { get; }
-    public CancellationToken Token { get; }
-    public GameServerDownloadMonitor? DownloadMonitor { get; }
-    public ParallelOptions ParallelOptions { get; }
-    public string ChunksDir { get; }
-    public string PredownloadStatusFilePath { get; }
-    public ConcurrentDictionary<string, byte> DuplicatedChunkNames { get; } = new(StringComparer.Ordinal);
-    public KeyedSemaphoreSlim ChunkLocks { get; } = new();
-    public ConcurrentDictionary<string, byte> DownloadedPatches { get; } = new(StringComparer.Ordinal);
+    public string GameDir
+    {
+        get;
+    }
+
+    public GameServerScheme Scheme
+    {
+        get;
+    }
+
+    public IProgress<GameServerConversionProgress> Progress
+    {
+        get;
+    }
+
+    public Action<string> Log
+    {
+        get;
+    }
+
+    public CancellationToken Token
+    {
+        get;
+    }
+
+    public GameServerDownloadMonitor? DownloadMonitor
+    {
+        get;
+    }
+
+    public ParallelOptions ParallelOptions
+    {
+        get;
+    }
+
+    public string ChunksDir
+    {
+        get;
+    }
+
+    public string PredownloadStatusFilePath
+    {
+        get;
+    }
+
+    public ConcurrentDictionary<string, byte> DuplicatedChunkNames
+    {
+        get;
+    } = new(StringComparer.Ordinal);
+
+    public KeyedSemaphoreSlim ChunkLocks
+    {
+        get;
+    } = new();
+
+    public ConcurrentDictionary<string, byte> DownloadedPatches
+    {
+        get;
+    } = new(StringComparer.Ordinal);
+
     public string GetGameFilePath(string assetName) => Path.Combine(GameDir, assetName);
     public string GetChunkFilePath(string name) => Path.Combine(ChunksDir, name);
 }

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Constants.MiHoYo;
@@ -36,11 +37,14 @@ public class UserInfoService : IUserInfoService
 
     private void ApplyCommonHeaders(HttpRequestMessage request, string cookie)
     {
-        
-        var keys = new[] { "ltoken", "ltuid", "cookie_token", "account_id", "ltoken_v2", "ltuid_v2", "cookie_token_v2", "account_id_v2" };
+        var keys = new[]
+        {
+            "ltoken", "ltuid", "cookie_token", "account_id", "ltoken_v2", "ltuid_v2", "cookie_token_v2", "account_id_v2"
+        };
         var found = keys.Where(k => cookie.Contains(k + "=", StringComparison.OrdinalIgnoreCase)).ToArray();
         var missing = keys.Where(k => !found.Contains(k, StringComparer.OrdinalIgnoreCase)).ToArray();
-        System.Diagnostics.Debug.WriteLine($"[UserInfoService] Cookie length={cookie.Length}, found=[{string.Join(", ", found)}], missing=[{string.Join(", ", missing)}]");
+        System.Diagnostics.Debug.WriteLine(
+            $"[UserInfoService] Cookie length={cookie.Length}, found=[{string.Join(", ", found)}], missing=[{string.Join(", ", missing)}]");
 
         request.Headers.TryAddWithoutValidation("Cookie", cookie);
         request.Headers.TryAddWithoutValidation("DS", GenerateDS());
@@ -51,7 +55,7 @@ public class UserInfoService : IUserInfoService
         request.Headers.TryAddWithoutValidation("User-Agent",
             "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1");
     }
-    
+
     private void ApplyOverseaHeaders(HttpRequestMessage request, string cookie)
     {
         request.Headers.TryAddWithoutValidation("Cookie", cookie);
@@ -80,7 +84,7 @@ public class UserInfoService : IUserInfoService
         var hasOsFields = cookie.Contains("ltuid_v2=", StringComparison.OrdinalIgnoreCase) ||
                           cookie.Contains("account_id_v2=", StringComparison.OrdinalIgnoreCase) ||
                           cookie.Contains("cookie_token_v2=", StringComparison.OrdinalIgnoreCase);
-        
+
         if (hasCnFields) return false;
         if (hasOsFields) return true;
 
@@ -101,15 +105,18 @@ public class UserInfoService : IUserInfoService
                     return new GameRolesResponse(0, "OK", new GameRolesData(bindingRoles));
 
                 var rolesResult = await _hoyolabRoleResolverService.ResolveRolesAsync(cookie);
-                return new GameRolesResponse(rolesResult.RetCode, rolesResult.Message, new GameRolesData(rolesResult.Roles));
+                return new GameRolesResponse(rolesResult.RetCode, rolesResult.Message,
+                    new GameRolesData(rolesResult.Roles));
             }
 
             using var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.MihoyoBbsUserGameRolesUrl);
             ApplyCommonHeaders(request, cookie);
             using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
-            System.Diagnostics.Debug.WriteLine($"[UserInfoService] GameRoles HTTP {response.StatusCode} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
-            return JsonSerializer.Deserialize<GameRolesResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+            System.Diagnostics.Debug.WriteLine(
+                $"[UserInfoService] GameRoles HTTP {response.StatusCode} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
+            return JsonSerializer.Deserialize<GameRolesResponse>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         }
         catch (Exception ex)
         {
@@ -117,7 +124,7 @@ public class UserInfoService : IUserInfoService
             return new GameRolesResponse(-1, ex.Message, null);
         }
     }
-    
+
     private async Task<List<GameRoleInfo>?> TryGetOverseaRolesFromBindingAsync(string cookie)
     {
         try
@@ -126,10 +133,11 @@ public class UserInfoService : IUserInfoService
             ApplyOverseaHeaders(request, cookie);
             using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<GameRolesResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var result = JsonSerializer.Deserialize<GameRolesResponse>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             if (result == null || result.retcode != 0 || result.data?.list == null || result.data.list.Count == 0)
                 return null;
-            
+
             return result.data.list
                 .Select(role => string.IsNullOrEmpty(role.region)
                     ? role with { region = ServerRegion.Resolve(role.game_uid) }
@@ -158,8 +166,10 @@ public class UserInfoService : IUserInfoService
 
             using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
-            System.Diagnostics.Debug.WriteLine($"[UserInfoService] UserFullInfo HTTP {response.StatusCode} | URL: {url} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
-            return JsonSerializer.Deserialize<UserFullInfoResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
+            System.Diagnostics.Debug.WriteLine(
+                $"[UserInfoService] UserFullInfo HTTP {response.StatusCode} | URL: {url} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
+            return JsonSerializer.Deserialize<UserFullInfoResponse>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         }
         catch (Exception ex)
         {
@@ -173,4 +183,3 @@ public class UserInfoService : IUserInfoService
         return await Task.FromResult(new GameRecordCardResponse(-1, "UserInfo_FeatureRemoved".GetLocalized(), null));
     }
 }
-

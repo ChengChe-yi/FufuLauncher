@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Contracts.Services;
@@ -16,7 +17,11 @@ namespace FufuLauncher.ViewModels
         private readonly Microsoft.UI.Dispatching.DispatcherQueue _dispatcherQueue;
         private bool _isInitializing;
         private bool _isReverting;
-        public IRelayCommand OpenBrowserCommand { get; }
+
+        public IRelayCommand OpenBrowserCommand
+        {
+            get;
+        }
 
         [ObservableProperty] private bool _isAdditionalProgramEnabled;
         [ObservableProperty] private string _additionalProgramPath = string.Empty;
@@ -31,29 +36,33 @@ namespace FufuLauncher.ViewModels
         [ObservableProperty] private bool _isRecordingTriggerKey;
         [ObservableProperty] private bool _isRecordingClickKey;
         [ObservableProperty] private bool _isRecordingStopKey;
-        [ObservableProperty]
-        private bool _isApplyButtonEnabled;
+        [ObservableProperty] private bool _isApplyButtonEnabled;
 
         public IAsyncRelayCommand BrowseProgramCommand
         {
             get;
         }
+
         public IAsyncRelayCommand SaveSettingsCommand
         {
             get;
         }
+
         public IRelayCommand RecordTriggerKeyCommand
         {
             get;
         }
+
         public IRelayCommand RecordClickKeyCommand
         {
             get;
         }
+
         public IRelayCommand RecordStopKeyCommand
         {
             get;
         }
+
         public IAsyncRelayCommand ApplyProgramPathCommand
         {
             get;

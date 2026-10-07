@@ -75,7 +75,8 @@
             <Grid x:Name="AppTitleBar" Background="Transparent">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0">
                     <Image Source="/Assets/WindowIcon.ico" Width="16" Height="16" Margin="0,0,12,0" />
-                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_ArchiveTitle}" FontSize="12" Foreground="{ThemeResource SubTextColor}"
+                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_ArchiveTitle}" FontSize="12"
+                               Foreground="{ThemeResource SubTextColor}"
                                VerticalAlignment="Center" />
                 </StackPanel>
             </Grid>
@@ -92,7 +93,8 @@
                         <StackPanel Orientation="Horizontal" Spacing="6">
                             <FontIcon Glyph="&#xE8EC;" FontFamily="Segoe Fluent Icons" FontSize="13"
                                       Foreground="{ThemeResource SubTextColor}" />
-                            <TextBlock Text="{helpers:Loc Key=InventoryWindow_Title}" FontSize="12" Foreground="{ThemeResource HighlightColor}"
+                            <TextBlock Text="{helpers:Loc Key=InventoryWindow_Title}" FontSize="12"
+                                       Foreground="{ThemeResource HighlightColor}"
                                        FontWeight="SemiBold" />
                         </StackPanel>
                     </Border>
@@ -109,7 +111,8 @@
                 </StackPanel>
 
                 <Button x:Name="RefreshButton" Grid.Column="1" VerticalAlignment="Center" Click="OnRefreshClick"
-                        Style="{StaticResource ToolbarButtonStyle}" ToolTipService.ToolTip="{helpers:Loc Key=InventoryWindow_RefreshData}">
+                        Style="{StaticResource ToolbarButtonStyle}"
+                        ToolTipService.ToolTip="{helpers:Loc Key=InventoryWindow_RefreshData}">
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <FontIcon Glyph="&#xE72C;" FontFamily="{StaticResource SymbolThemeFontFamily}" FontSize="14" />
                         <TextBlock Text="{helpers:Loc Key=InventoryWindow_RefreshData}" FontSize="12" />
@@ -117,7 +120,8 @@
                 </Button>
             </Grid>
 
-            <views:GameRoleSelector Grid.Row="2" Margin="16,8,16,8" HorizontalAlignment="Left" MinWidth="140" Scope="{x:Bind RoleSelection}" />
+            <views:GameRoleSelector Grid.Row="2" Margin="16,8,16,8" HorizontalAlignment="Left" MinWidth="140"
+                                    Scope="{x:Bind RoleSelection}" />
             <Pivot Grid.Row="3" Margin="0,0,0,0">
                 <PivotItem Header="{helpers:Loc Key=InventoryWindow_MyBag}">
                     <Grid Padding="20,12,20,0">
@@ -134,14 +138,16 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Spacing="2">
-                                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_InventoryOverview}" Foreground="{ThemeResource HighlightColor}" FontSize="14"
+                                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_InventoryOverview}"
+                                               Foreground="{ThemeResource HighlightColor}" FontSize="14"
                                                FontWeight="SemiBold" />
                                     <TextBlock Text="{helpers:Loc Key=InventoryWindow_OverviewDesc}"
                                                Foreground="{ThemeResource SubTextColor}" FontSize="12" />
                                 </StackPanel>
                                 <Border Grid.Column="1" Background="{ThemeResource ImageBackgroundBrush}"
                                         CornerRadius="4" Padding="8,4" VerticalAlignment="Center">
-                                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalCheckHint}" Foreground="{ThemeResource SubTextColor}" FontSize="11" />
+                                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalCheckHint}"
+                                               Foreground="{ThemeResource SubTextColor}" FontSize="11" />
                                 </Border>
                             </Grid>
                         </Border>
@@ -175,9 +181,10 @@
                                                                 <FontIcon Glyph="&#xE73E;"
                                                                           FontFamily="Segoe Fluent Icons" FontSize="11"
                                                                           Foreground="{ThemeResource SystemFillColorSuccessBrush}" />
-                                                                <TextBlock Text="{helpers:Loc Key=InventoryWindow_Complete}"
-                                                                           Foreground="{ThemeResource SystemFillColorSuccessBrush}"
-                                                                           FontSize="10" FontWeight="SemiBold" />
+                                                                <TextBlock
+                                                                    Text="{helpers:Loc Key=InventoryWindow_Complete}"
+                                                                    Foreground="{ThemeResource SystemFillColorSuccessBrush}"
+                                                                    FontSize="10" FontWeight="SemiBold" />
                                                             </StackPanel>
                                                         </Border>
 
@@ -234,9 +241,11 @@
                         <Border Background="{ThemeResource CardBackground}" BorderBrush="{ThemeResource CardBorder}"
                                 BorderThickness="1" CornerRadius="8" Padding="14,10" Margin="0,0,0,12">
                             <StackPanel Spacing="2">
-                                <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalPlanning}" Foreground="{ThemeResource HighlightColor}" FontSize="14"
+                                <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalPlanning}"
+                                           Foreground="{ThemeResource HighlightColor}" FontSize="14"
                                            FontWeight="SemiBold" />
-                                <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalDesc}" Foreground="{ThemeResource SubTextColor}"
+                                <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalDesc}"
+                                           Foreground="{ThemeResource SubTextColor}"
                                            FontSize="12" />
                             </StackPanel>
                         </Border>
@@ -259,9 +268,11 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="170" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="1" Text="{helpers:Loc Key=InventoryWindow_ItemName}" FontSize="12"
+                                    <TextBlock Grid.Column="1" Text="{helpers:Loc Key=InventoryWindow_ItemName}"
+                                               FontSize="12"
                                                Foreground="{ThemeResource SubTextColor}" />
-                                    <TextBlock Grid.Column="2" Text="{helpers:Loc Key=InventoryWindow_TargetCount}" FontSize="12"
+                                    <TextBlock Grid.Column="2" Text="{helpers:Loc Key=InventoryWindow_TargetCount}"
+                                               FontSize="12"
                                                Foreground="{ThemeResource SubTextColor}" />
                                 </Grid>
                             </ListView.Header>
@@ -297,7 +308,8 @@
                     BorderBrush="{ThemeResource CardBorder}" BorderThickness="0,1,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="6">
                     <FontIcon Glyph="&#xE946;" FontSize="12" Foreground="{ThemeResource SubTextColor}" />
-                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalMetHint}" FontSize="12" Foreground="{ThemeResource SubTextColor}" />
+                    <TextBlock Text="{helpers:Loc Key=InventoryWindow_GoalMetHint}" FontSize="12"
+                               Foreground="{ThemeResource SubTextColor}" />
                 </StackPanel>
             </Border>
         </Grid>

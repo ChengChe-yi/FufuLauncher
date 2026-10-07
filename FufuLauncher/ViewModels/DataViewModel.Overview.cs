@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Collections.ObjectModel;
 using System.Globalization;
 using FufuLauncher.Models.DataCenter;
@@ -12,17 +13,57 @@ public sealed partial class DataViewModel
 {
     #region Overview
 
-    public ObservableCollection<DcKpiTile> OverviewKpis { get; } = new();
-    public ObservableCollection<DcInsight> OverviewInsights { get; } = new();
-    public ObservableCollection<DcMoverRow> OverviewRisers { get; } = new();
-    public ObservableCollection<DcMoverRow> OverviewFallers { get; } = new();
-    public ObservableCollection<DcRankRow> OverviewTopTier { get; } = new();
-    public ObservableCollection<DcWishBanner> OverviewBanners { get; } = new();
-    public ObservableCollection<DcCountRow> OverviewValuePicks { get; } = new();
-    public ObservableCollection<DcRerunCard> OverviewOverdue { get; } = new();
+    public ObservableCollection<DcKpiTile> OverviewKpis
+    {
+        get;
+    } = new();
 
-    public bool HasOverviewBanners { get; private set; }
-    public bool HasOverviewMovers { get; private set; }
+    public ObservableCollection<DcInsight> OverviewInsights
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcMoverRow> OverviewRisers
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcMoverRow> OverviewFallers
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcRankRow> OverviewTopTier
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcWishBanner> OverviewBanners
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcCountRow> OverviewValuePicks
+    {
+        get;
+    } = new();
+
+    public ObservableCollection<DcRerunCard> OverviewOverdue
+    {
+        get;
+    } = new();
+
+    public bool HasOverviewBanners
+    {
+        get;
+        private set;
+    }
+
+    public bool HasOverviewMovers
+    {
+        get;
+        private set;
+    }
 
     private void BuildOverview()
     {

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
@@ -20,9 +21,24 @@ using CommunityToolkit.Mvvm.Messaging;
 
 public class BackgroundItem
 {
-    public string Url { get; set; }
-    public string PreviewUrl { get; set; }
-    public bool IsVideo { get; set; }
+    public string Url
+    {
+        get;
+        set;
+    }
+
+    public string PreviewUrl
+    {
+        get;
+        set;
+    }
+
+    public bool IsVideo
+    {
+        get;
+        set;
+    }
+
     public string TypeText => IsVideo ? "视频" : "图片";
 }
 
@@ -30,10 +46,29 @@ namespace FufuLauncher.Services.Background
 {
     public class BackgroundRenderResult
     {
-        public ImageSource ImageSource { get; set; }
-        public MediaSource VideoSource { get; set; }
-        public InMemoryRandomAccessStream VideoStream { get; set; }
-        public bool IsVideo { get; set; }
+        public ImageSource ImageSource
+        {
+            get;
+            set;
+        }
+
+        public MediaSource VideoSource
+        {
+            get;
+            set;
+        }
+
+        public InMemoryRandomAccessStream VideoStream
+        {
+            get;
+            set;
+        }
+
+        public bool IsVideo
+        {
+            get;
+            set;
+        }
     }
 
     public interface IBackgroundRenderer
@@ -61,7 +96,7 @@ namespace FufuLauncher.Services.Background
         private string _videoMimeType;
         private BackgroundRenderResult _cachedCustomBackground;
         private string _customBackgroundPath;
-        
+
         private bool AllowVideoBackground => _devBuildDetectionService.IsDevBuild;
 
         static BackgroundRenderer()
@@ -189,7 +224,14 @@ namespace FufuLauncher.Services.Background
             catch (Exception ex)
             {
                 Debug.WriteLine($"BackgroundRenderer: 缓存文件加载失败({cachedFilePath}): {ex.Message}");
-                try { File.Delete(cachedFilePath); } catch { }
+                try
+                {
+                    File.Delete(cachedFilePath);
+                }
+                catch
+                {
+                }
+
                 return null;
             }
         }
@@ -286,7 +328,7 @@ namespace FufuLauncher.Services.Background
             var predictedPath = Path.Combine(_cacheFolderPath, GetCacheFileName(url, defaultExtension));
             if (File.Exists(predictedPath))
                 return predictedPath;
-            
+
             try
             {
                 if (Directory.Exists(_cacheFolderPath))
@@ -299,7 +341,9 @@ namespace FufuLauncher.Services.Background
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
 
             return null;
         }
@@ -342,6 +386,7 @@ namespace FufuLauncher.Services.Background
                     await localSettings.SaveSettingAsync("SelectedOnlineBackgroundUrl", "");
                     await localSettings.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", false);
                 }
+
                 await localSettings.SaveSettingAsync("BackgroundJsonHash", currentHash);
 
                 var specificUrlObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundUrl");
@@ -376,7 +421,9 @@ namespace FufuLauncher.Services.Background
                         await PreloadAllFromResponse(response);
                         CleanupStaleCacheFiles(response);
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 });
 
                 return result;
@@ -408,7 +455,9 @@ namespace FufuLauncher.Services.Background
                             var oldJson = await File.ReadAllTextAsync(apiCachePath);
                             oldHash = ComputeMD5(oldJson);
                         }
-                        catch { }
+                        catch
+                        {
+                        }
                     }
 
                     await SaveApiCacheAsync(server, response);
@@ -422,6 +471,7 @@ namespace FufuLauncher.Services.Background
                         await localSettings.SaveSettingAsync("SelectedOnlineBackgroundUrl", "");
                         await localSettings.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", false);
                     }
+
                     await localSettings.SaveSettingAsync("BackgroundJsonHash", newHash);
 
                     bool dataChanged = oldHash != null && oldHash != newHash;
@@ -515,7 +565,10 @@ namespace FufuLauncher.Services.Background
                         urls.Add(b.Background.Url);
                 }
             }
-            catch { }
+            catch
+            {
+            }
+
             return urls;
         }
 
@@ -543,7 +596,7 @@ namespace FufuLauncher.Services.Background
             {
                 if (!Directory.Exists(_cacheFolderPath))
                     return;
-                
+
                 var validHashes = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 var allUrls = ParseAllUrls(apiResponse, includeVideos: AllowVideoBackground);
                 foreach (var url in allUrls)
@@ -558,16 +611,32 @@ namespace FufuLauncher.Services.Background
                         continue;
                     if (name.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase))
                     {
-                        try { File.Delete(file); } catch { }
+                        try
+                        {
+                            File.Delete(file);
+                        }
+                        catch
+                        {
+                        }
+
                         continue;
                     }
+
                     if (!validHashes.Contains(Path.GetFileNameWithoutExtension(name)))
                     {
-                        try { File.Delete(file); } catch { }
+                        try
+                        {
+                            File.Delete(file);
+                        }
+                        catch
+                        {
+                        }
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         public async Task<BackgroundRenderResult> GetSpecificOnlineBackgroundAsync(string url, bool isVideo)
@@ -676,7 +745,9 @@ namespace FufuLauncher.Services.Background
                     foreach (var file in Directory.GetFiles(_cacheFolderPath))
                         File.Delete(file);
                 }
-                catch { }
+                catch
+                {
+                }
             }
 
             _cachedBackground = null;
@@ -712,10 +783,11 @@ namespace FufuLauncher.Services.Background
 
             using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
-            
+
             if (GetUrlPathExtension(url) == null)
             {
-                var detected = GetExtensionFromContentType(response.Content.Headers.ContentType?.MediaType, defaultExtension);
+                var detected =
+                    GetExtensionFromContentType(response.Content.Headers.ContentType?.MediaType, defaultExtension);
                 if (!string.Equals(detected, defaultExtension, StringComparison.OrdinalIgnoreCase))
                 {
                     fileName = GetCacheFileName(url, detected);
@@ -731,6 +803,7 @@ namespace FufuLauncher.Services.Background
             {
                 await contentStream.CopyToAsync(fileStream);
             }
+
             File.Move(tempFile, cachedFilePath, true);
         }
 
@@ -781,7 +854,7 @@ namespace FufuLauncher.Services.Background
                 return null;
             }
         }
-        
+
         private static string GetVideoExtension(string url)
         {
             var ext = GetUrlPathExtension(url);
@@ -819,4 +892,3 @@ namespace FufuLauncher.Services.Background
         }
     }
 }
-

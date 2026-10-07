@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text.Json;
 using Windows.Foundation;
 using FufuLauncher.Constants;
@@ -106,13 +107,17 @@ namespace FufuLauncher.Views
                     core.NavigationStarting -= _navStartHandler;
                     core.NewWindowRequested -= _newWindowHandler;
                 }
+
                 AnnouncementWebView.NavigationCompleted -= AnnouncementWebView_NavigationCompleted;
                 AnnouncementWebView.Close();
             }
-            catch { }
+            catch
+            {
+            }
         }
 
-        private async void AnnouncementWebView_NavigationCompleted(WebView2 sender, CoreWebView2NavigationCompletedEventArgs args)
+        private async void AnnouncementWebView_NavigationCompleted(WebView2 sender,
+            CoreWebView2NavigationCompletedEventArgs args)
         {
             LoadingBar.Visibility = Visibility.Collapsed;
             if (args.IsSuccess)
@@ -146,18 +151,23 @@ namespace FufuLauncher.Views
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         private class WebDimensions
         {
             public double width
             {
-                get; set;
+                get;
+                set;
             }
+
             public double height
             {
-                get; set;
+                get;
+                set;
             }
         }
     }

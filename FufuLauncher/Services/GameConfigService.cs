@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
@@ -54,7 +55,8 @@ public class GameConfigService : IGameConfigService
     private readonly ILocalSettingsService _localSettingsService;
     private readonly GameServerConfigurationService _gameServerConfigurationService;
 
-    public GameConfigService(ILocalSettingsService localSettingsService, GameServerConfigurationService gameServerConfigurationService)
+    public GameConfigService(ILocalSettingsService localSettingsService,
+        GameServerConfigurationService gameServerConfigurationService)
     {
         _localSettingsService = localSettingsService;
         _gameServerConfigurationService = gameServerConfigurationService;
@@ -72,7 +74,6 @@ public class GameConfigService : IGameConfigService
             var configPath = Path.Combine(gamePath, "config.ini");
             if (!File.Exists(configPath))
             {
-
                 configPath = Directory.GetFiles(gamePath, "config.ini", SearchOption.AllDirectories)
                     .FirstOrDefault();
             }
@@ -94,7 +95,7 @@ public class GameConfigService : IGameConfigService
             {
                 config.Version = "Msg_VersionInfoNotFound".GetLocalized();
             }
-            
+
             var serverScheme = _gameServerConfigurationService.TryDetectCurrentScheme(gamePath);
             config.ServerType = serverScheme?.DisplayName ?? "Status_Unknown".GetLocalized();
 
@@ -115,7 +116,6 @@ public class GameConfigService : IGameConfigService
 
     public async Task<string?> GetSavedGamePathAsync()
     {
-
         var result = await _localSettingsService.ReadSettingAsync(SettingsKey);
         return result?.ToString();
     }

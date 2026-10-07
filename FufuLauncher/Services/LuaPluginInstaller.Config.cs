@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Text;
 
 namespace FufuLauncher.Services;
@@ -44,6 +45,7 @@ public partial class LuaPluginInstaller
                     generalEndIndex = i;
                     break;
                 }
+
                 inGeneral = trimmed.Equals("[General]", StringComparison.OrdinalIgnoreCase);
                 continue;
             }

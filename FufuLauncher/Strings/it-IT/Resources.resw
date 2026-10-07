@@ -507,6 +507,9 @@
   <data name="Announcement_Loading" xml:space="preserve">
     <value>Caricamento annuncio...</value>
   </data>
+  <data name="Announcement_OpenInEdge" xml:space="preserve">
+    <value>Apri in Edge</value>
+  </data>
   <data name="Announcement_Title" xml:space="preserve">
     <value>Annuncio</value>
   </data>
@@ -6193,4 +6196,21 @@ Puoi riprovare con un altro nodo o usare la fonte ufficiale diretta.</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Il conflitto di DLL duplicate è stato risolto. Ora puoi riavviare il gioco.</value>
   </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Le modifiche vengono salvate automaticamente</value></data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Salvataggio…</value></data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Salvataggio della configurazione non riuscito</value></data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Impossibile scrivere il file di configurazione. Controlla le autorizzazioni del file e riprova. Dettagli: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Caricamento della configurazione non riuscito</value></data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Impossibile leggere il file di configurazione del plugin. Dettagli: {0}</value></data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Assicurati che il file di configurazione esista e sia leggibile, quindi ricaricalo.</value></data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>Il file di configurazione non esiste: {0}</value></data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Nessuna impostazione configurabile</value></data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Questo plugin non offre impostazioni modificabili.</value></data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Nessuna impostazione corrispondente</value></data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Prova un’altra parola chiave o cancella la ricerca.</value></data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Cancella ricerca</value></data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} impostazioni</value></data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} impostazioni</value></data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>File di configurazione</value></data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Inserisci un valore…</value></data>
 </root>

@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Constants;
@@ -145,7 +146,7 @@ public sealed partial class BlankPage
     }
 
     /// <summary>
-    /// 若上一次展开/收起动画仍在进行，则以当前动画值作为基准值再停止，避免视觉跳变。
+    ///     若上一次展开/收起动画仍在进行，则以当前动画值作为基准值再停止，避免视觉跳变。
     /// </summary>
     private void StopRedeemExpandAnimation()
     {
@@ -159,7 +160,8 @@ public sealed partial class BlankPage
         _redeemExpandStoryboard = null;
     }
 
-    private DoubleAnimation CreateRedeemPanelAnimation(string property, double from, double to, int durationMs, EasingMode easing)
+    private DoubleAnimation CreateRedeemPanelAnimation(string property, double from, double to, int durationMs,
+        EasingMode easing)
     {
         var animation = new DoubleAnimation
         {

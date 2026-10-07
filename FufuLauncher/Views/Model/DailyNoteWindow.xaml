@@ -80,7 +80,8 @@
             <Grid x:Name="AppTitleBar" Background="Transparent">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0">
                     <Image Source="/Assets/WindowIcon.ico" Width="16" Height="16" Margin="0,0,12,0" />
-                    <TextBlock Text="{helpers:Loc Key=DailyNote_Title}" FontSize="12" Foreground="{ThemeResource SubTextColor}"
+                    <TextBlock Text="{helpers:Loc Key=DailyNote_Title}" FontSize="12"
+                               Foreground="{ThemeResource SubTextColor}"
                                VerticalAlignment="Center" />
                 </StackPanel>
             </Grid>
@@ -97,14 +98,16 @@
                         <StackPanel Orientation="Horizontal" Spacing="6">
                             <FontIcon Glyph="&#xE823;" FontFamily="Segoe Fluent Icons" FontSize="13"
                                       Foreground="{ThemeResource SubTextColor}" />
-                            <TextBlock Text="{helpers:Loc Key=DailyNote_TodayMaterials}" FontSize="12" Foreground="{ThemeResource HighlightColor}"
+                            <TextBlock Text="{helpers:Loc Key=DailyNote_TodayMaterials}" FontSize="12"
+                                       Foreground="{ThemeResource HighlightColor}"
                                        FontWeight="SemiBold" />
                         </StackPanel>
                     </Border>
 
                     <Rectangle Width="1" Height="16" Fill="{ThemeResource SeparatorBrush}" VerticalAlignment="Center" />
 
-                    <StackPanel Orientation="Horizontal" Spacing="6" ToolTipService.ToolTip="{helpers:Loc Key=DailyNote_RefreshStatus}"
+                    <StackPanel Orientation="Horizontal" Spacing="6"
+                                ToolTipService.ToolTip="{helpers:Loc Key=DailyNote_RefreshStatus}"
                                 VerticalAlignment="Center">
                         <FontIcon Glyph="&#xE946;" FontFamily="Segoe Fluent Icons" FontSize="13"
                                   Foreground="{ThemeResource SubTextColor}" />
@@ -142,7 +145,8 @@
                                     <TextBlock Text="{x:Bind TodayDate, Mode=OneWay}"
                                                Foreground="{ThemeResource HighlightColor}" FontSize="20"
                                                FontWeight="SemiBold" />
-                                    <TextBlock Text="{helpers:Loc Key=DailyNote_MaterialDropHint}" Foreground="{ThemeResource SubTextColor}"
+                                    <TextBlock Text="{helpers:Loc Key=DailyNote_MaterialDropHint}"
+                                               Foreground="{ThemeResource SubTextColor}"
                                                FontSize="12" />
                                 </StackPanel>
 
@@ -157,7 +161,8 @@
                                                    Stretch="UniformToFill" />
                                         </Border>
                                         <StackPanel VerticalAlignment="Center">
-                                            <TextBlock Text="{helpers:Loc Key=DailyNote_TodayBirthday}" Foreground="{ThemeResource SubTextColor}"
+                                            <TextBlock Text="{helpers:Loc Key=DailyNote_TodayBirthday}"
+                                                       Foreground="{ThemeResource SubTextColor}"
                                                        FontSize="10" />
                                             <TextBlock Text="{x:Bind BirthdayRoleName, Mode=OneWay}"
                                                        Foreground="{ThemeResource HighlightColor}" FontSize="12"
@@ -220,9 +225,10 @@
                                                                                 TextWrapping="Wrap" MaxLines="2"
                                                                                 TextTrimming="CharacterEllipsis"
                                                                                 MaxWidth="130" />
-                                                                        <TextBlock Text="{helpers:Loc Key=DailyNote_CharacterWeapon}"
-                                                                                Foreground="{ThemeResource SubTextColor}"
-                                                                                FontSize="10" Margin="0,2,0,0" />
+                                                                        <TextBlock
+                                                                            Text="{helpers:Loc Key=DailyNote_CharacterWeapon}"
+                                                                            Foreground="{ThemeResource SubTextColor}"
+                                                                            FontSize="10" Margin="0,2,0,0" />
                                                                     </StackPanel>
                                                                 </StackPanel>
 
@@ -301,9 +307,11 @@
                         <Border Background="{ThemeResource CardBackground}" BorderBrush="{ThemeResource CardBorder}"
                                 BorderThickness="1" CornerRadius="8" Padding="16,12" Margin="0,0,0,12">
                             <StackPanel Spacing="3">
-                                <TextBlock Text="{helpers:Loc Key=DailyNote_ActivityOverview}" Foreground="{ThemeResource HighlightColor}" FontSize="16"
+                                <TextBlock Text="{helpers:Loc Key=DailyNote_ActivityOverview}"
+                                           Foreground="{ThemeResource HighlightColor}" FontSize="16"
                                            FontWeight="SemiBold" />
-                                <TextBlock Text="{helpers:Loc Key=DailyNote_ActivityDesc}" Foreground="{ThemeResource SubTextColor}"
+                                <TextBlock Text="{helpers:Loc Key=DailyNote_ActivityDesc}"
+                                           Foreground="{ThemeResource SubTextColor}"
                                            FontSize="12" />
                             </StackPanel>
                         </Border>

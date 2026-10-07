@@ -2,6 +2,7 @@
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
+
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using FufuLauncher.Helpers;
@@ -33,7 +34,9 @@ public sealed partial class PluginSettingsPage
             var size = new Windows.Graphics.SizeInt32(640, 520);
             appWindow.Resize(size);
 
-            var displayArea = Microsoft.UI.Windowing.DisplayArea.GetFromWindowId(windowId, Microsoft.UI.Windowing.DisplayAreaFallback.Primary);
+            var displayArea =
+                Microsoft.UI.Windowing.DisplayArea.GetFromWindowId(windowId,
+                    Microsoft.UI.Windowing.DisplayAreaFallback.Primary);
             if (displayArea != null)
             {
                 var centeredX = (displayArea.WorkArea.Width - size.Width) / 2;
@@ -59,6 +62,7 @@ public sealed partial class PluginSettingsPage
             _feedbackWindow = new FeedbackWindow();
             _feedbackWindow.Closed += (s, args) => _feedbackWindow = null;
         }
+
         _feedbackWindow.Activate();
     }
 
@@ -77,7 +81,7 @@ public sealed partial class PluginSettingsPage
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             Microsoft.UI.Windowing.AppWindow appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
             appWindow.Resize(new Windows.Graphics.SizeInt32(600, 450));
-            
+
             var titleBarGrid = new Grid { Height = 32 };
             var titleText = new TextBlock
             {
@@ -87,11 +91,11 @@ public sealed partial class PluginSettingsPage
                 FontSize = 12
             };
             titleBarGrid.Children.Add(titleText);
-            
-            var contentStackPanel = new StackPanel 
-            { 
+
+            var contentStackPanel = new StackPanel
+            {
                 Padding = new Thickness(24, 16, 24, 24),
-                Spacing = 16 
+                Spacing = 16
             };
 
             var textBlock = new TextBlock
@@ -106,14 +110,14 @@ public sealed partial class PluginSettingsPage
                 HorizontalAlignment = HorizontalAlignment.Left
             };
 
-            openLinkBtn.Click += async (s, args) => 
-            { 
-                await Launcher.LaunchUriAsync(new Uri("https://github.com/FufuLauncher/FufuLauncher/pulls")); 
+            openLinkBtn.Click += async (s, args) =>
+            {
+                await Launcher.LaunchUriAsync(new Uri("https://github.com/FufuLauncher/FufuLauncher/pulls"));
             };
 
             contentStackPanel.Children.Add(textBlock);
             contentStackPanel.Children.Add(openLinkBtn);
-            
+
             var rootGrid = new Grid();
             rootGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
             rootGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -125,9 +129,10 @@ public sealed partial class PluginSettingsPage
             rootGrid.Children.Add(contentStackPanel);
 
             _prWindow.Content = rootGrid;
-            
+
             _prWindow.SetTitleBar(titleBarGrid);
         }
+
         _prWindow.Activate();
     }
 }
