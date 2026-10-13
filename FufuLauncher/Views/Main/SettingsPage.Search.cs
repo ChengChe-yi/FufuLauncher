@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -182,7 +182,7 @@ public sealed partial class SettingsPage
         var navItem = SettingsNavigationView.MenuItems
             .OfType<NavigationViewItem>()
             .FirstOrDefault(item => item.Tag?.ToString() == result.SectionTag);
-        if (navItem != null && SettingsNavigationView.SelectedItem != navItem)
+        if (navItem != null && (NavigationViewItem?)SettingsNavigationView.SelectedItem != navItem)
         {
             SettingsNavigationView.SelectedItem = navItem;
         }

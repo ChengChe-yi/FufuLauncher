@@ -97,10 +97,10 @@ public sealed partial class BBSWindow
         }
     }
 
-    private void CoreWebView2_DOMContentLoaded(CoreWebView2 sender, CoreWebView2DOMContentLoadedEventArgs args)
+    private async void CoreWebView2_DOMContentLoaded(CoreWebView2 sender, CoreWebView2DOMContentLoadedEventArgs args)
     {
-        sender.ExecuteScriptAsync(HideScrollBarScript);
-        sender.ExecuteScriptAsync(ConvertMouseToTouchScript);
+        await sender.ExecuteScriptAsync(HideScrollBarScript);
+        await sender.ExecuteScriptAsync(ConvertMouseToTouchScript);
     }
 
     private void CoreWebView2_SourceChanged(CoreWebView2 sender, CoreWebView2SourceChangedEventArgs args)

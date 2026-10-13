@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -48,7 +48,7 @@ public partial class GachaViewModel : ObservableRecipient
 
     public string CaptureButtonText => IsCapturing ? "停止抓取" : "启动抓包工具";
 
-    public bool CanExport => !IsAnalyzing && _statistics.Count > 0;
+    public bool CanExport => !IsAnalyzing && Statistics.Count > 0;
 
     public GachaViewModel(GachaService gachaService)
     {

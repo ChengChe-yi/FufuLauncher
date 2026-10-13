@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -57,8 +57,8 @@ public partial class SettingsViewModel
 
     private void InitializeDefaultResolution()
     {
-        _launchArgsWidth = "";
-        _launchArgsHeight = "";
+        LaunchArgsWidth = "";
+        LaunchArgsHeight = "";
     }
 
     partial void OnCustomGameExeNameChanged(string value)

@@ -103,8 +103,8 @@
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     Background="{ThemeResource AcrylicInAppFillColorBaseBrush}"
                                                     IsHitTestVisible="False"
-                                                    Visibility="{x:Bind ShouldShowTimeDescription, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                                                <TextBlock Text="{x:Bind TimeDescription, Mode=OneWay}"
+                                                    Visibility="{x:Bind ShouldShowTimeDescription, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                <TextBlock Text="{x:Bind TimeDescription, Mode=OneTime}"
                                                            FontSize="11" FontWeight="SemiBold" />
                                             </Border>
                                         </Grid>

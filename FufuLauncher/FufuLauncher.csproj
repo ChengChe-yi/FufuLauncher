@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0-windows10.0.26100.0</TargetFramework>
@@ -12,6 +12,7 @@
         <Nullable>enable</Nullable>
         <LangVersion>preview</LangVersion>
         <UseWinUI>true</UseWinUI>
+        <NoWarn>$(NoWarn);MVVMTK0045;MVVMTK0049</NoWarn>
 
         <EnableMsixTooling>true</EnableMsixTooling>
         <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -37,14 +37,14 @@ public partial class AccountInfo : ObservableObject
     [NotifyPropertyChangedFor(nameof(GameUidDisplay))]
     private int _gender = 0;
 
-    public string GenderIcon => _gender switch
+    public string GenderIcon => Gender switch
     {
         1 => "\uE13D",
         2 => "\uE13C",
         _ => "\uE77B"
     };
 
-    public string GenderText => _gender switch
+    public string GenderText => Gender switch
     {
         1 => "User_GenderMale".GetLocalized(),
         2 => "User_GenderFemale".GetLocalized(),

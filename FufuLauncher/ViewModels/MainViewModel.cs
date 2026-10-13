@@ -32,7 +32,6 @@ namespace FufuLauncher.ViewModels
         private readonly INotificationService _notificationService;
         private readonly DailyNoteCardService _dailyNoteCardService;
         private readonly DispatcherQueue _dispatcherQueue;
-        private static bool _isFirstLoad = true;
 
         #endregion
 
@@ -144,7 +143,7 @@ namespace FufuLauncher.ViewModels
             });
 
             _gameMonitoringCts = new CancellationTokenSource();
-            StartGameMonitoringLoopAsync(_gameMonitoringCts.Token);
+            _ = StartGameMonitoringLoopAsync(_gameMonitoringCts.Token);
 
             WeakReferenceMessenger.Default.Register<PanelOpacityChangedMessage>(this, (r, m) =>
             {

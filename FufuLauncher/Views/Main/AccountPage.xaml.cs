@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -427,7 +427,6 @@ public sealed partial class AccountPage : Page
     {
         if (BtnGrid == null || ProfileCard == null) return;
 
-        const int baseSpacing = 8;
         const int maxSpacing = 28;
         const int buttonCount = 10;
         const double titleBarOffset = 40;

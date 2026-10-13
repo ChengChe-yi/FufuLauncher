@@ -92,8 +92,7 @@ public partial class GameAnnouncementViewModel : ObservableObject
 
         AnnouncementRegion region = await ResolveInitialRegionAsync();
 
-        _selectedRegion = Regions.First(option => option.Value == region);
-        OnPropertyChanged(nameof(SelectedRegion));
+        SelectedRegion = Regions.First(option => option.Value == region);
         _regionInitialized = true;
         _initialized = true;
 

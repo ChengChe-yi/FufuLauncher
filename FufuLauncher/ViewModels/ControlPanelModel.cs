@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -13,7 +13,6 @@ namespace FufuLauncher.ViewModels;
 public partial class ControlPanelModel : ObservableObject
 {
     private readonly string _configPath;
-    private bool _isLoaded;
     private CancellationTokenSource _cancellationTokenSource;
     private readonly Dictionary<string, long> _playTimeData;
 
@@ -80,21 +79,17 @@ public partial class ControlPanelModel : ObservableObject
                 var config = JsonSerializer.Deserialize<ControlPanelConfig>(json);
                 if (config != null)
                 {
-                    _isLoaded = false;
                     if (config.GamePlayTimeData != null)
                     {
                         foreach (var kvp in config.GamePlayTimeData) _playTimeData[kvp.Key] = kvp.Value;
                     }
 
-                    _isLoaded = true;
                     CalculateMonthlyStats();
                 }
             }
-            else _isLoaded = true;
         }
         catch
         {
-            _isLoaded = true;
         }
     }
 

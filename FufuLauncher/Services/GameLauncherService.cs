@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -18,7 +18,6 @@ public partial class GameLauncherService : IGameLauncherService
     private readonly ILauncherService _launcherService;
     private readonly ControlPanelModel _controlPanelModel;
     private readonly GameServerConfigurationService _gameServerConfigurationService;
-    private readonly IPluginUpdateService _pluginUpdateService;
     private readonly LightweightPluginService _lightweightPluginService;
     private readonly ConstraintService _constraintService;
     private readonly IScreenshotService _screenshotService;
@@ -34,7 +33,6 @@ public partial class GameLauncherService : IGameLauncherService
         IGameConfigService gameConfigService,
         ILauncherService launcherService,
         ControlPanelModel controlPanelModel,
-        IPluginUpdateService pluginUpdateService,
         IScreenshotService screenshotService,
         IAuthTicketService authTicketService,
         AccountManager accountManager,

@@ -93,14 +93,14 @@ namespace Updater
             Timeout = TimeSpan.FromSeconds(15) 
         };
         
-        private string _targetExeUrl;
-        private string _fileName;
-        private string _expectedSha256;
+        private string? _targetExeUrl;
+        private string? _fileName;
+        private string? _expectedSha256;
         private List<MirrorInfo> _mirrors = new();
-        private DownloadService _downloader;
+        private DownloadService? _downloader;
         private Stopwatch _uiUpdateTimer = new();
 
-        private DispatcherTimer _stuckTimer;
+        private DispatcherTimer? _stuckTimer;
         private long _currentReceivedBytes = 0;
         private long _lastReceivedBytes = 0;
         private int _stuckTicks = 0;
@@ -168,7 +168,7 @@ namespace Updater
             return Version.TryParse(StripPreReleaseSuffix(input), out version);
         }
 
-        private void StuckTimer_Tick(object sender, EventArgs e)
+        private void StuckTimer_Tick(object? sender, EventArgs e)
         {
             if (!_isDownloading || _downloader == null || _downloader.IsCancelled) return;
 
@@ -579,7 +579,7 @@ namespace Updater
                     var result = await VerifyAndMeasureNodeAsync(domain, testProxyUrl, exeProxyUrl);
                     
                     int current = Interlocked.Increment(ref completed);
-                    Dispatcher.InvokeAsync(() =>
+                    _ = Dispatcher.InvokeAsync(() =>
                     {
                         if (TestStatusText != null)
                         {
@@ -922,10 +922,10 @@ namespace Updater
 
     public class MirrorInfo
     {
-        public string Domain { get; set; }
-        public string FullUrl { get; set; }
+        public string Domain { get; set; } = string.Empty;
+        public string FullUrl { get; set; } = string.Empty;
         public bool IsSuccess { get; set; }
         public long ResponseTimeMs { get; set; }
-        public string StatusDesc { get; set; }
+        public string StatusDesc { get; set; } = string.Empty;
     }
 }

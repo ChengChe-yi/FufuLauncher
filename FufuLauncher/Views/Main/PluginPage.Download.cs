@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -55,10 +55,6 @@ public sealed partial class PluginPage
     {
         string urlLatest =
             "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
-        string urlOld =
-            "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin-old.zip";
-        string urlHotSwitch =
-            "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/input_hot_switch.zip";
 
         var stackPanel = new StackPanel { Spacing = 10 };
 
@@ -238,7 +234,7 @@ public sealed partial class PluginPage
             XamlRoot = XamlRoot
         };
 
-        progressDialog.ShowAsync();
+        _ = progressDialog.ShowAsync();
 
         string? installTargetDir = null;
 

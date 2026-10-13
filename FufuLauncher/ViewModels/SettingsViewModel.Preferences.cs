@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -223,7 +223,7 @@ public partial class SettingsViewModel
             if (behaviorJson is string behaviorStr && Enum.TryParse<PostLaunchBehavior>(behaviorStr, out var parsed))
                 postLaunchBehavior = parsed;
 
-            _postLaunchBehavior = postLaunchBehavior;
+            PostLaunchBehavior = postLaunchBehavior;
             SelectedPostLaunchBehaviorItem = PostLaunchBehaviorItems.First(i => i.Value == postLaunchBehavior);
 
             var usingHoyolabJson = await _localSettingsService.ReadSettingAsync("UsingHoyolabAccount");

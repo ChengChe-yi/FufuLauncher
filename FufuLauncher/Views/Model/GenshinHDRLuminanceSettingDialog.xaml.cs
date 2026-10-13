@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -95,14 +95,14 @@ public sealed partial class GenshinHDRLuminanceSettingDialog : ContentDialog
         }
     }
 
-    [ObservableProperty] private bool hDRNotSupported;
-    [ObservableProperty] private bool hDRNotEnabled;
-    [ObservableProperty] private bool hDREnabled;
-    [ObservableProperty] private string displayInfomation = "正在获取显示器信息...";
-    [ObservableProperty] private int maxLuminance = 1000;
-    [ObservableProperty] private int sceneLuminance = 300;
-    [ObservableProperty] private int uILuminance = 350;
-    [ObservableProperty] private bool isGenshinHDRForceEnabled;
+    [ObservableProperty] public partial bool HDRNotSupported { get; set; }
+    [ObservableProperty] public partial bool HDRNotEnabled { get; set; }
+    [ObservableProperty] public partial bool HDREnabled { get; set; }
+    [ObservableProperty] public partial string DisplayInfomation { get; set; } = "正在获取显示器信息...";
+    [ObservableProperty] public partial int MaxLuminance { get; set; } = 1000;
+    [ObservableProperty] public partial int SceneLuminance { get; set; } = 300;
+    [ObservableProperty] public partial int UILuminance { get; set; } = 350;
+    [ObservableProperty] public partial bool IsGenshinHDRForceEnabled { get; set; }
 
     private void _displayInformation_AdvancedColorInfoChanged(DisplayInformation sender, object args)
     {
