@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -92,6 +92,7 @@ namespace FufuLauncher.Services
         private readonly object _stateLock = new object();
 
         private Thread _hookThread;
+        private volatile uint _nativeHookThreadId;
 
         public event EventHandler<bool> IsAutoClickingChanged;
         public event EventHandler<bool> IsEnabledChanged;
@@ -251,9 +252,10 @@ namespace FufuLauncher.Services
         {
             try
             {
+                _nativeHookThreadId = GetCurrentThreadId();
                 using var curProcess = Process.GetCurrentProcess();
                 using var curModule = curProcess.MainModule;
-                var moduleHandle = GetModuleHandle(curModule.ModuleName);
+                var moduleHandle = curModule != null ? GetModuleHandle(curModule.ModuleName) : IntPtr.Zero;
                 _keyboardHookId = SetWindowsHookEx(WH_KEYBOARD_LL, _keyboardHookCallback, moduleHandle, 0);
                 _mouseHookId = SetWindowsHookEx(WH_MOUSE_LL, _mouseHookCallback, moduleHandle, 0);
                 Debug.WriteLine(_keyboardHookId == IntPtr.Zero ? "[连点器] 键盘钩子安装失败" : "[连点器] 键盘钩子安装成功");
@@ -267,25 +269,28 @@ namespace FufuLauncher.Services
                         TranslateMessage(ref msg);
                         DispatchMessage(ref msg);
                     }
-
-                    if (_keyboardHookId != IntPtr.Zero)
-                    {
-                        UnhookWindowsHookEx(_keyboardHookId);
-                        _keyboardHookId = IntPtr.Zero;
-                    }
-
-                    if (_mouseHookId != IntPtr.Zero)
-                    {
-                        UnhookWindowsHookEx(_mouseHookId);
-                        _mouseHookId = IntPtr.Zero;
-                    }
-
-                    Debug.WriteLine("[连点器] 钩子已卸载");
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"[连点器] HookThreadProc 异常: {ex.Message}");
+            }
+            finally
+            {
+                if (_keyboardHookId != IntPtr.Zero)
+                {
+                    UnhookWindowsHookEx(_keyboardHookId);
+                    _keyboardHookId = IntPtr.Zero;
+                }
+
+                if (_mouseHookId != IntPtr.Zero)
+                {
+                    UnhookWindowsHookEx(_mouseHookId);
+                    _mouseHookId = IntPtr.Zero;
+                }
+
+                _nativeHookThreadId = 0;
+                Debug.WriteLine("[连点器] 钩子已卸载");
             }
         }
 
@@ -293,9 +298,30 @@ namespace FufuLauncher.Services
         {
             try
             {
-                if (_hookThread != null && _hookThread.IsAlive)
+                var thread = _hookThread;
+                if (thread != null && thread.IsAlive)
                 {
-                    PostThreadMessage((uint)_hookThread.ManagedThreadId, 0x0012, IntPtr.Zero, IntPtr.Zero);
+                    var threadId = _nativeHookThreadId;
+                    if (threadId != 0)
+                    {
+                        PostThreadMessage(threadId, 0x0012, IntPtr.Zero, IntPtr.Zero);
+                    }
+
+                    if (!thread.Join(1000))
+                    {
+                        if (_keyboardHookId != IntPtr.Zero)
+                        {
+                            UnhookWindowsHookEx(_keyboardHookId);
+                            _keyboardHookId = IntPtr.Zero;
+                        }
+
+                        if (_mouseHookId != IntPtr.Zero)
+                        {
+                            UnhookWindowsHookEx(_mouseHookId);
+                            _mouseHookId = IntPtr.Zero;
+                        }
+                    }
+
                     _hookThread = null;
                 }
 
@@ -597,6 +623,9 @@ namespace FufuLauncher.Services
 
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+        [DllImport("kernel32.dll")]
+        private static extern uint GetCurrentThreadId();
 
         [DllImport("user32.dll")]
         private static extern uint SendInput(uint nInputs, INPUT[] pInputs, int cbSize);

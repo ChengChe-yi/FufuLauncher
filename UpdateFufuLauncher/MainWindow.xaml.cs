@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -88,10 +88,7 @@ namespace Updater
         
         private const string AppVersion = "1.7.1.1";
 
-        private static readonly HttpClient _httpClient = new(new HttpClientHandler
-        {
-            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-        }) 
+        private static readonly HttpClient _httpClient = new() 
         { 
             Timeout = TimeSpan.FromSeconds(15) 
         };
@@ -728,29 +725,7 @@ namespace Updater
             }
         }
 
-        private bool ConfirmUntrustedInstaller(string filePath)
-        {
-            var firstWarning = MessageBox.Show(
-                "这个安装包看起来好像有问题，没有通过数字签名校验。\n\n" +
-                $"文件: {Path.GetFileName(filePath)}\n\n" +
-                "可能是下载过程中出了差错，也可能被人动过手脚，不是官方原版。\n\n" +
-                "继续安装意味着运行一个被篡改过的程序，可能导致系统被植入恶意代码、账号或数据被窃取。\n\n" +
-                "要不要继续安装？",
-                "安装包好像有问题", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            if (firstWarning != MessageBoxResult.Yes)
-            {
-                return false;
-            }
-
-            var secondWarning = MessageBox.Show(
-                "再确认一下：这个安装包没能通过数字签名校验，若擅自安装后果可能非常严重！！！\n\n" +
-                "继续安装可能运行被篡改的程序，造成系统被植入恶意代码、数据或账号信息泄露，甚至系统损坏且无法恢复。\n\n" +
-                "建议换个节点重新下载。还是继续安装吗？",
-                "再确认一下", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            return secondWarning == MessageBoxResult.Yes;
-        }
 
         private void CloseWindow_Click(object sender, RoutedEventArgs e)
         {
@@ -792,10 +767,7 @@ namespace Updater
                 ParallelDownload = true,
                 MaxTryAgainOnFailure = 9999,
                 ClearPackageOnCompletionWithFailure = false,
-                CustomHttpClientFactory = () => new HttpClient(new HttpClientHandler
-                {
-                    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-                }) 
+                CustomHttpClientFactory = () => new HttpClient() 
                 { 
                     Timeout = TimeSpan.FromSeconds(30) 
                 }
@@ -889,8 +861,16 @@ namespace Updater
                             DownloadMainText.Text = "正在校验数字签名...";
 
                             uint trustResult = VerifyAuthenticodeSignature(savePath);
-                            if (trustResult != 0 && !ConfirmUntrustedInstaller(savePath))
+                            if (trustResult != 0)
                             {
+                                try { File.Delete(savePath); } catch { }
+
+                                MessageBox.Show(
+                                    "下载的文件未通过数字签名校验，文件可能已被损坏或篡改。\n\n出于安全考虑，已终止安装并自动删除该文件，请更换其他节点重新下载。",
+                                    "数字签名校验失败",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+
                                 ResetToSelectionUI();
                                 return;
                             }
