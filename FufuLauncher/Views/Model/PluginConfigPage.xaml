@@ -77,10 +77,32 @@
             </StackPanel>
         </DataTemplate>
 
+        <DataTemplate x:Key="ChoiceOptionTemplate" x:DataType="models:PluginConfigOption">
+            <StackPanel Style="{StaticResource PluginSettingContainerStyle}">
+                <ContentControl Content="{x:Bind}" ContentTemplate="{StaticResource OptionHeaderTemplate}"
+                                HorizontalContentAlignment="Stretch" IsTabStop="False" />
+                <Grid>
+                    <ComboBox ItemsSource="{x:Bind Choices, Mode=OneWay}"
+                              SelectedItem="{x:Bind SelectedChoice, Mode=TwoWay}"
+                              DisplayMemberPath="Label"
+                              Visibility="{x:Bind ShowChoiceList, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                              Width="200" HorizontalAlignment="Left"
+                              AutomationProperties.Name="{x:Bind DisplayName}" />
+                    <NumberBox Value="{x:Bind KeyNumberValue, Mode=TwoWay}"
+                               Minimum="-2147483648" Maximum="2147483647"
+                               SmallChange="1" SpinButtonPlacementMode="Inline"
+                               Visibility="{x:Bind ShowKeyNumber, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                               Width="200" HorizontalAlignment="Left"
+                               AutomationProperties.Name="{x:Bind DisplayName}" />
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+
         <selectors:PluginConfigTemplateSelector x:Key="OptionTemplateSelector"
                                                 BooleanTemplate="{StaticResource BooleanOptionTemplate}"
                                                 NumberTemplate="{StaticResource NumberOptionTemplate}"
-                                                TextTemplate="{StaticResource TextOptionTemplate}" />
+                                                TextTemplate="{StaticResource TextOptionTemplate}"
+                                                ChoiceTemplate="{StaticResource ChoiceOptionTemplate}" />
 
         <Storyboard x:Name="EntranceStoryboard">
             <DoubleAnimation Storyboard.TargetName="RootLayoutGrid"

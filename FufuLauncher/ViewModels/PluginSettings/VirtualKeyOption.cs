@@ -17,5 +17,5 @@ public class VirtualKeyOption
     {
         get;
         set;
-    }
+    } = string.Empty;
 }
