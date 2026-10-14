@@ -224,8 +224,8 @@
         <StackPanel Grid.Row="0"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Spacing="24"
-                    Padding="48"
+                    Spacing="16"
+                    Padding="32,24"
                     MaxWidth="560"
                     Visibility="{x:Bind ViewModel.DataDirVisibility, Mode=OneWay}">
 
@@ -291,6 +291,8 @@
             <TextBlock Text="{x:Bind ViewModel.PathError, Mode=OneWay}"
                        Foreground="{ThemeResource SystemFillColorCriticalBrush}"
                        FontSize="12"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
                        HorizontalAlignment="Center"
                        Visibility="{x:Bind ViewModel.PathErrorVisibility, Mode=OneWay}"
                        Margin="0,4,0,0" />
