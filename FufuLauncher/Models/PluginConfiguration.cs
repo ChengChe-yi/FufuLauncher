@@ -1,7 +1,9 @@
 using System.ComponentModel;
 using System.Globalization;
 using System.Text;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Models;
 
@@ -23,14 +25,22 @@ public enum PluginConfigValueKind
     Boolean,
     Integer,
     Number,
-    Text
+    Text,
+    Key,
+    Enumeration
 }
 
 public sealed class PluginConfigOption : ObservableObject
 {
     private string _value;
+    private readonly IReadOnlyList<PluginConfigChoice> _staticChoices = Array.Empty<PluginConfigChoice>();
+    private IReadOnlyList<PluginConfigChoice> _choices = Array.Empty<PluginConfigChoice>();
+    private GamepadFamilies _gamepadFamilies;
+    private bool _refreshingChoices;
+    private bool _useKeyListInput = true;
 
-    internal PluginConfigOption(string sectionName, string name, string type, string description, string value)
+    internal PluginConfigOption(string sectionName, string name, string type, string description, string value,
+        string optionsSource = "", string optionsJson = "")
     {
         SectionName = sectionName;
         DisplayName = string.IsNullOrWhiteSpace(name) ? sectionName : name;
@@ -40,9 +50,20 @@ public sealed class PluginConfigOption : ObservableObject
             "bool" or "boolean" => PluginConfigValueKind.Boolean,
             "int" or "integer" => PluginConfigValueKind.Integer,
             "number" or "float" or "double" or "decimal" => PluginConfigValueKind.Number,
+            "key" => PluginConfigValueKind.Key,
+            "enum" => PluginConfigValueKind.Enumeration,
             _ => PluginConfigValueKind.Text
         };
         _value = value;
+        UsesGamepadChoices = Kind == PluginConfigValueKind.Enumeration &&
+            optionsSource.Trim().Equals("gamepad", StringComparison.OrdinalIgnoreCase);
+        if (Kind == PluginConfigValueKind.Enumeration && !UsesGamepadChoices)
+        {
+            _staticChoices = ParseChoices(optionsJson);
+            if (!string.IsNullOrWhiteSpace(optionsSource) || _staticChoices.Count == 0)
+                Kind = PluginConfigValueKind.Text; // Unknown/malformed metadata stays editable.
+        }
+        if (Kind is PluginConfigValueKind.Key or PluginConfigValueKind.Enumeration) RefreshChoices();
     }
 
     public string SectionName
@@ -68,6 +89,84 @@ public sealed class PluginConfigOption : ObservableObject
     }
 
     public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
+    public bool UsesGamepadChoices { get; }
+    public IReadOnlyList<PluginConfigChoice> Choices => _choices;
+    public bool ShowChoiceList => Kind != PluginConfigValueKind.Key || _useKeyListInput;
+    public bool ShowKeyNumber => Kind == PluginConfigValueKind.Key && !_useKeyListInput;
+
+    public PluginConfigChoice? SelectedChoice
+    {
+        get => _choices.FirstOrDefault(choice => Identity(choice.Value) == Identity(Value));
+        set
+        {
+            // ItemsSource replacement can report null or an old selection.
+            if (_refreshingChoices || value == null || !_choices.Contains(value) ||
+                Identity(value.Value) == Identity(Value)) return;
+            Value = value.Value;
+        }
+    }
+
+    public double KeyNumberValue
+    {
+        get => int.TryParse(Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var key) ? key : double.NaN;
+        set
+        {
+            if (!double.IsFinite(value) || value < int.MinValue || value > int.MaxValue) return;
+            var key = (int)Math.Round(value);
+            if (key != KeyNumberValue) Value = key.ToString(CultureInfo.InvariantCulture);
+        }
+    }
+
+    public void SetKeyInputMode(bool useList)
+    {
+        if (_useKeyListInput == useList) return;
+        _useKeyListInput = useList;
+        OnPropertyChanged(nameof(ShowChoiceList));
+        OnPropertyChanged(nameof(ShowKeyNumber));
+    }
+
+    public void SetConnectedGamepads(GamepadFamilies families)
+    {
+        if (!UsesGamepadChoices || _gamepadFamilies == families) return;
+        _gamepadFamilies = families;
+        RefreshChoices();
+    }
+
+    private string Identity(string value) => UsesGamepadChoices ? GamepadButtonCatalog.Role(value).ToUpperInvariant() :
+        Kind == PluginConfigValueKind.Key && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var key)
+            ? key.ToString(CultureInfo.InvariantCulture) : value;
+
+    private void RefreshChoices()
+    {
+        _refreshingChoices = true;
+        try
+        {
+            var choices = Kind == PluginConfigValueKind.Key
+                ? VirtualKeyCatalog.Keys.Select(key => new PluginConfigChoice(key.KeyCode.ToString(CultureInfo.InvariantCulture), key.KeyName)).ToList()
+                : (UsesGamepadChoices ? GamepadButtonCatalog.Create(_gamepadFamilies) : _staticChoices).ToList();
+            if (!choices.Any(choice => Identity(choice.Value) == Identity(Value)))
+                choices.Add(new PluginConfigChoice(Value, Kind == PluginConfigValueKind.Key ? $"Custom({Value})" : Value));
+            _choices = choices;
+            OnPropertyChanged(nameof(Choices));
+            OnPropertyChanged(nameof(SelectedChoice));
+        }
+        finally { _refreshingChoices = false; }
+    }
+
+    private static IReadOnlyList<PluginConfigChoice> ParseChoices(string json)
+    {
+        try
+        {
+            var entries = JsonSerializer.Deserialize<List<ChoiceMetadata>>(json,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return entries?.Where(entry => entry?.Value != null && !entry.Value.Contains('\r') && !entry.Value.Contains('\n'))
+                .Select(entry => new PluginConfigChoice(entry.Value!, string.IsNullOrEmpty(entry.Label) ? entry.Value! : entry.Label))
+                .DistinctBy(entry => entry.Value, StringComparer.Ordinal).ToArray() ?? Array.Empty<PluginConfigChoice>();
+        }
+        catch (JsonException) { return Array.Empty<PluginConfigChoice>(); }
+    }
+
+    private sealed record ChoiceMetadata(string? Value, string? Label);
     public double Minimum => Kind == PluginConfigValueKind.Integer ? int.MinValue : double.MinValue;
     public double Maximum => Kind == PluginConfigValueKind.Integer ? int.MaxValue : double.MaxValue;
     public double SmallChange => Kind == PluginConfigValueKind.Number ? 0.1 : 1;
@@ -81,6 +180,16 @@ public sealed class PluginConfigOption : ObservableObject
             {
                 OnPropertyChanged(nameof(BooleanValue));
                 OnPropertyChanged(nameof(NumberValue));
+                OnPropertyChanged(nameof(KeyNumberValue));
+                if (Kind is PluginConfigValueKind.Key or PluginConfigValueKind.Enumeration)
+                {
+                    // SelectionChanged is still running when the two-way binding
+                    // writes Value. Keep its source/items alive for normal choices.
+                    if (_choices.Any(choice => Identity(choice.Value) == Identity(Value)))
+                        OnPropertyChanged(nameof(SelectedChoice));
+                    else
+                        RefreshChoices(); // External/numeric edits may introduce a new value.
+                }
             }
         }
     }
@@ -321,7 +430,9 @@ public sealed class PluginConfiguration
             section.Items.GetValueOrDefault("Name", string.Empty),
             section.Items.GetValueOrDefault("Type", string.Empty),
             section.Items.GetValueOrDefault("Description", string.Empty),
-            value);
+            value,
+            section.Items.GetValueOrDefault("OptionsSource", string.Empty),
+            section.Items.GetValueOrDefault("Options", string.Empty));
         sources.Add(new OptionSource(option, section.HeaderLine, section.ValueLines, value));
     }
 

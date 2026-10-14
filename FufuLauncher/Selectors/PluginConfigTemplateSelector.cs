@@ -24,6 +24,8 @@ public sealed class PluginConfigTemplateSelector : DataTemplateSelector
         set;
     }
 
+    public DataTemplate? ChoiceTemplate { get; set; }
+
     protected override DataTemplate SelectTemplateCore(object item)
     {
         return GetTemplate(item) ?? base.SelectTemplateCore(item);
@@ -41,6 +43,7 @@ public sealed class PluginConfigTemplateSelector : DataTemplateSelector
             {
                 PluginConfigValueKind.Boolean => BooleanTemplate,
                 PluginConfigValueKind.Integer or PluginConfigValueKind.Number => NumberTemplate,
+                PluginConfigValueKind.Key or PluginConfigValueKind.Enumeration => ChoiceTemplate,
                 _ => TextTemplate
             }
             : null;

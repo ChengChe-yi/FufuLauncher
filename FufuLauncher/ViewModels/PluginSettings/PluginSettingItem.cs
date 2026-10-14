@@ -88,8 +88,7 @@ public class PluginSettingItem : ObservableObject
 
     private string _rawValue;
 
-    private static readonly ObservableCollection<VirtualKeyOption> _availableKeys =
-        new ObservableCollection<VirtualKeyOption>(GetAvailableKeys());
+    private static readonly ObservableCollection<VirtualKeyOption> _availableKeys = VirtualKeyCatalog.Keys;
 
     private bool _useKeyListInput;
 
@@ -134,18 +133,6 @@ public class PluginSettingItem : ObservableObject
         {
             EnsureKeyOption(currentKey);
         }
-    }
-
-    private static List<VirtualKeyOption> GetAvailableKeys()
-    {
-        var list = new List<VirtualKeyOption>();
-        foreach (Windows.System.VirtualKey key in Enum.GetValues(typeof(Windows.System.VirtualKey)))
-        {
-            if (key == Windows.System.VirtualKey.None) continue;
-            list.Add(new VirtualKeyOption { KeyCode = (int)key, KeyName = key.ToString() });
-        }
-
-        return list.GroupBy(k => k.KeyCode).Select(g => g.First()).OrderBy(k => k.KeyCode).ToList();
     }
 
     public int? KeyValue

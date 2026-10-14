@@ -9,6 +9,8 @@ using System.Diagnostics;
 using System.Globalization;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
+using FufuLauncher.Contracts.Services;
+using FufuLauncher.Services;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -26,6 +28,7 @@ public sealed partial class PluginConfigPage : Page
     private readonly DispatcherQueueTimer _autoSaveTimer;
     private PluginItem? _pluginItem;
     private PluginConfiguration? _configuration;
+    private GamepadConnectionWatcher? _gamepadWatcher;
     private string? _loadedConfigPath;
     private CancellationTokenSource? _loadCancellation;
     private Task<bool>? _saveTask;
@@ -56,10 +59,12 @@ public sealed partial class PluginConfigPage : Page
         _isActive = ReferenceEquals(Frame?.Content, this);
         RestorePageInteraction();
         EntranceStoryboard.Begin();
+        StartGamepadWatcher();
     }
 
     private void OnPageUnloaded(object sender, RoutedEventArgs e)
     {
+        StopGamepadWatcher();
         _exitAnimationCompletion?.TrySetResult(false);
         EntranceStoryboard.Stop();
         ExitStoryboard.Stop();
@@ -138,6 +143,7 @@ public sealed partial class PluginConfigPage : Page
     protected override void OnNavigatedFrom(NavigationEventArgs e)
     {
         _isActive = false;
+        StopGamepadWatcher();
         UpdateBackButtonState();
         _exitAnimationCompletion?.TrySetResult(false);
         _loadCancellation?.Cancel();
@@ -148,6 +154,7 @@ public sealed partial class PluginConfigPage : Page
 
     private async Task LoadConfigAsync()
     {
+        StopGamepadWatcher();
         _loadCancellation?.Cancel();
         _loadCancellation?.Dispose();
         var cancellation = new CancellationTokenSource();
@@ -191,6 +198,12 @@ public sealed partial class PluginConfigPage : Page
             }
 
             var configuration = await PluginConfiguration.LoadAsync(path, cancellation.Token);
+            if (configuration.Options.Any(option => option.Kind == PluginConfigValueKind.Key))
+            {
+                var keyPreference = await App.GetService<ILocalSettingsService>().ReadSettingAsync("UseKeyListInput");
+                foreach (var option in configuration.Options)
+                    option.SetKeyInputMode(keyPreference == null || Convert.ToBoolean(keyPreference));
+            }
             if (cancellation.IsCancellationRequested || !_isActive)
             {
                 return;
@@ -198,6 +211,7 @@ public sealed partial class PluginConfigPage : Page
 
             _configuration = configuration;
             _loadedConfigPath = path;
+            StartGamepadWatcher();
             foreach (var option in configuration.Options)
             {
                 option.PropertyChanged += OnOptionPropertyChanged;
@@ -362,6 +376,39 @@ public sealed partial class PluginConfigPage : Page
         SetSaveStatus("PluginConfigPage_Saving".GetLocalized(), "\uE895");
         _autoSaveTimer.Stop();
         _autoSaveTimer.Start();
+    }
+
+    private void StartGamepadWatcher()
+    {
+        if (!_isActive || _configuration == null || !_configuration.Options.Any(option => option.UsesGamepadChoices)) return;
+        if (_gamepadWatcher == null)
+        {
+            try
+            {
+                _gamepadWatcher = new GamepadConnectionWatcher(() => DispatcherQueue.TryEnqueue(() =>
+                {
+                    if (_isActive && _gamepadWatcher != null) RefreshGamepadChoices();
+                }));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[GamepadChoices] Device notifications unavailable: {ex.Message}");
+            }
+        }
+        RefreshGamepadChoices();
+    }
+
+    private void RefreshGamepadChoices()
+    {
+        if (_configuration == null) return;
+        var families = GamepadConnectionWatcher.ReadConnectedFamilies();
+        foreach (var option in _configuration.Options) option.SetConnectedGamepads(families);
+    }
+
+    private void StopGamepadWatcher()
+    {
+        _gamepadWatcher?.Dispose();
+        _gamepadWatcher = null;
     }
 
     private async void OnAutoSaveTimerTick(DispatcherQueueTimer sender, object args)
