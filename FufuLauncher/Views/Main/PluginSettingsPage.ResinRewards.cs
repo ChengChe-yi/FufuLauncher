@@ -33,7 +33,7 @@ public sealed partial class PluginSettingsPage
             return;
         }
 
-        if (!requestedValue && RequiresSettingDisableWarning(item))
+        if (!requestedValue && ViewModel.RequiresSettingDisableWarning(item))
         {
             toggleSwitch.IsOn = item.BoolValue;
             if (!await ConfirmSettingDisableAsync(new[] { item })) return;
@@ -53,22 +53,9 @@ public sealed partial class PluginSettingsPage
     private bool IsCurrentSetting(PluginSettingItem item) =>
         ViewModel.Settings.Contains(item) || ViewModel.PinnedSettings.Contains(item);
 
-    private bool IsResinRewardSetting(PluginSettingItem item) =>
-        ViewModel.SelectedPluginIndex == 0 &&
-        string.Equals(item.Type, "bool", StringComparison.OrdinalIgnoreCase) &&
-        item.SectionKey.StartsWith("ResinItem", StringComparison.OrdinalIgnoreCase);
-
-    private bool IsPreventDetectionPopupSetting(PluginSettingItem item) =>
-        ViewModel.SelectedPluginIndex == 0 &&
-        string.Equals(item.Type, "bool", StringComparison.OrdinalIgnoreCase) &&
-        string.Equals(item.SectionKey, "PreventDetectionPopup", StringComparison.OrdinalIgnoreCase);
-
-    private bool RequiresSettingDisableWarning(PluginSettingItem item) =>
-        IsResinRewardSetting(item) || IsPreventDetectionPopupSetting(item);
-
     private object CreateSettingDisableWarningContent(IReadOnlyList<PluginSettingItem> settings)
     {
-        if (!settings.Any(IsPreventDetectionPopupSetting))
+        if (!settings.Any(ViewModel.IsPreventDetectionPopupSetting))
         {
             return string.Join(Environment.NewLine + Environment.NewLine,
                 settings.Select(GetResinRewardDisableMessage));
@@ -77,7 +64,7 @@ public sealed partial class PluginSettingsPage
         var panel = new StackPanel { Spacing = 12 };
         foreach (var item in settings)
         {
-            var isDetectionPopup = IsPreventDetectionPopupSetting(item);
+            var isDetectionPopup = ViewModel.IsPreventDetectionPopupSetting(item);
             var warning = new TextBlock
             {
                 Text = isDetectionPopup
@@ -99,13 +86,14 @@ public sealed partial class PluginSettingsPage
 
     private async Task<bool> ConfirmSettingDisableAsync(IReadOnlyList<PluginSettingItem> settings)
     {
-        var warningSettings = settings.Where(item => item.BoolValue && RequiresSettingDisableWarning(item)).ToArray();
+        var warningSettings = settings
+            .Where(item => item.BoolValue && ViewModel.RequiresSettingDisableWarning(item)).ToArray();
         if (warningSettings.Length == 0) return true;
         if (!IsLoaded || XamlRoot == null || _settingDisableWarningDialog != null) return false;
 
         var dialog = new ContentDialog
         {
-            Title = warningSettings.Any(IsPreventDetectionPopupSetting)
+            Title = warningSettings.Any(ViewModel.IsPreventDetectionPopupSetting)
                 ? "Plugin_PreventDetectionPopupDisable_Title".GetLocalized()
                 : "Plugin_ResinRewardDisable_Title".GetLocalized(),
             Content = CreateSettingDisableWarningContent(warningSettings),
@@ -119,8 +107,14 @@ public sealed partial class PluginSettingsPage
         try
         {
             var result = await dialog.ShowAsync();
-            return result == ContentDialogResult.Primary && IsLoaded &&
-                ViewModel.IsSettingsInteractable && settings.All(IsCurrentSetting);
+            if (result != ContentDialogResult.Primary || !IsLoaded ||
+                !ViewModel.IsSettingsInteractable || !settings.All(IsCurrentSetting))
+            {
+                return false;
+            }
+
+            ViewModel.ConfirmSettingDisables(warningSettings);
+            return true;
         }
         catch (Exception ex)
         {

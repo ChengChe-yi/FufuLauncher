@@ -7109,4 +7109,11 @@ Error: {0}</value>
   <data name="Plugin_PreventDetectionPopupDisable_Content" xml:space="preserve">
     <value>Disabling “{0}” may cause you to be kicked out of the game in certain special situations.</value>
   </data>
+  <data name="Plugin_SettingDisableRestore_Title" xml:space="preserve">
+    <value>Settings restored automatically</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
+    <value>The following settings were disabled without confirming the disable warning, so they have been restored to enabled:
+{0}</value>
+  </data>
 </root>

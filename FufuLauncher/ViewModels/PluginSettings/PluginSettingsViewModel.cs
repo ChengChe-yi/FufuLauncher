@@ -169,6 +169,10 @@ public partial class PluginSettingsViewModel : ObservableObject
             pinnedSectionsTask.Wait();
             _pinnedSections = DeserializePinnedSections(pinnedSectionsTask.Result);
 
+            var confirmedDisablesTask = localSettings.ReadSettingAsync(ConfirmedSettingDisablesKey);
+            confirmedDisablesTask.Wait();
+            _confirmedSettingDisables = DeserializeConfirmedSettingDisables(confirmedDisablesTask.Result);
+
             if (savedDevFeatures)
             {
                 _isDevFeaturesEnabled = true;

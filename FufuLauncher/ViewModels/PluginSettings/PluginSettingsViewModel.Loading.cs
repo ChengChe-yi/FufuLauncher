@@ -157,6 +157,7 @@ public partial class PluginSettingsViewModel
                 _useKeyListInput = preferences.UseKeyListInput;
                 _isAutoCreatePresetEnabled = preferences.AutoCreatePresets;
                 _pinnedSections = preferences.PinnedSections;
+                _confirmedSettingDisables = preferences.ConfirmedSettingDisables;
                 _isDevFeaturesEnabled = preferences.DeveloperFeatures;
                 _preferencesApplied = true;
                 AreConfigurationPreferencesReady = true;
@@ -224,6 +225,7 @@ public partial class PluginSettingsViewModel
             var currentPreset = CurrentPreset;
             var ordered = snapshot.Settings.Where(setting => IsSettingPinned(setting.Section))
                 .Concat(snapshot.Settings.Where(setting => !IsSettingPinned(setting.Section))).ToArray();
+            var restoredSettingNames = new List<string>();
             var budget = Stopwatch.StartNew();
             var batchCount = 0;
             foreach (var setting in ordered)
@@ -243,6 +245,11 @@ public partial class PluginSettingsViewModel
                         }
                     }, UseKeyListInput, () => IsCurrentConfiguration(cancellation, token) && IsConfigurationReady);
 
+                if (ApplySettingDisableGuard(item))
+                {
+                    restoredSettingNames.Add(item.DisplayName);
+                }
+
                 if (IsSettingPinned(setting.Section))
                 {
                     item.IsPinned = true;
@@ -261,6 +268,8 @@ public partial class PluginSettingsViewModel
                     budget.Restart();
                 }
             }
+
+            NotifySettingDisablesRestored(restoredSettingNames);
         }
         catch (OperationCanceledException) when (token.IsCancellationRequested)
         {
@@ -303,6 +312,7 @@ public partial class PluginSettingsViewModel
         var autoPresets = await service.ReadSettingAsync("IsAutoCreatePresetEnabled");
         var devFeatures = await service.ReadSettingAsync("IsDevFeaturesEnabled");
         var pinned = await service.ReadSettingAsync(PinnedSettingsKey);
+        var confirmedDisables = await service.ReadSettingAsync(ConfirmedSettingDisablesKey);
         var developerFeatures = devFeatures != null && Convert.ToBoolean(devFeatures);
         if (developerFeatures)
         {
@@ -314,7 +324,8 @@ public partial class PluginSettingsViewModel
         }
 
         return new ConfigurationPreferences(keyInput == null || Convert.ToBoolean(keyInput),
-            autoPresets != null && Convert.ToBoolean(autoPresets), developerFeatures, DeserializePinnedSections(pinned));
+            autoPresets != null && Convert.ToBoolean(autoPresets), developerFeatures, DeserializePinnedSections(pinned),
+            DeserializeConfirmedSettingDisables(confirmedDisables));
     }
 
     private async Task YieldConfigurationPresentationAsync(CancellationToken token)
@@ -382,7 +393,8 @@ public partial class PluginSettingsViewModel
     }
 
     private sealed record ConfigurationPreferences(bool UseKeyListInput, bool AutoCreatePresets,
-        bool DeveloperFeatures, Dictionary<string, List<string>> PinnedSections);
+        bool DeveloperFeatures, Dictionary<string, List<string>> PinnedSections,
+        Dictionary<string, List<string>> ConfirmedSettingDisables);
 
     private sealed record ConfigurationLoadRequest(IniFile IniFile, string IniPath, string DllPath, string PresetsDirectory,
         int PluginIndex, bool LightweightMode, bool DeveloperFeatures, bool AutoCreatePresets);

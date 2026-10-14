@@ -66,6 +66,7 @@ public partial class PluginSettingsViewModel
 
             ManagePresets(configData);
 
+            var restoredSettingNames = new List<string>();
             bool isDevZone = false;
             foreach (var section in _iniFile.ReadAll())
             {
@@ -103,6 +104,11 @@ public partial class PluginSettingsViewModel
                 var settingItem = new PluginSettingItem(_iniFile, section.Key, name, type, value, help,
                     OnSettingValueChanged, UseKeyListInput);
 
+                if (ApplySettingDisableGuard(settingItem))
+                {
+                    restoredSettingNames.Add(settingItem.DisplayName);
+                }
+
                 _settingOrderIndexes[section.Key] = _settingOrder.Count;
                 _settingOrder.Add(section.Key);
 
@@ -116,6 +122,8 @@ public partial class PluginSettingsViewModel
                     Settings.Add(settingItem);
                 }
             }
+
+            NotifySettingDisablesRestored(restoredSettingNames);
         }
         catch (Exception ex)
         {

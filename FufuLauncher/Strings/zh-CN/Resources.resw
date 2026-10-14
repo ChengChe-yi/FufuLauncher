@@ -7107,4 +7107,11 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Plugin_PreventDetectionPopupDisable_Content" xml:space="preserve">
     <value>关闭「{0}」可能在部分特殊场景中会被踢出游戏。</value>
   </data>
+  <data name="Plugin_SettingDisableRestore_Title" xml:space="preserve">
+    <value>配置项已自动恢复</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
+    <value>以下配置项未经关闭警告确认，已自动恢复为开启状态：
+{0}</value>
+  </data>
 </root>
