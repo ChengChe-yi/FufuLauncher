@@ -1,4 +1,4 @@
-﻿<Application
+<Application
     x:Class="FufuLauncher.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -29,6 +29,10 @@
 
             <Style TargetType="TextBlock">
                 <Setter Property="FontFamily" Value="{StaticResource AppGlobalFont}" />
+            </Style>
+
+            <Style TargetType="Image">
+                <Setter Property="helpers:ImageFadeInHelper.IsFadeInEnabled" Value="True" />
             </Style>
 
             <helpers:DateTimeConverter x:Key="DateTimeConverter" />

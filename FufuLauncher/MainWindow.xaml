@@ -50,6 +50,7 @@
 
         <Grid x:Name="GlobalBackgroundHost" IsHitTestVisible="False">
             <Image x:Name="GlobalBackgroundImage"
+                   helpers:ImageFadeInHelper.IsFadeInEnabled="False"
                    Stretch="UniformToFill"
                    VerticalAlignment="Top"
                    Margin="0,-25,0,0"
@@ -360,7 +361,7 @@
                     BorderThickness="1">
 
                 <StackPanel Orientation="Horizontal" Spacing="0">
-                    <Image x:Name="TitleBarIcon" Width="20" Height="20" Margin="0,0,8,0" VerticalAlignment="Center" />
+                    <Image x:Name="TitleBarIcon" helpers:ImageFadeInHelper.IsFadeInEnabled="False" Width="20" Height="20" Margin="0,0,8,0" VerticalAlignment="Center" />
                     <TextBlock x:Name="TitleBarText"
                                Text="{helpers:Loc Key=AppDisplayName}"
                                FontSize="12"

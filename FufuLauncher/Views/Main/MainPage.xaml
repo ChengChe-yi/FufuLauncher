@@ -231,6 +231,7 @@
                                     </Grid.RenderTransform>
                                     <Image
                                         x:Name="BannerCurrentImage"
+                                        helpers:ImageFadeInHelper.IsFadeInEnabled="False"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         ImageFailed="BannerImage_ImageFailed"
@@ -286,6 +287,7 @@
                                     </Grid.RenderTransform>
                                     <Image
                                         x:Name="BannerIncomingImage"
+                                        helpers:ImageFadeInHelper.IsFadeInEnabled="False"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         ImageFailed="BannerImage_ImageFailed"

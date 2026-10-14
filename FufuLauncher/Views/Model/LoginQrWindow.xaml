@@ -59,7 +59,10 @@
                 <StackPanel x:Name="QrCodeContainer" Spacing="20">
                     <Border Width="220" Height="220" Background="White" CornerRadius="8" Padding="10"
                             HorizontalAlignment="Center">
-                        <Image x:Name="QrCodeImage" Stretch="Uniform" Opacity="0" />
+                        <Image x:Name="QrCodeImage"
+                               helpers:ImageFadeInHelper.IsFadeInEnabled="False"
+                               Stretch="Uniform"
+                               Opacity="0" />
                     </Border>
                     <Button x:Name="RefreshButton" Content="{helpers:Loc Key=LoginQR_RefreshQR}"
                             Click="RefreshButton_Click" HorizontalAlignment="Center" />

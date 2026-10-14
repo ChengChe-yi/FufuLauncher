@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -80,6 +80,7 @@ namespace FufuLauncher.Services
                             Width = rootElement.ActualWidth,
                             Height = rootElement.ActualHeight
                         };
+                        ImageFadeInHelper.SetIsFadeInEnabled(image, false);
 
                         Canvas.SetZIndex(image, 10000);
                         rootPanel.Children.Add(image);

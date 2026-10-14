@@ -62,7 +62,7 @@ public sealed partial class MainWindow
             await LoadPageOverlayOpacitySettingAsync();
             await LoadHamburgerButtonSettingAsync();
             await LoadAndApplyAcrylicSettingAsync();
-            await LoadGlobalBackgroundAsync();
+            _ = LoadGlobalBackgroundAsync();
             await LoadMinimizeToTraySettingAsync();
             await LoadMinWindowSizeLimitSettingAsync();
             await LoadNotificationPositionAsync();
