@@ -1768,6 +1768,11 @@
                             </Border.Shadow>
                             <StackPanel>
 
+                                <TextBlock Text="{x:Bind ViewModel.CheckinOptionsCaption, Mode=OneWay}"
+                                           Margin="36,12,16,0" TextWrapping="Wrap"
+                                           Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                           Visibility="{x:Bind ViewModel.IsBatchCheckinEnabled, Mode=OneWay}" />
+
                                 <Grid Style="{StaticResource SettingsRowStyle}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -1782,12 +1787,13 @@
                                                    Text="{helpers:Loc Key=GameCheckinCaption}" />
                                     </StackPanel>
                                     <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                  IsEnabled="{x:Bind ViewModel.CanEditCheckinOptions, Mode=OneWay}"
                                                   IsOn="{x:Bind ViewModel.IsGameCheckinEnabled, Mode=TwoWay}" />
                                 </Grid>
 
                                 <ItemsControl ItemsSource="{x:Bind ViewModel.CheckinGames, Mode=OneWay}"
                                               Margin="36,0,0,10"
-                                              IsEnabled="{x:Bind ViewModel.IsGameCheckinEnabled, Mode=OneWay}">
+                                              IsEnabled="{x:Bind ViewModel.CanEditCheckinGames, Mode=OneWay}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation="Horizontal" Spacing="12" />
@@ -1825,6 +1831,7 @@
                                     </Button>
                                     <ToggleSwitch Grid.Column="3" Style="{StaticResource RowToggleStyle}"
                                                   Margin="8,0,0,0"
+                                                  IsEnabled="{x:Bind ViewModel.CanEditCheckinOptions, Mode=OneWay}"
                                                   IsOn="{x:Bind ViewModel.IsCommunityCheckinEnabled, Mode=TwoWay}" />
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}"
@@ -1832,10 +1839,13 @@
                                             Spacing="20"
                                             Visibility="{x:Bind ViewModel.IsCommunityCheckinEnabled, Mode=OneWay}">
                                     <CheckBox Content="{helpers:Loc Key=Like}" MinWidth="0"
+                                              IsEnabled="{x:Bind ViewModel.CanEditCheckinOptions, Mode=OneWay}"
                                               IsChecked="{x:Bind ViewModel.IsCommunityLikeEnabled, Mode=TwoWay}" />
                                     <CheckBox Content="{helpers:Loc Key=ReadPosts}" MinWidth="0"
+                                              IsEnabled="{x:Bind ViewModel.CanEditCheckinOptions, Mode=OneWay}"
                                               IsChecked="{x:Bind ViewModel.IsCommunityReadEnabled, Mode=TwoWay}" />
                                     <CheckBox Content="{helpers:Loc Key=Share}" MinWidth="0"
+                                              IsEnabled="{x:Bind ViewModel.CanEditCheckinOptions, Mode=OneWay}"
                                               IsChecked="{x:Bind ViewModel.IsCommunityShareEnabled, Mode=TwoWay}" />
                                 </StackPanel>
 
@@ -1863,6 +1873,7 @@
                                     </Button>
                                     <ToggleSwitch Grid.Column="3" Style="{StaticResource RowToggleStyle}"
                                                   Margin="8,0,0,0"
+                                                  IsEnabled="{x:Bind ViewModel.CanEditCheckinOptions, Mode=OneWay}"
                                                   IsOn="{x:Bind ViewModel.IsCloudGameCheckinEnabled, Mode=TwoWay}" />
                                 </Grid>
 
@@ -1916,6 +1927,8 @@
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}"
                                                    Text="{helpers:Loc Key=AccountListTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=Checkin_AccountListCaption}" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4"
                                                 VerticalAlignment="Center" Margin="16,0,0,0">
@@ -1940,35 +1953,67 @@
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Style="{StaticResource RowSubPanelStyle}">
-                                    <Border CornerRadius="8"
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" MaxWidth="680" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border CornerRadius="8"
                                             Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
                                             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                             BorderThickness="1"
                                             Padding="8"
-                                            MaxWidth="560"
-                                            HorizontalAlignment="Left">
-                                        <ScrollViewer Height="180">
+                                            HorizontalAlignment="Stretch">
                                             <ListView ItemsSource="{x:Bind ViewModel.CheckinAccounts, Mode=OneWay}"
-                                                      SelectionMode="None"
+                                                      SelectedItem="{x:Bind ViewModel.SelectedCheckinAccount, Mode=TwoWay}"
+                                                      SelectionMode="Single" Height="180"
+                                                      CanDragItems="True" CanReorderItems="True" AllowDrop="True"
+                                                      DragItemsStarting="OnCheckinAccountDragItemsStarting"
+                                                      DragItemsCompleted="OnCheckinAccountDragItemsCompleted"
+                                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                      HorizontalContentAlignment="Stretch"
                                                       Background="Transparent">
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate x:DataType="models:CheckinAccountItem">
                                                         <Grid Padding="0,4" ColumnSpacing="12">
                                                             <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="42" />
                                                                 <ColumnDefinition Width="Auto" />
                                                                 <ColumnDefinition Width="*" />
                                                                 <ColumnDefinition Width="Auto" />
                                                             </Grid.ColumnDefinitions>
-                                                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                            <Grid Width="18" Height="24" Opacity="0.8"
+                                                                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                                                                  Background="Transparent"
+                                                                  ToolTipService.ToolTip="{helpers:Loc Key=Checkin_DragToReorder}"
+                                                                  AutomationProperties.Name="{helpers:Loc Key=Checkin_DragToReorder}">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="*" />
+                                                                    <RowDefinition Height="*" />
+                                                                    <RowDefinition Height="*" />
+                                                                </Grid.RowDefinitions>
+                                                                <Ellipse Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Column="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="1" Grid.Column="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="2" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="2" Grid.Column="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                            </Grid>
+                                                            <CheckBox Grid.Column="1" IsChecked="{Binding IsSelected, Mode=TwoWay}"
                                                                       IsEnabled="{Binding DataContext.IsBatchCheckinEnabled, ElementName=SettingsPageRoot, Mode=OneWay}"
                                                                       MinWidth="0"
                                                                       VerticalAlignment="Center" />
-                                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                                                <TextBlock Text="{Binding Nickname}" FontSize="14" />
+                                                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                                                <TextBlock Text="{Binding Nickname}" FontSize="14"
+                                                                           TextTrimming="CharacterEllipsis"
+                                                                           ToolTipService.ToolTip="{Binding Nickname}" />
                                                                 <TextBlock Text="{Binding Uid}" FontSize="12"
                                                                            Opacity="0.7" />
                                                             </StackPanel>
-                                                            <StackPanel Grid.Column="2" Orientation="Horizontal"
+                                                            <StackPanel Grid.Column="3" Orientation="Horizontal"
                                                                         Spacing="4">
                                                                 <Button Click="OnCloudCredentialClick"
                                                                         Tag="{Binding Uid}"
@@ -2006,8 +2051,8 @@
                                                     </DataTemplate>
                                                 </ListView.ItemTemplate>
                                             </ListView>
-                                        </ScrollViewer>
-                                    </Border>
+                                        </Border>
+                                    </Grid>
                                 </StackPanel>
 
                             </StackPanel>

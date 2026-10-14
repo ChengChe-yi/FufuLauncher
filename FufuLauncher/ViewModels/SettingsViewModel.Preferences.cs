@@ -261,36 +261,6 @@ public partial class SettingsViewModel
         HasScreenshotSavePath = !string.IsNullOrEmpty(ScreenshotSavePath);
     }
 
-    private async Task LoadCheckinSectionAsync()
-    {
-        var gameCheckinJson = await _localSettingsService.ReadSettingAsync("IsGameCheckinEnabled");
-        IsGameCheckinEnabled = gameCheckinJson == null || Convert.ToBoolean(gameCheckinJson);
-
-        var communityCheckinJson = await _localSettingsService.ReadSettingAsync("IsCommunityCheckinEnabled");
-        IsCommunityCheckinEnabled = communityCheckinJson == null || Convert.ToBoolean(communityCheckinJson);
-
-        var communityLikeJson = await _localSettingsService.ReadSettingAsync("IsCommunityLikeEnabled");
-        IsCommunityLikeEnabled = communityLikeJson != null && Convert.ToBoolean(communityLikeJson);
-
-        var communityReadJson = await _localSettingsService.ReadSettingAsync("IsCommunityReadEnabled");
-        IsCommunityReadEnabled = communityReadJson != null && Convert.ToBoolean(communityReadJson);
-
-        var communityShareJson = await _localSettingsService.ReadSettingAsync("IsCommunityShareEnabled");
-        IsCommunityShareEnabled = communityShareJson != null && Convert.ToBoolean(communityShareJson);
-
-        var cloudGameCheckinJson = await _localSettingsService.ReadSettingAsync("IsCloudGameCheckinEnabled");
-        IsCloudGameCheckinEnabled = cloudGameCheckinJson != null && Convert.ToBoolean(cloudGameCheckinJson);
-
-        var autoCheckinJson = await _localSettingsService.ReadSettingAsync("IsAutoCheckinEnabled");
-        IsAutoCheckinEnabled = autoCheckinJson != null && Convert.ToBoolean(autoCheckinJson);
-
-        var batchCheckinJson = await _localSettingsService.ReadSettingAsync("IsBatchCheckinEnabled");
-        IsBatchCheckinEnabled = batchCheckinJson != null && Convert.ToBoolean(batchCheckinJson);
-
-        await LoadCheckinGamesAsync();
-        await LoadCheckinAccountsAsync();
-    }
-
     private async Task LoadLanguageSectionAsync()
     {
         var languageJson = await _localSettingsService.ReadSettingAsync("AppLanguage");

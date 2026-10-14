@@ -676,7 +676,19 @@
     <value>批量签到</value>
   </data>
   <data name="BatchCheckinCaption" xml:space="preserve">
-    <value>打开此开关则可为所有勾选的账号执行指定的签到任务，否则仅为当前账号执行</value>
+    <value>按列表顺序为勾选的账号执行各自的签到任务；点击账号可单独配置上方选项，关闭后仅为当前账号执行</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>正在配置：{0}（{1}）</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>请选择下方账号以配置签到选项</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>勾选参与批量签到的账号，点击账号编辑选项；拖动账号可调整签到顺序</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>拖动调整签到顺序</value>
   </data>
   <data name="AccountListTitle" xml:space="preserve">
     <value>账号列表</value>

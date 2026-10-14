@@ -230,13 +230,18 @@ public partial class SettingsViewModel : ObservableRecipient
 
     [ObservableProperty] private bool _isGameCheckinEnabled = true;
     [ObservableProperty] private ObservableCollection<CheckinGameItem> _checkinGames = new();
-    [ObservableProperty] private bool _isBatchCheckinEnabled;
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CheckinOptionsCaption), nameof(CanEditCheckinOptions), nameof(CanEditCheckinGames))]
+    private bool _isBatchCheckinEnabled;
     [ObservableProperty] private bool _isCommunityCheckinEnabled = true;
     [ObservableProperty] private bool _isCommunityLikeEnabled;
     [ObservableProperty] private bool _isCommunityReadEnabled;
     [ObservableProperty] private bool _isCommunityShareEnabled;
     [ObservableProperty] private bool _isCloudGameCheckinEnabled;
     [ObservableProperty] private ObservableCollection<CheckinAccountItem> _checkinAccounts = new();
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CheckinOptionsCaption), nameof(CanEditCheckinOptions), nameof(CanEditCheckinGames))]
+    private CheckinAccountItem? _selectedCheckinAccount;
     [ObservableProperty] private bool _isLoadingCheckinAccounts;
 
     public IAsyncRelayCommand ResetGameExeNameCommand
