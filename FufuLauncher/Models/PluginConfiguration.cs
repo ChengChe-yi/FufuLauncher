@@ -181,7 +181,15 @@ public sealed class PluginConfigOption : ObservableObject
                 OnPropertyChanged(nameof(BooleanValue));
                 OnPropertyChanged(nameof(NumberValue));
                 OnPropertyChanged(nameof(KeyNumberValue));
-                if (Kind is PluginConfigValueKind.Key or PluginConfigValueKind.Enumeration) RefreshChoices();
+                if (Kind is PluginConfigValueKind.Key or PluginConfigValueKind.Enumeration)
+                {
+                    // SelectionChanged is still running when the two-way binding
+                    // writes Value. Keep its source/items alive for normal choices.
+                    if (_choices.Any(choice => Identity(choice.Value) == Identity(Value)))
+                        OnPropertyChanged(nameof(SelectedChoice));
+                    else
+                        RefreshChoices(); // External/numeric edits may introduce a new value.
+                }
             }
         }
     }
