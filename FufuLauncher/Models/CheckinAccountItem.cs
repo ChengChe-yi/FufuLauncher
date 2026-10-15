@@ -9,6 +9,9 @@ namespace FufuLauncher.Models;
 
 public partial class CheckinAccountItem : ObservableObject
 {
+    public string AccountId { get; init; } = string.Empty;
+    public CheckinOptions? Options { get; set; }
+
     [ObservableProperty] private string _uid = string.Empty;
     [ObservableProperty] private string _nickname = string.Empty;
     [ObservableProperty] private bool _isSelected = true;

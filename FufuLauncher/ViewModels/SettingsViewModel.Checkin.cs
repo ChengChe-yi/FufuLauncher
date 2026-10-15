@@ -8,14 +8,25 @@ using System.Diagnostics;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
 public partial class SettingsViewModel
 {
     #region 自动签到与云游戏
+
+    private CheckinOptions _defaultCheckinOptions = new();
+    private bool _isApplyingCheckinOptions;
+
+    public bool CanEditCheckinOptions => !IsBatchCheckinEnabled || SelectedCheckinAccount != null;
+    public bool CanEditCheckinGames => CanEditCheckinOptions && IsGameCheckinEnabled;
+    public string CheckinOptionsCaption => SelectedCheckinAccount is { } account
+        ? string.Format("Checkin_ConfiguringAccount".GetLocalized(), account.Nickname, account.Uid)
+        : "Checkin_SelectAccount".GetLocalized();
 
     partial void OnIsCaptchaPopupDisabledChanged(bool value)
     {
@@ -44,62 +55,120 @@ public partial class SettingsViewModel
 
     partial void OnIsGameCheckinEnabledChanged(bool value)
     {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync("IsGameCheckinEnabled", value);
+        OnPropertyChanged(nameof(CanEditCheckinGames));
+        SaveCheckinOption("IsGameCheckinEnabled", value);
     }
 
     partial void OnIsCommunityCheckinEnabledChanged(bool value)
     {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync("IsCommunityCheckinEnabled", value);
+        SaveCheckinOption("IsCommunityCheckinEnabled", value);
     }
 
     partial void OnIsCommunityLikeEnabledChanged(bool value)
     {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync("IsCommunityLikeEnabled", value);
+        SaveCheckinOption("IsCommunityLikeEnabled", value);
     }
 
     partial void OnIsCommunityReadEnabledChanged(bool value)
     {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync("IsCommunityReadEnabled", value);
+        SaveCheckinOption("IsCommunityReadEnabled", value);
     }
 
     partial void OnIsCommunityShareEnabledChanged(bool value)
     {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync("IsCommunityShareEnabled", value);
+        SaveCheckinOption("IsCommunityShareEnabled", value);
     }
 
     partial void OnIsCloudGameCheckinEnabledChanged(bool value)
     {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync("IsCloudGameCheckinEnabled", value);
+        SaveCheckinOption("IsCloudGameCheckinEnabled", value);
     }
 
     partial void OnIsBatchCheckinEnabledChanged(bool value)
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsBatchCheckinEnabled", value);
+        ApplyCheckinOptions();
     }
 
-    private async Task LoadCheckinGamesAsync()
+    partial void OnSelectedCheckinAccountChanged(CheckinAccountItem? value) => ApplyCheckinOptions();
+
+    private void SaveCheckinOption(string key, bool value)
+    {
+        if (_isInitializing || _isApplyingCheckinOptions) return;
+        var options = CaptureCheckinOptions();
+        if (IsBatchCheckinEnabled)
+        {
+            if (SelectedCheckinAccount is not { } account) return;
+            account.Options = options;
+            _ = new CheckinSettingsStore(_localSettingsService).SaveAccountAsync(account.AccountId, options);
+        }
+        else
+        {
+            _defaultCheckinOptions = options;
+            _ = _localSettingsService.SaveSettingAsync(key, value);
+        }
+    }
+
+    private CheckinOptions CaptureCheckinOptions() => new()
+    {
+        IsGameCheckinEnabled = IsGameCheckinEnabled,
+        IsCommunityCheckinEnabled = IsCommunityCheckinEnabled,
+        IsCommunityLikeEnabled = IsCommunityLikeEnabled,
+        IsCommunityReadEnabled = IsCommunityReadEnabled,
+        IsCommunityShareEnabled = IsCommunityShareEnabled,
+        IsCloudGameCheckinEnabled = IsCloudGameCheckinEnabled,
+        Games = CheckinGames.ToDictionary(g => g.GameBiz, g => g.IsSelected)
+    };
+
+    private void ApplyCheckinOptions()
+    {
+        var options = IsBatchCheckinEnabled
+            ? SelectedCheckinAccount?.Options ?? _defaultCheckinOptions
+            : _defaultCheckinOptions;
+        _isApplyingCheckinOptions = true;
+        try
+        {
+            IsGameCheckinEnabled = options.IsGameCheckinEnabled;
+            IsCommunityCheckinEnabled = options.IsCommunityCheckinEnabled;
+            IsCommunityLikeEnabled = options.IsCommunityLikeEnabled;
+            IsCommunityReadEnabled = options.IsCommunityReadEnabled;
+            IsCommunityShareEnabled = options.IsCommunityShareEnabled;
+            IsCloudGameCheckinEnabled = options.IsCloudGameCheckinEnabled;
+            foreach (var game in CheckinGames) game.IsSelected = options.IsGameEnabled(game.GameBiz);
+        }
+        finally
+        {
+            _isApplyingCheckinOptions = false;
+        }
+    }
+
+    private async Task LoadCheckinSectionAsync()
+    {
+        var store = new CheckinSettingsStore(_localSettingsService);
+        _defaultCheckinOptions = await store.LoadDefaultsAsync();
+        IsAutoCheckinEnabled = await store.ReadBoolAsync("IsAutoCheckinEnabled", false);
+        IsBatchCheckinEnabled = await store.ReadBoolAsync("IsBatchCheckinEnabled", false);
+        LoadCheckinGames();
+        await LoadCheckinAccountsAsync();
+        ApplyCheckinOptions();
+    }
+
+    private void LoadCheckinGames()
     {
         var games = new ObservableCollection<CheckinGameItem>();
         string[] gameOrder = ["nap_cn","hkrpg_cn", "nxx_cn",  "bh3_cn", "bh2_cn"];
         foreach (var gameBiz in gameOrder)
         {
             var game = MiyousheCheckinGame.SupportedGames.First(g => g.GameBiz == gameBiz);
-            var value = await _localSettingsService.ReadSettingAsync(game.SettingKey);
             var item = new CheckinGameItem(game)
             {
-                IsSelected = value == null || !bool.TryParse(value.ToString(), out bool enabled) || enabled
+                IsSelected = _defaultCheckinOptions.IsGameEnabled(gameBiz)
             };
-            item.PropertyChanged += async (_, e) =>
+            item.PropertyChanged += (_, e) =>
             {
                 if (e.PropertyName == nameof(CheckinGameItem.IsSelected))
-                    await _localSettingsService.SaveSettingAsync(item.SettingKey, item.IsSelected);
+                    SaveCheckinOption(item.SettingKey, item.IsSelected);
             };
             games.Add(item);
         }
@@ -125,6 +194,7 @@ public partial class SettingsViewModel
             }
 
             var accounts = new ObservableCollection<CheckinAccountItem>();
+            var store = new CheckinSettingsStore(_localSettingsService);
             var entries = _accountManager.GetAllAccounts();
             foreach (var entry in entries)
             {
@@ -140,6 +210,8 @@ public partial class SettingsViewModel
 
                 accounts.Add(new CheckinAccountItem
                 {
+                    AccountId = entry.Id,
+                    Options = await store.LoadAccountAsync(entry.Id),
                     Uid = uid,
                     Nickname = nickname,
                     IsSelected = !disabledUids.Contains(uid),
@@ -147,7 +219,11 @@ public partial class SettingsViewModel
                 });
             }
 
-            CheckinAccounts = accounts;
+            var selectedId = SelectedCheckinAccount?.AccountId ?? _accountManager.ActiveAccountId;
+            CheckinAccounts = new ObservableCollection<CheckinAccountItem>(
+                CheckinSettingsStore.ApplyOrder(accounts, await store.LoadOrderAsync(), a => a.AccountId));
+            SelectedCheckinAccount = CheckinAccounts.FirstOrDefault(a => a.AccountId == selectedId)
+                ?? CheckinAccounts.FirstOrDefault();
 
             foreach (var account in CheckinAccounts)
             {
@@ -167,6 +243,9 @@ public partial class SettingsViewModel
             Debug.WriteLine($"LoadCheckinAccountsAsync 异常: {ex.Message}");
         }
     }
+
+    public Task SaveCheckinAccountOrderAsync() => new CheckinSettingsStore(_localSettingsService)
+        .SaveOrderAsync(CheckinAccounts.Select(a => a.AccountId));
 
     public static async Task SaveCloudCredentialAsync(string uid, string credential)
     {

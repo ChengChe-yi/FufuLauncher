@@ -679,7 +679,19 @@
     <value>Batch Check-in</value>
   </data>
   <data name="BatchCheckinCaption" xml:space="preserve">
-    <value>Run check-in tasks for all checked accounts; otherwise only the current account is used</value>
+    <value>Run each checked account's tasks in list order. Select an account to edit its options above; when off, only the current account is used</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>Configuring: {0} ({1})</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>Select an account below to configure its check-in options</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>Check accounts to include in batch check-in, select an account to edit its options, and drag to change the order</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>Drag to change the check-in order</value>
   </data>
   <data name="AccountListTitle" xml:space="preserve">
     <value>Account List</value>

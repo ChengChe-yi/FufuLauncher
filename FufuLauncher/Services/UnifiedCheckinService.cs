@@ -4,7 +4,6 @@ Licensed under the MIT License.
 */
 
 using System.Diagnostics;
-using System.Text;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
@@ -45,13 +44,9 @@ public class UnifiedCheckinService : IUnifiedCheckinService
     {
         var result = new UnifiedCheckinResult();
 
-        var gameEnabled = await GetBoolSettingAsync("IsGameCheckinEnabled", true);
-        var communityEnabled = await GetBoolSettingAsync("IsCommunityCheckinEnabled", true);
-        var cloudGameEnabled = await GetBoolSettingAsync("IsCloudGameCheckinEnabled", false);
-        var communityLike = await GetBoolSettingAsync("IsCommunityLikeEnabled", false);
-        var communityRead = await GetBoolSettingAsync("IsCommunityReadEnabled", false);
-        var communityShare = await GetBoolSettingAsync("IsCommunityShareEnabled", false);
-        var isBatchCheckinEnabled = await GetBoolSettingAsync("IsBatchCheckinEnabled", false);
+        var store = new CheckinSettingsStore(_localSettingsService);
+        var defaults = await store.LoadDefaultsAsync();
+        var isBatchCheckinEnabled = await store.ReadBoolAsync("IsBatchCheckinEnabled", false);
 
 
         var allEntries = _accountManager.GetAllAccounts();
@@ -92,18 +87,12 @@ public class UnifiedCheckinService : IUnifiedCheckinService
         }
 
         var disabledUids = await LoadDisabledUidsAsync();
-        var enabledGames = new HashSet<string> { "hk4e_cn" };
-        if (gameEnabled)
-        {
-            foreach (var game in MiyousheCheckinGame.SupportedGames.Where(g => g.GameBiz != "hk4e_cn"))
-                if (await GetBoolSettingAsync(game.SettingKey, true)) enabledGames.Add(game.GameBiz);
-        }
-
-
         List<AccountCredentials> activeAccounts;
         if (isBatchCheckinEnabled)
         {
-            activeAccounts = credentialsList.Where(a => !disabledUids.Contains(a.Uid)).ToList();
+            activeAccounts = CheckinSettingsStore.ApplyOrder(
+                credentialsList.Where(a => !disabledUids.Contains(a.Uid)),
+                await store.LoadOrderAsync(), a => a.ConfigPath);
         }
         else
         {
@@ -121,6 +110,62 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             return result;
         }
 
+        for (int i = 0; i < activeAccounts.Count; i++)
+        {
+            var account = activeAccounts[i];
+            var options = isBatchCheckinEnabled
+                ? await store.LoadAccountAsync(account.ConfigPath) ?? defaults
+                : defaults;
+            var accountResult = await ExecuteAccountCheckinsAsync(account, options, disabledUids, progress);
+            MergeResult(result.GameResult, accountResult.GameResult);
+            MergeResult(result.CommunityResult, accountResult.CommunityResult);
+            MergeResult(result.CloudGameResult, accountResult.CloudGameResult);
+            result.AccountResults.AddRange(accountResult.AccountResults);
+            if (!string.IsNullOrEmpty(accountResult.GameSignDays))
+            {
+                result.GameSignDays = accountResult.GameSignDays;
+                result.GameRewardItem = accountResult.GameRewardItem;
+            }
+            if (i < activeAccounts.Count - 1 && (accountResult.GameResult.Executed ||
+                accountResult.CommunityResult.Executed || accountResult.CloudGameResult.Executed))
+                await Task.Delay(Random.Shared.Next(2000, 5000));
+        }
+
+        int successAccounts = result.AccountResults.Count(a => a.Items.Any(i => i.Success == true) &&
+                                                              a.Items.All(i => i.Success != false));
+        int failAccounts = result.AccountResults.Count(a => a.Items.Any(i => i.Success == false));
+        bool anyExecuted = result.GameResult.Executed || result.CommunityResult.Executed || result.CloudGameResult.Executed;
+        result.SummaryMessage = !anyExecuted ? "Checkin_NotEnabled".GetLocalized()
+            : failAccounts == 0
+                ? string.Format("Checkin_AllAccountsSuccess".GetLocalized(), successAccounts)
+                : successAccounts > 0
+                    ? string.Format("Checkin_PartialSuccess".GetLocalized(), successAccounts, failAccounts)
+                    : string.Format("Checkin_AllFailed".GetLocalized(), failAccounts);
+        Debug.WriteLine($"[统一签到] {result.SummaryMessage}");
+        return result;
+    }
+
+    private static void MergeResult(CheckinTypeResult target, CheckinTypeResult source)
+    {
+        if (!source.Executed) return;
+        target.Success = !target.Executed ? source.Success : target.Success && source.Success;
+        target.Executed = true;
+        target.SuccessCount += source.SuccessCount;
+        target.FailCount += source.FailCount;
+        target.SkippedCount += source.SkippedCount;
+        target.Details.AddRange(source.Details);
+        target.Message = string.Format("Checkin_SuccessFailCount".GetLocalized(), target.SuccessCount, target.FailCount);
+    }
+
+    private async Task<UnifiedCheckinResult> ExecuteAccountCheckinsAsync(AccountCredentials credentials,
+        CheckinOptions options, HashSet<string> disabledUids, IProgress<string>? progress)
+    {
+        var result = new UnifiedCheckinResult();
+        var activeAccounts = new List<AccountCredentials> { credentials };
+        var gameEnabled = options.IsGameCheckinEnabled;
+        var communityEnabled = options.IsCommunityCheckinEnabled;
+        var cloudGameEnabled = options.IsCloudGameCheckinEnabled;
+        var enabledGames = options.GetEnabledGames();
         void Report(string msg) => progress?.Report(msg);
 
 
@@ -183,7 +228,6 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                                 result.GameSignDays = genshinResult.SignDays.ToString();
                                 result.GameRewardItem = genshinResult.RewardItem;
                             }
-                            if (activeAccounts.Count > 1) await Task.Delay(Random.Shared.Next(2000, 5000));
                             continue;
                         }
 
@@ -209,9 +253,6 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                             Items = { ("Checkin_GameCheckin".GetLocalized(), false, ex.Message) }
                         });
                     }
-
-                    if (activeAccounts.Count > 1)
-                        await Task.Delay(new Random().Next(2000, 5000));
                 }
 
                 result.GameResult.Success = result.GameResult.FailCount == 0;
@@ -261,14 +302,16 @@ public class UnifiedCheckinService : IUnifiedCheckinService
 
                     Report($"[{account.Nickname}] {"Checkin_CommunityCheckinProgress".GetLocalized()}");
                     var communityResult = await _communityCheckinService.ExecuteCheckinAsync(
-                        account, true, communityRead, communityLike, communityShare);
+                        account, true, options.IsCommunityReadEnabled, options.IsCommunityLikeEnabled,
+                        options.IsCommunityShareEnabled);
 
                     result.CommunityResult.SuccessCount += communityResult.SuccessCount;
                     result.CommunityResult.FailCount += communityResult.FailCount;
                     result.CommunityResult.SkippedCount += communityResult.SkippedCount;
                     result.CommunityResult.Details.AddRange(communityResult.Details);
 
-                    bool success = communityResult.FailCount == 0;
+                    bool success = communityResult.Success;
+                    if (!success && communityResult.FailCount == 0) result.CommunityResult.FailCount++;
                     var detail = result.AccountResults.FirstOrDefault(a => a.Nickname == account.Nickname);
                     if (detail != null)
                         detail.Items.Add(("Checkin_CommunityCheckin".GetLocalized(), success,
@@ -283,9 +326,6 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                                     success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized())
                             }
                         });
-
-                    if (activeAccounts.Count > 1)
-                        await Task.Delay(new Random().Next(2000, 5000));
                 }
 
                 result.CommunityResult.Success = result.CommunityResult.FailCount == 0;
@@ -296,7 +336,9 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             catch (Exception ex)
             {
                 result.CommunityResult.Success = false;
+                result.CommunityResult.FailCount++;
                 result.CommunityResult.Message = string.Format("CheckinCommunity_Exception".GetLocalized(), ex.Message);
+                AddAccountFailure(result, credentials, "Checkin_CommunityCheckin", ex.Message);
                 Debug.WriteLine($"[统一签到] 社区签到异常: {ex.Message}");
             }
 
@@ -315,7 +357,10 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 if (!hasAnyCredential)
                 {
                     result.CloudGameResult.Success = false;
+                    result.CloudGameResult.FailCount++;
                     result.CloudGameResult.Message = "Checkin_NoCloudCredential".GetLocalized();
+                    AddAccountFailure(result, credentials, "Checkin_CloudGameCheckin",
+                        "Checkin_NotConfiguredCredential".GetLocalized());
                 }
                 else
                 {
@@ -345,7 +390,8 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                         result.CloudGameResult.SkippedCount += cloudResult.SkippedCount;
                         result.CloudGameResult.Details.AddRange(cloudResult.Details);
 
-                        bool success = cloudResult.FailCount == 0;
+                        bool success = cloudResult.Success;
+                        if (!success && cloudResult.FailCount == 0) result.CloudGameResult.FailCount++;
                         var cdd = result.AccountResults.FirstOrDefault(a => a.Nickname == account.Nickname);
                         if (cdd != null)
                             cdd.Items.Add(("Checkin_CloudGameCheckin".GetLocalized(), success,
@@ -360,9 +406,6 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                                         success ? "Status_Completed".GetLocalized() : "Status_Failure".GetLocalized())
                                 }
                             });
-
-                        if (activeAccounts.Count > 1)
-                            await Task.Delay(new Random().Next(2000, 5000));
                     }
 
                     result.CloudGameResult.Success = result.CloudGameResult.FailCount == 0;
@@ -374,7 +417,9 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             catch (Exception ex)
             {
                 result.CloudGameResult.Success = false;
+                result.CloudGameResult.FailCount++;
                 result.CloudGameResult.Message = string.Format("CheckinCloud_Exception".GetLocalized(), ex.Message);
+                AddAccountFailure(result, credentials, "Checkin_CloudGameCheckin", ex.Message);
                 Debug.WriteLine($"[统一签到] 云原神签到异常: {ex.Message}");
             }
 
@@ -382,26 +427,19 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             Debug.WriteLine($"[统一签到] 云游戏签到耗时 {cloudSw.ElapsedMilliseconds}ms");
         }
 
-        int successAccounts = result.AccountResults.Count(a => a.Items.Any(i => i.Success == true) &&
-                                                              a.Items.All(i => i.Success != false));
-        int failAccounts = result.AccountResults.Count(a => a.Items.Any(i => i.Success == false));
-
-        result.SummaryMessage = failAccounts == 0
-            ? string.Format("Checkin_AllAccountsSuccess".GetLocalized(), successAccounts)
-            : successAccounts > 0
-                ? string.Format("Checkin_PartialSuccess".GetLocalized(), successAccounts, failAccounts)
-                : string.Format("Checkin_AllFailed".GetLocalized(), failAccounts);
-
-        Debug.WriteLine($"[统一签到] {result.SummaryMessage}");
         return result;
     }
 
-
-    private async Task<bool> GetBoolSettingAsync(string key, bool defaultValue)
+    private static void AddAccountFailure(UnifiedCheckinResult result, AccountCredentials account,
+        string typeKey, string message)
     {
-        var value = await _localSettingsService.ReadSettingAsync(key);
-        if (value == null) return defaultValue;
-        return bool.TryParse(value.ToString(), out var result) ? result : defaultValue;
+        var detail = result.AccountResults.FirstOrDefault();
+        if (detail == null)
+        {
+            detail = new AccountCheckinDetail { Nickname = account.Nickname };
+            result.AccountResults.Add(detail);
+        }
+        detail.Items.Add((typeKey.GetLocalized(), false, message));
     }
 
     private async Task<string?> RefreshCheckinCookieAsync(AccountCredentials account)
