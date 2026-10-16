@@ -11,7 +11,7 @@ using FufuLauncher.Models;
 
 namespace FufuLauncher.ViewModels;
 
-public partial class SettingsViewModel
+public partial class LaunchConfigurationViewModel
 {
     #region 米游社账号
 

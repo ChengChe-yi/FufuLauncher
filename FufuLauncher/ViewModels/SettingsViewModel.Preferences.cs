@@ -202,51 +202,7 @@ public partial class SettingsViewModel
         IsHamburgerButtonEnabled = hamburgerButtonJson != null && Convert.ToBoolean(hamburgerButtonJson);
     }
 
-    private async Task LoadLaunchConfigSectionAsync()
-    {
-        var wasLoadingLaunchParams = _isLoadingLaunchParams;
-        _isLoadingLaunchParams = true;
-        try
-        {
-            var paramsJson = await _localSettingsService.ReadSettingAsync("CustomLaunchParameters");
-            if (paramsJson != null)
-            {
-                CustomLaunchParameters = paramsJson.ToString();
-                ParseLaunchParameters(CustomLaunchParameters);
-            }
-
-            var customExeJson = await _localSettingsService.ReadSettingAsync(GameExeManager.CustomExeNameKey);
-            CustomGameExeName = customExeJson?.ToString() ?? string.Empty;
-
-            var behaviorJson = await _localSettingsService.ReadSettingAsync("PostLaunchBehavior");
-            var postLaunchBehavior = PostLaunchBehavior.None;
-            if (behaviorJson is string behaviorStr && Enum.TryParse<PostLaunchBehavior>(behaviorStr, out var parsed))
-                postLaunchBehavior = parsed;
-
-            PostLaunchBehavior = postLaunchBehavior;
-            SelectedPostLaunchBehaviorItem = PostLaunchBehaviorItems.First(i => i.Value == postLaunchBehavior);
-
-            var usingHoyolabJson = await _localSettingsService.ReadSettingAsync("UsingHoyolabAccount");
-            IsUsingHoyolabAccount = usingHoyolabJson != null && Convert.ToBoolean(usingHoyolabJson);
-
-            var redeemNotifyJson = await _localSettingsService.ReadSettingAsync("IsRedeemCodeNotificationEnabled");
-            IsRedeemCodeNotificationEnabled = redeemNotifyJson == null || Convert.ToBoolean(redeemNotifyJson);
-
-            var conflictCheckJson =
-                await _localSettingsService.ReadSettingAsync(PluginConflictSettings.CheckEnabledKey);
-            IsPluginConflictCheckEnabled = conflictCheckJson == null || Convert.ToBoolean(conflictCheckJson);
-
-            var conflictMainOnlyJson =
-                await _localSettingsService.ReadSettingAsync(PluginConflictSettings.MainDllOnlyKey);
-            IsPluginConflictMainDllOnly = conflictMainOnlyJson == null || Convert.ToBoolean(conflictMainOnlyJson);
-
-            LoadMonitors();
-        }
-        finally
-        {
-            _isLoadingLaunchParams = wasLoadingLaunchParams;
-        }
-    }
+    private Task LoadLaunchConfigSectionAsync() => LaunchConfiguration.LoadAsync();
 
     private async Task LoadScreenshotSectionAsync()
     {
@@ -388,18 +344,6 @@ public partial class SettingsViewModel
     private static Task LoadAboutSectionAsync() => Task.CompletedTask;
 
     private static Task LoadSecurityAuthSectionAsync() => Task.CompletedTask;
-
-    partial void OnIsPluginConflictCheckEnabledChanged(bool value)
-    {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync(PluginConflictSettings.CheckEnabledKey, value);
-    }
-
-    partial void OnIsPluginConflictMainDllOnlyChanged(bool value)
-    {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync(PluginConflictSettings.MainDllOnlyKey, value);
-    }
 
     partial void OnIgnoreConstraintRestrictionsChanged(bool value)
     {

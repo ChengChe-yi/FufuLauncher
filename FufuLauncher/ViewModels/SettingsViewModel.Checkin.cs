@@ -40,12 +40,6 @@ public partial class SettingsViewModel
         _ = _localSettingsService.SaveSettingAsync("IsCaptchaNoticeEnabled", value);
     }
 
-    partial void OnIsRedeemCodeNotificationEnabledChanged(bool value)
-    {
-        if (_isInitializing) return;
-        _ = _localSettingsService.SaveSettingAsync("IsRedeemCodeNotificationEnabled", value);
-    }
-
     partial void OnIsAutoCheckinEnabledChanged(bool value)
     {
         if (_isInitializing) return;
