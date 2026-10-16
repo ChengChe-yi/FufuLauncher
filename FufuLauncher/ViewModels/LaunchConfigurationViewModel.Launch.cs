@@ -9,11 +9,11 @@ using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
-public partial class SettingsViewModel
+public partial class LaunchConfigurationViewModel
 {
     #region 启动参数与分辨率
 
-    partial void OnSelectedPostLaunchBehaviorItemChanged(PostLaunchBehaviorItem value)
+    partial void OnSelectedPostLaunchBehaviorItemChanged(PostLaunchBehaviorItem? value)
     {
         if (value == null) return;
         _postLaunchBehavior = value.Value;
@@ -26,7 +26,7 @@ public partial class SettingsViewModel
         ApplyPresetsToText();
     }
 
-    partial void OnSelectedMonitorChanged(MonitorItem value)
+    partial void OnSelectedMonitorChanged(MonitorItem? value)
     {
         if (value != null && LaunchArgsMonitorIndex != value.Index)
         {

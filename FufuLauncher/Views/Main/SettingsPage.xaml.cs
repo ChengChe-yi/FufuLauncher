@@ -39,9 +39,6 @@ public sealed partial class SettingsPage : Page
 
     private bool _isRecordingHotkey;
 
-    private bool _injectionModuleSelectionReady;
-    private string? _appliedInjectionModuleId;
-
     #endregion
 
     #region 初始化与页面生命周期
@@ -90,10 +87,6 @@ public sealed partial class SettingsPage : Page
         {
             switch (sectionId)
             {
-                case SettingsSectionIds.LaunchConfig:
-                    await LoadInjectionModuleSelectionAsync();
-                    break;
-
                 case SettingsSectionIds.AdvancedOptions:
                     await UpdateDeviceInfoRowVisibilityAsync();
                     break;
@@ -139,49 +132,4 @@ public sealed partial class SettingsPage : Page
 
     #endregion
 
-    #region 注入模块选择
-
-    private async Task LoadInjectionModuleSelectionAsync()
-    {
-        try
-        {
-            var settingsService = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
-            var saved = await settingsService.ReadSettingAsync("InjectionModule");
-            var moduleId = saved?.ToString() ?? "DLL";
-
-            _appliedInjectionModuleId = moduleId;
-
-            for (int i = 0; i < InjectionModuleComboBox.Items.Count; i++)
-            {
-                if (InjectionModuleComboBox.Items[i] is ComboBoxItem item && item.Tag?.ToString() == moduleId)
-                {
-                    InjectionModuleComboBox.SelectedIndex = i;
-                    break;
-                }
-            }
-
-            _injectionModuleSelectionReady = true;
-        }
-        catch
-        {
-        }
-    }
-
-    private async void InjectionModuleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (!_injectionModuleSelectionReady) return;
-
-        if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
-        {
-            var moduleId = selectedItem.Tag?.ToString() ?? "DLL";
-            if (moduleId == _appliedInjectionModuleId) return;
-
-            _appliedInjectionModuleId = moduleId;
-
-            var settingsService = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
-            await settingsService.SaveSettingAsync("InjectionModule", moduleId);
-        }
-    }
-
-    #endregion
 }

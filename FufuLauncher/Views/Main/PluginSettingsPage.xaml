@@ -506,6 +506,26 @@
                                 <TextBlock Text="安装签名" FontSize="12" />
                             </StackPanel>
                         </Button>
+                        <Button x:Name="LaunchConfigurationButton"
+                                Padding="12,6" MinWidth="0" VerticalAlignment="Center"
+                                Visibility="{x:Bind MainPluginButtonVisibility(ViewModel.SelectedPluginIndex), Mode=OneWay}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE7FC;" FontSize="13" />
+                                <TextBlock Text="{helpers:Loc Key=SectionLaunchConfig}" FontSize="12" />
+                            </StackPanel>
+                            <Button.Flyout>
+                                <Flyout Placement="BottomEdgeAlignedRight" Opening="OnLaunchConfigurationFlyoutOpening">
+                                    <Flyout.FlyoutPresenterStyle>
+                                        <Style TargetType="FlyoutPresenter">
+                                            <Setter Property="Padding" Value="20" />
+                                            <Setter Property="CornerRadius" Value="8" />
+                                            <Setter Property="MaxWidth" Value="900" />
+                                            <Setter Property="MaxHeight" Value="640" />
+                                        </Style>
+                                    </Flyout.FlyoutPresenterStyle>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
                     </StackPanel>
 
                     <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="20" VerticalAlignment="Center">

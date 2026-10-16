@@ -4,6 +4,11 @@ Licensed under the MIT License.
 */
 
 using System.Runtime.InteropServices;
+using Microsoft.UI;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Windowing;
+using WinRT.Interop;
 
 namespace FufuLauncher.Helpers;
 
@@ -93,6 +98,66 @@ public static class MonitorHelper
         }
 
         return result;
+    }
+
+    public static void IdentifyAll()
+    {
+        foreach (var monitor in GetAll())
+        {
+            var window = new Window();
+            window.ExtendsContentIntoTitleBar = true;
+
+            var grid = new Grid
+            {
+                Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Black) { Opacity = 0.8 },
+                VerticalAlignment = VerticalAlignment.Stretch,
+                HorizontalAlignment = HorizontalAlignment.Stretch
+            };
+
+            var textBlock = new TextBlock
+            {
+                Text = monitor.Index.ToString(),
+                FontSize = 140,
+                Foreground = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.White),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                FontWeight = Microsoft.UI.Text.FontWeights.Bold
+            };
+
+            grid.Children.Add(textBlock);
+            window.Content = grid;
+
+            IntPtr hWnd = WindowNative.GetWindowHandle(window);
+            WindowId windowId = Win32Interop.GetWindowIdFromWindow(hWnd);
+            AppWindow appWindow = AppWindow.GetFromWindowId(windowId);
+
+            if (appWindow != null)
+            {
+                var presenter = appWindow.Presenter as OverlappedPresenter;
+                if (presenter != null)
+                {
+                    presenter.SetBorderAndTitleBar(false, false);
+                    presenter.IsAlwaysOnTop = true;
+                }
+
+                var size = new Windows.Graphics.SizeInt32(250, 250);
+                appWindow.Resize(size);
+
+                var centeredX = monitor.WorkX + (monitor.WorkWidth - size.Width) / 2;
+                var centeredY = monitor.WorkY + (monitor.WorkHeight - size.Height) / 2;
+                appWindow.Move(new Windows.Graphics.PointInt32(centeredX, centeredY));
+            }
+
+            window.Activate();
+
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(3) };
+            timer.Tick += (s, args) =>
+            {
+                window.Close();
+                ((DispatcherTimer)s).Stop();
+            };
+            timer.Start();
+        }
     }
 
     private static GameMonitor CreateMonitor(int index, bool isPrimary, MonitorInfoEx info)
