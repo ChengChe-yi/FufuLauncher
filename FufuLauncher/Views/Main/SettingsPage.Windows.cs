@@ -222,5 +222,10 @@ public sealed partial class SettingsPage
         window.Activate();
     }
 
+    private void OnOpenServiceStatusWindowClick(object sender, RoutedEventArgs e)
+    {
+        ServiceStatusWindow.ShowOrActivate();
+    }
+
     #endregion
 }

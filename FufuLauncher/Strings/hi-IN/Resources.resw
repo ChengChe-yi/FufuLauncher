@@ -6743,4 +6743,169 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ModTrust_ModeCaption" xml:space="preserve">
     <value>बंद होने पर हस्ताक्षर जाँच नहीं होती; चेतावनी मोड बिना रोके जाँचता है; सख्त मोड असफल प्लगइन को रोकता है।</value>
   </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>सेवा स्थिति</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>सेवा स्थिति</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>उपलब्धता</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>सभी सेवाओं की उपलब्धता देखें</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>देखें</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>सभी सिस्टम सामान्य हैं</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>कुछ सेवाओं में समस्या है</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>सामान्य</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>प्रभावित</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>रुकावट</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>रोका गया</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>अज्ञात</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>90-दिन उपलब्धता</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>{0} पर अपडेट किया गया</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>रीफ़्रेश करें</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>और लोड करें</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>सेवा स्थिति लोड हो रही है</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>सेवा स्थिति लोड नहीं हो सकी</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>कृपया बाद में पुनः प्रयास करें।</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>पुनः प्रयास करें</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>सेवाएँ</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>पिछले 90 दिन</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90 दिन</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>पिछली रुकावट {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>90 दिनों में कोई रुकावट नहीं</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>{0} सेवाएँ</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>सामान्य {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>रुकावटें {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>रोके गए {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>कोई डेटा नहीं</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>विवरण देखें</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>सेवा स्थिति पर वापस जाएँ</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>मॉनिटर विवरण लोड नहीं हो सका</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>कृपया बाद में पुनः प्रयास करें।</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>मॉनिटर विवरण लोड हो रहा है</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>उपलब्धता</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>कुल उपलब्धता</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>पिछले 24 घंटे</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>पिछले 7 दिन</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>पिछले 30 दिन</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>प्रतिक्रिया समय</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>पिछले 2 दिन</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>औसत प्रतिक्रिया समय</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>अधिकतम प्रतिक्रिया समय</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>न्यूनतम प्रतिक्रिया समय</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>जाँच</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>हाल की घटनाएँ</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>और दिखाएँ</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>कोई हाल की घटना नहीं</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>प्रतिक्रिया समय डेटा नहीं</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>अवधि: {0} सेकंड</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>अवधि: {0} मिनट</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>अवधि: {0} घंटे</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>अवधि: {0} घंटे {1} मिनट</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>अवधि: {0} दिन {1} घंटे</value>
+  </data>
 </root>

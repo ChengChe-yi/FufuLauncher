@@ -6266,4 +6266,169 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ModTrust_ModeCaption" xml:space="preserve">
     <value>オフは署名検証を省略し、警告は検証して通知します。厳格は検証に失敗したプラグインをブロックします。</value>
   </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>サービス状態</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>サービス状態</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>稼働状況</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>各サービスの稼働状況を表示</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>すべてのシステムが正常です</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>一部のサービスに問題が発生しています</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>低下</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>停止中</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>90日間の稼働率</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>{0} 更新</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>さらに読み込む</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>サービス状態を取得中</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>サービス状態を取得できません</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>しばらくしてから再試行してください。</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>サービス</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>過去90日間</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90日間</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>前回の停止 {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>過去90日間の停止なし</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>サービス {0} 件</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>正常 {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>停止 {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>停止中 {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>データなし</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>詳細を表示</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>サービス状態に戻る</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>モニター詳細を取得できません</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>しばらくしてから再試行してください。</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>モニター詳細を取得中</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>稼働率</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>全体の稼働率</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>過去24時間</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>過去7日間</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>過去30日間</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>応答時間</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>過去2日間</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>平均応答時間</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>最大応答時間</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>最小応答時間</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>チェック回数</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>最近のイベント</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>さらに表示</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>最近のイベントはありません</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>応答時間データがありません</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>継続時間: {0} 秒</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>継続時間: {0} 分</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>継続時間: {0} 時間</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>継続時間: {0} 時間 {1} 分</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>継続時間: {0} 日 {1} 時間</value>
+  </data>
 </root>

@@ -1,0 +1,8 @@
+﻿<UserControl
+    x:Class="FufuLauncher.Controls.ServiceResponseTimeGraph"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch">
+    <Grid x:Name="RootGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+</UserControl>

@@ -6266,4 +6266,169 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ModTrust_ModeCaption" xml:space="preserve">
     <value>關閉驗證：略過簽章驗證；僅提示：驗證並提醒，但允許載入；攔截：阻止未通過驗證的外掛載入。</value>
   </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>服務狀態</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>服務狀態</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>可用性監控</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>檢視各服務的可用性記錄</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>檢視</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>所有服務運作正常</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>部分服務異常</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>降級</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>中斷</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>暫停</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>90 天可用率</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>更新於 {0}</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>重新整理</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>載入更多</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>正在取得服務狀態</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>無法取得服務狀態</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>請稍後重試</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>重試</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>服務</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>最近 90 天</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90 天</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>上次中斷 {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>90 天內無中斷</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>{0} 個服務</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>正常 {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>中斷 {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>暫停 {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>無資料</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>檢視詳情</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>返回服務狀態</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>無法取得監控詳情</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>請稍後重試</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>正在取得監控詳情</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>可用率</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>整體可用率</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>最近 24 小時</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>最近 7 天</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>最近 30 天</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>回應時間</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>最近 2 天</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>平均回應時間</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>最大回應時間</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>最小回應時間</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>檢測次數</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>最近事件</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>顯示更多</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>尚無事件</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>尚無回應時間資料</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>持續 {0} 秒</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>持續 {0} 分鐘</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>持續 {0} 小時</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>持續 {0} 小時 {1} 分鐘</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>持續 {0} 天 {1} 小時</value>
+  </data>
 </root>
