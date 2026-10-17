@@ -511,6 +511,12 @@
   <data name="LangDefault" xml:space="preserve">
     <value>使用系統預設語言</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>啟用遊戲啟動參數</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>關閉後啟動遊戲時將不傳遞視窗模式、解析度等自訂啟動參數</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>啟動視窗模式</value>
   </data>

@@ -25,6 +25,7 @@ public partial class LaunchConfigurationViewModel : ObservableObject
     public record PostLaunchBehaviorItem(string DisplayName, PostLaunchBehavior Value);
     public record InjectionModuleItem(string DisplayName, string Id);
 
+    [ObservableProperty] private bool _isCustomLaunchParametersEnabled;
     [ObservableProperty] private string _customLaunchParameters = "";
     [ObservableProperty] private WindowModeType _launchArgsWindowMode = WindowModeType.Normal;
     [ObservableProperty] private string _launchArgsWidth = "";
@@ -90,6 +91,9 @@ public partial class LaunchConfigurationViewModel : ObservableObject
         _isLoadingLaunchParams = true;
         try
         {
+            var isCustomParamsEnabled = await _localSettingsService.ReadSettingAsync("IsCustomLaunchParametersEnabled");
+            IsCustomLaunchParametersEnabled = isCustomParamsEnabled != null && Convert.ToBoolean(isCustomParamsEnabled);
+
             var parameters = await _localSettingsService.ReadSettingAsync("CustomLaunchParameters");
             InitializeDefaultResolution();
             CustomLaunchParameters = parameters?.ToString() ?? "";
@@ -149,5 +153,11 @@ public partial class LaunchConfigurationViewModel : ObservableObject
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync("IsRedeemCodeNotificationEnabled", value);
+    }
+
+    partial void OnIsCustomLaunchParametersEnabledChanged(bool value)
+    {
+        if (_isInitializing) return;
+        _ = _localSettingsService.SaveSettingAsync("IsCustomLaunchParametersEnabled", value);
     }
 }

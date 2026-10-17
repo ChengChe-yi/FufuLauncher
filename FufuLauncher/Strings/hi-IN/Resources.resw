@@ -372,6 +372,12 @@
   <data name="LangDefault" xml:space="preserve">
     <value>सिस्टम डिफ़ॉल्ट भाषा का उपयोग करें</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>गेम लॉन्च तर्क सक्षम करें</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>अक्षम होने पर, विंडो मोड और रिज़ॉल्यूशन जैसे कस्टम लॉन्च तर्क पास नहीं किए जाएंगे</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>लॉन्च विंडो मोड</value>
   </data>

@@ -511,6 +511,12 @@
   <data name="LangDefault" xml:space="preserve">
     <value>Язык системы</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>Включить параметры запуска игры</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>Если отключено, пользовательские параметры запуска, такие как режим окна и разрешение, не будут передаваться при запуске</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>Режим окна запуска</value>
   </data>

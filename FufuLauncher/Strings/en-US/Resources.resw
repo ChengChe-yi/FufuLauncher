@@ -378,6 +378,12 @@
   <data name="LangDefault" xml:space="preserve">
     <value>Use System Default Language</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>Enable Game Launch Arguments</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>When disabled, custom launch arguments such as window mode and resolution will not be passed when launching the game</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>Launch Window Mode</value>
   </data>

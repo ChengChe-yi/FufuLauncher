@@ -2759,6 +2759,12 @@ File cercati:
   <data name="LaunchErr_UnknownError" xml:space="preserve">
     <value>Errore sconosciuto</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>Abilita argomenti di avvio del gioco</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>Se disabilitato, non verranno passati argomenti di avvio personalizzati come modalità finestra o risoluzione</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>Modalità Finestra di Avvio</value>
   </data>

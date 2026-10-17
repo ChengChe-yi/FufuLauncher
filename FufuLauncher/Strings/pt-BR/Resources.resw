@@ -511,6 +511,12 @@ Se continuar, este aviso será ignorado e o Hash desta predefinição será atua
   <data name="LangDefault" xml:space="preserve">
     <value>Usar idioma padrão do sistema</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>Ativar argumentos de inicialização do jogo</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>Quando desativado, argumentos personalizados como modo de janela e resolução não serão passados ao iniciar o jogo</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>Modo de janela de inicialização</value>
   </data>

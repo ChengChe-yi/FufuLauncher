@@ -511,6 +511,12 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
   <data name="LangDefault" xml:space="preserve">
     <value>システムのデフォルト言語</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>ゲーム起動引数を有効にする</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>無効の場合、ウィンドウモードや解像度などのカスタム起動引数はゲーム起動時に渡されません</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>起動ウィンドウモード</value>
   </data>

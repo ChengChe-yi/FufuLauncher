@@ -511,6 +511,12 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
   <data name="LangDefault" xml:space="preserve">
     <value>Gunakan Bahasa Default Sistem</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>Aktifkan Argumen Peluncuran Game</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>Saat dinonaktifkan, argumen peluncuran kustom seperti mode jendela dan resolusi tidak akan diteruskan</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>Mode Jendela Peluncuran</value>
   </data>

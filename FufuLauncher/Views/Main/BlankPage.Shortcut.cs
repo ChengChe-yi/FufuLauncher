@@ -87,7 +87,10 @@ public sealed partial class BlankPage
                 }
             };
 
-            var customParamsObj = await localSettings.ReadSettingAsync("CustomLaunchParameters");
+            var isCustomParamsEnabledObj = await localSettings.ReadSettingAsync(GameLauncherService.IsCustomLaunchParametersEnabledKey);
+            bool isCustomParamsEnabled = isCustomParamsEnabledObj != null && Convert.ToBoolean(isCustomParamsEnabledObj);
+
+            var customParamsObj = isCustomParamsEnabled ? await localSettings.ReadSettingAsync("CustomLaunchParameters") : null;
             var customLaunchParams = customParamsObj as string;
             string customParamsDisplay = string.IsNullOrWhiteSpace(customLaunchParams)
                 ? "None_Value".GetLocalized()

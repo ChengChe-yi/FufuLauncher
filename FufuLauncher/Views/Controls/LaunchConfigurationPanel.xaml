@@ -29,6 +29,12 @@
                            FontWeight="SemiBold" Margin="0,0,0,24" />
             </GridView.Header>
             <StackPanel Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
+                <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=EnableLaunchArgsTitle}"
+                           ToolTipService.ToolTip="{helpers:Loc Key=EnableLaunchArgsCaption}" />
+                <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomLaunchParametersEnabled, Mode=TwoWay}"
+                              OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
+            </StackPanel>
+            <StackPanel Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
                 <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=LaunchWindowModeTitle}" />
                 <RadioButton Content="{helpers:Loc Key=WindowModeNormal}" GroupName="PluginLaunchWindowMode"
                              IsChecked="{x:Bind ViewModel.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />

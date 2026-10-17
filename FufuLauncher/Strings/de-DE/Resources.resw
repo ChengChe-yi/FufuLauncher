@@ -511,6 +511,12 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
   <data name="LangDefault" xml:space="preserve">
     <value>System-Standardsprache verwenden</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>Spielstartargumente aktivieren</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>Wenn deaktiviert, werden keine benutzerdefinierten Startargumente wie Fenstermodus oder Auflösung übergeben</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>Fenstermodus</value>
   </data>

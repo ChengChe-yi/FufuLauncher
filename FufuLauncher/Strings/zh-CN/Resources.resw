@@ -378,6 +378,12 @@
   <data name="LangDefault" xml:space="preserve">
     <value>使用系统默认语言</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>启用游戏启动参数</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>关闭后启动游戏时将不传递窗口模式、分辨率等自定义启动参数</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>启动窗口模式</value>
   </data>

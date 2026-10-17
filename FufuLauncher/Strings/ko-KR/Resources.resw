@@ -511,6 +511,12 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
   <data name="LangDefault" xml:space="preserve">
     <value>시스템 기본 언어 사용</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>게임 실행 매개변수 활성화</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>비활성화 시 창 모드 및 해상도와 같은 사용자 지정 실행 매개변수가 전달되지 않습니다</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>실행 창 모드</value>
   </data>

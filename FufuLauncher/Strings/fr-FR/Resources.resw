@@ -511,6 +511,12 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
   <data name="LangDefault" xml:space="preserve">
     <value>Utiliser la langue par défaut du système</value>
   </data>
+  <data name="EnableLaunchArgsTitle" xml:space="preserve">
+    <value>Activer les arguments de lancement du jeu</value>
+  </data>
+  <data name="EnableLaunchArgsCaption" xml:space="preserve">
+    <value>Lorsqu'il est désactivé, aucun argument personnalisé tel que le mode fenêtre ou la résolution ne sera transmis</value>
+  </data>
   <data name="LaunchWindowModeTitle" xml:space="preserve">
     <value>Mode de fenêtre au lancement</value>
   </data>

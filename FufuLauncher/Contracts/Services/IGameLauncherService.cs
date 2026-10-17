@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -17,6 +17,8 @@ namespace FufuLauncher.Contracts.Services
 
         Task<string> GetCustomLaunchParametersAsync();
         Task SetCustomLaunchParametersAsync(string parameters);
+        Task<bool> GetIsCustomLaunchParametersEnabledAsync();
+        Task SetIsCustomLaunchParametersEnabledAsync(bool enabled);
 
         Task<bool> GetUsingHoyolabAccountAsync();
         Task SetUsingHoyolabAccountAsync(bool value);

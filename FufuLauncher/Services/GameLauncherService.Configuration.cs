@@ -8,7 +8,8 @@ public partial class GameLauncherService
 {
     private const string GamePathKey = "GameInstallationPath";
     private const string UseInjectionKey = "UseInjection";
-    private const string CustomLaunchParametersKey = "CustomLaunchParameters";
+    public const string CustomLaunchParametersKey = "CustomLaunchParameters";
+    public const string IsCustomLaunchParametersEnabledKey = "IsCustomLaunchParametersEnabled";
     private const string UsingHoyolabAccountKey = "UsingHoyolabAccount";
     public const string GenshinHDRConfigKey = "IsGenshinHDRForcedEnabled";
 
@@ -82,6 +83,18 @@ public partial class GameLauncherService
         Trace.WriteLine($"[启动服务] 保存自定义参数: '{parameters}'");
     }
 
+    public async Task<bool> GetIsCustomLaunchParametersEnabledAsync()
+    {
+        var obj = await _localSettingsService.ReadSettingAsync(IsCustomLaunchParametersEnabledKey);
+        return obj != null && Convert.ToBoolean(obj);
+    }
+
+    public async Task SetIsCustomLaunchParametersEnabledAsync(bool enabled)
+    {
+        await _localSettingsService.SaveSettingAsync(IsCustomLaunchParametersEnabledKey, enabled);
+        Trace.WriteLine($"[启动服务] 保存自定义参数启用状态: {enabled}");
+    }
+
     public async Task<bool> GetUsingHoyolabAccountAsync()
     {
         var obj = await _localSettingsService.ReadSettingAsync(UsingHoyolabAccountKey);
@@ -114,22 +127,32 @@ public partial class GameLauncherService
     {
         var args = new StringBuilder();
 
-        var customParamsObj = _localSettingsService.ReadSettingAsync(CustomLaunchParametersKey).Result;
-        if (customParamsObj != null)
+        var isCustomParamsEnabledObj = _localSettingsService.ReadSettingAsync(IsCustomLaunchParametersEnabledKey).Result;
+        bool isCustomParamsEnabled = isCustomParamsEnabledObj != null && Convert.ToBoolean(isCustomParamsEnabledObj);
+
+        if (isCustomParamsEnabled)
         {
-            string customParams = customParamsObj.ToString();
-
-            if (!string.IsNullOrWhiteSpace(customParams))
+            var customParamsObj = _localSettingsService.ReadSettingAsync(CustomLaunchParametersKey).Result;
+            if (customParamsObj != null)
             {
-                customParams = customParams.Trim('"').Trim();
+                string customParams = customParamsObj.ToString();
 
-                if (!string.IsNullOrEmpty(customParams))
+                if (!string.IsNullOrWhiteSpace(customParams))
                 {
-                    if (args.Length > 0) args.Append(' ');
-                    args.Append(customParams);
-                    Debug.WriteLine($"[启动服务] 使用自定义参数: '{customParams}'");
+                    customParams = customParams.Trim('"').Trim();
+
+                    if (!string.IsNullOrEmpty(customParams))
+                    {
+                        if (args.Length > 0) args.Append(' ');
+                        args.Append(customParams);
+                        Debug.WriteLine($"[启动服务] 使用自定义参数: '{customParams}'");
+                    }
                 }
             }
+        }
+        else
+        {
+            Debug.WriteLine("[启动服务] 游戏启动参数未启用，跳过自定义参数");
         }
 
         if (!string.IsNullOrEmpty(authTicket))
