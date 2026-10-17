@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 
 using FufuLauncher.ViewModels;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 
 namespace FufuLauncher.Helpers
@@ -33,7 +34,7 @@ namespace FufuLauncher.Helpers
                 }
             }
 
-            return WindowModeType.Normal;
+            return DependencyProperty.UnsetValue;
         }
     }
 }
