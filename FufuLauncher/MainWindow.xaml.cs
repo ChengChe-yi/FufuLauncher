@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -42,6 +42,7 @@ public sealed partial class MainWindow : WindowEx
     private bool _minimizeToTray;
     private bool _isExit;
     private bool _isOverlayShown;
+    private Microsoft.UI.Xaml.Media.Animation.Storyboard? _pageOverlayStoryboard;
     private bool _isAcrylicOverlayEnabled;
     private bool _isPageOverlaySemiTransparent;
     private double _pageOverlayTargetOpacity = 1.0;

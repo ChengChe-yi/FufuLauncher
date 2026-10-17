@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -526,18 +526,12 @@ public sealed partial class MainWindow
 
             if (isMainPage && _isOverlayShown)
             {
+                PageBackgroundOverlay.Opacity = targetOpacity;
+
                 var translateAnim = new DoubleAnimation
                 {
-                    From = 0,
-                    To = screenHeight + 50,
-                    Duration = TimeSpan.FromMilliseconds(400),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
-                };
-
-                var opacityAnim = new DoubleAnimation
-                {
-                    From = targetOpacity,
-                    To = 0.0,
+                    From = OverlayTranslate.Y,
+                    To = screenHeight + 100,
                     Duration = TimeSpan.FromMilliseconds(400),
                     EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
                 };
@@ -545,12 +539,18 @@ public sealed partial class MainWindow
                 var sb = new Storyboard();
                 Storyboard.SetTarget(translateAnim, OverlayTranslate);
                 Storyboard.SetTargetProperty(translateAnim, "Y");
-
-                Storyboard.SetTarget(opacityAnim, PageBackgroundOverlay);
-                Storyboard.SetTargetProperty(opacityAnim, "Opacity");
-
                 sb.Children.Add(translateAnim);
-                sb.Children.Add(opacityAnim);
+
+                sb.Completed += (_, _) =>
+                {
+                    if (!_isOverlayShown)
+                    {
+                        PageBackgroundOverlay.Opacity = 0.0;
+                    }
+                };
+
+                _pageOverlayStoryboard?.Stop();
+                _pageOverlayStoryboard = sb;
                 sb.Begin();
 
                 _isOverlayShown = false;
@@ -585,6 +585,9 @@ public sealed partial class MainWindow
 
                 sb.Children.Add(translateAnim);
                 sb.Children.Add(opacityAnim);
+
+                _pageOverlayStoryboard?.Stop();
+                _pageOverlayStoryboard = sb;
                 sb.Begin();
 
                 _isOverlayShown = true;
