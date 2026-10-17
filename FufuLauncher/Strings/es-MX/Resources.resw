@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -519,6 +519,9 @@ Si continúas, se ignorará esta advertencia y el Hash de este ajuste se actuali
   </data>
   <data name="WindowModePopup" xml:space="preserve">
     <value>Ventana emergente (Sin bordes)</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Ventana de pantalla completa</value>
   </data>
   <data name="ResolutionTitle" xml:space="preserve">
     <value>Resolución del juego</value>

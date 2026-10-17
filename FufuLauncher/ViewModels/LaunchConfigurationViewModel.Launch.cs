@@ -83,6 +83,12 @@ public partial class LaunchConfigurationViewModel
             {
                 LaunchArgsWindowMode = WindowModeType.Popup;
             }
+            else if (Regex.IsMatch(args, @"-screen-fullscreen\s+1\b")
+                     || (Regex.IsMatch(args, @"-screen-fullscreen\b") && !Regex.IsMatch(args, @"-screen-fullscreen\s+0\b"))
+                     || Regex.IsMatch(args, @"\b-fullscreen\b"))
+            {
+                LaunchArgsWindowMode = WindowModeType.FullScreen;
+            }
             else
             {
                 LaunchArgsWindowMode = WindowModeType.Normal;
@@ -122,6 +128,9 @@ public partial class LaunchConfigurationViewModel
         currentArgs = Regex.Replace(currentArgs, @"-screen-width\s+\S+", "");
         currentArgs = Regex.Replace(currentArgs, @"-screen-height\s+\S+", "");
         currentArgs = Regex.Replace(currentArgs, @"-popupwindow", "");
+        currentArgs = Regex.Replace(currentArgs, @"-screen-fullscreen\s+\S+", "");
+        currentArgs = Regex.Replace(currentArgs, @"\b-screen-fullscreen\b", "");
+        currentArgs = Regex.Replace(currentArgs, @"\b-fullscreen\b", "");
         currentArgs = Regex.Replace(currentArgs, @"-monitor\s+\d+", "");
 
         var sb = new System.Text.StringBuilder(currentArgs);
@@ -133,6 +142,10 @@ public partial class LaunchConfigurationViewModel
         if (LaunchArgsWindowMode == WindowModeType.Popup)
         {
             sb.Append(" -popupwindow");
+        }
+        else if (LaunchArgsWindowMode == WindowModeType.FullScreen)
+        {
+            sb.Append(" -screen-fullscreen 1");
         }
 
         if (LaunchArgsMonitorIndex > 0)

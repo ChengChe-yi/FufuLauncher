@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -519,6 +519,9 @@ Se continuar, este aviso será ignorado e o Hash desta predefinição será atua
   </data>
   <data name="WindowModePopup" xml:space="preserve">
     <value>Janela pop-up (sem bordas)</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Janela em tela cheia</value>
   </data>
   <data name="ResolutionTitle" xml:space="preserve">
     <value>Resolução do jogo</value>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -380,6 +380,9 @@
   </data>
   <data name="WindowModePopup" xml:space="preserve">
     <value>पॉपअप विंडो (बॉर्डरलेस)</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>फुलस्क्रीन विंडो</value>
   </data>
   <data name="ResolutionTitle" xml:space="preserve">
     <value>गेम रिज़ॉल्यूशन</value>

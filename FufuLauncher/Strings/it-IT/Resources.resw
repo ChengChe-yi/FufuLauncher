@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -4240,6 +4240,9 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
   </data>
   <data name="WindowModePopup" xml:space="preserve">
     <value>Finestra Popup (Senza Bordi)</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Finestra a Schermo Intero</value>
   </data>
   <data name="WishBannerImage" xml:space="preserve">
     <value> Immagine Banner Desiderio</value>

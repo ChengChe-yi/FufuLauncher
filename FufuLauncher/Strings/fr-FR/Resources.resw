@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -519,6 +519,9 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
   </data>
   <data name="WindowModePopup" xml:space="preserve">
     <value>Fenêtre popup (sans bordure)</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Fenêtre plein écran</value>
   </data>
   <data name="ResolutionTitle" xml:space="preserve">
     <value>Résolution du jeu</value>

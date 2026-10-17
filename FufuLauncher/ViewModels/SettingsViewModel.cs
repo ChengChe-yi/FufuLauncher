@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -38,7 +38,8 @@ public enum NotificationPosition
 public enum WindowModeType
 {
     Normal,
-    Popup
+    Popup,
+    FullScreen
 }
 
 public enum AppProcessPriority

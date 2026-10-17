@@ -387,6 +387,9 @@
   <data name="WindowModePopup" xml:space="preserve">
     <value>Popup Window (Borderless)</value>
   </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Fullscreen Window</value>
+  </data>
   <data name="ResolutionTitle" xml:space="preserve">
     <value>Game Resolution</value>
   </data>

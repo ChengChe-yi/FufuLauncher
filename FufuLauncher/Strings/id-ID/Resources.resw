@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -519,6 +519,9 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
   </data>
   <data name="WindowModePopup" xml:space="preserve">
     <value>Jendela Popup (Tanpa Bingkai)</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>Jendela Layar Penuh</value>
   </data>
   <data name="ResolutionTitle" xml:space="preserve">
     <value>Resolusi Game</value>

@@ -1,4 +1,4 @@
-﻿<UserControl
+<UserControl
     x:Class="FufuLauncher.Views.Controls.LaunchConfigurationPanel"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -34,6 +34,8 @@
                              IsChecked="{x:Bind ViewModel.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />
                 <RadioButton Content="{helpers:Loc Key=WindowModePopup}" GroupName="PluginLaunchWindowMode"
                              IsChecked="{x:Bind ViewModel.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Popup}" />
+                <RadioButton Content="{helpers:Loc Key=WindowModeFullScreen}" GroupName="PluginLaunchWindowMode"
+                             IsChecked="{x:Bind ViewModel.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=FullScreen}" />
             </StackPanel>
             <StackPanel Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
                 <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=ResolutionTitle}"

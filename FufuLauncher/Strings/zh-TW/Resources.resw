@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
@@ -519,6 +519,9 @@
   </data>
   <data name="WindowModePopup" xml:space="preserve">
     <value>快顯視窗（無邊框）</value>
+  </data>
+  <data name="WindowModeFullScreen" xml:space="preserve">
+    <value>全螢幕視窗</value>
   </data>
   <data name="ResolutionTitle" xml:space="preserve">
     <value>遊戲解析度</value>
