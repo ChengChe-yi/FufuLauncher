@@ -167,15 +167,15 @@ public partial class MainViewModel
     private async Task LoadBackgroundAsync()
     {
         await UpdateUI(() => IsBackgroundLoading = true);
-        ClearBackground();
 
         try
         {
+            BackgroundRenderResult bgResult = null;
             if (HasCustomBackground && !string.IsNullOrEmpty(CustomBackgroundPath) && File.Exists(CustomBackgroundPath))
             {
-                await UpdateUI(() => TryLoadImage(CustomBackgroundPath));
+                bgResult = await _backgroundRenderer.GetCustomBackgroundAsync(CustomBackgroundPath);
             }
-            else
+            if (bgResult == null)
             {
                 var serverJson = await _localSettingsService.ReadSettingAsync("BackgroundServerKey");
                 var server = Models.ServerType.CN;
@@ -188,45 +188,26 @@ public partial class MainViewModel
                 }
 
                 var preferVideo = PreferVideoBackground && _devBuildDetectionService.IsDevBuild;
-                var bgResult = await _backgroundRenderer.GetBackgroundAsync(server, preferVideo);
-
-                await UpdateUI(() =>
-                {
-                    if (bgResult != null)
-                    {
-                        if (bgResult.IsVideo && bgResult.VideoSource != null && _devBuildDetectionService.IsDevBuild)
-                        {
-                            SetupVideoPlayer(bgResult.VideoSource, bgResult.VideoStream);
-                        }
-                        else if (!bgResult.IsVideo && bgResult.ImageSource != null)
-                        {
-                            BackgroundImageSource = bgResult.ImageSource;
-                            IsVideoBackground = false;
-                        }
-                        else
-                        {
-                            LoadFallbackImage();
-                        }
-                    }
-                    else
-                    {
-                        LoadFallbackImage();
-                    }
-                });
+                bgResult = await _backgroundRenderer.GetBackgroundAsync(server, preferVideo);
             }
-        }
-        catch (NotSupportedException ex) when (ex.Message == "IMAGE_DECODE_FAILED")
-        {
+
+            bgResult ??= await _backgroundRenderer.GetFallbackBackgroundAsync();
             await UpdateUI(() =>
             {
-                _notificationService.Show("背景解码失败", "系统缺少 WebP 图像扩展。已回退至静态背景。", NotificationType.Error, 6000);
-                LoadFallbackImage();
+                if (bgResult == null) return;
+                ClearBackground();
+                if (bgResult.IsVideo && bgResult.VideoSource != null && _devBuildDetectionService.IsDevBuild)
+                    SetupVideoPlayer(bgResult.VideoSource, bgResult.VideoStream);
+                else
+                    BackgroundImageSource = bgResult.ImageSource;
             });
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"背景加载异常: {ex.Message}");
-            await UpdateUI(LoadFallbackImage);
+            var fallback = await _backgroundRenderer.GetFallbackBackgroundAsync();
+            if (fallback != null)
+                await UpdateUI(() => { ClearBackground(); BackgroundImageSource = fallback.ImageSource; });
         }
         finally
         {
@@ -275,60 +256,6 @@ public partial class MainViewModel
     private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
     {
         Debug.WriteLine($"背景视频触发MediaFailed，错误类型: {args.Error}");
-    }
-
-    private void TryLoadImage(string path)
-    {
-        try
-        {
-            var bitmap = new BitmapImage();
-
-            bitmap.UriSource = new Uri(path);
-
-            bitmap.ImageFailed += (_, _) =>
-            {
-                Debug.WriteLine($"图片解码失败: {path}，正在切换至默认背景。");
-                _dispatcherQueue.TryEnqueue(LoadFallbackImage);
-            };
-
-            BackgroundImageSource = bitmap;
-            IsVideoBackground = false;
-        }
-        catch
-        {
-            LoadFallbackImage();
-        }
-    }
-
-    private void LoadFallbackImage()
-    {
-        try
-        {
-            string fallbackPath = Path.Combine(AppContext.BaseDirectory, "Assets", "bg.png");
-
-            if (File.Exists(fallbackPath))
-            {
-                if (BackgroundImageSource is BitmapImage currentBmp &&
-                    currentBmp.UriSource?.LocalPath == fallbackPath)
-                {
-                    return;
-                }
-
-                var bitmap = new BitmapImage();
-                bitmap.UriSource = new Uri(fallbackPath);
-                BackgroundImageSource = bitmap;
-                IsVideoBackground = false;
-                Debug.WriteLine("已加载默认背景: Assets/bg.png");
-            }
-            else
-            {
-                Debug.WriteLine($"严重错误: 默认背景文件不存在 -> {fallbackPath}");
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine($"加载默认背景失败: {ex.Message}");
-        }
     }
 
     private void ToggleBackgroundType()

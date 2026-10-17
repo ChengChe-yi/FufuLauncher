@@ -34,9 +34,10 @@ public sealed partial class MainWindow : WindowEx
     private IMediaPlaybackSource? _suspendedVideoSource;
     private TypedEventHandler<MediaPlayer, MediaPlayerFailedEventArgs>? _bgVideoFailedHandler;
     private MediaSource? _bgVideoFallbackSource;
-    private DispatcherTimer _bgFallbackTimer;
-    private RoutedEventHandler _bgImageOpenedHandler;
-    private ExceptionRoutedEventHandler _bgImageFailedHandler;
+    private Microsoft.UI.Xaml.Media.Animation.Storyboard? _bgImageFadeStoryboard;
+    private int _backgroundLoadVersion;
+    private bool _isFallbackBackground;
+    private int? _slideshowLoadingVersion;
     private double _frameBackgroundOpacity;
     private bool _minimizeToTray;
     private bool _isExit;
@@ -110,8 +111,14 @@ public sealed partial class MainWindow : WindowEx
 
     private Task RunOnUIThreadAsync(Action action)
     {
-        var tcs = new TaskCompletionSource();
-        dispatcherQueue.TryEnqueue(() =>
+        if (dispatcherQueue.HasThreadAccess)
+        {
+            action();
+            return Task.CompletedTask;
+        }
+
+        var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        if (!dispatcherQueue.TryEnqueue(() =>
         {
             try
             {
@@ -122,7 +129,8 @@ public sealed partial class MainWindow : WindowEx
             {
                 tcs.SetException(ex);
             }
-        });
+        }))
+            tcs.SetException(new InvalidOperationException("主窗口的 UI 调度队列已关闭"));
         return tcs.Task;
     }
 

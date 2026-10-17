@@ -50,6 +50,7 @@
 
         <Grid x:Name="GlobalBackgroundHost" IsHitTestVisible="False">
             <Image x:Name="GlobalBackgroundImage"
+                   ImageFailed="OnGlobalBackgroundImageFailed"
                    helpers:ImageFadeInHelper.IsFadeInEnabled="False"
                    Stretch="UniformToFill"
                    VerticalAlignment="Top"

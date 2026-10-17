@@ -41,7 +41,8 @@ public sealed partial class MainWindow
 
     private void ApplyBackgroundImageOpacity(double value)
     {
-        var clamped = Math.Clamp(value, 0.0, 1.0);
+        StopBackgroundImageAnimation();
+        var clamped = double.IsFinite(value) ? Math.Clamp(value, 0.0, 1.0) : 1.0;
         if (GlobalBackgroundImage != null) GlobalBackgroundImage.Opacity = clamped;
         if (GlobalBackgroundVideo != null) GlobalBackgroundVideo.Opacity = clamped;
     }
@@ -91,8 +92,14 @@ public sealed partial class MainWindow
 
     private async Task LoadGlobalBackgroundAsync()
     {
+        var version = Interlocked.Increment(ref _backgroundLoadVersion);
+        StopSlideshow();
         try
         {
+            if (GlobalBackgroundImage.Source == null && !_isVideoBackground)
+                await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
+            if (version != _backgroundLoadVersion || _isExit) return;
+
             var enabledJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.IsBackgroundEnabledKey);
             var isCustomEnabled = enabledJson == null ? true : Convert.ToBoolean(enabledJson);
 
@@ -114,12 +121,9 @@ public sealed partial class MainWindow
                         var interval = slideshowIntervalJson != null ? Convert.ToInt32(slideshowIntervalJson) : 60;
                         if (interval < 1) interval = 1;
 
-                        await StartSlideshowAsync(slideshowFolder, interval);
-                        return;
+                        if (await StartSlideshowAsync(slideshowFolder, interval, version)) return;
                     }
                 }
-
-                StopSlideshow();
 
                 var customPathObj = await _localSettingsService.ReadSettingAsync("CustomBackgroundPath");
                 var customPath = customPathObj?.ToString();
@@ -129,16 +133,11 @@ public sealed partial class MainWindow
                     var customResult = await _backgroundRenderer.GetCustomBackgroundAsync(customPath);
                     if (customResult != null)
                     {
-                        await ApplyGlobalBackgroundAsync(customResult);
+                        await ApplyGlobalBackgroundAsync(customResult, version);
                         return;
                     }
                 }
             }
-            else
-            {
-                StopSlideshow();
-            }
-
             var preferVideoObj = await _localSettingsService.ReadSettingAsync("PreferVideoBackground");
             var preferVideo = preferVideoObj != null && Convert.ToBoolean(preferVideoObj) &&
                               _devBuildDetectionService.IsDevBuild;
@@ -149,12 +148,14 @@ public sealed partial class MainWindow
 
             var result = await _backgroundRenderer.GetBackgroundAsync(server, preferVideo);
             if (result != null)
-                await ApplyGlobalBackgroundAsync(result);
+                await ApplyGlobalBackgroundAsync(result, version);
         }
-        catch
+        catch (Exception ex)
         {
+            Debug.WriteLine($"全局背景加载失败: {ex}");
+            if (version != _backgroundLoadVersion || _isExit) return;
             StopSlideshow();
-            await ClearGlobalBackgroundAsync();
+            await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
         }
     }
 
@@ -167,8 +168,9 @@ public sealed partial class MainWindow
         }
     }
 
-    private async Task StartSlideshowAsync(string folder, int intervalSeconds)
+    private async Task<bool> StartSlideshowAsync(string folder, int intervalSeconds, int version)
     {
+        if (version != _backgroundLoadVersion || _isExit) return true;
         StopSlideshow();
 
         try
@@ -180,39 +182,52 @@ public sealed partial class MainWindow
 
             if (_slideshowImages.Count == 0)
             {
-                await ClearGlobalBackgroundAsync();
-                return;
+                return false;
             }
 
             _currentSlideshowIndex = 0;
-            await ShowNextSlideshowImageAsync();
+            if (!await ShowNextSlideshowImageAsync(version)) return false;
+            if (version != _backgroundLoadVersion || _isExit) return true;
 
             _slideshowTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(intervalSeconds) };
-            _slideshowTimer.Tick += async (_, _) => await ShowNextSlideshowImageAsync();
+            _slideshowTimer.Tick += async (_, _) => await ShowNextSlideshowImageAsync(version);
             _slideshowTimer.Start();
+            return true;
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"启动轮播失败: {ex.Message}");
+            return false;
         }
     }
 
-    private async Task ShowNextSlideshowImageAsync()
+    private async Task<bool> ShowNextSlideshowImageAsync(int version)
     {
-        if (_slideshowImages == null || _slideshowImages.Count == 0) return;
-
-        if (_currentSlideshowIndex >= _slideshowImages.Count)
+        if (_slideshowLoadingVersion == version || version != _backgroundLoadVersion || _isExit) return false;
+        _slideshowLoadingVersion = version;
+        try
         {
-            _currentSlideshowIndex = 0;
+            for (var attempt = 0; attempt < _slideshowImages.Count; attempt++)
+            {
+                if (version != _backgroundLoadVersion || _isExit) return false;
+                if (_currentSlideshowIndex >= _slideshowImages.Count) _currentSlideshowIndex = 0;
+                var imagePath = _slideshowImages[_currentSlideshowIndex++];
+                var result = await _backgroundRenderer.GetCustomBackgroundAsync(imagePath);
+                if (result == null) continue;
+                await ApplyGlobalBackgroundAsync(result, version);
+                return true;
+            }
+
+            return false;
         }
-
-        var imagePath = _slideshowImages[_currentSlideshowIndex];
-        _currentSlideshowIndex++;
-
-        var customResult = await _backgroundRenderer.GetCustomBackgroundAsync(imagePath);
-        if (customResult != null)
+        catch (Exception ex)
         {
-            await ApplyGlobalBackgroundAsync(customResult);
+            Debug.WriteLine($"轮播图片加载失败: {ex.Message}");
+            return false;
+        }
+        finally
+        {
+            if (_slideshowLoadingVersion == version) _slideshowLoadingVersion = null;
         }
     }
 
@@ -253,11 +268,12 @@ public sealed partial class MainWindow
         _bgVideoFailedHandler = null;
     }
 
-    private async Task ApplyGlobalBackgroundAsync(BackgroundRenderResult? result)
+    private async Task ApplyGlobalBackgroundAsync(BackgroundRenderResult? result, int? version = null,
+        MediaSource? expectedVideoSource = null)
     {
+        if (_isExit || (version.HasValue && version != _backgroundLoadVersion)) return;
         if (result == null)
         {
-            await ClearGlobalBackgroundAsync();
             return;
         }
 
@@ -265,7 +281,7 @@ public sealed partial class MainWindow
         try
         {
             var valueObj = await _localSettingsService.ReadSettingAsync("GlobalBackgroundImageOpacity");
-            if (valueObj != null && double.TryParse(valueObj.ToString(), out var parsed))
+            if (valueObj != null && double.TryParse(valueObj.ToString(), out var parsed) && double.IsFinite(parsed))
             {
                 finalOpacity = Math.Clamp(parsed, 0.0, 1.0);
             }
@@ -276,6 +292,10 @@ public sealed partial class MainWindow
 
         await RunOnUIThreadAsync(() =>
         {
+            if (_isExit || (version.HasValue && version != _backgroundLoadVersion)) return;
+            if (expectedVideoSource != null && !ReferenceEquals(_globalBackgroundPlayer?.Source, expectedVideoSource)) return;
+            StopBackgroundImageAnimation();
+            _isFallbackBackground = result.IsFallback;
             if (result.IsVideo)
             {
                 _isVideoBackground = true;
@@ -283,6 +303,7 @@ public sealed partial class MainWindow
                 GlobalBackgroundImage.Source = null;
                 GlobalBackgroundImage.Visibility = Visibility.Collapsed;
                 GlobalBackgroundVideo.Visibility = Visibility.Visible;
+                GlobalBackgroundVideo.Opacity = finalOpacity;
 
                 if (_globalBackgroundPlayer == null)
                 {
@@ -311,7 +332,9 @@ public sealed partial class MainWindow
                 DisposeGlobalBackgroundPlayer();
                 GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
 
-                GlobalBackgroundImage.Opacity = 0.0;
+                GlobalBackgroundImage.Source = result.ImageSource;
+                // Keep a visible base value even if animations are disabled or interrupted.
+                GlobalBackgroundImage.Opacity = finalOpacity;
                 GlobalBackgroundImage.Visibility = Visibility.Visible;
 
                 var anim = new DoubleAnimation
@@ -325,36 +348,17 @@ public sealed partial class MainWindow
                 Storyboard.SetTarget(anim, GlobalBackgroundImage);
                 Storyboard.SetTargetProperty(anim, "Opacity");
 
-                var storyboard = new Storyboard();
-                storyboard.Children.Add(anim);
-
-                bool isAnimationStarted = false;
-
-                void StartFadeInAnimation()
+                _bgImageFadeStoryboard = new Storyboard();
+                _bgImageFadeStoryboard.Children.Add(anim);
+                try
                 {
-                    if (isAnimationStarted) return;
-                    isAnimationStarted = true;
-                    CleanupBgImageHandlers();
-                    storyboard.Begin();
+                    _bgImageFadeStoryboard.Begin();
                 }
-
-                CleanupBgImageHandlers();
-
-                _bgImageOpenedHandler = (s, e) => StartFadeInAnimation();
-                _bgImageFailedHandler = (s, e) => StartFadeInAnimation();
-
-                GlobalBackgroundImage.ImageOpened += _bgImageOpenedHandler;
-                GlobalBackgroundImage.ImageFailed += _bgImageFailedHandler;
-
-                GlobalBackgroundImage.Source = result.ImageSource;
-
-                _bgFallbackTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(600) };
-                _bgFallbackTimer.Tick += (s, e) =>
+                catch (Exception ex)
                 {
-                    _bgFallbackTimer.Stop();
-                    StartFadeInAnimation();
-                };
-                _bgFallbackTimer.Start();
+                    StopBackgroundImageAnimation();
+                    Debug.WriteLine($"背景淡入动画不可用: {ex.Message}");
+                }
 
                 if (wasVideoBackground)
                 {
@@ -370,7 +374,7 @@ public sealed partial class MainWindow
     {
         Debug.WriteLine($"背景视频播放失败({args.Error}): {args.ErrorMessage}");
 
-        if (_isExit) return;
+        if (_isExit || !ReferenceEquals(sender, _globalBackgroundPlayer)) return;
 
         var failedSource = sender.Source as MediaSource;
         if (failedSource == null || ReferenceEquals(failedSource, _bgVideoFallbackSource)) return;
@@ -396,6 +400,7 @@ public sealed partial class MainWindow
 
     private async Task ShowVideoFirstFrameFallbackAsync(MediaSource failedSource)
     {
+        var version = _backgroundLoadVersion;
         var videoPath = failedSource.Uri?.IsFile == true ? failedSource.Uri.LocalPath : null;
 
         if (string.IsNullOrEmpty(videoPath) || !File.Exists(videoPath))
@@ -419,31 +424,7 @@ public sealed partial class MainWindow
 
             if (!ReferenceEquals(_globalBackgroundPlayer?.Source, failedSource)) return;
 
-            var opacity = GlobalBackgroundVideo.Opacity;
-
-            _isVideoBackground = false;
-            DisposeGlobalBackgroundPlayer();
-            GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
-
-            GlobalBackgroundImage.Source = bitmap;
-            GlobalBackgroundImage.Visibility = Visibility.Visible;
-            GlobalBackgroundImage.Opacity = 0.0;
-
-            var anim = new DoubleAnimation
-            {
-                From = 0.0,
-                To = opacity,
-                Duration = TimeSpan.FromMilliseconds(400),
-                EasingFunction = new CircleEase { EasingMode = EasingMode.EaseOut }
-            };
-            Storyboard.SetTarget(anim, GlobalBackgroundImage);
-            Storyboard.SetTargetProperty(anim, "Opacity");
-
-            var storyboard = new Storyboard();
-            storyboard.Children.Add(anim);
-            storyboard.Begin();
-
-            UpdateBackgroundOverlayTheme();
+            await ApplyGlobalBackgroundAsync(new BackgroundRenderResult { ImageSource = bitmap }, version, failedSource);
             Debug.WriteLine("视频播放失败，已截取第一帧作为静态背景");
         }
         catch (Exception ex)
@@ -456,59 +437,35 @@ public sealed partial class MainWindow
     private async Task ApplyFallbackBackgroundImageAsync(MediaSource failedSource)
     {
         if (_isExit) return;
-
-        var fallbackPath = Path.Combine(AppContext.BaseDirectory, "Assets", "bg.png");
-        if (!File.Exists(fallbackPath))
-        {
-            Debug.WriteLine($"默认背景文件不存在: {fallbackPath}");
-            return;
-        }
-
-        await RunOnUIThreadAsync(() =>
-        {
-            if (!ReferenceEquals(_globalBackgroundPlayer?.Source, failedSource)) return;
-
-            var opacity = GlobalBackgroundVideo.Opacity;
-
-            _isVideoBackground = false;
-            DisposeGlobalBackgroundPlayer();
-            GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
-
-            GlobalBackgroundImage.Source = new BitmapImage(new Uri(fallbackPath));
-            GlobalBackgroundImage.Visibility = Visibility.Visible;
-            GlobalBackgroundImage.Opacity = opacity;
-
-            UpdateBackgroundOverlayTheme();
-            Debug.WriteLine("视频播放失败，已回退至默认静态背景");
-        });
+        var version = _backgroundLoadVersion;
+        var fallback = await _backgroundRenderer.GetFallbackBackgroundAsync();
+        if (!ReferenceEquals(_globalBackgroundPlayer?.Source, failedSource)) return;
+        await ApplyGlobalBackgroundAsync(fallback, version, failedSource);
     }
 
-    private void CleanupBgImageHandlers()
+    private async void OnGlobalBackgroundImageFailed(object sender, ExceptionRoutedEventArgs args)
     {
-        _bgFallbackTimer?.Stop();
-        if (_bgImageOpenedHandler != null)
+        Debug.WriteLine($"全局背景显示失败: {args.ErrorMessage}");
+        if (_isExit || _isFallbackBackground) return;
+        _isFallbackBackground = true;
+        var version = _backgroundLoadVersion;
+        var failedSource = GlobalBackgroundImage.Source;
+        try
         {
-            GlobalBackgroundImage.ImageOpened -= _bgImageOpenedHandler;
-            _bgImageOpenedHandler = null;
+            var fallback = await _backgroundRenderer.GetFallbackBackgroundAsync();
+            if (!ReferenceEquals(GlobalBackgroundImage.Source, failedSource)) return;
+            await ApplyGlobalBackgroundAsync(fallback, version);
         }
-
-        if (_bgImageFailedHandler != null)
+        catch (Exception ex)
         {
-            GlobalBackgroundImage.ImageFailed -= _bgImageFailedHandler;
-            _bgImageFailedHandler = null;
+            Debug.WriteLine($"全局背景显示回退失败: {ex}");
         }
     }
 
-    private Task ClearGlobalBackgroundAsync()
+    private void StopBackgroundImageAnimation()
     {
-        return RunOnUIThreadAsync(() =>
-        {
-            GlobalBackgroundImage.Source = null;
-            GlobalBackgroundImage.Visibility = Visibility.Collapsed;
-            GlobalBackgroundVideo.Source = null;
-            GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
-            DisposeGlobalBackgroundPlayer();
-        });
+        _bgImageFadeStoryboard?.Stop();
+        _bgImageFadeStoryboard = null;
     }
 
     #endregion
