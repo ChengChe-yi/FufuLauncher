@@ -346,7 +346,9 @@ namespace FufuLauncher.Views
         }
 
         private bool _updatingTabSelection = true;
-        private Storyboard _analysisChartStoryboard;
+        private int _lastTabIndex = 0;
+        private Storyboard? _analysisChartStoryboard;
+        private Storyboard? _sectionTransitionStoryboard;
 
         public GachaAnalysisWindow()
         {
@@ -458,6 +460,11 @@ namespace FufuLauncher.Views
                         EmptyStatePanel.Visibility = ViewModel.HasGachaData ? Visibility.Collapsed : Visibility.Visible;
                         if (!string.IsNullOrEmpty(ViewModel.SelectedUid))
                             UidComboBox.SelectedItem = ViewModel.SelectedUid;
+                        if (ViewModel.HasGachaData && ViewModel.IsOverviewSelected)
+                        {
+                            var target = ViewModel.IsCardViewMode ? (UIElement)OverviewCardScrollViewer : OverviewListScrollViewer;
+                            PlaySectionTransition(target);
+                        }
                     });
                 }
                 else if (e.PropertyName == nameof(ViewModel.HasGachaData))
@@ -551,6 +558,7 @@ namespace FufuLauncher.Views
             var selectedIndex = ViewModel.IsHistorySelected
                 ? 2
                 : ViewModel.IsOverviewSelected ? 0 : 1;
+            _lastTabIndex = selectedIndex;
             if (GachaTabPivot.SelectedIndex == selectedIndex) return;
 
             _updatingTabSelection = true;
@@ -568,18 +576,40 @@ namespace FufuLauncher.Views
         {
             if (_updatingTabSelection) return;
 
-            if (GachaTabPivot.SelectedIndex == 0)
+            var selectedIndex = GachaTabPivot.SelectedIndex;
+            if (selectedIndex < 0 || selectedIndex == _lastTabIndex) return;
+
+            _lastTabIndex = selectedIndex;
+
+            Task showTask;
+            UIElement? targetElement;
+
+            if (selectedIndex == 0)
             {
-                await ViewModel.ShowOverviewAsync();
+                showTask = ViewModel.ShowOverviewAsync();
+                targetElement = ViewModel.IsCardViewMode ? (UIElement)OverviewCardScrollViewer : OverviewListScrollViewer;
             }
-            else if (GachaTabPivot.SelectedIndex == 1)
+            else if (selectedIndex == 1)
             {
-                await ViewModel.ShowAnalysisAsync();
-                DispatcherQueue.TryEnqueue(PlayAnalysisChartAnimations);
+                showTask = ViewModel.ShowAnalysisAsync();
+                targetElement = AnalysisSectionRoot;
             }
             else
             {
-                await ViewModel.ShowHistoryAsync();
+                showTask = ViewModel.ShowHistoryAsync();
+                targetElement = HistorySectionRoot;
+            }
+
+            if (targetElement != null)
+            {
+                DispatcherQueue.TryEnqueue(() => PlaySectionTransition(targetElement));
+            }
+
+            await showTask;
+
+            if (selectedIndex == 1)
+            {
+                DispatcherQueue.TryEnqueue(PlayAnalysisChartAnimations);
             }
 
             UpdateTabIndicator();
@@ -594,7 +624,7 @@ namespace FufuLauncher.Views
             }
 
             ViewModel.IsCardViewMode = false;
-            DispatcherQueue.TryEnqueue(() => PlayOverviewTransition(OverviewListScrollViewer));
+            DispatcherQueue.TryEnqueue(() => PlaySectionTransition(OverviewListScrollViewer));
         }
 
         private void OnCardViewModeClick(object sender, RoutedEventArgs e)
@@ -606,10 +636,12 @@ namespace FufuLauncher.Views
             }
 
             ViewModel.IsCardViewMode = true;
-            DispatcherQueue.TryEnqueue(() => PlayOverviewTransition(OverviewCardScrollViewer));
+            DispatcherQueue.TryEnqueue(() => PlaySectionTransition(OverviewCardScrollViewer));
         }
 
-        private void PlayOverviewTransition(UIElement target)
+        private void PlayOverviewTransition(UIElement target) => PlaySectionTransition(target);
+
+        private void PlaySectionTransition(UIElement? target)
         {
             if (target == null) return;
 
@@ -620,16 +652,19 @@ namespace FufuLauncher.Views
                 target.RenderTransformOrigin = new Point(0.5, 0.5);
             }
 
+            _sectionTransitionStoryboard?.Stop();
+
             target.Opacity = 0;
-            transform.TranslateY = 20;
-            transform.ScaleX = 0.985;
-            transform.ScaleY = 0.985;
+            transform.TranslateY = 16;
+            transform.ScaleX = 0.99;
+            transform.ScaleY = 0.99;
 
             var storyboard = new Storyboard();
-            AddViewModeAnimation(storyboard, target, "Opacity", 0, 1, 0, 320);
-            AddViewModeAnimation(storyboard, transform, "TranslateY", 20, 0, 0, 380);
-            AddViewModeAnimation(storyboard, transform, "ScaleX", 0.985, 1, 0, 380);
-            AddViewModeAnimation(storyboard, transform, "ScaleY", 0.985, 1, 0, 380);
+            AddViewModeAnimation(storyboard, target, "Opacity", 0, 1, 0, 260);
+            AddViewModeAnimation(storyboard, transform, "TranslateY", 16, 0, 0, 320);
+            AddViewModeAnimation(storyboard, transform, "ScaleX", 0.99, 1, 0, 320);
+            AddViewModeAnimation(storyboard, transform, "ScaleY", 0.99, 1, 0, 320);
+            _sectionTransitionStoryboard = storyboard;
             storyboard.Begin();
         }
 

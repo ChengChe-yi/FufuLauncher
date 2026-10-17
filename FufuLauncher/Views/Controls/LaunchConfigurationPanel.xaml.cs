@@ -11,6 +11,7 @@ public sealed partial class LaunchConfigurationPanel : UserControl
     public LaunchConfigurationPanel()
     {
         ViewModel = App.GetService<LaunchConfigurationViewModel>();
+        DataContext = ViewModel;
         InitializeComponent();
     }
 

@@ -1389,15 +1389,15 @@
                                     <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                  Content="{helpers:Loc Key=WindowModeNormal}"
                                                  GroupName="LaunchWindowMode"
-                                                 IsChecked="{x:Bind ViewModel.LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />
+                                                 IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />
                                     <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                  Content="{helpers:Loc Key=WindowModePopup}"
                                                  GroupName="LaunchWindowMode"
-                                                 IsChecked="{x:Bind ViewModel.LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Popup}" />
+                                                 IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Popup}" />
                                     <RadioButton Style="{StaticResource RowRadioButtonStyle}"
                                                  Content="{helpers:Loc Key=WindowModeFullScreen}"
                                                  GroupName="LaunchWindowMode"
-                                                 IsChecked="{x:Bind ViewModel.LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=FullScreen}" />
+                                                 IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=FullScreen}" />
                                 </StackPanel>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />

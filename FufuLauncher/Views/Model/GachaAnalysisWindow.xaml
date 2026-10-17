@@ -68,9 +68,11 @@
 
                         <Border Width="48" Height="48" CornerRadius="6" Background="{Binding RarityBackground}">
                             <Grid>
-                                <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" />
+                                <Image Source="{Binding ImageUrl}" Stretch="UniformToFill"
+                                       helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                 <Image Source="{Binding ElementUrl}" Width="16" Height="16" HorizontalAlignment="Left"
-                                       VerticalAlignment="Top" Margin="2" />
+                                       VerticalAlignment="Top" Margin="2"
+                                       helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                             </Grid>
                         </Border>
 
@@ -138,7 +140,8 @@
                 <DataTemplate x:Key="GachaHistoryUpItemTemplate" x:DataType="models:GachaHistoryItemDisplayItem">
                     <Grid Width="44" Height="44">
                         <Border CornerRadius="6" Background="{x:Bind RarityBackground}">
-                            <Image Source="{x:Bind ImageUrl}" Stretch="UniformToFill" />
+                            <Image Source="{x:Bind ImageUrl}" Stretch="UniformToFill"
+                                   helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                         </Border>
                         <Border HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
@@ -160,7 +163,8 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Border CornerRadius="8" Background="{x:Bind RarityBackground}">
-                            <Image Source="{x:Bind ImageUrl}" Stretch="UniformToFill" />
+                            <Image Source="{x:Bind ImageUrl}" Stretch="UniformToFill"
+                                   helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                         </Border>
                         <Border HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
@@ -270,9 +274,11 @@
                                 </Grid.RowDefinitions>
 
                                 <Grid CornerRadius="14,14,0,0" Background="{Binding RarityBackground}">
-                                    <Image Source="{Binding ImageUrl}" Stretch="UniformToFill" />
+                                    <Image Source="{Binding ImageUrl}" Stretch="UniformToFill"
+                                           helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                     <Image Source="{Binding ElementUrl}" Width="22" Height="22"
-                                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6" />
+                                           HorizontalAlignment="Left" VerticalAlignment="Top" Margin="6"
+                                           helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                     <Border HorizontalAlignment="Right" VerticalAlignment="Top" Margin="6"
                                             CornerRadius="9" Padding="6,1"
                                             Background="{Binding PityStatusBrush}"
@@ -681,11 +687,6 @@
                               PointerWheelChanged="OnHorizontalScrollViewerPointerWheelChanged"
                               Padding="0,0,18,16"
                               Visibility="{Binding ViewModel.ShowOverviewList, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <ScrollViewer.Transitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition FromVerticalOffset="12" />
-                        </TransitionCollection>
-                    </ScrollViewer.Transitions>
                     <StackPanel Orientation="Horizontal" Spacing="24">
 
                         <Border Width="340" CornerRadius="8"
@@ -1096,10 +1097,12 @@
                                                           BorderThickness="1" Shadow="{StaticResource SharedShadow}"
                                                           Translation="0,0,8">
                                                         <Image Source="{Binding ImgSrc}" Stretch="UniformToFill"
-                                                               Margin="0,0,0,24" />
+                                                               Margin="0,0,0,24"
+                                                               helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                                         <Image Source="{Binding ElementSrc}" Width="18" Height="18"
                                                                HorizontalAlignment="Left" VerticalAlignment="Top"
-                                                               Margin="4" />
+                                                               Margin="4"
+                                                               helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                                         <Grid VerticalAlignment="Bottom" Height="24"
                                                               Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
                                                             <TextBlock Text="{x:Bind Name}" FontSize="11"
@@ -1128,7 +1131,8 @@
                                                           BorderThickness="1" Shadow="{StaticResource SharedShadow}"
                                                           Translation="0,0,8">
                                                         <Image Source="{Binding ImgSrc}" Stretch="UniformToFill"
-                                                               Margin="0,0,0,24" />
+                                                               Margin="0,0,0,24"
+                                                               helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                                         <Grid VerticalAlignment="Bottom" Height="24"
                                                               Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
                                                             <TextBlock Text="{x:Bind Name}" FontSize="11"
@@ -1156,11 +1160,6 @@
                               VerticalScrollMode="Enabled"
                               Padding="0,0,16,16"
                               Visibility="{Binding ViewModel.ShowOverviewCards, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <ScrollViewer.Transitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition FromVerticalOffset="16" />
-                        </TransitionCollection>
-                    </ScrollViewer.Transitions>
                     <StackPanel x:Name="OverviewCardRoot" Spacing="20">
 
                         <!-- 角色活动 -->
@@ -1448,12 +1447,8 @@
                 </ScrollViewer>
 
                 <Grid Grid.Row="1"
+                      x:Name="AnalysisSectionRoot"
                       Visibility="{Binding ViewModel.IsAnalysisSelected, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Grid.Transitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition FromVerticalOffset="12" />
-                        </TransitionCollection>
-                    </Grid.Transitions>
                     <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Spacing="12"
@@ -1958,12 +1953,8 @@
                 </Grid>
 
                 <Grid Grid.Row="1"
+                      x:Name="HistorySectionRoot"
                       Visibility="{Binding ViewModel.IsHistorySelected, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Grid.Transitions>
-                        <TransitionCollection>
-                            <EntranceThemeTransition FromVerticalOffset="12" />
-                        </TransitionCollection>
-                    </Grid.Transitions>
 
                     <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
@@ -2160,7 +2151,8 @@
                                         <Image Source="{x:Bind ViewModel.SelectedHistoryPool.BannerImageUrl, Mode=OneWay}"
                                                HorizontalAlignment="Stretch"
                                                VerticalAlignment="Center"
-                                               Stretch="Uniform" />
+                                               Stretch="Uniform"
+                                               helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                     </Border>
 
                                     <StackPanel Spacing="8"
