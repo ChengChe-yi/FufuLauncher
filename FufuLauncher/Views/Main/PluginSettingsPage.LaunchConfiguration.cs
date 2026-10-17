@@ -14,7 +14,7 @@ public sealed partial class PluginSettingsPage
         flyout.Content ??= new Controls.LaunchConfigurationPanel();
         if (flyout.Content is not Controls.LaunchConfigurationPanel panel || XamlRoot == null) return;
         panel.Width = Math.Min(820, Math.Max(240, XamlRoot.Size.Width - 80));
-        panel.Height = Math.Min(520, Math.Max(180, XamlRoot.Size.Height - 120));
+        panel.Height = Math.Min(560, Math.Max(180, XamlRoot.Size.Height - 100));
         _ = panel.LoadAsync();
     }
 }
