@@ -75,6 +75,8 @@ public sealed partial class MainWindow
         }
 
         DisposeGlobalBackgroundPlayer();
+        StopBackgroundImageAnimation();
+        Interlocked.Increment(ref _backgroundLoadVersion);
         GlobalBackgroundImage.Source = null;
         WeakReferenceMessenger.Default.UnregisterAll(this);
         settings.ColorValuesChanged -= Settings_ColorValuesChanged;
