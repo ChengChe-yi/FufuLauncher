@@ -62,12 +62,14 @@ public sealed partial class PluginSettingsPage
         {
             return;
         }
+
         if (_settingPinAnimationCancellation != null)
         {
             _presentedSettings.Add(item);
             HoldSettingPinContainer(container, item);
             return;
         }
+
         if (!_presentedSettings.Add(item)) return;
 
         var now = Environment.TickCount64;
@@ -83,12 +85,14 @@ public sealed partial class PluginSettingsPage
         {
             visual = GetSettingTransitionVisual(container, item);
             PrepareSettingEntranceAnimations(visual.Compositor);
-            var delayMilliseconds = Math.Clamp(_nextSettingEntranceAt - now, 0, SettingEntranceMaximumDelayMilliseconds);
+            var delayMilliseconds =
+                Math.Clamp(_nextSettingEntranceAt - now, 0, SettingEntranceMaximumDelayMilliseconds);
             _nextSettingEntranceAt = now + delayMilliseconds + SettingEntranceStaggerMilliseconds;
             var delay = TimeSpan.FromMilliseconds(delayMilliseconds);
             _settingEntranceFade!.DelayTime = delay;
             _settingEntranceSlide!.DelayTime = delay;
-            visual.Properties.InsertVector3(SettingTranslationProperty, new Vector3(0, SettingEntranceVerticalOffset, 0));
+            visual.Properties.InsertVector3(SettingTranslationProperty,
+                new Vector3(0, SettingEntranceVerticalOffset, 0));
             visual.Opacity = 0;
             visual.StartAnimation(nameof(Visual.Opacity), _settingEntranceFade);
             visual.Properties.StartAnimation(SettingTranslationProperty, _settingEntranceSlide);
@@ -101,6 +105,7 @@ public sealed partial class PluginSettingsPage
             {
                 RestoreSettingTransitionVisual(container, visual);
             }
+
             Debug.WriteLine($"[PluginSettings] Setting entrance animation failed: {ex}");
         }
     }
@@ -151,6 +156,7 @@ public sealed partial class PluginSettingsPage
                 Debug.WriteLine($"[PluginSettings] Animation preference read failed: {ex}");
             }
         }
+
         if (!presentationActive)
         {
             _settingEntranceFade?.Dispose();
@@ -168,6 +174,7 @@ public sealed partial class PluginSettingsPage
 
             RestoreSettingTransitionVisual(container, current.Visual);
         }
+
         var visual = GetInitializedTranslationVisual(container);
         _settingTransitionVisuals[container] = (item, visual);
         return visual;
@@ -179,6 +186,7 @@ public sealed partial class PluginSettingsPage
         {
             RestoreSettingTransitionVisual(entrance.Key, entrance.Value.Visual);
         }
+
         _settingTransitionVisuals.Clear();
     }
 

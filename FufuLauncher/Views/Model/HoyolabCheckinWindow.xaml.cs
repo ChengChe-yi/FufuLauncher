@@ -101,7 +101,6 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                // ignored
             }
 
             await Task.Delay(3000);

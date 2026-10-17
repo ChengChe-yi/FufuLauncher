@@ -175,6 +175,7 @@ public partial class MainViewModel
             {
                 bgResult = await _backgroundRenderer.GetCustomBackgroundAsync(CustomBackgroundPath);
             }
+
             if (bgResult == null)
             {
                 var serverJson = await _localSettingsService.ReadSettingAsync("BackgroundServerKey");
@@ -207,7 +208,11 @@ public partial class MainViewModel
             Debug.WriteLine($"背景加载异常: {ex.Message}");
             var fallback = await _backgroundRenderer.GetFallbackBackgroundAsync();
             if (fallback != null)
-                await UpdateUI(() => { ClearBackground(); BackgroundImageSource = fallback.ImageSource; });
+                await UpdateUI(() =>
+                {
+                    ClearBackground();
+                    BackgroundImageSource = fallback.ImageSource;
+                });
         }
         finally
         {

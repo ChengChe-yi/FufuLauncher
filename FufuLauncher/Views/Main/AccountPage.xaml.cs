@@ -123,7 +123,7 @@ public sealed partial class AccountPage : Page
                     ProfileCard.Opacity = 0;
                     ProfileCardTransform.Y = -30;
 
-                    // 强制刷新头像
+
                     var avatarUrl = ViewModel.CurrentAccount?.AvatarUrl;
                     if (!string.IsNullOrEmpty(avatarUrl) && AvatarPicture.Fill is ImageBrush brush)
                     {
@@ -230,7 +230,7 @@ public sealed partial class AccountPage : Page
         RightCardsEntranceStoryboard?.Stop();
         ProfileCardEntranceStoryboard?.Stop();
 
-        // 按钮复位
+
         BtnSwitchAccount.Opacity = 0;
         BtnSwitchAccountTransform.Y = -80;
         BtnRefreshInfo.Opacity = 0;
@@ -252,7 +252,7 @@ public sealed partial class AccountPage : Page
         BtnLogout.Opacity = 0;
         BtnLogoutTransform.Y = -80;
 
-        // 角色卡片复位
+
         ProfileCard.Opacity = 0;
         ProfileCardTransform.Y = -30;
 

@@ -31,9 +31,11 @@ public partial class GachaAnalysisModel
     public bool ShowHistoryLoading => IsHistorySelected && IsHistoryLoading;
     public bool ShowHistoryContent => IsHistorySelected && IsHistoryReady && SelectedHistoryPool != null;
     public bool ShowHistoryEmpty => IsHistorySelected && IsHistoryReady && HistoryPools.Count == 0;
+
     public string HistoryEmptyTitle => HideEmptyHistoryPools
         ? "GachaHistory_EmptyFilteredTitle".GetLocalized()
         : "GachaHistory_EmptyTitle".GetLocalized();
+
     public string HistoryEmptyDescription => HideEmptyHistoryPools
         ? "GachaHistory_EmptyFilteredDescription".GetLocalized()
         : "GachaHistory_EmptyDescription".GetLocalized();

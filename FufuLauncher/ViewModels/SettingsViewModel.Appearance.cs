@@ -95,7 +95,7 @@ public partial class SettingsViewModel
         {
         }
 
-        WeakReferenceMessenger.Default.Send(new AcrylicSettingChangedMessage(true)); // reuse or create new msg
+        WeakReferenceMessenger.Default.Send(new AcrylicSettingChangedMessage(true));
         ThemeHelper.ApplyThemeColor(value);
     }
 

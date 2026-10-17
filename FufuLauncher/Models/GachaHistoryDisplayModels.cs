@@ -9,13 +9,29 @@ namespace FufuLauncher.Models;
 
 public sealed class GachaHistoryItemDisplayItem
 {
-    public string Name { get; init; } = string.Empty;
+    public string Name
+    {
+        get;
+        init;
+    } = string.Empty;
 
-    public string ImageUrl { get; init; } = "ms-appx:///Assets/StoreLogo.png";
+    public string ImageUrl
+    {
+        get;
+        init;
+    } = "ms-appx:///Assets/StoreLogo.png";
 
-    public int Rank { get; init; }
+    public int Rank
+    {
+        get;
+        init;
+    }
 
-    public int PullCount { get; init; }
+    public int PullCount
+    {
+        get;
+        init;
+    }
 
     public string CountText => PullCount.ToString();
 
@@ -29,25 +45,65 @@ public sealed class GachaHistoryItemDisplayItem
 
 public sealed class GachaHistoryPoolDisplayItem
 {
-    public string Key { get; init; } = string.Empty;
+    public string Key
+    {
+        get;
+        init;
+    } = string.Empty;
 
-    public string Version { get; init; } = string.Empty;
+    public string Version
+    {
+        get;
+        init;
+    } = string.Empty;
 
-    public string Name { get; init; } = string.Empty;
+    public string Name
+    {
+        get;
+        init;
+    } = string.Empty;
 
-    public string Period { get; init; } = string.Empty;
+    public string Period
+    {
+        get;
+        init;
+    } = string.Empty;
 
-    public string TotalPulls { get; init; } = string.Empty;
+    public string TotalPulls
+    {
+        get;
+        init;
+    } = string.Empty;
 
-    public string BannerImageUrl { get; init; } = "ms-appx:///Assets/StoreLogo.png";
+    public string BannerImageUrl
+    {
+        get;
+        init;
+    } = "ms-appx:///Assets/StoreLogo.png";
 
-    public IReadOnlyList<GachaHistoryItemDisplayItem> FeaturedItems { get; init; } = [];
+    public IReadOnlyList<GachaHistoryItemDisplayItem> FeaturedItems
+    {
+        get;
+        init;
+    } = [];
 
-    public IReadOnlyList<GachaHistoryItemDisplayItem> FiveStarItems { get; init; } = [];
+    public IReadOnlyList<GachaHistoryItemDisplayItem> FiveStarItems
+    {
+        get;
+        init;
+    } = [];
 
-    public IReadOnlyList<GachaHistoryItemDisplayItem> FourStarItems { get; init; } = [];
+    public IReadOnlyList<GachaHistoryItemDisplayItem> FourStarItems
+    {
+        get;
+        init;
+    } = [];
 
-    public IReadOnlyList<GachaHistoryItemDisplayItem> ThreeStarItems { get; init; } = [];
+    public IReadOnlyList<GachaHistoryItemDisplayItem> ThreeStarItems
+    {
+        get;
+        init;
+    } = [];
 
     public bool HasFiveStarItems => FiveStarItems.Count > 0;
 

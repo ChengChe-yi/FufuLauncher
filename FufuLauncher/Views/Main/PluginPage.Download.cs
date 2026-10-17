@@ -317,7 +317,6 @@ public sealed partial class PluginPage
             }
             catch
             {
-                // ignored
             }
 
             statusText.Text = "PluginPage_StatusInstalling".GetLocalized();
@@ -376,7 +375,6 @@ public sealed partial class PluginPage
             }
             catch
             {
-                // ignored
             }
 
             ViewModel.StatusMessage = $"{targetFolderName} 安装成功！";
@@ -412,7 +410,6 @@ public sealed partial class PluginPage
                 }
                 catch
                 {
-                    // ignored
                 }
             }
         }
@@ -425,7 +422,6 @@ public sealed partial class PluginPage
             }
             catch
             {
-                // ignored
             }
         }
     }

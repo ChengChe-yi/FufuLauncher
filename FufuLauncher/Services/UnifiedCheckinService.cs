@@ -126,16 +126,20 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 result.GameSignDays = accountResult.GameSignDays;
                 result.GameRewardItem = accountResult.GameRewardItem;
             }
+
             if (i < activeAccounts.Count - 1 && (accountResult.GameResult.Executed ||
-                accountResult.CommunityResult.Executed || accountResult.CloudGameResult.Executed))
+                                                 accountResult.CommunityResult.Executed ||
+                                                 accountResult.CloudGameResult.Executed))
                 await Task.Delay(Random.Shared.Next(2000, 5000));
         }
 
         int successAccounts = result.AccountResults.Count(a => a.Items.Any(i => i.Success == true) &&
-                                                              a.Items.All(i => i.Success != false));
+                                                               a.Items.All(i => i.Success != false));
         int failAccounts = result.AccountResults.Count(a => a.Items.Any(i => i.Success == false));
-        bool anyExecuted = result.GameResult.Executed || result.CommunityResult.Executed || result.CloudGameResult.Executed;
-        result.SummaryMessage = !anyExecuted ? "Checkin_NotEnabled".GetLocalized()
+        bool anyExecuted = result.GameResult.Executed || result.CommunityResult.Executed ||
+                           result.CloudGameResult.Executed;
+        result.SummaryMessage = !anyExecuted
+            ? "Checkin_NotEnabled".GetLocalized()
             : failAccounts == 0
                 ? string.Format("Checkin_AllAccountsSuccess".GetLocalized(), successAccounts)
                 : successAccounts > 0
@@ -154,7 +158,8 @@ public class UnifiedCheckinService : IUnifiedCheckinService
         target.FailCount += source.FailCount;
         target.SkippedCount += source.SkippedCount;
         target.Details.AddRange(source.Details);
-        target.Message = string.Format("Checkin_SuccessFailCount".GetLocalized(), target.SuccessCount, target.FailCount);
+        target.Message =
+            string.Format("Checkin_SuccessFailCount".GetLocalized(), target.SuccessCount, target.FailCount);
     }
 
     private async Task<UnifiedCheckinResult> ExecuteAccountCheckinsAsync(AccountCredentials credentials,
@@ -222,12 +227,14 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                                         MiyousheRoleCheckinResult.GetFailureSummary(roleResults))
                                 }
                             });
-                            var genshinResult = roleResults.FirstOrDefault(r => r.GameBiz == "hk4e_cn" && r.Success == true);
+                            var genshinResult =
+                                roleResults.FirstOrDefault(r => r.GameBiz == "hk4e_cn" && r.Success == true);
                             if (genshinResult != null)
                             {
                                 result.GameSignDays = genshinResult.SignDays.ToString();
                                 result.GameRewardItem = genshinResult.RewardItem;
                             }
+
                             continue;
                         }
 
@@ -270,7 +277,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             Debug.WriteLine($"[统一签到] 游戏签到耗时 {gameSw.ElapsedMilliseconds}ms");
         }
 
-        // ===================== 社区签到 =====================
+
         if (communityEnabled)
         {
             var communitySw = Stopwatch.StartNew();
@@ -279,7 +286,6 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             {
                 foreach (var account in activeAccounts)
                 {
-                    // 国际服跳过社区签到
                     if (account.ConfigPath.StartsWith("os_"))
                     {
                         Report($"[{account.Nickname}] {"Checkin_OSAccountSkippedCommunity".GetLocalized()}");
@@ -346,7 +352,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             Debug.WriteLine($"[统一签到] 社区签到耗时 {communitySw.ElapsedMilliseconds}ms");
         }
 
-        // ===================== 云游戏签到 =====================
+
         if (cloudGameEnabled)
         {
             var cloudSw = Stopwatch.StartNew();
@@ -439,6 +445,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             detail = new AccountCheckinDetail { Nickname = account.Nickname };
             result.AccountResults.Add(detail);
         }
+
         detail.Items.Add((typeKey.GetLocalized(), false, message));
     }
 
@@ -447,7 +454,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
         var cookies = await _accountManager.LoadCookiesAsync(account.ConfigPath);
         if (cookies == null || cookies.Count == 0) return null;
         using var refreshService = new TokenRefreshService();
-        // 签到接口已明确返回失效码，不能再用原神角色查询的结果阻止刷新。
+
         var refreshed = await refreshService.RefreshCookieAsync(cookies, forceRefresh: true);
         if (refreshed == null) return null;
         await _accountManager.UpdateCookiesAsync(account.ConfigPath, refreshed);

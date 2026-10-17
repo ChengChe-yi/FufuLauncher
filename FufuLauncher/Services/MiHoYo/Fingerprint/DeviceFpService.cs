@@ -17,10 +17,10 @@ public sealed class DeviceFpService
 {
     private const string GetFpUrl = "https://public-data-api.mihoyo.com/device-fp/api/getFp";
 
-    /// <summary><c>getFp</c> 的 <c>app_name</c>（国服）。</summary>
+
     public const string AppName = "bbs_cn";
 
-    /// <summary><c>getFp</c> 的 <c>platform</c>（2 = 安卓 App）。</summary>
+
     public const string Platform = "2";
 
     private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds(15) };
@@ -41,17 +41,15 @@ public sealed class DeviceFpService
         _device = device;
     }
 
-    // ---------------------------------------------------------------- 取用
-
 
     public Task<MiHoYoDeviceIdentity> GetIdentityAsync(CancellationToken token = default) =>
         _store.GetOrCreateAsync(ResolveInitialDeviceId(), token);
 
-    /// <summary>取用设备号（<c>x-rpc-device_id</c> 同源值）。</summary>
+
     public async Task<string> GetBbsDeviceIdAsync(CancellationToken token = default) =>
         (await GetIdentityAsync(token).ConfigureAwait(false)).BbsDeviceId;
 
-    /// <summary>取用设备指纹；尚未注册时返回 null。</summary>
+
     public async Task<string?> GetFingerprintAsync(CancellationToken token = default)
     {
         var identity = await GetIdentityAsync(token).ConfigureAwait(false);
@@ -70,7 +68,6 @@ public sealed class DeviceFpService
         await _gate.WaitAsync(token).ConfigureAwait(false);
         try
         {
-            // 双检：等锁期间可能已被其它调用注册完成。
             identity = await GetIdentityAsync(token).ConfigureAwait(false);
             if (!string.IsNullOrEmpty(identity.DeviceFp))
             {
@@ -84,8 +81,7 @@ public sealed class DeviceFpService
                 return identity;
             }
 
-            // 只把指纹回填到发起注册时用的那个 device_id 上。
-            // 若期间发生过重置，写入会被拒绝，避免旧指纹挂到新设备号。
+
             var updated = await _store.WithFingerprintAsync(identity.DeviceId, issued, token)
                 .ConfigureAwait(false);
             if (updated is null)
@@ -115,7 +111,6 @@ public sealed class DeviceFpService
 
     public string BuildExtFieldsJson() => FpExtFieldsBuilder.BuildJson(_device.CaptureSnapshot());
 
-    // ---------------------------------------------------------------- 内部
 
     private async Task<string?> RegisterAsync(MiHoYoDeviceIdentity identity, CancellationToken token)
     {
@@ -155,7 +150,7 @@ public sealed class DeviceFpService
         }
     }
 
-    /// <summary>解析 <c>getFp</c> 响应中的 <c>device_fp</c>；任一步失败返回 null。</summary>
+
     private static string? ParseFingerprint(string json)
     {
         try

@@ -7,13 +7,47 @@ namespace FufuLauncher.Models;
 
 public sealed class CheckinOptions
 {
-    public bool IsGameCheckinEnabled { get; set; } = true;
-    public bool IsCommunityCheckinEnabled { get; set; } = true;
-    public bool IsCommunityLikeEnabled { get; set; }
-    public bool IsCommunityReadEnabled { get; set; }
-    public bool IsCommunityShareEnabled { get; set; }
-    public bool IsCloudGameCheckinEnabled { get; set; }
-    public Dictionary<string, bool> Games { get; set; } = new();
+    public bool IsGameCheckinEnabled
+    {
+        get;
+        set;
+    } = true;
+
+    public bool IsCommunityCheckinEnabled
+    {
+        get;
+        set;
+    } = true;
+
+    public bool IsCommunityLikeEnabled
+    {
+        get;
+        set;
+    }
+
+    public bool IsCommunityReadEnabled
+    {
+        get;
+        set;
+    }
+
+    public bool IsCommunityShareEnabled
+    {
+        get;
+        set;
+    }
+
+    public bool IsCloudGameCheckinEnabled
+    {
+        get;
+        set;
+    }
+
+    public Dictionary<string, bool> Games
+    {
+        get;
+        set;
+    } = new();
 
     public bool IsGameEnabled(string gameBiz) => !Games.TryGetValue(gameBiz, out var enabled) || enabled;
 

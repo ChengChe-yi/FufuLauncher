@@ -37,21 +37,20 @@ internal static class ScreenQrDecoder
 
         var reader = new BarcodeReaderGeneric
         {
-            // QR finder patterns identify orientation themselves. Keep coordinates in the original frame.
             AutoRotate = false,
             Options = new DecodingOptions { PossibleFormats = new[] { BarcodeFormat.QR_CODE }, TryHarder = true }
         };
         var source = new RGBLuminanceSource(pixels, converted.Width, converted.Height,
             RGBLuminanceSource.BitmapFormat.BGRA32);
-        // QRCodeMultiReader does not apply MultiFormatReader's inversion fallback.
-        // Check both polarities so a mixed selection cannot silently hide a second code.
+
+
         var detections = new List<ScreenQrDetection>();
         foreach (var result in (reader.DecodeMultiple(source) ?? []).Concat(
                      reader.DecodeMultiple(source.invert()) ?? []))
         {
             if (string.IsNullOrWhiteSpace(result.Text)) continue;
             var code = new ScreenQrDetection(result.Text, GetCorners(result, bitmap.Size));
-            // Merge polarity duplicates at the same position, but keep two physical copies of the same QR.
+
             if (!detections.Any(existing => existing.Text == code.Text && existing.IsSamePosition(code)))
                 detections.Add(code);
         }
@@ -70,7 +69,7 @@ internal static class ScreenQrDecoder
         if (horizontal <= 0 || vertical <= 0) return [];
         float module = points.Take(3).OfType<FinderPattern>().Select(point => point.EstimatedModuleSize)
             .DefaultIfEmpty(Math.Min(horizontal, vertical) / 21).Average();
-        // Finder centers sit 3.5 modules inside the QR edge; include a small margin for clicking.
+
         float padding = module * 3.5f + 2;
         var x = new PointF((topRight.X - topLeft.X) / horizontal * padding,
             (topRight.Y - topLeft.Y) / horizontal * padding);

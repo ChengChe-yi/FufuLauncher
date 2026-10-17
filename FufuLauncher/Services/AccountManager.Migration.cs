@@ -167,7 +167,7 @@ public partial class AccountManager
                     migratedConfigFiles.Add(configFile);
                     migratedCount++;
 
-                    // 迁移云游戏凭证到 LocalSettings
+
                     var cloudToken = config.Account.CloudComboToken;
                     if (!string.IsNullOrWhiteSpace(cloudToken))
                     {
@@ -208,7 +208,6 @@ public partial class AccountManager
             }
             else if (hasOnlyMainConfig)
             {
-                // 没有子账号文件，尝试从主 config.json / config.lab.json 迁移唯一账号
                 var settings = App.GetService<ILocalSettingsService>();
                 bool isInternationalAccount = false;
                 try
@@ -273,7 +272,7 @@ public partial class AccountManager
                                 migratedConfigFiles.Add(mainConfigPath);
                                 migratedCount = 1;
 
-                                // 迁移云游戏凭证
+
                                 var cloudToken = config.Account.CloudComboToken;
                                 if (!string.IsNullOrWhiteSpace(cloudToken))
                                 {

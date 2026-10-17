@@ -215,7 +215,6 @@ public sealed class ChunkDownloader
             }
             catch
             {
-                // ignored
             }
         }
     }
@@ -246,7 +245,6 @@ public sealed class ChunkDownloader
         }
         catch
         {
-            // ignored
         }
     }
 }

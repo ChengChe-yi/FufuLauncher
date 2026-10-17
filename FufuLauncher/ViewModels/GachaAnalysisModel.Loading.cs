@@ -73,8 +73,7 @@ public partial class GachaAnalysisModel
             return (uids, _savedMetadata.Count);
         });
 
-        // Choose the account default before presenting any archive, so reopening the
-        // window does not briefly show the previous UID while bindings are refreshed.
+
         var account = _accountManager.GetActiveAccountEntry();
         if (account != null)
         {
@@ -209,7 +208,7 @@ public partial class GachaAnalysisModel
                     InvalidateAnalysisDashboard();
                     InvalidateHistory();
 
-                    // 通知相关属性更新
+
                     OnPropertyChanged(nameof(ShowCharacterNoRecords));
                     OnPropertyChanged(nameof(ShowWeaponNoRecords));
                     OnPropertyChanged(nameof(ShowChronicledNoRecords));

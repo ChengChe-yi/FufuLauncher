@@ -9,7 +9,6 @@ using Forms = System.Windows.Forms;
 
 namespace FufuLauncher.Services;
 
-// A hollow, non-activating window: the captured pixels remain untouched and mouse clicks pass through.
 internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
 {
     internal const int BorderWidth = 3;
@@ -69,7 +68,6 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
         }
         catch
         {
-            // A cancelled startup must also finish removing its window before the caller restores the launcher.
             await indicator._closed.Task;
             throw;
         }
@@ -134,7 +132,7 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
             ShowInTaskbar = false;
             TopMost = true;
             BackColor = accentColor;
-            Opacity = 0.95; // WinForms enables WS_EX_LAYERED and sets the alpha value.
+            Opacity = 0.95;
             Region = OutlineRegion(Bounds.Size);
         }
 
@@ -145,8 +143,8 @@ internal sealed class ScreenScanRegionIndicator : IAsyncDisposable
             get
             {
                 var parameters = base.CreateParams;
-                // WS_EX_TRANSPARENT + WS_EX_LAYERED pass input to underlying applications.
-                // See Microsoft Learn, Window Features / Layered Windows.
+
+
                 parameters.ExStyle |= 0x20 | 0x80 | 0x08000000;
                 return parameters;
             }

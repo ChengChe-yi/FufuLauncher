@@ -39,7 +39,6 @@ public partial class MainViewModel
 
     public async Task LoadDailyNoteAsync(bool force = false)
     {
-        // 便签卡片隐藏时不发起任何 API 请求
         var hideJson = await _localSettingsService.ReadSettingAsync("IsHideDailyNoteCardEnabled");
         if (hideJson != null && Convert.ToBoolean(hideJson))
         {

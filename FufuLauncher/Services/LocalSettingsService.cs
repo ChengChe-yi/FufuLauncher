@@ -15,14 +15,6 @@ using Sentry;
 
 namespace FufuLauncher.Services
 {
-    /// <summary>
-    ///     本地设置存储。读取采用"懒加载 + 后台全量加载"两段式：
-    ///     <list type="number">
-    ///         <item>首次触碰时立即返回，不读表；</item>
-    ///         <item>同时在后台线程全量加载，填充快照；</item>
-    ///         <item>快照就绪前的读取按需单键查库（懒加载），命中后并入快照。</item>
-    ///     </list>
-    /// </summary>
     public class LocalSettingsService : ILocalSettingsService
     {
         private const string _defaultApplicationDataFolder = "FufuLauncher/ApplicationData";
@@ -34,10 +26,10 @@ namespace FufuLauncher.Services
 
         private readonly ConcurrentDictionary<string, string> _settings = new();
 
-        /// <summary>加载窗口内确认不存在的键，避免同一缺失键反复查库。</summary>
+
         private readonly ConcurrentDictionary<string, byte> _missingDuringLoad = new();
 
-        /// <summary>加载窗口内被删除的键；合并快照时不得重新填回，在途懒加载也不得写回。</summary>
+
         private readonly ConcurrentDictionary<string, byte> _removedDuringLoad = new();
 
 
@@ -99,11 +91,11 @@ namespace FufuLauncher.Services
                 if (_fullLoadCompleted)
                     return;
 
-                // 已有加载在途则不重复排程
+
                 if (_backgroundLoadTask is { IsCompleted: false })
                     return;
 
-                // 上次刚失败过则退避，避免每次设置读取都重试一次注定失败的全表查询
+
                 if (_lastLoadFailureUtc is { } failedAt &&
                     DateTime.UtcNow - failedAt < LoadRetryBackoff)
                     return;
@@ -134,15 +126,12 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                // 后台任务无人 await，异常不能外泄为未观察异常；保持懒加载模式即可
                 Debug.WriteLine($"LocalSettingsService: 后台全量加载异常 - {ex.Message}");
             }
             finally
             {
                 lock (_stateLock)
                 {
-                    // 未就绪说明本次加载未成功：清空任务引用以便重试，并记录失败时间用于退避；
-                    // 成功时保留已完成的引用，后续调用由 _fullLoadCompleted 短路。
                     if (!_fullLoadCompleted)
                     {
                         _backgroundLoadTask = null;
@@ -167,7 +156,7 @@ namespace FufuLauncher.Services
             {
                 Debug.WriteLine($"LocalSettingsService: 创建配置目录失败 - {ex.Message}");
 
-                // 目录不可用：保持懒加载模式，只提示一次；后续读写会各自失败并记日志。
+
                 if (!_dirErrorNotified)
                 {
                     _dirErrorNotified = true;
@@ -185,7 +174,6 @@ namespace FufuLauncher.Services
             var (success, all) = await _repository.TryGetAllSettingsAsync();
             if (!success)
             {
-                // 查询失败不能当作"表为空"，否则会把空结果当成权威快照。保持懒加载模式。
                 Debug.WriteLine("LocalSettingsService: 全量加载失败，继续使用懒加载");
                 return;
             }
@@ -195,7 +183,6 @@ namespace FufuLauncher.Services
             {
                 foreach (var (key, value) in all)
                 {
-                    // 加载窗口内被删除的键：磁盘快照可能仍含旧值，不得重新填回
                     if (_removedDuringLoad.ContainsKey(key))
                     {
                         skippedRemoved++;
@@ -233,7 +220,6 @@ namespace FufuLauncher.Services
             await _fullLoadGate.WaitAsync();
             try
             {
-                // 与写入串行：避免在途保存把已被替换掉的值写穿进新缓存
                 await _writeGate.WaitAsync();
                 try
                 {
@@ -296,10 +282,10 @@ namespace FufuLauncher.Services
                 return null;
             }
 
-            // 锁外查库（异步）
+
             var (success, found, lazyValue) = await _repository.TryGetSettingAsync(key);
 
-            // 回到锁内应用结果；期间状态可能已变，重新校验
+
             lock (_stateLock)
             {
                 if (_settings.TryGetValue(key, out var current))
@@ -380,12 +366,10 @@ namespace FufuLauncher.Services
             await _writeGate.WaitAsync();
             try
             {
-                // 先落盘；失败则不改动缓存，保持内存与磁盘一致
                 await _repository.UpsertSettingAsync(key, json);
 
                 lock (_stateLock)
                 {
-                    // 写穿缓存：并入快照，且全量加载合并时会保留此值
                     _settings[key] = json;
                     _missingDuringLoad.TryRemove(key, out _);
                     _removedDuringLoad.TryRemove(key, out _);
@@ -423,7 +407,6 @@ namespace FufuLauncher.Services
             await _writeGate.WaitAsync();
             try
             {
-                // 先落盘再改缓存：删除失败时保持缓存不变，避免"磁盘还有、内存当作已删"
                 bool deleted = await _repository.DeleteSettingAsync(key);
                 if (!deleted)
                 {
@@ -437,7 +420,6 @@ namespace FufuLauncher.Services
 
                     if (!_fullLoadCompleted)
                     {
-                        // 加载窗口内需要墓碑：既防止快照合并填回，也防止在途懒加载写回
                         _removedDuringLoad.TryAdd(key, 0);
                         _missingDuringLoad.TryAdd(key, 0);
                     }

@@ -8,7 +8,6 @@ using FufuLauncher.Models;
 
 namespace FufuLauncher.Services;
 
-/// <summary>A feature's local choice; follows the account default until explicitly changed.</summary>
 public sealed class GameRoleScope
 {
     private string? _accountId;

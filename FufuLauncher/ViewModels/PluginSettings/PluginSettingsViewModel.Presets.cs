@@ -53,6 +53,7 @@ public partial class PluginSettingsViewModel
         {
             AvailablePresets.Add(preset);
         }
+
         CurrentPreset = result.CurrentPreset;
         foreach (var notification in result.Notifications)
         {
@@ -69,11 +70,13 @@ public partial class PluginSettingsViewModel
             {
                 File.Delete(file);
             }
+
             var stateFile = Path.Combine(_presetsDir, "active_state.json");
             if (File.Exists(stateFile))
             {
                 File.Delete(stateFile);
             }
+
             if (includeLegacyMain)
             {
                 var legacyStateFile = Path.Combine(_presetsDir,

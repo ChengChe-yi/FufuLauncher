@@ -13,7 +13,6 @@ public sealed record GachaAccountRole(AccountEntry Account, GameRoleInfo Role, D
 
 public sealed record GachaAccountRolesResult(List<GachaAccountRole> Roles, List<string> Errors);
 
-/// <summary>Resolve credentials from live bindings, rather than the account's first cached GameUid.</summary>
 public sealed class GachaAccountResolver(
     Func<string, Task<Dictionary<string, string>?>> loadCookies,
     Func<string, Task<GameRolesResponse>> loadRoles)
@@ -55,12 +54,11 @@ public sealed class GachaAccountResolver(
                     supportedRoles = supportedRoles.Where(r => r.game_uid == targetUid);
                 roles.AddRange(supportedRoles.Select(r => new GachaAccountRole(account, r, cookies)));
 
-                // For an existing archive, use only credentials verified to own that exact role.
+
                 if (!string.IsNullOrEmpty(targetUid) && roles.Count > 0) break;
             }
             catch (Exception ex)
             {
-                // Exception messages from cookie stores or transports may contain private data.
                 errors.Add($"账号 {label} 的绑定角色查询未完成（{ex.GetType().Name}），请稍后重试。");
             }
         }

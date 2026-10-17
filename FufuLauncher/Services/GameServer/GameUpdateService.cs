@@ -416,7 +416,6 @@ public sealed class GameUpdateService
             }
             catch
             {
-                // ignored
             }
         }
 
@@ -1031,7 +1030,6 @@ public sealed class GameUpdateService
         }
         catch
         {
-            // ignored
         }
     }
 
@@ -1125,7 +1123,6 @@ public sealed class GameUpdateService
         }
         catch
         {
-            // ignored
         }
     }
 

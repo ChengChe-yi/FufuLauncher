@@ -18,10 +18,6 @@ public partial class GachaAnalysisModel
 
     private void InitializeDatabase()
     {
-        // EF Core EnsureCreated() handles table creation in the repository.
-        // Legacy ad-hoc migrations (Rank/ItemId columns, PK change) are no longer
-        // needed since EF Core creates tables with the correct schema from the start.
-        // For existing databases, EF Core will see tables exist and skip creation.
     }
 
     private void LoadMetadataFromDb()

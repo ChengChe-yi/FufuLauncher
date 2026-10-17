@@ -111,7 +111,6 @@ public sealed partial class GameAnnouncementContentPage : Page
         }
         catch
         {
-            // ignored
         }
     }
 

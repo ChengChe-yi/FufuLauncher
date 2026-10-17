@@ -10,9 +10,20 @@ namespace FufuLauncher.Models;
 
 public partial class CheckinGameItem(MiyousheCheckinGame game) : ObservableObject
 {
-    public string GameBiz { get; } = game.GameBiz;
-    public string SettingKey { get; } = game.SettingKey;
-    public string DisplayName { get; } = $"Checkin_Game_{game.GameBiz}".GetLocalized();
+    public string GameBiz
+    {
+        get;
+    } = game.GameBiz;
+
+    public string SettingKey
+    {
+        get;
+    } = game.SettingKey;
+
+    public string DisplayName
+    {
+        get;
+    } = $"Checkin_Game_{game.GameBiz}".GetLocalized();
 
     [ObservableProperty] private bool _isSelected = true;
 }

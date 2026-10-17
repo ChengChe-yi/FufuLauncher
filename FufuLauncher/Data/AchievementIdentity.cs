@@ -4,7 +4,11 @@ using FufuLauncher.Data.Entities;
 namespace FufuLauncher.Data;
 
 internal readonly record struct AchievementIdentity(
-    string CategoryName, string SeriesId, int StageIndex, string Title, string Description)
+    string CategoryName,
+    string SeriesId,
+    int StageIndex,
+    string Title,
+    string Description)
 {
     public static AchievementIdentity FromEntity(AchievementEntity entity)
     {

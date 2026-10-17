@@ -238,7 +238,7 @@ public sealed partial class AchievementWindow
 
             _achievementRepo.ChangeDatabase(_workFilePath);
 
-            // 释放连接池中的文件句柄，并清除迁移缓存，防止文件被占用
+
             SqliteConnection.ClearAllPools();
             _achievementRepo.InvalidateMigrationCache(_workFilePath);
 

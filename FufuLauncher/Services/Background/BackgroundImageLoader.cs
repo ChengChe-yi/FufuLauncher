@@ -40,8 +40,7 @@ internal static class BackgroundImageLoader
         if (dispatcher == null)
             throw new InvalidOperationException("背景图片加载需要主窗口的 UI 线程");
 
-        // Decode on the CPU with the bundled codec, including WebP, instead of
-        // relying on optional Windows image extensions or deferred URI decoding.
+
         var decoded = await Task.Run(() =>
         {
             using var stream = openStream();
@@ -50,7 +49,7 @@ internal static class BackgroundImageLoader
             var pixels = new byte[checked(image.Width * image.Height * 4)];
             image.CopyPixelDataTo(pixels);
 
-            // XAML's pixel buffer uses premultiplied BGRA.
+
             for (var i = 0; i < pixels.Length; i += 4)
             {
                 var alpha = pixels[i + 3];
@@ -64,6 +63,7 @@ internal static class BackgroundImageLoader
         }).ConfigureAwait(false);
 
         var completion = new TaskCompletionSource<ImageSource>(TaskCreationOptions.RunContinuationsAsynchronously);
+
         void CreateBitmap()
         {
             try

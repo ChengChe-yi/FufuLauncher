@@ -104,7 +104,6 @@ namespace FufuLauncher.Views
                 }
                 catch
                 {
-                    // ignored
                 }
 
                 if (!File.Exists(fontPath))

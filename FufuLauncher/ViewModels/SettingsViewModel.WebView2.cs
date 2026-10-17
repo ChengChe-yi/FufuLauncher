@@ -75,7 +75,6 @@ public partial class SettingsViewModel
         }
         catch
         {
-            // ignored
         }
 
         return size;
@@ -116,7 +115,6 @@ public partial class SettingsViewModel
                 }
                 catch
                 {
-                    // ignored
                 }
             }
 
@@ -129,13 +127,11 @@ public partial class SettingsViewModel
                 }
                 catch
                 {
-                    // ignored
                 }
             }
         }
         catch
         {
-            // ignored
         }
     }
 

@@ -369,7 +369,7 @@ public class PluginStoreItem : INotifyPropertyChanged
             OnPropertyChanged(nameof(CanUninstall));
             OnPropertyChanged(nameof(StateIsInstalled));
             OnPropertyChanged(nameof(StateIsInProgress));
-            // 卡片上的“更新”按钮绑的是这两个属性，漏掉通知会导致状态切换后按钮不刷新。
+
             OnPropertyChanged(nameof(StateIsUpdateAvailable));
             OnPropertyChanged(nameof(StateIsInstalledOrUpdate));
             OnPropertyChanged(nameof(ButtonText));

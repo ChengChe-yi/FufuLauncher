@@ -155,7 +155,6 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                // ignored
             }
         }
 

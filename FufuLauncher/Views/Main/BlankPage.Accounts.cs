@@ -47,7 +47,6 @@ public sealed partial class BlankPage
                 }
                 catch
                 {
-                    // ignored
                 }
 
                 DispatcherQueue.TryEnqueue(() => AccountsListView.ItemsSource = new List<GameAccountData>());

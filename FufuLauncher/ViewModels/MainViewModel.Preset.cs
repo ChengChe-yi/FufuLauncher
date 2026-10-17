@@ -82,6 +82,7 @@ public partial class MainViewModel
                 preset.IsActive = preset.Id == activeId;
                 PinnedPresets.Add(preset);
             }
+
             OnPropertyChanged(nameof(IsPinnedPresetsEmpty));
         });
     }

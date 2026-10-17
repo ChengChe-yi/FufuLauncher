@@ -22,7 +22,7 @@ internal static class ScreenRegionCaptureService
             new TaskCompletionSource<ScreenRegionSelection?>(TaskCreationOptions.RunContinuationsAsynchronously);
         var thread = new Thread(() =>
         {
-            nint oldContext = SetThreadDpiAwarenessContext(new nint(-4)); // physical pixels, PerMonitorV2
+            nint oldContext = SetThreadDpiAwarenessContext(new nint(-4));
             try
             {
                 cancellationToken.ThrowIfCancellationRequested();
@@ -127,7 +127,7 @@ internal static class ScreenRegionCaptureService
                 e.Graphics.DrawRectangle(pen, _selection);
             }
 
-            // Keep instructions visible on the monitor containing the cursor, including negative origins.
+
             Rectangle monitor = Forms.Screen.FromPoint(Forms.Cursor.Position).Bounds;
             Point monitorOrigin = PointToClient(monitor.Location);
             using var font = new Font("Microsoft YaHei UI", 12);

@@ -5,7 +5,6 @@ using Windows.Gaming.Input;
 
 namespace FufuLauncher.Services;
 
-// Page-owned device notifications. No input polling, vibration or game hooks.
 public sealed class GamepadConnectionWatcher : IDisposable
 {
     private readonly Action _onChanged;
@@ -37,6 +36,7 @@ public sealed class GamepadConnectionWatcher : IDisposable
         {
             Debug.WriteLine($"[GamepadChoices] XInput enumeration unavailable: {ex.Message}");
         }
+
         try
         {
             foreach (var controller in RawGameController.RawGameControllers.ToArray())
@@ -56,6 +56,7 @@ public sealed class GamepadConnectionWatcher : IDisposable
         {
             Debug.WriteLine($"[GamepadChoices] HID enumeration unavailable: {ex.Message}");
         }
+
         return families;
     }
 

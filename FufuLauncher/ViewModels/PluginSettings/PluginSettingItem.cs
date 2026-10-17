@@ -117,7 +117,8 @@ public class PluginSettingItem : ObservableObject
     }
 
     public PluginSettingItem(IniFile iniFile, string sectionKey, string displayName, string type, string value,
-        string helpUrl, Action<string, string, string> onValueChanged, bool useKeyListInput, Func<bool>? canChangeValue = null)
+        string helpUrl, Action<string, string, string> onValueChanged, bool useKeyListInput,
+        Func<bool>? canChangeValue = null)
     {
         _iniFile = iniFile;
         SectionKey = sectionKey;

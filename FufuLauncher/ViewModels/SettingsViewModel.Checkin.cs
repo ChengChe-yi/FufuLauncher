@@ -24,6 +24,7 @@ public partial class SettingsViewModel
 
     public bool CanEditCheckinOptions => !IsBatchCheckinEnabled || SelectedCheckinAccount != null;
     public bool CanEditCheckinGames => CanEditCheckinOptions && IsGameCheckinEnabled;
+
     public string CheckinOptionsCaption => SelectedCheckinAccount is { } account
         ? string.Format("Checkin_ConfiguringAccount".GetLocalized(), account.Nickname, account.Uid)
         : "Checkin_SelectAccount".GetLocalized();
@@ -151,7 +152,7 @@ public partial class SettingsViewModel
     private void LoadCheckinGames()
     {
         var games = new ObservableCollection<CheckinGameItem>();
-        string[] gameOrder = ["nap_cn","hkrpg_cn", "nxx_cn",  "bh3_cn", "bh2_cn"];
+        string[] gameOrder = ["nap_cn", "hkrpg_cn", "nxx_cn", "bh3_cn", "bh2_cn"];
         foreach (var gameBiz in gameOrder)
         {
             var game = MiyousheCheckinGame.SupportedGames.First(g => g.GameBiz == gameBiz);
@@ -166,6 +167,7 @@ public partial class SettingsViewModel
             };
             games.Add(item);
         }
+
         CheckinGames = games;
     }
 
@@ -217,7 +219,7 @@ public partial class SettingsViewModel
             CheckinAccounts = new ObservableCollection<CheckinAccountItem>(
                 CheckinSettingsStore.ApplyOrder(accounts, await store.LoadOrderAsync(), a => a.AccountId));
             SelectedCheckinAccount = CheckinAccounts.FirstOrDefault(a => a.AccountId == selectedId)
-                ?? CheckinAccounts.FirstOrDefault();
+                                     ?? CheckinAccounts.FirstOrDefault();
 
             foreach (var account in CheckinAccounts)
             {

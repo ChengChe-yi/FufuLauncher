@@ -52,7 +52,6 @@ public sealed partial class UpdateNotificationWindow : WindowEx
 
         if (_isPreview)
         {
-            // 预览版公告的特殊样式：黄色横幅 + 标题栏淡黄底色
             PreviewBanner.Visibility = Visibility.Visible;
             AppTitleBar.Background = new SolidColorBrush(Microsoft.UI.ColorHelper.FromArgb(0x40, 0xFF, 0xD7, 0x00));
             AppTitleBar.BorderBrush = new SolidColorBrush(Microsoft.UI.ColorHelper.FromArgb(0xFF, 0xFF, 0xD7, 0x00));

@@ -155,7 +155,7 @@ public partial class SettingsViewModel
     partial void OnBackgroundSlideshowIntervalChanged(int value)
     {
         if (_isInitializing) return;
-        if (value < 1) value = 1; // min 1 second
+        if (value < 1) value = 1;
         _ = _localSettingsService.SaveSettingAsync("BackgroundSlideshowInterval", value);
         WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
     }
@@ -163,7 +163,7 @@ public partial class SettingsViewModel
     partial void OnIsBackgroundEnabledChanged(bool value)
     {
         if (_isInitializing) return;
-        // Now means: whether custom background is allowed. If disabled, we fall back to official background.
+
         Debug.WriteLine($"SettingsViewModel: 保存自定义背景开关 {value}");
         _ = _localSettingsService.SaveSettingAsync(LocalSettingsService.IsBackgroundEnabledKey, value);
 

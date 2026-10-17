@@ -137,7 +137,7 @@ public partial class GachaAnalysisModel
             useBaseline ? GetNewestLogId(_cachedStandardLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
 
-        // Stage all pools before switching archives or modifying existing records.
+
         var allFetched = charLogs.Concat(weaponLogs).Concat(chronicledLogs).Concat(noviceLogs).Concat(standardLogs)
             .ToList();
         if (!CanApply())
@@ -169,7 +169,7 @@ public partial class GachaAnalysisModel
         {
             if (string.IsNullOrEmpty(expectedUid) || fetchedUid != expectedUid)
                 throw new GachaFetchException("返回记录的 UID 与所选游戏角色不一致，已停止导入。", null);
-            // The user already chose this role. Switch only after every pool has been validated.
+
             await SwitchToUidAsync(fetchedUid);
         }
         else if (!await HandleUidMismatchAsync(fetchedUid))

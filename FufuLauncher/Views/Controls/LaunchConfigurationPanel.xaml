@@ -29,134 +29,166 @@
                                 VerticalContentAlignment="Stretch"
                                 IsTabStop="False">
                     <Grid ColumnSpacing="24" RowSpacing="24">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                        
-                    <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=EnableLaunchArgsTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=EnableLaunchArgsCaption}" />
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomLaunchParametersEnabled, Mode=TwoWay}"
-                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
-                    </StackPanel>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=LaunchWindowModeTitle}" />
-                        <RadioButton Content="{helpers:Loc Key=WindowModeNormal}" GroupName="PluginLaunchWindowMode"
-                                     IsChecked="{Binding LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />
-                        <RadioButton Content="{helpers:Loc Key=WindowModePopup}" GroupName="PluginLaunchWindowMode"
-                                     IsChecked="{Binding LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Popup}" />
-                        <RadioButton Content="{helpers:Loc Key=WindowModeFullScreen}" GroupName="PluginLaunchWindowMode"
-                                     IsChecked="{Binding LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=FullScreen}" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="0" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=ResolutionTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=ResolutionCaption}" />
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBox Width="106" Text="{x:Bind ViewModel.LaunchArgsWidth, Mode=TwoWay}"
-                                     PlaceholderText="1920" AutomationProperties.Name="{helpers:Loc Key=WidthLabel}" />
-                            <TextBlock Text="&#215;" VerticalAlignment="Center" />
-                            <TextBox Width="106" Text="{x:Bind ViewModel.LaunchArgsHeight, Mode=TwoWay}"
-                                     PlaceholderText="1080" AutomationProperties.Name="{helpers:Loc Key=HeightLabel}" />
+                        <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=EnableLaunchArgsTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=EnableLaunchArgsCaption}" />
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.IsCustomLaunchParametersEnabled, Mode=TwoWay}"
+                                          OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
                         </StackPanel>
-                        <ComboBox PlaceholderText="{helpers:Loc Key=QuickPresetsLabel}" HorizontalAlignment="Stretch"
-                                  SelectionChanged="OnResolutionPresetChanged">
-                            <ComboBoxItem Content="1280&#215;720 (HD)" Tag="1280 720" />
-                            <ComboBoxItem Content="1920&#215;1080 (FHD)" Tag="1920 1080" />
-                            <ComboBoxItem Content="2560&#215;1440 (QHD)" Tag="2560 1440" />
-                            <ComboBoxItem Content="3840&#215;2160 (4K)" Tag="3840 2160" />
-                            <ComboBoxItem Content="1440&#215;900" Tag="1440 900" />
-                            <ComboBoxItem Content="1920&#215;1200" Tag="1920 1200" />
-                        </ComboBox>
-                    </StackPanel>
-                        
-                    <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=HdrTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=HdrCaption}" />
-                        <Button Content="{helpers:Loc Key=OpenHdrSettings}" Click="OnOpenHdrClick" />
-                    </StackPanel>
 
-                    <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=TargetMonitorTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=TargetMonitorCaption}" />
-                        <ComboBox ItemsSource="{x:Bind ViewModel.AvailableMonitors, Mode=OneWay}"
-                                  SelectedItem="{x:Bind ViewModel.SelectedMonitor, Mode=TwoWay}"
-                                  DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
-                        <Button Content="{helpers:Loc Key=IdentifyMonitors}" Click="OnIdentifyMonitorsClick" />
-                    </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=LaunchWindowModeTitle}" />
+                            <RadioButton Content="{helpers:Loc Key=WindowModeNormal}"
+                                         GroupName="PluginLaunchWindowMode"
+                                         IsChecked="{Binding LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />
+                            <RadioButton Content="{helpers:Loc Key=WindowModePopup}" GroupName="PluginLaunchWindowMode"
+                                         IsChecked="{Binding LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Popup}" />
+                            <RadioButton Content="{helpers:Loc Key=WindowModeFullScreen}"
+                                         GroupName="PluginLaunchWindowMode"
+                                         IsChecked="{Binding LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=FullScreen}" />
+                        </StackPanel>
 
-                    <StackPanel Grid.Row="1" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=AdvLaunchArgsTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=AdvLaunchArgsCaption}" />
-                        <TextBox Text="{x:Bind ViewModel.CustomLaunchParameters, Mode=TwoWay}"
-                                 PlaceholderText="{helpers:Loc Key=CustomLaunchArgsPlaceholder}"
-                                 AutomationProperties.Name="{helpers:Loc Key=CustomLaunchArgsLabel}"
-                                 ToolTipService.ToolTip="{helpers:Loc Key=CustomLaunchArgsInfo}" />
-                    </StackPanel>
-                        
-                    <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=CustomExeNameTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=CustomExeNameCaption}" />
-                        <TextBox Text="{x:Bind ViewModel.CustomGameExeName, Mode=TwoWay}"
-                                 PlaceholderText="{helpers:Loc Key=CustomExeNamePlaceholder}" />
-                        <Button Content="{helpers:Loc Key=RestoreDefault}" Command="{x:Bind ViewModel.ResetGameExeNameCommand}" />
-                    </StackPanel>
+                        <StackPanel Grid.Row="0" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=ResolutionTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=ResolutionCaption}" />
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBox Width="106" Text="{x:Bind ViewModel.LaunchArgsWidth, Mode=TwoWay}"
+                                         PlaceholderText="1920"
+                                         AutomationProperties.Name="{helpers:Loc Key=WidthLabel}" />
+                                <TextBlock Text="&#215;" VerticalAlignment="Center" />
+                                <TextBox Width="106" Text="{x:Bind ViewModel.LaunchArgsHeight, Mode=TwoWay}"
+                                         PlaceholderText="1080"
+                                         AutomationProperties.Name="{helpers:Loc Key=HeightLabel}" />
+                            </StackPanel>
+                            <ComboBox PlaceholderText="{helpers:Loc Key=QuickPresetsLabel}"
+                                      HorizontalAlignment="Stretch"
+                                      SelectionChanged="OnResolutionPresetChanged">
+                                <ComboBoxItem Content="1280&#215;720 (HD)" Tag="1280 720" />
+                                <ComboBoxItem Content="1920&#215;1080 (FHD)" Tag="1920 1080" />
+                                <ComboBoxItem Content="2560&#215;1440 (QHD)" Tag="2560 1440" />
+                                <ComboBoxItem Content="3840&#215;2160 (4K)" Tag="3840 2160" />
+                                <ComboBoxItem Content="1440&#215;900" Tag="1440 900" />
+                                <ComboBoxItem Content="1920&#215;1200" Tag="1920 1200" />
+                            </ComboBox>
+                        </StackPanel>
 
-                    <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=InjectionModuleTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=InjectionCaption}" />
-                        <ComboBox ItemsSource="{x:Bind ViewModel.InjectionModules}"
-                                  SelectedItem="{x:Bind ViewModel.SelectedInjectionModule, Mode=TwoWay}"
-                                  DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
-                    </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=HdrTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=HdrCaption}" />
+                            <Button Content="{helpers:Loc Key=OpenHdrSettings}" Click="OnOpenHdrClick" />
+                        </StackPanel>
 
-                    <StackPanel Grid.Row="2" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=PluginConflictCheckTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=PluginConflictCheckCaption}" />
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=TwoWay}"
-                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
-                    </StackPanel>
-                        
-                    <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=PluginConflictMainOnlyTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=PluginConflictMainOnlyCaption}" />
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsPluginConflictMainDllOnly, Mode=TwoWay}"
-                                      IsEnabled="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=OneWay}"
-                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
-                    </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=TargetMonitorTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=TargetMonitorCaption}" />
+                            <ComboBox ItemsSource="{x:Bind ViewModel.AvailableMonitors, Mode=OneWay}"
+                                      SelectedItem="{x:Bind ViewModel.SelectedMonitor, Mode=TwoWay}"
+                                      DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
+                            <Button Content="{helpers:Loc Key=IdentifyMonitors}" Click="OnIdentifyMonitorsClick" />
+                        </StackPanel>
 
-                    <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=UsingHoyolabAccountTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=UsingHoyolabAccountCaption}" />
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsUsingHoyolabAccount, Mode=TwoWay}"
-                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
-                    </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=AdvLaunchArgsTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=AdvLaunchArgsCaption}" />
+                            <TextBox Text="{x:Bind ViewModel.CustomLaunchParameters, Mode=TwoWay}"
+                                     PlaceholderText="{helpers:Loc Key=CustomLaunchArgsPlaceholder}"
+                                     AutomationProperties.Name="{helpers:Loc Key=CustomLaunchArgsLabel}"
+                                     ToolTipService.ToolTip="{helpers:Loc Key=CustomLaunchArgsInfo}" />
+                        </StackPanel>
 
-                    <StackPanel Grid.Row="3" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=RedeemReminderTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=RedeemReminderCaption}" />
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.IsRedeemCodeNotificationEnabled, Mode=TwoWay}"
-                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
-                    </StackPanel>
-                        
-                    <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}" Spacing="8">
-                        <TextBlock Style="{StaticResource PluginSettingLabelStyle}" Text="{helpers:Loc Key=PostLaunchTitle}"
-                                   ToolTipService.ToolTip="{helpers:Loc Key=PostLaunchCaption}" />
-                        <ComboBox ItemsSource="{x:Bind ViewModel.PostLaunchBehaviorItems}"
-                                  SelectedItem="{x:Bind ViewModel.SelectedPostLaunchBehaviorItem, Mode=TwoWay}"
-                                  DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
-                    </StackPanel>
-                </Grid>
+                        <StackPanel Grid.Row="2" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=CustomExeNameTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=CustomExeNameCaption}" />
+                            <TextBox Text="{x:Bind ViewModel.CustomGameExeName, Mode=TwoWay}"
+                                     PlaceholderText="{helpers:Loc Key=CustomExeNamePlaceholder}" />
+                            <Button Content="{helpers:Loc Key=RestoreDefault}"
+                                    Command="{x:Bind ViewModel.ResetGameExeNameCommand}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=InjectionModuleTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=InjectionCaption}" />
+                            <ComboBox ItemsSource="{x:Bind ViewModel.InjectionModules}"
+                                      SelectedItem="{x:Bind ViewModel.SelectedInjectionModule, Mode=TwoWay}"
+                                      DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=PluginConflictCheckTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=PluginConflictCheckCaption}" />
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=TwoWay}"
+                                          OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=PluginConflictMainOnlyTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=PluginConflictMainOnlyCaption}" />
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.IsPluginConflictMainDllOnly, Mode=TwoWay}"
+                                          IsEnabled="{x:Bind ViewModel.IsPluginConflictCheckEnabled, Mode=OneWay}"
+                                          OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="1" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=UsingHoyolabAccountTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=UsingHoyolabAccountCaption}" />
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.IsUsingHoyolabAccount, Mode=TwoWay}"
+                                          OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="2" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=RedeemReminderTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=RedeemReminderCaption}" />
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.IsRedeemCodeNotificationEnabled, Mode=TwoWay}"
+                                          OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="0" Style="{StaticResource PluginSettingContainerStyle}"
+                                    Spacing="8">
+                            <TextBlock Style="{StaticResource PluginSettingLabelStyle}"
+                                       Text="{helpers:Loc Key=PostLaunchTitle}"
+                                       ToolTipService.ToolTip="{helpers:Loc Key=PostLaunchCaption}" />
+                            <ComboBox ItemsSource="{x:Bind ViewModel.PostLaunchBehaviorItems}"
+                                      SelectedItem="{x:Bind ViewModel.SelectedPostLaunchBehaviorItem, Mode=TwoWay}"
+                                      DisplayMemberPath="DisplayName" HorizontalAlignment="Stretch" />
+                        </StackPanel>
+                    </Grid>
                 </ContentControl>
             </StackPanel>
         </ScrollViewer>

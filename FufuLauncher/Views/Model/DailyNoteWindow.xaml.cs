@@ -295,7 +295,6 @@ namespace FufuLauncher.Views
                     if (!materialsSuccess)
                     {
                         retryCountMat++;
-                        // if (retryCountMat > 10) break; 
                     }
                 }
 

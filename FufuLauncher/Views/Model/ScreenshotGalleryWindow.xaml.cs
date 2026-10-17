@@ -348,7 +348,6 @@ public sealed partial class ScreenshotGalleryWindow : Window
 
             if (result == ContentDialogResult.Primary)
             {
-                // 直接移到回收站，不再处理原先逻辑。因为删除操作也会触发FileSystemWatcher喵
                 try
                 {
                     Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(
@@ -437,7 +436,6 @@ public sealed partial class ScreenshotGalleryWindow : Window
 
     private void DetailImageViewer_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        // 切换图片时要重置缩放喵
         if (DetailImageViewer.SelectedItem is not ScreenshotItem item) return;
 
         _currentDetailItem = item;

@@ -103,7 +103,6 @@ internal sealed class RleDecoder
     {
         while (_memSetLength == 0 && _memCopyLength == 0 && !_ctrl.IsFinished)
         {
-            // �����ֽڱ����Ǳ䳤������һ���֣�����ռ�� 2 λ�����ȴ�ͬһ�ֽڿ�ʼ����
             byte ctrl = _ctrl.PeekByte();
             int type = ctrl >> (8 - TypeBits);
             long length = _ctrl.ReadVarInt(TypeBits) + 1;

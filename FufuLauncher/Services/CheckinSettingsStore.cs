@@ -39,7 +39,7 @@ public sealed class CheckinSettingsStore(ILocalSettingsService settings)
     public async Task<CheckinOptions?> LoadAccountAsync(string accountId)
     {
         var options = await ReadJsonAsync<CheckinOptions>(AccountOptionsPrefix + accountId);
-        // A damaged optional game map must not prevent loading the remaining options.
+
         if (options != null) options.Games ??= new();
         return options;
     }
@@ -57,8 +57,9 @@ public sealed class CheckinSettingsStore(ILocalSettingsService settings)
     {
         var positions = new Dictionary<string, int>();
         for (int i = 0; i < order.Count; i++)
-            if (!string.IsNullOrEmpty(order[i])) positions.TryAdd(order[i], i);
-        // OrderBy is stable: newly added accounts stay in their original relative order.
+            if (!string.IsNullOrEmpty(order[i]))
+                positions.TryAdd(order[i], i);
+
         return accounts.OrderBy(a => positions.GetValueOrDefault(getId(a), int.MaxValue)).ToList();
     }
 

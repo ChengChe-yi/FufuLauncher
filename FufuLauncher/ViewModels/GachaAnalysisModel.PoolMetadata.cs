@@ -84,8 +84,8 @@ public partial class GachaAnalysisModel
             }
 
             var chronicledEntries = data.Result
-                    .Where(item => GetVersionPeriod(item.Version) == "混池")
-                    .Select(item => (Item: item, Type: "char"))
+                .Where(item => GetVersionPeriod(item.Version) == "混池")
+                .Select(item => (Item: item, Type: "char"))
                 .Concat(data.Weapon
                     .Where(item => GetVersionPeriod(item.Version) == "混池")
                     .Select(item => (Item: item, Type: "weapon")));

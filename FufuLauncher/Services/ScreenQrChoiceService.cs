@@ -15,7 +15,7 @@ internal static class ScreenQrChoiceService
     [DllImport("user32.dll")]
     private static extern nint SetThreadDpiAwarenessContext(nint context);
 
-    // Reading remains paused while the user chooses from this frozen frame.
+
     internal static Task<ScreenQrDetection?> ChooseAsync(Bitmap frame, Rectangle screenBounds,
         IReadOnlyList<ScreenQrDetection> codes, CancellationToken token)
     {

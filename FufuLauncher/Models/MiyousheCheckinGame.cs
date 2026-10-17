@@ -6,15 +6,22 @@ Licensed under the MIT License.
 namespace FufuLauncher.Models;
 
 public sealed record MiyousheCheckinGame(
-    string GameBiz, string Name, string ActId, string ApiBase, string Referer, string? SignGame = null)
+    string GameBiz,
+    string Name,
+    string ActId,
+    string ApiBase,
+    string Referer,
+    string? SignGame = null)
 {
     public string SettingKey => $"GameCheckinEnabled_{GameBiz}";
 
-    // Activity IDs and API routes are maintained in the upstream implementation:
-    // https://github.com/Womsxd/MihoyoBBSTools/blob/master/setting.py
+
     private const string LunaApi = "https://api-takumi.mihoyo.com/event/luna";
 
-    public static IReadOnlyList<MiyousheCheckinGame> SupportedGames { get; } =
+    public static IReadOnlyList<MiyousheCheckinGame> SupportedGames
+    {
+        get;
+    } =
     [
         new("hk4e_cn", "原神", "e202311201442471", LunaApi, "https://act.mihoyo.com/", "hk4e"),
         new("hkrpg_cn", "崩坏：星穹铁道", "e202304121516551", LunaApi, "https://act.mihoyo.com/"),
@@ -32,8 +39,13 @@ public sealed record MiyousheCheckinGame(
 }
 
 public sealed record MiyousheRoleCheckinResult(
-    string GameBiz, string GameName, string Uid, bool? Success, string Message,
-    int SignDays = 0, string RewardItem = "")
+    string GameBiz,
+    string GameName,
+    string Uid,
+    bool? Success,
+    string Message,
+    int SignDays = 0,
+    string RewardItem = "")
 {
     public static string GetFailureSummary(IEnumerable<MiyousheRoleCheckinResult> results) =>
         string.Join("；", results.Where(r => r.Success == false)

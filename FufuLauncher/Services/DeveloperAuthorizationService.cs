@@ -47,7 +47,6 @@ public sealed class DeveloperAuthorizationService
             }
             catch
             {
-                // ignored
             }
         }
 

@@ -204,6 +204,7 @@ public sealed partial class PluginConfigPage : Page
                 foreach (var option in configuration.Options)
                     option.SetKeyInputMode(keyPreference == null || Convert.ToBoolean(keyPreference));
             }
+
             if (cancellation.IsCancellationRequested || !_isActive)
             {
                 return;
@@ -380,7 +381,8 @@ public sealed partial class PluginConfigPage : Page
 
     private void StartGamepadWatcher()
     {
-        if (!_isActive || _configuration == null || !_configuration.Options.Any(option => option.UsesGamepadChoices)) return;
+        if (!_isActive || _configuration == null ||
+            !_configuration.Options.Any(option => option.UsesGamepadChoices)) return;
         if (_gamepadWatcher == null)
         {
             try
@@ -395,6 +397,7 @@ public sealed partial class PluginConfigPage : Page
                 Debug.WriteLine($"[GamepadChoices] Device notifications unavailable: {ex.Message}");
             }
         }
+
         RefreshGamepadChoices();
     }
 

@@ -56,13 +56,14 @@ public sealed class PluginConfigOption : ObservableObject
         };
         _value = value;
         UsesGamepadChoices = Kind == PluginConfigValueKind.Enumeration &&
-            optionsSource.Trim().Equals("gamepad", StringComparison.OrdinalIgnoreCase);
+                             optionsSource.Trim().Equals("gamepad", StringComparison.OrdinalIgnoreCase);
         if (Kind == PluginConfigValueKind.Enumeration && !UsesGamepadChoices)
         {
             _staticChoices = ParseChoices(optionsJson);
             if (!string.IsNullOrWhiteSpace(optionsSource) || _staticChoices.Count == 0)
-                Kind = PluginConfigValueKind.Text; // Unknown/malformed metadata stays editable.
+                Kind = PluginConfigValueKind.Text;
         }
+
         if (Kind is PluginConfigValueKind.Key or PluginConfigValueKind.Enumeration) RefreshChoices();
     }
 
@@ -89,7 +90,12 @@ public sealed class PluginConfigOption : ObservableObject
     }
 
     public bool HasDescription => !string.IsNullOrWhiteSpace(Description);
-    public bool UsesGamepadChoices { get; }
+
+    public bool UsesGamepadChoices
+    {
+        get;
+    }
+
     public IReadOnlyList<PluginConfigChoice> Choices => _choices;
     public bool ShowChoiceList => Kind != PluginConfigValueKind.Key || _useKeyListInput;
     public bool ShowKeyNumber => Kind == PluginConfigValueKind.Key && !_useKeyListInput;
@@ -99,7 +105,6 @@ public sealed class PluginConfigOption : ObservableObject
         get => _choices.FirstOrDefault(choice => Identity(choice.Value) == Identity(Value));
         set
         {
-            // ItemsSource replacement can report null or an old selection.
             if (_refreshingChoices || value == null || !_choices.Contains(value) ||
                 Identity(value.Value) == Identity(Value)) return;
             Value = value.Value;
@@ -132,9 +137,12 @@ public sealed class PluginConfigOption : ObservableObject
         RefreshChoices();
     }
 
-    private string Identity(string value) => UsesGamepadChoices ? GamepadButtonCatalog.Role(value).ToUpperInvariant() :
-        Kind == PluginConfigValueKind.Key && int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var key)
-            ? key.ToString(CultureInfo.InvariantCulture) : value;
+    private string Identity(string value) => UsesGamepadChoices
+        ? GamepadButtonCatalog.Role(value).ToUpperInvariant()
+        : Kind == PluginConfigValueKind.Key &&
+          int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var key)
+            ? key.ToString(CultureInfo.InvariantCulture)
+            : value;
 
     private void RefreshChoices()
     {
@@ -142,15 +150,20 @@ public sealed class PluginConfigOption : ObservableObject
         try
         {
             var choices = Kind == PluginConfigValueKind.Key
-                ? VirtualKeyCatalog.Keys.Select(key => new PluginConfigChoice(key.KeyCode.ToString(CultureInfo.InvariantCulture), key.KeyName)).ToList()
+                ? VirtualKeyCatalog.Keys.Select(key =>
+                    new PluginConfigChoice(key.KeyCode.ToString(CultureInfo.InvariantCulture), key.KeyName)).ToList()
                 : (UsesGamepadChoices ? GamepadButtonCatalog.Create(_gamepadFamilies) : _staticChoices).ToList();
             if (!choices.Any(choice => Identity(choice.Value) == Identity(Value)))
-                choices.Add(new PluginConfigChoice(Value, Kind == PluginConfigValueKind.Key ? $"Custom({Value})" : Value));
+                choices.Add(new PluginConfigChoice(Value,
+                    Kind == PluginConfigValueKind.Key ? $"Custom({Value})" : Value));
             _choices = choices;
             OnPropertyChanged(nameof(Choices));
             OnPropertyChanged(nameof(SelectedChoice));
         }
-        finally { _refreshingChoices = false; }
+        finally
+        {
+            _refreshingChoices = false;
+        }
     }
 
     private static IReadOnlyList<PluginConfigChoice> ParseChoices(string json)
@@ -159,14 +172,22 @@ public sealed class PluginConfigOption : ObservableObject
         {
             var entries = JsonSerializer.Deserialize<List<ChoiceMetadata>>(json,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return entries?.Where(entry => entry?.Value != null && !entry.Value.Contains('\r') && !entry.Value.Contains('\n'))
-                .Select(entry => new PluginConfigChoice(entry.Value!, string.IsNullOrEmpty(entry.Label) ? entry.Value! : entry.Label))
-                .DistinctBy(entry => entry.Value, StringComparer.Ordinal).ToArray() ?? Array.Empty<PluginConfigChoice>();
+            return entries?.Where(entry =>
+                           entry?.Value != null && !entry.Value.Contains('\r') && !entry.Value.Contains('\n'))
+                       .Select(entry =>
+                           new PluginConfigChoice(entry.Value!,
+                               string.IsNullOrEmpty(entry.Label) ? entry.Value! : entry.Label))
+                       .DistinctBy(entry => entry.Value, StringComparer.Ordinal).ToArray() ??
+                   Array.Empty<PluginConfigChoice>();
         }
-        catch (JsonException) { return Array.Empty<PluginConfigChoice>(); }
+        catch (JsonException)
+        {
+            return Array.Empty<PluginConfigChoice>();
+        }
     }
 
     private sealed record ChoiceMetadata(string? Value, string? Label);
+
     public double Minimum => Kind == PluginConfigValueKind.Integer ? int.MinValue : double.MinValue;
     public double Maximum => Kind == PluginConfigValueKind.Integer ? int.MaxValue : double.MaxValue;
     public double SmallChange => Kind == PluginConfigValueKind.Number ? 0.1 : 1;
@@ -183,12 +204,10 @@ public sealed class PluginConfigOption : ObservableObject
                 OnPropertyChanged(nameof(KeyNumberValue));
                 if (Kind is PluginConfigValueKind.Key or PluginConfigValueKind.Enumeration)
                 {
-                    // SelectionChanged is still running when the two-way binding
-                    // writes Value. Keep its source/items alive for normal choices.
                     if (_choices.Any(choice => Identity(choice.Value) == Identity(Value)))
                         OnPropertyChanged(nameof(SelectedChoice));
                     else
-                        RefreshChoices(); // External/numeric edits may introduce a new value.
+                        RefreshChoices();
                 }
             }
         }

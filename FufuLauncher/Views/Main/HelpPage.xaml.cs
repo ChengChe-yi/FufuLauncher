@@ -70,8 +70,10 @@ public sealed partial class HelpPage : Page
             return;
 
         var dark = ActualTheme == ElementTheme.Dark;
-        var meta = new HelpDocumentMeta(ViewModel.CurrentTitle, ViewModel.CurrentCategory, ViewModel.CurrentAuthor, ViewModel.CurrentDate);
-        var html = HelpDocumentRenderer.Render(ViewModel.MarkdownContent, meta, ViewModel.MarkdownUriPrefix, dark, AccentColor);
+        var meta = new HelpDocumentMeta(ViewModel.CurrentTitle, ViewModel.CurrentCategory, ViewModel.CurrentAuthor,
+            ViewModel.CurrentDate);
+        var html = HelpDocumentRenderer.Render(ViewModel.MarkdownContent, meta, ViewModel.MarkdownUriPrefix, dark,
+            AccentColor);
 
         core.NavigateToString(html);
     }
@@ -80,7 +82,8 @@ public sealed partial class HelpPage : Page
     {
         get
         {
-            if (Application.Current.Resources.TryGetValue("SystemAccentColor", out var value) && value is Windows.UI.Color color)
+            if (Application.Current.Resources.TryGetValue("SystemAccentColor", out var value) &&
+                value is Windows.UI.Color color)
                 return $"#{color.R:X2}{color.G:X2}{color.B:X2}";
 
             return ActualTheme == ElementTheme.Dark ? "#4CC2FF" : "#005FB8";
@@ -118,7 +121,8 @@ public sealed partial class HelpPage : Page
             : Windows.UI.Color.FromArgb(255, 251, 251, 251);
 
         if (HelpDocumentRenderer.HasCustomFont)
-            core.SetVirtualHostNameToFolderMapping("fufu.fonts", HelpDocumentRenderer.CustomFontDirectory, CoreWebView2HostResourceAccessKind.Allow);
+            core.SetVirtualHostNameToFolderMapping("fufu.fonts", HelpDocumentRenderer.CustomFontDirectory,
+                CoreWebView2HostResourceAccessKind.Allow);
 
         core.NavigationStarting += (sender, e) =>
         {

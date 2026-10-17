@@ -342,7 +342,6 @@ public class ScreenshotService : IScreenshotService, IDisposable
             }
             catch
             {
-                // ignored
             }
 
             var tcs = new TaskCompletionSource<Direct3D11CaptureFrame>();
@@ -530,22 +529,19 @@ public class ScreenshotService : IScreenshotService, IDisposable
         IntPtr GetInterface([In] ref Guid iid);
     }
 
-    /// <summary>
-    ///     创建一个正确的 WinRT IDirect3DDevice，使用 CsWinRT interop 兼容的方式
-    /// </summary>
+
     private static IDirect3DDevice CreateDirect3DDevice()
     {
         try
         {
-            // 创建 D3D11 设备
             var hr = D3D11CreateDevice(
                 IntPtr.Zero,
-                1, // D3D_DRIVER_TYPE_HARDWARE
+                1,
                 IntPtr.Zero,
-                0x20, // D3D11_CREATE_DEVICE_BGRA_SUPPORT
+                0x20,
                 null,
                 0,
-                7, // D3D11_SDK_VERSION
+                7,
                 out var d3dDevice,
                 out _,
                 out var immediateContext);
@@ -555,7 +551,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
                 Debug.WriteLine($"[截图服务] D3D11CreateDevice HARDWARE 失败, HRESULT: 0x{hr:X8}");
                 hr = D3D11CreateDevice(
                     IntPtr.Zero,
-                    5, // D3D_DRIVER_TYPE_WARP
+                    5,
                     IntPtr.Zero,
                     0x20,
                     null,
@@ -575,7 +571,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
             if (immediateContext != IntPtr.Zero)
                 Marshal.Release(immediateContext);
 
-            // 获取 IDXGIDevice
+
             var iidDxgi = new Guid("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
             hr = Marshal.QueryInterface(d3dDevice, ref iidDxgi, out var dxgiDevice);
             Marshal.Release(d3dDevice);
@@ -586,7 +582,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
                 return null;
             }
 
-            // 使用 CreateDirect3D11DeviceFromDXGIDevice 创建 WinRT inspectable
+
             var inspectable = IntPtr.Zero;
             var funcPtr = GetCreateDirect3DDeviceFuncPtr();
 
@@ -604,7 +600,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
                 return null;
             }
 
-            // 使用 CsWinRT 的 MarshalInterface 正确包装为 IDirect3DDevice
+
             var winrtDevice = MarshalIDirect3DDevice(inspectable);
             Marshal.Release(inspectable);
 
@@ -626,14 +622,11 @@ public class ScreenshotService : IScreenshotService, IDisposable
     {
         try
         {
-            // 尝试使用 WinRT.MarshalInterface 来正确创建 CsWinRT 包装
-            // IDirect3DDevice 的 IID: A37624AB-8D5F-4650-9D3E-9EAE3D9BC670
             var iidDirect3DDevice = new Guid("A37624AB-8D5F-4650-9D3E-9EAE3D9BC670");
             Marshal.QueryInterface(inspectable, ref iidDirect3DDevice, out var devicePtr);
 
             if (devicePtr != IntPtr.Zero)
             {
-                // 使用 WinRT.MarshalInterface<IDirect3DDevice>.FromAbi 来获取正确的 CsWinRT projection
                 var device = WinRT.MarshalInterface<IDirect3DDevice>.FromAbi(devicePtr);
                 Marshal.Release(devicePtr);
                 return device;
@@ -649,7 +642,6 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
     private static IntPtr GetCreateDirect3DDeviceFuncPtr()
     {
-        // 尝试从多个可能的 DLL 中加载 CreateDirect3D11DeviceFromDXGIDevice
         string[] dlls = { "d3d11.dll", "api-ms-win-gaming-deviceinformation-l1-1-0.dll" };
         foreach (var dll in dlls)
         {

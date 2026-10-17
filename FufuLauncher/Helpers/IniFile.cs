@@ -66,7 +66,8 @@ public class IniFile
         SaveToFile(lines);
     }
 
-    public void UpdateMultiple(Dictionary<string, Dictionary<string, string>> updates, CancellationToken cancellationToken = default)
+    public void UpdateMultiple(Dictionary<string, Dictionary<string, string>> updates,
+        CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
         if (!File.Exists(_path))
@@ -86,10 +87,12 @@ public class IniFile
             {
                 return;
             }
+
             foreach (var value in currentUpdates)
             {
                 output.Add($"{value.Key} = {value.Value}");
             }
+
             currentUpdates.Clear();
         }
 

@@ -29,7 +29,7 @@ namespace FufuLauncher.Models.GameAnnouncement
 
                 DateTimeOffset now = DateTimeOffset.UtcNow;
 
-                // 尚未开始
+
                 if (StartTime > now)
                 {
                     TimeSpan span = StartTime - now;

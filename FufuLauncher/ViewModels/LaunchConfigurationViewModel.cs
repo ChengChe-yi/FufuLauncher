@@ -9,7 +9,6 @@ using Microsoft.UI.Dispatching;
 
 namespace FufuLauncher.ViewModels;
 
-// Both launch configuration pages bind to this shared instance and the existing setting keys.
 public partial class LaunchConfigurationViewModel : ObservableObject
 {
     private readonly ILocalSettingsService _localSettingsService;
@@ -22,7 +21,9 @@ public partial class LaunchConfigurationViewModel : ObservableObject
     private Task? _loadTask;
 
     public record MonitorItem(string DisplayName, int Index);
+
     public record PostLaunchBehaviorItem(string DisplayName, PostLaunchBehavior Value);
+
     public record InjectionModuleItem(string DisplayName, string Id);
 
     [ObservableProperty] private bool _isCustomLaunchParametersEnabled;
@@ -43,21 +44,34 @@ public partial class LaunchConfigurationViewModel : ObservableObject
     [ObservableProperty] private bool _isRedeemCodeNotificationEnabled = true;
     [ObservableProperty] private bool _isReady;
 
-    public List<PostLaunchBehaviorItem> PostLaunchBehaviorItems { get; } = new()
+    public List<PostLaunchBehaviorItem> PostLaunchBehaviorItems
+    {
+        get;
+    } = new()
     {
         new("不变", Models.PostLaunchBehavior.None),
         new("最小化到托盘", Models.PostLaunchBehavior.MinimizeToTray),
         new("保存状态并退出", Models.PostLaunchBehavior.Exit)
     };
 
-    public List<InjectionModuleItem> InjectionModules { get; } = new()
+    public List<InjectionModuleItem> InjectionModules
+    {
+        get;
+    } = new()
     {
         new("InjectionBuiltIn".GetLocalized(), "DLL"),
         new("InjectionStandalone".GetLocalized(), "EXE")
     };
 
-    public IRelayCommand<string> SetResolutionPresetCommand { get; }
-    public IAsyncRelayCommand ResetGameExeNameCommand { get; }
+    public IRelayCommand<string> SetResolutionPresetCommand
+    {
+        get;
+    }
+
+    public IAsyncRelayCommand ResetGameExeNameCommand
+    {
+        get;
+    }
 
     public LaunchConfigurationViewModel(ILocalSettingsService localSettingsService,
         IGameLauncherService gameLauncherService, AccountManager accountManager,
@@ -106,12 +120,14 @@ public partial class LaunchConfigurationViewModel : ObservableObject
 
             var behavior = await _localSettingsService.ReadSettingAsync("PostLaunchBehavior");
             PostLaunchBehavior = Enum.TryParse<PostLaunchBehavior>(behavior?.ToString(), out var parsed)
-                && PostLaunchBehaviorItems.Any(item => item.Value == parsed) ? parsed : Models.PostLaunchBehavior.None;
+                                 && PostLaunchBehaviorItems.Any(item => item.Value == parsed)
+                ? parsed
+                : Models.PostLaunchBehavior.None;
             SelectedPostLaunchBehaviorItem = PostLaunchBehaviorItems.First(item => item.Value == PostLaunchBehavior);
 
             var module = await _localSettingsService.ReadSettingAsync("InjectionModule");
             SelectedInjectionModule = InjectionModules.FirstOrDefault(item => item.Id == module?.ToString())
-                ?? InjectionModules[0];
+                                      ?? InjectionModules[0];
 
             var hoyolab = await _localSettingsService.ReadSettingAsync("UsingHoyolabAccount");
             IsUsingHoyolabAccount = hoyolab != null && Convert.ToBoolean(hoyolab);

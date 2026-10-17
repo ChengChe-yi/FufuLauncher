@@ -81,7 +81,6 @@ namespace FufuLauncher.Helpers
             }
             catch
             {
-                // ignored
             }
 
             return numeric;

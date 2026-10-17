@@ -15,7 +15,6 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace FufuLauncher.Views;
 
-// MainPage 主文件：仅保留构造、属性与页面生命周期；功能实现按区域拆分至同目录 MainPage.*.cs 分部文件。
 public sealed partial class MainPage : Page
 {
     private bool _isInitialized;

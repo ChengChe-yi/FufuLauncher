@@ -7,7 +7,6 @@ using System.Globalization;
 
 namespace FufuLauncher.Services;
 
-// Only the documented login pages are accepted. No endpoint is taken from QR content.
 internal sealed record MiyousheLoginQr(
     string Ticket,
     string TokenTypes,

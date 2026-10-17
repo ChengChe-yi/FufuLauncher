@@ -50,7 +50,7 @@ public class CommunityCheckinService : ICommunityCheckinService
             var deviceInfo = await LoadDeviceInfoAsync();
             var stokenCookie = account.GetStokenCookie();
 
-            // 1. Get task state
+
             Debug.WriteLine($"[社区签到] 账号 {account.Nickname}({account.Uid}): 正在获取任务状态");
             var taskState = await GetTaskStateAsync(account.Cookie);
             if (taskState == null)
@@ -77,7 +77,7 @@ public class CommunityCheckinService : ICommunityCheckinService
 
             var headers = BuildHeaders(stokenCookie, deviceInfo);
 
-            // 2. Community sign
+
             if (signEnabled && taskFlags["sign"] == 0)
             {
                 var signResult = await CommunitySignAsync(headers, account.Uid);
@@ -92,7 +92,7 @@ public class CommunityCheckinService : ICommunityCheckinService
                 result.SkippedCount++;
             }
 
-            // 3. Get posts
+
             var posts = await GetPostsAsync(headers);
             if (posts == null || posts.Count == 0)
             {
@@ -100,7 +100,6 @@ public class CommunityCheckinService : ICommunityCheckinService
             }
             else
             {
-                // 4. Read posts
                 if (readEnabled && taskFlags["read"] == 0)
                 {
                     int readNum = taskFlags["read_num"];
@@ -117,7 +116,7 @@ public class CommunityCheckinService : ICommunityCheckinService
                     result.SkippedCount++;
                 }
 
-                // 5. Like posts
+
                 if (likeEnabled && taskFlags["like"] == 0)
                 {
                     int likeNum = taskFlags["like_num"];
@@ -134,7 +133,7 @@ public class CommunityCheckinService : ICommunityCheckinService
                     result.SkippedCount++;
                 }
 
-                // 6. Share posts
+
                 if (shareEnabled && taskFlags["share"] == 0)
                 {
                     var shareResult = await SharePostAsync(headers, posts[0]);
@@ -150,7 +149,7 @@ public class CommunityCheckinService : ICommunityCheckinService
                 }
             }
 
-            // Final state check
+
             var finalState = await GetTaskStateAsync(account.Cookie);
             if (finalState != null)
             {
@@ -462,13 +461,12 @@ public class CommunityCheckinService : ICommunityCheckinService
         {
             try
             {
-                // Like
                 var likeBody = JsonSerializer.Serialize(new { post_id = postId, is_cancel = false });
                 var data = await PostJsonAsync(GenshinApiEndpoints.BbsLikeUrl, likeBody, headers);
                 if (data != null && TryGetString(data, "message") == "OK")
                 {
                     details.Add(string.Format("CheckinCommunity_LikeSuccess".GetLocalized(), title));
-                    // Cancel like
+
                     await DelayAsync();
                     var cancelBody = JsonSerializer.Serialize(new { post_id = postId, is_cancel = true });
                     await PostJsonAsync(GenshinApiEndpoints.BbsLikeUrl, cancelBody, headers);
@@ -561,7 +559,7 @@ public class CommunityCheckinService : ICommunityCheckinService
                     request.Headers.Referrer = new Uri(value);
                     break;
                 case "content-type":
-                    break; // handled by StringContent
+                    break;
                 default:
                     request.Headers.TryAddWithoutValidation(key, value);
                     break;

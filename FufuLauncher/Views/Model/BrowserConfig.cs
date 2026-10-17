@@ -54,7 +54,6 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                // ignored
             }
 
             return new BrowserConfig();
@@ -70,7 +69,6 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                // ignored
             }
         }
     }

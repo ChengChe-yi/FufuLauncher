@@ -72,7 +72,7 @@ public partial class MainViewModel
         {
             var roleService = App.GetService<GameRoleService>();
             var accountId = App.GetService<AccountManager>().ActiveAccountId;
-            // 自动签到先按社区账号执行，避免原神角色加载失败阻断其他游戏。
+
             await TryAutoCheckinAsync(version, accountId);
             if (version != _checkinStatusVersion) return;
             var selected = await roleService.GetCurrentAsync();
@@ -92,7 +92,6 @@ public partial class MainViewModel
             CheckinStatusText = status;
             CheckinSummary = summary;
             UpdateCheckinIconState(status);
-
         }
         catch (Exception ex)
         {
@@ -110,7 +109,7 @@ public partial class MainViewModel
         if (version != _checkinStatusVersion ||
             App.GetService<AccountManager>().ActiveAccountId != accountId ||
             !bool.TryParse(enabled?.ToString(), out bool isEnabled) || !isEnabled) return;
-        // 原神已签或未绑定原神，都不能代表其他游戏已完成签到。
+
         _hasAttemptedAutoCheckin = true;
         await ExecuteCheckinAsync();
     }
@@ -122,7 +121,6 @@ public partial class MainViewModel
         CheckinStatusText = "Checkin_CheckingIn".GetLocalized();
         CheckinSummary = "Checkin_Executing".GetLocalized();
 
-        //await RefreshSettingsAsync();
 
         try
         {

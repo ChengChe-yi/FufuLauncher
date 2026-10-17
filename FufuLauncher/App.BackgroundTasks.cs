@@ -64,8 +64,7 @@ public partial class App
             result.Reason,
             result.AppealUrl);
 
-        // MB_YESNO lets the blocked user jump straight to the appeal channel
-        // before the process exits, instead of hitting a dead end.
+
         var choice = MessageBox(
             IntPtr.Zero,
             message,
@@ -86,8 +85,6 @@ public partial class App
     {
         try
         {
-            // Close the shell if it was already created; before that point there is
-            // nothing to close and OnLaunched returns without building one.
             var window = MainWindow;
             if (window != null)
             {
@@ -109,7 +106,7 @@ public partial class App
             Debug.WriteLine($"[BanCheck] 调度关闭失败 - {ex.Message}");
         }
 
-        // Give queued settings writes a brief window to complete.
+
         await Task.Delay(150);
 
         Environment.Exit(BanCheckExitCode);

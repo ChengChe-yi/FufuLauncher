@@ -31,6 +31,7 @@ public sealed partial class PluginSettingsPage
             ring.IsActive = source != null;
             ring.Visibility = source != null ? Visibility.Visible : Visibility.Collapsed;
         }
+
         image.Source = source;
         if (source == null)
         {
@@ -53,6 +54,7 @@ public sealed partial class PluginSettingsPage
         {
             image.Source = null;
         }
+
         if (grid.FindName("LoadingRing") is ProgressRing ring)
         {
             ring.IsActive = false;

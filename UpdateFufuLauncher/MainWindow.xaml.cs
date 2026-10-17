@@ -348,7 +348,7 @@ namespace Updater
             }
             else
             {
-                // Skip mirror testing, directly download from GitHub
+                
                 SubtitleText.Text = directSubtitle;
                 StartMultiThreadDownload(_targetExeUrl);
             }
@@ -510,7 +510,7 @@ namespace Updater
             var tagsResponse = await _httpClient.GetStringAsync(tagsUrl);
             JArray tags = JArray.Parse(tagsResponse);
 
-            // 服务器字段可能已带 Pre-release 后缀，先去掉再拼 tag，避免双重后缀
+            
             string previewTagName = $"{StripPreReleaseSuffix(previewVersionStr)}Pre-release";
             JToken matchedTag = tags.FirstOrDefault(t => string.Equals(t["name"]?.ToString(), previewTagName, StringComparison.OrdinalIgnoreCase));
 
@@ -537,7 +537,7 @@ namespace Updater
             _targetExeUrl = targetAsset["browser_download_url"]!.ToString();
             _fileName = targetAsset["name"]!.ToString();
 
-            // 从 GitHub API 的 asset 元数据中提取 SHA-256 哈希（格式: "sha256:xxxxx"）
+            
             string digest = targetAsset["digest"]?.ToString();
             if (!string.IsNullOrEmpty(digest) && digest.StartsWith("sha256:", StringComparison.OrdinalIgnoreCase))
             {

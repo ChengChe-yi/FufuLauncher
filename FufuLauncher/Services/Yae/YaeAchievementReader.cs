@@ -1,12 +1,6 @@
 /*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
-
-Yae 成就读取编排：
-- 主进程：校验游戏状态 → 获取 Yae 元数据 → 计算游戏哈希 → 解析 RVA 配置
-  → 写配置文件 → runas 启动提权子进程（--yae-inject）→ 读取 UIAF 结果。
-- 提权子进程：读配置 → 建管道 → 注入 Yae DLL → 收集数据 → 解析 → 写 UIAF 结果文件。
-架构复用背包功能的"提权子进程 + 配置文件/结果文件交换"模式。
 */
 
 using System.ComponentModel;
@@ -27,9 +21,7 @@ public static class YaeAchievementReader
         public const int Unexpected = 5;
     }
 
-    /// <summary>
-    ///     通过 Embedded Yae 从游戏内导入成就并返回 UIAF 结果（主进程入口）。
-    /// </summary>
+
     public static async Task<YaeUiafResult?> ReadAchievementsAsync(string gameExePath,
         CancellationToken cancellationToken = default)
     {
@@ -43,8 +35,7 @@ public static class YaeAchievementReader
             throw new ApplicationException("未找到游戏主程序，请在设置中确认游戏安装目录。");
         }
 
-        // 直接注入安装目录下的 YaeAchievementLib.dll，与背包模块（modules\backpack.dll）一致，
-        // 不做 AppData 临时拷贝。
+
         var dllPath = ResolveYaeDll()
                       ?? throw new ApplicationException("未找到 YaeAchievementLib.dll 组件，请重新安装本程序。");
 
@@ -131,9 +122,7 @@ public static class YaeAchievementReader
         }
     }
 
-    /// <summary>
-    ///     提权子进程入口（--yae-inject）。
-    /// </summary>
+
     public static int RunElevatedInjection(string configFile)
     {
         string? errorFilePath = null;

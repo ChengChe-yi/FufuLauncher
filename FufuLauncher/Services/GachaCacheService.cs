@@ -89,7 +89,7 @@ public static class GachaCacheService
                         Consider(match.Value, file.LastWriteTimeUtc);
                     }
 
-                    // Preserve a split "https://" prefix as well as a URL split across buffers.
+
                     if (tail.Length == 0) tail = text[^Math.Min(7, text.Length)..];
                 }
 
@@ -108,7 +108,7 @@ public static class GachaCacheService
             }
         }
 
-        // An unreadable newer cache could contain another account; do not silently use an older link.
+
         if (readError != null && (!readAnyFile || unreadFileTime >= latestFileTime)) throw readError;
         return latest;
 

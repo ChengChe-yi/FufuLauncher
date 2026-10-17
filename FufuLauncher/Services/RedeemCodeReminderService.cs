@@ -24,10 +24,7 @@ namespace FufuLauncher.Helpers
             _localSettingsService = localSettingsService;
         }
 
-        /// <summary>
-        ///     检查兑换码是否有变更，如有则即时推送通知（发布触发）。
-        ///     同时保留辅助的"最后一天"提醒功能。
-        /// </summary>
+
         public async Task CheckRedeemCodesAsync(Action<NotificationMessage> showNotificationAction)
         {
             try
@@ -42,19 +39,19 @@ namespace FufuLauncher.Helpers
                     isOs = dir != null && System.IO.File.Exists(System.IO.Path.Combine(dir, "GenshinImpact.exe"));
                 }
 
-                // 获取当前兑换码列表
+
                 var codesList = await FetchRedeemCodesAsync(isOs);
                 if (codesList == null || codesList.Count == 0)
                     return;
 
-                // 计算所有兑换码的指纹（用于检测变更）
+
                 var currentFingerprint = ComputeFingerprint(codesList);
                 var lastFingerprintObj = await _localSettingsService.ReadSettingAsync(FingerprintSettingKey);
                 var lastFingerprint = lastFingerprintObj?.ToString();
 
                 var todayStr = DateTime.Now.ToString("yyyy-MM-dd");
 
-                // 1. 首次运行（指纹为空）→ 仅注册，不通知
+
                 if (string.IsNullOrEmpty(lastFingerprint))
                 {
                     await _localSettingsService.SaveSettingAsync(FingerprintSettingKey, currentFingerprint);
@@ -62,16 +59,16 @@ namespace FufuLauncher.Helpers
                     return;
                 }
 
-                // 2. 检测是否有变更 → 发布触发通知
+
                 if (lastFingerprint != currentFingerprint)
                 {
                     await NotifyNewCodesAsync(codesList, showNotificationAction);
                     await _localSettingsService.SaveSettingAsync(FingerprintSettingKey, currentFingerprint);
                     Debug.WriteLine("[RedeemCodes] 兑换码有变更，已推送通知");
-                    return; // 有变更时不再触发辅助提醒
+                    return;
                 }
 
-                // 3. 无变更 → 辅助提醒：检查今天过期的兑换码（原"最后一天"提醒）
+
                 await CheckExpiringTodayAsync(codesList, todayStr, showNotificationAction);
             }
             catch (Exception ex)
@@ -80,9 +77,7 @@ namespace FufuLauncher.Helpers
             }
         }
 
-        /// <summary>
-        ///     从 API 获取兑换码列表
-        /// </summary>
+
         private async Task<List<RedeemCodeItem>?> FetchRedeemCodesAsync(bool isOs)
         {
             using var client = new HttpClient();
@@ -115,9 +110,7 @@ namespace FufuLauncher.Helpers
             }
         }
 
-        /// <summary>
-        ///     计算兑换码列表的 SHA256 指纹
-        /// </summary>
+
         private static string ComputeFingerprint(List<RedeemCodeItem> codes)
         {
             var sb = new StringBuilder();
@@ -142,26 +135,22 @@ namespace FufuLauncher.Helpers
             return Convert.ToHexString(bytes).ToLowerInvariant();
         }
 
-        /// <summary>
-        ///     计算有效期倒计时文本
-        /// </summary>
+
         private static string FormatRemainingTime(string? validStr)
         {
             if (string.IsNullOrEmpty(validStr))
                 return "Status_Unknown".GetLocalized();
 
-            // 尝试解析日期范围，例如 "2024-01-01 ~ 2024-01-03" 或 "2024-01-01"
+
             var match = System.Text.RegularExpressions.Regex.Match(validStr, @"(\d{4}[-/]\d{1,2}[-/]\d{1,2})");
             if (!match.Success)
                 return validStr;
 
             if (DateTime.TryParse(match.Groups[1].Value, out var endDate))
             {
-                // 如果取到的是开始日期，尝试找结束日期
                 var matches = System.Text.RegularExpressions.Regex.Matches(validStr, @"(\d{4}[-/]\d{1,2}[-/]\d{1,2})");
                 if (matches.Count >= 2)
                 {
-                    // 用第二个日期作为结束日期
                     if (DateTime.TryParse(matches[1].Value, out var secondDate))
                         endDate = secondDate;
                 }
@@ -182,13 +171,10 @@ namespace FufuLauncher.Helpers
             return validStr;
         }
 
-        /// <summary>
-        ///     推送新兑换码发布通知
-        /// </summary>
+
         private static async Task NotifyNewCodesAsync(List<RedeemCodeItem> codes,
             Action<NotificationMessage> showNotificationAction)
         {
-            // 只取前几个活动，避免通知过长
             var recentCodes = codes.Take(5).ToList();
 
             var lines = new List<string>();
@@ -218,16 +204,14 @@ namespace FufuLauncher.Helpers
             await Task.CompletedTask;
         }
 
-        /// <summary>
-        ///     辅助提醒：检查今天过期的兑换码（原"最后一天"提醒，降级为辅助）
-        /// </summary>
+
         private async Task CheckExpiringTodayAsync(List<RedeemCodeItem> codes, string todayStr,
             Action<NotificationMessage> showNotificationAction)
         {
             var lastRemindedObj = await _localSettingsService.ReadSettingAsync(LastReminderDateSettingKey);
             if (lastRemindedObj != null && lastRemindedObj.ToString() == todayStr)
             {
-                return; // 今天已提醒过
+                return;
             }
 
             var todaysCodes = codes.Where(c =>

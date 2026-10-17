@@ -111,7 +111,6 @@ public sealed class DataCenterPdfReportService : IDataCenterPdfReportService
             }
             catch (Exception)
             {
-                // ignored
             }
         });
 

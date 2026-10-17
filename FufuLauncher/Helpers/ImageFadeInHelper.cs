@@ -59,10 +59,14 @@ public static class ImageFadeInHelper
     private static UISettings? _uiSettings;
 
     public static bool GetIsFadeInEnabled(DependencyObject obj) => (bool)obj.GetValue(IsFadeInEnabledProperty);
-    public static void SetIsFadeInEnabled(DependencyObject obj, bool value) => obj.SetValue(IsFadeInEnabledProperty, value);
+
+    public static void SetIsFadeInEnabled(DependencyObject obj, bool value) =>
+        obj.SetValue(IsFadeInEnabledProperty, value);
 
     public static int GetDurationMilliseconds(DependencyObject obj) => (int)obj.GetValue(DurationMillisecondsProperty);
-    public static void SetDurationMilliseconds(DependencyObject obj, int value) => obj.SetValue(DurationMillisecondsProperty, value);
+
+    public static void SetDurationMilliseconds(DependencyObject obj, int value) =>
+        obj.SetValue(DurationMillisecondsProperty, value);
 
     public static bool GetEnableRetry(DependencyObject obj) => (bool)obj.GetValue(EnableRetryProperty);
     public static void SetEnableRetry(DependencyObject obj, bool value) => obj.SetValue(EnableRetryProperty, value);
@@ -70,11 +74,17 @@ public static class ImageFadeInHelper
     public static int GetMaxRetries(DependencyObject obj) => (int)obj.GetValue(MaxRetriesProperty);
     public static void SetMaxRetries(DependencyObject obj, int value) => obj.SetValue(MaxRetriesProperty, value);
 
-    public static int GetRetryDelayMilliseconds(DependencyObject obj) => (int)obj.GetValue(RetryDelayMillisecondsProperty);
-    public static void SetRetryDelayMilliseconds(DependencyObject obj, int value) => obj.SetValue(RetryDelayMillisecondsProperty, value);
+    public static int GetRetryDelayMilliseconds(DependencyObject obj) =>
+        (int)obj.GetValue(RetryDelayMillisecondsProperty);
 
-    public static Microsoft.UI.Xaml.Media.ImageSource? GetFallbackSource(DependencyObject obj) => (Microsoft.UI.Xaml.Media.ImageSource?)obj.GetValue(FallbackSourceProperty);
-    public static void SetFallbackSource(DependencyObject obj, Microsoft.UI.Xaml.Media.ImageSource? value) => obj.SetValue(FallbackSourceProperty, value);
+    public static void SetRetryDelayMilliseconds(DependencyObject obj, int value) =>
+        obj.SetValue(RetryDelayMillisecondsProperty, value);
+
+    public static Microsoft.UI.Xaml.Media.ImageSource? GetFallbackSource(DependencyObject obj) =>
+        (Microsoft.UI.Xaml.Media.ImageSource?)obj.GetValue(FallbackSourceProperty);
+
+    public static void SetFallbackSource(DependencyObject obj, Microsoft.UI.Xaml.Media.ImageSource? value) =>
+        obj.SetValue(FallbackSourceProperty, value);
 
     private static void OnIsFadeInEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -107,7 +117,8 @@ public static class ImageFadeInHelper
         image.ImageOpened += OnImageOpened;
         image.ImageFailed += OnImageFailed;
         state.SourceCallbackToken = image.RegisterPropertyChangedCallback(Image.SourceProperty, OnSourceChanged);
-        state.VisibilityCallbackToken = image.RegisterPropertyChangedCallback(UIElement.VisibilityProperty, OnVisibilityChanged);
+        state.VisibilityCallbackToken =
+            image.RegisterPropertyChangedCallback(UIElement.VisibilityProperty, OnVisibilityChanged);
 
         if (image.Source != null)
         {
@@ -187,10 +198,12 @@ public static class ImageFadeInHelper
         {
             return bmp.UriSource;
         }
+
         if (source is SvgImageSource svg)
         {
             return svg.UriSource;
         }
+
         return null;
     }
 
@@ -229,6 +242,7 @@ public static class ImageFadeInHelper
             state.RetryTimer = null;
             state.OriginalUri = ExtractUri(image.Source);
         }
+
         state.IsRetrying = false;
 
         image.Opacity = 0.0;
@@ -516,17 +530,76 @@ public static class ImageFadeInHelper
 
     private sealed class ImageFadeInState
     {
-        public bool IsAttached { get; set; }
-        public object? LastSource { get; set; }
-        public Uri? OriginalUri { get; set; }
-        public bool IsPendingOpen { get; set; }
-        public bool HasOpened { get; set; }
-        public bool IsRetrying { get; set; }
-        public int RetryCount { get; set; }
-        public DispatcherTimer? SafetyTimer { get; set; }
-        public DispatcherTimer? RetryTimer { get; set; }
-        public long SourceCallbackToken { get; set; }
-        public long VisibilityCallbackToken { get; set; }
-        public Storyboard? CurrentStoryboard { get; set; }
+        public bool IsAttached
+        {
+            get;
+            set;
+        }
+
+        public object? LastSource
+        {
+            get;
+            set;
+        }
+
+        public Uri? OriginalUri
+        {
+            get;
+            set;
+        }
+
+        public bool IsPendingOpen
+        {
+            get;
+            set;
+        }
+
+        public bool HasOpened
+        {
+            get;
+            set;
+        }
+
+        public bool IsRetrying
+        {
+            get;
+            set;
+        }
+
+        public int RetryCount
+        {
+            get;
+            set;
+        }
+
+        public DispatcherTimer? SafetyTimer
+        {
+            get;
+            set;
+        }
+
+        public DispatcherTimer? RetryTimer
+        {
+            get;
+            set;
+        }
+
+        public long SourceCallbackToken
+        {
+            get;
+            set;
+        }
+
+        public long VisibilityCallbackToken
+        {
+            get;
+            set;
+        }
+
+        public Storyboard? CurrentStoryboard
+        {
+            get;
+            set;
+        }
     }
 }

@@ -198,7 +198,6 @@ namespace FufuLauncher.ViewModels
             }
             catch
             {
-                // ignored
             }
 
             UpdatePanelBackgroundBrush();

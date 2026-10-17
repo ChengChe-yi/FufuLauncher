@@ -131,5 +131,4 @@ public sealed partial class SettingsPage : Page
     }
 
     #endregion
-
 }

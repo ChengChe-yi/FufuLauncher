@@ -1,15 +1,12 @@
 /*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
-
-主进程与提权子进程交换的配置：22 行文本文件（路径/命令 ID/RVA/pb 字段号）。
 */
 
 using FufuLauncher.Services.Yae.Proto;
 
 namespace FufuLauncher.Services.Yae;
 
-/// <summary>主进程与提权子进程交换的配置。</summary>
 internal sealed class YaeReadConfig
 {
     public string GameExePath

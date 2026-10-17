@@ -166,7 +166,6 @@ public class MetadataRepository
         alterCommand.ExecuteNonQuery();
     }
 
-    // ---- Metadata (scraped items) ----
 
     public List<MetadataEntity> GetAllMetadata()
     {
@@ -205,7 +204,6 @@ public class MetadataRepository
         context.SaveChanges();
     }
 
-    // ---- GachaLogs ----
 
     public List<string> GetDistinctUids()
     {
@@ -281,7 +279,6 @@ public class MetadataRepository
         context.SaveChanges();
     }
 
-    // ---- GachaPoolMetadata ----
 
     public bool HasPoolMetadata()
     {

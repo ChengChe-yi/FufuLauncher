@@ -29,9 +29,7 @@ public static class YaeMetadataService
         Timeout = TimeSpan.FromSeconds(30),
     };
 
-    /// <summary>
-    ///     获取并解析 Yae 成就元数据。使用本地 ETag 缓存，若 CDN 不可用则回退到缓存。
-    /// </summary>
+
     public static async Task<AchievementInfo> GetMetadataAsync(CancellationToken cancellationToken = default)
     {
         var cacheDir = Path.Combine(AppPaths.CacheDir, "Yae");
@@ -55,7 +53,7 @@ public static class YaeMetadataService
             }
         }
 
-        // 所有镜像均失败时，尝试使用本地缓存（若已存在且可解析）。
+
         if (File.Exists(binPath))
         {
             try
@@ -72,9 +70,7 @@ public static class YaeMetadataService
         throw new ApplicationException(lastError ?? "无法获取 Yae 成就元数据，请检查网络连接。");
     }
 
-    /// <summary>
-    ///     计算游戏进程哈希：CRC-32 对 exe 前 0x10000 字节。
-    /// </summary>
+
     public static uint ComputeGameHash(string exePath)
     {
         try
@@ -90,9 +86,7 @@ public static class YaeMetadataService
         }
     }
 
-    /// <summary>
-    ///     根据游戏哈希解析目标版本的命令 ID 与 RVA 配置。
-    /// </summary>
+
     public static YaeNativeConfiguration Resolve(AchievementInfo metadata, uint gameHash)
     {
         if (!metadata.NativeConfig.MethodRva.TryGetValue(gameHash, out var rva))
@@ -148,13 +142,10 @@ public static class YaeMetadataService
         return bytes;
     }
 
-    /// <summary>
-    ///     Yae CDN 可能返回 GIF8 混淆的数据：异或 + Brotli 解压 + CRC 校验。
-    ///     普通 protobuf 响应原样返回。
-    /// </summary>
+
     private static byte[] DecryptIfNeeded(byte[] data)
     {
-        if (data.Length < 52 || BitConverter.ToUInt32(data, 0) != 0x38464947) // "GIF8"
+        if (data.Length < 52 || BitConverter.ToUInt32(data, 0) != 0x38464947)
         {
             return data;
         }

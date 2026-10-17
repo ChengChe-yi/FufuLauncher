@@ -5,10 +5,6 @@ Licensed under the MIT License.
 
 namespace FufuLauncher.Services.Yae;
 
-/// <summary>
-///     针对具体游戏版本解析出的原生配置：命令 ID + 方法 RVA 表。
-///     由 <see cref="YaeMetadataService" /> 根据游戏哈希从元数据中解析。
-/// </summary>
 public sealed class YaeNativeConfiguration
 {
     public uint StoreCmdId

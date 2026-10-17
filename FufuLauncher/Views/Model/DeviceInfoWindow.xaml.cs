@@ -81,7 +81,6 @@ public sealed partial class DeviceInfoWindow : Window
 
     private async Task InitializeAsync()
     {
-        // 设备身份为 App 级：与账号无关，展示机型供对照。
         var profile = _deviceService.Device;
         ScopeText.Text = $"{profile.Brand} {profile.Model} / Android {profile.OsVersion}";
         HeaderHintText.Text = "mihoyo_device.json";
@@ -177,7 +176,6 @@ public sealed partial class DeviceInfoWindow : Window
 
     private void OnRandomizeClick(object sender, RoutedEventArgs e)
     {
-        // 仅重新生成「身份原始值」；device_fp 由服务端签发，留空待注册回填。
         var created = MiHoYoDeviceIdentity.CreateNew();
         DeviceIdBox.Text = created.DeviceId;
         BbsDeviceIdBox.Text = created.BbsDeviceId;
@@ -200,7 +198,6 @@ public sealed partial class DeviceInfoWindow : Window
 
         try
         {
-            // 丢弃落盘身份并重新生成 + 注册。
             var identity = await _deviceFpService.ResetAndRegisterAsync();
             ApplyFingerprint(identity);
             SetStatus("DeviceInfo_ResetDone".GetLocalized());
@@ -218,7 +215,6 @@ public sealed partial class DeviceInfoWindow : Window
 
     private async void OnSaveClick(object sender, RoutedEventArgs e)
     {
-        // device_id 必须为 16 位 hex。
         string deviceId = DeviceIdBox.Text.Trim();
         if (!MiHoYoDeviceIdentity.IsValidDeviceId(deviceId))
         {
@@ -226,8 +222,7 @@ public sealed partial class DeviceInfoWindow : Window
             return;
         }
 
-        // seed_id / seed_time 也必须合法：否则下次读取会被判为不可用而重新生成，
-        // 用户这次保存的内容会被静默覆盖。
+
         string seedId = SeedIdBox.Text.Trim();
         if (!MiHoYoDeviceIdentity.IsValidSeedId(seedId))
         {

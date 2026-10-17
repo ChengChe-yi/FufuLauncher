@@ -462,7 +462,9 @@ namespace FufuLauncher.Views
                             UidComboBox.SelectedItem = ViewModel.SelectedUid;
                         if (ViewModel.HasGachaData && ViewModel.IsOverviewSelected)
                         {
-                            var target = ViewModel.IsCardViewMode ? (UIElement)OverviewCardScrollViewer : OverviewListScrollViewer;
+                            var target = ViewModel.IsCardViewMode
+                                ? (UIElement)OverviewCardScrollViewer
+                                : OverviewListScrollViewer;
                             PlaySectionTransition(target);
                         }
                     });
@@ -557,7 +559,9 @@ namespace FufuLauncher.Views
 
             var selectedIndex = ViewModel.IsHistorySelected
                 ? 2
-                : ViewModel.IsOverviewSelected ? 0 : 1;
+                : ViewModel.IsOverviewSelected
+                    ? 0
+                    : 1;
             _lastTabIndex = selectedIndex;
             if (GachaTabPivot.SelectedIndex == selectedIndex) return;
 
@@ -587,7 +591,9 @@ namespace FufuLauncher.Views
             if (selectedIndex == 0)
             {
                 showTask = ViewModel.ShowOverviewAsync();
-                targetElement = ViewModel.IsCardViewMode ? (UIElement)OverviewCardScrollViewer : OverviewListScrollViewer;
+                targetElement = ViewModel.IsCardViewMode
+                    ? (UIElement)OverviewCardScrollViewer
+                    : OverviewListScrollViewer;
             }
             else if (selectedIndex == 1)
             {

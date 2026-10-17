@@ -15,7 +15,8 @@ public static class PluginPresetStorage
 
     private static string ResolveDirectory(string root, string pluginFolderName) =>
         pluginFolderName.Equals(LightweightPluginService.MainPluginFolderName, StringComparison.OrdinalIgnoreCase)
-            ? root : Path.Combine(root, pluginFolderName);
+            ? root
+            : Path.Combine(root, pluginFolderName);
 
     public static IEnumerable<string> EnumerateFiles(string directory, bool includeLegacyMain = true)
     {
@@ -53,6 +54,7 @@ public static class PluginPresetStorage
                 Debug.WriteLine($"[PluginPresets] Preset read failed: {file}: {ex}");
             }
         }
+
         return result;
     }
 
@@ -76,6 +78,7 @@ public static class PluginPresetStorage
                 Debug.WriteLine($"[PluginPresets] Active state read failed: {file}: {ex}");
             }
         }
+
         return string.Empty;
     }
 

@@ -10,10 +10,10 @@ public enum GamepadFamilies
 
 public sealed record PluginConfigChoice(string Value, string Label);
 
-// The gamepad source defines shared roles; it has no plugin/file/section checks.
 public static class GamepadButtonCatalog
 {
     private sealed record Button(string Xbox, string DualSense);
+
     private static readonly Button[] Buttons =
     [
         new("None", "None"), new("View", "Create"), new("Menu", "Options"),
@@ -23,7 +23,7 @@ public static class GamepadButtonCatalog
         new("Up", "Up"), new("Down", "Down"), new("Left", "Left"), new("Right", "Right")
     ];
 
-    // Standard DualSense; other Sony products do not imply DS5 support.
+
     public static bool IsDualSense(ushort vendor, ushort product) => vendor == 0x054C && product == 0x0CE6;
 
     public static string Role(string value)
@@ -32,7 +32,8 @@ public static class GamepadButtonCatalog
         if (name.Length == 0) return "None";
         foreach (var button in Buttons)
             if (name.Equals(button.Xbox, StringComparison.OrdinalIgnoreCase) ||
-                name.Equals(button.DualSense, StringComparison.OrdinalIgnoreCase)) return button.Xbox;
+                name.Equals(button.DualSense, StringComparison.OrdinalIgnoreCase))
+                return button.Xbox;
         return name.ToUpperInvariant() switch
         {
             "BACK" or "SHARE" => "View",
@@ -46,10 +47,11 @@ public static class GamepadButtonCatalog
     public static IReadOnlyList<PluginConfigChoice> Create(GamepadFamilies families)
     {
         var dsOnly = families == GamepadFamilies.DualSense;
-        var combined = families == GamepadFamilies.None || families == (GamepadFamilies.Xbox | GamepadFamilies.DualSense);
+        var combined = families == GamepadFamilies.None ||
+                       families == (GamepadFamilies.Xbox | GamepadFamilies.DualSense);
         var choices = Buttons.Select(button => new PluginConfigChoice(dsOnly ? button.DualSense : button.Xbox,
             combined && button.Xbox != button.DualSense ? $"{button.Xbox} / {button.DualSense}" :
-                dsOnly ? button.DualSense : button.Xbox)).ToList();
+            dsOnly ? button.DualSense : button.Xbox)).ToList();
         if (families != GamepadFamilies.Xbox) choices.Add(new PluginConfigChoice("Touchpad", "Touchpad"));
         return choices;
     }

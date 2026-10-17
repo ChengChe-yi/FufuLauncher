@@ -25,7 +25,7 @@ public sealed partial class SettingsPage
     {
         var key = e.Key;
 
-        // 忽略单独的修饰键按下
+
         if (key == Windows.System.VirtualKey.Control ||
             key == Windows.System.VirtualKey.Shift ||
             key == Windows.System.VirtualKey.Menu ||

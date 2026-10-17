@@ -19,7 +19,6 @@ internal sealed class MiyousheQrLoginService : IDisposable
 
     internal MiyousheQrLoginService(HttpMessageHandler? handler = null)
     {
-        // Redirects must never forward account credentials to a host supplied by a response.
         _http = new HttpClient(handler ?? new HttpClientHandler { UseCookies = false, AllowAutoRedirect = false })
             { Timeout = TimeSpan.FromSeconds(20) };
         _deviceFp = Convert.ToHexString(MD5.HashData(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new
@@ -29,8 +28,7 @@ internal sealed class MiyousheQrLoginService : IDisposable
         })))).ToLowerInvariant();
     }
 
-    // Game SDK scan returns a passport QR. It does not authorize the target account yet.
-    // Protocol reference: loqwe/MHY_Scanner2, src/Core/MhyApi.hpp (PandaScanQRCode).
+
     internal async Task<MiyousheLoginQr> PrepareAsync(MiyousheLoginQr qr, CancellationToken cancellationToken)
     {
         if (qr.IsExpired) throw new MiyousheQrException("MiyousheQr_Expired");

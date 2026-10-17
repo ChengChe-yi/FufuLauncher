@@ -19,17 +19,15 @@ namespace FufuLauncher.Helpers
             {
                 if (string.IsNullOrWhiteSpace(hexColor))
                 {
-                    // If empty, we can try to revert to default system accent color, but in WinUI 3 it might be hard to reset cleanly without restart.
-                    // For now, if empty, we just don't override or set to a default fallback.
                     return;
                 }
 
                 Color color = ParseColor(hexColor);
 
-                // Set main accent color
+
                 Application.Current.Resources["SystemAccentColor"] = color;
 
-                // WinUI 3 often uses these variations
+
                 Application.Current.Resources["SystemAccentColorLight1"] = ChangeColorLightness(color, 0.15f);
                 Application.Current.Resources["SystemAccentColorLight2"] = ChangeColorLightness(color, 0.30f);
                 Application.Current.Resources["SystemAccentColorLight3"] = ChangeColorLightness(color, 0.45f);
@@ -39,7 +37,7 @@ namespace FufuLauncher.Helpers
 
                 Application.Current.Resources["AccentFillColorDefaultBrush"] = new SolidColorBrush(color);
 
-                // Need to toggle theme to force resource update across the app
+
                 if (App.MainWindow?.Content is FrameworkElement rootElement)
                 {
                     var currentTheme = rootElement.RequestedTheme;

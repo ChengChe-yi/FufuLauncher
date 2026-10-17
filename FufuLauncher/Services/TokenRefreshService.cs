@@ -126,24 +126,28 @@ public class TokenRefreshService : IDisposable
                                       currentCookies.GetValueOrDefault("account_id_v2");
                 string? refreshedUid = v2Cookies.GetValueOrDefault("account_id_v2") ??
                                        v2Cookies.GetValueOrDefault("account_id");
-                if (!string.IsNullOrEmpty(expectedUid) && !string.IsNullOrEmpty(refreshedUid) && expectedUid != refreshedUid)
+                if (!string.IsNullOrEmpty(expectedUid) && !string.IsNullOrEmpty(refreshedUid) &&
+                    expectedUid != refreshedUid)
                 {
                     if (isManual) SendErrorNotification("Token_InvalidCookie".GetLocalized());
                     return null;
                 }
+
                 var refreshedCookies = new Dictionary<string, string>(currentCookies);
                 foreach (var kvp in v2Cookies)
                 {
                     refreshedCookies[kvp.Key] = kvp.Value;
                 }
+
                 if (!string.IsNullOrEmpty(expectedUid)) refreshedCookies["stuid"] = expectedUid;
 
-                // Passport 刷新返回 v2 凭证时，不再同时发送已过期的 v1 凭证。
+
                 if (v2Cookies.ContainsKey("cookie_token_v2") && v2Cookies.ContainsKey("account_id_v2"))
                 {
                     refreshedCookies.Remove("cookie_token");
                     refreshedCookies.Remove("account_id");
                 }
+
                 if (v2Cookies.ContainsKey("ltoken_v2") && v2Cookies.ContainsKey("ltuid_v2"))
                 {
                     refreshedCookies.Remove("ltoken");
@@ -206,7 +210,7 @@ public class TokenRefreshService : IDisposable
             using var json = JsonDocument.Parse(responseText);
             if (!json.RootElement.TryGetProperty("retcode", out var code) || !code.TryGetInt32(out int retCode))
                 return null;
-            // 角色列表为空也可能是有效账号；网络、风控等错误不能视为登录失效。
+
             if (retCode == 0) return true;
             if (MiyousheCheckinGame.IsLoginExpired(retCode)) return false;
         }

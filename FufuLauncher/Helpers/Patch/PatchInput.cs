@@ -230,7 +230,7 @@ internal sealed class PatchSectionReader : IDisposable
         return _cacheEnd - _cacheBegin >= need;
     }
 
-    /// <summary>������һ�ֽڣ������ѣ���</summary>
+
     public byte PeekByte()
     {
         if (!EnsureCached(1))

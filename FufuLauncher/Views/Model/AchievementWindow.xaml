@@ -334,7 +334,8 @@
                                     </Grid.ColumnDefinitions>
                                     <FontIcon Glyph="&#xE71C;" FontFamily="Segoe Fluent Icons" FontSize="14"
                                               VerticalAlignment="Center" />
-                                    <TextBlock Grid.Column="1" Text="{helpers:Loc Key=AchievementWindow_ArchiveManagement}"
+                                    <TextBlock Grid.Column="1"
+                                               Text="{helpers:Loc Key=AchievementWindow_ArchiveManagement}"
                                                FontSize="12" TextWrapping="Wrap" VerticalAlignment="Center" />
                                 </Grid>
                             </Button>
@@ -365,7 +366,8 @@
                         </GridView.RenderTransform>
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="models:AchievementCategory">
-                                <Grid Width="200" Height="140" Background="{ThemeResource CardBackground}" CornerRadius="8"
+                                <Grid Width="200" Height="140" Background="{ThemeResource CardBackground}"
+                                      CornerRadius="8"
                                       Padding="16" BorderBrush="{ThemeResource CardBorder}" BorderThickness="1">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -375,10 +377,12 @@
                                     <Image Source="{x:Bind SafeIconUrl}" Width="48" Height="48"
                                            HorizontalAlignment="Center" Margin="0,0,0,8" />
                                     <TextBlock Grid.Row="1" Text="{x:Bind Name}"
-                                               Foreground="{ThemeResource HighlightColor}" FontWeight="Bold" FontSize="14"
+                                               Foreground="{ThemeResource HighlightColor}" FontWeight="Bold"
+                                               FontSize="14"
                                                HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
                                     <StackPanel Grid.Row="2" Spacing="4">
-                                        <ProgressBar Value="{x:Bind ProgressPercent, Mode=OneWay}" Maximum="100" Height="2" />
+                                        <ProgressBar Value="{x:Bind ProgressPercent, Mode=OneWay}" Maximum="100"
+                                                     Height="2" />
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
                                             <TextBlock Text="{x:Bind ProgressDisplay, Mode=OneWay}" FontSize="10"
                                                        Foreground="{ThemeResource SubTextColor}" />
@@ -470,13 +474,16 @@
 
                                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                                         <TextBlock Text="{x:Bind Description}"
-                                                                   Foreground="{ThemeResource SubTextColor}" FontSize="13"
+                                                                   Foreground="{ThemeResource SubTextColor}"
+                                                                   FontSize="13"
                                                                    TextWrapping="Wrap" />
 
-                                                        <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,2,0,0">
+                                                        <StackPanel Orientation="Horizontal" Spacing="8"
+                                                                    Margin="0,2,0,0">
                                                             <TextBlock FontSize="10" Foreground="#FFFFCC00"
                                                                        Visibility="{x:Bind ProgressVisibility, Mode=OneWay}">
-                                                                <Run Text="{helpers:Loc Key=AchievementWindow_Progress}" />
+                                                                <Run
+                                                                    Text="{helpers:Loc Key=AchievementWindow_Progress}" />
                                                                 <Run Text="{x:Bind ProgressText, Mode=OneWay}" />
                                                             </TextBlock>
 
@@ -499,7 +506,8 @@
                                                           Margin="-12,0,-12,-12">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate x:DataType="models:AchievementItem">
-                                                        <Grid Background="{ThemeResource SidebarBackground}" Padding="12,8"
+                                                        <Grid Background="{ThemeResource SidebarBackground}"
+                                                              Padding="12,8"
                                                               BorderBrush="{ThemeResource SeparatorBrush}"
                                                               BorderThickness="0,1,0,0"
                                                               Opacity="{x:Bind Opacity, Mode=OneWay}">
@@ -527,18 +535,19 @@
                                                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                                                 <TextBlock Text="{x:Bind Title}"
                                                                            Foreground="{ThemeResource HighlightColor}"
-                                                                           FontWeight="Bold" FontSize="14" Margin="0,0,0,4" />
+                                                                           FontWeight="Bold" FontSize="14"
+                                                                           Margin="0,0,0,4" />
                                                                 <TextBlock Text="{x:Bind Description}"
                                                                            Foreground="{ThemeResource SubTextColor}"
                                                                            FontSize="13" TextWrapping="Wrap" />
                                                                 <StackPanel Orientation="Horizontal" Spacing="8"
                                                                             Margin="0,2,0,0">
                                                                     <StackPanel Orientation="Horizontal" Spacing="4"
-                                                                                Visibility="{x:Bind CompletionTimeVisibility, Mode=OneWay}">
+                                                                            Visibility="{x:Bind CompletionTimeVisibility, Mode=OneWay}">
                                                                         <FontIcon Glyph="&#xE823;"
-                                                                                  FontFamily="Segoe Fluent Icons"
-                                                                                  FontSize="11"
-                                                                                  Foreground="{ThemeResource SubTextColor}" />
+                                                                                FontFamily="Segoe Fluent Icons"
+                                                                                FontSize="11"
+                                                                                Foreground="{ThemeResource SubTextColor}" />
                                                                         <TextBlock
                                                                             Text="{x:Bind CompletionTimeText, Mode=OneWay}"
                                                                             Foreground="{ThemeResource SubTextColor}"

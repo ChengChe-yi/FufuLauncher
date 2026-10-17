@@ -32,7 +32,6 @@ public sealed class GachaLink
 
 public static class GachaUrlHelper
 {
-    // Cache URLs are ASCII (including percent-encoded authkeys), surrounded by binary data.
     internal static readonly Regex UrlPattern = new(
         @"https://[^\x00-\x20\x7f-\xff""'<>\\]+",
         RegexOptions.CultureInvariant, TimeSpan.FromSeconds(1));

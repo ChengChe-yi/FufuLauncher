@@ -34,7 +34,7 @@ public class HoyoverseCheckinService : IHoyoverseCheckinService
                 Cookie = cookieStr
             }
         };
-        // 提取 stuid
+
         if (serverType == "os")
         {
             cookies.TryGetValue("ltuid_v2", out var stuid);

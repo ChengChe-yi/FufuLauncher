@@ -169,7 +169,6 @@ public partial class AccountViewModel : ObservableRecipient
         SwitchAccountCommand = new AsyncRelayCommand<AccountInfo>(SwitchToAccountAsync);
         OpenSecurityCenterCommand = new AsyncRelayCommand(OpenSecurityCenterAsync);
         LockAccountCommand = new AsyncRelayCommand(LockAccountAsync);
-        // 不在此处加载 — OnNavigatedTo 会触发 RefreshDataAsync
     }
 
     #endregion
@@ -626,7 +625,7 @@ public partial class AccountViewModel : ObservableRecipient
 
             Debug.WriteLine($"[LoadAccountInfo] 已加载账户: {entry.Nickname} ({entry.Id})");
 
-            // LoadUserInfoAsync 已在 LoadActiveAccountAsync 中被调用
+
             RefreshSavedAccountsList();
         }
         catch (Exception ex)
@@ -718,7 +717,7 @@ public partial class AccountViewModel : ObservableRecipient
     {
         if (targetAccount == null) return;
 
-        // 同步清空，确保 UI 在切换瞬间就不显示旧数据
+
         RunOnUIThread(() =>
         {
             GameRolesInfo = null;

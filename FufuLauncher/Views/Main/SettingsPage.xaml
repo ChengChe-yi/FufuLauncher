@@ -1348,344 +1348,347 @@
                                    Style="{StaticResource SectionHeaderStyle}" />
                         <ContentControl HorizontalContentAlignment="Stretch"
                                         IsEnabled="{x:Bind ViewModel.LaunchConfiguration.IsReady, Mode=OneWay}">
-                        <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
-                            <Border.Shadow>
-                                <ThemeShadow />
-                            </Border.Shadow>
-                            <StackPanel>
+                            <Border Style="{StaticResource SettingsCardStyle}" Translation="0,0,32">
+                                <Border.Shadow>
+                                    <ThemeShadow />
+                                </Border.Shadow>
+                                <StackPanel>
 
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=EnableLaunchArgsTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=EnableLaunchArgsCaption}" />
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=EnableLaunchArgsTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=EnableLaunchArgsCaption}" />
+                                        </StackPanel>
+                                        <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                      IsOn="{x:Bind ViewModel.LaunchConfiguration.IsCustomLaunchParametersEnabled, Mode=TwoWay}" />
+                                    </Grid>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7FC;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=LaunchWindowModeTitle}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                                Spacing="20">
+                                        <RadioButton Style="{StaticResource RowRadioButtonStyle}"
+                                                     Content="{helpers:Loc Key=WindowModeNormal}"
+                                                     GroupName="LaunchWindowMode"
+                                                     IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />
+                                        <RadioButton Style="{StaticResource RowRadioButtonStyle}"
+                                                     Content="{helpers:Loc Key=WindowModePopup}"
+                                                     GroupName="LaunchWindowMode"
+                                                     IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Popup}" />
+                                        <RadioButton Style="{StaticResource RowRadioButtonStyle}"
+                                                     Content="{helpers:Loc Key=WindowModeFullScreen}"
+                                                     GroupName="LaunchWindowMode"
+                                                     IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=FullScreen}" />
                                     </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.LaunchConfiguration.IsCustomLaunchParametersEnabled, Mode=TwoWay}" />
-                                </Grid>
 
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
 
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7FC;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=LaunchWindowModeTitle}" />
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE740;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=ResolutionTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=ResolutionCaption}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel Style="{StaticResource RowSubPanelStyle}">
+                                        <StackPanel Orientation="Horizontal" Spacing="12">
+                                            <TextBox Header="{helpers:Loc Key=WidthLabel}"
+                                                     Width="120"
+                                                     PlaceholderText="1920"
+                                                     Text="{x:Bind ViewModel.LaunchConfiguration.LaunchArgsWidth, Mode=TwoWay}" />
+                                            <TextBlock Text="&#215;"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="0,0,0,8"
+                                                       FontSize="16"
+                                                       Opacity="0.6" />
+                                            <TextBox Header="{helpers:Loc Key=HeightLabel}"
+                                                     Width="120"
+                                                     PlaceholderText="1080"
+                                                     Text="{x:Bind ViewModel.LaunchConfiguration.LaunchArgsHeight, Mode=TwoWay}" />
+                                        </StackPanel>
+                                        <TextBlock Text="{helpers:Loc Key=QuickPresetsLabel}"
+                                                   FontSize="12"
+                                                   Opacity="0.65"
+                                                   Margin="0,4,0,0" />
+                                        <StackPanel Orientation="Horizontal" Spacing="8">
+                                            <Button Style="{StaticResource PresetButtonStyle}"
+                                                    Content="1280&#215;720 (HD)"
+                                                    Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
+                                                    CommandParameter="1280 720" />
+                                            <Button Style="{StaticResource PresetButtonStyle}"
+                                                    Content="1920&#215;1080 (FHD)"
+                                                    Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
+                                                    CommandParameter="1920 1080" />
+                                            <Button Style="{StaticResource PresetButtonStyle}"
+                                                    Content="2560&#215;1440 (QHD)"
+                                                    Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
+                                                    CommandParameter="2560 1440" />
+                                            <Button Style="{StaticResource PresetButtonStyle}"
+                                                    Content="3840&#215;2160 (4K)"
+                                                    Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
+                                                    CommandParameter="3840 2160" />
+                                            <Button Style="{StaticResource PresetButtonStyle}" Content="1440&#215;900"
+                                                    Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
+                                                    CommandParameter="1440 900" />
+                                            <Button Style="{StaticResource PresetButtonStyle}" Content="1920&#215;1200"
+                                                    Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
+                                                    CommandParameter="1920 1200" />
+                                        </StackPanel>
                                     </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
-                                            Spacing="20">
-                                    <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                 Content="{helpers:Loc Key=WindowModeNormal}"
-                                                 GroupName="LaunchWindowMode"
-                                                 IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Normal}" />
-                                    <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                 Content="{helpers:Loc Key=WindowModePopup}"
-                                                 GroupName="LaunchWindowMode"
-                                                 IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=Popup}" />
-                                    <RadioButton Style="{StaticResource RowRadioButtonStyle}"
-                                                 Content="{helpers:Loc Key=WindowModeFullScreen}"
-                                                 GroupName="LaunchWindowMode"
-                                                 IsChecked="{Binding LaunchConfiguration.LaunchArgsWindowMode, Mode=TwoWay, Converter={StaticResource WindowModeEnumToBooleanConverter}, ConverterParameter=FullScreen}" />
-                                </StackPanel>
 
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
 
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE740;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=ResolutionTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=ResolutionCaption}" />
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}">
-                                    <StackPanel Orientation="Horizontal" Spacing="12">
-                                        <TextBox Header="{helpers:Loc Key=WidthLabel}"
-                                                 Width="120"
-                                                 PlaceholderText="1920"
-                                                 Text="{x:Bind ViewModel.LaunchConfiguration.LaunchArgsWidth, Mode=TwoWay}" />
-                                        <TextBlock Text="&#215;"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="0,0,0,8"
-                                                   FontSize="16"
-                                                   Opacity="0.6" />
-                                        <TextBox Header="{helpers:Loc Key=HeightLabel}"
-                                                 Width="120"
-                                                 PlaceholderText="1080"
-                                                 Text="{x:Bind ViewModel.LaunchConfiguration.LaunchArgsHeight, Mode=TwoWay}" />
-                                    </StackPanel>
-                                    <TextBlock Text="{helpers:Loc Key=QuickPresetsLabel}"
-                                               FontSize="12"
-                                               Opacity="0.65"
-                                               Margin="0,4,0,0" />
-                                    <StackPanel Orientation="Horizontal" Spacing="8">
-                                        <Button Style="{StaticResource PresetButtonStyle}" Content="1280&#215;720 (HD)"
-                                                Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
-                                                CommandParameter="1280 720" />
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE706;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=HdrTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=HdrCaption}" />
+                                        </StackPanel>
+                                        <Button Grid.Column="2"
+                                                Style="{StaticResource RowButtonStyle}"
+                                                Content="{helpers:Loc Key=OpenHdrSettings}"
+                                                Click="OnOpenHDRSettingsClick" />
+                                    </Grid>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7F4;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=TargetMonitorTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=TargetMonitorCaption}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                                Spacing="12">
+                                        <ComboBox
+                                            ItemsSource="{x:Bind ViewModel.LaunchConfiguration.AvailableMonitors, Mode=OneWay}"
+                                            SelectedItem="{x:Bind ViewModel.LaunchConfiguration.SelectedMonitor, Mode=TwoWay}"
+                                            DisplayMemberPath="DisplayName"
+                                            Width="260" />
                                         <Button Style="{StaticResource PresetButtonStyle}"
-                                                Content="1920&#215;1080 (FHD)"
-                                                Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
-                                                CommandParameter="1920 1080" />
+                                                Content="{helpers:Loc Key=IdentifyMonitors}"
+                                                Click="OnIdentifyMonitorsClick" />
+                                    </StackPanel>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE70F;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=AdvLaunchArgsTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=AdvLaunchArgsCaption}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel Style="{StaticResource RowSubPanelStyle}">
+                                        <TextBox Header="{helpers:Loc Key=CustomLaunchArgsLabel}"
+                                                 Text="{x:Bind ViewModel.LaunchConfiguration.CustomLaunchParameters, Mode=TwoWay}"
+                                                 PlaceholderText="{helpers:Loc Key=CustomLaunchArgsPlaceholder}"
+                                                 MaxWidth="440"
+                                                 HorizontalAlignment="Left" />
+                                        <InfoBar Style="{StaticResource RowInfoBarStyle}"
+                                                 Severity="Informational"
+                                                 Message="{helpers:Loc Key=CustomLaunchArgsInfo}"
+                                                 FontSize="12" />
+                                    </StackPanel>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=CustomExeNameTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=CustomExeNameCaption}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
+                                                Spacing="12">
+                                        <TextBox
+                                            Text="{x:Bind ViewModel.LaunchConfiguration.CustomGameExeName, Mode=TwoWay}"
+                                            PlaceholderText="{helpers:Loc Key=CustomExeNamePlaceholder}"
+                                            Width="260"
+                                            VerticalAlignment="Center" />
                                         <Button Style="{StaticResource PresetButtonStyle}"
-                                                Content="2560&#215;1440 (QHD)"
-                                                Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
-                                                CommandParameter="2560 1440" />
-                                        <Button Style="{StaticResource PresetButtonStyle}"
-                                                Content="3840&#215;2160 (4K)"
-                                                Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
-                                                CommandParameter="3840 2160" />
-                                        <Button Style="{StaticResource PresetButtonStyle}" Content="1440&#215;900"
-                                                Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
-                                                CommandParameter="1440 900" />
-                                        <Button Style="{StaticResource PresetButtonStyle}" Content="1920&#215;1200"
-                                                Command="{x:Bind ViewModel.LaunchConfiguration.SetResolutionPresetCommand}"
-                                                CommandParameter="1920 1200" />
+                                                Content="{helpers:Loc Key=RestoreDefault}"
+                                                Command="{x:Bind ViewModel.LaunchConfiguration.ResetGameExeNameCommand}" />
                                     </StackPanel>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE74C;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=InjectionModuleTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=InjectionCaption}" />
+                                        </StackPanel>
+                                        <ComboBox x:Name="InjectionModuleComboBox"
+                                                  Grid.Column="2"
+                                                  Style="{StaticResource RowComboBoxStyle}"
+                                                  MinWidth="220"
+                                                  ItemsSource="{x:Bind ViewModel.LaunchConfiguration.InjectionModules}"
+                                                  SelectedItem="{x:Bind ViewModel.LaunchConfiguration.SelectedInjectionModule, Mode=TwoWay}"
+                                                  DisplayMemberPath="DisplayName" />
+                                    </Grid>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=PluginConflictCheckTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=PluginConflictCheckCaption}" />
+                                        </StackPanel>
+                                        <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                      IsOn="{x:Bind ViewModel.LaunchConfiguration.IsPluginConflictCheckEnabled, Mode=TwoWay}" />
+                                    </Grid>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE721;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=PluginConflictMainOnlyTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=PluginConflictMainOnlyCaption}" />
+                                        </StackPanel>
+                                        <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                      IsEnabled="{x:Bind ViewModel.LaunchConfiguration.IsPluginConflictCheckEnabled, Mode=OneWay}"
+                                                      IsOn="{x:Bind ViewModel.LaunchConfiguration.IsPluginConflictMainDllOnly, Mode=TwoWay}" />
+                                    </Grid>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE77B;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=UsingHoyolabAccountTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=UsingHoyolabAccountCaption}" />
+                                        </StackPanel>
+                                        <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                      IsOn="{x:Bind ViewModel.LaunchConfiguration.IsUsingHoyolabAccount, Mode=TwoWay}" />
+                                    </Grid>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE787;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=RedeemReminderTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=RedeemReminderCaption}" />
+                                        </StackPanel>
+                                        <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                      IsOn="{x:Bind ViewModel.LaunchConfiguration.IsRedeemCodeNotificationEnabled, Mode=TwoWay}" />
+                                    </Grid>
+
+                                    <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                    <Grid Style="{StaticResource SettingsRowStyle}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
+                                        <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                            <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                       Text="{helpers:Loc Key=PostLaunchTitle}" />
+                                            <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                       Text="{helpers:Loc Key=PostLaunchCaption}" />
+                                        </StackPanel>
+                                        <ComboBox Grid.Column="2"
+                                                  Style="{StaticResource RowComboBoxStyle}"
+                                                  MinWidth="220"
+                                                  ItemsSource="{x:Bind ViewModel.LaunchConfiguration.PostLaunchBehaviorItems}"
+                                                  SelectedItem="{x:Bind ViewModel.LaunchConfiguration.SelectedPostLaunchBehaviorItem, Mode=TwoWay}"
+                                                  DisplayMemberPath="DisplayName" />
+                                    </Grid>
+
                                 </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE706;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=HdrTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=HdrCaption}" />
-                                    </StackPanel>
-                                    <Button Grid.Column="2"
-                                            Style="{StaticResource RowButtonStyle}"
-                                            Content="{helpers:Loc Key=OpenHdrSettings}"
-                                            Click="OnOpenHDRSettingsClick" />
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7F4;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=TargetMonitorTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=TargetMonitorCaption}" />
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
-                                            Spacing="12">
-                                    <ComboBox ItemsSource="{x:Bind ViewModel.LaunchConfiguration.AvailableMonitors, Mode=OneWay}"
-                                              SelectedItem="{x:Bind ViewModel.LaunchConfiguration.SelectedMonitor, Mode=TwoWay}"
-                                              DisplayMemberPath="DisplayName"
-                                              Width="260" />
-                                    <Button Style="{StaticResource PresetButtonStyle}"
-                                            Content="{helpers:Loc Key=IdentifyMonitors}"
-                                            Click="OnIdentifyMonitorsClick" />
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE70F;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=AdvLaunchArgsTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=AdvLaunchArgsCaption}" />
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}">
-                                    <TextBox Header="{helpers:Loc Key=CustomLaunchArgsLabel}"
-                                             Text="{x:Bind ViewModel.LaunchConfiguration.CustomLaunchParameters, Mode=TwoWay}"
-                                             PlaceholderText="{helpers:Loc Key=CustomLaunchArgsPlaceholder}"
-                                             MaxWidth="440"
-                                             HorizontalAlignment="Left" />
-                                    <InfoBar Style="{StaticResource RowInfoBarStyle}"
-                                             Severity="Informational"
-                                             Message="{helpers:Loc Key=CustomLaunchArgsInfo}"
-                                             FontSize="12" />
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=CustomExeNameTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=CustomExeNameCaption}" />
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal"
-                                            Spacing="12">
-                                    <TextBox Text="{x:Bind ViewModel.LaunchConfiguration.CustomGameExeName, Mode=TwoWay}"
-                                             PlaceholderText="{helpers:Loc Key=CustomExeNamePlaceholder}"
-                                             Width="260"
-                                             VerticalAlignment="Center" />
-                                    <Button Style="{StaticResource PresetButtonStyle}"
-                                            Content="{helpers:Loc Key=RestoreDefault}"
-                                            Command="{x:Bind ViewModel.LaunchConfiguration.ResetGameExeNameCommand}" />
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE74C;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=InjectionModuleTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=InjectionCaption}" />
-                                    </StackPanel>
-                                    <ComboBox x:Name="InjectionModuleComboBox"
-                                              Grid.Column="2"
-                                              Style="{StaticResource RowComboBoxStyle}"
-                                              MinWidth="220"
-                                              ItemsSource="{x:Bind ViewModel.LaunchConfiguration.InjectionModules}"
-                                              SelectedItem="{x:Bind ViewModel.LaunchConfiguration.SelectedInjectionModule, Mode=TwoWay}"
-                                              DisplayMemberPath="DisplayName" />
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE7BA;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=PluginConflictCheckTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=PluginConflictCheckCaption}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.LaunchConfiguration.IsPluginConflictCheckEnabled, Mode=TwoWay}" />
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE721;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=PluginConflictMainOnlyTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=PluginConflictMainOnlyCaption}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsEnabled="{x:Bind ViewModel.LaunchConfiguration.IsPluginConflictCheckEnabled, Mode=OneWay}"
-                                                  IsOn="{x:Bind ViewModel.LaunchConfiguration.IsPluginConflictMainDllOnly, Mode=TwoWay}" />
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE77B;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=UsingHoyolabAccountTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=UsingHoyolabAccountCaption}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.LaunchConfiguration.IsUsingHoyolabAccount, Mode=TwoWay}" />
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE787;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=RedeemReminderTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=RedeemReminderCaption}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.LaunchConfiguration.IsRedeemCodeNotificationEnabled, Mode=TwoWay}" />
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE768;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=PostLaunchTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=PostLaunchCaption}" />
-                                    </StackPanel>
-                                    <ComboBox Grid.Column="2"
-                                              Style="{StaticResource RowComboBoxStyle}"
-                                              MinWidth="220"
-                                              ItemsSource="{x:Bind ViewModel.LaunchConfiguration.PostLaunchBehaviorItems}"
-                                              SelectedItem="{x:Bind ViewModel.LaunchConfiguration.SelectedPostLaunchBehaviorItem, Mode=TwoWay}"
-                                              DisplayMemberPath="DisplayName" />
-                                </Grid>
-
-                            </StackPanel>
-                        </Border>
+                            </Border>
                         </ContentControl>
                     </StackPanel>
 
@@ -1983,11 +1986,11 @@
                                             <ColumnDefinition Width="*" MaxWidth="680" />
                                         </Grid.ColumnDefinitions>
                                         <Border CornerRadius="8"
-                                            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
-                                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                                            BorderThickness="1"
-                                            Padding="8"
-                                            HorizontalAlignment="Stretch">
+                                                Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+                                                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                                BorderThickness="1"
+                                                Padding="8"
+                                                HorizontalAlignment="Stretch">
                                             <ListView ItemsSource="{x:Bind ViewModel.CheckinAccounts, Mode=OneWay}"
                                                       SelectedItem="{x:Bind ViewModel.SelectedCheckinAccount, Mode=TwoWay}"
                                                       SelectionMode="Single" Height="180"
@@ -2020,14 +2023,23 @@
                                                                     <RowDefinition Height="*" />
                                                                     <RowDefinition Height="*" />
                                                                 </Grid.RowDefinitions>
-                                                                <Ellipse Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
-                                                                <Ellipse Grid.Column="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
-                                                                <Ellipse Grid.Row="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
-                                                                <Ellipse Grid.Row="1" Grid.Column="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
-                                                                <Ellipse Grid.Row="2" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
-                                                                <Ellipse Grid.Row="2" Grid.Column="1" Width="4" Height="4" Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Width="4" Height="4"
+                                                                         Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Column="1" Width="4" Height="4"
+                                                                         Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="1" Width="4" Height="4"
+                                                                         Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="1" Grid.Column="1" Width="4"
+                                                                         Height="4"
+                                                                         Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="2" Width="4" Height="4"
+                                                                         Fill="{ThemeResource TextFillColorPrimaryBrush}" />
+                                                                <Ellipse Grid.Row="2" Grid.Column="1" Width="4"
+                                                                         Height="4"
+                                                                         Fill="{ThemeResource TextFillColorPrimaryBrush}" />
                                                             </Grid>
-                                                            <CheckBox Grid.Column="1" IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                            <CheckBox Grid.Column="1"
+                                                                      IsChecked="{Binding IsSelected, Mode=TwoWay}"
                                                                       IsEnabled="{Binding DataContext.IsBatchCheckinEnabled, ElementName=SettingsPageRoot, Mode=OneWay}"
                                                                       MinWidth="0"
                                                                       VerticalAlignment="Center" />

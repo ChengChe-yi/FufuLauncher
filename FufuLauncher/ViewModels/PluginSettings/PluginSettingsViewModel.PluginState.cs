@@ -64,7 +64,8 @@ public partial class PluginSettingsViewModel
             : Microsoft.UI.Xaml.Visibility.Collapsed;
 
     public bool IsSettingsInteractable => (!_deferConfigurationLoading || IsConfigurationReady) &&
-        ((SelectedPluginIndex == 0 && _isMainPluginEnabled) || (SelectedPluginIndex == 1 && _isFpsPluginEnabled));
+                                          ((SelectedPluginIndex == 0 && _isMainPluginEnabled) ||
+                                           (SelectedPluginIndex == 1 && _isFpsPluginEnabled));
 
     public string OverlayWarningText
     {
@@ -82,7 +83,8 @@ public partial class PluginSettingsViewModel
         }
     }
 
-    private static string GetFpsPluginEnabledPath() => Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS", "FPS.dll");
+    private static string GetFpsPluginEnabledPath() =>
+        Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS", "FPS.dll");
 
     private static string GetFpsPluginDisabledPath() =>
         Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS", "FPS.disabled");
@@ -326,8 +328,6 @@ public partial class PluginSettingsViewModel
             }
             catch (UnauthorizedAccessException)
             {
-                // If the resolved path is not writable (e.g. under Program Files),
-                // fall back to the default AppData-based location.
                 _presetsDir = PluginPresetStorage.GetFallbackDirectory(subDir);
                 Directory.CreateDirectory(_presetsDir);
             }

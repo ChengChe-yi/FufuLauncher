@@ -103,7 +103,6 @@ public sealed partial class SettingsPage
         }
         catch
         {
-            // ignored
         }
 
         var query = sender.Text?.Trim();

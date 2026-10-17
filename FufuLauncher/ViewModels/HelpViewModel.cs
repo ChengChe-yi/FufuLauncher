@@ -265,7 +265,8 @@ public partial class HelpViewModel : ObservableObject
 
                 if (response.Content.Headers.LastModified.HasValue)
                 {
-                    CurrentDate = response.Content.Headers.LastModified.Value.LocalDateTime.ToString("yyyy-MM-dd HH:mm");
+                    CurrentDate =
+                        response.Content.Headers.LastModified.Value.LocalDateTime.ToString("yyyy-MM-dd HH:mm");
                 }
                 else
                 {

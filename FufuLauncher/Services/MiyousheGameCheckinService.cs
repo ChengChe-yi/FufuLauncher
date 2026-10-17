@@ -13,7 +13,6 @@ using MihoyoBBS;
 
 namespace FufuLauncher.Services;
 
-/// <summary>国服每日奖励签到：不同游戏有界并发，同游戏角色顺序执行，账号内共享一次凭证刷新。</summary>
 public sealed class MiyousheGameCheckinService : IDisposable
 {
     private const int MaxConcurrentGames = 3;
@@ -76,46 +75,48 @@ public sealed class MiyousheGameCheckinService : IDisposable
         var gameTasks = boundRoles.Select((role, index) => (Role: role, Index: index))
             .GroupBy(item => item.Role.GameBiz)
             .Select(async group =>
-        {
-            var game = MiyousheCheckinGame.SupportedGames.FirstOrDefault(g => g.GameBiz == group.Key);
-            bool attemptedRole = false;
-            foreach (var (role, index) in group)
             {
-                if (game == null)
+                var game = MiyousheCheckinGame.SupportedGames.FirstOrDefault(g => g.GameBiz == group.Key);
+                bool attemptedRole = false;
+                foreach (var (role, index) in group)
                 {
-                    roleResults[index] = new(role.GameBiz, role.GameBiz, role.GameUid, null,
-                        "Checkin_UnsupportedGame".GetLocalized());
-                    continue;
-                }
-                if (disabledUids.Contains(role.GameUid))
-                {
-                    roleResults[index] = new(game.GameBiz, game.Name, role.GameUid, null,
-                        "Status_Skipped".GetLocalized());
-                    continue;
-                }
+                    if (game == null)
+                    {
+                        roleResults[index] = new(role.GameBiz, role.GameBiz, role.GameUid, null,
+                            "Checkin_UnsupportedGame".GetLocalized());
+                        continue;
+                    }
 
-                // 只在同游戏的多个角色间间隔，等待期间不占用并发名额。
-                if (attemptedRole) await _delay();
-                attemptedRole = true;
-                await concurrency.WaitAsync();
-                try
-                {
-                    progress?.Report($"[{account.Nickname}] {game.Name} ({role.GameUid}) — {"Checkin_GameCheckinProgress".GetLocalized()}");
-                    roleResults[index] = await SignRoleAsync(session, pacer, game, role);
+                    if (disabledUids.Contains(role.GameUid))
+                    {
+                        roleResults[index] = new(game.GameBiz, game.Name, role.GameUid, null,
+                            "Status_Skipped".GetLocalized());
+                        continue;
+                    }
+
+
+                    if (attemptedRole) await _delay();
+                    attemptedRole = true;
+                    await concurrency.WaitAsync();
+                    try
+                    {
+                        progress?.Report(
+                            $"[{account.Nickname}] {game.Name} ({role.GameUid}) — {"Checkin_GameCheckinProgress".GetLocalized()}");
+                        roleResults[index] = await SignRoleAsync(session, pacer, game, role);
+                    }
+                    catch (Exception ex)
+                    {
+                        roleResults[index] = new(game.GameBiz, game.Name, role.GameUid, false,
+                            string.Format("Checkin_NetworkRequestException".GetLocalized(), ex.Message));
+                    }
+                    finally
+                    {
+                        concurrency.Release();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    roleResults[index] = new(game.GameBiz, game.Name, role.GameUid, false,
-                        string.Format("Checkin_NetworkRequestException".GetLocalized(), ex.Message));
-                }
-                finally
-                {
-                    concurrency.Release();
-                }
-            }
-        });
+            });
         await Task.WhenAll(gameTasks);
-        // 完成顺序可能不同，展示顺序仍与绑定角色列表一致。
+
         return roleResults.ToList();
     }
 
@@ -134,7 +135,8 @@ public sealed class MiyousheGameCheckinService : IDisposable
         bool alreadySigned = status.Data.IsSign;
         if (!alreadySigned)
         {
-            string body = JsonSerializer.Serialize(new { act_id = game.ActId, region = role.Region, uid = role.GameUid });
+            string body =
+                JsonSerializer.Serialize(new { act_id = game.ActId, region = role.Region, uid = role.GameUid });
             var sign = await RequestAsync<SignResponseData>(session, pacer, $"{game.ApiBase}/sign", game, body);
             if (sign.RetCode != 0)
                 return new(game.GameBiz, game.Name, role.GameUid, false, sign.Message);
@@ -142,7 +144,7 @@ public sealed class MiyousheGameCheckinService : IDisposable
                 return new(game.GameBiz, game.Name, role.GameUid, false,
                     "Checkin_GameCaptcha".GetLocalized());
 
-            // 正常提交后确认签到状态。
+
             status = await RequestAsync<IsSignData>(session, pacer, infoUrl, game);
             if (status.RetCode != 0 || status.Data == null)
                 return new(game.GameBiz, game.Name, role.GameUid, false, status.Message);
@@ -158,7 +160,9 @@ public sealed class MiyousheGameCheckinService : IDisposable
         if (rewards.RetCode == 0 && rewards.Data?.Awards is { } awards && days > 0 && days <= awards.Count)
             rewardItem = Tools.GetItem(awards[days - 1]);
 
-        string message = alreadySigned ? "Checkin_AlreadySignedToday".GetLocalized() : "Checkin_SignSuccess".GetLocalized();
+        string message = alreadySigned
+            ? "Checkin_AlreadySignedToday".GetLocalized()
+            : "Checkin_SignSuccess".GetLocalized();
         message += $" | {string.Format("Checkin_SignedDays".GetLocalized(), days)}";
         if (rewardItem.Length > 0)
             message += $" | {string.Format("Checkin_RewardIs".GetLocalized(), rewardItem)}";
@@ -183,6 +187,7 @@ public sealed class MiyousheGameCheckinService : IDisposable
                 authRetried = true;
                 continue;
             }
+
             if (!result.RateLimited) return result;
             bool canWait = pacer.Defer(result.RetryAfter, rateLimitRetries);
             if (!canWait || rateLimitRetries >= MaxRateLimitRetries) return result;
@@ -206,7 +211,8 @@ public sealed class MiyousheGameCheckinService : IDisposable
             request.Headers.TryAddWithoutValidation("X-Requested-With", "com.mihoyo.hyperion");
             request.Headers.Referrer = new Uri(game?.Referer ?? "https://act.mihoyo.com/");
             request.Headers.TryAddWithoutValidation("Origin", game?.Referer.StartsWith("https://webstatic.") == true
-                ? "https://webstatic.mihoyo.com" : "https://act.mihoyo.com");
+                ? "https://webstatic.mihoyo.com"
+                : "https://act.mihoyo.com");
             if (game?.SignGame != null) request.Headers.TryAddWithoutValidation("x-rpc-signgame", game.SignGame);
             if (body != null) request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 
@@ -216,18 +222,24 @@ public sealed class MiyousheGameCheckinService : IDisposable
                 bool limited = response.StatusCode == HttpStatusCode.TooManyRequests;
                 var retryAfter = response.Headers.RetryAfter;
                 TimeSpan? wait = retryAfter?.Delta ?? (retryAfter?.Date - _clock.GetUtcNow());
-                return new(-1, limited ? "Checkin_RequestTooFrequent".GetLocalized()
-                    : $"{"Checkin_SignRequestFailed".GetLocalized()} (HTTP {(int)response.StatusCode})", null, limited, wait);
+                return new(-1, limited
+                        ? "Checkin_RequestTooFrequent".GetLocalized()
+                        : $"{"Checkin_SignRequestFailed".GetLocalized()} (HTTP {(int)response.StatusCode})", null,
+                    limited,
+                    wait);
             }
 
             using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
             if (!json.RootElement.TryGetProperty("retcode", out var code) || !code.TryGetInt32(out int retCode))
                 return new(-1, "Checkin_ParseResultFailed".GetLocalized(), null);
-            string message = json.RootElement.TryGetProperty("message", out var msg) && msg.ValueKind == JsonValueKind.String
-                ? msg.GetString() ?? "" : "Checkin_ParseResultFailed".GetLocalized();
+            string message = json.RootElement.TryGetProperty("message", out var msg) &&
+                             msg.ValueKind == JsonValueKind.String
+                ? msg.GetString() ?? ""
+                : "Checkin_ParseResultFailed".GetLocalized();
             T? data = null;
-            // 错误响应的 data 可能是空字符串，不能让反序列化掩盖登录失效码。
-            if (retCode == 0 && json.RootElement.TryGetProperty("data", out var value) && value.ValueKind == JsonValueKind.Object)
+
+            if (retCode == 0 && json.RootElement.TryGetProperty("data", out var value) &&
+                value.ValueKind == JsonValueKind.Object)
                 data = value.Deserialize<T>();
             return new(retCode, data == null && retCode == 0 ? "Checkin_ParseResultFailed".GetLocalized() : message,
                 data, retCode == -500004);
@@ -245,13 +257,17 @@ public sealed class MiyousheGameCheckinService : IDisposable
         private readonly object _refreshLock = new();
         private string _cookie = cookie;
         private Task<bool>? _refreshTask;
-        public string DeviceId { get; } = Tools.GetDeviceId(cookie);
+
+        public string DeviceId
+        {
+            get;
+        } = Tools.GetDeviceId(cookie);
 
         public async Task<string> GetCookieAsync()
         {
             Task<bool>? pendingRefresh;
             lock (_refreshLock) pendingRefresh = _refreshTask;
-            // 刷新开始后的新请求，先等凭证更新与保存完成。
+
             if (pendingRefresh != null) await pendingRefresh;
             lock (_refreshLock) return _cookie;
         }
@@ -262,15 +278,16 @@ public sealed class MiyousheGameCheckinService : IDisposable
             Task<bool> pendingRefresh;
             lock (_refreshLock)
             {
-                // 已在途中发出的旧 Cookie 请求可能晚于刷新结果返回。
                 if (_cookie != rejectedCookie) return Task.FromResult(true);
                 if (_refreshTask == null)
                 {
                     completion = new(TaskCreationOptions.RunContinuationsAsynchronously);
                     _refreshTask = completion.Task;
                 }
+
                 pendingRefresh = _refreshTask;
             }
+
             if (completion != null) _ = CompleteRefreshAsync(completion);
             return pendingRefresh;
         }
@@ -285,16 +302,20 @@ public sealed class MiyousheGameCheckinService : IDisposable
                 {
                     lock (_refreshLock) _cookie = refreshedCookie!;
                 }
+
                 completion.SetResult(success);
             }
             catch (Exception ex)
             {
-                // 所有等待者观察同一失败结果，不能各自重新刷新。
                 completion.SetException(ex);
             }
         }
     }
 
-    private sealed record CheckinResponse<T>(int RetCode, string Message, T? Data,
-        bool RateLimited = false, TimeSpan? RetryAfter = null);
+    private sealed record CheckinResponse<T>(
+        int RetCode,
+        string Message,
+        T? Data,
+        bool RateLimited = false,
+        TimeSpan? RetryAfter = null);
 }

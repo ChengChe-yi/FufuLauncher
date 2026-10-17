@@ -68,13 +68,13 @@ internal sealed class YaeGameProcess : IDisposable
         }
     }
 
-    /// <summary>进程是否仍在运行（非阻塞）。</summary>
-    public bool IsRunning => YaeNative.WaitForSingleObject(_processHandle, 0) == 0x102; // WAIT_TIMEOUT
 
-    /// <summary>恢复游戏主线程（对应管道 0xFE）。</summary>
+    public bool IsRunning => YaeNative.WaitForSingleObject(_processHandle, 0) == 0x102;
+
+
     public void ResumeMainThread() => YaeNative.ResumeThread(_mainThreadHandle);
 
-    /// <summary>结束游戏进程（对应会话结束）。</summary>
+
     public void Kill() => YaeNative.TerminateProcess(_processHandle, 0);
 
     public void Dispose()
@@ -123,10 +123,7 @@ internal sealed class YaeGameProcess : IDisposable
 
             try
             {
-                // DLL 加载可能因杀软扫描等原因超过 2s，放宽到 10s。
-                // 这里只用来同步"加载是否完成"：GetExitCodeThread 只返回 32 位 DWORD，
-                // x64 下拿 HMODULE 会被截断，所以基址不从这里取。
-                if (YaeNative.WaitForSingleObject(loadThread, 10000) != 0) // WAIT_TIMEOUT
+                if (YaeNative.WaitForSingleObject(loadThread, 10000) != 0)
                 {
                     throw new Win32Exception($"远程 LoadLibraryW 在 10s 内未完成，DLL 加载超时：{dllPath}");
                 }
@@ -141,7 +138,7 @@ internal sealed class YaeGameProcess : IDisposable
             YaeNative.VirtualFreeEx(hProcess, remotePath, 0, 0x8000);
         }
 
-        // 加载完成后再枚举模块取完整 64 位基址。
+
         var moduleBase = FindRemoteModuleBase(processId, dllPath);
         if (moduleBase == 0)
         {
@@ -166,7 +163,7 @@ internal sealed class YaeGameProcess : IDisposable
             snapshot = YaeNative.CreateToolhelp32Snapshot(
                 TH32CS_SNAPMODULE | TH32CS_SNAPMODULE32, processId);
 
-            // 目标进程模块列表在变化时会返回 ERROR_BAD_LENGTH，重试一次即可。
+
             if (Marshal.GetLastSystemError() is not (0 or (int)ERROR_BAD_LENGTH))
             {
                 break;
@@ -200,8 +197,7 @@ internal sealed class YaeGameProcess : IDisposable
 
                 var moduleFullPath = SafeGetFullPath(modulePath);
 
-                // 先按完整路径比较；失败再退化为文件名比较，
-                // 兼容某些进程返回短路径或 \??\ 前缀路径的情况。
+
                 if (string.Equals(moduleFullPath, targetFullPath, StringComparison.OrdinalIgnoreCase)
                     || string.Equals(Path.GetFileName(moduleFullPath), targetFileName,
                         StringComparison.OrdinalIgnoreCase))

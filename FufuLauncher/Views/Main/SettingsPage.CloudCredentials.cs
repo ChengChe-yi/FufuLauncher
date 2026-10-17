@@ -20,7 +20,8 @@ public sealed partial class SettingsPage
     {
         if (sender is FrameworkElement target)
         {
-            GenshinHDRSettingPanel.ShowAt(target, Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedRight);
+            GenshinHDRSettingPanel.ShowAt(target,
+                Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedRight);
         }
     }
 

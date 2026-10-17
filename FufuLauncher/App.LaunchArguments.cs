@@ -109,7 +109,6 @@ public partial class App
         }
         catch
         {
-            // ignored
         }
     }
 }

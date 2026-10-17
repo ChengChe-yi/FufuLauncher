@@ -356,7 +356,8 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" Spacing="12">
-                    <TextBlock Text="{helpers:Loc Key=ConfigTargetLabel}" VerticalAlignment="Center" FontWeight="SemiBold" />
+                    <TextBlock Text="{helpers:Loc Key=ConfigTargetLabel}" VerticalAlignment="Center"
+                               FontWeight="SemiBold" />
                     <ComboBox SelectedIndex="{x:Bind ViewModel.SelectedPluginIndex, Mode=TwoWay}" Width="200">
                         <ComboBoxItem>
                             <TextBlock Text="{x:Bind ViewModel.SelectedPluginComboLabel, Mode=OneWay}" />
@@ -430,12 +431,13 @@
                                         <StackPanel Orientation="Horizontal" Spacing="8">
                                             <TextBlock Text="{helpers:Loc Key=AutoCreatePresetLabel}"
                                                        VerticalAlignment="Center" FontSize="12" FontWeight="SemiBold" />
-                                            <ToggleSwitch IsOn="{x:Bind ViewModel.IsAutoCreatePresetEnabled, Mode=TwoWay}"
-                                                          OnContent="{helpers:Loc Key=OnLabel}"
-                                                          OffContent="{helpers:Loc Key=OffLabel}"
-                                                          CornerRadius="16"
-                                                          HorizontalAlignment="Right"
-                                                          MinWidth="0" Margin="0" />
+                                            <ToggleSwitch
+                                                IsOn="{x:Bind ViewModel.IsAutoCreatePresetEnabled, Mode=TwoWay}"
+                                                OnContent="{helpers:Loc Key=OnLabel}"
+                                                OffContent="{helpers:Loc Key=OffLabel}"
+                                                CornerRadius="16"
+                                                HorizontalAlignment="Right"
+                                                MinWidth="0" Margin="0" />
                                         </StackPanel>
 
                                         <StackPanel Orientation="Horizontal" Spacing="8">
@@ -478,7 +480,8 @@
                            Stretch="Uniform" />
 
                     <StackPanel Grid.Column="1" Margin="16,0,0,0" VerticalAlignment="Center">
-                        <TextBlock Text="{x:Bind ViewModel.PluginName, Mode=OneWay}" FontSize="18" FontWeight="SemiBold"
+                        <TextBlock Text="{x:Bind ViewModel.PluginName, Mode=OneWay}" FontSize="18"
+                                   FontWeight="SemiBold"
                                    Margin="0,0,0,4" />
                         <TextBlock Text="{x:Bind ViewModel.PluginDescription, Mode=OneWay}" FontSize="12" Opacity="0.6"
                                    TextWrapping="Wrap" />
@@ -556,7 +559,6 @@
                         </Border>
 
 
-
                         <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="{helpers:Loc Key=EnableInjectionParenLabel}" FontWeight="SemiBold"
@@ -601,14 +603,14 @@
 
             <Grid x:Name="SettingsViewport" Grid.Row="2">
                 <ContentControl x:Name="SettingsContent"
-                                    IsEnabled="{x:Bind ViewModel.IsSettingsInteractable, Mode=OneWay}"
-                                    HorizontalContentAlignment="Stretch"
-                                    VerticalContentAlignment="Stretch"
-                                    PointerPressed="OnSettingsPointerPressed"
-                                    PointerMoved="OnSettingsPointerMoved"
-                                    PointerReleased="OnSettingsPointerReleased"
-                                    PointerCaptureLost="OnSettingsPointerCaptureLost"
-                                    PointerCanceled="OnSettingsPointerCaptureLost">
+                                IsEnabled="{x:Bind ViewModel.IsSettingsInteractable, Mode=OneWay}"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                PointerPressed="OnSettingsPointerPressed"
+                                PointerMoved="OnSettingsPointerMoved"
+                                PointerReleased="OnSettingsPointerReleased"
+                                PointerCaptureLost="OnSettingsPointerCaptureLost"
+                                PointerCanceled="OnSettingsPointerCaptureLost">
                     <GridView x:Name="SettingsGrid"
                               ContainerContentChanging="OnSettingContainerContentChanging"
                               ItemsSource="{Binding Source={StaticResource SettingsViewSource}}"
@@ -616,7 +618,8 @@
                               ItemContainerStyle="{StaticResource SettingGridViewItemStyle}"
                               SelectionMode="None" IsItemClickEnabled="False" HorizontalAlignment="Stretch"
                               ScrollViewer.VerticalScrollMode="Enabled" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                              ScrollViewer.HorizontalScrollMode="Disabled"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <GridView.ItemContainerTransitions>
                             <TransitionCollection />
                         </GridView.ItemContainerTransitions>
@@ -664,8 +667,8 @@
                                                         <Button.ContextFlyout>
                                                             <MenuFlyout>
                                                                 <MenuFlyoutItem Text="{helpers:Loc Key=Preset_Rename}"
-                                                                                Tag="{x:Bind}"
-                                                                                Click="OnRenamePresetClick" />
+                                                                        Tag="{x:Bind}"
+                                                                        Click="OnRenamePresetClick" />
                                                             </MenuFlyout>
                                                         </Button.ContextFlyout>
                                                     </Button>

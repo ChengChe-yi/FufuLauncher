@@ -104,7 +104,6 @@ public partial class GameLauncherService
                         }
                         catch (Win32Exception)
                         {
-                            // ignored
                         }
                         catch (InvalidOperationException)
                         {
@@ -117,7 +116,6 @@ public partial class GameLauncherService
                 }
                 catch
                 {
-                    // ignored
                 }
             }
         }

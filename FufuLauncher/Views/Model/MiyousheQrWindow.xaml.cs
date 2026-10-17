@@ -76,7 +76,7 @@ public sealed partial class MiyousheQrWindow : Window
     private void ApplyLauncherTheme()
     {
         if (_closed) return;
-        // Use the launcher's shared accent resources, including custom colors applied by ThemeHelper.
+
         foreach (string key in new[]
                  {
                      "SystemAccentColor", "SystemAccentColorLight1", "SystemAccentColorLight2",
@@ -97,7 +97,7 @@ public sealed partial class MiyousheQrWindow : Window
                 ? ElementTheme.Dark
                 : ElementTheme.Light;
         ScanRootGrid.RequestedTheme = theme;
-        // Match MainWindow.UpdateBackgroundOverlayTheme, without a separate tinted backdrop.
+
         var color = theme == ElementTheme.Dark
             ? Windows.UI.Color.FromArgb(255, 32, 32, 32)
             : Windows.UI.Color.FromArgb(255, 243, 243, 243);
@@ -200,7 +200,6 @@ public sealed partial class MiyousheQrWindow : Window
         SetBusy(true);
         try
         {
-            // Always select afresh when starting continuous mode, so the user chooses the watched area explicitly.
             using var selection = await SelectRegionAsync(true, scanCts.Token);
             if (selection == null)
             {
@@ -358,7 +357,7 @@ public sealed partial class MiyousheQrWindow : Window
     {
         var pending = _pending;
         if (pending == null) return;
-        _pending = null; // Never automatically retry a submitted ticket.
+        _pending = null;
         _confirming = true;
         UpdateControls();
         ShowStatus("MiyousheQr_Confirming", InfoBarSeverity.Informational);
@@ -468,6 +467,5 @@ public sealed partial class MiyousheQrWindow : Window
             : ex is System.Text.Json.JsonException ? "MiyousheQr_ResponseError" : "MiyousheQr_CaptureFailed";
         ShowStatus(key, InfoBarSeverity.Error);
         if (ex is MiyousheQrException { Code: int code }) Status.Message += $" ({code})";
-        // Do not log exception messages: an HTTP/QR exception can contain a ticket or credential.
     }
 }

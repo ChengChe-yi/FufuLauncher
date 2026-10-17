@@ -79,9 +79,9 @@ public partial class SettingsViewModel : ObservableRecipient
     [ObservableProperty] private bool _isBackgroundSlideshowEnabled;
     [ObservableProperty] private string _backgroundSlideshowFolder;
     [ObservableProperty] private bool _hasBackgroundSlideshowFolder;
-    [ObservableProperty] private int _backgroundSlideshowInterval = 60; // seconds
+    [ObservableProperty] private int _backgroundSlideshowInterval = 60;
 
-    [ObservableProperty] private string _appThemeColor = ""; // empty means default
+    [ObservableProperty] private string _appThemeColor = "";
     [ObservableProperty] private Windows.UI.Color _appThemeColorObj = Windows.UI.Color.FromArgb(255, 0, 120, 215);
 
     [ObservableProperty] private double _panelBackgroundOpacity = 0.5;
@@ -195,18 +195,24 @@ public partial class SettingsViewModel : ObservableRecipient
 
     [ObservableProperty] private bool _isGameCheckinEnabled = true;
     [ObservableProperty] private ObservableCollection<CheckinGameItem> _checkinGames = new();
+
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CheckinOptionsCaption), nameof(CanEditCheckinOptions), nameof(CanEditCheckinGames))]
+    [NotifyPropertyChangedFor(nameof(CheckinOptionsCaption), nameof(CanEditCheckinOptions),
+        nameof(CanEditCheckinGames))]
     private bool _isBatchCheckinEnabled;
+
     [ObservableProperty] private bool _isCommunityCheckinEnabled = true;
     [ObservableProperty] private bool _isCommunityLikeEnabled;
     [ObservableProperty] private bool _isCommunityReadEnabled;
     [ObservableProperty] private bool _isCommunityShareEnabled;
     [ObservableProperty] private bool _isCloudGameCheckinEnabled;
     [ObservableProperty] private ObservableCollection<CheckinAccountItem> _checkinAccounts = new();
+
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CheckinOptionsCaption), nameof(CanEditCheckinOptions), nameof(CanEditCheckinGames))]
+    [NotifyPropertyChangedFor(nameof(CheckinOptionsCaption), nameof(CanEditCheckinOptions),
+        nameof(CanEditCheckinGames))]
     private CheckinAccountItem? _selectedCheckinAccount;
+
     [ObservableProperty] private bool _isLoadingCheckinAccounts;
 
     public IAsyncRelayCommand ClearWebView2CacheCommand
@@ -294,7 +300,10 @@ public partial class SettingsViewModel : ObservableRecipient
 
     private bool _isUpdatingDailyNote;
 
-    public LaunchConfigurationViewModel LaunchConfiguration { get; }
+    public LaunchConfigurationViewModel LaunchConfiguration
+    {
+        get;
+    }
 
     #endregion
 
@@ -372,9 +381,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 Debug.WriteLine(
                     $"[SettingsVM] SwitchLanguageCommand: param={param}, language={language}, current SelectedLanguage={SelectedLanguage}");
 
-                // Always apply - the TwoWay binding on IsChecked may have already
-                // updated SelectedLanguage, so the old guard was incorrectly
-                // preventing ApplyLanguageChangeAsync from being called.
+
                 SelectedLanguage = language;
                 await ApplyLanguageChangeAsync(language);
             }

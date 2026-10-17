@@ -18,7 +18,6 @@ namespace FufuLauncher.Services;
 
 public class GachaService
 {
-    // Preserve the existing official-server request profile while adding the selected role's region.
     private const string Lk2Salt = "sidQFEglajEz7FA0Aj7HQPV88zpf17SO";
     private const string AppVersion = "2.95.1";
     private readonly HttpClient _httpClient;
@@ -41,7 +40,6 @@ public class GachaService
 
     public async Task<GameRolesResponse> GetBoundRolesAsync(string cookie)
     {
-        // Keep each account's headers on its own request; account-page refreshes can run concurrently.
         using var request = new HttpRequestMessage(HttpMethod.Get, ApiEndpoints.MihoyoBbsUserGameRolesUrl);
         request.Headers.TryAddWithoutValidation("Cookie", cookie);
         request.Headers.TryAddWithoutValidation("DS", CalculateDs(HeaderSalts.UserInfoServiceLegacySalt,

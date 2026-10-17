@@ -98,7 +98,6 @@ public sealed partial class BlankPage
 
         if (_redeemCodesExpanded)
         {
-            // 平滑收起：从当前实际高度动画到 0
             var fromHeight = RedeemContentPanel.ActualHeight;
             var fromOpacity = RedeemContentPanel.Opacity;
             RedeemContentPanel.Height = fromHeight;
@@ -120,7 +119,6 @@ public sealed partial class BlankPage
         }
         else
         {
-            // 平滑展开：先测量内容的目标高度，再从 0 动画到该高度
             RedeemContentPanel.Visibility = Visibility.Visible;
             RedeemContentPanel.Height = double.NaN;
             RedeemContentPanel.UpdateLayout();
@@ -145,9 +143,7 @@ public sealed partial class BlankPage
         }
     }
 
-    /// <summary>
-    ///     若上一次展开/收起动画仍在进行，则以当前动画值作为基准值再停止，避免视觉跳变。
-    /// </summary>
+
     private void StopRedeemExpandAnimation()
     {
         if (_redeemExpandStoryboard == null)

@@ -58,6 +58,7 @@ public sealed partial class PluginSettingsPage
             ConfigurationLoadingProgress.Value = 0;
             return;
         }
+
         ConfigurationLoadingProgress.Value = ViewModel.IsConfigurationReady ? ConfigurationLoadingProgress.Maximum : 0;
         if (ConfigurationLoadingHost.Visibility == Visibility.Collapsed) return;
         if (!_settingEntranceAnimationsEnabled)
@@ -65,6 +66,7 @@ public sealed partial class PluginSettingsPage
             ApplySectionVisibility(ConfigurationLoadingHost, SettingsViewport, false);
             return;
         }
+
         var cancellation = new CancellationTokenSource();
         _configurationLoadingTransition = cancellation;
         _ = FinishConfigurationLoadingPresentationAsync(cancellation);
@@ -92,6 +94,7 @@ public sealed partial class PluginSettingsPage
                 _configurationLoadingTransition = null;
                 ApplySectionVisibility(ConfigurationLoadingHost, SettingsViewport, ViewModel.IsLoadingConfiguration);
             }
+
             cancellation.Dispose();
         }
     }
@@ -111,6 +114,7 @@ public sealed partial class PluginSettingsPage
             ApplySectionVisibility(SettingsHeaderDetails, SettingsBodyViewport, !_settingsHeaderCollapsed);
             return;
         }
+
         var cancellation = new CancellationTokenSource();
         _settingsHeaderTransition = cancellation;
         SettingsHeaderVisibilityButton.IsEnabled = false;
@@ -140,6 +144,7 @@ public sealed partial class PluginSettingsPage
                 ApplySectionVisibility(SettingsHeaderDetails, SettingsBodyViewport, !_settingsHeaderCollapsed);
                 SettingsHeaderVisibilityButton.IsEnabled = true;
             }
+
             cancellation.Dispose();
         }
     }
@@ -157,6 +162,7 @@ public sealed partial class PluginSettingsPage
             {
                 return;
             }
+
             _settingsHeaderCollapsed = collapsed;
             ApplySectionVisibility(SettingsHeaderDetails, SettingsBodyViewport, !collapsed);
             UpdateSettingsHeaderMenu();
@@ -190,7 +196,8 @@ public sealed partial class PluginSettingsPage
     private void UpdateSettingsHeaderMenu()
     {
         SettingsHeaderVisibilityButton.Content = (_settingsHeaderCollapsed
-            ? "PluginSettings_ExpandHeader" : "PluginSettings_CollapseHeader").GetLocalized();
+            ? "PluginSettings_ExpandHeader"
+            : "PluginSettings_CollapseHeader").GetLocalized();
     }
 
     private static void CancelChromeTransition(ref CancellationTokenSource? current)
@@ -216,6 +223,7 @@ public sealed partial class PluginSettingsPage
                 return 1;
             }, token);
         }
+
         token.ThrowIfCancellationRequested();
         var previous = following.TransformToVisual(parent).TransformPoint(new Point(0, 0)).Y;
         sectionVisual.Opacity = 0;
@@ -231,6 +239,7 @@ public sealed partial class PluginSettingsPage
                 return 1;
             }, token);
         }
+
         token.ThrowIfCancellationRequested();
         if (visible)
         {
@@ -245,7 +254,8 @@ public sealed partial class PluginSettingsPage
     private static void StartChromeFade(Visual visual, float from, float to)
     {
         using var animation = visual.Compositor.CreateScalarKeyFrameAnimation();
-        using var easing = visual.Compositor.CreateCubicBezierEasingFunction(new Vector2(0.2f, 0), new Vector2(0.2f, 1));
+        using var easing =
+            visual.Compositor.CreateCubicBezierEasingFunction(new Vector2(0.2f, 0), new Vector2(0.2f, 1));
         animation.InsertKeyFrame(0, from);
         animation.InsertKeyFrame(1, to, easing);
         animation.Duration = TimeSpan.FromMilliseconds(130);
@@ -257,7 +267,8 @@ public sealed partial class PluginSettingsPage
     private static void StartChromeReposition(Visual visual, float offset)
     {
         using var animation = visual.Compositor.CreateVector3KeyFrameAnimation();
-        using var easing = visual.Compositor.CreateCubicBezierEasingFunction(new Vector2(0.16f, 1), new Vector2(0.3f, 1));
+        using var easing =
+            visual.Compositor.CreateCubicBezierEasingFunction(new Vector2(0.16f, 1), new Vector2(0.3f, 1));
         animation.InsertKeyFrame(0, new Vector3(0, offset, 0));
         animation.InsertKeyFrame(1, Vector3.Zero, easing);
         animation.Duration = TimeSpan.FromMilliseconds(240);

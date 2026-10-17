@@ -86,7 +86,6 @@ public partial class MainViewModel
         }
         catch
         {
-            // ignored
         }
     }
 

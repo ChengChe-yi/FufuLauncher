@@ -57,7 +57,7 @@ public sealed partial class LoginQrWindow
                 string qrUrl = result["data"]["url"]?.GetValue<string>();
                 var uri = new Uri(qrUrl);
                 var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-                session.Ticket = query["ticket"]; // 存入 session
+                session.Ticket = query["ticket"];
                 return (true, qrUrl, "Success");
             }
 

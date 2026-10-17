@@ -31,7 +31,7 @@ namespace FufuLauncher.Services
 
         private readonly string _logFilePath = Path.Combine(AppContext.BaseDirectory, "fps_overlay_debug.log");
 
-        // P/Invoke 定义
+
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr CreateWindowEx(uint dwExStyle, string lpClassName, string lpWindowName,
             uint dwStyle, int x, int y, int nWidth, int nHeight, IntPtr hWndParent, IntPtr hMenu, IntPtr hInstance,
@@ -106,7 +106,7 @@ namespace FufuLauncher.Services
         private static extern bool GetSystemTimes(out FILETIME lpIdleTime, out FILETIME lpKernelTime,
             out FILETIME lpUserTime);
 
-        // 常量与结构体
+
         private const uint WS_EX_LAYERED = 0x00080000;
         private const uint WS_EX_TRANSPARENT = 0x00000020;
         private const uint WS_EX_TOPMOST = 0x00000008;

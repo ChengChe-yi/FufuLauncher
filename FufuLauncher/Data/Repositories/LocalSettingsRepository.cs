@@ -60,10 +60,7 @@ public class LocalSettingsRepository
             if (!string.IsNullOrEmpty(dir))
                 Directory.CreateDirectory(dir);
 
-            // Always ensure the Settings table exists via raw SQL first.
-            // This is idempotent and avoids relying on EF Core's EnsureCreated(),
-            // which can silently skip table creation when the database file
-            // already exists but contains orphan tables (e.g. from a prior crash).
+
             EnsureSettingsTable(dbPath);
 
             using var context = new LocalSettingsDbContext(dbPath);
@@ -107,7 +104,7 @@ public class LocalSettingsRepository
         }
     }
 
-    //读取单个设置项
+
     public async Task<(bool Success, bool Found, string Value)> TryGetSettingAsync(string key)
     {
         try
@@ -123,7 +120,7 @@ public class LocalSettingsRepository
         }
     }
 
-    //全量读取
+
     public async Task<(bool Success, Dictionary<string, string> Values)> TryGetAllSettingsAsync()
     {
         try

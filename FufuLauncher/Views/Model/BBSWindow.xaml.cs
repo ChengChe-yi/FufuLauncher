@@ -35,7 +35,7 @@ namespace FufuLauncher.Views
 
             _deviceFpService = App.GetService<DeviceFpService>();
 
-            // 设备身份是 App 级：不随活跃账号变化，直接取固定档案。
+
             var profile = App.GetService<MobileDeviceService>().Device;
             _deviceName = Uri.EscapeDataString(profile.ResolvedDisplayName);
             _sysVersion = profile.OsVersion;

@@ -97,7 +97,7 @@ public sealed partial class BBSWindow
                 return _clientConfigs[clientType];
         }
 
-        return _clientConfigs["2"]; // 默认 DS1
+        return _clientConfigs["2"];
     }
 
     private async void CoreWebView2_WebResourceRequested(CoreWebView2 sender,

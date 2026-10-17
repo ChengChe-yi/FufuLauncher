@@ -43,7 +43,7 @@ public sealed partial class PluginSettingsPage
         {
             item.BoolValue = requestedValue;
         }
-        
+
         if (ReferenceEquals(toggleSwitch.DataContext, item))
         {
             toggleSwitch.IsOn = item.BoolValue;

@@ -19,7 +19,6 @@ public sealed partial class BBSWindow
     {
         try
         {
-            // 设备身份与账号无关：无活跃账号时同样可以取用。
             var identity = await _deviceFpService.GetOrRegisterAsync();
             _deviceId = identity.BbsDeviceId;
             _activeDeviceFp = identity.DeviceFp;

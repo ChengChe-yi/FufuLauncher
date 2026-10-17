@@ -7,9 +7,6 @@ using Microsoft.UI.Xaml.Data;
 
 namespace FufuLauncher.Helpers;
 
-/// <summary>
-///     null → Opacity=0（占位但透明），not-null → Opacity=1（正常显示）
-/// </summary>
 public class NullToOpacityConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, string language)

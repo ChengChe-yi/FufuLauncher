@@ -27,8 +27,8 @@ public static class GameRoleSelection
     public static void UpdateBindings(AccountEntry account, IEnumerable<GameRoleInfo> roles)
     {
         account.GameRoles = Filter(roles, account.ServerType);
-        // Preserve the user's choice even if the service temporarily omits that role.
-        // Only old accounts without a selection get an initial default.
+
+
         if (string.IsNullOrEmpty(account.GameUid) && account.GameRoles.Count > 0)
             account.GameUid = account.GameRoles[0].game_uid;
         if (Current(account) is { } selected)

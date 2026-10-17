@@ -43,7 +43,7 @@ public sealed partial class MainPage
         var targetHeight = isExpanded ? ViewModel.InfoCardHeight : 157;
         var targetCornerRadius = new CornerRadius(12);
 
-        // 资讯未加载完成时，展开显示骨架占位、折叠立即隐藏，避免骨架溢出收起的卡片
+
         if (NewsSkeletonPanel != null && !ViewModel.IsNewsLoaded)
         {
             NewsSkeletonPanel.Visibility = isExpanded ? Visibility.Visible : Visibility.Collapsed;

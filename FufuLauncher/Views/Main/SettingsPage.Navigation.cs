@@ -25,8 +25,7 @@ public sealed partial class SettingsPage
 
             _isNavigatingFromMenu = true;
 
-            // Safety net: clear lock if ViewChanged never fires
-            // (happens when element is already visible but can't scroll to top)
+
             _navLockTimer?.Stop();
             _navLockTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(600) };
             _navLockTimer.Tick += (s, e) =>
@@ -61,7 +60,7 @@ public sealed partial class SettingsPage
     {
         if (e.IsIntermediate) return;
 
-        // Scroll from nav click completed — release lock, skip sync
+
         if (_isNavigatingFromMenu)
         {
             _navLockTimer?.Stop();

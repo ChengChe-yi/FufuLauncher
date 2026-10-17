@@ -210,7 +210,6 @@ public partial class MainViewModel
         }
         catch
         {
-            // 保存状态失败不影响退出
         }
     }
 
@@ -334,7 +333,6 @@ public partial class MainViewModel
                         }
                         catch (Win32Exception)
                         {
-                            // ignored
                         }
                         catch (InvalidOperationException)
                         {
@@ -347,7 +345,6 @@ public partial class MainViewModel
                 }
                 catch
                 {
-                    // ignored
                 }
             }
 

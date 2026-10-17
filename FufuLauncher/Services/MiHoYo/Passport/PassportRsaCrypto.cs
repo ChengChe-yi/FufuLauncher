@@ -10,7 +10,6 @@ namespace FufuLauncher.Services.MiHoYo.Passport;
 
 public static class PassportRsaCrypto
 {
-    // Coming from https://github.com/UIGF-org/Hoyolab.Salt#cn-passport-api-rsa_public_key
     private const string CnPublicKeyPem = """
                                           -----BEGIN PUBLIC KEY-----
                                           MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDvekdPMHN3AYhm/vktJT+YJr7

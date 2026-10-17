@@ -127,7 +127,8 @@ public partial class GameLauncherService
     {
         var args = new StringBuilder();
 
-        var isCustomParamsEnabledObj = _localSettingsService.ReadSettingAsync(IsCustomLaunchParametersEnabledKey).Result;
+        var isCustomParamsEnabledObj =
+            _localSettingsService.ReadSettingAsync(IsCustomLaunchParametersEnabledKey).Result;
         bool isCustomParamsEnabled = isCustomParamsEnabledObj != null && Convert.ToBoolean(isCustomParamsEnabledObj);
 
         if (isCustomParamsEnabled)

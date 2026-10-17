@@ -19,7 +19,7 @@ public partial class PluginStoreViewModel
     {
         var tcs = new TaskCompletionSource<string?>();
 
-        // Guard: ensure MainWindow and its DispatcherQueue are available
+
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
             Debug.WriteLine("[PluginStoreVM] Cannot show captcha: MainWindow or DispatcherQueue is null");
@@ -66,7 +66,7 @@ public partial class PluginStoreViewModel
 
                 captchaWindow.Content = rootGrid;
 
-                // Configure AppWindow with null guard
+
                 if (captchaWindow.AppWindow is { } appWindow)
                 {
                     appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
@@ -74,7 +74,7 @@ public partial class PluginStoreViewModel
                     appWindow.TitleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
                     appWindow.Resize(new Windows.Graphics.SizeInt32(1280, 720));
 
-                    // Center on main window (if available)
+
                     if (App.MainWindow?.AppWindow is { } mainAppWindow)
                     {
                         var mainPos = mainAppWindow.Position;
@@ -89,7 +89,7 @@ public partial class PluginStoreViewModel
 
                 await webView.EnsureCoreWebView2Async();
 
-                // Guard: CoreWebView2 must be non-null after initialization
+
                 if (webView.CoreWebView2 is not { } coreWebView)
                 {
                     Debug.WriteLine("[PluginStoreVM] CoreWebView2 is null after EnsureCoreWebView2Async");
@@ -175,7 +175,7 @@ public partial class PluginStoreViewModel
                 Debug.WriteLine($"[PluginStoreVM] Error in captcha window: {ex}");
                 tcs.TrySetResult(null);
                 pollCts?.Cancel();
-                // Best-effort close the window if it was created
+
                 if (captchaWindow is not null)
                 {
                     try
@@ -203,7 +203,7 @@ public partial class PluginStoreViewModel
     {
         var tcs = new TaskCompletionSource<string?>();
 
-        // Guard: ensure MainWindow and its DispatcherQueue are available
+
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
             Debug.WriteLine("[PluginStoreVM] Cannot show private access dialog: MainWindow or DispatcherQueue is null");
@@ -229,7 +229,7 @@ public partial class PluginStoreViewModel
                 });
                 stackPanel.Children.Add(inputBox);
 
-                // Guard: XamlRoot requires a valid Content
+
                 if (App.MainWindow?.Content?.XamlRoot is not { } xamlRoot)
                 {
                     Debug.WriteLine("[PluginStoreVM] Cannot show private access dialog: XamlRoot is null");

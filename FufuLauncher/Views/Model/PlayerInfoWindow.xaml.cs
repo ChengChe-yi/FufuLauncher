@@ -117,7 +117,6 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                // ignored
             }
         }
 
@@ -141,7 +140,6 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                // ignored
             }
         }
 
@@ -202,7 +200,6 @@ namespace FufuLauncher.Views
             }
             catch
             {
-                // ignored
             }
         }
 

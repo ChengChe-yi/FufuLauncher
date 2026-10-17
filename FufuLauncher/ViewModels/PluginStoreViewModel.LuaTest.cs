@@ -230,7 +230,7 @@ public partial class PluginStoreViewModel
 
                 var messagePanel = new StackPanel { Spacing = 12 };
 
-                var statusIcon = success ? "\uE73E" : "\uE783"; // Checkmark or Error
+                var statusIcon = success ? "\uE73E" : "\uE783";
                 var statusColor = success
                     ? new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.LimeGreen)
                     : new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.OrangeRed);
@@ -290,7 +290,6 @@ public partial class PluginStoreViewModel
                 {
                     try
                     {
-                        // Open the log file with the system default text editor
                         var psi = new System.Diagnostics.ProcessStartInfo
                         {
                             FileName = logPath,

@@ -120,17 +120,17 @@ public sealed partial class MainWindow : WindowEx
 
         var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         if (!dispatcherQueue.TryEnqueue(() =>
-        {
-            try
             {
-                action();
-                tcs.SetResult();
-            }
-            catch (Exception ex)
-            {
-                tcs.SetException(ex);
-            }
-        }))
+                try
+                {
+                    action();
+                    tcs.SetResult();
+                }
+                catch (Exception ex)
+                {
+                    tcs.SetException(ex);
+                }
+            }))
             tcs.SetException(new InvalidOperationException("主窗口的 UI 调度队列已关闭"));
         return tcs.Task;
     }
@@ -150,7 +150,7 @@ public sealed partial class MainWindow : WindowEx
                 Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
             }
 
-            // Retry once - XAML parse can fail transiently when assemblies are still loading from single-file extraction
+
             try
             {
                 InitializeComponent();

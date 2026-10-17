@@ -84,7 +84,8 @@ public partial class LaunchConfigurationViewModel
                 LaunchArgsWindowMode = WindowModeType.Popup;
             }
             else if (Regex.IsMatch(args, @"-screen-fullscreen\s+1\b")
-                     || (Regex.IsMatch(args, @"-screen-fullscreen\b") && !Regex.IsMatch(args, @"-screen-fullscreen\s+0\b"))
+                     || (Regex.IsMatch(args, @"-screen-fullscreen\b") &&
+                         !Regex.IsMatch(args, @"-screen-fullscreen\s+0\b"))
                      || Regex.IsMatch(args, @"\b-fullscreen\b"))
             {
                 LaunchArgsWindowMode = WindowModeType.FullScreen;
@@ -115,7 +116,6 @@ public partial class LaunchConfigurationViewModel
         }
         catch
         {
-            // ignored
         }
     }
 

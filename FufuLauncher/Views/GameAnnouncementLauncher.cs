@@ -27,7 +27,6 @@ public static class GameAnnouncementLauncher
         }
         catch
         {
-            // ignored
         }
 
         if (mode == AnnouncementViewMode.Classic)

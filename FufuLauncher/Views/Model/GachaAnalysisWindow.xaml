@@ -1982,7 +1982,8 @@
                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                     </StackPanel>
 
-                    <Grid Visibility="{Binding ViewModel.ShowHistoryContent, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <Grid
+                        Visibility="{Binding ViewModel.ShowHistoryContent, Converter={StaticResource BoolToVisibilityConverter}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="420" />
                             <ColumnDefinition Width="16" />
@@ -2119,24 +2120,27 @@
                                 <StackPanel Spacing="14">
                                     <Grid Margin="2,0,10,0">
                                         <StackPanel Spacing="3">
-                                            <TextBlock Text="{x:Bind ViewModel.SelectedHistoryPool.Version, Mode=OneWay}"
-                                                       FontSize="22"
-                                                       FontWeight="SemiBold" />
+                                            <TextBlock
+                                                Text="{x:Bind ViewModel.SelectedHistoryPool.Version, Mode=OneWay}"
+                                                FontSize="22"
+                                                FontWeight="SemiBold" />
                                             <TextBlock Text="{x:Bind ViewModel.SelectedHistoryPool.Name, Mode=OneWay}"
                                                        FontSize="15"
                                                        FontWeight="SemiBold" />
-                                            <TextBlock Text="{x:Bind ViewModel.SelectedHistoryPool.Period, Mode=OneWay}"
-                                                       FontSize="11"
-                                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                            <TextBlock
+                                                Text="{x:Bind ViewModel.SelectedHistoryPool.Period, Mode=OneWay}"
+                                                FontSize="11"
+                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                                         </StackPanel>
                                         <Border HorizontalAlignment="Right"
                                                 VerticalAlignment="Top"
                                                 CornerRadius="12"
                                                 Padding="10,4"
                                                 Background="{ThemeResource AccentFillColorSecondaryBrush}">
-                                            <TextBlock Text="{x:Bind ViewModel.SelectedHistoryPool.TotalPulls, Mode=OneWay}"
-                                                       FontSize="12"
-                                                       FontWeight="SemiBold" />
+                                            <TextBlock
+                                                Text="{x:Bind ViewModel.SelectedHistoryPool.TotalPulls, Mode=OneWay}"
+                                                FontSize="12"
+                                                FontWeight="SemiBold" />
                                         </Border>
                                     </Grid>
 
@@ -2148,11 +2152,12 @@
                                             Background="{ThemeResource LayerFillColorAltBrush}"
                                             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                             BorderThickness="1">
-                                        <Image Source="{x:Bind ViewModel.SelectedHistoryPool.BannerImageUrl, Mode=OneWay}"
-                                               HorizontalAlignment="Stretch"
-                                               VerticalAlignment="Center"
-                                               Stretch="Uniform"
-                                               helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
+                                        <Image
+                                            Source="{x:Bind ViewModel.SelectedHistoryPool.BannerImageUrl, Mode=OneWay}"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Center"
+                                            Stretch="Uniform"
+                                            helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                     </Border>
 
                                     <StackPanel Spacing="8"

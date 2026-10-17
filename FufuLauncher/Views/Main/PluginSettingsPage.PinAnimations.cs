@@ -37,13 +37,16 @@ public sealed partial class PluginSettingsPage
         {
             await previous.Task;
         }
+
         if (!IsLoaded || !_settingEntrancePresentationActive || !ViewModel.IsConfigurationReady)
         {
             return;
         }
 
         var changing = requested.Where(item => item.IsPinned == pinned &&
-            (pinned ? ViewModel.Settings.Contains(item) : ViewModel.PinnedSettings.Contains(item))).ToArray();
+                                               (pinned
+                                                   ? ViewModel.Settings.Contains(item)
+                                                   : ViewModel.PinnedSettings.Contains(item))).ToArray();
         if (changing.Length == 0 || !_settingEntranceAnimationsEnabled)
         {
             commit();
@@ -74,6 +77,7 @@ public sealed partial class PluginSettingsPage
                     StartSettingPinFade(visual, false);
                     started++;
                 }
+
                 return started;
             }, token);
 
@@ -102,8 +106,10 @@ public sealed partial class PluginSettingsPage
 
                         StartSettingPinReposition(GetSettingTransitionVisual(entry.Value.Container, entry.Key), offset);
                     }
+
                     started++;
                 }
+
                 return started;
             }, token);
         }
@@ -118,6 +124,7 @@ public sealed partial class PluginSettingsPage
             {
                 commit();
             }
+
             Debug.WriteLine($"[PluginSettings] Setting pin animation failed: {ex}");
         }
         finally
@@ -180,16 +187,19 @@ public sealed partial class PluginSettingsPage
         var result = new Dictionary<PluginSettingItem, (GridViewItem Container, Vector3 Position)>();
         foreach (var container in EnumerateRealizedSettingContainers())
         {
-            if (container.Content is not PluginSettingItem item || container.ActualWidth <= 0 || container.ActualHeight <= 0)
+            if (container.Content is not PluginSettingItem item || container.ActualWidth <= 0 ||
+                container.ActualHeight <= 0)
             {
                 continue;
             }
+
             var position = container.TransformToVisual(SettingsGrid).TransformPoint(new Point(0, 0));
             if (double.IsFinite(position.X) && double.IsFinite(position.Y))
             {
                 result[item] = (container, new Vector3((float)position.X, (float)position.Y, 0));
             }
         }
+
         return result;
     }
 
@@ -207,6 +217,7 @@ public sealed partial class PluginSettingsPage
                 yield return container;
                 continue;
             }
+
             for (var index = 0; index < VisualTreeHelper.GetChildrenCount(element); index++)
             {
                 elements.Push(VisualTreeHelper.GetChild(element, index));
@@ -221,7 +232,8 @@ public sealed partial class PluginSettingsPage
         using var animation = compositor.CreateScalarKeyFrameAnimation();
         animation.InsertKeyFrame(0, fadeIn ? 0 : 1);
         animation.InsertKeyFrame(1, fadeIn ? 1 : 0, easing);
-        animation.Duration = TimeSpan.FromMilliseconds(fadeIn ? SettingPinFadeInMilliseconds : SettingPinFadeOutMilliseconds);
+        animation.Duration =
+            TimeSpan.FromMilliseconds(fadeIn ? SettingPinFadeInMilliseconds : SettingPinFadeOutMilliseconds);
         animation.StopBehavior = AnimationStopBehavior.SetToFinalValue;
         visual.Opacity = fadeIn ? 1 : 0;
         visual.StartAnimation(nameof(Visual.Opacity), animation);
@@ -269,6 +281,7 @@ public sealed partial class PluginSettingsPage
             {
                 batch.End();
             }
+
             batch.Completed -= OnCompleted;
         }
     }

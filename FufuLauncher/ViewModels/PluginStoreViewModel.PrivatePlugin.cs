@@ -90,7 +90,7 @@ public partial class PluginStoreViewModel
 
                 Plugins.Insert(0, accessResult.Plugin);
                 TotalPlugins++;
-                // 与 IsEmpty 一起维护，否则下次刷新会在已有内容上盖一层骨架屏。
+
                 _hasContent = true;
                 IsEmpty = false;
                 StatusMessage = string.Format("已添加私密插件: {0}", accessResult.Plugin.Name);

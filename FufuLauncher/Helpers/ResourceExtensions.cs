@@ -15,9 +15,7 @@ public static class ResourceExtensions
     private static readonly object _lock = new();
     private static bool _loaded;
 
-    /// <summary>
-    ///     Gets the currently active effective culture name (e.g., "zh-CN", "en-US").
-    /// </summary>
+
     public static string? CurrentCulture
     {
         get
@@ -29,10 +27,7 @@ public static class ResourceExtensions
         }
     }
 
-    /// <summary>
-    ///     Sets the effective language for resource resolution.
-    ///     Callers in default-language mode must resolve a supported system culture first.
-    /// </summary>
+
     public static void SetLanguage(string? culture)
     {
         lock (_lock)
@@ -120,7 +115,7 @@ public static class ResourceExtensions
         {
             EnsureLoaded();
 
-            // 1) Use the explicitly-set language
+
             string? culture;
             lock (_lock)
             {
@@ -132,7 +127,7 @@ public static class ResourceExtensions
                 dict.TryGetValue(resourceKey, out var result))
                 return result;
 
-            // 2) A missing translation falls back to the complete Chinese resource set.
+
             if (culture != "zh-CN" &&
                 _resources.TryGetValue("zh-CN", out var zhDict) &&
                 zhDict.TryGetValue(resourceKey, out var zhResult))
@@ -150,7 +145,7 @@ public static class ResourceExtensions
                     return fb;
             }
 
-            // 3) Absolute fallback: return the key itself
+
             return resourceKey;
         }
         catch (Exception ex)
