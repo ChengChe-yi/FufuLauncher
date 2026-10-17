@@ -412,13 +412,13 @@
     <value>快速预设</value>
   </data>
   <data name="HdrTitle" xml:space="preserve">
-    <value>HDR 亮度配置</value>
+    <value>HDR亮度配置</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>调整游戏内的 HDR 峰值亮度与 UI 亮度</value>
+    <value>调整游戏内的 HDR峰值亮度与 UI 亮度</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
-    <value>打开 HDR 设置</value>
+    <value>打开 HDR设置</value>
   </data>
   <data name="TargetMonitorTitle" xml:space="preserve">
     <value>目标显示器</value>
@@ -3017,7 +3017,7 @@
     <value>保存并生效</value>
   </data>
   <data name="HDR_BrightnessConfig" xml:space="preserve">
-    <value>HDR 亮度配置</value>
+    <value>HDR亮度配置</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
     <value>不支持 HDR</value>
@@ -3026,22 +3026,22 @@
     <value>当前显示器报告不支持 HDR。</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR 未开启</value>
+    <value>HDR未开启</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>Windows HDR 模式未开启，自动调整可能不准确。</value>
+    <value>Windows HDR模式未开启，自动调整可能不准确。</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>显示器信息</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>HDR 开关设置 (每次启动时强制应用)</value>
+    <value>HDR开关设置</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>关闭 HDR (注册表值为 0)</value>
+    <value>关闭 HDR(注册表值为 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>开启 HDR (注册表值为 1)</value>
+    <value>开启 HDR(注册表值为 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>注意：保存后会立即修改注册表，且下次启动游戏时会自动重新应用此设置。</value>
@@ -3063,6 +3063,57 @@
   </data>
   <data name="HDR_AutoAdjustTooltip" xml:space="preserve">
     <value>根据显示器数据自动推算</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>色彩空间</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>峰值亮度</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>全屏最大亮度</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>SDR白点亮度</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>调节高光与极端亮部细节的亮度上限 (建议与显示器峰值一致)</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>调节游戏世界环境场景的基础参考白点亮度</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>调节小地图、血条、文本等界面元素的亮度</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDR已启用</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDR未启用</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDR不支持</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDR无法获取</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>HDR检测中...</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR(标准动态范围)</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG(广色域)</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR(高动态范围)</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>无法读取</value>
   </data>
   <data name="InventoryWindow_Title" xml:space="preserve">
     <value>背包物品与目标规划</value>

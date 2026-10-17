@@ -548,7 +548,7 @@ Se continuar, este aviso será ignorado e o Hash desta predefinição será atua
     <value>Configuração de brilho HDR</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>Ajuste o brilho máximo HDR e o brilho da interface no jogo</value>
+    <value>Ajuste o brilho máximo HDRe o brilho da interface no jogo</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
     <value>Abrir configurações HDR</value>
@@ -2713,28 +2713,28 @@ Ir para o site da Microsoft para baixar e instalar?</value>
     <value>Configuração de brilho HDR</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
-    <value>HDR não suportado</value>
+    <value>HDRnão suportado</value>
   </data>
   <data name="HDR_NotSupportedMsg" xml:space="preserve">
-    <value>O monitor atual informa que HDR não é suportado.</value>
+    <value>O monitor atual informa que HDRnão é suportado.</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR não ativado</value>
+    <value>HDRnão ativado</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>O modo HDR do Windows não está ativado; o ajuste automático pode ser impreciso.</value>
+    <value>O modo HDRdo Windows não está ativado; o ajuste automático pode ser impreciso.</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>Informações da tela</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>Configuração de chave HDR (Forçar aplicação a cada inicialização)</value>
+    <value>Configuração de chave HDR(Forçar aplicação a cada inicialização)</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>Desativar HDR (Valor do registro 0)</value>
+    <value>Desativar HDR(Valor do registro 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>Ativar HDR (Valor do registro 1)</value>
+    <value>Ativar HDR(Valor do registro 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>Nota: Salvar modificará imediatamente o registro, e esta configuração será reaplicada automaticamente na próxima vez que o jogo for iniciado.</value>

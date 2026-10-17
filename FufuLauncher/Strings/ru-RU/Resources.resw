@@ -548,7 +548,7 @@
     <value>Настройка яркости HDR</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>Настройте пиковую яркость HDR и яркость интерфейса в игре</value>
+    <value>Настройте пиковую яркость HDRи яркость интерфейса в игре</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
     <value>Открыть настройки HDR</value>
@@ -2713,28 +2713,28 @@
     <value>Конфигурация яркости HDR</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
-    <value>HDR не поддерживается</value>
+    <value>HDRне поддерживается</value>
   </data>
   <data name="HDR_NotSupportedMsg" xml:space="preserve">
-    <value>Монитор сообщает, что HDR не поддерживается.</value>
+    <value>Монитор сообщает, что HDRне поддерживается.</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR не включён</value>
+    <value>HDRне включён</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>Режим HDR Windows не включён; автонастройка может быть неточной.</value>
+    <value>Режим HDRWindows не включён; автонастройка может быть неточной.</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>Информация о дисплее</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>Переключатель HDR (принудительно при каждом запуске)</value>
+    <value>Переключатель HDR(принудительно при каждом запуске)</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>Отключить HDR (значение реестра 0)</value>
+    <value>Отключить HDR(значение реестра 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>Включить HDR (значение реестра 1)</value>
+    <value>Включить HDR(значение реестра 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>Примечание: Сохранение немедленно изменит реестр, и настройка будет автоматически применена при следующем запуске игры.</value>

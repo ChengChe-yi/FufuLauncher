@@ -3,14 +3,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Services;
-using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
-using Windows.UI;
 using DisplayAdvancedColorKind = Microsoft.Graphics.Display.DisplayAdvancedColorKind;
 using DisplayInformation = Microsoft.Graphics.Display.DisplayInformation;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -19,6 +18,8 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
 {
     private DisplayInformation? _displayInformation;
     private Flyout? _hostFlyout;
+    private bool _isLoaded;
+    private CancellationTokenSource? _saveDebounceCts;
 
     public GenshinHDRSettingPanel()
     {
@@ -41,11 +42,10 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         {
             Setters =
             {
-                new Setter(Control.PaddingProperty, new Thickness(0)),
-                new Setter(Control.CornerRadiusProperty, new CornerRadius(12)),
-                new Setter(FrameworkElement.MaxWidthProperty, 500.0),
-                new Setter(FrameworkElement.MaxHeightProperty, 650.0),
-                new Setter(Control.BorderThicknessProperty, new Thickness(1))
+                new Setter(Control.PaddingProperty, new Thickness(16)),
+                new Setter(Control.CornerRadiusProperty, new CornerRadius(8)),
+                new Setter(FrameworkElement.MaxWidthProperty, 480.0),
+                new Setter(FrameworkElement.MaxHeightProperty, 620.0)
             }
         };
         panel._hostFlyout = flyout;
@@ -54,6 +54,7 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
 
     private async void GenshinHDRSettingPanel_Loaded(object sender, RoutedEventArgs e)
     {
+        _isLoaded = false;
         try
         {
             XamlRoot.Changed -= XamlRoot_Changed;
@@ -93,6 +94,10 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         {
             Debug.WriteLine(ex);
         }
+        finally
+        {
+            _isLoaded = true;
+        }
     }
 
     private void XamlRoot_Changed(XamlRoot sender, XamlRootChangedEventArgs args)
@@ -107,6 +112,11 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
     {
         try
         {
+            if (_isLoaded)
+            {
+                SaveSettings();
+            }
+
             if (_displayInformation != null)
             {
                 _displayInformation.AdvancedColorInfoChanged -= _displayInformation_AdvancedColorInfoChanged;
@@ -126,7 +136,8 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
     [ObservableProperty] public partial bool HDRNotSupported { get; set; }
     [ObservableProperty] public partial bool HDRNotEnabled { get; set; }
     [ObservableProperty] public partial bool HDREnabled { get; set; }
-    [ObservableProperty] public partial string DisplayColorSpace { get; set; } = "检测中...";
+    [ObservableProperty] public partial string SystemHDRStatusText { get; set; } = "HDR_Status_Detecting".GetLocalized();
+    [ObservableProperty] public partial string DisplayColorSpace { get; set; } = "HDR_Status_Detecting".GetLocalized();
     [ObservableProperty] public partial string DisplayMaxLuminance { get; set; } = "-";
     [ObservableProperty] public partial string DisplayFullFrameLuminance { get; set; } = "-";
     [ObservableProperty] public partial string DisplaySdrWhiteLevel { get; set; } = "-";
@@ -135,12 +146,43 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
     [ObservableProperty] public partial int SceneLuminance { get; set; } = 300;
     [ObservableProperty] public partial int UILuminance { get; set; } = 350;
     [ObservableProperty] public partial bool IsGenshinHDRForceEnabled { get; set; }
-    [ObservableProperty] public partial bool IsSaveSuccessVisible { get; set; }
 
-    [ObservableProperty] public partial Brush StatusBadgeBackground { get; set; } = new SolidColorBrush(Color.FromArgb(24, 16, 185, 129));
-    [ObservableProperty] public partial Brush StatusBadgeBorder { get; set; } = new SolidColorBrush(Color.FromArgb(64, 16, 185, 129));
-    [ObservableProperty] public partial Brush StatusBadgeForeground { get; set; } = new SolidColorBrush(Color.FromArgb(255, 16, 185, 129));
-    [ObservableProperty] public partial string StatusBadgeText { get; set; } = "HDR 已就绪";
+    partial void OnMaxLuminanceChanged(int value) => TriggerAutoSave();
+    partial void OnSceneLuminanceChanged(int value) => TriggerAutoSave();
+    partial void OnUILuminanceChanged(int value) => TriggerAutoSave();
+    partial void OnIsGenshinHDRForceEnabledChanged(bool value) => TriggerAutoSave();
+
+    private void TriggerAutoSave()
+    {
+        if (!_isLoaded) return;
+        _saveDebounceCts?.Cancel();
+        _saveDebounceCts = new CancellationTokenSource();
+        var token = _saveDebounceCts.Token;
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(300, token);
+                if (token.IsCancellationRequested) return;
+                SaveSettings();
+            }
+            catch
+            {
+            }
+        });
+    }
+
+    private void SaveSettings()
+    {
+        GameSettingService.SetGenshinHDRLuminance(MaxLuminance, SceneLuminance, UILuminance);
+        GameSettingService.SetGenshinHDRState(IsGenshinHDRForceEnabled);
+
+        var localSettings = App.GetService<ILocalSettingsService>();
+        if (localSettings != null)
+        {
+            _ = localSettings.SaveSettingAsync(GameLauncherService.GenshinHDRConfigKey, IsGenshinHDRForceEnabled);
+        }
+    }
 
     private void _displayInformation_AdvancedColorInfoChanged(DisplayInformation sender, object args)
     {
@@ -159,39 +201,30 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
             HDRNotEnabled = info.CurrentAdvancedColorKind is not DisplayAdvancedColorKind.HighDynamicRange;
             HDREnabled = !HDRNotEnabled;
 
+            if (HDREnabled)
+            {
+                SystemHDRStatusText = "HDR已启用";
+            }
+            else if (HDRNotSupported)
+            {
+                SystemHDRStatusText = "HDR不支持";
+            }
+            else
+            {
+                SystemHDRStatusText = "HDR未启用";
+            }
+
             DisplayColorSpace = info.CurrentAdvancedColorKind switch
             {
-                DisplayAdvancedColorKind.StandardDynamicRange => "SDR (标准动态范围)",
-                DisplayAdvancedColorKind.WideColorGamut => "WCG (广色域)",
-                DisplayAdvancedColorKind.HighDynamicRange => "HDR (高动态范围)",
+                DisplayAdvancedColorKind.StandardDynamicRange => "SDR(标准动态范围)",
+                DisplayAdvancedColorKind.WideColorGamut => "WCG(广色域)",
+                DisplayAdvancedColorKind.HighDynamicRange => "HDR(高动态范围)",
                 _ => "未知"
             };
 
             DisplayMaxLuminance = $"{info.MaxLuminanceInNits:F0} nits";
             DisplayFullFrameLuminance = $"{info.MaxAverageFullFrameLuminanceInNits:F0} nits";
             DisplaySdrWhiteLevel = $"{info.SdrWhiteLevelInNits:F0} nits";
-
-            if (HDREnabled)
-            {
-                StatusBadgeBackground = new SolidColorBrush(Color.FromArgb(24, 16, 185, 129));
-                StatusBadgeBorder = new SolidColorBrush(Color.FromArgb(64, 16, 185, 129));
-                StatusBadgeForeground = new SolidColorBrush(Color.FromArgb(255, 16, 185, 129));
-                StatusBadgeText = "HDR 已就绪";
-            }
-            else if (HDRNotSupported)
-            {
-                StatusBadgeBackground = new SolidColorBrush(Color.FromArgb(24, 239, 68, 68));
-                StatusBadgeBorder = new SolidColorBrush(Color.FromArgb(64, 239, 68, 68));
-                StatusBadgeForeground = new SolidColorBrush(Color.FromArgb(255, 239, 68, 68));
-                StatusBadgeText = "不支持 HDR";
-            }
-            else
-            {
-                StatusBadgeBackground = new SolidColorBrush(Color.FromArgb(24, 245, 158, 11));
-                StatusBadgeBorder = new SolidColorBrush(Color.FromArgb(64, 245, 158, 11));
-                StatusBadgeForeground = new SolidColorBrush(Color.FromArgb(255, 245, 158, 11));
-                StatusBadgeText = "HDR 未开启";
-            }
 
             DisplayInfomation = $"""
                                  色彩空间: {DisplayColorSpace}
@@ -202,29 +235,12 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         }
         catch
         {
+            SystemHDRStatusText = "HDR无法获取";
             DisplayColorSpace = "无法读取";
             DisplayMaxLuminance = "-";
             DisplayFullFrameLuminance = "-";
             DisplaySdrWhiteLevel = "-";
         }
-    }
-
-    [RelayCommand]
-    private async Task Save()
-    {
-        GameSettingService.SetGenshinHDRLuminance(MaxLuminance, SceneLuminance, UILuminance);
-        GameSettingService.SetGenshinHDRState(IsGenshinHDRForceEnabled);
-
-        var localSettings = App.GetService<ILocalSettingsService>();
-        if (localSettings != null)
-        {
-            await localSettings.SaveSettingAsync(GameLauncherService.GenshinHDRConfigKey, IsGenshinHDRForceEnabled);
-        }
-
-        IsSaveSuccessVisible = true;
-        await Task.Delay(900);
-        IsSaveSuccessVisible = false;
-        Close();
     }
 
     [RelayCommand]
@@ -234,6 +250,7 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         SceneLuminance = 300;
         UILuminance = 350;
         IsGenshinHDRForceEnabled = false;
+        SaveSettings();
     }
 
     [RelayCommand]
@@ -251,6 +268,7 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
                 MaxLuminance = (int)Math.Clamp(maxLum, 300, 2000);
                 SceneLuminance = (int)Math.Clamp(sdrWhite + 20, 100, 500);
                 UILuminance = Math.Clamp(SceneLuminance + 50, 150, 550);
+                SaveSettings();
             }
         }
         catch
@@ -258,7 +276,6 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         }
     }
 
-    [RelayCommand]
     public void Close()
     {
         if (_hostFlyout != null)
@@ -278,6 +295,4 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
             current = VisualTreeHelper.GetParent(current);
         }
     }
-
-    private void OnCloseClick(object sender, RoutedEventArgs e) => Close();
 }

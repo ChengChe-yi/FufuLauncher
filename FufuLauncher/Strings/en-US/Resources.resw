@@ -412,13 +412,13 @@
     <value>Quick Presets</value>
   </data>
   <data name="HdrTitle" xml:space="preserve">
-    <value>HDR Brightness Configuration</value>
+    <value>HDRBrightness Configuration</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>Adjust in-game HDR peak brightness and UI brightness</value>
+    <value>Adjust in-game HDRpeak brightness and UI brightness</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
-    <value>Open HDR Settings</value>
+    <value>Open HDRSettings</value>
   </data>
   <data name="TargetMonitorTitle" xml:space="preserve">
     <value>Target Monitor</value>
@@ -2873,31 +2873,31 @@ Go to the Microsoft website to download and install it?</value>
     <value>Save &amp; Apply</value>
   </data>
   <data name="HDR_BrightnessConfig" xml:space="preserve">
-    <value>HDR Brightness Configuration</value>
+    <value>HDRBrightness Configuration</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
-    <value>HDR Not Supported</value>
+    <value>HDRNot Supported</value>
   </data>
   <data name="HDR_NotSupportedMsg" xml:space="preserve">
-    <value>The current monitor reports that HDR is not supported.</value>
+    <value>The current monitor reports that HDRis not supported.</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR Not Enabled</value>
+    <value>HDRNot Enabled</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>Windows HDR mode is not enabled; auto adjustment may be inaccurate.</value>
+    <value>Windows HDRmode is not enabled; auto adjustment may be inaccurate.</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>Display Information</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>HDR Switch Setting (Force apply on each launch)</value>
+    <value>HDRSwitch</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>Disable HDR (Registry value 0)</value>
+    <value>Disable HDR(Registry value 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>Enable HDR (Registry value 1)</value>
+    <value>Enable HDR(Registry value 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>Note: Saving will immediately modify the registry, and this setting will be automatically re-applied the next time the game is launched.</value>
@@ -2919,6 +2919,57 @@ Go to the Microsoft website to download and install it?</value>
   </data>
   <data name="HDR_AutoAdjustTooltip" xml:space="preserve">
     <value>Auto-calculate based on display data</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>Color Space</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>Peak Brightness</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>Full Frame Max</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>SDRWhite Level</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>Adjusts peak brightness ceiling for highlights (recommended to match monitor)</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>Adjusts baseline reference white brightness for game world scenes</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>Adjusts brightness for UI elements such as minimap, health bars, and text</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDREnabled</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDRDisabled</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDRNot Supported</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDRUnavailable</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>HDRDetecting...</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR(Standard Dynamic Range)</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG(Wide Color Gamut)</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR(High Dynamic Range)</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>Unavailable</value>
   </data>
   <data name="InventoryWindow_Title" xml:space="preserve">
     <value>Inventory &amp; Goal Planning</value>

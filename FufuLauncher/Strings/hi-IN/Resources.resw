@@ -406,13 +406,13 @@
     <value>क्विक प्रीसेट</value>
   </data>
   <data name="HdrTitle" xml:space="preserve">
-    <value>HDR चमक कॉन्फ़िगरेशन</value>
+    <value>HDRचमक कॉन्फ़िगरेशन</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>इन-गेम HDR पीक चमक और UI चमक समायोजित करें</value>
+    <value>इन-गेम HDRपीक चमक और UI चमक समायोजित करें</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
-    <value>HDR सेटिंग्स खोलें</value>
+    <value>HDRसेटिंग्स खोलें</value>
   </data>
   <data name="TargetMonitorTitle" xml:space="preserve">
     <value>लक्ष्य मॉनिटर</value>
@@ -2847,31 +2847,31 @@
     <value>सहेजें और लागू करें</value>
   </data>
   <data name="HDR_BrightnessConfig" xml:space="preserve">
-    <value>HDR चमक कॉन्फ़िगरेशन</value>
+    <value>HDRचमक कॉन्फ़िगरेशन</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
-    <value>HDR समर्थित नहीं</value>
+    <value>HDRसमर्थित नहीं</value>
   </data>
   <data name="HDR_NotSupportedMsg" xml:space="preserve">
-    <value>वर्तमान मॉनिटर रिपोर्ट करता है कि HDR समर्थित नहीं है।</value>
+    <value>वर्तमान मॉनिटर रिपोर्ट करता है कि HDRसमर्थित नहीं है।</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR सक्षम नहीं</value>
+    <value>HDRसक्षम नहीं</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>Windows HDR मोड सक्षम नहीं है; ऑटो समायोजन गलत हो सकता है।</value>
+    <value>Windows HDRमोड सक्षम नहीं है; ऑटो समायोजन गलत हो सकता है।</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>डिस्प्ले जानकारी</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>HDR स्विच सेटिंग (प्रत्येक लॉन्च पर बलपूर्वक लागू करें)</value>
+    <value>HDRस्विच सेटिंग (प्रत्येक लॉन्च पर बलपूर्वक लागू करें)</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>HDR अक्षम करें (रजिस्ट्री मान 0)</value>
+    <value>HDRअक्षम करें (रजिस्ट्री मान 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>HDR सक्षम करें (रजिस्ट्री मान 1)</value>
+    <value>HDRसक्षम करें (रजिस्ट्री मान 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>नोट: सहेजने पर रजिस्ट्री तुरंत संशोधित होगी, और अगली बार गेम लॉन्च करने पर यह सेटिंग स्वतः पुनः लागू होगी।</value>

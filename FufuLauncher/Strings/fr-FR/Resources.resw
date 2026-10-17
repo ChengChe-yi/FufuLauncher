@@ -548,7 +548,7 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
     <value>Configuration de la luminosité HDR</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>Ajuster la luminosité maximale HDR et la luminosité de l'interface en jeu</value>
+    <value>Ajuster la luminosité maximale HDRet la luminosité de l'interface en jeu</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
     <value>Ouvrir les paramètres HDR</value>
@@ -2713,28 +2713,28 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
     <value>Configuration de la luminosité HDR</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
-    <value>HDR non pris en charge</value>
+    <value>HDRnon pris en charge</value>
   </data>
   <data name="HDR_NotSupportedMsg" xml:space="preserve">
     <value>Le moniteur actuel ne supporte pas le HDR.</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR non activé</value>
+    <value>HDRnon activé</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>Le mode HDR Windows n'est pas activé, l'ajustement automatique peut être imprécis.</value>
+    <value>Le mode HDRWindows n'est pas activé, l'ajustement automatique peut être imprécis.</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>Informations sur le moniteur</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>Paramètre de basculement HDR (appliqué à chaque lancement)</value>
+    <value>Paramètre de basculement HDR(appliqué à chaque lancement)</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>Désactiver le HDR (valeur registre 0)</value>
+    <value>Désactiver le HDR(valeur registre 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>Activer le HDR (valeur registre 1)</value>
+    <value>Activer le HDR(valeur registre 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>Note : la sauvegarde modifie immédiatement le registre et sera réappliquée automatiquement au prochain lancement du jeu.</value>

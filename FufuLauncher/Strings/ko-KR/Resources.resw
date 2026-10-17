@@ -545,13 +545,13 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
     <value>빠른 프리셋</value>
   </data>
   <data name="HdrTitle" xml:space="preserve">
-    <value>HDR 밝기 설정</value>
+    <value>HDR밝기 설정</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>게임 내 HDR 최대 밝기 및 UI 밝기 조정</value>
+    <value>게임 내 HDR최대 밝기 및 UI 밝기 조정</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
-    <value>HDR 설정 열기</value>
+    <value>HDR설정 열기</value>
   </data>
   <data name="TargetMonitorTitle" xml:space="preserve">
     <value>대상 모니터</value>
@@ -2710,31 +2710,31 @@ Microsoft 웹사이트로 이동하여 다운로드 및 설치하시겠습니까
     <value>저장 및 적용</value>
   </data>
   <data name="HDR_BrightnessConfig" xml:space="preserve">
-    <value>HDR 밝기 설정</value>
+    <value>HDR밝기 설정</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
-    <value>HDR 미지원</value>
+    <value>HDR미지원</value>
   </data>
   <data name="HDR_NotSupportedMsg" xml:space="preserve">
     <value>현재 모니터가 HDR을 지원하지 않는 것으로 보고됩니다.</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR 활성화 안 됨</value>
+    <value>HDR활성화 안 됨</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>Windows HDR 모드가 활성화되지 않았습니다. 자동 조정이 부정확할 수 있습니다.</value>
+    <value>Windows HDR모드가 활성화되지 않았습니다. 자동 조정이 부정확할 수 있습니다.</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>디스플레이 정보</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>HDR 스위치 설정 (매 실행 시 강제 적용)</value>
+    <value>HDR스위치 설정 (매 실행 시 강제 적용)</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>HDR 비활성화 (레지스트리 값 0)</value>
+    <value>HDR비활성화 (레지스트리 값 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>HDR 활성화 (레지스트리 값 1)</value>
+    <value>HDR활성화 (레지스트리 값 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>참고: 저장하면 즉시 레지스트리가 수정되며, 다음 게임 실행 시 이 설정이 자동으로 다시 적용됩니다.</value>

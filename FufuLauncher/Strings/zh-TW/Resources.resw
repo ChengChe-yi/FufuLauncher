@@ -545,13 +545,13 @@
     <value>快速預設</value>
   </data>
   <data name="HdrTitle" xml:space="preserve">
-    <value>HDR 亮度設定</value>
+    <value>HDR亮度設定</value>
   </data>
   <data name="HdrCaption" xml:space="preserve">
-    <value>調整遊戲內的 HDR 峰值亮度與 UI 亮度</value>
+    <value>調整遊戲內的 HDR峰值亮度與 UI 亮度</value>
   </data>
   <data name="OpenHdrSettings" xml:space="preserve">
-    <value>開啟 HDR 設定</value>
+    <value>開啟 HDR設定</value>
   </data>
   <data name="TargetMonitorTitle" xml:space="preserve">
     <value>目標顯示器</value>
@@ -2710,7 +2710,7 @@
     <value>儲存並生效</value>
   </data>
   <data name="HDR_BrightnessConfig" xml:space="preserve">
-    <value>HDR 亮度設定</value>
+    <value>HDR亮度設定</value>
   </data>
   <data name="HDR_NotSupported" xml:space="preserve">
     <value>不支援 HDR</value>
@@ -2719,22 +2719,22 @@
     <value>目前顯示器回報不支援 HDR。</value>
   </data>
   <data name="HDR_NotEnabled" xml:space="preserve">
-    <value>HDR 未開啟</value>
+    <value>HDR未開啟</value>
   </data>
   <data name="HDR_NotEnabledMsg" xml:space="preserve">
-    <value>Windows HDR 模式未開啟，自動調整可能不準確。</value>
+    <value>Windows HDR模式未開啟，自動調整可能不準確。</value>
   </data>
   <data name="HDR_DisplayInfo" xml:space="preserve">
     <value>顯示器資訊</value>
   </data>
   <data name="HDR_SwitchSetting" xml:space="preserve">
-    <value>HDR 開關設定 (每次啟動時強制套用)</value>
+    <value>HDR開關設定 (每次啟動時強制套用)</value>
   </data>
   <data name="HDR_OffContent" xml:space="preserve">
-    <value>關閉 HDR (登錄檔值為 0)</value>
+    <value>關閉 HDR(登錄檔值為 0)</value>
   </data>
   <data name="HDR_OnContent" xml:space="preserve">
-    <value>開啟 HDR (登錄檔值為 1)</value>
+    <value>開啟 HDR(登錄檔值為 1)</value>
   </data>
   <data name="HDR_RegistryNote" xml:space="preserve">
     <value>注意：儲存後會立即修改登錄檔，且下次啟動遊戲時會自動重新套用此設定。</value>
