@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -16,11 +16,12 @@ public sealed partial class SettingsPage
 {
     #region 云游戏凭证与 HDR
 
-    private async void OnOpenHDRSettingsClick(object sender, RoutedEventArgs e)
+    private void OnOpenHDRSettingsClick(object sender, RoutedEventArgs e)
     {
-        var dialog = new GenshinHDRLuminanceSettingDialog();
-        dialog.XamlRoot = this.XamlRoot;
-        await dialog.ShowAsync();
+        if (sender is FrameworkElement target)
+        {
+            GenshinHDRSettingPanel.ShowAt(target, Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedRight);
+        }
     }
 
     private void OnCloudCredentialClick(object sender, RoutedEventArgs e)

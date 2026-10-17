@@ -37,10 +37,12 @@ public sealed partial class LaunchConfigurationPanel : UserControl
         combo.SelectedIndex = -1;
     }
 
-    private async void OnOpenHdrClick(object sender, RoutedEventArgs e)
+    private void OnOpenHdrClick(object sender, RoutedEventArgs e)
     {
-        var dialog = new GenshinHDRLuminanceSettingDialog { XamlRoot = XamlRoot };
-        await dialog.ShowAsync();
+        if (sender is FrameworkElement target)
+        {
+            GenshinHDRSettingPanel.ShowAt(target, Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedLeft);
+        }
     }
 
     private void OnIdentifyMonitorsClick(object sender, RoutedEventArgs e) => Helpers.MonitorHelper.IdentifyAll();

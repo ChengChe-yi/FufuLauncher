@@ -913,7 +913,7 @@
     <value>Modified: </value>
   </data>
   <data name="FunctionsMenuBtn" xml:space="preserve">
-    <value>Functions (Download/Repair)</value>
+    <value>Functions</value>
   </data>
   <data name="DownloadPluginBtn" xml:space="preserve">
     <value>Download Plugin</value>

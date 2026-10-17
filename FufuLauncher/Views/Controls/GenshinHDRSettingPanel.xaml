@@ -1,0 +1,236 @@
+<UserControl
+    x:Class="FufuLauncher.Views.GenshinHDRSettingPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    x:DefaultBindMode="OneWay">
+
+    <UserControl.Resources>
+        <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
+
+    <Grid Width="460">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Padding="20,16,16,14" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,0,0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Width="36" Height="36" CornerRadius="8"
+                    Background="{ThemeResource AccentFillColorDefaultBrush}" Margin="0,0,12,0"
+                    VerticalAlignment="Center">
+                <FontIcon Glyph="&#xE706;" Foreground="White" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                <TextBlock Text="{helpers:Loc Key=HDR_BrightnessConfig}" FontSize="15" FontWeight="SemiBold" />
+                <TextBlock Text="自定义原神在 HDR 模式下的画质亮度" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            </StackPanel>
+
+            <Button Grid.Column="2" Width="30" Height="30" Padding="0" CornerRadius="15"
+                    Background="Transparent" BorderThickness="0" VerticalAlignment="Center"
+                    Click="OnCloseClick">
+                <FontIcon Glyph="&#xE711;" FontSize="12" />
+            </Button>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" MaxHeight="450" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="20,16,20,12">
+            <StackPanel Spacing="14">
+
+                <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" Padding="14,12">
+                    <StackPanel Spacing="10">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                <FontIcon Glyph="&#xE7F4;" FontSize="14" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                                <TextBlock Text="{helpers:Loc Key=HDR_DisplayInfo}" FontSize="12" FontWeight="SemiBold" />
+                            </StackPanel>
+
+                            <Border HorizontalAlignment="Right" CornerRadius="10" Padding="8,2"
+                                    Background="{x:Bind StatusBadgeBackground, Mode=OneWay}"
+                                    BorderBrush="{x:Bind StatusBadgeBorder, Mode=OneWay}"
+                                    BorderThickness="1">
+                                <StackPanel Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                                    <Ellipse Width="6" Height="6" Fill="{x:Bind StatusBadgeForeground, Mode=OneWay}" />
+                                    <TextBlock Text="{x:Bind StatusBadgeText, Mode=OneWay}" FontSize="11" FontWeight="Medium"
+                                               Foreground="{x:Bind StatusBadgeForeground, Mode=OneWay}" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <InfoBar IsOpen="{x:Bind HDRNotSupported}" Severity="Warning" Title="{helpers:Loc Key=HDR_NotSupported}"
+                                 Message="{helpers:Loc Key=HDR_NotSupportedMsg}" IsClosable="False" Margin="0,2,0,2" />
+                        <InfoBar IsOpen="{x:Bind HDRNotEnabled}" Severity="Informational" Title="{helpers:Loc Key=HDR_NotEnabled}"
+                                 Message="{helpers:Loc Key=HDR_NotEnabledMsg}" IsClosable="False" Margin="0,2,0,2" />
+
+                        <Grid ColumnSpacing="8" RowSpacing="6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" Grid.Column="0" CornerRadius="6" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" Padding="10,8">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="色彩空间" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock Text="{x:Bind DisplayColorSpace, Mode=OneWay}" FontSize="12" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="0" Grid.Column="1" CornerRadius="6" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" Padding="10,8">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="峰值亮度" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock Text="{x:Bind DisplayMaxLuminance, Mode=OneWay}" FontSize="12" FontWeight="SemiBold" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="0" CornerRadius="6" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" Padding="10,8">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="全屏最大亮度" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock Text="{x:Bind DisplayFullFrameLuminance, Mode=OneWay}" FontSize="12" FontWeight="SemiBold" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Row="1" Grid.Column="1" CornerRadius="6" Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" Padding="10,8">
+                                <StackPanel Spacing="2">
+                                    <TextBlock Text="SDR 白点亮度" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                    <TextBlock Text="{x:Bind DisplaySdrWhiteLevel, Mode=OneWay}" FontSize="12" FontWeight="SemiBold" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" Padding="14,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center" Spacing="2" Margin="0,0,12,0">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE7E8;" FontSize="13" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" VerticalAlignment="Center" />
+                                <TextBlock Text="{helpers:Loc Key=HDR_SwitchSetting}" FontSize="13" FontWeight="SemiBold" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <TextBlock Text="{helpers:Loc Key=HDR_RegistryNote}" FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                        </StackPanel>
+                        <ToggleSwitch Grid.Column="1" VerticalAlignment="Center"
+                                      IsOn="{x:Bind IsGenshinHDRForceEnabled, Mode=TwoWay}"
+                                      OnContent="{helpers:Loc Key=OnLabel}" OffContent="{helpers:Loc Key=OffLabel}"
+                                      MinWidth="0" />
+                    </Grid>
+                </Border>
+
+                <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" Padding="14,12">
+                    <StackPanel Spacing="6">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                <FontIcon Glyph="&#xE706;" FontSize="13" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                                <TextBlock Text="{helpers:Loc Key=HDR_MaxLuminance}" FontSize="13" FontWeight="SemiBold" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                <NumberBox Width="96" Value="{x:Bind MaxLuminance, Mode=TwoWay}"
+                                           Minimum="300" Maximum="2000" SpinButtonPlacementMode="Compact" />
+                                <TextBlock Text="nits" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                        <Slider Value="{x:Bind MaxLuminance, Mode=TwoWay}" Minimum="300" Maximum="2000" StepFrequency="10" Margin="0,2,0,0" />
+                        <TextBlock Text="调节高光与极端亮部细节的亮度上限 (建议与显示器峰值一致)" FontSize="11"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" Padding="14,12">
+                    <StackPanel Spacing="6">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                <FontIcon Glyph="&#xE8B7;" FontSize="13" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                                <TextBlock Text="{helpers:Loc Key=HDR_SceneLuminance}" FontSize="13" FontWeight="SemiBold" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                <NumberBox Width="96" Value="{x:Bind SceneLuminance, Mode=TwoWay}"
+                                           Minimum="100" Maximum="500" SpinButtonPlacementMode="Compact" />
+                                <TextBlock Text="nits" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                        <Slider Value="{x:Bind SceneLuminance, Mode=TwoWay}" Minimum="100" Maximum="500" StepFrequency="5" Margin="0,2,0,0" />
+                        <TextBlock Text="调节游戏世界环境场景的基础参考白点亮度" FontSize="11"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <Border CornerRadius="8" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" Padding="14,12">
+                    <StackPanel Spacing="6">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                <FontIcon Glyph="&#xE771;" FontSize="13" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+                                <TextBlock Text="{helpers:Loc Key=HDR_UILuminance}" FontSize="13" FontWeight="SemiBold" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                <NumberBox Width="96" Value="{x:Bind UILuminance, Mode=TwoWay}"
+                                           Minimum="150" Maximum="550" SpinButtonPlacementMode="Compact" />
+                                <TextBlock Text="nits" FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}" VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                        <Slider Value="{x:Bind UILuminance, Mode=TwoWay}" Minimum="150" Maximum="550" StepFrequency="5" Margin="0,2,0,0" />
+                        <TextBlock Text="调节小地图、血条、文本等界面元素的亮度" FontSize="11"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2" Padding="20,12,20,14" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,1,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8">
+                <Button Command="{x:Bind ResetCommand}" ToolTipService.ToolTip="{helpers:Loc Key=HDR_ResetDefault}">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <FontIcon Glyph="&#xE777;" FontSize="12" />
+                        <TextBlock Text="{helpers:Loc Key=HDR_ResetDefault}" FontSize="12" />
+                    </StackPanel>
+                </Button>
+                <Button Command="{x:Bind AutoAdjustCommand}" ToolTipService.ToolTip="{helpers:Loc Key=HDR_AutoAdjustTooltip}">
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <FontIcon Glyph="&#xE7F4;" FontSize="12" />
+                        <TextBlock Text="{helpers:Loc Key=HDR_AutoAdjust}" FontSize="12" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Spacing="4" Margin="0,0,10,0"
+                        Visibility="{x:Bind IsSaveSuccessVisible, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                <FontIcon Glyph="&#xE73E;" FontSize="12" Foreground="{ThemeResource SystemFillColorSuccessBrush}" />
+                <TextBlock Text="已保存生效" FontSize="12" Foreground="{ThemeResource SystemFillColorSuccessBrush}" />
+            </StackPanel>
+
+            <Button Grid.Column="2" Command="{x:Bind SaveCommand}" Style="{StaticResource AccentButtonStyle}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon Glyph="&#xE73E;" FontSize="12" />
+                    <TextBlock Text="{helpers:Loc Key=HDR_SaveAndApply}" FontSize="12" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>
