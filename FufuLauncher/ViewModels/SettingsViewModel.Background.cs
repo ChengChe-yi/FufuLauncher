@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
+using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;

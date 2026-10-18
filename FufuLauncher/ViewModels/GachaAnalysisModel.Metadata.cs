@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Text;
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
