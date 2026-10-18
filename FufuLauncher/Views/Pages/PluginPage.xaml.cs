@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -22,7 +22,7 @@ public sealed partial class PluginPage : Page
         get;
     }
 
-    public ControlPanelModel ControlPanelViewModel
+    public ControlPanelViewModel ControlPanelViewModel
     {
         get;
     }
@@ -31,7 +31,7 @@ public sealed partial class PluginPage : Page
     {
         ViewModel = App.GetService<PluginViewModel>();
         MainViewModel = App.GetService<MainViewModel>();
-        ControlPanelViewModel = App.GetService<ControlPanelModel>();
+        ControlPanelViewModel = App.GetService<ControlPanelViewModel>();
 
         InitializeComponent();
 

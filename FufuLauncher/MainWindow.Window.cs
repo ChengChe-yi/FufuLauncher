@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -68,7 +68,7 @@ public sealed partial class MainWindow
 
         try
         {
-            App.GetService<ControlPanelModel>()?.Cleanup();
+            App.GetService<ControlPanelViewModel>()?.Cleanup();
         }
         catch
         {

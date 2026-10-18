@@ -259,12 +259,12 @@ public sealed partial class MainWindow
         var pageType = viewModelTag switch
         {
             "FufuLauncher.ViewModels.MainViewModel" => typeof(Views.MainPage),
-            "FufuLauncher.ViewModels.BlankViewModel" => typeof(Views.BlankPage),
+            "FufuLauncher.ViewModels.GameSettingsViewModel" or "FufuLauncher.ViewModels.BlankViewModel" => typeof(Views.GameSettingsPage),
             "FufuLauncher.ViewModels.SettingsViewModel" => typeof(Views.SettingsPage),
             "FufuLauncher.ViewModels.AccountViewModel" => typeof(Views.AccountPage),
             "FufuLauncher.ViewModels.OtherViewModel" => typeof(Views.OtherPage),
             "FufuLauncher.ViewModels.CalculatorViewModel" => typeof(Views.CalculatorPage),
-            "FufuLauncher.ViewModels.ControlPanelModel" => typeof(Views.PanelPage),
+            "FufuLauncher.ViewModels.ControlPanelViewModel" or "FufuLauncher.ViewModels.ControlPanelModel" => typeof(Views.ControlPanelPage),
             "FufuLauncher.ViewModels.PluginViewModel" => typeof(Views.PluginPage),
             "FufuLauncher.ViewModels.PluginStoreViewModel" => typeof(Views.PluginStorePage),
             "FufuLauncher.ViewModels.DataViewModel" => typeof(Views.DataPage),
@@ -462,32 +462,34 @@ public sealed partial class MainWindow
             NavigateToPage("FufuLauncher.ViewModels.AccountViewModel");
     }
 
-    public void NavigateToBlankPage()
+    public void NavigateToGameSettingsPage()
     {
         if (_isExit) return;
 
-        var blankItem = GetAllNavItems()
-            .FirstOrDefault(item => item.Tag?.ToString() == "FufuLauncher.ViewModels.BlankViewModel");
+        var item = GetAllNavItems()
+            .FirstOrDefault(i => i.Tag?.ToString() == "FufuLauncher.ViewModels.GameSettingsViewModel" || i.Tag?.ToString() == "FufuLauncher.ViewModels.BlankViewModel");
 
-        if (blankItem != null && IsNavItemVisible("FufuLauncher.ViewModels.BlankViewModel"))
+        if (item != null && (IsNavItemVisible("FufuLauncher.ViewModels.GameSettingsViewModel") || IsNavItemVisible("FufuLauncher.ViewModels.BlankViewModel")))
         {
-            if (NavigationView.SelectedItem == blankItem)
+            if (NavigationView.SelectedItem == item)
             {
-                NavigateToPage("FufuLauncher.ViewModels.BlankViewModel");
+                NavigateToPage("FufuLauncher.ViewModels.GameSettingsViewModel");
             }
             else
             {
-                NavigationView.SelectedItem = blankItem;
+                NavigationView.SelectedItem = item;
             }
         }
         else
         {
             NavigationView.SelectedItem = null;
-            NavigateToPage("FufuLauncher.ViewModels.BlankViewModel", force: true);
+            NavigateToPage("FufuLauncher.ViewModels.GameSettingsViewModel", force: true);
         }
     }
 
-    public async Task NavigateToBlankPageAsync()
+    public void NavigateToBlankPage() => NavigateToGameSettingsPage();
+
+    public async Task NavigateToGameSettingsPageAsync()
     {
         if (_isExit) return;
         try
@@ -504,16 +506,18 @@ public sealed partial class MainWindow
             await Task.Delay(100);
         }
 
-        NavigateToBlankPage();
+        NavigateToGameSettingsPage();
     }
+
+    public Task NavigateToBlankPageAsync() => NavigateToGameSettingsPageAsync();
 
     public async Task LoadNavItemVisibilityAsync()
     {
         var settings = App.GetService<ILocalSettingsService>();
         var allKeys = new[]
         {
-            "MainViewModel", "PluginSettingsViewModel", "ControlPanelModel",
-            "BlankViewModel", "AccountViewModel", "OtherViewModel",
+            "MainViewModel", "PluginSettingsViewModel", "ControlPanelViewModel", "ControlPanelModel",
+            "GameSettingsViewModel", "BlankViewModel", "AccountViewModel", "OtherViewModel",
             "PluginViewModel", "DataViewModel", "HelpViewModel",
             "CalculatorViewModel", "SettingsViewModel"
         };

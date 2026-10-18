@@ -623,9 +623,9 @@ public class PluginStoreService
         return "unknown";
     }
 
-    private static Response<T>? DeserializeResponse<T>(string json)
+    private static PluginStoreResponse<T>? DeserializeResponse<T>(string json)
     {
-        return JsonSerializer.Deserialize<Response<T>>(json, JsonOptions);
+        return JsonSerializer.Deserialize<PluginStoreResponse<T>>(json, JsonOptions);
     }
 }
 

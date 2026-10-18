@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -336,7 +336,7 @@ namespace FufuLauncher.Views
 
     public sealed partial class GachaAnalysisWindow : Window
     {
-        public GachaAnalysisModel ViewModel
+        public GachaAnalysisViewModel ViewModel
         {
             get;
         }
@@ -349,7 +349,7 @@ namespace FufuLauncher.Views
 
         public GachaAnalysisWindow()
         {
-            ViewModel = App.GetService<GachaAnalysisModel>();
+            ViewModel = App.GetService<GachaAnalysisViewModel>();
 
             InitializeComponent();
 

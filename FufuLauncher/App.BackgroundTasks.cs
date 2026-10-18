@@ -160,7 +160,7 @@ public partial class App
             {
                 await _mainDispatcherQueue.EnqueueAsync(() =>
                 {
-                    var announcementWindow = new AnnouncementWindowL(announcementUrl);
+                    var announcementWindow = new WebAnnouncementWindow(announcementUrl);
                     announcementWindow.Activate();
                 });
             }

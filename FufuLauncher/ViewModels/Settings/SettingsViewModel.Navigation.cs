@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -31,12 +31,12 @@ public partial class SettingsViewModel
             },
             new()
             {
-                ViewModelKey = "FufuLauncher.ViewModels.ControlPanelModel", DisplayNameKey = "NavControlPanel",
+                ViewModelKey = "FufuLauncher.ViewModels.ControlPanelViewModel", DisplayNameKey = "NavControlPanel",
                 IconGlyph = "\uE80A"
             },
             new()
             {
-                ViewModelKey = "FufuLauncher.ViewModels.BlankViewModel", DisplayNameKey = "PageTitle_GameSettings",
+                ViewModelKey = "FufuLauncher.ViewModels.GameSettingsViewModel", DisplayNameKey = "PageTitle_GameSettings",
                 IconGlyph = "\uE7FC"
             },
             new()

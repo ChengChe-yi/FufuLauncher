@@ -45,7 +45,7 @@ public sealed partial class AccountPage : Page
         get;
     }
 
-    public ControlPanelModel ControlPanelViewModel
+    public ControlPanelViewModel ControlPanelViewModel
     {
         get;
     }
@@ -57,7 +57,7 @@ public sealed partial class AccountPage : Page
     public AccountPage()
     {
         ViewModel = App.GetService<AccountViewModel>();
-        ControlPanelViewModel = App.GetService<ControlPanelModel>();
+        ControlPanelViewModel = App.GetService<ControlPanelViewModel>();
         _unifiedCheckinService = App.GetService<IUnifiedCheckinService>();
         _notificationService = App.GetService<INotificationService>();
         DataContext = ViewModel;

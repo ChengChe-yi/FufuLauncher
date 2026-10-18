@@ -123,7 +123,7 @@ public partial class MainViewModel
             {
                 if (App.MainWindow is MainWindow mainWindow)
                 {
-                    mainWindow.NavigateToBlankPage();
+                    mainWindow.NavigateToGameSettingsPage();
                 }
             }
 

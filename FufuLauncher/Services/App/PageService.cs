@@ -19,7 +19,7 @@ public class PageService : IPageService
     {
         Configure<MainViewModel, MainPage>();
         Configure<SettingsViewModel, SettingsPage>();
-        Configure<BlankViewModel, BlankPage>();
+        Configure<GameSettingsViewModel, GameSettingsPage>();
     }
 
     public Type GetPageType(string key)

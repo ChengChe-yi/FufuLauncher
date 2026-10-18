@@ -164,14 +164,14 @@
                 </NavigationViewItem>
 
                 <NavigationViewItem Content="{helpers:Loc Key=NavControlPanel}"
-                                    Tag="FufuLauncher.ViewModels.ControlPanelModel">
+                                    Tag="FufuLauncher.ViewModels.ControlPanelViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE80A;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
                 <NavigationViewItem Content="{helpers:Loc Key=PageTitle_GameSettings}"
-                                    Tag="FufuLauncher.ViewModels.BlankViewModel">
+                                    Tag="FufuLauncher.ViewModels.GameSettingsViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE7FC;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>

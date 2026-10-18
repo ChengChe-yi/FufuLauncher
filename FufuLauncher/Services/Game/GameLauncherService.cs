@@ -16,7 +16,7 @@ public partial class GameLauncherService : IGameLauncherService
     private readonly ILocalSettingsService _localSettingsService;
     private readonly IGameConfigService _gameConfigService;
     private readonly ILauncherService _launcherService;
-    private readonly ControlPanelModel _controlPanelModel;
+    private readonly ControlPanelViewModel _controlPanelModel;
     private readonly GameServerConfigurationService _gameServerConfigurationService;
     private readonly LightweightPluginService _lightweightPluginService;
     private readonly ConstraintService _constraintService;
@@ -32,7 +32,7 @@ public partial class GameLauncherService : IGameLauncherService
         ILocalSettingsService localSettingsService,
         IGameConfigService gameConfigService,
         ILauncherService launcherService,
-        ControlPanelModel controlPanelModel,
+        ControlPanelViewModel controlPanelModel,
         IScreenshotService screenshotService,
         IAuthTicketService authTicketService,
         AccountManager accountManager,

@@ -42,7 +42,7 @@ public sealed partial class MainPage
 
             if (!string.IsNullOrEmpty(announcementUrl))
             {
-                var announcementWindow = new AnnouncementWindowL(announcementUrl);
+                var announcementWindow = new WebAnnouncementWindow(announcementUrl);
                 announcementWindow.Activate();
             }
             else

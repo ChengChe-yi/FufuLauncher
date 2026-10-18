@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -136,7 +136,7 @@ public sealed partial class GachaAnalysisWindow
         System.Diagnostics.Debug.WriteLine(
             $"[Gacha] OnUidComboBoxSelectionChanged: selected={selected}, ViewModel.SelectedUid={ViewModel.SelectedUid}");
 
-        if (selected == GachaAnalysisModel.AddNewUserItem)
+        if (selected == GachaAnalysisViewModel.AddNewUserItem)
         {
             var previous = ViewModel.SelectedUid;
             combo.SelectedItem = null;

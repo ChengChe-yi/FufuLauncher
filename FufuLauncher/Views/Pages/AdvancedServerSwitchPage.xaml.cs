@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -37,7 +37,7 @@ namespace FufuLauncher.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.Parameter is BlankPage.SwitchPageParams param)
+            if (e.Parameter is GameSettingsPage.SwitchPageParams param)
             {
                 _gameDir = param.GameDir;
                 _parentWindow = param.ParentWindow;

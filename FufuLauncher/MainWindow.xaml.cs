@@ -241,7 +241,7 @@ public sealed partial class MainWindow : WindowEx
                     {
                         dispatcherQueue.TryEnqueue(() =>
                         {
-                            var announcementWindow = new Views.AnnouncementWindowL(announcementUrl);
+                            var announcementWindow = new Views.WebAnnouncementWindow(announcementUrl);
                             announcementWindow.Activate();
                         });
                     }

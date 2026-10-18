@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -25,7 +25,7 @@ public sealed partial class PluginSettingsPage : Page
         get;
     }
 
-    public ControlPanelModel ControlPanelVM
+    public ControlPanelViewModel ControlPanelVM
     {
         get;
     }
@@ -36,7 +36,7 @@ public sealed partial class PluginSettingsPage : Page
     {
         ViewModel = new PluginSettingsViewModel(deferConfigurationLoading: true);
         MainVM = App.GetService<MainViewModel>();
-        ControlPanelVM = App.GetService<ControlPanelModel>();
+        ControlPanelVM = App.GetService<ControlPanelViewModel>();
         InitializeComponent();
         ViewModel.Settings.CollectionChanged += OnSettingItemsChanged;
         ViewModel.PinnedSettings.CollectionChanged += OnSettingItemsChanged;
