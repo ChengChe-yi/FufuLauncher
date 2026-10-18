@@ -64,7 +64,7 @@ public sealed partial class BlankPage : Page
     private async void BlankPage_Loaded(object sender, RoutedEventArgs e)
     {
         EntranceStoryboard.Begin();
-        Debug.WriteLine("========== [Debug] BlankPage_Loaded 开始 ==========");
+        Debug.WriteLine("[Debug] BlankPage_Loaded 开始");
 
         try
         {
@@ -124,7 +124,7 @@ public sealed partial class BlankPage : Page
         }
 
         await LoadRedeemCodesAsync();
-        Debug.WriteLine("========== [Debug] BlankPage_Loaded 结束 ==========");
+        Debug.WriteLine("[Debug] BlankPage_Loaded 结束");
     }
 
     private async void FpsOverlayToggle_Toggled(object sender, RoutedEventArgs e)

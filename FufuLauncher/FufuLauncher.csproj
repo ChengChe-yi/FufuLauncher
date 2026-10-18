@@ -146,8 +146,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="Models\GameConfig.cs"/>
-        <Compile Update="Views\Model\BrowserConfig.cs">
+        <Compile Remove="Models\Game\GameConfig.cs"/>
+        <Compile Update="Views\Windows\BrowserConfig.cs">
             <DependentUpon>BrowserWindow.xaml</DependentUpon>
         </Compile>
         <Compile Remove="Plugins\Avatar\**"/>

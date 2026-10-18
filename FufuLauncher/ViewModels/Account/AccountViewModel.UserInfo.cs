@@ -121,7 +121,7 @@ public partial class AccountViewModel
         finally
         {
             IsLoadingUserInfo = false;
-            Debug.WriteLine("========== [LoadUserInfo] 加载结束 ==========");
+            Debug.WriteLine("[LoadUserInfo] 加载结束");
         }
     }
 

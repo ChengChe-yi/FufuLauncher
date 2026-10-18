@@ -68,7 +68,7 @@ public partial class AccountViewModel
     {
         try
         {
-            Debug.WriteLine("========== [LoadAccountInfo] 开始加载账户信息 ==========");
+            Debug.WriteLine("[LoadAccountInfo] 开始加载账户信息");
 
             var activeId = _accountManager.ActiveAccountId;
             if (activeId == null)

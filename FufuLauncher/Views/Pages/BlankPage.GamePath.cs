@@ -173,7 +173,7 @@ public sealed partial class BlankPage
 
     private async Task ShowAutoPathDialog(string foundPath)
     {
-        Debug.WriteLine($"========== [Debug] ShowAutoPathDialog 开始 ==========");
+        Debug.WriteLine($"[Debug] ShowAutoPathDialog 开始");
         Debug.WriteLine($"[Debug] 接收到的 foundPath: {foundPath}");
 
         if (string.IsNullOrEmpty(foundPath))
