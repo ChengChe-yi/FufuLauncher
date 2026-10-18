@@ -13,6 +13,7 @@
         <LangVersion>preview</LangVersion>
         <UseWinUI>true</UseWinUI>
         <NoWarn>$(NoWarn);MVVMTK0045;MVVMTK0049</NoWarn>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 
         <EnableMsixTooling>true</EnableMsixTooling>
         <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
