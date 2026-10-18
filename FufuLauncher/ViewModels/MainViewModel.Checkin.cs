@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -27,7 +27,7 @@ public partial class MainViewModel
 
     [ObservableProperty] private string _checkinStateGlyph = "\uE730";
     [ObservableProperty] private SolidColorBrush _checkinStateBrush = new(Microsoft.UI.Colors.Gray);
-    [ObservableProperty] private string _checkinStateTooltip = "\u6E38\u620F\u7B7E\u5230\u72B6\u6001\u52A0\u8F7D\u4E2D";
+    [ObservableProperty] private string _checkinStateTooltip = "Main_CheckinStateLoading".GetLocalized();
 
     public IAsyncRelayCommand ExecuteCheckinCommand
     {
@@ -37,7 +37,8 @@ public partial class MainViewModel
     private void UpdateCheckinIconState(string statusText)
     {
         bool isSigned = !string.IsNullOrEmpty(statusText) &&
-                        (statusText.Contains("成功") || statusText.Contains("已"));
+                        (statusText.Contains("成功") || statusText.Contains("已") ||
+                         statusText == "Success" || statusText == "Checkin_Signed".GetLocalized());
 
         if (isSigned)
         {
@@ -139,7 +140,7 @@ public partial class MainViewModel
                 ? "Checkin_Complete".GetLocalized()
                 : "Checkin_PartialFailed".GetLocalized();
             CheckinSummary = unifiedResult.SummaryMessage;
-            UpdateCheckinIconState(unifiedResult.OverallSuccess ? "已签到" : "Fail");
+            UpdateCheckinIconState(unifiedResult.OverallSuccess ? "Success" : "Fail");
 
             var notificationTitle = unifiedResult.NotificationType switch
             {

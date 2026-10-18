@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 using FufuLauncher.Services;
 using Windows.System;
 
@@ -78,7 +79,7 @@ public partial class OtherViewModel
                 IsMouseLeftClickerEnabled = false;
                 IsMouseRightClickerEnabled = false;
                 _autoClickerService.Mode = AutoClickerMode.Keyboard;
-                StatusMessage = "鼠标连点必须先设置键盘停止快捷键";
+                StatusMessage = "AutoClicker_MouseRequiresStopKey".GetLocalized();
                 _ = SaveSettingsAsync();
             }
             else
@@ -119,7 +120,7 @@ public partial class OtherViewModel
         }
         catch (Exception ex)
         {
-            StatusMessage = $"保存失败: {ex.Message}";
+            StatusMessage = string.Format("Common_SaveFailed_Format".GetLocalized(), ex.Message);
             Debug.WriteLine($"[连点器] 配置保存失败: {ex.Message}");
         }
     }

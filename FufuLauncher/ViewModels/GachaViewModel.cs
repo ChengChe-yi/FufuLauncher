@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using Microsoft.UI.Dispatching;
@@ -36,7 +37,7 @@ public partial class GachaViewModel : ObservableRecipient
     private readonly string _configPath = Path.Combine(Helpers.AppPaths.DataDir, "gacha_config.json");
 
     [ObservableProperty] private string _inputUrl;
-    [ObservableProperty] private string _statusMessage = "准备就绪";
+    [ObservableProperty] private string _statusMessage = "Common_Ready".GetLocalized();
 
     [ObservableProperty] [NotifyPropertyChangedFor(nameof(CanExport))]
     private bool _isAnalyzing;
@@ -46,7 +47,7 @@ public partial class GachaViewModel : ObservableRecipient
     [ObservableProperty] [NotifyPropertyChangedFor(nameof(CaptureButtonText))]
     private ObservableCollection<GachaStatistic> _statistics = new();
 
-    public string CaptureButtonText => IsCapturing ? "停止抓取" : "启动抓包工具";
+    public string CaptureButtonText => IsCapturing ? "Gacha_StopCapture".GetLocalized() : "Gacha_StartCaptureApp".GetLocalized();
 
     public bool CanExport => !IsAnalyzing && Statistics.Count > 0;
 
@@ -77,21 +78,21 @@ public partial class GachaViewModel : ObservableRecipient
     {
         if (string.IsNullOrWhiteSpace(InputUrl))
         {
-            StatusMessage = "请输入有效的抽卡链接";
+            StatusMessage = "Gacha_PleaseEnterValidUrl".GetLocalized();
             return;
         }
 
         var cleanUrl = _gachaService.ExtractBaseUrl(InputUrl);
         if (cleanUrl == null)
         {
-            StatusMessage = "链接格式不正确，无法提取 API 地址";
+            StatusMessage = "Gacha_InvalidUrlFormat".GetLocalized();
             return;
         }
 
         await SaveConfigAsync(InputUrl);
 
         IsAnalyzing = true;
-        StatusMessage = "正在获取数据...";
+        StatusMessage = "Gacha_WaitingForData".GetLocalized();
         Statistics.Clear();
         _allGachaLogs.Clear();
 
@@ -99,7 +100,7 @@ public partial class GachaViewModel : ObservableRecipient
         {
             foreach (var typeCode in GachaService.GachaTypes.Keys)
             {
-                StatusMessage = $"正在获取：{GachaService.GachaTypes[typeCode]}...";
+                StatusMessage = string.Format("Gacha_FetchingType_Format".GetLocalized(), GachaService.GetPoolName(typeCode));
                 var items = await _gachaService.FetchGachaLogAsync(cleanUrl, typeCode);
 
                 if (items.Count > 0)
@@ -113,12 +114,12 @@ public partial class GachaViewModel : ObservableRecipient
                 }
             }
 
-            StatusMessage = "分析完成！";
+            StatusMessage = "Gacha_AnalysisCompleted".GetLocalized();
             OnPropertyChanged(nameof(CanExport));
         }
         catch (Exception ex)
         {
-            StatusMessage = $"发生错误: {ex.Message}";
+            StatusMessage = string.Format("Common_Error_Format".GetLocalized(), ex.Message);
         }
         finally
         {
@@ -132,13 +133,13 @@ public partial class GachaViewModel : ObservableRecipient
     {
         if (_allGachaLogs.Count == 0)
         {
-            StatusMessage = "没有可导出的数据";
+            StatusMessage = "Gacha_NoDataToExport".GetLocalized();
             return;
         }
 
         try
         {
-            StatusMessage = "正在生成 UIGF 文件...";
+            StatusMessage = "Gacha_ExportingUigf".GetLocalized();
 
             string uid = "";
             if (_allGachaLogs.Count > 0)
@@ -224,11 +225,11 @@ public partial class GachaViewModel : ObservableRecipient
             var jsonString = JsonSerializer.Serialize(finalObj, jsonOptions);
             await File.WriteAllTextAsync(fullPath, jsonString);
 
-            StatusMessage = $"导出成功！文件已保存至桌面：{fileName}";
+            StatusMessage = string.Format("Gacha_ExportSuccess_Format".GetLocalized(), fileName);
         }
         catch (Exception ex)
         {
-            StatusMessage = $"导出失败: {ex.Message}";
+            StatusMessage = string.Format("Gacha_ExportFailed_Format".GetLocalized(), ex.Message);
         }
     }
 
@@ -249,12 +250,12 @@ public partial class GachaViewModel : ObservableRecipient
                 {
                     _isManualStop = true;
                     _captureProcess.Kill();
-                    StatusMessage = "抓包工具已手动停止";
+                    StatusMessage = "Gacha_CaptureStoppedByUser".GetLocalized();
                 }
             }
             catch (Exception ex)
             {
-                StatusMessage = $"停止失败: {ex.Message}";
+                StatusMessage = string.Format("Gacha_StopFailed_Format".GetLocalized(), ex.Message);
             }
 
             return;
@@ -276,7 +277,7 @@ public partial class GachaViewModel : ObservableRecipient
             if (_captureProcess != null)
             {
                 IsCapturing = true;
-                StatusMessage = "抓包工具运行中... 请在游戏内打开记录页";
+                StatusMessage = "Gacha_CapturingOpenRecordInGame".GetLocalized();
 
                 await _captureProcess.WaitForExitAsync();
 
@@ -284,7 +285,7 @@ public partial class GachaViewModel : ObservableRecipient
 
                 if (!_isManualStop)
                 {
-                    StatusMessage = "抓包结束，正在读取剪贴板...";
+                    StatusMessage = "Gacha_CapturingReadingData".GetLocalized();
                     await CheckClipboardAndRunAsync();
                 }
             }
@@ -292,12 +293,12 @@ public partial class GachaViewModel : ObservableRecipient
         catch (System.ComponentModel.Win32Exception)
         {
             IsCapturing = false;
-            StatusMessage = "未找到 CaptureApp.exe";
+            StatusMessage = "Gacha_CaptureAppNotFound".GetLocalized();
         }
         catch (Exception ex)
         {
             IsCapturing = false;
-            StatusMessage = $"启动错误: {ex.Message}";
+            StatusMessage = string.Format("Common_Error_Format".GetLocalized(), ex.Message);
         }
     }
 
@@ -317,18 +318,18 @@ public partial class GachaViewModel : ObservableRecipient
                         clipboardText.StartsWith("http"))
                     {
                         InputUrl = clipboardText;
-                        StatusMessage = "已获取新链接，自动开始分析...";
+                        StatusMessage = "Gacha_UrlObtainedAutoLoading".GetLocalized();
                         await StartAnalysisAsync();
                     }
                     else
                     {
-                        StatusMessage = "剪贴板内容无效";
+                        StatusMessage = "Gacha_InvalidClipboardContent".GetLocalized();
                     }
                 }
             }
             catch
             {
-                StatusMessage = "读取剪贴板失败";
+                StatusMessage = "Gacha_ReadClipboardFailed".GetLocalized();
             }
         });
     }
@@ -347,7 +348,7 @@ public partial class GachaViewModel : ObservableRecipient
                     _dispatcherQueue.TryEnqueue(async () =>
                     {
                         InputUrl = config.Url;
-                        StatusMessage = "已加载历史配置，准备自动分析...";
+                        StatusMessage = "Gacha_HistoryLoadedAutoFetching".GetLocalized();
                         await Task.Delay(500);
                         await StartAnalysisAsync();
                     });
@@ -355,12 +356,12 @@ public partial class GachaViewModel : ObservableRecipient
             }
             else
             {
-                StatusMessage = "未找到配置文件，请首次抓包";
+                StatusMessage = "Gacha_NoHistoryFoundTryCapture".GetLocalized();
             }
         }
         catch (Exception ex)
         {
-            StatusMessage = $"读取配置失败: {ex.Message}";
+            StatusMessage = string.Format("Gacha_ReadConfigFailed_Format".GetLocalized(), ex.Message);
         }
     }
 
@@ -375,7 +376,7 @@ public partial class GachaViewModel : ObservableRecipient
         }
         catch (Exception ex)
         {
-            StatusMessage = $"保存配置失败: {ex.Message}";
+            StatusMessage = string.Format("Common_SaveFailed_Format".GetLocalized(), ex.Message);
         }
     }
 }

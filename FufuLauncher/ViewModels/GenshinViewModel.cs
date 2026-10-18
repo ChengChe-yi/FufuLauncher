@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
@@ -87,7 +88,7 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
         }
     }
 
-    private string _statusMessage = "等待加载数据...";
+    private string _statusMessage = "GenshinData_WaitingForData".GetLocalized();
 
     public string StatusMessage
     {
@@ -179,14 +180,14 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
         try
         {
             IsLoading = true;
-            StatusMessage = "正在连接米游社...";
+            StatusMessage = "GenshinData_ConnectingMiyoushe".GetLocalized();
 
 
             var selected = await _roles.GetCurrentAsync(RoleSelection);
             if (version != _loadVersion || _disposed) return;
             if (selected == null)
             {
-                StatusMessage = "需先登录账号";
+                StatusMessage = "GenshinData_LoginRequired".GetLocalized();
                 return;
             }
 
@@ -196,14 +197,14 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
             Uid = role.game_uid;
             Nickname = role.nickname;
 
-            StatusMessage = "分析旅行札记...";
+            StatusMessage = "GenshinData_AnalyzingDiary".GetLocalized();
             var diary = await _genshinService.GetTravelersDiarySummaryAsync(
                 Uid, cookie, role.region, DateTime.Now.Month);
             if (version != _loadVersion || _disposed || !_roles.IsCurrent(selected, RoleSelection)) return;
             if (diary.Retcode != 0)
-                throw new InvalidOperationException($"旅行札记请求失败（{diary.Retcode}）：{diary.Message}");
+                throw new InvalidOperationException(string.Format("GenshinData_DiaryRequestFailed_Format".GetLocalized(), diary.Retcode, diary.Message));
             if (diary.Data.Uid.ToString() != role.game_uid || diary.Data.Region != role.region)
-                throw new InvalidOperationException("旅行札记返回的角色与当前选择不一致，已停止显示。");
+                throw new InvalidOperationException("GenshinData_DiaryRoleMismatch".GetLocalized());
             TravelersDiary = diary;
 
             StatusMessage = "";
@@ -211,7 +212,7 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
         catch (Exception ex)
         {
             Debug.WriteLine($"Error: {ex.Message}");
-            if (version == _loadVersion && !_disposed) StatusMessage = $"加载失败: {ex.Message}";
+            if (version == _loadVersion && !_disposed) StatusMessage = string.Format("GenshinData_LoadFailed_Format".GetLocalized(), ex.Message);
         }
         finally
         {

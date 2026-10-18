@@ -148,20 +148,24 @@ namespace FufuLauncher.Converters
             {
                 Point = end,
                 Size = new Size(radius, radius),
-                IsLargeArc = sweepAngle > 180,
-                SweepDirection = SweepDirection.Clockwise
+                SweepDirection = SweepDirection.Clockwise,
+                IsLargeArc = sweepAngle > 180
             });
 
-            return new PathGeometry { Figures = { figure } };
+            var geometry = new PathGeometry();
+            geometry.Figures.Add(figure);
+            return geometry;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
             => throw new NotImplementedException();
 
-        private static Point PointOnCircle(double center, double radius, double angle)
+        private static Point PointOnCircle(double center, double radius, double angleInDegrees)
         {
-            var radians = Math.PI * angle / 180;
-            return new Point(center + radius * Math.Cos(radians), center + radius * Math.Sin(radians));
+            var radians = (angleInDegrees - 90) * Math.PI / 180.0;
+            return new Point(
+                center + radius * Math.Cos(radians),
+                center + radius * Math.Sin(radians));
         }
     }
 }
@@ -299,42 +303,34 @@ namespace FufuLauncher.Views
                 return new Size(double.IsInfinity(availableSize.Width) ? 0 : availableSize.Width, height);
             }
 
-            var minSlotWidth = Math.Max(24, MinSlotWidth);
-            var desiredWidth = count * minSlotWidth;
-            if (!double.IsInfinity(availableSize.Width))
+            var slotWidth = Math.Max(1, MinSlotWidth);
+            var totalWidth = slotWidth * count;
+            for (var i = 0; i < count; i++)
             {
-                desiredWidth = Math.Max(availableSize.Width, desiredWidth);
+                Children[i].Measure(new Size(slotWidth, height));
             }
 
-            var slotWidth = desiredWidth / count;
-            foreach (var child in Children)
-            {
-                child.Measure(new Size(slotWidth, height));
-            }
-
-            return new Size(desiredWidth, height);
+            return new Size(totalWidth, height);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
             var count = Children.Count;
-            var height = Math.Max(Math.Max(1, ChartHeight), finalSize.Height);
-            if (count == 0)
+            if (count == 0) return finalSize;
+
+            var slotWidth = count > 0 ? finalSize.Width / count : finalSize.Width;
+            if (slotWidth < MinSlotWidth)
             {
-                return new Size(finalSize.Width, height);
+                slotWidth = MinSlotWidth;
             }
 
-            var minSlotWidth = Math.Max(24, MinSlotWidth);
-            var slotWidth = Math.Max(minSlotWidth, finalSize.Width / count);
-            var x = 0d;
-
-            foreach (var child in Children)
+            for (var i = 0; i < count; i++)
             {
-                child.Arrange(new Rect(x, 0, slotWidth, height));
-                x += slotWidth;
+                var x = i * slotWidth;
+                Children[i].Arrange(new Rect(x, 0, slotWidth, finalSize.Height));
             }
 
-            return new Size(x, height);
+            return new Size(Math.Max(finalSize.Width, slotWidth * count), finalSize.Height);
         }
     }
 
@@ -349,6 +345,7 @@ namespace FufuLauncher.Views
         private int _lastTabIndex = 0;
         private Storyboard? _analysisChartStoryboard;
         private Storyboard? _sectionTransitionStoryboard;
+        private bool _firstActivated = true;
 
         public GachaAnalysisWindow()
         {
@@ -488,604 +485,6 @@ namespace FufuLauncher.Views
             _updatingTabSelection = false;
             UpdateTabIndicator();
             ViewModel.IsDataLoaded = false;
-        }
-
-        private async void OnOverviewTabClick(object sender, RoutedEventArgs e)
-        {
-            await ViewModel.ShowOverviewAsync();
-            UpdateTabIndicator();
-        }
-
-        private async void OnAnalysisTabClick(object sender, RoutedEventArgs e)
-        {
-            await ViewModel.ShowAnalysisAsync();
-            UpdateTabIndicator();
-        }
-
-        private async void OnAboutButtonClick(object sender, RoutedEventArgs e)
-        {
-            var contentPanel = new StackPanel { Spacing = 8 };
-
-            contentPanel.Children.Add(new TextBlock
-            {
-                Text = "该项目使用UIGF v4.2/v4.1/v4.0/v3.0/v2.4/v2.3/v2.2标准格式处理祈愿数据",
-                TextWrapping = TextWrapping.Wrap
-            });
-
-            contentPanel.Children.Add(new HyperlinkButton
-            {
-                Content = "UIGF-Org",
-                NavigateUri = new Uri("https://uigf.org/")
-            });
-
-            var badgePanel = new StackPanel
-            {
-                Orientation = Orientation.Horizontal,
-                Spacing = 8,
-                Margin = new Thickness(0, 4, 0, 0)
-            };
-
-            badgePanel.Children.Add(new FontIcon
-            {
-                Glyph = "\uE734",
-                FontSize = 16,
-                Foreground = (Brush)Application.Current.Resources["SystemFillColorCautionBrush"]
-            });
-
-            badgePanel.Children.Add(new TextBlock
-            {
-                Text = "已获UIGF/UIAF标准项目合作",
-                VerticalAlignment = VerticalAlignment.Center,
-                FontWeight = Microsoft.UI.Text.FontWeights.SemiBold
-            });
-
-            contentPanel.Children.Add(badgePanel);
-
-            var dialog = new ContentDialog
-            {
-                Title = "关于",
-                Content = contentPanel,
-                CloseButtonText = "关闭",
-                DefaultButton = ContentDialogButton.Close,
-                XamlRoot = Content.XamlRoot
-            };
-
-            await dialog.ShowAsync();
-        }
-
-        private void UpdateTabIndicator()
-        {
-            if (GachaTabPivot == null) return;
-
-            var selectedIndex = ViewModel.IsHistorySelected
-                ? 2
-                : ViewModel.IsOverviewSelected
-                    ? 0
-                    : 1;
-            _lastTabIndex = selectedIndex;
-            if (GachaTabPivot.SelectedIndex == selectedIndex) return;
-
-            _updatingTabSelection = true;
-            try
-            {
-                GachaTabPivot.SelectedIndex = selectedIndex;
-            }
-            finally
-            {
-                _updatingTabSelection = false;
-            }
-        }
-
-        private async void OnGachaTabPivotSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (_updatingTabSelection) return;
-
-            var selectedIndex = GachaTabPivot.SelectedIndex;
-            if (selectedIndex < 0 || selectedIndex == _lastTabIndex) return;
-
-            _lastTabIndex = selectedIndex;
-
-            Task showTask;
-            UIElement? targetElement;
-
-            if (selectedIndex == 0)
-            {
-                showTask = ViewModel.ShowOverviewAsync();
-                targetElement = ViewModel.IsCardViewMode
-                    ? (UIElement)OverviewCardScrollViewer
-                    : OverviewListScrollViewer;
-            }
-            else if (selectedIndex == 1)
-            {
-                showTask = ViewModel.ShowAnalysisAsync();
-                targetElement = AnalysisSectionRoot;
-            }
-            else
-            {
-                showTask = ViewModel.ShowHistoryAsync();
-                targetElement = HistorySectionRoot;
-            }
-
-            if (targetElement != null)
-            {
-                DispatcherQueue.TryEnqueue(() => PlaySectionTransition(targetElement));
-            }
-
-            await showTask;
-
-            if (selectedIndex == 1)
-            {
-                DispatcherQueue.TryEnqueue(PlayAnalysisChartAnimations);
-            }
-
-            UpdateTabIndicator();
-        }
-
-        private void OnListViewModeClick(object sender, RoutedEventArgs e)
-        {
-            if (!ViewModel.IsCardViewMode)
-            {
-                ListViewModeButton.IsChecked = true;
-                return;
-            }
-
-            ViewModel.IsCardViewMode = false;
-            DispatcherQueue.TryEnqueue(() => PlaySectionTransition(OverviewListScrollViewer));
-        }
-
-        private void OnCardViewModeClick(object sender, RoutedEventArgs e)
-        {
-            if (ViewModel.IsCardViewMode)
-            {
-                CardViewModeButton.IsChecked = true;
-                return;
-            }
-
-            ViewModel.IsCardViewMode = true;
-            DispatcherQueue.TryEnqueue(() => PlaySectionTransition(OverviewCardScrollViewer));
-        }
-
-        private void PlayOverviewTransition(UIElement target) => PlaySectionTransition(target);
-
-        private void PlaySectionTransition(UIElement? target)
-        {
-            if (target == null) return;
-
-            if (target.RenderTransform is not CompositeTransform transform)
-            {
-                transform = new CompositeTransform();
-                target.RenderTransform = transform;
-                target.RenderTransformOrigin = new Point(0.5, 0.5);
-            }
-
-            _sectionTransitionStoryboard?.Stop();
-
-            target.Opacity = 0;
-            transform.TranslateY = 16;
-            transform.ScaleX = 0.99;
-            transform.ScaleY = 0.99;
-
-            var storyboard = new Storyboard();
-            AddViewModeAnimation(storyboard, target, "Opacity", 0, 1, 0, 260);
-            AddViewModeAnimation(storyboard, transform, "TranslateY", 16, 0, 0, 320);
-            AddViewModeAnimation(storyboard, transform, "ScaleX", 0.99, 1, 0, 320);
-            AddViewModeAnimation(storyboard, transform, "ScaleY", 0.99, 1, 0, 320);
-            _sectionTransitionStoryboard = storyboard;
-            storyboard.Begin();
-        }
-
-        private static void AddViewModeAnimation(Storyboard storyboard, DependencyObject target, string property,
-            double from, double to, int delayMs, int durationMs)
-        {
-            var animation = new DoubleAnimation
-            {
-                From = from,
-                To = to,
-                BeginTime = TimeSpan.FromMilliseconds(delayMs),
-                Duration = new Duration(TimeSpan.FromMilliseconds(durationMs)),
-                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-            };
-            Storyboard.SetTarget(animation, target);
-            Storyboard.SetTargetProperty(animation, property);
-            storyboard.Children.Add(animation);
-        }
-
-        private void PlayAnalysisChartAnimations()
-        {
-            if (!ViewModel.ShowAnalysisContent) return;
-
-            _analysisChartStoryboard?.Stop();
-            _analysisChartStoryboard = new Storyboard();
-
-            AddPieAnimation(RarityPieChart, RarityPieScale, 0);
-            AddPieAnimation(PoolPieChart, PoolPieScale, 80);
-            AddChartAnimation(RecentFiveStarChart, 130);
-            AddChartAnimation(FourStarTopChart, 190);
-            AddChartAnimation(PityBucketsChart, 250);
-            AddChartAnimation(MonthlyPullsChart, 310);
-
-            _analysisChartStoryboard.Begin();
-        }
-
-        private void AddPieAnimation(UIElement element, ScaleTransform scale, int delayMs)
-        {
-            if (element == null || scale == null) return;
-
-            element.Opacity = 0;
-            scale.ScaleX = 0.96;
-            scale.ScaleY = 0.96;
-
-            AddDoubleAnimation(element, "Opacity", 0, 1, delayMs, 260);
-            AddDoubleAnimation(scale, "ScaleX", 0.96, 1.235, delayMs, 360);
-            AddDoubleAnimation(scale, "ScaleY", 0.96, 1.235, delayMs, 360);
-        }
-
-        private void AddChartAnimation(UIElement element, int delayMs)
-        {
-            if (element == null) return;
-
-            if (element.RenderTransform is not CompositeTransform transform)
-            {
-                transform = new CompositeTransform();
-                element.RenderTransform = transform;
-            }
-
-            element.Opacity = 0;
-            transform.TranslateY = 18;
-            transform.ScaleY = 0.94;
-
-            AddDoubleAnimation(element, "Opacity", 0, 1, delayMs, 240);
-            AddDoubleAnimation(transform, "TranslateY", 18, 0, delayMs, 340);
-            AddDoubleAnimation(transform, "ScaleY", 0.94, 1, delayMs, 340);
-        }
-
-        private void AddDoubleAnimation(DependencyObject target, string property, double from, double to, int delayMs,
-            int durationMs)
-        {
-            var animation = new DoubleAnimation
-            {
-                From = from,
-                To = to,
-                BeginTime = TimeSpan.FromMilliseconds(delayMs),
-                Duration = new Duration(TimeSpan.FromMilliseconds(durationMs)),
-                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseOut }
-            };
-
-            Storyboard.SetTarget(animation, target);
-            Storyboard.SetTargetProperty(animation, property);
-            _analysisChartStoryboard.Children.Add(animation);
-        }
-
-        private void OnChartScrollViewerLoaded(object sender, RoutedEventArgs e)
-        {
-            if (sender is ScrollViewer scrollViewer)
-            {
-                StretchChartContentToViewport(scrollViewer);
-            }
-        }
-
-        private void OnChartScrollViewerSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (sender is ScrollViewer scrollViewer)
-            {
-                StretchChartContentToViewport(scrollViewer);
-            }
-        }
-
-        private async Task<InMemoryRandomAccessStream> RenderElementToStreamAsync(UIElement element)
-        {
-            AnalysisExportButtons.Visibility = Visibility.Collapsed;
-            AnalysisExportLogo.Visibility = Visibility.Visible;
-            AnalysisExportTarget.Background =
-                (Brush)Application.Current.Resources["ApplicationPageBackgroundThemeBrush"]
-                ?? new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Transparent);
-
-            var tcs = new TaskCompletionSource();
-            DispatcherQueue.TryEnqueue(() => tcs.SetResult());
-            await tcs.Task;
-
-            try
-            {
-                var renderTargetBitmap = new RenderTargetBitmap();
-                await renderTargetBitmap.RenderAsync(element);
-
-                var pixels = await renderTargetBitmap.GetPixelsAsync();
-
-                var stream = new InMemoryRandomAccessStream();
-                var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
-
-                encoder.SetPixelData(
-                    BitmapPixelFormat.Bgra8,
-                    BitmapAlphaMode.Premultiplied,
-                    (uint)renderTargetBitmap.PixelWidth,
-                    (uint)renderTargetBitmap.PixelHeight,
-                    96,
-                    96,
-                    pixels.ToArray());
-
-                await encoder.FlushAsync();
-                return stream;
-            }
-            finally
-            {
-                AnalysisExportButtons.Visibility = Visibility.Visible;
-                AnalysisExportLogo.Visibility = Visibility.Collapsed;
-                AnalysisExportTarget.Background = null;
-            }
-        }
-
-        private async void ShowDialogMessage(string title, string content)
-        {
-            var dialog = new ContentDialog
-            {
-                Title = title,
-                Content = content,
-                CloseButtonText = "知道了",
-                DefaultButton = ContentDialogButton.Close,
-                XamlRoot = this.Content.XamlRoot
-            };
-            await dialog.ShowAsync();
-        }
-
-        private async void OnCopyAnalysisImageClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                using var stream = await RenderElementToStreamAsync(AnalysisExportTarget);
-                stream.Seek(0);
-                var dataPackage = new DataPackage();
-                dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromStream(stream));
-                Clipboard.SetContent(dataPackage);
-
-                for (var i = 0; i < 5; i++)
-                {
-                    try
-                    {
-                        Clipboard.Flush();
-                        break;
-                    }
-                    catch (System.Runtime.InteropServices.COMException) when (i < 4)
-                    {
-                        await Task.Delay(100);
-                    }
-                }
-
-                ShowDialogMessage("复制成功", "祈愿分析图片已复制到剪贴板。");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"[Gacha] 复制图片失败: {ex}");
-                ShowDialogMessage("复制失败", ex.Message);
-            }
-        }
-
-        private async void OnSaveAnalysisImageClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var path = await FilePickerService.PickSaveFileAsync(
-                    this,
-                    new[] { ("PNG 图片", new[] { ".png" }) },
-                    $"祈愿分析_{ViewModel.SelectedUid}_{DateTime.Now:yyyyMMddHHmmss}",
-                    PickerLocationId.PicturesLibrary,
-                    msg => ShowDialogMessage("错误", msg));
-                if (string.IsNullOrEmpty(path)) return;
-
-                using var stream = await RenderElementToStreamAsync(AnalysisExportTarget);
-                stream.Seek(0);
-                using var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
-                stream.AsStream().CopyTo(fileStream);
-
-                ShowDialogMessage("保存成功", $"祈愿分析图片已保存至文件。");
-            }
-            catch (Exception ex)
-            {
-                ShowDialogMessage("保存失败", $"详细信息: {ex.Message}");
-            }
-        }
-
-        private static void StretchChartContentToViewport(ScrollViewer scrollViewer)
-        {
-            if (scrollViewer.Content is FrameworkElement content)
-            {
-                content.MinWidth = Math.Max(0, scrollViewer.ActualWidth);
-                content.MinHeight = Math.Max(0, scrollViewer.ActualHeight);
-            }
-        }
-
-        private void OnHorizontalScrollViewerPointerWheelChanged(object sender, PointerRoutedEventArgs e)
-        {
-            if (sender is not ScrollViewer scrollViewer || scrollViewer.ScrollableWidth <= 0) return;
-
-            var delta = e.GetCurrentPoint(scrollViewer).Properties.MouseWheelDelta;
-            if (delta == 0) return;
-
-            var nextOffset = Math.Clamp(scrollViewer.HorizontalOffset - delta, 0, scrollViewer.ScrollableWidth);
-            scrollViewer.ChangeView(nextOffset, null, null, true);
-            e.Handled = true;
-        }
-
-        private async void OnDeleteGachaDataClick(object sender, RoutedEventArgs e)
-        {
-            var deleteUid = ViewModel.SelectedUid;
-            if (string.IsNullOrEmpty(ViewModel.SelectedUid))
-            {
-                var noDataDialog = new ContentDialog
-                {
-                    Title = "提示",
-                    Content = "当前没有选中任何账号，无法删除记录。",
-                    CloseButtonText = "知道了",
-                    DefaultButton = ContentDialogButton.Close,
-                    XamlRoot = Content.XamlRoot
-                };
-                await noDataDialog.ShowAsync();
-                return;
-            }
-
-            ContentDialog deleteDialog = new()
-            {
-                Title = "警告",
-                Content = $"确定要删除 UID: {ViewModel.SelectedUid} 的所有抽卡记录吗？\n此操作不可逆转！",
-                PrimaryButtonText = "确认删除",
-                CloseButtonText = "取消",
-                DefaultButton = ContentDialogButton.Close,
-                XamlRoot = Content.XamlRoot
-            };
-
-            ContentDialogResult result = await deleteDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary) await ViewModel.ClearGachaDataAsync(deleteUid);
-        }
-
-        private async void OnMiYouSheLoginClick(object sender, RoutedEventArgs e)
-        {
-            await PerformMiYouSheFetchAsync(incremental: false);
-        }
-
-        private async void OnMiYouSheFullUpdateClick(object sender, RoutedEventArgs e)
-        {
-            await PerformMiYouSheFetchAsync(incremental: false);
-        }
-
-        private async void OnMiYouSheIncrementalUpdateClick(object sender, RoutedEventArgs e)
-        {
-            await PerformMiYouSheFetchAsync(incremental: true);
-        }
-
-        private async Task PerformMiYouSheFetchAsync(bool incremental)
-        {
-            if (ViewModel.IsFetching || ViewModel.IsScraping) return;
-            var accountManager = App.GetService<AccountManager>();
-            var hasCnAccount = accountManager.GetAllAccounts().Any(a => a.ServerType == "cn");
-
-            if (!hasCnAccount && accountManager.GetActiveAccountEntry()?.ServerType == "os")
-            {
-                var osDialog = new ContentDialog
-                {
-                    Title = "国际服暂不支持",
-                    Content = "国际服（HoYoLAB）账号的抽卡记录获取功能正在适配中，敬请期待。\n\n国际服用户可通过「通过URL获取」方式导入抽卡记录。",
-                    CloseButtonText = "知道了",
-                    DefaultButton = ContentDialogButton.Close,
-                    XamlRoot = Content.XamlRoot
-                };
-                await osDialog.ShowAsync();
-                return;
-            }
-
-            if (!hasCnAccount)
-            {
-                var dialog = new ContentDialog
-                {
-                    Title = "未登录米游社",
-                    Content = "检测到尚未登录米游社账号，即将跳转到账户设置页面进行登录。",
-                    CloseButtonText = "知道了",
-                    DefaultButton = ContentDialogButton.Close,
-                    XamlRoot = Content.XamlRoot
-                };
-                await dialog.ShowAsync();
-
-                if (App.MainWindow is MainWindow mainWindow)
-                    await mainWindow.NavigateToAccountPageAsync();
-                return;
-            }
-
-            await ViewModel.FetchFromMiYouSheCommand.ExecuteAsync(incremental);
-        }
-
-        private async void OnGameCacheFetchClick(object sender, RoutedEventArgs e)
-        {
-            if (ViewModel.IsFetching || ViewModel.IsScraping) return;
-            var dialog = new ContentDialog
-            {
-                Title = "GachaAnalysis_GetViaGame".GetLocalized(),
-                Content = new TextBlock
-                {
-                    Text = "GachaAnalysis_CacheInstructions".GetLocalized(),
-                    TextWrapping = TextWrapping.Wrap,
-                    MaxWidth = 440
-                },
-                PrimaryButtonText = "GachaAnalysis_CacheStart".GetLocalized(),
-                CloseButtonText = "CancelBtn".GetLocalized(),
-                DefaultButton = ContentDialogButton.Primary,
-                XamlRoot = Content.XamlRoot
-            };
-            if (await dialog.ShowAsync() == ContentDialogResult.Primary)
-                await ViewModel.FetchFromGameCacheCommand.ExecuteAsync(null);
-        }
-
-        private async void OnUrlFetchClick(object sender, RoutedEventArgs e)
-        {
-            if (ViewModel.IsFetching || ViewModel.IsScraping) return;
-            var urlBox = new TextBox
-            {
-                AcceptsReturn = true,
-                TextWrapping = TextWrapping.Wrap,
-                Height = 120,
-                Text = ViewModel.GachaUrl ?? "",
-                PlaceholderText = "在此处粘贴抽卡分析链接 (URL)..."
-            };
-
-            var panel = new StackPanel { Spacing = 12 };
-            panel.Children.Add(new TextBlock
-            {
-                Text = "粘贴从米游社或其他工具获取的抽卡记录链接，链接应包含 authkey 参数。",
-                FontSize = 12,
-                Foreground =
-                    (Microsoft.UI.Xaml.Media.Brush)Application.Current.Resources["TextFillColorSecondaryBrush"],
-                TextWrapping = TextWrapping.Wrap
-            });
-            panel.Children.Add(urlBox);
-
-            var dialog = new ContentDialog
-            {
-                Title = "通过 URL 获取抽卡记录",
-                Content = panel,
-                PrimaryButtonText = "开始获取",
-                CloseButtonText = "取消",
-                DefaultButton = ContentDialogButton.Primary,
-                XamlRoot = Content.XamlRoot
-            };
-
-            var result = await dialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                ViewModel.GachaUrl = urlBox.Text;
-                ViewModel.FetchGachaDataCommand.Execute(null);
-            }
-        }
-
-        private bool _firstActivated = true;
-
-        private async void OnWindowFirstActivated(object sender, WindowActivatedEventArgs e)
-        {
-            if (!_firstActivated) return;
-            _firstActivated = false;
-            this.Activated -= OnWindowFirstActivated;
-
-            DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Low, async () =>
-            {
-                await ViewModel.LoadSavedGachaDataAsync();
-                await ViewModel.InitializeSharedRolesAsync();
-            });
-        }
-
-        private async void OnUidComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ViewModel.IsUpdatingRoleList || sender is not ComboBox combo) return;
-            if (combo.SelectedItem is not string selected) return;
-
-            System.Diagnostics.Debug.WriteLine(
-                $"[Gacha] OnUidComboBoxSelectionChanged: selected={selected}, ViewModel.SelectedUid={ViewModel.SelectedUid}");
-
-            if (selected == GachaAnalysisModel.AddNewUserItem)
-            {
-                var previous = ViewModel.SelectedUid;
-                combo.SelectedItem = null;
-                await ViewModel.AddNewUserCommand.ExecuteAsync(null);
-            }
-            else
-            {
-                await ViewModel.SwitchUidCommand.ExecuteAsync(selected);
-            }
         }
     }
 }

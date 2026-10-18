@@ -189,11 +189,11 @@ public partial class PluginSettingsViewModel
             if (!snapshot.Exists)
             {
                 PluginName = request.PluginIndex == 1
-                    ? "未安装 FPS 插件"
+                    ? "PluginSettings_FpsUnlockNotInstalled".GetLocalized()
                     : request.LightweightMode
                         ? "LightweightMode_LiteNotInstalled".GetLocalized()
-                        : "未安装 FuFuPlugin";
-                PluginDescription = "请确保Plugins目录下存在对应的文件夹及config.ini文件";
+                        : "PluginSettings_FuFuPluginNotInstalled".GetLocalized();
+                PluginDescription = "PluginSettings_EnsurePluginDirConfigHint".GetLocalized();
                 return;
             }
 
@@ -297,8 +297,11 @@ public partial class PluginSettingsViewModel
                 _configurationPreferences = _preferencesApplied ? _configurationPreferences : null;
                 ConfigurationLoadError = ex.Message;
                 HasConfigurationLoadError = true;
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("配置读取失败",
-                    $"无法读取插件配置文件。\n详细信息: {ex.Message}", NotificationType.Error, 6000));
+                WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                    "PluginSettings_ConfigReadFailedTitle".GetLocalized(),
+                    string.Format("PluginSettings_ReadConfigFailedDetail_Format".GetLocalized(), ex.Message),
+                    NotificationType.Error,
+                    6000));
             }
         }
         finally
@@ -398,8 +401,8 @@ public partial class PluginSettingsViewModel
                 section.Value.GetValueOrDefault("help", string.Empty)));
         }
 
-        return new ConfigurationLoadSnapshot(true, general.GetValueOrDefault("Name", "未知插件"),
-            general.GetValueOrDefault("Description", "无描述"), general.GetValueOrDefault("Developer", "未知作者"),
+        return new ConfigurationLoadSnapshot(true, general.GetValueOrDefault("Name", "PluginSettings_UnknownPlugin".GetLocalized()),
+            general.GetValueOrDefault("Description", "PluginSettings_NoDescription".GetLocalized()), general.GetValueOrDefault("Developer", "PluginSettings_UnknownDeveloper".GetLocalized()),
             File.GetLastWriteTime(request.IniPath).ToString("yyyy-MM-dd HH:mm:ss"), settings, presets);
     }
 

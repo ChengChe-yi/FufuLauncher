@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 using FufuLauncher.Services;
 using Windows.Storage.Pickers;
 
@@ -23,11 +24,11 @@ public partial class OtherViewModel
             if (File.Exists(trimmedPath) &&
                 Path.GetExtension(trimmedPath).Equals(".exe", StringComparison.OrdinalIgnoreCase))
             {
-                StatusMessage = "路径有效";
+                StatusMessage = "AdditionalProgram_PathValid".GetLocalized();
             }
             else
             {
-                StatusMessage = "文件不存在或不是有效的 .exe 文件";
+                StatusMessage = "AdditionalProgram_ExeNotFoundOrInvalid".GetLocalized();
             }
         }
         else
@@ -42,7 +43,7 @@ public partial class OtherViewModel
         {
             if (string.IsNullOrWhiteSpace(AdditionalProgramPath))
             {
-                StatusMessage = "路径不能为空";
+                StatusMessage = "AdditionalProgram_PathEmpty".GetLocalized();
                 return;
             }
 
@@ -51,7 +52,7 @@ public partial class OtherViewModel
             if (File.Exists(trimmedPath) && System.IO.Path.GetExtension(trimmedPath)
                     .Equals(".exe", StringComparison.OrdinalIgnoreCase))
             {
-                StatusMessage = "路径已应用";
+                StatusMessage = "AdditionalProgram_PathApplied".GetLocalized();
 
                 await SaveSettingsAsync();
 
@@ -60,7 +61,7 @@ public partial class OtherViewModel
             }
             else
             {
-                StatusMessage = "无效的路径，请检查文件是否存在且为 .exe 格式";
+                StatusMessage = "AdditionalProgram_InvalidPathCheckExe".GetLocalized();
 
                 var savedPath = await _localSettingsService.ReadSettingAsync("AdditionalProgramPath");
                 if (savedPath != null)
@@ -71,7 +72,7 @@ public partial class OtherViewModel
         }
         catch (Exception ex)
         {
-            StatusMessage = $"应用失败: {ex.Message}";
+            StatusMessage = string.Format("AdditionalProgram_ApplyFailed_Format".GetLocalized(), ex.Message);
             Debug.WriteLine($"[ApplyProgramPathAsync] 失败: {ex.Message}");
         }
     }
@@ -88,7 +89,7 @@ public partial class OtherViewModel
 
             var path = await FilePickerService.PickOpenFileAsync(
                 null,
-                new[] { ("可执行文件", new[] { ".exe" }) },
+                new[] { ("Common_ExecutableFiles".GetLocalized(), new[] { ".exe" }) },
                 PickerLocationId.Desktop,
                 async msg =>
                 {
@@ -107,7 +108,7 @@ public partial class OtherViewModel
                 }
                 else
                 {
-                    await ShowErrorAsync("文件不存在或无法访问");
+                    await ShowErrorAsync("AdditionalProgram_FileNotFoundOrInaccessible".GetLocalized());
                 }
             }
             else
@@ -117,13 +118,13 @@ public partial class OtherViewModel
         }
         catch (UnauthorizedAccessException)
         {
-            await ShowErrorAsync("权限错误：请以普通用户身份运行程序选择文件");
+            await ShowErrorAsync("AdditionalProgram_PermissionOrOccupied".GetLocalized());
             Debug.WriteLine("[严重错误] 管理员模式权限问题");
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"选择程序失败: {ex.Message}\n堆栈: {ex.StackTrace}");
-            await ShowErrorAsync($"选择程序失败: {ex.Message}");
+            await ShowErrorAsync(string.Format("AdditionalProgram_SelectFailed_Format".GetLocalized(), ex.Message));
         }
     }
 

@@ -20,15 +20,15 @@ namespace FufuLauncher.Services
 
     public class FilePickerService : IFilePickerService
     {
-        private const string COMFailureMessage = "文件选择器调用失败，若以管理员权限运行请尝试切换为普通用户模式";
+        private static string COMFailureMessage => "FilePicker_COMFailure".GetLocalized();
 
-        private static readonly IReadOnlyList<(string Label, string[] Extensions)> AudioFilters =
-            new[] { ("音频文件", new[] { "*.mp3", "*.wav", "*.wma", "*.m4a", "*.flac", "*.aac" }) };
+        private static IReadOnlyList<(string Label, string[] Extensions)> AudioFilters =>
+            new[] { ("FilePicker_Filter_Audio".GetLocalized(), new[] { "*.mp3", "*.wav", "*.wma", "*.m4a", "*.flac", "*.aac" }) };
 
-        private static readonly IReadOnlyList<(string Label, string[] Extensions)> ImageOrVideoFilters =
+        private static IReadOnlyList<(string Label, string[] Extensions)> ImageOrVideoFilters =>
             new[]
             {
-                ("图片或视频", new[] { "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.mp4", "*.webm", "*.mkv", "*.avi", "*.mov" })
+                ("FilePicker_Filter_ImageOrVideo".GetLocalized(), new[] { "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.mp4", "*.webm", "*.mkv", "*.avi", "*.mov" })
             };
 
         public static bool InitializeWithValidWindow(object target, out string? errorMessage, Window? window = null)
@@ -86,7 +86,7 @@ namespace FufuLauncher.Services
                 var picker = new Windows.Storage.Pickers.FileOpenPicker();
                 if (!InitializeWithValidWindow(picker, out var err, owner))
                 {
-                    onError?.Invoke(err ?? "无法打开文件选择器");
+                    onError?.Invoke(err ?? "FilePicker_CannotOpen".GetLocalized());
                     return null;
                 }
 
@@ -135,7 +135,7 @@ namespace FufuLauncher.Services
                 var picker = new Windows.Storage.Pickers.FileSavePicker();
                 if (!InitializeWithValidWindow(picker, out var err, owner))
                 {
-                    onError?.Invoke(err ?? "无法打开文件选择器");
+                    onError?.Invoke(err ?? "FilePicker_CannotOpen".GetLocalized());
                     return null;
                 }
 
@@ -191,7 +191,7 @@ namespace FufuLauncher.Services
                 var picker = new Windows.Storage.Pickers.FolderPicker();
                 if (!InitializeWithValidWindow(picker, out var err, owner))
                 {
-                    onError?.Invoke(err ?? "无法打开文件选择器");
+                    onError?.Invoke(err ?? "FilePicker_CannotOpen".GetLocalized());
                     return null;
                 }
 
@@ -238,7 +238,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                onError?.Invoke($"文件选择器调用失败：{ex.Message}");
+                onError?.Invoke(string.Format("Common_OperationFailed_Format".GetLocalized(), ex.Message));
                 return default;
             }
         }

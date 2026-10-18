@@ -142,7 +142,9 @@ public partial class PluginSettingsViewModel
 
         if (active?.IsLocked == true)
         {
-            notifications.Add(new NotificationMessage("插件变更", "当前预设与最新插件版本不匹配，已自动生成新预设",
+            notifications.Add(new NotificationMessage(
+                "PluginSettings_PluginChangedTitle".GetLocalized(),
+                "PluginSettings_PluginChangedPresetAutoCreated".GetLocalized(),
                 NotificationType.Warning, 5000));
             active = null;
         }
@@ -156,7 +158,7 @@ public partial class PluginSettingsViewModel
             active = new PresetModel
             {
                 Id = Guid.NewGuid().ToString(),
-                Name = "默认预设",
+                Name = "PluginSettings_DefaultPreset".GetLocalized(),
                 DllHash = hash,
                 ConfigData = data
             };
@@ -173,7 +175,9 @@ public partial class PluginSettingsViewModel
         }
         catch (Exception ex)
         {
-            notifications.Add(new NotificationMessage("状态保存失败", $"无法保存激活状态记录，可能缺少写入权限\n详细信息: {ex.Message}",
+            notifications.Add(new NotificationMessage(
+                "PluginSettings_StateSaveFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_StateSaveFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error, 6000));
         }
 
@@ -191,7 +195,9 @@ public partial class PluginSettingsViewModel
         }
         catch (Exception ex)
         {
-            notifications.Add(new NotificationMessage("配置应用失败", $"无法将预设写入配置文件，请检查权限\n详细信息: {ex.Message}",
+            notifications.Add(new NotificationMessage(
+                "PluginSettings_ConfigApplyFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ConfigApplyFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error, 6000));
         }
 
@@ -214,7 +220,9 @@ public partial class PluginSettingsViewModel
         }
         catch (Exception ex)
         {
-            notifications.Add(new NotificationMessage("预设保存失败", $"无法保存预设文件，可能缺少写入权限\n详细信息: {ex.Message}",
+            notifications.Add(new NotificationMessage(
+                "PluginSettings_PresetSaveFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_PresetSaveFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error, 6000));
         }
     }

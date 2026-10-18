@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Data.Entities;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 
 namespace FufuLauncher.ViewModels;
@@ -32,7 +33,7 @@ public partial class GachaAnalysisModel
                 return;
             }
 
-            CrawlerStatus = "正在获取卡池元数据...";
+            CrawlerStatus = "Gacha_FetchingPoolMetadata".GetLocalized();
 
             _charNameToIdMap = BuildNameToIdMap("char");
             _weaponNameToIdMap = BuildNameToIdMap("weapon");
@@ -63,7 +64,7 @@ public partial class GachaAnalysisModel
                         item,
                         startTime,
                         endTime,
-                        BuildPoolName(item.Star5Role, "角色活动祈愿"),
+                        BuildPoolName(item.Star5Role, "Gacha_Pool_Character_FullName".GetLocalized()),
                         _charNameToIdMap,
                         data.AvatarList), CharacterPoolType));
                 }
@@ -78,7 +79,7 @@ public partial class GachaAnalysisModel
                     item,
                     startTime,
                     endTime,
-                    BuildPoolName(item.Star5Role, "武器活动祈愿"),
+                    BuildPoolName(item.Star5Role, "Gacha_Pool_Weapon_FullName".GetLocalized()),
                     _weaponNameToIdMap,
                     data.AvatarList), "302"));
             }
@@ -105,7 +106,7 @@ public partial class GachaAnalysisModel
                 allPools.Add((new GachaPoolMetadata
                 {
                     Version = first.Version,
-                    PoolName = "集录祈愿",
+                    PoolName = "Gacha_Pool_Chronicled".GetLocalized(),
                     BannerImageUrl = group.Select(entry => entry.Item.Avatar)
                         .FirstOrDefault(url => !string.IsNullOrWhiteSpace(url)) ?? string.Empty,
                     Start = startTime,
@@ -125,7 +126,7 @@ public partial class GachaAnalysisModel
             var count301 = allPools.Count(p => p.poolType == CharacterPoolType);
             var count302 = allPools.Count(p => p.poolType == "302");
             var count500 = allPools.Count(p => p.poolType == "500");
-            CrawlerStatus = $"卡池元数据更新完成（共 {allPools.Count} 个历史卡池：角色 {count301}、武器 {count302}、集录 {count500}）";
+            CrawlerStatus = string.Format("Gacha_CrawlerStatus_PoolMetaComplete_Format".GetLocalized(), allPools.Count, count301, count302, count500);
 
             if (!deferRefresh &&
                 _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count > 0)

@@ -377,7 +377,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            _notificationService.Show("终止失败", ex.Message, NotificationType.Error, 0);
+            _notificationService.Show("Main_GameTerminateFailed".GetLocalized(), ex.Message, NotificationType.Error, 0);
             await SetGameRunningStateAsync(false);
             UpdateLaunchButtonState();
         }

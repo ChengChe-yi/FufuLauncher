@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 using FufuLauncher.Services;
 using Windows.System;
 
@@ -45,7 +46,7 @@ public partial class OtherViewModel
         {
             if (IsMouseModeEnabled() && !HasStopKey())
             {
-                StatusMessage = "请先设置键盘停止快捷键，再开启鼠标连点";
+                StatusMessage = "AutoClicker_SetStopKeyBeforeMouse".GetLocalized();
                 RevertAutoClickerToggle(false);
                 RevertMouseClickerToggles();
                 return;
@@ -149,7 +150,7 @@ public partial class OtherViewModel
 
         if (mode != AutoClickerMode.Keyboard && !HasStopKey())
         {
-            StatusMessage = "请先设置键盘停止快捷键，再开启鼠标连点";
+            StatusMessage = "AutoClicker_SetStopKeyBeforeMouse".GetLocalized();
             RevertMouseClickerToggles();
             return;
         }
@@ -209,7 +210,7 @@ public partial class OtherViewModel
             _isReverting = false;
             if (!value)
             {
-                StatusMessage = "连点器已通过停止快捷键关闭";
+                StatusMessage = "AutoClicker_StoppedByHotkey".GetLocalized();
             }
         });
     }

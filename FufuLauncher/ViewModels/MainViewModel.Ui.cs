@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -328,7 +328,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            _notificationService.Show("打开失败", $"无法初始化截图窗口: {ex.Message}", NotificationType.Error, 0);
+            _notificationService.Show("Common_OpenFailed".GetLocalized(), string.Format("Main_InitViewFailed_Format".GetLocalized(), ex.Message), NotificationType.Error, 0);
         }
     }
 

@@ -20,19 +20,19 @@ public partial class GachaAnalysisModel
         if (IsFetching || IsScraping) return;
         if (string.IsNullOrWhiteSpace(GachaUrl))
         {
-            CrawlerStatus = "请输入有效的抽卡链接";
+            CrawlerStatus = "Gacha_PleaseEnterValidUrl".GetLocalized();
             return;
         }
 
         IsFetching = true;
-        CrawlerStatus = "正在解析 API 链接...";
+        CrawlerStatus = "Gacha_ParsingApiUrl".GetLocalized();
 
         try
         {
             var link = GachaUrlHelper.Parse(GachaUrl);
             if (link == null)
             {
-                CrawlerStatus = "链接格式错误，无法提取 API 地址";
+                CrawlerStatus = "Gacha_InvalidUrlFormat".GetLocalized();
                 IsFetching = false;
                 return;
             }
@@ -41,7 +41,7 @@ public partial class GachaAnalysisModel
         }
         catch (Exception ex)
         {
-            CrawlerStatus = $"更新失败: {ex.Message}";
+            CrawlerStatus = string.Format("Common_OperationFailed_Format".GetLocalized(), ex.Message);
             IsFetching = false;
             OnErrorAction?.Invoke(CrawlerStatus);
         }
@@ -88,7 +88,7 @@ public partial class GachaAnalysisModel
         }
         catch (Exception ex)
         {
-            CrawlerStatus = $"获取失败: {ex.Message}";
+            CrawlerStatus = string.Format("Common_OperationFailed_Format".GetLocalized(), ex.Message);
             OnErrorAction?.Invoke(CrawlerStatus);
         }
         finally
@@ -112,28 +112,34 @@ public partial class GachaAnalysisModel
         var useBaseline = incremental && !string.IsNullOrEmpty(expectedUid) && _currentUid == expectedUid;
 
         void OnProgress(string pool, int count) =>
-            App.MainWindow.DispatcherQueue.TryEnqueue(() => CrawlerStatus = $"正在获取{pool}记录... (已获取 {count} 条)");
+            App.MainWindow.DispatcherQueue.TryEnqueue(() => CrawlerStatus = string.Format("Gacha_FetchPoolRecordsProgress_Format".GetLocalized(), pool, count));
 
-        CrawlerStatus = "正在获取角色活动记录...";
-        var charLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "301", count => OnProgress("角色活动", count),
+        var charPoolName = "Gacha_Pool_Character".GetLocalized();
+        var weaponPoolName = "Gacha_Pool_Weapon".GetLocalized();
+        var chronicledPoolName = "Gacha_Pool_Chronicled".GetLocalized();
+        var novicePoolName = "Gacha_Pool_Novice".GetLocalized();
+        var standardPoolName = "Gacha_Pool_Standard".GetLocalized();
+
+        CrawlerStatus = string.Format("Gacha_FetchingType_Format".GetLocalized(), charPoolName);
+        var charLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "301", count => OnProgress(charPoolName, count),
             useBaseline ? GetNewestLogId(_cachedCharacterLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = $"角色活动 {charLogs.Count} 条，正在获取武器活动记录...";
-        var weaponLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "302", count => OnProgress("武器活动", count),
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), charPoolName, charLogs.Count, weaponPoolName);
+        var weaponLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "302", count => OnProgress(weaponPoolName, count),
             useBaseline ? GetNewestLogId(_cachedWeaponLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = $"武器活动 {weaponLogs.Count} 条，正在获取集录祈愿记录...";
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), weaponPoolName, weaponLogs.Count, chronicledPoolName);
         var chronicledLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "500",
-            count => OnProgress("集录祈愿", count),
+            count => OnProgress(chronicledPoolName, count),
             useBaseline ? GetNewestLogId(_cachedChronicledLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = $"集录祈愿 {chronicledLogs.Count} 条，正在获取新手祈愿记录...";
-        var noviceLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "100", count => OnProgress("新手祈愿", count),
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), chronicledPoolName, chronicledLogs.Count, novicePoolName);
+        var noviceLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "100", count => OnProgress(novicePoolName, count),
             useBaseline ? GetNewestLogId(_cachedNoviceLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = $"新手祈愿 {noviceLogs.Count} 条，正在获取常驻祈愿记录...";
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), novicePoolName, noviceLogs.Count, standardPoolName);
         var standardLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "200",
-            count => OnProgress("常驻祈愿", count),
+            count => OnProgress(standardPoolName, count),
             useBaseline ? GetNewestLogId(_cachedStandardLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
 
@@ -142,7 +148,7 @@ public partial class GachaAnalysisModel
             .ToList();
         if (!CanApply())
         {
-            CrawlerStatus = "角色已切换，已丢弃旧角色的获取结果。";
+            CrawlerStatus = "Gacha_RoleSwitchedDiscardOld".GetLocalized();
             return;
         }
 
@@ -152,29 +158,29 @@ public partial class GachaAnalysisModel
                 _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count +
                 _cachedNoviceLogs.Count + _cachedStandardLogs.Count > 0)
             {
-                CrawlerStatus = $"UID {expectedUid} 未获取到新记录，已保留现有数据。";
+                CrawlerStatus = string.Format("Gacha_NoNewRecordsKeptExisting_Format".GetLocalized(), expectedUid);
                 return;
             }
 
-            CrawlerStatus = "未获取到祈愿记录，已保留现有数据。请确认游戏内祈愿历史中有可查询的记录。";
+            CrawlerStatus = "Gacha_NoRecordsKeptExisting".GetLocalized();
             OnErrorAction?.Invoke(CrawlerStatus);
             return;
         }
 
         var uids = allFetched.Select(l => l.Uid).Distinct().ToList();
         if (uids.Count != 1)
-            throw new GachaFetchException("不同卡池返回了不同账号的数据，已停止导入。", null);
+            throw new GachaFetchException("Gacha_MultiAccountMismatchError".GetLocalized(), null);
         var fetchedUid = uids[0];
         if (switchToSelectedRole)
         {
             if (string.IsNullOrEmpty(expectedUid) || fetchedUid != expectedUid)
-                throw new GachaFetchException("返回记录的 UID 与所选游戏角色不一致，已停止导入。", null);
+                throw new GachaFetchException("Gacha_RoleUidMismatchError".GetLocalized(), null);
 
             await SwitchToUidAsync(fetchedUid);
         }
         else if (!await HandleUidMismatchAsync(fetchedUid))
         {
-            CrawlerStatus = "已取消导入，现有数据未更改。";
+            CrawlerStatus = "Gacha_ImportCancelledExistingUnchanged".GetLocalized();
             return;
         }
 
@@ -188,7 +194,7 @@ public partial class GachaAnalysisModel
         _cachedNoviceLogs = MergeLogs(_cachedNoviceLogs, noviceLogs);
         _cachedStandardLogs = MergeLogs(_cachedStandardLogs, standardLogs);
         FillMissingFieldsFromMetadata(charLogs, weaponLogs, chronicledLogs, noviceLogs, standardLogs);
-        CrawlerStatus = $"获取完成，UID {fetchedUid}，共 {allFetched.Count} 条记录，正在检查图片资源...";
+        CrawlerStatus = string.Format("Gacha_FetchDoneCheckingImages_Format".GetLocalized(), fetchedUid, allFetched.Count);
         HasGachaData = true;
         SaveGachaDataAsync();
         if (RequestMetadataScrapeAction != null)

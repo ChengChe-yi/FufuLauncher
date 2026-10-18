@@ -1753,8 +1753,6 @@
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>战绩信息</value>
   </data>
-  
-  
   <data name="Home_AddWidget" xml:space="preserve">
     <value>增加小工具</value>
   </data>
@@ -3445,24 +3443,60 @@
   <data name="GachaAnalysis_WishHistory" xml:space="preserve">
     <value>历史卡池</value>
   </data>
-  <data name="GachaHistory_Loading" xml:space="preserve"><value>正在整理历史卡池…</value></data>
-  <data name="GachaHistory_Description" xml:space="preserve"><value>按版本分块加载，选择卡池查看该时段内的祈愿结果</value></data>
-  <data name="GachaHistory_HideEmpty" xml:space="preserve"><value>隐藏无物品卡池</value></data>
-  <data name="GachaHistory_NewerVersion" xml:space="preserve"><value>较新版本</value></data>
-  <data name="GachaHistory_OlderVersion" xml:space="preserve"><value>较早版本</value></data>
-  <data name="GachaHistory_FiveStarItems" xml:space="preserve"><value>五星物品</value></data>
-  <data name="GachaHistory_FourStarItems" xml:space="preserve"><value>四星物品</value></data>
-  <data name="GachaHistory_ThreeStarItems" xml:space="preserve"><value>三星物品</value></data>
-  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve"><value>暂无包含抽卡物品的历史卡池</value></data>
-  <data name="GachaHistory_EmptyTitle" xml:space="preserve"><value>暂无历史卡池元数据</value></data>
-  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve"><value>关闭“隐藏无物品卡池”后可查看完整历史。</value></data>
-  <data name="GachaHistory_EmptyDescription" xml:space="preserve"><value>更新祈愿数据或物品元数据后将自动生成。</value></data>
-  <data name="GachaHistory_PeriodFormat" xml:space="preserve"><value>{0:yyyy-MM-dd HH:mm} 至 {1:yyyy-MM-dd HH:mm}</value></data>
-  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve"><value>{0} 抽</value></data>
-  <data name="GachaHistory_CharacterEvent" xml:space="preserve"><value>角色活动祈愿</value></data>
-  <data name="GachaHistory_WeaponEvent" xml:space="preserve"><value>武器活动祈愿</value></data>
-  <data name="GachaHistory_Chronicled" xml:space="preserve"><value>集录祈愿</value></data>
-  <data name="GachaHistory_Limited" xml:space="preserve"><value>限定祈愿</value></data>
+  <data name="GachaHistory_Loading" xml:space="preserve">
+    <value>正在整理历史卡池…</value>
+  </data>
+  <data name="GachaHistory_Description" xml:space="preserve">
+    <value>按版本分块加载，选择卡池查看该时段内的祈愿结果</value>
+  </data>
+  <data name="GachaHistory_HideEmpty" xml:space="preserve">
+    <value>隐藏无物品卡池</value>
+  </data>
+  <data name="GachaHistory_NewerVersion" xml:space="preserve">
+    <value>较新版本</value>
+  </data>
+  <data name="GachaHistory_OlderVersion" xml:space="preserve">
+    <value>较早版本</value>
+  </data>
+  <data name="GachaHistory_FiveStarItems" xml:space="preserve">
+    <value>五星物品</value>
+  </data>
+  <data name="GachaHistory_FourStarItems" xml:space="preserve">
+    <value>四星物品</value>
+  </data>
+  <data name="GachaHistory_ThreeStarItems" xml:space="preserve">
+    <value>三星物品</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve">
+    <value>暂无包含抽卡物品的历史卡池</value>
+  </data>
+  <data name="GachaHistory_EmptyTitle" xml:space="preserve">
+    <value>暂无历史卡池元数据</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve">
+    <value>关闭“隐藏无物品卡池”后可查看完整历史。</value>
+  </data>
+  <data name="GachaHistory_EmptyDescription" xml:space="preserve">
+    <value>更新祈愿数据或物品元数据后将自动生成。</value>
+  </data>
+  <data name="GachaHistory_PeriodFormat" xml:space="preserve">
+    <value>{0:yyyy-MM-dd HH:mm} 至 {1:yyyy-MM-dd HH:mm}</value>
+  </data>
+  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve">
+    <value>{0} 抽</value>
+  </data>
+  <data name="GachaHistory_CharacterEvent" xml:space="preserve">
+    <value>角色活动祈愿</value>
+  </data>
+  <data name="GachaHistory_WeaponEvent" xml:space="preserve">
+    <value>武器活动祈愿</value>
+  </data>
+  <data name="GachaHistory_Chronicled" xml:space="preserve">
+    <value>集录祈愿</value>
+  </data>
+  <data name="GachaHistory_Limited" xml:space="preserve">
+    <value>限定祈愿</value>
+  </data>
   <data name="GachaAnalysis_GetRecords" xml:space="preserve">
     <value>获取抽卡记录</value>
   </data>
@@ -4836,7 +4870,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
     <value>安装后未检测到插件文件，可能未成功安装</value>
   </data>
-
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>卸载中...</value>
   </data>
@@ -5553,32 +5586,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF导出失败</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>无法获取当前进程路径</value>
   </data>
@@ -5600,178 +5607,12 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>注入进程异常退出 ({0})</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>背包同步仅支持 x64 版本。</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>缺少背包同步模块 modules/backpack.dll。</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Checkin_PartialFailed" xml:space="preserve">
     <value>签到部分失败</value>
   </data>
@@ -6553,7 +6394,9 @@ UIGF v4.x/3.0/2.x</value>
     <value>下载/安装错误</value>
   </data>
   <data name="PluginPage_DownloadErrorContentFormat" xml:space="preserve">
-    <value>自动下载失败：{0}&#10;&#10;建议点击下方按钮打开浏览器手动下载。</value>
+    <value>自动下载失败：{0}
+
+建议点击下方按钮打开浏览器手动下载。</value>
   </data>
   <data name="PluginPage_ManualDownloadBtn" xml:space="preserve">
     <value>手动下载</value>
@@ -6819,173 +6662,321 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>重置失败，请检查网络后重试</value>
   </data>
-  <data name="Miyoushe_Title" xml:space="preserve"><value>米游社</value></data>
-  <data name="Miyoushe_CardHint" xml:space="preserve"><value>浏览官方资讯、社区帖子与关注动态</value></data>
-  <data name="Miyoushe_Explore" xml:space="preserve"><value>探索</value></data>
-  <data name="Miyoushe_Forum" xml:space="preserve"><value>社区主页</value></data>
-  <data name="Miyoushe_News" xml:space="preserve"><value>官方资讯</value></data>
-  <data name="Miyoushe_Following" xml:space="preserve"><value>关注动态</value></data>
-  <data name="Miyoushe_Favorites" xml:space="preserve"><value>米游社收藏</value></data>
-  <data name="Miyoushe_Library" xml:space="preserve"><value>我的内容</value></data>
-  <data name="Miyoushe_Bookmarks" xml:space="preserve"><value>本地收藏</value></data>
-  <data name="Miyoushe_History" xml:space="preserve"><value>浏览历史</value></data>
-  <data name="Miyoushe_MyProfile" xml:space="preserve"><value>我的主页</value></data>
-  <data name="Miyoushe_User" xml:space="preserve"><value>作者主页</value></data>
-  <data name="Miyoushe_Topic" xml:space="preserve"><value>话题</value></data>
-  <data name="Miyoushe_Collection" xml:space="preserve"><value>合集</value></data>
-  <data name="Miyoushe_Search" xml:space="preserve"><value>搜索结果</value></data>
-  <data name="Miyoushe_SearchHint" xml:space="preserve"><value>搜索帖子或粘贴帖子ID / 米游社链接</value></data>
-  <data name="Miyoushe_Guest" xml:space="preserve"><value>游客浏览</value></data>
-  <data name="Miyoushe_GuestHint" xml:space="preserve"><value>公开内容无需登录。个人动态与收藏需选择启动器中的国服账号。</value></data>
-  <data name="Miyoushe_AccountHint" xml:space="preserve"><value>切换仅影响此窗口</value></data>
-  <data name="Miyoushe_LoginHint" xml:space="preserve"><value>请在启动器账号管理中登录米游社国服账号，再选择该账号。登录过期时请重新登录。</value></data>
-  <data name="Miyoushe_IdentityError" xml:space="preserve"><value>账号的设备指纹不可用，已切换为游客。请在账号管理中重新登录后重试。</value></data>
-  <data name="Miyoushe_Refresh" xml:space="preserve"><value>刷新</value></data>
-  <data name="Miyoushe_RefreshHint" xml:space="preserve"><value>刷新当前页面 (F5)</value></data>
-  <data name="Miyoushe_Refreshed" xml:space="preserve"><value>已刷新（{0}）</value></data>
-  <data name="Miyoushe_Empty" xml:space="preserve"><value>这里还没有帖子</value></data>
-  <data name="Miyoushe_More" xml:space="preserve"><value>加载更多</value></data>
-  <data name="Miyoushe_SelectPost" xml:space="preserve"><value>选择一篇帖子，开始阅读</value></data>
-  <data name="Miyoushe_Save" xml:space="preserve"><value>本地收藏</value></data>
-  <data name="Miyoushe_CopyLink" xml:space="preserve"><value>复制链接</value></data>
-  <data name="Miyoushe_Original" xml:space="preserve"><value>打开原帖</value></data>
-  <data name="Miyoushe_Article" xml:space="preserve"><value>正文</value></data>
-  <data name="Miyoushe_Comments" xml:space="preserve"><value>评论</value></data>
-  <data name="Miyoushe_HotReplies" xml:space="preserve"><value>热门评论</value></data>
-  <data name="Miyoushe_LatestReplies" xml:space="preserve"><value>最新评论</value></data>
-  <data name="Miyoushe_OldestReplies" xml:space="preserve"><value>最早评论</value></data>
-  <data name="Miyoushe_OnlyAuthor" xml:space="preserve"><value>只看楼主</value></data>
-  <data name="Miyoushe_Hot" xml:space="preserve"><value>热门</value></data>
-  <data name="Miyoushe_Latest" xml:space="preserve"><value>最新发布</value></data>
-  <data name="Miyoushe_Featured" xml:space="preserve"><value>精选</value></data>
-  <data name="Miyoushe_Notices" xml:space="preserve"><value>公告</value></data>
-  <data name="Miyoushe_Events" xml:space="preserve"><value>活动</value></data>
-  <data name="Miyoushe_NoComments" xml:space="preserve"><value>暂无评论</value></data>
-  <data name="Miyoushe_SubReplies" xml:space="preserve"><value>查看 {0} 条楼中楼回复</value></data>
-  <data name="Miyoushe_Close" xml:space="preserve"><value>关闭</value></data>
-  <data name="Miyoushe_Image" xml:space="preserve"><value>查看图片</value></data>
-  <data name="Miyoushe_OpenImage" xml:space="preserve"><value>打开原图</value></data>
-  <data name="Miyoushe_LinkCopied" xml:space="preserve"><value>已复制帖子链接</value></data>
-  <data name="Miyoushe_SearchTooLong" xml:space="preserve"><value>搜索内容最多 200 个字符</value></data>
-  <data name="Miyoushe_Retry" xml:space="preserve"><value>重试</value></data>
-  <data name="Miyoushe_Timeout" xml:space="preserve"><value>请求超时，请稍后重试</value></data>
-  <data name="Miyoushe_Verify" xml:space="preserve"><value>完成安全验证</value></data>
-  <data name="Miyoushe_RiskHint" xml:space="preserve"><value>米游社要求安全验证，已暂停后续请求。完成官方验证码后，将重试刚才的操作。</value></data>
-  <data name="Miyoushe_VerifyHint" xml:space="preserve"><value>请完成米游社提供的官方验证码。关闭此窗口可取消验证。</value></data>
-  <data name="Miyoushe_VerifyLoadError" xml:space="preserve"><value>验证码加载失败，请检查网络后重试，或在米游社官方页面验证。</value></data>
-  <data name="Miyoushe_VerifyCancelled" xml:space="preserve"><value>已取消验证，浏览请求仍处于暂停状态。点击重试可再次验证。</value></data>
-  <data name="Miyoushe_LibraryError" xml:space="preserve"><value>本地收藏或历史记录读取失败，已有文件会保留。</value></data>
-  <data name="Miyoushe_Back" xml:space="preserve"><value>返回上一级</value></data>
-  <data name="Miyoushe_RightComments" xml:space="preserve"><value>右侧评论</value></data>
-  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve"><value>开启后评论显示在右侧栏；关闭后接在正文下方</value></data>
-  <data name="Miyoushe_LoadingComments" xml:space="preserve"><value>正在加载评论…</value></data>
-  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve"><value>评论暂未加载，请使用上方提示重试</value></data>
-  <data name="Miyoushe_Like" xml:space="preserve"><value>点赞</value></data>
-  <data name="Miyoushe_Liked" xml:space="preserve"><value>已赞</value></data>
-  <data name="Miyoushe_PublishComment" xml:space="preserve"><value>评论</value></data>
-  <data name="Miyoushe_Reply" xml:space="preserve"><value>回复</value></data>
-  <data name="Miyoushe_ReplyTo" xml:space="preserve"><value>回复 @{0}</value></data>
-  <data name="Miyoushe_CommentHint" xml:space="preserve"><value>写下你的评论（最多 1000 字）</value></data>
-  <data name="Miyoushe_SendComment" xml:space="preserve"><value>发布到米游社</value></data>
-  <data name="Miyoushe_Cancel" xml:space="preserve"><value>取消</value></data>
-  <data name="Miyoushe_VerifyAndSend" xml:space="preserve"><value>验证并发布</value></data>
-  <data name="Miyoushe_Resubmit" xml:space="preserve"><value>重新发布</value></data>
-  <data name="Miyoushe_CommentSent" xml:space="preserve"><value>评论已提交，已切换至最新评论</value></data>
-  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve"><value>提交结果无法确认，草稿已保留。请先打开原帖检查，确认没有发布成功后再重新发布。</value></data>
-  <data name="Miyoushe_CommentRiskHint" xml:space="preserve"><value>米游社要求安全验证。点击“验证并发布”完成官方验证码后提交本次评论。</value></data>
-    <data name="ModTrust_Title" xml:space="preserve">
-    <value>代码签名信任（FufuLauncher CA）</value>
+  <data name="Miyoushe_Title" xml:space="preserve">
+    <value>米游社</value>
   </data>
-    <data name="ModTrust_Loading" xml:space="preserve">
-    <value>正在读取信任状态…</value>
+  <data name="Miyoushe_CardHint" xml:space="preserve">
+    <value>浏览官方资讯、社区帖子与关注动态</value>
   </data>
-    <data name="ModTrust_RefreshBtn" xml:space="preserve">
+  <data name="Miyoushe_Explore" xml:space="preserve">
+    <value>探索</value>
+  </data>
+  <data name="Miyoushe_Forum" xml:space="preserve">
+    <value>社区主页</value>
+  </data>
+  <data name="Miyoushe_News" xml:space="preserve">
+    <value>官方资讯</value>
+  </data>
+  <data name="Miyoushe_Following" xml:space="preserve">
+    <value>关注动态</value>
+  </data>
+  <data name="Miyoushe_Favorites" xml:space="preserve">
+    <value>米游社收藏</value>
+  </data>
+  <data name="Miyoushe_Library" xml:space="preserve">
+    <value>我的内容</value>
+  </data>
+  <data name="Miyoushe_Bookmarks" xml:space="preserve">
+    <value>本地收藏</value>
+  </data>
+  <data name="Miyoushe_History" xml:space="preserve">
+    <value>浏览历史</value>
+  </data>
+  <data name="Miyoushe_MyProfile" xml:space="preserve">
+    <value>我的主页</value>
+  </data>
+  <data name="Miyoushe_User" xml:space="preserve">
+    <value>作者主页</value>
+  </data>
+  <data name="Miyoushe_Topic" xml:space="preserve">
+    <value>话题</value>
+  </data>
+  <data name="Miyoushe_Collection" xml:space="preserve">
+    <value>合集</value>
+  </data>
+  <data name="Miyoushe_Search" xml:space="preserve">
+    <value>搜索结果</value>
+  </data>
+  <data name="Miyoushe_SearchHint" xml:space="preserve">
+    <value>搜索帖子或粘贴帖子ID / 米游社链接</value>
+  </data>
+  <data name="Miyoushe_Guest" xml:space="preserve">
+    <value>游客浏览</value>
+  </data>
+  <data name="Miyoushe_GuestHint" xml:space="preserve">
+    <value>公开内容无需登录。个人动态与收藏需选择启动器中的国服账号。</value>
+  </data>
+  <data name="Miyoushe_AccountHint" xml:space="preserve">
+    <value>切换仅影响此窗口</value>
+  </data>
+  <data name="Miyoushe_LoginHint" xml:space="preserve">
+    <value>请在启动器账号管理中登录米游社国服账号，再选择该账号。登录过期时请重新登录。</value>
+  </data>
+  <data name="Miyoushe_IdentityError" xml:space="preserve">
+    <value>账号的设备指纹不可用，已切换为游客。请在账号管理中重新登录后重试。</value>
+  </data>
+  <data name="Miyoushe_Refresh" xml:space="preserve">
     <value>刷新</value>
   </data>
-    <data name="ModTrust_PackageMissing" xml:space="preserve">
+  <data name="Miyoushe_RefreshHint" xml:space="preserve">
+    <value>刷新当前页面 (F5)</value>
+  </data>
+  <data name="Miyoushe_Refreshed" xml:space="preserve">
+    <value>已刷新（{0}）</value>
+  </data>
+  <data name="Miyoushe_Empty" xml:space="preserve">
+    <value>这里还没有帖子</value>
+  </data>
+  <data name="Miyoushe_More" xml:space="preserve">
+    <value>加载更多</value>
+  </data>
+  <data name="Miyoushe_SelectPost" xml:space="preserve">
+    <value>选择一篇帖子，开始阅读</value>
+  </data>
+  <data name="Miyoushe_Save" xml:space="preserve">
+    <value>本地收藏</value>
+  </data>
+  <data name="Miyoushe_CopyLink" xml:space="preserve">
+    <value>复制链接</value>
+  </data>
+  <data name="Miyoushe_Original" xml:space="preserve">
+    <value>打开原帖</value>
+  </data>
+  <data name="Miyoushe_Article" xml:space="preserve">
+    <value>正文</value>
+  </data>
+  <data name="Miyoushe_Comments" xml:space="preserve">
+    <value>评论</value>
+  </data>
+  <data name="Miyoushe_HotReplies" xml:space="preserve">
+    <value>热门评论</value>
+  </data>
+  <data name="Miyoushe_LatestReplies" xml:space="preserve">
+    <value>最新评论</value>
+  </data>
+  <data name="Miyoushe_OldestReplies" xml:space="preserve">
+    <value>最早评论</value>
+  </data>
+  <data name="Miyoushe_OnlyAuthor" xml:space="preserve">
+    <value>只看楼主</value>
+  </data>
+  <data name="Miyoushe_Hot" xml:space="preserve">
+    <value>热门</value>
+  </data>
+  <data name="Miyoushe_Latest" xml:space="preserve">
+    <value>最新发布</value>
+  </data>
+  <data name="Miyoushe_Featured" xml:space="preserve">
+    <value>精选</value>
+  </data>
+  <data name="Miyoushe_Notices" xml:space="preserve">
+    <value>公告</value>
+  </data>
+  <data name="Miyoushe_Events" xml:space="preserve">
+    <value>活动</value>
+  </data>
+  <data name="Miyoushe_NoComments" xml:space="preserve">
+    <value>暂无评论</value>
+  </data>
+  <data name="Miyoushe_SubReplies" xml:space="preserve">
+    <value>查看 {0} 条楼中楼回复</value>
+  </data>
+  <data name="Miyoushe_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Miyoushe_Image" xml:space="preserve">
+    <value>查看图片</value>
+  </data>
+  <data name="Miyoushe_OpenImage" xml:space="preserve">
+    <value>打开原图</value>
+  </data>
+  <data name="Miyoushe_LinkCopied" xml:space="preserve">
+    <value>已复制帖子链接</value>
+  </data>
+  <data name="Miyoushe_SearchTooLong" xml:space="preserve">
+    <value>搜索内容最多 200 个字符</value>
+  </data>
+  <data name="Miyoushe_Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="Miyoushe_Timeout" xml:space="preserve">
+    <value>请求超时，请稍后重试</value>
+  </data>
+  <data name="Miyoushe_Verify" xml:space="preserve">
+    <value>完成安全验证</value>
+  </data>
+  <data name="Miyoushe_RiskHint" xml:space="preserve">
+    <value>米游社要求安全验证，已暂停后续请求。完成官方验证码后，将重试刚才的操作。</value>
+  </data>
+  <data name="Miyoushe_VerifyHint" xml:space="preserve">
+    <value>请完成米游社提供的官方验证码。关闭此窗口可取消验证。</value>
+  </data>
+  <data name="Miyoushe_VerifyLoadError" xml:space="preserve">
+    <value>验证码加载失败，请检查网络后重试，或在米游社官方页面验证。</value>
+  </data>
+  <data name="Miyoushe_VerifyCancelled" xml:space="preserve">
+    <value>已取消验证，浏览请求仍处于暂停状态。点击重试可再次验证。</value>
+  </data>
+  <data name="Miyoushe_LibraryError" xml:space="preserve">
+    <value>本地收藏或历史记录读取失败，已有文件会保留。</value>
+  </data>
+  <data name="Miyoushe_Back" xml:space="preserve">
+    <value>返回上一级</value>
+  </data>
+  <data name="Miyoushe_RightComments" xml:space="preserve">
+    <value>右侧评论</value>
+  </data>
+  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve">
+    <value>开启后评论显示在右侧栏；关闭后接在正文下方</value>
+  </data>
+  <data name="Miyoushe_LoadingComments" xml:space="preserve">
+    <value>正在加载评论…</value>
+  </data>
+  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve">
+    <value>评论暂未加载，请使用上方提示重试</value>
+  </data>
+  <data name="Miyoushe_Like" xml:space="preserve">
+    <value>点赞</value>
+  </data>
+  <data name="Miyoushe_Liked" xml:space="preserve">
+    <value>已赞</value>
+  </data>
+  <data name="Miyoushe_PublishComment" xml:space="preserve">
+    <value>评论</value>
+  </data>
+  <data name="Miyoushe_Reply" xml:space="preserve">
+    <value>回复</value>
+  </data>
+  <data name="Miyoushe_ReplyTo" xml:space="preserve">
+    <value>回复 @{0}</value>
+  </data>
+  <data name="Miyoushe_CommentHint" xml:space="preserve">
+    <value>写下你的评论（最多 1000 字）</value>
+  </data>
+  <data name="Miyoushe_SendComment" xml:space="preserve">
+    <value>发布到米游社</value>
+  </data>
+  <data name="Miyoushe_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Miyoushe_VerifyAndSend" xml:space="preserve">
+    <value>验证并发布</value>
+  </data>
+  <data name="Miyoushe_Resubmit" xml:space="preserve">
+    <value>重新发布</value>
+  </data>
+  <data name="Miyoushe_CommentSent" xml:space="preserve">
+    <value>评论已提交，已切换至最新评论</value>
+  </data>
+  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve">
+    <value>提交结果无法确认，草稿已保留。请先打开原帖检查，确认没有发布成功后再重新发布。</value>
+  </data>
+  <data name="Miyoushe_CommentRiskHint" xml:space="preserve">
+    <value>米游社要求安全验证。点击“验证并发布”完成官方验证码后提交本次评论。</value>
+  </data>
+  <data name="ModTrust_Title" xml:space="preserve">
+    <value>代码签名信任（FufuLauncher CA）</value>
+  </data>
+  <data name="ModTrust_Loading" xml:space="preserve">
+    <value>正在读取信任状态…</value>
+  </data>
+  <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="ModTrust_PackageMissing" xml:space="preserve">
     <value>尚未部署信任包：请在 Assets\Trust 放置证书与清单文件，或点击「立即更新」从官方端点同步。</value>
   </data>
-    <data name="ModTrust_StatusFormat" xml:space="preserve">
+  <data name="ModTrust_StatusFormat" xml:space="preserve">
     <value>当前状态：{0}</value>
     <value>同步端点：{1}</value>
   </data>
-    <data name="ModTrust_InstalledUser" xml:space="preserve">
+  <data name="ModTrust_InstalledUser" xml:space="preserve">
     <value>已安装（当前用户）</value>
   </data>
-    <data name="ModTrust_InstalledMachine" xml:space="preserve">
+  <data name="ModTrust_InstalledMachine" xml:space="preserve">
     <value>已安装（本机）</value>
   </data>
-    <data name="ModTrust_NotInstalled" xml:space="preserve">
+  <data name="ModTrust_NotInstalled" xml:space="preserve">
     <value>未安装</value>
   </data>
-    <data name="ModTrust_InstallTitle" xml:space="preserve">
+  <data name="ModTrust_InstallTitle" xml:space="preserve">
     <value>证书安装 / 卸载</value>
   </data>
-        <data name="ModTrust_InstallCaption" xml:space="preserve">
+  <data name="ModTrust_InstallCaption" xml:space="preserve">
     <value>安装后，我们签发的代码签名会被系统与本启动器识别；可随时卸载，不影响其它证书。</value>
   </data>
-    <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+  <data name="ModTrust_InstallUserBtn" xml:space="preserve">
     <value>安装（当前用户）</value>
   </data>
-    <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+  <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
     <value>卸载（当前用户）</value>
   </data>
-        <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+  <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
     <value>安装（本机，需管理员）</value>
   </data>
-        <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+  <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
     <value>卸载（本机，需管理员）</value>
   </data>
-    <data name="ModTrust_ScopeUser" xml:space="preserve">
+  <data name="ModTrust_ScopeUser" xml:space="preserve">
     <value>当前用户</value>
   </data>
-    <data name="ModTrust_ScopeMachine" xml:space="preserve">
+  <data name="ModTrust_ScopeMachine" xml:space="preserve">
     <value>本机</value>
   </data>
-        <data name="ModTrust_InstallConfirm" xml:space="preserve">
+  <data name="ModTrust_InstallConfirm" xml:space="preserve">
     <value>即将为「{0}」安装平台证书，安装后可识别我们签发的代码签名。是否继续？</value>
   </data>
-        <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+  <data name="ModTrust_UninstallConfirm" xml:space="preserve">
     <value>即将为「{0}」卸载平台证书，卸载后将不再信任我们签发的代码签名。是否继续？</value>
   </data>
-        <data name="ModTrust_SyncTitle" xml:space="preserve">
+  <data name="ModTrust_SyncTitle" xml:space="preserve">
     <value>信任信息更新</value>
   </data>
-        <data name="ModTrust_SyncCaption" xml:space="preserve">
+  <data name="ModTrust_SyncCaption" xml:space="preserve">
     <value>从官方端点更新代码签名信任信息。</value>
   </data>
-    <data name="ModTrust_SyncBtn" xml:space="preserve">
+  <data name="ModTrust_SyncBtn" xml:space="preserve">
     <value>立即更新</value>
   </data>
-        <data name="ModTrust_SyncConfirm" xml:space="preserve">
+  <data name="ModTrust_SyncConfirm" xml:space="preserve">
     <value>将从官方端点下载并校验信任信息，校验不通过不会应用。是否继续？</value>
   </data>
-                <data name="ModTrust_StrictTitle" xml:space="preserve">
+  <data name="ModTrust_StrictTitle" xml:space="preserve">
     <value>启用拦截</value>
   </data>
-        <data name="ModTrust_StrictConfirm" xml:space="preserve">
+  <data name="ModTrust_StrictConfirm" xml:space="preserve">
     <value>启用后，未通过签名校验的文件将停止加载，可能影响你正在使用的第三方插件。是否继续？</value>
   </data>
-    <data name="ModTrust_BlockedTitle" xml:space="preserve">
+  <data name="ModTrust_BlockedTitle" xml:space="preserve">
     <value>代码签名校验未通过</value>
   </data>
-        <data name="ModTrust_BlockedMsg" xml:space="preserve">
+  <data name="ModTrust_BlockedMsg" xml:space="preserve">
     <value>该文件未通过签名校验，已阻止加载：</value>
     <value></value>
     <value>{0}</value>
     <value></value>
     <value>可在「设置 → 安全认证 → 代码签名信任」中查看详情。</value>
   </data>
-    <data name="ModTrust_WarnTitle" xml:space="preserve">
+  <data name="ModTrust_WarnTitle" xml:space="preserve">
     <value>代码签名提示</value>
   </data>
-    <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+  <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
     <value>已安装（本机，对所有用户生效）</value>
   </data>
-    <data name="ModTrust_InstalledBoth" xml:space="preserve">
+  <data name="ModTrust_InstalledBoth" xml:space="preserve">
     <value>已安装（当前用户 + 本机）</value>
   </data>
-    <data name="ModTrust_MachineHint" xml:space="preserve">
+  <data name="ModTrust_MachineHint" xml:space="preserve">
     <value>当前用户范围由本机安装提供；安装与卸载请在本机范围操作。</value>
   </data>
   <data name="SectionStartup" xml:space="preserve">
@@ -7078,86 +7069,246 @@ UIGF v4.x/3.0/2.x</value>
   <data name="BanCheck_BannedReason" xml:space="preserve">
     <value>该 UID 位于服务端封禁名单中</value>
   </data>
-  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve"><value>正在查询米游社绑定的游戏角色...</value></data>
-  <data name="GachaAnalysis_SelectRole" xml:space="preserve"><value>选择游戏角色</value></data>
-  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve"><value>请选择本次要获取祈愿记录的角色。B服角色显示为“世界树”。未看到目标角色时请取消，检查米游社绑定，或使用“从游戏获取”。</value></data>
-  <data name="GachaAnalysis_SkyIsland" xml:space="preserve"><value>天空岛（官服）</value></data>
-  <data name="GachaAnalysis_WorldTree" xml:space="preserve"><value>世界树（B服）</value></data>
-  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve"><value>天空岛</value></data>
-  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve"><value>世界树</value></data>
-  <data name="GameRole_Select" xml:space="preserve"><value>切换游戏角色</value></data>
-  <data name="GameRole_Hint" xml:space="preserve"><value>绑定角色页设置默认角色；各功能可独立切换服务器，互不影响。</value></data>
-  <data name="GameRole_Refresh" xml:space="preserve"><value>刷新绑定角色</value></data>
-  <data name="GameRole_Unavailable" xml:space="preserve"><value>所选角色不在绑定列表中，请重新选择角色或刷新。</value></data>
-  <data name="GameRole_WidgetMismatch" xml:space="preserve"><value>备用便签接口未确认所选角色，已停止显示。请开启该角色的便签权限后重试。</value></data>
-  <data name="GameRole_SkyIsland" xml:space="preserve"><value>天空岛</value></data>
-  <data name="GameRole_WorldTree" xml:space="preserve"><value>世界树</value></data>
-  <data name="MiyousheQr_Title" xml:space="preserve"><value>识屏扫码</value></data>
-  <data name="MiyousheQr_Instructions" xml:space="preserve"><value>「普通扫码」仅读取选中区域一次；「持续扫码」反复读取选中区域内的新二维码。识别后将使用当前米游社账号登录。Esc或右键取消框选。</value></data>
-  <data name="MiyousheQr_CurrentAccount" xml:space="preserve"><value>当前米游社账号</value></data>
-  <data name="MiyousheQr_Target" xml:space="preserve"><value>登录目标</value></data>
-  <data name="MiyousheQr_ConfirmHint" xml:space="preserve"><value>确认后，显示该二维码的设备将登录上方账号。</value></data>
-  <data name="MiyousheQr_Capture" xml:space="preserve"><value>普通扫码</value></data>
-  <data name="MiyousheQr_Confirm" xml:space="preserve"><value>确认登录</value></data>
-  <data name="MiyousheQr_SelectionHint" xml:space="preserve"><value>拖动鼠标框选二维码 · Esc 或鼠标右键取消</value></data>
-  <data name="MiyousheQr_Genshin" xml:space="preserve"><value>原神</value></data>
-  <data name="MiyousheQr_StarRail" xml:space="preserve"><value>崩坏：星穹铁道</value></data>
-  <data name="MiyousheQr_Zzz" xml:space="preserve"><value>绝区零</value></data>
-  <data name="MiyousheQr_Honkai3" xml:space="preserve"><value>崩坏3</value></data>
-  <data name="MiyousheQr_Passport" xml:space="preserve"><value>米哈游通行证</value></data>
-  <data name="MiyousheQr_NoAccount" xml:space="preserve"><value>请先在启动器中登录米游社账号。</value></data>
-  <data name="MiyousheQr_CnOnly" xml:space="preserve"><value>请切换到米游社国服账号后扫码。</value></data>
-  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve"><value>当前账号缺少扫码所需的凭证，请使用米游社 APP 重新扫码登录启动器。</value></data>
-  <data name="MiyousheQr_AccountChanged" xml:space="preserve"><value>当前米游社账号已改变，请重新框选二维码。</value></data>
-  <data name="MiyousheQr_Expired" xml:space="preserve"><value>二维码已过期，请在目标设备上刷新后重新框选。</value></data>
-  <data name="MiyousheQr_Unsupported" xml:space="preserve"><value>这不是支持的米哈游登录二维码。支持通行证及原神、星穹铁道、绝区零、崩坏3国服的登录二维码。</value></data>
-  <data name="MiyousheQr_NotFound" xml:space="preserve"><value>选中区域内未识别到二维码，请完整框选二维码并留出四周空白。</value></data>
-  <data name="MiyousheQr_Multiple" xml:space="preserve"><value>识别到多个二维码，请点击选择需要登录的一个。</value></data>
-  <data name="MiyousheQr_Cancelled" xml:space="preserve"><value>已取消框选。</value></data>
-  <data name="MiyousheQr_Recognizing" xml:space="preserve"><value>正在识别二维码…</value></data>
-  <data name="MiyousheQr_Ready" xml:space="preserve"><value>已识别二维码，请核对账号和登录目标后确认。</value></data>
-  <data name="MiyousheQr_Confirming" xml:space="preserve"><value>正在确认登录…</value></data>
-  <data name="MiyousheQr_Success" xml:space="preserve"><value>已确认登录，请查看目标设备。</value></data>
-  <data name="MiyousheQr_ResultUnknown" xml:space="preserve"><value>未能确定登录结果，请先查看目标设备。若未登录，请刷新二维码后重新框选。</value></data>
-  <data name="MiyousheQr_CaptureFailed" xml:space="preserve"><value>屏幕框选或二维码读取失败，请重试。</value></data>
-  <data name="MiyousheQr_HttpError" xml:space="preserve"><value>扫码服务网络请求失败，请刷新二维码后重试。</value></data>
-  <data name="MiyousheQr_ResponseError" xml:space="preserve"><value>扫码服务返回了无法识别的结果，请刷新二维码后重试。</value></data>
-  <data name="MiyousheQr_Rejected" xml:space="preserve"><value>扫码请求被拒绝，二维码可能已过期或凭证已失效。请刷新二维码；仍失败时重新登录米游社账号。</value></data>
-  <data name="MiyousheQr_Continuous" xml:space="preserve"><value>持续扫码</value></data>
-  <data name="MiyousheQr_Stop" xml:space="preserve"><value>停止扫描</value></data>
-  <data name="MiyousheQr_AutoConfirm" xml:space="preserve"><value>自动确认登录</value></data>
-  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve"><value>扫描前勾选后，识别到支持的新二维码会立即用当前米游社账号确认登录。</value></data>
-  <data name="MiyousheQr_Scanning" xml:space="preserve"><value>正在等待区域内的新二维码，已确认 {0} 次。可点击「停止扫描」结束。</value></data>
-  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve"><value>登录成功后停止扫描</value></data>
-  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve"><value>勾选后，登录成功会停止持续扫描并移除扫描范围。取消勾选可继续扫描后续二维码。</value></data>
-  <data name="MiyousheQr_Stopped" xml:space="preserve"><value>已停止扫描。</value></data>
-  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve"><value>选中区域已不可用，请重新框选二维码区域。</value></data>
-  <data name="MiyousheQr_SessionLimit" xml:space="preserve"><value>本次持续扫描已达到上限，请重新开始扫描。</value></data>
-  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>修改将自动保存</value></data>
-  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>正在保存…</value></data>
-  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>配置保存失败</value></data>
-  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>无法写入配置文件，请检查文件权限后重试。错误详情：{0}</value></data>
-  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>配置加载失败</value></data>
-  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>无法读取插件配置文件。错误详情：{0}</value></data>
-  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>请确认配置文件存在且可读取，然后重新加载。</value></data>
-  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>配置文件不存在：{0}</value></data>
-  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>暂无可配置的参数</value></data>
-  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>此插件尚未提供可调整的配置参数。</value></data>
-  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>未找到匹配的配置项</value></data>
-  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>请尝试其他关键词，或清空搜索条件。</value></data>
-  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>清空搜索</value></data>
-  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} 个配置项</value></data>
-  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} 个配置项</value></data>
-  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>配置文件</value></data>
-  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>请输入配置值…</value></data>
-  <data name="PluginSettings_CollapseHeader" xml:space="preserve"><value>收起顶栏</value></data>
-  <data name="PluginSettings_ExpandHeader" xml:space="preserve"><value>展开顶栏</value></data>
-  <data name="Checkin_Game_hkrpg_cn" xml:space="preserve"><value>崩坏：星穹铁道</value></data>
-  <data name="Checkin_Game_nap_cn" xml:space="preserve"><value>绝区零</value></data>
-  <data name="Checkin_Game_bh3_cn" xml:space="preserve"><value>崩坏3</value></data>
-  <data name="Checkin_Game_bh2_cn" xml:space="preserve"><value>崩坏学园2</value></data>
-  <data name="Checkin_Game_nxx_cn" xml:space="preserve"><value>未定事件簿</value></data>
-  <data name="Checkin_RequestTooFrequent" xml:space="preserve"><value>请求过于频繁，请稍后重试</value></data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve">
+    <value>正在查询米游社绑定的游戏角色...</value>
+  </data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve">
+    <value>选择游戏角色</value>
+  </data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve">
+    <value>请选择本次要获取祈愿记录的角色。B服角色显示为“世界树”。未看到目标角色时请取消，检查米游社绑定，或使用“从游戏获取”。</value>
+  </data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve">
+    <value>天空岛（官服）</value>
+  </data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve">
+    <value>世界树（B服）</value>
+  </data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve">
+    <value>天空岛</value>
+  </data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve">
+    <value>世界树</value>
+  </data>
+  <data name="GameRole_Select" xml:space="preserve">
+    <value>切换游戏角色</value>
+  </data>
+  <data name="GameRole_Hint" xml:space="preserve">
+    <value>绑定角色页设置默认角色；各功能可独立切换服务器，互不影响。</value>
+  </data>
+  <data name="GameRole_Refresh" xml:space="preserve">
+    <value>刷新绑定角色</value>
+  </data>
+  <data name="GameRole_Unavailable" xml:space="preserve">
+    <value>所选角色不在绑定列表中，请重新选择角色或刷新。</value>
+  </data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve">
+    <value>备用便签接口未确认所选角色，已停止显示。请开启该角色的便签权限后重试。</value>
+  </data>
+  <data name="GameRole_SkyIsland" xml:space="preserve">
+    <value>天空岛</value>
+  </data>
+  <data name="GameRole_WorldTree" xml:space="preserve">
+    <value>世界树</value>
+  </data>
+  <data name="MiyousheQr_Title" xml:space="preserve">
+    <value>识屏扫码</value>
+  </data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve">
+    <value>「普通扫码」仅读取选中区域一次；「持续扫码」反复读取选中区域内的新二维码。识别后将使用当前米游社账号登录。Esc或右键取消框选。</value>
+  </data>
+  <data name="MiyousheQr_CurrentAccount" xml:space="preserve">
+    <value>当前米游社账号</value>
+  </data>
+  <data name="MiyousheQr_Target" xml:space="preserve">
+    <value>登录目标</value>
+  </data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve">
+    <value>确认后，显示该二维码的设备将登录上方账号。</value>
+  </data>
+  <data name="MiyousheQr_Capture" xml:space="preserve">
+    <value>普通扫码</value>
+  </data>
+  <data name="MiyousheQr_Confirm" xml:space="preserve">
+    <value>确认登录</value>
+  </data>
+  <data name="MiyousheQr_SelectionHint" xml:space="preserve">
+    <value>拖动鼠标框选二维码 · Esc 或鼠标右键取消</value>
+  </data>
+  <data name="MiyousheQr_Genshin" xml:space="preserve">
+    <value>原神</value>
+  </data>
+  <data name="MiyousheQr_StarRail" xml:space="preserve">
+    <value>崩坏：星穹铁道</value>
+  </data>
+  <data name="MiyousheQr_Zzz" xml:space="preserve">
+    <value>绝区零</value>
+  </data>
+  <data name="MiyousheQr_Honkai3" xml:space="preserve">
+    <value>崩坏3</value>
+  </data>
+  <data name="MiyousheQr_Passport" xml:space="preserve">
+    <value>米哈游通行证</value>
+  </data>
+  <data name="MiyousheQr_NoAccount" xml:space="preserve">
+    <value>请先在启动器中登录米游社账号。</value>
+  </data>
+  <data name="MiyousheQr_CnOnly" xml:space="preserve">
+    <value>请切换到米游社国服账号后扫码。</value>
+  </data>
+  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve">
+    <value>当前账号缺少扫码所需的凭证，请使用米游社 APP 重新扫码登录启动器。</value>
+  </data>
+  <data name="MiyousheQr_AccountChanged" xml:space="preserve">
+    <value>当前米游社账号已改变，请重新框选二维码。</value>
+  </data>
+  <data name="MiyousheQr_Expired" xml:space="preserve">
+    <value>二维码已过期，请在目标设备上刷新后重新框选。</value>
+  </data>
+  <data name="MiyousheQr_Unsupported" xml:space="preserve">
+    <value>这不是支持的米哈游登录二维码。支持通行证及原神、星穹铁道、绝区零、崩坏3国服的登录二维码。</value>
+  </data>
+  <data name="MiyousheQr_NotFound" xml:space="preserve">
+    <value>选中区域内未识别到二维码，请完整框选二维码并留出四周空白。</value>
+  </data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve">
+    <value>识别到多个二维码，请点击选择需要登录的一个。</value>
+  </data>
+  <data name="MiyousheQr_Cancelled" xml:space="preserve">
+    <value>已取消框选。</value>
+  </data>
+  <data name="MiyousheQr_Recognizing" xml:space="preserve">
+    <value>正在识别二维码…</value>
+  </data>
+  <data name="MiyousheQr_Ready" xml:space="preserve">
+    <value>已识别二维码，请核对账号和登录目标后确认。</value>
+  </data>
+  <data name="MiyousheQr_Confirming" xml:space="preserve">
+    <value>正在确认登录…</value>
+  </data>
+  <data name="MiyousheQr_Success" xml:space="preserve">
+    <value>已确认登录，请查看目标设备。</value>
+  </data>
+  <data name="MiyousheQr_ResultUnknown" xml:space="preserve">
+    <value>未能确定登录结果，请先查看目标设备。若未登录，请刷新二维码后重新框选。</value>
+  </data>
+  <data name="MiyousheQr_CaptureFailed" xml:space="preserve">
+    <value>屏幕框选或二维码读取失败，请重试。</value>
+  </data>
+  <data name="MiyousheQr_HttpError" xml:space="preserve">
+    <value>扫码服务网络请求失败，请刷新二维码后重试。</value>
+  </data>
+  <data name="MiyousheQr_ResponseError" xml:space="preserve">
+    <value>扫码服务返回了无法识别的结果，请刷新二维码后重试。</value>
+  </data>
+  <data name="MiyousheQr_Rejected" xml:space="preserve">
+    <value>扫码请求被拒绝，二维码可能已过期或凭证已失效。请刷新二维码；仍失败时重新登录米游社账号。</value>
+  </data>
+  <data name="MiyousheQr_Continuous" xml:space="preserve">
+    <value>持续扫码</value>
+  </data>
+  <data name="MiyousheQr_Stop" xml:space="preserve">
+    <value>停止扫描</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirm" xml:space="preserve">
+    <value>自动确认登录</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve">
+    <value>扫描前勾选后，识别到支持的新二维码会立即用当前米游社账号确认登录。</value>
+  </data>
+  <data name="MiyousheQr_Scanning" xml:space="preserve">
+    <value>正在等待区域内的新二维码，已确认 {0} 次。可点击「停止扫描」结束。</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve">
+    <value>登录成功后停止扫描</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve">
+    <value>勾选后，登录成功会停止持续扫描并移除扫描范围。取消勾选可继续扫描后续二维码。</value>
+  </data>
+  <data name="MiyousheQr_Stopped" xml:space="preserve">
+    <value>已停止扫描。</value>
+  </data>
+  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve">
+    <value>选中区域已不可用，请重新框选二维码区域。</value>
+  </data>
+  <data name="MiyousheQr_SessionLimit" xml:space="preserve">
+    <value>本次持续扫描已达到上限，请重新开始扫描。</value>
+  </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
+    <value>修改将自动保存</value>
+  </data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve">
+    <value>正在保存…</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
+    <value>配置保存失败</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
+    <value>无法写入配置文件，请检查文件权限后重试。错误详情：{0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
+    <value>配置加载失败</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
+    <value>无法读取插件配置文件。错误详情：{0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
+    <value>请确认配置文件存在且可读取，然后重新加载。</value>
+  </data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
+    <value>配置文件不存在：{0}</value>
+  </data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
+    <value>暂无可配置的参数</value>
+  </data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
+    <value>此插件尚未提供可调整的配置参数。</value>
+  </data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve">
+    <value>未找到匹配的配置项</value>
+  </data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
+    <value>请尝试其他关键词，或清空搜索条件。</value>
+  </data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
+    <value>清空搜索</value>
+  </data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
+    <value>{0} 个配置项</value>
+  </data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
+    <value>{0} / {1} 个配置项</value>
+  </data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
+    <value>配置文件</value>
+  </data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
+    <value>请输入配置值…</value>
+  </data>
+  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
+    <value>收起顶栏</value>
+  </data>
+  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
+    <value>展开顶栏</value>
+  </data>
+  <data name="Checkin_Game_hkrpg_cn" xml:space="preserve">
+    <value>崩坏：星穹铁道</value>
+  </data>
+  <data name="Checkin_Game_nap_cn" xml:space="preserve">
+    <value>绝区零</value>
+  </data>
+  <data name="Checkin_Game_bh3_cn" xml:space="preserve">
+    <value>崩坏3</value>
+  </data>
+  <data name="Checkin_Game_bh2_cn" xml:space="preserve">
+    <value>崩坏学园2</value>
+  </data>
+  <data name="Checkin_Game_nxx_cn" xml:space="preserve">
+    <value>未定事件簿</value>
+  </data>
+  <data name="Checkin_RequestTooFrequent" xml:space="preserve">
+    <value>请求过于频繁，请稍后重试</value>
+  </data>
   <data name="AchievementWindow_DataActions" xml:space="preserve">
     <value>数据操作</value>
   </data>
@@ -7359,5 +7510,1055 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="ServiceDetail_DurationDays" xml:space="preserve">
     <value>持续 {0} 天 {1} 小时</value>
+  </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>四星出货</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>复制失败: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>加载中...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>默认预设</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>武器活动祈愿</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>选择失败: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>访问密钥</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>账户已登录（未绑定角色）</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Cookie 刷新失败</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>配置读取失败</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>未安装 FPS 解锁</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>月均 {0} 抽</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>这个人很懒，什么都没写...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>暂无</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>未获取到任何记录，记录已备份。</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>角色活动祈愿-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>新手祈愿</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>初始化失败</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>安装私密插件失败: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>账户已登录</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>该预设没有记录插件 Hash，无法确认是否完全匹配当前插件版本</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>国际服</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>登录米游社</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>无法解析预设文件
+详细信息: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>JSON 文件</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>已加载本地数据和图片资源。</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>添加失败: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie 已成功复制到剪贴板</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>请等待...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>当前未知属性值 {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>获取链接失败</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>删除失败: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>配置应用失败</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>保存失败: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>文件选择器调用失败，若以管理员权限运行请尝试切换为普通用户模式</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>当前未具备开发者权限，无法使用此功能</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>添加插件: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>复制成功</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>常驻祈愿</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>插件文件</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>未找到历史记录文件，请尝试抓取</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>未知大小</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>请输入私密插件 ID 和访问密钥：</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>未找到 CaptureApp.exe</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>账户信息刷新失败: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>该角色暂无抽卡记录</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>操作失败</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>已获取链接，正在自动开始加载...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>完成！</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>登录成功</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>安装</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>状态保存失败</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>无法保存激活状态记录，缺少写入权限
+详细信息: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>切换预设时无法写入配置文件
+详细信息: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>按每抽 160 原石</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>文档下载异常: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>保底区间</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>当前最深垫数</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>安装私密插件: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>账户数据读取失败</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>登录已取消</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>角色活动祈愿</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>插件 "{0}" 需要启动器版本 ≥ {1}，当前版本为 {2}
+
+请先更新启动器后再安装此插件。</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>错误: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>已删除 UID: {0} 的抽卡记录</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>未知插件</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>角色活动</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>复制失败</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>正在获取数据...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>无法读取配置文件
+详细信息: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>正在导入第 {0} 条记录...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>操作失败: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>四星出货</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>全部卡池五星</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>导入失败</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>已{0}: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} 个</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>未选择文档</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>链接格式不正确，无法提取 API 地址</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>使用全局连点器需要管理员权限以注册热键和发送按键事件。请以管理员身份重新运行程序。</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>图片或视频</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>正在加载用户信息...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>已启用，FPS解锁功能生效</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>导出成功，文件已保存至：{0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>集录祈愿</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>状态切换失败</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>无法应用当前修改
+详细信息: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>请确保Plugins目录下存在对应的文件夹及config.ini文件</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>欧气区间</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>账户_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>强制执行（不推荐）</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>抓取程序正在读取数据...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>最多只能添加 {0} 个账户</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>请求失败（{0}）：{1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>权限验证失败</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>当前登录账户</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>人机验证</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>新手祈愿</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>正在打开登录窗口...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>约 {0:N0} 原石</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>未知四星</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>原神日常签到已完成</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Lua 脚本测试失败: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>动态壁纸</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>暂无时间记录</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} 次</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>添加账户</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>文件中未找到抽卡记录</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>无法删除指定的预设文件，文件可能被占用或没有权限
+详细信息: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>五星出货</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>日志写入失败: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>版本过低</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>错误: 缺少管理员权限，无法启动连点器</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>无描述</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>默认 (未指定)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Lua 安全检查未通过: {0}。</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>未安装 FuFuPlugin</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>接近软保底</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>活跃月份</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>当前预设: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>登录出错: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>请设置停止快捷键</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>未预期的错误: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>正在刷新 Cookie...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>加载失败: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>最小化到托盘</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>武器活动</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>当前预设与插件版本不匹配，已自动重置为默认预设</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>开始抓取</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>私密插件</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>没有账户</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>不支持的 UIGF 版本：{0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} 抽</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>文件不存在或无法访问</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>删除失败: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>脚本执行超时（超过 5 秒）</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>应用失败: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>操作失败：文件已存在</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>切换至 UID: {0}</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>开启全局连点器将安装全局键盘和鼠标钩子，并可能被部分安全软件拦截。是否确认开启？</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>壁纸切换</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>无法识别的文件</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>已删除: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Cookie 刷新成功</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>该预设与当前插件匹配良好</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>请在角色下拉框中选择游戏角色。</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>添加失败：目标插件已存在</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>添加账户失败: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>集录祈愿</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>可执行文件</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>暂无五星垫数</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>已成功导出 {0} 条记录到 {1} ({2})</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>导入失败: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>请求返回的角色与当前选中的不一致，停止显示。</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>原神签到</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>预设已切换</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>已启用，部分功能生效</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>正在读取 UIGF 文件...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>未找到</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>当前最深：{0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie 已复制到剪贴板</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>已登录到 {0}</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>1-5星全部记录</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>无法读取注册表</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>无法将预设写入配置文件，缺少权限
+详细信息: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>权限不足或已被其他程序占用，请以普通用户身份重新选择游戏路径</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>设置保存失败</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>正在打开账号冻结页面...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>已通过停止快捷键关闭</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>删除成功</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>当前账户</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>路径无效</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>三星</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>总抽数</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>未找到有效的 Cookie</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>导入完成，共 {0} 条记录，正在加载图片资源...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>未找到登录信息</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>先启动一次游戏后再试</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>正在获取物品元数据与卡池...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>显示器 {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>请先停止连点器后再开启</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>正在抓取... 请在游戏中打开历史记录页面</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>最非五星</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>无效的路径，请检查文件是否存在且为 .exe 格式</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>刷新列表</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>路径为空</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>无法初始化视图: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>选择路径失败: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>无法保存预设文件，缺少写入权限
+详细信息: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>切换账户登录成功</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>导出失败: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>停止抓取</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>读取历史记录失败: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>无法修改插件文件后缀名
+详细信息: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>权限不足或已被其他程序占用，请以普通用户身份重新选择文件</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>配置更新失败</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>无法获取文档 (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>路径已应用</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>插件 "{0}"（ID: {1}）为私密插件，请输入访问密钥以继续安装：</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>无法加载目录树: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>打开失败: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Lua 脚本测试成功</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>切换状态失败: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>没有可导出的数据</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>正在打开原神便笺...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>已加载历史链接，准备自动抓取...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>音频文件</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>操作成功</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>预设保存失败</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>已删除 UID: {0} 的记录</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>正在获取卡池元数据...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Lua 执行出错: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>预设删除失败</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>请先登录</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>无法识别此 UIGF 版本，请确认文件格式正确</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>正在验证私密插件...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>暂无五星记录</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>我知道了</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>当前未选择任何账户</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>常驻祈愿</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>安装私密插件</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>五星</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>已打开</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>重新登录</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>文件不存在或不是有效的 .exe 文件</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>正在打开账号安全中心...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>详细信息: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>抓取已被手动停止</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>完成验证</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>该预设记录的插件 Hash 与当前插件 Hash 不一致，可能来自旧版本或不同版本的插件</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>五星均抽</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>终止失败</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>无效的抽卡链接</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>该账户无抽卡记录</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>预览格式版本不支持动态壁纸。</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>确认开启</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>准备就绪</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>原石估算</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>视图刷新中...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>未知开发者</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>正在导出 UIGF 文件...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>无法打开文件选择器</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>国服</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>退出失败: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>正在获取{0}...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>四星</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>中段出货</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>最欧五星</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>从目录选择一个项目以查看详细内容</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>安全策略违规: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>插件ID</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>关闭启动器</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>未知五星</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>需要管理员权限</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>当前插件文件不存在或无法计算 Hash，无法确认该预设是否完全匹配当前版本</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>文件中存在不完整的记录，缺少 id/item_id/time/gacha_type，请检查文件格式</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>停止失败: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>五星角色均耗</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>加载完成，共 {0} 个插件</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Cookie 刷新失败: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>文件中未找到有效的抽卡记录</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>异常记录</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>正在初始化...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>用户 {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>米游社未授权此账号获取所选游戏角色的祈愿记录（返回码 1016）。请检查绑定关系，或使用「从游戏获取」。</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>未找到可用于祈愿获取的原神绑定角色。请登录绑定了目标角色的米游社账号，或使用「从游戏获取」。</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>UID {0} 未获取到新记录，已保留现有数据。</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>已加载本地历史记录</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>已取消导入，现有数据未更改。</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>获取完成，UID {0}，共 {1} 条记录，正在检查图片资源...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>米游社未接受所选角色的认证参数（返回码 1002）。可使用「从游戏获取」读取游戏生成的链接。</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>未获取到祈愿记录，已保留现有数据。请确认游戏内祈愿历史中有可查询的记录。</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>读取配置失败: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>正在获取{0}记录... (已获取 {1} 条)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>请输入有效的抽卡链接</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>正在生成认证密钥（全量更新）...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>不同卡池返回了不同账号的数据，已停止导入。</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>等待获取数据...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>初始化诊断服务失败</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>正在打开原神数据窗口...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>＋ 添加新用户</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>未命名</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0} {1} 条，正在获取{2}记录...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>正在刷新角色、武器与卡池元数据...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>剪贴板内容无效</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>返回记录的 UID 与所选游戏角色不一致，已停止导入。</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> 请检查米游社登录状态，或使用「从游戏获取」。</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>加载账户信息失败: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>导出成功</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>分析完成！</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>正在生成认证密钥（增量更新）...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>请先在角色切换开关中选择游戏角色。</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>读取剪贴板失败</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>导出失败</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>未找到绑定 UID {0} 的米游社账号。请确认目标角色已绑定到已登录的米游社账号，或使用「从游戏获取」。</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>角色已切换，已丢弃旧角色的获取结果。</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>启动抓包工具</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>重命名失败：文件夹名已存在</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>下载验证</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>重命名失败: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>列表已排序</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>重命名成功</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>游戏签到状态加载中</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>预设切换失败</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>打开浏览器失败: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>请先设置键盘停止快捷键，再开启鼠标连点</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>鼠标连点必须先设置键盘停止快捷键</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>未知卡池</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>未找到对应的预设配置</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>正在解析 API 链接...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>路径有效</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>已被禁用，请启用主插件才能调试配置</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>已被禁用，请启用FPS插件才能调试插件配置</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>插件变更</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>当前预设与最新插件版本不匹配，已自动生成新预设</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>此预设当前被标记为锁定。</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>清除失败</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>无法清除预设文件
+详细信息: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>内部视图已刷新</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>新增未知键值 {0}</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>等待加载数据...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>正在连接米游社...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>需先登录账号</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>分析旅行札记...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>旅行札记请求失败（{0}）：{1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>旅行札记返回的角色与当前选择不一致，已停止显示。</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>加载失败: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>正文仍在后台预加载，匹配来自标题或路径</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>加载中...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>动态背景仅开发版本可用，预览版与正式版本请选择图片作为自定义背景</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>正在通过 API 获取角色和武器元数据...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>{0}元数据获取失败，{1} 秒后重试（{2}/{3}）…</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>未找到新图片资源，将使用现有缓存或默认图标</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>更新了 {0} 个图片资源，并存入数据库</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>卡池元数据更新完成（共 {0} 个历史卡池：角色 {1}、武器 {2}、集录 {3}）</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>武器</value>
   </data>
 </root>

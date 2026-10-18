@@ -7516,4 +7516,1054 @@ Kesalahan: {0}</value>
     <value>Pengaturan berikut dinonaktifkan tanpa mengonfirmasi peringatan penonaktifan, sehingga telah dipulihkan ke status aktif:
 {0}</value>
   </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>Perolehan Bintang 4</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>Gagal menyalin: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>Memuat...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>Preset Default</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>Tidak ada</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>Permohonan Event Senjata</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>Gagal memilih: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>Dinonaktifkan</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>Kunci Akses</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>Akun sudah masuk (belum menautkan karakter)</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Gagal menyegarkan Cookie</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>Gagal membaca konfigurasi</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>FPS Unlocker belum terpasang</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>Rata-rata {0} permohonan/bulan</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>Belum ada yang ditulis di sini...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>Tidak ada</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>Tidak ada catatan yang diambil; catatan lama telah dicadangkan.</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>Permohonan Event Karakter-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>Permohonan Pemula</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>Inisialisasi gagal</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>Gagal memasang plugin pribadi: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>Akun sudah masuk</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>Preset ini tidak memiliki catatan hash plugin, tidak dapat memverifikasi kompatibilitas versi</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>Server Global</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>Masuk ke HoYoLAB</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menguraikan file preset
+Detail: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>File JSON</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>Data lokal dan sumber gambar berhasil dimuat.</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>Gagal menambahkan: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie telah berhasil disalin ke papan klip</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>Silakan tunggu...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>Nilai properti tidak diketahui: {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>Gagal mendapatkan tautan</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>Gagal menghapus: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>Gagal menerapkan konfigurasi</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>Gagal menyimpan: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>Pemilih file gagal. Jika berjalan sebagai administrator, coba alihkan ke mode pengguna biasa</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>Izin pengembang diperlukan untuk menggunakan fitur ini</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>Tambah plugin: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>Berhasil disalin</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>Tidak diketahui</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>Permohonan Standar</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>File Plugin</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>File riwayat tidak ditemukan, coba lakukan penangkapan</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>Ukuran tidak diketahui</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>Silakan masukkan ID plugin pribadi dan kunci akses:</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>CaptureApp.exe tidak ditemukan</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>Gagal menyegarkan informasi akun: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>Karakter ini belum memiliki catatan permohonan</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>Operasi gagal</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>Tautan diperoleh, memulai pemuatan otomatis...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>Selesai!</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>Berhasil masuk</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>Pasang</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>Gagal menyimpan status</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menyimpan catatan status aktivasi, izin tulis tidak ada
+Detail: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menulis ke file konfigurasi saat beralih preset
+Detail: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>Berdasarkan 160 Primogem per permohonan</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>Pengecualian unduhan dokumen: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>Zona Pity</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>Pity Terdalam Saat Ini</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>Memasang plugin pribadi: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>Gagal membaca data akun</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>Masuk dibatalkan</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>Permohonan Event Karakter</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>Plugin "{0}" memerlukan versi launcher ≥ {1}, versi saat ini adalah {2}
+
+Perbarui launcher sebelum menginstal plugin ini.</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>Kesalahan: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>Catatan permohonan untuk UID: {0} telah dihapus</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>Plugin Tidak Dikenal</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>Event Karakter</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>Gagal menyalin</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>Mengambil data...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat membaca file konfigurasi
+Detail: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>Mengimpor catatan ke-{0}...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>Kesalahan tidak diketahui</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>Operasi gagal: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>Perolehan Bintang 4</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>Semua Bintang 5 di semua banner</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>Gagal mengimpor</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>Telah di{0}: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} item</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>Tidak ada dokumen yang dipilih</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>Format tautan salah; tidak dapat mengekstrak alamat API</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>Auto clicker global memerlukan hak administrator untuk mendaftarkan hotkey dan mengirimkan penekanan tombol. Jalankan program sebagai administrator.</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>Gambar atau Video</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>Memuat informasi pengguna...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>Diaktifkan, FPS unlock berfungsi</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>Berhasil mengekspor, file disimpan di: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>Permohonan Kronik</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>Gagal beralih status</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menerapkan perubahan
+Detail: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>Pastikan folder dan config.ini ada di bawah direktori Plugins</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>Zona Hoki</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>Akun_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>Paksa Eksekusi (Tidak disarankan)</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>Program penangkap sedang membaca data...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>Maksimal hanya dapat menambahkan {0} akun</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>Permintaan gagal ({0}): {1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>Verifikasi izin gagal</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>Akun yang sedang masuk</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>Verifikasi Captcha</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>Permohonan Pemula</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>Membuka jendela masuk...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>Sekitar {0:N0} Primogem</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>Bintang 4 Tidak Diketahui</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>Absen harian Genshin Impact selesai</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Uji skrip Lua gagal: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>Wallpaper Bergerak</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>Tidak ada catatan tanggal</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} kali</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>Tambah Akun</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>Catatan permohonan tidak ditemukan di dalam file</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menghapus file preset, file mungkin sedang digunakan atau akses ditolak
+Detail: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>Perolehan Bintang 5</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>Gagal menulis log: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>Versi Terlalu Rendah</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>Kesalahan: Kurang hak administrator, tidak dapat memulai auto clicker</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>Pemberitahuan</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>Tidak ada deskripsi</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>Default (tidak ditentukan)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Pemeriksaan keamanan Lua gagal: {0}.</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>FuFuPlugin belum terpasang</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>Mendekati Soft Pity</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>Bulan Aktif</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>Preset saat ini: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>Kesalahan masuk: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>Silakan atur tombol pintas berhenti</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>Kesalahan tak terduga: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>Menyegarkan Cookie...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>Gagal memuat: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>Minimalkan ke baki</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>Event Senjata</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>Preset tidak cocok dengan versi plugin, otomatis diatur ulang ke default</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>Mulai Ambil</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>Plugin Pribadi</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>Tidak ada akun</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>Versi UIGF tidak didukung: {0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} permohonan</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>File tidak ada atau tidak dapat diakses</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>Gagal menghapus: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>Waktu eksekusi skrip habis (&gt;5 detik)</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>Gagal menerapkan: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>Operasi gagal: file sudah ada</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>Beralih ke UID: {0}</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>Mengaktifkan auto clicker akan memasang hook keyboard dan mouse yang dapat diblokir oleh antivirus. Konfirmasi pengaktifan?</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>Ganti Wallpaper</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>File tidak dikenali</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>Dihapus: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Berhasil menyegarkan Cookie</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>Preset ini sangat cocok dengan plugin saat ini</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>Silakan pilih karakter game dari menu dropdown.</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>Gagal menambahkan: plugin target sudah ada</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>Diaktifkan</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>Gagal menambahkan akun: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>Permohonan Kronik</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>File yang Dapat Dieksekusi</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>Belum ada pity Bintang 5</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>Berhasil mengekspor {0} catatan ke {1} ({2})</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>Gagal mengimpor: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>Karakter yang diperoleh tidak cocok dengan yang dipilih, menghentikan tampilan.</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>Absen Genshin</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>Preset Berhasil Dialihkan</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>Diaktifkan, sebagian fitur berfungsi</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>Membaca file UIGF...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>Tidak ditemukan</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>Terdalam saat ini: {0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie disalin ke papan klip</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>Masuk sebagai {0}</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>Semua catatan Bintang 1-5</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>Tidak dapat membaca registri</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menulis preset ke file konfigurasi, izin tidak ada
+Detail: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>Izin tidak cukup atau sedang digunakan; silakan pilih ulang jalur game sebagai pengguna biasa</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>Gagal menyimpan pengaturan</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>Membuka halaman pembekuan akun...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>Dihentikan melalui tombol pintas</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>Berhasil dihapus</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>Akun Saat Ini</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>Jalur tidak valid</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>Bintang 3</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>Total Permohonan</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>Cookie yang valid tidak ditemukan</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>Impor selesai ({0} catatan), memuat sumber gambar...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>Informasi masuk tidak ditemukan</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>Silakan jalankan game sekali terlebih dahulu sebelum mencoba lagi</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>Mengambil metadata item dan banner...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>Monitor {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>Hentikan auto clicker terlebih dahulu sebelum memulai lagi</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>Mengambil... Silakan buka riwayat permohonan di dalam game</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>Bintang 5 Paling Sulit</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>Jalur tidak valid, periksa apakah file ada dan berformat .exe</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>Segarkan daftar</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>Jalur kosong</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>Gagal menginisialisasi tampilan: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>Gagal memilih jalur: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menyimpan file preset, izin tulis tidak ada
+Detail: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>Berhasil beralih akun</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>Gagal mengekspor: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>Hentikan Ambil</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>Gagal membaca riwayat: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat mengubah ekstensi file plugin
+Detail: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>Izin tidak cukup atau sedang digunakan; silakan pilih ulang sebagai pengguna biasa</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>Gagal memperbarui konfigurasi</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>Gagal menghapus</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>Gagal mengambil dokumen (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>Jalur telah diterapkan</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>Plugin "{0}" (ID: {1}) bersifat pribadi. Masukkan kunci akses untuk melanjutkan penginstalan:</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>Gagal memuat pohon direktori: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>Gagal membuka: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Uji skrip Lua berhasil</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>Gagal beralih status: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>Tidak ada data untuk diekspor</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>Membuka Catatan Harian Genshin...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>Tautan riwayat dimuat, bersiap mengambil otomatis...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>File Audio</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>Operasi berhasil</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>Gagal menyimpan preset</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>Catatan untuk UID: {0} telah dihapus</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>Mengambil metadata banner...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Kesalahan eksekusi Lua: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>Gagal menghapus preset</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>Silakan masuk terlebih dahulu</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>Versi UIGF tidak dikenali, pastikan format file benar</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>Memverifikasi plugin pribadi...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>Tidak ada catatan Bintang 5</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>Mengerti</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>Tidak ada akun yang dipilih</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>Permohonan Standar</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>Pasang Plugin Pribadi</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>Bintang 5</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>Terbuka</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>Masuk kembali</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>File tidak ada atau bukan file .exe yang valid</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>Membuka pusat keamanan akun...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>Detail: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>Pengambilan dihentikan secara manual</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>Verifikasi Selesai</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>Hash plugin pada preset tidak cocok dengan plugin saat ini, mungkin berasal dari versi lain</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>Rata-rata per Bintang 5</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>Gagal menghentikan</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>Tautan permohonan tidak valid</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>Akun ini tidak memiliki catatan permohonan</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>Versi format pratinjau tidak mendukung wallpaper bergerak.</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>Konfirmasi Pengaktifan</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>Siap</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>Estimasi Primogem</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>Menyegarkan tampilan...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>Pengembang Tidak Dikenal</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>Mengekspor file UIGF...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>Tidak dapat membuka pemilih file</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>Server CN</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>Gagal keluar: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>Mengambil {0}...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>Bintang 4</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>Zona Menengah</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>Bintang 5 Paling Beruntung</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>Pilih item dari menu untuk melihat detail</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>Pelanggaran kebijakan keamanan: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>ID Plugin</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>Tutup launcher</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>Bintang 5 Tidak Diketahui</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>Memerlukan Hak Administrator</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>File plugin tidak ada atau tidak dapat menghitung hash, tidak dapat memverifikasi kompatibilitas</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>Catatan tidak lengkap dalam file (kurang id/item_id/time/gacha_type), periksa format file</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>Gagal menghentikan: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>Rata-rata Permohonan Karakter Bintang 5</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>Pemuatan selesai, total {0} plugin</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Gagal menyegarkan Cookie: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>Tidak ada catatan permohonan yang valid di dalam file</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>Catatan Anomali</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>Menginisialisasi...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>Pengguna {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>HoYoLAB tidak mengizinkan pengambilan (kode 1016). Periksa tautan atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>Karakter tertaut tidak ditemukan. Masuk ke HoYoLAB atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>Tidak ada catatan baru untuk UID {0}, data yang ada dipertahankan.</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>Riwayat lokal berhasil dimuat</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>Impor dibatalkan, data yang ada tidak berubah.</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>Pengambilan selesai, UID {0}, total {1} catatan, memeriksa sumber gambar...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>HoYoLAB menolak parameter (kode 1002). Coba 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>Catatan permohonan tidak ditemukan, data yang ada dipertahankan. Periksa riwayat game.</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>Gagal membaca konfigurasi: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>Mengambil catatan {0}... (sudah {1} item)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>Silakan masukkan tautan permohonan yang valid</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>Membuat kunci autentikasi (pembaruan penuh)...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>Banner berbeda mengembalikan data akun berbeda, impor dihentikan.</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>Menunggu data...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>Gagal menginisialisasi layanan diagnostik</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>Membuka jendela data Genshin...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>+ Tambah Pengguna Baru</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>Tanpa Nama</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0} {1} catatan, sedang mengambil catatan {2}...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>Menyegarkan metadata karakter, senjata, dan banner...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>Konten papan klip tidak valid</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>UID yang diperoleh tidak sesuai dengan karakter yang dipilih, impor dihentikan.</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> Silakan periksa status masuk HoYoLAB, atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>Gagal memuat informasi akun: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>Ekspor Berhasil</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>Analisis selesai!</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>Membuat kunci autentikasi (pembaruan inkremental)...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>Silakan pilih karakter game di pengalih terlebih dahulu.</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>Gagal membaca papan klip</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>Ekspor Gagal</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>Akun HoYoLAB tertaut UID {0} tidak ditemukan. Periksa tautan atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>Karakter telah dialihkan, membuang hasil karakter lama.</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>Jalankan Alat Penangkap</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>Gagal mengganti nama: nama folder sudah ada</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>Verifikasi Unduhan</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>Gagal mengganti nama: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>Daftar telah diurutkan</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>Berhasil mengganti nama</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>Memuat status check-in game</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>Gagal beralih preset</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>Gagal membuka peramban: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>Silakan atur tombol pintas berhenti sebelum mengaktifkan klik mouse</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>Klik mouse memerlukan pengaturan tombol pintas berhenti terlebih dahulu</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>Banner Tidak Diketahui</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>Konfigurasi preset yang sesuai tidak ditemukan</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>Menganalisis tautan API...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>Jalur valid</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>Dinonaktifkan. Harap aktifkan plugin utama untuk mengonfigurasi pengaturan.</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>Dinonaktifkan. Harap aktifkan plugin FPS untuk mengonfigurasi pengaturan plugin.</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>Plugin Diubah</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>Preset saat ini tidak cocok dengan versi plugin terbaru; preset baru telah dibuat secara otomatis.</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>Preset ini saat ini ditandai sebagai terkunci.</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>Gagal Menghapus</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menghapus file preset.
+Detail: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>Tampilan internal disegarkan</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>Nilai kunci tak dikenal {0} ditambahkan</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>Menunggu memuat data...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>Menghubungkan ke Miyoushe...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>Perlu masuk ke akun terlebih dahulu</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>Menganalisis Catatan Perjalanan...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>Permintaan Catatan Perjalanan gagal ({0}): {1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>Karakter yang dikembalikan Catatan Perjalanan tidak cocok dengan pilihan saat ini; tampilan dihentikan.</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>Gagal memuat: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>Konten masih dimuat di latar belakang; kecocokan berasal dari judul atau jalur</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>Memuat...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>Wallpaper animasi hanya tersedia dalam build pengembangan. Harap pilih gambar sebagai latar belakang kustom pada versi pratinjau dan rilis.</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>Mengambil metadata karakter dan senjata melalui API...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>Gagal mengambil metadata {0}, mencoba kembali dalam {1} dtk ({2}/{3})...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>Tidak ada sumber daya gambar baru ditemukan; menggunakan cache yang ada atau ikon default</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>Memperbarui {0} sumber daya gambar dan menyimpannya ke basis data</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>Metadata pool wish diperbarui (total {0} riwayat pool: Karakter {1}, Senjata {2}, Kronik {3})</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>Karakter</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>Senjata</value>
+  </data>
 </root>

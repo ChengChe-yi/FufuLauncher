@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using CommunityToolkit.Mvvm.Input;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 
@@ -45,13 +46,13 @@ public partial class GachaAnalysisModel
         {
             SelectedUid = "";
             ClearCollections();
-            CharacterStats = new GachaStatistic { PoolName = "角色活动" };
-            WeaponStats = new GachaStatistic { PoolName = "武器活动" };
-            ChronicledStats = new GachaStatistic { PoolName = "集录祈愿" };
-            StandardStats = new GachaStatistic { PoolName = "常驻祈愿" };
+            CharacterStats = new GachaStatistic { PoolName = "Gacha_Pool_Character".GetLocalized() };
+            WeaponStats = new GachaStatistic { PoolName = "Gacha_Pool_Weapon".GetLocalized() };
+            ChronicledStats = new GachaStatistic { PoolName = "Gacha_Pool_Chronicled".GetLocalized() };
+            StandardStats = new GachaStatistic { PoolName = "Gacha_Pool_Standard".GetLocalized() };
             InvalidateAnalysisDashboard();
             HasGachaData = false;
-            CrawlerStatus = "等待获取数据...";
+            CrawlerStatus = "Gacha_WaitingForData".GetLocalized();
         });
     }
 
@@ -60,7 +61,7 @@ public partial class GachaAnalysisModel
     {
         if (IsScraping) return;
         IsScraping = true;
-        CrawlerStatus = "正在刷新角色、武器与卡池元数据...";
+        CrawlerStatus = "Gacha_RefreshingMetadata".GetLocalized();
         RequestMetadataScrapeAction?.Invoke();
     }
 

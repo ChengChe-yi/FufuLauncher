@@ -37,13 +37,13 @@ public partial class LaunchConfigurationViewModel
     private void LoadMonitors()
     {
         AvailableMonitors.Clear();
-        AvailableMonitors.Add(new MonitorItem("默认 (不指定)", 0));
+        AvailableMonitors.Add(new MonitorItem("LaunchConfig_Monitor_Default".GetLocalized(), 0));
 
         var primaryTag = "MonitorPrimaryTag".GetLocalized();
         foreach (var monitor in MonitorHelper.GetAll())
         {
             var tag = monitor.IsPrimary ? $" · {primaryTag}" : "";
-            AvailableMonitors.Add(new MonitorItem($"显示器 {monitor.Index}{tag} ({monitor.Width}x{monitor.Height})",
+            AvailableMonitors.Add(new MonitorItem(string.Format("LaunchConfig_Monitor_Format".GetLocalized(), monitor.Index, tag, monitor.Width, monitor.Height),
                 monitor.Index));
         }
 

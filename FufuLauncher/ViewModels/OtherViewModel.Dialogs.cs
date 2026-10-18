@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using System.Security.Principal;
 using FufuLauncher.Activation;
+using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml.Controls;
 
 namespace FufuLauncher.ViewModels;
@@ -29,9 +30,9 @@ public partial class OtherViewModel
             {
                 var dialog = new ContentDialog
                 {
-                    Title = "需要管理员权限",
-                    Content = "使用全局连点器功能需要管理员权限才能正常拦截和发送按键\n\n请关闭本程序，右键选择“以管理员身份运行”后再次尝试",
-                    CloseButtonText = "我知道了",
+                    Title = "AutoClicker_AdminRequiredTitle".GetLocalized(),
+                    Content = "AutoClicker_AdminRequiredMessage".GetLocalized(),
+                    CloseButtonText = "Common_GotIt".GetLocalized(),
                     XamlRoot = App.MainWindow.Content.XamlRoot
                 };
                 await dialog.ShowAsync();
@@ -40,7 +41,7 @@ public partial class OtherViewModel
         catch (Exception ex)
         {
             Debug.WriteLine($"显示管理员提示对话框失败: {ex.Message}");
-            StatusMessage = "错误: 缺少管理员权限，请重启程序";
+            StatusMessage = "AutoClicker_MissingAdminError".GetLocalized();
         }
     }
 
@@ -52,9 +53,9 @@ public partial class OtherViewModel
             {
                 var dialog = new ContentDialog
                 {
-                    Title = "操作失败",
+                    Title = "Common_OperationFailed".GetLocalized(),
                     Content = message,
-                    CloseButtonText = "确定",
+                    CloseButtonText = "Common_Confirm".GetLocalized(),
                     XamlRoot = App.MainWindow.Content.XamlRoot
                 };
                 await dialog.ShowAsync();
@@ -63,7 +64,7 @@ public partial class OtherViewModel
         catch (Exception ex)
         {
             Debug.WriteLine($"显示错误对话框失败: {ex.Message}");
-            StatusMessage = $"错误: {message}";
+            StatusMessage = string.Format("Common_Error_Format".GetLocalized(), message);
         }
     }
 
@@ -76,10 +77,10 @@ public partial class OtherViewModel
             {
                 var dialog = new ContentDialog
                 {
-                    Title = "风险提示",
-                    Content = "开启连点器功能将会安装全局键盘和鼠标拦截钩子，这可能会导致输入操作出现轻微延迟\n\n您确定要开启此功能吗？",
-                    PrimaryButtonText = "确认开启",
-                    CloseButtonText = "取消",
+                    Title = "Common_RiskWarning".GetLocalized(),
+                    Content = "AutoClicker_SecurityWarningMessage".GetLocalized(),
+                    PrimaryButtonText = "AutoClicker_ConfirmEnable".GetLocalized(),
+                    CloseButtonText = "Common_Cancel".GetLocalized(),
                     DefaultButton = ContentDialogButton.Close,
                     XamlRoot = App.MainWindow.Content.XamlRoot
                 };

@@ -102,7 +102,7 @@ public partial class PluginStoreViewModel
             var proceed = await ShowLuaTestSecurityWarningAsync(securityResult.Reason ?? "Unknown security issue");
             if (!proceed)
             {
-                StatusMessage = string.Format("Lua 测试已取消（安全阻止: {0}）", securityResult.Reason);
+                StatusMessage = string.Format("PluginStore_LuaSecurityFailed_Format".GetLocalized(), securityResult.Reason);
                 return;
             }
         }
@@ -119,19 +119,19 @@ public partial class PluginStoreViewModel
         }
         catch (SecurityViolationException ex)
         {
-            errorMessage = string.Format("安全违规: {0}", ex.Message);
+            errorMessage = string.Format("PluginStore_SecurityViolation_Format".GetLocalized(), ex.Message);
         }
         catch (InvalidOperationException ex)
         {
-            errorMessage = string.Format("Lua 执行错误: {0}", ex.Message);
+            errorMessage = string.Format("PluginStore_LuaExecutionError_Format".GetLocalized(), ex.Message);
         }
         catch (OperationCanceledException)
         {
-            errorMessage = "脚本执行超时（5分钟）";
+            errorMessage = "PluginStore_ScriptTimeout".GetLocalized();
         }
         catch (Exception ex)
         {
-            errorMessage = string.Format("未预期的错误: {0}", ex.Message);
+            errorMessage = string.Format("PluginStore_UnexpectedError_Format".GetLocalized(), ex.Message);
         }
 
         var logDir = Path.Combine(AppContext.BaseDirectory, "Logs");
@@ -146,15 +146,15 @@ public partial class PluginStoreViewModel
         {
             Debug.WriteLine($"[PluginStoreVM] Failed to save log file: {ex.Message}");
             errorMessage = (errorMessage != null)
-                ? errorMessage + $"\n日志保存失败: {ex.Message}"
-                : $"日志保存失败: {ex.Message}";
+                ? errorMessage + "\n" + string.Format("PluginStore_LogWriteFailed_Format".GetLocalized(), ex.Message)
+                : string.Format("PluginStore_LogWriteFailed_Format".GetLocalized(), ex.Message);
         }
 
         await ShowLuaTestResultDialogAsync(success, logFilePath, errorMessage);
 
         StatusMessage = success
-            ? "Lua 脚本测试完成"
-            : string.Format("Lua 脚本测试失败: {0}", errorMessage ?? "未知错误");
+            ? "PluginStore_LuaTestSuccess".GetLocalized()
+            : string.Format("PluginStore_LuaTestFailed_Format".GetLocalized(), errorMessage ?? "Common_UnknownError".GetLocalized());
     }
 
     private static async Task<bool> ShowLuaTestSecurityWarningAsync(string reason)
@@ -182,8 +182,8 @@ public partial class PluginStoreViewModel
                 {
                     Title = "PluginStoreLuaTestSecurityWarning".GetLocalized(),
                     Content = string.Format("PluginStoreLuaTestSecurityBlocked".GetLocalized(), reason),
-                    PrimaryButtonText = "强制执行（不推荐）",
-                    SecondaryButtonText = "取消",
+                    PrimaryButtonText = "PluginStore_ForceExecuteNotRecommended".GetLocalized(),
+                    SecondaryButtonText = "Common_Cancel".GetLocalized(),
                     DefaultButton = ContentDialogButton.Secondary,
                     XamlRoot = xamlRoot
                 };

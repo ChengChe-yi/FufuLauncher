@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -52,7 +53,7 @@ public partial class SettingsViewModel
         }
         catch
         {
-            WebView2CacheSize = "未知大小";
+            WebView2CacheSize = "Common_UnknownSize".GetLocalized();
         }
     }
 

@@ -7511,4 +7511,1054 @@ Bilibili समर्थित; MiYouShe लॉगिन आवश्यक न�
     <value>निम्नलिखित सेटिंग्स को अक्षम करने की चेतावनी की पुष्टि किए बिना अक्षम किया गया था, इसलिए उन्हें पुनः सक्षम स्थिति में बहाल कर दिया गया है:
 {0}</value>
   </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>4-स्टार प्राप्तियाँ</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>ठीक है</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>कॉपी विफल: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>लोड हो रहा है...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>डिफ़ॉल्ट प्रीसेट</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>कुछ नहीं</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>हथियार इवेंट विश</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>चुनना विफल: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>अक्षम</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>एक्सेस कुंजी</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>खाता लॉग इन है (कोई पात्र लिंक नहीं है)</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>कुकी ताज़ा करना विफल</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन पढ़ना विफल</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>FPS अनलॉकर स्थापित नहीं है</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>मासिक औसत {0} प्रार्थनाएँ</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>यहाँ अभी कुछ नहीं लिखा है...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>कोई नहीं</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>कोई रिकॉर्ड प्राप्त नहीं हुआ; मौजूदा रिकॉर्ड बैकअप किए गए।</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>पात्र इवेंट विश-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>शुरुआती प्रार्थना</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>आरंभीकरण विफल</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>निजी प्लगइन स्थापित करना विफल: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>खाता लॉग इन है</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>प्रीसेट में कोई प्लगइन हैश दर्ज नहीं है; संस्करण संगतता सत्यापित नहीं की जा सकती</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>ग्लोबल सर्वर</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>HoYoLAB में लॉग इन करें</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>प्रीसेट फ़ाइल पार्स करने में असमर्थ
+विवरण: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>JSON फ़ाइल</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>स्थानीय डेटा और चित्र लोड हो गए हैं।</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>जोड़ना विफल: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>कुकी सफलतापूर्वक क्लिपबोर्ड पर कॉपी कर दी गई है</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>कृपया प्रतीक्षा करें...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>अज्ञात विशेषता मान: {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>लिंक प्राप्त करना विफल</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>हटाना विफल: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन लागू करना विफल</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>सहेजना विफल: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>फ़ाइल चयनकर्ता विफल रहा। यदि व्यवस्थापक के रूप में चला रहे हैं, तो सामान्य उपयोगकर्ता मोड आज़माएं</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>इस सुविधा का उपयोग करने के लिए डेवलपर अनुमति आवश्यक है</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>प्लगइन जोड़ें: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>सफलतापूर्वक कॉपी किया गया</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>अज्ञात</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>मानक प्रार्थना</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>प्लगइन फ़ाइलें</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>इतिहास फ़ाइल नहीं मिली; कृपया कैप्चर का प्रयास करें</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>अज्ञात आकार</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>कृपया निजी प्लगइन आईडी और एक्सेस कुंजी दर्ज करें:</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>CaptureApp.exe नहीं मिला</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>खाता जानकारी ताज़ा करना विफल: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>इस पात्र के लिए कोई विश रिकॉर्ड नहीं है</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>ऑपरेशन विफल</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>लिंक प्राप्त हुआ, स्वतः लोड शुरू हो रहा है...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>पूर्ण!</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>लॉगिन सफल</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>इंस्टॉल करें</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>स्थिति सहेजना विफल</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>सक्रियण स्थिति सहेजने में असमर्थ, लिखने की अनुमति नहीं है
+विवरण: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>प्रीसेट बदलते समय कॉन्फ़िगरेशन फ़ाइल में नहीं लिखा जा सकता
+विवरण: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>प्रति प्रार्थना 160 प्राइमोजेम्स के आधार पर</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>दस्तावेज़ डाउनलोड अपवाद: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>पिटी अंतराल</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>वर्तमान सबसे गहरा पिटी</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>निजी प्लगइन स्थापित किया जा रहा है: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>खाता डेटा पढ़ना विफल</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>लॉगिन रद्द किया गया</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>पात्र इवेंट विश</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>प्लगइन "{0}" के लिए लॉन्चर संस्करण ≥ {1} की आवश्यकता है, वर्तमान संस्करण {2} है
+
+कृपया इस प्लगइन को स्थापित करने से पहले लॉन्चर को अपडेट करें।</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>त्रुटि: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>UID: {0} के विश रिकॉर्ड हटा दिए गए हैं</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>अज्ञात प्लगइन</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>पात्र इवेंट</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>कॉपी विफल</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>डेटा प्राप्त किया जा रहा है...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>कॉन्फ़िग फ़ाइल पढ़ने में असमर्थ
+विवरण: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>रिकॉर्ड {0} आयात किया जा रहा है...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>अज्ञात त्रुटि</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>ऑपरेशन विफल: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>4-स्टार प्राप्ति</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>सभी बैनरों पर सभी 5-स्टार</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>आयात विफल</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>{0} किया गया: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} आइटम</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>कोई दस्तावेज़ चयनित नहीं है</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>गलत लिंक प्रारूप; API पता निकालने में असमर्थ</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>ग्लोबल ऑटो क्लिकर को हॉटकी पंजीकृत करने और की-इवेंट भेजने के लिए व्यवस्थापक विशेषाधिकारों की आवश्यकता होती है। कृपया व्यवस्थापक के रूप में प्रोग्राम फिर से चलाएं।</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>चित्र या वीडियो</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>उपयोगकर्ता जानकारी लोड हो रही है...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>सक्षम, FPS अनलॉक सक्रिय है</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>सफल निर्यात, फ़ाइल यहाँ सहेजी गई: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>क्रॉनिकल्ड विश</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>स्थिति बदलना विफल</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>वर्तमान परिवर्तन लागू नहीं किए जा सकते
+विवरण: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>सुनिश्चित करें कि Plugins निर्देशिका में संबंधित फ़ोल्डर और config.ini मौजूद हैं</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>सौभाग्यशाली अंतराल</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>खाता_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>बलपूर्वक निष्पादित करें (अनुशंसित नहीं)</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>कैप्चर प्रोग्राम डेटा पढ़ रहा है...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>अधिकतम {0} खाते जोड़े जा सकते हैं</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>अनुरोध विफल ({0}): {1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>अनुमति सत्यापन विफल</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>वर्तमान में लॉग इन खाता</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>कैप्चा सत्यापन</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>शुरुआती प्रार्थना</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>लॉगिन विंडो खोली जा रही है...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>~{0:N0} प्राइमोजेम्स</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>अज्ञात 4-स्टार</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>जेनशिन इम्पैक्ट दैनिक चेक-इन पूरा हुआ</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Lua स्क्रिप्ट परीक्षण विफल: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>लाइव वॉलपेपर</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>कोई तिथि रिकॉर्ड नहीं</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} बार</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>खाता जोड़ें</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>फ़ाइल में कोई विश रिकॉर्ड नहीं मिला</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>निर्दिष्ट प्रीसेट फ़ाइल को हटाया नहीं जा सकता; फ़ाइल उपयोग में हो सकती है या अनुमति अस्वीकृत है
+विवरण: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>5-स्टार प्राप्तियाँ</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>लॉग लिखने में विफल: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>संस्करण बहुत पुराना है</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>त्रुटि: व्यवस्थापक विशेषाधिकार नहीं हैं; ऑटो क्लिकर प्रारंभ नहीं किया जा सकता</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>सूचना</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>कोई विवरण नहीं</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>डिफ़ॉल्ट (अनिर्दिष्ट)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Lua सुरक्षा जांच विफल: {0}।</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>FuFuPlugin स्थापित नहीं है</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>सॉफ्ट पिटी के निकट</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>सक्रिय महीने</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>वर्तमान प्रीसेट: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>लॉगिन त्रुटि: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>कृपया रोकने के लिए एक शॉर्टकट सेट करें</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>अप्रत्याशित त्रुटि: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>कुकी ताज़ा की जा रही है...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>लोड विफल: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>ट्रे में छोटा करें</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>हथियार इवेंट</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>प्रीसेट प्लगइन संस्करण से मेल नहीं खाता; डिफ़ॉल्ट पर रीसेट किया गया</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>कैप्चर शुरू करें</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>निजी प्लगइन</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>कोई खाता नहीं</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>असमर्थित UIGF संस्करण: {0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} प्रार्थनाएँ</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>फ़ाइल मौजूद नहीं है या उस तक पहुँचा नहीं जा सकता</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>हटाना विफल: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>स्क्रिप्ट निष्पादन समय समाप्त (&gt;5s)</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>लागू करना विफल: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>ऑपरेशन विफल: फ़ाइल पहले से मौजूद है</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>UID: {0} पर स्विच किया गया</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>ग्लोबल ऑटो क्लिकर को सक्षम करने से वैश्विक कीबोर्ड और माउस हुक स्थापित होते हैं, जिन्हें सुरक्षा सॉफ़्टवेयर ब्लॉक कर सकता है। क्या आप चालू करना चाहते हैं?</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>वॉलपेपर बदलें</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>अपरिचित फ़ाइल</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>हटाया गया: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>कुकी सफलतापूर्वक ताज़ा की गई</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>प्रीसेट वर्तमान प्लगइन संस्करण से अच्छी तरह मेल खाता है</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>कृपया ड्रॉपडाउन में से एक खेल पात्र चुनें।</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>जोड़ना विफल: लक्षित प्लगइन पहले से मौजूद है</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>सक्षम</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>खाता जोड़ना विफल: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>क्रॉनिकल्ड विश</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>निष्पादन योग्य फ़ाइलें</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>अभी कोई 5-स्टार पिटी नहीं</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>सफलतापूर्वक {0} रिकॉर्ड {1} ({2}) में निर्यात किए गए</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>आयात विफल: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>प्राप्त पात्र वर्तमान चयन से मेल नहीं खाता; प्रदर्शन रोका गया।</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>जेनशिन चेक-इन</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>प्रीसेट बदल दिया गया है</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>सक्षम, आंशिक सुविधाएँ सक्रिय हैं</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>UIGF फ़ाइल पढ़ी जा रही है...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>नहीं मिला</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>वर्तमान सबसे गहरा: {0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>कुकी क्लिपबोर्ड पर कॉपी की गई</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>{0} के रूप में लॉग इन किया गया</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>1-5 स्टार के सभी रिकॉर्ड</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>रजिस्ट्री पढ़ने में असमर्थ</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>अनुमतियों की कमी के कारण प्रीसेट को कॉन्फ़िगरेशन फ़ाइल में नहीं लिखा जा सकता
+विवरण: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>अपर्याप्त अनुमतियाँ या फ़ाइल उपयोग में है; कृपया सामान्य उपयोगकर्ता के रूप में खेल पथ फिर से चुनें</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>सेटिंग्स सहेजना विफल</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>खाता फ़्रीज़ पेज खोला जा रहा है...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>शॉर्टकट कुंजी के माध्यम से रोका गया</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>सफलतापूर्वक हटाया गया</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>वर्तमान खाता</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>अमान्य पथ</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>3-स्टार</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>कुल प्रार्थनाएँ</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>कोई मान्य कुकी नहीं मिली</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>आयात पूर्ण ({0} रिकॉर्ड), चित्र लोड हो रहे हैं...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>लॉगिन जानकारी नहीं मिली</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>कृपया पुनः प्रयास करने से पहले एक बार खेल प्रारंभ करें</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>आइटम मेटाडेटा और बैनर प्राप्त किए जा रहे हैं...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>मॉनिटर {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>कृपया पुनः चालू करने से पहले ऑटो क्लिकर को रोकें</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>कैप्चर हो रहा है... कृपया खेल में विश इतिहास पृष्ठ खोलें</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>सबसे कठिन 5-स्टार</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>अमान्य पथ; जांचें कि फ़ाइल मौजूद है और .exe प्रारूप में है</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>सूची ताज़ा करें</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>पथ खाली है</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>दृश्य आरंभीकृत करने में विफल: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>पथ चुनना विफल: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>प्रीसेट फ़ाइल सहेजने में असमर्थ, लिखने की अनुमति नहीं है
+विवरण: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>खाता सफलतापूर्वक बदला गया</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>रद्द करें</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>निर्यात विफल: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>कैप्चर रोकें</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>इतिहास पढ़ना विफल: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>प्लगइन फ़ाइल एक्सटेंशन संशोधित करने में असमर्थ
+विवरण: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>अपर्याप्त अनुमतियाँ या फ़ाइल उपयोग में है; कृपया सामान्य उपयोगकर्ता के रूप में पुनः चुनें</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन अपडेट करना विफल</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>हटाना विफल</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>दस्तावेज़ प्राप्त करने में विफल (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>पथ लागू किया गया</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>प्लगइन "{0}" (ID: {1}) निजी है। स्थापना जारी रखने के लिए कृपया एक्सेस कुंजी दर्ज करें:</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>निर्देशिका ट्री लोड करने में विफल: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>खोलने में विफल: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Lua स्क्रिप्ट परीक्षण सफल रहा</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>स्थिति बदलना विफल: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>निर्यात के लिए कोई डेटा नहीं है</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>जेनशिन दैनिक नोट्स खोले जा रहे हैं...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>ऐतिहासिक लिंक लोड हुआ, स्वतः कैप्चर की तैयारी...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>ऑडियो फ़ाइलें</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>ऑपरेशन सफल</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>प्रीसेट सहेजना विफल</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>UID: {0} के रिकॉर्ड हटा दिए गए हैं</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>बैनर मेटाडेटा प्राप्त किया जा रहा है...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Lua निष्पादन त्रुटि: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>प्रीसेट हटाना विफल</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>कृपया पहले लॉगिन करें</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>अपरिचित UIGF संस्करण; कृपया फ़ाइल प्रारूप सत्यापित करें</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>निजी प्लगइन सत्यापित किया जा रहा है...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>कोई 5-स्टार रिकॉर्ड नहीं</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>समझ गया</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>कोई खाता चयनित नहीं है</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>मानक प्रार्थना</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>निजी प्लगइन स्थापित करें</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>5-स्टार</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>खोला गया</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>फिर से लॉगिन करें</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>फ़ाइल मौजूद नहीं है या मान्य .exe फ़ाइल नहीं है</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>खाता सुरक्षा केंद्र खोला जा रहा है...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>विवरण: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>कैप्चर मैन्युअल रूप से रोक दिया गया था</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>सत्यापन पूर्ण हुआ</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>प्रीसेट में प्लगइन हैश वर्तमान प्लगइन से मेल नहीं खाता; यह किसी भिन्न संस्करण का हो सकता है</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>प्रति 5-स्टार औसत</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>समाप्त करने में विफल</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>अमान्य विश लिंक</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>इस खाते का कोई विश रिकॉर्ड नहीं है</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>लाइव वॉलपेपर इस पूर्वावलोकन प्रारूप में समर्थित नहीं है।</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>सक्षम करने की पुष्टि करें</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>तैयार</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>प्राइमोजेम्स अनुमान</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>दृश्य ताज़ा हो रहा है...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>अज्ञात डेवलपर</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>UIGF फ़ाइल निर्यात की जा रही है...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>फ़ाइल चयनकर्ता खोलने में असमर्थ</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>सीएन सर्वर</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>लॉगआउट विफल: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>{0} प्राप्त किया जा रहा है...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>4-स्टार</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>मध्यम अंतराल</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>सबसे भाग्यशाली 5-स्टार</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>विवरण देखने के लिए मेनू से एक विषय चुनें</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>सुरक्षा नीति उल्लंघन: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>प्लगइन आईडी</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>लॉन्चर बंद करें</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>अज्ञात 5-स्टार</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>व्यवस्थापक विशेषाधिकार आवश्यक हैं</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>प्लगइन फ़ाइल नहीं मिली या हैश की गणना नहीं की जा सकती; संगतता सत्यापित नहीं की जा सकती</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>फ़ाइल में अपूर्ण रिकॉर्ड हैं (id/item_id/time/gacha_type गायब है), कृपया प्रारूप जांचें</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>रोकना विफल: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>5-स्टार पात्र प्रति औसत प्रार्थना</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>लोडिंग पूर्ण, कुल {0} प्लगइन</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>कुकी ताज़ा करना विफल: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>फ़ाइल में कोई मान्य विश रिकॉर्ड नहीं मिला</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>असामान्य रिकॉर्ड</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>आरंभीकरण हो रहा है...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>उपयोगकर्ता {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>HoYoLAB द्वारा अनधिकृत (कोड 1016)। लिंकेज जांचें या 'गेम से प्राप्त करें' का उपयोग करें।</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>विश के लिए कोई लिंक पात्र नहीं मिला। कृपया HoYoLAB में लॉगिन करें या 'गेम से प्राप्त करें' का उपयोग करें।</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>UID {0} के लिए कोई नया रिकॉर्ड नहीं मिला; मौजूदा डेटा बरकरार रखा गया।</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>स्थानीय इतिहास लोड हो गया</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>आयात रद्द; मौजूदा डेटा अपरिवर्तित।</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>प्राप्ति पूर्ण, UID {0}, कुल {1} रिकॉर्ड, चित्र जांचे जा रहे हैं...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>HoYoLAB ने पैरामीटर अस्वीकार कर दिए (कोड 1002)। 'गेम से प्राप्त करें' आज़माएं।</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>कोई विश रिकॉर्ड नहीं मिला; मौजूदा डेटा बरकरार। कृपया खेल में इतिहास जांचें।</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन पढ़ना विफल: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>{0} रिकॉर्ड प्राप्त किए जा रहे हैं... ({1} प्राप्त)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>कृपया एक मान्य विश लिंक दर्ज करें</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>प्रमाणीकरण कुंजी बनाई जा रही है (पूर्ण अद्यतन)...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>विभिन्न बैनरों ने अलग-अलग खातों का डेटा दिया; आयात रोका गया।</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>डेटा की प्रतीक्षा की जा रही है...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>नैदानिक ​​सेवा को प्रारंभ करने में विफल</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>जेनशिन डेटा विंडो खोली जा रही है...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>+ नया उपयोगकर्ता जोड़ें</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>अनाम</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0}: {1} रिकॉर्ड, {2} रिकॉर्ड प्राप्त किए जा रहे हैं...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>पात्र, हथियार और बैनर मेटाडेटा ताज़ा किया जा रहा है...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>अमान्य क्लिपबोर्ड सामग्री</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>प्राप्त UID चयनित पात्र से मेल नहीं खाता; आयात रोका गया।</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> कृपया HoYoLAB लॉगिन स्थिति जांचें, या 'गेम से प्राप्त करें' का उपयोग करें।</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>खाता जानकारी लोड करने में विफल: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>निर्यात सफल</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>विश्लेषण पूरा हुआ!</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>प्रमाणीकरण कुंजी बनाई जा रही है (वृद्धिशील अद्यतन)...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>कृपया पहले स्विचर में एक खेल पात्र चुनें।</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>क्लिपबोर्ड पढ़ना विफल</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>निर्यात विफल</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>UID {0} से लिंक कोई HoYoLAB खाता नहीं मिला। लिंकेज की पुष्टि करें या 'गेम से प्राप्त करें' का उपयोग करें।</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>पात्र बदल गया; पिछले परिणाम छोड़ दिए गए।</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>कैप्चर टूल लॉन्च करें</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>नाम बदलना विफल: फ़ोल्डर का नाम पहले से मौजूद है</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>डाउनलोड सत्यापन</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>नाम बदलना विफल: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>सूची क्रमबद्ध</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>सफलतापूर्वक नाम बदला गया</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>गेम चेक-इन स्थिति लोड हो रही है</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>प्रीसेट बदलना विफल</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>ब्राउज़र खोलना विफल: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>माउस क्लिकिंग सक्षम करने से पहले कृपया कीबोर्ड स्टॉप शॉर्टकट सेट करें</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>माउस क्लिकिंग के लिए पहले कीबोर्ड स्टॉप शॉर्टकट सेट करना आवश्यक है</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>अज्ञात बैनर</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>संबंधित प्रीसेट कॉन्फ़िगरेशन नहीं मिला</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>API लिंक का विश्लेषण किया जा रहा है...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>पथ मान्य है</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>अक्षम है। सेटिंग्स कॉन्फ़िगर करने के लिए कृपया मुख्य प्लगइन सक्षम करें।</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>अक्षम है। प्लगइन सेटिंग्स कॉन्फ़िगर करने के लिए कृपया FPS प्लगइन सक्षम करें।</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>प्लगइन बदला गया</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>वर्तमान प्रीसेट नवीनतम प्लगइन संस्करण से मेल नहीं खाता; एक नया प्रीसेट स्वचालित रूप से बनाया गया है।</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>यह प्रीसेट वर्तमान में लॉक के रूप में चिह्नित है।</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>साफ़ करना विफल</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>प्रीसेट फ़ाइल साफ़ करने में असमर्थ।
+विवरण: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>आंतरिक दृश्य रीफ़्रेश किया गया</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>अज्ञात कुंजी मान {0} जोड़ा गया</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>डेटा लोड होने की प्रतीक्षा कर रहा है...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>Miyoushe से कनेक्ट हो रहा है...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>खाता लॉगिन आवश्यक है</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>यात्री डायरी का विश्लेषण किया जा रहा है...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>यात्री डायरी अनुरोध विफल ({0}): {1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>यात्री डायरी द्वारा लौटाया गया पात्र वर्तमान चयन से मेल नहीं खाता; प्रदर्शन रोक दिया गया।</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>लोड करना विफल: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>सामग्री अभी भी पृष्ठभूमि में प्रीलोड हो रही है; मिलान शीर्षक या पथ से है</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>लोड हो रहा है...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>लाइव वॉलपेपर केवल विकास संस्करणों में उपलब्ध है। पूर्वावलोकन और रिलीज़ संस्करणों में कस्टम पृष्ठभूमि के रूप में कृपया एक छवि चुनें।</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>API के माध्यम से पात्र और हथियार मेटाडेटा प्राप्त किया जा रहा है...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>{0} मेटाडेटा प्राप्त करने में विफल, {1} सेकंड में पुन: प्रयास ({2}/{3})...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>कोई नया छवि संसाधन नहीं मिला; मौजूदा कैश या डिफ़ॉल्ट आइकन का उपयोग किया जाएगा</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>{0} छवि संसाधन अपडेट किए गए और डेटाबेस में सहेजे गए</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>इच्छा पूल मेटाडेटा अपडेट किया गया (कुल {0} ऐतिहासिक पूल: पात्र {1}, हथियार {2}, संग्रह {3})</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>पात्र</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>हथियार</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -315,11 +315,25 @@ public class GachaService
         }
     }
 
+    public static string GetPoolName(string gachaTypeId)
+    {
+        return gachaTypeId switch
+        {
+            "301" => "Gacha_Pool_Character_FullName".GetLocalized(),
+            "302" => "Gacha_Pool_Weapon_FullName".GetLocalized(),
+            "200" => "Gacha_Pool_Standard_FullName".GetLocalized(),
+            "100" => "Gacha_Pool_Novice_FullName".GetLocalized(),
+            "400" => "Gacha_Pool_Character2_FullName".GetLocalized(),
+            "500" => "Gacha_Pool_Chronicled_FullName".GetLocalized(),
+            _ => GachaTypes.TryGetValue(gachaTypeId, out var name) ? name : "Gacha_Pool_Unknown".GetLocalized()
+        };
+    }
+
     public GachaStatistic AnalyzePool(string gachaTypeId, List<GachaLogItem> items)
     {
         var stat = new GachaStatistic
         {
-            PoolName = GachaTypes.ContainsKey(gachaTypeId) ? GachaTypes[gachaTypeId] : gachaTypeId,
+            PoolName = GetPoolName(gachaTypeId),
             TotalCount = items.Count,
             CurrentPity = 0,
             CurrentPity4 = 0

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -13,6 +13,7 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Activation;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Services;
 using Microsoft.UI.Dispatching;
@@ -175,7 +176,7 @@ namespace FufuLauncher.ViewModels
 
                 var path = await FilePickerService.PickOpenFileAsync(
                     null,
-                    new[] { ("可执行文件", new[] { ".exe" }) },
+                    new[] { ("Common_ExecutableFiles".GetLocalized(), new[] { ".exe" }) },
                     PickerLocationId.ComputerFolder,
                     msg => _ = ShowError(msg));
 
@@ -198,13 +199,13 @@ namespace FufuLauncher.ViewModels
             }
             catch (UnauthorizedAccessException)
             {
-                await ShowError("权限错误：请以普通用户身份运行程序选择游戏路径");
+                await ShowError("Blank_PermissionOrOccupied_GamePath".GetLocalized());
                 Debug.WriteLine("[严重错误] 管理员模式权限问题");
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"选择路径失败: {ex.Message}\n堆栈: {ex.StackTrace}");
-                await ShowError($"选择路径失败: {ex.Message}");
+                await ShowError(string.Format("Blank_SelectPathFailed_Format".GetLocalized(), ex.Message));
             }
         }
 
@@ -216,9 +217,9 @@ namespace FufuLauncher.ViewModels
                 {
                     var dialog = new ContentDialog
                     {
-                        Title = "操作失败",
+                        Title = "Common_OperationFailed".GetLocalized(),
                         Content = message,
-                        CloseButtonText = "确定",
+                        CloseButtonText = "Common_Confirm".GetLocalized(),
                         XamlRoot = App.MainWindow.Content.XamlRoot
                     };
                     await dialog.ShowAsync();
@@ -302,7 +303,7 @@ namespace FufuLauncher.ViewModels
                 }
 
                 var newAccount = GameAccount.Create(
-                    $"账号_{DateTime.Now:MMdd_HHmm}_{current.Mid ?? "Unknown"}",
+                    string.Format("Blank_DefaultAccountName_Format".GetLocalized(), DateTime.Now.ToString("MMdd_HHmm"), current.Mid ?? "Unknown"),
                     current.MihoyoSDK,
                     current.Mid,
                     current.MacAddress
@@ -403,8 +404,8 @@ namespace FufuLauncher.ViewModels
                     return new GameAccount
                     {
                         MihoyoSDK = sdkString,
-                        Mid = "当前账号",
-                        Name = "当前登录账号"
+                        Mid = "Blank_CurrentAccount".GetLocalized(),
+                        Name = "Blank_CurrentLoggedInAccount".GetLocalized()
                     };
                 }
                 catch
@@ -420,7 +421,7 @@ namespace FufuLauncher.ViewModels
             {
                 using var key = Registry.CurrentUser.CreateSubKey(RegistryKey.Replace("HKEY_CURRENT_USER\\", ""));
                 if (key == null)
-                    throw new InvalidOperationException("无法访问注册表");
+                    throw new InvalidOperationException("Blank_CannotReadRegistry".GetLocalized());
 
                 var sdkBytes = Encoding.UTF8.GetBytes(account.MihoyoSDK);
                 var target = new byte[sdkBytes.Length + 1];

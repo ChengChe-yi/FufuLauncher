@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using System.Text.Json;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -34,7 +35,7 @@ public partial class PluginStoreViewModel
             {
                 captchaWindow = new Window();
                 captchaWindow.SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
-                captchaWindow.Title = "人机验证";
+                captchaWindow.Title = "PluginStore_CaptchaTitle".GetLocalized();
 
                 var rootGrid = new Grid();
                 rootGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(32) });
@@ -46,7 +47,7 @@ public partial class PluginStoreViewModel
 
                 var titleText = new TextBlock
                 {
-                    Text = "下载验证",
+                    Text = "PluginStore_DownloadVerification".GetLocalized(),
                     VerticalAlignment = VerticalAlignment.Center,
                     Margin = new Thickness(16, 0, 0, 0)
                 };
@@ -216,14 +217,14 @@ public partial class PluginStoreViewModel
             {
                 var inputBox = new TextBox
                 {
-                    PlaceholderText = "请输入访问密钥",
+                    PlaceholderText = "PluginStore_AccessKey".GetLocalized(),
                     Width = 300
                 };
 
                 var stackPanel = new StackPanel { Spacing = 12 };
                 stackPanel.Children.Add(new TextBlock
                 {
-                    Text = $"插件 \"{item.Name}\"ID{item.Id}为私密插件",
+                    Text = string.Format("PluginStore_PrivatePluginKeyPrompt_Format".GetLocalized(), item.Name, item.Id),
                     TextWrapping = TextWrapping.Wrap,
                     Margin = new Thickness(0, 0, 0, 8)
                 });
@@ -239,10 +240,10 @@ public partial class PluginStoreViewModel
 
                 var dialog = new ContentDialog
                 {
-                    Title = "私密插件访问",
+                    Title = "PluginStore_PrivatePluginTitle".GetLocalized(),
                     Content = stackPanel,
-                    PrimaryButtonText = "确认",
-                    SecondaryButtonText = "取消",
+                    PrimaryButtonText = "Common_Confirm".GetLocalized(),
+                    SecondaryButtonText = "Common_Cancel".GetLocalized(),
                     DefaultButton = ContentDialogButton.Primary,
                     XamlRoot = xamlRoot
                 };
@@ -293,10 +294,9 @@ public partial class PluginStoreViewModel
 
                 var dialog = new ContentDialog
                 {
-                    Title = "版本过低",
-                    Content =
-                        $"插件 \"{item.Name}\" 要求启动器版本≥ {item.MinAppVersion}，当前版本为 {CurrentAppVersion}\n\n请先更新启动器后再安装此插件",
-                    CloseButtonText = "知道了",
+                    Title = "PluginStore_VersionTooLowTitle".GetLocalized(),
+                    Content = string.Format("PluginStore_VersionTooLowMessage_Format".GetLocalized(), item.Name, item.MinAppVersion, CurrentAppVersion),
+                    CloseButtonText = "Common_GotIt".GetLocalized(),
                     DefaultButton = ContentDialogButton.Close,
                     XamlRoot = xamlRoot
                 };

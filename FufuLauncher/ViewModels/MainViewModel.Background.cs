@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -47,7 +47,7 @@ public partial class MainViewModel
 
     public Visibility ImageVisibility => IsVideoBackground ? Visibility.Collapsed : Visibility.Visible;
     public Visibility VideoVisibility => IsVideoBackground ? Visibility.Visible : Visibility.Collapsed;
-    public string BackgroundTypeToggleText => "切换背景";
+    public string BackgroundTypeToggleText => "Main_WallpaperSwitch".GetLocalized();
 
     public IAsyncRelayCommand LoadBackgroundCommand
     {
@@ -111,7 +111,7 @@ public partial class MainViewModel
 
         if (info.IsVideo && !_devBuildDetectionService.IsDevBuild)
         {
-            _notificationService.Show("动态背景不可用", "预览版与正式版本不支持动态背景", NotificationType.Warning, 5000);
+            _notificationService.Show("Main_LiveWallpaper".GetLocalized(), "Main_LiveWallpaperNotSupported".GetLocalized(), NotificationType.Warning, 5000);
             return;
         }
 
@@ -267,7 +267,7 @@ public partial class MainViewModel
     {
         if (!_devBuildDetectionService.IsDevBuild)
         {
-            _notificationService.Show("动态背景不可用", "预览版与正式版本不支持动态背景", NotificationType.Warning, 5000);
+            _notificationService.Show("Main_LiveWallpaper".GetLocalized(), "Main_LiveWallpaperNotSupported".GetLocalized(), NotificationType.Warning, 5000);
             return;
         }
 

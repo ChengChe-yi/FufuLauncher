@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using CommunityToolkit.Mvvm.Messaging;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 
 namespace FufuLauncher.ViewModels;
@@ -105,8 +106,8 @@ public partial class PluginSettingsViewModel
             else
             {
                 WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                    "权限验证失败",
-                    "您当前不具备开发者功能权限，无法开启该功能",
+                    "PluginSettings_AuthFailedTitle".GetLocalized(),
+                    "PluginSettings_DevPermissionRequired".GetLocalized(),
                     NotificationType.Error,
                     4000
                 ));

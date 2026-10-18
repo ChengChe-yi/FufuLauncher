@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -103,12 +103,12 @@ public partial class MainViewModel
             }
             else
             {
-                _notificationService.Show("预设切换失败", "未找到对应的预设配置", NotificationType.Error, 3000);
+                _notificationService.Show("Main_PresetSwitchFailed".GetLocalized(), "Main_PresetNotFound".GetLocalized(), NotificationType.Error, 3000);
             }
         }
         catch (Exception ex)
         {
-            _notificationService.Show("预设切换失败", ex.Message, NotificationType.Error, 3000);
+            _notificationService.Show("Main_PresetSwitchFailed".GetLocalized(), ex.Message, NotificationType.Error, 3000);
         }
     }
 

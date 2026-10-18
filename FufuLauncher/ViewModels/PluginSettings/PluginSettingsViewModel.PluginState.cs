@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -75,10 +75,10 @@ public partial class PluginSettingsViewModel
             {
                 return IsLightweightMode
                     ? "LightweightMode_LiteDisabledOverlay".GetLocalized()
-                    : "已被禁用，请启用主插件才能调试配置";
+                    : "PluginSettings_MainPluginDisabledOverlay".GetLocalized();
             }
 
-            if (SelectedPluginIndex == 1) return "已被禁用，请启用FPS插件才能调试插件配置";
+            if (SelectedPluginIndex == 1) return "PluginSettings_FpsPluginDisabledOverlay".GetLocalized();
             return string.Empty;
         }
     }
@@ -181,8 +181,8 @@ public partial class PluginSettingsViewModel
             }
 
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "状态切换失败",
-                $"无法修改文件后缀名。\n详细信息: {ex.Message}",
+                "PluginSettings_StateSwitchFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ModifyExtensionFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));
@@ -225,8 +225,8 @@ public partial class PluginSettingsViewModel
             }
 
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "状态切换失败",
-                $"无法修改插件文件后缀名。\n详细信息: {ex.Message}",
+                "PluginSettings_StateSwitchFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ModifyExtensionFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));

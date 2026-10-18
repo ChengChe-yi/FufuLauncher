@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
@@ -33,7 +34,7 @@ public partial class GachaAnalysisModel
 
             if (allLogs.Count == 0)
             {
-                OnErrorAction?.Invoke("没有可导出的抽卡记录");
+                OnErrorAction?.Invoke("Gacha_NoDataToExport".GetLocalized());
                 return;
             }
 
@@ -128,20 +129,20 @@ public partial class GachaAnalysisModel
 
             var path = await FilePickerService.PickSaveFileAsync(
                 GetWindow?.Invoke(),
-                new[] { ("JSON 文件", new[] { ".json" }) },
+                new[] { ("Common_JsonFile".GetLocalized(), new[] { ".json" }) },
                 $"UIGF_{version.Replace(".", "")}_{uid}_{DateTimeOffset.UtcNow:yyyyMMdd}",
                 Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary,
                 msg => OnErrorAction?.Invoke(msg));
             if (string.IsNullOrEmpty(path)) return;
 
             await File.WriteAllTextAsync(path, json);
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("导出成功",
-                $"已导出 {allLogs.Count} 条记录到 {Path.GetFileName(path)} ({version})", NotificationType.Success, 3000));
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_ExportSuccess".GetLocalized(),
+                string.Format("Gacha_ExportSuccessDetail_Format".GetLocalized(), allLogs.Count, Path.GetFileName(path), version), NotificationType.Success, 3000));
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"[Gacha] 导出失败: {ex}");
-            CrawlerStatus = $"导出失败: {ex.Message}";
+            CrawlerStatus = string.Format("Gacha_ExportFailed_Format".GetLocalized(), ex.Message);
             OnErrorAction?.Invoke(CrawlerStatus);
         }
     }
@@ -153,13 +154,13 @@ public partial class GachaAnalysisModel
         {
             var path = await FilePickerService.PickOpenFileAsync(
                 GetWindow?.Invoke(),
-                new[] { ("JSON 文件", new[] { ".json" }) },
+                new[] { ("Common_JsonFile".GetLocalized(), new[] { ".json" }) },
                 Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary,
                 msg => OnErrorAction?.Invoke(msg));
             if (string.IsNullOrEmpty(path)) return;
 
             IsFetching = true;
-            CrawlerStatus = "正在读取 UIGF 文件...";
+            CrawlerStatus = "Gacha_ReadingUigf".GetLocalized();
 
             var json = await File.ReadAllTextAsync(path);
             using var doc = JsonDocument.Parse(json);
@@ -174,7 +175,7 @@ public partial class GachaAnalysisModel
 
             if (string.IsNullOrEmpty(version))
             {
-                CrawlerStatus = "无法识别 UIGF 版本，请确认文件格式正确";
+                CrawlerStatus = "Gacha_UnrecognizedUigfVersion".GetLocalized();
                 IsFetching = false;
                 OnErrorAction?.Invoke(CrawlerStatus);
                 return;
@@ -189,7 +190,7 @@ public partial class GachaAnalysisModel
             {
                 if (!root.TryGetProperty("hk4e", out var hk4eList) || hk4eList.GetArrayLength() == 0)
                 {
-                    CrawlerStatus = "文件中未找到有效的抽卡记录";
+                    CrawlerStatus = "Gacha_NoValidRecordsInFile".GetLocalized();
                     IsFetching = false;
                     OnErrorAction?.Invoke(CrawlerStatus);
                     return;
@@ -215,7 +216,7 @@ public partial class GachaAnalysisModel
             }
             else
             {
-                CrawlerStatus = $"不支持的 UIGF 版本：{version}";
+                CrawlerStatus = string.Format("Gacha_UnsupportedUigfVersion_Format".GetLocalized(), version);
                 IsFetching = false;
                 OnErrorAction?.Invoke(CrawlerStatus);
                 return;
@@ -223,7 +224,7 @@ public partial class GachaAnalysisModel
 
             if (items.Count == 0)
             {
-                CrawlerStatus = "文件中未找到抽卡记录";
+                CrawlerStatus = "Gacha_NoRecordsInFile".GetLocalized();
                 IsFetching = false;
                 OnErrorAction?.Invoke(CrawlerStatus);
                 return;
@@ -234,7 +235,7 @@ public partial class GachaAnalysisModel
                 if (!x.TryGetProperty("id", out _) || !x.TryGetProperty("item_id", out _) ||
                     !x.TryGetProperty("time", out _) || !x.TryGetProperty("gacha_type", out _))
                 {
-                    CrawlerStatus = "文件中存在不完整的记录（缺少 id/item_id/time/gacha_type），请检查文件格式";
+                    CrawlerStatus = "Gacha_IncompleteRecordsInFile".GetLocalized();
                     IsFetching = false;
                     OnErrorAction?.Invoke(CrawlerStatus);
                     return;
@@ -252,12 +253,12 @@ public partial class GachaAnalysisModel
 
             if (_savedMetadata.Count == 0)
             {
-                CrawlerStatus = "正在获取物品元数据用于名称映射...";
+                CrawlerStatus = "Gacha_FetchingMetadata".GetLocalized();
                 await FetchMetadataFromApiAsync();
                 IsFetching = true;
             }
 
-            CrawlerStatus = $"正在导入 {items.Count} 条记录...";
+            CrawlerStatus = string.Format("Gacha_ImportingProgress_Format".GetLocalized(), items.Count);
 
             var newLogs = items.Select(uigfItem =>
             {
@@ -310,7 +311,7 @@ public partial class GachaAnalysisModel
 
             var total = _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count +
                         _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
-            CrawlerStatus = $"导入完成，共 {total} 条记录，正在检查图片资源...";
+            CrawlerStatus = string.Format("Gacha_ImportDone_Format".GetLocalized(), total);
             IsScraping = true;
             if (RequestMetadataScrapeAction != null)
                 RequestMetadataScrapeAction.Invoke();
@@ -320,7 +321,7 @@ public partial class GachaAnalysisModel
         catch (Exception ex)
         {
             Debug.WriteLine($"[Gacha] 导入失败: {ex}");
-            CrawlerStatus = $"导入失败: [{ex.GetType().Name}] {ex.Message}";
+            CrawlerStatus = string.Format("Gacha_ImportFailed_Format".GetLocalized(), ex.GetType().Name, ex.Message);
             IsFetching = false;
             OnErrorAction?.Invoke(CrawlerStatus);
         }

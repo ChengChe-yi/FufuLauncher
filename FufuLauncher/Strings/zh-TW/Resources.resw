@@ -7516,4 +7516,1054 @@ UIGF v4.x/3.0/2.x</value>
     <value>以下設定項目未經關閉警告確認，已自動復原為開啟狀態：
 {0}</value>
   </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>四星出貨</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>複製失敗: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>載入中...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>預設設定</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>武器活動祈願</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>選擇失敗: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>停用</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>存取金鑰</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>帳戶已登入（未綁定角色）</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Cookie 重新整理失敗</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>設定讀取失敗</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>未安裝 FPS 解鎖</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>月均 {0} 抽</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>這個人很懶，什麼都沒寫...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>暫無</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>未取得任何記錄，記錄已備份。</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>角色活動祈願-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>新手祈願</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>初始化失敗</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>安裝私密外掛程式失敗: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>帳戶已登入</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>該預設沒有記錄外掛程式 Hash，無法確認是否完全相符當前外掛程式版本</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>國際服</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>登入米遊社</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>無法剖析預設檔案
+詳細資訊: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>JSON 檔案</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>已載入本機資料和圖片資源。</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>新增失敗: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie 已成功複製到剪貼簿</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>請稍候...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>當前未知屬性值 {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>取得連結失敗</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>刪除失敗: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>設定套用失敗</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>儲存失敗: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>檔案選擇器呼叫失敗，若以系統管理員權限執行請嘗試切換為普通使用者模式</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>當前未具備開發者權限，無法使用此功能</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>新增外掛程式: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>複製成功</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>常駐祈願</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>外掛程式檔案</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>未找到歷史記錄檔案，請嘗試抓取</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>未知大小</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>請輸入私密外掛程式 ID 和存取金鑰：</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>未找到 CaptureApp.exe</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>帳戶資訊重新整理失敗: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>該角色暫無抽卡記錄</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>操作失敗</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>已取得連結，正在自動開始載入...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>完成！</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>登入成功</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>安裝</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>狀態儲存失敗</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>無法儲存啟用狀態記錄，缺少寫入權限
+詳細資訊: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>切換預設時無法寫入設定檔案
+詳細資訊: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>按每抽 160 原石</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>文件下載異常: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>保底區間</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>當前最深墊數</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>安裝私密外掛程式: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>帳戶資料讀取失敗</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>登入已取消</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>角色活動祈願</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>外掛程式 "{0}" 需要啟動器版本 ≥ {1}，當前版本為 {2}
+
+請先更新啟動器後再安裝此外掛程式。</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>錯誤: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>已刪除 UID: {0} 的抽卡記錄</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>未知外掛程式</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>角色活動</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>複製失敗</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>正在取得資料...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>無法讀取設定檔案
+詳細資訊: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>正在匯入第 {0} 筆記錄...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>未知錯誤</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>操作失敗: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>四星出貨</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>全部卡池五星</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>匯入失敗</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>已{0}: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} 個</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>未選擇文件</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>連結格式不正確，無法擷取 API 位址</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>使用全域連點器需要系統管理員權限以註冊熱鍵和傳送按鍵事件。請以系統管理員身分重新執行程式。</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>圖片或影片</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>正在載入使用者資訊...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>已啟用，FPS解鎖功能生效</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>匯出成功，檔案已儲存至：{0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>集錄祈願</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>狀態切換失敗</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>無法套用當前修改
+詳細資訊: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>請確保Plugins目錄下存在對應的資料夾及config.ini檔案</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>歐氣區間</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>帳戶_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>強制執行（不推薦）</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>抓取程式正在讀取資料...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>最多只能新增 {0} 個帳戶</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>請求失敗（{0}）：{1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>權限驗證失敗</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>當前登入帳戶</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>人機驗證</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>新手祈願</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>正在開啟登入視窗...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>約 {0:N0} 原石</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>未知四星</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>原神日常簽到已完成</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Lua 指令碼測試失敗: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>動態桌布</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>暫無時間記錄</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} 次</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>新增帳戶</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>檔案中未找到抽卡記錄</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>無法刪除指定的預設檔案，檔案可能被占用或沒有權限
+詳細資訊: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>五星出貨</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>記錄寫入失敗: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>版本過低</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>錯誤: 缺少系統管理員權限，無法啟動連點器</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>無描述</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>預設 (未指定)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Lua 安全檢查未通過: {0}。</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>未安裝 FuFuPlugin</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>接近軟保底</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>活躍月份</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>當前預設: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>登入出錯: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>請設定停止快速鍵</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>未預期的錯誤: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>正在重新整理 Cookie...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>載入失敗: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>最小化至匣</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>武器活動</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>當前預設與外掛程式版本不相符，已自動重設為預設設定</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>開始抓取</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>私密外掛程式</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>沒有帳戶</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>不支援的 UIGF 版本：{0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} 抽</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>檔案不存在或無法存取</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>刪除失敗: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>指令碼執行逾時（超過 5 秒）</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>套用失敗: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>操作失敗：檔案已存在</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>切換至 UID: {0}</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>開啟全域連點器將安裝全域鍵盤和滑鼠攔截勾點，並可能被部分安全軟體攔截。是否確認開啟？</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>桌布切換</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>無法識別的檔案</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>已刪除: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Cookie 重新整理成功</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>該預設與當前外掛程式相符良好</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>請在角色下拉式選單中選擇遊戲角色。</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>新增失敗：目標外掛程式已存在</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>啟用</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>新增帳戶失敗: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>集錄祈願</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>可執行檔案</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>暫無五星墊數</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>已成功匯出 {0} 筆記錄到 {1} ({2})</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>匯入失敗: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>請求返回的角色與當前選取的不一致，停止顯示。</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>原神簽到</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>預設已切換</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>已啟用，部分功能生效</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>正在讀取 UIGF 檔案...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>未找到</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>當前最深：{0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie 已複製到剪貼簿</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>已登入至 {0}</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>1-5星全部記錄</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>無法讀取登錄檔</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>無法將預設寫入設定檔案，缺少權限
+詳細資訊: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>權限不足或已被其他程式占用，請以普通使用者身分重新選擇遊戲路徑</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>設定儲存失敗</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>正在開啟帳號凍結頁面...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>已透過停止快速鍵關閉</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>刪除成功</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>當前帳戶</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>路徑無效</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>三星</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>總抽數</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>未找到有效的 Cookie</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>匯入完成，共 {0} 筆記錄，正在載入圖片資源...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>未找到登入資訊</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>先啟動一次遊戲後再試</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>正在取得物品元資料與卡池...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>顯示器 {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>請先停止連點器後再開啟</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>正在抓取... 請在遊戲中開啟歷史記錄頁面</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>最非五星</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>無效的路徑，請檢查檔案是否存在且為 .exe 格式</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>重新整理清單</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>路徑為空</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>無法初始化檢視: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>選擇路徑失敗: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>無法儲存預設檔案，缺少寫入權限
+詳細資訊: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>切換帳戶登入成功</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>匯出失敗: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>停止抓取</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>讀取歷史記錄失敗: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>無法修改外掛程式檔案副檔名
+詳細資訊: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>權限不足或已被其他程式占用，請以普通使用者身分重新選擇檔案</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>設定更新失敗</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>刪除失敗</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>無法取得文件 (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>路徑已套用</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>外掛程式 "{0}"（ID: {1}）為私密外掛程式，請輸入存取金鑰以繼續安裝：</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>無法載入目錄樹: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>開啟失敗: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Lua 指令碼測試成功</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>切換狀態失敗: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>沒有可匯出的資料</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>正在開啟原神便箋...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>已載入歷史連結，準備自動抓取...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>音訊檔案</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>操作成功</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>預設儲存失敗</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>已刪除 UID: {0} 的記錄</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>正在取得卡池元資料...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Lua 執行出錯: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>預設刪除失敗</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>請先登入</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>無法識別此 UIGF 版本，請確認檔案格式正確</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>正在驗證私密外掛程式...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>暫無五星記錄</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>我知道了</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>當前未選擇任何帳戶</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>常駐祈願</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>安裝私密外掛程式</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>五星</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>已開啟</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>重新登入</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>檔案不存在或不是有效的 .exe 檔案</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>正在開啟帳號安全中心...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>詳細資訊: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>抓取已被手動停止</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>完成驗證</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>該預設記錄的外掛程式 Hash 與當前外掛程式 Hash 不一致，可能來自舊版本或不同版本的外掛程式</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>五星均抽</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>終止失敗</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>無效的抽卡連結</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>該帳戶無抽卡記錄</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>預覽格式版本不支援動態桌布。</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>確認開啟</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>準備就緒</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>原石估算</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>檢視重新整理中...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>未知開發者</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>正在匯出 UIGF 檔案...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>無法開啟檔案選擇器</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>國服</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>登出失敗: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>正在取得{0}...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>四星</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>中段出貨</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>最歐五星</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>從目錄選擇一個項目以檢視詳細內容</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>安全原則違規: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>外掛程式ID</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>關閉啟動器</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>未知五星</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>需要系統管理員權限</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>當前外掛程式檔案不存在或無法計算 Hash，無法確認該預設是否完全相符當前版本</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>檔案中存在不完整的記錄，缺少 id/item_id/time/gacha_type，請檢查檔案格式</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>停止失敗: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>五星角色均耗</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>載入完成，共 {0} 個外掛程式</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Cookie 重新整理失敗: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>檔案中未找到有效的抽卡記錄</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>異常記錄</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>正在初始化...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>使用者 {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>米遊社未授權此帳號獲取所選遊戲角色的祈願記錄（返回碼 1016）。請檢查綁定關係，或使用「從遊戲獲取」。</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>未找到可用於祈願獲取的原神綁定角色。請登入綁定了目標角色的米遊社帳號，或使用「從遊戲獲取」。</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>UID {0} 未取得新記錄，已保留現有資料。</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>已載入本機歷史記錄</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>已取消匯入，現有資料未更改。</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>取得完成，UID {0}，共 {1} 筆記錄，正在檢查圖片資源...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>米遊社未接受所選角色的認證參數（返回碼 1002）。可使用「從遊戲獲取」讀取遊戲產生的連結。</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>未取得祈願記錄，已保留現有資料。請確認遊戲內祈願歷史中有可查詢的記錄。</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>讀取設定失敗: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>正在取得{0}記錄... (已取得 {1} 筆)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>請輸入有效的抽卡連結</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>正在產生認證金鑰（全量更新）...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>不同卡池返回了不同帳號的資料，已停止匯入。</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>等待取得資料...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>初始化診斷服務失敗</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>正在開啟原神資料視窗...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>＋ 新增使用者</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>未命名</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0} {1} 筆，正在取得{2}記錄...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>正在重新整理角色、武器與卡池元資料...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>剪貼簿內容無效</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>返回記錄的 UID 與所選遊戲角色不一致，已停止匯入。</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> 請檢查米遊社登入狀態，或使用「從遊戲獲取」。</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>載入帳戶資訊失敗: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>匯出成功</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>分析完成！</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>正在產生認證金鑰（增量更新）...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>請先在角色切換開關中選擇遊戲角色。</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>讀取剪貼簿失敗</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>匯出失敗</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>未找到綁定 UID {0} 的米遊社帳號。請確認目標角色已綁定到已登入的米遊社帳號，或使用「從遊戲獲取」。</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>角色已切換，已丟棄舊角色的取得結果。</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>啟動抓包工具</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>重新命名失敗：資料夾名稱已存在</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>下載驗證</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>重新命名失敗: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>清單已排序</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>重新命名成功</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>遊戲簽到狀態載入中</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>預設切換失敗</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>開啟瀏覽器失敗: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>請先設定鍵盤停止快速鍵，再開啟滑鼠連點</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>滑鼠連點必須先設定鍵盤停止快速鍵</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>未知卡池</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>未找到對應的預設設定</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>正在解析 API 連結...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>路徑有效</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>已被禁用，請啟用主外掛程式才能調試設定</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>已被禁用，請啟用FPS外掛程式才能調試外掛程式設定</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>外掛程式變更</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>目前預設與最新外掛程式版本不符，已自動生成新預設</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>此預設目前被標記為鎖定。</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>清除失敗</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>無法清除預設檔案
+詳細資訊: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>內部檢視已重新整理</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>新增未知索引鍵值 {0}</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>等待載入資料...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>正在連線米遊社...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>需先登入帳號</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>分析旅行札記...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>旅行札記請求失敗（{0}）：{1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>旅行札記返回的角色與目前選擇不一致，已停止顯示。</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>載入失敗: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>內文仍在此後台預先載入，符合項目來自標題或路徑</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>載入中...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>動態背景僅開發版本可用，預覽版與正式版本請選擇圖片作為自訂背景</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>正在透過 API 獲取角色與武器元資料...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>{0}元資料獲取失敗，{1} 秒後重試（{2}/{3}）…</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>未找到新圖片資源，將使用現有快取或預設圖示</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>已更新 {0} 個圖片資源並存入資料庫</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>祈願卡池元資料更新完成（共 {0} 個歷史祈願：角色 {1}、武器 {2}、集錄 {3}）</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>武器</value>
+  </data>
 </root>

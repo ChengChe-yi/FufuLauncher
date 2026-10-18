@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -238,12 +238,12 @@ public class PluginViewModel : INotifyPropertyChanged
                 });
             }
 
-            StatusMessage = $"加载完成，共 {Plugins.Count} 个插件";
+            StatusMessage = string.Format("Plugin_LoadDoneCount_Format".GetLocalized(), Plugins.Count);
             CheckForDuplicates(nameConflictTracker);
         }
         catch (Exception ex)
         {
-            StatusMessage = $"加载失败: {ex.Message}";
+            StatusMessage = string.Format("Common_LoadFailed_Format".GetLocalized(), ex.Message);
             Debug.WriteLine($"[PluginVM] Load Error: {ex}");
         }
         finally
@@ -287,7 +287,7 @@ public class PluginViewModel : INotifyPropertyChanged
         {
             var path = await FilePickerService.PickOpenFileAsync(
                 null,
-                new[] { ("插件文件", new[] { ".dll" }) },
+                new[] { ("Plugin_PluginFiles".GetLocalized(), new[] { ".dll" }) },
                 PickerLocationId.ComputerFolder,
                 msg => StatusMessage = msg);
             if (!string.IsNullOrEmpty(path))
@@ -323,13 +323,13 @@ public class PluginViewModel : INotifyPropertyChanged
                     File.WriteAllText(configPath, configContent, Encoding.UTF8);
                 }
 
-                StatusMessage = $"已添加插件: {folderName}";
+                StatusMessage = string.Format("Plugin_AddPlugin_Format".GetLocalized(), folderName);
                 LoadPlugins();
             }
         }
         catch (Exception ex)
         {
-            StatusMessage = $"添加失败: {ex.Message}";
+            StatusMessage = string.Format("Plugin_AddFailed_Format".GetLocalized(), ex.Message);
         }
     }
 
@@ -378,7 +378,7 @@ public class PluginViewModel : INotifyPropertyChanged
             {
                 if (!item.FullPath.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
                 {
-                    StatusMessage = "无法识别的文件类型";
+                    StatusMessage = "Plugin_UnrecognizedFile".GetLocalized();
                     return;
                 }
 
@@ -388,7 +388,7 @@ public class PluginViewModel : INotifyPropertyChanged
 
             if (File.Exists(newPath))
             {
-                StatusMessage = "操作失败：目标文件名已存在";
+                StatusMessage = "Plugin_AddFailedAlreadyExists".GetLocalized();
                 item.RefreshState();
                 return;
             }
@@ -398,7 +398,7 @@ public class PluginViewModel : INotifyPropertyChanged
             item.FileName = Path.GetFileName(newPath);
             item.IsEnabled = targetState;
 
-            StatusMessage = $"已{(targetState ? "启用" : "禁用")}: {item.DisplayName}";
+            StatusMessage = string.Format("Plugin_StateChanged_Format".GetLocalized(), targetState ? "Common_Enable".GetLocalized() : "Common_Disable".GetLocalized(), item.DisplayName);
         }
         catch (Exception ex)
         {
@@ -411,7 +411,7 @@ public class PluginViewModel : INotifyPropertyChanged
                 return;
             }
 
-            StatusMessage = $"切换状态失败: {ex.Message}";
+            StatusMessage = string.Format("Plugin_SwitchStateFailed_Format".GetLocalized(), ex.Message);
             item.RefreshState();
         }
     }
@@ -456,7 +456,7 @@ public class PluginViewModel : INotifyPropertyChanged
                 Directory.Delete(item.DirectoryPath, true);
                 Plugins.Remove(item);
                 UpdateIsEmpty();
-                StatusMessage = $"已删除插件: {item.DisplayName}";
+                StatusMessage = string.Format("Plugin_Deleted_Format".GetLocalized(), item.DisplayName);
             }
         }
         catch (Exception ex)
@@ -469,7 +469,7 @@ public class PluginViewModel : INotifyPropertyChanged
                 return;
             }
 
-            StatusMessage = $"删除失败: {ex.Message}";
+            StatusMessage = string.Format("Common_DeleteFailed_Format".GetLocalized(), ex.Message);
         }
     }
 
@@ -487,7 +487,7 @@ public class PluginViewModel : INotifyPropertyChanged
 
             if (Directory.Exists(newDir))
             {
-                StatusMessage = "重命名失败：文件夹名已存在";
+                StatusMessage = "Plugin_RenameFailedExists".GetLocalized();
                 return;
             }
 
@@ -503,7 +503,7 @@ public class PluginViewModel : INotifyPropertyChanged
                 item.ConfigFilePath = Path.Combine(newDir, configName);
             }
 
-            StatusMessage = $"重命名成功";
+            StatusMessage = "Plugin_RenameSuccess".GetLocalized();
         }
         catch (Exception ex)
         {
@@ -515,7 +515,7 @@ public class PluginViewModel : INotifyPropertyChanged
                 return;
             }
 
-            StatusMessage = $"重命名失败: {ex.Message}";
+            StatusMessage = string.Format("Plugin_RenameFailed_Format".GetLocalized(), ex.Message);
         }
     }
 
@@ -536,7 +536,7 @@ public class PluginViewModel : INotifyPropertyChanged
         Plugins.Clear();
         foreach (var item in list) Plugins.Add(item);
 
-        StatusMessage = "列表已排序";
+        StatusMessage = "Plugin_ListSorted".GetLocalized();
     }
 
     private void OpenPluginFolder()

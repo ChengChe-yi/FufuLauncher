@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Collections.ObjectModel;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 
 namespace FufuLauncher.ViewModels;
@@ -94,11 +95,11 @@ public partial class GachaAnalysisModel
         var averageCharacterPities =
             CalculateFiveStarCharacterPities(charLogs, weaponLogs, chronicledLogs, noviceLogs, standardLogs);
         var averageCharacterPulls = averageCharacterPities.Count == 0 ? 0 : averageCharacterPities.Average();
-        var fiveStarTimeline = BuildFiveStarTimeline(charLogs, "角色活动")
-            .Concat(BuildFiveStarTimeline(weaponLogs, "武器活动"))
-            .Concat(BuildFiveStarTimeline(chronicledLogs, "集录祈愿"))
-            .Concat(BuildFiveStarTimeline(noviceLogs, "新手祈愿"))
-            .Concat(BuildFiveStarTimeline(standardLogs, "常驻祈愿"))
+        var fiveStarTimeline = BuildFiveStarTimeline(charLogs, "Gacha_Pool_Character".GetLocalized())
+            .Concat(BuildFiveStarTimeline(weaponLogs, "Gacha_Pool_Weapon".GetLocalized()))
+            .Concat(BuildFiveStarTimeline(chronicledLogs, "Gacha_Pool_Chronicled".GetLocalized()))
+            .Concat(BuildFiveStarTimeline(noviceLogs, "Gacha_Pool_Novice".GetLocalized()))
+            .Concat(BuildFiveStarTimeline(standardLogs, "Gacha_Pool_Standard".GetLocalized()))
             .OrderBy(x => x.Time)
             .ToList();
         var averageFiveStarPulls = fiveStarTimeline.Count == 0 ? 0 : fiveStarTimeline.Average(x => x.Pity);
@@ -107,11 +108,11 @@ public partial class GachaAnalysisModel
 
         var currentPities = new[]
         {
-            ("角色活动", CalculateCurrentFiveStarPity(charLogs)),
-            ("武器活动", CalculateCurrentFiveStarPity(weaponLogs)),
-            ("集录祈愿", CalculateCurrentFiveStarPity(chronicledLogs)),
-            ("新手祈愿", CalculateCurrentFiveStarPity(noviceLogs)),
-            ("常驻祈愿", CalculateCurrentFiveStarPity(standardLogs))
+            ("Gacha_Pool_Character".GetLocalized(), CalculateCurrentFiveStarPity(charLogs)),
+            ("Gacha_Pool_Weapon".GetLocalized(), CalculateCurrentFiveStarPity(weaponLogs)),
+            ("Gacha_Pool_Chronicled".GetLocalized(), CalculateCurrentFiveStarPity(chronicledLogs)),
+            ("Gacha_Pool_Novice".GetLocalized(), CalculateCurrentFiveStarPity(noviceLogs)),
+            ("Gacha_Pool_Standard".GetLocalized(), CalculateCurrentFiveStarPity(standardLogs))
         };
         var deepestPity = currentPities.OrderByDescending(x => x.Item2).First();
 
@@ -152,104 +153,104 @@ public partial class GachaAnalysisModel
                 ? "0"
                 : ((int)Math.Round(averageCharacterPulls * 160)).ToString("N0"),
             AverageFiveStarPullsText = averageFiveStarPulls <= 0 ? "0" : averageFiveStarPulls.ToString("0.#"),
-            CurrentDeepestPityText = $"{deepestPity.Item2} 抽",
-            CurrentDeepestPityHint = deepestPity.Item2 <= 0 ? "暂无五星垫数" : $"当前最深：{deepestPity.Item1}",
-            BestFiveStarPityText = fiveStarTimeline.Count == 0 ? "0 抽" : $"{bestFiveStar.Pity} 抽",
+            CurrentDeepestPityText = string.Format("Gacha_Pulls_Format".GetLocalized(), deepestPity.Item2),
+            CurrentDeepestPityHint = deepestPity.Item2 <= 0 ? "Gacha_NoFiveStarPity".GetLocalized() : string.Format("Gacha_CurrentDeepest_Format".GetLocalized(), deepestPity.Item1),
+            BestFiveStarPityText = fiveStarTimeline.Count == 0 ? string.Format("Gacha_Pulls_Format".GetLocalized(), 0) : string.Format("Gacha_Pulls_Format".GetLocalized(), bestFiveStar.Pity),
             BestFiveStarPityHint =
-                fiveStarTimeline.Count == 0 ? "暂无五星记录" : $"{bestFiveStar.PoolName} · {bestFiveStar.Name}",
-            WorstFiveStarPityText = fiveStarTimeline.Count == 0 ? "0 抽" : $"{worstFiveStar.Pity} 抽",
+                fiveStarTimeline.Count == 0 ? "Gacha_NoFiveStarRecords".GetLocalized() : $"{bestFiveStar.PoolName} · {bestFiveStar.Name}",
+            WorstFiveStarPityText = fiveStarTimeline.Count == 0 ? string.Format("Gacha_Pulls_Format".GetLocalized(), 0) : string.Format("Gacha_Pulls_Format".GetLocalized(), worstFiveStar.Pity),
             WorstFiveStarPityHint = fiveStarTimeline.Count == 0
-                ? "暂无五星记录"
+                ? "Gacha_NoFiveStarRecords".GetLocalized()
                 : $"{worstFiveStar.PoolName} · {worstFiveStar.Name}",
             ActiveMonthCountText = activeMonthCount.ToString(),
             MonthlyAveragePullsText = monthlyAveragePulls <= 0 ? "0" : monthlyAveragePulls.ToString("0.#"),
-            BusiestMonthText = busiestMonth == null ? "暂无" : busiestMonth.Key,
-            BusiestMonthPullsText = busiestMonth == null ? "0 抽" : $"{busiestMonth.Count()} 抽",
+            BusiestMonthText = busiestMonth == null ? "Common_None".GetLocalized() : busiestMonth.Key,
+            BusiestMonthPullsText = busiestMonth == null ? string.Format("Gacha_Pulls_Format".GetLocalized(), 0) : string.Format("Gacha_Pulls_Format".GetLocalized(), busiestMonth.Count()),
             DateRangeText = BuildDateRangeText(allLogs)
         };
 
         dashboard.KpiItems = new ObservableCollection<GachaKpiItem>
         {
             new GachaKpiItem
-                { Glyph = "\uE8EF", Label = "总抽数", Value = totalCount.ToString(), Hint = $"约 {primogems:N0} 原石" },
+                { Glyph = "\uE8EF", Label = "Gacha_Kpi_TotalPulls".GetLocalized(), Value = totalCount.ToString(), Hint = string.Format("Gacha_Kpi_PrimogemsEstimate_Format".GetLocalized(), primogems) },
             new GachaKpiItem
-                { Glyph = "\uE8C7", Label = "原石估算", Value = primogems.ToString("N0"), Hint = "按每抽 160 原石" },
+                { Glyph = "\uE8C7", Label = "Gacha_Kpi_PrimogemsCost".GetLocalized(), Value = primogems.ToString("N0"), Hint = "Gacha_Kpi_PerPullCost".GetLocalized() },
             new GachaKpiItem
-                { Glyph = "\uE735", Label = "五星出货", Value = fiveStarCount.ToString(), Hint = fiveStarRate },
+                { Glyph = "\uE735", Label = "Gacha_Kpi_FiveStarPulls".GetLocalized(), Value = fiveStarCount.ToString(), Hint = fiveStarRate },
             new GachaKpiItem
-                { Glyph = "\uE734", Label = "四星出货", Value = fourStarCount.ToString(), Hint = fourStarRate },
+                { Glyph = "\uE734", Label = "Gacha_Kpi_FourStarPulls".GetLocalized(), Value = fourStarCount.ToString(), Hint = fourStarRate },
             new GachaKpiItem
             {
-                Glyph = "\uE7C1", Label = "五星角色均耗", Value = $"{dashboard.AverageFiveStarCharacterPullsText} 抽",
-                Hint = $"约 {dashboard.AverageFiveStarCharacterPrimogemsText} 原石"
+                Glyph = "\uE7C1", Label = "Gacha_Kpi_FiveStarCharAvg".GetLocalized(), Value = string.Format("Gacha_Pulls_Format".GetLocalized(), dashboard.AverageFiveStarCharacterPullsText),
+                Hint = string.Format("Gacha_Kpi_PrimogemsEstimate_Format".GetLocalized(), dashboard.AverageFiveStarCharacterPrimogemsText)
             },
             new GachaKpiItem
             {
-                Glyph = "\uE7C1", Label = "五星均抽", Value = $"{dashboard.AverageFiveStarPullsText} 抽", Hint = "全部卡池五星"
+                Glyph = "\uE7C1", Label = "Gacha_Kpi_FiveStarAvg".GetLocalized(), Value = string.Format("Gacha_Pulls_Format".GetLocalized(), dashboard.AverageFiveStarPullsText), Hint = "Gacha_Kpi_AllPoolFiveStar".GetLocalized()
             },
             new GachaKpiItem
             {
-                Glyph = "\uE8A5", Label = "当前最深垫数", Value = dashboard.CurrentDeepestPityText,
+                Glyph = "\uE8A5", Label = "Gacha_Kpi_DeepestPity".GetLocalized(), Value = dashboard.CurrentDeepestPityText,
                 Hint = dashboard.CurrentDeepestPityHint
             },
             new GachaKpiItem
             {
-                Glyph = "\uE74C", Label = "最欧五星", Value = dashboard.BestFiveStarPityText,
+                Glyph = "\uE74C", Label = "Gacha_Kpi_BestFiveStar".GetLocalized(), Value = dashboard.BestFiveStarPityText,
                 Hint = dashboard.BestFiveStarPityHint
             },
             new GachaKpiItem
             {
-                Glyph = "\uE7BA", Label = "最非五星", Value = dashboard.WorstFiveStarPityText,
+                Glyph = "\uE7BA", Label = "Gacha_Kpi_WorstFiveStar".GetLocalized(), Value = dashboard.WorstFiveStarPityText,
                 Hint = dashboard.WorstFiveStarPityHint
             },
             new GachaKpiItem
             {
-                Glyph = "\uE787", Label = "活跃月份", Value = dashboard.ActiveMonthCountText,
-                Hint = $"月均 {dashboard.MonthlyAveragePullsText} 抽"
+                Glyph = "\uE787", Label = "Gacha_Kpi_ActiveMonths".GetLocalized(), Value = dashboard.ActiveMonthCountText,
+                Hint = string.Format("Gacha_Kpi_MonthlyAvg_Format".GetLocalized(), dashboard.MonthlyAveragePullsText)
             }
         };
 
         dashboard.PoolDistribution = BuildSharePoints(new[]
         {
-            ("角色活动", (double)charLogs.Count, $"{charLogs.Count} 抽"),
-            ("武器活动", (double)weaponLogs.Count, $"{weaponLogs.Count} 抽"),
-            ("集录祈愿", (double)chronicledLogs.Count, $"{chronicledLogs.Count} 抽"),
-            ("新手祈愿", (double)noviceLogs.Count, $"{noviceLogs.Count} 抽"),
-            ("常驻祈愿", (double)standardLogs.Count, $"{standardLogs.Count} 抽")
+            ("Gacha_Pool_Character".GetLocalized(), (double)charLogs.Count, string.Format("Gacha_Pulls_Format".GetLocalized(), charLogs.Count)),
+            ("Gacha_Pool_Weapon".GetLocalized(), (double)weaponLogs.Count, string.Format("Gacha_Pulls_Format".GetLocalized(), weaponLogs.Count)),
+            ("Gacha_Pool_Chronicled".GetLocalized(), (double)chronicledLogs.Count, string.Format("Gacha_Pulls_Format".GetLocalized(), chronicledLogs.Count)),
+            ("Gacha_Pool_Novice".GetLocalized(), (double)noviceLogs.Count, string.Format("Gacha_Pulls_Format".GetLocalized(), noviceLogs.Count)),
+            ("Gacha_Pool_Standard".GetLocalized(), (double)standardLogs.Count, string.Format("Gacha_Pulls_Format".GetLocalized(), standardLogs.Count))
         });
         dashboard.PoolPieSlices = BuildPieSlices(dashboard.PoolDistribution);
 
         dashboard.RarityDistribution = BuildSharePoints(new[]
         {
-            ("五星", (double)fiveStarCount, $"{fiveStarCount} 个"),
-            ("四星", (double)fourStarCount, $"{fourStarCount} 个"),
-            ("三星", (double)threeStarCount, $"{threeStarCount} 个")
+            ("Gacha_Rarity_5Star".GetLocalized(), (double)fiveStarCount, string.Format("Gacha_Items_Format".GetLocalized(), fiveStarCount)),
+            ("Gacha_Rarity_4Star".GetLocalized(), (double)fourStarCount, string.Format("Gacha_Items_Format".GetLocalized(), fourStarCount)),
+            ("Gacha_Rarity_3Star".GetLocalized(), (double)threeStarCount, string.Format("Gacha_Items_Format".GetLocalized(), threeStarCount))
         });
         dashboard.RarityPieSlices = BuildPieSlices(dashboard.RarityDistribution);
 
         dashboard.RecentFiveStarPities = BuildRelativePoints(
             fiveStarTimeline
                 .TakeLast(12)
-                .Select(x => (x.Name, (double)x.Pity, $"{x.Pity} 抽", $"{x.PoolName} · {FormatShortDate(x.TimeText)}")));
+                .Select(x => (x.Name, (double)x.Pity, string.Format("Gacha_Pulls_Format".GetLocalized(), x.Pity), $"{x.PoolName} · {FormatShortDate(x.TimeText)}")));
 
         dashboard.FourStarTopItems = BuildRelativePoints(
             allLogs
                 .Where(x => x.RankType == "4")
-                .GroupBy(x => string.IsNullOrWhiteSpace(x.Name) ? "未知四星" : x.Name)
+                .GroupBy(x => string.IsNullOrWhiteSpace(x.Name) ? "Gacha_UnknownFourStar".GetLocalized() : x.Name)
                 .OrderByDescending(x => x.Count())
                 .ThenBy(x => x.Key)
                 .Take(10)
-                .Select(x => (x.Key, (double)x.Count(), $"{x.Count()} 次", "四星出货")));
+                .Select(x => (x.Key, (double)x.Count(), string.Format("Gacha_Times_Format".GetLocalized(), x.Count()), "Gacha_FourStarPull".GetLocalized())));
 
         dashboard.PityBuckets = BuildRelativePoints(
             fiveStarTimeline
                 .GroupBy(x => GetPityBucket(x.Pity))
-                .Select(x => (x.Key.Label, (double)x.Count(), $"{x.Count()} 次", x.Key.Hint))
+                .Select(x => (x.Key.Label, (double)x.Count(), string.Format("Gacha_Times_Format".GetLocalized(), x.Count()), x.Key.Hint))
                 .OrderBy(x => GetPityBucketOrder(x.Item1)));
 
         dashboard.MonthlyPulls = BuildRelativePoints(
             monthlyGroups
-                .Select(x => (x.Key, (double)x.Count(), $"{x.Count()} 抽", "1-5星全部记录")));
+                .Select(x => (x.Key, (double)x.Count(), string.Format("Gacha_Pulls_Format".GetLocalized(), x.Count()), "Gacha_AllRarityRecords".GetLocalized())));
 
         return dashboard;
     }
@@ -388,7 +389,7 @@ public partial class GachaAnalysisModel
             if (item.RankType != "5") continue;
 
             result.Add((
-                string.IsNullOrWhiteSpace(item.Name) ? "未知五星" : item.Name,
+                string.IsNullOrWhiteSpace(item.Name) ? "Gacha_UnknownFiveStar".GetLocalized() : item.Name,
                 poolName,
                 pity,
                 TryParseTime(item.Time, out var time) ? time : DateTime.MinValue,
@@ -408,7 +409,7 @@ public partial class GachaAnalysisModel
             .OrderBy(x => x)
             .ToList();
 
-        if (dates.Count == 0) return "暂无时间记录";
+        if (dates.Count == 0) return "Gacha_NoDateRecords".GetLocalized();
         return $"{dates.First():yyyy.MM.dd} - {dates.Last():yyyy.MM.dd}";
     }
 
@@ -416,15 +417,15 @@ public partial class GachaAnalysisModel
 
     private static bool TryParseTime(string time, out DateTime dateTime) => DateTime.TryParse(time, out dateTime);
 
-    private static string FormatShortDate(string time) => TryParseTime(time, out var dt) ? dt.ToString("MM.dd") : "未知";
+    private static string FormatShortDate(string time) => TryParseTime(time, out var dt) ? dt.ToString("MM.dd") : "Common_Unknown".GetLocalized();
 
     private static (string Label, string Hint) GetPityBucket(int pity) => pity switch
     {
-        <= 30 => ("1-30", "欧气区间"),
-        <= 60 => ("31-60", "中段出货"),
-        <= 75 => ("61-75", "接近软保底"),
-        <= 90 => ("76-90", "保底区间"),
-        _ => ("90+", "异常记录")
+        <= 30 => ("1-30", "Gacha_Bucket_Lucky".GetLocalized()),
+        <= 60 => ("31-60", "Gacha_Bucket_Middle".GetLocalized()),
+        <= 75 => ("61-75", "Gacha_Bucket_NearSoft".GetLocalized()),
+        <= 90 => ("76-90", "Gacha_Bucket_Pity".GetLocalized()),
+        _ => ("90+", "Gacha_Bucket_Anomaly".GetLocalized())
     };
 
     private static int GetPityBucketOrder(string label) => label switch

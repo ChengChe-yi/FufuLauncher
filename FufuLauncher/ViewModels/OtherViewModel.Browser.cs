@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 using FufuLauncher.Views;
 
 namespace FufuLauncher.ViewModels;
@@ -34,7 +35,7 @@ public partial class OtherViewModel
         }
         catch (Exception ex)
         {
-            StatusMessage = $"打开浏览器失败: {ex.Message}";
+            StatusMessage = string.Format("Other_OpenBrowserFailed_Format".GetLocalized(), ex.Message);
             Debug.WriteLine($"[OtherViewModel] 打开浏览器失败: {ex.Message}");
         }
     }

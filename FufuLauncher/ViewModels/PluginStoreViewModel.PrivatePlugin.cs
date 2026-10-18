@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 using Microsoft.UI.Xaml.Controls;
 
 namespace FufuLauncher.ViewModels;
@@ -35,22 +36,22 @@ public partial class PluginStoreViewModel
                     return;
                 }
 
-                var idBox = new TextBox { PlaceholderText = "插件ID", Width = 300 };
-                var keyBox = new TextBox { PlaceholderText = "访问密钥", Width = 300 };
+                var idBox = new TextBox { PlaceholderText = "PluginStore_PluginId".GetLocalized(), Width = 300 };
+                var keyBox = new TextBox { PlaceholderText = "PluginStore_AccessKey".GetLocalized(), Width = 300 };
 
                 var panel = new StackPanel { Spacing = 12 };
-                panel.Children.Add(new TextBlock { Text = "输入私密插件的 ID 和访问密钥：" });
-                panel.Children.Add(new TextBlock { Text = "插件ID", FontSize = 12, Opacity = 0.7 });
+                panel.Children.Add(new TextBlock { Text = "PluginStore_EnterPrivateIdAndKey".GetLocalized() });
+                panel.Children.Add(new TextBlock { Text = "PluginStore_PluginId".GetLocalized(), FontSize = 12, Opacity = 0.7 });
                 panel.Children.Add(idBox);
-                panel.Children.Add(new TextBlock { Text = "访问密钥", FontSize = 12, Opacity = 0.7 });
+                panel.Children.Add(new TextBlock { Text = "PluginStore_AccessKey".GetLocalized(), FontSize = 12, Opacity = 0.7 });
                 panel.Children.Add(keyBox);
 
                 var dialog = new ContentDialog
                 {
-                    Title = "添加私密插件",
+                    Title = "PluginStore_InstallPrivatePluginTitle".GetLocalized(),
                     Content = panel,
-                    PrimaryButtonText = "添加",
-                    SecondaryButtonText = "取消",
+                    PrimaryButtonText = "Common_Confirm".GetLocalized(),
+                    SecondaryButtonText = "Common_Cancel".GetLocalized(),
                     DefaultButton = ContentDialogButton.Primary,
                     XamlRoot = xamlRoot
                 };
@@ -80,7 +81,7 @@ public partial class PluginStoreViewModel
         try
         {
             IsLoading = true;
-            StatusMessage = "正在验证私密插件访问...";
+            StatusMessage = "PluginStore_VerifyingPrivatePlugin".GetLocalized();
 
             var accessResult = await _storeService.GetPrivateAccessAsync(pluginId, accessKey);
             if (accessResult.Plugin != null)
@@ -93,13 +94,13 @@ public partial class PluginStoreViewModel
 
                 _hasContent = true;
                 IsEmpty = false;
-                StatusMessage = string.Format("已添加私密插件: {0}", accessResult.Plugin.Name);
+                StatusMessage = string.Format("PluginStore_InstallingPrivatePlugin_Format".GetLocalized(), accessResult.Plugin.Name);
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"[PluginStoreVM] AddPrivatePlugin error: {ex.Message}");
-            StatusMessage = string.Format("私密插件添加失败: {0}", ex.Message);
+            StatusMessage = string.Format("PluginStore_InstallPrivatePluginFailed_Format".GetLocalized(), ex.Message);
         }
         finally
         {

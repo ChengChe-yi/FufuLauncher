@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -116,7 +116,7 @@ public partial class HelpViewModel : ObservableObject
                 else if (!string.IsNullOrEmpty(body))
                     preview = CollapseForPreview(body, 220);
                 else
-                    preview = "正文仍在后台预加载，匹配来自标题或路径";
+                    preview = "Help_DocPreloadingSnippet".GetLocalized();
 
                 SearchHits.Add(new DocSearchHit
                 {
@@ -128,9 +128,9 @@ public partial class HelpViewModel : ObservableObject
         }
     }
 
-    [ObservableProperty] private string _markdownContent = "从左侧目录选择一个项目以查看详细内容";
+    [ObservableProperty] private string _markdownContent = "Help_SelectTopicHint".GetLocalized();
 
-    [ObservableProperty] private string _currentTitle = "请选择文档";
+    [ObservableProperty] private string _currentTitle = "Help_NoDocumentSelected".GetLocalized();
 
     [ObservableProperty] private string _currentCategory = string.Empty;
 
@@ -200,8 +200,8 @@ public partial class HelpViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            CurrentTitle = "初始化失败";
-            MarkdownContent = $"无法加载目录配置: {ex.Message}";
+            CurrentTitle = "Help_InitFailed".GetLocalized();
+            MarkdownContent = string.Format("Help_LoadTreeFailed_Format".GetLocalized(), ex.Message);
         }
         finally
         {
@@ -247,7 +247,7 @@ public partial class HelpViewModel : ObservableObject
         CurrentCategory = item.Category;
         CurrentAuthor = item.Author;
         CurrentDate = string.Empty;
-        MarkdownContent = "加载中...";
+        MarkdownContent = "Help_LoadingDoc".GetLocalized();
 
         try
         {
@@ -282,14 +282,14 @@ public partial class HelpViewModel : ObservableObject
             }
             else
             {
-                MarkdownContent = $"无法获取文档内容 (HTTP {response.StatusCode})";
+                MarkdownContent = string.Format("Help_FetchDocHttpError_Format".GetLocalized(), response.StatusCode);
                 CurrentDate = string.Empty;
                 _originalContent = string.Empty;
             }
         }
         catch (Exception ex)
         {
-            MarkdownContent = $"文档加载发生异常: {ex.Message}";
+            MarkdownContent = string.Format("Help_DocDownloadException_Format".GetLocalized(), ex.Message);
             CurrentDate = string.Empty;
             _originalContent = string.Empty;
         }

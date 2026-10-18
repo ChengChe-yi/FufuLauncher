@@ -1,13 +1,13 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Text.Json;
 using FufuLauncher.Constants;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 
 namespace FufuLauncher.ViewModels;
@@ -28,7 +28,7 @@ public partial class GachaAnalysisModel
     public async Task FetchMetadataFromApiAsync()
     {
         IsScraping = true;
-        CrawlerStatus = "正在通过 API 获取角色和武器元数据...";
+        CrawlerStatus = "Gacha_CrawlerStatus_FetchingMetaApi".GetLocalized();
 
         try
         {
@@ -64,7 +64,7 @@ public partial class GachaAnalysisModel
     {
         const int maxAttempts = 3;
         int[] delays = { 1000, 2000, 4000 };
-        var typeName = type == "char" ? "角色" : "武器";
+        var typeName = type == "char" ? "Gacha_ItemType_Character".GetLocalized() : "Gacha_ItemType_Weapon".GetLocalized();
 
         for (var attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -73,7 +73,7 @@ public partial class GachaAnalysisModel
 
             if (attempt < maxAttempts)
             {
-                CrawlerStatus = $"{typeName}元数据获取失败，{delays[attempt - 1] / 1000} 秒后重试（{attempt}/{maxAttempts}）…";
+                CrawlerStatus = string.Format("Gacha_CrawlerStatus_MetaRetry_Format".GetLocalized(), typeName, delays[attempt - 1] / 1000, attempt, maxAttempts);
                 await Task.Delay(delays[attempt - 1]);
             }
             else
@@ -154,12 +154,12 @@ public partial class GachaAnalysisModel
 
         if (scrapedData == null || scrapedData.Count == 0)
         {
-            CrawlerStatus = "未找到新图片资源，将使用现有缓存或默认图标";
+            CrawlerStatus = "Gacha_CrawlerStatus_NoNewImages".GetLocalized();
             EnrichAndPersistCachedLogs(deferRefresh);
             return;
         }
 
-        CrawlerStatus = $"更新了 {scrapedData.Count} 个图片资源，并存入数据库";
+        CrawlerStatus = string.Format("Gacha_CrawlerStatus_ImagesUpdated_Format".GetLocalized(), scrapedData.Count);
 
         SaveMetadataToDb(scrapedData);
         LoadMetadataFromDb();

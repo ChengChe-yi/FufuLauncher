@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using FufuLauncher.Contracts.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Data.Repositories;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -78,7 +79,7 @@ public partial class GachaAnalysisModel : ObservableObject
     private int _refreshVersion;
     private bool _analysisDashboardDirty = true;
     [ObservableProperty] private string _gachaUrl;
-    [ObservableProperty] private string _crawlerStatus = "等待获取数据...";
+    [ObservableProperty] private string _crawlerStatus;
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))]
     private bool _isFetching;
@@ -87,10 +88,10 @@ public partial class GachaAnalysisModel : ObservableObject
     private bool _isScraping;
 
     public bool CanSwitchRole => IsDataLoaded && !IsFetching && !IsScraping;
-    [ObservableProperty] private GachaStatistic _characterStats = new() { PoolName = "角色活动" };
-    [ObservableProperty] private GachaStatistic _weaponStats = new() { PoolName = "武器活动" };
-    [ObservableProperty] private GachaStatistic _chronicledStats = new() { PoolName = "集录祈愿" };
-    [ObservableProperty] private GachaStatistic _standardStats = new() { PoolName = "常驻祈愿" };
+    [ObservableProperty] private GachaStatistic _characterStats;
+    [ObservableProperty] private GachaStatistic _weaponStats;
+    [ObservableProperty] private GachaStatistic _chronicledStats;
+    [ObservableProperty] private GachaStatistic _standardStats;
     [ObservableProperty] private ObservableCollection<GachaDisplayItem> _characterFiveStars = new();
     [ObservableProperty] private ObservableCollection<GachaDisplayItem> _weaponFiveStars = new();
     [ObservableProperty] private ObservableCollection<GachaDisplayItem> _chronicledFiveStars = new();
@@ -126,7 +127,7 @@ public partial class GachaAnalysisModel : ObservableObject
     public bool ShowStandardNoRecords => StandardStats?.FiveStarCount == 0 &&
                                          (!IsStandardFourStarVisible || StandardFourStars?.Count == 0);
 
-    public const string AddNewUserItem = "＋ 添加新用户";
+    public static string AddNewUserItem => "Gacha_AddNewUser".GetLocalized();
     [ObservableProperty] private bool _hasGachaData;
 
     [ObservableProperty, NotifyPropertyChangedFor(nameof(CanSwitchRole))]
@@ -162,6 +163,12 @@ public partial class GachaAnalysisModel : ObservableObject
         _metadataRepo = metadataRepo;
         _gachaService = new GachaService();
         _accountManager = accountManager;
+
+        _crawlerStatus = "Gacha_WaitingForData".GetLocalized();
+        _characterStats = new() { PoolName = "Gacha_Pool_Character".GetLocalized() };
+        _weaponStats = new() { PoolName = "Gacha_Pool_Weapon".GetLocalized() };
+        _chronicledStats = new() { PoolName = "Gacha_Pool_Chronicled".GetLocalized() };
+        _standardStats = new() { PoolName = "Gacha_Pool_Standard".GetLocalized() };
     }
 
     partial void OnIsScrapingChanged(bool value)

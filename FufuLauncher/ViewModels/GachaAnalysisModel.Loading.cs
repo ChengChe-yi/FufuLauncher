@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Data.Entities;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 
 namespace FufuLauncher.ViewModels;
@@ -94,8 +95,8 @@ public partial class GachaAnalysisModel
                 else ClearCollections();
                 IsDataLoaded = true;
                 CrawlerStatus = HasGachaData
-                    ? metadataCount > 0 ? "已加载本地数据和图片资源缓存" : "已加载本地历史记录"
-                    : "该角色暂无抽卡记录";
+                    ? metadataCount > 0 ? "Gacha_LocalDataLoaded".GetLocalized() : "Gacha_LocalHistoryLoaded".GetLocalized()
+                    : "Gacha_RoleNoRecords".GetLocalized();
             });
 
             if (!HasPoolMetadataCache())

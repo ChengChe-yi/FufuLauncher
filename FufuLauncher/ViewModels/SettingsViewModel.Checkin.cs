@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -198,7 +198,7 @@ public partial class SettingsViewModel
                 if (cookies == null || cookies.Count == 0) continue;
 
                 string uid = entry.Stuid;
-                string nickname = entry.Nickname ?? $"用户 {uid}";
+                string nickname = entry.Nickname ?? string.Format("Account_User_Format".GetLocalized(), uid);
 
                 string cloudTokenKey = $"CloudComboToken_{uid}";
                 var cloudTokenObj = await _localSettingsService.ReadSettingAsync(cloudTokenKey);

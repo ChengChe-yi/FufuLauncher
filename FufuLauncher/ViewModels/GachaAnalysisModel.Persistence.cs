@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Data.Entities;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
@@ -218,18 +219,18 @@ public partial class GachaAnalysisModel
             {
                 RefreshUIFromCache();
                 HasGachaData = true;
-                CrawlerStatus = $"已切换到 UID: {uid}";
+                CrawlerStatus = string.Format("Gacha_SwitchedToUid_Format".GetLocalized(), uid);
             }
             else
             {
                 ClearCollections();
-                CharacterStats = new GachaStatistic { PoolName = "角色活动" };
-                WeaponStats = new GachaStatistic { PoolName = "武器活动" };
-                ChronicledStats = new GachaStatistic { PoolName = "集录祈愿" };
-                StandardStats = new GachaStatistic { PoolName = "常驻祈愿" };
+                CharacterStats = new GachaStatistic { PoolName = "Gacha_Pool_Character".GetLocalized() };
+                WeaponStats = new GachaStatistic { PoolName = "Gacha_Pool_Weapon".GetLocalized() };
+                ChronicledStats = new GachaStatistic { PoolName = "Gacha_Pool_Chronicled".GetLocalized() };
+                StandardStats = new GachaStatistic { PoolName = "Gacha_Pool_Standard".GetLocalized() };
                 InvalidateAnalysisDashboard();
                 HasGachaData = false;
-                CrawlerStatus = "该账号暂无抽卡记录";
+                CrawlerStatus = "Gacha_AccountNoRecords".GetLocalized();
             }
         });
     }
@@ -263,7 +264,7 @@ public partial class GachaAnalysisModel
         {
             if (string.IsNullOrEmpty(_currentUid))
             {
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("删除失败", "当前没有选中任何账号",
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteFailed".GetLocalized(), "Gacha_NoAccountSelected".GetLocalized(),
                     NotificationType.Error, 3000));
                 return;
             }
@@ -286,23 +287,23 @@ public partial class GachaAnalysisModel
             _cachedStandardLogs.Clear();
             RefreshKnownUidsUI(remainingUids);
             ClearCollections();
-            CharacterStats = new GachaStatistic { PoolName = "角色活动" };
-            WeaponStats = new GachaStatistic { PoolName = "武器活动" };
-            ChronicledStats = new GachaStatistic { PoolName = "集录祈愿" };
-            StandardStats = new GachaStatistic { PoolName = "常驻祈愿" };
+            CharacterStats = new GachaStatistic { PoolName = "Gacha_Pool_Character".GetLocalized() };
+            WeaponStats = new GachaStatistic { PoolName = "Gacha_Pool_Weapon".GetLocalized() };
+            ChronicledStats = new GachaStatistic { PoolName = "Gacha_Pool_Chronicled".GetLocalized() };
+            StandardStats = new GachaStatistic { PoolName = "Gacha_Pool_Standard".GetLocalized() };
             HasGachaData = false;
             SelectedUid = "";
             GachaUrl = "";
             await _localSettingsService.SaveSettingAsync(LastSelectedUidKey, nextUid);
             if (!string.IsNullOrEmpty(nextUid)) await SwitchToUidAsync(nextUid);
-            CrawlerStatus = $"已删除 UID: {deletedUid} 的记录";
+            CrawlerStatus = string.Format("Gacha_DeletedUidRecords_Format".GetLocalized(), deletedUid);
 
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("删除成功", $"已删除 UID: {deletedUid} 的抽卡记录",
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteSuccess".GetLocalized(), string.Format("Gacha_DeletedUidRecordsDetail_Format".GetLocalized(), deletedUid),
                 NotificationType.Success, 3000));
         }
         catch (Exception ex)
         {
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("删除失败", $"详细信息: {ex.Message}",
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteFailed".GetLocalized(), string.Format("Common_DeleteFailed_Format".GetLocalized(), ex.Message),
                 NotificationType.Error, 5000));
         }
     }

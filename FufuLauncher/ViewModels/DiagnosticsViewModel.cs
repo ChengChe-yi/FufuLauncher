@@ -1,10 +1,11 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 
@@ -26,7 +27,7 @@ public partial class DiagnosticsViewModel : ObservableObject
         }
         catch
         {
-            Info.Suggestion = "初始化诊断服务失败";
+            Info.Suggestion = "Diagnostics_InitServiceFailed".GetLocalized();
         }
         finally
         {

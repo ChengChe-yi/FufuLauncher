@@ -1,11 +1,11 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Messaging;
-using FufuLauncher.Constants;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
@@ -63,7 +63,7 @@ public partial class SettingsViewModel
             {
                 Title = title,
                 Content = content,
-                CloseButtonText = "确定",
+                CloseButtonText = "Dialog_OK".GetLocalized(),
                 XamlRoot = App.MainWindow.Content.XamlRoot
             };
             await dialog.ShowAsync();
@@ -186,7 +186,7 @@ public partial class SettingsViewModel
                 var isVideo = ext is ".mp4" or ".webm" or ".mkv" or ".avi" or ".mov";
                 if (isVideo && !_devBuildDetectionService.IsDevBuild)
                 {
-                    ShowDialogMessage("提示", "动态背景仅开发版本可用，预览版与正式版本请选择图片作为自定义背景");
+                    ShowDialogMessage("Common_Notice".GetLocalized(), "Settings_LiveWallpaperDevOnly".GetLocalized());
                     return;
                 }
 

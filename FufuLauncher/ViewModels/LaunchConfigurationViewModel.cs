@@ -49,9 +49,9 @@ public partial class LaunchConfigurationViewModel : ObservableObject
         get;
     } = new()
     {
-        new("不变", Models.PostLaunchBehavior.None),
-        new("最小化到托盘", Models.PostLaunchBehavior.MinimizeToTray),
-        new("保存状态并退出", Models.PostLaunchBehavior.Exit)
+        new("LaunchConfig_PostLaunch_None".GetLocalized(), Models.PostLaunchBehavior.None),
+        new("LaunchConfig_PostLaunch_MinimizeToTray".GetLocalized(), Models.PostLaunchBehavior.MinimizeToTray),
+        new("LaunchConfig_PostLaunch_Exit".GetLocalized(), Models.PostLaunchBehavior.Exit)
     };
 
     public List<InjectionModuleItem> InjectionModules

@@ -7520,4 +7520,1054 @@ Fehlermeldung: {0}</value>
     <value>Folgende Einstellungen wurden ohne Bestätigung der Deaktivierungs-Warnung deaktiviert und daher automatisch wieder aktiviert:
 {0}</value>
   </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>4-Sterne-Ziehungen</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>Kopieren fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>Wird geladen...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>Standard-Voreinstellung</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>Waffenaktionsgebet</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>Auswahl fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>Deaktiviert</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>Zugriffsschlüssel</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>Konto angemeldet (kein Charakter gebunden)</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Cookie-Aktualisierung fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>Konfiguration konnte nicht gelesen werden</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>FPS-Unlocker ist nicht installiert</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>Durchschn. {0} Ziehungen/Monat</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>Hier steht noch nichts...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>Keine Einträge abgerufen; Sicherung wurde erstellt.</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>Figurenaktionsgebet-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>Neulingsgebet</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>Initialisierung fehlgeschlagen</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>Installation des privaten Plugins fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>Konto angemeldet</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>Voreinstellung enthält keinen Hash; Kompatibilität kann nicht geprüft werden</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>Globaler Server</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>Bei HoYoLAB anmelden</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei kann nicht analysiert werden
+Details: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>JSON-Datei</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>Lokale Daten und Bildressourcen geladen.</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>Hinzufügen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie wurde erfolgreich in die Zwischenablage kopiert</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>Bitte warten...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>Unbekannter Eigenschaftswert: {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>Link konnte nicht abgerufen werden</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>Löschen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>Konfiguration konnte nicht angewendet werden</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>Speichern fehlgeschlagen: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>Dateiauswahl fehlgeschlagen. Wenn als Administrator ausgeführt, versuchen Sie den Standardbenutzermodus</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>Entwicklerberechtigung erforderlich, um diese Funktion zu nutzen</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>Plugin hinzufügen: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>Erfolgreich kopiert</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>Standardgebet</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>Plugin-Dateien</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>Keine Verlaufsdatei gefunden; bitte Erfassung versuchen</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>Unbekannte Größe</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>Bitte private Plugin-ID und Zugriffsschlüssel eingeben:</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>CaptureApp.exe nicht gefunden</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>Aktualisierung der Kontoinformationen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>Keine Gebetseinträge für diese Figur</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>Vorgang fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>Link erhalten, automatisches Laden wird gestartet...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>Fertig!</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>Anmeldung erfolgreich</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>Installieren</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>Speichern des Status fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>Aktivierungsstatus kann mangels Schreibrechten nicht gespeichert werden
+Details: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>Beim Wechseln der Voreinstellung kann nicht geschrieben werden
+Details: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>Basiert auf 160 Urgestein pro Ziehung</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>Fehler beim Herunterladen des Dokuments: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>Hard-Pity-Bereich</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>Aktuell tiefster Pity-Wert</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>Privates Plugin wird installiert: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>Kontodaten konnten nicht gelesen werden</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>Anmeldung abgebrochen</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>Figurenaktionsgebet</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>Plugin „{0}“ erfordert Launcher-Version ≥ {1}, aktuelle Version ist {2}
+
+Bitte Launcher vor der Installation aktualisieren.</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>Fehler: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>Gebetsverlauf für UID gelöscht: {0}</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>Unbekanntes Plugin</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>Figurenaktionsgebet</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>Kopieren fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>Daten werden abgerufen...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>Konfigurationsdatei kann nicht gelesen werden
+Details: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>Eintrag {0} wird importiert...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>Vorgang fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>4-Sterne-Ziehung</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>Alle 5-Sterne-Objekte aller Banner</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>Import fehlgeschlagen</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} Objekte</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>Kein Dokument ausgewählt</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>Falsches Linkformat; API-Adresse kann nicht extrahiert werden</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>Globaler Auto-Clicker erfordert Administratorrechte zum Registrieren von Tastenkombinationen und Senden von Tastenereignissen. Bitte als Administrator neu starten.</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>Bilder oder Videos</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>Benutzerinformationen werden geladen...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>Aktiviert, FPS-Unlock aktiv</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>Export erfolgreich, Datei gespeichert unter: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>Zeugnis des Schicksals</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>Statuswechsel fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>Änderungen können nicht angewendet werden
+Details: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>Stellen Sie sicher, dass der Ordner und config.ini im Verzeichnis Plugins existieren</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>Glücksbereich</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>Konto_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>Ausführung erzwingen (nicht empfohlen)</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>Erfassungsprogramm liest Daten...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>Sie können maximal {0} Konten hinzufügen</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>Anfrage fehlgeschlagen ({0}): {1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>Berechtigungsüberprüfung fehlgeschlagen</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>Aktuell angemeldetes Konto</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>Captcha-Verifizierung</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>Neulingsgebet</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>Anmeldefenster wird geöffnet...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>ca. {0:N0} Urgestein</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>Unbekanntes 4-Sterne-Objekt</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>Genshin Impact-Tagesanmeldung abgeschlossen</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Lua-Skripttest fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>Animiertes Hintergrundbild</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>Keine Datumseinträge</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} Mal</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>Konto hinzufügen</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>Keine Gebetseinträge in der Datei gefunden</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei kann nicht gelöscht werden; Datei wird verwendet oder Zugriff verweigert
+Details: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>5-Sterne-Ziehungen</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>Protokoll konnte nicht geschrieben werden: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>Version zu niedrig</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>Fehler: Fehlende Administratorrechte; Auto-Clicker kann nicht gestartet werden</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>Keine Beschreibung</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>Standard (nicht angegeben)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Lua-Sicherheitsüberprüfung fehlgeschlagen: {0}.</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>FuFuPlugin ist nicht installiert</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>Nahe Soft-Pity</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>Aktive Monate</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>Aktuelle Voreinstellung: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>Anmeldefehler: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>Bitte Stopp-Tastenkombination festlegen</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>Unerwarteter Fehler: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>Cookie wird aktualisiert...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>Laden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>In den Infobereich minimieren</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>Waffenaktionsgebet</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>Voreinstellung passt nicht zur Version; auf Standard zurückgesetzt</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>Erfassung starten</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>Privates Plugin</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>Kein Konto</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>Nicht unterstützte UIGF-Version: {0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} Ziehungen</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>Datei existiert nicht oder Zugriff verweigert</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>Löschen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>Skriptausführung abgelaufen (&gt;5s)</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>Anwenden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>Vorgang fehlgeschlagen: Datei existiert bereits</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>Zu UID gewechselt: {0}</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>Das Aktivieren installiert globale Tastatur- und Maus-Hooks, die von Sicherheitssoftware blockiert werden könnten. Aktivieren bestätigen?</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>Hintergrundbild wechseln</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>Nicht erkannte Datei</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>Gelöscht: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Cookie erfolgreich aktualisiert</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>Voreinstellung passt gut zum aktuellen Plugin</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>Bitte wählen Sie eine Spielfigur aus dem Dropdown-Menü aus.</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>Hinzufügen fehlgeschlagen: Ziel-Plugin existiert bereits</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>Aktiviert</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>Konto hinzufügen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>Zeugnis des Schicksals</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>Ausführbare Dateien</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>Noch kein 5-Sterne-Pity</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>{0} Einträge erfolgreich nach {1} ({2}) exportiert</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>Import fehlgeschlagen: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>Zurückgegebene Figur stimmt nicht mit Auswahl überein; Anzeige abgebrochen.</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>Genshin-Anmeldung</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>Voreinstellung gewechselt</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>Aktiviert, teilweise aktiv</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>UIGF-Datei wird gelesen...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>Nicht gefunden</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>Aktuell tiefster: {0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie in die Zwischenablage kopiert</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>Angemeldet als {0}</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>Alle 1-5-Sterne-Einträge</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>Registrierung kann nicht gelesen werden</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellung kann mangels Berechtigungen nicht in Datei geschrieben werden
+Details: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>Unzureichende Berechtigungen oder Datei in Benutzung; bitte Spielpfad als Standardbenutzer erneut wählen</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>Speichern der Einstellungen fehlgeschlagen</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>Seite zur Kontosperrung wird geöffnet...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>Über Tastenkürzel beendet</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>Erfolgreich gelöscht</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>Aktuelles Konto</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>Ungültiger Pfad</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>3 Sterne</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>Ziehungen gesamt</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>Kein gültiges Cookie gefunden</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>Import abgeschlossen ({0} Einträge); Bildressourcen werden geladen...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>Keine Anmeldeinformationen gefunden</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>Bitte starten Sie das Spiel einmal, bevor Sie es erneut versuchen</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>Objekt-Metadaten und Banner werden abgerufen...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>Monitor {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>Bitte Auto-Clicker stoppen, bevor Sie ihn erneut starten</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>Wird erfasst... Bitte öffnen Sie den Gebetsverlauf im Spiel</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>Schwerstes 5-Sterne-Objekt</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>Ungültiger Pfad; prüfen Sie, ob die Datei existiert und im .exe-Format vorliegt</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>Liste aktualisieren</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>Pfad ist leer</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>Ansicht konnte nicht initialisiert werden: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>Pfadauswahl fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei kann mangels Schreibrechten nicht gespeichert werden
+Details: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>Konto erfolgreich gewechselt</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>Export fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>Erfassung stoppen</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>Verlauf konnte nicht gelesen werden: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>Dateiendung des Plugins kann nicht geändert werden
+Details: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>Unzureichende Berechtigungen oder Datei in Benutzung; bitte als Standardbenutzer erneut wählen</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>Konfigurationsaktualisierung fehlgeschlagen</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>Löschen fehlgeschlagen</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>Dokument konnte nicht abgerufen werden (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>Pfad übernommen</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>Plugin „{0}“ (ID: {1}) ist privat. Bitte Zugriffsschlüssel eingeben, um mit der Installation fortzufahren:</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>Verzeichnisbaum konnte nicht geladen werden: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>Öffnen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Lua-Skripttest erfolgreich</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>Statuswechsel fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>Keine Daten zum Exportieren</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>Genshin-Tagesnotizen werden geöffnet...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>Historischer Link geladen, automatische Erfassung wird vorbereitet...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>Audiodateien</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>Vorgang erfolgreich</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>Speichern der Voreinstellung fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>Einträge für UID gelöscht: {0}</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>Banner-Metadaten werden abgerufen...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Lua-Ausführungsfehler: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>Löschen der Voreinstellung fehlgeschlagen</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>Bitte melden Sie sich zuerst an</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>UIGF-Version nicht erkannt; bitte Dateiformat prüfen</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>Privates Plugin wird überprüft...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>Keine 5-Sterne-Einträge</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>Verstanden</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>Kein Konto ausgewählt</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>Standardgebet</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>Privates Plugin installieren</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>5 Sterne</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>Geöffnet</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>Erneut anmelden</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>Datei existiert nicht oder ist keine gültige .exe-Datei</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>Konto-Sicherheitszentrum wird geöffnet...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>Details: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>Erfassung wurde manuell gestoppt</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>Verifizierung abgeschlossen</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>Plugin-Hash in Voreinstellung stimmt nicht überein; stammt möglicherweise aus anderer Version</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>Durchschn. 5-Sterne-Ziehungen</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>Beenden fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>Ungültiger Gebets-Link</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>Dieses Konto hat keine Gebetseinträge</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>Animierte Hintergrundbilder werden in diesem Vorschauformat nicht unterstützt.</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>Aktivierung bestätigen</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>Bereit</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>Urgestein-Schätzung</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>Ansicht wird aktualisiert...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>Unbekannter Entwickler</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>UIGF-Datei wird exportiert...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>Dateiauswahl kann nicht geöffnet werden</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>CN-Server</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>Abmelden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>{0} wird abgerufen...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>4 Sterne</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>Mittlerer Bereich</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>Glücklichstes 5-Sterne-Objekt</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>Wählen Sie ein Element aus dem Menü, um Details anzuzeigen</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>Sicherheitsrichtlinienverletzung: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>Plugin-ID</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>Launcher schließen</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>Unbekanntes 5-Sterne-Objekt</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>Administratorrechte erforderlich</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>Plugin-Datei nicht gefunden oder Hash kann nicht berechnet werden; Kompatibilität unklar</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>Unvollständige Einträge in Datei (id/item_id/time/gacha_type fehlt); bitte Format prüfen</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>Stoppen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>Durchschn. Ziehungen für 5-Sterne-Figur</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>Laden abgeschlossen, insgesamt {0} Plugins</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Cookie-Aktualisierung fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>Keine gültigen Gebetseinträge in der Datei gefunden</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>Ungewöhnlicher Eintrag</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>Wird initialisiert...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>Benutzer {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>HoYoLAB-Autorisierung fehlgeschlagen (Code 1016). Verknüpfung prüfen oder 'Über Spiel abrufen'.</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>Keine verknüpfte Figur für Gebete gefunden. Melden Sie sich bei HoYoLAB an oder nutzen Sie 'Über Spiel abrufen'.</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>Keine neuen Einträge für UID {0}; bestehende Daten behalten.</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>Lokaler Verlauf geladen</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>Import abgebrochen; bestehende Daten unverändert.</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>Abruf abgeschlossen, UID {0}, {1} Einträge; Bildressourcen werden geprüft...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>HoYoLAB hat Parameter abgelehnt (Code 1002). Bitte 'Über Spiel abrufen' nutzen.</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>Keine Gebetsdaten gefunden; bestehende Daten behalten. Bitte im Spiel prüfen.</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>Konfiguration konnte nicht gelesen werden: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>{0}-Einträge werden abgerufen... ({1} empfangen)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>Bitte geben Sie einen gültigen Gebets-Link ein</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>Authentifizierungsschlüssel wird generiert (vollständig)...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>Verschiedene Banner gaben Daten verschiedener Konten zurück; Import abgebrochen.</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>Warte auf Daten...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>Initialisierung des Diagnosedienstes fehlgeschlagen</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>Genshin-Datenfenster wird geöffnet...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>+ Neuen Benutzer hinzufügen</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>Unbenannt</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0}: {1} Einträge, {2}-Einträge werden abgerufen...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>Metadaten für Figuren, Waffen und Banner werden aktualisiert...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>Ungültiger Inhalt der Zwischenablage</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>Abgerufene UID stimmt nicht mit Figur überein; Import abgebrochen.</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> Bitte HoYoLAB-Anmeldestatus prüfen oder 'Über Spiel abrufen' nutzen.</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>Laden der Kontoinformationen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>Export erfolgreich</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>Analyse abgeschlossen!</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>Authentifizierungsschlüssel wird generiert (inkrementell)...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>Bitte wählen Sie zuerst eine Spielfigur im Umschalter aus.</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>Zwischenablage konnte nicht gelesen werden</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>Export fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>Kein mit UID {0} verknüpftes HoYoLAB-Konto gefunden. Verknüpfung prüfen oder 'Über Spiel abrufen' nutzen.</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>Figur gewechselt; vorherige Ergebnisse verworfen.</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>Erfassungswerkzeug starten</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>Umbenennen fehlgeschlagen: Ordnername existiert bereits</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>Download-Überprüfung</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>Umbenennen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>Liste sortiert</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>Erfolgreich umbenannt</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>Lade Spiel-Check-in-Status</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>Profilwechsel fehlgeschlagen</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>Browser konnte nicht geöffnet werden: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>Bitte Tastatur-Stopp-Taste festlegen, bevor Mausklick aktiviert wird</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>Mausklick erfordert zuerst das Festlegen einer Tastatur-Stopp-Taste</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>Unbekanntes Banner</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>Zugehörige Profilkonfiguration nicht gefunden</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>API-Link wird analysiert...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>Pfad ist gültig</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>Deaktiviert. Bitte aktivieren Sie das Haupt-Plugin, um Einstellungen zu konfigurieren.</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>Deaktiviert. Bitte aktivieren Sie das FPS-Plugin, um dessen Einstellungen zu konfigurieren.</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>Plugin geändert</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>Die aktuelle Voreinstellung stimmt nicht mit der neuesten Plugin-Version überein; eine neue Voreinstellung wurde automatisch erstellt.</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>Diese Voreinstellung ist derzeit als gesperrt markiert.</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>Löschen fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei konnte nicht gelöscht werden.
+Details: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>Interne Ansicht aktualisiert</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>Unbekannter Schlüsselwert {0} hinzugefügt</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>Warte auf das Laden der Daten...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>Verbindung zu Miyoushe wird hergestellt...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>Kontoanmeldung erforderlich</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>Reisetagebuch wird analysiert...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>Anfrage für Reisetagebuch fehlgeschlagen ({0}): {1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>Die vom Reisetagebuch zurückgegebene Figur stimmt nicht mit der aktuellen Auswahl überein; Anzeige gestoppt.</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>Laden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>Inhalt wird noch im Hintergrund vorgeladen; Übereinstimmung stammt aus Titel oder Pfad</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>Laden...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>Live-Hintergründe sind nur in Entwicklungsbuilds verfügbar. Bitte wählen Sie in Vorschau- und Release-Builds ein Bild als benutzerdefinierten Hintergrund aus.</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>Metadaten für Charaktere und Waffen werden über API abgerufen...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>{0}-Metadaten konnten nicht abgerufen werden, erneuter Versuch in {1}s ({2}/{3})...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>Keine neuen Bildressourcen gefunden; bestehender Cache oder Standard-Symbol wird verwendet</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>{0} Bildressourcen aktualisiert und in Datenbank gespeichert</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>Aktionsgebet-Metadaten aktualisiert (insgesamt {0} historische Gebete: Charakter {1}, Waffe {2}, Chronik {3})</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>Charakter</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>Waffe</value>
+  </data>
 </root>
