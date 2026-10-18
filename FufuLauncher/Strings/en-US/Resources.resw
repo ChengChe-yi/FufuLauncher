@@ -819,6 +819,12 @@
   <data name="SecurityAuthBtn" xml:space="preserve">
     <value>Start Developer License Authentication</value>
   </data>
+  <data name="Settings_TemporaryDevAuth_Title" xml:space="preserve">
+    <value>Temporary Developer License</value>
+  </data>
+  <data name="Settings_TemporaryDevAuth_Caption" xml:space="preserve">
+    <value>Default to developer authorization and skip checks for the current run. Automatically disabled on restart.</value>
+  </data>
   <data name="PluginMgmtTitle" xml:space="preserve">
     <value>Plugin Management</value>
   </data>

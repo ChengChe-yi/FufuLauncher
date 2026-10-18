@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -42,14 +42,21 @@ public sealed partial class SettingsPage
         }
 
         bool devEnabled = false;
-        var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
-        if (localSettings is not null)
+        var authorizationService = App.GetService<DeveloperAuthorizationService>();
+        if (authorizationService is not null && authorizationService.IsTemporaryAuthorized)
         {
-            var value = await localSettings.ReadSettingAsync("IsDevFeaturesEnabled");
-            devEnabled = value is not null && Convert.ToBoolean(value);
+            devEnabled = true;
+        }
+        else
+        {
+            var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
+            if (localSettings is not null)
+            {
+                var value = await localSettings.ReadSettingAsync("IsDevFeaturesEnabled");
+                devEnabled = value is not null && Convert.ToBoolean(value);
+            }
         }
 
-        var authorizationService = App.GetService<DeveloperAuthorizationService>();
         if (!devEnabled || authorizationService is null || !await authorizationService.IsAuthorizedAsync())
         {
             await ShowSafeDialogAsync(new ContentDialog
@@ -69,11 +76,19 @@ public sealed partial class SettingsPage
     private async Task UpdateApplyPredownloadRowVisibilityAsync()
     {
         bool devEnabled = false;
-        var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
-        if (localSettings is not null)
+        var authorizationService = App.GetService<DeveloperAuthorizationService>();
+        if (authorizationService is not null && authorizationService.IsTemporaryAuthorized)
         {
-            var value = await localSettings.ReadSettingAsync("IsDevFeaturesEnabled");
-            devEnabled = value is not null && Convert.ToBoolean(value);
+            devEnabled = true;
+        }
+        else
+        {
+            var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
+            if (localSettings is not null)
+            {
+                var value = await localSettings.ReadSettingAsync("IsDevFeaturesEnabled");
+                devEnabled = value is not null && Convert.ToBoolean(value);
+            }
         }
 
         ApplyPredownloadRow.Visibility = devEnabled ? Visibility.Visible : Visibility.Collapsed;

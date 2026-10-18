@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -70,6 +70,7 @@ public sealed partial class SettingsPage : Page
     private void Page_Loaded(object sender, RoutedEventArgs e)
     {
         EntranceStoryboard.Begin();
+        UpdateTemporaryDeveloperAuthUi();
 
         _isNavigatingFromMenu = true;
         if (SettingsNavigationView.SelectedItem == null)
@@ -97,6 +98,7 @@ public sealed partial class SettingsPage : Page
 
                 case SettingsSectionIds.SecurityAuth:
                     await RefreshModTrustUiAsync();
+                    UpdateTemporaryDeveloperAuthUi();
                     break;
             }
         }

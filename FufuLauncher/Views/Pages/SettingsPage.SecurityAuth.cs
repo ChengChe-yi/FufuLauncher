@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Text;
 using System.Text.Json;
 using FufuLauncher.Helpers;
+using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -149,6 +150,41 @@ public sealed partial class SettingsPage
                 XamlRoot = this.XamlRoot
             });
         }
+    }
+
+    private bool _isSyncingTemporaryDevAuth;
+
+    private void UpdateTemporaryDeveloperAuthUi()
+    {
+        if (TemporaryDeveloperAuthToggle == null) return;
+
+        var authService = App.GetService<DeveloperAuthorizationService>();
+        if (authService != null)
+        {
+            _isSyncingTemporaryDevAuth = true;
+            try
+            {
+                TemporaryDeveloperAuthToggle.IsOn = authService.IsTemporaryAuthorized;
+            }
+            finally
+            {
+                _isSyncingTemporaryDevAuth = false;
+            }
+        }
+    }
+
+    private async void OnTemporaryDeveloperAuthToggled(object sender, RoutedEventArgs e)
+    {
+        if (_isSyncingTemporaryDevAuth || sender is not ToggleSwitch toggle) return;
+
+        var authService = App.GetService<DeveloperAuthorizationService>();
+        if (authService != null)
+        {
+            authService.IsTemporaryAuthorized = toggle.IsOn;
+        }
+
+        await UpdateDeviceInfoRowVisibilityAsync();
+        await UpdateApplyPredownloadRowVisibilityAsync();
     }
 
     #endregion

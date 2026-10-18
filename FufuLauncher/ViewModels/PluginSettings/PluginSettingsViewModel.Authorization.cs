@@ -18,9 +18,14 @@ public partial class PluginSettingsViewModel
 
     private async Task<bool> CheckHwidAuthorizationAsync()
     {
+        var authorizationService = App.GetService<Services.DeveloperAuthorizationService>();
+        if (authorizationService is not null && authorizationService.IsTemporaryAuthorized)
+        {
+            return true;
+        }
+
         if (_hasCheckedHwid && _isHwidAuthorized) return true;
 
-        var authorizationService = App.GetService<Services.DeveloperAuthorizationService>();
         _isHwidAuthorized = authorizationService is not null && await authorizationService.IsAuthorizedAsync();
         _hasCheckedHwid = true;
         System.Diagnostics.Debug.WriteLine($"[HWID_DEBUG] 授权结果: {_isHwidAuthorized}");

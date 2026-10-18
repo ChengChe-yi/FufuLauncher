@@ -47,6 +47,12 @@ public sealed partial class SettingsPage
 
     private static async Task<bool> IsDevFeaturesEnabledAsync()
     {
+        var authorizationService = App.GetService<DeveloperAuthorizationService>();
+        if (authorizationService is not null && authorizationService.IsTemporaryAuthorized)
+        {
+            return true;
+        }
+
         var localSettings = App.GetService<ILocalSettingsService>();
         if (localSettings is null)
         {
@@ -59,12 +65,17 @@ public sealed partial class SettingsPage
 
     private static async Task<bool> HasDeveloperAccessAsync()
     {
+        var authorizationService = App.GetService<DeveloperAuthorizationService>();
+        if (authorizationService is not null && authorizationService.IsTemporaryAuthorized)
+        {
+            return true;
+        }
+
         if (!await IsDevFeaturesEnabledAsync())
         {
             return false;
         }
 
-        var authorizationService = App.GetService<DeveloperAuthorizationService>();
         return authorizationService is not null && await authorizationService.IsAuthorizedAsync();
     }
 
