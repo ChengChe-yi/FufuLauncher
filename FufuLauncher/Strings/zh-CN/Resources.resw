@@ -2091,6 +2091,9 @@
   <data name="LoginQR_WebPassport" xml:space="preserve">
     <value>网页通行证登录</value>
   </data>
+  <data name="LoginQR_HoYoLABWeb" xml:space="preserve">
+    <value>HoYoLAB 网页登录</value>
+  </data>
   <data name="LoginQR_GameAppId" xml:space="preserve">
     <value>游戏App ID:</value>
   </data>
@@ -2609,6 +2612,12 @@
   </data>
   <data name="DownloadWindow_BaseGameTooltip" xml:space="preserve">
     <value>取消勾选则只更新语音包</value>
+  </data>
+  <data name="DownloadWindow_ShowDetailLog" xml:space="preserve">
+    <value>显示详细日志</value>
+  </data>
+  <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
+    <value>隐藏详细日志</value>
   </data>
   <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
     <value>下载速度</value>

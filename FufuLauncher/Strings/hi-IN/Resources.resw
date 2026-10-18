@@ -3194,24 +3194,60 @@
   <data name="GachaAnalysis_WishHistory" xml:space="preserve">
     <value>प्रार्थना इतिहास</value>
   </data>
-  <data name="GachaHistory_Loading" xml:space="preserve"><value>प्रार्थना इतिहास व्यवस्थित किया जा रहा है…</value></data>
-  <data name="GachaHistory_Description" xml:space="preserve"><value>वर्ज़न के अनुसार लोड किया गया है। उस अवधि की प्रार्थनाएँ देखने के लिए बैनर चुनें।</value></data>
-  <data name="GachaHistory_HideEmpty" xml:space="preserve"><value>बिना प्राप्त आइटम वाले बैनर छिपाएँ</value></data>
-  <data name="GachaHistory_NewerVersion" xml:space="preserve"><value>नया वर्ज़न</value></data>
-  <data name="GachaHistory_OlderVersion" xml:space="preserve"><value>पुराना वर्ज़न</value></data>
-  <data name="GachaHistory_FiveStarItems" xml:space="preserve"><value>5-सितारा आइटम</value></data>
-  <data name="GachaHistory_FourStarItems" xml:space="preserve"><value>4-सितारा आइटम</value></data>
-  <data name="GachaHistory_ThreeStarItems" xml:space="preserve"><value>3-सितारा आइटम</value></data>
-  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve"><value>प्राप्त आइटम वाला कोई बैनर नहीं</value></data>
-  <data name="GachaHistory_EmptyTitle" xml:space="preserve"><value>ऐतिहासिक बैनर मेटाडेटा उपलब्ध नहीं है</value></data>
-  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve"><value>पूरा इतिहास देखने के लिए “बिना प्राप्त आइटम वाले बैनर छिपाएँ” बंद करें।</value></data>
-  <data name="GachaHistory_EmptyDescription" xml:space="preserve"><value>इतिहास स्वतः बनाने के लिए प्रार्थना रिकॉर्ड या आइटम मेटाडेटा अपडेट करें।</value></data>
-  <data name="GachaHistory_PeriodFormat" xml:space="preserve"><value>{0:yyyy-MM-dd HH:mm} से {1:yyyy-MM-dd HH:mm}</value></data>
-  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve"><value>{0} प्रार्थनाएँ</value></data>
-  <data name="GachaHistory_CharacterEvent" xml:space="preserve"><value>पात्र इवेंट प्रार्थना</value></data>
-  <data name="GachaHistory_WeaponEvent" xml:space="preserve"><value>हथियार इवेंट प्रार्थना</value></data>
-  <data name="GachaHistory_Chronicled" xml:space="preserve"><value>क्रॉनिकल्ड प्रार्थना</value></data>
-  <data name="GachaHistory_Limited" xml:space="preserve"><value>सीमित प्रार्थना</value></data>
+  <data name="GachaHistory_Loading" xml:space="preserve">
+    <value>प्रार्थना इतिहास व्यवस्थित किया जा रहा है…</value>
+  </data>
+  <data name="GachaHistory_Description" xml:space="preserve">
+    <value>वर्ज़न के अनुसार लोड किया गया है। उस अवधि की प्रार्थनाएँ देखने के लिए बैनर चुनें।</value>
+  </data>
+  <data name="GachaHistory_HideEmpty" xml:space="preserve">
+    <value>बिना प्राप्त आइटम वाले बैनर छिपाएँ</value>
+  </data>
+  <data name="GachaHistory_NewerVersion" xml:space="preserve">
+    <value>नया वर्ज़न</value>
+  </data>
+  <data name="GachaHistory_OlderVersion" xml:space="preserve">
+    <value>पुराना वर्ज़न</value>
+  </data>
+  <data name="GachaHistory_FiveStarItems" xml:space="preserve">
+    <value>5-सितारा आइटम</value>
+  </data>
+  <data name="GachaHistory_FourStarItems" xml:space="preserve">
+    <value>4-सितारा आइटम</value>
+  </data>
+  <data name="GachaHistory_ThreeStarItems" xml:space="preserve">
+    <value>3-सितारा आइटम</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve">
+    <value>प्राप्त आइटम वाला कोई बैनर नहीं</value>
+  </data>
+  <data name="GachaHistory_EmptyTitle" xml:space="preserve">
+    <value>ऐतिहासिक बैनर मेटाडेटा उपलब्ध नहीं है</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve">
+    <value>पूरा इतिहास देखने के लिए “बिना प्राप्त आइटम वाले बैनर छिपाएँ” बंद करें।</value>
+  </data>
+  <data name="GachaHistory_EmptyDescription" xml:space="preserve">
+    <value>इतिहास स्वतः बनाने के लिए प्रार्थना रिकॉर्ड या आइटम मेटाडेटा अपडेट करें।</value>
+  </data>
+  <data name="GachaHistory_PeriodFormat" xml:space="preserve">
+    <value>{0:yyyy-MM-dd HH:mm} से {1:yyyy-MM-dd HH:mm}</value>
+  </data>
+  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve">
+    <value>{0} प्रार्थनाएँ</value>
+  </data>
+  <data name="GachaHistory_CharacterEvent" xml:space="preserve">
+    <value>पात्र इवेंट प्रार्थना</value>
+  </data>
+  <data name="GachaHistory_WeaponEvent" xml:space="preserve">
+    <value>हथियार इवेंट प्रार्थना</value>
+  </data>
+  <data name="GachaHistory_Chronicled" xml:space="preserve">
+    <value>क्रॉनिकल्ड प्रार्थना</value>
+  </data>
+  <data name="GachaHistory_Limited" xml:space="preserve">
+    <value>सीमित प्रार्थना</value>
+  </data>
   <data name="GachaAnalysis_GetRecords" xml:space="preserve">
     <value>गाचा रिकॉर्ड प्राप्त करें</value>
   </data>
@@ -5289,32 +5325,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF निर्यात विफल</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>वर्तमान प्रक्रिया पथ हल करने में विफल</value>
   </data>
@@ -5336,153 +5346,12 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>इंजेक्शन सहायक कोड {0} के साथ बाहर निकला</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>बैकपैक सिंक्रोनाइज़ेशन के लिए x64 बिल्ड आवश्यक है।</value>
   </data>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>बैकपैक सिंक्रोनाइज़ेशन मॉड्यूल modules/backpack.dll गायब है।</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Checkin_PartialFailed" xml:space="preserve">
     <value>चेक-इन आंशिक रूप से विफल</value>
   </data>
@@ -6386,7 +6255,9 @@ UIGF v4.x/3.0/2.x</value>
     <value>Download / Install Error</value>
   </data>
   <data name="PluginPage_DownloadErrorContentFormat" xml:space="preserve">
-    <value>Automatic download failed: {0}&#10;&#10;Click the button below to open your browser and download manually.</value>
+    <value>Automatic download failed: {0}
+
+Click the button below to open your browser and download manually.</value>
   </data>
   <data name="PluginPage_ManualDownloadBtn" xml:space="preserve">
     <value>Manual Download</value>
@@ -6703,25 +6574,63 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>एक ही नाम की DLL का टकराव हल हो गया है। अब आप गेम दोबारा शुरू कर सकते हैं।</value>
   </data>
-  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>बदलाव अपने आप सहेजे जाते हैं</value></data>
-  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>सहेजा जा रहा है…</value></data>
-  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>कॉन्फ़िगरेशन सहेजने में विफल</value></data>
-  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>कॉन्फ़िगरेशन फ़ाइल में लिखा नहीं जा सका। फ़ाइल की अनुमतियाँ जाँचें और फिर प्रयास करें। विवरण: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>कॉन्फ़िगरेशन लोड करने में विफल</value></data>
-  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>प्लगइन की कॉन्फ़िगरेशन फ़ाइल पढ़ी नहीं जा सकी। विवरण: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>सुनिश्चित करें कि कॉन्फ़िगरेशन फ़ाइल मौजूद है और पढ़ी जा सकती है, फिर उसे दोबारा लोड करें।</value></data>
-  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>कॉन्फ़िगरेशन फ़ाइल मौजूद नहीं है: {0}</value></data>
-  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>कोई कॉन्फ़िगर करने योग्य सेटिंग नहीं</value></data>
-  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>यह प्लगइन बदलने योग्य सेटिंग प्रदान नहीं करता है।</value></data>
-  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>कोई मेल खाती सेटिंग नहीं मिली</value></data>
-  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>कोई दूसरा कीवर्ड आज़माएँ या खोज साफ़ करें।</value></data>
-  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>खोज साफ़ करें</value></data>
-  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} सेटिंग</value></data>
-  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} सेटिंग</value></data>
-  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>कॉन्फ़िगरेशन फ़ाइल</value></data>
-  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>मान दर्ज करें…</value></data>
-  <data name="PluginSettings_CollapseHeader" xml:space="preserve"><value>शीर्ष पट्टी समेटें</value></data>
-  <data name="PluginSettings_ExpandHeader" xml:space="preserve"><value>शीर्ष पट्टी फैलाएँ</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
+    <value>बदलाव अपने आप सहेजे जाते हैं</value>
+  </data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve">
+    <value>सहेजा जा रहा है…</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन सहेजने में विफल</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन फ़ाइल में लिखा नहीं जा सका। फ़ाइल की अनुमतियाँ जाँचें और फिर प्रयास करें। विवरण: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन लोड करने में विफल</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
+    <value>प्लगइन की कॉन्फ़िगरेशन फ़ाइल पढ़ी नहीं जा सकी। विवरण: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
+    <value>सुनिश्चित करें कि कॉन्फ़िगरेशन फ़ाइल मौजूद है और पढ़ी जा सकती है, फिर उसे दोबारा लोड करें।</value>
+  </data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन फ़ाइल मौजूद नहीं है: {0}</value>
+  </data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
+    <value>कोई कॉन्फ़िगर करने योग्य सेटिंग नहीं</value>
+  </data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
+    <value>यह प्लगइन बदलने योग्य सेटिंग प्रदान नहीं करता है।</value>
+  </data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve">
+    <value>कोई मेल खाती सेटिंग नहीं मिली</value>
+  </data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
+    <value>कोई दूसरा कीवर्ड आज़माएँ या खोज साफ़ करें।</value>
+  </data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
+    <value>खोज साफ़ करें</value>
+  </data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
+    <value>{0} सेटिंग</value>
+  </data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
+    <value>{0} / {1} सेटिंग</value>
+  </data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
+    <value>कॉन्फ़िगरेशन फ़ाइल</value>
+  </data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
+    <value>मान दर्ज करें…</value>
+  </data>
+  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
+    <value>शीर्ष पट्टी समेटें</value>
+  </data>
+  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
+    <value>शीर्ष पट्टी फैलाएँ</value>
+  </data>
   <data name="AchievementWindow_DataActions" xml:space="preserve">
     <value>डेटा कार्रवाइयाँ</value>
   </data>
@@ -6907,5 +6816,699 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="ServiceDetail_DurationDays" xml:space="preserve">
     <value>अवधि: {0} दिन {1} घंटे</value>
+  </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>स्वचालित रूप से पुनः आरंभ करने में असमर्थ</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>स्वचालित पुनः आरंभ विफल रहा। आपकी सेटिंग्स सहेज ली गई हैं; परिवर्तनों को लागू करने के लिए कृपया ऐप को मैन्युअल रूप से बंद करें और फिर से खोलें।</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>कॉन्फ़िगर किया जा रहा है: {0} ({1})</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>चेक-इन विकल्प कॉन्फ़िगर करने के लिए नीचे दिए गए खाते का चयन करें</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>बैच चेक-इन में शामिल करने के लिए खातों को चिह्नित करें, विकल्प संपादित करने के लिए खाता चुनें, और क्रम बदलने के लिए खींचें</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>चेक-इन का क्रम बदलने के लिए खींचें</value>
+  </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>शॉर्टकट नाम</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>कस्टम नाम (.lnk के बिना, डिफ़ॉल्ट के लिए खाली छोड़ें)</value>
+  </data>
+  <data name="LoginQR_HoYoLABWeb" xml:space="preserve">
+    <value>HoYoLAB वेब लॉगिन</value>
+  </data>
+  <data name="DownloadWindow_ShowDetailLog" xml:space="preserve">
+    <value>विस्तृत लॉग दिखाएँ</value>
+  </data>
+  <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
+    <value>विस्तृत लॉग छिपाएँ</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>रंग स्थान (Color Space)</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>पीक चमक</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>फ़ुल फ़्रेम अधिकतम चमक</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>SDR सफ़ेद स्तर</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>हाइलाइट्स के लिए पीक चमक सीमा समायोजित करता है (मॉनिटर से मेल खाने की अनुशंसा की जाती है)</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>गेम जगत के दृश्यों के लिए बेसलाइन संदर्भ सफ़ेद चमक समायोजित करता है</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>मिनीमैप, स्वास्थ्य बार और टेक्स्ट जैसे UI तत्वों की चमक समायोजित करता है</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDR सक्षम है</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDR अक्षम है</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDR समर्थित नहीं है</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDR अनुपलब्ध है</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>HDR का पता लगाया जा रहा है...</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR (मानक गतिशील रेंज)</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG (विस्तृत रंग सरगम)</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR (उच्च गतिशील रेंज)</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>अज्ञात</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>पढ़ने में असमर्थ</value>
+  </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>Embedded Yae के माध्यम से गेम से आयात करें</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>गेम लॉन्च करें और Embedded Yae घटक के माध्यम से गेम के भीतर से उपलब्धि प्रगति आयात करें</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>गेम इंस्टॉलेशन निर्देशिका नहीं मिली। कृपया पहले सेटिंग्स में गेम पथ कॉन्फ़िगर करें।</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>गेम डेटा की प्रतीक्षा की जा रही है...</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>कोई उपलब्धि डेटा प्राप्त नहीं हुआ।</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>गेम से {0} उपलब्धियां आयात की गईं, {1} उपलब्धि प्रगति प्रविष्टियां समन्वयित की गईं।</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>गेम से उपलब्धियां आयात करने में विफल।</value>
+  </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>गेम से प्राप्त करें</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>गेम में प्रवेश करें और प्रार्थना इतिहास खोलें
+Bilibili समर्थित; MiYouShe लॉगिन आवश्यक नहीं</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>कृपया उस गेम खाते में प्रवेश करें जिसे आप निर्यात करना चाहते हैं, "प्रार्थना इतिहास" खोलें, और रिकॉर्ड लोड होने की प्रतीक्षा करें, फिर "प्राप्त करना प्रारंभ करें" पर क्लिक करें।
+
+आधिकारिक चीनी सर्वर (Celestia), Bilibili (Irminsul) और अंतर्राष्ट्रीय सर्वर समर्थित हैं, MiYouShe में लॉग इन करने की आवश्यकता नहीं है। पुष्टि करें कि गेम में सक्रिय खाता वही है जिसे आप निर्यात करना चाहते हैं।</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>प्राप्त करना प्रारंभ करें</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>गेम से प्रार्थना इतिहास लिंक पढ़ा जा रहा है...</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>कृपया पहले लॉन्चर में सही गेम पथ सेट करें, फिर गेम में जाकर प्रार्थना इतिहास खोलें।</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>कोई प्रार्थना लिंक नहीं मिला। कृपया लक्षित गेम खाते में प्रवेश करें, प्रार्थना इतिहास खोलें और लोड पूरा होने की प्रतीक्षा करने के बाद पुनः प्रयास करें।</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>गेम से प्रार्थना लिंक पढ़ने में असमर्थ। कृपया प्रार्थना इतिहास को फिर से खोलें और पुनः प्रयास करें।</value>
+  </data>
+  <data name="Checkin_UnsupportedGame" xml:space="preserve">
+    <value>इस गेम के लिए दैनिक पुरस्कार चेक-इन कॉन्फ़िगर नहीं है</value>
+  </data>
+  <data name="Checkin_LoginExpired" xml:space="preserve">
+    <value>लॉगिन क्रेडेंशियल समाप्त हो गए हैं और रीफ़्रेश नहीं हो सके। कृपया चेक-इन करने से पहले MiYouShe में पुनः लॉग इन करें</value>
+  </data>
+  <data name="Checkin_GameCaptcha" xml:space="preserve">
+    <value>चेक-इन के लिए सुरक्षा सत्यापन आवश्यक है, कृपया MiYouShe के आधिकारिक पृष्ठ पर सत्यापन पूरा करें</value>
+  </data>
+  <data name="Checkin_SignNotConfirmed" xml:space="preserve">
+    <value>चेक-इन स्थिति की पुष्टि नहीं हुई है, कृपया बाद में पुनः प्रयास करें</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>Bilibili सर्वर (Bilibili)</value>
+  </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>डिवाइस</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id एक मान्य GUID होना चाहिए</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time एक मान्य Unix मिलीसेकंड टाइमस्टैम्प होना चाहिए</value>
+  </data>
+  <data name="Miyoushe_Title" xml:space="preserve">
+    <value>MiYouShe</value>
+  </data>
+  <data name="Miyoushe_CardHint" xml:space="preserve">
+    <value>आधिकारिक समाचार, कम्युनिटी पोस्ट और फ़ॉलो किए गए रचनाकारों को ब्राउज़ करें</value>
+  </data>
+  <data name="Miyoushe_Explore" xml:space="preserve">
+    <value>एक्सप्लोर करें</value>
+  </data>
+  <data name="Miyoushe_Forum" xml:space="preserve">
+    <value>कम्युनिटी</value>
+  </data>
+  <data name="Miyoushe_News" xml:space="preserve">
+    <value>आधिकारिक समाचार</value>
+  </data>
+  <data name="Miyoushe_Following" xml:space="preserve">
+    <value>फ़ॉलो किए गए</value>
+  </data>
+  <data name="Miyoushe_Favorites" xml:space="preserve">
+    <value>MiYouShe पसंदीदा</value>
+  </data>
+  <data name="Miyoushe_Library" xml:space="preserve">
+    <value>मेरी लाइब्रेरी</value>
+  </data>
+  <data name="Miyoushe_Bookmarks" xml:space="preserve">
+    <value>स्थानीय बुकमार्क</value>
+  </data>
+  <data name="Miyoushe_History" xml:space="preserve">
+    <value>इतिहास</value>
+  </data>
+  <data name="Miyoushe_MyProfile" xml:space="preserve">
+    <value>मेरी प्रोफ़ाइल</value>
+  </data>
+  <data name="Miyoushe_User" xml:space="preserve">
+    <value>लेखक प्रोफ़ाइल</value>
+  </data>
+  <data name="Miyoushe_Topic" xml:space="preserve">
+    <value>विषय (Topic)</value>
+  </data>
+  <data name="Miyoushe_Collection" xml:space="preserve">
+    <value>संग्रह (Collection)</value>
+  </data>
+  <data name="Miyoushe_Search" xml:space="preserve">
+    <value>खोज परिणाम</value>
+  </data>
+  <data name="Miyoushe_SearchHint" xml:space="preserve">
+    <value>पोस्ट खोजें, या पोस्ट ID / MiYouShe लिंक पेस्ट करें</value>
+  </data>
+  <data name="Miyoushe_Guest" xml:space="preserve">
+    <value>अतिथि (Guest)</value>
+  </data>
+  <data name="Miyoushe_GuestHint" xml:space="preserve">
+    <value>सार्वजनिक पोस्ट अतिथि के रूप में उपलब्ध हैं। अपने फ़ीड और पसंदीदा के लिए लॉन्चर में एक चीनी सर्वर खाता चुनें।</value>
+  </data>
+  <data name="Miyoushe_AccountHint" xml:space="preserve">
+    <value>स्विच करना केवल इस विंडो पर लागू होता है</value>
+  </data>
+  <data name="Miyoushe_LoginHint" xml:space="preserve">
+    <value>लॉन्चर के खाता प्रबंधक में एक चीनी सर्वर खाते में लॉग इन करें, फिर उसे यहाँ चुनें। यदि सत्र समाप्त हो गया है तो पुनः लॉग इन करें।</value>
+  </data>
+  <data name="Miyoushe_IdentityError" xml:space="preserve">
+    <value>खाते की डिवाइस पहचान अनुपलब्ध है। अतिथि मोड पर स्विच किया गया। खाता प्रबंधन में पुनः साइन इन करें और पुनः प्रयास करें।</value>
+  </data>
+  <data name="Miyoushe_Refresh" xml:space="preserve">
+    <value>रीफ़्रेश करें</value>
+  </data>
+  <data name="Miyoushe_RefreshHint" xml:space="preserve">
+    <value>वर्तमान पृष्ठ को रीफ़्रेश करें (F5)</value>
+  </data>
+  <data name="Miyoushe_Refreshed" xml:space="preserve">
+    <value>रीफ़्रेश किया गया ({0})</value>
+  </data>
+  <data name="Miyoushe_Empty" xml:space="preserve">
+    <value>प्रदर्शित करने के लिए कोई पोस्ट नहीं है</value>
+  </data>
+  <data name="Miyoushe_More" xml:space="preserve">
+    <value>और लोड करें</value>
+  </data>
+  <data name="Miyoushe_SelectPost" xml:space="preserve">
+    <value>पढ़ना शुरू करने के लिए कोई पोस्ट चुनें</value>
+  </data>
+  <data name="Miyoushe_Save" xml:space="preserve">
+    <value>स्थानीय रूप से सहेजें</value>
+  </data>
+  <data name="Miyoushe_CopyLink" xml:space="preserve">
+    <value>लिंक कॉपी करें</value>
+  </data>
+  <data name="Miyoushe_Original" xml:space="preserve">
+    <value>मूल पोस्ट खोलें</value>
+  </data>
+  <data name="Miyoushe_Article" xml:space="preserve">
+    <value>लेख</value>
+  </data>
+  <data name="Miyoushe_Comments" xml:space="preserve">
+    <value>टिप्पणियाँ</value>
+  </data>
+  <data name="Miyoushe_HotReplies" xml:space="preserve">
+    <value>शीर्ष टिप्पणियाँ</value>
+  </data>
+  <data name="Miyoushe_LatestReplies" xml:space="preserve">
+    <value>नवीनतम टिप्पणियाँ</value>
+  </data>
+  <data name="Miyoushe_OldestReplies" xml:space="preserve">
+    <value>सबसे पुरानी टिप्पणियाँ</value>
+  </data>
+  <data name="Miyoushe_OnlyAuthor" xml:space="preserve">
+    <value>केवल लेखक</value>
+  </data>
+  <data name="Miyoushe_Hot" xml:space="preserve">
+    <value>लोकप्रिय</value>
+  </data>
+  <data name="Miyoushe_Latest" xml:space="preserve">
+    <value>नवीनतम पोस्ट</value>
+  </data>
+  <data name="Miyoushe_Featured" xml:space="preserve">
+    <value>चुनिंदा</value>
+  </data>
+  <data name="Miyoushe_Notices" xml:space="preserve">
+    <value>नोटिस</value>
+  </data>
+  <data name="Miyoushe_Events" xml:space="preserve">
+    <value>इवेंट्स</value>
+  </data>
+  <data name="Miyoushe_NoComments" xml:space="preserve">
+    <value>अभी तक कोई टिप्पणी नहीं है</value>
+  </data>
+  <data name="Miyoushe_SubReplies" xml:space="preserve">
+    <value>{0} जवाब देखें</value>
+  </data>
+  <data name="Miyoushe_Close" xml:space="preserve">
+    <value>बंद करें</value>
+  </data>
+  <data name="Miyoushe_Image" xml:space="preserve">
+    <value>छवि देखें</value>
+  </data>
+  <data name="Miyoushe_OpenImage" xml:space="preserve">
+    <value>मूल छवि खोलें</value>
+  </data>
+  <data name="Miyoushe_LinkCopied" xml:space="preserve">
+    <value>पोस्ट लिंक कॉपी कर लिया गया</value>
+  </data>
+  <data name="Miyoushe_SearchTooLong" xml:space="preserve">
+    <value>खोज टेक्स्ट अधिकतम 200 वर्णों का होना चाहिए</value>
+  </data>
+  <data name="Miyoushe_Retry" xml:space="preserve">
+    <value>पुनः प्रयास करें</value>
+  </data>
+  <data name="Miyoushe_Timeout" xml:space="preserve">
+    <value>अनुरोध का समय समाप्त (टाइम आउट) हो गया। कृपया पुनः प्रयास करें।</value>
+  </data>
+  <data name="Miyoushe_Verify" xml:space="preserve">
+    <value>सुरक्षा सत्यापन पूरा करें</value>
+  </data>
+  <data name="Miyoushe_RiskHint" xml:space="preserve">
+    <value>MiYouShe को सुरक्षा सत्यापन की आवश्यकता है। अनुरोध रोक दिए गए हैं। अंतिम कार्रवाई को पुनः आज़माने के लिए आधिकारिक कैप्चा पूरा करें।</value>
+  </data>
+  <data name="Miyoushe_VerifyHint" xml:space="preserve">
+    <value>कृपया आधिकारिक MiYouShe कैप्चा पूरा करें। सत्यापन रद्द करने के लिए यह विंडो बंद करें।</value>
+  </data>
+  <data name="Miyoushe_VerifyLoadError" xml:space="preserve">
+    <value>कैप्चा लोड करने में विफल रहा। अपना कनेक्शन जाँचें और पुनः प्रयास करें, या आधिकारिक MiYouShe वेबसाइट पर सत्यापित करें।</value>
+  </data>
+  <data name="Miyoushe_VerifyCancelled" xml:space="preserve">
+    <value>सत्यापन रद्द कर दिया गया। अनुरोध रुके हुए हैं। पुनः सत्यापित करने के लिए 'पुनः प्रयास करें' पर क्लिक करें।</value>
+  </data>
+  <data name="Miyoushe_LibraryError" xml:space="preserve">
+    <value>स्थानीय बुकमार्क या इतिहास नहीं पढ़ा जा सका। मौजूदा फ़ाइल सुरक्षित रखी गई है।</value>
+  </data>
+  <data name="Miyoushe_Back" xml:space="preserve">
+    <value>वापस जाएँ</value>
+  </data>
+  <data name="Miyoushe_RightComments" xml:space="preserve">
+    <value>साइड टिप्पणियाँ</value>
+  </data>
+  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve">
+    <value>टिप्पणियों को दाईं साइडबार में दिखाएं; पोस्ट के नीचे रखने के लिए बंद करें</value>
+  </data>
+  <data name="Miyoushe_LoadingComments" xml:space="preserve">
+    <value>टिप्पणियाँ लोड हो रही हैं…</value>
+  </data>
+  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve">
+    <value>टिप्पणियाँ उपलब्ध नहीं हैं। पुनः प्रयास करने के लिए ऊपर दिए गए संदेश का उपयोग करें।</value>
+  </data>
+  <data name="Miyoushe_Like" xml:space="preserve">
+    <value>लाइक करें</value>
+  </data>
+  <data name="Miyoushe_Liked" xml:space="preserve">
+    <value>लाइक किया गया</value>
+  </data>
+  <data name="Miyoushe_PublishComment" xml:space="preserve">
+    <value>टिप्पणी करें</value>
+  </data>
+  <data name="Miyoushe_Reply" xml:space="preserve">
+    <value>उत्तर दें</value>
+  </data>
+  <data name="Miyoushe_ReplyTo" xml:space="preserve">
+    <value>@{0} को उत्तर दें</value>
+  </data>
+  <data name="Miyoushe_CommentHint" xml:space="preserve">
+    <value>एक टिप्पणी लिखें (अधिकतम 1000 वर्ण)</value>
+  </data>
+  <data name="Miyoushe_SendComment" xml:space="preserve">
+    <value>MiYouShe पर प्रकाशित करें</value>
+  </data>
+  <data name="Miyoushe_Cancel" xml:space="preserve">
+    <value>रद्द करें</value>
+  </data>
+  <data name="Miyoushe_VerifyAndSend" xml:space="preserve">
+    <value>सत्यापित करें और प्रकाशित करें</value>
+  </data>
+  <data name="Miyoushe_Resubmit" xml:space="preserve">
+    <value>पुनः प्रकाशित करें</value>
+  </data>
+  <data name="Miyoushe_CommentSent" xml:space="preserve">
+    <value>टिप्पणी सबमिट कर दी गई; नवीनतम टिप्पणियाँ दिखाई जा रही हैं</value>
+  </data>
+  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve">
+    <value>सबमिशन की पुष्टि नहीं की जा सकी। आपका ड्राफ़्ट सुरक्षित है। दोबारा प्रकाशित करने से पहले मूल पोस्ट की जाँच करें।</value>
+  </data>
+  <data name="Miyoushe_CommentRiskHint" xml:space="preserve">
+    <value>MiYouShe को सुरक्षा सत्यापन की आवश्यकता है। आधिकारिक कैप्चा पूरा करने और यह टिप्पणी सबमिट करने के लिए 'सत्यापित करें और प्रकाशित करें' चुनें।</value>
+  </data>
+  <data name="ModTrust_Title" xml:space="preserve">
+    <value>कोड साइनिंग ट्रस्ट (FufuLauncher CA)</value>
+  </data>
+  <data name="ModTrust_Loading" xml:space="preserve">
+    <value>ट्रस्ट स्थिति लोड हो रही है...</value>
+  </data>
+  <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>रीफ़्रेश करें</value>
+  </data>
+  <data name="ModTrust_PackageMissing" xml:space="preserve">
+    <value>ट्रस्ट पैकेज तैनात नहीं किया गया: प्रमाणपत्र और मैनिफ़ेस्ट फ़ाइलों को Assets\Trust के अंतर्गत रखें, या आधिकारिक एंडपॉइंट से सिंक करने के लिए "अभी अपडेट करें" पर क्लिक करें।</value>
+  </data>
+  <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>वर्तमान स्थिति: {0}</value>
+  </data>
+  <data name="ModTrust_InstalledUser" xml:space="preserve">
+    <value>स्थापित (वर्तमान उपयोगकर्ता)</value>
+  </data>
+  <data name="ModTrust_InstalledMachine" xml:space="preserve">
+    <value>स्थापित (यह मशीन)</value>
+  </data>
+  <data name="ModTrust_NotInstalled" xml:space="preserve">
+    <value>स्थापित नहीं है</value>
+  </data>
+  <data name="ModTrust_InstallTitle" xml:space="preserve">
+    <value>प्रमाणपत्र स्थापित / अनइंस्टॉल करें</value>
+  </data>
+  <data name="ModTrust_InstallCaption" xml:space="preserve">
+    <value>इंस्टॉल करने के बाद, हमारे द्वारा जारी किए गए कोड हस्ताक्षर Windows और इस लॉन्चर द्वारा पहचाने जाएंगे। आप उन्हें किसी भी समय हटा सकते हैं।</value>
+  </data>
+  <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+    <value>इंस्टॉल करें (उपयोगकर्ता)</value>
+  </data>
+  <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+    <value>अनइंस्टॉल करें (उपयोगकर्ता)</value>
+  </data>
+  <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+    <value>इंस्टॉल करें (मशीन, व्यवस्थापक)</value>
+  </data>
+  <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+    <value>अनइंस्टॉल करें (मशीन, व्यवस्थापक)</value>
+  </data>
+  <data name="ModTrust_ScopeUser" xml:space="preserve">
+    <value>वर्तमान उपयोगकर्ता</value>
+  </data>
+  <data name="ModTrust_ScopeMachine" xml:space="preserve">
+    <value>मशीन</value>
+  </data>
+  <data name="ModTrust_InstallConfirm" xml:space="preserve">
+    <value>क्या {0} के लिए प्लेटफ़ॉर्म प्रमाणपत्र इंस्टॉल करना चाहते हैं? इसके बाद हमारे द्वारा जारी किए गए कोड हस्ताक्षर पहचाने जाएंगे। क्या जारी रखें?</value>
+  </data>
+  <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+    <value>क्या {0} के लिए प्लेटफ़ॉर्म प्रमाणपत्र हटाना चाहते हैं? इसके बाद हमारे द्वारा जारी किए गए कोड हस्ताक्षरों पर भरोसा नहीं किया जाएगा। क्या जारी रखें?</value>
+  </data>
+  <data name="ModTrust_SyncTitle" xml:space="preserve">
+    <value>ट्रस्ट जानकारी अपडेट</value>
+  </data>
+  <data name="ModTrust_SyncCaption" xml:space="preserve">
+    <value>आधिकारिक एंडपॉइंट से कोड साइनिंग ट्रस्ट जानकारी अपडेट करता है।</value>
+  </data>
+  <data name="ModTrust_SyncBtn" xml:space="preserve">
+    <value>अभी अपडेट करें</value>
+  </data>
+  <data name="ModTrust_SyncConfirm" xml:space="preserve">
+    <value>आधिकारिक एंडपॉइंट से ट्रस्ट जानकारी डाउनलोड और सत्यापित की जाएगी; सत्यापन विफल होने पर इसे लागू नहीं किया जाएगा। क्या जारी रखें?</value>
+  </data>
+  <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>ब्लॉकिंग सक्षम करें</value>
+  </data>
+  <data name="ModTrust_StrictConfirm" xml:space="preserve">
+    <value>सक्षम होने के बाद, जो फ़ाइलें हस्ताक्षर सत्यापन में विफल रहेंगी वे लोड नहीं होंगी, जिससे आपके द्वारा उपयोग किए जा रहे तृतीय-पक्ष प्लगइन्स प्रभावित हो सकते हैं। क्या जारी रखें?</value>
+  </data>
+  <data name="ModTrust_BlockedTitle" xml:space="preserve">
+    <value>कोड हस्ताक्षर सत्यापन विफल रहा</value>
+  </data>
+  <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>यह फ़ाइल हस्ताक्षर सत्यापन में विफल रही और इसे ब्लॉक कर दिया गया:</value>
+  </data>
+  <data name="ModTrust_WarnTitle" xml:space="preserve">
+    <value>कोड साइनिंग सूचना</value>
+  </data>
+  <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+    <value>स्थापित (मशीन, सभी उपयोगकर्ताओं पर लागू)</value>
+  </data>
+  <data name="ModTrust_InstalledBoth" xml:space="preserve">
+    <value>स्थापित (वर्तमान उपयोगकर्ता + मशीन)</value>
+  </data>
+  <data name="ModTrust_MachineHint" xml:space="preserve">
+    <value>वर्तमान उपयोगकर्ता का दायरा मशीन स्थापना द्वारा प्रदान किया जाता है; मशीन के दायरे से स्थापित और अनइंस्टॉल करें।</value>
+  </data>
+  <data name="ModTrust_ModeTitle" xml:space="preserve">
+    <value>अमान्य हस्ताक्षरों के लिए कार्रवाई</value>
+  </data>
+  <data name="ModTrust_ModeWarn" xml:space="preserve">
+    <value>केवल सूचित करें</value>
+  </data>
+  <data name="ModTrust_ModeEnforce" xml:space="preserve">
+    <value>ब्लॉक करें</value>
+  </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>पहुँच अस्वीकृत</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>इस डिवाइस को FufuLauncher का उपयोग करने से ब्लॉक कर दिया गया है।{0}{0}UID: {1}{0}कारण: {2}{0}{0}यदि आपको लगता है कि यह एक गलती है, तो आप यहाँ अपील दर्ज कर सकते हैं (यदि UID "-" दिखाई देता है, तो इसे फ़ॉर्म में खाली छोड़ दें):{0}{3}{0}{0}क्या अपील पृष्ठ अभी खोलें? 'नहीं' चुनने पर लॉन्चर बंद हो जाएगा।</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>सर्वर द्वारा पहुँच निरस्त कर दी गई</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>UID सर्वर ब्लॉक सूची में है</value>
+  </data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve">
+    <value>MiYouShe से जुड़े गेम पात्रों की जाँच की जा रही है...</value>
+  </data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve">
+    <value>गेम पात्र चुनें</value>
+  </data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve">
+    <value>वह पात्र चुनें जिसका प्रार्थना इतिहास आप प्राप्त करना चाहते हैं। Bilibili पात्र Irminsul के अंतर्गत सूचीबद्ध हैं। यदि आपका पात्र नहीं दिख रहा है, तो रद्द करें और अपनी MiYouShe बाइंडिंग जाँचें, या 'गेम से प्राप्त करें' का उपयोग करें।</value>
+  </data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve">
+    <value>Celestia (आधिकारिक)</value>
+  </data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve">
+    <value>Irminsul (Bilibili)</value>
+  </data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="GameRole_Select" xml:space="preserve">
+    <value>गेम की भूमिका बदलें</value>
+  </data>
+  <data name="GameRole_Hint" xml:space="preserve">
+    <value>Bound Roles पर डिफ़ॉल्ट सेट करें। प्रत्येक सुविधा स्वतंत्र रूप से सर्वर चुन सकती है।</value>
+  </data>
+  <data name="GameRole_Refresh" xml:space="preserve">
+    <value>बाउंड भूमिकाएं रीफ़्रेश करें</value>
+  </data>
+  <data name="GameRole_Unavailable" xml:space="preserve">
+    <value>चयनित भूमिका अब बाइंडिंग सूची में नहीं है। एक भूमिका चुनें या रीफ़्रेश करें।</value>
+  </data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve">
+    <value>फ़ॉलबैक दैनिक नोट्स प्रतिक्रिया चयनित भूमिका की पुष्टि नहीं कर सकी। इस भूमिका के दैनिक नोट्स सक्षम करें और पुनः प्रयास करें।</value>
+  </data>
+  <data name="GameRole_SkyIsland" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GameRole_WorldTree" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="MiyousheQr_Title" xml:space="preserve">
+    <value>स्क्रीन QR स्कैनर</value>
+  </data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve">
+    <value>'एक बार स्कैन करें' चयनित क्षेत्र को केवल एक बार पढ़ता है। 'निरंतर स्कैन' चयनित क्षेत्र में नए QR कोड पर नज़र रखता है। अपने वर्तमान MiYouShe खाते का उपयोग करके लॉगिन की पुष्टि करें।</value>
+  </data>
+  <data name="MiyousheQr_CurrentAccount" xml:space="preserve">
+    <value>वर्तमान MiYouShe खाता</value>
+  </data>
+  <data name="MiyousheQr_Target" xml:space="preserve">
+    <value>लॉगिन लक्ष्य</value>
+  </data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve">
+    <value>पुष्टि करने पर, यह कोड प्रदर्शित करने वाला डिवाइस उपरोक्त खाते में लॉग इन हो जाएगा।</value>
+  </data>
+  <data name="MiyousheQr_Capture" xml:space="preserve">
+    <value>एक बार स्कैन करें</value>
+  </data>
+  <data name="MiyousheQr_Confirm" xml:space="preserve">
+    <value>लॉगिन की पुष्टि करें</value>
+  </data>
+  <data name="MiyousheQr_SelectionHint" xml:space="preserve">
+    <value>QR कोड चुनने के लिए खींचें · रद्द करने के लिए Esc या दायाँ क्लिक करें</value>
+  </data>
+  <data name="MiyousheQr_Genshin" xml:space="preserve">
+    <value>Genshin Impact</value>
+  </data>
+  <data name="MiyousheQr_StarRail" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="MiyousheQr_Zzz" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="MiyousheQr_Honkai3" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="MiyousheQr_Passport" xml:space="preserve">
+    <value>miHoYo खाता</value>
+  </data>
+  <data name="MiyousheQr_NoAccount" xml:space="preserve">
+    <value>कृपया पहले लॉन्चर में MiYouShe में लॉग इन करें।</value>
+  </data>
+  <data name="MiyousheQr_CnOnly" xml:space="preserve">
+    <value>स्कैन करने से पहले चीनी MiYouShe खाते पर स्विच करें।</value>
+  </data>
+  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve">
+    <value>इस खाते में स्कैनिंग के लिए आवश्यक क्रेडेंशियल्स की कमी है। MiYouShe ऐप का उपयोग करके लॉन्चर में दोबारा लॉग इन करें।</value>
+  </data>
+  <data name="MiyousheQr_AccountChanged" xml:space="preserve">
+    <value>वर्तमान MiYouShe खाता बदल गया है। कृपया QR कोड का पुनः चयन करें।</value>
+  </data>
+  <data name="MiyousheQr_Expired" xml:space="preserve">
+    <value>यह QR कोड समाप्त हो गया है। इसे लक्षित डिवाइस पर रीफ़्रेश करें और फिर से चुनें।</value>
+  </data>
+  <data name="MiyousheQr_Unsupported" xml:space="preserve">
+    <value>असमर्थित लॉगिन QR कोड। चीनी miHoYo खाता, Genshin, Star Rail, ZZZ और Honkai Impact 3rd लॉगिन कोड समर्थित हैं।</value>
+  </data>
+  <data name="MiyousheQr_NotFound" xml:space="preserve">
+    <value>कोई QR कोड नहीं मिला। चारों ओर थोड़ी खाली जगह छोड़ते हुए पूरे कोड का चयन करें।</value>
+  </data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve">
+    <value>एकाधिक QR कोड मिले। किसी एक को चुनने के लिए हरे क्षेत्र पर क्लिक करें। रद्द करने के लिए Esc दबाएं या राइट-क्लिक करें।</value>
+  </data>
+  <data name="MiyousheQr_Cancelled" xml:space="preserve">
+    <value>चयन रद्द किया गया।</value>
+  </data>
+  <data name="MiyousheQr_Recognizing" xml:space="preserve">
+    <value>QR कोड पढ़ा जा रहा है…</value>
+  </data>
+  <data name="MiyousheQr_Ready" xml:space="preserve">
+    <value>QR कोड पहचाना गया। खाते और लक्ष्य की जाँच करें, फिर पुष्टि करें।</value>
+  </data>
+  <data name="MiyousheQr_Confirming" xml:space="preserve">
+    <value>लॉगिन की पुष्टि की जा रही है…</value>
+  </data>
+  <data name="MiyousheQr_Success" xml:space="preserve">
+    <value>लॉगिन की पुष्टि हो गई। लक्षित डिवाइस की जाँच करें।</value>
+  </data>
+  <data name="MiyousheQr_ResultUnknown" xml:space="preserve">
+    <value>लॉगिन परिणाम अनिश्चित है। पहले लक्षित डिवाइस की जाँच करें। यदि लॉग इन नहीं हुआ है, तो QR कोड रीफ़्रेश करें और इसे दोबारा चुनें।</value>
+  </data>
+  <data name="MiyousheQr_CaptureFailed" xml:space="preserve">
+    <value>स्क्रीन चयन या QR पढ़ना विफल रहा। पुनः प्रयास करें।</value>
+  </data>
+  <data name="MiyousheQr_HttpError" xml:space="preserve">
+    <value>स्कैन सेवा तक नहीं पहुँचा जा सका। QR कोड रीफ़्रेश करें और पुनः प्रयास करें।</value>
+  </data>
+  <data name="MiyousheQr_ResponseError" xml:space="preserve">
+    <value>स्कैन सेवा ने एक अप्रत्याशित प्रतिक्रिया लौटाई। QR कोड रीफ़्रेश करें और पुनः प्रयास करें।</value>
+  </data>
+  <data name="MiyousheQr_Rejected" xml:space="preserve">
+    <value>स्कैन अनुरोध अस्वीकार कर दिया गया। QR कोड रीफ़्रेश करें। यदि यह फिर भी विफल रहता है, तो MiYouShe में दोबारा लॉग इन करें।</value>
+  </data>
+  <data name="MiyousheQr_Continuous" xml:space="preserve">
+    <value>निरंतर स्कैन</value>
+  </data>
+  <data name="MiyousheQr_Stop" xml:space="preserve">
+    <value>स्कैनिंग रोकें</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirm" xml:space="preserve">
+    <value>लॉगिन की स्वतः पुष्टि करें</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve">
+    <value>स्कैन करने से पहले चुनें ताकि आपके वर्तमान MiYouShe खाते का उपयोग करके नए समर्थित QR कोड की तुरंत पुष्टि की जा सके।</value>
+  </data>
+  <data name="MiyousheQr_Scanning" xml:space="preserve">
+    <value>नए QR कोड की प्रतीक्षा की जा रही है। {0} लॉगिन की पुष्टि हुई। समाप्त करने के लिए 'स्कैनिंग रोकें' पर क्लिक करें।</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve">
+    <value>लॉगिन के बाद स्कैनिंग रोकें</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve">
+    <value>सफल लॉगिन के बाद निरंतर स्कैनिंग रोकें और इसकी रूपरेखा हटा दें। आगामी QR कोड स्कैन करना जारी रखने के लिए अनचेक करें।</value>
+  </data>
+  <data name="MiyousheQr_Stopped" xml:space="preserve">
+    <value>स्कैनिंग रोक दी गई।</value>
+  </data>
+  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve">
+    <value>चयनित क्षेत्र अनुपलब्ध है। QR क्षेत्र का पुनः चयन करें।</value>
+  </data>
+  <data name="MiyousheQr_SessionLimit" xml:space="preserve">
+    <value>निरंतर स्कैन सत्र अपनी सीमा तक पहुँच गया। एक नया सत्र प्रारंभ करें।</value>
+  </data>
+  <data name="Checkin_Game_hkrpg_cn" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="Checkin_Game_nap_cn" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="Checkin_Game_bh3_cn" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="Checkin_Game_bh2_cn" xml:space="preserve">
+    <value>Houkai Gakuen 2</value>
+  </data>
+  <data name="Checkin_Game_nxx_cn" xml:space="preserve">
+    <value>Tears of Themis</value>
+  </data>
+  <data name="Checkin_RequestTooFrequent" xml:space="preserve">
+    <value>अनुरोध बहुत बार किए जा रहे हैं। कृपया बाद में पुनः प्रयास करें।</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Title" xml:space="preserve">
+    <value>पुरस्कार दावा विधि अक्षम करें</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Content" xml:space="preserve">
+    <value>{0} का उपयोग करके पुरस्कार दावे अक्षम करने का अर्थ है कि {0} अब आपकी पुरस्कार दावा सूची में दिखाई नहीं देगा। आप इस विधि का उपयोग करके पुरस्कार का दावा नहीं कर पाएंगे।</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Confirm" xml:space="preserve">
+    <value>फिर भी अक्षम करें</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Title" xml:space="preserve">
+    <value>सुविधा अक्षम करने से पहले चेतावनी</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Content" xml:space="preserve">
+    <value>“{0}” को अक्षम करने से कुछ विशेष परिस्थितियों में आपको गेम से बाहर निकाला जा सकता है।</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Title" xml:space="preserve">
+    <value>सेटिंग्स स्वतः पुनर्स्थापित हो गईं</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
+    <value>निम्नलिखित सेटिंग्स को अक्षम करने की चेतावनी की पुष्टि किए बिना अक्षम किया गया था, इसलिए उन्हें पुनः सक्षम स्थिति में बहाल कर दिया गया है:
+{0}</value>
   </data>
 </root>

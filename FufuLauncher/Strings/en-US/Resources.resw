@@ -1983,6 +1983,9 @@ Go to the Microsoft website to download and install it?</value>
   <data name="LoginQR_WebPassport" xml:space="preserve">
     <value>Web Passport Login</value>
   </data>
+  <data name="LoginQR_HoYoLABWeb" xml:space="preserve">
+    <value>HoYoLAB Web Login</value>
+  </data>
   <data name="LoginQR_GameAppId" xml:space="preserve">
     <value>Game App ID:</value>
   </data>
@@ -2465,6 +2468,12 @@ Go to the Microsoft website to download and install it?</value>
   </data>
   <data name="DownloadWindow_BaseGameTooltip" xml:space="preserve">
     <value>Uncheck to only update voice pack</value>
+  </data>
+  <data name="DownloadWindow_ShowDetailLog" xml:space="preserve">
+    <value>Show Detail Log</value>
+  </data>
+  <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
+    <value>Hide Detail Log</value>
   </data>
   <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
     <value>Download speed</value>
@@ -6022,6 +6031,9 @@ You can retry with another node or download directly from the official source.</
   <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
     <value>Switch failed, files may be in use.
 Error: {0}</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>Bilibili Server (Bilibili)</value>
   </data>
   <data name="DownloadWindow_Server" xml:space="preserve">
     <value>Server</value>

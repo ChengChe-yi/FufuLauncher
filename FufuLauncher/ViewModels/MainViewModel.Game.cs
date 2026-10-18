@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -119,8 +119,22 @@ public partial class MainViewModel
 
         if (!_gameLauncherService.IsGamePathSelected())
         {
-            _notificationService.Show("LaunchErr_NoGamePath".GetLocalized(), "LaunchErr_NoGamePathMsg".GetLocalized(),
-                NotificationType.Error, 0);
+            void Navigate()
+            {
+                if (App.MainWindow is MainWindow mainWindow)
+                {
+                    mainWindow.NavigateToBlankPage();
+                }
+            }
+
+            if (_dispatcherQueue == null || _dispatcherQueue.HasThreadAccess)
+            {
+                Navigate();
+            }
+            else
+            {
+                _dispatcherQueue.TryEnqueue(Navigate);
+            }
             return;
         }
 

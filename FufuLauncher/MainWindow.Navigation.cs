@@ -244,9 +244,9 @@ public sealed partial class MainWindow
         }
     }
 
-    internal async void NavigateToPage(string viewModelTag)
+    internal async void NavigateToPage(string viewModelTag, bool force = false)
     {
-        if (!IsNavItemVisible(viewModelTag))
+        if (!force && !IsNavItemVisible(viewModelTag))
         {
             ShowNotification(new NotificationMessage("HiddenFeatureTitle".GetLocalized(),
                 "HiddenFeatureMessage".GetLocalized(), NotificationType.Warning, 3000));
@@ -460,6 +460,51 @@ public sealed partial class MainWindow
             NavigationView.SelectedItem = accountItem;
         else
             NavigateToPage("FufuLauncher.ViewModels.AccountViewModel");
+    }
+
+    public void NavigateToBlankPage()
+    {
+        if (_isExit) return;
+
+        var blankItem = GetAllNavItems()
+            .FirstOrDefault(item => item.Tag?.ToString() == "FufuLauncher.ViewModels.BlankViewModel");
+
+        if (blankItem != null && IsNavItemVisible("FufuLauncher.ViewModels.BlankViewModel"))
+        {
+            if (NavigationView.SelectedItem == blankItem)
+            {
+                NavigateToPage("FufuLauncher.ViewModels.BlankViewModel");
+            }
+            else
+            {
+                NavigationView.SelectedItem = blankItem;
+            }
+        }
+        else
+        {
+            NavigationView.SelectedItem = null;
+            NavigateToPage("FufuLauncher.ViewModels.BlankViewModel", force: true);
+        }
+    }
+
+    public async Task NavigateToBlankPageAsync()
+    {
+        if (_isExit) return;
+        try
+        {
+            Activate();
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+            return;
+        }
+
+        for (var i = 0; i < 40 && !_isMainUiLoaded; i++)
+        {
+            await Task.Delay(100);
+        }
+
+        NavigateToBlankPage();
     }
 
     public async Task LoadNavItemVisibilityAsync()
