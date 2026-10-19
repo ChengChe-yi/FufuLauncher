@@ -3,7 +3,6 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
-using System.IO.Compression;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 using MoonSharp.Interpreter;
@@ -33,6 +32,7 @@ public partial class LuaPluginInstaller
                     }),
                     _expectedFileHash, _dlToken, _accessToken,
                     cancellationToken).GetAwaiter().GetResult();
+                _downloadedFiles.Add(safePath);
             }
             catch (Exception ex)
             {
@@ -73,7 +73,10 @@ public partial class LuaPluginInstaller
                 if (!Directory.Exists(pluginDir))
                     Directory.CreateDirectory(pluginDir);
 
-                var downloadUrl = Constants.ApiEndpoints.GetPluginFileDownloadUrl(pluginId);
+                var downloadUrl = pluginId == _pluginId && !string.IsNullOrWhiteSpace(_downloadUrl)
+                    ? _downloadUrl
+                    : Constants.ApiEndpoints.GetPluginFileDownloadUrl(pluginId);
+                // Keep this path for existing scripts, regardless of the package's real format.
                 var zipPath = Path.Combine(pluginDir, "package.zip");
                 zipPath = SanitizePath(zipPath, "download_plugin zip");
 
@@ -91,9 +94,11 @@ public partial class LuaPluginInstaller
                         }),
                         _expectedFileHash, _dlToken, _accessToken,
                         cancellationToken).GetAwaiter().GetResult();
+                    _downloadedFiles.Add(zipPath);
                 }
                 catch (Exception ex)
                 {
+                    _installFailure = ex;
                     LogMessage($"插件下载失败: {ex.Message}");
 
                     try
@@ -108,16 +113,17 @@ public partial class LuaPluginInstaller
                     return DynValue.NewTable(result);
                 }
 
-                LogMessage("插件 ZIP 下载完成，开始解压...");
+                LogMessage("插件压缩包下载完成，开始解压...");
                 ReportProgress(75, "PluginStoreExtracting".GetLocalized());
 
                 try
                 {
-                    ZipFile.ExtractToDirectory(zipPath, pluginDir, true);
+                    ExtractPluginArchive(zipPath, pluginDir, null, cancellationToken);
                     LogMessage("解压完成");
                 }
                 catch (Exception ex)
                 {
+                    _installFailure = ex;
                     LogMessage($"解压失败: {ex.Message}");
                     result["error"] = DynValue.NewString($"Extract failed: {ex.Message}");
                     return DynValue.NewTable(result);
@@ -127,11 +133,11 @@ public partial class LuaPluginInstaller
                 {
                     if (File.Exists(zipPath))
                         File.Delete(zipPath);
-                    LogMessage("已清理临时 ZIP 文件");
+                    LogMessage("已清理临时压缩包文件");
                 }
                 catch (Exception ex)
                 {
-                    LogMessage($"清理 ZIP 文件失败: {ex.Message}");
+                    LogMessage($"清理压缩包文件失败: {ex.Message}");
                 }
 
                 ReportProgress(90, "PluginStoreWritingConfig".GetLocalized());
@@ -145,6 +151,7 @@ public partial class LuaPluginInstaller
             }
             catch (Exception ex)
             {
+                _installFailure = ex;
                 LogMessage($"download_plugin 异常: {ex.Message}");
                 result["error"] = DynValue.NewString(ex.Message);
                 return DynValue.NewTable(result);
@@ -161,21 +168,19 @@ public partial class LuaPluginInstaller
 
             if (!File.Exists(safeZipPath))
             {
-                var msg = $"zip文件不存在: {safeZipPath}";
+                var msg = $"压缩包文件不存在: {safeZipPath}";
                 LogMessage(msg);
                 throw new FileNotFoundException(msg);
             }
 
-            if (!Directory.Exists(safeDestDir))
-                Directory.CreateDirectory(safeDestDir);
-
             try
             {
-                ZipFile.ExtractToDirectory(safeZipPath, safeDestDir, true);
+                ExtractPluginArchive(safeZipPath, safeDestDir, null, cancellationToken);
                 LogMessage("解压完成");
             }
             catch (Exception ex)
             {
+                _installFailure = ex;
                 LogMessage($"解压失败: {ex.Message}");
                 throw;
             }
@@ -220,41 +225,28 @@ public partial class LuaPluginInstaller
             LogMessage($"按模式解压: {safeZipPath} -> {safeDestDir}");
             LogMessage($"  过滤模式: {string.Join(", ", patternList)}");
 
-            if (!Directory.Exists(safeDestDir))
-                Directory.CreateDirectory(safeDestDir);
-
-            using var archive = ZipFile.OpenRead(safeZipPath);
-            int extracted = 0;
-            foreach (var entry in archive.Entries)
-            {
-                if (string.IsNullOrEmpty(entry.Name) && entry.FullName.EndsWith("/"))
-                    continue;
-
-                bool matches = false;
-                foreach (var pattern in patternList)
-                {
-                    if (WildcardMatch(entry.FullName, pattern) ||
-                        WildcardMatch(entry.Name, pattern))
-                    {
-                        matches = true;
-                        break;
-                    }
-                }
-
-                if (!matches) continue;
-
-                var destPath = Path.Combine(safeDestDir, entry.FullName);
-                var destParent = Path.GetDirectoryName(destPath);
-                if (!string.IsNullOrEmpty(destParent) && !Directory.Exists(destParent))
-                    Directory.CreateDirectory(destParent);
-
-                entry.ExtractToFile(destPath, true);
-                extracted++;
-                LogMessage($"  解压: {entry.FullName}");
-            }
+            var extracted = ExtractPluginArchive(safeZipPath, safeDestDir,
+                path => patternList.Any(pattern => WildcardMatch(path, pattern) ||
+                    WildcardMatch(Path.GetFileName(path), pattern)), cancellationToken);
 
             LogMessage($"按模式解压完成，共解压 {extracted} 个文件");
         });
+    }
+
+    private int ExtractPluginArchive(string path, string destination, Func<string, bool>? include,
+        CancellationToken cancellationToken)
+    {
+        if (_downloadedFiles.Contains(path)) _temporaryArchives.Add(path);
+        try
+        {
+            return _archiveExtractor.ExtractAsync(path, destination, include, cancellationToken)
+                .GetAwaiter().GetResult();
+        }
+        catch (Exception ex)
+        {
+            _installFailure = ex;
+            throw;
+        }
     }
 
     #endregion

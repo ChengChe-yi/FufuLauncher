@@ -16,7 +16,7 @@ public partial class PluginStoreViewModel
 
     private async Task UninstallPluginAsync(PluginStoreItem item)
     {
-        if (item == null) return;
+        if (item == null || item.IsInstallInProgress || _installCts != null) return;
 
         try
         {

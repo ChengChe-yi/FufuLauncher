@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using System.Runtime.ExceptionServices;
 using FufuLauncher.Helpers;
 using MoonSharp.Interpreter;
 
@@ -42,43 +43,100 @@ public partial class LuaPluginInstaller
         string? expectedLuaHash = null, string? expectedFileHash = null,
         CancellationToken cancellationToken = default,
         string? dllFileName = null, string? pluginId = null,
-        string? dlToken = null, string? accessToken = null)
+        string? dlToken = null, string? accessToken = null,
+        string? downloadUrl = null, string? archivePassword = null, string? archiveFileName = null)
     {
-        _expectedLuaHash = expectedLuaHash;
-        _expectedFileHash = expectedFileHash;
-        _dlToken = dlToken;
-        _accessToken = accessToken;
-
-        ReportProgress(0, "PluginStoreScriptDownloading".GetLocalized());
-        LogMessage($"Downloading Lua script from: {luaScriptUrl}");
-
-        var luaScript = await _storeService.DownloadLuaScriptAsync(luaScriptUrl, expectedLuaHash, dlToken, accessToken);
-
-        ReportProgress(3, "PluginStoreScriptScanning".GetLocalized());
-        LogMessage("Running Lua security validation...");
-        var securityResult = PluginVerifier.ValidateLuaSecurity(luaScript);
-        if (!securityResult.IsValid)
+        await _scriptGate.WaitAsync(cancellationToken);
+        try
         {
-            LogMessage($"SECURITY BLOCK: {securityResult.Reason}");
-            throw new SecurityViolationException(securityResult.Reason ??
-                                                 "PluginStoreLuaSecurityFailed".GetLocalized());
+            _expectedLuaHash = expectedLuaHash;
+            _expectedFileHash = expectedFileHash;
+            _dlToken = dlToken;
+            _accessToken = accessToken;
+            _pluginId = pluginId;
+            _downloadUrl = downloadUrl;
+            _installFailure = null;
+            _archiveExtractor = new PluginArchiveExtractor(archivePassword, (fileName, retry, token) =>
+                RequestArchivePasswordAsync(string.IsNullOrWhiteSpace(archiveFileName) ? fileName :
+                    Path.GetFileName(archiveFileName), retry, token));
+
+            ReportProgress(0, "PluginStoreScriptDownloading".GetLocalized());
+            LogMessage($"Downloading Lua script from: {luaScriptUrl}");
+
+            var luaScript = await _storeService.DownloadLuaScriptAsync(luaScriptUrl, expectedLuaHash, dlToken, accessToken);
+
+            ReportProgress(3, "PluginStoreScriptScanning".GetLocalized());
+            LogMessage("Running Lua security validation...");
+            var securityResult = PluginVerifier.ValidateLuaSecurity(luaScript);
+            if (!securityResult.IsValid)
+            {
+                LogMessage($"SECURITY BLOCK: {securityResult.Reason}");
+                throw new SecurityViolationException(securityResult.Reason ??
+                                                     "PluginStoreLuaSecurityFailed".GetLocalized());
+            }
+
+            LogMessage("Lua security scan passed.");
+
+            ReportProgress(5, "PluginStoreScriptExecuting".GetLocalized());
+            LogMessage("Executing Lua install script...");
+
+            await ExecuteScriptCoreAsync(luaScript, cancellationToken);
+
+            if (!string.IsNullOrEmpty(pluginId))
+            {
+                var pluginDir = Path.Combine(_pluginsDir, pluginId);
+                EnsureConfigFileEntry(pluginDir, dllFileName);
+            }
         }
-
-        LogMessage("Lua security scan passed.");
-
-        ReportProgress(5, "PluginStoreScriptExecuting".GetLocalized());
-        LogMessage("Executing Lua install script...");
-
-        await ExecuteScriptAsync(luaScript, cancellationToken);
-
-        if (!string.IsNullOrEmpty(pluginId))
+        finally
         {
-            var pluginDir = Path.Combine(_pluginsDir, pluginId);
-            EnsureConfigFileEntry(pluginDir, dllFileName);
+            ResetInstallContext();
+            _scriptGate.Release();
         }
     }
 
     public async Task ExecuteScriptAsync(string luaScript, CancellationToken cancellationToken = default)
+    {
+        await _scriptGate.WaitAsync(cancellationToken);
+        try
+        {
+            ResetInstallContext();
+            _archiveExtractor = new PluginArchiveExtractor(requestPassword: RequestArchivePasswordAsync);
+            await ExecuteScriptCoreAsync(luaScript, cancellationToken);
+        }
+        finally
+        {
+            ResetInstallContext();
+            _scriptGate.Release();
+        }
+    }
+
+    private void ResetInstallContext()
+    {
+        foreach (var archive in _temporaryArchives)
+        {
+            try
+            {
+                if (File.Exists(archive)) File.Delete(archive);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[LuaInstaller] Failed to clean temporary archive: {ex.Message}");
+            }
+        }
+        _temporaryArchives.Clear();
+        _downloadedFiles.Clear();
+        _expectedLuaHash = null;
+        _expectedFileHash = null;
+        _dlToken = null;
+        _accessToken = null;
+        _pluginId = null;
+        _downloadUrl = null;
+        _installFailure = null;
+        _archiveExtractor = new();
+    }
+
+    private async Task ExecuteScriptCoreAsync(string luaScript, CancellationToken cancellationToken)
     {
         await Task.Run(() =>
         {
@@ -112,15 +170,27 @@ public partial class LuaPluginInstaller
             try
             {
                 script.DoString(luaScript);
+                if (_installFailure != null)
+                    ExceptionDispatchInfo.Capture(_installFailure).Throw();
             }
             catch (InterpreterException ex)
             {
-                if (ex.InnerException is OperationCanceledException oce)
+                // Native callback exceptions may be nested in reflection and interpreter wrappers.
+                var cause = _installFailure ?? ex;
+                while (cause.InnerException != null && cause is not (OperationCanceledException or
+                           CaptchaRequiredException or PrivatePluginAccessException or HashMismatchException or
+                           SecurityViolationException or PluginArchivePasswordException))
+                    cause = cause.InnerException;
+                if (cause is OperationCanceledException oce)
                 {
                     Debug.WriteLine($"[LuaInstaller] Lua script cancelled");
                     LogMessage("脚本执行被取消");
                     throw oce;
                 }
+
+                if (cause is CaptchaRequiredException or PrivatePluginAccessException or HashMismatchException or
+                    SecurityViolationException or PluginArchivePasswordException)
+                    ExceptionDispatchInfo.Capture(cause).Throw();
 
                 Debug.WriteLine($"[LuaInstaller] Lua error: {ex.Message}");
                 LogMessage($"Lua脚本错误: {ex.Message}");

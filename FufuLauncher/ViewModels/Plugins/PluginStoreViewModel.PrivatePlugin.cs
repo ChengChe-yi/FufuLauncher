@@ -87,6 +87,7 @@ public partial class PluginStoreViewModel
             if (accessResult.Plugin != null)
             {
                 accessResult.Plugin.AccessToken = accessResult.AccessToken;
+                accessResult.Plugin.ArchivePassword = accessResult.ArchivePassword;
                 UpdateLocalState(accessResult.Plugin);
 
                 Plugins.Insert(0, accessResult.Plugin);
