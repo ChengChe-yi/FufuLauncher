@@ -7188,4 +7188,11 @@ Error: {0}</value>
     <value>The following settings were disabled without confirming the disable warning, so they have been restored to enabled:
 {0}</value>
   </data>
+  <data name="PluginStoreArchivePasswordTitle" xml:space="preserve"><value>Archive password</value></data>
+  <data name="PluginStoreArchivePasswordPlaceholder" xml:space="preserve"><value>Enter the archive password</value></data>
+  <data name="PluginStoreArchivePasswordPrompt" xml:space="preserve"><value>“{0}” requires a password to extract.</value></data>
+  <data name="PluginStoreArchivePasswordRetry" xml:space="preserve"><value>The password for “{0}” is incorrect, or the archive is damaged. Enter the password again to retry extraction.</value></data>
+  <data name="PluginStoreArchivePasswordExtract" xml:space="preserve"><value>Extract</value></data>
+  <data name="PluginStoreArchivePasswordCancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="PluginStoreArchivePasswordUnavailable" xml:space="preserve"><value>The archive requires a password, but the password dialog could not be opened.</value></data>
 </root>

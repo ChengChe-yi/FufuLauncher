@@ -21,6 +21,13 @@ public partial class LuaPluginInstaller
     private string? _expectedLuaHash;
     private string? _dlToken;
     private string? _accessToken;
+    private string? _pluginId;
+    private string? _downloadUrl;
+    private readonly HashSet<string> _downloadedFiles = new(StringComparer.OrdinalIgnoreCase);
+    private readonly HashSet<string> _temporaryArchives = new(StringComparer.OrdinalIgnoreCase);
+    private Exception? _installFailure;
+    private PluginArchiveExtractor _archiveExtractor = new();
+    private readonly SemaphoreSlim _scriptGate = new(1, 1);
     public event Action<DownloadProgressInfo>? ProgressChanged;
     public event Action<string>? LogReceived;
 

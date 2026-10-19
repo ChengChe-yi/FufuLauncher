@@ -96,4 +96,58 @@ public partial class LuaPluginInstaller
     }
 
     #endregion
+
+    private static async Task<string?> RequestArchivePasswordAsync(string archiveName, bool retry,
+        CancellationToken cancellationToken)
+    {
+        var dispatcher = UIDispatcher;
+        if (dispatcher == null || MainXamlRoot == null)
+            throw new PluginArchivePasswordException("PluginStoreArchivePasswordUnavailable".GetLocalized());
+
+        var completion = new TaskCompletionSource<string?>(TaskCreationOptions.RunContinuationsAsynchronously);
+        ContentDialog? dialog = null;
+        using var registration = cancellationToken.Register(() =>
+        {
+            completion.TrySetCanceled(cancellationToken);
+            dispatcher.TryEnqueue(() => dialog?.Hide());
+        });
+        if (!dispatcher.TryEnqueue(async () =>
+            {
+                if (cancellationToken.IsCancellationRequested) return;
+                try
+                {
+                    var passwordBox = new PasswordBox
+                    {
+                        PlaceholderText = "PluginStoreArchivePasswordPlaceholder".GetLocalized(),
+                        MinWidth = 300
+                    };
+                    var panel = new StackPanel { Spacing = 12 };
+                    panel.Children.Add(new TextBlock
+                    {
+                        Text = string.Format((retry ? "PluginStoreArchivePasswordRetry" :
+                            "PluginStoreArchivePasswordPrompt").GetLocalized(), archiveName),
+                        TextWrapping = Microsoft.UI.Xaml.TextWrapping.Wrap
+                    });
+                    panel.Children.Add(passwordBox);
+                    dialog = new ContentDialog
+                    {
+                        Title = "PluginStoreArchivePasswordTitle".GetLocalized(),
+                        Content = panel,
+                        PrimaryButtonText = "PluginStoreArchivePasswordExtract".GetLocalized(),
+                        CloseButtonText = "PluginStoreArchivePasswordCancel".GetLocalized(),
+                        DefaultButton = ContentDialogButton.Primary,
+                        XamlRoot = MainXamlRoot
+                    };
+                    var result = await dialog.ShowAsync();
+                    completion.TrySetResult(result == ContentDialogResult.Primary ? passwordBox.Password : null);
+                }
+                catch (Exception ex)
+                {
+                    completion.TrySetException(ex);
+                }
+            }))
+            throw new PluginArchivePasswordException("PluginStoreArchivePasswordUnavailable".GetLocalized());
+
+        return await completion.Task.ConfigureAwait(false);
+    }
 }

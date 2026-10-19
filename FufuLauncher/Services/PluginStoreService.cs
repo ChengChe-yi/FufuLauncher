@@ -833,6 +833,9 @@ public class DownloadTokenResponse
 
 public class PrivateAccessResponse
 {
+    [JsonPropertyName("archive_password")]
+    public string? ArchivePassword { get; set; }
+
     [JsonPropertyName("plugin")]
     public PluginStoreItem? Plugin
     {

@@ -28,7 +28,9 @@ public partial class PluginStoreViewModel
 
     private async Task InstallPluginAsync(PluginStoreItem item)
     {
-        if (item == null || item.IsInstallInProgress) return;
+        if (item == null || item.IsInstallInProgress || _installCts != null) return;
+
+        var preserveExisting = Directory.Exists(Path.Combine(_pluginsDir, item.Id));
 
         try
         {
@@ -71,6 +73,7 @@ public partial class PluginStoreViewModel
                 {
                     var accessResult = await _storeService.GetPrivateAccessAsync(item.Id, accessKey);
                     item.AccessToken = accessResult.AccessToken;
+                    item.ArchivePassword = accessResult.ArchivePassword;
 
                     if (accessResult.Plugin != null)
                     {
@@ -82,6 +85,7 @@ public partial class PluginStoreViewModel
                         item.DownloadUrl = accessResult.Plugin.DownloadUrl;
                         item.SizeBytes = accessResult.Plugin.SizeBytes;
                         item.DllFileName = accessResult.Plugin.DllFileName;
+                        item.ArchiveFileName = accessResult.Plugin.ArchiveFileName;
                     }
                 }
                 catch (Exception ex)
@@ -96,7 +100,7 @@ public partial class PluginStoreViewModel
                 }
             }
 
-            await DoInstallAsync(item);
+            await DoInstallAsync(item, preserveExisting);
         }
         catch (Exception ex)
         {
@@ -107,7 +111,7 @@ public partial class PluginStoreViewModel
             item.InstallStatusText = "PluginStoreInstallFailedShort".GetLocalized();
             StatusMessage = string.Format("PluginStoreInstallFailed".GetLocalized(), ex.Message);
 
-            CleanupPluginDir(item.Id);
+            if (!preserveExisting) CleanupPluginDir(item.Id);
         }
         finally
         {
@@ -115,10 +119,12 @@ public partial class PluginStoreViewModel
             item.IsInstallInProgress = false;
             _installCts?.Dispose();
             _installCts = null;
+            item.ArchivePassword = null;
+            if (preserveExisting && item.State == StorePluginState.Available) UpdateLocalState(item);
         }
     }
 
-    private async Task DoInstallAsync(PluginStoreItem item)
+    private async Task DoInstallAsync(PluginStoreItem item, bool preserveExisting)
     {
         var maxCaptchaRetries = 3;
         var attempt = 0;
@@ -139,7 +145,10 @@ public partial class PluginStoreViewModel
                     item.DllFileName,
                     item.Id,
                     item.DlToken,
-                    item.AccessToken);
+                    item.AccessToken,
+                    item.DownloadUrl,
+                    item.ArchivePassword,
+                    item.ArchiveFileName);
 
                 var pluginDir = Path.Combine(_pluginsDir, item.Id);
                 _luaInstaller.EnsureConfigFileEntry(pluginDir, item.DllFileName);
@@ -153,7 +162,7 @@ public partial class PluginStoreViewModel
                     item.InstallStatusText = "PluginStoreInstallFailedShort".GetLocalized();
                     StatusMessage = string.Format("PluginStoreInstallFailed".GetLocalized(),
                         "PluginStoreInstallVerifyFailed".GetLocalized());
-                    CleanupPluginDir(item.Id);
+                    if (!preserveExisting) CleanupPluginDir(item.Id);
                     return;
                 }
 
@@ -210,10 +219,15 @@ public partial class PluginStoreViewModel
 
                 var accessResult = await _storeService.GetPrivateAccessAsync(item.Id, accessKey);
                 item.AccessToken = accessResult.AccessToken;
+                item.ArchivePassword = accessResult.ArchivePassword;
                 if (accessResult.Plugin != null)
                 {
                     item.FileHash = accessResult.Plugin.FileHash;
                     item.LuaHash = accessResult.Plugin.LuaHash;
+                    item.DownloadUrl = accessResult.Plugin.DownloadUrl;
+                    item.LuaInstallUrl = accessResult.Plugin.LuaInstallUrl;
+                    item.DllFileName = accessResult.Plugin.DllFileName;
+                    item.ArchiveFileName = accessResult.Plugin.ArchiveFileName;
                 }
 
                 attempt++;
@@ -225,7 +239,7 @@ public partial class PluginStoreViewModel
                 item.InstallProgress = 0;
                 item.InstallStatusText = "PluginStoreHashFailed".GetLocalized();
                 StatusMessage = string.Format("PluginStoreInstallFailed".GetLocalized(), ex.Message);
-                CleanupPluginDir(item.Id);
+                if (!preserveExisting) CleanupPluginDir(item.Id);
                 return;
             }
             catch (SecurityViolationException ex)
@@ -235,7 +249,7 @@ public partial class PluginStoreViewModel
                 item.InstallProgress = 0;
                 item.InstallStatusText = "PluginStoreSecurityBlockedShort".GetLocalized();
                 StatusMessage = string.Format("PluginStoreSecurityBlocked".GetLocalized(), ex.Message);
-                CleanupPluginDir(item.Id);
+                if (!preserveExisting) CleanupPluginDir(item.Id);
                 return;
             }
             catch (OperationCanceledException)
@@ -243,7 +257,7 @@ public partial class PluginStoreViewModel
                 item.State = StorePluginState.Available;
                 item.InstallProgress = 0;
                 item.InstallStatusText = "PluginStoreCancelled".GetLocalized();
-                CleanupPluginDir(item.Id);
+                if (!preserveExisting) CleanupPluginDir(item.Id);
                 return;
             }
             catch (InvalidOperationException ex) when (ex.Message.Contains("download") ||
