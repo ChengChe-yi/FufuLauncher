@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -64,7 +64,8 @@ public partial class PluginSettingsViewModel
             : Microsoft.UI.Xaml.Visibility.Collapsed;
 
     public bool IsSettingsInteractable => (!_deferConfigurationLoading || IsConfigurationReady) &&
-        ((SelectedPluginIndex == 0 && _isMainPluginEnabled) || (SelectedPluginIndex == 1 && _isFpsPluginEnabled));
+                                          ((SelectedPluginIndex == 0 && _isMainPluginEnabled) ||
+                                           (SelectedPluginIndex == 1 && _isFpsPluginEnabled));
 
     public string OverlayWarningText
     {
@@ -74,15 +75,16 @@ public partial class PluginSettingsViewModel
             {
                 return IsLightweightMode
                     ? "LightweightMode_LiteDisabledOverlay".GetLocalized()
-                    : "已被禁用，请启用主插件才能调试配置";
+                    : "PluginSettings_MainPluginDisabledOverlay".GetLocalized();
             }
 
-            if (SelectedPluginIndex == 1) return "已被禁用，请启用FPS插件才能调试插件配置";
+            if (SelectedPluginIndex == 1) return "PluginSettings_FpsPluginDisabledOverlay".GetLocalized();
             return string.Empty;
         }
     }
 
-    private static string GetFpsPluginEnabledPath() => Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS", "FPS.dll");
+    private static string GetFpsPluginEnabledPath() =>
+        Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS", "FPS.dll");
 
     private static string GetFpsPluginDisabledPath() =>
         Path.Combine(AppContext.BaseDirectory, "Plugins", "FPS", "FPS.disabled");
@@ -179,8 +181,8 @@ public partial class PluginSettingsViewModel
             }
 
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "状态切换失败",
-                $"无法修改文件后缀名。\n详细信息: {ex.Message}",
+                "PluginSettings_StateSwitchFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ModifyExtensionFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));
@@ -223,8 +225,8 @@ public partial class PluginSettingsViewModel
             }
 
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "状态切换失败",
-                $"无法修改插件文件后缀名。\n详细信息: {ex.Message}",
+                "PluginSettings_StateSwitchFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ModifyExtensionFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));
@@ -326,8 +328,6 @@ public partial class PluginSettingsViewModel
             }
             catch (UnauthorizedAccessException)
             {
-                // If the resolved path is not writable (e.g. under Program Files),
-                // fall back to the default AppData-based location.
                 _presetsDir = PluginPresetStorage.GetFallbackDirectory(subDir);
                 Directory.CreateDirectory(_presetsDir);
             }

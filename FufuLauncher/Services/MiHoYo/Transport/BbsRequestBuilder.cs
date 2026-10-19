@@ -12,13 +12,6 @@ using FufuLauncher.Services.MiHoYo.Networking;
 
 namespace FufuLauncher.Services.MiHoYo.Transport;
 
-/// <summary>
-///     <see cref="IBbsRequestBuilder" /> 默认实现：按场景从 <see cref="AccountContext" /> 组装请求头。
-///     <para>
-///         已接入场景：DailyNote / DailyNoteWidget / Geetest / GetFpNative；BBS 社区系（UserFullInfo /
-///         CommunitySign）与登录系（WebLogin）待迁移后实现。
-///     </para>
-/// </summary>
 public sealed class BbsRequestBuilder : IBbsRequestBuilder
 {
     private const string Page = "v6.6.1-gr-cn_#/ys";
@@ -51,9 +44,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
         };
     }
 
-    /// <summary>
-    ///     game_record 系（client_type=5，X4/X6 + DS2，WebView 头）。
-    /// </summary>
+
     private static HttpRequestMessage BuildGameRecord(
         AccountContext ctx,
         HttpMethod method,
@@ -99,7 +90,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
         return req;
     }
 
-    /// <summary>getFp 原生通道：只有 okhttp UA，无 x-rpc 系列头、无 DS。</summary>
+
     private static HttpRequestMessage BuildGetFp(AccountContext ctx, HttpMethod method, string url, string? body)
     {
         var req = new HttpRequestMessage(method, url);
@@ -109,18 +100,14 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
         return req;
     }
 
-    /// <summary>解析 challenge_game：优先 options 值，缺省用场景默认；非数字返回 null（不抛异常）。</summary>
+
     private static int? ResolveChallengeGame(string? value, string? fallback)
     {
         string? candidate = !string.IsNullOrEmpty(value) ? value : fallback;
         return candidate is not null && int.TryParse(candidate, out var v) ? v : null;
     }
 
-    /// <summary>
-    ///     cookie 拼接（单一实现；各服务统一走此方法）。
-    ///     <para>Full = CookieToken | LToken：v1 键优先，缺 v1 时逐键独立回退 v2（保留各自键名）；</para>
-    ///     <para>SToken：stoken/mid/stuid 成列表拼接，避免缺 stoken 时以分号开头产生畸形 Cookie 头。</para>
-    /// </summary>
+
     internal static string BuildCookieString(IReadOnlyDictionary<string, string> cookies, CookieMode mode)
     {
         if (mode == CookieMode.SToken)
@@ -152,7 +139,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
         return string.Join(";", full);
     }
 
-    /// <summary>按顺序取第一个非空值（不关心键名）。</summary>
+
     private static string FirstNonEmpty(IReadOnlyDictionary<string, string> cookies, params string[] keys)
     {
         foreach (var key in keys)
@@ -161,7 +148,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
         return "";
     }
 
-    /// <summary>按顺序取第一个非空键值对（保留原始键名，用于 v1/v2 逐键回退）。</summary>
+
     private static (string Key, string Value)? FirstPair(IReadOnlyDictionary<string, string> cookies,
         params string[] keys)
     {
@@ -171,7 +158,7 @@ public sealed class BbsRequestBuilder : IBbsRequestBuilder
         return null;
     }
 
-    /// <summary>cookie 模式：Full = CookieToken | LToken；SToken = stoken 系。</summary>
+
     internal enum CookieMode
     {
         Cookie,

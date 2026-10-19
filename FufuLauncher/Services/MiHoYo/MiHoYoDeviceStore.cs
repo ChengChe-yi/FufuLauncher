@@ -120,7 +120,6 @@ public sealed class MiHoYoDeviceStore
         }
     }
 
-    // ---------------------------------------------------------------- 无锁内核（仅在持锁期间调用）
 
     private async Task<MiHoYoDeviceIdentity?> ReadCoreAsync(CancellationToken token)
     {
@@ -141,7 +140,6 @@ public sealed class MiHoYoDeviceStore
             var loaded = JsonSerializer.Deserialize<MiHoYoDeviceIdentity>(json, JsonOptions);
             if (loaded is null)
             {
-                // 空/字面 null：内容不可用，允许后续替换。
                 Debug.WriteLine("[MiHoYoDevice] 文件内容为空，视为不可用");
                 return null;
             }
@@ -151,11 +149,9 @@ public sealed class MiHoYoDeviceStore
         }
         catch (JsonException ex)
         {
-            // 内容损坏：不可用，允许后续替换（保留文件由调用方决定）。
             Debug.WriteLine($"[MiHoYoDevice] 内容解析失败，视为不可用: {ex.Message}");
             return null;
         }
-        // IO / 权限异常不在此处吞掉：文件可能完好，覆盖会丢失设备身份。
     }
 
 
@@ -177,7 +173,7 @@ public sealed class MiHoYoDeviceStore
             throw;
         }
 
-        // 仅在确实落盘后才更新缓存，避免把未持久化的值当作已保存。
+
         _cached = identity;
     }
 

@@ -31,29 +31,29 @@ public partial class PluginSettingsViewModel
     [NotifyPropertyChangedFor(nameof(CanUseConfigurationFunctions))]
     private bool isConfigurationReady;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(CanUseConfigurationFunctions))]
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(CanUseConfigurationFunctions))]
     private bool areConfigurationPreferencesReady;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ConfigurationLoadingText))]
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(ConfigurationLoadingText))]
     private int loadedSettingCount;
 
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(ConfigurationLoadingText))]
+    [ObservableProperty] [NotifyPropertyChangedFor(nameof(ConfigurationLoadingText))]
     private int totalSettingCount;
 
-    [ObservableProperty]
-    private string configurationLoadError = string.Empty;
+    [ObservableProperty] private string configurationLoadError = string.Empty;
 
-    [ObservableProperty]
-    private bool hasConfigurationLoadError;
+    [ObservableProperty] private bool hasConfigurationLoadError;
 
-    public ObservableCollection<PluginSettingsGroup> SettingGroups { get; }
+    public ObservableCollection<PluginSettingsGroup> SettingGroups
+    {
+        get;
+    }
 
-    public bool CanUseConfigurationFunctions => AreConfigurationPreferencesReady && (!IsLoadingConfiguration || IsConfigurationReady);
+    public bool CanUseConfigurationFunctions =>
+        AreConfigurationPreferencesReady && (!IsLoadingConfiguration || IsConfigurationReady);
 
-    public Visibility ConfigurationLoadingVisibility => IsLoadingConfiguration ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility ConfigurationLoadingVisibility =>
+        IsLoadingConfiguration ? Visibility.Visible : Visibility.Collapsed;
 
     public string ConfigurationLoadingText => TotalSettingCount == 0
         ? "PluginStoreLoading".GetLocalized()
@@ -188,9 +188,12 @@ public partial class PluginSettingsViewModel
 
             if (!snapshot.Exists)
             {
-                PluginName = request.PluginIndex == 1 ? "未安装 FPS 插件" : request.LightweightMode
-                    ? "LightweightMode_LiteNotInstalled".GetLocalized() : "未安装 FuFuPlugin";
-                PluginDescription = "请确保Plugins目录下存在对应的文件夹及config.ini文件";
+                PluginName = request.PluginIndex == 1
+                    ? "PluginSettings_FpsUnlockNotInstalled".GetLocalized()
+                    : request.LightweightMode
+                        ? "LightweightMode_LiteNotInstalled".GetLocalized()
+                        : "PluginSettings_FuFuPluginNotInstalled".GetLocalized();
+                PluginDescription = "PluginSettings_EnsurePluginDirConfigHint".GetLocalized();
                 return;
             }
 
@@ -221,6 +224,7 @@ public partial class PluginSettingsViewModel
                 _settingOrder.Add(snapshot.Settings[index].Section);
                 _settingOrderIndexes[snapshot.Settings[index].Section] = index;
             }
+
             IsConfigurationReady = true;
             var currentPreset = CurrentPreset;
             var ordered = snapshot.Settings.Where(setting => IsSettingPinned(setting.Section))
@@ -239,7 +243,8 @@ public partial class PluginSettingsViewModel
                 var item = new PluginSettingItem(request.IniFile, setting.Section, setting.Name, setting.Type,
                     setting.Value, setting.Help, (section, key, value) =>
                     {
-                        if (IsCurrentConfiguration(cancellation, token) && ReferenceEquals(CurrentPreset, currentPreset))
+                        if (IsCurrentConfiguration(cancellation, token) &&
+                            ReferenceEquals(CurrentPreset, currentPreset))
                         {
                             OnSettingValueChanged(section, key, value);
                         }
@@ -259,6 +264,7 @@ public partial class PluginSettingsViewModel
                 {
                     InsertBySettingOrder(Settings, item);
                 }
+
                 LoadedSettingCount++;
                 batchCount++;
                 if (batchCount >= ConfigurationBatchSize || budget.ElapsedMilliseconds >= 4)
@@ -291,8 +297,11 @@ public partial class PluginSettingsViewModel
                 _configurationPreferences = _preferencesApplied ? _configurationPreferences : null;
                 ConfigurationLoadError = ex.Message;
                 HasConfigurationLoadError = true;
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("配置读取失败",
-                    $"无法读取插件配置文件。\n详细信息: {ex.Message}", NotificationType.Error, 6000));
+                WeakReferenceMessenger.Default.Send(new NotificationMessage(
+                    "PluginSettings_ConfigReadFailedTitle".GetLocalized(),
+                    string.Format("PluginSettings_ReadConfigFailedDetail_Format".GetLocalized(), ex.Message),
+                    NotificationType.Error,
+                    6000));
             }
         }
         finally
@@ -338,6 +347,7 @@ public partial class PluginSettingsViewModel
         {
             throw new OperationCanceledException("The configuration dispatcher is unavailable.", token);
         }
+
         await completion.Task;
         await Task.Delay(16, token);
     }
@@ -366,11 +376,13 @@ public partial class PluginSettingsViewModel
             {
                 continue;
             }
+
             if (section.Key.Equals("DEV", StringComparison.OrdinalIgnoreCase))
             {
                 developerZone = true;
                 continue;
             }
+
             if (developerZone && !request.DeveloperFeatures)
             {
                 continue;
@@ -383,24 +395,42 @@ public partial class PluginSettingsViewModel
                 var localized = key.GetLocalized();
                 name = localized != key ? localized : name;
             }
+
             settings.Add(new ConfigurationSetting(section.Key, name, section.Value.GetValueOrDefault("Type", "string"),
-                section.Value.GetValueOrDefault("Value", string.Empty), section.Value.GetValueOrDefault("help", string.Empty)));
+                section.Value.GetValueOrDefault("Value", string.Empty),
+                section.Value.GetValueOrDefault("help", string.Empty)));
         }
 
-        return new ConfigurationLoadSnapshot(true, general.GetValueOrDefault("Name", "未知插件"),
-            general.GetValueOrDefault("Description", "无描述"), general.GetValueOrDefault("Developer", "未知作者"),
+        return new ConfigurationLoadSnapshot(true, general.GetValueOrDefault("Name", "PluginSettings_UnknownPlugin".GetLocalized()),
+            general.GetValueOrDefault("Description", "PluginSettings_NoDescription".GetLocalized()), general.GetValueOrDefault("Developer", "PluginSettings_UnknownDeveloper".GetLocalized()),
             File.GetLastWriteTime(request.IniPath).ToString("yyyy-MM-dd HH:mm:ss"), settings, presets);
     }
 
-    private sealed record ConfigurationPreferences(bool UseKeyListInput, bool AutoCreatePresets,
-        bool DeveloperFeatures, Dictionary<string, List<string>> PinnedSections,
+    private sealed record ConfigurationPreferences(
+        bool UseKeyListInput,
+        bool AutoCreatePresets,
+        bool DeveloperFeatures,
+        Dictionary<string, List<string>> PinnedSections,
         Dictionary<string, List<string>> ConfirmedSettingDisables);
 
-    private sealed record ConfigurationLoadRequest(IniFile IniFile, string IniPath, string DllPath, string PresetsDirectory,
-        int PluginIndex, bool LightweightMode, bool DeveloperFeatures, bool AutoCreatePresets);
+    private sealed record ConfigurationLoadRequest(
+        IniFile IniFile,
+        string IniPath,
+        string DllPath,
+        string PresetsDirectory,
+        int PluginIndex,
+        bool LightweightMode,
+        bool DeveloperFeatures,
+        bool AutoCreatePresets);
 
     private sealed record ConfigurationSetting(string Section, string Name, string Type, string Value, string Help);
 
-    private sealed record ConfigurationLoadSnapshot(bool Exists, string Name, string Description, string Developer,
-        string LastModified, IReadOnlyList<ConfigurationSetting> Settings, PresetLoadResult? PresetState);
+    private sealed record ConfigurationLoadSnapshot(
+        bool Exists,
+        string Name,
+        string Description,
+        string Developer,
+        string LastModified,
+        IReadOnlyList<ConfigurationSetting> Settings,
+        PresetLoadResult? PresetState);
 }

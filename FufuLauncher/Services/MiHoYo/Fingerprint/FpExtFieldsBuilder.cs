@@ -28,7 +28,6 @@ public static class FpExtFieldsBuilder
 
         return new ExtFields
         {
-            // 机型标识
             Model = d.Model,
             ProductName = d.ProductName,
             Brand = d.Brand,
@@ -43,7 +42,7 @@ public static class FpExtFieldsBuilder
             Vendor = d.Vendor,
             ScreenSize = d.ScreenSize,
 
-            // Build.*
+
             BuildTime = d.BuildTime.ToString(),
             Display = d.BuildDisplay,
             BuildTags = d.BuildTags,
@@ -52,39 +51,39 @@ public static class FpExtFieldsBuilder
             DevId = d.DevId,
             Hostname = d.Hostname,
 
-            // 宿主应用标识（与设备无关，属指纹注册身份）
+
             PackageName = HostPackageName,
             PackageVersion = HostPackageVersion,
 
-            // 设备显示名（默认等于机型名，用户可改）
+
             DeviceName = d.ResolvedDisplayName,
 
-            // 堆与分区几何（容量恒定）
+
             RomCapacity = d.HeapCapMb.ToString(),
             AppMemory = d.HeapCapMb.ToString(),
             RamCapacity = d.DataTotalMb.ToString(),
             SdCapacity = d.DataTotalMb,
 
-            // 堆与分区几何（剩余量随快照）
+
             RomRemain = snapshot.HeapFreeMb.ToString(),
             RamRemain = snapshot.DataFreeMb.ToString(),
             SdRemain = snapshot.SdFreeMb,
 
-            // 应用安装时刻（绝对 epoch 毫秒；全新安装时 install == update）
+
             AppInstallTimeDiff = snapshot.AppInstallTimeMs,
             AppUpdateTimeDiff = snapshot.AppInstallTimeMs,
 
-            // 单元级采集量
+
             BatteryStatus = snapshot.BatteryPercent,
             Accelerometer = snapshot.Accelerometer,
             Gyroscope = snapshot.Gyroscope,
             Magnetometer = snapshot.Magnetometer,
 
-            // 形态
+
             IsTablet = d.IsTablet,
             HasKeyboard = d.HasKeyboard,
 
-            // 环境常量
+
             ProxyStatus = 1,
             IsRoot = 0,
             DebugStatus = 0,

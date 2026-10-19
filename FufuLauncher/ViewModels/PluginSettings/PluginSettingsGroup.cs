@@ -20,7 +20,10 @@ public sealed class PluginSettingsGroup : ObservableObject
         }
     }
 
-    public ObservableCollection<PluginSettingItem> Items { get; }
+    public ObservableCollection<PluginSettingItem> Items
+    {
+        get;
+    }
 
     public Visibility SeparatorVisibility => _precedingItems?.Count > 0
         ? Visibility.Visible

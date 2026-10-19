@@ -112,7 +112,6 @@ public sealed class GameServerConfigurationService
         }
         catch
         {
-            // ignored
         }
     }
 

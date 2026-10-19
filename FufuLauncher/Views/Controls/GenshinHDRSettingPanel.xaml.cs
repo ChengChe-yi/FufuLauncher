@@ -133,19 +133,96 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         }
     }
 
-    [ObservableProperty] public partial bool HDRNotSupported { get; set; }
-    [ObservableProperty] public partial bool HDRNotEnabled { get; set; }
-    [ObservableProperty] public partial bool HDREnabled { get; set; }
-    [ObservableProperty] public partial string SystemHDRStatusText { get; set; } = "HDR_Status_Detecting".GetLocalized();
-    [ObservableProperty] public partial string DisplayColorSpace { get; set; } = "HDR_Status_Detecting".GetLocalized();
-    [ObservableProperty] public partial string DisplayMaxLuminance { get; set; } = "-";
-    [ObservableProperty] public partial string DisplayFullFrameLuminance { get; set; } = "-";
-    [ObservableProperty] public partial string DisplaySdrWhiteLevel { get; set; } = "-";
-    [ObservableProperty] public partial string DisplayInfomation { get; set; } = "";
-    [ObservableProperty] public partial int MaxLuminance { get; set; } = 1000;
-    [ObservableProperty] public partial int SceneLuminance { get; set; } = 300;
-    [ObservableProperty] public partial int UILuminance { get; set; } = 350;
-    [ObservableProperty] public partial bool IsGenshinHDRForceEnabled { get; set; }
+    [ObservableProperty]
+    public partial bool HDRNotSupported
+    {
+        get;
+        set;
+    }
+
+    [ObservableProperty]
+    public partial bool HDRNotEnabled
+    {
+        get;
+        set;
+    }
+
+    [ObservableProperty]
+    public partial bool HDREnabled
+    {
+        get;
+        set;
+    }
+
+    [ObservableProperty]
+    public partial string SystemHDRStatusText
+    {
+        get;
+        set;
+    } = "HDR_Status_Detecting".GetLocalized();
+
+    [ObservableProperty]
+    public partial string DisplayColorSpace
+    {
+        get;
+        set;
+    } = "HDR_Status_Detecting".GetLocalized();
+
+    [ObservableProperty]
+    public partial string DisplayMaxLuminance
+    {
+        get;
+        set;
+    } = "-";
+
+    [ObservableProperty]
+    public partial string DisplayFullFrameLuminance
+    {
+        get;
+        set;
+    } = "-";
+
+    [ObservableProperty]
+    public partial string DisplaySdrWhiteLevel
+    {
+        get;
+        set;
+    } = "-";
+
+    [ObservableProperty]
+    public partial string DisplayInfomation
+    {
+        get;
+        set;
+    } = "";
+
+    [ObservableProperty]
+    public partial int MaxLuminance
+    {
+        get;
+        set;
+    } = 1000;
+
+    [ObservableProperty]
+    public partial int SceneLuminance
+    {
+        get;
+        set;
+    } = 300;
+
+    [ObservableProperty]
+    public partial int UILuminance
+    {
+        get;
+        set;
+    } = 350;
+
+    [ObservableProperty]
+    public partial bool IsGenshinHDRForceEnabled
+    {
+        get;
+        set;
+    }
 
     partial void OnMaxLuminanceChanged(int value) => TriggerAutoSave();
     partial void OnSceneLuminanceChanged(int value) => TriggerAutoSave();
@@ -292,6 +369,7 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
                 popup.IsOpen = false;
                 return;
             }
+
             current = VisualTreeHelper.GetParent(current);
         }
     }

@@ -24,7 +24,11 @@ public sealed class PluginConfigTemplateSelector : DataTemplateSelector
         set;
     }
 
-    public DataTemplate? ChoiceTemplate { get; set; }
+    public DataTemplate? ChoiceTemplate
+    {
+        get;
+        set;
+    }
 
     protected override DataTemplate SelectTemplateCore(object item)
     {

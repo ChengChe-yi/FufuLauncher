@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -106,7 +106,7 @@ public sealed partial class MainWindow
             {
                 dispatcherQueue.TryEnqueue(() =>
                 {
-                    var announcementWindow = new Views.AnnouncementWindowL(announcementUrl);
+                    var announcementWindow = new Views.WebAnnouncementWindow(announcementUrl);
                     announcementWindow.Activate();
                 });
             }

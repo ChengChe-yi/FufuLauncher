@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -244,9 +244,9 @@ public sealed partial class MainWindow
         }
     }
 
-    internal async void NavigateToPage(string viewModelTag)
+    internal async void NavigateToPage(string viewModelTag, bool force = false)
     {
-        if (!IsNavItemVisible(viewModelTag))
+        if (!force && !IsNavItemVisible(viewModelTag))
         {
             ShowNotification(new NotificationMessage("HiddenFeatureTitle".GetLocalized(),
                 "HiddenFeatureMessage".GetLocalized(), NotificationType.Warning, 3000));
@@ -259,12 +259,12 @@ public sealed partial class MainWindow
         var pageType = viewModelTag switch
         {
             "FufuLauncher.ViewModels.MainViewModel" => typeof(Views.MainPage),
-            "FufuLauncher.ViewModels.BlankViewModel" => typeof(Views.BlankPage),
+            "FufuLauncher.ViewModels.GameSettingsViewModel" or "FufuLauncher.ViewModels.BlankViewModel" => typeof(Views.GameSettingsPage),
             "FufuLauncher.ViewModels.SettingsViewModel" => typeof(Views.SettingsPage),
             "FufuLauncher.ViewModels.AccountViewModel" => typeof(Views.AccountPage),
             "FufuLauncher.ViewModels.OtherViewModel" => typeof(Views.OtherPage),
             "FufuLauncher.ViewModels.CalculatorViewModel" => typeof(Views.CalculatorPage),
-            "FufuLauncher.ViewModels.ControlPanelModel" => typeof(Views.PanelPage),
+            "FufuLauncher.ViewModels.ControlPanelViewModel" or "FufuLauncher.ViewModels.ControlPanelModel" => typeof(Views.ControlPanelPage),
             "FufuLauncher.ViewModels.PluginViewModel" => typeof(Views.PluginPage),
             "FufuLauncher.ViewModels.PluginStoreViewModel" => typeof(Views.PluginStorePage),
             "FufuLauncher.ViewModels.DataViewModel" => typeof(Views.DataPage),
@@ -462,13 +462,62 @@ public sealed partial class MainWindow
             NavigateToPage("FufuLauncher.ViewModels.AccountViewModel");
     }
 
+    public void NavigateToGameSettingsPage()
+    {
+        if (_isExit) return;
+
+        var item = GetAllNavItems()
+            .FirstOrDefault(i => i.Tag?.ToString() == "FufuLauncher.ViewModels.GameSettingsViewModel" || i.Tag?.ToString() == "FufuLauncher.ViewModels.BlankViewModel");
+
+        if (item != null && (IsNavItemVisible("FufuLauncher.ViewModels.GameSettingsViewModel") || IsNavItemVisible("FufuLauncher.ViewModels.BlankViewModel")))
+        {
+            if (NavigationView.SelectedItem == item)
+            {
+                NavigateToPage("FufuLauncher.ViewModels.GameSettingsViewModel");
+            }
+            else
+            {
+                NavigationView.SelectedItem = item;
+            }
+        }
+        else
+        {
+            NavigationView.SelectedItem = null;
+            NavigateToPage("FufuLauncher.ViewModels.GameSettingsViewModel", force: true);
+        }
+    }
+
+    public void NavigateToBlankPage() => NavigateToGameSettingsPage();
+
+    public async Task NavigateToGameSettingsPageAsync()
+    {
+        if (_isExit) return;
+        try
+        {
+            Activate();
+        }
+        catch (System.Runtime.InteropServices.COMException)
+        {
+            return;
+        }
+
+        for (var i = 0; i < 40 && !_isMainUiLoaded; i++)
+        {
+            await Task.Delay(100);
+        }
+
+        NavigateToGameSettingsPage();
+    }
+
+    public Task NavigateToBlankPageAsync() => NavigateToGameSettingsPageAsync();
+
     public async Task LoadNavItemVisibilityAsync()
     {
         var settings = App.GetService<ILocalSettingsService>();
         var allKeys = new[]
         {
-            "MainViewModel", "PluginSettingsViewModel", "ControlPanelModel",
-            "BlankViewModel", "AccountViewModel", "OtherViewModel",
+            "MainViewModel", "PluginSettingsViewModel", "ControlPanelViewModel", "ControlPanelModel",
+            "GameSettingsViewModel", "BlankViewModel", "AccountViewModel", "OtherViewModel",
             "PluginViewModel", "DataViewModel", "HelpViewModel",
             "CalculatorViewModel", "SettingsViewModel"
         };
@@ -526,18 +575,12 @@ public sealed partial class MainWindow
 
             if (isMainPage && _isOverlayShown)
             {
+                PageBackgroundOverlay.Opacity = targetOpacity;
+
                 var translateAnim = new DoubleAnimation
                 {
-                    From = 0,
-                    To = screenHeight + 50,
-                    Duration = TimeSpan.FromMilliseconds(400),
-                    EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
-                };
-
-                var opacityAnim = new DoubleAnimation
-                {
-                    From = targetOpacity,
-                    To = 0.0,
+                    From = OverlayTranslate.Y,
+                    To = screenHeight + 100,
                     Duration = TimeSpan.FromMilliseconds(400),
                     EasingFunction = new CubicEase { EasingMode = EasingMode.EaseIn }
                 };
@@ -545,12 +588,18 @@ public sealed partial class MainWindow
                 var sb = new Storyboard();
                 Storyboard.SetTarget(translateAnim, OverlayTranslate);
                 Storyboard.SetTargetProperty(translateAnim, "Y");
-
-                Storyboard.SetTarget(opacityAnim, PageBackgroundOverlay);
-                Storyboard.SetTargetProperty(opacityAnim, "Opacity");
-
                 sb.Children.Add(translateAnim);
-                sb.Children.Add(opacityAnim);
+
+                sb.Completed += (_, _) =>
+                {
+                    if (!_isOverlayShown)
+                    {
+                        PageBackgroundOverlay.Opacity = 0.0;
+                    }
+                };
+
+                _pageOverlayStoryboard?.Stop();
+                _pageOverlayStoryboard = sb;
                 sb.Begin();
 
                 _isOverlayShown = false;
@@ -585,6 +634,9 @@ public sealed partial class MainWindow
 
                 sb.Children.Add(translateAnim);
                 sb.Children.Add(opacityAnim);
+
+                _pageOverlayStoryboard?.Stop();
+                _pageOverlayStoryboard = sb;
                 sb.Begin();
 
                 _isOverlayShown = true;

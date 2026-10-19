@@ -117,9 +117,6 @@ namespace FufuLauncher
             var exitCode = 1;
             try
             {
-                // --elevated-inject 快捷方式直启不会经过 App() 构造，需要先加载自定义数据目录
-                // （paths.json），否则预设读取会落到默认 %LOCALAPPDATA% 目录，
-                // --preset 指定的配置不会生效。
                 AppPaths.EnsureDirectories();
 
                 if (args.Length < 2)
@@ -163,7 +160,7 @@ namespace FufuLauncher
 
                     dllPath = ResolveInjectDllPath(launcher);
 
-                    // Without an explicit preset, keep the config.ini prepared by the current in-app preset.
+
                     for (var i = 2; i < separatorIndex; i++)
                     {
                         if (string.Equals(args[i], "--preset", StringComparison.OrdinalIgnoreCase))
@@ -269,7 +266,6 @@ namespace FufuLauncher
             }
             catch
             {
-                // ignored
             }
 
             return defaultDllPath;
@@ -297,7 +293,8 @@ namespace FufuLauncher
             try
             {
                 var folder = string.IsNullOrWhiteSpace(pluginDirectory)
-                    ? LightweightPluginService.MainPluginFolderName : Path.GetFileName(Path.TrimEndingDirectorySeparator(pluginDirectory));
+                    ? LightweightPluginService.MainPluginFolderName
+                    : Path.GetFileName(Path.TrimEndingDirectorySeparator(pluginDirectory));
                 var presetsDir = PluginPresetStorage.GetDirectory(folder);
                 var includeLegacyMain = folder.Equals(LightweightPluginService.MainPluginFolderName,
                     StringComparison.OrdinalIgnoreCase);
@@ -332,7 +329,6 @@ namespace FufuLauncher
             }
             catch
             {
-                // ignored
             }
         }
     }

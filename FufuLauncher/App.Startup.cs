@@ -27,7 +27,7 @@ public partial class App
 
             _mainDispatcherQueue = Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
 
-            //全量加载设置
+
             GetService<ILocalSettingsService>().StartBackgroundLoad();
 
             await GetService<LightweightPluginService>().InitializeAsync();

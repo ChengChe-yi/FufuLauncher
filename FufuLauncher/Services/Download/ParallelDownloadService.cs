@@ -33,8 +33,7 @@ public sealed class ParallelDownloadService
 
         var opt = (options ?? ParallelDownloadOptions.Default).Validate();
 
-        // 单文件下载：handler/client 生命周期覆盖本次调用。
-        // 批处理请走 DownloadManyAsync，它在整批范围内复用同一个 client。
+
         using var handler = CreateHandler(opt);
         using var client = CreateClient(handler);
         return await DownloadCoreAsync(client, url, destinationPath, opt, progress, token)
@@ -63,7 +62,7 @@ public sealed class ParallelDownloadService
         string workPath = opt.UseTemporaryFile ? fullPath + ".part" : fullPath;
         string resumeStatePath = workPath + ResumeStateSuffix;
 
-        // 总时长上限：由 Ct 触发，再据 token 是否被取消区分「超时」与「调用方取消」
+
         using var overallCts = CancellationTokenSource.CreateLinkedTokenSource(token);
         if (opt.OverallTimeout is { } overall && overall > TimeSpan.Zero)
         {
@@ -106,9 +105,6 @@ public sealed class ParallelDownloadService
                 catch (DownloadFailedException ex)
                     when (ex.Reason == DownloadFailureReason.RangeNotSupported && opt.AllowRangeFallback)
                 {
-                    // 服务端声称支持 Range 但实际返回完整内容 → 降级单线程重下。
-                    // 单线程用 FileMode.Create 从头写同一个 workPath，
-                    // 旧的分段续传记录就此失效，必须先删掉，否则下次会跳过实际未写的段。
                     Debug.WriteLine("[ParallelDownload] 服务端忽略 Range，降级为单线程");
                     TryDelete(resumeStatePath);
                     await DownloadSingleThreadAsync(client, url, workPath, totalSize, opt, progress, ct)
@@ -205,15 +201,14 @@ public sealed class ParallelDownloadService
             return results;
         }
 
-        // 用批次内最大并发需求建一个 client，供全部文件共享。
+
         var batchOpt = (options ?? ParallelDownloadOptions.Default).Validate();
         int peakSegments = list
             .Select(i => (i.Options ?? batchOpt).Validate().MaxParallelSegments)
             .DefaultIfEmpty(batchOpt.MaxParallelSegments)
             .Max();
 
-        // 调用方显式设过连接上限就保留（取批次与各项中的最大值），
-        // 否则按批次并发推导。Validate() 会把 <=0 填成派生值，故只能看原始入参。
+
         int explicitConnections = new[] { options?.MaxConnectionsPerServer ?? 0 }
             .Concat(list.Select(i => i.Options?.MaxConnectionsPerServer ?? 0))
             .Max();
@@ -229,8 +224,7 @@ public sealed class ParallelDownloadService
         using var client = CreateClient(handler);
         using var gate = new SemaphoreSlim(Math.Max(maxConcurrentFiles, 1));
 
-        // 不把 token 传给 Task.Run：否则取消时任务可能不启动，results 留空。
-        // 取消由 DownloadCoreAsync 内部处理并落成失败结果。
+
         var tasks = list.Select((item, index) => Task.Run(async () =>
         {
             try
@@ -265,7 +259,6 @@ public sealed class ParallelDownloadService
         return results;
     }
 
-    // ================================================================ 客户端
 
     private static SocketsHttpHandler CreateHandler(ParallelDownloadOptions opt) => new()
     {
@@ -277,8 +270,6 @@ public sealed class ParallelDownloadService
 
     private static HttpClient CreateClient(HttpMessageHandler handler) => new(handler, disposeHandler: true)
     {
-        // Timeout=Infinite：大文件不应被固定整体超时打断，
-        // 改由停滞看门狗 + OverallTimeout 控制。
         Timeout = Timeout.InfiniteTimeSpan,
     };
 
@@ -286,12 +277,11 @@ public sealed class ParallelDownloadService
     {
         var req = new HttpRequestMessage(method, url);
         req.Headers.UserAgent.ParseAdd(opt.UserAgent ?? DefaultUserAgent);
-        // 禁用透明压缩，确保 Range 偏移与实际写入字节一致
+
         req.Headers.AcceptEncoding.Add(new System.Net.Http.Headers.StringWithQualityHeaderValue("identity"));
         return req;
     }
 
-    // ================================================================ 预检
 
     private readonly record struct ProbeResult(bool SupportsRange, long ContentLength);
 
@@ -332,7 +322,7 @@ public sealed class ParallelDownloadService
                 headResp?.Dispose();
             }
 
-            // HEAD 不被支持 → 用 1 字节的 Range GET 探测
+
             using var probeReq = CreateRequest(HttpMethod.Get, url, opt);
             probeReq.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(0, 0);
             using var probeResp = await client
@@ -357,19 +347,16 @@ public sealed class ParallelDownloadService
     private static bool SupportsRange(HttpResponseMessage resp) =>
         resp.Headers.AcceptRanges?.Any(r => r.Equals("bytes", StringComparison.OrdinalIgnoreCase)) == true;
 
-    // ================================================================ 单线程
 
     private static async Task DownloadSingleThreadAsync(
         HttpClient client, string url, string workPath,
         long totalSize, ParallelDownloadOptions opt,
         IProgress<ParallelDownloadProgress>? progress, CancellationToken ct)
     {
-        // HttpClient.Timeout 已设为无限，故此处必须自己看住停滞，
-        // 否则卡死的连接会永久阻塞。
         using var attemptCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
         long lastProgressTicks = Environment.TickCount64;
 
-        // 看门狗在收到响应头之后才启动（建连/排队不计入停滞，理由同 DownloadChunkAsync）。
+
         PeriodicTimer? stallTimer = null;
         Task? watchdog = null;
 
@@ -430,7 +417,7 @@ public sealed class ParallelDownloadService
 
                         await limiter.AcquireAsync(read, attemptCts.Token).ConfigureAwait(false);
 
-                        // 限速等待不算“停滞”（见 DownloadChunkAsync 的同款说明）。
+
                         Volatile.Write(ref lastProgressTicks, Environment.TickCount64);
                         await destination.WriteAsync(buffer.AsMemory(0, read), attemptCts.Token).ConfigureAwait(false);
 
@@ -483,7 +470,6 @@ public sealed class ParallelDownloadService
         }
     }
 
-    // ================================================================ 并行
 
     private sealed class ParallelState
     {
@@ -510,15 +496,12 @@ public sealed class ParallelDownloadService
             $"[ParallelDownload] 并行 {chunks.Count} 小段 × {opt.MaxParallelSegments} 线程 " +
             $"(总计 {totalSize / 1024.0 / 1024.0:F2}MB)");
 
-        // 断点续传：读回已完成段（参数变化时自动作废）
+
         var completed = opt.EnableResume
             ? LoadResumeState(resumeStatePath, url, totalSize, chunks.Count)
             : new HashSet<int>();
 
-        // 续传记录只说明“上次记到这里”，不代表 .part 里的数据还在。
-        // 文件被删/被截断/被其它流程改写时，跳过的段会留下空洞，
-        // 而 SetLength 会把空洞补零 —— 大小校验照样通过，产出静默损坏的文件。
-        // 因此文件长度不符时一律丢弃续传记录，从头下载。
+
         if (completed.Count > 0 && !IsWorkFileIntact(workPath, totalSize))
         {
             Debug.WriteLine("[ParallelDownload] .part 文件缺失或长度不符，丢弃续传记录");
@@ -532,7 +515,7 @@ public sealed class ParallelDownloadService
             alreadyDone += chunks[i].End - chunks[i].Start + 1;
         }
 
-        // 预分配：SetLength 一次扩展，避免并发分片写入造成碎片化
+
         using var handle = File.OpenHandle(
             workPath, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite,
             FileOptions.Asynchronous);
@@ -561,13 +544,12 @@ public sealed class ParallelDownloadService
         var globalLimiter = new TokenBucketRateLimiter(opt.MaxBytesPerSecond);
         var resumeLock = new object();
 
-        // 某个分片发现服务端忽略 Range 时，用它中止其余在途分片，让并行阶段尽快退出。
+
         using var parallelAbort = CancellationTokenSource.CreateLinkedTokenSource(ct);
 
         var workers = new List<Task>(opt.MaxParallelSegments);
         for (int w = 0; w < opt.MaxParallelSegments; w++)
         {
-            // 单连接限速：每个工作线程各持一个令牌桶
             var segmentLimiter = new TokenBucketRateLimiter(opt.MaxBytesPerSecondPerSegment);
             workers.Add(Task.Run(async () =>
             {
@@ -598,8 +580,6 @@ public sealed class ParallelDownloadService
                         catch (DownloadFailedException ex)
                             when (ex.Reason == DownloadFailureReason.RangeNotSupported)
                         {
-                            // 必须原样上抛：外层依赖它决定是否降级为单线程，
-                            // 不能混进 “ChunksFailed” 里被吞掉。
                             lock (state.ErrorLock)
                             {
                                 state.LastError = ex;
@@ -644,7 +624,6 @@ public sealed class ParallelDownloadService
         }
         catch (OperationCanceledException)
         {
-            // 仅因 RangeNotSupported 触发的内部中止：改抛真正的成因
             Exception? cause;
             lock (state.ErrorLock)
             {
@@ -690,7 +669,7 @@ public sealed class ParallelDownloadService
         int totalChunks = Math.Max(opt.MaxParallelSegments * opt.ChunkMultiplier, 1);
         long chunkSize = totalSize / totalChunks;
 
-        // 段太小会产生过多请求 → 按 MinChunkSize 收敛
+
         if (chunkSize < opt.MinChunkSize)
         {
             totalChunks = (int)Math.Max(totalSize / opt.MinChunkSize, 1);
@@ -719,7 +698,7 @@ public sealed class ParallelDownloadService
         long chunkSize = end - start + 1;
         Exception? lastError = null;
 
-        // 本次尝试已写入的字节数；失败重试前需从总进度中扣回。
+
         long writtenThisAttempt = 0;
 
         for (int attempt = 0; attempt <= opt.MaxRetries; attempt++)
@@ -730,8 +709,7 @@ public sealed class ParallelDownloadService
             long lastProgressTicks = Environment.TickCount64;
             writtenThisAttempt = 0;
 
-            // 看门狗在收到响应头之后才启动：在此之前请求可能只是排在连接池队列里
-            // （同主机并发超过 MaxConnectionsPerServer 时），那不算传输停滞。
+
             PeriodicTimer? stallTimer = null;
             Task? watchdog = null;
 
@@ -741,7 +719,7 @@ public sealed class ParallelDownloadService
                 using var req = CreateRequest(HttpMethod.Get, url, opt);
                 req.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(start, end);
 
-                // 建连与排队单独限时：超时按可重试失败处理，不计入停滞。
+
                 using var sendCts = CancellationTokenSource.CreateLinkedTokenSource(attemptCts.Token);
                 if (opt.RequestTimeout > TimeSpan.Zero)
                 {
@@ -761,7 +739,6 @@ public sealed class ParallelDownloadService
 
                 using (resp)
                 {
-                    // 服务端忽略 Range 返回 200（完整内容）→ 无法用于分段写入
                     if (resp.StatusCode == HttpStatusCode.OK)
                     {
                         throw new DownloadFailedException(
@@ -771,7 +748,7 @@ public sealed class ParallelDownloadService
 
                     resp.EnsureSuccessStatusCode();
 
-                    // 206 必须覆盖请求的那一段，否则内容会被写到错误偏移。
+
                     var contentRange = resp.Content.Headers.ContentRange;
                     if (contentRange?.From != start || contentRange.To != end)
                     {
@@ -786,7 +763,7 @@ public sealed class ParallelDownloadService
                     await using var stream = await resp.Content.ReadAsStreamAsync(attemptCts.Token)
                         .ConfigureAwait(false);
 
-                    // 已有响应头，此后无数据才算停滞。
+
                     if (opt.StallTimeout > TimeSpan.Zero)
                     {
                         stallTimer = new PeriodicTimer(StallCheckInterval);
@@ -808,9 +785,7 @@ public sealed class ParallelDownloadService
                         await globalLimiter.AcquireAsync(read, attemptCts.Token).ConfigureAwait(false);
                         await segmentLimiter.AcquireAsync(read, attemptCts.Token).ConfigureAwait(false);
 
-                        // 限速等待不算“停滞”：令牌桶没有公平性保证，多线程共享时
-                        // 单个线程的等待可达 N×BufferSize/速率，会超过 StallTimeout。
-                        // 因此拿到配额后重新计时，再开始写。
+
                         Volatile.Write(ref lastProgressTicks, Environment.TickCount64);
 
                         await RandomAccess.WriteAsync(handle, buffer.AsMemory(0, read), writePos, attemptCts.Token)
@@ -833,7 +808,6 @@ public sealed class ParallelDownloadService
             }
             catch (OperationCanceledException) when (!ct.IsCancellationRequested)
             {
-                // 停滞看门狗触发 → 可重试
                 lastError = new DownloadFailedException(
                     "小段下载停滞超时。", url, totalSize, 1, DownloadFailureReason.Stalled);
             }
@@ -866,10 +840,7 @@ public sealed class ParallelDownloadService
                 }
             }
 
-            // 能走到这里说明本次尝试失败了（成功路径在 try 内 return）。
-            // 把本段已写入的字节扣回：重试会从段首重写，最终失败时这些字节也不算完成。
-            // 不扣则 TotalDownloaded 虚高，百分比提前到 100、速度与 ETA 失真，
-            // 异常里的 BytesDownloaded 也会误导续传判断。
+
             if (writtenThisAttempt > 0)
             {
                 Interlocked.Add(ref state.TotalDownloaded, -writtenThisAttempt);
@@ -958,7 +929,6 @@ public sealed class ParallelDownloadService
         }
     }
 
-    // ================================================================ 校验
 
     private static async Task VerifyHashAsync(
         string path, string url, ParallelDownloadOptions opt, long totalSize, CancellationToken ct)
@@ -988,7 +958,6 @@ public sealed class ParallelDownloadService
         }
     }
 
-    // ================================================================ 断点续传
 
     private static bool IsWorkFileIntact(string workPath, long totalSize)
     {
@@ -1006,8 +975,7 @@ public sealed class ParallelDownloadService
 
     private sealed record ResumeState(long TotalSize, int TotalChunks, string UrlHash, List<int> Completed);
 
-    // 记录必须绑定来源 URL：同一目标路径换了下载源时，大小与分段数可能完全一致，
-    // 若沿用旧记录就会跳过旧源的段、其余从新源取，拼出内容混杂的文件。
+
     private static string ComputeUrlHash(string url) =>
         HashUtility.Md5Bytes(System.Text.Encoding.UTF8.GetBytes(url));
 
@@ -1022,7 +990,7 @@ public sealed class ParallelDownloadService
             }
 
             var state = JsonSerializer.Deserialize<ResumeState>(File.ReadAllText(statePath));
-            // 来源、大小或分段数任一变化（例如换了下载源、改了并发设置）→ 旧记录不可信
+
             if (state == null
                 || state.TotalSize != totalSize
                 || state.TotalChunks != totalChunks
@@ -1056,13 +1024,11 @@ public sealed class ParallelDownloadService
         }
     }
 
-    // ================================================================ 清理
 
     private static void Cleanup(string workPath, string resumeStatePath, ParallelDownloadOptions opt)
     {
         if (opt.EnableResume)
         {
-            // 保留 .part 与 .state.json，供下次续传。
             return;
         }
 

@@ -54,7 +54,6 @@ public sealed class GameChannelSdkService
             }
             catch
             {
-                // ignored
             }
         }
 
@@ -117,7 +116,6 @@ public sealed class GameChannelSdkService
             }
             catch
             {
-                // ignored
             }
         }
     }
@@ -227,7 +225,6 @@ public sealed class GameChannelSdkService
                     }
                     catch
                     {
-                        // ignored
                     }
                 }
             }

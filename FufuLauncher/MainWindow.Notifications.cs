@@ -42,7 +42,6 @@ public sealed partial class MainWindow
         }
         catch
         {
-            // ignored
         }
     }
 
@@ -107,7 +106,6 @@ public sealed partial class MainWindow
             }
             catch
             {
-                // ignored
             }
 
             copyButton.Content = "Btn_Copied".GetLocalized();
@@ -228,7 +226,6 @@ public sealed partial class MainWindow
             }
             catch
             {
-                // ignored
             }
         };
 

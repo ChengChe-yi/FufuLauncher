@@ -57,7 +57,7 @@ public sealed class DailyNoteService
 
             string playerQuery = $"role_id={Uri.EscapeDataString(roleId)}&server={Uri.EscapeDataString(server)}";
 
-            // 先在 index 预热一次（真实客户端顺序），再取便签。
+
             await WarmUpPlayerInfoAsync(playerQuery, ctx);
 
             string json = await RequestAsync(
@@ -83,7 +83,6 @@ public sealed class DailyNoteService
                 }
                 else
                 {
-                    // 验证后重试仍未通过：保持 1034，交由下面的 widget 兜底通道再试。
                     Debug.WriteLine(
                         $"[DailyNoteService] 验证后重试 retcode={challengeRetcode}，转 widget 兜底");
                 }
@@ -93,7 +92,7 @@ public sealed class DailyNoteService
             {
                 json = await RequestWidgetAsync(ctx);
                 (retcode, message) = ParseResponse(json);
-                // The widget request does not specify a role; require proof of the selected role.
+
                 if (retcode == 0 && !GameRoleResponseValidator.MatchesWidget(json, roleId, server))
                     throw new InvalidOperationException("GameRole_WidgetMismatch".GetLocalized());
             }

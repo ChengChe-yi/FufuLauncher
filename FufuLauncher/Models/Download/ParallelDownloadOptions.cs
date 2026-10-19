@@ -20,7 +20,6 @@ public sealed record ParallelDownloadOptions
 
     public const int MaxSegments = 32;
 
-    // ------------------------------------------------------------ 并发
 
     public int MaxParallelSegments
     {
@@ -28,7 +27,7 @@ public sealed record ParallelDownloadOptions
         init;
     } = 8;
 
-    // 队列里的段数 = 分段数 × 本值，供工作线程竞争领取，实现负载均衡。
+
     public int ChunkMultiplier
     {
         get;
@@ -41,23 +40,21 @@ public sealed record ParallelDownloadOptions
         init;
     } = 128 * 1024;
 
-    // 小于此值不走分段，避免多连接开销超过收益。
+
     public long MinParallelFileSize
     {
         get;
         init;
     } = 1024 * 1024;
 
-    // <= 0 时按分段数自动推断。
+
     public int MaxConnectionsPerServer
     {
         get;
         init;
     }
 
-    // ------------------------------------------------------------ 限速
 
-    // 以下两项为 0 表示不限速。
     public long MaxBytesPerSecond
     {
         get;
@@ -70,7 +67,6 @@ public sealed record ParallelDownloadOptions
         init;
     }
 
-    // ------------------------------------------------------------ 重试
 
     public int MaxRetries
     {
@@ -90,7 +86,6 @@ public sealed record ParallelDownloadOptions
         init;
     } = TimeSpan.FromSeconds(30);
 
-    // ------------------------------------------------------------ 超时
 
     public TimeSpan ConnectTimeout
     {
@@ -104,21 +99,20 @@ public sealed record ParallelDownloadOptions
         init;
     } = TimeSpan.FromSeconds(30);
 
-    // 无数据达此时长即中断本次尝试并重试；0 表示关闭。
+
     public TimeSpan StallTimeout
     {
         get;
         init;
     } = TimeSpan.FromSeconds(30);
 
-    // 整个下载的总时限；null 表示不限。
+
     public TimeSpan? OverallTimeout
     {
         get;
         init;
     }
 
-    // ------------------------------------------------------------ 校验
 
     public string? ExpectedHash
     {
@@ -132,23 +126,21 @@ public sealed record ParallelDownloadOptions
         init;
     } = DownloadHashAlgorithm.None;
 
-    // null 表示以服务端返回的大小为准。
+
     public long? ExpectedSize
     {
         get;
         init;
     }
 
-    // ------------------------------------------------------------ 行为
 
-    // 服务端不支持分段时是否降级为单线程。
     public bool AllowRangeFallback
     {
         get;
         init;
     } = true;
 
-    // 先写 .part 临时文件，校验通过后再改名到目标路径。
+
     public bool UseTemporaryFile
     {
         get;
@@ -161,7 +153,7 @@ public sealed record ParallelDownloadOptions
         init;
     } = true;
 
-    // 启用后失败时保留 .part 与 .state.json，否则无法续传。
+
     public bool EnableResume
     {
         get;
@@ -186,14 +178,13 @@ public sealed record ParallelDownloadOptions
         init;
     } = 81920;
 
-    // 进度回调的最小间隔，避免高频上报拖慢 UI。
+
     public TimeSpan ProgressReportInterval
     {
         get;
         init;
     } = TimeSpan.FromMilliseconds(500);
 
-    // ------------------------------------------------------------ 预设
 
     public static ParallelDownloadOptions Default
     {

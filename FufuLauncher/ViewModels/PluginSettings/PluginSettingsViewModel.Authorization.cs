@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using CommunityToolkit.Mvvm.Messaging;
+using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
 
 namespace FufuLauncher.ViewModels;
@@ -17,9 +18,14 @@ public partial class PluginSettingsViewModel
 
     private async Task<bool> CheckHwidAuthorizationAsync()
     {
+        var authorizationService = App.GetService<Services.DeveloperAuthorizationService>();
+        if (authorizationService is not null && authorizationService.IsTemporaryAuthorized)
+        {
+            return true;
+        }
+
         if (_hasCheckedHwid && _isHwidAuthorized) return true;
 
-        var authorizationService = App.GetService<Services.DeveloperAuthorizationService>();
         _isHwidAuthorized = authorizationService is not null && await authorizationService.IsAuthorizedAsync();
         _hasCheckedHwid = true;
         System.Diagnostics.Debug.WriteLine($"[HWID_DEBUG] 授权结果: {_isHwidAuthorized}");
@@ -105,8 +111,8 @@ public partial class PluginSettingsViewModel
             else
             {
                 WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                    "权限验证失败",
-                    "您当前不具备开发者功能权限，无法开启该功能",
+                    "PluginSettings_AuthFailedTitle".GetLocalized(),
+                    "PluginSettings_DevPermissionRequired".GetLocalized(),
                     NotificationType.Error,
                     4000
                 ));

@@ -40,10 +40,7 @@ public partial class App : Application
         private set;
     }
 
-    /// <summary>
-    ///     Tracks the language selected on the first-run language selection page,
-    ///     so the AgreementPage can show the appropriate agreement text.
-    /// </summary>
+
     public static ViewModels.AppLanguage? FirstRunSelectedLanguage
     {
         get;
@@ -74,7 +71,7 @@ public partial class App : Application
 
         InitializeComponent();
 
-        // 清理旧版遗留的 resources.pri
+
         try
         {
             string oldPri = Path.Combine(AppContext.BaseDirectory, "resources.pri");
@@ -141,7 +138,6 @@ public partial class App : Application
         }
         catch
         {
-            // ignored
         }
     }
 

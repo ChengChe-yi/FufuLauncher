@@ -12,7 +12,7 @@ namespace FufuLauncher.Helpers
     {
         public static async Task<string?> FindGamePathAsync()
         {
-            Debug.WriteLine("========== [Debug] FindGamePath 开始 ==========");
+            Debug.WriteLine("[Debug] FindGamePath 开始");
             try
             {
                 var exeNames = await GameExeManager.GetExeNamesAsync();

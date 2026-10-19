@@ -3057,24 +3057,60 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
   <data name="GachaAnalysis_WishHistory" xml:space="preserve">
     <value>祈願履歴</value>
   </data>
-  <data name="GachaHistory_Loading" xml:space="preserve"><value>祈願履歴を整理しています…</value></data>
-  <data name="GachaHistory_Description" xml:space="preserve"><value>バージョンごとに読み込みます。祈願期間の結果を表示する祈願を選択してください。</value></data>
-  <data name="GachaHistory_HideEmpty" xml:space="preserve"><value>アイテムなしの祈願を非表示</value></data>
-  <data name="GachaHistory_NewerVersion" xml:space="preserve"><value>新しいバージョン</value></data>
-  <data name="GachaHistory_OlderVersion" xml:space="preserve"><value>古いバージョン</value></data>
-  <data name="GachaHistory_FiveStarItems" xml:space="preserve"><value>★5アイテム</value></data>
-  <data name="GachaHistory_FourStarItems" xml:space="preserve"><value>★4アイテム</value></data>
-  <data name="GachaHistory_ThreeStarItems" xml:space="preserve"><value>★3アイテム</value></data>
-  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve"><value>獲得アイテムのある祈願履歴はありません</value></data>
-  <data name="GachaHistory_EmptyTitle" xml:space="preserve"><value>祈願履歴のメタデータがありません</value></data>
-  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve"><value>「アイテムなしの祈願を非表示」をオフにすると、すべての履歴を表示できます。</value></data>
-  <data name="GachaHistory_EmptyDescription" xml:space="preserve"><value>祈願記録またはアイテムメタデータを更新すると自動的に生成されます。</value></data>
-  <data name="GachaHistory_PeriodFormat" xml:space="preserve"><value>{0:yyyy-MM-dd HH:mm} ～ {1:yyyy-MM-dd HH:mm}</value></data>
-  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve"><value>{0} 回</value></data>
-  <data name="GachaHistory_CharacterEvent" xml:space="preserve"><value>キャラクターイベント祈願</value></data>
-  <data name="GachaHistory_WeaponEvent" xml:space="preserve"><value>武器イベント祈願</value></data>
-  <data name="GachaHistory_Chronicled" xml:space="preserve"><value>集録祈願</value></data>
-  <data name="GachaHistory_Limited" xml:space="preserve"><value>限定祈願</value></data>
+  <data name="GachaHistory_Loading" xml:space="preserve">
+    <value>祈願履歴を整理しています…</value>
+  </data>
+  <data name="GachaHistory_Description" xml:space="preserve">
+    <value>バージョンごとに読み込みます。祈願期間の結果を表示する祈願を選択してください。</value>
+  </data>
+  <data name="GachaHistory_HideEmpty" xml:space="preserve">
+    <value>アイテムなしの祈願を非表示</value>
+  </data>
+  <data name="GachaHistory_NewerVersion" xml:space="preserve">
+    <value>新しいバージョン</value>
+  </data>
+  <data name="GachaHistory_OlderVersion" xml:space="preserve">
+    <value>古いバージョン</value>
+  </data>
+  <data name="GachaHistory_FiveStarItems" xml:space="preserve">
+    <value>★5アイテム</value>
+  </data>
+  <data name="GachaHistory_FourStarItems" xml:space="preserve">
+    <value>★4アイテム</value>
+  </data>
+  <data name="GachaHistory_ThreeStarItems" xml:space="preserve">
+    <value>★3アイテム</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve">
+    <value>獲得アイテムのある祈願履歴はありません</value>
+  </data>
+  <data name="GachaHistory_EmptyTitle" xml:space="preserve">
+    <value>祈願履歴のメタデータがありません</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve">
+    <value>「アイテムなしの祈願を非表示」をオフにすると、すべての履歴を表示できます。</value>
+  </data>
+  <data name="GachaHistory_EmptyDescription" xml:space="preserve">
+    <value>祈願記録またはアイテムメタデータを更新すると自動的に生成されます。</value>
+  </data>
+  <data name="GachaHistory_PeriodFormat" xml:space="preserve">
+    <value>{0:yyyy-MM-dd HH:mm} ～ {1:yyyy-MM-dd HH:mm}</value>
+  </data>
+  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve">
+    <value>{0} 回</value>
+  </data>
+  <data name="GachaHistory_CharacterEvent" xml:space="preserve">
+    <value>キャラクターイベント祈願</value>
+  </data>
+  <data name="GachaHistory_WeaponEvent" xml:space="preserve">
+    <value>武器イベント祈願</value>
+  </data>
+  <data name="GachaHistory_Chronicled" xml:space="preserve">
+    <value>集録祈願</value>
+  </data>
+  <data name="GachaHistory_Limited" xml:space="preserve">
+    <value>限定祈願</value>
+  </data>
   <data name="GachaAnalysis_GetRecords" xml:space="preserve">
     <value>祈願記録を取得</value>
   </data>
@@ -4853,32 +4889,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDFのエクスポートに失敗しました</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>現在のプロセスパスを取得できませんでした</value>
   </data>
@@ -4900,44 +4910,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>注入プロセスが異常終了しました（{0}）</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>バッグ同期はx64版のみ対応しています。</value>
   </data>
@@ -5217,7 +5189,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
     <value>インストール後にプラグインファイルが見つかりません。プラグインが正しくインストールされていない可能性があります</value>
   </data>
-
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>アンインストール中...</value>
   </data>
@@ -5355,110 +5326,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>ビジュアル</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>クラウドゲーム認証情報を削除</value>
   </data>
@@ -5909,7 +5776,9 @@ UIGF v4.x/3.0/2.x</value>
     <value>Download / Install Error</value>
   </data>
   <data name="PluginPage_DownloadErrorContentFormat" xml:space="preserve">
-    <value>Automatic download failed: {0}&#10;&#10;Click the button below to open your browser and download manually.</value>
+    <value>Automatic download failed: {0}
+
+Click the button below to open your browser and download manually.</value>
   </data>
   <data name="PluginPage_ManualDownloadBtn" xml:space="preserve">
     <value>Manual Download</value>
@@ -6226,25 +6095,63 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>同名 DLL の競合を解消しました。ゲームを再起動できます。</value>
   </data>
-  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>変更は自動的に保存されます</value></data>
-  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>保存中…</value></data>
-  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>設定の保存に失敗しました</value></data>
-  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>設定ファイルに書き込めませんでした。ファイルのアクセス権を確認して再試行してください。詳細：{0}</value></data>
-  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>設定の読み込みに失敗しました</value></data>
-  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>プラグインの設定ファイルを読み込めませんでした。詳細：{0}</value></data>
-  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>設定ファイルが存在し、読み取り可能であることを確認してから再読み込みしてください。</value></data>
-  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>設定ファイルが存在しません：{0}</value></data>
-  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>変更可能な設定はありません</value></data>
-  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>このプラグインには調整可能な設定がありません。</value></data>
-  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>一致する設定がありません</value></data>
-  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>別のキーワードを試すか、検索をクリアしてください。</value></data>
-  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>検索をクリア</value></data>
-  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} 件の設定</value></data>
-  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} 件の設定</value></data>
-  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>設定ファイル</value></data>
-  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>値を入力…</value></data>
-  <data name="PluginSettings_CollapseHeader" xml:space="preserve"><value>ヘッダーを折りたたむ</value></data>
-  <data name="PluginSettings_ExpandHeader" xml:space="preserve"><value>ヘッダーを展開</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
+    <value>変更は自動的に保存されます</value>
+  </data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve">
+    <value>保存中…</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
+    <value>設定の保存に失敗しました</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
+    <value>設定ファイルに書き込めませんでした。ファイルのアクセス権を確認して再試行してください。詳細：{0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
+    <value>設定の読み込みに失敗しました</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
+    <value>プラグインの設定ファイルを読み込めませんでした。詳細：{0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
+    <value>設定ファイルが存在し、読み取り可能であることを確認してから再読み込みしてください。</value>
+  </data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
+    <value>設定ファイルが存在しません：{0}</value>
+  </data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
+    <value>変更可能な設定はありません</value>
+  </data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
+    <value>このプラグインには調整可能な設定がありません。</value>
+  </data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve">
+    <value>一致する設定がありません</value>
+  </data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
+    <value>別のキーワードを試すか、検索をクリアしてください。</value>
+  </data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
+    <value>検索をクリア</value>
+  </data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
+    <value>{0} 件の設定</value>
+  </data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
+    <value>{0} / {1} 件の設定</value>
+  </data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
+    <value>設定ファイル</value>
+  </data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
+    <value>値を入力…</value>
+  </data>
+  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
+    <value>ヘッダーを折りたたむ</value>
+  </data>
+  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
+    <value>ヘッダーを展開</value>
+  </data>
   <data name="AchievementWindow_DataActions" xml:space="preserve">
     <value>データ操作</value>
   </data>
@@ -6265,5 +6172,2402 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="ModTrust_ModeCaption" xml:space="preserve">
     <value>オフは署名検証を省略し、警告は検証して通知します。厳格は検証に失敗したプラグインをブロックします。</value>
+  </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>サービス状態</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>サービス状態</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>稼働状況</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>各サービスの稼働状況を表示</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>すべてのシステムが正常です</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>一部のサービスに問題が発生しています</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>低下</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>停止中</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>90日間の稼働率</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>{0} 更新</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>さらに読み込む</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>サービス状態を取得中</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>サービス状態を取得できません</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>しばらくしてから再試行してください。</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>サービス</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>過去90日間</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90日間</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>前回の停止 {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>過去90日間の停止なし</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>サービス {0} 件</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>正常 {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>停止 {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>停止中 {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>データなし</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>詳細を表示</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>サービス状態に戻る</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>モニター詳細を取得できません</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>しばらくしてから再試行してください。</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>モニター詳細を取得中</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>稼働率</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>全体の稼働率</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>過去24時間</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>過去7日間</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>過去30日間</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>応答時間</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>過去2日間</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>平均応答時間</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>最大応答時間</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>最小応答時間</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>チェック回数</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>最近のイベント</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>さらに表示</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>最近のイベントはありません</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>応答時間データがありません</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>継続時間: {0} 秒</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>継続時間: {0} 分</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>継続時間: {0} 時間</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>継続時間: {0} 時間 {1} 分</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>継続時間: {0} 日 {1} 時間</value>
+  </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>自動再起動できません</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>自動再起動に失敗しましたが、設定は保存されました。変更を適用するには、手動でアプリを終了して再度開いてください。</value>
+  </data>
+  <data name="LangHi" xml:space="preserve">
+    <value>ヒンディー語</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>設定中: {0}（{1}）</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>以下のアカウントを選択してチェックインオプションを設定してください</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>一括チェックインに含めるアカウントにチェックを入れ、アカウントを選択して設定を編集します。ドラッグで順序を変更できます</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>ドラッグしてチェックイン順序を変更</value>
+  </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>ショートカット名</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>カスタム名（.lnk を除く、空白で既定値を使用）</value>
+  </data>
+  <data name="LoginQR_ServerCn" xml:space="preserve">
+    <value>中国サーバー</value>
+  </data>
+  <data name="LoginQR_ServerOs" xml:space="preserve">
+    <value>グローバルサーバー</value>
+  </data>
+  <data name="LoginQR_MobileCaptcha" xml:space="preserve">
+    <value>携帯電話番号認証ログイン</value>
+  </data>
+  <data name="LoginQR_OverseaPassword" xml:space="preserve">
+    <value>アカウント・パスワードログイン</value>
+  </data>
+  <data name="LoginQR_ThirdPartyLoginTitle" xml:space="preserve">
+    <value>サードパーティログイン</value>
+  </data>
+  <data name="LoginQR_ThirdPartyGoogle" xml:space="preserve">
+    <value>Google ログイン</value>
+  </data>
+  <data name="LoginQR_ThirdPartyApple" xml:space="preserve">
+    <value>Apple ログイン</value>
+  </data>
+  <data name="LoginQR_ThirdPartyFacebook" xml:space="preserve">
+    <value>Facebook ログイン</value>
+  </data>
+  <data name="LoginQR_ThirdPartyTwitter" xml:space="preserve">
+    <value>X (Twitter) ログイン</value>
+  </data>
+  <data name="LoginQR_OverseaRiskHint" xml:space="preserve">
+    <value>ヒント: HoYoverseにより、メール認証コードによるセキュリティ認証が求められる場合があります。</value>
+  </data>
+  <data name="LoginQR_LoginButton" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="LoginQR_SendCaptcha" xml:space="preserve">
+    <value>認証コードを送信</value>
+  </data>
+  <data name="LoginQR_MobileHeader" xml:space="preserve">
+    <value>携帯電話番号</value>
+  </data>
+  <data name="LoginQR_MobilePlaceholder" xml:space="preserve">
+    <value>11桁の携帯電話番号を入力</value>
+  </data>
+  <data name="LoginQR_CaptchaHeader" xml:space="preserve">
+    <value>認証コード</value>
+  </data>
+  <data name="LoginQR_CaptchaPlaceholder" xml:space="preserve">
+    <value>6桁のSMS認証コード</value>
+  </data>
+  <data name="LoginQR_AccountHeader" xml:space="preserve">
+    <value>アカウント</value>
+  </data>
+  <data name="LoginQR_AccountPlaceholder" xml:space="preserve">
+    <value>メールアドレスまたはユーザー名</value>
+  </data>
+  <data name="LoginQR_PasswordHeader" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="LoginQR_PasswordPlaceholder" xml:space="preserve">
+    <value>パスワードを入力</value>
+  </data>
+  <data name="LoginQR_OverseaVerifyTitle" xml:space="preserve">
+    <value>セキュリティ認証</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaHeader" xml:space="preserve">
+    <value>メール認証コード</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaPlaceholder" xml:space="preserve">
+    <value>6桁のメール認証コード</value>
+  </data>
+  <data name="LoginQR_SendEmailCaptcha" xml:space="preserve">
+    <value>メール認証コードを送信</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaSent" xml:space="preserve">
+    <value>メール認証コードを送信しました。受信トレイをご確認ください。</value>
+  </data>
+  <data name="LoginQR_UnknownEmail" xml:space="preserve">
+    <value>不明なメールアドレス</value>
+  </data>
+  <data name="Checkin_ResignTitle" xml:space="preserve">
+    <value>補填チェックイン</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormat" xml:space="preserve">
+    <value>今月はあと {0} 回補填チェックインが可能で、補填カードの残りは {1} 枚です。補填チェックインを実行しますか？</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormatCn" xml:space="preserve">
+    <value>今月はあと {0} 回補填チェックインが可能で、米遊コインを {1} 消費します。補填チェックインを実行しますか？</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoinCn" xml:space="preserve">
+    <value>米遊コインが不足しています</value>
+  </data>
+  <data name="Checkin_ResignSuccess" xml:space="preserve">
+    <value>補填チェックインに成功しました</value>
+  </data>
+  <data name="Checkin_ResignFailed" xml:space="preserve">
+    <value>補填チェックインに失敗しました [{0}] {1}</value>
+  </data>
+  <data name="Checkin_ResignLimitExceeded" xml:space="preserve">
+    <value>補填チェックインの回数上限に達しました</value>
+  </data>
+  <data name="Checkin_ResignNotSigned" xml:space="preserve">
+    <value>先に本日のチェックインを完了してください</value>
+  </data>
+  <data name="Checkin_ResignNoDate" xml:space="preserve">
+    <value>補填チェックイン可能な日付がありません</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoin" xml:space="preserve">
+    <value>補填カードが不足しています</value>
+  </data>
+  <data name="Checkin_ResignQueryFailed" xml:space="preserve">
+    <value>補填チェックイン資格の取得に失敗しました: {0}</value>
+  </data>
+  <data name="Checkin_ResignUnsupported" xml:space="preserve">
+    <value>現在のサーバーは補填チェックインに対応していません</value>
+  </data>
+  <data name="LaunchBtn_Launching" xml:space="preserve">
+    <value>クリックして起動をキャンセル</value>
+  </data>
+  <data name="LaunchCancelled_Title" xml:space="preserve">
+    <value>起動がキャンセルされました</value>
+  </data>
+  <data name="LaunchCancelled_Msg" xml:space="preserve">
+    <value>ゲームの起動プロセスを終了しました。</value>
+  </data>
+  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
+    <value>事前ダウンロード</value>
+  </data>
+  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
+    <value>更新リソースを事前にダウンロードします</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
+    <value>アップデート</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
+    <value>更新リソースをゲームに適用・マージ</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
+    <value>事前ダウンロードのマージ</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
+    <value>事前ダウンロード済みリソースを今すぐマージ（開発者向け）</value>
+  </data>
+  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
+    <value>事前ダウンロード済み</value>
+  </data>
+  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
+    <value>ゲームのアップデート</value>
+  </data>
+  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
+    <value>ゲームを最新バージョンにアップデートします。事前ダウンロード済みのリソースは自動的に再利用されます。</value>
+  </data>
+  <data name="GameUpdate_UpdateStart" xml:space="preserve">
+    <value>アップデートを開始</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
+    <value>事前ダウンロードのマージ</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
+    <value>事前ダウンロード済みのリソースを今すぐゲームにマージし、ゲームバージョンを先行適用します。開発者専用機能です。</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
+    <value>マージを開始</value>
+  </data>
+  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
+    <value>ゲームが最新バージョンにアップデートされました。</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
+    <value>事前ダウンロードリソースのマージが完了しました。</value>
+  </data>
+  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
+    <value>アップデートに失敗しました</value>
+  </data>
+  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
+    <value>事前ダウンロードの確認</value>
+  </data>
+  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
+    <value>アップデートの確認</value>
+  </data>
+  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
+    <value>事前ダウンロードマージの確認</value>
+  </data>
+  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
+    <value>ダウンロード容量: {0}
+インストール容量: {1}
+対象バージョン: {2}
+
+開始しますか？</value>
+  </data>
+  <data name="GameUpdate_PlanSummary" xml:space="preserve">
+    <value>予定: {0} をダウンロード、対象バージョン {1}</value>
+  </data>
+  <data name="GameUpdate_StageMerge" xml:space="preserve">
+    <value>ファイルをマージ中…</value>
+  </data>
+  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
+    <value>パッチを適用中…</value>
+  </data>
+  <data name="GameUpdate_MergingFile" xml:space="preserve">
+    <value>マージ中 {0}/{1}: {2}</value>
+  </data>
+  <data name="GameUpdate_SkipAsset" xml:space="preserve">
+    <value>アセットをスキップ（後で自動修復）: {0}</value>
+  </data>
+  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
+    <value>事前ダウンロードが完了しました。正式アップデートをお待ちください。</value>
+  </data>
+  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
+    <value>現在のバージョンには事前ダウンロード可能なコンテンツがありません。</value>
+  </data>
+  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
+    <value>ゲームは既に最新バージョンです。</value>
+  </data>
+  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
+    <value>ローカルのゲームバージョンを識別できません。config.ini を確認してください。</value>
+  </data>
+  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
+    <value>ディスク容量が不足しています: 必要容量 {0}、空き容量 {1}。</value>
+  </data>
+  <data name="GameUpdate_DevOnly" xml:space="preserve">
+    <value>この機能は開発者認証を受けたユーザーのみ利用できます。</value>
+  </data>
+  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
+    <value>パッチヘッダーの読み取りに失敗しました: パッチファイルが破損しているか、途中で切れています。</value>
+  </data>
+  <data name="Patch_DiffNotSeekable" xml:space="preserve">
+    <value>パッチストリームはシーク可能（ランダムアクセス対応）である必要があります。</value>
+  </data>
+  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
+    <value>ダウンロード速度</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>色空間</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>ピーク輝度</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>全画面最大輝度</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>SDRホワイトレベル</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>ハイライトや極端に明るい部分の輝度上限を調整します（モニターのピーク輝度と一致させることを推奨）</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>ゲーム世界の環境シーンにおける基準となるペーパーホワイト輝度を調整します</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>ミニマップ、HPバー、テキストなどのUI要素の輝度を調整します</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDR有効</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDR無効</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDR非対応</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDR情報取得不可</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>HDR検出中...</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR（標準ダイナミックレンジ）</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG（広色域）</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR（高ダイナミックレンジ）</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>読み取り不可</value>
+  </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>Embedded Yae 経由でゲーム内からインポート</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>ゲームを起動し、Embedded Yae コンポーネントを介してゲーム内からアチーブメントの進捗をインポートします</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>ゲームのインストール先が見つかりません。先に設定でゲームパスを指定してください。</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>ゲームデータを待機中...</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>アチーブメントデータを取得できませんでした。</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>ゲーム内から {0} 件のアチーブメントデータをインポートし、{1} 件の進捗を同期しました。</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>ゲーム内からのアチーブメントインポートに失敗しました。</value>
+  </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>ゲーム内から取得</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>ゲームを起動して祈願履歴を開きます
+Bilibiliサーバー対応、MiYouSheログイン不要</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>出力したいゲームアカウントでログインし、「祈願履歴」を開いて履歴が読み込まれるまでお待ちください。その後「取得開始」をクリックしてください。
+
+天空島、世界樹、グローバルサーバーに対応しており、MiYouSheへのログインは不要です。ゲーム内のアカウントが出力したい対象のアカウントであることをご確認ください。</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>取得開始</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>ゲーム内の祈願リンクを読み取り中...</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>先にランチャーで正しいゲームパスを設定してから、ゲームを起動して祈願履歴を開いてください。</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>祈願リンクが見つかりません。対象のアカウントでログインし、祈願履歴を開いて完全に読み込まれてから再試行してください。</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>ゲーム内の祈願リンクを読み取れませんでした。祈願履歴を再度開いてから再試行してください。</value>
+  </data>
+  <data name="Checkin_UnsupportedGame" xml:space="preserve">
+    <value>このゲームにはデイリー報酬チェックインが設定されていません</value>
+  </data>
+  <data name="Checkin_LoginExpired" xml:space="preserve">
+    <value>ログイン情報の有効期限が切れ、自動更新できませんでした。MiYouSheに再ログインしてからチェックインしてください</value>
+  </data>
+  <data name="Checkin_GameCaptcha" xml:space="preserve">
+    <value>チェックインにセキュリティ認証が必要です。MiYouShe公式ページで認証を完了してください</value>
+  </data>
+  <data name="Checkin_SignNotConfirmed" xml:space="preserve">
+    <value>チェックイン状態を確認できませんでした。しばらく待ってから再試行してください</value>
+  </data>
+  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
+    <value>データベースパス: {0}。このディレクトリへの書き込み権限とディスクの空き容量を確認してください。</value>
+  </data>
+  <data name="Launcher_DllNotFound" xml:space="preserve">
+    <value>インジェクション保留モジュールが見つかりません。インジェクション機能は利用できません。ランチャーを再インストールしてください。</value>
+  </data>
+  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
+    <value>切り替え先サーバー</value>
+  </data>
+  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
+    <value>現在のサーバー: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
+    <value>現在のサーバーを認識できません。ゲームディレクトリが有効か確認してください</value>
+  </data>
+  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
+    <value>先に切り替え先のサーバーを選択してください</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
+    <value>操作がキャンセルされました</value>
+  </data>
+  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
+    <value>現在 {0} に切り替えました</value>
+  </data>
+  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
+    <value>チャンクをダウンロード中 {0}/{1} - {2}</value>
+  </data>
+  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
+    <value>プラグインフォルダーのクリーンアップに失敗しました: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
+    <value>変換に失敗しました</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
+    <value>切り替えに失敗しました。ファイルが使用中の可能性があります
+エラー情報: {0}</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>B服 (Bilibili)</value>
+  </data>
+  <data name="DownloadWindow_Server" xml:space="preserve">
+    <value>サーバー</value>
+  </data>
+  <data name="Download_FileFailed" xml:space="preserve">
+    <value>{0} 個のファイルのダウンロードに失敗しました。再試行するか、サーバーを変更して再ダウンロードしてください</value>
+  </data>
+  <data name="PreDownload_Failed" xml:space="preserve">
+    <value>事前ダウンロードに失敗しました</value>
+  </data>
+  <data name="PreDownload_Success" xml:space="preserve">
+    <value>事前ダウンロードファイルがダウンロードされ、正常にインストール・上書きされました。</value>
+  </data>
+  <data name="VerifyGame_Success" xml:space="preserve">
+    <value>ゲームファイルの整合性検証および修復が完了しました</value>
+  </data>
+  <data name="VerifyGame_Failed" xml:space="preserve">
+    <value>整合性の検証に失敗しました</value>
+  </data>
+  <data name="GameServer_StageFetchBranches" xml:space="preserve">
+    <value>ブランチ情報を取得中</value>
+  </data>
+  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
+    <value>マニフェストをダウンロードして解析中</value>
+  </data>
+  <data name="GameServer_StageDiff" xml:space="preserve">
+    <value>差分を比較中</value>
+  </data>
+  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
+    <value>必要なデータチャンクをダウンロード中</value>
+  </data>
+  <data name="GameServer_StageReplace" xml:space="preserve">
+    <value>ファイルを置換中</value>
+  </data>
+  <data name="GameServer_ReplacingFile" xml:space="preserve">
+    <value>ファイルを置換中 {0}/{1} - {2}</value>
+  </data>
+  <data name="GameServer_StageCleanup" xml:space="preserve">
+    <value>一時データをクリーンアップ中</value>
+  </data>
+  <data name="GameServer_StageVerify" xml:space="preserve">
+    <value>ゲームファイルの整合性を検証しています。これには時間がかかる場合があります</value>
+  </data>
+  <data name="GameServer_VerifyOk" xml:space="preserve">
+    <value>ファイル整合性検証に合格しました。ゲームデータは正常です</value>
+  </data>
+  <data name="GameServer_VerifyProgress" xml:space="preserve">
+    <value>検証中: {0}/{1}</value>
+  </data>
+  <data name="GameServer_RepairFound" xml:space="preserve">
+    <value>異常または不足しているファイルが {0} 個見つかりました。修復中...</value>
+  </data>
+  <data name="GameServer_RepairDone" xml:space="preserve">
+    <value>破損ファイルの修復が完了しました</value>
+  </data>
+  <data name="GameServer_InstallingPredownload" xml:space="preserve">
+    <value>事前ダウンロードファイルをインストール中</value>
+  </data>
+  <data name="GameServer_BranchDataNull" xml:space="preserve">
+    <value>APIの返却データが空です。ブランチデータの取得に失敗しました</value>
+  </data>
+  <data name="GameServer_NoMainBranch" xml:space="preserve">
+    <value>main ブランチのデータを取得できません</value>
+  </data>
+  <data name="GameServer_NoPredownload" xml:space="preserve">
+    <value>現在、事前ダウンロードは利用できません</value>
+  </data>
+  <data name="GameServer_NoPackageId" xml:space="preserve">
+    <value>ブランチデータに package_id がありません</value>
+  </data>
+  <data name="GameServer_NoPassword" xml:space="preserve">
+    <value>ブランチデータに password がありません</value>
+  </data>
+  <data name="GameServer_NoManifests" xml:space="preserve">
+    <value>マニフェスト（manifests）の取得に失敗しました。</value>
+  </data>
+  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
+    <value>マニフェストの検証に失敗しました: {0}</value>
+  </data>
+  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
+    <value>APIリクエストに失敗しました: {0}、エラー情報: {1}</value>
+  </data>
+  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
+    <value>データチャンク {0} のダウンロードまたは検証に失敗しました。</value>
+  </data>
+  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
+    <value>ファイルのチェックサムが一致しません: {0}</value>
+  </data>
+  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
+    <value>ファイルサイズが一致しません: {0}（実際: {1} バイト、期待値: {2} バイト）</value>
+  </data>
+  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
+    <value>キャッシュが存在しないためファイルをスキップしました: {0}（後で整合性検証により修復可能です）</value>
+  </data>
+  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
+    <value>ファイル結合後の検証に失敗しました（ローカルの既存ファイルが破損している可能性があります）。スキップしました: {0}（後で整合性検証により修復可能です）</value>
+  </data>
+  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
+    <value>一時チャンクのクリーンアップに失敗しました: {0}</value>
+  </data>
+  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
+    <value>旧バージョンのSDKファイルをクリーンアップ中...</value>
+  </data>
+  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
+    <value>チャンネルSDK設定を取得中...</value>
+  </data>
+  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
+    <value>チャンネルSDK設定の取得に失敗しました</value>
+  </data>
+  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
+    <value>チャンネルSDKをダウンロード中...</value>
+  </data>
+  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
+    <value>チャンネルSDKを展開中...</value>
+  </data>
+  <data name="GameServer_CleanedPlugins" xml:space="preserve">
+    <value>Plugins フォルダーをクリーンアップしました</value>
+  </data>
+  <data name="GameServer_InsufficientPermission" xml:space="preserve">
+    <value>ゲームディレクトリのアクセス権限が不足しているため、ファイルを書き込めません: {0}。管理者として実行するか、ディレクトリの権限を確認してください</value>
+  </data>
+  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
+    <value>チャンネルSDKファイルが見つからないか破損しています。再取得中...</value>
+  </data>
+  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
+    <value>不要なファイルを処理中...</value>
+  </data>
+  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
+    <value>不要なファイル設定の取得に失敗しました: {0}</value>
+  </data>
+  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
+    <value>公式サーバー</value>
+  </data>
+  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
+    <value>Bilibiliサーバー</value>
+  </data>
+  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
+    <value>グローバルサーバー</value>
+  </data>
+  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
+    <value>ダウンロード速度</value>
+  </data>
+  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
+    <value>残りチャンク数: {0}</value>
+  </data>
+  <data name="SpeedGraph_NoData" xml:space="preserve">
+    <value>速度データがありません</value>
+  </data>
+  <data name="SectionGameAnnouncement" xml:space="preserve">
+    <value>ゲーム内お知らせ</value>
+  </data>
+  <data name="GameAnnouncementViewModeTitle" xml:space="preserve">
+    <value>お知らせの表示モード</value>
+  </data>
+  <data name="GameAnnouncementViewModeCaption" xml:space="preserve">
+    <value>ゲーム内お知らせを開く際の表示方式を選択します</value>
+  </data>
+  <data name="GameAnnouncementViewModeNew" xml:space="preserve">
+    <value>新版お知らせセンター</value>
+  </data>
+  <data name="GameAnnouncementViewModeClassic" xml:space="preserve">
+    <value>旧版公式Webページ</value>
+  </data>
+  <data name="GameAnnouncement_Title" xml:space="preserve">
+    <value>ゲーム内お知らせ</value>
+  </data>
+  <data name="GameAnnouncement_Loading" xml:space="preserve">
+    <value>お知らせを読み込み中…</value>
+  </data>
+  <data name="GameAnnouncement_LoadFailed" xml:space="preserve">
+    <value>お知らせの読み込みに失敗しました。ネットワークを確認して再試行してください</value>
+  </data>
+  <data name="GameAnnouncement_Retry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="GameAnnouncement_Empty" xml:space="preserve">
+    <value>お知らせはありません</value>
+  </data>
+  <data name="GameAnnouncement_SearchPlaceholder" xml:space="preserve">
+    <value>お知らせのタイトルを検索…</value>
+  </data>
+  <data name="GameAnnouncement_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="GameAnnouncement_ClassicMode" xml:space="preserve">
+    <value>旧版Webページ</value>
+  </data>
+  <data name="GameAnnouncement_Back" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="GameAnnouncement_NoContent" xml:space="preserve">
+    <value>このお知らせには本文がありません</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNGF01" xml:space="preserve">
+    <value>天空島</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNQD01" xml:space="preserve">
+    <value>世界樹</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSUSA" xml:space="preserve">
+    <value>アメリカ</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSEURO" xml:space="preserve">
+    <value>ヨーロッパ</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSASIA" xml:space="preserve">
+    <value>アジア</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSCHT" xml:space="preserve">
+    <value>TW/HK/MO</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursBegin" xml:space="preserve">
+    <value>{0} 時間後に開始</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursEnd" xml:space="preserve">
+    <value>{0} 時間後に終了</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysBegin" xml:space="preserve">
+    <value>{0} 日後に開始</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
+    <value>{0} 日後に終了</value>
+  </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>デバイス</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id は有効な GUID である必要があります</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time は有効な Unix ミリ秒タイムスタンプである必要があります</value>
+  </data>
+  <data name="Miyoushe_Title" xml:space="preserve">
+    <value>MiYouShe</value>
+  </data>
+  <data name="Miyoushe_CardHint" xml:space="preserve">
+    <value>公式情報、コミュニティの投稿、フォロー中の更新を閲覧します</value>
+  </data>
+  <data name="Miyoushe_Explore" xml:space="preserve">
+    <value>見つける</value>
+  </data>
+  <data name="Miyoushe_Forum" xml:space="preserve">
+    <value>コミュニティホーム</value>
+  </data>
+  <data name="Miyoushe_News" xml:space="preserve">
+    <value>公式ニュース</value>
+  </data>
+  <data name="Miyoushe_Following" xml:space="preserve">
+    <value>フォロー中</value>
+  </data>
+  <data name="Miyoushe_Favorites" xml:space="preserve">
+    <value>MiYouSheお気に入り</value>
+  </data>
+  <data name="Miyoushe_Library" xml:space="preserve">
+    <value>マイライブラリ</value>
+  </data>
+  <data name="Miyoushe_Bookmarks" xml:space="preserve">
+    <value>ローカルブックマーク</value>
+  </data>
+  <data name="Miyoushe_History" xml:space="preserve">
+    <value>閲覧履歴</value>
+  </data>
+  <data name="Miyoushe_MyProfile" xml:space="preserve">
+    <value>マイページ</value>
+  </data>
+  <data name="Miyoushe_User" xml:space="preserve">
+    <value>投稿者プロフィール</value>
+  </data>
+  <data name="Miyoushe_Topic" xml:space="preserve">
+    <value>トピック</value>
+  </data>
+  <data name="Miyoushe_Collection" xml:space="preserve">
+    <value>コレクション</value>
+  </data>
+  <data name="Miyoushe_Search" xml:space="preserve">
+    <value>検索結果</value>
+  </data>
+  <data name="Miyoushe_SearchHint" xml:space="preserve">
+    <value>投稿を検索、または投稿ID/MiYouSheリンクを貼り付け</value>
+  </data>
+  <data name="Miyoushe_Guest" xml:space="preserve">
+    <value>ゲスト閲覧</value>
+  </data>
+  <data name="Miyoushe_GuestHint" xml:space="preserve">
+    <value>公開コンテンツはログインなしで閲覧できます。フィードやお気に入りの利用には、ランチャー内で中国サーバーのアカウントを選択してください。</value>
+  </data>
+  <data name="Miyoushe_AccountHint" xml:space="preserve">
+    <value>切り替えはこのウィンドウにのみ適用されます</value>
+  </data>
+  <data name="Miyoushe_LoginHint" xml:space="preserve">
+    <value>ランチャーのアカウント管理でMiYouShe中国サーバーアカウントにログインし、ここでそのアカウントを選択してください。ログイン期限が切れた場合は再ログインしてください。</value>
+  </data>
+  <data name="Miyoushe_IdentityError" xml:space="preserve">
+    <value>アカウントのデバイスIDが無効なため、ゲストモードに切り替えました。アカウント管理で再ログインしてから再試行してください。</value>
+  </data>
+  <data name="Miyoushe_Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Miyoushe_RefreshHint" xml:space="preserve">
+    <value>現在のページを更新 (F5)</value>
+  </data>
+  <data name="Miyoushe_Refreshed" xml:space="preserve">
+    <value>更新しました（{0}）</value>
+  </data>
+  <data name="Miyoushe_Empty" xml:space="preserve">
+    <value>投稿がまだありません</value>
+  </data>
+  <data name="Miyoushe_More" xml:space="preserve">
+    <value>さらに読み込む</value>
+  </data>
+  <data name="Miyoushe_SelectPost" xml:space="preserve">
+    <value>投稿を選択して閲覧を開始</value>
+  </data>
+  <data name="Miyoushe_Save" xml:space="preserve">
+    <value>ローカルに保存</value>
+  </data>
+  <data name="Miyoushe_CopyLink" xml:space="preserve">
+    <value>リンクをコピー</value>
+  </data>
+  <data name="Miyoushe_Original" xml:space="preserve">
+    <value>元の投稿を開く</value>
+  </data>
+  <data name="Miyoushe_Article" xml:space="preserve">
+    <value>本文</value>
+  </data>
+  <data name="Miyoushe_Comments" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="Miyoushe_HotReplies" xml:space="preserve">
+    <value>人気コメント</value>
+  </data>
+  <data name="Miyoushe_LatestReplies" xml:space="preserve">
+    <value>最新コメント</value>
+  </data>
+  <data name="Miyoushe_OldestReplies" xml:space="preserve">
+    <value>古い順</value>
+  </data>
+  <data name="Miyoushe_OnlyAuthor" xml:space="preserve">
+    <value>投稿者のみ表示</value>
+  </data>
+  <data name="Miyoushe_Hot" xml:space="preserve">
+    <value>人気</value>
+  </data>
+  <data name="Miyoushe_Latest" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="Miyoushe_Featured" xml:space="preserve">
+    <value>おすすめ</value>
+  </data>
+  <data name="Miyoushe_Notices" xml:space="preserve">
+    <value>お知らせ</value>
+  </data>
+  <data name="Miyoushe_Events" xml:space="preserve">
+    <value>イベント</value>
+  </data>
+  <data name="Miyoushe_NoComments" xml:space="preserve">
+    <value>コメントはまだありません</value>
+  </data>
+  <data name="Miyoushe_SubReplies" xml:space="preserve">
+    <value>{0} 件の返信を表示</value>
+  </data>
+  <data name="Miyoushe_Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Miyoushe_Image" xml:space="preserve">
+    <value>画像を表示</value>
+  </data>
+  <data name="Miyoushe_OpenImage" xml:space="preserve">
+    <value>元の画像を開く</value>
+  </data>
+  <data name="Miyoushe_LinkCopied" xml:space="preserve">
+    <value>投稿のリンクをコピーしました</value>
+  </data>
+  <data name="Miyoushe_SearchTooLong" xml:space="preserve">
+    <value>検索キーワードは最大200文字までです</value>
+  </data>
+  <data name="Miyoushe_Retry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="Miyoushe_Timeout" xml:space="preserve">
+    <value>リクエストがタイムアウトしました。しばらく待ってから再試行してください</value>
+  </data>
+  <data name="Miyoushe_Verify" xml:space="preserve">
+    <value>セキュリティ認証を完了する</value>
+  </data>
+  <data name="Miyoushe_RiskHint" xml:space="preserve">
+    <value>MiYouSheによりセキュリティ認証が要求されたため、リクエストを一時停止しました。公式の認証コード（CAPTCHA）を完了すると、直前の操作が再試行されます。</value>
+  </data>
+  <data name="Miyoushe_VerifyHint" xml:space="preserve">
+    <value>MiYouSheが提示する公式の認証を完了してください。このウィンドウを閉じると認証をキャンセルできます。</value>
+  </data>
+  <data name="Miyoushe_VerifyLoadError" xml:space="preserve">
+    <value>認証の読み込みに失敗しました。ネットワークを確認して再試行するか、MiYouShe公式Webサイトで認証を完了してください。</value>
+  </data>
+  <data name="Miyoushe_VerifyCancelled" xml:space="preserve">
+    <value>認証がキャンセルされました。閲覧リクエストは一時停止のままです。「再試行」をクリックすると再度認証できます。</value>
+  </data>
+  <data name="Miyoushe_LibraryError" xml:space="preserve">
+    <value>ローカルのお気に入りまたは履歴の読み込みに失敗しました。既存のファイルは保持されます。</value>
+  </data>
+  <data name="Miyoushe_Back" xml:space="preserve">
+    <value>前に戻る</value>
+  </data>
+  <data name="Miyoushe_RightComments" xml:space="preserve">
+    <value>サイドバーにコメントを表示</value>
+  </data>
+  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve">
+    <value>有効にするとコメントが右側のサイドバーに表示され、無効にすると本文の下に表示されます</value>
+  </data>
+  <data name="Miyoushe_LoadingComments" xml:space="preserve">
+    <value>コメントを読み込み中…</value>
+  </data>
+  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve">
+    <value>コメントがまだ読み込まれていません。上のメッセージから再試行してください</value>
+  </data>
+  <data name="Miyoushe_Like" xml:space="preserve">
+    <value>いいね</value>
+  </data>
+  <data name="Miyoushe_Liked" xml:space="preserve">
+    <value>いいね済み</value>
+  </data>
+  <data name="Miyoushe_PublishComment" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="Miyoushe_Reply" xml:space="preserve">
+    <value>返信</value>
+  </data>
+  <data name="Miyoushe_ReplyTo" xml:space="preserve">
+    <value>@{0} に返信</value>
+  </data>
+  <data name="Miyoushe_CommentHint" xml:space="preserve">
+    <value>コメントを入力（最大1000文字）</value>
+  </data>
+  <data name="Miyoushe_SendComment" xml:space="preserve">
+    <value>MiYouSheに投稿</value>
+  </data>
+  <data name="Miyoushe_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Miyoushe_VerifyAndSend" xml:space="preserve">
+    <value>認証して投稿</value>
+  </data>
+  <data name="Miyoushe_Resubmit" xml:space="preserve">
+    <value>再投稿</value>
+  </data>
+  <data name="Miyoushe_CommentSent" xml:space="preserve">
+    <value>コメントを送信しました。最新コメントに切り替えました</value>
+  </data>
+  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve">
+    <value>送信結果を確認できませんでした。下書きは保存されています。元の投稿を確認し、投稿されていないことを確認してから再度投稿してください。</value>
+  </data>
+  <data name="Miyoushe_CommentRiskHint" xml:space="preserve">
+    <value>MiYouSheによりセキュリティ認証が要求されています。「認証して投稿」を選択し、公式認証を完了してコメントを送信してください。</value>
+  </data>
+  <data name="ModTrust_Title" xml:space="preserve">
+    <value>コード署名信頼（FufuLauncher CA）</value>
+  </data>
+  <data name="ModTrust_Loading" xml:space="preserve">
+    <value>信頼状態を読み込み中…</value>
+  </data>
+  <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="ModTrust_PackageMissing" xml:space="preserve">
+    <value>信頼パッケージが配置されていません: Assets\Trust に証明書とマニフェストファイルを配置するか、「今すぐ更新」をクリックして公式エンドポイントから同期してください。</value>
+  </data>
+  <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>現在の状態: {0}</value>
+  </data>
+  <data name="ModTrust_InstalledUser" xml:space="preserve">
+    <value>インストール済み（現在のユーザー）</value>
+  </data>
+  <data name="ModTrust_InstalledMachine" xml:space="preserve">
+    <value>インストール済み（このコンピューター）</value>
+  </data>
+  <data name="ModTrust_NotInstalled" xml:space="preserve">
+    <value>未インストール</value>
+  </data>
+  <data name="ModTrust_InstallTitle" xml:space="preserve">
+    <value>証明書のインストール / アンインストール</value>
+  </data>
+  <data name="ModTrust_InstallCaption" xml:space="preserve">
+    <value>インストールすると、当プロジェクトが発行したコード署名がシステムおよび当ランチャーに認識されるようになります。いつでもアンインストール可能で、他の証明書には影響しません。</value>
+  </data>
+  <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+    <value>インストール（現在のユーザー）</value>
+  </data>
+  <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+    <value>アンインストール（現在のユーザー）</value>
+  </data>
+  <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+    <value>インストール（このコンピューター、管理者権限が必要）</value>
+  </data>
+  <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+    <value>アンインストール（このコンピューター、管理者権限が必要）</value>
+  </data>
+  <data name="ModTrust_ScopeUser" xml:space="preserve">
+    <value>現在のユーザー</value>
+  </data>
+  <data name="ModTrust_ScopeMachine" xml:space="preserve">
+    <value>このコンピューター</value>
+  </data>
+  <data name="ModTrust_InstallConfirm" xml:space="preserve">
+    <value>「{0}」にプラットフォーム証明書をインストールします。インストール後、当プロジェクトが発行したコード署名が認識されるようになります。続行しますか？</value>
+  </data>
+  <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+    <value>「{0}」からプラットフォーム証明書をアンインストールします。アンインストール後、当プロジェクトが発行したコード署名は信頼されなくなります。続行しますか？</value>
+  </data>
+  <data name="ModTrust_SyncTitle" xml:space="preserve">
+    <value>信頼情報の更新</value>
+  </data>
+  <data name="ModTrust_SyncCaption" xml:space="preserve">
+    <value>公式エンドポイントからコード署名の信頼情報を更新します。</value>
+  </data>
+  <data name="ModTrust_SyncBtn" xml:space="preserve">
+    <value>今すぐ更新</value>
+  </data>
+  <data name="ModTrust_SyncConfirm" xml:space="preserve">
+    <value>公式エンドポイントから信頼情報をダウンロードして検証します。検証に合格しなかった場合は適用されません。続行しますか？</value>
+  </data>
+  <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>ブロックを有効化</value>
+  </data>
+  <data name="ModTrust_StrictConfirm" xml:space="preserve">
+    <value>有効にすると、署名検証に合格しなかったファイルは読み込まれなくなります。使用中のサードパーティプラグインに影響する可能性があります。続行しますか？</value>
+  </data>
+  <data name="ModTrust_BlockedTitle" xml:space="preserve">
+    <value>コード署名の検証に失敗しました</value>
+  </data>
+  <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>このファイルは署名検証に合格しなかったため、読み込みがブロックされました:</value>
+  </data>
+  <data name="ModTrust_WarnTitle" xml:space="preserve">
+    <value>コード署名に関するお知らせ</value>
+  </data>
+  <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+    <value>インストール済み（このコンピューター、全ユーザーに有効）</value>
+  </data>
+  <data name="ModTrust_InstalledBoth" xml:space="preserve">
+    <value>インストール済み（現在のユーザー + このコンピューター）</value>
+  </data>
+  <data name="ModTrust_MachineHint" xml:space="preserve">
+    <value>現在のユーザーの適用範囲はこのコンピューターへのインストールによって提供されています。インストールおよびアンインストールはこのコンピューターのスコープで行ってください。</value>
+  </data>
+  <data name="ModTrust_ModeTitle" xml:space="preserve">
+    <value>署名が無効な場合の動作</value>
+  </data>
+  <data name="ModTrust_ModeWarn" xml:space="preserve">
+    <value>警告のみ表示</value>
+  </data>
+  <data name="ModTrust_ModeEnforce" xml:space="preserve">
+    <value>ブロック</value>
+  </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>アクセスが拒否されました</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>このデバイスはFufuLauncherの使用が禁止されています。{0}{0}UID: {1}{0}理由: {2}{0}{0}誤判定と思われる場合は、以下のアドレスから異議申し立てを提出できます（UIDが「-」と表示されている場合は未記入で構いません）:{0}{3}{0}{0}今すぐ異議申し立てページを開きますか？「いいえ」を選択するとランチャーを終了します。</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>サーバーによりアクセスが取り消されました</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>このUIDはサーバーの利用禁止リストに含まれています</value>
+  </data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve">
+    <value>MiYouSheに連携されているキャラクターを確認中...</value>
+  </data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve">
+    <value>ゲームキャラクターを選択</value>
+  </data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve">
+    <value>祈願記録を取得するキャラクターを選択してください。Bilibiliサーバーのキャラクターは「世界樹」と表示されます。目的のキャラクターが表示されない場合は、キャンセルしてMiYouSheの連携状態を確認するか、「ゲーム内から取得」をお使いください。</value>
+  </data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve">
+    <value>天空島（公式サーバー）</value>
+  </data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve">
+    <value>世界樹（Bilibiliサーバー）</value>
+  </data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve">
+    <value>天空島</value>
+  </data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve">
+    <value>世界樹</value>
+  </data>
+  <data name="GameRole_Select" xml:space="preserve">
+    <value>ゲームキャラクターを切り替え</value>
+  </data>
+  <data name="GameRole_Hint" xml:space="preserve">
+    <value>連携キャラクター設定でデフォルトのキャラクターを指定できます。各機能で個別にサーバーを切り替えることができ、互いに影響しません。</value>
+  </data>
+  <data name="GameRole_Refresh" xml:space="preserve">
+    <value>連携キャラクターを更新</value>
+  </data>
+  <data name="GameRole_Unavailable" xml:space="preserve">
+    <value>選択されたキャラクターは連携リストにありません。キャラクターを再選択するか更新してください。</value>
+  </data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve">
+    <value>予備のメモAPIで選択されたキャラクターを確認できなかったため、表示を停止しました。当該キャラクターのメモ閲覧権限を有効にしてから再試行してください。</value>
+  </data>
+  <data name="GameRole_SkyIsland" xml:space="preserve">
+    <value>天空島</value>
+  </data>
+  <data name="GameRole_WorldTree" xml:space="preserve">
+    <value>世界樹</value>
+  </data>
+  <data name="MiyousheQr_Title" xml:space="preserve">
+    <value>画面QRコードスキャン</value>
+  </data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve">
+    <value>「1回スキャン」は選択範囲を1度だけ読み取ります。「継続スキャン」は選択範囲内の新しいQRコードを繰り返し読み取ります。認識後、現在のMiYouSheアカウントを使用してログインします。Escキーまたは右クリックで範囲選択をキャンセルできます。</value>
+  </data>
+  <data name="MiyousheQr_CurrentAccount" xml:space="preserve">
+    <value>現在のMiYouSheアカウント</value>
+  </data>
+  <data name="MiyousheQr_Target" xml:space="preserve">
+    <value>ログイン先</value>
+  </data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve">
+    <value>確認後、このQRコードを表示しているデバイスに上記のアカウントでログインします。</value>
+  </data>
+  <data name="MiyousheQr_Capture" xml:space="preserve">
+    <value>1回スキャン</value>
+  </data>
+  <data name="MiyousheQr_Confirm" xml:space="preserve">
+    <value>ログインを確認</value>
+  </data>
+  <data name="MiyousheQr_SelectionHint" xml:space="preserve">
+    <value>ドラッグしてQRコードを範囲選択 · Escまたは右クリックでキャンセル</value>
+  </data>
+  <data name="MiyousheQr_Genshin" xml:space="preserve">
+    <value>原神</value>
+  </data>
+  <data name="MiyousheQr_StarRail" xml:space="preserve">
+    <value>崩壊：スターレイル</value>
+  </data>
+  <data name="MiyousheQr_Zzz" xml:space="preserve">
+    <value>ゼンレスゾーンゼロ</value>
+  </data>
+  <data name="MiyousheQr_Honkai3" xml:space="preserve">
+    <value>崩壊3rd</value>
+  </data>
+  <data name="MiyousheQr_Passport" xml:space="preserve">
+    <value>miHoYo通行証</value>
+  </data>
+  <data name="MiyousheQr_NoAccount" xml:space="preserve">
+    <value>先にランチャー内でMiYouSheアカウントにログインしてください。</value>
+  </data>
+  <data name="MiyousheQr_CnOnly" xml:space="preserve">
+    <value>MiYouShe中国サーバーアカウントに切り替えてからスキャンしてください。</value>
+  </data>
+  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve">
+    <value>現在のアカウントにはスキャンに必要な認証情報がありません。MiYouSheアプリを使用してランチャーに再ログイン（QRコードログイン）してください。</value>
+  </data>
+  <data name="MiyousheQr_AccountChanged" xml:space="preserve">
+    <value>現在のMiYouSheアカウントが変更されました。QRコードの範囲を再度選択してください。</value>
+  </data>
+  <data name="MiyousheQr_Expired" xml:space="preserve">
+    <value>QRコードの有効期限が切れました。対象のデバイスで更新してから再度範囲選択してください。</value>
+  </data>
+  <data name="MiyousheQr_Unsupported" xml:space="preserve">
+    <value>サポートされていないmiHoYoログインQRコードです。miHoYo通行証および原神、崩壊：スターレイル、ゼンレスゾーンゼロ、崩壊3rd（中国サーバー）のログインQRコードに対応しています。</value>
+  </data>
+  <data name="MiyousheQr_NotFound" xml:space="preserve">
+    <value>選択範囲内にQRコードが見つかりませんでした。QRコード全体を囲み、周囲に少し余白を残して選択してください。</value>
+  </data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve">
+    <value>複数のQRコードが検出されました。ログインに使用するQRコードをクリックして選択してください。</value>
+  </data>
+  <data name="MiyousheQr_Cancelled" xml:space="preserve">
+    <value>範囲選択をキャンセルしました。</value>
+  </data>
+  <data name="MiyousheQr_Recognizing" xml:space="preserve">
+    <value>QRコードを認識中…</value>
+  </data>
+  <data name="MiyousheQr_Ready" xml:space="preserve">
+    <value>QRコードを認識しました。アカウントとログイン先を確認の上、確定してください。</value>
+  </data>
+  <data name="MiyousheQr_Confirming" xml:space="preserve">
+    <value>ログインを確認中…</value>
+  </data>
+  <data name="MiyousheQr_Success" xml:space="preserve">
+    <value>ログインを確認しました。対象のデバイスをご確認ください。</value>
+  </data>
+  <data name="MiyousheQr_ResultUnknown" xml:space="preserve">
+    <value>ログイン結果を確認できませんでした。先に対象のデバイスをご確認ください。ログインできていない場合は、QRコードを更新してから再度選択してください。</value>
+  </data>
+  <data name="MiyousheQr_CaptureFailed" xml:space="preserve">
+    <value>画面の範囲選択またはQRコードの読み取りに失敗しました。再試行してください。</value>
+  </data>
+  <data name="MiyousheQr_HttpError" xml:space="preserve">
+    <value>QRスキャンサービスのネットワーク要求に失敗しました。QRコードを更新して再試行してください。</value>
+  </data>
+  <data name="MiyousheQr_ResponseError" xml:space="preserve">
+    <value>QRスキャンサービスから認識できない応答が返されました。QRコードを更新して再試行してください。</value>
+  </data>
+  <data name="MiyousheQr_Rejected" xml:space="preserve">
+    <value>スキャン要求が拒否されました。QRコードの有効期限切れ、または認証情報が無効の可能性があります。QRコードを更新してください。それでも失敗する場合はMiYouSheアカウントに再ログインしてください。</value>
+  </data>
+  <data name="MiyousheQr_Continuous" xml:space="preserve">
+    <value>継続スキャン</value>
+  </data>
+  <data name="MiyousheQr_Stop" xml:space="preserve">
+    <value>スキャン停止</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirm" xml:space="preserve">
+    <value>ログインを自動確認</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve">
+    <value>スキャン前にチェックを入れると、対応する新しいQRコードを認識した際、現在のMiYouSheアカウントで即座にログインを確認します。</value>
+  </data>
+  <data name="MiyousheQr_Scanning" xml:space="preserve">
+    <value>選択範囲内の新しいQRコードを待機しています（確認済み: {0} 回）。「スキャン停止」をクリックして終了できます。</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve">
+    <value>ログイン成功後にスキャンを停止</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve">
+    <value>チェックを入れると、ログイン成功時に継続スキャンを停止して選択範囲を解除します。チェックを外すと、続けて後続のQRコードをスキャンできます。</value>
+  </data>
+  <data name="MiyousheQr_Stopped" xml:space="preserve">
+    <value>スキャンを停止しました。</value>
+  </data>
+  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve">
+    <value>選択範囲が無効になりました。QRコードの範囲を再度選択してください。</value>
+  </data>
+  <data name="MiyousheQr_SessionLimit" xml:space="preserve">
+    <value>継続スキャンの上限回数/時間に達しました。スキャンをやり直してください。</value>
+  </data>
+  <data name="Checkin_Game_hkrpg_cn" xml:space="preserve">
+    <value>崩壊：スターレイル</value>
+  </data>
+  <data name="Checkin_Game_nap_cn" xml:space="preserve">
+    <value>ゼンレスゾーンゼロ</value>
+  </data>
+  <data name="Checkin_Game_bh3_cn" xml:space="preserve">
+    <value>崩壊3rd</value>
+  </data>
+  <data name="Checkin_Game_bh2_cn" xml:space="preserve">
+    <value>崩壊学園</value>
+  </data>
+  <data name="Checkin_Game_nxx_cn" xml:space="preserve">
+    <value>未定事件簿</value>
+  </data>
+  <data name="Checkin_RequestTooFrequent" xml:space="preserve">
+    <value>リクエストが頻繁すぎます。しばらく待ってから再試行してください</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Title" xml:space="preserve">
+    <value>報酬受取方法の無効化</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Content" xml:space="preserve">
+    <value>{0} による報酬受取を無効にすると、報酬受取リストに {0} が表示されなくなり、この方法で報酬を受け取ることができなくなります。</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Confirm" xml:space="preserve">
+    <value>無効にする</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Title" xml:space="preserve">
+    <value>機能無効化の警告</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Content" xml:space="preserve">
+    <value>「{0}」を無効にすると、一部の特殊な場面でゲームから切断される可能性があります。</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Title" xml:space="preserve">
+    <value>設定項目が自動復元されました</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
+    <value>以下の設定項目は無効化の警告が確認されなかったため、自動的に有効な状態へ復元されました:
+{0}</value>
+  </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>★4排出</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>コピー失敗: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>読み込み中...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>デフォルトプリセット</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>武器イベント祈願</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>選択に失敗しました: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>アクセスキー</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>アカウントログイン済み（キャラクター未連携）</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Cookie の更新に失敗しました</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>設定の読み込みに失敗しました</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>FPS 解除がインストールされていません</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>月平均 {0} 連</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>自己紹介はまだありません...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>記録が取得されませんでした。既存の記録はバックアップされました。</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>キャラクターイベント祈願-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>初心者応援祈願</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>初期化に失敗しました</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>非公開プラグインのインストールに失敗しました: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>アカウントログイン済み</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>このプリセットにはプラグインのハッシュが記録されていないため、現在のバージョンと一致するか確認できません</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>グローバルサーバー</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>HoYoLABにログイン</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>プリセットファイルを解析できません
+詳細: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>JSON ファイル</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>ローカルデータと画像リソースを読み込みました。</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>追加に失敗しました: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie がクリップボードに正常にコピーされました</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>お待ちください...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>不明なプロパティ値: {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>URLの取得に失敗しました</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>削除失敗: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>設定の適用に失敗しました</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>保存失敗: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>ファイルピッカーの呼び出しに失敗しました。管理者権限で実行している場合は、標準ユーザーモードでお試しください</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>この機能を使用するには開発者権限が必要です</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>プラグインを追加: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>コピーしました</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>通常祈願</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>プラグインファイル</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>履歴ファイルが見つかりません。キャプチャをお試しください</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>サイズ不明</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>非公開プラグインIDとアクセスキーを入力してください:</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>CaptureApp.exe が見つかりません</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>アカウント情報更新失敗: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>このキャラクターの祈願記録はありません</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>操作に失敗しました</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>URLを取得しました。自動読み込みを開始します...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>完了！</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>ログインに成功しました</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>インストール</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>状態の保存に失敗しました</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>書き込み権限がないため有効化状態を保存できません
+詳細: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>プリセット切り替え時に設定ファイルへ書き込めません
+詳細: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>1回あたり 160 原石で換算</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>ドキュメントダウンロード例外: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>天井区間</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>現在の最大すり抜けカウント</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>非公開プラグインをインストール中: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>アカウントデータの読み込みに失敗しました</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>ログインがキャンセルされました</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>キャラクターイベント祈願</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>プラグイン「{0}」にはランチャーバージョン ≥ {1} が必要ですが、現在のバージョンは {2} です
+
+このプラグインをインストールする前にランチャーを更新してください。</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>エラー: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>UID: {0} の祈願記録を削除しました</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>不明なプラグイン</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>キャラクターイベント</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>コピーに失敗しました</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>データを取得中...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>設定ファイルを読み込めません
+詳細: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>{0} 件目の記録をインポート中...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>不明なエラー</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>操作に失敗しました: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>★4排出</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>全祈願の★5対象</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>インポートに失敗しました</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>{0}にしました: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} 個</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>ドキュメントが選択されていません</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>リンクの形式が正しくないため、APIアドレスを抽出できません</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>グローバルオートクリッカーを使用するには、ホットキーの登録やキーイベント送信のために管理者権限が必要です。管理者として再実行してください。</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>画像または動画</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>ユーザー情報を読み込んでいます...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>有効（FPS解除機能が有効）</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>エクスポートに成功しました。保存先: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>集録祈願</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>状態の切り替えに失敗しました</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>現在の変更を適用できません
+詳細: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>Plugins ディレクトリに対応するフォルダと config.ini が存在することを確認してください</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>幸運区間</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>アカウント_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>強制実行（非推奨）</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>キャプチャツールがデータを読み込んでいます...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>最大 {0} 個のアカウントを追加できます</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>リクエスト失敗（{0}）：{1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>権限の検証に失敗しました</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>現在ログイン中のアカウント</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>画像認証</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>初心者応援祈願</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>ログインウィンドウを開いています...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>約 {0:N0} 原石</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>不明な★4</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>原神デイリーログインボーナス受け取り完了</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Lua スクリプトテスト失敗: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>動的壁紙</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>日時記録なし</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} 回</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>アカウントを追加</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>ファイル内に祈願記録が見つかりません</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>指定されたプリセットファイルを削除できません。ファイルが使用中か権限がありません
+詳細: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>★5排出</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>ログの書き込みに失敗しました: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>バージョンが古すぎます</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>エラー: 管理者権限がないためオートクリッカーを起動できません</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>お知らせ</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>説明なし</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>デフォルト (未指定)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Lua セキュリティチェックに不合格でした: {0}。</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>FuFuPlugin がインストールされていません</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>仮天井手前</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>アクティブ月数</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>現在のプリセット: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>ログインエラー: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>停止ショートカットキーを設定してください</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>予期せぬエラー: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>Cookie を更新中...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>読み込み失敗: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>トレイに最小化</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>武器イベント</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>プリセットがプラグインバージョンと一致しないため、デフォルトにリセットしました</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>キャプチャ開始</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>非公開プラグイン</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>アカウントがありません</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>サポートされていない UIGF バージョン: {0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} 連</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>ファイルが存在しないか、アクセスできません</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>削除失敗: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>スクリプト実行がタイムアウトしました (5秒超過)</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>適用に失敗しました: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>操作失敗：ファイルが既に存在します</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>UID: {0} に切り替えました</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>グローバルオートクリッカーを有効にすると、グローバルキーボード/マウスフックがインストールされ、セキュリティソフトに検出される場合があります。有効にしますか？</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>壁紙切り替え</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>認識できないファイル</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>削除しました: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Cookie を正常に更新しました</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>このプリセットは現在のプラグインと完全に一致しています</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>キャラクター選択ボックスからゲームキャラクターを選択してください。</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>追加失敗：対象のプラグインは既に存在します</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>アカウント追加失敗: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>集録祈願</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>実行可能ファイル</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>★5カウントなし</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>{0} 件の記録を {1} ({2}) に正常にエクスポートしました</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>インポート失敗: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>取得したキャラクターが現在選択されているものと一致しません。表示を中止します。</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>原神チェックイン</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>プリセットを切り替えました</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>有効（一部機能が有効）</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>UIGF ファイルを読み込み中...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>見つかりません</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>現在の最大: {0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie をクリップボードにコピーしました</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>{0} としてログインしました</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>全★1-5記録</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>レジストリを読み取れません</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>権限が不足しているため、設定ファイルにプリセットを書き込めません
+詳細: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>権限が不足しているか他のプロセスに使用されています。標準ユーザーとしてゲームパスを再選択してください</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>設定の保存に失敗しました</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>アカウント凍結ページを開いています...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>停止ショートカットにより停止しました</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>削除しました</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>現在のアカウント</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>無効なパス</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>★3</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>総祈願回数</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>有効な Cookie が見つかりません</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>インポート完了（全 {0} 件）。画像リソースを読み込んでいます...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>ログイン情報が見つかりません</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>一度ゲームを起動してから再試行してください</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>アイテムのメタデータと祈願情報を取得中...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>モニター {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>オートクリッカーを停止してから再開してください</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>キャプチャ中... ゲーム内の祈願履歴ページを開いてください</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>最も遅い★5</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>無効なパスです。ファイルが存在し、.exe 形式であることを確認してください</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>リストを更新</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>パスが空です</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>ビューを初期化できません: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>パスの選択に失敗しました: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>書き込み権限がないためプリセットファイルを保存できません
+詳細: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>アカウントの切り替えに成功しました</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>エクスポート失敗: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>キャプチャ停止</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>履歴の読み込みに失敗しました: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>プラグインの拡張子を変更できません
+詳細: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>権限が不足しているか他のプロセスに使用されています。標準ユーザーとして再選択してください</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>設定の更新に失敗しました</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>削除に失敗しました</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>ドキュメントを取得できません (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>パスを適用しました</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>プラグイン「{0}」(ID: {1}) は非公開プラグインです。インストールを続行するにはアクセスキーを入力してください:</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>ディレクトリツリーを読み込めません: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>開くのに失敗しました: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Lua スクリプトテストに成功しました</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>状態の切り替えに失敗しました: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>エクスポートできるデータがありません</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>原神リアルタイムノートを開いています...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>履歴URLを読み込みました。自動キャプチャを準備中...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>音声ファイル</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>操作が成功しました</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>プリセットの保存に失敗しました</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>UID: {0} の記録を削除しました</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>祈願メタデータを取得中...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Lua 実行エラー: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>プリセットの削除に失敗しました</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>先にログインしてください</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>この UIGF バージョンを認識できません。ファイル形式をご確認ください</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>非公開プラグインを確認中...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>★5記録なし</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>了解しました</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>アカウントが選択されていません</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>通常祈願</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>非公開プラグインをインストール</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>★5</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>開きました</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>再ログイン</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>ファイルが存在しないか、有効な .exe ファイルではありません</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>アカウントセキュリティセンターを開いています...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>詳細: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>キャプチャは手動で停止されました</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>認証完了</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>プリセット内のハッシュと現在のプラグインハッシュが一致しません。異なるバージョンの可能性があります</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>★5平均排出数</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>強制終了に失敗しました</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>無効な祈願リンク</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>このアカウントには祈願記録がありません</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>プレビュー形式バージョンは動的壁紙に対応していません。</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>有効化を確認</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>準備完了</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>推定原石</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>ビューを更新中...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>不明な開発者</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>UIGF ファイルをエクスポート中...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>ファイルピッカーを開けません</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>中国サーバー</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>ログアウト失敗: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>{0} を取得中...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>★4</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>中間区間</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>最も早い★5</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>目次から項目を選択して詳細を表示してください</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>セキュリティポリシー違反: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>プラグインID</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>ランチャーを終了</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>不明な★5</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>管理者権限が必要です</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>プラグインファイルが存在しないかハッシュを計算できないため、プリセットが一致するか確認できません</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>ファイル内に不完全な記録があります（id/item_id/time/gacha_type が不足）。形式を確認してください</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>停止に失敗しました: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>★5キャラ平均消費</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>読み込み完了、合計 {0} 個のプラグイン</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Cookie 更新失敗: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>ファイル内に有効な祈願記録が見つかりません</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>異常記録</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>初期化中...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>ユーザー {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>HoYoLABでの祈願データ取得が許可されていません (コード 1016)。連携を確認するか「ゲームから取得」をお試しください。</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>祈願取得用の連携キャラクターが見つかりません。対象キャラが連携されたHoYoLABにログインするか、「ゲームから取得」をご利用ください。</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>UID {0} の新規記録は見つかりませんでした。既存データを保持します。</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>ローカル履歴を読み込みました</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>インポートがキャンセルされました。既存のデータは変更されていません。</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>取得完了、UID {0}（全 {1} 件）。画像リソースを確認中...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>HoYoLABがパラメータを拒否しました (コード 1002)。「ゲームから取得」をお試しください。</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>祈願記録が取得できませんでした。ゲーム内の祈願履歴をご確認ください。</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>設定の読み込みに失敗しました: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>{0} の記録を取得中... ({1} 件取得済み)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>有効な祈願リンクを入力してください</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>認証キーを生成中（全量更新）...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>異なる祈願から異なるアカウントのデータが返されたため、インポートを中止しました。</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>データ取得を待機中...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>診断サービスの初期化に失敗しました</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>原神データウィンドウを開いています...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>＋ 新規ユーザーを追加</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>無題</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0} {1} 件。{2} の記録を取得中...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>キャラクター、武器、祈願メタデータを更新中...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>クリップボードの内容が無効です</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>取得したUIDが選択されたキャラクターと一致しないため、インポートを中止しました。</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> HoYoLABのログイン状態を確認するか、「ゲームから取得」をご利用ください。</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>アカウント情報の読み込みに失敗しました: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>エクスポート成功</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>分析完了！</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>認証キーを生成中（差分更新）...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>先にキャラクタースイッチャーでキャラクターを選択してください。</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>クリップボードの読み取りに失敗しました</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>エクスポート失敗</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>UID {0} に連携されたHoYoLABアカウントが見つかりません。連携を確認するか「ゲームから取得」をご利用ください。</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>キャラクターが切り替えられたため、前の結果を破棄しました。</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>キャプチャツールを起動</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>名前の変更に失敗しました：フォルダー名が既に存在します</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>ダウンロード認証</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>名前の変更に失敗しました: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>リストを並べ替えました</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>名前を変更しました</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>ゲームチェックイン状態を読み込み中</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>プリセットの切り替えに失敗しました</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>ブラウザを開くのに失敗しました: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>マウスクリックを有効にする前に、キーボードの停止ショートカットキーを設定してください</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>マウスクリックには事前にキーボードの停止キーを設定する必要があります</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>不明な祈願</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>対応するプリセット構成が見つかりません</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>APIリンクを解析中...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>パスは有効です</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>無効化されています。設定を調整するにはメインプラグインを有効にしてください。</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>無効化されています。設定を調整するにはFPSプラグインを有効にしてください。</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>プラグインの変更</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>現在のプリセットは最新のプラグインバージョンと一致しないため、新しいプリセットが自動生成されました。</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>このプリセットは現在ロックとしてマークされています。</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>クリア失敗</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>プリセットファイルをクリアできません。
+詳細情報: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>内部ビューが更新されました</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>不明なキー値 {0} を追加しました</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>データの読み込みを待機しています...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>miHoYoコミュニティに接続しています...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>アカウントのログインが必要です</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>旅人手帳を分析中...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>旅人手帳のリクエストに失敗しました ({0}): {1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>旅人手帳から返されたキャラクターが現在の選択と一致しないため、表示を停止しました。</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>読み込み失敗: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>本文はバックグラウンドでプリロード中です。タイトルまたはパスから一致しました</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>読み込み中...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>動的壁紙は開発版でのみ利用可能です。プレビュー版および正式版では画像をカスタム背景として選択してください。</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>API経由でキャラクターと武器のメタデータを取得中...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>{0}メタデータの取得に失敗しました。{1} 秒後に再試行します ({2}/{3})...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>新しい画像リソースが見つかりませんでした。既存のキャッシュまたはデフォルトアイコンを使用します</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>{0} 個の画像リソースを更新し、データベースに保存しました</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>祈願プールメタデータの更新が完了しました（合計 {0} 件の履歴プール：キャラクター {1}、武器 {2}、集録 {3}）</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>キャラクター</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>武器</value>
   </data>
 </root>

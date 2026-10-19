@@ -58,7 +58,7 @@ public sealed class TokenBucketRateLimiter
                     return;
                 }
 
-                // 补足缺口所需时间；下限 1ms，避免空转占满 CPU。
+
                 double missing = count - _tokens;
                 wait = TimeSpan.FromMilliseconds(
                     Math.Max(missing / _bytesPerSecond * 1000.0, 1.0));

@@ -11,9 +11,6 @@ using FufuLauncher.Services.MiHoYo.Fingerprint;
 
 namespace FufuLauncher.Services.MiHoYo;
 
-/// <summary>
-///     单账号运行期身份聚合：cookies（账号级）+ 设备身份（App 级）。
-/// </summary>
 public sealed class AccountIdentityService
 {
     private readonly AccountManager _accountManager;
@@ -51,7 +48,7 @@ public sealed class AccountIdentityService
             Stuid: ExtractStuid(cookies, serverType),
             Mid: cookies.GetValueOrDefault("mid") ?? "");
 
-        // 设备特征直接取自固定档案，无需再从 ext_fields 反解。
+
         var deviceIdentity = new DeviceIdentity(
             DeviceId: device.DeviceId,
             BbsDeviceId: device.BbsDeviceId,

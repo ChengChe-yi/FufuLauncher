@@ -84,7 +84,6 @@ namespace FufuLauncher.Helpers
             }
             catch
             {
-                // ignored
             }
 
             return false;
@@ -108,7 +107,6 @@ namespace FufuLauncher.Helpers
             }
             catch
             {
-                // ignored
             }
 
             return false;
@@ -251,11 +249,10 @@ namespace FufuLauncher.Helpers
 
         private static readonly string[] KnownFamilies =
         {
-            // NVIDIA
             "RTX", "GTX", "Quadro", "Tesla",
-            // AMD
+
             "Radeon Pro", "RX", "Pro",
-            // Intel
+
             "Arc", "Iris Xe", "Iris", "UHD", "HD", "Xe"
         };
 

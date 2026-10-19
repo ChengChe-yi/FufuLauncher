@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -57,7 +57,7 @@ public sealed partial class MainWindow
         _slideshowTimer?.Stop();
         _networkMonitorService.Stop();
 
-        // 通知 ViewModel 取消后台任务
+
         try
         {
             App.GetService<MainViewModel>()?.Cleanup();
@@ -68,7 +68,7 @@ public sealed partial class MainWindow
 
         try
         {
-            App.GetService<ControlPanelModel>()?.Cleanup();
+            App.GetService<ControlPanelViewModel>()?.Cleanup();
         }
         catch
         {
@@ -157,7 +157,6 @@ public sealed partial class MainWindow
         }
         catch
         {
-            // ignored
         }
     }
 
@@ -239,7 +238,6 @@ public sealed partial class MainWindow
         }
         catch
         {
-            // ignored
         }
 
         Activated -= OnWindowActivated;
@@ -261,7 +259,6 @@ public sealed partial class MainWindow
         }
         catch
         {
-            // ignored
         }
     }
 
@@ -275,7 +272,6 @@ public sealed partial class MainWindow
         }
         catch
         {
-            // ignored
         }
     }
 
@@ -304,7 +300,6 @@ public sealed partial class MainWindow
         }
         catch
         {
-            // ignored
         }
     }
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -53,6 +53,7 @@ public partial class PluginSettingsViewModel
         {
             AvailablePresets.Add(preset);
         }
+
         CurrentPreset = result.CurrentPreset;
         foreach (var notification in result.Notifications)
         {
@@ -69,11 +70,13 @@ public partial class PluginSettingsViewModel
             {
                 File.Delete(file);
             }
+
             var stateFile = Path.Combine(_presetsDir, "active_state.json");
             if (File.Exists(stateFile))
             {
                 File.Delete(stateFile);
             }
+
             if (includeLegacyMain)
             {
                 var legacyStateFile = Path.Combine(_presetsDir,
@@ -90,8 +93,8 @@ public partial class PluginSettingsViewModel
         catch (Exception ex)
         {
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "清除失败",
-                $"无法清除预设文件\n详细信息: {ex.Message}",
+                "PluginSettings_ClearFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ClearPresetFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));
@@ -150,8 +153,8 @@ public partial class PluginSettingsViewModel
         catch (Exception ex)
         {
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "预设保存失败",
-                $"无法保存预设文件，可能缺少写入权限\n详细信息: {ex.Message}",
+                "PluginSettings_PresetSaveFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_PresetSaveFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));
@@ -171,8 +174,8 @@ public partial class PluginSettingsViewModel
         catch (Exception ex)
         {
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "状态保存失败",
-                $"无法保存激活状态记录，可能缺少写入权限\n详细信息: {ex.Message}",
+                "PluginSettings_StateSaveFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_StateSaveFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));
@@ -219,20 +222,20 @@ public partial class PluginSettingsViewModel
         var currentHash = GetTargetDllHash();
         if (string.IsNullOrEmpty(preset.DllHash))
         {
-            return "此预设没有记录插件 Hash，无法确认它是否适用于当前插件版本。";
+            return "PluginSettings_PresetNoHashHint".GetLocalized();
         }
 
         if (string.IsNullOrEmpty(currentHash))
         {
-            return "当前插件文件不存在或无法读取 Hash，无法确认此预设是否适用于当前插件版本。";
+            return "PluginSettings_PresetNoPluginHashHint".GetLocalized();
         }
 
         if (!string.Equals(preset.DllHash, currentHash, StringComparison.OrdinalIgnoreCase))
         {
-            return "此预设记录的插件 Hash 与当前插件 Hash 不一致，可能来自旧版本或不同版本的插件。";
+            return "PluginSettings_PresetHashMismatchHint".GetLocalized();
         }
 
-        return "此预设当前被标记为锁定。";
+        return "PluginSettings_PresetLockedHint".GetLocalized();
     }
 
     public void ForceUnlockAndSwitchPreset(PresetModel targetPreset)
@@ -259,8 +262,8 @@ public partial class PluginSettingsViewModel
         catch (Exception ex)
         {
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "配置更新失败",
-                $"切换预设时无法写入配置文件\n详细信息: {ex.Message}",
+                "PluginSettings_ConfigUpdateFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_SwitchPresetWriteFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));
@@ -269,8 +272,8 @@ public partial class PluginSettingsViewModel
         LoadConfiguration();
 
         WeakReferenceMessenger.Default.Send(new NotificationMessage(
-            "预设已切换",
-            $"当前预设: {targetPreset.Name}",
+            "PluginSettings_PresetSwitchedTitle".GetLocalized(),
+            string.Format("PluginSettings_CurrentPresetDetail_Format".GetLocalized(), targetPreset.Name),
             NotificationType.Success,
             3000
         ));
@@ -297,8 +300,8 @@ public partial class PluginSettingsViewModel
         catch (Exception ex)
         {
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "预设删除失败",
-                $"无法删除指定的预设文件，文件可能被占用或权限不足\n详细信息: {ex.Message}",
+                "PluginSettings_PresetDeleteFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_PresetDeleteFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));

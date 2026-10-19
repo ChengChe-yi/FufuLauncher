@@ -57,7 +57,6 @@ public static partial class CommunityContent
         else body.Append(attachments);
         foreach (var vod in raw.Get("vod_list").Items())
         {
-            // Some video posts omit the video embed from their structured body.
             if (!body.ToString().Contains("data-vod=\"" + Encode(vod.Text("id")) + "\"", StringComparison.Ordinal))
                 AddVideo(body, vod);
         }
@@ -256,8 +255,7 @@ public static partial class CommunityContent
         }
         else
             body.Append("<span class=\"muted\">" + Encode(insert.Text("backup_text") is { Length: > 0 } backup
-                ?
-                backup
+                ? backup
                 : insert.Get("vote").ValueKind != JsonValueKind.Undefined
                     ? "[投票：请在原帖参与]"
                     : "[互动内容：请在原帖查看]") + "</span>");

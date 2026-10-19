@@ -3057,24 +3057,60 @@ Buka situs web Microsoft untuk mengunduh dan menginstalnya?</value>
   <data name="GachaAnalysis_WishHistory" xml:space="preserve">
     <value>Riwayat Permohonan</value>
   </data>
-  <data name="GachaHistory_Loading" xml:space="preserve"><value>Menyusun riwayat Permohonan…</value></data>
-  <data name="GachaHistory_Description" xml:space="preserve"><value>Dimuat per versi. Pilih banner untuk melihat hasil Permohonan selama periodenya.</value></data>
-  <data name="GachaHistory_HideEmpty" xml:space="preserve"><value>Sembunyikan banner tanpa item yang diperoleh</value></data>
-  <data name="GachaHistory_NewerVersion" xml:space="preserve"><value>Versi lebih baru</value></data>
-  <data name="GachaHistory_OlderVersion" xml:space="preserve"><value>Versi lebih lama</value></data>
-  <data name="GachaHistory_FiveStarItems" xml:space="preserve"><value>Item 5 bintang</value></data>
-  <data name="GachaHistory_FourStarItems" xml:space="preserve"><value>Item 4 bintang</value></data>
-  <data name="GachaHistory_ThreeStarItems" xml:space="preserve"><value>Item 3 bintang</value></data>
-  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve"><value>Tidak ada banner dengan item yang diperoleh</value></data>
-  <data name="GachaHistory_EmptyTitle" xml:space="preserve"><value>Tidak ada metadata banner historis</value></data>
-  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve"><value>Nonaktifkan “Sembunyikan banner tanpa item yang diperoleh” untuk melihat seluruh riwayat.</value></data>
-  <data name="GachaHistory_EmptyDescription" xml:space="preserve"><value>Perbarui catatan Permohonan atau metadata item untuk membuat riwayat secara otomatis.</value></data>
-  <data name="GachaHistory_PeriodFormat" xml:space="preserve"><value>{0:yyyy-MM-dd HH:mm} hingga {1:yyyy-MM-dd HH:mm}</value></data>
-  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve"><value>{0} Permohonan</value></data>
-  <data name="GachaHistory_CharacterEvent" xml:space="preserve"><value>Permohonan Event Karakter</value></data>
-  <data name="GachaHistory_WeaponEvent" xml:space="preserve"><value>Permohonan Event Senjata</value></data>
-  <data name="GachaHistory_Chronicled" xml:space="preserve"><value>Permohonan Kronik</value></data>
-  <data name="GachaHistory_Limited" xml:space="preserve"><value>Permohonan Terbatas</value></data>
+  <data name="GachaHistory_Loading" xml:space="preserve">
+    <value>Menyusun riwayat Permohonan…</value>
+  </data>
+  <data name="GachaHistory_Description" xml:space="preserve">
+    <value>Dimuat per versi. Pilih banner untuk melihat hasil Permohonan selama periodenya.</value>
+  </data>
+  <data name="GachaHistory_HideEmpty" xml:space="preserve">
+    <value>Sembunyikan banner tanpa item yang diperoleh</value>
+  </data>
+  <data name="GachaHistory_NewerVersion" xml:space="preserve">
+    <value>Versi lebih baru</value>
+  </data>
+  <data name="GachaHistory_OlderVersion" xml:space="preserve">
+    <value>Versi lebih lama</value>
+  </data>
+  <data name="GachaHistory_FiveStarItems" xml:space="preserve">
+    <value>Item 5 bintang</value>
+  </data>
+  <data name="GachaHistory_FourStarItems" xml:space="preserve">
+    <value>Item 4 bintang</value>
+  </data>
+  <data name="GachaHistory_ThreeStarItems" xml:space="preserve">
+    <value>Item 3 bintang</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve">
+    <value>Tidak ada banner dengan item yang diperoleh</value>
+  </data>
+  <data name="GachaHistory_EmptyTitle" xml:space="preserve">
+    <value>Tidak ada metadata banner historis</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve">
+    <value>Nonaktifkan “Sembunyikan banner tanpa item yang diperoleh” untuk melihat seluruh riwayat.</value>
+  </data>
+  <data name="GachaHistory_EmptyDescription" xml:space="preserve">
+    <value>Perbarui catatan Permohonan atau metadata item untuk membuat riwayat secara otomatis.</value>
+  </data>
+  <data name="GachaHistory_PeriodFormat" xml:space="preserve">
+    <value>{0:yyyy-MM-dd HH:mm} hingga {1:yyyy-MM-dd HH:mm}</value>
+  </data>
+  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve">
+    <value>{0} Permohonan</value>
+  </data>
+  <data name="GachaHistory_CharacterEvent" xml:space="preserve">
+    <value>Permohonan Event Karakter</value>
+  </data>
+  <data name="GachaHistory_WeaponEvent" xml:space="preserve">
+    <value>Permohonan Event Senjata</value>
+  </data>
+  <data name="GachaHistory_Chronicled" xml:space="preserve">
+    <value>Permohonan Kronik</value>
+  </data>
+  <data name="GachaHistory_Limited" xml:space="preserve">
+    <value>Permohonan Terbatas</value>
+  </data>
   <data name="GachaAnalysis_GetRecords" xml:space="preserve">
     <value>Dapatkan Catatan Gacha</value>
   </data>
@@ -4853,32 +4889,6 @@ Detail: {0}</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>Gagal mengekspor PDF</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>Gagal mendapatkan path proses saat ini</value>
   </data>
@@ -4900,44 +4910,6 @@ Detail: {0}</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>Proses bantu injeksi keluar dengan kode {0}</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Sinkronisasi Backpack hanya mendukung build x64.</value>
   </data>
@@ -5217,7 +5189,6 @@ Detail: {0}</value>
   <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
     <value>File plugin tidak ditemukan setelah instalasi; plugin mungkin tidak terpasang dengan benar</value>
   </data>
-
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Sedang Mencopot...</value>
   </data>
@@ -5355,110 +5326,6 @@ Tetap ingin menjalankan? (Tidak Disarankan)</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>Visual</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Hapus kredensial cloud game</value>
   </data>
@@ -5909,7 +5776,9 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
     <value>Download / Install Error</value>
   </data>
   <data name="PluginPage_DownloadErrorContentFormat" xml:space="preserve">
-    <value>Automatic download failed: {0}&#10;&#10;Click the button below to open your browser and download manually.</value>
+    <value>Automatic download failed: {0}
+
+Click the button below to open your browser and download manually.</value>
   </data>
   <data name="PluginPage_ManualDownloadBtn" xml:space="preserve">
     <value>Manual Download</value>
@@ -6226,25 +6095,63 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Konflik DLL dengan nama sama sudah teratasi. Anda dapat memulai ulang game.</value>
   </data>
-  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Perubahan disimpan secara otomatis</value></data>
-  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Menyimpan…</value></data>
-  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Gagal menyimpan konfigurasi</value></data>
-  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Tidak dapat menulis file konfigurasi. Periksa izin file dan coba lagi. Detail: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Gagal memuat konfigurasi</value></data>
-  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Tidak dapat membaca file konfigurasi plugin. Detail: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Pastikan file konfigurasi tersedia dan dapat dibaca, lalu muat ulang.</value></data>
-  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>File konfigurasi tidak ditemukan: {0}</value></data>
-  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Tidak ada pengaturan yang dapat dikonfigurasi</value></data>
-  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Plugin ini tidak menyediakan pengaturan yang dapat disesuaikan.</value></data>
-  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Tidak ada pengaturan yang cocok</value></data>
-  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Coba kata kunci lain atau hapus pencarian.</value></data>
-  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Hapus pencarian</value></data>
-  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} pengaturan</value></data>
-  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} pengaturan</value></data>
-  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>File konfigurasi</value></data>
-  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Masukkan nilai…</value></data>
-  <data name="PluginSettings_CollapseHeader" xml:space="preserve"><value>Ciutkan header</value></data>
-  <data name="PluginSettings_ExpandHeader" xml:space="preserve"><value>Perluas header</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
+    <value>Perubahan disimpan secara otomatis</value>
+  </data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve">
+    <value>Menyimpan…</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
+    <value>Gagal menyimpan konfigurasi</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
+    <value>Tidak dapat menulis file konfigurasi. Periksa izin file dan coba lagi. Detail: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
+    <value>Gagal memuat konfigurasi</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
+    <value>Tidak dapat membaca file konfigurasi plugin. Detail: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
+    <value>Pastikan file konfigurasi tersedia dan dapat dibaca, lalu muat ulang.</value>
+  </data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
+    <value>File konfigurasi tidak ditemukan: {0}</value>
+  </data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
+    <value>Tidak ada pengaturan yang dapat dikonfigurasi</value>
+  </data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
+    <value>Plugin ini tidak menyediakan pengaturan yang dapat disesuaikan.</value>
+  </data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve">
+    <value>Tidak ada pengaturan yang cocok</value>
+  </data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
+    <value>Coba kata kunci lain atau hapus pencarian.</value>
+  </data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
+    <value>Hapus pencarian</value>
+  </data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
+    <value>{0} pengaturan</value>
+  </data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
+    <value>{0} / {1} pengaturan</value>
+  </data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
+    <value>File konfigurasi</value>
+  </data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
+    <value>Masukkan nilai…</value>
+  </data>
+  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
+    <value>Ciutkan header</value>
+  </data>
+  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
+    <value>Perluas header</value>
+  </data>
   <data name="AchievementWindow_DataActions" xml:space="preserve">
     <value>Tindakan data</value>
   </data>
@@ -6265,5 +6172,2398 @@ Anda dapat mencoba node lain atau menggunakan sumber resmi langsung.</value>
   </data>
   <data name="ModTrust_ModeCaption" xml:space="preserve">
     <value>Nonaktif melewati verifikasi; peringatan memverifikasi tanpa memblokir; ketat memblokir plugin yang gagal verifikasi.</value>
+  </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>Status Layanan</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>Status Layanan</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>Ketersediaan</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>Lihat ketersediaan semua layanan</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>Lihat</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>Semua sistem beroperasi normal</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>Beberapa layanan mengalami masalah</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>Menurun</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>Gangguan</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>Dijeda</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>Tidak diketahui</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>Ketersediaan 90 hari</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>Diperbarui {0}</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>Segarkan</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>Muat lebih banyak</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>Memuat status layanan</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>Tidak dapat memuat status layanan</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>Coba lagi nanti.</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>Coba lagi</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>Layanan</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>90 hari terakhir</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90 hari</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>Gangguan terakhir {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>Tidak ada gangguan dalam 90 hari</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>{0} layanan</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>Normal {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>Gangguan {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>Dijeda {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>Tidak ada data</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>Lihat detail</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>Kembali ke status layanan</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>Tidak dapat memuat detail monitor</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>Coba lagi nanti.</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>Memuat detail monitor</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>Ketersediaan</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>Ketersediaan keseluruhan</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>24 jam terakhir</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>7 hari terakhir</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>30 hari terakhir</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>Waktu respons</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>2 hari terakhir</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>Waktu respons rata-rata</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>Waktu respons maksimum</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>Waktu respons minimum</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>Pemeriksaan</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>Peristiwa terbaru</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>Tampilkan lebih banyak</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>Tidak ada peristiwa terbaru</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>Tidak ada data waktu respons</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>Durasi: {0} dtk</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>Durasi: {0} mnt</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>Durasi: {0} jam</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>Durasi: {0} jam {1} mnt</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>Durasi: {0} hari {1} jam</value>
+  </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>Gagal Memulai Ulang Otomatis</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>Mulai ulang otomatis gagal. Pengaturan Anda telah disimpan; silakan tutup dan buka kembali aplikasi secara manual untuk menerapkan perubahan.</value>
+  </data>
+  <data name="LangHi" xml:space="preserve">
+    <value>हिन्दी</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>Mengonfigurasi: {0} ({1})</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>Pilih akun di bawah untuk mengonfigurasi opsi check-in</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>Centang akun untuk disertakan dalam check-in massal, pilih akun untuk mengedit opsinya, dan seret untuk mengubah urutan</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>Seret untuk mengubah urutan check-in</value>
+  </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>Nama pintasan</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>Nama kustom (tanpa .lnk, biarkan kosong untuk default)</value>
+  </data>
+  <data name="LoginQR_ServerCn" xml:space="preserve">
+    <value>Server CN</value>
+  </data>
+  <data name="LoginQR_ServerOs" xml:space="preserve">
+    <value>Server Global</value>
+  </data>
+  <data name="LoginQR_MobileCaptcha" xml:space="preserve">
+    <value>Login Kode Verifikasi SMS</value>
+  </data>
+  <data name="LoginQR_OverseaPassword" xml:space="preserve">
+    <value>Login Akun &amp; Kata Sandi</value>
+  </data>
+  <data name="LoginQR_ThirdPartyLoginTitle" xml:space="preserve">
+    <value>Login Pihak Ketiga</value>
+  </data>
+  <data name="LoginQR_ThirdPartyGoogle" xml:space="preserve">
+    <value>Login Google</value>
+  </data>
+  <data name="LoginQR_ThirdPartyApple" xml:space="preserve">
+    <value>Login Apple</value>
+  </data>
+  <data name="LoginQR_ThirdPartyFacebook" xml:space="preserve">
+    <value>Login Facebook</value>
+  </data>
+  <data name="LoginQR_ThirdPartyTwitter" xml:space="preserve">
+    <value>Login X (Twitter)</value>
+  </data>
+  <data name="LoginQR_OverseaRiskHint" xml:space="preserve">
+    <value>Catatan: HoYoVerse mungkin memerlukan verifikasi keamanan melalui kode verifikasi email.</value>
+  </data>
+  <data name="LoginQR_LoginButton" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginQR_SendCaptcha" xml:space="preserve">
+    <value>Kirim Kode</value>
+  </data>
+  <data name="LoginQR_MobileHeader" xml:space="preserve">
+    <value>Nomor Ponsel</value>
+  </data>
+  <data name="LoginQR_MobilePlaceholder" xml:space="preserve">
+    <value>Masukkan 11 digit nomor ponsel</value>
+  </data>
+  <data name="LoginQR_CaptchaHeader" xml:space="preserve">
+    <value>Kode Verifikasi</value>
+  </data>
+  <data name="LoginQR_CaptchaPlaceholder" xml:space="preserve">
+    <value>6 digit kode SMS</value>
+  </data>
+  <data name="LoginQR_AccountHeader" xml:space="preserve">
+    <value>Akun</value>
+  </data>
+  <data name="LoginQR_AccountPlaceholder" xml:space="preserve">
+    <value>Email atau nama pengguna</value>
+  </data>
+  <data name="LoginQR_PasswordHeader" xml:space="preserve">
+    <value>Kata Sandi</value>
+  </data>
+  <data name="LoginQR_PasswordPlaceholder" xml:space="preserve">
+    <value>Masukkan kata sandi</value>
+  </data>
+  <data name="LoginQR_OverseaVerifyTitle" xml:space="preserve">
+    <value>Verifikasi Keamanan</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaHeader" xml:space="preserve">
+    <value>Kode Verifikasi Email</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaPlaceholder" xml:space="preserve">
+    <value>6 digit kode email</value>
+  </data>
+  <data name="LoginQR_SendEmailCaptcha" xml:space="preserve">
+    <value>Kirim Kode Email</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaSent" xml:space="preserve">
+    <value>Kode verifikasi email telah dikirim. Silakan periksa kotak masuk Anda.</value>
+  </data>
+  <data name="LoginQR_UnknownEmail" xml:space="preserve">
+    <value>Email tidak dikenal</value>
+  </data>
+  <data name="Checkin_ResignTitle" xml:space="preserve">
+    <value>Check-in Susulan</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormat" xml:space="preserve">
+    <value>Tersisa {0} kali check-in susulan bulan ini, tersisa {1} kartu check-in susulan. Lakukan check-in susulan sekarang?</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormatCn" xml:space="preserve">
+    <value>Tersisa {0} kali check-in susulan bulan ini, membutuhkan {1} Koin Miyou. Lakukan check-in susulan sekarang?</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoinCn" xml:space="preserve">
+    <value>Koin Miyou tidak cukup</value>
+  </data>
+  <data name="Checkin_ResignSuccess" xml:space="preserve">
+    <value>Check-in susulan berhasil</value>
+  </data>
+  <data name="Checkin_ResignFailed" xml:space="preserve">
+    <value>Check-in susulan gagal [{0}] {1}</value>
+  </data>
+  <data name="Checkin_ResignLimitExceeded" xml:space="preserve">
+    <value>Kuota check-in susulan telah habis</value>
+  </data>
+  <data name="Checkin_ResignNotSigned" xml:space="preserve">
+    <value>Harap lakukan check-in hari ini terlebih dahulu</value>
+  </data>
+  <data name="Checkin_ResignNoDate" xml:space="preserve">
+    <value>Tidak ada tanggal yang dapat di-check-in susulan</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoin" xml:space="preserve">
+    <value>Kartu check-in susulan tidak cukup</value>
+  </data>
+  <data name="Checkin_ResignQueryFailed" xml:space="preserve">
+    <value>Gagal memeriksa kelayakan check-in susulan: {0}</value>
+  </data>
+  <data name="Checkin_ResignUnsupported" xml:space="preserve">
+    <value>Check-in susulan tidak didukung pada server ini</value>
+  </data>
+  <data name="LaunchBtn_Launching" xml:space="preserve">
+    <value>Batalkan Peluncuran</value>
+  </data>
+  <data name="LaunchCancelled_Title" xml:space="preserve">
+    <value>Peluncuran Dibatalkan</value>
+  </data>
+  <data name="LaunchCancelled_Msg" xml:space="preserve">
+    <value>Proses peluncuran game telah dihentikan.</value>
+  </data>
+  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
+    <value>Pra-Unduh</value>
+  </data>
+  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
+    <value>Unduh sumber daya pembaruan lebih awal</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
+    <value>Perbarui</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
+    <value>Gabungkan sumber daya pembaruan ke dalam game</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
+    <value>Gabungkan Pra-Unduh</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
+    <value>Terapkan sumber daya pra-unduh sekarang (Pengembang)</value>
+  </data>
+  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
+    <value>Sudah Diunduh</value>
+  </data>
+  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
+    <value>Pembaruan Game</value>
+  </data>
+  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
+    <value>Perbarui game ke versi terbaru. Sumber daya yang telah di-pra-unduh akan digunakan kembali secara otomatis.</value>
+  </data>
+  <data name="GameUpdate_UpdateStart" xml:space="preserve">
+    <value>Mulai Pembaruan</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
+    <value>Gabungkan Pra-Unduh</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
+    <value>Segera terapkan sumber daya pra-unduh ke dalam game. Versi game akan dimajukan ke versi pra-unduh lebih awal dari rilis resmi. Fitur khusus pengembang.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
+    <value>Mulai Menggabungkan</value>
+  </data>
+  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
+    <value>Game telah diperbarui ke versi terbaru.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
+    <value>Sumber daya pra-unduh berhasil digabungkan.</value>
+  </data>
+  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
+    <value>Pembaruan Gagal</value>
+  </data>
+  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
+    <value>Konfirmasi Pra-Unduh</value>
+  </data>
+  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
+    <value>Konfirmasi Pembaruan</value>
+  </data>
+  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
+    <value>Konfirmasi Penggabungan Pra-Unduh</value>
+  </data>
+  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
+    <value>Ukuran unduhan: {0}\nUkuran instalasi: {1}\nVersi target: {2}\n\nMulai sekarang?</value>
+  </data>
+  <data name="GameUpdate_PlanSummary" xml:space="preserve">
+    <value>Rencana: unduh {0}, versi target {1}</value>
+  </data>
+  <data name="GameUpdate_StageMerge" xml:space="preserve">
+    <value>Sedang menggabungkan file...</value>
+  </data>
+  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
+    <value>Sedang menerapkan patch...</value>
+  </data>
+  <data name="GameUpdate_MergingFile" xml:space="preserve">
+    <value>Sedang menggabungkan {0}/{1}: {2}</value>
+  </data>
+  <data name="GameUpdate_SkipAsset" xml:space="preserve">
+    <value>Melewati aset (akan diperbaiki nanti): {0}</value>
+  </data>
+  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
+    <value>Pra-unduh selesai. Menunggu pembaruan resmi.</value>
+  </data>
+  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
+    <value>Tidak ada konten pra-unduh yang tersedia untuk versi saat ini.</value>
+  </data>
+  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
+    <value>Game sudah dalam versi terbaru.</value>
+  </data>
+  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
+    <value>Tidak dapat menentukan versi game lokal. Harap periksa config.ini.</value>
+  </data>
+  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
+    <value>Ruang penyimpanan tidak cukup: {0} diperlukan, {1} tersedia.</value>
+  </data>
+  <data name="GameUpdate_DevOnly" xml:space="preserve">
+    <value>Fitur ini hanya tersedia untuk pengguna terverifikasi pengembang.</value>
+  </data>
+  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
+    <value>Gagal membaca header patch: file patch rusak atau terpotong.</value>
+  </data>
+  <data name="Patch_DiffNotSeekable" xml:space="preserve">
+    <value>Stream patch harus mendukung pengaksesan acak (seekable).</value>
+  </data>
+  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
+    <value>Kecepatan unduh</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>Ruang Warna</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>Kecerahan Puncak</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>Kecerahan Maksimal Layar Penuh</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>Tingkat Putih SDR</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>Menyesuaikan batas atas kecerahan puncak untuk sorotan (disarankan agar sesuai dengan monitor)</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>Menyesuaikan kecerahan putih referensi dasar untuk pemandangan dunia game</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>Menyesuaikan kecerahan untuk elemen antarmuka pengguna seperti peta mini, bilah kesehatan, dan teks</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDR Diaktifkan</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDR Dinonaktifkan</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDR Tidak Didukung</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDR Tidak Tersedia</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>Mendeteksi HDR...</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR (Rentang Dinamis Standar)</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG (Gamut Warna Luas)</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR (Rentang Dinamis Tinggi)</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>Tidak Diketahui</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>Tidak Dapat Dibaca</value>
+  </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>Impor dari Game via Embedded Yae</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>Luncurkan game dan impor progres achievement via komponen Embedded Yae</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>Direktori instalasi game tidak ditemukan. Harap konfigurasikan jalur game di pengaturan terlebih dahulu.</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>Menunggu data game...</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>Tidak ada data achievement yang diperoleh.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>Berhasil mengimpor {0} data achievement dari game, menyinkronkan {1} progres achievement.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>Gagal mengimpor achievement dari game.</value>
+  </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>Dapatkan dari Game</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>Buka Riwayat Permohonan di dalam game
+Mendukung server Bilibili; tanpa perlu login MiYouShe</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>Silakan masuk ke akun game yang ingin Anda ekspor, buka Riwayat Permohonan, dan tunggu hingga catatan selesai dimuat. Kemudian klik "Mulai".
+
+Server Official CN, Bilibili, dan Global didukung tanpa perlu login ke MiYouShe. Harap pastikan akun dalam game adalah akun yang ingin diekspor.</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>Mulai</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>Sedang membaca tautan riwayat permohonan dari game...</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>Harap atur jalur game yang benar di launcher terlebih dahulu, lalu buka Riwayat Permohonan di dalam game.</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>Tidak ditemukan tautan riwayat permohonan. Masuk ke akun game tujuan, buka Riwayat Permohonan dan tunggu hingga selesai dimuat sebelum mencoba lagi.</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>Tidak dapat membaca tautan riwayat permohonan dari game. Buka kembali Riwayat Permohonan lalu coba lagi.</value>
+  </data>
+  <data name="Checkin_UnsupportedGame" xml:space="preserve">
+    <value>Check-in hadiah harian belum dikonfigurasi untuk game ini</value>
+  </data>
+  <data name="Checkin_LoginExpired" xml:space="preserve">
+    <value>Kredensial login kedaluwarsa dan gagal diperbarui. Harap login kembali ke Miyoushe.</value>
+  </data>
+  <data name="Checkin_GameCaptcha" xml:space="preserve">
+    <value>Verifikasi keamanan diperlukan. Harap selesaikan di halaman resmi Miyoushe.</value>
+  </data>
+  <data name="Checkin_SignNotConfirmed" xml:space="preserve">
+    <value>Status check-in belum dapat dikonfirmasi. Silakan coba lagi nanti.</value>
+  </data>
+  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
+    <value>Jalur database: {0}. Harap periksa apakah direktori dapat ditulis dan ruang disk tersedia.</value>
+  </data>
+  <data name="Launcher_DllNotFound" xml:space="preserve">
+    <value>Launcher.dll hilang. Injeksi tidak tersedia. Harap pastikan file dibangun dari FufuLauncher.UnlockerIsland.</value>
+  </data>
+  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
+    <value>Server target</value>
+  </data>
+  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
+    <value>Server saat ini: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
+    <value>Tidak dapat mendeteksi server saat ini, harap verifikasi direktori game</value>
+  </data>
+  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
+    <value>Silakan pilih server target terlebih dahulu</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
+    <value>Operasi dibatalkan</value>
+  </data>
+  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
+    <value>Selesai</value>
+  </data>
+  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
+    <value>Beralih ke: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
+    <value>Mengunduh chunk {0}/{1} - {2}</value>
+  </data>
+  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
+    <value>Gagal membersihkan folder plugin: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
+    <value>Konversi gagal</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
+    <value>Pengalihan server gagal, file mungkin sedang digunakan.
+Kesalahan: {0}</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>Server Bilibili (Bilibili)</value>
+  </data>
+  <data name="DownloadWindow_Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Download_FileFailed" xml:space="preserve">
+    <value>{0} file gagal diunduh. Silakan coba lagi atau ganti server lalu unduh kembali</value>
+  </data>
+  <data name="PreDownload_Failed" xml:space="preserve">
+    <value>Pra-unduh gagal</value>
+  </data>
+  <data name="PreDownload_Success" xml:space="preserve">
+    <value>File pra-unduh berhasil diunduh dan dipasang.</value>
+  </data>
+  <data name="VerifyGame_Success" xml:space="preserve">
+    <value>File game berhasil diverifikasi dan diperbaiki</value>
+  </data>
+  <data name="VerifyGame_Failed" xml:space="preserve">
+    <value>Verifikasi gagal</value>
+  </data>
+  <data name="GameServer_StageFetchBranches" xml:space="preserve">
+    <value>Mengambil cabang jaringan</value>
+  </data>
+  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
+    <value>Mengunduh dan menguraikan manifes</value>
+  </data>
+  <data name="GameServer_StageDiff" xml:space="preserve">
+    <value>Membandingkan</value>
+  </data>
+  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
+    <value>Mengunduh chunk yang diperlukan</value>
+  </data>
+  <data name="GameServer_StageReplace" xml:space="preserve">
+    <value>Mengganti file</value>
+  </data>
+  <data name="GameServer_ReplacingFile" xml:space="preserve">
+    <value>Mengganti file {0}/{1} - {2}</value>
+  </data>
+  <data name="GameServer_StageCleanup" xml:space="preserve">
+    <value>Membersihkan data sementara</value>
+  </data>
+  <data name="GameServer_StageVerify" xml:space="preserve">
+    <value>Memverifikasi integritas file game, proses ini mungkin membutuhkan waktu</value>
+  </data>
+  <data name="GameServer_VerifyOk" xml:space="preserve">
+    <value>Verifikasi lolos, data game utuh</value>
+  </data>
+  <data name="GameServer_VerifyProgress" xml:space="preserve">
+    <value>Memverifikasi: {0}/{1}</value>
+  </data>
+  <data name="GameServer_RepairFound" xml:space="preserve">
+    <value>Ditemukan {0} file rusak atau hilang, sedang memperbaiki</value>
+  </data>
+  <data name="GameServer_RepairDone" xml:space="preserve">
+    <value>File rusak berhasil diperbaiki</value>
+  </data>
+  <data name="GameServer_InstallingPredownload" xml:space="preserve">
+    <value>Memasang file pra-unduh</value>
+  </data>
+  <data name="GameServer_BranchDataNull" xml:space="preserve">
+    <value>API mengembalikan data null, gagal mengambil info cabang</value>
+  </data>
+  <data name="GameServer_NoMainBranch" xml:space="preserve">
+    <value>Gagal mendapatkan data cabang main</value>
+  </data>
+  <data name="GameServer_NoPredownload" xml:space="preserve">
+    <value>Pra-unduh saat ini tidak tersedia</value>
+  </data>
+  <data name="GameServer_NoPackageId" xml:space="preserve">
+    <value>Data cabang tidak memiliki package_id</value>
+  </data>
+  <data name="GameServer_NoPassword" xml:space="preserve">
+    <value>Data cabang tidak memiliki password</value>
+  </data>
+  <data name="GameServer_NoManifests" xml:space="preserve">
+    <value>Gagal mendapatkan manifes.</value>
+  </data>
+  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
+    <value>Ketidakcocokan checksum manifes: {0}</value>
+  </data>
+  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
+    <value>Permintaan API gagal: {0}, kesalahan: {1}</value>
+  </data>
+  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
+    <value>Chunk {0} gagal diunduh atau gagal dalam verifikasi.</value>
+  </data>
+  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
+    <value>Ketidakcocokan checksum file: {0}</value>
+  </data>
+  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
+    <value>Ketidakcocokan ukuran file: {0}, diperoleh {1} byte, diharapkan {2} byte</value>
+  </data>
+  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
+    <value>Cache hilang, melewati file: {0} (dapat diperbaiki dengan verifikasi nanti)</value>
+  </data>
+  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
+    <value>File rakitan gagal verifikasi (file lama lokal mungkin rusak), dilewati: {0} (dapat diperbaiki dengan verifikasi nanti)</value>
+  </data>
+  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
+    <value>Gagal membersihkan chunk sementara: {0}</value>
+  </data>
+  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
+    <value>Membersihkan file SDK versi lama...</value>
+  </data>
+  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
+    <value>Mengambil konfigurasi SDK channel...</value>
+  </data>
+  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
+    <value>Gagal mendapatkan konfigurasi SDK channel</value>
+  </data>
+  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
+    <value>Mengunduh SDK channel...</value>
+  </data>
+  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
+    <value>Mengekstrak SDK channel...</value>
+  </data>
+  <data name="GameServer_CleanedPlugins" xml:space="preserve">
+    <value>Folder Plugins telah dibersihkan</value>
+  </data>
+  <data name="GameServer_InsufficientPermission" xml:space="preserve">
+    <value>Izin tidak cukup untuk menulis ke direktori game: {0}. Jalankan sebagai administrator atau periksa izin direktori</value>
+  </data>
+  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
+    <value>File SDK channel hilang atau rusak, mengambil ulang...</value>
+  </data>
+  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
+    <value>Memproses file usang...</value>
+  </data>
+  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
+    <value>Gagal mengambil konfigurasi file usang: {0}</value>
+  </data>
+  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
+    <value>Official</value>
+  </data>
+  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
+    <value>Bilibili</value>
+  </data>
+  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
+    <value>Global</value>
+  </data>
+  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
+    <value>Kecepatan unduh</value>
+  </data>
+  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
+    <value>Chunk tersisa: {0}</value>
+  </data>
+  <data name="SpeedGraph_NoData" xml:space="preserve">
+    <value>Tidak ada data kecepatan</value>
+  </data>
+  <data name="SectionGameAnnouncement" xml:space="preserve">
+    <value>Pengumuman Game</value>
+  </data>
+  <data name="GameAnnouncementViewModeTitle" xml:space="preserve">
+    <value>Mode tampilan pengumuman</value>
+  </data>
+  <data name="GameAnnouncementViewModeCaption" xml:space="preserve">
+    <value>Pilih cara pengumuman game ditampilkan</value>
+  </data>
+  <data name="GameAnnouncementViewModeNew" xml:space="preserve">
+    <value>Pusat pengumuman baru</value>
+  </data>
+  <data name="GameAnnouncementViewModeClassic" xml:space="preserve">
+    <value>Halaman web resmi klasik</value>
+  </data>
+  <data name="GameAnnouncement_Title" xml:space="preserve">
+    <value>Pengumuman Game</value>
+  </data>
+  <data name="GameAnnouncement_Loading" xml:space="preserve">
+    <value>Memuat pengumuman…</value>
+  </data>
+  <data name="GameAnnouncement_LoadFailed" xml:space="preserve">
+    <value>Gagal memuat pengumuman. Periksa jaringan Anda lalu coba lagi.</value>
+  </data>
+  <data name="GameAnnouncement_Retry" xml:space="preserve">
+    <value>Coba Lagi</value>
+  </data>
+  <data name="GameAnnouncement_Empty" xml:space="preserve">
+    <value>Tidak ada pengumuman</value>
+  </data>
+  <data name="GameAnnouncement_SearchPlaceholder" xml:space="preserve">
+    <value>Cari judul pengumuman…</value>
+  </data>
+  <data name="GameAnnouncement_Refresh" xml:space="preserve">
+    <value>Segarkan</value>
+  </data>
+  <data name="GameAnnouncement_ClassicMode" xml:space="preserve">
+    <value>Halaman web klasik</value>
+  </data>
+  <data name="GameAnnouncement_Back" xml:space="preserve">
+    <value>Kembali</value>
+  </data>
+  <data name="GameAnnouncement_NoContent" xml:space="preserve">
+    <value>Pengumuman ini tidak memiliki konten</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNGF01" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNQD01" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSUSA" xml:space="preserve">
+    <value>Amerika</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSEURO" xml:space="preserve">
+    <value>Eropa</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSASIA" xml:space="preserve">
+    <value>Asia</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSCHT" xml:space="preserve">
+    <value>HK/MO/TW</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursBegin" xml:space="preserve">
+    <value>Dimulai dalam {0} jam</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursEnd" xml:space="preserve">
+    <value>Berakhir dalam {0} jam</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysBegin" xml:space="preserve">
+    <value>Dimulai dalam {0} hari</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
+    <value>Berakhir dalam {0} hari</value>
+  </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>Perangkat</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id harus berupa GUID yang valid</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time harus berupa timestamp milidetik Unix yang valid</value>
+  </data>
+  <data name="Miyoushe_Title" xml:space="preserve">
+    <value>Miyoushe</value>
+  </data>
+  <data name="Miyoushe_CardHint" xml:space="preserve">
+    <value>Jelajahi berita resmi, postingan komunitas, dan kreator yang diikuti</value>
+  </data>
+  <data name="Miyoushe_Explore" xml:space="preserve">
+    <value>Jelajahi</value>
+  </data>
+  <data name="Miyoushe_Forum" xml:space="preserve">
+    <value>Komunitas</value>
+  </data>
+  <data name="Miyoushe_News" xml:space="preserve">
+    <value>Berita resmi</value>
+  </data>
+  <data name="Miyoushe_Following" xml:space="preserve">
+    <value>Mengikuti</value>
+  </data>
+  <data name="Miyoushe_Favorites" xml:space="preserve">
+    <value>Favorit Miyoushe</value>
+  </data>
+  <data name="Miyoushe_Library" xml:space="preserve">
+    <value>Koleksi saya</value>
+  </data>
+  <data name="Miyoushe_Bookmarks" xml:space="preserve">
+    <value>Markah lokal</value>
+  </data>
+  <data name="Miyoushe_History" xml:space="preserve">
+    <value>Riwayat</value>
+  </data>
+  <data name="Miyoushe_MyProfile" xml:space="preserve">
+    <value>Profil saya</value>
+  </data>
+  <data name="Miyoushe_User" xml:space="preserve">
+    <value>Profil penulis</value>
+  </data>
+  <data name="Miyoushe_Topic" xml:space="preserve">
+    <value>Topik</value>
+  </data>
+  <data name="Miyoushe_Collection" xml:space="preserve">
+    <value>Koleksi</value>
+  </data>
+  <data name="Miyoushe_Search" xml:space="preserve">
+    <value>Hasil pencarian</value>
+  </data>
+  <data name="Miyoushe_SearchHint" xml:space="preserve">
+    <value>Cari postingan, atau tempel ID postingan / tautan Miyoushe</value>
+  </data>
+  <data name="Miyoushe_Guest" xml:space="preserve">
+    <value>Tamu</value>
+  </data>
+  <data name="Miyoushe_GuestHint" xml:space="preserve">
+    <value>Postingan publik dapat diakses sebagai tamu. Pilih akun server China untuk feed dan favorit Anda.</value>
+  </data>
+  <data name="Miyoushe_AccountHint" xml:space="preserve">
+    <value>Pengalihan hanya berlaku untuk jendela ini</value>
+  </data>
+  <data name="Miyoushe_LoginHint" xml:space="preserve">
+    <value>Login ke akun server China di pengelola akun launcher, lalu pilih di sini. Masuk kembali jika sesi telah kedaluwarsa.</value>
+  </data>
+  <data name="Miyoushe_IdentityError" xml:space="preserve">
+    <value>Identitas perangkat akun tidak tersedia. Dialihkan ke mode tamu. Masuk kembali di manajemen akun lalu coba lagi.</value>
+  </data>
+  <data name="Miyoushe_Refresh" xml:space="preserve">
+    <value>Segarkan</value>
+  </data>
+  <data name="Miyoushe_RefreshHint" xml:space="preserve">
+    <value>Segarkan halaman saat ini (F5)</value>
+  </data>
+  <data name="Miyoushe_Refreshed" xml:space="preserve">
+    <value>Disegarkan ({0})</value>
+  </data>
+  <data name="Miyoushe_Empty" xml:space="preserve">
+    <value>Tidak ada postingan untuk ditampilkan</value>
+  </data>
+  <data name="Miyoushe_More" xml:space="preserve">
+    <value>Muat lebih banyak</value>
+  </data>
+  <data name="Miyoushe_SelectPost" xml:space="preserve">
+    <value>Pilih postingan untuk mulai membaca</value>
+  </data>
+  <data name="Miyoushe_Save" xml:space="preserve">
+    <value>Simpan secara lokal</value>
+  </data>
+  <data name="Miyoushe_CopyLink" xml:space="preserve">
+    <value>Salin tautan</value>
+  </data>
+  <data name="Miyoushe_Original" xml:space="preserve">
+    <value>Buka postingan asli</value>
+  </data>
+  <data name="Miyoushe_Article" xml:space="preserve">
+    <value>Artikel</value>
+  </data>
+  <data name="Miyoushe_Comments" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
+  <data name="Miyoushe_HotReplies" xml:space="preserve">
+    <value>Komentar terpopuler</value>
+  </data>
+  <data name="Miyoushe_LatestReplies" xml:space="preserve">
+    <value>Komentar terbaru</value>
+  </data>
+  <data name="Miyoushe_OldestReplies" xml:space="preserve">
+    <value>Komentar terlama</value>
+  </data>
+  <data name="Miyoushe_OnlyAuthor" xml:space="preserve">
+    <value>Hanya penulis</value>
+  </data>
+  <data name="Miyoushe_Hot" xml:space="preserve">
+    <value>Populer</value>
+  </data>
+  <data name="Miyoushe_Latest" xml:space="preserve">
+    <value>Postingan terbaru</value>
+  </data>
+  <data name="Miyoushe_Featured" xml:space="preserve">
+    <value>Unggulan</value>
+  </data>
+  <data name="Miyoushe_Notices" xml:space="preserve">
+    <value>Pengumuman</value>
+  </data>
+  <data name="Miyoushe_Events" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="Miyoushe_NoComments" xml:space="preserve">
+    <value>Belum ada komentar</value>
+  </data>
+  <data name="Miyoushe_SubReplies" xml:space="preserve">
+    <value>Lihat {0} balasan</value>
+  </data>
+  <data name="Miyoushe_Close" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="Miyoushe_Image" xml:space="preserve">
+    <value>Gambar</value>
+  </data>
+  <data name="Miyoushe_OpenImage" xml:space="preserve">
+    <value>Buka gambar asli</value>
+  </data>
+  <data name="Miyoushe_LinkCopied" xml:space="preserve">
+    <value>Tautan postingan disalin</value>
+  </data>
+  <data name="Miyoushe_SearchTooLong" xml:space="preserve">
+    <value>Teks pencarian maksimal 200 karakter</value>
+  </data>
+  <data name="Miyoushe_Retry" xml:space="preserve">
+    <value>Coba lagi</value>
+  </data>
+  <data name="Miyoushe_Timeout" xml:space="preserve">
+    <value>Waktu permintaan habis. Silakan coba lagi.</value>
+  </data>
+  <data name="Miyoushe_Verify" xml:space="preserve">
+    <value>Selesaikan verifikasi</value>
+  </data>
+  <data name="Miyoushe_RiskHint" xml:space="preserve">
+    <value>Miyoushe memerlukan verifikasi. Permintaan dijeda. Selesaikan captcha resmi untuk mengulangi operasi sebelumnya.</value>
+  </data>
+  <data name="Miyoushe_VerifyHint" xml:space="preserve">
+    <value>Selesaikan captcha resmi Miyoushe. Tutup jendela ini untuk membatalkan.</value>
+  </data>
+  <data name="Miyoushe_VerifyLoadError" xml:space="preserve">
+    <value>Captcha gagal dimuat. Periksa koneksi Anda lalu coba lagi, atau verifikasi di situs web resmi Miyoushe.</value>
+  </data>
+  <data name="Miyoushe_VerifyCancelled" xml:space="preserve">
+    <value>Verifikasi dibatalkan. Permintaan tetap dijeda. Coba lagi untuk memverifikasi ulang.</value>
+  </data>
+  <data name="Miyoushe_LibraryError" xml:space="preserve">
+    <value>Tidak dapat membaca markah lokal atau riwayat. File yang ada telah dipertahankan.</value>
+  </data>
+  <data name="Miyoushe_Back" xml:space="preserve">
+    <value>Kembali</value>
+  </data>
+  <data name="Miyoushe_RightComments" xml:space="preserve">
+    <value>Komentar samping</value>
+  </data>
+  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve">
+    <value>Tampilkan komentar di bilah sisi kanan; matikan untuk menampilkannya di bawah postingan</value>
+  </data>
+  <data name="Miyoushe_LoadingComments" xml:space="preserve">
+    <value>Memuat komentar…</value>
+  </data>
+  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve">
+    <value>Komentar tidak tersedia. Gunakan pesan di atas untuk mencoba lagi.</value>
+  </data>
+  <data name="Miyoushe_Like" xml:space="preserve">
+    <value>Suka</value>
+  </data>
+  <data name="Miyoushe_Liked" xml:space="preserve">
+    <value>Disukai</value>
+  </data>
+  <data name="Miyoushe_PublishComment" xml:space="preserve">
+    <value>Komentar</value>
+  </data>
+  <data name="Miyoushe_Reply" xml:space="preserve">
+    <value>Balas</value>
+  </data>
+  <data name="Miyoushe_ReplyTo" xml:space="preserve">
+    <value>Balas @{0}</value>
+  </data>
+  <data name="Miyoushe_CommentHint" xml:space="preserve">
+    <value>Tulis komentar (hingga 1000 karakter)</value>
+  </data>
+  <data name="Miyoushe_SendComment" xml:space="preserve">
+    <value>Publikasikan ke Miyoushe</value>
+  </data>
+  <data name="Miyoushe_Cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="Miyoushe_VerifyAndSend" xml:space="preserve">
+    <value>Verifikasi dan publikasikan</value>
+  </data>
+  <data name="Miyoushe_Resubmit" xml:space="preserve">
+    <value>Publikasikan lagi</value>
+  </data>
+  <data name="Miyoushe_CommentSent" xml:space="preserve">
+    <value>Komentar terkirim; menampilkan komentar terbaru</value>
+  </data>
+  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve">
+    <value>Pengiriman tidak dapat dikonfirmasi. Draf Anda tetap disimpan. Periksa postingan asli sebelum mempublikasikan ulang.</value>
+  </data>
+  <data name="Miyoushe_CommentRiskHint" xml:space="preserve">
+    <value>Miyoushe memerlukan verifikasi. Pilih Verifikasi dan publikasikan untuk menyelesaikan captcha resmi lalu kirim komentar ini.</value>
+  </data>
+  <data name="ModTrust_Title" xml:space="preserve">
+    <value>Kepercayaan tanda tangan kode (FufuLauncher CA)</value>
+  </data>
+  <data name="ModTrust_Loading" xml:space="preserve">
+    <value>Memuat status kepercayaan...</value>
+  </data>
+  <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>Segarkan</value>
+  </data>
+  <data name="ModTrust_PackageMissing" xml:space="preserve">
+    <value>Paket kepercayaan belum dipasang: tempatkan file sertifikat dan manifes di bawah Assets\Trust, atau klik "Perbarui sekarang" untuk menyinkronkan dari endpoint resmi.</value>
+  </data>
+  <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>Status: {0}</value>
+  </data>
+  <data name="ModTrust_InstalledUser" xml:space="preserve">
+    <value>terpasang (pengguna saat ini)</value>
+  </data>
+  <data name="ModTrust_InstalledMachine" xml:space="preserve">
+    <value>terpasang (komputer)</value>
+  </data>
+  <data name="ModTrust_NotInstalled" xml:space="preserve">
+    <value>belum terpasang</value>
+  </data>
+  <data name="ModTrust_InstallTitle" xml:space="preserve">
+    <value>Pasang / copot sertifikat</value>
+  </data>
+  <data name="ModTrust_InstallCaption" xml:space="preserve">
+    <value>Setelah dipasang, tanda tangan kode yang kami terbitkan akan dikenali oleh Windows dan launcher ini. Anda dapat mencopotnya kapan saja.</value>
+  </data>
+  <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+    <value>Pasang (pengguna)</value>
+  </data>
+  <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+    <value>Copot (pengguna)</value>
+  </data>
+  <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+    <value>Pasang (komputer, admin)</value>
+  </data>
+  <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+    <value>Copot (komputer, admin)</value>
+  </data>
+  <data name="ModTrust_ScopeUser" xml:space="preserve">
+    <value>pengguna saat ini</value>
+  </data>
+  <data name="ModTrust_ScopeMachine" xml:space="preserve">
+    <value>komputer</value>
+  </data>
+  <data name="ModTrust_InstallConfirm" xml:space="preserve">
+    <value>Pasang sertifikat platform untuk {0}? Tanda tangan kode yang kami terbitkan akan dikenali setelahnya. Lanjutkan?</value>
+  </data>
+  <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+    <value>Copot sertifikat platform untuk {0}? Tanda tangan kode yang kami terbitkan tidak akan dipercaya lagi setelahnya. Lanjutkan?</value>
+  </data>
+  <data name="ModTrust_SyncTitle" xml:space="preserve">
+    <value>Pembaruan info kepercayaan</value>
+  </data>
+  <data name="ModTrust_SyncCaption" xml:space="preserve">
+    <value>Memperbarui info kepercayaan tanda tangan kode dari endpoint resmi.</value>
+  </data>
+  <data name="ModTrust_SyncBtn" xml:space="preserve">
+    <value>Perbarui sekarang</value>
+  </data>
+  <data name="ModTrust_SyncConfirm" xml:space="preserve">
+    <value>Informasi kepercayaan akan diunduh dari endpoint resmi dan diverifikasi; tidak akan diterapkan jika verifikasi gagal. Lanjutkan?</value>
+  </data>
+  <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>Aktifkan pemblokiran</value>
+  </data>
+  <data name="ModTrust_StrictConfirm" xml:space="preserve">
+    <value>Setelah diaktifkan, file yang gagal dalam verifikasi tanda tangan tidak akan dimuat lagi, yang mungkin dapat memengaruhi plugin pihak ketiga yang Anda gunakan. Lanjutkan?</value>
+  </data>
+  <data name="ModTrust_BlockedTitle" xml:space="preserve">
+    <value>Verifikasi tanda tangan kode gagal</value>
+  </data>
+  <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>File ini gagal dalam verifikasi tanda tangan dan diblokir:</value>
+  </data>
+  <data name="ModTrust_WarnTitle" xml:space="preserve">
+    <value>Pemberitahuan tanda tangan kode</value>
+  </data>
+  <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+    <value>terpasang (komputer, berlaku untuk semua pengguna)</value>
+  </data>
+  <data name="ModTrust_InstalledBoth" xml:space="preserve">
+    <value>terpasang (pengguna saat ini + komputer)</value>
+  </data>
+  <data name="ModTrust_MachineHint" xml:space="preserve">
+    <value>Cakupan pengguna saat ini disediakan oleh instalasi komputer; pasang dan copot dari cakupan komputer.</value>
+  </data>
+  <data name="ModTrust_ModeTitle" xml:space="preserve">
+    <value>Tindakan untuk tanda tangan tidak valid</value>
+  </data>
+  <data name="ModTrust_ModeWarn" xml:space="preserve">
+    <value>Hanya beritahu</value>
+  </data>
+  <data name="ModTrust_ModeEnforce" xml:space="preserve">
+    <value>Blokir</value>
+  </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>Akses Ditolak</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>Perangkat ini diblokir dari penggunaan FufuLauncher.{0}{0}UID: {1}{0}Alasan: {2}{0}{0}Jika Anda merasa ini adalah kesalahan, Anda dapat mengajukan banding di sini (jika UID ditampilkan sebagai "-", kosongkan dalam formulir):{0}{3}{0}{0}Buka halaman banding sekarang? Memilih "Tidak" akan langsung menutup launcher.</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>akses dicabut oleh server</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>UID berada dalam daftar blokir server</value>
+  </data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve">
+    <value>Memeriksa karakter game yang ditautkan ke MiYouShe...</value>
+  </data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve">
+    <value>Pilih Karakter Game</value>
+  </data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve">
+    <value>Pilih karakter yang ingin diambil riwayat permohonannya. Karakter Bilibili ditampilkan di bawah Irminsul. Jika karakter yang diinginkan tidak ada, batalkan dan periksa tautan akun MiYouShe, atau gunakan Dapatkan dari Game.</value>
+  </data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve">
+    <value>Celestia (Official)</value>
+  </data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve">
+    <value>Irminsul (Bilibili)</value>
+  </data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="GameRole_Select" xml:space="preserve">
+    <value>Ganti peran game</value>
+  </data>
+  <data name="GameRole_Hint" xml:space="preserve">
+    <value>Atur default pada Karakter Tertaut. Setiap fitur dapat memilih server secara independen.</value>
+  </data>
+  <data name="GameRole_Refresh" xml:space="preserve">
+    <value>Segarkan karakter tertaut</value>
+  </data>
+  <data name="GameRole_Unavailable" xml:space="preserve">
+    <value>Peran yang dipilih tidak ada lagi dalam daftar tertaut. Pilih peran atau segarkan.</value>
+  </data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve">
+    <value>Respons Catatan Harian cadangan tidak dapat mengonfirmasi peran yang dipilih. Aktifkan izin Catatan Harian peran ini lalu coba lagi.</value>
+  </data>
+  <data name="GameRole_SkyIsland" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GameRole_WorldTree" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="MiyousheQr_Title" xml:space="preserve">
+    <value>Pemindai QR Layar</value>
+  </data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve">
+    <value>Pindai sekali membaca area yang dipilih satu kali. Pindai berkelanjutan memantau kode QR baru di area yang dipilih. Konfirmasi login menggunakan akun MiYouShe saat ini.</value>
+  </data>
+  <data name="MiyousheQr_CurrentAccount" xml:space="preserve">
+    <value>Akun MiYouShe saat ini</value>
+  </data>
+  <data name="MiyousheQr_Target" xml:space="preserve">
+    <value>Target login</value>
+  </data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve">
+    <value>Mengonfirmasi akan memasukkan perangkat yang menampilkan kode ini ke akun di atas.</value>
+  </data>
+  <data name="MiyousheQr_Capture" xml:space="preserve">
+    <value>Pindai sekali</value>
+  </data>
+  <data name="MiyousheQr_Confirm" xml:space="preserve">
+    <value>Konfirmasi login</value>
+  </data>
+  <data name="MiyousheQr_SelectionHint" xml:space="preserve">
+    <value>Seret untuk memilih kode QR · Esc atau klik kanan untuk membatalkan</value>
+  </data>
+  <data name="MiyousheQr_Genshin" xml:space="preserve">
+    <value>Genshin Impact</value>
+  </data>
+  <data name="MiyousheQr_StarRail" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="MiyousheQr_Zzz" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="MiyousheQr_Honkai3" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="MiyousheQr_Passport" xml:space="preserve">
+    <value>Akun miHoYo</value>
+  </data>
+  <data name="MiyousheQr_NoAccount" xml:space="preserve">
+    <value>Harap login ke MiYouShe di launcher terlebih dahulu.</value>
+  </data>
+  <data name="MiyousheQr_CnOnly" xml:space="preserve">
+    <value>Harap beralih ke akun MiYouShe server China sebelum memindai.</value>
+  </data>
+  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve">
+    <value>Akun ini tidak memiliki kredensial yang diperlukan untuk memindai. Login kembali ke launcher menggunakan aplikasi MiYouShe.</value>
+  </data>
+  <data name="MiyousheQr_AccountChanged" xml:space="preserve">
+    <value>Akun MiYouShe saat ini telah berubah. Pilih kembali kode QR.</value>
+  </data>
+  <data name="MiyousheQr_Expired" xml:space="preserve">
+    <value>Kode QR telah kedaluwarsa. Segarkan di perangkat target lalu pilih kembali.</value>
+  </data>
+  <data name="MiyousheQr_Unsupported" xml:space="preserve">
+    <value>Kode QR login tidak didukung. Didukung kode QR login akun miHoYo server China, Genshin, Star Rail, ZZZ, dan Honkai Impact 3rd.</value>
+  </data>
+  <data name="MiyousheQr_NotFound" xml:space="preserve">
+    <value>Tidak ada kode QR yang ditemukan. Pilih seluruh kode dengan sedikit ruang kosong di sekitarnya.</value>
+  </data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve">
+    <value>Ditemukan beberapa kode QR. Klik area hijau untuk memilih salah satu. Tekan Esc atau klik kanan untuk membatalkan.</value>
+  </data>
+  <data name="MiyousheQr_Cancelled" xml:space="preserve">
+    <value>Pemilihan dibatalkan.</value>
+  </data>
+  <data name="MiyousheQr_Recognizing" xml:space="preserve">
+    <value>Membaca kode QR…</value>
+  </data>
+  <data name="MiyousheQr_Ready" xml:space="preserve">
+    <value>Kode QR dikenali. Periksa akun dan target, lalu konfirmasi.</value>
+  </data>
+  <data name="MiyousheQr_Confirming" xml:space="preserve">
+    <value>Mengonfirmasi login…</value>
+  </data>
+  <data name="MiyousheQr_Success" xml:space="preserve">
+    <value>Login dikonfirmasi. Periksa perangkat target.</value>
+  </data>
+  <data name="MiyousheQr_ResultUnknown" xml:space="preserve">
+    <value>Hasil login tidak pasti. Periksa perangkat target terlebih dahulu. Jika belum masuk, segarkan kode QR dan pilih kembali.</value>
+  </data>
+  <data name="MiyousheQr_CaptureFailed" xml:space="preserve">
+    <value>Pemilihan area layar atau pembacaan kode QR gagal. Coba lagi.</value>
+  </data>
+  <data name="MiyousheQr_HttpError" xml:space="preserve">
+    <value>Layanan pemindaian tidak dapat dijangkau. Segarkan kode QR lalu coba lagi.</value>
+  </data>
+  <data name="MiyousheQr_ResponseError" xml:space="preserve">
+    <value>Layanan pemindaian mengembalikan respons yang tidak terduga. Segarkan kode QR lalu coba lagi.</value>
+  </data>
+  <data name="MiyousheQr_Rejected" xml:space="preserve">
+    <value>Permintaan pemindaian ditolak. Segarkan kode QR. Jika masih gagal, login kembali ke MiYouShe.</value>
+  </data>
+  <data name="MiyousheQr_Continuous" xml:space="preserve">
+    <value>Pindai berkelanjutan</value>
+  </data>
+  <data name="MiyousheQr_Stop" xml:space="preserve">
+    <value>Hentikan pemindaian</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirm" xml:space="preserve">
+    <value>Konfirmasi login otomatis</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve">
+    <value>Pilih sebelum memindai untuk langsung mengonfirmasi kode QR baru yang didukung menggunakan akun MiYouShe saat ini.</value>
+  </data>
+  <data name="MiyousheQr_Scanning" xml:space="preserve">
+    <value>Menunggu kode QR baru di area yang dipilih. {0} login telah dikonfirmasi. Klik Hentikan pemindaian untuk selesai.</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve">
+    <value>Hentikan pemindaian setelah login</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve">
+    <value>Hentikan pemindaian berkelanjutan dan hapus garis batasnya setelah login berhasil. Hapus centang untuk terus memindai kode QR berikutnya.</value>
+  </data>
+  <data name="MiyousheQr_Stopped" xml:space="preserve">
+    <value>Pemindaian dihentikan.</value>
+  </data>
+  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve">
+    <value>Area yang dipilih tidak tersedia. Pilih kembali area kode QR.</value>
+  </data>
+  <data name="MiyousheQr_SessionLimit" xml:space="preserve">
+    <value>Sesi pemindaian berkelanjutan telah mencapai batasnya. Mulai sesi baru.</value>
+  </data>
+  <data name="Checkin_Game_hkrpg_cn" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="Checkin_Game_nap_cn" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="Checkin_Game_bh3_cn" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="Checkin_Game_bh2_cn" xml:space="preserve">
+    <value>Houkai Gakuen 2</value>
+  </data>
+  <data name="Checkin_Game_nxx_cn" xml:space="preserve">
+    <value>Tears of Themis</value>
+  </data>
+  <data name="Checkin_RequestTooFrequent" xml:space="preserve">
+    <value>Permintaan terlalu sering. Silakan coba lagi nanti.</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Title" xml:space="preserve">
+    <value>Nonaktifkan metode klaim hadiah</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Content" xml:space="preserve">
+    <value>Menonaktifkan klaim hadiah menggunakan {0} berarti {0} tidak akan lagi muncul di daftar klaim hadiah Anda. Anda tidak akan dapat mengklaim hadiah menggunakan metode ini.</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Confirm" xml:space="preserve">
+    <value>Tetap nonaktifkan</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Title" xml:space="preserve">
+    <value>Peringatan sebelum menonaktifkan fitur</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Content" xml:space="preserve">
+    <value>Menonaktifkan “{0}” dapat menyebabkan Anda dikeluarkan dari game dalam situasi khusus tertentu.</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Title" xml:space="preserve">
+    <value>Pengaturan dipulihkan secara otomatis</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
+    <value>Pengaturan berikut dinonaktifkan tanpa mengonfirmasi peringatan penonaktifan, sehingga telah dipulihkan ke status aktif:
+{0}</value>
+  </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>Perolehan Bintang 4</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>Gagal menyalin: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>Memuat...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>Preset Default</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>Tidak ada</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>Permohonan Event Senjata</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>Gagal memilih: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>Dinonaktifkan</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>Kunci Akses</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>Akun sudah masuk (belum menautkan karakter)</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Gagal menyegarkan Cookie</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>Gagal membaca konfigurasi</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>FPS Unlocker belum terpasang</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>Rata-rata {0} permohonan/bulan</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>Belum ada yang ditulis di sini...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>Tidak ada</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>Tidak ada catatan yang diambil; catatan lama telah dicadangkan.</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>Permohonan Event Karakter-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>Permohonan Pemula</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>Inisialisasi gagal</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>Gagal memasang plugin pribadi: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>Akun sudah masuk</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>Preset ini tidak memiliki catatan hash plugin, tidak dapat memverifikasi kompatibilitas versi</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>Server Global</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>Masuk ke HoYoLAB</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menguraikan file preset
+Detail: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>File JSON</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>Data lokal dan sumber gambar berhasil dimuat.</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>Gagal menambahkan: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie telah berhasil disalin ke papan klip</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>Silakan tunggu...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>Nilai properti tidak diketahui: {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>Gagal mendapatkan tautan</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>Gagal menghapus: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>Gagal menerapkan konfigurasi</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>Gagal menyimpan: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>Pemilih file gagal. Jika berjalan sebagai administrator, coba alihkan ke mode pengguna biasa</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>Izin pengembang diperlukan untuk menggunakan fitur ini</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>Tambah plugin: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>Berhasil disalin</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>Tidak diketahui</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>Permohonan Standar</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>File Plugin</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>File riwayat tidak ditemukan, coba lakukan penangkapan</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>Ukuran tidak diketahui</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>Silakan masukkan ID plugin pribadi dan kunci akses:</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>CaptureApp.exe tidak ditemukan</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>Gagal menyegarkan informasi akun: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>Karakter ini belum memiliki catatan permohonan</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>Operasi gagal</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>Tautan diperoleh, memulai pemuatan otomatis...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>Selesai!</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>Berhasil masuk</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>Pasang</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>Gagal menyimpan status</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menyimpan catatan status aktivasi, izin tulis tidak ada
+Detail: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menulis ke file konfigurasi saat beralih preset
+Detail: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>Berdasarkan 160 Primogem per permohonan</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>Pengecualian unduhan dokumen: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>Zona Pity</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>Pity Terdalam Saat Ini</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>Memasang plugin pribadi: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>Gagal membaca data akun</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>Masuk dibatalkan</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>Permohonan Event Karakter</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>Plugin "{0}" memerlukan versi launcher ≥ {1}, versi saat ini adalah {2}
+
+Perbarui launcher sebelum menginstal plugin ini.</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>Kesalahan: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>Catatan permohonan untuk UID: {0} telah dihapus</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>Plugin Tidak Dikenal</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>Event Karakter</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>Gagal menyalin</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>Mengambil data...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat membaca file konfigurasi
+Detail: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>Mengimpor catatan ke-{0}...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>Kesalahan tidak diketahui</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>Operasi gagal: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>Perolehan Bintang 4</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>Semua Bintang 5 di semua banner</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>Gagal mengimpor</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>Telah di{0}: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} item</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>Tidak ada dokumen yang dipilih</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>Format tautan salah; tidak dapat mengekstrak alamat API</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>Auto clicker global memerlukan hak administrator untuk mendaftarkan hotkey dan mengirimkan penekanan tombol. Jalankan program sebagai administrator.</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>Gambar atau Video</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>Memuat informasi pengguna...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>Diaktifkan, FPS unlock berfungsi</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>Berhasil mengekspor, file disimpan di: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>Permohonan Kronik</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>Gagal beralih status</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menerapkan perubahan
+Detail: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>Pastikan folder dan config.ini ada di bawah direktori Plugins</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>Zona Hoki</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>Akun_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>Paksa Eksekusi (Tidak disarankan)</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>Program penangkap sedang membaca data...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>Maksimal hanya dapat menambahkan {0} akun</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>Permintaan gagal ({0}): {1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>Verifikasi izin gagal</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>Akun yang sedang masuk</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>Verifikasi Captcha</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>Permohonan Pemula</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>Membuka jendela masuk...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>Sekitar {0:N0} Primogem</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>Bintang 4 Tidak Diketahui</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>Absen harian Genshin Impact selesai</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Uji skrip Lua gagal: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>Wallpaper Bergerak</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>Tidak ada catatan tanggal</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} kali</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>Tambah Akun</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>Catatan permohonan tidak ditemukan di dalam file</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menghapus file preset, file mungkin sedang digunakan atau akses ditolak
+Detail: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>Perolehan Bintang 5</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>Gagal menulis log: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>Versi Terlalu Rendah</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>Kesalahan: Kurang hak administrator, tidak dapat memulai auto clicker</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>Pemberitahuan</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>Tidak ada deskripsi</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>Default (tidak ditentukan)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Pemeriksaan keamanan Lua gagal: {0}.</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>FuFuPlugin belum terpasang</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>Mendekati Soft Pity</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>Bulan Aktif</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>Preset saat ini: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>Kesalahan masuk: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>Silakan atur tombol pintas berhenti</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>Kesalahan tak terduga: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>Menyegarkan Cookie...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>Gagal memuat: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>Minimalkan ke baki</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>Event Senjata</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>Preset tidak cocok dengan versi plugin, otomatis diatur ulang ke default</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>Mulai Ambil</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>Plugin Pribadi</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>Tidak ada akun</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>Versi UIGF tidak didukung: {0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} permohonan</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>File tidak ada atau tidak dapat diakses</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>Gagal menghapus: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>Waktu eksekusi skrip habis (&gt;5 detik)</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>Gagal menerapkan: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>Operasi gagal: file sudah ada</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>Beralih ke UID: {0}</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>Mengaktifkan auto clicker akan memasang hook keyboard dan mouse yang dapat diblokir oleh antivirus. Konfirmasi pengaktifan?</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>Ganti Wallpaper</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>File tidak dikenali</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>Dihapus: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Berhasil menyegarkan Cookie</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>Preset ini sangat cocok dengan plugin saat ini</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>Silakan pilih karakter game dari menu dropdown.</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>Gagal menambahkan: plugin target sudah ada</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>Diaktifkan</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>Gagal menambahkan akun: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>Permohonan Kronik</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>File yang Dapat Dieksekusi</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>Belum ada pity Bintang 5</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>Berhasil mengekspor {0} catatan ke {1} ({2})</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>Gagal mengimpor: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>Karakter yang diperoleh tidak cocok dengan yang dipilih, menghentikan tampilan.</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>Absen Genshin</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>Preset Berhasil Dialihkan</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>Diaktifkan, sebagian fitur berfungsi</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>Membaca file UIGF...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>Tidak ditemukan</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>Terdalam saat ini: {0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie disalin ke papan klip</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>Masuk sebagai {0}</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>Semua catatan Bintang 1-5</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>Tidak dapat membaca registri</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menulis preset ke file konfigurasi, izin tidak ada
+Detail: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>Izin tidak cukup atau sedang digunakan; silakan pilih ulang jalur game sebagai pengguna biasa</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>Gagal menyimpan pengaturan</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>Membuka halaman pembekuan akun...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>Dihentikan melalui tombol pintas</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>Berhasil dihapus</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>Akun Saat Ini</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>Jalur tidak valid</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>Bintang 3</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>Total Permohonan</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>Cookie yang valid tidak ditemukan</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>Impor selesai ({0} catatan), memuat sumber gambar...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>Informasi masuk tidak ditemukan</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>Silakan jalankan game sekali terlebih dahulu sebelum mencoba lagi</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>Mengambil metadata item dan banner...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>Monitor {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>Hentikan auto clicker terlebih dahulu sebelum memulai lagi</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>Mengambil... Silakan buka riwayat permohonan di dalam game</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>Bintang 5 Paling Sulit</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>Jalur tidak valid, periksa apakah file ada dan berformat .exe</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>Segarkan daftar</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>Jalur kosong</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>Gagal menginisialisasi tampilan: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>Gagal memilih jalur: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menyimpan file preset, izin tulis tidak ada
+Detail: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>Berhasil beralih akun</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>Gagal mengekspor: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>Hentikan Ambil</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>Gagal membaca riwayat: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat mengubah ekstensi file plugin
+Detail: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>Izin tidak cukup atau sedang digunakan; silakan pilih ulang sebagai pengguna biasa</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>Gagal memperbarui konfigurasi</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>Gagal menghapus</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>Gagal mengambil dokumen (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>Jalur telah diterapkan</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>Plugin "{0}" (ID: {1}) bersifat pribadi. Masukkan kunci akses untuk melanjutkan penginstalan:</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>Gagal memuat pohon direktori: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>Gagal membuka: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Uji skrip Lua berhasil</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>Gagal beralih status: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>Tidak ada data untuk diekspor</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>Membuka Catatan Harian Genshin...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>Tautan riwayat dimuat, bersiap mengambil otomatis...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>File Audio</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>Operasi berhasil</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>Gagal menyimpan preset</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>Catatan untuk UID: {0} telah dihapus</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>Mengambil metadata banner...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Kesalahan eksekusi Lua: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>Gagal menghapus preset</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>Silakan masuk terlebih dahulu</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>Versi UIGF tidak dikenali, pastikan format file benar</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>Memverifikasi plugin pribadi...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>Tidak ada catatan Bintang 5</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>Mengerti</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>Tidak ada akun yang dipilih</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>Permohonan Standar</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>Pasang Plugin Pribadi</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>Bintang 5</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>Terbuka</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>Masuk kembali</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>File tidak ada atau bukan file .exe yang valid</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>Membuka pusat keamanan akun...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>Detail: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>Pengambilan dihentikan secara manual</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>Verifikasi Selesai</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>Hash plugin pada preset tidak cocok dengan plugin saat ini, mungkin berasal dari versi lain</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>Rata-rata per Bintang 5</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>Gagal menghentikan</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>Tautan permohonan tidak valid</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>Akun ini tidak memiliki catatan permohonan</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>Versi format pratinjau tidak mendukung wallpaper bergerak.</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>Konfirmasi Pengaktifan</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>Siap</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>Estimasi Primogem</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>Menyegarkan tampilan...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>Pengembang Tidak Dikenal</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>Mengekspor file UIGF...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>Tidak dapat membuka pemilih file</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>Server CN</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>Gagal keluar: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>Mengambil {0}...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>Bintang 4</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>Zona Menengah</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>Bintang 5 Paling Beruntung</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>Pilih item dari menu untuk melihat detail</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>Pelanggaran kebijakan keamanan: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>ID Plugin</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>Tutup launcher</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>Bintang 5 Tidak Diketahui</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>Memerlukan Hak Administrator</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>File plugin tidak ada atau tidak dapat menghitung hash, tidak dapat memverifikasi kompatibilitas</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>Catatan tidak lengkap dalam file (kurang id/item_id/time/gacha_type), periksa format file</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>Gagal menghentikan: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>Rata-rata Permohonan Karakter Bintang 5</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>Pemuatan selesai, total {0} plugin</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Gagal menyegarkan Cookie: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>Tidak ada catatan permohonan yang valid di dalam file</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>Catatan Anomali</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>Menginisialisasi...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>Pengguna {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>HoYoLAB tidak mengizinkan pengambilan (kode 1016). Periksa tautan atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>Karakter tertaut tidak ditemukan. Masuk ke HoYoLAB atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>Tidak ada catatan baru untuk UID {0}, data yang ada dipertahankan.</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>Riwayat lokal berhasil dimuat</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>Impor dibatalkan, data yang ada tidak berubah.</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>Pengambilan selesai, UID {0}, total {1} catatan, memeriksa sumber gambar...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>HoYoLAB menolak parameter (kode 1002). Coba 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>Catatan permohonan tidak ditemukan, data yang ada dipertahankan. Periksa riwayat game.</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>Gagal membaca konfigurasi: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>Mengambil catatan {0}... (sudah {1} item)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>Silakan masukkan tautan permohonan yang valid</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>Membuat kunci autentikasi (pembaruan penuh)...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>Banner berbeda mengembalikan data akun berbeda, impor dihentikan.</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>Menunggu data...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>Gagal menginisialisasi layanan diagnostik</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>Membuka jendela data Genshin...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>+ Tambah Pengguna Baru</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>Tanpa Nama</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0} {1} catatan, sedang mengambil catatan {2}...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>Menyegarkan metadata karakter, senjata, dan banner...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>Konten papan klip tidak valid</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>UID yang diperoleh tidak sesuai dengan karakter yang dipilih, impor dihentikan.</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> Silakan periksa status masuk HoYoLAB, atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>Gagal memuat informasi akun: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>Ekspor Berhasil</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>Analisis selesai!</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>Membuat kunci autentikasi (pembaruan inkremental)...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>Silakan pilih karakter game di pengalih terlebih dahulu.</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>Gagal membaca papan klip</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>Ekspor Gagal</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>Akun HoYoLAB tertaut UID {0} tidak ditemukan. Periksa tautan atau gunakan 'Dari Game'.</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>Karakter telah dialihkan, membuang hasil karakter lama.</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>Jalankan Alat Penangkap</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>Gagal mengganti nama: nama folder sudah ada</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>Verifikasi Unduhan</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>Gagal mengganti nama: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>Daftar telah diurutkan</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>Berhasil mengganti nama</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>Memuat status check-in game</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>Gagal beralih preset</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>Gagal membuka peramban: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>Silakan atur tombol pintas berhenti sebelum mengaktifkan klik mouse</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>Klik mouse memerlukan pengaturan tombol pintas berhenti terlebih dahulu</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>Banner Tidak Diketahui</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>Konfigurasi preset yang sesuai tidak ditemukan</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>Menganalisis tautan API...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>Jalur valid</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>Dinonaktifkan. Harap aktifkan plugin utama untuk mengonfigurasi pengaturan.</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>Dinonaktifkan. Harap aktifkan plugin FPS untuk mengonfigurasi pengaturan plugin.</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>Plugin Diubah</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>Preset saat ini tidak cocok dengan versi plugin terbaru; preset baru telah dibuat secara otomatis.</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>Preset ini saat ini ditandai sebagai terkunci.</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>Gagal Menghapus</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>Tidak dapat menghapus file preset.
+Detail: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>Tampilan internal disegarkan</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>Nilai kunci tak dikenal {0} ditambahkan</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>Menunggu memuat data...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>Menghubungkan ke Miyoushe...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>Perlu masuk ke akun terlebih dahulu</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>Menganalisis Catatan Perjalanan...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>Permintaan Catatan Perjalanan gagal ({0}): {1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>Karakter yang dikembalikan Catatan Perjalanan tidak cocok dengan pilihan saat ini; tampilan dihentikan.</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>Gagal memuat: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>Konten masih dimuat di latar belakang; kecocokan berasal dari judul atau jalur</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>Memuat...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>Wallpaper animasi hanya tersedia dalam build pengembangan. Harap pilih gambar sebagai latar belakang kustom pada versi pratinjau dan rilis.</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>Mengambil metadata karakter dan senjata melalui API...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>Gagal mengambil metadata {0}, mencoba kembali dalam {1} dtk ({2}/{3})...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>Tidak ada sumber daya gambar baru ditemukan; menggunakan cache yang ada atau ikon default</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>Memperbarui {0} sumber daya gambar dan menyimpannya ke basis data</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>Metadata pool wish diperbarui (total {0} riwayat pool: Karakter {1}, Senjata {2}, Kronik {3})</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>Karakter</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>Senjata</value>
   </data>
 </root>

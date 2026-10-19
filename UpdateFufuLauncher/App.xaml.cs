@@ -38,7 +38,7 @@ namespace Updater
                 }
                 catch
                 {
-                    // ignored
+                    
                 }
 
                 Environment.Exit(0);

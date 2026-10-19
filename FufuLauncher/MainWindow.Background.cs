@@ -138,6 +138,7 @@ public sealed partial class MainWindow
                     }
                 }
             }
+
             var preferVideoObj = await _localSettingsService.ReadSettingAsync("PreferVideoBackground");
             var preferVideo = preferVideoObj != null && Convert.ToBoolean(preferVideoObj) &&
                               _devBuildDetectionService.IsDevBuild;
@@ -293,7 +294,8 @@ public sealed partial class MainWindow
         await RunOnUIThreadAsync(() =>
         {
             if (_isExit || (version.HasValue && version != _backgroundLoadVersion)) return;
-            if (expectedVideoSource != null && !ReferenceEquals(_globalBackgroundPlayer?.Source, expectedVideoSource)) return;
+            if (expectedVideoSource != null &&
+                !ReferenceEquals(_globalBackgroundPlayer?.Source, expectedVideoSource)) return;
             StopBackgroundImageAnimation();
             _isFallbackBackground = result.IsFallback;
             if (result.IsVideo)
@@ -333,7 +335,7 @@ public sealed partial class MainWindow
                 GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
 
                 GlobalBackgroundImage.Source = result.ImageSource;
-                // Keep a visible base value even if animations are disabled or interrupted.
+
                 GlobalBackgroundImage.Opacity = finalOpacity;
                 GlobalBackgroundImage.Visibility = Visibility.Visible;
 
@@ -424,7 +426,8 @@ public sealed partial class MainWindow
 
             if (!ReferenceEquals(_globalBackgroundPlayer?.Source, failedSource)) return;
 
-            await ApplyGlobalBackgroundAsync(new BackgroundRenderResult { ImageSource = bitmap }, version, failedSource);
+            await ApplyGlobalBackgroundAsync(new BackgroundRenderResult { ImageSource = bitmap }, version,
+                failedSource);
             Debug.WriteLine("视频播放失败，已截取第一帧作为静态背景");
         }
         catch (Exception ex)

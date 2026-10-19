@@ -7,9 +7,6 @@ using System.Text.Json.Serialization;
 
 namespace FufuLauncher.Models.MiHoYo.Fingerprint;
 
-/// <summary>
-///     getFp 请求体 <c>ext_fields</c> 扩展画像字段（bbs_cn 原生平台）。
-/// </summary>
 public sealed record ExtFields
 {
     [JsonPropertyName("proxyStatus")]
@@ -131,7 +128,7 @@ public sealed record ExtFields
         set;
     } = "1779448087000";
 
-    // 对应 Android Build.USER
+
     [JsonPropertyName("buildUser")]
     public string BuildUser
     {
@@ -153,10 +150,7 @@ public sealed record ExtFields
         set;
     } = "8192";
 
-    /// <summary>
-    ///     对应 PackageInfo.lastUpdateTime（绝对毫秒时间戳，非差值）。
-    ///     <para>生成注册请求体时随机：安装时间之后、当前时间之前。</para>
-    /// </summary>
+
     [JsonPropertyName("appUpdateTimeDiff")]
     public long AppUpdateTimeDiff
     {
@@ -164,7 +158,7 @@ public sealed record ExtFields
         set;
     } = 1785998383082L;
 
-    // 对应 Android Build.FINGERPRINT
+
     [JsonPropertyName("deviceInfo")]
     public string DeviceInfo
     {
@@ -333,7 +327,7 @@ public sealed record ExtFields
         set;
     } = "15.625x-28.25x-32.625";
 
-    // 对应 Android Build.DISPLAY
+
     [JsonPropertyName("display")]
     public string Display
     {
@@ -341,10 +335,7 @@ public sealed record ExtFields
         set;
     } = "V417IR release-keys";
 
-    /// <summary>
-    ///     对应 PackageInfo.firstInstallTime（绝对毫秒时间戳，非差值）。
-    ///     <para>生成注册请求体时随机：晚于设备固件 buildTime、早于 lastUpdateTime。</para>
-    /// </summary>
+
     [JsonPropertyName("appInstallTimeDiff")]
     public long AppInstallTimeDiff
     {
@@ -380,7 +371,7 @@ public sealed record ExtFields
         set;
     } = 0;
 
-    // 对应 Android Build.BOARD
+
     [JsonPropertyName("board")]
     public string Board
     {

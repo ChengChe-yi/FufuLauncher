@@ -26,21 +26,17 @@ internal sealed class YaeNamedPipeServer
     private readonly YaeNativeConfiguration _config;
     private YaeGameProcess? _game;
 
-    /// <summary>
-    ///     构造函数即创建管道实例，确保注入的游戏 DLL 连接时管道已存在。
-    /// </summary>
+
     public YaeNamedPipeServer(YaeNativeConfiguration config)
     {
         _config = config;
         _serverStream = new NamedPipeServerStream(PipeName);
     }
 
-    /// <summary>注入完成后绑定游戏进程，供 0xFE 恢复线程与 0xFF 结束游戏使用。</summary>
+
     public void AttachGame(YaeGameProcess game) => _game = game;
 
-    /// <summary>
-    ///     等待游戏内注入的 Yae 客户端连接并收集全部数据，直到会话结束。
-    /// </summary>
+
     public List<YaeData> Collect()
     {
         _serverStream.WaitForConnection();
@@ -58,12 +54,12 @@ internal sealed class YaeNamedPipeServer
             }
             catch (IOException)
             {
-                break; // 管道损坏
+                break;
             }
 
             if (rawKind < 0)
             {
-                break; // 客户端断开
+                break;
             }
 
             switch ((YaeCommandKind)rawKind)

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -42,6 +42,7 @@ public sealed partial class MainWindow : WindowEx
     private bool _minimizeToTray;
     private bool _isExit;
     private bool _isOverlayShown;
+    private Microsoft.UI.Xaml.Media.Animation.Storyboard? _pageOverlayStoryboard;
     private bool _isAcrylicOverlayEnabled;
     private bool _isPageOverlaySemiTransparent;
     private double _pageOverlayTargetOpacity = 1.0;
@@ -119,17 +120,17 @@ public sealed partial class MainWindow : WindowEx
 
         var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
         if (!dispatcherQueue.TryEnqueue(() =>
-        {
-            try
             {
-                action();
-                tcs.SetResult();
-            }
-            catch (Exception ex)
-            {
-                tcs.SetException(ex);
-            }
-        }))
+                try
+                {
+                    action();
+                    tcs.SetResult();
+                }
+                catch (Exception ex)
+                {
+                    tcs.SetException(ex);
+                }
+            }))
             tcs.SetException(new InvalidOperationException("主窗口的 UI 调度队列已关闭"));
         return tcs.Task;
     }
@@ -149,7 +150,7 @@ public sealed partial class MainWindow : WindowEx
                 Debug.WriteLine($"内部异常: {ex.InnerException.Message}");
             }
 
-            // Retry once - XAML parse can fail transiently when assemblies are still loading from single-file extraction
+
             try
             {
                 InitializeComponent();
@@ -240,7 +241,7 @@ public sealed partial class MainWindow : WindowEx
                     {
                         dispatcherQueue.TryEnqueue(() =>
                         {
-                            var announcementWindow = new Views.AnnouncementWindowL(announcementUrl);
+                            var announcementWindow = new Views.WebAnnouncementWindow(announcementUrl);
                             announcementWindow.Activate();
                         });
                     }

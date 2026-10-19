@@ -115,7 +115,6 @@ public class AchievementRepository
         }
     }
 
-    // ---- Categories ----
 
     public List<AchievementCategoryEntity> GetAllCategories()
     {
@@ -160,7 +159,6 @@ public class AchievementRepository
         return count;
     }
 
-    // ---- Achievements ----
 
     public List<AchievementEntity> GetAllAchievements()
     {

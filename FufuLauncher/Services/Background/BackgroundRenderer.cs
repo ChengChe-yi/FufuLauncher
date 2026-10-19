@@ -45,7 +45,11 @@ namespace FufuLauncher.Services.Background
 {
     public class BackgroundRenderResult
     {
-        public bool IsFallback { get; set; }
+        public bool IsFallback
+        {
+            get;
+            set;
+        }
 
         public ImageSource ImageSource
         {
@@ -531,7 +535,8 @@ namespace FufuLauncher.Services.Background
                 if (preferVideo)
                 {
                     candidates.AddRange(backgrounds
-                        .Where(b => b != null && b.Type == "BACKGROUND_TYPE_VIDEO" && !string.IsNullOrEmpty(b.Video?.Url))
+                        .Where(b => b != null && b.Type == "BACKGROUND_TYPE_VIDEO" &&
+                                    !string.IsNullOrEmpty(b.Video?.Url))
                         .Select(b => new BackgroundUrlInfo { Url = b.Video.Url, IsVideo = true }));
                 }
 
@@ -619,7 +624,6 @@ namespace FufuLauncher.Services.Background
                         continue;
                     if (name.EndsWith(".tmp", StringComparison.OrdinalIgnoreCase))
                     {
-                        // An in-flight download owns its temporary file.
                         continue;
                     }
 
@@ -799,7 +803,8 @@ namespace FufuLauncher.Services.Background
             Directory.CreateDirectory(_cacheFolderPath);
 
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
-            using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, timeout.Token);
+            using var response =
+                await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, timeout.Token);
             response.EnsureSuccessStatusCode();
 
             if (GetUrlPathExtension(url) == null)
@@ -829,8 +834,14 @@ namespace FufuLauncher.Services.Background
             }
             finally
             {
-                try { File.Delete(tempFile); }
-                catch (Exception ex) { Debug.WriteLine($"BackgroundRenderer: 临时缓存清理失败: {ex.Message}"); }
+                try
+                {
+                    File.Delete(tempFile);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"BackgroundRenderer: 临时缓存清理失败: {ex.Message}");
+                }
             }
         }
 

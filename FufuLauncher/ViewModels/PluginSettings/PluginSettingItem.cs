@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -117,7 +117,8 @@ public class PluginSettingItem : ObservableObject
     }
 
     public PluginSettingItem(IniFile iniFile, string sectionKey, string displayName, string type, string value,
-        string helpUrl, Action<string, string, string> onValueChanged, bool useKeyListInput, Func<bool>? canChangeValue = null)
+        string helpUrl, Action<string, string, string> onValueChanged, bool useKeyListInput,
+        Func<bool>? canChangeValue = null)
     {
         _iniFile = iniFile;
         SectionKey = sectionKey;
@@ -153,8 +154,8 @@ public class PluginSettingItem : ObservableObject
                 if (isNew)
                 {
                     WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                        "内部视图已刷新",
-                        $"新增未知键值 {value}",
+                        "PluginSettings_InternalViewRefreshed".GetLocalized(),
+                        string.Format("PluginSettings_AddedUnknownKey_Format".GetLocalized(), value),
                         NotificationType.Success,
                         3000
                     ));
@@ -303,8 +304,8 @@ public class PluginSettingItem : ObservableObject
             OnPropertyChanged(propertyName);
 
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "配置保存失败",
-                $"无法应用当前设置修改\n详细信息: {ex.Message}",
+                "PluginSettings_SaveFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ApplyFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));

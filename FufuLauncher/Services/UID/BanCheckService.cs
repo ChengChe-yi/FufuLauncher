@@ -77,9 +77,6 @@ public sealed class BanCheckService
     {
         try
         {
-            // Reuse the UIDs the caller already loaded when available; the lookup
-            // both rescans BeyondLocal and rewrites uids.json, so calling it twice
-            // at startup is pure duplicate I/O.
             var localUids = knownUids ?? await _uidLookup.LoadAndWriteUidsAsync().ConfigureAwait(false);
             if (localUids.Count == 0)
             {
@@ -125,7 +122,6 @@ public sealed class BanCheckService
         }
         catch (Exception ex)
         {
-            // Never let a check failure terminate the app.
             Debug.WriteLine($"[BanCheck] 检查异常，按放行处理 - {ex.Message}");
             return new BanCheckResult { Outcome = BanCheckOutcome.Passed };
         }
@@ -202,8 +198,6 @@ public sealed class BanCheckService
 
             if (status == null)
             {
-                // Unparseable Status must not be read as "revoked": a single
-                // server-side typo would otherwise stop the launcher for everyone.
                 Debug.WriteLine("[BanCheck] Status 字段无法识别，按放行处理");
                 return null;
             }

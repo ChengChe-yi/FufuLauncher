@@ -136,7 +136,7 @@ public abstract class GameCheckin
     public virtual async Task InitializeAsync(Config config)
     {
         SetHeaders(config);
-        // 并行获取账号列表和签到奖励，省一个 HTTP 往返
+
         var accountTask = GetAccountListAsync(config);
         var rewardsTask = GetCheckinRewardsAsync();
         AccountList = await accountTask.ConfigureAwait(false);
@@ -202,7 +202,6 @@ public abstract class GameCheckin
             }
             catch (Exception)
             {
-                // ignored
             }
 
             await Task.Delay(1500);
@@ -401,7 +400,7 @@ public abstract class GameCheckin
             return returnData;
         }
 
-        // 统计需要签到的角色数，只有多角色时才加延时
+
         var activeAccounts = AccountList
             .Where(a => disabledUids == null || !disabledUids.Contains(a.GameUid))
             .Where(a => string.IsNullOrEmpty(targetUid) || a.GameUid == targetUid)

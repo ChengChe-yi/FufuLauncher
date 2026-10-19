@@ -92,7 +92,7 @@ public sealed class AuthTicketService : IAuthTicketService
             using var httpRequest = new HttpRequestMessage(HttpMethod.Post, url);
             httpRequest.Content = new StringContent(bodyJson, Encoding.UTF8, "application/json");
 
-            // app_id=ddxf5dufpuyo,client_type=3,UA=HYPContainer
+
             ApplyHoyoPlayHeaders(httpRequest, cookies, isOversea);
 
             var response = await httpClient.SendAsync(httpRequest);

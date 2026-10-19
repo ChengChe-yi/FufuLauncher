@@ -5,7 +5,6 @@ Licensed under the MIT License.
 
 namespace FufuLauncher.Activation;
 
-// https://github.com/microsoft/TemplateStudio/blob/main/docs/WinUI/activation.md
 public abstract class ActivationHandler<T> : IActivationHandler
     where T : class
 {

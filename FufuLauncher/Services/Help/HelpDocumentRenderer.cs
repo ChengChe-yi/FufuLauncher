@@ -15,7 +15,8 @@ public static class HelpDocumentRenderer
     private const string FontFaceRule =
         "@font-face { font-family: 'FufuDoc'; src: url('https://fufu.fonts/MiSans-Regular.ttf') format('truetype'); font-display: swap; }";
 
-    private static readonly string s_fontPath = Path.Combine(AppContext.BaseDirectory, "Assets", "Fonts", "MiSans-Regular.ttf");
+    private static readonly string s_fontPath =
+        Path.Combine(AppContext.BaseDirectory, "Assets", "Fonts", "MiSans-Regular.ttf");
 
     public static bool HasCustomFont
     {

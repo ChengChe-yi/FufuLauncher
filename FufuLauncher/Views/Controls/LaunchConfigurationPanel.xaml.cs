@@ -6,7 +6,10 @@ namespace FufuLauncher.Views.Controls;
 
 public sealed partial class LaunchConfigurationPanel : UserControl
 {
-    public LaunchConfigurationViewModel ViewModel { get; }
+    public LaunchConfigurationViewModel ViewModel
+    {
+        get;
+    }
 
     public LaunchConfigurationPanel()
     {
@@ -42,7 +45,8 @@ public sealed partial class LaunchConfigurationPanel : UserControl
     {
         if (sender is FrameworkElement target)
         {
-            GenshinHDRSettingPanel.ShowAt(target, Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedLeft);
+            GenshinHDRSettingPanel.ShowAt(target,
+                Microsoft.UI.Xaml.Controls.Primitives.FlyoutPlacementMode.BottomEdgeAlignedLeft);
         }
     }
 

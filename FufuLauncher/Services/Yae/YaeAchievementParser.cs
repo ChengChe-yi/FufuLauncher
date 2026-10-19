@@ -13,9 +13,6 @@ namespace FufuLauncher.Services.Yae;
 
 public static class YaeAchievementParser
 {
-    /// <summary>
-    ///     解析成就数据。每个 LengthDelimited 子消息若含至少 3 个 varint 字段，则视为一条成就记录。
-    /// </summary>
     public static List<YaeUiafItem> ParseAchievement(byte[] bytes, AchievementProtoFieldInfo pb)
     {
         var data = new List<Dictionary<uint, uint>>();
@@ -27,7 +24,7 @@ public static class YaeAchievementParser
             uint tag;
             while ((tag = stream.ReadTag()) != 0)
             {
-                if ((tag & 7) != 2) // LengthDelimited
+                if ((tag & 7) != 2)
                 {
                     continue;
                 }
@@ -38,7 +35,7 @@ public static class YaeAchievementParser
                 {
                     while ((tag = entryStream.ReadTag()) != 0)
                     {
-                        if ((tag & 7) != 0) // Varint
+                        if ((tag & 7) != 0)
                         {
                             record = null;
                             break;
@@ -54,7 +51,6 @@ public static class YaeAchievementParser
                 }
                 catch (InvalidProtocolBufferException)
                 {
-                    // 允许 1 次失败（reward_taken_goal_id_list 等非目标子消息）
                     if (errorTimes++ > 0)
                     {
                         throw;
@@ -64,7 +60,6 @@ public static class YaeAchievementParser
         }
         catch (InvalidProtocolBufferException)
         {
-            // 解析失败返回已收集的数据
         }
 
         return data

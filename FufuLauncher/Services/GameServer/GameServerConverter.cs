@@ -405,7 +405,6 @@ public sealed class GameServerConverter
                     }
                     catch
                     {
-                        // ignored
                     }
                 }
             }).ConfigureAwait(false);
@@ -419,7 +418,6 @@ public sealed class GameServerConverter
             }
             catch
             {
-                // ignored
             }
 
             return false;
@@ -493,7 +491,6 @@ public sealed class GameServerConverter
                         }
                         catch
                         {
-                            // ignored
                         }
 
                         return false;
@@ -530,7 +527,6 @@ public sealed class GameServerConverter
                         }
                         catch
                         {
-                            // ignored
                         }
                     }
                 }
@@ -833,7 +829,6 @@ public sealed class GameServerConverter
                 }
                 catch
                 {
-                    // ignored
                 }
 
                 continue;
@@ -848,7 +843,6 @@ public sealed class GameServerConverter
         }
         catch
         {
-            // ignored
         }
     }
 

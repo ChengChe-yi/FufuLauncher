@@ -9,10 +9,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FufuLauncher.Data.Migrations.Metadata;
 
-/// <inheritdoc />
 public partial class AddGachaPoolPresentation : Migration
 {
-    /// <inheritdoc />
     protected override void Up(MigrationBuilder migrationBuilder)
     {
         migrationBuilder.AddColumn<string>(
@@ -30,7 +28,7 @@ public partial class AddGachaPoolPresentation : Migration
             defaultValue: "");
     }
 
-    /// <inheritdoc />
+
     protected override void Down(MigrationBuilder migrationBuilder)
     {
         migrationBuilder.DropColumn(

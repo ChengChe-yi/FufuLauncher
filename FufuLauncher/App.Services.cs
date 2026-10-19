@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -67,7 +67,6 @@ public partial class App
                 services.AddSingleton<LaunchConfigurationViewModel>();
                 services.AddTransient<SettingsViewModel>();
                 services.AddTransient<SettingsPage>();
-                services.AddTransient<BlankPage>();
 
                 services.AddTransient<NullToVisibilityConverter>();
                 services.AddTransient<BoolToVisibilityConverter>();
@@ -88,8 +87,8 @@ public partial class App
                 services.AddSingleton<IHoyolabRoleResolverService, HoyolabRoleResolverService>();
                 services.AddSingleton<IUnifiedCheckinService, UnifiedCheckinService>();
                 services.AddSingleton<Services.MiHoYo.DailyNote.DailyNoteCardService>();
-                services.AddSingleton<BlankViewModel>();
-                services.AddTransient<BlankPage>();
+                services.AddSingleton<GameSettingsViewModel>();
+                services.AddTransient<GameSettingsPage>();
                 services.AddSingleton<ILauncherService, LauncherService>();
                 services.AddTransient<OtherViewModel>();
                 services.AddTransient<OtherPage>();
@@ -101,8 +100,8 @@ public partial class App
                 services.AddTransient<AgreementPage>();
                 services.AddSingleton<IDevBuildDetectionService, DevBuildDetectionService>();
                 services.AddSingleton<IUpdateService, UpdateService>();
-                services.AddSingleton<ControlPanelModel>();
-                services.AddTransient<PanelPage>();
+                services.AddSingleton<ControlPanelViewModel>();
+                services.AddTransient<ControlPanelPage>();
                 services.AddSingleton<IUserInfoService, UserInfoService>();
                 services.AddSingleton<IUidLookupService, Services.UID.UidLookupService>();
                 services.AddSingleton<Services.UID.BanCheckService>();
@@ -144,7 +143,7 @@ public partial class App
                 services.AddSingleton<IGameAnnouncementImageService, GameAnnouncementImageService>();
                 services.AddTransient<GameAnnouncementViewModel>();
                 services.AddTransient<IPluginUpdateService, PluginUpdateService>();
-                services.AddTransient<GachaAnalysisModel>();
+                services.AddTransient<GachaAnalysisViewModel>();
                 services.AddSingleton<PluginStoreService>();
                 services.AddSingleton<LightweightPluginService>();
                 services.AddSingleton<ConstraintService>();

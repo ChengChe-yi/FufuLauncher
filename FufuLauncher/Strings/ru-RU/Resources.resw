@@ -3057,24 +3057,60 @@
   <data name="GachaAnalysis_WishHistory" xml:space="preserve">
     <value>История молитв</value>
   </data>
-  <data name="GachaHistory_Loading" xml:space="preserve"><value>Подготовка истории молитв…</value></data>
-  <data name="GachaHistory_Description" xml:space="preserve"><value>Загрузка по версиям. Выберите баннер, чтобы посмотреть молитвы за его период.</value></data>
-  <data name="GachaHistory_HideEmpty" xml:space="preserve"><value>Скрыть баннеры без полученных предметов</value></data>
-  <data name="GachaHistory_NewerVersion" xml:space="preserve"><value>Более новая версия</value></data>
-  <data name="GachaHistory_OlderVersion" xml:space="preserve"><value>Более старая версия</value></data>
-  <data name="GachaHistory_FiveStarItems" xml:space="preserve"><value>Предметы 5★</value></data>
-  <data name="GachaHistory_FourStarItems" xml:space="preserve"><value>Предметы 4★</value></data>
-  <data name="GachaHistory_ThreeStarItems" xml:space="preserve"><value>Предметы 3★</value></data>
-  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve"><value>Нет баннеров с полученными предметами</value></data>
-  <data name="GachaHistory_EmptyTitle" xml:space="preserve"><value>Нет метаданных истории баннеров</value></data>
-  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve"><value>Отключите «Скрыть баннеры без полученных предметов», чтобы посмотреть всю историю.</value></data>
-  <data name="GachaHistory_EmptyDescription" xml:space="preserve"><value>Обновите историю молитв или метаданные предметов, чтобы создать историю автоматически.</value></data>
-  <data name="GachaHistory_PeriodFormat" xml:space="preserve"><value>{0:yyyy-MM-dd HH:mm} — {1:yyyy-MM-dd HH:mm}</value></data>
-  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve"><value>{0} молитв</value></data>
-  <data name="GachaHistory_CharacterEvent" xml:space="preserve"><value>Молитва события персонажа</value></data>
-  <data name="GachaHistory_WeaponEvent" xml:space="preserve"><value>Молитва события оружия</value></data>
-  <data name="GachaHistory_Chronicled" xml:space="preserve"><value>Хроники молитв</value></data>
-  <data name="GachaHistory_Limited" xml:space="preserve"><value>Ограниченная молитва</value></data>
+  <data name="GachaHistory_Loading" xml:space="preserve">
+    <value>Подготовка истории молитв…</value>
+  </data>
+  <data name="GachaHistory_Description" xml:space="preserve">
+    <value>Загрузка по версиям. Выберите баннер, чтобы посмотреть молитвы за его период.</value>
+  </data>
+  <data name="GachaHistory_HideEmpty" xml:space="preserve">
+    <value>Скрыть баннеры без полученных предметов</value>
+  </data>
+  <data name="GachaHistory_NewerVersion" xml:space="preserve">
+    <value>Более новая версия</value>
+  </data>
+  <data name="GachaHistory_OlderVersion" xml:space="preserve">
+    <value>Более старая версия</value>
+  </data>
+  <data name="GachaHistory_FiveStarItems" xml:space="preserve">
+    <value>Предметы 5★</value>
+  </data>
+  <data name="GachaHistory_FourStarItems" xml:space="preserve">
+    <value>Предметы 4★</value>
+  </data>
+  <data name="GachaHistory_ThreeStarItems" xml:space="preserve">
+    <value>Предметы 3★</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve">
+    <value>Нет баннеров с полученными предметами</value>
+  </data>
+  <data name="GachaHistory_EmptyTitle" xml:space="preserve">
+    <value>Нет метаданных истории баннеров</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve">
+    <value>Отключите «Скрыть баннеры без полученных предметов», чтобы посмотреть всю историю.</value>
+  </data>
+  <data name="GachaHistory_EmptyDescription" xml:space="preserve">
+    <value>Обновите историю молитв или метаданные предметов, чтобы создать историю автоматически.</value>
+  </data>
+  <data name="GachaHistory_PeriodFormat" xml:space="preserve">
+    <value>{0:yyyy-MM-dd HH:mm} — {1:yyyy-MM-dd HH:mm}</value>
+  </data>
+  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve">
+    <value>{0} молитв</value>
+  </data>
+  <data name="GachaHistory_CharacterEvent" xml:space="preserve">
+    <value>Молитва события персонажа</value>
+  </data>
+  <data name="GachaHistory_WeaponEvent" xml:space="preserve">
+    <value>Молитва события оружия</value>
+  </data>
+  <data name="GachaHistory_Chronicled" xml:space="preserve">
+    <value>Хроники молитв</value>
+  </data>
+  <data name="GachaHistory_Limited" xml:space="preserve">
+    <value>Ограниченная молитва</value>
+  </data>
   <data name="GachaAnalysis_GetRecords" xml:space="preserve">
     <value>Получить записи молитв</value>
   </data>
@@ -4853,32 +4889,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>Не удалось экспортировать PDF</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>Не удалось определить путь текущего процесса</value>
   </data>
@@ -4900,44 +4910,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>Вспомогательный процесс инжекта завершился с кодом {0}</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Синхронизация рюкзака поддерживается только в версии x64.</value>
   </data>
@@ -5217,7 +5189,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
     <value>Файлы плагина не найдены после установки; возможно, плагин не был установлен</value>
   </data>
-
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Удаление...</value>
   </data>
@@ -5355,110 +5326,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>Визуальные эффекты</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Удалить учётные данные облачной игры</value>
   </data>
@@ -5909,7 +5776,9 @@ UIGF v4.x/3.0/2.x</value>
     <value>Download / Install Error</value>
   </data>
   <data name="PluginPage_DownloadErrorContentFormat" xml:space="preserve">
-    <value>Automatic download failed: {0}&#10;&#10;Click the button below to open your browser and download manually.</value>
+    <value>Automatic download failed: {0}
+
+Click the button below to open your browser and download manually.</value>
   </data>
   <data name="PluginPage_ManualDownloadBtn" xml:space="preserve">
     <value>Manual Download</value>
@@ -6226,25 +6095,63 @@ UIGF v4.x/3.0/2.x</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Конфликт одинаковых DLL устранён. Можно перезапустить игру.</value>
   </data>
-  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Изменения сохраняются автоматически</value></data>
-  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Сохранение…</value></data>
-  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Не удалось сохранить конфигурацию</value></data>
-  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Не удалось записать файл конфигурации. Проверьте права доступа и повторите попытку. Подробности: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Не удалось загрузить конфигурацию</value></data>
-  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Не удалось прочитать файл конфигурации плагина. Подробности: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Убедитесь, что файл конфигурации существует и доступен для чтения, затем загрузите его заново.</value></data>
-  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>Файл конфигурации не существует: {0}</value></data>
-  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Нет доступных настроек</value></data>
-  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Этот плагин не предоставляет изменяемых настроек.</value></data>
-  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Подходящие настройки не найдены</value></data>
-  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Попробуйте другое ключевое слово или очистите поиск.</value></data>
-  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Очистить поиск</value></data>
-  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>Настроек: {0}</value></data>
-  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>Настроек: {0} / {1}</value></data>
-  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>Файл конфигурации</value></data>
-  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Введите значение…</value></data>
-  <data name="PluginSettings_CollapseHeader" xml:space="preserve"><value>Свернуть верхнюю панель</value></data>
-  <data name="PluginSettings_ExpandHeader" xml:space="preserve"><value>Развернуть верхнюю панель</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
+    <value>Изменения сохраняются автоматически</value>
+  </data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve">
+    <value>Сохранение…</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
+    <value>Не удалось сохранить конфигурацию</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
+    <value>Не удалось записать файл конфигурации. Проверьте права доступа и повторите попытку. Подробности: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить конфигурацию</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
+    <value>Не удалось прочитать файл конфигурации плагина. Подробности: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
+    <value>Убедитесь, что файл конфигурации существует и доступен для чтения, затем загрузите его заново.</value>
+  </data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
+    <value>Файл конфигурации не существует: {0}</value>
+  </data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
+    <value>Нет доступных настроек</value>
+  </data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
+    <value>Этот плагин не предоставляет изменяемых настроек.</value>
+  </data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve">
+    <value>Подходящие настройки не найдены</value>
+  </data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
+    <value>Попробуйте другое ключевое слово или очистите поиск.</value>
+  </data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
+    <value>Очистить поиск</value>
+  </data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
+    <value>Настроек: {0}</value>
+  </data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
+    <value>Настроек: {0} / {1}</value>
+  </data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
+    <value>Файл конфигурации</value>
+  </data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
+    <value>Введите значение…</value>
+  </data>
+  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
+    <value>Свернуть верхнюю панель</value>
+  </data>
+  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
+    <value>Развернуть верхнюю панель</value>
+  </data>
   <data name="AchievementWindow_DataActions" xml:space="preserve">
     <value>Действия с данными</value>
   </data>
@@ -6265,5 +6172,2398 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="ModTrust_ModeCaption" xml:space="preserve">
     <value>Отключение пропускает проверку; предупреждение проверяет без блокировки; строгий режим блокирует плагины, не прошедшие проверку.</value>
+  </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>Статус сервисов</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>Статус сервисов</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>Доступность</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>Доступность всех сервисов</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>Все системы работают</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>Некоторые сервисы испытывают проблемы</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>Работает</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>Снижена доступность</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>Сбой</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>На паузе</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>Неизвестно</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>Доступность за 90 дней</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>Обновлено в {0}</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>Загрузить ещё</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>Загрузка статуса сервисов</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить статус сервисов</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>Повторите попытку позже.</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>Сервисы</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>Последние 90 дней</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90 дней</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>Последний сбой {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>Сбоев за 90 дней нет</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>Сервисов: {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>Работают {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>Сбои {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>На паузе {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>Нет данных</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>Назад к статусу сервисов</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить сведения о сервисе</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>Повторите попытку позже.</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>Загрузка сведений о сервисе</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>Доступность</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>Общая доступность</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>Последние 24 часа</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>Последние 7 дней</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>Последние 30 дней</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>Время отклика</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>Последние 2 дня</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>Среднее время отклика</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>Максимальное время отклика</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>Минимальное время отклика</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>Проверок</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>Последние события</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>Показать больше</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>Нет недавних событий</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>Нет данных о времени отклика</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>Длительность: {0} с</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>Длительность: {0} мин</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>Длительность: {0} ч</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>Длительность: {0} ч {1} мин</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>Длительность: {0} д {1} ч</value>
+  </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>Не удалось перезапустить</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>Не удалось выполнить автоматический перезапуск. Настройки сохранены; закройте и снова откройте приложение вручную, чтобы применить изменения.</value>
+  </data>
+  <data name="LangHi" xml:space="preserve">
+    <value>Хинди</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>Настройка: {0} ({1})</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>Выберите аккаунт ниже для настройки параметров отметки</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>Отметьте аккаунты для пакетной отметки, выберите аккаунт для редактирования параметров или перетащите для изменения порядка</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>Перетащите, чтобы изменить порядок отметки</value>
+  </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>Название ярлыка</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>Пользовательское имя (без .lnk, оставьте пустым для значения по умолчанию)</value>
+  </data>
+  <data name="LoginQR_ServerCn" xml:space="preserve">
+    <value>Сервер Китая (CN)</value>
+  </data>
+  <data name="LoginQR_ServerOs" xml:space="preserve">
+    <value>Международный сервер (Global)</value>
+  </data>
+  <data name="LoginQR_MobileCaptcha" xml:space="preserve">
+    <value>Вход по коду из SMS</value>
+  </data>
+  <data name="LoginQR_OverseaPassword" xml:space="preserve">
+    <value>Вход по логину и паролю</value>
+  </data>
+  <data name="LoginQR_ThirdPartyLoginTitle" xml:space="preserve">
+    <value>Вход через сторонние сервисы</value>
+  </data>
+  <data name="LoginQR_ThirdPartyGoogle" xml:space="preserve">
+    <value>Вход через Google</value>
+  </data>
+  <data name="LoginQR_ThirdPartyApple" xml:space="preserve">
+    <value>Вход через Apple</value>
+  </data>
+  <data name="LoginQR_ThirdPartyFacebook" xml:space="preserve">
+    <value>Вход через Facebook</value>
+  </data>
+  <data name="LoginQR_ThirdPartyTwitter" xml:space="preserve">
+    <value>Вход через X (Twitter)</value>
+  </data>
+  <data name="LoginQR_OverseaRiskHint" xml:space="preserve">
+    <value>Примечание: HoYoverse может запросить подтверждение безопасности с помощью кода из эл. почты.</value>
+  </data>
+  <data name="LoginQR_LoginButton" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="LoginQR_SendCaptcha" xml:space="preserve">
+    <value>Отправить код</value>
+  </data>
+  <data name="LoginQR_MobileHeader" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="LoginQR_MobilePlaceholder" xml:space="preserve">
+    <value>Введите 11-значный номер телефона</value>
+  </data>
+  <data name="LoginQR_CaptchaHeader" xml:space="preserve">
+    <value>Код подтверждения</value>
+  </data>
+  <data name="LoginQR_CaptchaPlaceholder" xml:space="preserve">
+    <value>6-значный SMS-код</value>
+  </data>
+  <data name="LoginQR_AccountHeader" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="LoginQR_AccountPlaceholder" xml:space="preserve">
+    <value>Эл. почта или имя пользователя</value>
+  </data>
+  <data name="LoginQR_PasswordHeader" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="LoginQR_PasswordPlaceholder" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="LoginQR_OverseaVerifyTitle" xml:space="preserve">
+    <value>Подтверждение безопасности</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaHeader" xml:space="preserve">
+    <value>Код подтверждения из эл. почты</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaPlaceholder" xml:space="preserve">
+    <value>6-значный код из эл. почты</value>
+  </data>
+  <data name="LoginQR_SendEmailCaptcha" xml:space="preserve">
+    <value>Отправить код на эл. почту</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaSent" xml:space="preserve">
+    <value>Код подтверждения отправлен на эл. почту. Проверьте ваш почтовый ящик.</value>
+  </data>
+  <data name="LoginQR_UnknownEmail" xml:space="preserve">
+    <value>Неизвестная эл. почта</value>
+  </data>
+  <data name="Checkin_ResignTitle" xml:space="preserve">
+    <value>Дополнительная отметка</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormat" xml:space="preserve">
+    <value>В этом месяце осталось отметок: {0}, карточек доп. отметки: {1}. Выполнить отметку сейчас?</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormatCn" xml:space="preserve">
+    <value>В этом месяце осталось отметок: {0}, стоимость: {1} монет Miyou. Выполнить отметку сейчас?</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoinCn" xml:space="preserve">
+    <value>Недостаточно монет Miyou</value>
+  </data>
+  <data name="Checkin_ResignSuccess" xml:space="preserve">
+    <value>Дополнительная отметка выполнена успешно</value>
+  </data>
+  <data name="Checkin_ResignFailed" xml:space="preserve">
+    <value>Ошибка дополнительной отметки [{0}] {1}</value>
+  </data>
+  <data name="Checkin_ResignLimitExceeded" xml:space="preserve">
+    <value>Лимит дополнительных отметок исчерпан</value>
+  </data>
+  <data name="Checkin_ResignNotSigned" xml:space="preserve">
+    <value>Сначала необходимо выполнить отметку за сегодня</value>
+  </data>
+  <data name="Checkin_ResignNoDate" xml:space="preserve">
+    <value>Нет доступных дат для дополнительной отметки</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoin" xml:space="preserve">
+    <value>Недостаточно карточек дополнительной отметки</value>
+  </data>
+  <data name="Checkin_ResignQueryFailed" xml:space="preserve">
+    <value>Не удалось запросить возможность дополнительной отметки: {0}</value>
+  </data>
+  <data name="Checkin_ResignUnsupported" xml:space="preserve">
+    <value>Дополнительная отметка не поддерживается на этом сервере</value>
+  </data>
+  <data name="LaunchBtn_Launching" xml:space="preserve">
+    <value>Отменить запуск</value>
+  </data>
+  <data name="LaunchCancelled_Title" xml:space="preserve">
+    <value>Запуск отменён</value>
+  </data>
+  <data name="LaunchCancelled_Msg" xml:space="preserve">
+    <value>Процесс запуска игры был прерван.</value>
+  </data>
+  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
+    <value>Предзагрузка</value>
+  </data>
+  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
+    <value>Скачать ресурсы обновления заранее</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
+    <value>Объединить ресурсы обновления с игрой</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
+    <value>Применить предзагрузку</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
+    <value>Применить предзагруженные ресурсы сейчас (для разработчиков)</value>
+  </data>
+  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
+    <value>Загружено</value>
+  </data>
+  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
+    <value>Обновление игры</value>
+  </data>
+  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
+    <value>Обновить игру до последней версии. Ранее предзагруженные ресурсы будут использованы автоматически.</value>
+  </data>
+  <data name="GameUpdate_UpdateStart" xml:space="preserve">
+    <value>Начать обновление</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
+    <value>Объединение предзагрузки</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
+    <value>Немедленно объединить предзагруженные ресурсы с игрой. Версия игры обновится до версии предзагрузки до официального релиза. Функция только для разработчиков.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
+    <value>Начать объединение</value>
+  </data>
+  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
+    <value>Игра обновлена до последней версии.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
+    <value>Ресурсы предзагрузки успешно объединены.</value>
+  </data>
+  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
+    <value>Ошибка обновления</value>
+  </data>
+  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
+    <value>Подтверждение предзагрузки</value>
+  </data>
+  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
+    <value>Подтверждение обновления</value>
+  </data>
+  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
+    <value>Подтверждение объединения предзагрузки</value>
+  </data>
+  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
+    <value>Размер загрузки: {0}\nРазмер установки: {1}\nЦелевая версия: {2}\n\nНачать сейчас?</value>
+  </data>
+  <data name="GameUpdate_PlanSummary" xml:space="preserve">
+    <value>План: скачать {0}, целевая версия {1}</value>
+  </data>
+  <data name="GameUpdate_StageMerge" xml:space="preserve">
+    <value>Объединение файлов…</value>
+  </data>
+  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
+    <value>Применение патчей…</value>
+  </data>
+  <data name="GameUpdate_MergingFile" xml:space="preserve">
+    <value>Объединение {0}/{1}: {2}</value>
+  </data>
+  <data name="GameUpdate_SkipAsset" xml:space="preserve">
+    <value>Пропущен ресурс (будет автоматически восстановлен позже): {0}</value>
+  </data>
+  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
+    <value>Предзагрузка завершена. Ожидание официального обновления.</value>
+  </data>
+  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
+    <value>Для текущей версии нет доступной предзагрузки.</value>
+  </data>
+  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
+    <value>Игра уже обновлена до последней версии.</value>
+  </data>
+  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
+    <value>Не удалось определить версию установленной игры. Проверьте файл config.ini.</value>
+  </data>
+  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
+    <value>Недостаточно свободного места на диске: требуется {0}, доступно {1}.</value>
+  </data>
+  <data name="GameUpdate_DevOnly" xml:space="preserve">
+    <value>Эта функция доступна только авторизованным разработчикам.</value>
+  </data>
+  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
+    <value>Ошибка чтения заголовка патча: файл патча повреждён или обрезан.</value>
+  </data>
+  <data name="Patch_DiffNotSeekable" xml:space="preserve">
+    <value>Поток данных патча должен поддерживать произвольный доступ (seekable).</value>
+  </data>
+  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
+    <value>Скорость загрузки</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>Цветовое пространство</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>Пиковая яркость</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>Макс. яркость на весь экран</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>Уровень белого SDR</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>Регулировка верхнего предела яркости для бликов и светлых участков (рекомендуется сопоставить с монитором)</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>Регулировка базовой яркости опорного белого для сцен игрового мира</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>Регулировка яркости элементов интерфейса (миникарта, полоски здоровья, текст)</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDR включён</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDR отключён</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDR не поддерживается</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDR недоступен</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>Определение HDR...</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR (стандартный динамический диапазон)</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG (широкий цветовой охват)</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR (расширенный динамический диапазон)</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>Неизвестно</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>Недоступно</value>
+  </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>Импорт из игры через Embedded Yae</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>Запустить игру и импортировать прогресс достижений через компонент Embedded Yae</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>Каталог установки игры не найден. Сначала укажите путь к игре в настройках.</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>Ожидание данных из игры...</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>Не удалось получить данные о достижениях.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>Из игры импортировано {0} достижений, синхронизирован прогресс для {1}.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>Не удалось импортировать достижения из игры.</value>
+  </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>Получить из игры</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>Войдите в игру и откройте историю молитв
+Поддерживается Bilibili, вход в Miyoushe не требуется</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>Войдите в нужный аккаунт в игре, откройте «Историю молитв», дождитесь окончания загрузки записей и нажмите «Начать».
+
+Поддерживаются серверы Селестия, Ирминсуль и международный сервер; вход в Miyoushe не требуется. Убедитесь, что в игре открыт именно тот аккаунт, историю которого вы хотите экспортировать.</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>Начать</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>Чтение ссылки на историю молитв из игры...</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>Сначала укажите корректный путь к игре в лаунчере, затем войдите в игру и откройте историю молитв.</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>Ссылка на историю молитв не найдена. Войдите в нужный игровой аккаунт, откройте историю молитв, дождитесь загрузки и повторите попытку.</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>Не удалось прочитать ссылку на историю молитв из игры. Откройте историю молитв заново и повторите попытку.</value>
+  </data>
+  <data name="Checkin_UnsupportedGame" xml:space="preserve">
+    <value>Ежедневная отметка с наградами не настроена для этой игры</value>
+  </data>
+  <data name="Checkin_LoginExpired" xml:space="preserve">
+    <value>Срок сессии истёк, автоматическое обновление не удалось. Войдите в Miyoushe заново перед отметкой</value>
+  </data>
+  <data name="Checkin_GameCaptcha" xml:space="preserve">
+    <value>Для отметки требуется подтверждение безопасности. Пройдите проверку на официальной странице Miyoushe</value>
+  </data>
+  <data name="Checkin_SignNotConfirmed" xml:space="preserve">
+    <value>Статус отметки ещё не подтверждён. Повторите попытку позже</value>
+  </data>
+  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
+    <value>Путь к базе данных: {0}. Убедитесь, что каталог доступен для записи, а диск доступен.</value>
+  </data>
+  <data name="Launcher_DllNotFound" xml:space="preserve">
+    <value>Файл Launcher.dll отсутствует, внедрение (инжекция) недоступно. Убедитесь, что файл скомпилирован из FufuLauncher.UnlockerIsland, или переустановите лаунчер.</value>
+  </data>
+  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
+    <value>Целевой сервер</value>
+  </data>
+  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
+    <value>Текущий сервер: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
+    <value>Не удалось определить текущий сервер. Убедитесь, что каталог игры указан верно</value>
+  </data>
+  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
+    <value>Сначала выберите целевой сервер</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
+    <value>Операция отменена</value>
+  </data>
+  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
+    <value>Переключено на: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
+    <value>Загрузка фрагментов {0}/{1} — {2}</value>
+  </data>
+  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
+    <value>Не удалось очистить папки плагинов: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
+    <value>Ошибка переключения</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
+    <value>Переключение не удалось, файлы могут быть заняты другим процессом.
+Ошибка: {0}</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>Сервер Bilibili (Bilibili)</value>
+  </data>
+  <data name="DownloadWindow_Server" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="Download_FileFailed" xml:space="preserve">
+    <value>Не удалось скачать {0} файл(-ов). Повторите попытку или переключите сервер и скачайте заново</value>
+  </data>
+  <data name="PreDownload_Failed" xml:space="preserve">
+    <value>Ошибка предзагрузки</value>
+  </data>
+  <data name="PreDownload_Success" xml:space="preserve">
+    <value>Файлы предзагрузки скачаны и успешно установлены с заменой.</value>
+  </data>
+  <data name="VerifyGame_Success" xml:space="preserve">
+    <value>Проверка целостности и восстановление файлов игры завершены</value>
+  </data>
+  <data name="VerifyGame_Failed" xml:space="preserve">
+    <value>Ошибка проверки</value>
+  </data>
+  <data name="GameServer_StageFetchBranches" xml:space="preserve">
+    <value>Получение сетевых веток</value>
+  </data>
+  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
+    <value>Загрузка и декодирование манифестов</value>
+  </data>
+  <data name="GameServer_StageDiff" xml:space="preserve">
+    <value>Сравнение</value>
+  </data>
+  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
+    <value>Загрузка необходимых фрагментов данных</value>
+  </data>
+  <data name="GameServer_StageReplace" xml:space="preserve">
+    <value>Замена файлов</value>
+  </data>
+  <data name="GameServer_ReplacingFile" xml:space="preserve">
+    <value>Замена файла {0}/{1} — {2}</value>
+  </data>
+  <data name="GameServer_StageCleanup" xml:space="preserve">
+    <value>Очистка временных данных</value>
+  </data>
+  <data name="GameServer_StageVerify" xml:space="preserve">
+    <value>Проверка целостности файлов игры, это может занять некоторое время</value>
+  </data>
+  <data name="GameServer_VerifyOk" xml:space="preserve">
+    <value>Проверка пройдена, данные игры в порядке</value>
+  </data>
+  <data name="GameServer_VerifyProgress" xml:space="preserve">
+    <value>Проверка: {0}/{1}</value>
+  </data>
+  <data name="GameServer_RepairFound" xml:space="preserve">
+    <value>Обнаружено {0} повреждённых или отсутствующих файлов, восстановление...</value>
+  </data>
+  <data name="GameServer_RepairDone" xml:space="preserve">
+    <value>Восстановление повреждённых файлов завершено</value>
+  </data>
+  <data name="GameServer_InstallingPredownload" xml:space="preserve">
+    <value>Установка файлов предзагрузки</value>
+  </data>
+  <data name="GameServer_BranchDataNull" xml:space="preserve">
+    <value>API вернул пустые данные (null), не удалось получить данные ветки</value>
+  </data>
+  <data name="GameServer_NoMainBranch" xml:space="preserve">
+    <value>Не удалось получить данные ветки main</value>
+  </data>
+  <data name="GameServer_NoPredownload" xml:space="preserve">
+    <value>Предзагрузка в данный момент недоступна</value>
+  </data>
+  <data name="GameServer_NoPackageId" xml:space="preserve">
+    <value>В данных ветки отсутствует package_id</value>
+  </data>
+  <data name="GameServer_NoPassword" xml:space="preserve">
+    <value>В данных ветки отсутствует password</value>
+  </data>
+  <data name="GameServer_NoManifests" xml:space="preserve">
+    <value>Не удалось получить манифесты.</value>
+  </data>
+  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
+    <value>Несовпадение контрольной суммы манифеста: {0}</value>
+  </data>
+  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
+    <value>Ошибка запроса к API: {0}, ошибка: {1}</value>
+  </data>
+  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
+    <value>Не удалось скачать фрагмент {0} или он не прошёл проверку.</value>
+  </data>
+  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
+    <value>Несовпадение контрольной суммы файла: {0}</value>
+  </data>
+  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
+    <value>Несовпадение размера файла: {0}, фактически {1} байт, ожидалось {2} байт</value>
+  </data>
+  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
+    <value>Кеш отсутствует, файл пропущен: {0} (можно восстановить позже через проверку)</value>
+  </data>
+  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
+    <value>Собранный файл не прошёл проверку (возможно, повреждён локальный старый файл), пропущено: {0} (можно восстановить позже через проверку)</value>
+  </data>
+  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
+    <value>Не удалось очистить временные фрагменты: {0}</value>
+  </data>
+  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
+    <value>Очистка старых файлов SDK...</value>
+  </data>
+  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
+    <value>Получение конфигурации SDK канала...</value>
+  </data>
+  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
+    <value>Не удалось получить конфигурацию SDK канала</value>
+  </data>
+  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
+    <value>Загрузка SDK канала...</value>
+  </data>
+  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
+    <value>Распаковка SDK канала...</value>
+  </data>
+  <data name="GameServer_CleanedPlugins" xml:space="preserve">
+    <value>Папка Plugins очищена</value>
+  </data>
+  <data name="GameServer_InsufficientPermission" xml:space="preserve">
+    <value>Недостаточно прав для записи в каталог игры: {0}. Запустите лаунчер от имени администратора или проверьте права на папку</value>
+  </data>
+  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
+    <value>Файлы SDK канала отсутствуют или повреждены, повторное получение...</value>
+  </data>
+  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
+    <value>Обработка устаревших файлов...</value>
+  </data>
+  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
+    <value>Не удалось получить список устаревших файлов: {0}</value>
+  </data>
+  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
+    <value>Официальный сервер</value>
+  </data>
+  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
+    <value>Сервер Bilibili</value>
+  </data>
+  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
+    <value>Международный сервер</value>
+  </data>
+  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
+    <value>Скорость загрузки</value>
+  </data>
+  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
+    <value>Осталось фрагментов: {0}</value>
+  </data>
+  <data name="SpeedGraph_NoData" xml:space="preserve">
+    <value>Нет данных о скорости</value>
+  </data>
+  <data name="SectionGameAnnouncement" xml:space="preserve">
+    <value>Объявления игры</value>
+  </data>
+  <data name="GameAnnouncementViewModeTitle" xml:space="preserve">
+    <value>Режим просмотра объявлений</value>
+  </data>
+  <data name="GameAnnouncementViewModeCaption" xml:space="preserve">
+    <value>Выберите способ отображения при открытии объявлений игры</value>
+  </data>
+  <data name="GameAnnouncementViewModeNew" xml:space="preserve">
+    <value>Новый центр объявлений</value>
+  </data>
+  <data name="GameAnnouncementViewModeClassic" xml:space="preserve">
+    <value>Классическая веб-страница</value>
+  </data>
+  <data name="GameAnnouncement_Title" xml:space="preserve">
+    <value>Объявления игры</value>
+  </data>
+  <data name="GameAnnouncement_Loading" xml:space="preserve">
+    <value>Загрузка объявлений…</value>
+  </data>
+  <data name="GameAnnouncement_LoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить объявления. Проверьте подключение к сети и повторите попытку.</value>
+  </data>
+  <data name="GameAnnouncement_Retry" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="GameAnnouncement_Empty" xml:space="preserve">
+    <value>Нет объявлений</value>
+  </data>
+  <data name="GameAnnouncement_SearchPlaceholder" xml:space="preserve">
+    <value>Поиск по заголовкам объявлений…</value>
+  </data>
+  <data name="GameAnnouncement_Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="GameAnnouncement_ClassicMode" xml:space="preserve">
+    <value>Классическая веб-страница</value>
+  </data>
+  <data name="GameAnnouncement_Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="GameAnnouncement_NoContent" xml:space="preserve">
+    <value>В этом объявлении нет текста</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNGF01" xml:space="preserve">
+    <value>Селестия</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNQD01" xml:space="preserve">
+    <value>Ирминсуль</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSUSA" xml:space="preserve">
+    <value>Америка</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSEURO" xml:space="preserve">
+    <value>Европа</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSASIA" xml:space="preserve">
+    <value>Азия</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSCHT" xml:space="preserve">
+    <value>TW/HK/MO</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursBegin" xml:space="preserve">
+    <value>Начнётся через {0} ч.</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursEnd" xml:space="preserve">
+    <value>Закончится через {0} ч.</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysBegin" xml:space="preserve">
+    <value>Начнётся через {0} дн.</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
+    <value>Закончится через {0} дн.</value>
+  </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>Устройство</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id должен быть действительным GUID</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time должен быть действительной меткой времени Unix в миллисекундах</value>
+  </data>
+  <data name="Miyoushe_Title" xml:space="preserve">
+    <value>Miyoushe</value>
+  </data>
+  <data name="Miyoushe_CardHint" xml:space="preserve">
+    <value>Просмотр официальных новостей, записей сообщества и подписок</value>
+  </data>
+  <data name="Miyoushe_Explore" xml:space="preserve">
+    <value>Обзор</value>
+  </data>
+  <data name="Miyoushe_Forum" xml:space="preserve">
+    <value>Сообщество</value>
+  </data>
+  <data name="Miyoushe_News" xml:space="preserve">
+    <value>Официальные новости</value>
+  </data>
+  <data name="Miyoushe_Following" xml:space="preserve">
+    <value>Подписки</value>
+  </data>
+  <data name="Miyoushe_Favorites" xml:space="preserve">
+    <value>Избранное Miyoushe</value>
+  </data>
+  <data name="Miyoushe_Library" xml:space="preserve">
+    <value>Мои материалы</value>
+  </data>
+  <data name="Miyoushe_Bookmarks" xml:space="preserve">
+    <value>Локальные закладки</value>
+  </data>
+  <data name="Miyoushe_History" xml:space="preserve">
+    <value>История просмотров</value>
+  </data>
+  <data name="Miyoushe_MyProfile" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="Miyoushe_User" xml:space="preserve">
+    <value>Профиль автора</value>
+  </data>
+  <data name="Miyoushe_Topic" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Miyoushe_Collection" xml:space="preserve">
+    <value>Подборка</value>
+  </data>
+  <data name="Miyoushe_Search" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Miyoushe_SearchHint" xml:space="preserve">
+    <value>Поиск публикаций или вставка ID публикации / ссылки Miyoushe</value>
+  </data>
+  <data name="Miyoushe_Guest" xml:space="preserve">
+    <value>Гостевой режим</value>
+  </data>
+  <data name="Miyoushe_GuestHint" xml:space="preserve">
+    <value>Публичные материалы доступны без авторизации. Для ленты подписок и избранного выберите китайский аккаунт в лаунчере.</value>
+  </data>
+  <data name="Miyoushe_AccountHint" xml:space="preserve">
+    <value>Переключение действует только для этого окна</value>
+  </data>
+  <data name="Miyoushe_LoginHint" xml:space="preserve">
+    <value>Войдите в китайский аккаунт Miyoushe в управлении аккаунтами лаунчера, затем выберите его здесь. Если сессия истекла, выполните вход повторно.</value>
+  </data>
+  <data name="Miyoushe_IdentityError" xml:space="preserve">
+    <value>Отпечаток устройства аккаунта недоступен, переключено в гостевой режим. Войдите заново в управлении аккаунтами и повторите попытку.</value>
+  </data>
+  <data name="Miyoushe_Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Miyoushe_RefreshHint" xml:space="preserve">
+    <value>Обновить текущую страницу (F5)</value>
+  </data>
+  <data name="Miyoushe_Refreshed" xml:space="preserve">
+    <value>Обновлено ({0})</value>
+  </data>
+  <data name="Miyoushe_Empty" xml:space="preserve">
+    <value>Здесь пока нет публикаций</value>
+  </data>
+  <data name="Miyoushe_More" xml:space="preserve">
+    <value>Загрузить ещё</value>
+  </data>
+  <data name="Miyoushe_SelectPost" xml:space="preserve">
+    <value>Выберите публикацию, чтобы начать чтение</value>
+  </data>
+  <data name="Miyoushe_Save" xml:space="preserve">
+    <value>Сохранить локально</value>
+  </data>
+  <data name="Miyoushe_CopyLink" xml:space="preserve">
+    <value>Копировать ссылку</value>
+  </data>
+  <data name="Miyoushe_Original" xml:space="preserve">
+    <value>Открыть оригинал</value>
+  </data>
+  <data name="Miyoushe_Article" xml:space="preserve">
+    <value>Статья</value>
+  </data>
+  <data name="Miyoushe_Comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="Miyoushe_HotReplies" xml:space="preserve">
+    <value>Популярные комментарии</value>
+  </data>
+  <data name="Miyoushe_LatestReplies" xml:space="preserve">
+    <value>Новые комментарии</value>
+  </data>
+  <data name="Miyoushe_OldestReplies" xml:space="preserve">
+    <value>Сначала старые</value>
+  </data>
+  <data name="Miyoushe_OnlyAuthor" xml:space="preserve">
+    <value>Только автор</value>
+  </data>
+  <data name="Miyoushe_Hot" xml:space="preserve">
+    <value>Популярное</value>
+  </data>
+  <data name="Miyoushe_Latest" xml:space="preserve">
+    <value>Новые</value>
+  </data>
+  <data name="Miyoushe_Featured" xml:space="preserve">
+    <value>Рекомендованное</value>
+  </data>
+  <data name="Miyoushe_Notices" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="Miyoushe_Events" xml:space="preserve">
+    <value>События</value>
+  </data>
+  <data name="Miyoushe_NoComments" xml:space="preserve">
+    <value>Пока нет комментариев</value>
+  </data>
+  <data name="Miyoushe_SubReplies" xml:space="preserve">
+    <value>Посмотреть ответы ({0})</value>
+  </data>
+  <data name="Miyoushe_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Miyoushe_Image" xml:space="preserve">
+    <value>Просмотр изображения</value>
+  </data>
+  <data name="Miyoushe_OpenImage" xml:space="preserve">
+    <value>Открыть исходное изображение</value>
+  </data>
+  <data name="Miyoushe_LinkCopied" xml:space="preserve">
+    <value>Ссылка на публикацию скопирована</value>
+  </data>
+  <data name="Miyoushe_SearchTooLong" xml:space="preserve">
+    <value>Длина поискового запроса не должна превышать 200 символов</value>
+  </data>
+  <data name="Miyoushe_Retry" xml:space="preserve">
+    <value>Повторить</value>
+  </data>
+  <data name="Miyoushe_Timeout" xml:space="preserve">
+    <value>Время ожидания запроса истекло. Повторите попытку позже.</value>
+  </data>
+  <data name="Miyoushe_Verify" xml:space="preserve">
+    <value>Пройти проверку безопасности</value>
+  </data>
+  <data name="Miyoushe_RiskHint" xml:space="preserve">
+    <value>Miyoushe требует подтверждения безопасности, запросы приостановлены. Пройдите официальную капчу, чтобы повторить действие.</value>
+  </data>
+  <data name="Miyoushe_VerifyHint" xml:space="preserve">
+    <value>Пройдите официальную капчу Miyoushe. Закройте это окно для отмены проверки.</value>
+  </data>
+  <data name="Miyoushe_VerifyLoadError" xml:space="preserve">
+    <value>Не удалось загрузить капчу. Проверьте соединение и повторите попытку или пройдите проверку на официальном сайте Miyoushe.</value>
+  </data>
+  <data name="Miyoushe_VerifyCancelled" xml:space="preserve">
+    <value>Проверка отменена, запросы остаются приостановленными. Нажмите «Повторить», чтобы пройти проверку снова.</value>
+  </data>
+  <data name="Miyoushe_LibraryError" xml:space="preserve">
+    <value>Не удалось прочитать локальные закладки или историю просмотров. Существующий файл сохранён.</value>
+  </data>
+  <data name="Miyoushe_Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Miyoushe_RightComments" xml:space="preserve">
+    <value>Комментарии сбоку</value>
+  </data>
+  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve">
+    <value>Показывать комментарии в боковой панели справа; если отключено — под текстом публикации</value>
+  </data>
+  <data name="Miyoushe_LoadingComments" xml:space="preserve">
+    <value>Загрузка комментариев…</value>
+  </data>
+  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve">
+    <value>Комментарии недоступны. Используйте подсказку выше, чтобы повторить попытку.</value>
+  </data>
+  <data name="Miyoushe_Like" xml:space="preserve">
+    <value>Нравится</value>
+  </data>
+  <data name="Miyoushe_Liked" xml:space="preserve">
+    <value>Понравилось</value>
+  </data>
+  <data name="Miyoushe_PublishComment" xml:space="preserve">
+    <value>Оставить комментарий</value>
+  </data>
+  <data name="Miyoushe_Reply" xml:space="preserve">
+    <value>Ответить</value>
+  </data>
+  <data name="Miyoushe_ReplyTo" xml:space="preserve">
+    <value>Ответ @{0}</value>
+  </data>
+  <data name="Miyoushe_CommentHint" xml:space="preserve">
+    <value>Напишите комментарий (до 1000 символов)</value>
+  </data>
+  <data name="Miyoushe_SendComment" xml:space="preserve">
+    <value>Опубликовать в Miyoushe</value>
+  </data>
+  <data name="Miyoushe_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Miyoushe_VerifyAndSend" xml:space="preserve">
+    <value>Подтвердить и опубликовать</value>
+  </data>
+  <data name="Miyoushe_Resubmit" xml:space="preserve">
+    <value>Опубликовать снова</value>
+  </data>
+  <data name="Miyoushe_CommentSent" xml:space="preserve">
+    <value>Комментарий отправлен; переключено на новые комментарии</value>
+  </data>
+  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve">
+    <value>Не удалось подтвердить отправку комментария, черновик сохранён. Проверьте исходную запись и, если комментария нет, опубликуйте заново.</value>
+  </data>
+  <data name="Miyoushe_CommentRiskHint" xml:space="preserve">
+    <value>Miyoushe требует проверки безопасности. Нажмите «Подтвердить и опубликовать», чтобы пройти официальную капчу и отправить комментарий.</value>
+  </data>
+  <data name="ModTrust_Title" xml:space="preserve">
+    <value>Доверие к подписи кода (FufuLauncher CA)</value>
+  </data>
+  <data name="ModTrust_Loading" xml:space="preserve">
+    <value>Чтение состояния доверия…</value>
+  </data>
+  <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="ModTrust_PackageMissing" xml:space="preserve">
+    <value>Пакет доверия не развёрнут: поместите файлы сертификата и манифеста в Assets\Trust или нажмите «Обновить сейчас» для синхронизации с официального сервера.</value>
+  </data>
+  <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>Текущий статус: {0}</value>
+  </data>
+  <data name="ModTrust_InstalledUser" xml:space="preserve">
+    <value>установлен (текущий пользователь)</value>
+  </data>
+  <data name="ModTrust_InstalledMachine" xml:space="preserve">
+    <value>установлен (для всех пользователей)</value>
+  </data>
+  <data name="ModTrust_NotInstalled" xml:space="preserve">
+    <value>не установлен</value>
+  </data>
+  <data name="ModTrust_InstallTitle" xml:space="preserve">
+    <value>Установка / удаление сертификата</value>
+  </data>
+  <data name="ModTrust_InstallCaption" xml:space="preserve">
+    <value>После установки выданные нами цифровые подписи кода будут распознаваться Windows и лаунчером; сертификат можно удалить в любой момент без влияния на другие сертификаты.</value>
+  </data>
+  <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+    <value>Установить (текущий пользователь)</value>
+  </data>
+  <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+    <value>Удалить (текущий пользователь)</value>
+  </data>
+  <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+    <value>Установить (для всех пользователей, требуются права адм.)</value>
+  </data>
+  <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+    <value>Удалить (для всех пользователей, требуются права адм.)</value>
+  </data>
+  <data name="ModTrust_ScopeUser" xml:space="preserve">
+    <value>текущий пользователь</value>
+  </data>
+  <data name="ModTrust_ScopeMachine" xml:space="preserve">
+    <value>все пользователи (система)</value>
+  </data>
+  <data name="ModTrust_InstallConfirm" xml:space="preserve">
+    <value>Будет установлен сертификат платформы для «{0}». После установки система будет доверять нашим подписям кода. Продолжить?</value>
+  </data>
+  <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+    <value>Будет удалён сертификат платформы для «{0}». После удаления доверие к нашим подписям кода будет прекращено. Продолжить?</value>
+  </data>
+  <data name="ModTrust_SyncTitle" xml:space="preserve">
+    <value>Обновление данных доверия</value>
+  </data>
+  <data name="ModTrust_SyncCaption" xml:space="preserve">
+    <value>Обновление информации о доверии цифровым подписям с официального сервера.</value>
+  </data>
+  <data name="ModTrust_SyncBtn" xml:space="preserve">
+    <value>Обновить сейчас</value>
+  </data>
+  <data name="ModTrust_SyncConfirm" xml:space="preserve">
+    <value>Информация о доверии будет загружена с официального сервера и проверена; изменения не будут применены в случае ошибки проверки. Продолжить?</value>
+  </data>
+  <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>Включить блокировку</value>
+  </data>
+  <data name="ModTrust_StrictConfirm" xml:space="preserve">
+    <value>При включении файлы, не прошедшие проверку цифровой подписи, не будут загружаться. Это может повлиять на используемые сторонние плагины. Продолжить?</value>
+  </data>
+  <data name="ModTrust_BlockedTitle" xml:space="preserve">
+    <value>Проверка подписи кода не пройдена</value>
+  </data>
+  <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>Этот файл не прошёл проверку подписи и был заблокирован:</value>
+  </data>
+  <data name="ModTrust_WarnTitle" xml:space="preserve">
+    <value>Предупреждение о подписи кода</value>
+  </data>
+  <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+    <value>установлен (для всех пользователей системы)</value>
+  </data>
+  <data name="ModTrust_InstalledBoth" xml:space="preserve">
+    <value>установлен (текущий пользователь + для всех пользователей)</value>
+  </data>
+  <data name="ModTrust_MachineHint" xml:space="preserve">
+    <value>Область текущего пользователя обеспечивается общесистемной установкой; управляйте установкой и удалением на уровне системы.</value>
+  </data>
+  <data name="ModTrust_ModeTitle" xml:space="preserve">
+    <value>Действие при недействительной подписи</value>
+  </data>
+  <data name="ModTrust_ModeWarn" xml:space="preserve">
+    <value>Только предупреждать</value>
+  </data>
+  <data name="ModTrust_ModeEnforce" xml:space="preserve">
+    <value>Блокировать</value>
+  </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>Доступ запрещён</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>Этому устройству запрещено использовать FufuLauncher.{0}{0}UID: {1}{0}Причина: {2}{0}{0}Если вы считаете, что это ошибка, вы можете подать апелляцию по адресу (если UID отображается как «-», оставьте поле пустым):{0}{3}{0}{0}Открыть страницу апелляции сейчас? При выборе «Нет» лаунчер закроется.</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>доступ отозван сервером</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>данный UID находится в чёрном списке сервера</value>
+  </data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve">
+    <value>Получение списка привязанных игровых персонажей из Miyoushe...</value>
+  </data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve">
+    <value>Выбор игрового персонажа</value>
+  </data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve">
+    <value>Выберите персонажа для получения истории молитв. Персонажи сервера Bilibili отображаются как «Ирминсуль». Если нужный персонаж отсутствует, отмените действие, проверьте привязку в Miyoushe или используйте «Получить из игры».</value>
+  </data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve">
+    <value>Селестия (официальный)</value>
+  </data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve">
+    <value>Ирминсуль (Bilibili)</value>
+  </data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve">
+    <value>Селестия</value>
+  </data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve">
+    <value>Ирминсуль</value>
+  </data>
+  <data name="GameRole_Select" xml:space="preserve">
+    <value>Сменить игрового персонажа</value>
+  </data>
+  <data name="GameRole_Hint" xml:space="preserve">
+    <value>Установите персонажа по умолчанию на странице привязки; функции могут независимо переключать сервер.</value>
+  </data>
+  <data name="GameRole_Refresh" xml:space="preserve">
+    <value>Обновить привязанных персонажей</value>
+  </data>
+  <data name="GameRole_Unavailable" xml:space="preserve">
+    <value>Выбранный персонаж отсутствует в списке привязанных. Выберите другого персонажа или обновите список.</value>
+  </data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve">
+    <value>Резервный интерфейс заметок не подтвердил выбранного персонажа, отображение остановлено. Включите доступ к заметкам для этого персонажа и повторите попытку.</value>
+  </data>
+  <data name="GameRole_SkyIsland" xml:space="preserve">
+    <value>Селестия</value>
+  </data>
+  <data name="GameRole_WorldTree" xml:space="preserve">
+    <value>Ирминсуль</value>
+  </data>
+  <data name="MiyousheQr_Title" xml:space="preserve">
+    <value>Сканер QR-кодов с экрана</value>
+  </data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve">
+    <value>«Обычное сканирование» считывает выбранную область один раз; «Непрерывное сканирование» отслеживает новые QR-коды в области. После распознавания вход будет выполнен под текущим аккаунтом Miyoushe. Esc или правая кнопка мыши — отмена.</value>
+  </data>
+  <data name="MiyousheQr_CurrentAccount" xml:space="preserve">
+    <value>Текущий аккаунт Miyoushe</value>
+  </data>
+  <data name="MiyousheQr_Target" xml:space="preserve">
+    <value>Цель входа</value>
+  </data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve">
+    <value>После подтверждения на устройстве с этим QR-кодом будет выполнен вход в указанный аккаунт.</value>
+  </data>
+  <data name="MiyousheQr_Capture" xml:space="preserve">
+    <value>Обычное сканирование</value>
+  </data>
+  <data name="MiyousheQr_Confirm" xml:space="preserve">
+    <value>Подтвердить вход</value>
+  </data>
+  <data name="MiyousheQr_SelectionHint" xml:space="preserve">
+    <value>Выделите область с QR-кодом мышью · Esc или ПКМ для отмены</value>
+  </data>
+  <data name="MiyousheQr_Genshin" xml:space="preserve">
+    <value>Genshin Impact</value>
+  </data>
+  <data name="MiyousheQr_StarRail" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="MiyousheQr_Zzz" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="MiyousheQr_Honkai3" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="MiyousheQr_Passport" xml:space="preserve">
+    <value>Аккаунт miHoYo</value>
+  </data>
+  <data name="MiyousheQr_NoAccount" xml:space="preserve">
+    <value>Сначала войдите в аккаунт Miyoushe в лаунчере.</value>
+  </data>
+  <data name="MiyousheQr_CnOnly" xml:space="preserve">
+    <value>Переключитесь на китайский аккаунт Miyoushe перед сканированием.</value>
+  </data>
+  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve">
+    <value>У текущего аккаунта отсутствуют необходимые данные для сканирования. Войдите в лаунчер заново через приложение Miyoushe.</value>
+  </data>
+  <data name="MiyousheQr_AccountChanged" xml:space="preserve">
+    <value>Текущий аккаунт Miyoushe изменился. Выделите область с QR-кодом заново.</value>
+  </data>
+  <data name="MiyousheQr_Expired" xml:space="preserve">
+    <value>Срок действия QR-кода истёк. Обновите его на целевом устройстве и выделите заново.</value>
+  </data>
+  <data name="MiyousheQr_Unsupported" xml:space="preserve">
+    <value>Этот QR-код входа не поддерживается. Поддерживаются QR-коды аккаунтов miHoYo, а также китайских версий Genshin Impact, Star Rail, ZZZ и Honkai Impact 3rd.</value>
+  </data>
+  <data name="MiyousheQr_NotFound" xml:space="preserve">
+    <value>В выделенной области не найден QR-код. Выделите весь QR-код целиком, захватив немного пустого пространства вокруг.</value>
+  </data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve">
+    <value>Обнаружено несколько QR-кодов. Нажмите на нужный для входа или нажмите Esc/ПКМ для отмены.</value>
+  </data>
+  <data name="MiyousheQr_Cancelled" xml:space="preserve">
+    <value>Выделение области отменено.</value>
+  </data>
+  <data name="MiyousheQr_Recognizing" xml:space="preserve">
+    <value>Распознавание QR-кода…</value>
+  </data>
+  <data name="MiyousheQr_Ready" xml:space="preserve">
+    <value>QR-код распознан. Проверьте аккаунт и цель входа, затем подтвердите.</value>
+  </data>
+  <data name="MiyousheQr_Confirming" xml:space="preserve">
+    <value>Подтверждение входа…</value>
+  </data>
+  <data name="MiyousheQr_Success" xml:space="preserve">
+    <value>Вход подтверждён. Проверьте целевое устройство.</value>
+  </data>
+  <data name="MiyousheQr_ResultUnknown" xml:space="preserve">
+    <value>Не удалось точно определить результат входа. Проверьте целевое устройство; если вход не выполнен, обновите QR-код и выделите его заново.</value>
+  </data>
+  <data name="MiyousheQr_CaptureFailed" xml:space="preserve">
+    <value>Ошибка выделения экрана или считывания QR-кода. Повторите попытку.</value>
+  </data>
+  <data name="MiyousheQr_HttpError" xml:space="preserve">
+    <value>Ошибка сетевого запроса сервиса сканирования. Обновите QR-код и повторите попытку.</value>
+  </data>
+  <data name="MiyousheQr_ResponseError" xml:space="preserve">
+    <value>Сервис сканирования вернул непредвиденный ответ. Обновите QR-код и повторите попытку.</value>
+  </data>
+  <data name="MiyousheQr_Rejected" xml:space="preserve">
+    <value>Запрос сканирования отклонён. Возможно, истёк срок действия QR-кода или учётных данных. Обновите QR-код; если ошибка повторяется, войдите в аккаунт Miyoushe заново.</value>
+  </data>
+  <data name="MiyousheQr_Continuous" xml:space="preserve">
+    <value>Непрерывное сканирование</value>
+  </data>
+  <data name="MiyousheQr_Stop" xml:space="preserve">
+    <value>Остановить сканирование</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirm" xml:space="preserve">
+    <value>Автоматически подтверждать вход</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve">
+    <value>Если включено перед сканированием, при обнаружении нового поддерживаемого QR-кода вход под текущим аккаунтом Miyoushe будет подтверждён автоматически.</value>
+  </data>
+  <data name="MiyousheQr_Scanning" xml:space="preserve">
+    <value>Ожидание новых QR-кодов в области, подтверждено входов: {0}. Нажмите «Остановить сканирование» для завершения.</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve">
+    <value>Остановить сканирование после успешного входа</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve">
+    <value>Если включено, после успешного входа сканирование прекратится, а рамка выделителя будет скрыта. Отключите, чтобы продолжить сканирование следующих QR-кодов.</value>
+  </data>
+  <data name="MiyousheQr_Stopped" xml:space="preserve">
+    <value>Сканирование остановлено.</value>
+  </data>
+  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve">
+    <value>Выбранная область недоступна. Выделите область с QR-кодом заново.</value>
+  </data>
+  <data name="MiyousheQr_SessionLimit" xml:space="preserve">
+    <value>Достигнут лимит времени непрерывного сканирования. Начните сканирование заново.</value>
+  </data>
+  <data name="Checkin_Game_hkrpg_cn" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="Checkin_Game_nap_cn" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="Checkin_Game_bh3_cn" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="Checkin_Game_bh2_cn" xml:space="preserve">
+    <value>Houkai Gakuen 2</value>
+  </data>
+  <data name="Checkin_Game_nxx_cn" xml:space="preserve">
+    <value>Tears of Themis</value>
+  </data>
+  <data name="Checkin_RequestTooFrequent" xml:space="preserve">
+    <value>Слишком много запросов. Пожалуйста, повторите попытку позже</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Title" xml:space="preserve">
+    <value>Отключение способа получения наград</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Content" xml:space="preserve">
+    <value>Отключение получения наград через {0} означает, что {0} больше не будет отображаться в списке способов получения, и вы не сможете получать награды этим способом.</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Confirm" xml:space="preserve">
+    <value>Всё равно отключить</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Title" xml:space="preserve">
+    <value>Предупреждение перед отключением функции</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Content" xml:space="preserve">
+    <value>Отключение «{0}» в некоторых ситуациях может привести к исключению из игры.</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Title" xml:space="preserve">
+    <value>Настройки восстановлены автоматически</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
+    <value>Следующие настройки были отключены без подтверждения предупреждения и автоматически возвращены во включённое состояние:
+{0}</value>
+  </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>4★ получено</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>Ошибка копирования: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>Пресет по умолчанию</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>Ничего</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>Молитва события оружия</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>Не удалось выбрать: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>Отключено</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>Ключ доступа</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>Вход выполнен (персонаж не привязан)</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Не удалось обновить Cookie</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>Ошибка чтения конфигурации</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>Разблокировщик FPS не установлен</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>~{0} молитв в месяц</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>Здесь пока ничего не написано...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>Записи не получены, существующие записи сохранены в резервной копии.</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>Молитва события персонажа II</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>Молитва новичка</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>Ошибка инициализации</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>Не удалось установить приватный плагин: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>Вход в аккаунт выполнен</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>В пресете нет хеша плагина, невозможно подтвердить совместимость с текущей версией</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>Глобальный сервер</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>Войти в HoYoLAB</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось обработать файл пресета
+Подробности: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>Файл JSON</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>Локальные данные и изображения загружены.</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>Не удалось добавить: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie успешно скопирован в буфер обмена</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>Пожалуйста, подождите...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>Неизвестное значение свойства: {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>Не удалось получить ссылку</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>Ошибка удаления: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>Не удалось применить конфигурацию</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>Ошибка сохранения: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>Сбой выбора файлов. Если программа запущена от администратора, попробуйте режим обычного пользователя</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>Для использования этой функции требуются права разработчика</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>Добавить плагин: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>Успешно скопировано</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>Неизвестно</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>Стандартная молитва</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>Файлы плагинов</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>Файл истории не найден, попробуйте захват</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>Неизвестный размер</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>Пожалуйста, введите ID приватного плагина и ключ доступа:</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>CaptureApp.exe не найден</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>Ошибка обновления информации аккаунта: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>Нет записей молитв для этого персонажа</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>Ошибка операции</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>Ссылка получена, запуск автозагрузки...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>Готово!</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>Вход выполнен успешно</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>Не удалось сохранить состояние</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось сохранить состояние активации (нет прав на запись)
+Подробности: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось записать в файл конфигурации при смене пресета
+Подробности: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>Из расчёта 160 Камней Истока за молитву</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>Ошибка загрузки документа: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>Зона гаранта</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>Текущий макс. гарант</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>Установка приватного плагина: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>Не удалось прочитать данные аккаунта</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>Вход отменен</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>Молитва события персонажа</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>Для плагина «{0}» требуется версия лаунчера ≥ {1}, текущая версия {2}
+
+Пожалуйста, обновите лаунчер перед установкой этого плагина.</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>Ошибка: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>Удалена история молитв для UID: {0}</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>Неизвестный плагин</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>Событие персонажа</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>Ошибка копирования</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>Получение данных...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось прочитать файл конфигурации
+Подробности: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>Импорт записи {0}...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>Неизвестная ошибка</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>Ошибка операции: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>Выпадение 4★</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>Все 5★ со всех баннеров</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>Ошибка импорта</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} шт.</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>Документ не выбран</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>Неверный формат ссылки; не удалось извлечь адрес API</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>Глобальный автокликер требует прав администратора для регистрации горячих клавиш и отправки нажатий. Запустите программу от имени администратора.</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>Изображения или видео</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>Загрузка информации пользователя...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>Включено, разблокировка FPS активна</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>Экспорт выполнен успешно, файл сохранён в: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>Молитва хроник</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>Ошибка переключения состояния</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось применить изменения
+Подробности: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>Убедитесь, что папка и config.ini существуют в каталоге Plugins</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>Ранний гарант</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>Аккаунт_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>Принудительно выполнить (не рекомендуется)</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>Программа захвата считывает данные...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>Можно добавить не более {0} аккаунтов</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>Запрос не удался ({0}): {1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>Ошибка проверки прав</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>Текущий авторизованный аккаунт</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>Капча</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>Молитва новичка</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>Открытие окна входа...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>~{0:N0} Камней Истока</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>Неизвестный 4★</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>Ежедневная отметка Genshin Impact выполнена</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Ошибка теста скрипта Lua: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>Живые обои</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>Нет записей даты</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} раз</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>Добавить аккаунт</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>В файле не найдены записи молитв</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось удалить файл пресета; возможно, он занят или нет прав доступа
+Подробности: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>5★ получено</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>Не удалось записать журнал: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>Версия устарела</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>Ошибка: отсутствуют права администратора, невозможно запустить автокликер</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>Уведомление</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>Без описания</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>По умолчанию (не указано)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Проверка безопасности Lua не пройдена: {0}.</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>FuFuPlugin не установлен</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>Около софт-гаранта</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>Активных месяцев</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>Текущий пресет: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>Ошибка входа: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>Укажите горячую клавишу остановки</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>Непредвиденная ошибка: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>Обновление Cookie...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>Ошибка загрузки: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>Свернуть в трей</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>Событие оружия</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>Пресет не соответствует версии плагина; сброшен на значение по умолчанию</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>Начать захват</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>Приватный плагин</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>Нет аккаунтов</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>Неподдерживаемая версия UIGF: {0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} молитв</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>Файл не существует или недоступен</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>Не удалось удалить: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>Время выполнения скрипта истекло (&gt;5 сек)</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>Ошибка применения: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>Ошибка операции: файл уже существует</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>Переключено на UID: {0}</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>Включение установит глобальные перехватчики клавиатуры и мыши, которые могут блокироваться защитным ПО. Подтвердить включение?</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>Смена обоев</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>Нераспознанный файл</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>Удалено: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Cookie успешно обновлен</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>Пресет полностью совместим с текущей версией плагина</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>Пожалуйста, выберите персонажа из выпадающего списка.</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>Не удалось добавить: плагин уже существует</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>Не удалось добавить аккаунт: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>Молитва хроник</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>Исполняемые файлы</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>Пока нет 5★ гаранта</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>Успешно экспортировано {0} записей в {1} ({2})</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>Ошибка импорта: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>Полученный персонаж не совпадает с выбранным, отображение остановлено.</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>Отметка Genshin</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>Пресет переключен</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>Включено, часть функций активна</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>Чтение файла UIGF...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>Не найдено</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>Текущий макс.: {0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie скопирован в буфер обмена</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>Вход выполнен как {0}</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>Все записи 1-5★</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>Не удается прочитать реестр</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось записать пресет в файл конфигурации (нет прав)
+Подробности: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>Недостаточно прав или файл занят; выберите путь к игре от имени обычного пользователя</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>Не удалось сохранить настройки</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>Открытие страницы блокировки аккаунта...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>Остановлено горячей клавишей</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>Успешно удалено</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>Текущий аккаунт</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>Недействительный путь</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>3★</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>Всего молитв</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>Действительный Cookie не найден</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>Импорт завершен (всего {0} записей), загрузка изображений...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>Информация для входа не найдена</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>Запустите игру один раз перед повторной попыткой</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>Получение метаданных предметов и баннеров...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>Монитор {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>Остановите автокликер перед повторным запуском</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>Захват... Откройте страницу истории молитв в игре</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>Самый трудный 5★</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>Недействительный путь; убедитесь, что файл существует и имеет формат .exe</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>Обновить список</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>Путь пуст</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>Не удалось инициализировать представление: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>Не удалось выбрать путь: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось сохранить файл пресета (нет прав на запись)
+Подробности: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>Аккаунт успешно переключен</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>Ошибка экспорта: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>Остановить захват</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>Не удалось прочитать историю: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось изменить расширение файла плагина
+Подробности: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>Недостаточно прав или файл занят; выберите файл от имени обычного пользователя</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>Ошибка обновления конфигурации</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>Ошибка удаления</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>Не удалось получить документ (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>Путь применен</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>Плагин «{0}» (ID: {1}) приватный. Введите ключ доступа для продолжения установки:</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>Не удалось загрузить дерево каталогов: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>Не удалось открыть: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Тест скрипта Lua успешно пройден</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>Не удалось переключить состояние: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>Нет данных для экспорта</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>Открытие ежедневных заметок Genshin...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>История ссылок загружена, подготовка к захвату...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>Аудиофайлы</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>Операция успешна</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>Не удалось сохранить пресет</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>Удалены записи для UID: {0}</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>Получение метаданных баннеров...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Ошибка выполнения Lua: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>Не удалось удалить пресет</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>Пожалуйста, сначала войдите</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>Версия UIGF не распознана, проверьте формат файла</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>Проверка приватного плагина...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>Нет записей 5★</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>Понятно</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>Аккаунт не выбран</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>Стандартная молитва</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>Установить приватный плагин</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>5★</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>Открыто</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>Войти снова</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>Файл не существует или не является корректным .exe файлом</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>Открытие центра безопасности аккаунта...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>Подробности: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>Захват остановлен вручную</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>Проверка пройдена</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>Хеш плагина в пресете не совпадает с текущим; возможно, он от другой версии</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>В среднем на 5★</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>Не удалось завершить процесс</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>Недействительная ссылка молитв</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>У этого аккаунта нет записей молитв</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>Живые обои не поддерживаются в этом формате предварительного просмотра.</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>Подтвердить включение</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>Оценка Камней Истока</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>Обновление представления...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>Неизвестный разработчик</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>Экспорт файла UIGF...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>Не удалось открыть окно выбора файлов</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>Сервер CN</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>Ошибка выхода: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>Получение {0}...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>4★</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>Средний интервал</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>Самый удачный 5★</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>Выберите элемент из меню для просмотра подробностей</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>Нарушение политики безопасности: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>ID плагина</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>Закрыть лаунчер</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>Неизвестный 5★</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>Требуются права администратора</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>Файл плагина не найден или невозможно вычислить хеш, совместимость не подтверждена</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>Файл содержит неполные записи (отсутствуют id/item_id/time/gacha_type), проверьте формат</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>Не удалось остановить: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>В среднем на 5★ персонажа</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>Загрузка завершена, всего {0} плагинов</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Ошибка обновления Cookie: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>В файле не найдено действительных записей молитв</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>Аномальные записи</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>Инициализация...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>Пользователь {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>HoYoLAB не авторизовал получение (код 1016). Проверьте привязку или используйте «Из игры».</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>Привязанный персонаж не найден. Войдите в HoYoLAB с нужным аккаунтом или используйте «Из игры».</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>Нет новых записей для UID {0}; сохранены существующие данные.</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>Локальная история загружена</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>Импорт отменен, существующие данные не изменены.</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>Получение завершено, UID {0}, всего {1} записей, проверка изображений...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>HoYoLAB отклонил параметры (код 1002). Попробуйте «Из игры».</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>Записи молитв не найдены; существующие данные сохранены. Проверьте историю в игре.</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>Не удалось прочитать конфигурацию: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>Получение записей {0}... (получено {1})</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>Введите действительную ссылку молитв</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>Генерация ключа аутентификации (полное обновление)...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>Разные баннеры вернули данные разных аккаунтов, импорт остановлен.</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>Ожидание данных...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>Не удалось инициализировать службу диагностики</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>Открытие окна данных Genshin...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>+ Добавить нового пользователя</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>Без названия</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0}: {1} записей, получение записей {2}...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>Обновление метаданных персонажей, оружия и баннеров...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>Недействительное содержимое буфера обмена</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>Полученный UID не совпадает с выбранным персонажем; импорт остановлен.</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> Проверьте статус входа в HoYoLAB или используйте «Из игры».</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>Не удалось загрузить данные аккаунта: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>Экспорт выполнен успешно</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>Анализ завершен!</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>Генерация ключа аутентификации (инкрементальное обновление)...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>Сначала выберите игрового персонажа в переключателе.</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>Не удалось прочитать буфер обмена</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>Ошибка экспорта</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>Не найден аккаунт HoYoLAB с UID {0}. Проверьте привязку или используйте «Из игры».</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>Персонаж переключен; результаты старого персонажа отброшены.</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>Запустить инструмент захвата</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>Ошибка переименования: имя папки уже существует</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>Проверка загрузки</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>Ошибка переименования: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>Список отсортирован</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>Успешно переименовано</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>Загрузка статуса отметки в игре</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>Ошибка переключения пресета</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>Не удалось открыть браузер: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>Установите горячую клавишу остановки перед включением кликов мыши</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>Для кликов мыши требуется предварительно настроить клавишу остановки</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>Неизвестный баннер</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>Соответствующая конфигурация пресета не найдена</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>Анализ ссылки API...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>Путь действителен</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>Отключено. Включите основной плагин для настройки конфигурации.</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>Отключено. Включите плагин FPS для настройки конфигурации плагина.</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>Изменение плагина</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>Текущий пресет не соответствует последней версии плагина; новый пресет был создан автоматически.</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>Этот пресет в настоящее время заблокирован.</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>Ошибка очистки</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>Не удалось очистить файл пресета.
+Подробности: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>Внутренний вид обновлен</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>Добавлено неизвестное значение ключа {0}</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>Ожидание загрузки данных...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>Подключение к Miyoushe...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>Требуется вход в аккаунт</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>Анализ дневника путешественника...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>Запрос дневника путешественника не удался ({0}): {1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>Персонаж из дневника путешественника не соответствует выбранному; отображение остановлено.</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>Ошибка загрузки: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>Содержимое все еще предварительно загружается в фоновом режиме; совпадение из заголовка или пути</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>Живые обои доступны только в сборках для разработчиков. Пожалуйста, выберите изображение в качестве пользовательского фона в предварительных и релизных сборках.</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>Получение метаданных персонажей и оружия через API...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>Не удалось получить метаданные {0}, повтор через {1} с ({2}/{3})...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>Новые ресурсы изображений не найдены; используется существующий кэш или значок по умолчанию</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>Обновлено {0} ресурсов изображений и сохранено в базу данных</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>Метаданные баннеров обновлены (всего {0} исторических баннеров: Персонаж {1}, Оружие {2}, Хроники {3})</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>Персонаж</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>Оружие</value>
   </data>
 </root>

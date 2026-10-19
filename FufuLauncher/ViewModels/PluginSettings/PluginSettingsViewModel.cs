@@ -274,6 +274,7 @@ public partial class PluginSettingsViewModel : ObservableObject
             UpdateSettingPinState(item, pinned, target);
             changed = true;
         }
+
         if (changed)
         {
             SavePinnedSections();
@@ -293,11 +294,13 @@ public partial class PluginSettingsViewModel : ObservableObject
                 {
                     MoveSettingToPinGroup(item, pinned);
                 }
+
                 if (clearSelection)
                 {
                     item.IsSelected = false;
                 }
             }
+
             if (clearSelection)
             {
                 NotifySelectionChanged();
@@ -426,6 +429,7 @@ public partial class PluginSettingsViewModel : ObservableObject
                 right = middle;
             }
         }
+
         target.Insert(left, item);
     }
 

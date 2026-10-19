@@ -10,7 +10,11 @@ namespace MihoyoBBS;
 public class AccountItem
 {
     [JsonPropertyName("game_biz")]
-    public string GameBiz { get; set; } = "";
+    public string GameBiz
+    {
+        get;
+        set;
+    } = "";
 
     [JsonPropertyName("nickname")]
     public string Nickname

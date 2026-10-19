@@ -7,7 +7,6 @@ namespace FufuLauncher.Contracts.Services
 {
     public interface ILocalSettingsService
     {
-        //启动后台全量加载
         void StartBackgroundLoad();
 
         Task<object?> ReadSettingAsync(string key);

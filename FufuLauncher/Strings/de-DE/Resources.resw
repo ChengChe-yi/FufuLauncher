@@ -3057,24 +3057,60 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="GachaAnalysis_WishHistory" xml:space="preserve">
     <value>Gebetsverlauf</value>
   </data>
-  <data name="GachaHistory_Loading" xml:space="preserve"><value>Gebetsverlauf wird zusammengestellt…</value></data>
-  <data name="GachaHistory_Description" xml:space="preserve"><value>Nach Version geladen. Wähle ein Banner, um die Gebete in diesem Zeitraum anzuzeigen.</value></data>
-  <data name="GachaHistory_HideEmpty" xml:space="preserve"><value>Banner ohne erhaltene Gegenstände ausblenden</value></data>
-  <data name="GachaHistory_NewerVersion" xml:space="preserve"><value>Neuere Version</value></data>
-  <data name="GachaHistory_OlderVersion" xml:space="preserve"><value>Ältere Version</value></data>
-  <data name="GachaHistory_FiveStarItems" xml:space="preserve"><value>5-Sterne-Gegenstände</value></data>
-  <data name="GachaHistory_FourStarItems" xml:space="preserve"><value>4-Sterne-Gegenstände</value></data>
-  <data name="GachaHistory_ThreeStarItems" xml:space="preserve"><value>3-Sterne-Gegenstände</value></data>
-  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve"><value>Keine Banner mit erhaltenen Gegenständen</value></data>
-  <data name="GachaHistory_EmptyTitle" xml:space="preserve"><value>Keine historischen Banner-Metadaten</value></data>
-  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve"><value>Deaktiviere „Banner ohne erhaltene Gegenstände ausblenden“, um den vollständigen Verlauf anzuzeigen.</value></data>
-  <data name="GachaHistory_EmptyDescription" xml:space="preserve"><value>Aktualisiere Gebetsaufzeichnungen oder Gegenstandsmetadaten, um den Verlauf automatisch zu erstellen.</value></data>
-  <data name="GachaHistory_PeriodFormat" xml:space="preserve"><value>{0:yyyy-MM-dd HH:mm} bis {1:yyyy-MM-dd HH:mm}</value></data>
-  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve"><value>{0} Gebete</value></data>
-  <data name="GachaHistory_CharacterEvent" xml:space="preserve"><value>Figurenaktionsgebet</value></data>
-  <data name="GachaHistory_WeaponEvent" xml:space="preserve"><value>Waffenaktionsgebet</value></data>
-  <data name="GachaHistory_Chronicled" xml:space="preserve"><value>Chronik-Gebet</value></data>
-  <data name="GachaHistory_Limited" xml:space="preserve"><value>Aktionsgebet</value></data>
+  <data name="GachaHistory_Loading" xml:space="preserve">
+    <value>Gebetsverlauf wird zusammengestellt…</value>
+  </data>
+  <data name="GachaHistory_Description" xml:space="preserve">
+    <value>Nach Version geladen. Wähle ein Banner, um die Gebete in diesem Zeitraum anzuzeigen.</value>
+  </data>
+  <data name="GachaHistory_HideEmpty" xml:space="preserve">
+    <value>Banner ohne erhaltene Gegenstände ausblenden</value>
+  </data>
+  <data name="GachaHistory_NewerVersion" xml:space="preserve">
+    <value>Neuere Version</value>
+  </data>
+  <data name="GachaHistory_OlderVersion" xml:space="preserve">
+    <value>Ältere Version</value>
+  </data>
+  <data name="GachaHistory_FiveStarItems" xml:space="preserve">
+    <value>5-Sterne-Gegenstände</value>
+  </data>
+  <data name="GachaHistory_FourStarItems" xml:space="preserve">
+    <value>4-Sterne-Gegenstände</value>
+  </data>
+  <data name="GachaHistory_ThreeStarItems" xml:space="preserve">
+    <value>3-Sterne-Gegenstände</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredTitle" xml:space="preserve">
+    <value>Keine Banner mit erhaltenen Gegenständen</value>
+  </data>
+  <data name="GachaHistory_EmptyTitle" xml:space="preserve">
+    <value>Keine historischen Banner-Metadaten</value>
+  </data>
+  <data name="GachaHistory_EmptyFilteredDescription" xml:space="preserve">
+    <value>Deaktiviere „Banner ohne erhaltene Gegenstände ausblenden“, um den vollständigen Verlauf anzuzeigen.</value>
+  </data>
+  <data name="GachaHistory_EmptyDescription" xml:space="preserve">
+    <value>Aktualisiere Gebetsaufzeichnungen oder Gegenstandsmetadaten, um den Verlauf automatisch zu erstellen.</value>
+  </data>
+  <data name="GachaHistory_PeriodFormat" xml:space="preserve">
+    <value>{0:yyyy-MM-dd HH:mm} bis {1:yyyy-MM-dd HH:mm}</value>
+  </data>
+  <data name="GachaHistory_TotalPullsFormat" xml:space="preserve">
+    <value>{0} Gebete</value>
+  </data>
+  <data name="GachaHistory_CharacterEvent" xml:space="preserve">
+    <value>Figurenaktionsgebet</value>
+  </data>
+  <data name="GachaHistory_WeaponEvent" xml:space="preserve">
+    <value>Waffenaktionsgebet</value>
+  </data>
+  <data name="GachaHistory_Chronicled" xml:space="preserve">
+    <value>Chronik-Gebet</value>
+  </data>
+  <data name="GachaHistory_Limited" xml:space="preserve">
+    <value>Aktionsgebet</value>
+  </data>
   <data name="GachaAnalysis_GetRecords" xml:space="preserve">
     <value>Wunschverlauf abrufen</value>
   </data>
@@ -4853,32 +4889,6 @@ Rückmeldung: {0}</value>
   <data name="DataPage_ExportFailedTitle" xml:space="preserve">
     <value>PDF-Export fehlgeschlagen</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrNoProcessPath" xml:space="preserve">
     <value>Aktueller Prozesspfad konnte nicht ermittelt werden</value>
   </data>
@@ -4900,44 +4910,6 @@ Rückmeldung: {0}</value>
   <data name="Backpack_ErrHelperExitCode" xml:space="preserve">
     <value>Injektionsprozess wurde unerwartet beendet ({0})</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="Backpack_ErrX64Required" xml:space="preserve">
     <value>Die Backpack-Synchronisierung erfordert die x64-Version.</value>
   </data>
@@ -5217,7 +5189,6 @@ Rückmeldung: {0}</value>
   <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
     <value>Plugindateien nach der Installation nicht gefunden; das Plugin wurde möglicherweise nicht installiert</value>
   </data>
-
   <data name="PluginStoreUninstalling" xml:space="preserve">
     <value>Deinstallation läuft...</value>
   </data>
@@ -5355,110 +5326,6 @@ Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
   <data name="PluginStoreCategoryVisuals" xml:space="preserve">
     <value>Visuelle Anpassung</value>
   </data>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Cloud-Gaming-Anmeldedaten entfernen</value>
   </data>
@@ -5909,7 +5776,9 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
     <value>Download / Install Error</value>
   </data>
   <data name="PluginPage_DownloadErrorContentFormat" xml:space="preserve">
-    <value>Automatic download failed: {0}&#10;&#10;Click the button below to open your browser and download manually.</value>
+    <value>Automatic download failed: {0}
+
+Click the button below to open your browser and download manually.</value>
   </data>
   <data name="PluginPage_ManualDownloadBtn" xml:space="preserve">
     <value>Manual Download</value>
@@ -6226,25 +6095,63 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   <data name="PluginDllConflict_Resolved" xml:space="preserve">
     <value>Der Konflikt mit gleichnamigen DLLs wurde behoben. Sie können das Spiel jetzt neu starten.</value>
   </data>
-  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve"><value>Änderungen werden automatisch gespeichert</value></data>
-  <data name="PluginConfigPage_Saving" xml:space="preserve"><value>Wird gespeichert…</value></data>
-  <data name="PluginConfigPage_SaveFailed" xml:space="preserve"><value>Konfiguration konnte nicht gespeichert werden</value></data>
-  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve"><value>Die Konfigurationsdatei konnte nicht geschrieben werden. Prüfen Sie die Dateiberechtigungen und versuchen Sie es erneut. Details: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailed" xml:space="preserve"><value>Konfiguration konnte nicht geladen werden</value></data>
-  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve"><value>Die Plugin-Konfigurationsdatei konnte nicht gelesen werden. Details: {0}</value></data>
-  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve"><value>Stellen Sie sicher, dass die Konfigurationsdatei vorhanden und lesbar ist, und laden Sie sie erneut.</value></data>
-  <data name="PluginConfigPage_MissingFile" xml:space="preserve"><value>Die Konfigurationsdatei ist nicht vorhanden: {0}</value></data>
-  <data name="PluginConfigPage_NoOptions" xml:space="preserve"><value>Keine konfigurierbaren Einstellungen</value></data>
-  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve"><value>Dieses Plugin bietet keine anpassbaren Einstellungen.</value></data>
-  <data name="PluginConfigPage_NoResults" xml:space="preserve"><value>Keine passenden Einstellungen</value></data>
-  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve"><value>Versuchen Sie einen anderen Suchbegriff oder leeren Sie die Suche.</value></data>
-  <data name="PluginConfigPage_ClearSearch" xml:space="preserve"><value>Suche leeren</value></data>
-  <data name="PluginConfigPage_OptionCount" xml:space="preserve"><value>{0} Einstellungen</value></data>
-  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve"><value>{0} / {1} Einstellungen</value></data>
-  <data name="PluginConfigPage_ConfigFile" xml:space="preserve"><value>Konfigurationsdatei</value></data>
-  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve"><value>Wert eingeben…</value></data>
-  <data name="PluginSettings_CollapseHeader" xml:space="preserve"><value>Kopfbereich einklappen</value></data>
-  <data name="PluginSettings_ExpandHeader" xml:space="preserve"><value>Kopfbereich ausklappen</value></data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
+    <value>Änderungen werden automatisch gespeichert</value>
+  </data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve">
+    <value>Wird gespeichert…</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
+    <value>Konfiguration konnte nicht gespeichert werden</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
+    <value>Die Konfigurationsdatei konnte nicht geschrieben werden. Prüfen Sie die Dateiberechtigungen und versuchen Sie es erneut. Details: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
+    <value>Konfiguration konnte nicht geladen werden</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
+    <value>Die Plugin-Konfigurationsdatei konnte nicht gelesen werden. Details: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
+    <value>Stellen Sie sicher, dass die Konfigurationsdatei vorhanden und lesbar ist, und laden Sie sie erneut.</value>
+  </data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
+    <value>Die Konfigurationsdatei ist nicht vorhanden: {0}</value>
+  </data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
+    <value>Keine konfigurierbaren Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
+    <value>Dieses Plugin bietet keine anpassbaren Einstellungen.</value>
+  </data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve">
+    <value>Keine passenden Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
+    <value>Versuchen Sie einen anderen Suchbegriff oder leeren Sie die Suche.</value>
+  </data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
+    <value>Suche leeren</value>
+  </data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
+    <value>{0} Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
+    <value>{0} / {1} Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
+    <value>Konfigurationsdatei</value>
+  </data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
+    <value>Wert eingeben…</value>
+  </data>
+  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
+    <value>Kopfbereich einklappen</value>
+  </data>
+  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
+    <value>Kopfbereich ausklappen</value>
+  </data>
   <data name="AchievementWindow_DataActions" xml:space="preserve">
     <value>Datenaktionen</value>
   </data>
@@ -6265,5 +6172,2402 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   </data>
   <data name="ModTrust_ModeCaption" xml:space="preserve">
     <value>Aus überspringt die Signaturprüfung; Warnen prüft und meldet ohne zu blockieren; Streng blockiert Plug-ins mit ungültiger Signatur.</value>
+  </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>Dienststatus</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>Dienststatus</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>Verfügbarkeit</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>Verfügbarkeit aller Dienste anzeigen</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>Anzeigen</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>Alle Systeme betriebsbereit</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>Einige Dienste weisen Probleme auf</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>Betriebsbereit</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>Beeinträchtigt</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>Ausfall</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>Pausiert</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>Verfügbarkeit (90 Tage)</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>Aktualisiert um {0}</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>Mehr laden</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>Dienststatus wird geladen</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>Dienststatus konnte nicht geladen werden</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>Erneut versuchen</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>Dienste</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>Letzte 90 Tage</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90 Tage</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>Letzter Ausfall {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>Keine Ausfälle in 90 Tagen</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>{0} Dienste</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>Betriebsbereit {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>Ausfälle {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>Pausiert {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>Keine Daten</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>Details anzeigen</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>Zurück zum Dienststatus</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>Dienstdetails konnten nicht geladen werden</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>Dienstdetails werden geladen</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>Verfügbarkeit</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>Gesamtverfügbarkeit</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>Letzte 24 Stunden</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>Letzte 7 Tage</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>Letzte 30 Tage</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>Letzte 2 Tage</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>Durchschnittliche Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>Maximale Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>Minimale Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>Prüfungen</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>Letzte Ereignisse</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>Mehr anzeigen</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>Keine aktuellen Ereignisse</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>Keine Antwortzeitdaten</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>Dauer: {0} s</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>Dauer: {0} min</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>Dauer: {0} h</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>Dauer: {0} h {1} min</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>Dauer: {0} T {1} h</value>
+  </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>Automatischer Neustart nicht möglich</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>Der automatische Neustart ist fehlgeschlagen. Deine Einstellungen wurden gespeichert; bitte starte die Anwendung manuell neu, damit die Änderungen wirksam werden.</value>
+  </data>
+  <data name="LangHi" xml:space="preserve">
+    <value>Hindi (हिन्दी)</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>Wird konfiguriert: {0} ({1})</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>Bitte wähle unten ein Konto aus, um dessen Check-in-Optionen zu konfigurieren</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>Wähle die Konten für den Batch-Check-in aus, klicke auf ein Konto zum Bearbeiten der Optionen und ziehe es, um die Reihenfolge anzupassen</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>Ziehen, um die Check-in-Reihenfolge zu ändern</value>
+  </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>Name der Verknüpfung</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>Benutzerdefinierter Name (ohne .lnk, leer lassen für Standard)</value>
+  </data>
+  <data name="LoginQR_ServerCn" xml:space="preserve">
+    <value>China-Server</value>
+  </data>
+  <data name="LoginQR_ServerOs" xml:space="preserve">
+    <value>Globaler Server</value>
+  </data>
+  <data name="LoginQR_MobileCaptcha" xml:space="preserve">
+    <value>Anmeldung per SMS-Code</value>
+  </data>
+  <data name="LoginQR_OverseaPassword" xml:space="preserve">
+    <value>Anmeldung mit Kontoname &amp; Passwort</value>
+  </data>
+  <data name="LoginQR_ThirdPartyLoginTitle" xml:space="preserve">
+    <value>Drittanbieter-Anmeldung</value>
+  </data>
+  <data name="LoginQR_ThirdPartyGoogle" xml:space="preserve">
+    <value>Mit Google anmelden</value>
+  </data>
+  <data name="LoginQR_ThirdPartyApple" xml:space="preserve">
+    <value>Mit Apple anmelden</value>
+  </data>
+  <data name="LoginQR_ThirdPartyFacebook" xml:space="preserve">
+    <value>Mit Facebook anmelden</value>
+  </data>
+  <data name="LoginQR_ThirdPartyTwitter" xml:space="preserve">
+    <value>Mit X (Twitter) anmelden</value>
+  </data>
+  <data name="LoginQR_OverseaRiskHint" xml:space="preserve">
+    <value>Hinweis: HoYoVerse erfordert möglicherweise eine Sicherheitsüberprüfung per E-Mail-Bestätigungscode.</value>
+  </data>
+  <data name="LoginQR_LoginButton" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="LoginQR_SendCaptcha" xml:space="preserve">
+    <value>Bestätigungscode senden</value>
+  </data>
+  <data name="LoginQR_MobileHeader" xml:space="preserve">
+    <value>Mobilfunknummer</value>
+  </data>
+  <data name="LoginQR_MobilePlaceholder" xml:space="preserve">
+    <value>11-stellige Mobilfunknummer eingeben</value>
+  </data>
+  <data name="LoginQR_CaptchaHeader" xml:space="preserve">
+    <value>Bestätigungscode</value>
+  </data>
+  <data name="LoginQR_CaptchaPlaceholder" xml:space="preserve">
+    <value>6-stelliger SMS-Code</value>
+  </data>
+  <data name="LoginQR_AccountHeader" xml:space="preserve">
+    <value>Konto</value>
+  </data>
+  <data name="LoginQR_AccountPlaceholder" xml:space="preserve">
+    <value>E-Mail oder Benutzername</value>
+  </data>
+  <data name="LoginQR_PasswordHeader" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="LoginQR_PasswordPlaceholder" xml:space="preserve">
+    <value>Passwort eingeben</value>
+  </data>
+  <data name="LoginQR_OverseaVerifyTitle" xml:space="preserve">
+    <value>Sicherheitsüberprüfung</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaHeader" xml:space="preserve">
+    <value>E-Mail-Bestätigungscode</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaPlaceholder" xml:space="preserve">
+    <value>6-stelliger E-Mail-Code</value>
+  </data>
+  <data name="LoginQR_SendEmailCaptcha" xml:space="preserve">
+    <value>E-Mail-Code senden</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaSent" xml:space="preserve">
+    <value>Der E-Mail-Bestätigungscode wurde gesendet. Bitte überprüfe deinen Posteingang.</value>
+  </data>
+  <data name="LoginQR_UnknownEmail" xml:space="preserve">
+    <value>Unbekannte E-Mail-Adresse</value>
+  </data>
+  <data name="Checkin_ResignTitle" xml:space="preserve">
+    <value>Check-in nachholen</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormat" xml:space="preserve">
+    <value>In diesem Monat kann der Check-in noch {0}-mal nachgeholt werden. Verbleibende Nachholkarten: {1}. Jetzt nachholen?</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormatCn" xml:space="preserve">
+    <value>In diesem Monat kann der Check-in noch {0}-mal nachgeholt werden (Kosten: {1} MiHoYo-Münzen). Jetzt nachholen?</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoinCn" xml:space="preserve">
+    <value>Nicht genügend MiHoYo-Münzen</value>
+  </data>
+  <data name="Checkin_ResignSuccess" xml:space="preserve">
+    <value>Check-in erfolgreich nachgeholt</value>
+  </data>
+  <data name="Checkin_ResignFailed" xml:space="preserve">
+    <value>Nachholen des Check-ins fehlgeschlagen [{0}] {1}</value>
+  </data>
+  <data name="Checkin_ResignLimitExceeded" xml:space="preserve">
+    <value>Maximale Anzahl an Nachholungen erreicht</value>
+  </data>
+  <data name="Checkin_ResignNotSigned" xml:space="preserve">
+    <value>Bitte führe zuerst den heutigen Check-in durch</value>
+  </data>
+  <data name="Checkin_ResignNoDate" xml:space="preserve">
+    <value>Kein ausstehendes Datum zum Nachholen vorhanden</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoin" xml:space="preserve">
+    <value>Nicht genügend Nachholkarten vorhanden</value>
+  </data>
+  <data name="Checkin_ResignQueryFailed" xml:space="preserve">
+    <value>Berechtigung zum Nachholen konnte nicht abgefragt werden: {0}</value>
+  </data>
+  <data name="Checkin_ResignUnsupported" xml:space="preserve">
+    <value>Nachträglicher Check-in wird auf diesem Server derzeit nicht unterstützt</value>
+  </data>
+  <data name="LaunchBtn_Launching" xml:space="preserve">
+    <value>Start abbrechen</value>
+  </data>
+  <data name="LaunchCancelled_Title" xml:space="preserve">
+    <value>Start abgebrochen</value>
+  </data>
+  <data name="LaunchCancelled_Msg" xml:space="preserve">
+    <value>Der Spielstartvorgang wurde abgebrochen.</value>
+  </data>
+  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
+    <value>Vorab-Download</value>
+  </data>
+  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
+    <value>Aktualisierungsressourcen im Voraus herunterladen</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
+    <value>Aktualisierungsressourcen in das Spiel zusammenführen</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
+    <value>Vorab-Download zusammenführen</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
+    <value>Vorab heruntergeladene Ressourcen jetzt übernehmen (Entwickler)</value>
+  </data>
+  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
+    <value>Vorab heruntergeladen</value>
+  </data>
+  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
+    <value>Spiel-Update</value>
+  </data>
+  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
+    <value>Aktualisiert das Spiel auf die neueste Version. Bereits vorab heruntergeladene Ressourcen werden automatisch verwendet.</value>
+  </data>
+  <data name="GameUpdate_UpdateStart" xml:space="preserve">
+    <value>Update starten</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
+    <value>Vorab-Download zusammenführen</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
+    <value>Führt die vorab heruntergeladenen Ressourcen sofort mit dem Spiel zusammen; die Spielversion wird vorzeitig auf die Vorab-Download-Version aktualisiert. Nur für Entwickler verfügbar.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
+    <value>Zusammenführung starten</value>
+  </data>
+  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
+    <value>Das Spiel wurde auf die neueste Version aktualisiert.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
+    <value>Die Vorab-Download-Ressourcen wurden erfolgreich zusammengeführt.</value>
+  </data>
+  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
+    <value>Update fehlgeschlagen</value>
+  </data>
+  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
+    <value>Vorab-Download bestätigen</value>
+  </data>
+  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
+    <value>Update bestätigen</value>
+  </data>
+  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
+    <value>Zusammenführung des Vorab-Downloads bestätigen</value>
+  </data>
+  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
+    <value>Download-Größe: {0}
+Installationsgröße: {1}
+Zielversion: {2}
+
+Jetzt starten?</value>
+  </data>
+  <data name="GameUpdate_PlanSummary" xml:space="preserve">
+    <value>Plan: {0} herunterladen, Zielversion {1}</value>
+  </data>
+  <data name="GameUpdate_StageMerge" xml:space="preserve">
+    <value>Dateien werden zusammengeführt …</value>
+  </data>
+  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
+    <value>Patches werden angewendet …</value>
+  </data>
+  <data name="GameUpdate_MergingFile" xml:space="preserve">
+    <value>Zusammenführen {0}/{1}: {2}</value>
+  </data>
+  <data name="GameUpdate_SkipAsset" xml:space="preserve">
+    <value>Ressource übersprungen (wird später automatisch repariert): {0}</value>
+  </data>
+  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
+    <value>Vorab-Download abgeschlossen. Warte auf die offizielle Veröffentlichung.</value>
+  </data>
+  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
+    <value>Für die aktuelle Version ist kein Vorab-Download verfügbar.</value>
+  </data>
+  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
+    <value>Das Spiel ist bereits auf dem neuesten Stand.</value>
+  </data>
+  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
+    <value>Lokale Spielversion konnte nicht ermittelt werden. Bitte überprüfe config.ini.</value>
+  </data>
+  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
+    <value>Nicht genügend freier Speicherplatz: {0} erforderlich, {1} verfügbar.</value>
+  </data>
+  <data name="GameUpdate_DevOnly" xml:space="preserve">
+    <value>Diese Funktion ist nur für autorisierte Entwickler verfügbar.</value>
+  </data>
+  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
+    <value>Fehler beim Lesen des Patch-Headers: Die Patch-Datei ist beschädigt oder unvollständig.</value>
+  </data>
+  <data name="Patch_DiffNotSeekable" xml:space="preserve">
+    <value>Der Patch-Stream muss Direktzugriff (Seek) unterstützen.</value>
+  </data>
+  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
+    <value>Download-Geschwindigkeit</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>Farbraum</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>Spitzenhelligkeit</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>Maximale Vollbildhelligkeit</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>SDR-Weißpunkt-Helligkeit</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>Passt die maximale Helligkeitsgrenze für Glanzlichter an (empfohlen: an den Monitor anpassen)</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>Passt die Referenz-Weißpunkt-Helligkeit für Spielweltszenen an</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>Passt die Helligkeit von UI-Elementen wie Minikarte, Lebensleiste und Text an</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDR aktiviert</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDR deaktiviert</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDR nicht unterstützt</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDR nicht verfügbar</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>HDR-Erkennung läuft …</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR (Standard Dynamic Range)</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG (Wide Color Gamut)</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR (High Dynamic Range)</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>Nicht lesbar</value>
+  </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>Über Embedded Yae aus dem Spiel importieren</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>Startet das Spiel und importiert den Erfolgsfortschritt über die Embedded-Yae-Komponente</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>Spielinstallationsverzeichnis nicht gefunden. Bitte konfiguriere zuerst den Spielpfad in den Einstellungen.</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>Warte auf Spieldaten …</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>Keine Erfolgsdaten empfangen.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>{0} Erfolge aus dem Spiel importiert, Fortschritt für {1} Erfolge synchronisiert.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>Importieren der Erfolge aus dem Spiel fehlgeschlagen.</value>
+  </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>Aus dem Spiel abrufen</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>Öffne den Gebetsverlauf im Spiel
+Bilibili-Server unterstützt, kein Miyoushe-Login erforderlich</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>Melde dich im gewünschten Spielkonto an, öffne den Gebetsverlauf und warte, bis die Daten vollständig geladen sind. Klicke anschließend auf „Starten“.
+
+Offizieller CN-Server (Celestia), Bilibili (Irminsul) und globale Server werden ohne Miyoushe-Anmeldung unterstützt. Bitte vergewissere dich, dass im Spiel das richtige Konto angemeldet ist.</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>Starten</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>Gebetsverlaufs-Link wird aus dem Spiel gelesen …</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>Bitte lege zuerst den korrekten Spielpfad im Launcher fest und öffne anschließend den Gebetsverlauf im Spiel.</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>Kein Gebetsverlaufs-Link gefunden. Bitte melde dich im Zielkonto an, öffne den Gebetsverlauf, warte auf das Laden und versuche es erneut.</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>Gebetsverlaufs-Link konnte nicht gelesen werden. Bitte öffne den Gebetsverlauf im Spiel erneut und wiederhole den Vorgang.</value>
+  </data>
+  <data name="Checkin_UnsupportedGame" xml:space="preserve">
+    <value>Für dieses Spiel ist noch kein täglicher Belohnungs-Check-in konfiguriert</value>
+  </data>
+  <data name="Checkin_LoginExpired" xml:space="preserve">
+    <value>Anmeldedaten abgelaufen und automatische Aktualisierung fehlgeschlagen. Bitte melde dich erneut bei Miyoushe an.</value>
+  </data>
+  <data name="Checkin_GameCaptcha" xml:space="preserve">
+    <value>Sicherheitsüberprüfung erforderlich. Bitte schließe die Verifizierung auf der offiziellen Miyoushe-Seite ab.</value>
+  </data>
+  <data name="Checkin_SignNotConfirmed" xml:space="preserve">
+    <value>Check-in-Status noch nicht bestätigt. Bitte versuche es später erneut.</value>
+  </data>
+  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
+    <value>Datenbankpfad: {0}. Bitte prüfe, ob das Verzeichnis beschreibbar und der Datenträger verfügbar ist.</value>
+  </data>
+  <data name="Launcher_DllNotFound" xml:space="preserve">
+    <value>Launcher.dll fehlt. Die Injektionsfunktion ist nicht verfügbar. Bitte installiere den Launcher neu.</value>
+  </data>
+  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
+    <value>Zielserver</value>
+  </data>
+  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
+    <value>Aktueller Server: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
+    <value>Aktueller Server konnte nicht erkannt werden. Bitte überprüfe das Spielverzeichnis.</value>
+  </data>
+  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
+    <value>Bitte wähle zuerst einen Zielserver aus</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
+    <value>Vorgang abgebrochen</value>
+  </data>
+  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
+    <value>Erfolgreich gewechselt zu: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
+    <value>Datenblock wird heruntergeladen {0}/{1} - {2}</value>
+  </data>
+  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
+    <value>Bereinigen der Plugin-Ordner fehlgeschlagen: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
+    <value>Serverwechsel fehlgeschlagen</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
+    <value>Wechsel fehlgeschlagen, Dateien werden möglicherweise verwendet.
+Fehlermeldung: {0}</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>Bilibili-Server (Bilibili)</value>
+  </data>
+  <data name="DownloadWindow_Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Download_FileFailed" xml:space="preserve">
+    <value>{0} Datei(en) konnten nicht heruntergeladen werden. Bitte wiederhole den Vorgang oder wechsle den Server.</value>
+  </data>
+  <data name="PreDownload_Failed" xml:space="preserve">
+    <value>Vorab-Download fehlgeschlagen</value>
+  </data>
+  <data name="PreDownload_Success" xml:space="preserve">
+    <value>Vorab-Download-Dateien erfolgreich heruntergeladen und installiert.</value>
+  </data>
+  <data name="VerifyGame_Success" xml:space="preserve">
+    <value>Überprüfung der Spieldateien und Reparatur abgeschlossen</value>
+  </data>
+  <data name="VerifyGame_Failed" xml:space="preserve">
+    <value>Überprüfung fehlgeschlagen</value>
+  </data>
+  <data name="GameServer_StageFetchBranches" xml:space="preserve">
+    <value>Netzwerk-Branches werden abgerufen</value>
+  </data>
+  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
+    <value>Manifeste werden heruntergeladen und decodiert</value>
+  </data>
+  <data name="GameServer_StageDiff" xml:space="preserve">
+    <value>Daten werden verglichen</value>
+  </data>
+  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
+    <value>Benötigte Datenblöcke werden heruntergeladen</value>
+  </data>
+  <data name="GameServer_StageReplace" xml:space="preserve">
+    <value>Dateien werden ersetzt</value>
+  </data>
+  <data name="GameServer_ReplacingFile" xml:space="preserve">
+    <value>Datei wird ersetzt {0}/{1} - {2}</value>
+  </data>
+  <data name="GameServer_StageCleanup" xml:space="preserve">
+    <value>Temporäre Daten werden bereinigt</value>
+  </data>
+  <data name="GameServer_StageVerify" xml:space="preserve">
+    <value>Spieldatei-Integrität wird überprüft, dies kann etwas dauern</value>
+  </data>
+  <data name="GameServer_VerifyOk" xml:space="preserve">
+    <value>Dateiprüfung bestanden, Spieldaten sind intakt</value>
+  </data>
+  <data name="GameServer_VerifyProgress" xml:space="preserve">
+    <value>Wird überprüft: {0}/{1}</value>
+  </data>
+  <data name="GameServer_RepairFound" xml:space="preserve">
+    <value>{0} beschädigte oder fehlende Datei(en) gefunden, Reparatur läuft</value>
+  </data>
+  <data name="GameServer_RepairDone" xml:space="preserve">
+    <value>Beschädigte Dateien erfolgreich repariert</value>
+  </data>
+  <data name="GameServer_InstallingPredownload" xml:space="preserve">
+    <value>Vorab-Download-Dateien werden installiert</value>
+  </data>
+  <data name="GameServer_BranchDataNull" xml:space="preserve">
+    <value>Schnittstelle lieferte leere Daten, Branch-Informationen konnten nicht abgerufen werden</value>
+  </data>
+  <data name="GameServer_NoMainBranch" xml:space="preserve">
+    <value>Daten des Haupt-Branches (Main) konnten nicht abgerufen werden</value>
+  </data>
+  <data name="GameServer_NoPredownload" xml:space="preserve">
+    <value>Vorab-Download ist derzeit nicht verfügbar</value>
+  </data>
+  <data name="GameServer_NoPackageId" xml:space="preserve">
+    <value>Branch-Daten enthalten keine package_id</value>
+  </data>
+  <data name="GameServer_NoPassword" xml:space="preserve">
+    <value>Branch-Daten enthalten kein password</value>
+  </data>
+  <data name="GameServer_NoManifests" xml:space="preserve">
+    <value>Abrufen der Manifeste (manifests) fehlgeschlagen.</value>
+  </data>
+  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
+    <value>Manifest-Prüfsumme stimmt nicht überein: {0}</value>
+  </data>
+  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
+    <value>API-Anfrage fehlgeschlagen: {0}, Fehler: {1}</value>
+  </data>
+  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
+    <value>Datenblock {0} konnte nicht heruntergeladen werden oder hat die Prüfung nicht bestanden.</value>
+  </data>
+  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
+    <value>Datei-Prüfsumme stimmt nicht überein: {0}</value>
+  </data>
+  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
+    <value>Dateigröße stimmt nicht überein: {0}, tatsächlich {1} Bytes, erwartet {2} Bytes</value>
+  </data>
+  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
+    <value>Cache fehlt, Datei übersprungen: {0} (kann später durch Überprüfung repariert werden)</value>
+  </data>
+  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
+    <value>Zusammengesetzte Datei hat Prüfung nicht bestanden (lokale alte Datei möglicherweise beschädigt), übersprungen: {0} (kann später durch Überprüfung repariert werden)</value>
+  </data>
+  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
+    <value>Bereinigen temporärer Blöcke fehlgeschlagen: {0}</value>
+  </data>
+  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
+    <value>Alte SDK-Dateien werden bereinigt …</value>
+  </data>
+  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
+    <value>Kanal-SDK-Konfiguration wird abgerufen …</value>
+  </data>
+  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
+    <value>Abrufen der Kanal-SDK-Konfiguration fehlgeschlagen</value>
+  </data>
+  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
+    <value>Kanal-SDK wird heruntergeladen …</value>
+  </data>
+  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
+    <value>Kanal-SDK wird entpackt …</value>
+  </data>
+  <data name="GameServer_CleanedPlugins" xml:space="preserve">
+    <value>Plugins-Ordner wurde bereinigt</value>
+  </data>
+  <data name="GameServer_InsufficientPermission" xml:space="preserve">
+    <value>Unzureichende Berechtigungen im Spielverzeichnis, Datei konnte nicht geschrieben werden: {0}. Bitte als Administrator ausführen oder Verzeichnisberechtigungen prüfen.</value>
+  </data>
+  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
+    <value>Kanal-SDK-Dateien fehlen oder sind beschädigt, werden erneut heruntergeladen …</value>
+  </data>
+  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
+    <value>Veraltete Dateien werden verarbeitet …</value>
+  </data>
+  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
+    <value>Abrufen der Konfiguration für veraltete Dateien fehlgeschlagen: {0}</value>
+  </data>
+  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
+    <value>Offiziell</value>
+  </data>
+  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
+    <value>Bilibili</value>
+  </data>
+  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
+    <value>Global</value>
+  </data>
+  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
+    <value>Download-Geschwindigkeit</value>
+  </data>
+  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
+    <value>Verbleibende Blöcke: {0}</value>
+  </data>
+  <data name="SpeedGraph_NoData" xml:space="preserve">
+    <value>Keine Geschwindigkeitsdaten verfügbar</value>
+  </data>
+  <data name="SectionGameAnnouncement" xml:space="preserve">
+    <value>Spielankündigungen</value>
+  </data>
+  <data name="GameAnnouncementViewModeTitle" xml:space="preserve">
+    <value>Ankündigungs-Ansichtsmodus</value>
+  </data>
+  <data name="GameAnnouncementViewModeCaption" xml:space="preserve">
+    <value>Wähle, wie Spielankündigungen angezeigt werden sollen</value>
+  </data>
+  <data name="GameAnnouncementViewModeNew" xml:space="preserve">
+    <value>Neues Ankündigungszentrum</value>
+  </data>
+  <data name="GameAnnouncementViewModeClassic" xml:space="preserve">
+    <value>Klassische offizielle Webseite</value>
+  </data>
+  <data name="GameAnnouncement_Title" xml:space="preserve">
+    <value>Spielankündigungen</value>
+  </data>
+  <data name="GameAnnouncement_Loading" xml:space="preserve">
+    <value>Ankündigungen werden geladen …</value>
+  </data>
+  <data name="GameAnnouncement_LoadFailed" xml:space="preserve">
+    <value>Ankündigungen konnten nicht geladen werden. Bitte Netzwerkverbindung prüfen und erneut versuchen.</value>
+  </data>
+  <data name="GameAnnouncement_Retry" xml:space="preserve">
+    <value>Wiederholen</value>
+  </data>
+  <data name="GameAnnouncement_Empty" xml:space="preserve">
+    <value>Keine Ankündigungen vorhanden</value>
+  </data>
+  <data name="GameAnnouncement_SearchPlaceholder" xml:space="preserve">
+    <value>Ankündigungstitel suchen …</value>
+  </data>
+  <data name="GameAnnouncement_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="GameAnnouncement_ClassicMode" xml:space="preserve">
+    <value>Klassische Webseite</value>
+  </data>
+  <data name="GameAnnouncement_Back" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="GameAnnouncement_NoContent" xml:space="preserve">
+    <value>Diese Ankündigung hat keinen Inhalt</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNGF01" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNQD01" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSUSA" xml:space="preserve">
+    <value>Amerika</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSEURO" xml:space="preserve">
+    <value>Europa</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSASIA" xml:space="preserve">
+    <value>Asien</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSCHT" xml:space="preserve">
+    <value>TW/HK/MO</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursBegin" xml:space="preserve">
+    <value>Beginnt in {0} Stunde(n)</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursEnd" xml:space="preserve">
+    <value>Endet in {0} Stunde(n)</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysBegin" xml:space="preserve">
+    <value>Beginnt in {0} Tag(en)</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
+    <value>Endet in {0} Tag(en)</value>
+  </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>Gerät</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id muss eine gültige GUID sein</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time muss ein gültiger Unix-Zeitstempel in Millisekunden sein</value>
+  </data>
+  <data name="Miyoushe_Title" xml:space="preserve">
+    <value>Miyoushe</value>
+  </data>
+  <data name="Miyoushe_CardHint" xml:space="preserve">
+    <value>Offizielle Neuigkeiten, Community-Beiträge und Neuigkeiten von gefolgten Erstellern durchstöbern</value>
+  </data>
+  <data name="Miyoushe_Explore" xml:space="preserve">
+    <value>Entdecken</value>
+  </data>
+  <data name="Miyoushe_Forum" xml:space="preserve">
+    <value>Community</value>
+  </data>
+  <data name="Miyoushe_News" xml:space="preserve">
+    <value>Offizielle Neuigkeiten</value>
+  </data>
+  <data name="Miyoushe_Following" xml:space="preserve">
+    <value>Ich folge</value>
+  </data>
+  <data name="Miyoushe_Favorites" xml:space="preserve">
+    <value>Miyoushe-Favoriten</value>
+  </data>
+  <data name="Miyoushe_Library" xml:space="preserve">
+    <value>Meine Inhalte</value>
+  </data>
+  <data name="Miyoushe_Bookmarks" xml:space="preserve">
+    <value>Lokale Lesezeichen</value>
+  </data>
+  <data name="Miyoushe_History" xml:space="preserve">
+    <value>Verlauf</value>
+  </data>
+  <data name="Miyoushe_MyProfile" xml:space="preserve">
+    <value>Mein Profil</value>
+  </data>
+  <data name="Miyoushe_User" xml:space="preserve">
+    <value>Autorenprofil</value>
+  </data>
+  <data name="Miyoushe_Topic" xml:space="preserve">
+    <value>Thema</value>
+  </data>
+  <data name="Miyoushe_Collection" xml:space="preserve">
+    <value>Sammlung</value>
+  </data>
+  <data name="Miyoushe_Search" xml:space="preserve">
+    <value>Suchergebnisse</value>
+  </data>
+  <data name="Miyoushe_SearchHint" xml:space="preserve">
+    <value>Beiträge suchen oder Beitrags-ID / Miyoushe-Link einfügen</value>
+  </data>
+  <data name="Miyoushe_Guest" xml:space="preserve">
+    <value>Gastmodus</value>
+  </data>
+  <data name="Miyoushe_GuestHint" xml:space="preserve">
+    <value>Öffentliche Beiträge sind ohne Anmeldung sichtbar. Für Feeds und Favoriten bitte ein China-Server-Konto im Launcher auswählen.</value>
+  </data>
+  <data name="Miyoushe_AccountHint" xml:space="preserve">
+    <value>Der Wechsel gilt nur für dieses Fenster</value>
+  </data>
+  <data name="Miyoushe_LoginHint" xml:space="preserve">
+    <value>Bitte melde dich in der Kontoverwaltung des Launchers mit einem Miyoushe-China-Konto an und wähle es hier aus. Bei Ablauf erneut anmelden.</value>
+  </data>
+  <data name="Miyoushe_IdentityError" xml:space="preserve">
+    <value>Der Geräte-Fingerabdruck des Kontos ist nicht verfügbar; in den Gastmodus gewechselt. Bitte in der Kontoverwaltung neu anmelden und wiederholen.</value>
+  </data>
+  <data name="Miyoushe_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="Miyoushe_RefreshHint" xml:space="preserve">
+    <value>Aktuelle Seite aktualisieren (F5)</value>
+  </data>
+  <data name="Miyoushe_Refreshed" xml:space="preserve">
+    <value>Aktualisiert ({0})</value>
+  </data>
+  <data name="Miyoushe_Empty" xml:space="preserve">
+    <value>Hier gibt es noch keine Beiträge</value>
+  </data>
+  <data name="Miyoushe_More" xml:space="preserve">
+    <value>Mehr laden</value>
+  </data>
+  <data name="Miyoushe_SelectPost" xml:space="preserve">
+    <value>Wähle einen Beitrag aus, um zu lesen</value>
+  </data>
+  <data name="Miyoushe_Save" xml:space="preserve">
+    <value>Lokal speichern</value>
+  </data>
+  <data name="Miyoushe_CopyLink" xml:space="preserve">
+    <value>Link kopieren</value>
+  </data>
+  <data name="Miyoushe_Original" xml:space="preserve">
+    <value>Originalbeitrag öffnen</value>
+  </data>
+  <data name="Miyoushe_Article" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Miyoushe_Comments" xml:space="preserve">
+    <value>Kommentare</value>
+  </data>
+  <data name="Miyoushe_HotReplies" xml:space="preserve">
+    <value>Beliebte Kommentare</value>
+  </data>
+  <data name="Miyoushe_LatestReplies" xml:space="preserve">
+    <value>Neueste Kommentare</value>
+  </data>
+  <data name="Miyoushe_OldestReplies" xml:space="preserve">
+    <value>Älteste Kommentare</value>
+  </data>
+  <data name="Miyoushe_OnlyAuthor" xml:space="preserve">
+    <value>Nur Autor</value>
+  </data>
+  <data name="Miyoushe_Hot" xml:space="preserve">
+    <value>Beliebt</value>
+  </data>
+  <data name="Miyoushe_Latest" xml:space="preserve">
+    <value>Neueste</value>
+  </data>
+  <data name="Miyoushe_Featured" xml:space="preserve">
+    <value>Vorgestellt</value>
+  </data>
+  <data name="Miyoushe_Notices" xml:space="preserve">
+    <value>Ankündigungen</value>
+  </data>
+  <data name="Miyoushe_Events" xml:space="preserve">
+    <value>Aktionen</value>
+  </data>
+  <data name="Miyoushe_NoComments" xml:space="preserve">
+    <value>Noch keine Kommentare</value>
+  </data>
+  <data name="Miyoushe_SubReplies" xml:space="preserve">
+    <value>{0} Antworten anzeigen</value>
+  </data>
+  <data name="Miyoushe_Close" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="Miyoushe_Image" xml:space="preserve">
+    <value>Bild anzeigen</value>
+  </data>
+  <data name="Miyoushe_OpenImage" xml:space="preserve">
+    <value>Originalbild öffnen</value>
+  </data>
+  <data name="Miyoushe_LinkCopied" xml:space="preserve">
+    <value>Beitragslink kopiert</value>
+  </data>
+  <data name="Miyoushe_SearchTooLong" xml:space="preserve">
+    <value>Der Suchtext darf maximal 200 Zeichen lang sein</value>
+  </data>
+  <data name="Miyoushe_Retry" xml:space="preserve">
+    <value>Wiederholen</value>
+  </data>
+  <data name="Miyoushe_Timeout" xml:space="preserve">
+    <value>Zeitüberschreitung der Anforderung. Bitte versuche es später erneut.</value>
+  </data>
+  <data name="Miyoushe_Verify" xml:space="preserve">
+    <value>Sicherheitsüberprüfung abschließen</value>
+  </data>
+  <data name="Miyoushe_RiskHint" xml:space="preserve">
+    <value>Miyoushe erfordert eine Sicherheitsüberprüfung; nachfolgende Anforderungen wurden pausiert. Nach Abschluss des offiziellen Captchas wird die Aktion wiederholt.</value>
+  </data>
+  <data name="Miyoushe_VerifyHint" xml:space="preserve">
+    <value>Bitte schließe das offizielle Captcha von Miyoushe ab. Schließe dieses Fenster, um abzubrechen.</value>
+  </data>
+  <data name="Miyoushe_VerifyLoadError" xml:space="preserve">
+    <value>Captcha konnte nicht geladen werden. Bitte Netzwerkverbindung prüfen oder auf der offiziellen Miyoushe-Website verifizieren.</value>
+  </data>
+  <data name="Miyoushe_VerifyCancelled" xml:space="preserve">
+    <value>Verifizierung abgebrochen; Anforderungen bleiben pausiert. Klicke auf „Wiederholen“, um die Verifizierung erneut durchzuführen.</value>
+  </data>
+  <data name="Miyoushe_LibraryError" xml:space="preserve">
+    <value>Lokale Lesezeichen oder der Verlauf konnten nicht gelesen werden. Die bestehende Datei bleibt erhalten.</value>
+  </data>
+  <data name="Miyoushe_Back" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="Miyoushe_RightComments" xml:space="preserve">
+    <value>Kommentare in der Seitenleiste</value>
+  </data>
+  <data name="Miyoushe_CommentsLayoutHint" xml:space="preserve">
+    <value>Aktivieren, um Kommentare in der rechten Seitenleiste anzuzeigen; deaktivieren, um sie unter dem Beitrag anzuzeigen</value>
+  </data>
+  <data name="Miyoushe_LoadingComments" xml:space="preserve">
+    <value>Kommentare werden geladen …</value>
+  </data>
+  <data name="Miyoushe_CommentsUnavailable" xml:space="preserve">
+    <value>Kommentare sind derzeit nicht verfügbar. Bitte über den obigen Hinweis erneut versuchen.</value>
+  </data>
+  <data name="Miyoushe_Like" xml:space="preserve">
+    <value>Gefällt mir</value>
+  </data>
+  <data name="Miyoushe_Liked" xml:space="preserve">
+    <value>Gefällt mir</value>
+  </data>
+  <data name="Miyoushe_PublishComment" xml:space="preserve">
+    <value>Kommentieren</value>
+  </data>
+  <data name="Miyoushe_Reply" xml:space="preserve">
+    <value>Antworten</value>
+  </data>
+  <data name="Miyoushe_ReplyTo" xml:space="preserve">
+    <value>Antworten an @{0}</value>
+  </data>
+  <data name="Miyoushe_CommentHint" xml:space="preserve">
+    <value>Schreibe einen Kommentar (maximal 1000 Zeichen)</value>
+  </data>
+  <data name="Miyoushe_SendComment" xml:space="preserve">
+    <value>Auf Miyoushe veröffentlichen</value>
+  </data>
+  <data name="Miyoushe_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Miyoushe_VerifyAndSend" xml:space="preserve">
+    <value>Bestätigen und veröffentlichen</value>
+  </data>
+  <data name="Miyoushe_Resubmit" xml:space="preserve">
+    <value>Erneut veröffentlichen</value>
+  </data>
+  <data name="Miyoushe_CommentSent" xml:space="preserve">
+    <value>Kommentar eingereicht; neueste Kommentare werden angezeigt</value>
+  </data>
+  <data name="Miyoushe_SubmissionUncertain" xml:space="preserve">
+    <value>Ergebnis der Übermittlung konnte nicht bestätigt werden, Entwurf wurde gespeichert. Bitte prüfe zuerst den Originalbeitrag, bevor du es erneut veröffentlichst.</value>
+  </data>
+  <data name="Miyoushe_CommentRiskHint" xml:space="preserve">
+    <value>Miyoushe erfordert eine Sicherheitsüberprüfung. Wähle „Bestätigen und veröffentlichen“, um das offizielle Captcha abzuschließen und den Kommentar abzusenden.</value>
+  </data>
+  <data name="ModTrust_Title" xml:space="preserve">
+    <value>Codesignatur-Vertrauen (FufuLauncher CA)</value>
+  </data>
+  <data name="ModTrust_Loading" xml:space="preserve">
+    <value>Vertrauensstatus wird geladen …</value>
+  </data>
+  <data name="ModTrust_RefreshBtn" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="ModTrust_PackageMissing" xml:space="preserve">
+    <value>Vertrauenspaket noch nicht bereitgestellt: Bitte platziere Zertifikats- und Manifestdateien unter Assets\Trust oder klicke auf „Jetzt aktualisieren“, um sie vom offiziellen Server zu synchronisieren.</value>
+  </data>
+  <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>Aktueller Status: {0}</value>
+  </data>
+  <data name="ModTrust_InstalledUser" xml:space="preserve">
+    <value>Installiert (aktueller Benutzer)</value>
+  </data>
+  <data name="ModTrust_InstalledMachine" xml:space="preserve">
+    <value>Installiert (dieses Gerät)</value>
+  </data>
+  <data name="ModTrust_NotInstalled" xml:space="preserve">
+    <value>Nicht installiert</value>
+  </data>
+  <data name="ModTrust_InstallTitle" xml:space="preserve">
+    <value>Zertifikat installieren / deinstallieren</value>
+  </data>
+  <data name="ModTrust_InstallCaption" xml:space="preserve">
+    <value>Nach der Installation werden unsere Codesignaturen von Windows und diesem Launcher anerkannt. Das Zertifikat kann jederzeit deinstalliert werden, ohne andere Zertifikate zu beeinträchtigen.</value>
+  </data>
+  <data name="ModTrust_InstallUserBtn" xml:space="preserve">
+    <value>Installieren (aktueller Benutzer)</value>
+  </data>
+  <data name="ModTrust_UninstallUserBtn" xml:space="preserve">
+    <value>Deinstallieren (aktueller Benutzer)</value>
+  </data>
+  <data name="ModTrust_InstallMachineBtn" xml:space="preserve">
+    <value>Installieren (dieses Gerät, Administrator erforderlich)</value>
+  </data>
+  <data name="ModTrust_UninstallMachineBtn" xml:space="preserve">
+    <value>Deinstallieren (dieses Gerät, Administrator erforderlich)</value>
+  </data>
+  <data name="ModTrust_ScopeUser" xml:space="preserve">
+    <value>Aktueller Benutzer</value>
+  </data>
+  <data name="ModTrust_ScopeMachine" xml:space="preserve">
+    <value>Dieses Gerät</value>
+  </data>
+  <data name="ModTrust_InstallConfirm" xml:space="preserve">
+    <value>Das Plattformzertifikat wird für „{0}“ installiert, damit unsere Codesignaturen erkannt werden. Fortfahren?</value>
+  </data>
+  <data name="ModTrust_UninstallConfirm" xml:space="preserve">
+    <value>Das Plattformzertifikat für „{0}“ wird deinstalliert. Unsere Codesignaturen werden danach nicht mehr als vertrauenswürdig eingestuft. Fortfahren?</value>
+  </data>
+  <data name="ModTrust_SyncTitle" xml:space="preserve">
+    <value>Vertrauensinformationen aktualisieren</value>
+  </data>
+  <data name="ModTrust_SyncCaption" xml:space="preserve">
+    <value>Aktualisiert die Codesignatur-Vertrauensinformationen vom offiziellen Server.</value>
+  </data>
+  <data name="ModTrust_SyncBtn" xml:space="preserve">
+    <value>Jetzt aktualisieren</value>
+  </data>
+  <data name="ModTrust_SyncConfirm" xml:space="preserve">
+    <value>Vertrauensinformationen werden vom offiziellen Server heruntergeladen und überprüft. Bei fehlerhafter Überprüfung werden sie nicht angewendet. Fortfahren?</value>
+  </data>
+  <data name="ModTrust_StrictTitle" xml:space="preserve">
+    <value>Blockierung aktivieren</value>
+  </data>
+  <data name="ModTrust_StrictConfirm" xml:space="preserve">
+    <value>Nach der Aktivierung werden Dateien, die die Signaturprüfung nicht bestehen, nicht mehr geladen. Dies kann von dir verwendete Drittanbieter-Plugins beeinträchtigen. Fortfahren?</value>
+  </data>
+  <data name="ModTrust_BlockedTitle" xml:space="preserve">
+    <value>Codesignatur-Prüfung fehlgeschlagen</value>
+  </data>
+  <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>Diese Datei hat die Signaturprüfung nicht bestanden und wurde blockiert:</value>
+  </data>
+  <data name="ModTrust_WarnTitle" xml:space="preserve">
+    <value>Codesignatur-Hinweis</value>
+  </data>
+  <data name="ModTrust_InstalledMachineEffective" xml:space="preserve">
+    <value>Installiert (dieses Gerät, gilt für alle Benutzer)</value>
+  </data>
+  <data name="ModTrust_InstalledBoth" xml:space="preserve">
+    <value>Installiert (aktueller Benutzer + dieses Gerät)</value>
+  </data>
+  <data name="ModTrust_MachineHint" xml:space="preserve">
+    <value>Der Bereich „Aktueller Benutzer“ wird durch die geräteweite Installation bereitgestellt; Installation und Deinstallation bitte auf Geräteebene durchführen.</value>
+  </data>
+  <data name="ModTrust_ModeTitle" xml:space="preserve">
+    <value>Verhalten bei ungültiger Signatur</value>
+  </data>
+  <data name="ModTrust_ModeWarn" xml:space="preserve">
+    <value>Nur warnen</value>
+  </data>
+  <data name="ModTrust_ModeEnforce" xml:space="preserve">
+    <value>Blockieren</value>
+  </data>
+  <data name="BanCheck_KilledTitle" xml:space="preserve">
+    <value>Zugriff verweigert</value>
+  </data>
+  <data name="BanCheck_KilledMessage" xml:space="preserve">
+    <value>Dieses Gerät wurde für die Nutzung von FufuLauncher gesperrt.{0}{0}UID: {1}{0}Grund: {2}{0}{0}Wenn du glaubst, dass es sich um ein Versehen handelt, kannst du unter folgender Adresse Einspruch einlegen (wenn die UID als „-“ angezeigt wird, lasse das Feld im Formular leer):{0}{3}{0}{0}Einspruchsseite jetzt öffnen? Bei Auswahl von „Nein“ wird der Launcher geschlossen.</value>
+  </data>
+  <data name="BanCheck_RevokedReason" xml:space="preserve">
+    <value>Zugriff wurde vom Server widerrufen</value>
+  </data>
+  <data name="BanCheck_BannedReason" xml:space="preserve">
+    <value>Diese UID steht auf der Sperrliste des Servers</value>
+  </data>
+  <data name="GachaAnalysis_ReadingBoundRoles" xml:space="preserve">
+    <value>Mit Miyoushe verknüpfte Spielfiguren werden abgefragt …</value>
+  </data>
+  <data name="GachaAnalysis_SelectRole" xml:space="preserve">
+    <value>Spielfigur auswählen</value>
+  </data>
+  <data name="GachaAnalysis_SelectRoleHint" xml:space="preserve">
+    <value>Bitte wähle die Figur aus, deren Gebetsverlauf abgerufen werden soll. Bilibili-Rollen werden unter „Irminsul“ aufgeführt. Falls die gewünschte Figur fehlt, brich ab und prüfe die Miyoushe-Verknüpfung oder nutze „Aus dem Spiel abrufen“.</value>
+  </data>
+  <data name="GachaAnalysis_SkyIsland" xml:space="preserve">
+    <value>Celestia (Offiziell)</value>
+  </data>
+  <data name="GachaAnalysis_WorldTree" xml:space="preserve">
+    <value>Irminsul (Bilibili)</value>
+  </data>
+  <data name="GachaAnalysis_SkyIslandShort" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GachaAnalysis_WorldTreeShort" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="GameRole_Select" xml:space="preserve">
+    <value>Spielfigur wechseln</value>
+  </data>
+  <data name="GameRole_Hint" xml:space="preserve">
+    <value>Standardfigur unter „Verknüpfte Rollen“ festlegen. Jede Funktion kann unabhängig und ohne gegenseitige Beeinflussung den Server wechseln.</value>
+  </data>
+  <data name="GameRole_Refresh" xml:space="preserve">
+    <value>Verknüpfte Figuren aktualisieren</value>
+  </data>
+  <data name="GameRole_Unavailable" xml:space="preserve">
+    <value>Die ausgewählte Figur befindet sich nicht mehr in der Verknüpfungsliste. Bitte Figur neu auswählen oder aktualisieren.</value>
+  </data>
+  <data name="GameRole_WidgetMismatch" xml:space="preserve">
+    <value>Die alternative Notizen-Schnittstelle konnte die ausgewählte Figur nicht bestätigen, Anzeige gestoppt. Bitte aktiviere die Notizen-Berechtigung für diese Figur und versuche es erneut.</value>
+  </data>
+  <data name="GameRole_SkyIsland" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GameRole_WorldTree" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="MiyousheQr_Title" xml:space="preserve">
+    <value>Bildschirm-QR-Code-Scanner</value>
+  </data>
+  <data name="MiyousheQr_Instructions" xml:space="preserve">
+    <value>„Einmal scannen“ liest den ausgewählten Bereich einmalig aus; „Dauerscan“ sucht fortlaufend nach neuen QR-Codes im gewählten Bereich. Nach der Erkennung erfolgt die Anmeldung mit dem aktuellen Miyoushe-Konto. Esc oder Rechtsklick bricht die Auswahl ab.</value>
+  </data>
+  <data name="MiyousheQr_CurrentAccount" xml:space="preserve">
+    <value>Aktuelles Miyoushe-Konto</value>
+  </data>
+  <data name="MiyousheQr_Target" xml:space="preserve">
+    <value>Anmeldeziel</value>
+  </data>
+  <data name="MiyousheQr_ConfirmHint" xml:space="preserve">
+    <value>Nach der Bestätigung wird das Gerät, auf dem der QR-Code angezeigt wird, im obigen Konto angemeldet.</value>
+  </data>
+  <data name="MiyousheQr_Capture" xml:space="preserve">
+    <value>Einmal scannen</value>
+  </data>
+  <data name="MiyousheQr_Confirm" xml:space="preserve">
+    <value>Anmeldung bestätigen</value>
+  </data>
+  <data name="MiyousheQr_SelectionHint" xml:space="preserve">
+    <value>Ziehe mit der Maus, um den QR-Code auszuwählen · Esc oder Rechtsklick zum Abbrechen</value>
+  </data>
+  <data name="MiyousheQr_Genshin" xml:space="preserve">
+    <value>Genshin Impact</value>
+  </data>
+  <data name="MiyousheQr_StarRail" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="MiyousheQr_Zzz" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="MiyousheQr_Honkai3" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="MiyousheQr_Passport" xml:space="preserve">
+    <value>miHoYo-Pass</value>
+  </data>
+  <data name="MiyousheQr_NoAccount" xml:space="preserve">
+    <value>Bitte melde dich zuerst im Launcher bei einem Miyoushe-Konto an.</value>
+  </data>
+  <data name="MiyousheQr_CnOnly" xml:space="preserve">
+    <value>Bitte wechsle vor dem Scannen zu einem chinesischen Miyoushe-Konto.</value>
+  </data>
+  <data name="MiyousheQr_CredentialsMissing" xml:space="preserve">
+    <value>Diesem Konto fehlen die zum Scannen erforderlichen Anmeldedaten. Bitte melde dich mit der Miyoushe-App erneut im Launcher an.</value>
+  </data>
+  <data name="MiyousheQr_AccountChanged" xml:space="preserve">
+    <value>Das aktuelle Miyoushe-Konto hat sich geändert. Bitte wähle den QR-Code erneut aus.</value>
+  </data>
+  <data name="MiyousheQr_Expired" xml:space="preserve">
+    <value>Der QR-Code ist abgelaufen. Bitte auf dem Zielgerät aktualisieren und erneut auswählen.</value>
+  </data>
+  <data name="MiyousheQr_Unsupported" xml:space="preserve">
+    <value>Dieser QR-Code wird für die miHoYo-Anmeldung nicht unterstützt. Unterstützt werden miHoYo-Pass sowie China-Server-Codes für Genshin Impact, Star Rail, ZZZ und Honkai Impact 3rd.</value>
+  </data>
+  <data name="MiyousheQr_NotFound" xml:space="preserve">
+    <value>Im ausgewählten Bereich wurde kein QR-Code gefunden. Bitte den gesamten QR-Code mit etwas weißem Rand auswählen.</value>
+  </data>
+  <data name="MiyousheQr_Multiple" xml:space="preserve">
+    <value>Mehrere QR-Codes erkannt. Bitte auf den gewünschten Code klicken. Esc oder Rechtsklick bricht ab.</value>
+  </data>
+  <data name="MiyousheQr_Cancelled" xml:space="preserve">
+    <value>Auswahl abgebrochen.</value>
+  </data>
+  <data name="MiyousheQr_Recognizing" xml:space="preserve">
+    <value>QR-Code wird erkannt …</value>
+  </data>
+  <data name="MiyousheQr_Ready" xml:space="preserve">
+    <value>QR-Code erkannt. Bitte Konto und Anmeldeziel überprüfen und anschließend bestätigen.</value>
+  </data>
+  <data name="MiyousheQr_Confirming" xml:space="preserve">
+    <value>Anmeldung wird bestätigt …</value>
+  </data>
+  <data name="MiyousheQr_Success" xml:space="preserve">
+    <value>Anmeldung bestätigt. Bitte Zielgerät überprüfen.</value>
+  </data>
+  <data name="MiyousheQr_ResultUnknown" xml:space="preserve">
+    <value>Anmeldeergebnis unbestimmt. Bitte zuerst das Zielgerät prüfen. Falls nicht angemeldet, QR-Code aktualisieren und erneut auswählen.</value>
+  </data>
+  <data name="MiyousheQr_CaptureFailed" xml:space="preserve">
+    <value>Bildschirmauswahl oder Lesen des QR-Codes fehlgeschlagen. Bitte erneut versuchen.</value>
+  </data>
+  <data name="MiyousheQr_HttpError" xml:space="preserve">
+    <value>Netzwerkanfrage des Scan-Dienstes fehlgeschlagen. Bitte QR-Code aktualisieren und erneut versuchen.</value>
+  </data>
+  <data name="MiyousheQr_ResponseError" xml:space="preserve">
+    <value>Der Scan-Dienst lieferte eine unbekannte Antwort. Bitte QR-Code aktualisieren und erneut versuchen.</value>
+  </data>
+  <data name="MiyousheQr_Rejected" xml:space="preserve">
+    <value>Scan-Anfrage wurde abgelehnt. Der QR-Code ist möglicherweise abgelaufen oder die Anmeldedaten sind ungültig. Bitte QR-Code aktualisieren oder erneut bei Miyoushe anmelden.</value>
+  </data>
+  <data name="MiyousheQr_Continuous" xml:space="preserve">
+    <value>Dauerscan</value>
+  </data>
+  <data name="MiyousheQr_Stop" xml:space="preserve">
+    <value>Scan beenden</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirm" xml:space="preserve">
+    <value>Anmeldung automatisch bestätigen</value>
+  </data>
+  <data name="MiyousheQr_AutoConfirmHint" xml:space="preserve">
+    <value>Wenn vor dem Scan aktiviert, wird jeder neu erkannte unterstützte QR-Code sofort mit dem aktuellen Miyoushe-Konto bestätigt.</value>
+  </data>
+  <data name="MiyousheQr_Scanning" xml:space="preserve">
+    <value>Warte auf neue QR-Codes im Bereich, {0} Mal bestätigt. Klicke auf „Scan beenden“, um abzubrechen.</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLogin" xml:space="preserve">
+    <value>Scan nach erfolgreicher Anmeldung beenden</value>
+  </data>
+  <data name="MiyousheQr_StopAfterLoginHint" xml:space="preserve">
+    <value>Wenn aktiviert, wird der Dauerscan nach erfolgreicher Anmeldung beendet und der Auswahlrahmen entfernt. Deaktivieren, um weitere QR-Codes zu scannen.</value>
+  </data>
+  <data name="MiyousheQr_Stopped" xml:space="preserve">
+    <value>Scannen beendet.</value>
+  </data>
+  <data name="MiyousheQr_RegionUnavailable" xml:space="preserve">
+    <value>Der ausgewählte Bereich ist nicht mehr verfügbar. Bitte den QR-Code-Bereich erneut auswählen.</value>
+  </data>
+  <data name="MiyousheQr_SessionLimit" xml:space="preserve">
+    <value>Das Limit für diese Dauerscan-Sitzung wurde erreicht. Bitte Scan neu starten.</value>
+  </data>
+  <data name="Checkin_Game_hkrpg_cn" xml:space="preserve">
+    <value>Honkai: Star Rail</value>
+  </data>
+  <data name="Checkin_Game_nap_cn" xml:space="preserve">
+    <value>Zenless Zone Zero</value>
+  </data>
+  <data name="Checkin_Game_bh3_cn" xml:space="preserve">
+    <value>Honkai Impact 3rd</value>
+  </data>
+  <data name="Checkin_Game_bh2_cn" xml:space="preserve">
+    <value>Houkai Gakuen 2</value>
+  </data>
+  <data name="Checkin_Game_nxx_cn" xml:space="preserve">
+    <value>Tears of Themis</value>
+  </data>
+  <data name="Checkin_RequestTooFrequent" xml:space="preserve">
+    <value>Zu viele Anfragen. Bitte versuche es später erneut.</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Title" xml:space="preserve">
+    <value>Belohnungs-Abholmethode deaktivieren</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Content" xml:space="preserve">
+    <value>Das Deaktivieren der Belohnungsabholung über {0} bedeutet, dass {0} nicht mehr in deiner Liste verfügbarer Methoden erscheint und du Belohnungen nicht mehr auf diese Weise abholen kannst.</value>
+  </data>
+  <data name="Plugin_ResinRewardDisable_Confirm" xml:space="preserve">
+    <value>Trotzdem deaktivieren</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Title" xml:space="preserve">
+    <value>Warnung vor dem Deaktivieren</value>
+  </data>
+  <data name="Plugin_PreventDetectionPopupDisable_Content" xml:space="preserve">
+    <value>Das Deaktivieren von „{0}“ kann in bestimmten Ausnahmefällen dazu führen, dass du aus dem Spiel geworfen wirst.</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Title" xml:space="preserve">
+    <value>Einstellungen automatisch wiederhergestellt</value>
+  </data>
+  <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
+    <value>Folgende Einstellungen wurden ohne Bestätigung der Deaktivierungs-Warnung deaktiviert und daher automatisch wieder aktiviert:
+{0}</value>
+  </data>
+  <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
+    <value>4-Sterne-Ziehungen</value>
+  </data>
+  <data name="Common_Confirm" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Common_CopyFailed_Format" xml:space="preserve">
+    <value>Kopieren fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Common_Loading" xml:space="preserve">
+    <value>Wird geladen...</value>
+  </data>
+  <data name="PluginSettings_DefaultPreset" xml:space="preserve">
+    <value>Standard-Voreinstellung</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="Gacha_Pool_Weapon_FullName" xml:space="preserve">
+    <value>Waffenaktionsgebet</value>
+  </data>
+  <data name="AdditionalProgram_SelectFailed_Format" xml:space="preserve">
+    <value>Auswahl fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Common_Disabled" xml:space="preserve">
+    <value>Deaktiviert</value>
+  </data>
+  <data name="PluginStore_AccessKey" xml:space="preserve">
+    <value>Zugriffsschlüssel</value>
+  </data>
+  <data name="Account_LoggedInNoRole" xml:space="preserve">
+    <value>Konto angemeldet (kein Charakter gebunden)</value>
+  </data>
+  <data name="Account_CookieRefreshFailed" xml:space="preserve">
+    <value>Cookie-Aktualisierung fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_ConfigReadFailedTitle" xml:space="preserve">
+    <value>Konfiguration konnte nicht gelesen werden</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockNotInstalled" xml:space="preserve">
+    <value>FPS-Unlocker ist nicht installiert</value>
+  </data>
+  <data name="Gacha_Kpi_MonthlyAvg_Format" xml:space="preserve">
+    <value>Durchschn. {0} Ziehungen/Monat</value>
+  </data>
+  <data name="Account_DefaultSignature" xml:space="preserve">
+    <value>Hier steht noch nichts...</value>
+  </data>
+  <data name="Common_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="Gacha_NoRecordsFetched" xml:space="preserve">
+    <value>Keine Einträge abgerufen; Sicherung wurde erstellt.</value>
+  </data>
+  <data name="Gacha_Pool_Character2_FullName" xml:space="preserve">
+    <value>Figurenaktionsgebet-2</value>
+  </data>
+  <data name="Gacha_Pool_Novice" xml:space="preserve">
+    <value>Neulingsgebet</value>
+  </data>
+  <data name="Help_InitFailed" xml:space="preserve">
+    <value>Initialisierung fehlgeschlagen</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginFailed_Format" xml:space="preserve">
+    <value>Installation des privaten Plugins fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Account_LoggedIn" xml:space="preserve">
+    <value>Konto angemeldet</value>
+  </data>
+  <data name="PluginSettings_PresetNoHashHint" xml:space="preserve">
+    <value>Voreinstellung enthält keinen Hash; Kompatibilität kann nicht geprüft werden</value>
+  </data>
+  <data name="Account_Server_Global" xml:space="preserve">
+    <value>Globaler Server</value>
+  </data>
+  <data name="Account_LoginMiyoushe" xml:space="preserve">
+    <value>Bei HoYoLAB anmelden</value>
+  </data>
+  <data name="PluginSettings_ParsePresetFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei kann nicht analysiert werden
+Details: {0}</value>
+  </data>
+  <data name="Common_JsonFile" xml:space="preserve">
+    <value>JSON-Datei</value>
+  </data>
+  <data name="Gacha_LocalDataLoaded" xml:space="preserve">
+    <value>Lokale Daten und Bildressourcen geladen.</value>
+  </data>
+  <data name="Plugin_AddFailed_Format" xml:space="preserve">
+    <value>Hinzufügen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Account_CookieCopySuccessDetail" xml:space="preserve">
+    <value>Cookie wurde erfolgreich in die Zwischenablage kopiert</value>
+  </data>
+  <data name="Common_Waiting" xml:space="preserve">
+    <value>Bitte warten...</value>
+  </data>
+  <data name="PluginSettings_UnknownPropertyValue_Format" xml:space="preserve">
+    <value>Unbekannter Eigenschaftswert: {0}</value>
+  </data>
+  <data name="Gacha_CaptureFailed" xml:space="preserve">
+    <value>Link konnte nicht abgerufen werden</value>
+  </data>
+  <data name="Common_DeleteFailed_Format" xml:space="preserve">
+    <value>Löschen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedTitle" xml:space="preserve">
+    <value>Konfiguration konnte nicht angewendet werden</value>
+  </data>
+  <data name="Common_SaveFailed_Format" xml:space="preserve">
+    <value>Speichern fehlgeschlagen: {0}</value>
+  </data>
+  <data name="FilePicker_COMFailure" xml:space="preserve">
+    <value>Dateiauswahl fehlgeschlagen. Wenn als Administrator ausgeführt, versuchen Sie den Standardbenutzermodus</value>
+  </data>
+  <data name="PluginSettings_DevPermissionRequired" xml:space="preserve">
+    <value>Entwicklerberechtigung erforderlich, um diese Funktion zu nutzen</value>
+  </data>
+  <data name="Plugin_AddPlugin_Format" xml:space="preserve">
+    <value>Plugin hinzufügen: {0}</value>
+  </data>
+  <data name="Common_CopySuccess" xml:space="preserve">
+    <value>Erfolgreich kopiert</value>
+  </data>
+  <data name="Common_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="Gacha_Pool_Standard" xml:space="preserve">
+    <value>Standardgebet</value>
+  </data>
+  <data name="Plugin_PluginFiles" xml:space="preserve">
+    <value>Plugin-Dateien</value>
+  </data>
+  <data name="Gacha_NoHistoryFoundTryCapture" xml:space="preserve">
+    <value>Keine Verlaufsdatei gefunden; bitte Erfassung versuchen</value>
+  </data>
+  <data name="Common_UnknownSize" xml:space="preserve">
+    <value>Unbekannte Größe</value>
+  </data>
+  <data name="PluginStore_EnterPrivateIdAndKey" xml:space="preserve">
+    <value>Bitte private Plugin-ID und Zugriffsschlüssel eingeben:</value>
+  </data>
+  <data name="Gacha_CaptureAppNotFound" xml:space="preserve">
+    <value>CaptureApp.exe nicht gefunden</value>
+  </data>
+  <data name="Account_RefreshInfoFailed_Format" xml:space="preserve">
+    <value>Aktualisierung der Kontoinformationen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_RoleNoRecords" xml:space="preserve">
+    <value>Keine Gebetseinträge für diese Figur</value>
+  </data>
+  <data name="Common_OperationFailed" xml:space="preserve">
+    <value>Vorgang fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_UrlObtainedAutoLoading" xml:space="preserve">
+    <value>Link erhalten, automatisches Laden wird gestartet...</value>
+  </data>
+  <data name="Common_Done" xml:space="preserve">
+    <value>Fertig!</value>
+  </data>
+  <data name="Account_LoginSuccess" xml:space="preserve">
+    <value>Anmeldung erfolgreich</value>
+  </data>
+  <data name="Common_Install" xml:space="preserve">
+    <value>Installieren</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedTitle" xml:space="preserve">
+    <value>Speichern des Status fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_StateSaveFailedDetail_Format" xml:space="preserve">
+    <value>Aktivierungsstatus kann mangels Schreibrechten nicht gespeichert werden
+Details: {0}</value>
+  </data>
+  <data name="PluginSettings_SwitchPresetWriteFailedDetail_Format" xml:space="preserve">
+    <value>Beim Wechseln der Voreinstellung kann nicht geschrieben werden
+Details: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_PerPullCost" xml:space="preserve">
+    <value>Basiert auf 160 Urgestein pro Ziehung</value>
+  </data>
+  <data name="Help_DocDownloadException_Format" xml:space="preserve">
+    <value>Fehler beim Herunterladen des Dokuments: {0}</value>
+  </data>
+  <data name="Gacha_Bucket_Pity" xml:space="preserve">
+    <value>Hard-Pity-Bereich</value>
+  </data>
+  <data name="Gacha_Kpi_DeepestPity" xml:space="preserve">
+    <value>Aktuell tiefster Pity-Wert</value>
+  </data>
+  <data name="PluginStore_InstallingPrivatePlugin_Format" xml:space="preserve">
+    <value>Privates Plugin wird installiert: {0}</value>
+  </data>
+  <data name="Account_DataReadFailed" xml:space="preserve">
+    <value>Kontodaten konnten nicht gelesen werden</value>
+  </data>
+  <data name="Account_LoginCancelled" xml:space="preserve">
+    <value>Anmeldung abgebrochen</value>
+  </data>
+  <data name="Gacha_Pool_Character_FullName" xml:space="preserve">
+    <value>Figurenaktionsgebet</value>
+  </data>
+  <data name="PluginStore_VersionTooLowMessage_Format" xml:space="preserve">
+    <value>Plugin „{0}“ erfordert Launcher-Version ≥ {1}, aktuelle Version ist {2}
+
+Bitte Launcher vor der Installation aktualisieren.</value>
+  </data>
+  <data name="Common_Error_Format" xml:space="preserve">
+    <value>Fehler: {0}</value>
+  </data>
+  <data name="Gacha_DeletedUidRecordsDetail_Format" xml:space="preserve">
+    <value>Gebetsverlauf für UID gelöscht: {0}</value>
+  </data>
+  <data name="PluginSettings_UnknownPlugin" xml:space="preserve">
+    <value>Unbekanntes Plugin</value>
+  </data>
+  <data name="Gacha_Pool_Character" xml:space="preserve">
+    <value>Figurenaktionsgebet</value>
+  </data>
+  <data name="Common_CopyFailed" xml:space="preserve">
+    <value>Kopieren fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_FetchingData" xml:space="preserve">
+    <value>Daten werden abgerufen...</value>
+  </data>
+  <data name="PluginSettings_ReadConfigFailedDetail_Format" xml:space="preserve">
+    <value>Konfigurationsdatei kann nicht gelesen werden
+Details: {0}</value>
+  </data>
+  <data name="Gacha_ImportingProgress_Format" xml:space="preserve">
+    <value>Eintrag {0} wird importiert...</value>
+  </data>
+  <data name="Common_UnknownError" xml:space="preserve">
+    <value>Unbekannter Fehler</value>
+  </data>
+  <data name="Common_OperationFailed_Format" xml:space="preserve">
+    <value>Vorgang fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_FourStarPull" xml:space="preserve">
+    <value>4-Sterne-Ziehung</value>
+  </data>
+  <data name="Gacha_Kpi_AllPoolFiveStar" xml:space="preserve">
+    <value>Alle 5-Sterne-Objekte aller Banner</value>
+  </data>
+  <data name="PluginSettings_ImportFailedTitle" xml:space="preserve">
+    <value>Import fehlgeschlagen</value>
+  </data>
+  <data name="Plugin_StateChanged_Format" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="Gacha_Items_Format" xml:space="preserve">
+    <value>{0} Objekte</value>
+  </data>
+  <data name="Help_NoDocumentSelected" xml:space="preserve">
+    <value>Kein Dokument ausgewählt</value>
+  </data>
+  <data name="Gacha_InvalidUrlFormat" xml:space="preserve">
+    <value>Falsches Linkformat; API-Adresse kann nicht extrahiert werden</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredMessage" xml:space="preserve">
+    <value>Globaler Auto-Clicker erfordert Administratorrechte zum Registrieren von Tastenkombinationen und Senden von Tastenereignissen. Bitte als Administrator neu starten.</value>
+  </data>
+  <data name="FilePicker_Filter_ImageOrVideo" xml:space="preserve">
+    <value>Bilder oder Videos</value>
+  </data>
+  <data name="Account_LoadingUserInfo" xml:space="preserve">
+    <value>Benutzerinformationen werden geladen...</value>
+  </data>
+  <data name="PluginSettings_FpsUnlockEnabled" xml:space="preserve">
+    <value>Aktiviert, FPS-Unlock aktiv</value>
+  </data>
+  <data name="Gacha_ExportSuccess_Format" xml:space="preserve">
+    <value>Export erfolgreich, Datei gespeichert unter: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled" xml:space="preserve">
+    <value>Zeugnis des Schicksals</value>
+  </data>
+  <data name="PluginSettings_StateSwitchFailedTitle" xml:space="preserve">
+    <value>Statuswechsel fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_ApplyFailedDetail_Format" xml:space="preserve">
+    <value>Änderungen können nicht angewendet werden
+Details: {0}</value>
+  </data>
+  <data name="PluginSettings_EnsurePluginDirConfigHint" xml:space="preserve">
+    <value>Stellen Sie sicher, dass der Ordner und config.ini im Verzeichnis Plugins existieren</value>
+  </data>
+  <data name="Gacha_Bucket_Lucky" xml:space="preserve">
+    <value>Glücksbereich</value>
+  </data>
+  <data name="Blank_DefaultAccountName_Format" xml:space="preserve">
+    <value>Konto_{0}_{1}</value>
+  </data>
+  <data name="PluginStore_ForceExecuteNotRecommended" xml:space="preserve">
+    <value>Ausführung erzwingen (nicht empfohlen)</value>
+  </data>
+  <data name="Gacha_CapturingReadingData" xml:space="preserve">
+    <value>Erfassungsprogramm liest Daten...</value>
+  </data>
+  <data name="Account_MaxAccounts_Format" xml:space="preserve">
+    <value>Sie können maximal {0} Konten hinzufügen</value>
+  </data>
+  <data name="Genshin_DiaryFailed_Format" xml:space="preserve">
+    <value>Anfrage fehlgeschlagen ({0}): {1}</value>
+  </data>
+  <data name="PluginSettings_AuthFailedTitle" xml:space="preserve">
+    <value>Berechtigungsüberprüfung fehlgeschlagen</value>
+  </data>
+  <data name="Blank_CurrentLoggedInAccount" xml:space="preserve">
+    <value>Aktuell angemeldetes Konto</value>
+  </data>
+  <data name="PluginStore_CaptchaTitle" xml:space="preserve">
+    <value>Captcha-Verifizierung</value>
+  </data>
+  <data name="Gacha_Pool_Novice_FullName" xml:space="preserve">
+    <value>Neulingsgebet</value>
+  </data>
+  <data name="Account_OpeningLoginWindow" xml:space="preserve">
+    <value>Anmeldefenster wird geöffnet...</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsEstimate_Format" xml:space="preserve">
+    <value>ca. {0:N0} Urgestein</value>
+  </data>
+  <data name="Gacha_UnknownFourStar" xml:space="preserve">
+    <value>Unbekanntes 4-Sterne-Objekt</value>
+  </data>
+  <data name="Main_GenshinCheckinDone" xml:space="preserve">
+    <value>Genshin Impact-Tagesanmeldung abgeschlossen</value>
+  </data>
+  <data name="PluginStore_LuaTestFailed_Format" xml:space="preserve">
+    <value>Lua-Skripttest fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Main_LiveWallpaper" xml:space="preserve">
+    <value>Animiertes Hintergrundbild</value>
+  </data>
+  <data name="Gacha_NoDateRecords" xml:space="preserve">
+    <value>Keine Datumseinträge</value>
+  </data>
+  <data name="Gacha_Times_Format" xml:space="preserve">
+    <value>{0} Mal</value>
+  </data>
+  <data name="Account_AddAccount" xml:space="preserve">
+    <value>Konto hinzufügen</value>
+  </data>
+  <data name="Gacha_NoRecordsInFile" xml:space="preserve">
+    <value>Keine Gebetseinträge in der Datei gefunden</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei kann nicht gelöscht werden; Datei wird verwendet oder Zugriff verweigert
+Details: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarPulls" xml:space="preserve">
+    <value>5-Sterne-Ziehungen</value>
+  </data>
+  <data name="PluginStore_LogWriteFailed_Format" xml:space="preserve">
+    <value>Protokoll konnte nicht geschrieben werden: {0}</value>
+  </data>
+  <data name="PluginStore_VersionTooLowTitle" xml:space="preserve">
+    <value>Version zu niedrig</value>
+  </data>
+  <data name="AutoClicker_MissingAdminError" xml:space="preserve">
+    <value>Fehler: Fehlende Administratorrechte; Auto-Clicker kann nicht gestartet werden</value>
+  </data>
+  <data name="Common_Notice" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="PluginSettings_NoDescription" xml:space="preserve">
+    <value>Keine Beschreibung</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Default" xml:space="preserve">
+    <value>Standard (nicht angegeben)</value>
+  </data>
+  <data name="PluginStore_LuaSecurityFailed_Format" xml:space="preserve">
+    <value>Lua-Sicherheitsüberprüfung fehlgeschlagen: {0}.</value>
+  </data>
+  <data name="PluginSettings_FuFuPluginNotInstalled" xml:space="preserve">
+    <value>FuFuPlugin ist nicht installiert</value>
+  </data>
+  <data name="Gacha_Bucket_NearSoft" xml:space="preserve">
+    <value>Nahe Soft-Pity</value>
+  </data>
+  <data name="Gacha_Kpi_ActiveMonths" xml:space="preserve">
+    <value>Aktive Monate</value>
+  </data>
+  <data name="PluginSettings_CurrentPresetDetail_Format" xml:space="preserve">
+    <value>Aktuelle Voreinstellung: {0}</value>
+  </data>
+  <data name="Account_LoginError_Format" xml:space="preserve">
+    <value>Anmeldefehler: {0}</value>
+  </data>
+  <data name="AutoClicker_PleaseSetStopKey" xml:space="preserve">
+    <value>Bitte Stopp-Tastenkombination festlegen</value>
+  </data>
+  <data name="PluginStore_UnexpectedError_Format" xml:space="preserve">
+    <value>Unerwarteter Fehler: {0}</value>
+  </data>
+  <data name="Account_RefreshingCookie" xml:space="preserve">
+    <value>Cookie wird aktualisiert...</value>
+  </data>
+  <data name="Common_LoadFailed_Format" xml:space="preserve">
+    <value>Laden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_MinimizeToTray" xml:space="preserve">
+    <value>In den Infobereich minimieren</value>
+  </data>
+  <data name="Gacha_Pool_Weapon" xml:space="preserve">
+    <value>Waffenaktionsgebet</value>
+  </data>
+  <data name="PluginSettings_PresetMismatchResetDefault" xml:space="preserve">
+    <value>Voreinstellung passt nicht zur Version; auf Standard zurückgesetzt</value>
+  </data>
+  <data name="Gacha_StartCapture" xml:space="preserve">
+    <value>Erfassung starten</value>
+  </data>
+  <data name="PluginStore_PrivatePluginTitle" xml:space="preserve">
+    <value>Privates Plugin</value>
+  </data>
+  <data name="Account_NoAccount" xml:space="preserve">
+    <value>Kein Konto</value>
+  </data>
+  <data name="Gacha_UnsupportedUigfVersion_Format" xml:space="preserve">
+    <value>Nicht unterstützte UIGF-Version: {0}</value>
+  </data>
+  <data name="Gacha_Pulls_Format" xml:space="preserve">
+    <value>{0} Ziehungen</value>
+  </data>
+  <data name="AdditionalProgram_FileNotFoundOrInaccessible" xml:space="preserve">
+    <value>Datei existiert nicht oder Zugriff verweigert</value>
+  </data>
+  <data name="Account_DeleteFailed_Format" xml:space="preserve">
+    <value>Löschen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginStore_ScriptTimeout" xml:space="preserve">
+    <value>Skriptausführung abgelaufen (&gt;5s)</value>
+  </data>
+  <data name="AdditionalProgram_ApplyFailed_Format" xml:space="preserve">
+    <value>Anwenden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Plugin_OperationFailedFileExists" xml:space="preserve">
+    <value>Vorgang fehlgeschlagen: Datei existiert bereits</value>
+  </data>
+  <data name="Gacha_SwitchedToUid_Format" xml:space="preserve">
+    <value>Zu UID gewechselt: {0}</value>
+  </data>
+  <data name="AutoClicker_SecurityWarningMessage" xml:space="preserve">
+    <value>Das Aktivieren installiert globale Tastatur- und Maus-Hooks, die von Sicherheitssoftware blockiert werden könnten. Aktivieren bestätigen?</value>
+  </data>
+  <data name="Main_WallpaperSwitch" xml:space="preserve">
+    <value>Hintergrundbild wechseln</value>
+  </data>
+  <data name="Plugin_UnrecognizedFile" xml:space="preserve">
+    <value>Nicht erkannte Datei</value>
+  </data>
+  <data name="Plugin_Deleted_Format" xml:space="preserve">
+    <value>Gelöscht: {0}</value>
+  </data>
+  <data name="Account_CookieRefreshSuccess" xml:space="preserve">
+    <value>Cookie erfolgreich aktualisiert</value>
+  </data>
+  <data name="PluginSettings_PresetMatchWellHint" xml:space="preserve">
+    <value>Voreinstellung passt gut zum aktuellen Plugin</value>
+  </data>
+  <data name="Gacha_SelectRolePrompt" xml:space="preserve">
+    <value>Bitte wählen Sie eine Spielfigur aus dem Dropdown-Menü aus.</value>
+  </data>
+  <data name="Plugin_AddFailedAlreadyExists" xml:space="preserve">
+    <value>Hinzufügen fehlgeschlagen: Ziel-Plugin existiert bereits</value>
+  </data>
+  <data name="Common_Enabled" xml:space="preserve">
+    <value>Aktiviert</value>
+  </data>
+  <data name="Account_AddAccountFailed_Format" xml:space="preserve">
+    <value>Konto hinzufügen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_Pool_Chronicled_FullName" xml:space="preserve">
+    <value>Zeugnis des Schicksals</value>
+  </data>
+  <data name="Common_ExecutableFiles" xml:space="preserve">
+    <value>Ausführbare Dateien</value>
+  </data>
+  <data name="Gacha_NoFiveStarPity" xml:space="preserve">
+    <value>Noch kein 5-Sterne-Pity</value>
+  </data>
+  <data name="Gacha_ExportSuccessDetail_Format" xml:space="preserve">
+    <value>{0} Einträge erfolgreich nach {1} ({2}) exportiert</value>
+  </data>
+  <data name="Gacha_ImportFailed_Format" xml:space="preserve">
+    <value>Import fehlgeschlagen: [{0}] {1}</value>
+  </data>
+  <data name="Genshin_RoleMismatch" xml:space="preserve">
+    <value>Zurückgegebene Figur stimmt nicht mit Auswahl überein; Anzeige abgebrochen.</value>
+  </data>
+  <data name="Main_GenshinCheckinTitle" xml:space="preserve">
+    <value>Genshin-Anmeldung</value>
+  </data>
+  <data name="PluginSettings_PresetSwitchedTitle" xml:space="preserve">
+    <value>Voreinstellung gewechselt</value>
+  </data>
+  <data name="PluginSettings_PartialEnabled" xml:space="preserve">
+    <value>Aktiviert, teilweise aktiv</value>
+  </data>
+  <data name="Gacha_ReadingUigf" xml:space="preserve">
+    <value>UIGF-Datei wird gelesen...</value>
+  </data>
+  <data name="Common_NotFound" xml:space="preserve">
+    <value>Nicht gefunden</value>
+  </data>
+  <data name="Gacha_CurrentDeepest_Format" xml:space="preserve">
+    <value>Aktuell tiefster: {0}</value>
+  </data>
+  <data name="Account_CookieCopied" xml:space="preserve">
+    <value>Cookie in die Zwischenablage kopiert</value>
+  </data>
+  <data name="Account_LoggedInTo_Format" xml:space="preserve">
+    <value>Angemeldet als {0}</value>
+  </data>
+  <data name="Gacha_AllRarityRecords" xml:space="preserve">
+    <value>Alle 1-5-Sterne-Einträge</value>
+  </data>
+  <data name="Blank_CannotReadRegistry" xml:space="preserve">
+    <value>Registrierung kann nicht gelesen werden</value>
+  </data>
+  <data name="PluginSettings_ConfigApplyFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellung kann mangels Berechtigungen nicht in Datei geschrieben werden
+Details: {0}</value>
+  </data>
+  <data name="Blank_PermissionOrOccupied_GamePath" xml:space="preserve">
+    <value>Unzureichende Berechtigungen oder Datei in Benutzung; bitte Spielpfad als Standardbenutzer erneut wählen</value>
+  </data>
+  <data name="PluginSettings_SaveFailedTitle" xml:space="preserve">
+    <value>Speichern der Einstellungen fehlgeschlagen</value>
+  </data>
+  <data name="Account_OpeningFreezePage" xml:space="preserve">
+    <value>Seite zur Kontosperrung wird geöffnet...</value>
+  </data>
+  <data name="AutoClicker_StoppedByHotkey" xml:space="preserve">
+    <value>Über Tastenkürzel beendet</value>
+  </data>
+  <data name="Common_DeleteSuccess" xml:space="preserve">
+    <value>Erfolgreich gelöscht</value>
+  </data>
+  <data name="Blank_CurrentAccount" xml:space="preserve">
+    <value>Aktuelles Konto</value>
+  </data>
+  <data name="AdditionalProgram_PathInvalid" xml:space="preserve">
+    <value>Ungültiger Pfad</value>
+  </data>
+  <data name="Gacha_Rarity_3Star" xml:space="preserve">
+    <value>3 Sterne</value>
+  </data>
+  <data name="Gacha_Kpi_TotalPulls" xml:space="preserve">
+    <value>Ziehungen gesamt</value>
+  </data>
+  <data name="Account_NoValidCookie" xml:space="preserve">
+    <value>Kein gültiges Cookie gefunden</value>
+  </data>
+  <data name="Gacha_ImportDone_Format" xml:space="preserve">
+    <value>Import abgeschlossen ({0} Einträge); Bildressourcen werden geladen...</value>
+  </data>
+  <data name="Account_NoLoginInfo" xml:space="preserve">
+    <value>Keine Anmeldeinformationen gefunden</value>
+  </data>
+  <data name="Diagnostics_LaunchGameSuggestion" xml:space="preserve">
+    <value>Bitte starten Sie das Spiel einmal, bevor Sie es erneut versuchen</value>
+  </data>
+  <data name="Gacha_FetchingMetadata" xml:space="preserve">
+    <value>Objekt-Metadaten und Banner werden abgerufen...</value>
+  </data>
+  <data name="LaunchConfig_Monitor_Format" xml:space="preserve">
+    <value>Monitor {0}{1} ({2}x{3})</value>
+  </data>
+  <data name="AutoClicker_StopBeforeStart" xml:space="preserve">
+    <value>Bitte Auto-Clicker stoppen, bevor Sie ihn erneut starten</value>
+  </data>
+  <data name="Gacha_CapturingOpenRecordInGame" xml:space="preserve">
+    <value>Wird erfasst... Bitte öffnen Sie den Gebetsverlauf im Spiel</value>
+  </data>
+  <data name="Gacha_Kpi_WorstFiveStar" xml:space="preserve">
+    <value>Schwerstes 5-Sterne-Objekt</value>
+  </data>
+  <data name="AdditionalProgram_InvalidPathCheckExe" xml:space="preserve">
+    <value>Ungültiger Pfad; prüfen Sie, ob die Datei existiert und im .exe-Format vorliegt</value>
+  </data>
+  <data name="Plugin_RefreshList" xml:space="preserve">
+    <value>Liste aktualisieren</value>
+  </data>
+  <data name="AdditionalProgram_PathEmpty" xml:space="preserve">
+    <value>Pfad ist leer</value>
+  </data>
+  <data name="Main_InitViewFailed_Format" xml:space="preserve">
+    <value>Ansicht konnte nicht initialisiert werden: {0}</value>
+  </data>
+  <data name="Blank_SelectPathFailed_Format" xml:space="preserve">
+    <value>Pfadauswahl fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei kann mangels Schreibrechten nicht gespeichert werden
+Details: {0}</value>
+  </data>
+  <data name="Account_SwitchSuccess" xml:space="preserve">
+    <value>Konto erfolgreich gewechselt</value>
+  </data>
+  <data name="Common_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="Gacha_ExportFailed_Format" xml:space="preserve">
+    <value>Export fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_StopCapture" xml:space="preserve">
+    <value>Erfassung stoppen</value>
+  </data>
+  <data name="Gacha_ReadHistoryFailed_Format" xml:space="preserve">
+    <value>Verlauf konnte nicht gelesen werden: {0}</value>
+  </data>
+  <data name="PluginSettings_ModifyExtensionFailedDetail_Format" xml:space="preserve">
+    <value>Dateiendung des Plugins kann nicht geändert werden
+Details: {0}</value>
+  </data>
+  <data name="AdditionalProgram_PermissionOrOccupied" xml:space="preserve">
+    <value>Unzureichende Berechtigungen oder Datei in Benutzung; bitte als Standardbenutzer erneut wählen</value>
+  </data>
+  <data name="PluginSettings_ConfigUpdateFailedTitle" xml:space="preserve">
+    <value>Konfigurationsaktualisierung fehlgeschlagen</value>
+  </data>
+  <data name="Common_DeleteFailed" xml:space="preserve">
+    <value>Löschen fehlgeschlagen</value>
+  </data>
+  <data name="Help_FetchDocHttpError_Format" xml:space="preserve">
+    <value>Dokument konnte nicht abgerufen werden (HTTP {0})</value>
+  </data>
+  <data name="AdditionalProgram_PathApplied" xml:space="preserve">
+    <value>Pfad übernommen</value>
+  </data>
+  <data name="PluginStore_PrivatePluginKeyPrompt_Format" xml:space="preserve">
+    <value>Plugin „{0}“ (ID: {1}) ist privat. Bitte Zugriffsschlüssel eingeben, um mit der Installation fortzufahren:</value>
+  </data>
+  <data name="Help_LoadTreeFailed_Format" xml:space="preserve">
+    <value>Verzeichnisbaum konnte nicht geladen werden: {0}</value>
+  </data>
+  <data name="Common_OpenFailed_Format" xml:space="preserve">
+    <value>Öffnen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginStore_LuaTestSuccess" xml:space="preserve">
+    <value>Lua-Skripttest erfolgreich</value>
+  </data>
+  <data name="Plugin_SwitchStateFailed_Format" xml:space="preserve">
+    <value>Statuswechsel fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_NoDataToExport" xml:space="preserve">
+    <value>Keine Daten zum Exportieren</value>
+  </data>
+  <data name="Account_OpeningDailyNote" xml:space="preserve">
+    <value>Genshin-Tagesnotizen werden geöffnet...</value>
+  </data>
+  <data name="Gacha_HistoryLoadedAutoFetching" xml:space="preserve">
+    <value>Historischer Link geladen, automatische Erfassung wird vorbereitet...</value>
+  </data>
+  <data name="FilePicker_Filter_Audio" xml:space="preserve">
+    <value>Audiodateien</value>
+  </data>
+  <data name="Common_OperationSuccess" xml:space="preserve">
+    <value>Vorgang erfolgreich</value>
+  </data>
+  <data name="PluginSettings_PresetSaveFailedTitle" xml:space="preserve">
+    <value>Speichern der Voreinstellung fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_DeletedUidRecords_Format" xml:space="preserve">
+    <value>Einträge für UID gelöscht: {0}</value>
+  </data>
+  <data name="Gacha_FetchingPoolMetadata" xml:space="preserve">
+    <value>Banner-Metadaten werden abgerufen...</value>
+  </data>
+  <data name="PluginStore_LuaExecutionError_Format" xml:space="preserve">
+    <value>Lua-Ausführungsfehler: {0}</value>
+  </data>
+  <data name="PluginSettings_PresetDeleteFailedTitle" xml:space="preserve">
+    <value>Löschen der Voreinstellung fehlgeschlagen</value>
+  </data>
+  <data name="Account_PleaseLogin" xml:space="preserve">
+    <value>Bitte melden Sie sich zuerst an</value>
+  </data>
+  <data name="Gacha_UnrecognizedUigfVersion" xml:space="preserve">
+    <value>UIGF-Version nicht erkannt; bitte Dateiformat prüfen</value>
+  </data>
+  <data name="PluginStore_VerifyingPrivatePlugin" xml:space="preserve">
+    <value>Privates Plugin wird überprüft...</value>
+  </data>
+  <data name="Gacha_NoFiveStarRecords" xml:space="preserve">
+    <value>Keine 5-Sterne-Einträge</value>
+  </data>
+  <data name="Common_GotIt" xml:space="preserve">
+    <value>Verstanden</value>
+  </data>
+  <data name="Gacha_NoAccountSelected" xml:space="preserve">
+    <value>Kein Konto ausgewählt</value>
+  </data>
+  <data name="Gacha_Pool_Standard_FullName" xml:space="preserve">
+    <value>Standardgebet</value>
+  </data>
+  <data name="PluginStore_InstallPrivatePluginTitle" xml:space="preserve">
+    <value>Privates Plugin installieren</value>
+  </data>
+  <data name="Gacha_Rarity_5Star" xml:space="preserve">
+    <value>5 Sterne</value>
+  </data>
+  <data name="Common_Opened" xml:space="preserve">
+    <value>Geöffnet</value>
+  </data>
+  <data name="Account_ReLogin" xml:space="preserve">
+    <value>Erneut anmelden</value>
+  </data>
+  <data name="AdditionalProgram_ExeNotFoundOrInvalid" xml:space="preserve">
+    <value>Datei existiert nicht oder ist keine gültige .exe-Datei</value>
+  </data>
+  <data name="Account_OpeningSecurityCenter" xml:space="preserve">
+    <value>Konto-Sicherheitszentrum wird geöffnet...</value>
+  </data>
+  <data name="Common_DetailInfo_Format" xml:space="preserve">
+    <value>Details: {0}</value>
+  </data>
+  <data name="Gacha_CaptureStoppedByUser" xml:space="preserve">
+    <value>Erfassung wurde manuell gestoppt</value>
+  </data>
+  <data name="PluginStore_CaptchaDone" xml:space="preserve">
+    <value>Verifizierung abgeschlossen</value>
+  </data>
+  <data name="PluginSettings_PresetHashMismatchHint" xml:space="preserve">
+    <value>Plugin-Hash in Voreinstellung stimmt nicht überein; stammt möglicherweise aus anderer Version</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarAvg" xml:space="preserve">
+    <value>Durchschn. 5-Sterne-Ziehungen</value>
+  </data>
+  <data name="Main_GameTerminateFailed" xml:space="preserve">
+    <value>Beenden fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_InvalidUrl" xml:space="preserve">
+    <value>Ungültiger Gebets-Link</value>
+  </data>
+  <data name="Gacha_AccountNoRecords" xml:space="preserve">
+    <value>Dieses Konto hat keine Gebetseinträge</value>
+  </data>
+  <data name="Main_LiveWallpaperNotSupported" xml:space="preserve">
+    <value>Animierte Hintergrundbilder werden in diesem Vorschauformat nicht unterstützt.</value>
+  </data>
+  <data name="AutoClicker_ConfirmEnable" xml:space="preserve">
+    <value>Aktivierung bestätigen</value>
+  </data>
+  <data name="Common_Ready" xml:space="preserve">
+    <value>Bereit</value>
+  </data>
+  <data name="Gacha_Kpi_PrimogemsCost" xml:space="preserve">
+    <value>Urgestein-Schätzung</value>
+  </data>
+  <data name="PluginSettings_RefreshingView" xml:space="preserve">
+    <value>Ansicht wird aktualisiert...</value>
+  </data>
+  <data name="PluginSettings_UnknownDeveloper" xml:space="preserve">
+    <value>Unbekannter Entwickler</value>
+  </data>
+  <data name="Gacha_ExportingUigf" xml:space="preserve">
+    <value>UIGF-Datei wird exportiert...</value>
+  </data>
+  <data name="FilePicker_CannotOpen" xml:space="preserve">
+    <value>Dateiauswahl kann nicht geöffnet werden</value>
+  </data>
+  <data name="Account_Server_CN" xml:space="preserve">
+    <value>CN-Server</value>
+  </data>
+  <data name="Account_LogoutFailed_Format" xml:space="preserve">
+    <value>Abmelden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_FetchingType_Format" xml:space="preserve">
+    <value>{0} wird abgerufen...</value>
+  </data>
+  <data name="Gacha_Rarity_4Star" xml:space="preserve">
+    <value>4 Sterne</value>
+  </data>
+  <data name="Gacha_Bucket_Middle" xml:space="preserve">
+    <value>Mittlerer Bereich</value>
+  </data>
+  <data name="Gacha_Kpi_BestFiveStar" xml:space="preserve">
+    <value>Glücklichstes 5-Sterne-Objekt</value>
+  </data>
+  <data name="Help_SelectTopicHint" xml:space="preserve">
+    <value>Wählen Sie ein Element aus dem Menü, um Details anzuzeigen</value>
+  </data>
+  <data name="PluginStore_SecurityViolation_Format" xml:space="preserve">
+    <value>Sicherheitsrichtlinienverletzung: {0}</value>
+  </data>
+  <data name="PluginStore_PluginId" xml:space="preserve">
+    <value>Plugin-ID</value>
+  </data>
+  <data name="LaunchConfig_PostLaunch_Exit" xml:space="preserve">
+    <value>Launcher schließen</value>
+  </data>
+  <data name="Gacha_UnknownFiveStar" xml:space="preserve">
+    <value>Unbekanntes 5-Sterne-Objekt</value>
+  </data>
+  <data name="AutoClicker_AdminRequiredTitle" xml:space="preserve">
+    <value>Administratorrechte erforderlich</value>
+  </data>
+  <data name="PluginSettings_PresetNoPluginHashHint" xml:space="preserve">
+    <value>Plugin-Datei nicht gefunden oder Hash kann nicht berechnet werden; Kompatibilität unklar</value>
+  </data>
+  <data name="Gacha_IncompleteRecordsInFile" xml:space="preserve">
+    <value>Unvollständige Einträge in Datei (id/item_id/time/gacha_type fehlt); bitte Format prüfen</value>
+  </data>
+  <data name="Gacha_StopFailed_Format" xml:space="preserve">
+    <value>Stoppen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_Kpi_FiveStarCharAvg" xml:space="preserve">
+    <value>Durchschn. Ziehungen für 5-Sterne-Figur</value>
+  </data>
+  <data name="Plugin_LoadDoneCount_Format" xml:space="preserve">
+    <value>Laden abgeschlossen, insgesamt {0} Plugins</value>
+  </data>
+  <data name="Account_CookieRefreshFailed_Format" xml:space="preserve">
+    <value>Cookie-Aktualisierung fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Gacha_NoValidRecordsInFile" xml:space="preserve">
+    <value>Keine gültigen Gebetseinträge in der Datei gefunden</value>
+  </data>
+  <data name="Gacha_Bucket_Anomaly" xml:space="preserve">
+    <value>Ungewöhnlicher Eintrag</value>
+  </data>
+  <data name="Common_Initializing" xml:space="preserve">
+    <value>Wird initialisiert...</value>
+  </data>
+  <data name="Account_User_Format" xml:space="preserve">
+    <value>Benutzer {0}</value>
+  </data>
+  <data name="Gacha_AuthCode1016" xml:space="preserve">
+    <value>HoYoLAB-Autorisierung fehlgeschlagen (Code 1016). Verknüpfung prüfen oder 'Über Spiel abrufen'.</value>
+  </data>
+  <data name="Gacha_NoBoundRoleFound" xml:space="preserve">
+    <value>Keine verknüpfte Figur für Gebete gefunden. Melden Sie sich bei HoYoLAB an oder nutzen Sie 'Über Spiel abrufen'.</value>
+  </data>
+  <data name="Gacha_NoNewRecordsKeptExisting_Format" xml:space="preserve">
+    <value>Keine neuen Einträge für UID {0}; bestehende Daten behalten.</value>
+  </data>
+  <data name="Gacha_LocalHistoryLoaded" xml:space="preserve">
+    <value>Lokaler Verlauf geladen</value>
+  </data>
+  <data name="Gacha_ImportCancelledExistingUnchanged" xml:space="preserve">
+    <value>Import abgebrochen; bestehende Daten unverändert.</value>
+  </data>
+  <data name="Gacha_FetchDoneCheckingImages_Format" xml:space="preserve">
+    <value>Abruf abgeschlossen, UID {0}, {1} Einträge; Bildressourcen werden geprüft...</value>
+  </data>
+  <data name="Gacha_AuthCode1002" xml:space="preserve">
+    <value>HoYoLAB hat Parameter abgelehnt (Code 1002). Bitte 'Über Spiel abrufen' nutzen.</value>
+  </data>
+  <data name="Gacha_NoRecordsKeptExisting" xml:space="preserve">
+    <value>Keine Gebetsdaten gefunden; bestehende Daten behalten. Bitte im Spiel prüfen.</value>
+  </data>
+  <data name="Gacha_ReadConfigFailed_Format" xml:space="preserve">
+    <value>Konfiguration konnte nicht gelesen werden: {0}</value>
+  </data>
+  <data name="Gacha_FetchPoolRecordsProgress_Format" xml:space="preserve">
+    <value>{0}-Einträge werden abgerufen... ({1} empfangen)</value>
+  </data>
+  <data name="Gacha_PleaseEnterValidUrl" xml:space="preserve">
+    <value>Bitte geben Sie einen gültigen Gebets-Link ein</value>
+  </data>
+  <data name="Gacha_GenAuthKeyFull" xml:space="preserve">
+    <value>Authentifizierungsschlüssel wird generiert (vollständig)...</value>
+  </data>
+  <data name="Gacha_MultiAccountMismatchError" xml:space="preserve">
+    <value>Verschiedene Banner gaben Daten verschiedener Konten zurück; Import abgebrochen.</value>
+  </data>
+  <data name="Gacha_WaitingForData" xml:space="preserve">
+    <value>Warte auf Daten...</value>
+  </data>
+  <data name="Diagnostics_InitServiceFailed" xml:space="preserve">
+    <value>Initialisierung des Diagnosedienstes fehlgeschlagen</value>
+  </data>
+  <data name="Account_OpeningGenshinData" xml:space="preserve">
+    <value>Genshin-Datenfenster wird geöffnet...</value>
+  </data>
+  <data name="Gacha_AddNewUser" xml:space="preserve">
+    <value>+ Neuen Benutzer hinzufügen</value>
+  </data>
+  <data name="Common_Unnamed" xml:space="preserve">
+    <value>Unbenannt</value>
+  </data>
+  <data name="Gacha_PoolCountNextPool_Format" xml:space="preserve">
+    <value>{0}: {1} Einträge, {2}-Einträge werden abgerufen...</value>
+  </data>
+  <data name="Gacha_RefreshingMetadata" xml:space="preserve">
+    <value>Metadaten für Figuren, Waffen und Banner werden aktualisiert...</value>
+  </data>
+  <data name="Gacha_InvalidClipboardContent" xml:space="preserve">
+    <value>Ungültiger Inhalt der Zwischenablage</value>
+  </data>
+  <data name="Gacha_RoleUidMismatchError" xml:space="preserve">
+    <value>Abgerufene UID stimmt nicht mit Figur überein; Import abgebrochen.</value>
+  </data>
+  <data name="Gacha_AuthCheckLoginSuffix" xml:space="preserve">
+    <value> Bitte HoYoLAB-Anmeldestatus prüfen oder 'Über Spiel abrufen' nutzen.</value>
+  </data>
+  <data name="Account_LoadAccountFailed_Format" xml:space="preserve">
+    <value>Laden der Kontoinformationen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Common_ExportSuccess" xml:space="preserve">
+    <value>Export erfolgreich</value>
+  </data>
+  <data name="Gacha_AnalysisCompleted" xml:space="preserve">
+    <value>Analyse abgeschlossen!</value>
+  </data>
+  <data name="Gacha_GenAuthKeyIncremental" xml:space="preserve">
+    <value>Authentifizierungsschlüssel wird generiert (inkrementell)...</value>
+  </data>
+  <data name="Gacha_SelectRoleInSwitch" xml:space="preserve">
+    <value>Bitte wählen Sie zuerst eine Spielfigur im Umschalter aus.</value>
+  </data>
+  <data name="Gacha_ReadClipboardFailed" xml:space="preserve">
+    <value>Zwischenablage konnte nicht gelesen werden</value>
+  </data>
+  <data name="Common_ExportFailed" xml:space="preserve">
+    <value>Export fehlgeschlagen</value>
+  </data>
+  <data name="Gacha_NoAccountBoundToUid_Format" xml:space="preserve">
+    <value>Kein mit UID {0} verknüpftes HoYoLAB-Konto gefunden. Verknüpfung prüfen oder 'Über Spiel abrufen' nutzen.</value>
+  </data>
+  <data name="Gacha_RoleSwitchedDiscardOld" xml:space="preserve">
+    <value>Figur gewechselt; vorherige Ergebnisse verworfen.</value>
+  </data>
+  <data name="Gacha_StartCaptureApp" xml:space="preserve">
+    <value>Erfassungswerkzeug starten</value>
+  </data>
+  <data name="Plugin_RenameFailedExists" xml:space="preserve">
+    <value>Umbenennen fehlgeschlagen: Ordnername existiert bereits</value>
+  </data>
+  <data name="PluginStore_DownloadVerification" xml:space="preserve">
+    <value>Download-Überprüfung</value>
+  </data>
+  <data name="Plugin_RenameFailed_Format" xml:space="preserve">
+    <value>Umbenennen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Plugin_ListSorted" xml:space="preserve">
+    <value>Liste sortiert</value>
+  </data>
+  <data name="Plugin_RenameSuccess" xml:space="preserve">
+    <value>Erfolgreich umbenannt</value>
+  </data>
+  <data name="Main_CheckinStateLoading" xml:space="preserve">
+    <value>Lade Spiel-Check-in-Status</value>
+  </data>
+  <data name="Main_PresetSwitchFailed" xml:space="preserve">
+    <value>Profilwechsel fehlgeschlagen</value>
+  </data>
+  <data name="Other_OpenBrowserFailed_Format" xml:space="preserve">
+    <value>Browser konnte nicht geöffnet werden: {0}</value>
+  </data>
+  <data name="AutoClicker_SetStopKeyBeforeMouse" xml:space="preserve">
+    <value>Bitte Tastatur-Stopp-Taste festlegen, bevor Mausklick aktiviert wird</value>
+  </data>
+  <data name="AutoClicker_MouseRequiresStopKey" xml:space="preserve">
+    <value>Mausklick erfordert zuerst das Festlegen einer Tastatur-Stopp-Taste</value>
+  </data>
+  <data name="Gacha_Pool_Unknown" xml:space="preserve">
+    <value>Unbekanntes Banner</value>
+  </data>
+  <data name="Main_PresetNotFound" xml:space="preserve">
+    <value>Zugehörige Profilkonfiguration nicht gefunden</value>
+  </data>
+  <data name="Gacha_ParsingApiUrl" xml:space="preserve">
+    <value>API-Link wird analysiert...</value>
+  </data>
+  <data name="AdditionalProgram_PathValid" xml:space="preserve">
+    <value>Pfad ist gültig</value>
+  </data>
+  <data name="PluginSettings_MainPluginDisabledOverlay" xml:space="preserve">
+    <value>Deaktiviert. Bitte aktivieren Sie das Haupt-Plugin, um Einstellungen zu konfigurieren.</value>
+  </data>
+  <data name="PluginSettings_FpsPluginDisabledOverlay" xml:space="preserve">
+    <value>Deaktiviert. Bitte aktivieren Sie das FPS-Plugin, um dessen Einstellungen zu konfigurieren.</value>
+  </data>
+  <data name="PluginSettings_PluginChangedTitle" xml:space="preserve">
+    <value>Plugin geändert</value>
+  </data>
+  <data name="PluginSettings_PluginChangedPresetAutoCreated" xml:space="preserve">
+    <value>Die aktuelle Voreinstellung stimmt nicht mit der neuesten Plugin-Version überein; eine neue Voreinstellung wurde automatisch erstellt.</value>
+  </data>
+  <data name="PluginSettings_PresetLockedHint" xml:space="preserve">
+    <value>Diese Voreinstellung ist derzeit als gesperrt markiert.</value>
+  </data>
+  <data name="PluginSettings_ClearFailedTitle" xml:space="preserve">
+    <value>Löschen fehlgeschlagen</value>
+  </data>
+  <data name="PluginSettings_ClearPresetFailedDetail_Format" xml:space="preserve">
+    <value>Voreinstellungsdatei konnte nicht gelöscht werden.
+Details: {0}</value>
+  </data>
+  <data name="PluginSettings_InternalViewRefreshed" xml:space="preserve">
+    <value>Interne Ansicht aktualisiert</value>
+  </data>
+  <data name="PluginSettings_AddedUnknownKey_Format" xml:space="preserve">
+    <value>Unbekannter Schlüsselwert {0} hinzugefügt</value>
+  </data>
+  <data name="GenshinData_WaitingForData" xml:space="preserve">
+    <value>Warte auf das Laden der Daten...</value>
+  </data>
+  <data name="GenshinData_ConnectingMiyoushe" xml:space="preserve">
+    <value>Verbindung zu Miyoushe wird hergestellt...</value>
+  </data>
+  <data name="GenshinData_LoginRequired" xml:space="preserve">
+    <value>Kontoanmeldung erforderlich</value>
+  </data>
+  <data name="GenshinData_AnalyzingDiary" xml:space="preserve">
+    <value>Reisetagebuch wird analysiert...</value>
+  </data>
+  <data name="GenshinData_DiaryRequestFailed_Format" xml:space="preserve">
+    <value>Anfrage für Reisetagebuch fehlgeschlagen ({0}): {1}</value>
+  </data>
+  <data name="GenshinData_DiaryRoleMismatch" xml:space="preserve">
+    <value>Die vom Reisetagebuch zurückgegebene Figur stimmt nicht mit der aktuellen Auswahl überein; Anzeige gestoppt.</value>
+  </data>
+  <data name="GenshinData_LoadFailed_Format" xml:space="preserve">
+    <value>Laden fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Help_DocPreloadingSnippet" xml:space="preserve">
+    <value>Inhalt wird noch im Hintergrund vorgeladen; Übereinstimmung stammt aus Titel oder Pfad</value>
+  </data>
+  <data name="Help_LoadingDoc" xml:space="preserve">
+    <value>Laden...</value>
+  </data>
+  <data name="Settings_LiveWallpaperDevOnly" xml:space="preserve">
+    <value>Live-Hintergründe sind nur in Entwicklungsbuilds verfügbar. Bitte wählen Sie in Vorschau- und Release-Builds ein Bild als benutzerdefinierten Hintergrund aus.</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_FetchingMetaApi" xml:space="preserve">
+    <value>Metadaten für Charaktere und Waffen werden über API abgerufen...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_MetaRetry_Format" xml:space="preserve">
+    <value>{0}-Metadaten konnten nicht abgerufen werden, erneuter Versuch in {1}s ({2}/{3})...</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_NoNewImages" xml:space="preserve">
+    <value>Keine neuen Bildressourcen gefunden; bestehender Cache oder Standard-Symbol wird verwendet</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_ImagesUpdated_Format" xml:space="preserve">
+    <value>{0} Bildressourcen aktualisiert und in Datenbank gespeichert</value>
+  </data>
+  <data name="Gacha_CrawlerStatus_PoolMetaComplete_Format" xml:space="preserve">
+    <value>Aktionsgebet-Metadaten aktualisiert (insgesamt {0} historische Gebete: Charakter {1}, Waffe {2}, Chronik {3})</value>
+  </data>
+  <data name="Gacha_ItemType_Character" xml:space="preserve">
+    <value>Charakter</value>
+  </data>
+  <data name="Gacha_ItemType_Weapon" xml:space="preserve">
+    <value>Waffe</value>
   </data>
 </root>

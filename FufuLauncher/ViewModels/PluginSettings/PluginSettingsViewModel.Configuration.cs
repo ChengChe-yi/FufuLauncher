@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -38,14 +38,14 @@ public partial class PluginSettingsViewModel
             {
                 PluginName = IsLightweightMode
                     ? "LightweightMode_LiteNotInstalled".GetLocalized()
-                    : "未安装 FuFuPlugin";
+                    : "PluginSettings_FuFuPluginNotInstalled".GetLocalized();
             }
             else
             {
-                PluginName = "未安装 FPS 插件";
+                PluginName = "PluginSettings_FpsUnlockNotInstalled".GetLocalized();
             }
 
-            PluginDescription = "请确保Plugins目录下存在对应的文件夹及config.ini文件";
+            PluginDescription = "PluginSettings_EnsurePluginDirConfigHint".GetLocalized();
             AvailablePresets.Clear();
             CurrentPreset = null;
             return;
@@ -59,9 +59,9 @@ public partial class PluginSettingsViewModel
             var configData = _iniFile.ReadAll();
             if (configData.TryGetValue("General", out var generalSection))
             {
-                PluginName = generalSection.GetValueOrDefault("Name", "未知插件");
-                PluginDescription = generalSection.GetValueOrDefault("Description", "无描述");
-                PluginDeveloper = generalSection.GetValueOrDefault("Developer", "未知作者");
+                PluginName = generalSection.GetValueOrDefault("Name", "PluginSettings_UnknownPlugin".GetLocalized());
+                PluginDescription = generalSection.GetValueOrDefault("Description", "PluginSettings_NoDescription".GetLocalized());
+                PluginDeveloper = generalSection.GetValueOrDefault("Developer", "PluginSettings_UnknownDeveloper".GetLocalized());
             }
 
             ManagePresets(configData);
@@ -88,10 +88,6 @@ public partial class PluginSettingsViewModel
                 var name = iniName;
                 if (SelectedPluginIndex == 0)
                 {
-                    // Translations under "Plugin_<SectionKey>" were authored specifically for
-                    // FuFuPlugin's config.ini. Other plugins (FPS) can reuse the same
-                    // section names for unrelated settings, so only apply this lookup for
-                    // FuFuPlugin to avoid showing a mistranslated label on another plugin's setting.
                     var localizationKey = $"Plugin_{section.Key}";
                     var localizedName = localizationKey.GetLocalized();
                     name = localizedName != localizationKey ? localizedName : iniName;
@@ -128,8 +124,8 @@ public partial class PluginSettingsViewModel
         catch (Exception ex)
         {
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
-                "配置读取失败",
-                $"无法读取插件配置文件。\n详细信息: {ex.Message}",
+                "PluginSettings_ConfigReadFailedTitle".GetLocalized(),
+                string.Format("PluginSettings_ReadConfigFailedDetail_Format".GetLocalized(), ex.Message),
                 NotificationType.Error,
                 6000
             ));

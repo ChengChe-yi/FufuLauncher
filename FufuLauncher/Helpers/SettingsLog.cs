@@ -9,7 +9,6 @@ namespace FufuLauncher.Helpers;
 
 public static class SettingsLog
 {
-    /// <summary>是否输出逐键读写日志。默认关闭。</summary>
     public static bool Verbose
     {
         get;
