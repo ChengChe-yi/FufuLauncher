@@ -224,41 +224,49 @@ Licensed under the MIT License.
             </Border>
         </DataTemplate>
 
-        <!-- 一个榜单中的角色（头像 + 数值） -->
+        <!-- 一个榜单中的角色（头像 + 数值，横向排列） -->
         <DataTemplate x:Key="RankRowTemplate" x:DataType="models:SpiralAbyssRankRow">
-            <StackPanel Width="80" Margin="0,0,6,0" Spacing="4">
+            <StackPanel Margin="0,0,14,0" Orientation="Horizontal" Spacing="6">
                 <local:AvatarBadge IconUrl="{x:Bind IconUrl}"
                                    Rarity="{x:Bind Rarity}"
                                    ShowRarityRing="True"
-                                   Size="44" />
-                <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                           FontSize="11"
+                                   Size="32" />
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="12"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                            Text="{x:Bind ValueText}"
                            TextTrimming="CharacterEllipsis" />
             </StackPanel>
         </DataTemplate>
 
-        <!-- 一组榜单（共 6 组：出战 / 击破 / 最强一击 / 承伤 / 战技 / 爆发） -->
-        <DataTemplate x:Key="RankSectionTemplate" x:DataType="local:SpiralAbyssRankSectionView">
-            <Border Style="{StaticResource AbyssCardStyle}">
-                <StackPanel Spacing="8">
-                    <TextBlock FontSize="12"
-                               FontWeight="SemiBold"
-                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                               Text="{x:Bind Title}"
-                               TextTrimming="CharacterEllipsis" />
-                    <ItemsControl ItemTemplate="{StaticResource RankRowTemplate}" ItemsSource="{x:Bind Rows}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                    <TextBlock Style="{StaticResource AbyssCaptionStyle}"
-                               Text="--"
-                               Visibility="{x:Bind HasRows, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
-                </StackPanel>
-            </Border>
+        <!-- 战斗统计中的一行：项目名 + 该项目的角色头像/数值 -->
+        <DataTemplate x:Key="RankSectionRowTemplate" x:DataType="local:SpiralAbyssRankSectionView">
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="12"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Text="{x:Bind Title}"
+                           TextTrimming="CharacterEllipsis" />
+                <ItemsControl Grid.Column="1"
+                              ItemTemplate="{StaticResource RankRowTemplate}"
+                              ItemsSource="{x:Bind Rows}"
+                              Visibility="{x:Bind HasRows, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource AbyssCaptionStyle}"
+                           Text="--"
+                           Visibility="{x:Bind HasRows, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
+            </Grid>
         </DataTemplate>
 
     </UserControl.Resources>
@@ -302,20 +310,27 @@ Licensed under the MIT License.
                     </ItemsRepeater.Layout>
                 </ItemsRepeater>
 
+                <!-- 战斗统计：六项（出战 / 击破 / 最强一击 / 承伤 / 战技 / 爆发）合并为一个区块（参考剧诗） -->
+                <Border Style="{StaticResource AbyssCardStyle}"
+                        Visibility="{x:Bind ShowRanks, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Spacing="10">
+                        <TextBlock FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                   Text="{helpers:Loc Key=Abyss_BattleStats}" />
+                        <ItemsControl ItemTemplate="{StaticResource RankSectionRowTemplate}"
+                                      ItemsSource="{x:Bind RankSections}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="10" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
                 <!-- 逐层卡片（层数按响应原样渲染，不写死 12 层） -->
                 <ItemsControl ItemTemplate="{StaticResource FloorTemplate}" ItemsSource="{x:Bind Floors}" />
-
-                <!-- 6 组角色榜单 -->
-                <ItemsRepeater ItemTemplate="{StaticResource RankSectionTemplate}"
-                               ItemsSource="{x:Bind RankSections}"
-                               Visibility="{x:Bind ShowRanks, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <ItemsRepeater.Layout>
-                        <UniformGridLayout ItemsStretch="Fill"
-                                           MinColumnSpacing="10"
-                                           MinItemWidth="360"
-                                           MinRowSpacing="10" />
-                    </ItemsRepeater.Layout>
-                </ItemsRepeater>
             </StackPanel>
 
             <!-- 空态：本期未参与（floors 为空 / 无 data） -->

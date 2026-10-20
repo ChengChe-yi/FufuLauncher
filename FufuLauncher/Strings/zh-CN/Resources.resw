@@ -8934,4 +8934,7 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Theater_MaxRoundWithTarot" xml:space="preserve">
     <value>第 {0} 幕 圣牌 {1}</value>
   </data>
+  <data name="Abyss_BattleStats" xml:space="preserve">
+    <value>战斗统计</value>
+  </data>
 </root>

@@ -8939,4 +8939,7 @@ Details: {0}</value>
   <data name="Theater_MaxRoundWithTarot" xml:space="preserve">
     <value>Act {0} Arcanum {1}</value>
   </data>
+  <data name="Abyss_BattleStats" xml:space="preserve">
+    <value>Battle Statistics</value>
+  </data>
 </root>
