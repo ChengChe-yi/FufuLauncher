@@ -97,8 +97,8 @@ public sealed record TheaterEnemy(string? Name, string? IconUrl, int Level)
 /// <param name="RoundId">幕号（塔罗轮会复用前一幕的幕号，仅用于文案）。</param>
 /// <param name="IsGetMedal">本幕是否获得徽记。</param>
 /// <param name="IsTarot">本幕是否塔罗（圣牌）挑战。</param>
-/// <param name="Title">标题：普通幕「第 N 幕」，塔罗轮「圣牌挑战 I/II」。</param>
-/// <param name="MedalText">徽记文案（获得 / 未获得）。</param>
+/// <param name="Title">标题：普通幕「第 N 幕」，塔罗轮「圣牌 I/II」。</param>
+/// <param name="MedalIconPath">本幕星章图标（获得 Star1 / 未获得 Star2，参考 Hutao）。</param>
 /// <param name="FinishTimeText">完成时间文案（服务器时区）。</param>
 /// <param name="DurationText">用时文案：与上一幕完成时间的差值（首幕相对本期开始时间）。</param>
 /// <param name="TarotIconPath">塔罗图标路径（非塔罗轮为空）。</param>
@@ -112,7 +112,7 @@ public sealed record TheaterRound(
     bool IsGetMedal,
     bool IsTarot,
     string Title,
-    string MedalText,
+    string MedalIconPath,
     string FinishTimeText,
     string DurationText,
     string TarotIconPath,
@@ -127,6 +127,9 @@ public sealed record TheaterRound(
 
     /// <summary>是否未获得徽记（用于显示弱化色徽记标签）。</summary>
     public bool HasNoMedal => !IsGetMedal;
+
+    /// <summary>是否显示星章图标。</summary>
+    public bool HasMedalIcon => !string.IsNullOrWhiteSpace(MedalIconPath);
 
     /// <summary>是否显示塔罗图标。</summary>
     public bool HasTarotIcon => !string.IsNullOrWhiteSpace(TarotIconPath);
@@ -244,6 +247,16 @@ public sealed record TheaterBattleStats(
 }
 
 /// <summary>
+/// 「挑战星章」概览中的单个图标：普通幕为塔罗/星章，塔罗轮为塔罗牌图标（参考 Hutao）。
+/// </summary>
+/// <param name="IconPath">本地图标路径（ms-appx）。</param>
+public sealed record TheaterMedalIcon(string IconPath)
+{
+    /// <summary>是否有图标。</summary>
+    public bool HasIcon => !string.IsNullOrWhiteSpace(IconPath);
+}
+
+/// <summary>
 /// 幻想真境剧诗展示层模型：KPI、逐幕、替补角色、战斗统计。
 /// 由 <see cref="Mapping.RoleCombatMapper"/> 从 DTO 纯函数映射得到，控件只负责绑定。
 /// </summary>
@@ -267,14 +280,11 @@ public sealed record RoleCombatDisplay
     /// <summary>纹章等级文本。</summary>
     public string HeraldryText { get; init; } = "--";
 
-    /// <summary>最高幕文本。</summary>
+    /// <summary>最高幕文本（含圣牌数：「第 10 幕 圣牌 2」；无圣牌时仅「第 10 幕」）。</summary>
     public string MaxRoundText { get; init; } = "--";
 
-    /// <summary>徽记数文本。</summary>
-    public string MedalNumText { get; init; } = "--";
-
-    /// <summary>塔罗牌完成数文本。</summary>
-    public string TarotFinishedText { get; init; } = "--";
+    /// <summary>「挑战星章」概览图标（逐幕：普通幕星章 / 塔罗轮塔罗牌，参考 Hutao）。</summary>
+    public IReadOnlyList<TheaterMedalIcon> MedalIcons { get; init; } = [];
 
     /// <summary>幻剧之花消耗文本。</summary>
     public string CoinText { get; init; } = "--";
@@ -327,6 +337,9 @@ public sealed record RoleCombatDisplay
 
     /// <summary>是否没有逐幕数据（用于显示「本期无逐幕明细」提示）。</summary>
     public bool HasNoRounds => Rounds.Count == 0;
+
+    /// <summary>是否显示「挑战星章」图标概览。</summary>
+    public bool HasMedalIcons => MedalIcons.Count > 0;
 
     /// <summary>是否有待命角色。</summary>
     public bool HasBackupAvatars => BackupAvatars.Count > 0;

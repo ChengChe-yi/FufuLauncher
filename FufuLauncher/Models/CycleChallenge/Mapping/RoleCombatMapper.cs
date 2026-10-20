@@ -108,9 +108,8 @@ public static class RoleCombatMapper
             DifficultyName = TheaterDifficulty.GetDisplayName(stat?.DifficultyId ?? entry.DifficultyId ?? 0),
             HeraldryIconPath = CycleChallengeIcons.TheaterHeraldry(heraldry),
             HeraldryText = FormatNumber(heraldry),
-            MaxRoundText = FormatNumber(stat?.MaxRoundId ?? entry.MaxRoundId),
-            MedalNumText = FormatNumber(stat?.MedalNum ?? entry.MedalNum),
-            TarotFinishedText = FormatNumber(stat?.TarotFinishedCount ?? 0),
+            MaxRoundText = FormatMaxRound(stat, entry),
+            MedalIcons = MapMedalIcons(rounds),
             CoinText = FormatNumber(stat?.CoinNum ?? 0),
             AvatarBonusText = FormatNumber(stat?.AvatarBonusNum ?? 0),
             RentText = FormatNumber(stat?.RentCount ?? 0),
@@ -137,9 +136,7 @@ public static class RoleCombatMapper
             DifficultyName = TheaterDifficulty.GetDisplayName(stat?.DifficultyId ?? entry.DifficultyId ?? 0),
             HeraldryIconPath = CycleChallengeIcons.TheaterHeraldry(heraldry),
             HeraldryText = FormatNumber(heraldry),
-            MaxRoundText = FormatNumber(stat?.MaxRoundId ?? entry.MaxRoundId),
-            MedalNumText = FormatNumber(stat?.MedalNum ?? entry.MedalNum),
-            TarotFinishedText = FormatNumber(stat?.TarotFinishedCount ?? 0),
+            MaxRoundText = FormatMaxRound(stat, entry),
             CoinText = FormatNumber(stat?.CoinNum ?? 0),
             AvatarBonusText = FormatNumber(stat?.AvatarBonusNum ?? 0),
             RentText = FormatNumber(stat?.RentCount ?? 0),
@@ -199,7 +196,7 @@ public static class RoleCombatMapper
                 isGetMedal,
                 isTarot,
                 FormatRoundTitle(round, isTarot),
-                isGetMedal ? "Theater_GetMedal".GetLocalized() : "Theater_NoMedal".GetLocalized(),
+                CycleChallengeIcons.TheaterStar(isGetMedal),
                 FormatFinishTime(round, context),
                 durationText,
                 tarotIcon,
@@ -208,6 +205,40 @@ public static class RoleCombatMapper
                 MapBuffs(round.ChoiceCards),
                 round.SplendourBuff?.Summary?.Description ?? string.Empty,
                 MapSplendourBuffs(round.SplendourBuff)));
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// 最佳记录文案（参考 Hutao）：有圣牌完成数时「第 X 幕 圣牌 Y」，否则仅「第 X 幕」。
+    /// </summary>
+    private static string FormatMaxRound(RoleCombatStatDto? stat, RoleCombatEntryDto entry)
+    {
+        var maxRound = stat?.MaxRoundId ?? entry.MaxRoundId;
+        var tarotFinished = stat?.TarotFinishedCount ?? 0;
+        return tarotFinished > 0
+            ? string.Format("Theater_MaxRoundWithTarot".GetLocalized(), maxRound, tarotFinished)
+            : string.Format("Theater_RoundTitle".GetLocalized(), maxRound);
+    }
+
+    /// <summary>
+    /// 「挑战星章」概览图标（参考 Hutao）：普通幕用星章（获得 Star1 / 未获得 Star2），塔罗轮用塔罗牌图标。
+    /// </summary>
+    private static List<TheaterMedalIcon> MapMedalIcons(List<TheaterRound> rounds)
+    {
+        if (rounds.Count == 0)
+        {
+            return [];
+        }
+
+        var result = new List<TheaterMedalIcon>(rounds.Count);
+        foreach (var round in rounds)
+        {
+            var icon = round.IsTarot
+                ? CycleChallengeIcons.GetLocal(round.IsGetMedal ? TarotGotMedalIcon : TarotNoMedalIcon)
+                : CycleChallengeIcons.TheaterStar(round.IsGetMedal);
+            result.Add(new TheaterMedalIcon(icon));
         }
 
         return result;

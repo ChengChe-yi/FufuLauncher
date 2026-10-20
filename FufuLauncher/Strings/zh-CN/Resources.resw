@@ -8778,17 +8778,8 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Theater_Rent" xml:space="preserve">
     <value>助演次数</value>
   </data>
-  <data name="Theater_TarotFinished" xml:space="preserve">
-    <value>圣牌挑战</value>
-  </data>
   <data name="Theater_Act" xml:space="preserve">
     <value>幕</value>
-  </data>
-  <data name="Theater_GetMedal" xml:space="preserve">
-    <value>已获星章</value>
-  </data>
-  <data name="Theater_NoMedal" xml:space="preserve">
-    <value>未获星章</value>
   </data>
   <data name="Theater_BackupAvatars" xml:space="preserve">
     <value>待命角色</value>
@@ -8942,5 +8933,8 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="Theater_ChoiceCards" xml:space="preserve">
     <value>神秘收获</value>
+  </data>
+  <data name="Theater_MaxRoundWithTarot" xml:space="preserve">
+    <value>第 {0} 幕 圣牌 {1}</value>
   </data>
 </root>

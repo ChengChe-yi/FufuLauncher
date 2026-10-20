@@ -8783,17 +8783,8 @@ Details: {0}</value>
   <data name="Theater_Rent" xml:space="preserve">
     <value>Supporting Times</value>
   </data>
-  <data name="Theater_TarotFinished" xml:space="preserve">
-    <value>Arcana Challenge</value>
-  </data>
   <data name="Theater_Act" xml:space="preserve">
     <value>Act</value>
-  </data>
-  <data name="Theater_GetMedal" xml:space="preserve">
-    <value>Stellas Earned</value>
-  </data>
-  <data name="Theater_NoMedal" xml:space="preserve">
-    <value>No Stellas</value>
   </data>
   <data name="Theater_BackupAvatars" xml:space="preserve">
     <value>Alternate Cast members</value>
@@ -8947,5 +8938,8 @@ Details: {0}</value>
   </data>
   <data name="Theater_ChoiceCards" xml:space="preserve">
     <value>Mystery Cache</value>
+  </data>
+  <data name="Theater_MaxRoundWithTarot" xml:space="preserve">
+    <value>Act {0} Arcanum {1}</value>
   </data>
 </root>

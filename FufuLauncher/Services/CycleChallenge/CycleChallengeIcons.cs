@@ -111,4 +111,14 @@ public static class CycleChallengeIcons
     {
         return GetLocal("UI_Icon_Tower_Star");
     }
+
+    /// <summary>
+    /// 剧诗单幕「星章」图标（参考 Hutao）：
+    /// 获得 → <c>UI_Icon_Tower_Star1</c>；未获得 → <c>UI_Icon_Tower_Star2</c>。
+    /// </summary>
+    /// <param name="got">本幕是否获得星章。</param>
+    public static string TheaterStar(bool got)
+    {
+        return GetLocal(got ? "UI_Icon_Tower_Star1" : "UI_Icon_Tower_Star2");
+    }
 }
