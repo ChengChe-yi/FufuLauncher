@@ -157,27 +157,18 @@ Licensed under the MIT License.
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource KpiCardStyle}">
-                    <StackPanel Orientation="Horizontal" Spacing="8">
-                        <StackPanel VerticalAlignment="Center" Spacing="2">
-                            <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_Heraldry}" />
-                            <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.HeraldryText, Mode=OneTime}" />
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
-
-                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_Coins}" />
                         <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.CoinText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource KpiCardStyle}">
+                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_AvatarBonus}" />
                         <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.AvatarBonusText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="3" Style="{StaticResource KpiCardStyle}">
+                <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_Rent}" />
                         <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.RentText, Mode=OneTime}" />

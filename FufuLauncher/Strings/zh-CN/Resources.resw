@@ -8763,9 +8763,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Theater_MaxRound" xml:space="preserve">
     <value>最佳记录</value>
   </data>
-  <data name="Theater_Heraldry" xml:space="preserve">
-    <value>已抵达</value>
-  </data>
   <data name="Theater_Medals" xml:space="preserve">
     <value>挑战星章</value>
   </data>

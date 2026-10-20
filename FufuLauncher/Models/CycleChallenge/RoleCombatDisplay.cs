@@ -277,9 +277,6 @@ public sealed record RoleCombatDisplay
     /// <summary>纹章（= 难度）图标路径。</summary>
     public string HeraldryIconPath { get; init; } = string.Empty;
 
-    /// <summary>纹章等级文本。</summary>
-    public string HeraldryText { get; init; } = "--";
-
     /// <summary>最高幕文本（含圣牌数：「第 10 幕 圣牌 2」；无圣牌时仅「第 10 幕」）。</summary>
     public string MaxRoundText { get; init; } = "--";
 
