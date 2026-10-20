@@ -132,40 +132,28 @@ namespace FufuLauncher.Services.Background
             {
                 preferVideo = preferVideo && AllowVideoBackground;
 
-                var localSettings = App.GetService<ILocalSettingsService>();
-
-                var specificUrlObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundUrl");
-                string specificUrl = specificUrlObj?.ToString();
-                if (!string.IsNullOrEmpty(specificUrl))
+                var apiResponse = await TryRequestBackgroundApiAsync(server);
+                var apiRequested = !string.IsNullOrEmpty(apiResponse);
+                if (apiRequested)
                 {
-                    var isVideoObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundIsVideo");
-                    bool isVideo = isVideoObj != null && Convert.ToBoolean(isVideoObj);
+                    var freshResult = await LoadFromApiResponseAsync(server, apiResponse!, preferVideo);
+                    if (freshResult != null)
+                        return freshResult;
+                }
 
-                    if (isVideo && !AllowVideoBackground)
-                    {
-                        Debug.WriteLine("BackgroundRenderer: 非开发版，忽略已选中的视频背景");
-                    }
-                    else
-                    {
-                        var result = await LoadFromCacheOrNull(specificUrl, isVideo);
-                        if (result != null)
-                        {
-                            ScheduleBackgroundRefresh(server, preferVideo);
-                            return result;
-                        }
-                    }
+                var selectedCachedResult = await TryLoadSelectedFromCacheAsync();
+                if (selectedCachedResult != null)
+                {
+                    if (!apiRequested) ScheduleBackgroundRefresh(server, preferVideo);
+                    return selectedCachedResult;
                 }
 
                 var cachedResult = await TryLoadFromDiskCacheAsync(server, preferVideo);
                 if (cachedResult != null)
                 {
-                    ScheduleBackgroundRefresh(server, preferVideo);
+                    if (!apiRequested) ScheduleBackgroundRefresh(server, preferVideo);
                     return cachedResult;
                 }
-
-                var freshResult = await FetchAndCacheAsync(server, preferVideo);
-                if (freshResult != null)
-                    return freshResult;
 
                 return await GetFallbackBackgroundAsync();
             }
@@ -378,13 +366,26 @@ namespace FufuLauncher.Services.Background
             };
         }
 
-        private async Task<BackgroundRenderResult> FetchAndCacheAsync(ServerType server, bool preferVideo)
+        private async Task<string?> TryRequestBackgroundApiAsync(ServerType server)
         {
             try
             {
                 var apiUrl = await ResolveBackgroundApiUrlAsync(server);
+                return await _httpClient.GetStringAsync(apiUrl);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"BackgroundRenderer: 请求背景 API 失败 - {ex.Message}");
+                return null;
+            }
+        }
 
-                var response = await _httpClient.GetStringAsync(apiUrl);
+        private async Task<BackgroundRenderResult?> LoadFromApiResponseAsync(ServerType server, string response,
+            bool preferVideo)
+        {
+            BackgroundRenderResult? result = null;
+            try
+            {
                 await SaveApiCacheAsync(server, response);
 
                 var localSettings = App.GetService<ILocalSettingsService>();
@@ -400,50 +401,83 @@ namespace FufuLauncher.Services.Background
 
                 await localSettings.SaveSettingAsync("BackgroundJsonHash", currentHash);
 
-                var specificUrlObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundUrl");
-                string specificUrl = specificUrlObj?.ToString();
-                if (!string.IsNullOrEmpty(specificUrl))
-                {
-                    var isVideoObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundIsVideo");
-                    bool isVideo = isVideoObj != null && Convert.ToBoolean(isVideoObj);
+                var selected = await GetSelectedOnlineBackgroundAsync();
+                if (selected != null)
+                    result = await GetSpecificOnlineBackgroundAsync(selected.Url, selected.IsVideo);
 
-                    if (isVideo && !AllowVideoBackground)
+                if (result == null)
+                {
+                    var candidates = ParseBackgroundCandidates(response, preferVideo);
+                    if (selected != null)
                     {
-                        Debug.WriteLine("BackgroundRenderer: 忽略已选中的视频背景");
+                        candidates = candidates
+                            .Where(c => !string.Equals(c.Url, selected.Url, StringComparison.Ordinal))
+                            .ToList();
                     }
-                    else
+
+                    foreach (var candidate in candidates)
                     {
-                        var selected = await GetSpecificOnlineBackgroundAsync(specificUrl, isVideo);
-                        if (selected != null) return selected;
+                        result = await LoadFromCacheOrNull(candidate.Url, candidate.IsVideo);
+                        if (result != null) break;
+                    }
+
+                    if (result == null)
+                    {
+                        foreach (var candidate in candidates)
+                        {
+                            result = await GetSpecificOnlineBackgroundAsync(candidate.Url, candidate.IsVideo);
+                            if (result != null) break;
+                        }
                     }
                 }
-
-                BackgroundRenderResult result = null;
-                foreach (var bgInfo in ParseBackgroundCandidates(response, preferVideo))
-                {
-                    result = await GetSpecificOnlineBackgroundAsync(bgInfo.Url, bgInfo.IsVideo);
-                    if (result != null) break;
-                }
-
-                _ = Task.Run(async () =>
-                {
-                    try
-                    {
-                        await PreloadAllFromResponse(response);
-                        CleanupStaleCacheFiles(response);
-                    }
-                    catch
-                    {
-                    }
-                });
-
-                return result;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: FetchAndCacheAsync 异常 - {ex.Message}");
+                Debug.WriteLine($"BackgroundRenderer: 处理背景 API 响应异常 - {ex.Message}");
+            }
+
+            QueueBackgroundPreload(response);
+            return result;
+        }
+
+        private async Task<BackgroundUrlInfo?> GetSelectedOnlineBackgroundAsync()
+        {
+            var localSettings = App.GetService<ILocalSettingsService>();
+            var specificUrlObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundUrl");
+            var specificUrl = specificUrlObj?.ToString();
+            if (string.IsNullOrEmpty(specificUrl)) return null;
+
+            var isVideoObj = await localSettings.ReadSettingAsync("SelectedOnlineBackgroundIsVideo");
+            var isVideo = isVideoObj != null && Convert.ToBoolean(isVideoObj);
+            if (isVideo && !AllowVideoBackground)
+            {
+                Debug.WriteLine("BackgroundRenderer: 非开发版，忽略已选中的视频背景");
                 return null;
             }
+
+            return new BackgroundUrlInfo { Url = specificUrl, IsVideo = isVideo };
+        }
+
+        private async Task<BackgroundRenderResult?> TryLoadSelectedFromCacheAsync()
+        {
+            var selected = await GetSelectedOnlineBackgroundAsync();
+            if (selected == null) return null;
+            return await LoadFromCacheOrNull(selected.Url, selected.IsVideo);
+        }
+
+        private void QueueBackgroundPreload(string response)
+        {
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    await PreloadAllFromResponse(response);
+                    CleanupStaleCacheFiles(response);
+                }
+                catch
+                {
+                }
+            });
         }
 
         private void ScheduleBackgroundRefresh(ServerType server, bool preferVideo)

@@ -10,6 +10,7 @@ using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FufuLauncher.Views;
 
@@ -55,12 +56,6 @@ public sealed partial class PluginSettingsPage
 
     private object CreateSettingDisableWarningContent(IReadOnlyList<PluginSettingItem> settings)
     {
-        if (!settings.Any(ViewModel.IsPreventDetectionPopupSetting))
-        {
-            return string.Join(Environment.NewLine + Environment.NewLine,
-                settings.Select(GetResinRewardDisableMessage));
-        }
-
         var panel = new StackPanel { Spacing = 12 };
         foreach (var item in settings)
         {
@@ -81,8 +76,22 @@ public sealed partial class PluginSettingsPage
             panel.Children.Add(warning);
         }
 
+        if (settings.Any(ViewModel.IsResinRewardSetting))
+        {
+            panel.Children.Add(CreateResinSkipHelpImage());
+        }
+
         return panel;
     }
+
+    private static Image CreateResinSkipHelpImage() =>
+        new()
+        {
+            Source = new BitmapImage(new Uri("ms-appx:///Assets/HelpGifs/ResinSkip.gif")),
+            MaxWidth = 400,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            Stretch = Stretch.Uniform
+        };
 
     private async Task<bool> ConfirmSettingDisableAsync(IReadOnlyList<PluginSettingItem> settings)
     {
