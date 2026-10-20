@@ -98,7 +98,10 @@ public sealed record StygianMonster(string? Name, string? IconUrl, int Level, IR
     public bool HasDescriptions => Descriptions.Count > 0;
 
     /// <summary>创建一个空怪物对象。</summary>
-    public static StygianMonster Empty { get; } = new(null, null, 0, []);
+    public static StygianMonster Empty
+    {
+        get;
+    } = new(null, null, 0, []);
 }
 
 /// <summary>危战单个关卡。</summary>
@@ -182,31 +185,59 @@ public sealed record StygianBling(int AvatarId, string? IconUrl, int Rarity, str
 }
 
 /// <summary>
-/// 幽境危战展示层模型：单人 / 联机两套 KPI + 关卡，以及上榜角色。
-/// 由 <see cref="Mapping.HardChallengeMapper"/> 从 DTO 纯函数映射得到。
+///     幽境危战展示层模型：单人 / 联机两套 KPI + 关卡，以及上榜角色。
+///     由 <see cref="Mapping.HardChallengeMapper" /> 从 DTO 纯函数映射得到。
 /// </summary>
 public sealed record HardChallengeDisplay
 {
     /// <summary>展示状态。</summary>
-    public StygianDisplayState State { get; init; } = StygianDisplayState.NotParticipated;
+    public StygianDisplayState State
+    {
+        get;
+        init;
+    } = StygianDisplayState.NotParticipated;
 
     /// <summary>解析失败时的错误信息。</summary>
-    public string ErrorMessage { get; init; } = string.Empty;
+    public string ErrorMessage
+    {
+        get;
+        init;
+    } = string.Empty;
 
     /// <summary>期次名称（接口 schedule.name，可能为空）。</summary>
-    public string ScheduleName { get; init; } = string.Empty;
+    public string ScheduleName
+    {
+        get;
+        init;
+    } = string.Empty;
 
     /// <summary>期次时间范围文案。</summary>
-    public string PeriodText { get; init; } = string.Empty;
+    public string PeriodText
+    {
+        get;
+        init;
+    } = string.Empty;
 
     /// <summary>单人挑战。</summary>
-    public StygianMode Solo { get; init; } = StygianMode.CreateEmpty();
+    public StygianMode Solo
+    {
+        get;
+        init;
+    } = StygianMode.CreateEmpty();
 
     /// <summary>联机挑战。</summary>
-    public StygianMode Coop { get; init; } = StygianMode.CreateEmpty();
+    public StygianMode Coop
+    {
+        get;
+        init;
+    } = StygianMode.CreateEmpty();
 
     /// <summary>上榜角色（真实数据可能为空）。</summary>
-    public IReadOnlyList<StygianBling> Blings { get; init; } = [];
+    public IReadOnlyList<StygianBling> Blings
+    {
+        get;
+        init;
+    } = [];
 
     /// <summary>是否处于可展示内容的状态。</summary>
     public bool ShowContent => State == StygianDisplayState.Content;

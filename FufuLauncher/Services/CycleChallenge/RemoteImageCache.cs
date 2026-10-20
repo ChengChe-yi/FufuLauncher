@@ -14,59 +14,40 @@ using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.CycleChallenge;
 
-/// <summary>
-/// 周期挑战远程图片磁盘缓存。
-/// <para>
-/// 语义对标 Starward 的 <c>Helpers/FileCache.cs</c>：
-/// <list type="bullet">
-/// <item>缓存目录：<c>%LocalAppData%/FufuLauncher/Data/cyclechallenge/images</c>（取 <see cref="AppPaths.DataDir"/>）。</item>
-/// <item>文件名为 URL 的 XxHash64(8 字节) + MD5(16 字节) 共 24 字节转大写 HEX（48 字符）。</item>
-/// <item>同一个 URL 只允许一个下载任务（单飞），其余调用方共享同一个 <see cref="Task{TResult}"/>。</item>
-/// <item>下载先写 <c>*.tmp</c>，成功后 <see cref="File.Move(string, string, bool)"/> 原子替换。</item>
-/// <item>支持 HTTP Range 断点续传；失败最多重试 3 次；最终失败返回 <c>null</c>，绝不向 UI 抛异常。</item>
-/// </list>
-/// </para>
-/// <para>
-/// 注意：单飞任务不属于某个具体调用方，调用方取消（例如控件 Unloaded）只会停止等待，
-/// 不会中断共享下载 —— 这样其它控件仍能命中缓存；下载完成后会自行从单飞表移除。
-/// </para>
-/// </summary>
 public static class RemoteImageCache
 {
-    /// <summary>缓存文件有效期：90 天。</summary>
     public static readonly TimeSpan CacheMaxAge = TimeSpan.FromDays(90);
 
-    /// <summary>缓存目录中最多保留的图片数量，超出后按最后写入时间淘汰最旧的。</summary>
+
     public const int MaxCachedImageCount = 500;
 
-    /// <summary>失败后的重试次数（不含首次请求）。</summary>
+
     private const int MaxRetryCount = 3;
 
-    /// <summary>单次下载的整体超时时间（含连接、响应头与响应体）。</summary>
+
     private static readonly TimeSpan DownloadTimeout = TimeSpan.FromSeconds(60);
 
-    /// <summary>缓存键长度：XxHash64(8 字节) + MD5(16 字节) = 24 字节 → 48 个 HEX 字符。</summary>
+
     private const int CacheKeyByteCount = 24;
 
-    /// <summary>单飞表：缓存键 → 正在进行的下载任务。</summary>
+
     private static readonly ConcurrentDictionary<string, Task<string?>> InFlight = new(StringComparer.Ordinal);
 
-    /// <summary>全局共享 HttpClient（自动解压 + HTTP/2 多连接）。</summary>
+
     private static readonly HttpClient HttpClient = CreateHttpClient();
 
-    /// <summary>图片缓存目录。</summary>
+
     public static string CacheFolder => Path.Combine(AppPaths.DataDir, "cyclechallenge", "images");
 
     private static HttpClient CreateHttpClient()
     {
         var handler = new SocketsHttpHandler
         {
-            // 服务端常用 gzip/br 压缩图标，交给运行时自动解压
             AutomaticDecompression = DecompressionMethods.All,
             EnableMultipleHttp2Connections = true,
             PooledConnectionLifetime = TimeSpan.FromMinutes(5),
             ConnectTimeout = TimeSpan.FromSeconds(15),
-            // 图标使用 CDN，跟随重定向
+
             AllowAutoRedirect = true,
             MaxAutomaticRedirections = 5,
         };
@@ -74,17 +55,12 @@ public static class RemoteImageCache
         return new HttpClient(handler)
         {
             DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrHigher,
-            // 整体超时由每次下载的 CancellationTokenSource 控制
+
             Timeout = System.Threading.Timeout.InfiniteTimeSpan,
         };
     }
 
-    /// <summary>
-    /// 获取远程图片的本地缓存路径。
-    /// </summary>
-    /// <param name="uri">远程图片地址，仅支持 http/https。</param>
-    /// <param name="cancellationToken">调用方取消标记；取消只影响等待，不会中断共享下载。</param>
-    /// <returns>本地文件绝对路径；任何失败（参数非法、网络错误、磁盘错误）均返回 <c>null</c>。</returns>
+
     public static async Task<string?> GetAsync(Uri? uri, CancellationToken cancellationToken = default)
     {
         try
@@ -113,7 +89,6 @@ public static class RemoteImageCache
             }
             catch (OperationCanceledException)
             {
-                // 调用方取消：只停止等待，返回 null
                 return null;
             }
             catch (Exception ex)
@@ -133,9 +108,7 @@ public static class RemoteImageCache
         }
     }
 
-    /// <summary>
-    /// 删除某个 URL 对应的缓存文件（例如图片文件损坏时由控件触发，下次重新下载）。
-    /// </summary>
+
     public static void Invalidate(Uri? uri)
     {
         try
@@ -149,7 +122,7 @@ public static class RemoteImageCache
             DeleteFileIfExists(path);
             DeleteFileIfExists(path + ".tmp");
 
-            // 只移除已完成的单飞任务；正在下载的任务让它跑完，避免同一 URL 并发写同一个 .tmp
+
             string key = uri.ToString();
             if (InFlight.TryGetValue(key, out Task<string?>? running) && running.IsCompleted)
             {
@@ -162,10 +135,7 @@ public static class RemoteImageCache
         }
     }
 
-    /// <summary>
-    /// 清理缓存：删除超过 TTL（90 天）的文件、残留的临时文件，并把图片总数限制在 500 张以内。
-    /// 建议在页面后台加载完成后调用，不要在 UI 线程同步等待。
-    /// </summary>
+
     public static async Task CleanupAsync(CancellationToken cancellationToken = default)
     {
         try
@@ -174,7 +144,6 @@ public static class RemoteImageCache
         }
         catch (OperationCanceledException)
         {
-            // 忽略取消
         }
         catch (Exception ex)
         {
@@ -184,7 +153,6 @@ public static class RemoteImageCache
 
     #region 下载
 
-    /// <summary>创建单飞任务，并在任务完成（含被遗弃的任务）后把自身从单飞表移除。</summary>
     private static Task<string?> StartDownload(string key, Uri uri)
     {
         Task<string?> task = DownloadWithRetryAsync(uri);
@@ -196,7 +164,7 @@ public static class RemoteImageCache
         return task;
     }
 
-    /// <summary>从单飞表中移除指定任务（仅当表里还是同一个任务时才移除）。</summary>
+
     private static void RemoveEntry(string key, Task<string?> task)
     {
         try
@@ -226,7 +194,7 @@ public static class RemoteImageCache
                 return filePath;
             }
 
-            // 过期或空文件先删除，避免 Range 续传接在坏文件后面
+
             DeleteFileIfExists(filePath);
 
             Exception? lastError = null;
@@ -278,7 +246,7 @@ public static class RemoteImageCache
         }
     }
 
-    /// <summary>下载到临时文件，支持 Range 断点续传，成功后原子替换正式文件。</summary>
+
     private static async Task DownloadFileAsync(Uri uri, string tmpPath, string finalPath)
     {
         using var timeoutCts = new CancellationTokenSource(DownloadTimeout);
@@ -289,7 +257,6 @@ public static class RemoteImageCache
             using var request = new HttpRequestMessage(HttpMethod.Get, uri);
             if (fs.Length > 0)
             {
-                // 上次下载中断，从已有长度继续
                 request.Headers.Range = new System.Net.Http.Headers.RangeHeaderValue(fs.Length, null);
             }
 
@@ -304,7 +271,6 @@ public static class RemoteImageCache
             }
             else
             {
-                // 服务端不支持 Range（200）：丢弃旧内容从头写
                 fs.Position = 0;
                 fs.SetLength(0);
             }
@@ -314,7 +280,7 @@ public static class RemoteImageCache
             await fs.FlushAsync(token).ConfigureAwait(false);
         }
 
-        // 原子替换：Windows 上 File.Move(source, dest, overwrite: true) 为 MoveFileEx(REPLACE_EXISTING)
+
         File.Move(tmpPath, finalPath, true);
     }
 
@@ -322,7 +288,6 @@ public static class RemoteImageCache
 
     #region 缓存文件
 
-    /// <summary>判断缓存文件是否可用（存在、非空、未超过 TTL）。</summary>
     private static bool IsUsableCacheFile(string path)
     {
         try
@@ -339,7 +304,7 @@ public static class RemoteImageCache
         }
     }
 
-    /// <summary>缓存文件名：XxHash64(URL, 8 字节) + MD5(URL, 16 字节) 共 24 字节转 HEX。</summary>
+
     private static string GetCacheFileName(Uri uri)
     {
         string url = uri.ToString();
@@ -371,7 +336,6 @@ public static class RemoteImageCache
         }
         catch (Exception ex)
         {
-            // 文件可能正被 BitmapImage 占用，忽略即可
             Debug.WriteLine($"[RemoteImageCache] 删除缓存文件失败 {path}: {ex.Message}");
         }
     }
@@ -405,7 +369,6 @@ public static class RemoteImageCache
 
                 if (string.Equals(info.Extension, ".tmp", StringComparison.OrdinalIgnoreCase))
                 {
-                    // 残留的临时文件，超过 1 天肯定是死文件
                     if (info.LastWriteTimeUtc < staleTmpBefore)
                     {
                         DeleteFileIfExists(file);

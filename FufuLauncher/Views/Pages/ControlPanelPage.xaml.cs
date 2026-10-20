@@ -39,6 +39,12 @@ public sealed partial class ControlPanelPage : Page
         window.Activate();
     }
 
+    private void OnOpenCycleChallengeClick(object sender, RoutedEventArgs e)
+    {
+        var window = new CycleChallengeWindow();
+        window.Activate();
+    }
+
     private void OnOpenAchievementsClick(object sender, RoutedEventArgs e)
     {
         var window = new AchievementWindow();

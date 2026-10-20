@@ -14,10 +14,6 @@ using FufuLauncher.Services;
 
 namespace FufuLauncher.Services.CycleChallenge;
 
-/// <summary>
-/// 周期挑战编排：请求 API → 解析期次/摘要 → 同键覆盖入库；失败时回退本地缓存。
-/// 存储唯一键 (Uid, Mode, ScheduleId)，Payload 为单期 JSON（剧诗/危战为 data[] 中的一项）。
-/// </summary>
 public sealed class CycleChallengeService
 {
     private const string ApiVersion = "cn-2.112.0/os-2.54.0";
@@ -31,7 +27,7 @@ public sealed class CycleChallengeService
         _repository = repository;
     }
 
-    /// <summary>从本地缓存读取（不做网络请求）。</summary>
+
     public ChallengeLoadResult LoadFromCache(ChallengeMode mode, SelectedGameRole role, string? scheduleId)
     {
         var periods = _repository.GetPeriods(role.Role.game_uid, mode);
@@ -64,7 +60,7 @@ public sealed class CycleChallengeService
         };
     }
 
-    /// <summary>请求 API 并覆盖写入；失败回退缓存。深境螺旋需要 schedule_type=1/2 两次请求。</summary>
+
     public async Task<ChallengeLoadResult> RefreshAsync(
         ChallengeMode mode, SelectedGameRole role, CancellationToken token)
     {
@@ -136,7 +132,7 @@ public sealed class CycleChallengeService
             };
         }
 
-        // 有失败但仍有缓存：标记为缓存态 + 携带失败原因
+
         var flagCache = failures.Count > 0 && periodsBefore.Count > 0;
         return new ChallengeLoadResult
         {
@@ -203,7 +199,6 @@ public sealed class CycleChallengeService
                  root.TryGetProperty("data", out var inner) &&
                  inner.ValueKind is JsonValueKind.Array)
         {
-            // 剧诗/危战响应形如 { retcode, message, data: { data: [...], is_unlock, links } }
             array = inner;
             if (root.TryGetProperty("is_unlock", out _))
             {
@@ -302,10 +297,7 @@ public sealed class CycleChallengeService
         });
     }
 
-    /// <summary>
-    /// 剧诗/危战面板按 data[] 结构解析，因此包一层 retcode/message/data，并补回响应根上的 is_unlock；
-    /// 深境螺旋面板直接接收 data 对象（is_unlock 已在 data 内部）。
-    /// </summary>
+
     private static string WrapForPanel(ChallengeMode mode, CycleChallengeRecordEntity record)
     {
         if (mode == ChallengeMode.SpiralAbyss)
@@ -314,10 +306,11 @@ public sealed class CycleChallengeService
         }
 
         var isUnlock = ReadSummaryBool(record.Summary, "is_unlock");
-        return $"{{\"retcode\":0,\"message\":\"OK\",\"is_unlock\":{isUnlock.ToString().ToLowerInvariant()},\"data\":[{record.Payload}]}}";
+        return
+            $"{{\"retcode\":0,\"message\":\"OK\",\"is_unlock\":{isUnlock.ToString().ToLowerInvariant()},\"data\":[{record.Payload}]}}";
     }
 
-    /// <summary>从完整响应 JSON 的根节点读取 is_unlock（剧诗/危战不在 data 内）。</summary>
+
     private static bool ReadIsUnlock(string rawJson)
     {
         if (string.IsNullOrWhiteSpace(rawJson))
@@ -330,7 +323,7 @@ public sealed class CycleChallengeService
             using var document = JsonDocument.Parse(rawJson);
             var root = document.RootElement;
 
-            // 剧诗/危战：is_unlock 在同一层（data 对象内）；深渊：在 data 对象内
+
             if (root.TryGetProperty("is_unlock", out _))
             {
                 return GetBool(root, "is_unlock");
@@ -343,7 +336,7 @@ public sealed class CycleChallengeService
                 return GetBool(data, "is_unlock");
             }
 
-            // 字段缺失默认视为已解锁，避免把正常数据误判为未解锁
+
             return true;
         }
         catch (JsonException)
@@ -352,10 +345,7 @@ public sealed class CycleChallengeService
         }
     }
 
-    /// <summary>
-    /// 选择默认展示的期次：优先最近一期“有数据”的期次（当前期可能尚未参与），
-    /// 全部无数据时退回最新一期。期次仍可在下拉框中手动切换。
-    /// </summary>
+
     private CycleChallengeRecordEntity? PickPreferredRecord(
         string uid, ChallengeMode mode, IReadOnlyList<ChallengePeriod> periods)
     {
@@ -371,7 +361,7 @@ public sealed class CycleChallengeService
         return periods.Count > 0 ? _repository.Get(uid, mode, periods[0].ScheduleId) : null;
     }
 
-    /// <summary>从摘要 JSON 读取布尔字段，缺失时默认 true（避免把正常数据误判为未解锁）。</summary>
+
     private static bool ReadSummaryBool(string? summaryJson, string property)
     {
         if (string.IsNullOrWhiteSpace(summaryJson))
@@ -391,7 +381,7 @@ public sealed class CycleChallengeService
         }
     }
 
-    /// <summary>把接口时间规范化为带 +00:00 的 UTC 字符串入库（展示时再按账号服务器时区换算）。</summary>
+
     private static string? NormalizeTime(JsonElement element, string property)
     {
         if (!element.TryGetProperty(property, out var value))
@@ -411,7 +401,6 @@ public sealed class CycleChallengeService
     private static string? NormalizeScheduleTime(
         JsonElement element, string timeProperty, string dateTimeProperty, CycleChallengeTimeContext context)
     {
-        // 优先 unix 秒（绝对时间）；其次接口的墙上时间对象（按服务器时区解释）
         if (element.TryGetProperty(timeProperty, out var timeValue) &&
             timeValue.ValueKind is JsonValueKind.String &&
             long.TryParse(timeValue.GetString(), out var unix) && unix > 0)
@@ -459,7 +448,8 @@ public sealed class CycleChallengeService
             return CycleChallengeTime.ToUtcStorageString(DateTimeOffset.FromUnixTimeSeconds(unix));
         }
 
-        return DateTimeOffset.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var parsed)
+        return DateTimeOffset.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal,
+            out var parsed)
             ? CycleChallengeTime.ToUtcStorageString(parsed)
             : null;
     }

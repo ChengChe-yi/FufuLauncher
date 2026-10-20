@@ -202,7 +202,9 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
                 Uid, cookie, role.region, DateTime.Now.Month);
             if (version != _loadVersion || _disposed || !_roles.IsCurrent(selected, RoleSelection)) return;
             if (diary.Retcode != 0)
-                throw new InvalidOperationException(string.Format("GenshinData_DiaryRequestFailed_Format".GetLocalized(), diary.Retcode, diary.Message));
+                throw new InvalidOperationException(
+                    string.Format("GenshinData_DiaryRequestFailed_Format".GetLocalized(), diary.Retcode,
+                        diary.Message));
             if (diary.Data.Uid.ToString() != role.game_uid || diary.Data.Region != role.region)
                 throw new InvalidOperationException("GenshinData_DiaryRoleMismatch".GetLocalized());
             TravelersDiary = diary;
@@ -212,7 +214,8 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
         catch (Exception ex)
         {
             Debug.WriteLine($"Error: {ex.Message}");
-            if (version == _loadVersion && !_disposed) StatusMessage = string.Format("GenshinData_LoadFailed_Format".GetLocalized(), ex.Message);
+            if (version == _loadVersion && !_disposed)
+                StatusMessage = string.Format("GenshinData_LoadFailed_Format".GetLocalized(), ex.Message);
         }
         finally
         {

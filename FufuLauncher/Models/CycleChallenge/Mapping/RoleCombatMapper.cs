@@ -11,18 +11,17 @@ using FufuLauncher.Services.CycleChallenge;
 
 namespace FufuLauncher.Models.CycleChallenge.Mapping;
 
-/// <summary>
-/// 幻想真境剧诗：payload → DTO → <see cref="RoleCombatDisplay"/> 的纯函数映射。
-/// <para>
 /// 映射规则（已用真实 Starward 缓存库校准）：
 /// <list type="bullet">
-/// <item>KPI 的徽记数只认 <c>stat.medal_num</c>，<c>get_medal_round_list</c> 求和与徽记数不一致，仅作逐幕兜底；</item>
-/// <item><c>heraldry</c> 与 <c>difficulty_id</c> 恒等，纹章图标按 heraldry 取 <c>UI_RoleCombat_Medal_S_{n}</c>；</item>
-/// <item>逐幕列表按接口顺序渲染，不按 round_id 去重（塔罗轮会复用幕号）；</item>
-/// <item>塔罗图标：<c>is_tarot=true</c> 且 <c>is_get_medal=true</c> → Tarot_04，否则 Tarot_05；
-/// <c>tarot_serial_no</c> 只用于标题文案（I / II），不作为图标映射依据；</item>
-/// <item><c>finish_time</c> 是 unix 秒字符串（完成时刻），逐幕「用时」按相邻完成时刻差值推算；</item>
-/// <item>任意可选字段缺失 / 为 null 都返回占位文案，不抛异常。</item>
+///     <item>KPI 的徽记数只认 <c>stat.medal_num</c>，<c>get_medal_round_list</c> 求和与徽记数不一致，仅作逐幕兜底；</item>
+///     <item><c>heraldry</c> 与 <c>difficulty_id</c> 恒等，纹章图标按 heraldry 取 <c>UI_RoleCombat_Medal_S_{n}</c>；</item>
+///     <item>逐幕列表按接口顺序渲染，不按 round_id 去重（塔罗轮会复用幕号）；</item>
+///     <item>
+///         塔罗图标：<c>is_tarot=true</c> 且 <c>is_get_medal=true</c> → Tarot_04，否则 Tarot_05；
+///         <c>tarot_serial_no</c> 只用于标题文案（I / II），不作为图标映射依据；
+///     </item>
+///     <item><c>finish_time</c> 是 unix 秒字符串（完成时刻），逐幕「用时」按相邻完成时刻差值推算；</item>
+///     <item>任意可选字段缺失 / 为 null 都返回占位文案，不抛异常。</item>
 /// </list>
 /// </para>
 /// </summary>
@@ -35,12 +34,12 @@ public static class RoleCombatMapper
     private const string TarotNoMedalIcon = "UI_Icon_RoleCombat_Reward_Tarot_05";
 
     /// <summary>
-    /// 相邻两幕完成时刻差值超过该阈值时视为「中途休息 / 跨天」，不再展示为用时。
-    /// 接口只给完成时刻（unix 秒），没有真正意义上的单幕战斗用时，只能做保守推算。
+    ///     相邻两幕完成时刻差值超过该阈值时视为「中途休息 / 跨天」，不再展示为用时。
+    ///     接口只给完成时刻（unix 秒），没有真正意义上的单幕战斗用时，只能做保守推算。
     /// </summary>
     private static readonly TimeSpan MaxRoundDuration = TimeSpan.FromMinutes(30);
 
-    /// <summary>解析单期 payload 并映射为展示模型（解析失败抛 <see cref="JsonException"/>，由控件兜底）。</summary>
+    /// <summary>解析单期 payload 并映射为展示模型（解析失败抛 <see cref="JsonException" />，由控件兜底）。</summary>
     /// <param name="payloadJson">服务层给出的单期 payload（完整响应 / data 节点 / 单期对象均可）。</param>
     /// <param name="region">角色区服（cn_* 展示 UTC+8，其它展示 UTC）。</param>
     /// <returns>展示模型；无数据时返回对应空态。</returns>
@@ -119,8 +118,8 @@ public static class RoleCombatMapper
     }
 
     /// <summary>
-    /// 只有汇总、没有逐幕明细（has_detail_data=false）时仍然展示 KPI，避免整页空着。
-    /// 此时状态仍为 Content，只是 Rounds 为空。
+    ///     只有汇总、没有逐幕明细（has_detail_data=false）时仍然展示 KPI，避免整页空着。
+    ///     此时状态仍为 Content，只是 Rounds 为空。
     /// </summary>
     private static RoleCombatDisplay BuildSummaryOnly(RoleCombatEntryDto entry, CycleChallengeTimeContext context)
     {
@@ -165,7 +164,8 @@ public static class RoleCombatMapper
             }
 
             var isGetMedal = round.IsGetMedal
-                ?? (medalRoundList is not null && index < medalRoundList.Count && medalRoundList[index] != 0);
+                             ?? (medalRoundList is not null && index < medalRoundList.Count &&
+                                 medalRoundList[index] != 0);
             var isTarot = round.IsTarot ?? false;
             var roundId = round.RoundId ?? 0;
 
@@ -209,7 +209,7 @@ public static class RoleCombatMapper
     }
 
     /// <summary>
-    /// 最佳记录文案（参考 Hutao）：有圣牌完成数时「第 X 幕 圣牌 Y」，否则仅「第 X 幕」。
+    ///     最佳记录文案（参考 Hutao）：有圣牌完成数时「第 X 幕 圣牌 Y」，否则仅「第 X 幕」。
     /// </summary>
     private static string FormatMaxRound(RoleCombatStatDto? stat, RoleCombatEntryDto entry)
     {
@@ -221,7 +221,7 @@ public static class RoleCombatMapper
     }
 
     /// <summary>
-    /// 「挑战星章」概览图标（参考 Hutao）：普通幕用星章（获得 Star1 / 未获得 Star2），塔罗轮用塔罗牌图标。
+    ///     「挑战星章」概览图标（参考 Hutao）：普通幕用星章（获得 Star1 / 未获得 Star2），塔罗轮用塔罗牌图标。
     /// </summary>
     private static List<TheaterMedalIcon> MapMedalIcons(List<TheaterRound> rounds)
     {
@@ -398,7 +398,8 @@ public static class RoleCombatMapper
             {
                 if (item is not null && (item.AvatarId ?? 0) > 0)
                 {
-                    shortest.Add(new TheaterAvatarDamage(item.AvatarId ?? 0, item.AvatarIcon, item.Rarity ?? 0, ParseValue(item.Value)));
+                    shortest.Add(new TheaterAvatarDamage(item.AvatarId ?? 0, item.AvatarIcon, item.Rarity ?? 0,
+                        ParseValue(item.Value)));
                 }
             }
         }
@@ -418,7 +419,8 @@ public static class RoleCombatMapper
             return null;
         }
 
-        return new TheaterAvatarDamage(avatar.AvatarId ?? 0, avatar.AvatarIcon, avatar.Rarity ?? 0, ParseValue(avatar.Value));
+        return new TheaterAvatarDamage(avatar.AvatarId ?? 0, avatar.AvatarIcon, avatar.Rarity ?? 0,
+            ParseValue(avatar.Value));
     }
 
     /// <summary>把接口的数值字符串解析为整数；空串 / 非数字按 0 处理。</summary>
@@ -442,7 +444,8 @@ public static class RoleCombatMapper
             return null;
         }
 
-        return long.TryParse(raw.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) && parsed > 0
+        return long.TryParse(raw.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed) &&
+               parsed > 0
             ? parsed
             : null;
     }
@@ -556,7 +559,8 @@ public static class RoleCombatMapper
 
         var span = TimeSpan.FromSeconds(seconds);
         return span.TotalHours >= 1
-            ? string.Create(CultureInfo.InvariantCulture, $"{(int)span.TotalHours:D2}:{span.Minutes:D2}:{span.Seconds:D2}")
+            ? string.Create(CultureInfo.InvariantCulture,
+                $"{(int)span.TotalHours:D2}:{span.Minutes:D2}:{span.Seconds:D2}")
             : string.Create(CultureInfo.InvariantCulture, $"{span.Minutes:D2}:{span.Seconds:D2}");
     }
 

@@ -32,7 +32,8 @@ public partial class AccountViewModel
                 RunOnUIThread(() =>
                 {
                     StatusMessage = "Account_NoLoginInfo".GetLocalized();
-                    WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopyFailed".GetLocalized(), "Account_NoLoginInfo".GetLocalized(),
+                    WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopyFailed".GetLocalized(),
+                        "Account_NoLoginInfo".GetLocalized(),
                         NotificationType.Error));
                 });
                 return;
@@ -44,7 +45,8 @@ public partial class AccountViewModel
                 RunOnUIThread(() =>
                 {
                     StatusMessage = "Account_NoValidCookie".GetLocalized();
-                    WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopyFailed".GetLocalized(), "Account_NoValidCookie".GetLocalized(),
+                    WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopyFailed".GetLocalized(),
+                        "Account_NoValidCookie".GetLocalized(),
                         NotificationType.Error));
                 });
                 return;
@@ -58,7 +60,8 @@ public partial class AccountViewModel
                 dataPackage.SetText(cookieString);
                 Clipboard.SetContent(dataPackage);
                 StatusMessage = "Account_CookieCopied".GetLocalized();
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopySuccess".GetLocalized(), "Account_CookieCopySuccessDetail".GetLocalized(),
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopySuccess".GetLocalized(),
+                    "Account_CookieCopySuccessDetail".GetLocalized(),
                     NotificationType.Success));
             });
         }
@@ -67,7 +70,8 @@ public partial class AccountViewModel
             RunOnUIThread(() =>
             {
                 StatusMessage = string.Format("Common_CopyFailed_Format".GetLocalized(), ex.Message);
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopyFailed".GetLocalized(), ex.Message,
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_CopyFailed".GetLocalized(),
+                    ex.Message,
                     NotificationType.Error));
             });
         }
@@ -127,7 +131,8 @@ public partial class AccountViewModel
     }
 
     private async Task OpenSecurityCenterAsync() =>
-        await OpenSecurityWindowInternalAsync(ApiEndpoints.AccountSecurityUrl, "Account_OpeningSecurityCenter".GetLocalized());
+        await OpenSecurityWindowInternalAsync(ApiEndpoints.AccountSecurityUrl,
+            "Account_OpeningSecurityCenter".GetLocalized());
 
     private async Task OpenSecurityWindowInternalAsync(string url, string loadingMsg)
     {
@@ -151,7 +156,8 @@ public partial class AccountViewModel
         }
         catch (Exception ex)
         {
-            RunOnUIThread(() => StatusMessage = string.Format("Common_OperationFailed_Format".GetLocalized(), ex.Message));
+            RunOnUIThread(() =>
+                StatusMessage = string.Format("Common_OperationFailed_Format".GetLocalized(), ex.Message));
         }
     }
 }

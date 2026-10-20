@@ -95,7 +95,9 @@ public partial class GachaAnalysisViewModel
                 else ClearCollections();
                 IsDataLoaded = true;
                 CrawlerStatus = HasGachaData
-                    ? metadataCount > 0 ? "Gacha_LocalDataLoaded".GetLocalized() : "Gacha_LocalHistoryLoaded".GetLocalized()
+                    ? metadataCount > 0
+                        ? "Gacha_LocalDataLoaded".GetLocalized()
+                        : "Gacha_LocalHistoryLoaded".GetLocalized()
                     : "Gacha_RoleNoRecords".GetLocalized();
             });
 

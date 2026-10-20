@@ -102,7 +102,8 @@ public partial class PluginStoreViewModel
             var proceed = await ShowLuaTestSecurityWarningAsync(securityResult.Reason ?? "Unknown security issue");
             if (!proceed)
             {
-                StatusMessage = string.Format("PluginStore_LuaSecurityFailed_Format".GetLocalized(), securityResult.Reason);
+                StatusMessage = string.Format("PluginStore_LuaSecurityFailed_Format".GetLocalized(),
+                    securityResult.Reason);
                 return;
             }
         }
@@ -154,7 +155,8 @@ public partial class PluginStoreViewModel
 
         StatusMessage = success
             ? "PluginStore_LuaTestSuccess".GetLocalized()
-            : string.Format("PluginStore_LuaTestFailed_Format".GetLocalized(), errorMessage ?? "Common_UnknownError".GetLocalized());
+            : string.Format("PluginStore_LuaTestFailed_Format".GetLocalized(),
+                errorMessage ?? "Common_UnknownError".GetLocalized());
     }
 
     private static async Task<bool> ShowLuaTestSecurityWarningAsync(string reason)

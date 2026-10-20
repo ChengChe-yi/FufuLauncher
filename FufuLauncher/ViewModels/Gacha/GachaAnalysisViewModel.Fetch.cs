@@ -112,7 +112,8 @@ public partial class GachaAnalysisViewModel
         var useBaseline = incremental && !string.IsNullOrEmpty(expectedUid) && _currentUid == expectedUid;
 
         void OnProgress(string pool, int count) =>
-            App.MainWindow.DispatcherQueue.TryEnqueue(() => CrawlerStatus = string.Format("Gacha_FetchPoolRecordsProgress_Format".GetLocalized(), pool, count));
+            App.MainWindow.DispatcherQueue.TryEnqueue(() =>
+                CrawlerStatus = string.Format("Gacha_FetchPoolRecordsProgress_Format".GetLocalized(), pool, count));
 
         var charPoolName = "Gacha_Pool_Character".GetLocalized();
         var weaponPoolName = "Gacha_Pool_Weapon".GetLocalized();
@@ -121,23 +122,30 @@ public partial class GachaAnalysisViewModel
         var standardPoolName = "Gacha_Pool_Standard".GetLocalized();
 
         CrawlerStatus = string.Format("Gacha_FetchingType_Format".GetLocalized(), charPoolName);
-        var charLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "301", count => OnProgress(charPoolName, count),
+        var charLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "301",
+            count => OnProgress(charPoolName, count),
             useBaseline ? GetNewestLogId(_cachedCharacterLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), charPoolName, charLogs.Count, weaponPoolName);
-        var weaponLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "302", count => OnProgress(weaponPoolName, count),
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), charPoolName, charLogs.Count,
+            weaponPoolName);
+        var weaponLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "302",
+            count => OnProgress(weaponPoolName, count),
             useBaseline ? GetNewestLogId(_cachedWeaponLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), weaponPoolName, weaponLogs.Count, chronicledPoolName);
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), weaponPoolName, weaponLogs.Count,
+            chronicledPoolName);
         var chronicledLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "500",
             count => OnProgress(chronicledPoolName, count),
             useBaseline ? GetNewestLogId(_cachedChronicledLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), chronicledPoolName, chronicledLogs.Count, novicePoolName);
-        var noviceLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "100", count => OnProgress(novicePoolName, count),
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), chronicledPoolName,
+            chronicledLogs.Count, novicePoolName);
+        var noviceLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "100",
+            count => OnProgress(novicePoolName, count),
             useBaseline ? GetNewestLogId(_cachedNoviceLogs) : 0,
             requireComplete: true, expectedRegion: link.Region, expectedUid: expectedUid);
-        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), novicePoolName, noviceLogs.Count, standardPoolName);
+        CrawlerStatus = string.Format("Gacha_PoolCountNextPool_Format".GetLocalized(), novicePoolName, noviceLogs.Count,
+            standardPoolName);
         var standardLogs = await _gachaService.FetchGachaLogAsync(link.ApiUrl, "200",
             count => OnProgress(standardPoolName, count),
             useBaseline ? GetNewestLogId(_cachedStandardLogs) : 0,
@@ -194,7 +202,8 @@ public partial class GachaAnalysisViewModel
         _cachedNoviceLogs = MergeLogs(_cachedNoviceLogs, noviceLogs);
         _cachedStandardLogs = MergeLogs(_cachedStandardLogs, standardLogs);
         FillMissingFieldsFromMetadata(charLogs, weaponLogs, chronicledLogs, noviceLogs, standardLogs);
-        CrawlerStatus = string.Format("Gacha_FetchDoneCheckingImages_Format".GetLocalized(), fetchedUid, allFetched.Count);
+        CrawlerStatus = string.Format("Gacha_FetchDoneCheckingImages_Format".GetLocalized(), fetchedUid,
+            allFetched.Count);
         HasGachaData = true;
         SaveGachaDataAsync();
         if (RequestMetadataScrapeAction != null)

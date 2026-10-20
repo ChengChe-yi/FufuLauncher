@@ -10,10 +10,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FufuLauncher.Data.Repositories;
 
-/// <summary>
-/// 周期挑战记录仓储：独立 SQLite 文件 + PRAGMA user_version 迁移（参考 Starward DatabaseService）。
-/// 只做新增，不改动其它 DbContext / 数据文件。
-/// </summary>
 public sealed class CycleChallengeRepository
 {
     private const int CurrentSchemaVersion = 1;
@@ -41,7 +37,7 @@ public sealed class CycleChallengeRepository
 
     private CycleChallengeDbContext CreateContext() => new(_dbPath);
 
-    /// <summary>建库/升级（幂等）。</summary>
+
     public void EnsureInitialized()
     {
         if (_initialized)
@@ -106,7 +102,7 @@ public sealed class CycleChallengeRepository
         $"PRAGMA user_version = {CurrentSchemaVersion};",
     ];
 
-    /// <summary>同键覆盖写入（D5：同期刷新最新覆盖旧的）。</summary>
+
     public void Upsert(CycleChallengeRecordEntity record)
     {
         EnsureInitialized();
@@ -177,7 +173,7 @@ public sealed class CycleChallengeRepository
         return db.CycleChallengeRecords.Count(x => x.Uid == uid && x.Mode == modeValue);
     }
 
-    /// <summary>仅保留最近 keep 期，返回删除条数。</summary>
+
     public int Trim(string uid, ChallengeMode mode, int keep)
     {
         var periods = GetPeriods(uid, mode);

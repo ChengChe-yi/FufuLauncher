@@ -149,7 +149,8 @@ namespace FufuLauncher.Views
                         let categories = catElements.map(el => {
                             let title = el.querySelector('p.text-xl')?.textContent.trim() || '未知分类';
                             let imgSrc = el.querySelector('img')?.getAttribute('src') || '';
-                            if (imgSrc && !imgSrc.startsWith('http')) imgSrc = '" + ApiEndpoints.SeelieBase + @"' + imgSrc;
+                            if (imgSrc && !imgSrc.startsWith('http')) imgSrc = '" + ApiEndpoints.SeelieBase +
+                            @"' + imgSrc;
                             return { title, icon_url: imgSrc, achievements: [] };
                         });
 

@@ -22,6 +22,7 @@ public class NavigationService : INavigationService
         [typeof(SettingsViewModel).FullName!] = typeof(SettingsPage),
         [typeof(GameSettingsViewModel).FullName!] = typeof(GameSettingsPage)
     };
+
     private object? _lastParameterUsed;
     private Frame? _frame;
 

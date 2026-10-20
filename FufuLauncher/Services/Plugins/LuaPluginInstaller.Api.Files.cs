@@ -206,7 +206,7 @@ public partial class LuaPluginInstaller
         }
 
         var table = tableValue.Table;
-        // The netcore MoonSharp package uses zero-based array literals; retain explicit one-based tables too.
+
         var firstIndex = table.Get(0).IsNil() ? 1 : 0;
         for (int i = firstIndex;; i++)
         {

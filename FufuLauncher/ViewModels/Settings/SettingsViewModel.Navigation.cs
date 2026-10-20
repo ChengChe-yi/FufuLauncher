@@ -36,7 +36,8 @@ public partial class SettingsViewModel
             },
             new()
             {
-                ViewModelKey = "FufuLauncher.ViewModels.GameSettingsViewModel", DisplayNameKey = "PageTitle_GameSettings",
+                ViewModelKey = "FufuLauncher.ViewModels.GameSettingsViewModel",
+                DisplayNameKey = "PageTitle_GameSettings",
                 IconGlyph = "\uE7FC"
             },
             new()
@@ -58,11 +59,6 @@ public partial class SettingsViewModel
             {
                 ViewModelKey = "FufuLauncher.ViewModels.DataViewModel", DisplayNameKey = "NavDataCenter",
                 IconGlyph = "\uE9D9"
-            },
-            new()
-            {
-                ViewModelKey = "FufuLauncher.ViewModels.CycleChallengeViewModel",
-                DisplayNameKey = "NavCycleChallenge", IconGlyph = "\uE81C"
             },
             new()
             {

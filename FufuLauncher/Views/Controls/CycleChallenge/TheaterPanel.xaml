@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
@@ -89,7 +90,8 @@ Licensed under the MIT License.
         </StackPanel>
 
         <!--  内容区  -->
-        <StackPanel Spacing="12" Visibility="{x:Bind Display.ShowContent, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+        <StackPanel Spacing="12"
+                    Visibility="{x:Bind Display.ShowContent, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
 
             <!--  头部：难度 + 期次  -->
             <Grid ColumnSpacing="12">
@@ -129,13 +131,15 @@ Licensed under the MIT License.
                 <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_Difficulty}" />
-                        <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.DifficultyName, Mode=OneTime}" />
+                        <TextBlock Style="{StaticResource KpiValueStyle}"
+                                   Text="{x:Bind Display.DifficultyName, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_MaxRound}" />
-                        <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.MaxRoundText, Mode=OneTime}" />
+                        <TextBlock Style="{StaticResource KpiValueStyle}"
+                                   Text="{x:Bind Display.MaxRoundText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource KpiCardStyle}">
@@ -159,25 +163,29 @@ Licensed under the MIT License.
                 <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_Coins}" />
-                        <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.CoinText, Mode=OneTime}" />
+                        <TextBlock Style="{StaticResource KpiValueStyle}"
+                                   Text="{x:Bind Display.CoinText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_AvatarBonus}" />
-                        <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.AvatarBonusText, Mode=OneTime}" />
+                        <TextBlock Style="{StaticResource KpiValueStyle}"
+                                   Text="{x:Bind Display.AvatarBonusText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_Rent}" />
-                        <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Display.RentText, Mode=OneTime}" />
+                        <TextBlock Style="{StaticResource KpiValueStyle}"
+                                   Text="{x:Bind Display.RentText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
             </Grid>
 
             <!--  战斗统计  -->
-            <Border Style="{StaticResource SectionCardStyle}" Visibility="{x:Bind Display.ShowBattleStats, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border Style="{StaticResource SectionCardStyle}"
+                    Visibility="{x:Bind Display.ShowBattleStats, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Spacing="12">
                     <!--  战斗统计  -->
                     <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Theater_BattleStats}" />
@@ -194,7 +202,8 @@ Licensed under the MIT License.
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{helpers:Loc Key=Theater_TotalTime}" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"
+                                   Text="{helpers:Loc Key=Theater_TotalTime}" />
                         <TextBlock
                             Grid.Row="0"
                             Grid.Column="1"
@@ -202,7 +211,8 @@ Licensed under the MIT License.
                             Text="{x:Bind Display.BattleTotalTimeText, Mode=OneTime}"
                             Visibility="{x:Bind Display.HasBattleTotalTime, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{helpers:Loc Key=Theater_MaxDamage}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"
+                                   Text="{helpers:Loc Key=Theater_MaxDamage}" />
                         <StackPanel
                             Grid.Row="1"
                             Grid.Column="1"
@@ -215,10 +225,12 @@ Licensed under the MIT License.
                                 Level="0"
                                 Rarity="{x:Bind Display.MaxDamageRarity, Mode=OneTime}"
                                 Size="32" />
-                            <TextBlock VerticalAlignment="Center" Text="{x:Bind Display.MaxDamageValueText, Mode=OneTime}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Text="{x:Bind Display.MaxDamageValueText, Mode=OneTime}" />
                         </StackPanel>
 
-                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="{helpers:Loc Key=Theater_MaxDefeat}" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"
+                                   Text="{helpers:Loc Key=Theater_MaxDefeat}" />
                         <StackPanel
                             Grid.Row="2"
                             Grid.Column="1"
@@ -231,10 +243,12 @@ Licensed under the MIT License.
                                 Level="0"
                                 Rarity="{x:Bind Display.MaxDefeatRarity, Mode=OneTime}"
                                 Size="32" />
-                            <TextBlock VerticalAlignment="Center" Text="{x:Bind Display.MaxDefeatValueText, Mode=OneTime}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Text="{x:Bind Display.MaxDefeatValueText, Mode=OneTime}" />
                         </StackPanel>
 
-                        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="{helpers:Loc Key=Theater_MaxTakeDamage}" />
+                        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"
+                                   Text="{helpers:Loc Key=Theater_MaxTakeDamage}" />
                         <StackPanel
                             Grid.Row="3"
                             Grid.Column="1"
@@ -247,10 +261,12 @@ Licensed under the MIT License.
                                 Level="0"
                                 Rarity="{x:Bind Display.MaxTakeDamageRarity, Mode=OneTime}"
                                 Size="32" />
-                            <TextBlock VerticalAlignment="Center" Text="{x:Bind Display.MaxTakeDamageValueText, Mode=OneTime}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Text="{x:Bind Display.MaxTakeDamageValueText, Mode=OneTime}" />
                         </StackPanel>
 
-                        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="{helpers:Loc Key=Theater_ShortestClear}" />
+                        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"
+                                   Text="{helpers:Loc Key=Theater_ShortestClear}" />
                         <ItemsControl
                             Grid.Row="4"
                             Grid.Column="1"
@@ -277,13 +293,15 @@ Licensed under the MIT License.
             </Border>
 
             <!--  待命角色  -->
-            <Border Style="{StaticResource SectionCardStyle}" Visibility="{x:Bind Display.HasBackupAvatars, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border Style="{StaticResource SectionCardStyle}"
+                    Visibility="{x:Bind Display.HasBackupAvatars, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Spacing="10" ScrollViewer.VerticalScrollMode="Auto">
-                    <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Theater_BackupAvatars}" />
+                    <TextBlock Style="{StaticResource SectionTitleStyle}"
+                               Text="{helpers:Loc Key=Theater_BackupAvatars}" />
                     <ItemsControl ItemsSource="{x:Bind Display.BackupAvatars, Mode=OneTime}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Horizontal" ItemWidth="60" ItemHeight="60"/>
+                                <ItemsWrapGrid Orientation="Horizontal" ItemWidth="60" ItemHeight="60" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
@@ -310,7 +328,8 @@ Licensed under the MIT License.
             </Border>
 
             <!--  逐幕  -->
-            <Border Style="{StaticResource SectionCardStyle}" Visibility="{x:Bind Display.HasRounds, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border Style="{StaticResource SectionCardStyle}"
+                    Visibility="{x:Bind Display.HasRounds, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Spacing="12">
                     <!--  演出回顾  -->
                     <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Theater_Review}" />
@@ -359,8 +378,10 @@ Licensed under the MIT License.
                                         </Grid>
 
                                         <!--  敌人  -->
-                                        <StackPanel Spacing="6" Visibility="{x:Bind HasEnemies, Converter={StaticResource BoolToVisibilityConverter}}">
-                                            <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_Enemies}" />
+                                        <StackPanel Spacing="6"
+                                                    Visibility="{x:Bind HasEnemies, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <TextBlock Style="{StaticResource KpiLabelStyle}"
+                                                       Text="{helpers:Loc Key=Theater_Enemies}" />
                                             <ItemsControl ItemsSource="{x:Bind Enemies}">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
@@ -370,7 +391,8 @@ Licensed under the MIT License.
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate x:DataType="models:TheaterEnemy">
                                                         <StackPanel Orientation="Horizontal" Spacing="6">
-                                                            <cc:RemoteImage Width="28" Height="28" Source="{x:Bind IconUrl}" />
+                                                            <cc:RemoteImage Width="28" Height="28"
+                                                                            Source="{x:Bind IconUrl}" />
                                                             <StackPanel VerticalAlignment="Center">
                                                                 <TextBlock FontSize="12" Text="{x:Bind DisplayName}" />
                                                                 <TextBlock
@@ -414,8 +436,10 @@ Licensed under the MIT License.
                                         </ItemsControl>
 
                                         <!--  辉彩祝福：汇总描述 + 祝福图标（悬浮显示等级效果）  -->
-                                        <StackPanel Spacing="6" Visibility="{x:Bind HasSplendour, Converter={StaticResource BoolToVisibilityConverter}}">
-                                            <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_SplendourBuffs}" />
+                                        <StackPanel Spacing="6"
+                                                    Visibility="{x:Bind HasSplendour, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <TextBlock Style="{StaticResource KpiLabelStyle}"
+                                                       Text="{helpers:Loc Key=Theater_SplendourBuffs}" />
                                             <RichTextBlock
                                                 FontSize="12"
                                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"
@@ -434,7 +458,8 @@ Licensed under the MIT License.
                                                         <Grid>
                                                             <ToolTipService.ToolTip>
                                                                 <StackPanel MaxWidth="380" Spacing="6">
-                                                                    <TextBlock FontWeight="SemiBold" Text="{x:Bind Name}" />
+                                                                    <TextBlock FontWeight="SemiBold"
+                                                                               Text="{x:Bind Name}" />
                                                                     <RichTextBlock
                                                                         FontSize="12"
                                                                         Loaded="OnSplendourTooltipLoaded"
@@ -466,8 +491,10 @@ Licensed under the MIT License.
                                         </StackPanel>
 
                                         <!--  神秘收获：事件卡图标（悬浮显示名称与效果）  -->
-                                        <StackPanel Spacing="6" Visibility="{x:Bind HasChoiceCards, Converter={StaticResource BoolToVisibilityConverter}}">
-                                            <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Theater_ChoiceCards}" />
+                                        <StackPanel Spacing="6"
+                                                    Visibility="{x:Bind HasChoiceCards, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <TextBlock Style="{StaticResource KpiLabelStyle}"
+                                                       Text="{helpers:Loc Key=Theater_ChoiceCards}" />
                                             <ItemsControl ItemsSource="{x:Bind ChoiceCards}">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
@@ -479,7 +506,8 @@ Licensed under the MIT License.
                                                         <Grid>
                                                             <ToolTipService.ToolTip>
                                                                 <StackPanel MaxWidth="380" Spacing="6">
-                                                                    <TextBlock FontWeight="SemiBold" Text="{x:Bind Name}" />
+                                                                    <TextBlock FontWeight="SemiBold"
+                                                                               Text="{x:Bind Name}" />
                                                                     <RichTextBlock
                                                                         FontSize="12"
                                                                         Loaded="OnBuffTooltipLoaded"

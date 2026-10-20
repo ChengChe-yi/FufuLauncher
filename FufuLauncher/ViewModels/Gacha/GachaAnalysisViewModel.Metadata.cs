@@ -65,7 +65,9 @@ public partial class GachaAnalysisViewModel
     {
         const int maxAttempts = 3;
         int[] delays = { 1000, 2000, 4000 };
-        var typeName = type == "char" ? "Gacha_ItemType_Character".GetLocalized() : "Gacha_ItemType_Weapon".GetLocalized();
+        var typeName = type == "char"
+            ? "Gacha_ItemType_Character".GetLocalized()
+            : "Gacha_ItemType_Weapon".GetLocalized();
 
         for (var attempt = 1; attempt <= maxAttempts; attempt++)
         {
@@ -74,7 +76,8 @@ public partial class GachaAnalysisViewModel
 
             if (attempt < maxAttempts)
             {
-                CrawlerStatus = string.Format("Gacha_CrawlerStatus_MetaRetry_Format".GetLocalized(), typeName, delays[attempt - 1] / 1000, attempt, maxAttempts);
+                CrawlerStatus = string.Format("Gacha_CrawlerStatus_MetaRetry_Format".GetLocalized(), typeName,
+                    delays[attempt - 1] / 1000, attempt, maxAttempts);
                 await Task.Delay(delays[attempt - 1]);
             }
             else

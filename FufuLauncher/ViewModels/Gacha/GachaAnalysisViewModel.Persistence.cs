@@ -264,7 +264,8 @@ public partial class GachaAnalysisViewModel
         {
             if (string.IsNullOrEmpty(_currentUid))
             {
-                WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteFailed".GetLocalized(), "Gacha_NoAccountSelected".GetLocalized(),
+                WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteFailed".GetLocalized(),
+                    "Gacha_NoAccountSelected".GetLocalized(),
                     NotificationType.Error, 3000));
                 return;
             }
@@ -298,12 +299,14 @@ public partial class GachaAnalysisViewModel
             if (!string.IsNullOrEmpty(nextUid)) await SwitchToUidAsync(nextUid);
             CrawlerStatus = string.Format("Gacha_DeletedUidRecords_Format".GetLocalized(), deletedUid);
 
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteSuccess".GetLocalized(), string.Format("Gacha_DeletedUidRecordsDetail_Format".GetLocalized(), deletedUid),
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteSuccess".GetLocalized(),
+                string.Format("Gacha_DeletedUidRecordsDetail_Format".GetLocalized(), deletedUid),
                 NotificationType.Success, 3000));
         }
         catch (Exception ex)
         {
-            WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteFailed".GetLocalized(), string.Format("Common_DeleteFailed_Format".GetLocalized(), ex.Message),
+            WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_DeleteFailed".GetLocalized(),
+                string.Format("Common_DeleteFailed_Format".GetLocalized(), ex.Message),
                 NotificationType.Error, 5000));
         }
     }

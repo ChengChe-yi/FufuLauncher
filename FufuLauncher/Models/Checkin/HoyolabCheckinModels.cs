@@ -301,5 +301,4 @@ namespace FufuLauncher.Models
             set;
         }
     }
-
 }

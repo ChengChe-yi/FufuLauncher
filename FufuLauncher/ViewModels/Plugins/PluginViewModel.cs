@@ -398,7 +398,8 @@ public class PluginViewModel : INotifyPropertyChanged
             item.FileName = Path.GetFileName(newPath);
             item.IsEnabled = targetState;
 
-            StatusMessage = string.Format("Plugin_StateChanged_Format".GetLocalized(), targetState ? "Common_Enable".GetLocalized() : "Common_Disable".GetLocalized(), item.DisplayName);
+            StatusMessage = string.Format("Plugin_StateChanged_Format".GetLocalized(),
+                targetState ? "Common_Enable".GetLocalized() : "Common_Disable".GetLocalized(), item.DisplayName);
         }
         catch (Exception ex)
         {

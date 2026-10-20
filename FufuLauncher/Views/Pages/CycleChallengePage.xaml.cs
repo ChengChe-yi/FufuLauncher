@@ -12,10 +12,6 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace FufuLauncher.Views;
 
-/// <summary>
-/// 周期挑战主页面：页头（账号 / 角色）、三模式切换、期次选择与内容宿主。
-/// 内容由三个独立面板控件各自解析单期 JSON 并渲染。
-/// </summary>
 public sealed partial class CycleChallengePage : Page
 {
     private bool _subscribed;
@@ -28,7 +24,10 @@ public sealed partial class CycleChallengePage : Page
         Unloaded += OnUnloaded;
     }
 
-    public CycleChallengeViewModel ViewModel { get; }
+    public CycleChallengeViewModel ViewModel
+    {
+        get;
+    }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
@@ -79,7 +78,7 @@ public sealed partial class CycleChallengePage : Page
     private async void OnStygianChipClick(object sender, RoutedEventArgs e) =>
         await ViewModel.SetModeAsync(ChallengeMode.Stygian);
 
-    /// <summary>按当前模式切换面板可见性，并把单期 JSON 交给对应面板渲染。</summary>
+
     private void UpdateContent()
     {
         var mode = ViewModel.CurrentMode;
@@ -101,7 +100,7 @@ public sealed partial class CycleChallengePage : Page
             return;
         }
 
-        // 时间显示时区：cn_* → UTC+8，其它 → UTC（面板按区服换算）
+
         var region = ViewModel.CurrentRegion;
         AbyssPanel.Region = region;
         TheaterPanel.Region = region;

@@ -60,8 +60,10 @@ public partial class PluginSettingsViewModel
             if (configData.TryGetValue("General", out var generalSection))
             {
                 PluginName = generalSection.GetValueOrDefault("Name", "PluginSettings_UnknownPlugin".GetLocalized());
-                PluginDescription = generalSection.GetValueOrDefault("Description", "PluginSettings_NoDescription".GetLocalized());
-                PluginDeveloper = generalSection.GetValueOrDefault("Developer", "PluginSettings_UnknownDeveloper".GetLocalized());
+                PluginDescription =
+                    generalSection.GetValueOrDefault("Description", "PluginSettings_NoDescription".GetLocalized());
+                PluginDeveloper =
+                    generalSection.GetValueOrDefault("Developer", "PluginSettings_UnknownDeveloper".GetLocalized());
             }
 
             ManagePresets(configData);

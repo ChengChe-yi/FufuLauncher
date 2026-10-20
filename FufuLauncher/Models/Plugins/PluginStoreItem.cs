@@ -257,10 +257,18 @@ public class PluginStoreItem : INotifyPropertyChanged
     }
 
     [JsonPropertyName("archive_file_name")]
-    public string ArchiveFileName { get; set; } = string.Empty;
+    public string ArchiveFileName
+    {
+        get;
+        set;
+    } = string.Empty;
 
     [JsonIgnore]
-    public string? ArchivePassword { get; set; }
+    public string? ArchivePassword
+    {
+        get;
+        set;
+    }
 
     [JsonPropertyName("lua_hash")]
     public string LuaHash

@@ -18,15 +18,15 @@ using Windows.UI;
 namespace FufuLauncher.Views.Controls.CycleChallenge;
 
 /// <summary>
-/// 幽境危战展示控件。
-/// <para>
-/// 使用方式：<see cref="Show"/> 接收服务层给出的单期 payload，由
-/// <see cref="HardChallengeMapper"/> 解析为 <see cref="HardChallengeDisplay"/> 后渲染。
-/// 顶部两个 ToggleButton（单人 / 联机）切换当前展示的 <see cref="StygianMode"/>；
-/// <c>mp.has_data=false</c> 时联机按钮被禁用并显示「暂无多人挑战数据」。
-/// 怪物描述里的 <c>&lt;color=#RRGGBBAA&gt;...&lt;/color&gt;</c> 由
-/// <see cref="CycleChallengeRichTextParser"/> 解析为 <see cref="RichTextBlock"/> 的 Paragraph / Run 集合。
-/// </para>
+///     幽境危战展示控件。
+///     <para>
+///         使用方式：<see cref="Show" /> 接收服务层给出的单期 payload，由
+///         <see cref="HardChallengeMapper" /> 解析为 <see cref="HardChallengeDisplay" /> 后渲染。
+///         顶部两个 ToggleButton（单人 / 联机）切换当前展示的 <see cref="StygianMode" />；
+///         <c>mp.has_data=false</c> 时联机按钮被禁用并显示「暂无多人挑战数据」。
+///         怪物描述里的 <c>&lt;color=#RRGGBBAA&gt;...&lt;/color&gt;</c> 由
+///         <see cref="CycleChallengeRichTextParser" /> 解析为 <see cref="RichTextBlock" /> 的 Paragraph / Run 集合。
+///     </para>
 /// </summary>
 public sealed partial class StygianPanel : UserControl
 {
@@ -42,10 +42,14 @@ public sealed partial class StygianPanel : UserControl
     public HardChallengeDisplay Display => _display;
 
     /// <summary>
-    /// 当前角色的区服（如 cn_gf01 / os_usa），用于时间显示时区：
-    /// cn_* 展示 UTC+8，其它展示 UTC。
+    ///     当前角色的区服（如 cn_gf01 / os_usa），用于时间显示时区：
+    ///     cn_* 展示 UTC+8，其它展示 UTC。
     /// </summary>
-    public string? Region { get; set; }
+    public string? Region
+    {
+        get;
+        set;
+    }
 
     /// <summary>当前选中的单人 / 联机数据。</summary>
     public StygianMode Mode => _showCoop ? _display.Coop : _display.Solo;
@@ -166,18 +170,22 @@ public sealed partial class StygianPanel : UserControl
 }
 
 /// <summary>
-/// 危战怪物描述的小型富文本解析器。
-/// <para>
-/// 支持的标记（均来自米游社真实响应）：
-/// <list type="bullet">
-/// <item><c>&lt;color=#RRGGBBAA&gt;文本&lt;/color&gt;</c> → <see cref="Run"/> 的
-/// <see cref="TextElement.Foreground"/>（8 位十六进制按 RRGGBBAA 解析，6 位按 RRGGBB 解析并补全不透明）；</item>
-/// <item>换行：真实换行符 <c>\n</c> 与字面量 <c>\\n</c> 都转成 <see cref="LineBreak"/>；</item>
-/// <item>未知 / 不完整标签（如 <c>&lt;b&gt;</c>、缺失闭合的 <c>&lt;color=...&gt;</c>）按纯文本原样输出，
-/// 不会吞掉文本，也不会抛异常。</item>
-/// </list>
-/// 每个 desc 数组元素生成一个 <see cref="Paragraph"/>，空元素直接跳过。
-/// </para>
+///     危战怪物描述的小型富文本解析器。
+///     <para>
+///         支持的标记（均来自米游社真实响应）：
+///         <list type="bullet">
+///             <item>
+///                 <c>&lt;color=#RRGGBBAA&gt;文本&lt;/color&gt;</c> → <see cref="Run" /> 的
+///                 <see cref="TextElement.Foreground" />（8 位十六进制按 RRGGBBAA 解析，6 位按 RRGGBB 解析并补全不透明）；
+///             </item>
+///             <item>换行：真实换行符 <c>\n</c> 与字面量 <c>\\n</c> 都转成 <see cref="LineBreak" />；</item>
+///             <item>
+///                 未知 / 不完整标签（如 <c>&lt;b&gt;</c>、缺失闭合的 <c>&lt;color=...&gt;</c>）按纯文本原样输出，
+///                 不会吞掉文本，也不会抛异常。
+///             </item>
+///         </list>
+///         每个 desc 数组元素生成一个 <see cref="Paragraph" />，空元素直接跳过。
+///     </para>
 /// </summary>
 internal static class CycleChallengeRichTextParser
 {
@@ -215,7 +223,7 @@ internal static class CycleChallengeRichTextParser
         }
     }
 
-    /// <summary>把单条描述解析为一个 <see cref="Paragraph"/>（纯函数，便于单独验证）。</summary>
+    /// <summary>把单条描述解析为一个 <see cref="Paragraph" />（纯函数，便于单独验证）。</summary>
     /// <param name="text">描述原文。</param>
     /// <returns>包含 Run / LineBreak 的段落。</returns>
     internal static Paragraph BuildParagraph(string text)
@@ -298,7 +306,7 @@ internal static class CycleChallengeRichTextParser
         LinkClose,
     }
 
-    /// <summary>解析出的文本片段；<see cref="Foreground"/> 为 null 表示继承 RichTextBlock 的前景色。</summary>
+    /// <summary>解析出的文本片段；<see cref="Foreground" /> 为 null 表示继承 RichTextBlock 的前景色。</summary>
     /// <param name="Text">文本内容（换行 / 链接标记片段为空串）。</param>
     /// <param name="Foreground">颜色，null 表示继承。</param>
     /// <param name="Kind">片段种类。</param>
@@ -384,7 +392,7 @@ internal static class CycleChallengeRichTextParser
     /// <summary>尝试读取 <c>{LINK#...}</c> / <c>{/LINK}</c> 链接标记。</summary>
     /// <param name="text">完整文本。</param>
     /// <param name="startIndex">'{' 所在下标。</param>
-    /// <param name="kind">解析出的片段种类（<see cref="SegmentKind.LinkOpen"/> / <see cref="SegmentKind.LinkClose"/>）。</param>
+    /// <param name="kind">解析出的片段种类（<see cref="SegmentKind.LinkOpen" /> / <see cref="SegmentKind.LinkClose" />）。</param>
     /// <param name="nextIndex">标记之后的第一个字符下标。</param>
     /// <returns>是否为合法的链接标记。</returns>
     private static bool TryReadLinkTag(string text, int startIndex, out SegmentKind kind, out int nextIndex)

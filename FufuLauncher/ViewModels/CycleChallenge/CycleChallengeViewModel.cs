@@ -16,7 +16,6 @@ using FufuLauncher.Services.CycleChallenge;
 
 namespace FufuLauncher.ViewModels;
 
-/// <summary>期次下拉项。</summary>
 public sealed class CycleChallengePeriodOption
 {
     public CycleChallengePeriodOption(ChallengePeriod period, TimeSpan displayOffset)
@@ -25,16 +24,19 @@ public sealed class CycleChallengePeriodOption
         Display = BuildDisplay(period, displayOffset);
     }
 
-    public ChallengePeriod Period { get; }
+    public ChallengePeriod Period
+    {
+        get;
+    }
 
-    public string Display { get; }
+    public string Display
+    {
+        get;
+    }
 
     public string ScheduleId => Period.ScheduleId;
 
-    /// <summary>
-    /// 期次时间按账号所在服务器时区展示（displayOffset 来自区服），
-    /// 不再硬编码 UTC+8；入库值为 UTC，展示时换算。
-    /// </summary>
+
     private static string BuildDisplay(ChallengePeriod period, TimeSpan displayOffset)
     {
         var start = CycleChallengeTime.FormatStoredString(period.StartUtc, "yyyy-MM-dd HH:mm", displayOffset);
@@ -46,9 +48,6 @@ public sealed class CycleChallengePeriodOption
     }
 }
 
-/// <summary>
-/// 周期挑战页面 ViewModel：账号/UID 选择、三模式切换、期次选择、刷新与状态提示。
-/// </summary>
 public sealed partial class CycleChallengeViewModel : ObservableObject
 {
     private readonly AccountManager _accountManager;
@@ -60,7 +59,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
     private bool _suppressPeriodReload;
     private DateTimeOffset? _lastFetchedAt;
 
-    /// <summary>缓存新鲜度：超过该时长则进入页面时静默刷新一次。</summary>
+
     private static readonly TimeSpan CacheTtl = TimeSpan.FromMinutes(30);
 
     public CycleChallengeViewModel(
@@ -86,43 +85,43 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             });
     }
 
-    /// <summary>页面独立角色作用域，不污染全局选择。</summary>
-    public GameRoleScope RoleSelection { get; } = new();
 
-    public ObservableCollection<CycleChallengePeriodOption> Periods { get; } = [];
+    public GameRoleScope RoleSelection
+    {
+        get;
+    } = new();
 
-    [ObservableProperty]
-    private ChallengeMode _currentMode = ChallengeMode.SpiralAbyss;
+    public ObservableCollection<CycleChallengePeriodOption> Periods
+    {
+        get;
+    } = [];
 
-    [ObservableProperty]
-    private CycleChallengePeriodOption? _selectedPeriod;
+    [ObservableProperty] private ChallengeMode _currentMode = ChallengeMode.SpiralAbyss;
 
-    [ObservableProperty]
-    private string? _payload;
+    [ObservableProperty] private CycleChallengePeriodOption? _selectedPeriod;
 
-    [ObservableProperty]
-    private string _accountText = string.Empty;
+    [ObservableProperty] private string? _payload;
 
-    [ObservableProperty]
-    private bool _isLoading;
+    [ObservableProperty] private string _accountText = string.Empty;
 
-    [ObservableProperty]
-    private bool _hasError;
+    [ObservableProperty] private bool _isLoading;
 
-    [ObservableProperty]
-    private string? _errorMessage;
+    [ObservableProperty] private bool _hasError;
 
-    [ObservableProperty]
-    private bool _isOffline;
+    [ObservableProperty] private string? _errorMessage;
 
-    [ObservableProperty]
-    private string? _statusText;
+    [ObservableProperty] private bool _isOffline;
 
-    [ObservableProperty]
-    private bool _hasData;
+    [ObservableProperty] private string? _statusText;
 
-    /// <summary>当前角色区服（决定时间展示时区：按账号所在服务器时区显示），由页面传给各面板。</summary>
-    public string? CurrentRegion { get; private set; }
+    [ObservableProperty] private bool _hasData;
+
+
+    public string? CurrentRegion
+    {
+        get;
+        private set;
+    }
 
     partial void OnSelectedPeriodChanged(CycleChallengePeriodOption? value)
     {
@@ -138,7 +137,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
     {
         RefreshHeader();
 
-        // 首次进入时清理过期图片缓存（失败不影响主流程）
+
         _ = Task.Run(async () =>
         {
             try
@@ -147,13 +146,12 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             }
             catch
             {
-                // 缓存清理失败忽略
             }
         });
 
         await ReloadAsync(forceRefresh: false);
 
-        // 无缓存或缓存过期（>30 分钟）时自动拉取一次
+
         if (ShouldRefresh())
         {
             await ReloadAsync(forceRefresh: true);
@@ -176,14 +174,14 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         CurrentMode = mode;
         await ReloadAsync(forceRefresh: false);
 
-        // 切换模式后无缓存或缓存过期时自动拉取一次
+
         if (ShouldRefresh())
         {
             await ReloadAsync(forceRefresh: true);
         }
     }
 
-    /// <summary>账号 / UID 变化：取消在途请求并重新加载。</summary>
+
     public void OnContextChanged()
     {
         _cts?.Cancel();
@@ -280,7 +278,6 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         }
         catch
         {
-            // 期次切换失败不打断当前展示
         }
     }
 
@@ -299,7 +296,6 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         var active = Periods.FirstOrDefault(x => x.ScheduleId == result.ActiveScheduleId) ?? Periods.FirstOrDefault();
         if (active is not null && !ReferenceEquals(active, SelectedPeriod))
         {
-            // 程序化切换期次时抑制 OnSelectedPeriodChanged 的缓存读取，避免重复加载
             _suppressPeriodReload = true;
             try
             {
@@ -318,7 +314,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         }
 
         _lastFetchedAt = result.FetchedAt;
-        // 仅当“刷新失败回退缓存”时才算离线；正常读缓存只是缓存态，不应显示离线警告
+
         IsOffline = result.IsFromCache && result.Kind != ChallengeErrorKind.Success;
         HasError = IsOffline;
         ErrorMessage = HasError ? result.Message : null;

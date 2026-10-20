@@ -111,7 +111,8 @@ public partial class MainViewModel
 
         if (info.IsVideo && !_devBuildDetectionService.IsDevBuild)
         {
-            _notificationService.Show("Main_LiveWallpaper".GetLocalized(), "Main_LiveWallpaperNotSupported".GetLocalized(), NotificationType.Warning, 5000);
+            _notificationService.Show("Main_LiveWallpaper".GetLocalized(),
+                "Main_LiveWallpaperNotSupported".GetLocalized(), NotificationType.Warning, 5000);
             return;
         }
 
@@ -267,7 +268,8 @@ public partial class MainViewModel
     {
         if (!_devBuildDetectionService.IsDevBuild)
         {
-            _notificationService.Show("Main_LiveWallpaper".GetLocalized(), "Main_LiveWallpaperNotSupported".GetLocalized(), NotificationType.Warning, 5000);
+            _notificationService.Show("Main_LiveWallpaper".GetLocalized(),
+                "Main_LiveWallpaperNotSupported".GetLocalized(), NotificationType.Warning, 5000);
             return;
         }
 

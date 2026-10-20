@@ -103,12 +103,14 @@ public partial class MainViewModel
             }
             else
             {
-                _notificationService.Show("Main_PresetSwitchFailed".GetLocalized(), "Main_PresetNotFound".GetLocalized(), NotificationType.Error, 3000);
+                _notificationService.Show("Main_PresetSwitchFailed".GetLocalized(),
+                    "Main_PresetNotFound".GetLocalized(), NotificationType.Error, 3000);
             }
         }
         catch (Exception ex)
         {
-            _notificationService.Show("Main_PresetSwitchFailed".GetLocalized(), ex.Message, NotificationType.Error, 3000);
+            _notificationService.Show("Main_PresetSwitchFailed".GetLocalized(), ex.Message, NotificationType.Error,
+                3000);
         }
     }
 

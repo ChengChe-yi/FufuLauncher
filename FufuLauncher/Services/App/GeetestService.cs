@@ -39,7 +39,7 @@ public sealed class GeetestService
     {
     }
 
-    /// <summary>完成极验并返回 x-rpc-challenge。challengePath 为空时使用便笺路径（保持既有行为）。</summary>
+
     public async Task<string> TryVerifyForDailyNoteAsync(AccountContext ctx, string? challengePath = null)
     {
         string path = string.IsNullOrWhiteSpace(challengePath) ? DailyNoteChallengePath : challengePath;

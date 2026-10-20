@@ -135,6 +135,7 @@ public partial class MainViewModel
             {
                 _dispatcherQueue.TryEnqueue(Navigate);
             }
+
             return;
         }
 
