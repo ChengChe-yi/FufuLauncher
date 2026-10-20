@@ -538,7 +538,7 @@ public sealed class CycleChallengeService
 
         var list = new List<ChallengePeriod>(periods.Count + 1)
         {
-            new(role.Role.game_uid, mode, scheduleId, null, null, DateTimeOffset.UtcNow),
+            new(role.Role.game_uid, mode, scheduleId, null, null, null, DateTimeOffset.UtcNow),
         };
         list.AddRange(periods);
         return list;
@@ -606,14 +606,10 @@ public sealed class CycleChallengeService
             return null;
         }
 
-        // 只查摘要（不含大 Payload），找到目标期次后再取整行
-        var summaries = _repository.GetSummaries(uid, mode)
-            .ToDictionary(x => x.ScheduleId, x => x.Summary, StringComparer.Ordinal);
-
+        // 优先使用期次列表里已带出的摘要（GetPeriods 只查 Summary，不加载大 Payload）
         foreach (var period in periods)
         {
-            if (summaries.TryGetValue(period.ScheduleId, out string? summary)
-                && ReadSummaryBool(summary, "has_data"))
+            if (ReadSummaryBool(period.Summary, "has_data"))
             {
                 return _repository.Get(uid, mode, period.ScheduleId);
             }

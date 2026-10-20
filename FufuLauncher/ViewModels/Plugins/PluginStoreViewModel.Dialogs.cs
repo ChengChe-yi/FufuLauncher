@@ -224,7 +224,8 @@ public partial class PluginStoreViewModel
                 var stackPanel = new StackPanel { Spacing = 12 };
                 stackPanel.Children.Add(new TextBlock
                 {
-                    Text = string.Format("PluginStore_PrivatePluginKeyPrompt_Format".GetLocalized(), item.Name, item.Id),
+                    Text = string.Format("PluginStore_PrivatePluginKeyPrompt_Format".GetLocalized(), item.Name,
+                        item.Id),
                     TextWrapping = TextWrapping.Wrap,
                     Margin = new Thickness(0, 0, 0, 8)
                 });
@@ -295,7 +296,8 @@ public partial class PluginStoreViewModel
                 var dialog = new ContentDialog
                 {
                     Title = "PluginStore_VersionTooLowTitle".GetLocalized(),
-                    Content = string.Format("PluginStore_VersionTooLowMessage_Format".GetLocalized(), item.Name, item.MinAppVersion, CurrentAppVersion),
+                    Content = string.Format("PluginStore_VersionTooLowMessage_Format".GetLocalized(), item.Name,
+                        item.MinAppVersion, CurrentAppVersion),
                     CloseButtonText = "Common_GotIt".GetLocalized(),
                     DefaultButton = ContentDialogButton.Close,
                     XamlRoot = xamlRoot

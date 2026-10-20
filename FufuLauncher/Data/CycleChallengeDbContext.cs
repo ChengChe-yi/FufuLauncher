@@ -8,10 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FufuLauncher.Data;
 
-/// <summary>
-/// 周期挑战独立数据库（不与其他 DbContext 共用文件与迁移）。
-/// 建表与版本迁移由 <see cref="Repositories.CycleChallengeRepository"/> 负责。
-/// </summary>
 public class CycleChallengeDbContext : DbContext
 {
     private readonly string _dbPath;

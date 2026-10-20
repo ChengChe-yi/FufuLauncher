@@ -137,7 +137,8 @@ public partial class GachaAnalysisViewModel
 
             await File.WriteAllTextAsync(path, json);
             WeakReferenceMessenger.Default.Send(new NotificationMessage("Common_ExportSuccess".GetLocalized(),
-                string.Format("Gacha_ExportSuccessDetail_Format".GetLocalized(), allLogs.Count, Path.GetFileName(path), version), NotificationType.Success, 3000));
+                string.Format("Gacha_ExportSuccessDetail_Format".GetLocalized(), allLogs.Count, Path.GetFileName(path),
+                    version), NotificationType.Success, 3000));
         }
         catch (Exception ex)
         {

@@ -1,0 +1,51 @@
+<Window
+    x:Class="FufuLauncher.Views.CycleChallengeWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    mc:Ignorable="d"
+    Title="{helpers:Loc Key=CycleChallenge_Title}">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <Grid x:Name="RootGrid" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="AppTitleBar" Height="32" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                Grid.Column="0"
+                Margin="16,0,0,0"
+                VerticalAlignment="Center"
+                Orientation="Horizontal"
+                Spacing="8">
+                <Path
+                    Width="16"
+                    Height="16"
+                    VerticalAlignment="Center"
+                    Fill="{ThemeResource TextFillColorPrimaryBrush}"
+                    Opacity="0.9"
+                    Stretch="Uniform"
+                    Data="M7,3 H17 V8 A5,5 0 0 1 7,8 Z M6.5,5 H4.5 A2.5,2.5 0 0 0 7,9.5 Z M17.5,5 H19.5 A2.5,2.5 0 0 1 17,9.5 Z M11,12.5 H13 V15.5 H11 Z M8.5,15.5 H15.5 L17,18.5 H7 Z" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Opacity="0.9"
+                    Text="{helpers:Loc Key=CycleChallenge_Title}" />
+            </StackPanel>
+        </Grid>
+
+        <Frame x:Name="ContentFrame" Grid.Row="1" />
+    </Grid>
+</Window>

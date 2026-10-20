@@ -5,9 +5,6 @@ Licensed under the MIT License.
 
 namespace FufuLauncher.Models.CycleChallenge;
 
-/// <summary>
-/// 周期挑战模式。数值会写入数据库，不可随意调整。
-/// </summary>
 public enum ChallengeMode
 {
     SpiralAbyss = 0,
@@ -34,9 +31,6 @@ public static class ChallengeModeExtensions
     };
 }
 
-/// <summary>
-/// 一次请求的结果分类。UI 只根据该分类做提示，不解析 retcode。
-/// </summary>
 public enum ChallengeErrorKind
 {
     Success = 0,
@@ -50,36 +44,63 @@ public enum ChallengeErrorKind
     Unsupported,
 }
 
-/// <summary>
-/// 一期挑战的摘要信息（不包含完整 Payload）。
-/// </summary>
 public sealed record ChallengePeriod(
     string Uid,
     ChallengeMode Mode,
     string ScheduleId,
     string? StartUtc,
     string? EndUtc,
+    string? Summary,
     DateTimeOffset FetchedAt);
 
-/// <summary>
-/// 单次加载/刷新结果。
-/// </summary>
 public sealed class ChallengeLoadResult
 {
-    public bool Success { get; init; }
+    public bool Success
+    {
+        get;
+        init;
+    }
 
-    public ChallengeErrorKind Kind { get; init; } = ChallengeErrorKind.ServerError;
+    public ChallengeErrorKind Kind
+    {
+        get;
+        init;
+    } = ChallengeErrorKind.ServerError;
 
-    public string? Message { get; init; }
+    public string? Message
+    {
+        get;
+        init;
+    }
 
-    public IReadOnlyList<ChallengePeriod> Periods { get; init; } = [];
+    public IReadOnlyList<ChallengePeriod> Periods
+    {
+        get;
+        init;
+    } = [];
 
-    /// <summary>本期（或指定期）的 Payload JSON，供面板直接展示。</summary>
-    public string? Payload { get; init; }
 
-    public string? ActiveScheduleId { get; init; }
+    public string? Payload
+    {
+        get;
+        init;
+    }
 
-    public bool IsFromCache { get; init; }
+    public string? ActiveScheduleId
+    {
+        get;
+        init;
+    }
 
-    public DateTimeOffset? FetchedAt { get; init; }
+    public bool IsFromCache
+    {
+        get;
+        init;
+    }
+
+    public DateTimeOffset? FetchedAt
+    {
+        get;
+        init;
+    }
 }

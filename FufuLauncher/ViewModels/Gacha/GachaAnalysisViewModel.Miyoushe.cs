@@ -44,7 +44,9 @@ public partial class GachaAnalysisViewModel
 
             var selected = result.Roles[0];
             var cookies = selected.Cookies;
-            CrawlerStatus = incremental ? "Gacha_GenAuthKeyIncremental".GetLocalized() : "Gacha_GenAuthKeyFull".GetLocalized();
+            CrawlerStatus = incremental
+                ? "Gacha_GenAuthKeyIncremental".GetLocalized()
+                : "Gacha_GenAuthKeyFull".GetLocalized();
             var link = await _gachaService.GenerateAuthKeyAsync(cookies, selected.Role);
             await FetchFromLinkAsync(link, selected.Role.game_uid, incremental, switchToSelectedRole: true);
         }

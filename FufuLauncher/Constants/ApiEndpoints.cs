@@ -251,6 +251,7 @@ namespace FufuLauncher.Constants
         public const string GtUiIconsBase = "https://act.mihoyo.com/act/gt-ui/assets/icons/";
         public const string BaikeBase = "https://baike.mihoyo.com";
         public const string SeelieBase = "https://seelie.me";
+
         public const string AchievementIconSingleUrl =
             "https://act-upload.mihoyo.com/wiki-user-upload/2024/09/16/76362111/27ec1c00c5bb06745e16039a10ff3aaa_145617018918069405.png";
 

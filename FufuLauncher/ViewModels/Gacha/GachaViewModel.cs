@@ -47,7 +47,8 @@ public partial class GachaViewModel : ObservableRecipient
     [ObservableProperty] [NotifyPropertyChangedFor(nameof(CaptureButtonText))]
     private ObservableCollection<GachaStatistic> _statistics = new();
 
-    public string CaptureButtonText => IsCapturing ? "Gacha_StopCapture".GetLocalized() : "Gacha_StartCaptureApp".GetLocalized();
+    public string CaptureButtonText =>
+        IsCapturing ? "Gacha_StopCapture".GetLocalized() : "Gacha_StartCaptureApp".GetLocalized();
 
     public bool CanExport => !IsAnalyzing && Statistics.Count > 0;
 
@@ -100,7 +101,8 @@ public partial class GachaViewModel : ObservableRecipient
         {
             foreach (var typeCode in GachaService.GachaTypes.Keys)
             {
-                StatusMessage = string.Format("Gacha_FetchingType_Format".GetLocalized(), GachaService.GetPoolName(typeCode));
+                StatusMessage = string.Format("Gacha_FetchingType_Format".GetLocalized(),
+                    GachaService.GetPoolName(typeCode));
                 var items = await _gachaService.FetchGachaLogAsync(cleanUrl, typeCode);
 
                 if (items.Count > 0)

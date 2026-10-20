@@ -328,7 +328,8 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            _notificationService.Show("Common_OpenFailed".GetLocalized(), string.Format("Main_InitViewFailed_Format".GetLocalized(), ex.Message), NotificationType.Error, 0);
+            _notificationService.Show("Common_OpenFailed".GetLocalized(),
+                string.Format("Main_InitViewFailed_Format".GetLocalized(), ex.Message), NotificationType.Error, 0);
         }
     }
 

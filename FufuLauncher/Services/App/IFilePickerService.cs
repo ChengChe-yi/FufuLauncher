@@ -23,12 +23,17 @@ namespace FufuLauncher.Services
         private static string COMFailureMessage => "FilePicker_COMFailure".GetLocalized();
 
         private static IReadOnlyList<(string Label, string[] Extensions)> AudioFilters =>
-            new[] { ("FilePicker_Filter_Audio".GetLocalized(), new[] { "*.mp3", "*.wav", "*.wma", "*.m4a", "*.flac", "*.aac" }) };
+            new[]
+            {
+                ("FilePicker_Filter_Audio".GetLocalized(),
+                    new[] { "*.mp3", "*.wav", "*.wma", "*.m4a", "*.flac", "*.aac" })
+            };
 
         private static IReadOnlyList<(string Label, string[] Extensions)> ImageOrVideoFilters =>
             new[]
             {
-                ("FilePicker_Filter_ImageOrVideo".GetLocalized(), new[] { "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.mp4", "*.webm", "*.mkv", "*.avi", "*.mov" })
+                ("FilePicker_Filter_ImageOrVideo".GetLocalized(),
+                    new[] { "*.jpg", "*.jpeg", "*.png", "*.bmp", "*.mp4", "*.webm", "*.mkv", "*.avi", "*.mov" })
             };
 
         public static bool InitializeWithValidWindow(object target, out string? errorMessage, Window? window = null)

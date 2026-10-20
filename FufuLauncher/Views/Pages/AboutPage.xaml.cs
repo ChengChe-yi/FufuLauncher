@@ -216,7 +216,8 @@ public sealed partial class AboutPage : Page
                         if (isBioLoaded) return;
                         try
                         {
-                            var userJson = await GetJsonFromUrl($"{ApiEndpoints.GithubApiBase}/users/{contributor.Name}");
+                            var userJson =
+                                await GetJsonFromUrl($"{ApiEndpoints.GithubApiBase}/users/{contributor.Name}");
                             string bioStr = "AboutPage_NoBio".GetLocalized();
                             if (userJson.RootElement.TryGetProperty("bio", out JsonElement bioElement) &&
                                 bioElement.ValueKind != JsonValueKind.Null)

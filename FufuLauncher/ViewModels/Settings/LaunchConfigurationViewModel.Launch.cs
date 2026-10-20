@@ -43,7 +43,9 @@ public partial class LaunchConfigurationViewModel
         foreach (var monitor in MonitorHelper.GetAll())
         {
             var tag = monitor.IsPrimary ? $" · {primaryTag}" : "";
-            AvailableMonitors.Add(new MonitorItem(string.Format("LaunchConfig_Monitor_Format".GetLocalized(), monitor.Index, tag, monitor.Width, monitor.Height),
+            AvailableMonitors.Add(new MonitorItem(
+                string.Format("LaunchConfig_Monitor_Format".GetLocalized(), monitor.Index, tag, monitor.Width,
+                    monitor.Height),
                 monitor.Index));
         }
 

@@ -124,8 +124,9 @@ public partial class LuaPluginInstaller
                     var panel = new StackPanel { Spacing = 12 };
                     panel.Children.Add(new TextBlock
                     {
-                        Text = string.Format((retry ? "PluginStoreArchivePasswordRetry" :
-                            "PluginStoreArchivePasswordPrompt").GetLocalized(), archiveName),
+                        Text = string.Format(
+                            (retry ? "PluginStoreArchivePasswordRetry" : "PluginStoreArchivePasswordPrompt")
+                            .GetLocalized(), archiveName),
                         TextWrapping = Microsoft.UI.Xaml.TextWrapping.Wrap
                     });
                     panel.Children.Add(passwordBox);

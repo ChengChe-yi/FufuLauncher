@@ -57,13 +57,15 @@ public partial class LuaPluginInstaller
             _downloadUrl = downloadUrl;
             _installFailure = null;
             _archiveExtractor = new PluginArchiveExtractor(archivePassword, (fileName, retry, token) =>
-                RequestArchivePasswordAsync(string.IsNullOrWhiteSpace(archiveFileName) ? fileName :
-                    Path.GetFileName(archiveFileName), retry, token));
+                RequestArchivePasswordAsync(
+                    string.IsNullOrWhiteSpace(archiveFileName) ? fileName : Path.GetFileName(archiveFileName), retry,
+                    token));
 
             ReportProgress(0, "PluginStoreScriptDownloading".GetLocalized());
             LogMessage($"Downloading Lua script from: {luaScriptUrl}");
 
-            var luaScript = await _storeService.DownloadLuaScriptAsync(luaScriptUrl, expectedLuaHash, dlToken, accessToken);
+            var luaScript =
+                await _storeService.DownloadLuaScriptAsync(luaScriptUrl, expectedLuaHash, dlToken, accessToken);
 
             ReportProgress(3, "PluginStoreScriptScanning".GetLocalized());
             LogMessage("Running Lua security validation...");
@@ -124,6 +126,7 @@ public partial class LuaPluginInstaller
                 Debug.WriteLine($"[LuaInstaller] Failed to clean temporary archive: {ex.Message}");
             }
         }
+
         _temporaryArchives.Clear();
         _downloadedFiles.Clear();
         _expectedLuaHash = null;
@@ -175,7 +178,6 @@ public partial class LuaPluginInstaller
             }
             catch (InterpreterException ex)
             {
-                // Native callback exceptions may be nested in reflection and interpreter wrappers.
                 var cause = _installFailure ?? ex;
                 while (cause.InnerException != null && cause is not (OperationCanceledException or
                            CaptchaRequiredException or PrivatePluginAccessException or HashMismatchException or

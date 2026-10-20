@@ -50,7 +50,8 @@ public partial class AccountViewModel
         }
         catch (Exception ex)
         {
-            RunOnUIThread(() => StatusMessage = string.Format("Account_DeleteFailed_Format".GetLocalized(), ex.Message));
+            RunOnUIThread(() =>
+                StatusMessage = string.Format("Account_DeleteFailed_Format".GetLocalized(), ex.Message));
         }
     }
 
@@ -70,7 +71,8 @@ public partial class AccountViewModel
 
             Debug.WriteLine($"[LoginAsync] 登录成功，Cookie 数量: {cookies.Count}, 服务器: {serverType}");
 
-            var entry = await _accountManager.AddAccountAsync(cookies, serverType, nickname: "Account_AddAccount".GetLocalized());
+            var entry = await _accountManager.AddAccountAsync(cookies, serverType,
+                nickname: "Account_AddAccount".GetLocalized());
             await _accountManager.SwitchAccountAsync(entry.Id);
 
             await LoadActiveAccountAsync(entry.Id);
@@ -112,7 +114,8 @@ public partial class AccountViewModel
         }
         catch (Exception ex)
         {
-            RunOnUIThread(() => StatusMessage = string.Format("Account_LogoutFailed_Format".GetLocalized(), ex.Message));
+            RunOnUIThread(() =>
+                StatusMessage = string.Format("Account_LogoutFailed_Format".GetLocalized(), ex.Message));
         }
     }
 
@@ -142,7 +145,9 @@ public partial class AccountViewModel
         _lastNotifiedAccountId = targetAccount.AccountId;
         RefreshSavedAccountsList();
         RunOnUIThread(() => StatusMessage = "Account_SwitchSuccess".GetLocalized());
-        _notificationService.Show("Account_SwitchSuccess".GetLocalized(), string.Format("Account_LoggedInTo_Format".GetLocalized(), targetAccount.Nickname), NotificationType.Success, 3000);
+        _notificationService.Show("Account_SwitchSuccess".GetLocalized(),
+            string.Format("Account_LoggedInTo_Format".GetLocalized(), targetAccount.Nickname), NotificationType.Success,
+            3000);
     }
 
     private async Task AddNewAccountAsync()
@@ -160,7 +165,8 @@ public partial class AccountViewModel
 
             Debug.WriteLine($"[AddNewAccount] 登录成功，Cookie 数量: {cookies.Count}, 服务器: {serverType}");
 
-            var entry = await _accountManager.AddAccountAsync(cookies, serverType, nickname: "Account_AddAccount".GetLocalized());
+            var entry = await _accountManager.AddAccountAsync(cookies, serverType,
+                nickname: "Account_AddAccount".GetLocalized());
             await _accountManager.SwitchAccountAsync(entry.Id);
 
             await LoadActiveAccountAsync(entry.Id);
@@ -171,7 +177,8 @@ public partial class AccountViewModel
         }
         catch (Exception ex)
         {
-            RunOnUIThread(() => StatusMessage = string.Format("Account_AddAccountFailed_Format".GetLocalized(), ex.Message));
+            RunOnUIThread(() =>
+                StatusMessage = string.Format("Account_AddAccountFailed_Format".GetLocalized(), ex.Message));
         }
     }
 }

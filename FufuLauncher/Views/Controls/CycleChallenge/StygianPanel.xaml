@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
@@ -99,7 +100,8 @@ Licensed under the MIT License.
         </StackPanel>
 
         <!--  内容区  -->
-        <StackPanel Spacing="12" Visibility="{x:Bind Display.ShowContent, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+        <StackPanel Spacing="12"
+                    Visibility="{x:Bind Display.ShowContent, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
 
             <!--  赛季名 + 时间范围  -->
             <StackPanel Spacing="2">
@@ -157,21 +159,25 @@ Licensed under the MIT License.
                             Source="{x:Bind Mode.DifficultyIconPath, Mode=OneTime}"
                             Visibility="{x:Bind Mode.HasDifficultyIcon, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
                         <StackPanel VerticalAlignment="Center" Spacing="2">
-                            <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Stygian_Difficulty}" />
-                            <TextBlock Style="{StaticResource KpiValueStyle}" FontSize="16" Text="{x:Bind Mode.DifficultyName, Mode=OneTime}" />
+                            <TextBlock Style="{StaticResource KpiLabelStyle}"
+                                       Text="{helpers:Loc Key=Stygian_Difficulty}" />
+                            <TextBlock Style="{StaticResource KpiValueStyle}" FontSize="16"
+                                       Text="{x:Bind Mode.DifficultyName, Mode=OneTime}" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="1" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Stygian_BestTime}" />
-                        <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Mode.BestTimeText, Mode=OneTime}" />
+                        <TextBlock Style="{StaticResource KpiValueStyle}"
+                                   Text="{x:Bind Mode.BestTimeText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="2" Style="{StaticResource KpiCardStyle}">
                     <StackPanel Spacing="2">
                         <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Stygian_ExtremeValue}" />
-                        <TextBlock Style="{StaticResource KpiValueStyle}" Text="{x:Bind Mode.ExtremeValueText, Mode=OneTime}" />
+                        <TextBlock Style="{StaticResource KpiValueStyle}"
+                                   Text="{x:Bind Mode.ExtremeValueText, Mode=OneTime}" />
                     </StackPanel>
                 </Border>
             </Grid>
@@ -184,15 +190,14 @@ Licensed under the MIT License.
                 Visibility="{x:Bind ShowModeEmpty, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
 
             <!--  关卡列表  -->
-            <StackPanel Spacing="8" Visibility="{x:Bind Mode.HasChallenges, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Spacing="8"
+                        Visibility="{x:Bind Mode.HasChallenges, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Stygian_Stage}" />
-                <ItemsControl ItemsSource="{x:Bind Mode.Challenges, Mode=OneTime}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Spacing="12" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
+                <ItemsRepeater ItemsSource="{x:Bind Mode.Challenges, Mode=OneTime}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="12" />
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
                         <DataTemplate x:DataType="models:StygianChallenge">
                             <Border Style="{StaticResource StageCardStyle}">
                                 <StackPanel Spacing="10">
@@ -213,7 +218,8 @@ Licensed under the MIT License.
                                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
                                             <TextBlock FontSize="16" FontWeight="SemiBold" Text="{x:Bind DisplayName}" />
                                             <StackPanel Orientation="Horizontal" Spacing="8">
-                                                <TextBlock Style="{StaticResource SecondaryCaptionStyle}" Text="{x:Bind Monster.DisplayName}" />
+                                                <TextBlock Style="{StaticResource SecondaryCaptionStyle}"
+                                                           Text="{x:Bind Monster.DisplayName}" />
                                                 <TextBlock
                                                     Style="{StaticResource SecondaryCaptionStyle}"
                                                     Text="{x:Bind Monster.LevelText}"
@@ -241,8 +247,10 @@ Licensed under the MIT License.
                                         Visibility="{x:Bind Monster.HasDescriptions, Converter={StaticResource BoolToVisibilityConverter}}" />
 
                                     <!--  队伍  -->
-                                    <StackPanel Spacing="6" Visibility="{x:Bind HasTeam, Converter={StaticResource BoolToVisibilityConverter}}">
-                                        <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Stygian_Team}" />
+                                    <StackPanel Spacing="6"
+                                                Visibility="{x:Bind HasTeam, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <TextBlock Style="{StaticResource KpiLabelStyle}"
+                                                   Text="{helpers:Loc Key=Stygian_Team}" />
                                         <ItemsControl ItemsSource="{x:Bind Team}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
@@ -271,8 +279,10 @@ Licensed under the MIT License.
                                     </StackPanel>
 
                                     <!--  最佳输出（最强一击 / 最高总伤害）  -->
-                                    <StackPanel Spacing="6" Visibility="{x:Bind HasBestAvatars, Converter={StaticResource BoolToVisibilityConverter}}">
-                                        <TextBlock Style="{StaticResource KpiLabelStyle}" Text="{helpers:Loc Key=Stygian_BestAvatar}" />
+                                    <StackPanel Spacing="6"
+                                                Visibility="{x:Bind HasBestAvatars, Converter={StaticResource BoolToVisibilityConverter}}">
+                                        <TextBlock Style="{StaticResource KpiLabelStyle}"
+                                                   Text="{helpers:Loc Key=Stygian_BestAvatar}" />
                                         <ItemsControl ItemsSource="{x:Bind BestAvatars}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
@@ -304,12 +314,13 @@ Licensed under the MIT License.
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
             </StackPanel>
 
             <!--  上榜角色（真实数据可能为空）  -->
-            <Border Style="{StaticResource SectionCardStyle}" Visibility="{x:Bind Display.HasBlings, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Border Style="{StaticResource SectionCardStyle}"
+                    Visibility="{x:Bind Display.HasBlings, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Spacing="10">
                     <!--  上榜角色  -->
                     <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Stygian_BlingAvatars}" />

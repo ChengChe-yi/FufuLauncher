@@ -9,7 +9,6 @@ using SharpCompress.Readers;
 
 namespace FufuLauncher.Services;
 
-/// <summary>Extracts plugin packages by signature, retaining the caller's file name and directory layout.</summary>
 public sealed class PluginArchiveExtractor
 {
     private string? _password;
@@ -26,8 +25,8 @@ public sealed class PluginArchiveExtractor
         Func<string, bool>? include = null, CancellationToken cancellationToken = default)
     {
         var destinationRoot = Path.GetFullPath(destination);
-        // Probe without a password first: some encrypted RAR headers report a format error
-        // with a wrong password before IsEncrypted can be read.
+
+
         var encrypted = await Task.Run(() =>
         {
             try
@@ -59,6 +58,7 @@ public sealed class PluginArchiveExtractor
                         throw new SharpCompress.Common.CryptographicException("Archive password required.");
 
                     var extracted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
                     void ExtractEntry(IEntry entry, Func<Stream> openStream)
                     {
                         cancellationToken.ThrowIfCancellationRequested();
@@ -73,6 +73,7 @@ public sealed class PluginArchiveExtractor
                             if (include == null) Directory.CreateDirectory(stagedPath);
                             return;
                         }
+
                         if (include != null && !include(relativePath)) return;
 
                         Directory.CreateDirectory(Path.GetDirectoryName(stagedPath)!);
@@ -85,7 +86,6 @@ public sealed class PluginArchiveExtractor
 
                     if (archive.IsSolid || archive.Type == ArchiveType.SevenZip)
                     {
-                        // Sequential reading avoids repeatedly decoding solid RAR/7z blocks.
                         using var reader = archive.ExtractAllEntries();
                         while (reader.MoveToNextEntry()) ExtractEntry(reader.Entry, reader.OpenEntryStream);
                     }
@@ -103,7 +103,8 @@ public sealed class PluginArchiveExtractor
             catch (Exception ex) when (IsPasswordFailure(ex, encrypted))
             {
                 if (_requestPassword == null)
-                    throw new PluginArchivePasswordException("An archive password is required or the password is incorrect.");
+                    throw new PluginArchivePasswordException(
+                        "An archive password is required or the password is incorrect.");
                 retryPassword = true;
             }
             finally
@@ -122,10 +123,10 @@ public sealed class PluginArchiveExtractor
     }
 
     private static bool IsPasswordFailure(Exception exception, bool encrypted) =>
-        exception is SharpCompress.Common.CryptographicException or System.Security.Cryptography.CryptographicException ||
+        exception is SharpCompress.Common.CryptographicException
+            or System.Security.Cryptography.CryptographicException ||
         encrypted && (exception is SharpCompressException or InvalidDataException ||
-            // SharpCompress's LZMA decoder uses an internal exception for incorrect decrypted data.
-            exception.GetType().FullName == "SharpCompress.Compressors.LZMA.DataErrorException");
+                      exception.GetType().FullName == "SharpCompress.Compressors.LZMA.DataErrorException");
 
     private static string GetEntryPath(string root, string relativePath)
     {
@@ -155,6 +156,7 @@ public sealed class PluginArchiveExtractor
         var changed = new List<(string Target, string? Backup)>();
         var createdDirectories = new List<string>();
         var keepBackup = false;
+
         void EnsureDirectory(string path)
         {
             RejectReparsePoints(path);
@@ -167,6 +169,7 @@ public sealed class PluginArchiveExtractor
                 createdDirectories.Add(directory);
             }
         }
+
         try
         {
             foreach (var relativePath in files)
@@ -183,9 +186,11 @@ public sealed class PluginArchiveExtractor
                     Directory.CreateDirectory(Path.GetDirectoryName(backupPath)!);
                     File.Copy(target, backupPath);
                 }
+
                 changed.Add((target, backupPath));
                 File.Copy(GetEntryPath(staging, relativePath), target, true);
             }
+
             cancellationToken.ThrowIfCancellationRequested();
             EnsureDirectory(destination);
             foreach (var directory in Directory.EnumerateDirectories(staging, "*", SearchOption.AllDirectories))
@@ -193,6 +198,7 @@ public sealed class PluginArchiveExtractor
                 cancellationToken.ThrowIfCancellationRequested();
                 EnsureDirectory(GetEntryPath(destination, Path.GetRelativePath(staging, directory)));
             }
+
             cancellationToken.ThrowIfCancellationRequested();
         }
         catch (Exception failure)
@@ -205,22 +211,32 @@ public sealed class PluginArchiveExtractor
                     if (backupPath != null) File.Copy(backupPath, target, true);
                     else if (File.Exists(target)) File.Delete(target);
                 }
-                catch (Exception ex) { errors.Add(ex); }
+                catch (Exception ex)
+                {
+                    errors.Add(ex);
+                }
             }
+
             foreach (var directory in createdDirectories.AsEnumerable().Reverse())
             {
                 try
                 {
                     if (!Directory.EnumerateFileSystemEntries(directory).Any()) Directory.Delete(directory);
                 }
-                catch (Exception ex) { errors.Add(ex); }
+                catch (Exception ex)
+                {
+                    errors.Add(ex);
+                }
             }
+
             if (errors.Count > 0)
             {
                 keepBackup = true;
                 errors.Insert(0, failure);
-                throw new AggregateException($"Could not restore all plugin files. Backup retained at: {backup}", errors);
+                throw new AggregateException($"Could not restore all plugin files. Backup retained at: {backup}",
+                    errors);
             }
+
             throw;
         }
         finally

@@ -5,6 +5,8 @@ Licensed under the MIT License.
 
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -16,39 +18,320 @@ using FufuLauncher.Services.CycleChallenge;
 
 namespace FufuLauncher.ViewModels;
 
-/// <summary>期次下拉项。</summary>
 public sealed class CycleChallengePeriodOption
 {
     public CycleChallengePeriodOption(ChallengePeriod period, TimeSpan displayOffset)
     {
         Period = period;
-        Display = BuildDisplay(period, displayOffset);
+        ScheduleId = period.ScheduleId;
+        ScheduleText = $"{"CycleChallenge_PeriodLabel".GetLocalized()} {period.ScheduleId}";
+        RangeText = BuildRange(period, displayOffset);
+
+        var name = ReadSummaryString(period.Summary, "name").Trim();
+        TitleText = name.Length == 0 ? ScheduleText : name;
+        SubtitleText = name.Length == 0
+            ? RangeText
+            : string.Join(" · ", new[] { ScheduleText, RangeText }.Where(text => text.Length > 0));
+        HasSubtitle = SubtitleText.Length > 0;
+
+        var timeState = GetTimeState(period);
+        IsActive = timeState == PeriodTimeState.Active;
+        StatusText = timeState switch
+        {
+            PeriodTimeState.Active => "CycleChallenge_PeriodCurrent".GetLocalized(),
+            PeriodTimeState.Upcoming => "CycleChallenge_Upcoming".GetLocalized(),
+            PeriodTimeState.Settled => "CycleChallenge_Settled".GetLocalized(),
+            _ => string.Empty,
+        };
+        HasStatus = StatusText.Length > 0;
+        ShowInactiveStatus = HasStatus && !IsActive;
+
+        MetricText = BuildMetric(period);
+        HasMetric = MetricText.Length > 0;
     }
 
-    public ChallengePeriod Period { get; }
+    public ChallengePeriod Period
+    {
+        get;
+    }
 
-    public string Display { get; }
+    public string ScheduleId
+    {
+        get;
+    }
 
-    public string ScheduleId => Period.ScheduleId;
+    public string ScheduleText
+    {
+        get;
+    }
 
-    /// <summary>
-    /// 期次时间按账号所在服务器时区展示（displayOffset 来自区服），
-    /// 不再硬编码 UTC+8；入库值为 UTC，展示时换算。
-    /// </summary>
-    private static string BuildDisplay(ChallengePeriod period, TimeSpan displayOffset)
+    public string TitleText
+    {
+        get;
+    }
+
+    public string SubtitleText
+    {
+        get;
+    }
+
+    public bool HasSubtitle
+    {
+        get;
+    }
+
+    public string RangeText
+    {
+        get;
+    }
+
+    public string StatusText
+    {
+        get;
+    }
+
+    public string MetricText
+    {
+        get;
+    }
+
+    public bool HasMetric
+    {
+        get;
+    }
+
+    public bool HasStatus
+    {
+        get;
+    }
+
+    public bool IsActive
+    {
+        get;
+    }
+
+    public bool ShowInactiveStatus
+    {
+        get;
+    }
+
+    private enum PeriodTimeState
+    {
+        Unknown,
+        Upcoming,
+        Active,
+        Settled,
+    }
+
+    private static PeriodTimeState GetTimeState(ChallengePeriod period)
+    {
+        var start = ParseStoredTime(period.StartUtc);
+        var end = ParseStoredTime(period.EndUtc);
+        if (start is null && end is null)
+        {
+            return PeriodTimeState.Unknown;
+        }
+
+        var now = DateTimeOffset.UtcNow;
+        if (start is { } startValue && now < startValue)
+        {
+            return PeriodTimeState.Upcoming;
+        }
+
+        if (end is { } endValue && now > endValue)
+        {
+            return PeriodTimeState.Settled;
+        }
+
+        return PeriodTimeState.Active;
+    }
+
+    private static DateTimeOffset? ParseStoredTime(string? raw)
+    {
+        if (string.IsNullOrWhiteSpace(raw))
+        {
+            return null;
+        }
+
+        return DateTimeOffset.TryParse(raw, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal,
+            out var parsed)
+            ? parsed
+            : null;
+    }
+
+    private static string BuildRange(ChallengePeriod period, TimeSpan displayOffset)
     {
         var start = CycleChallengeTime.FormatStoredString(period.StartUtc, "yyyy-MM-dd HH:mm", displayOffset);
         var end = CycleChallengeTime.FormatStoredString(period.EndUtc, "yyyy-MM-dd HH:mm", displayOffset);
-        var range = string.IsNullOrEmpty(start) || string.IsNullOrEmpty(end)
-            ? string.Empty
-            : $"{start} ~ {end}";
-        return string.IsNullOrEmpty(range) ? $"{period.ScheduleId}" : $"{period.ScheduleId}  {range}";
+        if (start.Length == 0)
+        {
+            return end;
+        }
+
+        return end.Length == 0 ? start : $"{start} ~ {end}";
+    }
+
+    private static string BuildMetric(ChallengePeriod period)
+    {
+        if (string.IsNullOrWhiteSpace(period.Summary))
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(period.Summary);
+            var root = document.RootElement;
+            if (root.ValueKind != JsonValueKind.Object)
+            {
+                return string.Empty;
+            }
+
+            if (!ReadBool(root, "is_unlock", true))
+            {
+                return "CycleChallenge_NotUnlocked".GetLocalized();
+            }
+
+            if (!ReadBool(root, "has_data", false))
+            {
+                return "CycleChallenge_NotParticipated".GetLocalized();
+            }
+
+            var parts = new List<string>();
+            switch (period.Mode)
+            {
+                case ChallengeMode.SpiralAbyss:
+                {
+                    var stars = ReadInt(root, "total_star");
+                    var floor = ReadString(root, "max_floor");
+                    if (stars > 0)
+                    {
+                        parts.Add($"★ {stars}");
+                    }
+
+                    if (floor.Length > 0)
+                    {
+                        parts.Add(floor);
+                    }
+
+                    break;
+                }
+                case ChallengeMode.Theater:
+                {
+                    var difficulty = ReadInt(root, "difficulty_id");
+                    var medals = ReadInt(root, "medal_num");
+                    if (difficulty > 0)
+                    {
+                        parts.Add(
+                            $"{"Theater_Difficulty".GetLocalized()} {TheaterDifficulty.GetDisplayName(difficulty)}");
+                    }
+
+                    if (medals > 0)
+                    {
+                        parts.Add($"{"Theater_Medals".GetLocalized()} {medals}");
+                    }
+
+                    break;
+                }
+                case ChallengeMode.Stygian:
+                {
+                    var difficulty = ReadInt(root, "difficulty");
+                    var seconds = ReadInt(root, "second");
+                    if (difficulty > 0)
+                    {
+                        parts.Add(
+                            $"{"Stygian_Difficulty".GetLocalized()} {StygianDifficulty.GetDisplayName(difficulty)}");
+                    }
+
+                    if (seconds > 0)
+                    {
+                        parts.Add(FormatDuration(seconds));
+                    }
+
+                    break;
+                }
+            }
+
+            return string.Join(" · ", parts);
+        }
+        catch (JsonException)
+        {
+            return string.Empty;
+        }
+    }
+
+    private static string FormatDuration(int seconds)
+    {
+        var span = TimeSpan.FromSeconds(seconds);
+        return span.TotalHours >= 1
+            ? string.Create(CultureInfo.InvariantCulture,
+                $"{(int)span.TotalHours:D2}:{span.Minutes:D2}:{span.Seconds:D2}")
+            : string.Create(CultureInfo.InvariantCulture, $"{span.Minutes:D2}:{span.Seconds:D2}");
+    }
+
+    private static string ReadSummaryString(string? summary, string property)
+    {
+        if (string.IsNullOrWhiteSpace(summary))
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(summary);
+            var root = document.RootElement;
+            return root.ValueKind == JsonValueKind.Object ? ReadString(root, property) : string.Empty;
+        }
+        catch (JsonException)
+        {
+            return string.Empty;
+        }
+    }
+
+    private static string ReadString(JsonElement element, string property)
+    {
+        if (element.ValueKind != JsonValueKind.Object ||
+            !element.TryGetProperty(property, out var value) ||
+            value.ValueKind != JsonValueKind.String)
+        {
+            return string.Empty;
+        }
+
+        return value.GetString() ?? string.Empty;
+    }
+
+    private static int ReadInt(JsonElement element, string property)
+    {
+        if (element.ValueKind != JsonValueKind.Object || !element.TryGetProperty(property, out var value))
+        {
+            return 0;
+        }
+
+        return value.ValueKind switch
+        {
+            JsonValueKind.Number when value.TryGetInt32(out var number) => number,
+            JsonValueKind.String when int.TryParse(value.GetString(), out var parsed) => parsed,
+            _ => 0,
+        };
+    }
+
+    private static bool ReadBool(JsonElement element, string property, bool fallback)
+    {
+        if (element.ValueKind != JsonValueKind.Object || !element.TryGetProperty(property, out var value))
+        {
+            return fallback;
+        }
+
+        return value.ValueKind switch
+        {
+            JsonValueKind.True => true,
+            JsonValueKind.False => false,
+            JsonValueKind.String when bool.TryParse(value.GetString(), out var parsed) => parsed,
+            _ => fallback,
+        };
     }
 }
 
-/// <summary>
-/// 周期挑战页面 ViewModel：账号/UID 选择、三模式切换、期次选择、刷新与状态提示。
-/// </summary>
 public sealed partial class CycleChallengeViewModel : ObservableObject
 {
     private readonly AccountManager _accountManager;
@@ -60,7 +343,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
     private bool _suppressPeriodReload;
     private DateTimeOffset? _lastFetchedAt;
 
-    /// <summary>缓存新鲜度：超过该时长则进入页面时静默刷新一次。</summary>
+
     private static readonly TimeSpan CacheTtl = TimeSpan.FromMinutes(30);
 
     public CycleChallengeViewModel(
@@ -91,43 +374,49 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             });
     }
 
-    /// <summary>页面独立角色作用域，不污染全局选择。</summary>
-    public GameRoleScope RoleSelection { get; } = new();
 
-    public ObservableCollection<CycleChallengePeriodOption> Periods { get; } = [];
+    public GameRoleScope RoleSelection
+    {
+        get;
+    } = new();
 
-    [ObservableProperty]
-    private ChallengeMode _currentMode = ChallengeMode.SpiralAbyss;
+    public ObservableCollection<CycleChallengePeriodOption> Periods
+    {
+        get;
+    } = [];
 
-    [ObservableProperty]
-    private CycleChallengePeriodOption? _selectedPeriod;
+    [ObservableProperty] private ChallengeMode _currentMode = ChallengeMode.SpiralAbyss;
 
-    [ObservableProperty]
-    private string? _payload;
+    [ObservableProperty] private CycleChallengePeriodOption? _selectedPeriod;
 
-    [ObservableProperty]
-    private string _accountText = string.Empty;
+    [ObservableProperty] private string? _payload;
 
-    [ObservableProperty]
-    private bool _isLoading;
+    [ObservableProperty] private string _accountText = string.Empty;
 
-    [ObservableProperty]
-    private bool _hasError;
+    [ObservableProperty] private bool _isLoading;
 
-    [ObservableProperty]
-    private string? _errorMessage;
+    [ObservableProperty] private bool _hasError;
 
-    [ObservableProperty]
-    private bool _isOffline;
+    [ObservableProperty] private string? _errorMessage;
 
-    [ObservableProperty]
-    private string? _statusText;
+    [ObservableProperty] private bool _isOffline;
 
-    [ObservableProperty]
-    private bool _hasData;
+    public bool HasBanner => HasError || IsOffline;
 
-    /// <summary>当前角色区服（决定时间展示时区：按账号所在服务器时区显示），由页面传给各面板。</summary>
-    public string? CurrentRegion { get; private set; }
+    partial void OnHasErrorChanged(bool value) => OnPropertyChanged(nameof(HasBanner));
+
+    partial void OnIsOfflineChanged(bool value) => OnPropertyChanged(nameof(HasBanner));
+
+    [ObservableProperty] private string? _statusText;
+
+    [ObservableProperty] private bool _hasData;
+
+
+    public string? CurrentRegion
+    {
+        get;
+        private set;
+    }
 
     partial void OnSelectedPeriodChanged(CycleChallengePeriodOption? value)
     {
@@ -143,7 +432,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
     {
         RefreshHeader();
 
-        // 首次进入时清理过期图片缓存（失败不影响主流程）
+
         _ = Task.Run(async () =>
         {
             try
@@ -152,13 +441,12 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             }
             catch
             {
-                // 缓存清理失败忽略
             }
         });
 
         await ReloadAsync(forceRefresh: false);
 
-        // 无缓存或缓存过期（>30 分钟）时自动拉取一次
+
         if (ShouldRefresh())
         {
             await ReloadAsync(forceRefresh: true);
@@ -192,21 +480,33 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         }
 
         CurrentMode = mode;
+        Periods.Clear();
+        SelectedPeriod = null;
+        Payload = null;
+        HasData = false;
         await ReloadAsync(forceRefresh: false);
 
-        // 切换模式后无缓存或缓存过期时自动拉取一次
+        if (CurrentMode != mode)
+        {
+            return;
+        }
+
         if (ShouldRefresh())
         {
             await ReloadAsync(forceRefresh: true);
         }
     }
 
-    /// <summary>账号 / UID 变化：取消在途请求并重新加载。</summary>
+
     public void OnContextChanged()
     {
         _cts?.Cancel();
         RoleSelection.Reset();
         RefreshHeader();
+        Periods.Clear();
+        SelectedPeriod = null;
+        Payload = null;
+        HasData = false;
         _ = ReloadAsync(forceRefresh: false);
     }
 
@@ -275,10 +575,11 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
 
     private async Task LoadPeriodAsync(string scheduleId)
     {
+        var mode = CurrentMode;
         try
         {
             var role = await _gameRoleService.GetCurrentAsync(RoleSelection).ConfigureAwait(true);
-            if (role is null)
+            if (role is null || CurrentMode != mode || SelectedPeriod?.ScheduleId != scheduleId)
             {
                 return;
             }
@@ -286,7 +587,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             CurrentRegion = role.Role.region;
 
             var result = _service.LoadFromCache(CurrentMode, role, scheduleId);
-            if (result.Success)
+            if (result.Success && CurrentMode == mode && SelectedPeriod?.ScheduleId == scheduleId)
             {
                 Payload = result.Payload;
                 HasData = !string.IsNullOrEmpty(result.Payload);
@@ -298,7 +599,6 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         }
         catch
         {
-            // 期次切换失败不打断当前展示
         }
     }
 
@@ -317,7 +617,6 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         var active = Periods.FirstOrDefault(x => x.ScheduleId == result.ActiveScheduleId) ?? Periods.FirstOrDefault();
         if (active is not null && !ReferenceEquals(active, SelectedPeriod))
         {
-            // 程序化切换期次时抑制 OnSelectedPeriodChanged 的缓存读取，避免重复加载
             _suppressPeriodReload = true;
             try
             {
@@ -336,7 +635,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
         }
 
         _lastFetchedAt = result.FetchedAt;
-        // 仅当“刷新失败回退缓存”时才算离线；正常读缓存只是缓存态，不应显示离线警告
+
         IsOffline = result.IsFromCache && result.Kind != ChallengeErrorKind.Success;
         HasError = IsOffline;
         ErrorMessage = HasError ? result.Message : null;

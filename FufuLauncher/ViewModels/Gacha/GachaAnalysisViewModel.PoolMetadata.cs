@@ -126,7 +126,8 @@ public partial class GachaAnalysisViewModel
             var count301 = allPools.Count(p => p.poolType == CharacterPoolType);
             var count302 = allPools.Count(p => p.poolType == "302");
             var count500 = allPools.Count(p => p.poolType == "500");
-            CrawlerStatus = string.Format("Gacha_CrawlerStatus_PoolMetaComplete_Format".GetLocalized(), allPools.Count, count301, count302, count500);
+            CrawlerStatus = string.Format("Gacha_CrawlerStatus_PoolMetaComplete_Format".GetLocalized(), allPools.Count,
+                count301, count302, count500);
 
             if (!deferRefresh &&
                 _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count > 0)

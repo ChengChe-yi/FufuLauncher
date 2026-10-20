@@ -41,7 +41,8 @@ public sealed partial class MainWindow
     {
         try
         {
-            var enabledObj = await _localSettingsService.ReadSettingAsync(MemoryOptimizationService.IsEnabledSettingKey);
+            var enabledObj =
+                await _localSettingsService.ReadSettingAsync(MemoryOptimizationService.IsEnabledSettingKey);
             var isEnabled = enabledObj == null || Convert.ToBoolean(enabledObj);
             dispatcherQueue.TryEnqueue(() => ApplyMemoryReleaseEnabled(isEnabled));
         }

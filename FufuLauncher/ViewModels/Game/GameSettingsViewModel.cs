@@ -303,7 +303,8 @@ namespace FufuLauncher.ViewModels
                 }
 
                 var newAccount = GameAccount.Create(
-                    string.Format("Blank_DefaultAccountName_Format".GetLocalized(), DateTime.Now.ToString("MMdd_HHmm"), current.Mid ?? "Unknown"),
+                    string.Format("Blank_DefaultAccountName_Format".GetLocalized(), DateTime.Now.ToString("MMdd_HHmm"),
+                        current.Mid ?? "Unknown"),
                     current.MihoyoSDK,
                     current.Mid,
                     current.MacAddress

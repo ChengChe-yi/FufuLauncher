@@ -74,13 +74,17 @@ public partial class AccountViewModel
             if (_isDisposed || myVersion != _loadVersion || _accountManager.ActiveAccountId != entry.Id) return false;
             var role = GameRoleSelection.Current(entry);
 
-            var nickname = userInfo?.nickname ?? role?.nickname ?? string.Format("Account_User_Format".GetLocalized(), entry.Stuid);
+            var nickname = userInfo?.nickname ??
+                           role?.nickname ?? string.Format("Account_User_Format".GetLocalized(), entry.Stuid);
             var avatarUrl = userInfo?.avatar_url ?? "ms-appx:///Assets/DefaultAvatar.png";
             var gameUid = role?.game_uid ?? "";
             var isOs = entry.Id.StartsWith("os_");
-            var server = role?.region_name ?? (isOs ? "Account_Server_Global".GetLocalized() : "Account_Server_CN".GetLocalized());
+            var server = role?.region_name ??
+                         (isOs ? "Account_Server_Global".GetLocalized() : "Account_Server_CN".GetLocalized());
             var level = role?.level.ToString() ?? "";
-            var sign = string.IsNullOrEmpty(userInfo?.introduce) ? "Account_DefaultSignature".GetLocalized() : userInfo.introduce;
+            var sign = string.IsNullOrEmpty(userInfo?.introduce)
+                ? "Account_DefaultSignature".GetLocalized()
+                : userInfo.introduce;
             var ipRegion = userInfo?.ip_region ?? "Common_Unknown".GetLocalized();
             var gender = userInfo?.gender ?? 0;
 
@@ -103,7 +107,9 @@ public partial class AccountViewModel
                 CurrentAccount.Gender = gender;
                 CurrentAccount.HasBoundRole = hasBoundRole;
 
-                StatusMessage = hasBoundRole ? "Account_LoggedIn".GetLocalized() : "Account_LoggedInNoRole".GetLocalized();
+                StatusMessage = hasBoundRole
+                    ? "Account_LoggedIn".GetLocalized()
+                    : "Account_LoggedInNoRole".GetLocalized();
             });
             Debug.WriteLine($"[LoadUserInfo] 用户信息已更新，HasBoundRole={hasBoundRole}");
             return true;

@@ -16,7 +16,11 @@ public sealed class DeveloperAuthorizationService
     private bool _hasChecked;
     private bool _isAuthorized;
 
-    public bool IsTemporaryAuthorized { get; set; }
+    public bool IsTemporaryAuthorized
+    {
+        get;
+        set;
+    }
 
     public async Task<bool> IsAuthorizedAsync()
     {

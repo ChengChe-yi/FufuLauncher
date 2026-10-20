@@ -41,9 +41,11 @@ public partial class PluginStoreViewModel
 
                 var panel = new StackPanel { Spacing = 12 };
                 panel.Children.Add(new TextBlock { Text = "PluginStore_EnterPrivateIdAndKey".GetLocalized() });
-                panel.Children.Add(new TextBlock { Text = "PluginStore_PluginId".GetLocalized(), FontSize = 12, Opacity = 0.7 });
+                panel.Children.Add(new TextBlock
+                    { Text = "PluginStore_PluginId".GetLocalized(), FontSize = 12, Opacity = 0.7 });
                 panel.Children.Add(idBox);
-                panel.Children.Add(new TextBlock { Text = "PluginStore_AccessKey".GetLocalized(), FontSize = 12, Opacity = 0.7 });
+                panel.Children.Add(new TextBlock
+                    { Text = "PluginStore_AccessKey".GetLocalized(), FontSize = 12, Opacity = 0.7 });
                 panel.Children.Add(keyBox);
 
                 var dialog = new ContentDialog
@@ -95,7 +97,8 @@ public partial class PluginStoreViewModel
 
                 _hasContent = true;
                 IsEmpty = false;
-                StatusMessage = string.Format("PluginStore_InstallingPrivatePlugin_Format".GetLocalized(), accessResult.Plugin.Name);
+                StatusMessage = string.Format("PluginStore_InstallingPrivatePlugin_Format".GetLocalized(),
+                    accessResult.Plugin.Name);
             }
         }
         catch (Exception ex)

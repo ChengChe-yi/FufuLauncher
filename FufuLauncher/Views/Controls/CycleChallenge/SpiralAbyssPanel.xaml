@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
@@ -165,7 +166,7 @@ Licensed under the MIT License.
                             <TextBlock VerticalAlignment="Center"
                                        Style="{StaticResource AbyssLabelStyle}"
                                        Text="{helpers:Loc Key=Abyss_Floor}" />
-                            <local:RemoteImage Width="22" Height="22" Source="{x:Bind AbyssStar}"/>
+                            <local:RemoteImage Width="22" Height="22" Source="{x:Bind AbyssStar}" />
                             <TextBlock VerticalAlignment="Center"
                                        FontSize="13"
                                        FontWeight="SemiBold"
@@ -181,10 +182,12 @@ Licensed under the MIT License.
                     </Grid>
 
                     <!-- 地脉异常：上/下半成对形态（优先） -->
-                    <StackPanel Spacing="4" Visibility="{x:Bind ShowSplitLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Spacing="4"
+                                Visibility="{x:Bind ShowSplitLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock Style="{StaticResource AbyssLabelStyle}"
                                    Text="{helpers:Loc Key=Abyss_LeyLineDisorder}" />
-                        <StackPanel Spacing="2" Visibility="{x:Bind HasUpperLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <StackPanel Spacing="2"
+                                    Visibility="{x:Bind HasUpperLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
                             <TextBlock FontSize="11"
                                        Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                                        Text="{helpers:Loc Key=Abyss_UpperHalf}" />
@@ -193,7 +196,8 @@ Licensed under the MIT License.
                                        Text="{x:Bind UpperLeyLineText}"
                                        TextWrapping="Wrap" />
                         </StackPanel>
-                        <StackPanel Spacing="2" Visibility="{x:Bind HasLowerLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <StackPanel Spacing="2"
+                                    Visibility="{x:Bind HasLowerLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
                             <TextBlock FontSize="11"
                                        Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
                                        Text="{helpers:Loc Key=Abyss_LowerHalf}" />
@@ -205,7 +209,8 @@ Licensed under the MIT License.
                     </StackPanel>
 
                     <!-- 地脉异常：通用形态（上/下皆空时回退） -->
-                    <StackPanel Spacing="4" Visibility="{x:Bind ShowCommonLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Spacing="4"
+                                Visibility="{x:Bind ShowCommonLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
                         <TextBlock Style="{StaticResource AbyssLabelStyle}"
                                    Text="{helpers:Loc Key=Abyss_LeyLineDisorder}" />
                         <TextBlock FontSize="12"
@@ -299,7 +304,8 @@ Licensed under the MIT License.
             </Border>
 
             <!-- 正常内容 -->
-            <StackPanel Spacing="14" Visibility="{x:Bind ShowContent, Converter={StaticResource BoolToVisibilityConverter}}">
+            <StackPanel Spacing="14"
+                        Visibility="{x:Bind ShowContent, Converter={StaticResource BoolToVisibilityConverter}}">
 
                 <!-- KPI 卡片行：总星 / 最深 / 战斗次数 / 胜次 / 最强一击 -->
                 <ItemsRepeater ItemTemplate="{StaticResource KpiCardTemplate}" ItemsSource="{x:Bind KpiCards}">
@@ -307,7 +313,7 @@ Licensed under the MIT License.
                         <UniformGridLayout ItemsStretch="Fill"
                                            MinColumnSpacing="10"
                                            MinItemHeight="86"
-                                           MinItemWidth="168"
+                                           MinItemWidth="132"
                                            MinRowSpacing="10" />
                     </ItemsRepeater.Layout>
                 </ItemsRepeater>
@@ -332,7 +338,11 @@ Licensed under the MIT License.
                 </Border>
 
                 <!-- 逐层卡片（层数按响应原样渲染，不写死 12 层） -->
-                <ItemsControl ItemTemplate="{StaticResource FloorTemplate}" ItemsSource="{x:Bind Floors}" />
+                <ItemsRepeater ItemTemplate="{StaticResource FloorTemplate}" ItemsSource="{x:Bind Floors}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="0" />
+                    </ItemsRepeater.Layout>
+                </ItemsRepeater>
             </StackPanel>
 
             <!-- 空态：本期未参与（floors 为空 / 无 data） -->

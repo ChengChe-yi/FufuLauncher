@@ -401,8 +401,10 @@ public partial class PluginSettingsViewModel
                 section.Value.GetValueOrDefault("help", string.Empty)));
         }
 
-        return new ConfigurationLoadSnapshot(true, general.GetValueOrDefault("Name", "PluginSettings_UnknownPlugin".GetLocalized()),
-            general.GetValueOrDefault("Description", "PluginSettings_NoDescription".GetLocalized()), general.GetValueOrDefault("Developer", "PluginSettings_UnknownDeveloper".GetLocalized()),
+        return new ConfigurationLoadSnapshot(true,
+            general.GetValueOrDefault("Name", "PluginSettings_UnknownPlugin".GetLocalized()),
+            general.GetValueOrDefault("Description", "PluginSettings_NoDescription".GetLocalized()),
+            general.GetValueOrDefault("Developer", "PluginSettings_UnknownDeveloper".GetLocalized()),
             File.GetLastWriteTime(request.IniPath).ToString("yyyy-MM-dd HH:mm:ss"), settings, presets);
     }
 

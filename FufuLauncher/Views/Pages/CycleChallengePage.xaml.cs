@@ -1,24 +1,19 @@
-/*
-Copyright (c) FufuLauncher Dev Team. All rights reserved.
-Licensed under the MIT License.
-*/
-
 using System.ComponentModel;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models.CycleChallenge;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Navigation;
 
 namespace FufuLauncher.Views;
 
-/// <summary>
-/// 周期挑战主页面：页头（账号 / 角色）、三模式切换、期次选择与内容宿主。
-/// 内容由三个独立面板控件各自解析单期 JSON 并渲染。
-/// </summary>
 public sealed partial class CycleChallengePage : Page
 {
+    private readonly Dictionary<ChallengeMode, (string Payload, string? Region)> _shownByMode = new();
     private bool _subscribed;
+    private bool _updateQueued;
 
     public CycleChallengePage()
     {
@@ -64,38 +59,70 @@ public sealed partial class CycleChallengePage : Page
         if (e.PropertyName is nameof(CycleChallengeViewModel.Payload)
             or nameof(CycleChallengeViewModel.CurrentMode)
             or nameof(CycleChallengeViewModel.HasData)
-            or nameof(CycleChallengeViewModel.HasError))
+            or nameof(CycleChallengeViewModel.HasError)
+            or nameof(CycleChallengeViewModel.IsLoading)
+            or nameof(CycleChallengeViewModel.SelectedPeriod))
         {
-            DispatcherQueue.TryEnqueue(UpdateContent);
+            QueueUpdate();
         }
     }
 
-    private async void OnAbyssChipClick(object sender, RoutedEventArgs e) =>
-        await ViewModel.SetModeAsync(ChallengeMode.SpiralAbyss);
+    private void QueueUpdate()
+    {
+        if (_updateQueued)
+        {
+            return;
+        }
 
-    private async void OnTheaterChipClick(object sender, RoutedEventArgs e) =>
-        await ViewModel.SetModeAsync(ChallengeMode.Theater);
+        _updateQueued = true;
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            _updateQueued = false;
+            UpdateContent();
+        });
+    }
 
-    private async void OnStygianChipClick(object sender, RoutedEventArgs e) =>
-        await ViewModel.SetModeAsync(ChallengeMode.Stygian);
+    private async void OnModeTabClick(object sender, RoutedEventArgs e)
+    {
+        if (sender is not ToggleButton tab ||
+            tab.Tag is not string tag ||
+            !Enum.TryParse<ChallengeMode>(tag, out var mode))
+        {
+            SynchronizeModeTabs();
+            return;
+        }
 
-    /// <summary>按当前模式切换面板可见性，并把单期 JSON 交给对应面板渲染。</summary>
+        if (ViewModel.CurrentMode == mode)
+        {
+            SynchronizeModeTabs();
+            return;
+        }
+
+        var switchTask = ViewModel.SetModeAsync(mode);
+        SynchronizeModeTabs();
+        await switchTask;
+        SynchronizeModeTabs();
+    }
+
     private void UpdateContent()
     {
         var mode = ViewModel.CurrentMode;
+        SynchronizeModeTabs();
+        UpdateModeHeader(mode);
 
         AbyssHost.Visibility = mode == ChallengeMode.SpiralAbyss ? Visibility.Visible : Visibility.Collapsed;
         TheaterHost.Visibility = mode == ChallengeMode.Theater ? Visibility.Visible : Visibility.Collapsed;
         StygianHost.Visibility = mode == ChallengeMode.Stygian ? Visibility.Visible : Visibility.Collapsed;
 
-        AbyssChip.IsChecked = mode == ChallengeMode.SpiralAbyss;
-        TheaterChip.IsChecked = mode == ChallengeMode.Theater;
-        StygianChip.IsChecked = mode == ChallengeMode.Stygian;
-
         var payload = ViewModel.Payload;
-        // 离线/刷新失败但仍有可用缓存时，HasError 为 true 仍应展示 Payload（错误通过 InfoBar 提示）
         var hasPayload = !string.IsNullOrEmpty(payload) && ViewModel.HasData;
-        EmptyText.Visibility = hasPayload ? Visibility.Collapsed : Visibility.Visible;
+        LoadingState.Visibility = ViewModel.IsLoading && !hasPayload ? Visibility.Visible : Visibility.Collapsed;
+        EmptyState.Visibility = hasPayload || ViewModel.HasError || ViewModel.IsLoading
+            ? Visibility.Collapsed
+            : Visibility.Visible;
+        PeriodEmptyState.Visibility = ViewModel.Periods.Count == 0 && !ViewModel.IsLoading
+            ? Visibility.Visible
+            : Visibility.Collapsed;
 
         if (!hasPayload)
         {
@@ -106,8 +133,14 @@ public sealed partial class CycleChallengePage : Page
             return;
         }
 
-        // 时间显示时区：cn_* → UTC+8，其它 → UTC（面板按区服换算）
         var region = ViewModel.CurrentRegion;
+        if (_shownByMode.TryGetValue(mode, out var shown) &&
+            string.Equals(shown.Payload, payload, StringComparison.Ordinal) &&
+            string.Equals(shown.Region, region, StringComparison.Ordinal))
+        {
+            return;
+        }
+
         AbyssPanel.Region = region;
         TheaterPanel.Region = region;
         StygianPanel.Region = region;
@@ -124,5 +157,47 @@ public sealed partial class CycleChallengePage : Page
                 StygianPanel.Show(payload!);
                 break;
         }
+
+        _shownByMode[mode] = (payload!, region);
+        ResetDetailScroll(mode);
+    }
+
+    private void SynchronizeModeTabs()
+    {
+        var mode = ViewModel.CurrentMode;
+        if (AbyssTab.IsChecked != (mode == ChallengeMode.SpiralAbyss))
+        {
+            AbyssTab.IsChecked = mode == ChallengeMode.SpiralAbyss;
+        }
+
+        if (TheaterTab.IsChecked != (mode == ChallengeMode.Theater))
+        {
+            TheaterTab.IsChecked = mode == ChallengeMode.Theater;
+        }
+
+        if (StygianTab.IsChecked != (mode == ChallengeMode.Stygian))
+        {
+            StygianTab.IsChecked = mode == ChallengeMode.Stygian;
+        }
+    }
+
+    private void UpdateModeHeader(ChallengeMode mode)
+    {
+        DetailModeName.Text = mode.ToDisplayKey().GetLocalized();
+        AbyssHeaderIcon.Visibility = mode == ChallengeMode.SpiralAbyss ? Visibility.Visible : Visibility.Collapsed;
+        TheaterHeaderIcon.Visibility = mode == ChallengeMode.Theater ? Visibility.Visible : Visibility.Collapsed;
+        StygianHeaderIcon.Visibility = mode == ChallengeMode.Stygian ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void ResetDetailScroll(ChallengeMode mode)
+    {
+        var host = mode switch
+        {
+            ChallengeMode.Theater => TheaterHost,
+            ChallengeMode.Stygian => StygianHost,
+            _ => AbyssHost,
+        };
+
+        host.ChangeView(null, 0, null, true);
     }
 }

@@ -8697,6 +8697,15 @@ UIGF v4.x/3.0/2.x</value>
   <data name="CycleChallenge_PeriodLabel" xml:space="preserve">
     <value>期次</value>
   </data>
+  <data name="CycleChallenge_PeriodListTitle" xml:space="preserve">
+    <value>挑战期次</value>
+  </data>
+  <data name="CycleChallenge_PeriodListDesc" xml:space="preserve">
+    <value>选择期次查看历次挑战记录</value>
+  </data>
+  <data name="CycleChallenge_Upcoming" xml:space="preserve">
+    <value>未开启</value>
+  </data>
   <data name="CycleChallenge_PeriodCurrent" xml:space="preserve">
     <value>本期</value>
   </data>

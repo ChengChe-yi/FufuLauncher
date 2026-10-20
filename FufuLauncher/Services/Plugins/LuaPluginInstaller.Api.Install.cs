@@ -76,7 +76,7 @@ public partial class LuaPluginInstaller
                 var downloadUrl = pluginId == _pluginId && !string.IsNullOrWhiteSpace(_downloadUrl)
                     ? _downloadUrl
                     : Constants.ApiEndpoints.GetPluginFileDownloadUrl(pluginId);
-                // Keep this path for existing scripts, regardless of the package's real format.
+
                 var zipPath = Path.Combine(pluginDir, "package.zip");
                 zipPath = SanitizePath(zipPath, "download_plugin zip");
 
@@ -227,7 +227,7 @@ public partial class LuaPluginInstaller
 
             var extracted = ExtractPluginArchive(safeZipPath, safeDestDir,
                 path => patternList.Any(pattern => WildcardMatch(path, pattern) ||
-                    WildcardMatch(Path.GetFileName(path), pattern)), cancellationToken);
+                                                   WildcardMatch(Path.GetFileName(path), pattern)), cancellationToken);
 
             LogMessage($"按模式解压完成，共解压 {extracted} 个文件");
         });
