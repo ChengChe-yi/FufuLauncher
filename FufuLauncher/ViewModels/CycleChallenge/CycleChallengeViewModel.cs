@@ -364,7 +364,12 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             {
                 if (ReferenceEquals(message.Scope, recipient.RoleSelection))
                 {
-                    recipient.OnContextChanged();
+                    // 作用域内角色切换：不要 Reset()，否则已选 UID 会被清掉并回落到默认角色。
+                    // 先清空旧 UID 的展示状态，避免 ReloadAsync 加载期间继续渲染上一个 UID 的数据。
+                    recipient.Payload = null;
+                    recipient.HasData = false;
+                    recipient.RefreshHeader();
+                    _ = recipient.ReloadAfterRoleChangeAsync();
                 }
             });
     }
@@ -450,6 +455,19 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
 
     private bool ShouldRefresh() =>
         !HasData || (_lastFetchedAt is { } fetched && DateTimeOffset.UtcNow - fetched > CacheTtl);
+
+    /// <summary>
+    /// 作用域内切换角色：先按新 UID 读缓存；无缓存/过期时再自动强制拉取一次（与进入页面/切换模式一致）。
+    /// </summary>
+    private async Task ReloadAfterRoleChangeAsync()
+    {
+        await ReloadAsync(forceRefresh: false);
+
+        if (ShouldRefresh())
+        {
+            await ReloadAsync(forceRefresh: true);
+        }
+    }
 
     [RelayCommand]
     private async Task RefreshAsync() => await ReloadAsync(forceRefresh: true);
@@ -665,7 +683,8 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             return;
         }
 
-        var role = GameRoleSelection.Current(account);
+        // 使用页面作用域的角色选择，保证 Header 中 UID 与 ReloadAsync 实际加载的 UID 一致
+        var role = RoleSelection.Current(account);
         AccountText = role is null
             ? $"{account.Nickname}"
             : $"{account.Nickname}  ·  {role.game_uid}  {role.region_name}";

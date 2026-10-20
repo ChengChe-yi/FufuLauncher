@@ -69,15 +69,20 @@ public static class CycleChallengeTime
 
     private static bool HasExplicitOffset(string text)
     {
-        if (text.EndsWith('Z'))
+        if (text.EndsWith('Z') || text.EndsWith('z'))
         {
             return true;
         }
 
-        var timeSeparator = text.IndexOf(' ');
-        var afterTime = timeSeparator >= 0 ? text[timeSeparator..] : text;
-        return afterTime.Contains('+', StringComparison.Ordinal) ||
-               (afterTime.LastIndexOf('-') > 0);
+        // 日期部分本身带 '-'，必须从时间部分（空格或 'T' 之后）开始找偏移符号
+        var timeStart = text.IndexOfAny([' ', 'T']);
+        if (timeStart < 0)
+        {
+            // 纯日期（2026-10-15）没有时区偏移
+            return false;
+        }
+
+        return text.AsSpan(timeStart + 1).IndexOfAny('+', '-') >= 0;
     }
 
 

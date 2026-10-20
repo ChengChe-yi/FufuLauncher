@@ -221,7 +221,8 @@ public sealed partial class AvatarBadge : UserControl
         RarityRing.Stroke = brush;
         RarityGlow.Stroke = brush;
 
-        bool visible = ShowRarityRing;
+        // 星级信息缺失（Rarity <= 0）时不显示星级描边，也不影响头像 / 等级 / ToolTip 名称
+        bool visible = ShowRarityRing && Rarity > 0;
         RarityRing.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
         RarityGlow.Visibility = visible ? Visibility.Visible : Visibility.Collapsed;
 
@@ -267,7 +268,19 @@ public sealed partial class AvatarBadge : UserControl
             parts.Add($"{levelLabel}{Level}");
         }
 
-        parts.Add($"{rarityLabel} {Rarity}★");
+        // 星级信息缺失（<=0）时整段省略
+        if (Rarity > 0)
+        {
+            parts.Add($"{rarityLabel} {Rarity}★");
+        }
+
+        if (parts.Count == 0)
+        {
+            // 名称 / 等级 / 星级都不可用时不显示空白 ToolTip
+            ToolTipService.SetToolTip(AvatarRoot, null);
+            AutomationProperties.SetName(this, string.Empty);
+            return;
+        }
 
         string text = string.Join(" · ", parts);
         ToolTipService.SetToolTip(AvatarRoot, text);
@@ -312,12 +325,19 @@ public sealed partial class AvatarBadge : UserControl
                         Debug.WriteLine($"[AvatarBadge] 元数据角色名解析失败: {ex.Message}");
                     }
 
-                    _avatarNames = names;
+                    // 空结果（元数据表尚未填充 / 查询失败）不缓存，后续 Tooltip 更新时允许重试
+                    if (names.Count > 0)
+                    {
+                        _avatarNames = names;
+                    }
                 }
             }
         }
 
-        return _avatarNames.TryGetValue(avatarId, out string? name) ? name : null;
+        return _avatarNames is not null
+               && _avatarNames.TryGetValue(avatarId, out string? resolvedName)
+            ? resolvedName
+            : null;
     }
 
     /// <summary>
@@ -329,7 +349,8 @@ public sealed partial class AvatarBadge : UserControl
         try
         {
             double size = NormalizeSize(Size);
-            float radius = (float)(Math.Max(0, size - (ShowRarityRing ? 3 : 1)) / 2);
+            bool hasRarityRing = ShowRarityRing && Rarity > 0;
+            float radius = (float)(Math.Max(0, size - (hasRarityRing ? 3 : 1)) / 2);
             if (radius <= 0.5f)
             {
                 return;
