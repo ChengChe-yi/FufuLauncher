@@ -221,7 +221,7 @@ internal static class CycleChallengeRichTextParser
     internal static Paragraph BuildParagraph(string text)
     {
         var paragraph = new Paragraph();
-        Hyperlink? currentLink = null;
+        Underline? currentLink = null;
 
         foreach (var segment in Tokenize(text))
         {
@@ -234,7 +234,9 @@ internal static class CycleChallengeRichTextParser
                         paragraph.Inlines.Add(currentLink);
                     }
 
-                    currentLink = new Hyperlink
+                    // 用 Underline（Span 派生）只做“下划线 + 颜色”的视觉强调；
+                    // Link 标签本身没有可导航目标，避免 Hyperlink 的 Tab 焦点/手型光标/读屏链接语义。
+                    currentLink = new Underline
                     {
                         Foreground = new SolidColorBrush(LinkForeground),
                     };
@@ -277,7 +279,7 @@ internal static class CycleChallengeRichTextParser
         return paragraph;
     }
 
-    private static void AddInline(Paragraph paragraph, Hyperlink? link, Inline inline)
+    private static void AddInline(Paragraph paragraph, Span? link, Inline inline)
     {
         if (link is not null)
         {

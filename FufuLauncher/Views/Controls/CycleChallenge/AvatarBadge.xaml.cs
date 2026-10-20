@@ -324,12 +324,19 @@ public sealed partial class AvatarBadge : UserControl
                         Debug.WriteLine($"[AvatarBadge] 元数据角色名解析失败: {ex.Message}");
                     }
 
-                    _avatarNames = names;
+                    // 空结果（元数据表尚未填充 / 查询失败）不缓存，后续 Tooltip 更新时允许重试
+                    if (names.Count > 0)
+                    {
+                        _avatarNames = names;
+                    }
                 }
             }
         }
 
-        return _avatarNames.TryGetValue(avatarId, out string? name) ? name : null;
+        return _avatarNames is not null
+               && _avatarNames.TryGetValue(avatarId, out string? resolvedName)
+            ? resolvedName
+            : null;
     }
 
     /// <summary>

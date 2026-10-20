@@ -126,8 +126,8 @@ public sealed class GameRecordApiClient
             }
         }
 
-        // 会话失效：刷新 cookie 后重试一次
-        if (response.Kind == ChallengeErrorKind.LoginExpired)
+        // 会话失效：刷新 cookie 后重试一次（服务端已拒绝会话，必须强制刷新；OS 账号不走 CN passport）
+        if (response.Kind == ChallengeErrorKind.LoginExpired && !isOversea)
         {
             if (await TryRefreshCookiesAsync(role.AccountId, token).ConfigureAwait(false))
             {
@@ -270,7 +270,7 @@ public sealed class GameRecordApiClient
             }
 
             using var refreshService = new TokenRefreshService();
-            var refreshed = await refreshService.RefreshCookieAsync(cookies).ConfigureAwait(false);
+            var refreshed = await refreshService.RefreshCookieAsync(cookies, forceRefresh: true).ConfigureAwait(false);
             if (refreshed is null || refreshed.Count == 0)
             {
                 return false;

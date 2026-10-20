@@ -28,12 +28,6 @@ namespace FufuLauncher.Models.CycleChallenge.Mapping;
 /// </summary>
 public static class RoleCombatMapper
 {
-    /// <summary>塔罗图标：获得徽记。</summary>
-    private const string TarotGotMedalIcon = "UI_Icon_RoleCombat_Reward_Tarot_04";
-
-    /// <summary>塔罗图标：未获得徽记。</summary>
-    private const string TarotNoMedalIcon = "UI_Icon_RoleCombat_Reward_Tarot_05";
-
     /// <summary>
     /// 相邻两幕完成时刻差值超过该阈值时视为「中途休息 / 跨天」，不再展示为用时。
     /// 接口只给完成时刻（unix 秒），没有真正意义上的单幕战斗用时，只能做保守推算。
@@ -186,7 +180,7 @@ public static class RoleCombatMapper
             }
 
             var tarotIcon = isTarot
-                ? CycleChallengeIcons.GetLocal(isGetMedal ? TarotGotMedalIcon : TarotNoMedalIcon)
+                ? CycleChallengeIcons.Tarot(isGetMedal)
                 : string.Empty;
 
             result.Add(new TheaterRound(
@@ -234,7 +228,7 @@ public static class RoleCombatMapper
         foreach (var round in rounds)
         {
             var icon = round.IsTarot
-                ? CycleChallengeIcons.GetLocal(round.IsGetMedal ? TarotGotMedalIcon : TarotNoMedalIcon)
+                ? CycleChallengeIcons.Tarot(round.IsGetMedal)
                 : CycleChallengeIcons.TheaterStar(round.IsGetMedal);
             result.Add(new TheaterMedalIcon(icon));
         }

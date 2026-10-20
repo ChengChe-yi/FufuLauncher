@@ -310,10 +310,22 @@ public static class SpiralAbyssMapper
             case JsonValueKind.String:
             {
                 var text = value.GetString();
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    break;
+                }
+
+                // 无偏移：接口给的是服务器墙上时间，原样返回，由 FormatWallClock 统一换算展示时区
+                if (DateTime.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out var wall)
+                    && wall.Kind == DateTimeKind.Unspecified)
+                {
+                    return wall;
+                }
+
+                // 带偏移（含 Z）：先换到服务器时区，再由 FormatWallClock 换算一次
                 if (DateTimeOffset.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var parsed))
                 {
-                    // 带偏移的字符串统一换算到展示时区后再取墙上时间
-                    return CycleChallengeTime.ToDisplay(parsed, context).DateTime;
+                    return parsed.ToOffset(context.SourceOffset).DateTime;
                 }
 
                 break;
@@ -322,7 +334,7 @@ public static class SpiralAbyssMapper
             case JsonValueKind.Number:
                 if (value.TryGetInt64(out var unix) && unix > 0)
                 {
-                    return CycleChallengeTime.ToDisplay(DateTimeOffset.FromUnixTimeSeconds(unix), context).DateTime;
+                    return DateTimeOffset.FromUnixTimeSeconds(unix).ToOffset(context.SourceOffset).DateTime;
                 }
 
                 break;

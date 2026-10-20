@@ -106,7 +106,7 @@ public sealed class CycleChallengeRepository
         $"PRAGMA user_version = {CurrentSchemaVersion};",
     ];
 
-    /// <summary>同键覆盖写入（D5：同期刷新最新覆盖旧的）。</summary>
+    /// <summary>同键覆盖写入（D5：同期刷新最新覆盖旧的）。整个替换在单次 SaveChanges 中完成，避免中途失败丢失旧缓存。</summary>
     public void Upsert(CycleChallengeRecordEntity record)
     {
         EnsureInitialized();
@@ -114,13 +114,15 @@ public sealed class CycleChallengeRepository
         {
             using var db = CreateContext();
             var existing = db.CycleChallengeRecords.Find(record.Uid, record.Mode, record.ScheduleId);
-            if (existing is not null)
+            if (existing is null)
             {
-                db.CycleChallengeRecords.Remove(existing);
-                db.SaveChanges();
+                db.CycleChallengeRecords.Add(record);
+            }
+            else
+            {
+                db.Entry(existing).CurrentValues.SetValues(record);
             }
 
-            db.CycleChallengeRecords.Add(record);
             db.SaveChanges();
         }
     }
@@ -148,8 +150,27 @@ public sealed class CycleChallengeRepository
             .ToList();
     }
 
-    public CycleChallengeRecordEntity? Get(string uid, ChallengeMode mode, string scheduleId)
+    /// <summary>
+    /// 只读取「期次 ID + 摘要」，供默认期次选择使用，避免为了一个 has_data 标记加载整行大 Payload。
+    /// </summary>
+    public IReadOnlyList<(string ScheduleId, string? Summary)> GetSummaries(string uid, ChallengeMode mode)
     {
+        EnsureInitialized();
+        using var db = CreateContext();
+        var modeValue = (int)mode;
+        var rows = db.CycleChallengeRecords
+            .AsNoTracking()
+            .Where(x => x.Uid == uid && x.Mode == modeValue)
+            .Select(x => new { x.ScheduleId, x.Summary })
+            .ToList();
+
+        return rows
+            .OrderByDescending(x => ParseSchedule(x.ScheduleId))
+            .Select(x => (x.ScheduleId, x.Summary))
+            .ToList();
+    }
+
+    public CycleChallengeRecordEntity? Get(string uid, ChallengeMode mode, string scheduleId)    {
         EnsureInitialized();
         using var db = CreateContext();
         var modeValue = (int)mode;

@@ -81,7 +81,9 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             {
                 if (ReferenceEquals(message.Scope, recipient.RoleSelection))
                 {
-                    recipient.OnContextChanged();
+                    // 作用域内角色切换：不要 Reset()，否则已选 UID 会被清掉并回落到默认角色
+                    recipient.RefreshHeader();
+                    _ = recipient.ReloadAsync(forceRefresh: false);
                 }
             });
     }

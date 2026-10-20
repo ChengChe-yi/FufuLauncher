@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
+using System.Diagnostics;
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -71,6 +72,8 @@ public sealed class CycleChallengeService
         var periodsBefore = _repository.GetPeriods(role.Role.game_uid, mode);
         var timeContext = CycleChallengeTime.CreateContext(role.Role.region);
         var failures = new List<RawChallengeResponse>();
+        var saveFailed = false;
+        string? freshPanelPayload = null;
 
         switch (mode)
         {
@@ -80,7 +83,17 @@ public sealed class CycleChallengeService
                     var response = await _api.GetSpiralAbyssAsync(role, schedule, token).ConfigureAwait(false);
                     if (response.Success)
                     {
-                        SaveSinglePeriod(mode, role, response.DataJson!, token);
+                        try
+                        {
+                            SaveSinglePeriod(mode, role, response.DataJson!, token);
+                        }
+                        catch (Exception ex)
+                        {
+                            // 写缓存失败不能让成功的 API 响应变成错误页
+                            Debug.WriteLine($"[CycleChallengeService] 深渊写入缓存失败: {ex.Message}");
+                            saveFailed = true;
+                            freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock: true);
+                        }
                     }
                     else if (response.Kind is not ChallengeErrorKind.NotParticipated)
                     {
@@ -95,7 +108,17 @@ public sealed class CycleChallengeService
                 var response = await _api.GetRoleCombatAsync(role, token).ConfigureAwait(false);
                 if (response.Success)
                 {
-                    SavePeriodArray(mode, role, response.DataJson!, ReadIsUnlock(response.RawJson), timeContext);
+                    var isUnlock = ReadIsUnlock(response.RawJson);
+                    try
+                    {
+                        SavePeriodArray(mode, role, response.DataJson!, isUnlock, timeContext);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[CycleChallengeService] 剧诗写入缓存失败: {ex.Message}");
+                        saveFailed = true;
+                        freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock);
+                    }
                 }
                 else
                 {
@@ -110,7 +133,17 @@ public sealed class CycleChallengeService
                 var response = await _api.GetHardChallengeAsync(role, token).ConfigureAwait(false);
                 if (response.Success)
                 {
-                    SavePeriodArray(mode, role, response.DataJson!, ReadIsUnlock(response.RawJson), timeContext);
+                    var isUnlock = ReadIsUnlock(response.RawJson);
+                    try
+                    {
+                        SavePeriodArray(mode, role, response.DataJson!, isUnlock, timeContext);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[CycleChallengeService] 危战写入缓存失败: {ex.Message}");
+                        saveFailed = true;
+                        freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock);
+                    }
                 }
                 else
                 {
@@ -123,6 +156,20 @@ public sealed class CycleChallengeService
 
         var periods = _repository.GetPeriods(role.Role.game_uid, mode);
         var latest = PickPreferredRecord(role.Role.game_uid, mode, periods);
+
+        // 写缓存失败但 API 成功：直接返回本次拉取的新数据，避免误报错误或展示旧缓存
+        if (saveFailed && freshPanelPayload is not null)
+        {
+            return new ChallengeLoadResult
+            {
+                Success = true,
+                Kind = ChallengeErrorKind.Success,
+                Periods = periods,
+                Payload = freshPanelPayload,
+                ActiveScheduleId = latest?.ScheduleId ?? string.Empty,
+                IsFromCache = false,
+            };
+        }
 
         if (latest is null)
         {
@@ -303,6 +350,52 @@ public sealed class CycleChallengeService
     }
 
     /// <summary>
+    /// 写缓存失败时，把本次 API 的 data 节点转换为面板可直接解析的 payload：
+    /// 深渊 data 本身就是对象；剧诗/危战需要补回 retcode/message/is_unlock 外壳。
+    /// </summary>
+    private static string? BuildFreshPanelPayload(ChallengeMode mode, string? dataJson, bool isUnlock)
+    {
+        if (string.IsNullOrWhiteSpace(dataJson))
+        {
+            return null;
+        }
+
+        if (mode == ChallengeMode.SpiralAbyss)
+        {
+            return dataJson;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(dataJson);
+            var root = document.RootElement;
+            JsonElement array;
+            if (root.ValueKind is JsonValueKind.Array)
+            {
+                array = root;
+            }
+            else if (root.ValueKind is JsonValueKind.Object
+                     && root.TryGetProperty("data", out var inner)
+                     && inner.ValueKind is JsonValueKind.Array)
+            {
+                array = inner;
+            }
+            else
+            {
+                return null;
+            }
+
+            var unlock = isUnlock ? "true" : "false";
+            return $"{{\"retcode\":0,\"message\":\"OK\",\"is_unlock\":{unlock},\"data\":{array.GetRawText()}}}";
+        }
+        catch (JsonException ex)
+        {
+            Debug.WriteLine($"[CycleChallengeService] 构造临时 payload 失败: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
     /// 剧诗/危战面板按 data[] 结构解析，因此包一层 retcode/message/data，并补回响应根上的 is_unlock；
     /// 深境螺旋面板直接接收 data 对象（is_unlock 已在 data 内部）。
     /// </summary>
@@ -359,16 +452,25 @@ public sealed class CycleChallengeService
     private CycleChallengeRecordEntity? PickPreferredRecord(
         string uid, ChallengeMode mode, IReadOnlyList<ChallengePeriod> periods)
     {
+        if (periods.Count == 0)
+        {
+            return null;
+        }
+
+        // 只查摘要（不含大 Payload），找到目标期次后再取整行
+        var summaries = _repository.GetSummaries(uid, mode)
+            .ToDictionary(x => x.ScheduleId, x => x.Summary, StringComparer.Ordinal);
+
         foreach (var period in periods)
         {
-            var candidate = _repository.Get(uid, mode, period.ScheduleId);
-            if (candidate is not null && ReadSummaryBool(candidate.Summary, "has_data"))
+            if (summaries.TryGetValue(period.ScheduleId, out string? summary)
+                && ReadSummaryBool(summary, "has_data"))
             {
-                return candidate;
+                return _repository.Get(uid, mode, period.ScheduleId);
             }
         }
 
-        return periods.Count > 0 ? _repository.Get(uid, mode, periods[0].ScheduleId) : null;
+        return _repository.Get(uid, mode, periods[0].ScheduleId);
     }
 
     /// <summary>从摘要 JSON 读取布尔字段，缺失时默认 true（避免把正常数据误判为未解锁）。</summary>

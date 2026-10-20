@@ -48,8 +48,8 @@ public static class RemoteImageCache
     /// <summary>缓存键长度：XxHash64(8 字节) + MD5(16 字节) = 24 字节 → 48 个 HEX 字符。</summary>
     private const int CacheKeyByteCount = 24;
 
-    /// <summary>单飞表：缓存键 → 正在进行的下载任务。</summary>
-    private static readonly ConcurrentDictionary<string, Task<string?>> InFlight = new(StringComparer.Ordinal);
+    /// <summary>单飞表：缓存键 → 延迟启动的下载任务（GetOrAdd 工厂可能执行多次，Lazy 保证只有存入的那一个真正开始下载）。</summary>
+    private static readonly ConcurrentDictionary<string, Lazy<Task<string?>>> InFlight = new(StringComparer.Ordinal);
 
     /// <summary>全局共享 HttpClient（自动解压 + HTTP/2 多连接）。</summary>
     private static readonly HttpClient HttpClient = CreateHttpClient();
@@ -105,7 +105,12 @@ public static class RemoteImageCache
             }
 
             string key = uri.ToString();
-            Task<string?> shared = InFlight.GetOrAdd(key, _ => StartDownload(key, uri));
+            Lazy<Task<string?>> lazy = InFlight.GetOrAdd(
+                key,
+                _ => new Lazy<Task<string?>>(
+                    () => StartDownload(key, uri),
+                    System.Threading.LazyThreadSafetyMode.ExecutionAndPublication));
+            Task<string?> shared = lazy.Value;
 
             try
             {
@@ -151,7 +156,9 @@ public static class RemoteImageCache
 
             // 只移除已完成的单飞任务；正在下载的任务让它跑完，避免同一 URL 并发写同一个 .tmp
             string key = uri.ToString();
-            if (InFlight.TryGetValue(key, out Task<string?>? running) && running.IsCompleted)
+            if (InFlight.TryGetValue(key, out Lazy<Task<string?>>? lazy)
+                && lazy.IsValueCreated
+                && lazy.Value.IsCompleted)
             {
                 InFlight.TryRemove(key, out _);
             }
@@ -196,12 +203,14 @@ public static class RemoteImageCache
         return task;
     }
 
-    /// <summary>从单飞表中移除指定任务（仅当表里还是同一个任务时才移除）。</summary>
+    /// <summary>从单飞表中移除指定任务（仅当表里还是同一个 Lazy 包装的同一个任务时才移除）。</summary>
     private static void RemoveEntry(string key, Task<string?> task)
     {
         try
         {
-            if (InFlight.TryGetValue(key, out Task<string?>? current) && ReferenceEquals(current, task))
+            if (InFlight.TryGetValue(key, out Lazy<Task<string?>>? lazy)
+                && lazy.IsValueCreated
+                && ReferenceEquals(lazy.Value, task))
             {
                 InFlight.TryRemove(key, out _);
             }
@@ -232,6 +241,12 @@ public static class RemoteImageCache
             Exception? lastError = null;
             for (int attempt = 0; attempt <= MaxRetryCount; attempt++)
             {
+                // 并发下载可能已经完成并落盘：重试前先复查，避免重复下载 / 写坏 .tmp
+                if (IsUsableCacheFile(filePath))
+                {
+                    return filePath;
+                }
+
                 try
                 {
                     await DownloadFileAsync(uri, filePath + ".tmp", filePath).ConfigureAwait(false);

@@ -95,15 +95,14 @@ public static class CycleChallengeIcons
     }
 
     /// <summary>
-    /// 剧诗塔罗图标。接口 <c>tarot_serial_no</c> 当前只观察到 4/5，
-    /// 暂按 <c>serial == 5 → Tarot_05</c>、其余 → <c>Tarot_04</c> 兜底；
-    /// 待 Lead 用真实 DB 校准映射后只需改这里。
+    /// 剧诗塔罗图标：获得徽记 → <c>Tarot_04</c>，未获得 → <c>Tarot_05</c>。
+    /// <c>tarot_serial_no</c> 只用于标题文案，不作为图标依据。
     /// </summary>
-    public static string Tarot(int serial)
+    public static string Tarot(bool gotMedal)
     {
-        return GetLocal(serial == 5
-            ? "UI_Icon_RoleCombat_Reward_Tarot_05"
-            : "UI_Icon_RoleCombat_Reward_Tarot_04");
+        return GetLocal(gotMedal
+            ? "UI_Icon_RoleCombat_Reward_Tarot_04"
+            : "UI_Icon_RoleCombat_Reward_Tarot_05");
     }
 
     /// <summary>深境螺旋星级图标：<c>UI_Icon_Tower_Star</c>。</summary>
