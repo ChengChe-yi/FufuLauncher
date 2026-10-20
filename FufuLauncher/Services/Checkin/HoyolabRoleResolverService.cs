@@ -60,7 +60,7 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
         try
         {
             var query = $"game_biz={GameBiz}";
-            var url = $"https://api-account-os.hoyolab.com/binding/api/getUserGameRolesByCookieToken?{query}";
+            var url = $"{ApiEndpoints.HoyolabGameRolesByCookieTokenUrl}?{query}";
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             AddCommonHeaders(request, cookie);
             request.Headers.TryAddWithoutValidation("DS", GenerateDs(query: query));
@@ -109,9 +109,9 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
                 return new HoyolabRoleResolveResult(-1, "Cookie 中缺少 HoYoLAB UID", "game_record_card",
                     new List<GameRoleInfo>());
 
-            var url = $"https://bbs-api-os.hoyolab.com/game_record/card/wapi/getGameRecordCard?uid={uid}";
+            var url = $"{ApiEndpoints.HoyolabGameRecordCardUrl}?uid={uid}";
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
-            AddCommonHeaders(request, cookie, "https://www.hoyolab.com/", "https://www.hoyolab.com");
+            AddCommonHeaders(request, cookie, ApiEndpoints.HoyolabWebBase + "/", ApiEndpoints.HoyolabWebBase);
 
             var response = await _httpClient.SendAsync(request, cancellationToken);
             var json = await response.Content.ReadAsStringAsync(cancellationToken);
@@ -180,8 +180,8 @@ public class HoyolabRoleResolverService : IHoyolabRoleResolverService
     private static void AddCommonHeaders(
         HttpRequestMessage request,
         string cookie,
-        string referer = "https://act.hoyolab.com/",
-        string origin = "https://act.hoyolab.com")
+        string referer = ApiEndpoints.ActHoyolabBase + "/",
+        string origin = ApiEndpoints.ActHoyolabBase)
     {
         request.Headers.TryAddWithoutValidation("Accept", "application/json, text/plain, */*");
         request.Headers.TryAddWithoutValidation("Accept-Language", "zh-CN,en-US;q=0.8");

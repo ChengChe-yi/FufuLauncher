@@ -120,9 +120,9 @@ namespace FufuLauncher.Views
                         return document.querySelector(sel);
                     };
 
-                    const URL_ICON_SINGLE = 'https://act-upload.mihoyo.com/wiki-user-upload/2024/09/16/76362111/27ec1c00c5bb06745e16039a10ff3aaa_145617018918069405.png';
-                    const URL_ICON_MULTI = 'https://act-upload.mihoyo.com/wiki-user-upload/2024/09/16/76362111/42fd361ea1336daf7cd33bf187e62fa2_8745920187606549502.png';
-                    const URL_ICON_PRIMO = 'https://upload-bbs.mihoyo.com/upload/2022/12/26/300350281/fb334cf8fd21e669ed6e7aa95890e2b5_2523388253479178875.png';
+                    const URL_ICON_SINGLE = '" + ApiEndpoints.AchievementIconSingleUrl + @"';
+                    const URL_ICON_MULTI = '" + ApiEndpoints.AchievementIconMultiUrl + @"';
+                    const URL_ICON_PRIMO = '" + ApiEndpoints.AchievementIconPrimoUrl + @"';
 
                     async function md5_short(str) {
                         const encoder = new TextEncoder();
@@ -134,7 +134,7 @@ namespace FufuLauncher.Views
 
                     try {
                         if (!location.pathname.includes('/achievements')) {
-                            location.href = 'https://seelie.me/achievements';
+                            location.href = '" + ApiEndpoints.SeelieAchievementsUrl + @"';
                             let initWait = 0;
                             while (!location.pathname.endsWith('/achievements') && initWait < 10000) {
                                 await wait(500);
@@ -149,7 +149,7 @@ namespace FufuLauncher.Views
                         let categories = catElements.map(el => {
                             let title = el.querySelector('p.text-xl')?.textContent.trim() || '未知分类';
                             let imgSrc = el.querySelector('img')?.getAttribute('src') || '';
-                            if (imgSrc && !imgSrc.startsWith('http')) imgSrc = 'https://seelie.me' + imgSrc;
+                            if (imgSrc && !imgSrc.startsWith('http')) imgSrc = '" + ApiEndpoints.SeelieBase + @"' + imgSrc;
                             return { title, icon_url: imgSrc, achievements: [] };
                         });
 
@@ -319,8 +319,7 @@ namespace FufuLauncher.Views
 
         private async Task FetchAndMergeGithubDataAsync()
         {
-            string apiUrl =
-                "https://api.github.com/repos/dvaJi/genshin-data/contents/src/data/chinese-simplified/achievements";
+            string apiUrl = ApiEndpoints.GenshinDataAchievementsUrl;
 
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "FufuLauncher-AchievementUpdater");

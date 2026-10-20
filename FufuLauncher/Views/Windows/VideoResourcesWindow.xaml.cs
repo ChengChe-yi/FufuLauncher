@@ -140,7 +140,7 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
             if(img && title) {
                 var link = a.getAttribute('href');
                 if(link && !link.startsWith('http')) {
-                    link = 'https://baike.mihoyo.com' + link;
+                    link = '" + ApiEndpoints.BaikeBase + @"' + link;
                 }
                 
                 var cover = img.getAttribute('data-src');

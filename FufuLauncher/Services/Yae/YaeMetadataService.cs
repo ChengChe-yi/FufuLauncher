@@ -19,9 +19,9 @@ public static class YaeMetadataService
 {
     private static readonly string[] Mirrors =
     [
-        "https://rin.holohat.work/schicksal/metadata",
-        "https://ena-rin.holohat.work//schicksal/metadata",
-        "https://cn-cd-1259389942.file.myqcloud.com/schicksal/metadata",
+        ApiEndpoints.YaeMetadataPrimaryUrl,
+        ApiEndpoints.YaeMetadataMirrorUrl,
+        ApiEndpoints.YaeMetadataFallbackUrl,
     ];
 
     private static readonly HttpClient HttpClient = new()

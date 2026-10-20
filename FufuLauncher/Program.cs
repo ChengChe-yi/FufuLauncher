@@ -51,8 +51,7 @@ namespace FufuLauncher
 
             SentrySdk.Init(options =>
             {
-                options.Dsn =
-                    "https://9c8e89f029c240e3dba227979a26759a@o4511497397272576.ingest.de.sentry.io/4511497409265745";
+                options.Dsn = ApiEndpoints.SentryDsn;
                 options.Debug = false;
                 options.AutoSessionTracking = true;
                 options.TracesSampleRate = 1.0;

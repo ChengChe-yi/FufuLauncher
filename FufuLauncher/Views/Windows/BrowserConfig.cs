@@ -13,7 +13,7 @@ namespace FufuLauncher.Views
         {
             get;
             set;
-        } = "https://www.bing.com";
+        } = ApiEndpoints.BingBase;
 
         public double ZoomFactor
         {

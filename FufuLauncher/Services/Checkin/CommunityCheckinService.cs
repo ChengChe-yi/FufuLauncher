@@ -219,7 +219,7 @@ public class CommunityCheckinService : ICommunityCheckinService
             ["x-rpc-device_name"] = device["name"],
             ["x-rpc-device_model"] = device["model"],
             ["x-rpc-h265_supported"] = "1",
-            ["Referer"] = "https://app.mihoyo.com",
+            ["Referer"] = ApiEndpoints.AppMihoyoBase,
             ["x-rpc-verify_key"] = GenshinApiEndpoints.PassportAppId,
             ["x-rpc-csm_source"] = "discussion",
             ["Content-Type"] = "application/json; charset=UTF-8",
@@ -237,10 +237,10 @@ public class CommunityCheckinService : ICommunityCheckinService
             var url = $"{GenshinApiEndpoints.BbsTasksUrl}?point_sn=myb";
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("Accept", "application/json, text/plain, */*");
-            request.Headers.Add("Origin", "https://webstatic.mihoyo.com");
+            request.Headers.Add("Origin", ApiEndpoints.WebstaticRefererUrl);
             request.Headers.Add("User-Agent",
                 "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.99.1");
-            request.Headers.Add("Referer", "https://webstatic.mihoyo.com");
+            request.Headers.Add("Referer", ApiEndpoints.WebstaticRefererUrl);
             request.Headers.Add("Accept-Language", "zh-CN,en-US;q=0.8");
             request.Headers.Add("X-Requested-With", "com.mihoyo.hyperion");
             request.Headers.Add("Cookie", fullCookie);

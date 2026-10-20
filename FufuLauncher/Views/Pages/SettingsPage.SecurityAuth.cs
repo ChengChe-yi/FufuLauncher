@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Text;
 using System.Text.Json;
+using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
@@ -25,7 +26,7 @@ public sealed partial class SettingsPage
             using var checkClient = new HttpClient();
             var checkPayload = JsonSerializer.Serialize(new { hwid });
             var checkContent = new StringContent(checkPayload, Encoding.UTF8, "application/json");
-            var checkResponse = await checkClient.PostAsync("https://dev.s1ky3.xyz/api/verify-hwid", checkContent);
+            var checkResponse = await checkClient.PostAsync(ApiEndpoints.DevVerifyHwidUrl, checkContent);
             if (checkResponse.IsSuccessStatusCode)
             {
                 var checkBody = await checkResponse.Content.ReadAsStringAsync();
@@ -125,7 +126,7 @@ public sealed partial class SettingsPage
                 : new { uid, username, hwid, github };
             var json = JsonSerializer.Serialize(payload);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("https://dev.s1ky3.xyz/api/dev-apply", content);
+            var response = await client.PostAsync(ApiEndpoints.DevApplyUrl, content);
             var body = await response.Content.ReadAsStringAsync();
 
             string msg = response.IsSuccessStatusCode

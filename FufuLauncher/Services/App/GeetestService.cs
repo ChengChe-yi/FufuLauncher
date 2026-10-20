@@ -21,16 +21,15 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Windows.Graphics;
+using FufuLauncher.Constants;
 
 namespace FufuLauncher.Services;
 
 public sealed class GeetestService
 {
-    private const string CreateVerificationUrl =
-        "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/createVerification?is_high=true";
+    private const string CreateVerificationUrl = ApiEndpoints.GeetestCreateVerificationUrl;
 
-    private const string VerifyVerificationUrl =
-        "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/verifyVerification";
+    private const string VerifyVerificationUrl = ApiEndpoints.GeetestVerifyVerificationUrl;
 
     private const string DailyNoteChallengePath = "/game_record/app/genshin/api/dailyNote";
 
@@ -393,7 +392,7 @@ public sealed class GeetestService
                  {{noticeMarkup}}
                          <div id="geetest-div"></div>
                      </body>
-                     <script src="https://static.geetest.com/static/js/gt.0.5.2.js"></script>
+                     <script src="{{ApiEndpoints.GeetestScriptV052Url}}"></script>
                      <script>
                          initGeetest(
                              {

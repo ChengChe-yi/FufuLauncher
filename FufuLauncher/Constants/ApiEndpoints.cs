@@ -238,6 +238,113 @@ namespace FufuLauncher.Constants
 
         public const string BanCheckUrl = "https://fu1.fun/Unlock.json";
 
+        public const string SentryDsn =
+            "https://9c8e89f029c240e3dba227979a26759a@o4511497397272576.ingest.de.sentry.io/4511497409265745";
+
+        public const string ActMihoyoBase = "https://act.mihoyo.com";
+        public const string ActNapApiBase = "https://act-nap-api.mihoyo.com";
+        public const string AppMihoyoBase = "https://app.mihoyo.com";
+        public const string BbsMihoyoBase = "https://bbs.mihoyo.com";
+        public const string MihoyoWebBase = "https://mihoyo.com";
+        public const string ActSdkApiBase = "https://api-sdk.mihoyo.com";
+        public const string CloudGameApiBase = "https://api-cloudgame.mihoyo.com";
+        public const string GtUiIconsBase = "https://act.mihoyo.com/act/gt-ui/assets/icons/";
+        public const string BaikeBase = "https://baike.mihoyo.com";
+        public const string SeelieBase = "https://seelie.me";
+        public const string AchievementIconSingleUrl =
+            "https://act-upload.mihoyo.com/wiki-user-upload/2024/09/16/76362111/27ec1c00c5bb06745e16039a10ff3aaa_145617018918069405.png";
+
+        public const string AchievementIconMultiUrl =
+            "https://act-upload.mihoyo.com/wiki-user-upload/2024/09/16/76362111/42fd361ea1336daf7cd33bf187e62fa2_8745920187606549502.png";
+
+        public const string AchievementIconPrimoUrl =
+            "https://upload-bbs.mihoyo.com/upload/2022/12/26/300350281/fb334cf8fd21e669ed6e7aa95890e2b5_2523388253479178875.png";
+
+        public const string ActHoyolabBase = "https://act.hoyolab.com";
+        public const string HoyolabWebBase = "https://www.hoyolab.com";
+        public const string HoyolabBbsApiBase = "https://bbs-api-os.hoyolab.com";
+        public const string HoyolabAccountApiBase = "https://api-account-os.hoyolab.com";
+        public const string HoyoverseAccountBase = "https://account.hoyoverse.com";
+        public const string Hk4eGachaOsBase = "https://hk4e-api-os.hoyoverse.com";
+
+        public const string MiyousheWebBase = "https://www.miyoushe.com";
+        public const string MiyousheBbsApiBase = "https://bbs-api.miyoushe.com";
+
+        public const string GithubApiBase = "https://api.github.com";
+        public const string GithubWebBase = "https://github.com";
+        public const string GithubAvatarsBase = "https://avatars.githubusercontent.com";
+        public const string GhProxyBase = "https://gh-proxy.com";
+        public const string DevServiceBase = "https://dev.s1ky3.xyz";
+        public const string CertificateSyncUrl = "https://certificate.fu1.fun";
+        public const string BingBase = "https://www.bing.com";
+        public const string StatsUptimeRobotBase = "https://stats.uptimerobot.com";
+        public const string MyMemoryTranslateUrl = "https://api.mymemory.translated.net/get";
+        public const string CloudGamePageUrl = "https://ys.mihoyo.com/cloud/#/";
+        public const string UigfHomeUrl = "https://uigf.org/";
+        public const string CalculatorWebUrl = "https://act.mihoyo.com/ys/event/calculator/index.html";
+
+        public const string HoyolabSigninSeaUrl =
+            "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&lang=zh-cn";
+
+        public const string MiyousheAccountCenterUrl = "https://www.miyoushe.com/ys/accountCenter/postList?id=";
+        public const string LunaEventApiBase = "https://api-takumi.mihoyo.com/event/luna";
+        public const string GachaLogCnUrl = "https://public-operation-hk4e.mihoyo.com/gacha_info/api/getGachaLog";
+        public const string GachaLogOsUrl = Hk4eGachaOsBase + "/gacha_info/api/getGachaLog";
+        public const string DeviceFpUrl = "https://public-data-api.mihoyo.com/device-fp/api/getFp";
+        public const string DailyNoteRecordApiBase = "https://api-takumi-record.mihoyo.com/game_record/app/genshin";
+
+        public const string GeetestCreateVerificationUrl =
+            "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/createVerification?is_high=true";
+
+        public const string GeetestVerifyVerificationUrl =
+            "https://api-takumi-record.mihoyo.com/game_record/app/card/wapi/verifyVerification";
+
+        public const string GeetestScriptV4Url = "https://static.geetest.com/v4/gt4.js";
+        public const string GeetestScriptV349Url = "https://static.geetest.com/static/js/gt.0.4.9.js";
+        public const string GeetestScriptV052Url = "https://static.geetest.com/static/js/gt.0.5.2.js";
+
+        public const string HoyolabGameRolesByCookieTokenUrl =
+            HoyolabAccountApiBase + "/binding/api/getUserGameRolesByCookieToken";
+
+        public const string HoyolabGameRecordCardUrl =
+            HoyolabBbsApiBase + "/game_record/card/wapi/getGameRecordCard";
+
+        public const string FufuLauncherContributorsUrl =
+            "https://api.github.com/repos/FufuLauncher/FufuLauncher/contributors";
+
+        public const string UnlockerIslandContributorsUrl =
+            "https://api.github.com/repos/FufuLauncher/FufuLauncher.UnlockerIsland/contributors";
+
+        public const string GenshinDataAchievementsUrl =
+            "https://api.github.com/repos/dvaJi/genshin-data/contents/src/data/chinese-simplified/achievements";
+
+        public const string GithubPullsUrl = "https://github.com/FufuLauncher/FufuLauncher/pulls";
+        public const string MiyoQianUrl = "https://github.com/Marchen-orz/MiyoQian";
+        public const string DeveloperPortalUrl = PluginStoreBaseUrl + "/dev-add";
+        public const string DevVerifyHwidUrl = DevServiceBase + "/api/verify-hwid";
+        public const string DevApplyUrl = DevServiceBase + "/api/dev-apply";
+        public const string DocsConfigUrl = PluginStoreBaseUrl + "/api/docs-config";
+        public const string DocsContentBaseUrl = PluginStoreBaseUrl + "/api/docs/zh-CN";
+
+        public const string UnlockerLiteReleaseApiUrl =
+            "https://api.github.com/repos/FufuLauncher/YuanShen-UnlockerLite/releases/latest";
+
+        public const string UnlockerLiteReleaseZipUrl =
+            "https://github.com/FufuLauncher/YuanShen-UnlockerLite/releases/latest/download/YuanShen-UnlockerLite.zip";
+
+        public const string YaeMetadataPrimaryUrl = "https://rin.holohat.work/schicksal/metadata";
+        public const string YaeMetadataMirrorUrl = "https://ena-rin.holohat.work//schicksal/metadata";
+        public const string YaeMetadataFallbackUrl = "https://cn-cd-1259389942.file.myqcloud.com/schicksal/metadata";
+
+        public const string WebstaticSigninBh3Url =
+            "https://webstatic.mihoyo.com/bbs/event/signin/bh3/index.html?act_id=e202306201626331";
+
+        public const string WebstaticSigninBh2Url =
+            "https://webstatic.mihoyo.com/bbs/event/signin/bh2/index.html?act_id=e202203291431091";
+
+        public const string WebstaticSigninNxxUrl =
+            "https://webstatic.mihoyo.com/bbs/event/signin/nxx/index.html?act_id=e202202251749321";
+
         public static string GetPluginFileDownloadUrl(string pluginId) =>
             $"{PluginStoreBaseUrl}/plugins/files/{Uri.EscapeDataString(pluginId)}.zip";
     }

@@ -154,8 +154,7 @@ public sealed partial class PluginSettingsPage
                     return;
                 }
 
-                string urlLatest =
-                    "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+                string urlLatest = ApiEndpoints.PluginProxyUrl;
                 await DownloadAndInstallPluginAsync(urlLatest);
             }
             else if (ViewModel.SelectedPluginIndex == 1)

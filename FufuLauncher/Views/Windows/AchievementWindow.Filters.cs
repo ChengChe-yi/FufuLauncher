@@ -122,7 +122,7 @@ public sealed partial class AchievementWindow
             try
             {
                 string keyword = WebUtility.UrlEncode(item.Title);
-                string url = $"https://www.miyoushe.com/ys/search?keyword={keyword}";
+                string url = $"{ApiEndpoints.MiyousheSearchUrl}{keyword}";
 
                 Process.Start(new ProcessStartInfo
                 {

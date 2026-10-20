@@ -6,8 +6,8 @@ namespace FufuLauncher.Services;
 
 public sealed class ServiceStatusService
 {
-    private const string MonitorListUrl = "https://stats.uptimerobot.com/api/getMonitorList/sPFa3CV3SA";
-    private const string MonitorDetailUrl = "https://stats.uptimerobot.com/api/getMonitor/sPFa3CV3SA";
+    private const string MonitorListUrl = ApiEndpoints.StatsUptimeRobotBase + "/api/getMonitorList/sPFa3CV3SA";
+    private const string MonitorDetailUrl = ApiEndpoints.StatsUptimeRobotBase + "/api/getMonitor/sPFa3CV3SA";
     private static readonly HttpClient Client = CreateClient();
 
     private static HttpClient CreateClient()

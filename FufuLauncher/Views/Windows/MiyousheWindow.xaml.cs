@@ -651,7 +651,7 @@ public sealed partial class MiyousheWindow : WindowEx
         }, _readerCancellation.Token);
     }
 
-    private Uri OriginalUri => new("https://www.miyoushe.com/" +
+    private Uri OriginalUri => new(ApiEndpoints.MiyousheWebBase + "/" +
                                    ((GameSelector.ItemsSource as IReadOnlyList<CommunityGame>)
                                        ?.FirstOrDefault(g => g.Id == _post?.GameId)?.Slug ?? "ys") + "/article/" +
                                    _post!.Id);

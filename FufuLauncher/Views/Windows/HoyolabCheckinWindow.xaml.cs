@@ -64,7 +64,7 @@ namespace FufuLauncher.Views
             }
 
             CheckinWebView.CoreWebView2.Navigate(
-                "https://act.hoyolab.com/ys/event/signin-sea-v3/index.html?act_id=e202102251931481&lang=zh-cn");
+                ApiEndpoints.HoyolabSigninSeaUrl);
             CheckinWebView.NavigationCompleted += OnNavigationCompleted;
         }
 

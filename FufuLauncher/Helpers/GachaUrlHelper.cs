@@ -71,8 +71,8 @@ public static class GachaUrlHelper
         else if (isPage && uri.AbsolutePath.Contains("e20190909gacha-v", StringComparison.Ordinal) &&
                  uri.AbsolutePath.EndsWith("/index.html", StringComparison.Ordinal))
             endpoint = isOversea
-                ? "https://hk4e-api-os.hoyoverse.com/gacha_info/api/getGachaLog"
-                : "https://public-operation-hk4e.mihoyo.com/gacha_info/api/getGachaLog";
+                ? ApiEndpoints.GachaLogOsUrl
+                : ApiEndpoints.GachaLogCnUrl;
         else
             return null;
 

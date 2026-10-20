@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.CodeSigning;
@@ -160,7 +161,7 @@ internal sealed class TrustInstallState
 
 public sealed class CodeSigningTrustService
 {
-    public const string DefaultSyncEndpoint = "https://certificate.fu1.fun";
+    public const string DefaultSyncEndpoint = ApiEndpoints.CertificateSyncUrl;
     public const string RootCerFileName = TrustPackageLoader.RootCerFileName;
     public const string PinnedRootFileName = "ModsRootCA.cer";
 

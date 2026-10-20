@@ -128,7 +128,7 @@ internal sealed class MiyousheVerificationWindow : Window
                                                             <style>body{margin:0;padding:24px;background:#f7f7f7;color:#333;font:14px 'Segoe UI','Microsoft YaHei UI',sans-serif;text-align:center}#captcha{display:flex;justify-content:center}#error{margin:20px;color:#a13030}</style></head>
                                                             <body><div id="captcha"></div><p id="error"></p><script>
                                                             const fail=()=>document.getElementById('error').textContent={{JsonSerializer.Serialize("Miyoushe_VerifyLoadError".GetLocalized())}};
-                                                            const sdk=document.createElement('script');sdk.src='{{(useV4 ? "https://static.geetest.com/v4/gt4.js" : "https://static.geetest.com/static/js/gt.0.4.9.js")}}';sdk.onerror=fail;
+                                                            const sdk=document.createElement('script');sdk.src='{{(useV4 ? ApiEndpoints.GeetestScriptV4Url : ApiEndpoints.GeetestScriptV349Url)}}';sdk.onerror=fail;
                                                             sdk.onload=()=>{try{ {{(useV4 ? "initGeetest4" : "initGeetest")}}({{config}},c=>{
                                                                 c.appendTo('#captcha');c.onError(fail);c.onSuccess(()=>{
                                                                     const result=c.getValidate();if(result)window.chrome.webview.postMessage({nonce:{{JsonSerializer.Serialize(_nonce)}},result});

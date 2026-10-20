@@ -7,8 +7,8 @@ namespace FufuLauncher.Constants;
 
 public static class GenshinApiEndpoints
 {
-    private const string BbsApi = "https://bbs-api.miyoushe.com";
-    private const string CloudGameApi = "https://api-cloudgame.mihoyo.com";
+    private const string BbsApi = ApiEndpoints.MiyousheBbsApiBase;
+    private const string CloudGameApi = ApiEndpoints.CloudGameApiBase;
 
 
     public const string BbsTasksUrl = $"{BbsApi}/apihub/wapi/getUserMissionsState";
@@ -23,7 +23,7 @@ public static class GenshinApiEndpoints
 
     public const string CloudGameWalletUrl = $"{CloudGameApi}/hk4e_cg_cn/wallet/wallet/get";
     public const string CloudGameHost = "api-cloudgame.mihoyo.com";
-    public const string CloudGameReferer = "https://app.mihoyo.com";
+    public const string CloudGameReferer = ApiEndpoints.AppMihoyoBase;
 
 
     public const int GenshinForumId = 2;

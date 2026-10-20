@@ -7,6 +7,8 @@ using System.Diagnostics.CodeAnalysis;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Contracts.ViewModels;
 using FufuLauncher.Helpers;
+using FufuLauncher.ViewModels;
+using FufuLauncher.Views;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 
@@ -14,7 +16,12 @@ namespace FufuLauncher.Services;
 
 public class NavigationService : INavigationService
 {
-    private readonly IPageService _pageService;
+    private static readonly Dictionary<string, Type> Pages = new()
+    {
+        [typeof(MainViewModel).FullName!] = typeof(MainPage),
+        [typeof(SettingsViewModel).FullName!] = typeof(SettingsPage),
+        [typeof(GameSettingsViewModel).FullName!] = typeof(GameSettingsPage)
+    };
     private object? _lastParameterUsed;
     private Frame? _frame;
 
@@ -43,11 +50,6 @@ public class NavigationService : INavigationService
 
     [MemberNotNullWhen(true, nameof(Frame), nameof(_frame))]
     public bool CanGoBack => Frame != null && Frame.CanGoBack;
-
-    public NavigationService(IPageService pageService)
-    {
-        _pageService = pageService;
-    }
 
     private void RegisterFrameEvents()
     {
@@ -84,7 +86,10 @@ public class NavigationService : INavigationService
 
     public bool NavigateTo(string pageKey, object? parameter = null, bool clearNavigation = false)
     {
-        var pageType = _pageService.GetPageType(pageKey);
+        if (!Pages.TryGetValue(pageKey, out var pageType))
+        {
+            throw new ArgumentException($"Page not found: {pageKey}");
+        }
 
         if (_frame != null && (_frame.Content?.GetType() != pageType ||
                                (parameter != null && !parameter.Equals(_lastParameterUsed))))

@@ -14,9 +14,9 @@ public class Genshin : GameCheckin
     public override async Task InitializeAsync(Config config)
     {
         SetHeaders(config);
-        Headers["Origin"] = "https://act.mihoyo.com";
+        Headers["Origin"] = ApiEndpoints.ActMihoyoBase;
         Headers["x-rpc-signgame"] = "hk4e";
-        Headers["Referer"] = "https://act.mihoyo.com/";
+        Headers["Referer"] = ApiEndpoints.ActMihoyoBase + "/";
 
         AccountList = await GetAccountListAsync(config).ConfigureAwait(false);
         if (AccountList?.Count > 0)

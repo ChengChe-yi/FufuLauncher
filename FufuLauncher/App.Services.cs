@@ -52,7 +52,6 @@ public partial class App
                 services.AddSingleton<IBackgroundRenderer, BackgroundRenderer>();
 
                 services.AddSingleton<IActivationService, ActivationService>();
-                services.AddSingleton<IPageService, PageService>();
                 services.AddSingleton<INavigationService, NavigationService>();
                 services.AddSingleton<IFileService, FileService>();
 

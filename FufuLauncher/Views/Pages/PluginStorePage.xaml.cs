@@ -142,7 +142,7 @@ public sealed partial class PluginStorePage : Page
 
     private async void OnUploadPluginClick(object sender, RoutedEventArgs e)
     {
-        await Windows.System.Launcher.LaunchUriAsync(new Uri("https://fu1.fun/dev-add"));
+        await Windows.System.Launcher.LaunchUriAsync(new Uri(ApiEndpoints.DeveloperPortalUrl));
     }
 
     private void OnAddPrivatePluginClick(object sender, RoutedEventArgs e)

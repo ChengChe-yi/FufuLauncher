@@ -117,7 +117,7 @@ namespace FufuLauncher.Views
                 if (!string.IsNullOrWhiteSpace(cookieStr))
                 {
                     var manager = CalculatorWebView.CoreWebView2.CookieManager;
-                    var cookies = await manager.GetCookiesAsync("https://act.mihoyo.com");
+                    var cookies = await manager.GetCookiesAsync(ApiEndpoints.ActMihoyoBase);
                     foreach (var c in cookies) manager.DeleteCookie(c);
 
                     foreach (var item in cookieStr.Split(';',
@@ -137,7 +137,7 @@ namespace FufuLauncher.Views
                 StartLoadingTimeout();
                 StartMinDisplayTimer();
 
-                CalculatorWebView.CoreWebView2.Navigate("https://act.mihoyo.com/ys/event/calculator/index.html");
+                CalculatorWebView.CoreWebView2.Navigate(ApiEndpoints.CalculatorWebUrl);
             }
             catch (Exception ex)
             {
