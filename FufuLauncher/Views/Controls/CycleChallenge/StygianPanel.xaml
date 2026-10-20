@@ -253,6 +253,7 @@ Licensed under the MIT License.
                                                 <DataTemplate x:DataType="models:StygianAvatar">
                                                     <StackPanel HorizontalAlignment="Center" Spacing="2">
                                                         <cc:AvatarBadge
+                                                            AvatarId="{x:Bind AvatarId}"
                                                             HorizontalAlignment="Center"
                                                             IconUrl="{x:Bind IconUrl}"
                                                             Level="{x:Bind Level}"
@@ -281,7 +282,13 @@ Licensed under the MIT License.
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate x:DataType="models:StygianBestAvatar">
                                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                                        <cc:RemoteImage Width="36" Height="36" Source="{x:Bind IconUrl}" />
+                                                        <!--  最佳输出角色：AvatarBadge 提供元数据名称 ToolTip；不显示等级/稀有度  -->
+                                                        <cc:AvatarBadge AvatarId="{x:Bind AvatarId}"
+                                                                        IconUrl="{x:Bind IconUrl}"
+                                                                        Level="0"
+                                                                        Rarity="0"
+                                                                        ShowRarityRing="False"
+                                                                        Size="36" />
                                                         <StackPanel VerticalAlignment="Center" Spacing="2">
                                                             <TextBlock
                                                                 Style="{StaticResource SecondaryCaptionStyle}"
@@ -316,6 +323,7 @@ Licensed under the MIT License.
                             <DataTemplate x:DataType="models:StygianBling">
                                 <StackPanel HorizontalAlignment="Center" Spacing="2">
                                     <cc:AvatarBadge
+                                        AvatarId="{x:Bind AvatarId}"
                                         HorizontalAlignment="Center"
                                         IconUrl="{x:Bind IconUrl}"
                                         Level="0"

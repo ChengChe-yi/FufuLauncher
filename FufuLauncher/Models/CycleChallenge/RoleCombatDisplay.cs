@@ -206,10 +206,11 @@ public sealed record TheaterSplendourBuff(
 }
 
 /// <summary>战斗统计中的角色数值条目。</summary>
+/// <param name="AvatarId">角色 ID（用于从元数据解析名称，ToolTip 显示）。</param>
 /// <param name="IconUrl">角色头像绝对 URL。</param>
 /// <param name="Rarity">稀有度。</param>
 /// <param name="Value">数值（接口给字符串，已解析为整数）。</param>
-public sealed record TheaterAvatarDamage(string? IconUrl, int Rarity, long Value)
+public sealed record TheaterAvatarDamage(int AvatarId, string? IconUrl, int Rarity, long Value)
 {
     /// <summary>数值文本（带千分位；无数据时显示 --）。</summary>
     public string ValueText => Value > 0
@@ -359,6 +360,9 @@ public sealed record RoleCombatDisplay
     /// <summary>战斗统计：最多击败角色头像。</summary>
     public string? MaxDefeatIconUrl => MaxDefeat?.IconUrl;
 
+    /// <summary>战斗统计：最多击败角色 ID（用于 ToolTip 名称）。</summary>
+    public int MaxDefeatAvatarId => MaxDefeat?.AvatarId ?? 0;
+
     /// <summary>战斗统计：最多击败角色稀有度。</summary>
     public int MaxDefeatRarity => MaxDefeat?.Rarity ?? 0;
 
@@ -374,6 +378,9 @@ public sealed record RoleCombatDisplay
     /// <summary>战斗统计：最高伤害角色头像。</summary>
     public string? MaxDamageIconUrl => MaxDamage?.IconUrl;
 
+    /// <summary>战斗统计：最高伤害角色 ID（用于 ToolTip 名称）。</summary>
+    public int MaxDamageAvatarId => MaxDamage?.AvatarId ?? 0;
+
     /// <summary>战斗统计：最高伤害角色稀有度。</summary>
     public int MaxDamageRarity => MaxDamage?.Rarity ?? 0;
 
@@ -388,6 +395,9 @@ public sealed record RoleCombatDisplay
 
     /// <summary>战斗统计：最高承伤角色头像。</summary>
     public string? MaxTakeDamageIconUrl => MaxTakeDamage?.IconUrl;
+
+    /// <summary>战斗统计：最高承伤角色 ID（用于 ToolTip 名称）。</summary>
+    public int MaxTakeDamageAvatarId => MaxTakeDamage?.AvatarId ?? 0;
 
     /// <summary>战斗统计：最高承伤角色稀有度。</summary>
     public int MaxTakeDamageRarity => MaxTakeDamage?.Rarity ?? 0;

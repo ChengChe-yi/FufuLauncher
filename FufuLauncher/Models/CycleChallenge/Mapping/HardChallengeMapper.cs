@@ -199,6 +199,7 @@ public static class HardChallengeMapper
 
             var type = avatar.Type ?? 0;
             result.Add(new StygianBestAvatar(
+                avatar.AvatarId ?? 0,
                 avatar.SideIcon,
                 FormatDps(avatar.Dps),
                 BestAvatarTypeText(type),
@@ -247,6 +248,7 @@ public static class HardChallengeMapper
             }
 
             result.Add(new StygianBling(
+                bling.AvatarId ?? 0,
                 bling.Image,
                 bling.Rarity ?? 0,
                 bling.Name,

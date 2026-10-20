@@ -210,6 +210,7 @@ Licensed under the MIT License.
                             Spacing="8"
                             Visibility="{x:Bind Display.HasMaxDamage, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                             <cc:AvatarBadge
+                                AvatarId="{x:Bind Display.MaxDamageAvatarId, Mode=OneTime}"
                                 IconUrl="{x:Bind Display.MaxDamageIconUrl, Mode=OneTime}"
                                 Level="0"
                                 Rarity="{x:Bind Display.MaxDamageRarity, Mode=OneTime}"
@@ -225,6 +226,7 @@ Licensed under the MIT License.
                             Spacing="8"
                             Visibility="{x:Bind Display.HasMaxDefeat, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                             <cc:AvatarBadge
+                                AvatarId="{x:Bind Display.MaxDefeatAvatarId, Mode=OneTime}"
                                 IconUrl="{x:Bind Display.MaxDefeatIconUrl, Mode=OneTime}"
                                 Level="0"
                                 Rarity="{x:Bind Display.MaxDefeatRarity, Mode=OneTime}"
@@ -240,6 +242,7 @@ Licensed under the MIT License.
                             Spacing="8"
                             Visibility="{x:Bind Display.HasMaxTakeDamage, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                             <cc:AvatarBadge
+                                AvatarId="{x:Bind Display.MaxTakeDamageAvatarId, Mode=OneTime}"
                                 IconUrl="{x:Bind Display.MaxTakeDamageIconUrl, Mode=OneTime}"
                                 Level="0"
                                 Rarity="{x:Bind Display.MaxTakeDamageRarity, Mode=OneTime}"
@@ -261,6 +264,7 @@ Licensed under the MIT License.
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="models:TheaterAvatarDamage">
                                     <cc:AvatarBadge
+                                        AvatarId="{x:Bind AvatarId}"
                                         IconUrl="{x:Bind IconUrl}"
                                         Level="0"
                                         Rarity="{x:Bind Rarity}"
@@ -286,6 +290,7 @@ Licensed under the MIT License.
                             <DataTemplate x:DataType="models:TheaterAvatar">
                                 <StackPanel HorizontalAlignment="Center" Spacing="2">
                                     <cc:AvatarBadge
+                                        AvatarId="{x:Bind AvatarId}"
                                         HorizontalAlignment="Center"
                                         IconUrl="{x:Bind IconUrl}"
                                         Level="{x:Bind Level}"
@@ -391,6 +396,7 @@ Licensed under the MIT License.
                                                 <DataTemplate x:DataType="models:TheaterAvatar">
                                                     <StackPanel HorizontalAlignment="Center" Spacing="2">
                                                         <cc:AvatarBadge
+                                                            AvatarId="{x:Bind AvatarId}"
                                                             HorizontalAlignment="Center"
                                                             IconUrl="{x:Bind IconUrl}"
                                                             Level="{x:Bind Level}"

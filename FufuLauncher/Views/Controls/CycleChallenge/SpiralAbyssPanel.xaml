@@ -61,6 +61,7 @@ Licensed under the MIT License.
         <!-- 战斗角色头像（每场 4 个） -->
         <DataTemplate x:Key="BattleAvatarTemplate" x:DataType="models:SpiralAbyssAvatar">
             <local:AvatarBadge Margin="0,0,6,0"
+                               AvatarId="{x:Bind AvatarId}"
                                IconUrl="{x:Bind IconUrl}"
                                Level="{x:Bind Level}"
                                Rarity="{x:Bind Rarity}"
@@ -227,7 +228,8 @@ Licensed under the MIT License.
         <!-- 一个榜单中的角色（头像 + 数值，横向排列） -->
         <DataTemplate x:Key="RankRowTemplate" x:DataType="models:SpiralAbyssRankRow">
             <StackPanel Margin="0,0,14,0" Orientation="Horizontal" Spacing="6">
-                <local:AvatarBadge IconUrl="{x:Bind IconUrl}"
+                <local:AvatarBadge AvatarId="{x:Bind AvatarId}"
+                                   IconUrl="{x:Bind IconUrl}"
                                    Rarity="{x:Bind Rarity}"
                                    ShowRarityRing="True"
                                    Size="32" />

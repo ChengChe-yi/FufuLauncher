@@ -398,7 +398,7 @@ public static class RoleCombatMapper
             {
                 if (item is not null && (item.AvatarId ?? 0) > 0)
                 {
-                    shortest.Add(new TheaterAvatarDamage(item.AvatarIcon, item.Rarity ?? 0, ParseValue(item.Value)));
+                    shortest.Add(new TheaterAvatarDamage(item.AvatarId ?? 0, item.AvatarIcon, item.Rarity ?? 0, ParseValue(item.Value)));
                 }
             }
         }
@@ -418,7 +418,7 @@ public static class RoleCombatMapper
             return null;
         }
 
-        return new TheaterAvatarDamage(avatar.AvatarIcon, avatar.Rarity ?? 0, ParseValue(avatar.Value));
+        return new TheaterAvatarDamage(avatar.AvatarId ?? 0, avatar.AvatarIcon, avatar.Rarity ?? 0, ParseValue(avatar.Value));
     }
 
     /// <summary>把接口的数值字符串解析为整数；空串 / 非数字按 0 处理。</summary>

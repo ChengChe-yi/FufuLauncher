@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using System.Globalization;
 using System.Numerics;
+using FufuLauncher.Data.Repositories;
 using FufuLauncher.Helpers;
 using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml;
@@ -38,12 +39,19 @@ public sealed partial class AvatarBadge : UserControl
         typeof(AvatarBadge),
         new PropertyMetadata(string.Empty, OnIconUrlChanged));
 
-    /// <summary>角色等级；小于等于 0 时隐藏角标。</summary>
+    /// <summary>角色等级；小于等于 0 时隐藏角标（不影响头像 / 稀有度 / ToolTip 的其它内容）。</summary>
     public static readonly DependencyProperty LevelProperty = DependencyProperty.Register(
         nameof(Level),
         typeof(int),
         typeof(AvatarBadge),
         new PropertyMetadata(0, OnLevelChanged));
+
+    /// <summary>角色 ID；用于从元数据解析角色名称并显示在 ToolTip。</summary>
+    public static readonly DependencyProperty AvatarIdProperty = DependencyProperty.Register(
+        nameof(AvatarId),
+        typeof(int),
+        typeof(AvatarBadge),
+        new PropertyMetadata(0, OnAvatarIdChanged));
 
     /// <summary>稀有度：5 金、4 紫、其余蓝。</summary>
     public static readonly DependencyProperty RarityProperty = DependencyProperty.Register(
@@ -70,6 +78,10 @@ public sealed partial class AvatarBadge : UserControl
     private static readonly SolidColorBrush RarityFiveBrush = CreateBrush(0xC6, 0xA0, 0x60);
     private static readonly SolidColorBrush RarityFourBrush = CreateBrush(0x95, 0x76, 0xC1);
     private static readonly SolidColorBrush RarityDefaultBrush = CreateBrush(0x66, 0xA8, 0xD1);
+
+    /// <summary>元数据角色名缓存（ItemId → Name），首次使用时从元数据库加载。</summary>
+    private static readonly object AvatarNamesLock = new();
+    private static Dictionary<int, string>? _avatarNames;
 
     private string _currentIconUrl = string.Empty;
 
@@ -98,6 +110,13 @@ public sealed partial class AvatarBadge : UserControl
     {
         get => (int)GetValue(LevelProperty);
         set => SetValue(LevelProperty, value);
+    }
+
+    /// <summary>角色 ID；用于从元数据解析角色名称并显示在 ToolTip。</summary>
+    public int AvatarId
+    {
+        get => (int)GetValue(AvatarIdProperty);
+        set => SetValue(AvatarIdProperty, value);
     }
 
     /// <summary>稀有度：5 金、4 紫、其余蓝。</summary>
@@ -136,6 +155,14 @@ public sealed partial class AvatarBadge : UserControl
         if (d is AvatarBadge badge)
         {
             badge.UpdateLevel();
+            badge.UpdateToolTip();
+        }
+    }
+
+    private static void OnAvatarIdChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        if (d is AvatarBadge badge)
+        {
             badge.UpdateToolTip();
         }
     }
@@ -239,10 +266,70 @@ public sealed partial class AvatarBadge : UserControl
         // 复用已有资源键，避免为控件单独新增 resw 条目
         string levelLabel = "PlayerInfo_Level".GetLocalized();
         string rarityLabel = "GachaAnalysis_Rarity".GetLocalized();
-        string text = $"{levelLabel}{Level} · {rarityLabel} {Rarity}★";
+        string? avatarName = ResolveAvatarName(AvatarId);
 
+        var parts = new List<string>(3);
+        if (!string.IsNullOrWhiteSpace(avatarName))
+        {
+            parts.Add(avatarName);
+        }
+
+        // 等级不可用（<=0）时整段省略，不影响名称 / 稀有度等其它展示
+        if (Level > 0)
+        {
+            parts.Add($"{levelLabel}{Level}");
+        }
+
+        parts.Add($"{rarityLabel} {Rarity}★");
+
+        string text = string.Join(" · ", parts);
         ToolTipService.SetToolTip(AvatarRoot, text);
         AutomationProperties.SetName(this, text);
+    }
+
+    /// <summary>
+    /// 按角色 ID 从元数据（<see cref="MetadataRepository"/>，ItemId → Name）解析角色名。
+    /// 首次调用时一次性建缓存；任何异常都退化为无名称，不影响 ToolTip 其它内容。
+    /// </summary>
+    private static string? ResolveAvatarName(int avatarId)
+    {
+        if (avatarId <= 0)
+        {
+            return null;
+        }
+
+        if (_avatarNames is null)
+        {
+            lock (AvatarNamesLock)
+            {
+                if (_avatarNames is null)
+                {
+                    var names = new Dictionary<int, string>();
+                    try
+                    {
+                        MetadataRepository repository = App.GetService<MetadataRepository>();
+                        foreach (var item in repository.GetAllMetadata())
+                        {
+                            if (!string.IsNullOrWhiteSpace(item.ItemId)
+                                && int.TryParse(item.ItemId, NumberStyles.Integer, CultureInfo.InvariantCulture, out int id)
+                                && id > 0
+                                && !string.IsNullOrWhiteSpace(item.Name))
+                            {
+                                names.TryAdd(id, item.Name);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"[AvatarBadge] 元数据角色名解析失败: {ex.Message}");
+                    }
+
+                    _avatarNames = names;
+                }
+            }
+        }
+
+        return _avatarNames.TryGetValue(avatarId, out string? name) ? name : null;
     }
 
     /// <summary>

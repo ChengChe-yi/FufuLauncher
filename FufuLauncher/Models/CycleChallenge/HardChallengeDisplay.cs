@@ -66,7 +66,7 @@ public sealed record StygianAvatar(int AvatarId, string? IconUrl, int Level, int
 /// <param name="ValueText">数值文本（接口给字符串，已按需要加千分位）。</param>
 /// <param name="TypeText">类别文案（最强一击 / 最高总伤害）。</param>
 /// <param name="Type">接口 type：1 最强一击、2 最高总伤害。</param>
-public sealed record StygianBestAvatar(string? IconUrl, string ValueText, string TypeText, int Type)
+public sealed record StygianBestAvatar(int AvatarId, string? IconUrl, string ValueText, string TypeText, int Type)
 {
     /// <summary>是否有类别文案。</summary>
     public bool HasTypeText => TypeText.Length > 0;
@@ -172,7 +172,7 @@ public sealed record StygianMode(
 /// <param name="Rarity">稀有度。</param>
 /// <param name="Name">角色名。</param>
 /// <param name="IsPlus">是否最终上榜（未上榜显示为半透明）。</param>
-public sealed record StygianBling(string? IconUrl, int Rarity, string? Name, bool IsPlus)
+public sealed record StygianBling(int AvatarId, string? IconUrl, int Rarity, string? Name, bool IsPlus)
 {
     /// <summary>未上榜时降低不透明度。</summary>
     public double IconOpacity => IsPlus ? 1d : 0.45d;
