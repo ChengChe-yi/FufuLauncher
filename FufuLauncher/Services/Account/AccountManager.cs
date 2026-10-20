@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
+using System.Collections.Concurrent;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
@@ -21,6 +22,7 @@ public partial class AccountManager
     private readonly SemaphoreSlim _lock = new(1, 1);
     private const int CookieFileVersion = 1;
 
+    private readonly ConcurrentDictionary<string, List<GameRoleInfo>> _sessionGameRoles = new();
     private AccountList _accountList;
     private string? _activeAccountId;
     public string? ActiveAccountId => _activeAccountId;
@@ -57,6 +59,12 @@ public partial class AccountManager
         _accountList.Accounts.FirstOrDefault(a => a.Id == _activeAccountId);
 
     public List<AccountEntry> GetAllAccounts() => _accountList.Accounts;
+
+    public List<GameRoleInfo>? GetSessionGameRoles(string accountId) =>
+        _sessionGameRoles.TryGetValue(accountId, out var roles) ? roles : null;
+
+    public void CacheSessionGameRoles(string accountId, IEnumerable<GameRoleInfo> roles) =>
+        _sessionGameRoles[accountId] = roles.ToList();
 
     private async Task LoadAccountListAsync()
     {
@@ -139,6 +147,7 @@ public partial class AccountManager
 
     public async Task SetActiveAccountIdAsync(string? accountId)
     {
+        _sessionGameRoles.Clear();
         _activeAccountId = accountId;
         var settings = App.GetService<ILocalSettingsService>();
         if (settings != null)

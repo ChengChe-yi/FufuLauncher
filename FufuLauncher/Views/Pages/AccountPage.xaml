@@ -161,321 +161,6 @@
                     </DoubleAnimation.EasingFunction>
                 </DoubleAnimation>
             </Storyboard>
-
-            <!--  按钮动画  -->
-            <Storyboard x:Name="ButtonsStaggerStoryboard">
-                <DoubleAnimation
-                    BeginTime="0:0:0"
-                    Storyboard.TargetName="BtnSwitchAccountTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0"
-                    Storyboard.TargetName="BtnSwitchAccount"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.07"
-                    Storyboard.TargetName="BtnRefreshInfoTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.07"
-                    Storyboard.TargetName="BtnRefreshInfo"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.14"
-                    Storyboard.TargetName="BtnGenshinDataTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.14"
-                    Storyboard.TargetName="BtnGenshinData"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.21"
-                    Storyboard.TargetName="BtnGachaAnalysisTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.21"
-                    Storyboard.TargetName="BtnGachaAnalysis"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.28"
-                    Storyboard.TargetName="BtnSecurityCenterTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.28"
-                    Storyboard.TargetName="BtnSecurityCenter"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.35"
-                    Storyboard.TargetName="BtnLockAccountTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.35"
-                    Storyboard.TargetName="BtnLockAccount"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.42"
-                    Storyboard.TargetName="BtnCopyCookieTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.42"
-                    Storyboard.TargetName="BtnCopyCookie"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.49"
-                    Storyboard.TargetName="BtnRefreshCookieTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.49"
-                    Storyboard.TargetName="BtnRefreshCookie"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.56"
-                    Storyboard.TargetName="BtnDeleteAccountTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.56"
-                    Storyboard.TargetName="BtnDeleteAccount"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.63"
-                    Storyboard.TargetName="BtnLogoutTransform"
-                    Storyboard.TargetProperty="Y"
-                    From="-80"
-                    To="0"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <BackEase Amplitude="0.35" EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.63"
-                    Storyboard.TargetName="BtnLogout"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.55">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
-
-
-            <Storyboard x:Name="RightCardsEntranceStoryboard">
-                <DoubleAnimation
-                    BeginTime="0:0:0.3"
-                    Storyboard.TargetName="CommunityFeedCardTransform"
-                    Storyboard.TargetProperty="X"
-                    From="50"
-                    To="0"
-                    Duration="0:0:0.5">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.3"
-                    Storyboard.TargetName="CommunityFeedCard"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.45">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.38"
-                    Storyboard.TargetName="BoundRolesCardTransform"
-                    Storyboard.TargetProperty="X"
-                    From="50"
-                    To="0"
-                    Duration="0:0:0.5">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.38"
-                    Storyboard.TargetName="BoundRolesCard"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.45">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.46"
-                    Storyboard.TargetName="GameTimeCardTransform"
-                    Storyboard.TargetProperty="X"
-                    From="50"
-                    To="0"
-                    Duration="0:0:0.5">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    BeginTime="0:0:0.46"
-                    Storyboard.TargetName="GameTimeCard"
-                    Storyboard.TargetProperty="Opacity"
-                    From="0"
-                    To="1"
-                    Duration="0:0:0.45">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
-
-            <Storyboard x:Name="ProfileCardEntranceStoryboard">
-                <DoubleAnimation
-                    Storyboard.TargetName="ProfileCardTransform"
-                    Storyboard.TargetProperty="Y"
-                    To="0"
-                    Duration="0:0:0.5">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-                <DoubleAnimation
-                    Storyboard.TargetName="ProfileCard"
-                    Storyboard.TargetProperty="Opacity"
-                    To="1"
-                    Duration="0:0:0.45">
-                    <DoubleAnimation.EasingFunction>
-                        <CubicEase EasingMode="EaseOut" />
-                    </DoubleAnimation.EasingFunction>
-                </DoubleAnimation>
-            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -600,9 +285,6 @@
                                 x:Name="ProfileCard"
                                 Style="{StaticResource CardBorderStyle}"
                                 Translation="0,0,32">
-                                <Border.RenderTransform>
-                                    <TranslateTransform x:Name="ProfileCardTransform" Y="0" />
-                                </Border.RenderTransform>
                                 <Border.Shadow>
                                     <ThemeShadow />
                                 </Border.Shadow>
@@ -775,12 +457,8 @@
                                     x:Name="BtnSwitchAccount"
                                     Grid.Row="0"
                                     Click="OnCheckinClicked"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnSwitchAccountTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -801,12 +479,8 @@
                                     x:Name="BtnRefreshInfo"
                                     Grid.Row="1"
                                     Command="{x:Bind ViewModel.LoadUserInfoCommand}"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnRefreshInfoTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -826,12 +500,8 @@
                                     x:Name="BtnGenshinData"
                                     Grid.Row="2"
                                     Command="{x:Bind ViewModel.OpenGenshinDataCommand}"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnGenshinDataTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -851,12 +521,8 @@
                                     x:Name="BtnGachaAnalysis"
                                     Grid.Row="3"
                                     Click="OnGachaAnalysisClicked"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnGachaAnalysisTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -876,12 +542,8 @@
                                     x:Name="BtnSecurityCenter"
                                     Grid.Row="4"
                                     Command="{x:Bind ViewModel.OpenSecurityCenterCommand}"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnSecurityCenterTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -901,12 +563,8 @@
                                     x:Name="BtnLockAccount"
                                     Grid.Row="5"
                                     Command="{x:Bind ViewModel.LockAccountCommand}"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnLockAccountTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -930,12 +588,8 @@
                                     x:Name="BtnCopyCookie"
                                     Grid.Row="6"
                                     Command="{x:Bind ViewModel.CopyCookieCommand}"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnCopyCookieTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -955,12 +609,8 @@
                                     x:Name="BtnRefreshCookie"
                                     Grid.Row="7"
                                     Command="{x:Bind ViewModel.RefreshCookieCommand}"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnRefreshCookieTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -980,12 +630,8 @@
                                     x:Name="BtnDeleteAccount"
                                     Grid.Row="8"
                                     Click="OnDeleteCurrentAccountClicked"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnDeleteAccountTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -1009,12 +655,8 @@
                                     x:Name="BtnLogout"
                                     Grid.Row="9"
                                     Command="{x:Bind ViewModel.LogoutCommand}"
-                                    Opacity="0"
                                     Style="{StaticResource ActionButtonStyle}"
                                     Translation="0,0,32">
-                                    <Button.RenderTransform>
-                                        <TranslateTransform x:Name="BtnLogoutTransform" Y="-80" />
-                                    </Button.RenderTransform>
                                     <Button.Shadow>
                                         <ThemeShadow />
                                     </Button.Shadow>
@@ -1048,12 +690,8 @@
                             <Border
                                 x:Name="CommunityFeedCard"
                                 Grid.Row="0"
-                                Opacity="0"
                                 Style="{StaticResource CardBorderStyle}"
                                 Translation="0,0,32">
-                                <Border.RenderTransform>
-                                    <TranslateTransform x:Name="CommunityFeedCardTransform" X="50" />
-                                </Border.RenderTransform>
                                 <Border.Shadow>
                                     <ThemeShadow />
                                 </Border.Shadow>
@@ -1128,12 +766,8 @@
                             <Border
                                 x:Name="BoundRolesCard"
                                 Grid.Row="1"
-                                Opacity="0"
                                 Style="{StaticResource CardBorderStyle}"
                                 Translation="0,0,32">
-                                <Border.RenderTransform>
-                                    <TranslateTransform x:Name="BoundRolesCardTransform" X="50" />
-                                </Border.RenderTransform>
                                 <Border.Shadow>
                                     <ThemeShadow />
                                 </Border.Shadow>
@@ -1143,126 +777,149 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <StackPanel
-                                        Grid.Row="0"
-                                        Orientation="Horizontal"
-                                        Spacing="8">
-                                        <FontIcon
-                                            FontSize="16"
-                                            Foreground="{ThemeResource AccentFillColorDefaultBrush}"
-                                            Glyph="&#xE7FC;" />
-                                        <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
-                                                   Text="{helpers:Loc Key=Account_BoundCharacters}" />
-                                    </StackPanel>
+                                    <Grid Grid.Row="0">
+                                        <StackPanel
+                                            Orientation="Horizontal"
+                                            Spacing="8">
+                                            <FontIcon
+                                                FontSize="16"
+                                                Foreground="{ThemeResource AccentFillColorDefaultBrush}"
+                                                Glyph="&#xE7FC;" />
+                                            <TextBlock Style="{StaticResource BodyStrongTextBlockStyle}"
+                                                       Text="{helpers:Loc Key=Account_BoundCharacters}" />
+                                        </StackPanel>
+                                        <ProgressRing
+                                            Width="14"
+                                            Height="14"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            IsActive="{x:Bind ViewModel.IsBoundRoleLoading, Mode=OneWay}"
+                                            Visibility="{x:Bind ViewModel.IsBoundRoleLoading, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                    </Grid>
 
                                     <views:GameRoleSelector Grid.Row="1" />
-                                    <ScrollViewer
-                                        Grid.Row="2"
-                                        VerticalScrollBarVisibility="Auto"
-                                        Visibility="{x:Bind ViewModel.CurrentAccount.HasBoundRole, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                                        <ItemsControl ItemsSource="{x:Bind ViewModel.BoundRoles, Mode=OneWay}">
 
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Grid Margin="0,0,0,12">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="Auto" />
-                                                            <ColumnDefinition Width="*" />
-                                                            <ColumnDefinition Width="Auto" />
-                                                            <ColumnDefinition Width="Auto" />
-                                                        </Grid.ColumnDefinitions>
+                                    <Grid Grid.Row="2">
+                                        <ScrollViewer
+                                            VerticalScrollBarVisibility="Auto"
+                                            Visibility="{x:Bind ViewModel.HasBoundRoles, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <ItemsControl ItemsSource="{x:Bind ViewModel.BoundRoles, Mode=OneWay}">
 
-                                                        <Border
-                                                            Width="40"
-                                                            Height="40"
-                                                            Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
-                                                            BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
-                                                            BorderThickness="1"
-                                                            CornerRadius="20">
-                                                            <FontIcon
-                                                                FontSize="16"
-                                                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                                Glyph="&#xE7F4;" />
-                                                        </Border>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Margin="0,0,0,12">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
 
-                                                        <StackPanel
-                                                            Grid.Column="1"
-                                                            Margin="12,0,0,0"
-                                                            VerticalAlignment="Center">
-                                                            <TextBlock FontWeight="Medium" Text="{Binding nickname}" />
-                                                            <TextBlock FontSize="12"
-                                                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}">
-                                                                <Run Text="{Binding region_name}" />
-                                                                <Run Text=" | Lv." />
-                                                                <Run Text="{Binding level}" />
-                                                            </TextBlock>
-                                                        </StackPanel>
+                                                            <Border
+                                                                Width="40"
+                                                                Height="40"
+                                                                Background="{ThemeResource SolidBackgroundFillColorBaseBrush}"
+                                                                BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}"
+                                                                BorderThickness="1"
+                                                                CornerRadius="20">
+                                                                <FontIcon
+                                                                    FontSize="16"
+                                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                                    Glyph="&#xE7F4;" />
+                                                            </Border>
 
-                                                        <TextBlock
-                                                            Grid.Column="2"
-                                                            Margin="0,0,6,0"
-                                                            VerticalAlignment="Center"
-                                                            FontFamily="Consolas, Monospace"
-                                                            FontSize="12"
-                                                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                                            Text="{Binding game_uid}" />
+                                                            <StackPanel
+                                                                Grid.Column="1"
+                                                                Margin="12,0,0,0"
+                                                                VerticalAlignment="Center">
+                                                                <TextBlock FontWeight="Medium" Text="{Binding nickname}" />
+                                                                <TextBlock FontSize="12"
+                                                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                                                                    <Run Text="{Binding region_name}" />
+                                                                    <Run Text=" | Lv." />
+                                                                    <Run Text="{Binding level}" />
+                                                                </TextBlock>
+                                                            </StackPanel>
 
-                                                        <Button
-                                                            Grid.Column="3"
-                                                            Width="28"
-                                                            Height="28"
-                                                            Padding="0"
-                                                            VerticalAlignment="Center"
-                                                            Background="Transparent"
-                                                            BorderThickness="0"
-                                                            Click="OnCopyGameUidClicked"
-                                                            Tag="{Binding game_uid}"
-                                                            ToolTipService.ToolTip="{helpers:Loc Key=Account_CopyUID}">
-                                                            <FontIcon
+                                                            <TextBlock
+                                                                Grid.Column="2"
+                                                                Margin="0,0,6,0"
+                                                                VerticalAlignment="Center"
+                                                                FontFamily="Consolas, Monospace"
                                                                 FontSize="12"
                                                                 Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                                                Glyph="&#xE8C8;" />
-                                                        </Button>
-                                                    </Grid>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </ScrollViewer>
+                                                                Text="{Binding game_uid}" />
 
-                                    <StackPanel
-                                        Grid.Row="1"
-                                        Padding="12"
-                                        Orientation="Horizontal"
-                                        Spacing="12"
-                                        Visibility="{x:Bind ViewModel.CurrentAccount.HasBoundRole, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}">
-                                        <FontIcon
-                                            VerticalAlignment="Center"
-                                            FontSize="24"
-                                            Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                            Glyph="&#xE7F4;" />
-                                        <StackPanel VerticalAlignment="Center">
+                                                            <Button
+                                                                Grid.Column="3"
+                                                                Width="28"
+                                                                Height="28"
+                                                                Padding="0"
+                                                                VerticalAlignment="Center"
+                                                                Background="Transparent"
+                                                                BorderThickness="0"
+                                                                Click="OnCopyGameUidClicked"
+                                                                Tag="{Binding game_uid}"
+                                                                ToolTipService.ToolTip="{helpers:Loc Key=Account_CopyUID}">
+                                                                <FontIcon
+                                                                    FontSize="12"
+                                                                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                                                    Glyph="&#xE8C8;" />
+                                                            </Button>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+
+                                        <StackPanel
+                                            Padding="12"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal"
+                                            Spacing="10"
+                                            Visibility="{x:Bind ViewModel.ShowBoundRoleLoadingHint, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <ProgressRing
+                                                Width="16"
+                                                Height="16"
+                                                VerticalAlignment="Center"
+                                                IsActive="{x:Bind ViewModel.ShowBoundRoleLoadingHint, Mode=OneWay}" />
                                             <TextBlock
-                                                FontSize="14"
+                                                VerticalAlignment="Center"
                                                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                                                Text="{helpers:Loc Key=Account_NoCharacters}" />
-                                            <TextBlock
-                                                FontSize="12"
-                                                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
-                                                Text="{helpers:Loc Key=Account_BindHint}" />
+                                                Text="{helpers:Loc Key=Common_Loading}" />
                                         </StackPanel>
-                                    </StackPanel>
+
+                                        <StackPanel
+                                            Padding="12"
+                                            VerticalAlignment="Top"
+                                            Orientation="Horizontal"
+                                            Spacing="12"
+                                            Visibility="{x:Bind ViewModel.ShowBoundRoleEmptyState, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                                            <FontIcon
+                                                VerticalAlignment="Center"
+                                                FontSize="24"
+                                                Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                                Glyph="&#xE7F4;" />
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock
+                                                    FontSize="14"
+                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                    Text="{helpers:Loc Key=Account_NoCharacters}" />
+                                                <TextBlock
+                                                    FontSize="12"
+                                                    Foreground="{ThemeResource TextFillColorTertiaryBrush}"
+                                                    Text="{helpers:Loc Key=Account_BindHint}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
                                 </Grid>
                             </Border>
 
                             <Border
                                 x:Name="GameTimeCard"
                                 Grid.Row="2"
-                                Opacity="0"
                                 Style="{StaticResource CardBorderStyle}"
                                 Translation="0,0,32">
-                                <Border.RenderTransform>
-                                    <TranslateTransform x:Name="GameTimeCardTransform" X="50" />
-                                </Border.RenderTransform>
                                 <Border.Shadow>
                                     <ThemeShadow />
                                 </Border.Shadow>

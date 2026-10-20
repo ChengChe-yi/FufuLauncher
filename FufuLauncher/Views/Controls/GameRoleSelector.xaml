@@ -3,28 +3,56 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:helpers="using:FufuLauncher.Helpers">
-    <StackPanel Spacing="4">
-        <Grid ColumnSpacing="6">
+    <UserControl.Resources>
+        <Style x:Key="GameRoleRefreshButtonStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
+            <Setter Property="Width" Value="36" />
+            <Setter Property="Height" Value="36" />
+            <Setter Property="MinWidth" Value="36" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Background" Value="{ThemeResource ControlFillColorDefaultBrush}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource ControlStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Spacing="6">
+        <Grid ColumnSpacing="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <ComboBox x:Name="RoleBox" HorizontalAlignment="Stretch" MaxWidth="420"
-                      PlaceholderText="{helpers:Loc Key=GameRole_Select}"
-                      ToolTipService.ToolTip="{helpers:Loc Key=GameRole_Hint}"
-                      SelectionChanged="RoleBox_SelectionChanged">
+            <ComboBox
+                x:Name="RoleBox"
+                Height="36"
+                MaxWidth="420"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                CornerRadius="8"
+                PlaceholderText="{helpers:Loc Key=GameRole_Select}"
+                ToolTipService.ToolTip="{helpers:Loc Key=GameRole_Hint}"
+                SelectionChanged="RoleBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}" TextWrapping="Wrap" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button Grid.Column="1" Padding="8" Click="Refresh_Click"
-                    ToolTipService.ToolTip="{helpers:Loc Key=GameRole_Refresh}">
-                <FontIcon Glyph="&#xE72C;" FontSize="12" />
+            <Button
+                Grid.Column="1"
+                Click="Refresh_Click"
+                Style="{StaticResource GameRoleRefreshButtonStyle}"
+                ToolTipService.ToolTip="{helpers:Loc Key=GameRole_Refresh}">
+                <FontIcon
+                    FontSize="14"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Glyph="&#xE72C;" />
             </Button>
         </Grid>
-        <TextBlock x:Name="ErrorText" FontSize="12" TextWrapping="Wrap"
-                   Visibility="Collapsed" />
+        <TextBlock
+            x:Name="ErrorText"
+            FontSize="12"
+            Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+            TextWrapping="Wrap"
+            Visibility="Collapsed" />
     </StackPanel>
 </UserControl>

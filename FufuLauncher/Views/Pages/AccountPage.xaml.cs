@@ -31,9 +31,6 @@ public sealed partial class AccountPage : Page
     private readonly IUnifiedCheckinService _unifiedCheckinService;
     private readonly INotificationService _notificationService;
     private bool _isDeleting;
-    private bool _hasAnimatedButtons;
-    private bool _hasAnimatedProfileCard;
-    private bool _hasAnimatedRightCards;
     private bool _wasLoggedInOnLoad;
 
     #endregion
@@ -91,7 +88,6 @@ public sealed partial class AccountPage : Page
         if (ViewModel.IsLoggedIn)
         {
             AdjustButtonSpacing();
-            PlayEntranceAnimations();
         }
 
         await ViewModel.LoadUserInfoAsync();
@@ -120,10 +116,6 @@ public sealed partial class AccountPage : Page
                 _wasLoggedInOnLoad = true;
                 DispatcherQueue.TryEnqueue(DispatcherQueuePriority.Normal, async () =>
                 {
-                    ProfileCard.Opacity = 0;
-                    ProfileCardTransform.Y = -30;
-
-
                     var avatarUrl = ViewModel.CurrentAccount?.AvatarUrl;
                     if (!string.IsNullOrEmpty(avatarUrl) && AvatarPicture.Fill is ImageBrush brush)
                     {
@@ -132,17 +124,11 @@ public sealed partial class AccountPage : Page
 
                     await Task.Delay(150);
                     AdjustButtonSpacing();
-                    PlayEntranceAnimations();
                 });
             }
             else if (!ViewModel.IsLoggedIn)
             {
-                _hasAnimatedButtons = false;
-                _hasAnimatedProfileCard = false;
-                _hasAnimatedRightCards = false;
                 _wasLoggedInOnLoad = false;
-                ResetAnimationState();
-                EntranceStoryboard.Begin();
             }
         }
     }
@@ -222,67 +208,6 @@ public sealed partial class AccountPage : Page
         sb.Children.Add(scaleY);
         sb.Children.Add(fade);
         sb.Begin();
-    }
-
-    private void ResetAnimationState()
-    {
-        ButtonsStaggerStoryboard?.Stop();
-        RightCardsEntranceStoryboard?.Stop();
-        ProfileCardEntranceStoryboard?.Stop();
-
-
-        BtnSwitchAccount.Opacity = 0;
-        BtnSwitchAccountTransform.Y = -80;
-        BtnRefreshInfo.Opacity = 0;
-        BtnRefreshInfoTransform.Y = -80;
-        BtnGenshinData.Opacity = 0;
-        BtnGenshinDataTransform.Y = -80;
-        BtnGachaAnalysis.Opacity = 0;
-        BtnGachaAnalysisTransform.Y = -80;
-        BtnSecurityCenter.Opacity = 0;
-        BtnSecurityCenterTransform.Y = -80;
-        BtnLockAccount.Opacity = 0;
-        BtnLockAccountTransform.Y = -80;
-        BtnCopyCookie.Opacity = 0;
-        BtnCopyCookieTransform.Y = -80;
-        BtnRefreshCookie.Opacity = 0;
-        BtnRefreshCookieTransform.Y = -80;
-        BtnDeleteAccount.Opacity = 0;
-        BtnDeleteAccountTransform.Y = -80;
-        BtnLogout.Opacity = 0;
-        BtnLogoutTransform.Y = -80;
-
-
-        ProfileCard.Opacity = 0;
-        ProfileCardTransform.Y = -30;
-
-        CommunityFeedCard.Opacity = 0;
-        CommunityFeedCardTransform.X = 50;
-        BoundRolesCard.Opacity = 0;
-        BoundRolesCardTransform.X = 50;
-        GameTimeCard.Opacity = 0;
-        GameTimeCardTransform.X = 50;
-    }
-
-    private void PlayEntranceAnimations()
-    {
-        if (!_hasAnimatedButtons)
-        {
-            _hasAnimatedButtons = true;
-            ButtonsStaggerStoryboard?.Begin();
-        }
-
-        if (!_hasAnimatedProfileCard)
-        {
-            _hasAnimatedProfileCard = true;
-            ProfileCardEntranceStoryboard?.Begin();
-        }
-
-        if (!_hasAnimatedRightCards)
-        {
-            _hasAnimatedRightCards = true;
-            RightCardsEntranceStoryboard?.Begin();
-        }
     }
 
     #endregion

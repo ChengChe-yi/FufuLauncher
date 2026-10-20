@@ -45,10 +45,12 @@ public sealed class GameRoleService(AccountManager accounts, IUserInfoService us
 
     public async Task UpdateBindingsAsync(string accountId, IEnumerable<GameRoleInfo> roles)
     {
+        var roleList = roles.ToList();
         var oldRole = accounts.GetAllAccounts().FirstOrDefault(a => a.Id == accountId) is { } oldAccount
             ? GameRoleSelection.Current(oldAccount)
             : null;
-        await accounts.UpdateGameRolesAsync(accountId, roles);
+        await accounts.UpdateGameRolesAsync(accountId, roleList);
+        accounts.CacheSessionGameRoles(accountId, roleList);
         WeakReferenceMessenger.Default.Send(new GameRolesUpdatedMessage(accountId));
         if (accounts.GetActiveAccountEntry() is { } current && current.Id == accountId && oldRole != null)
         {
