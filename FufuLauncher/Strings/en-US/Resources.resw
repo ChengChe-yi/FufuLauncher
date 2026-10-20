@@ -8579,4 +8579,337 @@ Details: {0}</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>Weapon</value>
   </data>
+  <data name="NavCycleChallenge" xml:space="preserve">
+    <value>Cycle Challenge</value>
+  </data>
+  <data name="CycleChallenge_Title" xml:space="preserve">
+    <value>Cycle Challenge</value>
+  </data>
+  <data name="CycleChallenge_Subtitle" xml:space="preserve">
+    <value>Spiral Abyss · Imaginarium Theater · Stygian Onslaught</value>
+  </data>
+  <data name="CycleChallenge_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="CycleChallenge_RefreshTooltip" xml:space="preserve">
+    <value>Refresh challenge data for the current period</value>
+  </data>
+  <data name="CycleChallenge_DataStatusFresh" xml:space="preserve">
+    <value>Data is up to date</value>
+  </data>
+  <data name="CycleChallenge_DataStatusCached" xml:space="preserve">
+    <value>Showing cached data</value>
+  </data>
+  <data name="CycleChallenge_DataStatusOffline" xml:space="preserve">
+    <value>Offline mode</value>
+  </data>
+  <data name="CycleChallenge_OfflineBanner" xml:space="preserve">
+    <value>You are offline. Showing locally cached data.</value>
+  </data>
+  <data name="CycleChallenge_LoadFailed" xml:space="preserve">
+    <value>Failed to load data</value>
+  </data>
+  <data name="CycleChallenge_Retry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="CycleChallenge_NoAccount" xml:space="preserve">
+    <value>Not signed in to a Miyoushe account</value>
+  </data>
+  <data name="CycleChallenge_GoLogin" xml:space="preserve">
+    <value>Go to sign in</value>
+  </data>
+  <data name="CycleChallenge_NoRole" xml:space="preserve">
+    <value>No available Genshin character is bound to this account</value>
+  </data>
+  <data name="CycleChallenge_RefreshRoles" xml:space="preserve">
+    <value>Refresh character list</value>
+  </data>
+  <data name="CycleChallenge_NotParticipated" xml:space="preserve">
+    <value>Not participated in this season</value>
+  </data>
+  <data name="CycleChallenge_NotUnlocked" xml:space="preserve">
+    <value>This challenge is not unlocked yet</value>
+  </data>
+  <data name="CycleChallenge_InProgress" xml:space="preserve">
+    <value>In progress</value>
+  </data>
+  <data name="CycleChallenge_Settled" xml:space="preserve">
+    <value>Settled</value>
+  </data>
+  <data name="CycleChallenge_LoginExpired" xml:space="preserve">
+    <value>Your session has expired. Please sign in again.</value>
+  </data>
+  <data name="CycleChallenge_RiskControl" xml:space="preserve">
+    <value>The request was blocked by risk control. Please try again later.</value>
+  </data>
+  <data name="CycleChallenge_RateLimited" xml:space="preserve">
+    <value>Too many requests. Please try again later.</value>
+  </data>
+  <data name="CycleChallenge_Unsupported" xml:space="preserve">
+    <value>This challenge is not supported yet</value>
+  </data>
+  <data name="CycleChallenge_EmptyHint" xml:space="preserve">
+    <value>No challenge record for this period</value>
+  </data>
+  <data name="CycleChallenge_DataSourceNote" xml:space="preserve">
+    <value>Source: Miyoushe game record API</value>
+  </data>
+  <data name="CycleChallenge_TabAbyss" xml:space="preserve">
+    <value>Spiral Abyss</value>
+  </data>
+  <data name="CycleChallenge_TabTheater" xml:space="preserve">
+    <value>Imaginarium Theater</value>
+  </data>
+  <data name="CycleChallenge_TabStygian" xml:space="preserve">
+    <value>Stygian Onslaught</value>
+  </data>
+  <data name="CycleChallenge_PeriodLabel" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="CycleChallenge_PeriodCurrent" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="CycleChallenge_PeriodLast" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="CycleChallenge_NoCachedPeriod" xml:space="preserve">
+    <value>No cached schedules</value>
+  </data>
+  <data name="Abyss_TotalStar" xml:space="preserve">
+    <value>Stars Earned</value>
+  </data>
+  <data name="Abyss_MaxFloor" xml:space="preserve">
+    <value>Deepest Descent</value>
+  </data>
+  <data name="Abyss_BattleTimes" xml:space="preserve">
+    <value>Battles Fought</value>
+  </data>
+  <data name="Abyss_WinTimes" xml:space="preserve">
+    <value>Wins</value>
+  </data>
+  <data name="Abyss_StrongestHit" xml:space="preserve">
+    <value>Most Damage Dealt</value>
+  </data>
+  <data name="Abyss_UpperHalf" xml:space="preserve">
+    <value>First Half</value>
+  </data>
+  <data name="Abyss_LowerHalf" xml:space="preserve">
+    <value>Second Half</value>
+  </data>
+  <data name="Abyss_Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="Abyss_SkippedFloor" xml:space="preserve">
+    <value>Skipped Floors</value>
+  </data>
+  <data name="Abyss_LeyLineDisorder" xml:space="preserve">
+    <value>Ley Line Disorder</value>
+  </data>
+  <data name="Abyss_RevealRank" xml:space="preserve">
+    <value>Picked Times</value>
+  </data>
+  <data name="Abyss_DefeatRank" xml:space="preserve">
+    <value>Most Defeats</value>
+  </data>
+  <data name="Abyss_DamageRank" xml:space="preserve">
+    <value>Most Damage Dealt</value>
+  </data>
+  <data name="Abyss_TakeDamageRank" xml:space="preserve">
+    <value>Most Damage Taken</value>
+  </data>
+  <data name="Abyss_NormalSkillRank" xml:space="preserve">
+    <value>Elemental Skills Cast</value>
+  </data>
+  <data name="Abyss_EnergySkillRank" xml:space="preserve">
+    <value>Elemental Bursts Unleashed</value>
+  </data>
+  <data name="Abyss_Times" xml:space="preserve">
+    <value>Times</value>
+  </data>
+  <data name="Theater_Difficulty" xml:space="preserve">
+    <value>Difficulty</value>
+  </data>
+  <data name="Theater_MaxRound" xml:space="preserve">
+    <value>Best Record</value>
+  </data>
+  <data name="Theater_Heraldry" xml:space="preserve">
+    <value>Reached</value>
+  </data>
+  <data name="Theater_Medals" xml:space="preserve">
+    <value>Star Challenge Stellas</value>
+  </data>
+  <data name="Theater_Coins" xml:space="preserve">
+    <value>Fantasia Flowers</value>
+  </data>
+  <data name="Theater_AvatarBonus" xml:space="preserve">
+    <value>External Audience Support</value>
+  </data>
+  <data name="Theater_Rent" xml:space="preserve">
+    <value>Supporting Times</value>
+  </data>
+  <data name="Theater_TarotFinished" xml:space="preserve">
+    <value>Arcana Challenge</value>
+  </data>
+  <data name="Theater_Act" xml:space="preserve">
+    <value>Act</value>
+  </data>
+  <data name="Theater_GetMedal" xml:space="preserve">
+    <value>Stellas Earned</value>
+  </data>
+  <data name="Theater_NoMedal" xml:space="preserve">
+    <value>No Stellas</value>
+  </data>
+  <data name="Theater_BackupAvatars" xml:space="preserve">
+    <value>Alternate Cast members</value>
+  </data>
+  <data name="Theater_Enemies" xml:space="preserve">
+    <value>Enemies</value>
+  </data>
+  <data name="Theater_MaxDefeat" xml:space="preserve">
+    <value>Most Defeated</value>
+  </data>
+  <data name="Theater_MaxDamage" xml:space="preserve">
+    <value>Highest Damage</value>
+  </data>
+  <data name="Theater_MaxTakeDamage" xml:space="preserve">
+    <value>Most Damage Taken</value>
+  </data>
+  <data name="Theater_ShortestClear" xml:space="preserve">
+    <value>Fastest performance</value>
+  </data>
+  <data name="Theater_TotalTime" xml:space="preserve">
+    <value>Total Duration</value>
+  </data>
+  <data name="Theater_ShowBattleStats" xml:space="preserve">
+    <value>View battle stats</value>
+  </data>
+  <data name="Stygian_Difficulty" xml:space="preserve">
+    <value>Difficulty</value>
+  </data>
+  <data name="Stygian_BestTime" xml:space="preserve">
+    <value>Best Time</value>
+  </data>
+  <data name="Stygian_Solo" xml:space="preserve">
+    <value>Solo Challenge</value>
+  </data>
+  <data name="Stygian_Coop" xml:space="preserve">
+    <value>Co-op Challenge</value>
+  </data>
+  <data name="Stygian_Stage" xml:space="preserve">
+    <value>Stage</value>
+  </data>
+  <data name="Stygian_BestAvatar" xml:space="preserve">
+    <value>Best Character</value>
+  </data>
+  <data name="Stygian_Team" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="Stygian_Monster" xml:space="preserve">
+    <value>Enemies</value>
+  </data>
+  <data name="Stygian_Dps" xml:space="preserve">
+    <value>DPS</value>
+  </data>
+  <data name="Stygian_Second" xml:space="preserve">
+    <value>Seconds</value>
+  </data>
+  <data name="Stygian_NoCoopData" xml:space="preserve">
+    <value>No co-op data available</value>
+  </data>
+  <data name="Stygian_ScheduleName" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="Theater_Difficulty_1" xml:space="preserve">
+    <value>Easy Mode</value>
+  </data>
+  <data name="Theater_Difficulty_2" xml:space="preserve">
+    <value>Normal Mode</value>
+  </data>
+  <data name="Theater_Difficulty_3" xml:space="preserve">
+    <value>Hard Mode</value>
+  </data>
+  <data name="Theater_Difficulty_4" xml:space="preserve">
+    <value>Visionary Mode</value>
+  </data>
+  <data name="Theater_Difficulty_5" xml:space="preserve">
+    <value>Lunar Mode</value>
+  </data>
+  <data name="Theater_Difficulty_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Theater_AvatarTrial" xml:space="preserve">
+    <value>Trial</value>
+  </data>
+  <data name="Theater_AvatarSupport" xml:space="preserve">
+    <value>Support</value>
+  </data>
+  <data name="Theater_NoDetail" xml:space="preserve">
+    <value>No performance data yet</value>
+  </data>
+  <data name="Theater_BattleStats" xml:space="preserve">
+    <value>Battle Statistics</value>
+  </data>
+  <data name="Theater_Review" xml:space="preserve">
+    <value>Act Review</value>
+  </data>
+  <data name="Stygian_Difficulty_1" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="Stygian_Difficulty_2" xml:space="preserve">
+    <value>Advancing</value>
+  </data>
+  <data name="Stygian_Difficulty_3" xml:space="preserve">
+    <value>Hard</value>
+  </data>
+  <data name="Stygian_Difficulty_4" xml:space="preserve">
+    <value>Menacing</value>
+  </data>
+  <data name="Stygian_Difficulty_5" xml:space="preserve">
+    <value>Fearless</value>
+  </data>
+  <data name="Stygian_Difficulty_6" xml:space="preserve">
+    <value>Dire</value>
+  </data>
+  <data name="Stygian_Difficulty_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="Stygian_ExtremeValue" xml:space="preserve">
+    <value>Peak Output</value>
+  </data>
+  <data name="Stygian_UseTime" xml:space="preserve">
+    <value>Battle Time</value>
+  </data>
+  <data name="Stygian_BlingAvatars" xml:space="preserve">
+    <value>Featured Characters</value>
+  </data>
+  <data name="Theater_RoundTitle" xml:space="preserve">
+    <value>Act {0}</value>
+  </data>
+  <data name="Theater_TarotTitle" xml:space="preserve">
+    <value>Arcanum {0}</value>
+  </data>
+  <data name="Theater_TarotTitleShort" xml:space="preserve">
+    <value>Arcanum</value>
+  </data>
+  <data name="Theater_UsedTime" xml:space="preserve">
+    <value>Time {0}</value>
+  </data>
+  <data name="Theater_FinishAt" xml:space="preserve">
+    <value>Finished {0}</value>
+  </data>
+  <data name="Stygian_BestType_1" xml:space="preserve">
+    <value>Most Damage Dealt</value>
+  </data>
+  <data name="Stygian_BestType_2" xml:space="preserve">
+    <value>Highest total damage</value>
+  </data>
+  <data name="Stygian_BestType_Other" xml:space="preserve">
+    <value>Best Output</value>
+  </data>
+  <data name="Theater_SplendourBuffs" xml:space="preserve">
+    <value>Brilliant Blessings</value>
+  </data>
+  <data name="Theater_ChoiceCards" xml:space="preserve">
+    <value>Mystery Cache</value>
+  </data>
 </root>

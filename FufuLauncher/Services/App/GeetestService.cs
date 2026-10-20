@@ -40,11 +40,13 @@ public sealed class GeetestService
     {
     }
 
-    public async Task<string> TryVerifyForDailyNoteAsync(AccountContext ctx)
+    /// <summary>完成极验并返回 x-rpc-challenge。challengePath 为空时使用便笺路径（保持既有行为）。</summary>
+    public async Task<string> TryVerifyForDailyNoteAsync(AccountContext ctx, string? challengePath = null)
     {
+        string path = string.IsNullOrWhiteSpace(challengePath) ? DailyNoteChallengePath : challengePath;
         bool showNotice = await ReadCaptchaNoticeSettingAsync();
 
-        string createJson = await CallCreateVerificationAsync(ctx);
+        string createJson = await CallCreateVerificationAsync(ctx, path);
         string gt = null;
         string challenge = null;
 
@@ -76,7 +78,7 @@ public sealed class GeetestService
         Debug.WriteLine(
             $"[GeetestService] TryVerifyForDailyNote: 验证码完成 challenge={result.Challenge}, validate={result.Validate}");
 
-        string verifyJson = await CallVerifyVerificationAsync(ctx, result.Challenge, result.Validate);
+        string verifyJson = await CallVerifyVerificationAsync(ctx, result.Challenge, result.Validate, path);
         using (JsonDocument doc = JsonDocument.Parse(verifyJson))
         {
             int retcode = doc.RootElement.TryGetProperty("retcode", out JsonElement rc) ? rc.GetInt32() : -1;
@@ -109,7 +111,7 @@ public sealed class GeetestService
         }
     }
 
-    private async Task<string> CallCreateVerificationAsync(AccountContext ctx)
+    private async Task<string> CallCreateVerificationAsync(AccountContext ctx, string challengePath)
     {
         string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
         string ds = MiHoYoHeaderFactory.CalculateDs2(HeaderSalts.CnX4, "is_high=true", "");
@@ -124,7 +126,7 @@ public sealed class GeetestService
         req.Headers.Add("x-rpc-device_name", Uri.EscapeDataString(ctx.Device.DeviceName));
         req.Headers.Add("x-rpc-sys_version", ctx.Device.SysVersion);
         req.Headers.Add("x-rpc-challenge_game", "2");
-        req.Headers.Add("x-rpc-challenge_path", DailyNoteChallengePath);
+        req.Headers.Add("x-rpc-challenge_path", challengePath);
         req.Headers.Add("DS", ds);
         req.Headers.Add("Referer", UserAgents.WebstaticReferer);
         req.Headers.UserAgent.ParseAdd(ctx.UserAgent.Mobile);
@@ -133,7 +135,8 @@ public sealed class GeetestService
         return await resp.Content.ReadAsStringAsync();
     }
 
-    private async Task<string> CallVerifyVerificationAsync(AccountContext ctx, string challenge, string validate)
+    private async Task<string> CallVerifyVerificationAsync(AccountContext ctx, string challenge, string validate,
+        string challengePath)
     {
         string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
         GeetestWebResponse body = new()

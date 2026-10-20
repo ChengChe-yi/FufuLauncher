@@ -268,6 +268,7 @@ public sealed partial class MainWindow
             "FufuLauncher.ViewModels.PluginViewModel" => typeof(Views.PluginPage),
             "FufuLauncher.ViewModels.PluginStoreViewModel" => typeof(Views.PluginStorePage),
             "FufuLauncher.ViewModels.DataViewModel" => typeof(Views.DataPage),
+            "FufuLauncher.ViewModels.CycleChallengeViewModel" => typeof(Views.CycleChallengePage),
             "FufuLauncher.ViewModels.PluginSettingsViewModel" => typeof(Views.PluginSettingsPage),
             "FufuLauncher.ViewModels.HelpViewModel" => typeof(Views.HelpPage),
             _ => null
@@ -518,7 +519,7 @@ public sealed partial class MainWindow
         {
             "MainViewModel", "PluginSettingsViewModel", "ControlPanelViewModel", "ControlPanelModel",
             "GameSettingsViewModel", "BlankViewModel", "AccountViewModel", "OtherViewModel",
-            "PluginViewModel", "DataViewModel", "HelpViewModel",
+            "PluginViewModel", "DataViewModel", "CycleChallengeViewModel", "HelpViewModel",
             "CalculatorViewModel", "SettingsViewModel"
         };
 
