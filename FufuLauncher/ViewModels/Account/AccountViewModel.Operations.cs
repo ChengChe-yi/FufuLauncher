@@ -38,6 +38,7 @@ public partial class AccountViewModel
                 {
                     RunOnUIThread(() =>
                     {
+                        IsBoundRoleLoading = false;
                         CurrentAccount = null;
                         GameRolesInfo = null;
                         UserFullInfo = null;
@@ -98,6 +99,7 @@ public partial class AccountViewModel
 
             RunOnUIThread(() =>
             {
+                IsBoundRoleLoading = false;
                 CurrentAccount = null;
                 GameRolesInfo = null;
                 UserFullInfo = null;
@@ -120,6 +122,7 @@ public partial class AccountViewModel
 
         RunOnUIThread(() =>
         {
+            IsBoundRoleLoading = true;
             GameRolesInfo = null;
             UserFullInfo = null;
         });

@@ -72,6 +72,7 @@ public partial class AccountManager
             if (File.Exists(path)) File.Delete(path);
 
             _accountList.Accounts.Remove(entry);
+            _sessionGameRoles.TryRemove(accountId, out _);
             await SaveAccountListAsync();
 
             if (_activeAccountId == accountId)

@@ -21,6 +21,7 @@ public partial class AccountViewModel
         try
         {
             IsLoadingUserInfo = true;
+            IsBoundRoleLoading = true;
             RunOnUIThread(() => StatusMessage = "Account_LoadingUserInfo".GetLocalized());
 
             var activeId = _accountManager.ActiveAccountId;
@@ -42,8 +43,8 @@ public partial class AccountViewModel
 
             RunOnUIThread(() =>
             {
-                GameRolesInfo = null;
                 UserFullInfo = null;
+                if (!TryApplyCachedBoundRoles(activeId)) GameRolesInfo = null;
             });
 
             string cookieString = string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
@@ -113,7 +114,8 @@ public partial class AccountViewModel
             RunOnUIThread(() =>
             {
                 StatusMessage = string.Format("Common_LoadFailed_Format".GetLocalized(), ex.Message);
-                GameRolesInfo = null;
+                var activeId = _accountManager.ActiveAccountId;
+                if (activeId == null || !TryApplyCachedBoundRoles(activeId)) GameRolesInfo = null;
                 UserFullInfo = null;
             });
             return false;
@@ -121,6 +123,7 @@ public partial class AccountViewModel
         finally
         {
             IsLoadingUserInfo = false;
+            IsBoundRoleLoading = false;
             Debug.WriteLine("[LoadUserInfo] 加载结束");
         }
     }
@@ -136,6 +139,25 @@ public partial class AccountViewModel
     partial void OnGameRolesInfoChanged(GameRolesResponse? value)
     {
         OnPropertyChanged(nameof(BoundRoles));
+        NotifyBoundRoleState();
+    }
+
+    partial void OnIsBoundRoleLoadingChanged(bool value) => NotifyBoundRoleState();
+
+    private bool TryApplyCachedBoundRoles(string accountId)
+    {
+        var cached = _accountManager.GetSessionGameRoles(accountId);
+        if (cached is not { Count: > 0 }) return false;
+        GameRolesInfo = new GameRolesResponse(0, string.Empty, new GameRolesData(cached.ToList()));
+        if (CurrentAccount != null) CurrentAccount.HasBoundRole = true;
+        return true;
+    }
+
+    private void NotifyBoundRoleState()
+    {
+        OnPropertyChanged(nameof(HasBoundRoles));
+        OnPropertyChanged(nameof(ShowBoundRoleLoadingHint));
+        OnPropertyChanged(nameof(ShowBoundRoleEmptyState));
     }
 
     private async Task OpenGenshinDataAsync()

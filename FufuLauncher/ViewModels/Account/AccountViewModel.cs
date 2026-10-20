@@ -65,6 +65,7 @@ public partial class AccountViewModel : ObservableRecipient
     [ObservableProperty] private GameRolesResponse? _gameRolesInfo;
     [ObservableProperty] private UserFullInfoResponse? _userFullInfo;
     [ObservableProperty] private bool _isLoadingUserInfo;
+    [ObservableProperty] private bool _isBoundRoleLoading = true;
 
     [ObservableProperty] private ObservableCollection<AccountInfo> _savedAccounts = new();
     public bool HasSavedAccounts => SavedAccounts.Count > 0;
@@ -76,6 +77,12 @@ public partial class AccountViewModel : ObservableRecipient
 
 
     public List<GameRoleInfo>? BoundRoles => GameRolesInfo?.data?.list;
+
+    public bool HasBoundRoles => BoundRoles is { Count: > 0 };
+
+    public bool ShowBoundRoleLoadingHint => IsBoundRoleLoading && !HasBoundRoles;
+
+    public bool ShowBoundRoleEmptyState => !IsBoundRoleLoading && !HasBoundRoles;
 
     #endregion
 
@@ -152,6 +159,14 @@ public partial class AccountViewModel : ObservableRecipient
                 CurrentAccount.GameUid = role?.game_uid ?? "";
                 CurrentAccount.Level = role?.level.ToString() ?? "";
                 CurrentAccount.Server = role?.region_name ?? "";
+            }));
+        WeakReferenceMessenger.Default.Register<GameRolesUpdatedMessage>(this, (r, m) =>
+            RunOnUIThread(() =>
+            {
+                if (_isDisposed || _accountManager.ActiveAccountId != m.AccountId) return;
+                var roles = _accountManager.GetSessionGameRoles(m.AccountId);
+                if (roles == null) return;
+                GameRolesInfo = new GameRolesResponse(0, string.Empty, new GameRolesData(roles.ToList()));
             }));
         LoginCommand = new AsyncRelayCommand(LoginAsync);
         LogoutCommand = new AsyncRelayCommand(LogoutAsync);

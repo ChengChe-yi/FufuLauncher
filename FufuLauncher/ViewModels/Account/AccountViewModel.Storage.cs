@@ -32,7 +32,11 @@ public partial class AccountViewModel
             Server = entry.ServerType
         };
 
-        RunOnUIThread(() => CurrentAccount = info);
+        RunOnUIThread(() =>
+        {
+            CurrentAccount = info;
+            TryApplyCachedBoundRoles(accountId);
+        });
 
         var loaded = await LoadUserInfoAsync();
         if (!loaded)
@@ -74,6 +78,7 @@ public partial class AccountViewModel
             if (activeId == null)
             {
                 Debug.WriteLine("[LoadAccountInfo] 无活跃账户");
+                IsBoundRoleLoading = false;
                 RunOnUIThread(() =>
                 {
                     CurrentAccount = null;
@@ -83,11 +88,13 @@ public partial class AccountViewModel
                 return;
             }
 
+            IsBoundRoleLoading = true;
             var cookies = await _accountManager.LoadCookiesAsync(activeId);
             var entry = _accountManager.GetActiveAccountEntry();
             if (cookies == null || entry == null)
             {
                 Debug.WriteLine("[LoadAccountInfo] 无法加载活跃账户数据");
+                IsBoundRoleLoading = false;
                 RunOnUIThread(() =>
                 {
                     CurrentAccount = null;
@@ -109,6 +116,7 @@ public partial class AccountViewModel
                     Server = entry.ServerType,
                     HasBoundRole = false
                 };
+                TryApplyCachedBoundRoles(entry.Id);
                 LoginButtonText = "Account_ReLogin".GetLocalized();
                 StatusMessage = "Account_LoggedIn".GetLocalized();
             });
@@ -122,6 +130,7 @@ public partial class AccountViewModel
             Debug.WriteLine($"[LoadAccountInfo] 异常: {ex.Message}");
             RunOnUIThread(() =>
             {
+                IsBoundRoleLoading = false;
                 StatusMessage = string.Format("Account_LoadAccountFailed_Format".GetLocalized(), ex.Message);
                 CurrentAccount = null;
                 LoginButtonText = "Account_Login".GetLocalized();

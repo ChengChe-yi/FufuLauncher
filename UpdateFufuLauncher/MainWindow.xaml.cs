@@ -86,7 +86,7 @@ namespace Updater
             public int AnimationId;
         }
         
-        private const string AppVersion = "1.7.1.1";
+        private const string AppVersion = "1.7.1.2";
 
         private static readonly HttpClient _httpClient = new() 
         { 
