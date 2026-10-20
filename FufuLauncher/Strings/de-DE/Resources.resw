@@ -445,6 +445,27 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Deckkraft des Hintergrundbildes</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Qualität des Hintergrundbilds</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Legt die Dekodierungsauflösung von Hintergrundbildern fest; niedrigere Stufen sparen Arbeitsspeicher</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Sehr niedrig</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Niedrig</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Mittel</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>Hoch</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>Beim Schließen in die Taskleiste minimieren</value>
   </data>
@@ -873,6 +894,15 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Prüfe auf die neueste Version und lade sie herunter. Der Updater wird beim Klicken gestartet.</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Update-Ankündigung</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Die aktuelle Update-Ankündigung erneut anzeigen</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>Anzeigen</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>Über uns</value>

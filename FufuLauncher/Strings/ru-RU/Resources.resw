@@ -445,6 +445,27 @@
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Прозрачность изображения</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Качество фонового изображения</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Настройка разрешения декодирования фоновых изображений; низкие уровни снижают потребление памяти</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Очень низкое</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Низкое</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Среднее</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>Высокое</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Оригинал</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>Сворачивать в трей при закрытии</value>
   </data>
@@ -873,6 +894,15 @@
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Проверить и загрузить последнюю версию</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Объявление об обновлении</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Повторно просмотреть текущее объявление об обновлении</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>Просмотр</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>О нас</value>

@@ -142,6 +142,34 @@ public class UpdateService : IUpdateService
         }
     }
 
+    public async Task<string> GetUpdateAnnouncementUrlAsync()
+    {
+        try
+        {
+            var json = await GetWithRetryAsync(ApiEndpoints.UpdateJsonUrl, ApiEndpoints.UpdateJsonFallbackUrl,
+                maxRetries: 2);
+            var updateInfo = JsonSerializer.Deserialize<UpdateInfo>(json);
+            var previewUrl = updateInfo?.PreReleaseUpdateInfoUrl;
+            var announcementUrl = AppVersionHelper.IsPreviewBuild && !string.IsNullOrWhiteSpace(previewUrl)
+                ? previewUrl
+                : updateInfo?.UpdateInfoUrl;
+
+            if (!string.IsNullOrWhiteSpace(announcementUrl))
+            {
+                announcementUrl = announcementUrl.Trim();
+                if (Uri.TryCreate(announcementUrl, UriKind.Absolute, out var uri) &&
+                    uri.Scheme is "http" or "https")
+                    return announcementUrl;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[UpdateService] 获取更新公告地址失败: {ex.GetType().Name} - {ex.Message}");
+        }
+
+        return string.Empty;
+    }
+
     private async Task<bool> IsServerReachableAsync()
     {
         try

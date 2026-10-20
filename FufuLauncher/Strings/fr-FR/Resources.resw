@@ -445,6 +445,27 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Opacité de l'image d'arrière-plan</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Qualité de l'image de fond</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Ajuste la résolution de décodage des images de fond ; les niveaux bas réduisent l'utilisation de la mémoire</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Très basse</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Basse</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Moyenne</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>Haute</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Originale</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>Réduire dans la barre d'état système à la fermeture</value>
   </data>
@@ -873,6 +894,15 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Vérifier et obtenir la dernière version. Un clic lancera le programme de mise à jour.</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Annonce de mise à jour</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Revoir l'annonce de mise à jour actuelle</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>Voir</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>À propos de nous</value>

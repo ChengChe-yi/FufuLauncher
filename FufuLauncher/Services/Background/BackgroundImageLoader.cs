@@ -12,6 +12,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using FufuLauncher.Models;
 
 namespace FufuLauncher.Services.Background;
 
@@ -41,11 +42,13 @@ internal static class BackgroundImageLoader
             throw new InvalidOperationException("背景图片加载需要主窗口的 UI 线程");
 
 
-        var decoded = await Task.Run(() =>
+        var decoded = await Task.Run(async () =>
         {
+            var quality = await BackgroundImageQualitySettings.GetEffectiveQualityAsync().ConfigureAwait(false);
             using var stream = openStream();
             using var image = Image.Load<Bgra32>(new DecoderOptions { MaxFrames = 1 }, stream);
             image.Mutate(context => context.AutoOrient());
+            ApplyDisplayQuality(image, quality);
             var pixels = new byte[checked(image.Width * image.Height * 4)];
             image.CopyPixelDataTo(pixels);
 
@@ -86,5 +89,21 @@ internal static class BackgroundImageLoader
             completion.SetException(new InvalidOperationException("背景图片的 UI 调度队列已关闭"));
 
         return await completion.Task.ConfigureAwait(false);
+    }
+
+    private static void ApplyDisplayQuality(Image<Bgra32> image, BackgroundImageQuality quality)
+    {
+        var maxEdge = BackgroundImageQualitySettings.GetMaxDecodeEdge(quality);
+        if (maxEdge <= 0)
+            return;
+
+        var longestEdge = Math.Max(image.Width, image.Height);
+        if (longestEdge <= maxEdge)
+            return;
+
+        var scale = (double)maxEdge / longestEdge;
+        var width = Math.Max(1, (int)Math.Round(image.Width * scale));
+        var height = Math.Max(1, (int)Math.Round(image.Height * scale));
+        image.Mutate(context => context.Resize(width, height));
     }
 }

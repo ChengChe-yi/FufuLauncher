@@ -80,6 +80,7 @@ public partial class SettingsViewModel : ObservableRecipient
     [ObservableProperty] private string _backgroundSlideshowFolder;
     [ObservableProperty] private bool _hasBackgroundSlideshowFolder;
     [ObservableProperty] private int _backgroundSlideshowInterval = 60;
+    [ObservableProperty] private BackgroundImageQuality _backgroundQuality = BackgroundImageQuality.High;
 
     [ObservableProperty] private string _appThemeColor = "";
     [ObservableProperty] private Windows.UI.Color _appThemeColorObj = Windows.UI.Color.FromArgb(255, 0, 120, 215);
