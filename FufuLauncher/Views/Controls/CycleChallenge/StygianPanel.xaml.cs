@@ -183,6 +183,11 @@ internal static class CycleChallengeRichTextParser
 {
     private const string ColorOpenPrefix = "<color=";
     private const string ColorCloseTag = "</color>";
+    private const string LinkOpenPrefix = "{LINK#";
+    private const string LinkCloseTag = "{/LINK}";
+
+    /// <summary>链接文本颜色（米游社 LINK 语法统一使用的高亮色）。</summary>
+    private static readonly Color LinkForeground = Color.FromArgb(0xFF, 0xF3, 0x90, 0x01);
 
     /// <summary>把若干条描述解析并写入目标 RichTextBlock（会先清空既有 Blocks）。</summary>
     /// <param name="target">目标 RichTextBlock。</param>
@@ -216,12 +221,37 @@ internal static class CycleChallengeRichTextParser
     internal static Paragraph BuildParagraph(string text)
     {
         var paragraph = new Paragraph();
+        Hyperlink? currentLink = null;
+
         foreach (var segment in Tokenize(text))
         {
-            if (segment.IsLineBreak)
+            switch (segment.Kind)
             {
-                paragraph.Inlines.Add(new LineBreak());
-                continue;
+                case SegmentKind.LinkOpen:
+                    // 嵌套 / 重复的 link 开标签：先把未闭合的上一个链接挂上去
+                    if (currentLink is not null)
+                    {
+                        paragraph.Inlines.Add(currentLink);
+                    }
+
+                    currentLink = new Hyperlink
+                    {
+                        Foreground = new SolidColorBrush(LinkForeground),
+                    };
+                    continue;
+
+                case SegmentKind.LinkClose:
+                    if (currentLink is not null)
+                    {
+                        paragraph.Inlines.Add(currentLink);
+                        currentLink = null;
+                    }
+
+                    continue;
+
+                case SegmentKind.LineBreak:
+                    AddInline(paragraph, currentLink, new LineBreak());
+                    continue;
             }
 
             if (segment.Text.Length == 0)
@@ -235,17 +265,44 @@ internal static class CycleChallengeRichTextParser
                 run.Foreground = new SolidColorBrush(color);
             }
 
-            paragraph.Inlines.Add(run);
+            AddInline(paragraph, currentLink, run);
+        }
+
+        // 未闭合的 {LINK#...}：内容仍然按链接样式展示，避免吞掉文本
+        if (currentLink is not null)
+        {
+            paragraph.Inlines.Add(currentLink);
         }
 
         return paragraph;
     }
 
+    private static void AddInline(Paragraph paragraph, Hyperlink? link, Inline inline)
+    {
+        if (link is not null)
+        {
+            link.Inlines.Add(inline);
+        }
+        else
+        {
+            paragraph.Inlines.Add(inline);
+        }
+    }
+
+    /// <summary>解析出的文本片段种类。</summary>
+    private enum SegmentKind
+    {
+        Text,
+        LineBreak,
+        LinkOpen,
+        LinkClose,
+    }
+
     /// <summary>解析出的文本片段；<see cref="Foreground"/> 为 null 表示继承 RichTextBlock 的前景色。</summary>
-    /// <param name="Text">文本内容（换行片段为空串）。</param>
+    /// <param name="Text">文本内容（换行 / 链接标记片段为空串）。</param>
     /// <param name="Foreground">颜色，null 表示继承。</param>
-    /// <param name="IsLineBreak">是否换行。</param>
-    private readonly record struct RichSegment(string Text, Color? Foreground, bool IsLineBreak);
+    /// <param name="Kind">片段种类。</param>
+    private readonly record struct RichSegment(string Text, Color? Foreground, SegmentKind Kind);
 
     private static List<RichSegment> Tokenize(string text)
     {
@@ -262,7 +319,7 @@ internal static class CycleChallengeRichTextParser
         {
             if (plain.Length > 0)
             {
-                segments.Add(new RichSegment(plain.ToString(), inheritedColor, false));
+                segments.Add(new RichSegment(plain.ToString(), inheritedColor, SegmentKind.Text));
                 plain.Clear();
             }
         }
@@ -276,7 +333,7 @@ internal static class CycleChallengeRichTextParser
             if (current == '\n')
             {
                 FlushPlain();
-                segments.Add(new RichSegment(string.Empty, inheritedColor, true));
+                segments.Add(new RichSegment(string.Empty, inheritedColor, SegmentKind.LineBreak));
                 index++;
                 continue;
             }
@@ -285,8 +342,17 @@ internal static class CycleChallengeRichTextParser
             if (current == '\\' && index + 1 < text.Length && text[index + 1] == 'n')
             {
                 FlushPlain();
-                segments.Add(new RichSegment(string.Empty, inheritedColor, true));
+                segments.Add(new RichSegment(string.Empty, inheritedColor, SegmentKind.LineBreak));
                 index += 2;
+                continue;
+            }
+
+            // 链接标签：{LINK#N211101}...{/LINK}
+            if (current == '{' && TryReadLinkTag(text, index, out var linkKind, out var linkEnd))
+            {
+                FlushPlain();
+                segments.Add(new RichSegment(string.Empty, inheritedColor, linkKind));
+                index = linkEnd;
                 continue;
             }
 
@@ -313,6 +379,41 @@ internal static class CycleChallengeRichTextParser
         }
 
         FlushPlain();
+    }
+
+    /// <summary>尝试读取 <c>{LINK#...}</c> / <c>{/LINK}</c> 链接标记。</summary>
+    /// <param name="text">完整文本。</param>
+    /// <param name="startIndex">'{' 所在下标。</param>
+    /// <param name="kind">解析出的片段种类（<see cref="SegmentKind.LinkOpen"/> / <see cref="SegmentKind.LinkClose"/>）。</param>
+    /// <param name="nextIndex">标记之后的第一个字符下标。</param>
+    /// <returns>是否为合法的链接标记。</returns>
+    private static bool TryReadLinkTag(string text, int startIndex, out SegmentKind kind, out int nextIndex)
+    {
+        kind = SegmentKind.Text;
+        nextIndex = startIndex;
+
+        var span = text.AsSpan(startIndex);
+        if (span.StartsWith(LinkCloseTag, StringComparison.OrdinalIgnoreCase))
+        {
+            kind = SegmentKind.LinkClose;
+            nextIndex = startIndex + LinkCloseTag.Length;
+            return true;
+        }
+
+        if (!span.StartsWith(LinkOpenPrefix, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        var tagEnd = text.IndexOf('}', startIndex);
+        if (tagEnd < 0)
+        {
+            return false;
+        }
+
+        kind = SegmentKind.LinkOpen;
+        nextIndex = tagEnd + 1;
+        return true;
     }
 
     /// <summary>尝试读取 <c>&lt;color=#RRGGBBAA&gt;</c> 开标签。</summary>
