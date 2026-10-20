@@ -86,7 +86,7 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
                     recipient.Payload = null;
                     recipient.HasData = false;
                     recipient.RefreshHeader();
-                    _ = recipient.ReloadAsync(forceRefresh: false);
+                    _ = recipient.ReloadAfterRoleChangeAsync();
                 }
             });
     }
@@ -167,6 +167,19 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
 
     private bool ShouldRefresh() =>
         !HasData || (_lastFetchedAt is { } fetched && DateTimeOffset.UtcNow - fetched > CacheTtl);
+
+    /// <summary>
+    /// 作用域内切换角色：先按新 UID 读缓存；无缓存/过期时再自动强制拉取一次（与进入页面/切换模式一致）。
+    /// </summary>
+    private async Task ReloadAfterRoleChangeAsync()
+    {
+        await ReloadAsync(forceRefresh: false);
+
+        if (ShouldRefresh())
+        {
+            await ReloadAsync(forceRefresh: true);
+        }
+    }
 
     [RelayCommand]
     private async Task RefreshAsync() => await ReloadAsync(forceRefresh: true);

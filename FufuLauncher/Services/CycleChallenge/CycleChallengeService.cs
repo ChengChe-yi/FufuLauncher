@@ -73,6 +73,7 @@ public sealed class CycleChallengeService
         var timeContext = CycleChallengeTime.CreateContext(role.Role.region);
         var failures = new List<RawChallengeResponse>();
         var saveFailed = false;
+        RawChallengeResponse? preferredAbyssResponse = null;
         string? freshPanelPayload = null;
         string? freshScheduleId = null;
 
@@ -84,6 +85,14 @@ public sealed class CycleChallengeService
                     var response = await _api.GetSpiralAbyssAsync(role, schedule, token).ConfigureAwait(false);
                     if (response.Success)
                     {
+                        // 深渊会请求 schedule_type=1/2 两期：优先保留“有楼层数据”的那一期
+                        if (preferredAbyssResponse is null
+                            || (!HasAbyssData(preferredAbyssResponse.DataJson)
+                                && HasAbyssData(response.DataJson)))
+                        {
+                            preferredAbyssResponse = response;
+                        }
+
                         try
                         {
                             SaveSinglePeriod(mode, role, response.DataJson!, token);
@@ -156,6 +165,16 @@ public sealed class CycleChallengeService
 
                 break;
             }
+        }
+
+        // 深渊：两次请求中优先使用“有楼层数据”的响应作为写缓存失败的兜底 payload
+        if (mode == ChallengeMode.SpiralAbyss
+            && saveFailed
+            && preferredAbyssResponse is not null)
+        {
+            freshPanelPayload = BuildFreshPanelPayload(
+                mode, preferredAbyssResponse.DataJson, isUnlock: true);
+            freshScheduleId = TryGetFreshScheduleId(mode, preferredAbyssResponse.DataJson);
         }
 
         IReadOnlyList<ChallengePeriod> periods = periodsBefore;
@@ -412,6 +431,30 @@ public sealed class CycleChallengeService
         {
             Debug.WriteLine($"[CycleChallengeService] 构造临时 payload 失败: {ex.Message}");
             return null;
+        }
+    }
+
+    /// <summary>深渊 data 中是否包含非空 floors（用于在两个请求结果里挑选有数据的一期）。</summary>
+    private static bool HasAbyssData(string? dataJson)
+    {
+        if (string.IsNullOrWhiteSpace(dataJson))
+        {
+            return false;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(dataJson);
+            var root = document.RootElement;
+            return root.ValueKind is JsonValueKind.Object
+                   && root.TryGetProperty("floors", out var floors)
+                   && floors.ValueKind is JsonValueKind.Array
+                   && floors.GetArrayLength() > 0;
+        }
+        catch (JsonException ex)
+        {
+            Debug.WriteLine($"[CycleChallengeService] 判断深渊 floors 失败: {ex.Message}");
+            return false;
         }
     }
 
