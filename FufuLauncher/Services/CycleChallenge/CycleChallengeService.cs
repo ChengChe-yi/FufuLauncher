@@ -74,6 +74,7 @@ public sealed class CycleChallengeService
         var failures = new List<RawChallengeResponse>();
         var saveFailed = false;
         string? freshPanelPayload = null;
+        string? freshScheduleId = null;
 
         switch (mode)
         {
@@ -93,6 +94,7 @@ public sealed class CycleChallengeService
                             Debug.WriteLine($"[CycleChallengeService] 深渊写入缓存失败: {ex.Message}");
                             saveFailed = true;
                             freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock: true);
+                            freshScheduleId ??= TryGetFreshScheduleId(mode, response.DataJson);
                         }
                     }
                     else if (response.Kind is not ChallengeErrorKind.NotParticipated)
@@ -118,6 +120,7 @@ public sealed class CycleChallengeService
                         Debug.WriteLine($"[CycleChallengeService] 剧诗写入缓存失败: {ex.Message}");
                         saveFailed = true;
                         freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock);
+                        freshScheduleId ??= TryGetFreshScheduleId(mode, response.DataJson);
                     }
                 }
                 else
@@ -143,6 +146,7 @@ public sealed class CycleChallengeService
                         Debug.WriteLine($"[CycleChallengeService] 危战写入缓存失败: {ex.Message}");
                         saveFailed = true;
                         freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock);
+                        freshScheduleId ??= TryGetFreshScheduleId(mode, response.DataJson);
                     }
                 }
                 else
@@ -172,13 +176,17 @@ public sealed class CycleChallengeService
         // 写缓存失败但 API 成功：直接返回本次拉取的新数据，避免误报错误或展示旧缓存
         if (saveFailed && freshPanelPayload is not null)
         {
+            // 期次标签必须与本次新 payload 一致；若缓存期次列表里还没有该期次，补一个仅含 ID 的项
+            string activeScheduleId = freshScheduleId ?? latest?.ScheduleId ?? string.Empty;
+            periods = EnsureFreshPeriodPresent(periods, role, mode, activeScheduleId);
+
             return new ChallengeLoadResult
             {
                 Success = true,
                 Kind = ChallengeErrorKind.Success,
                 Periods = periods,
                 Payload = freshPanelPayload,
-                ActiveScheduleId = latest?.ScheduleId ?? string.Empty,
+                ActiveScheduleId = activeScheduleId,
                 IsFromCache = false,
             };
         }
@@ -405,6 +413,92 @@ public sealed class CycleChallengeService
             Debug.WriteLine($"[CycleChallengeService] 构造临时 payload 失败: {ex.Message}");
             return null;
         }
+    }
+
+    /// <summary>尝试从本次 API data 节点中解析真实期次 ID（深渊 schedule_id；剧诗/危战取首项 schedule_id）。</summary>
+    private static string? TryGetFreshScheduleId(ChallengeMode mode, string? dataJson)
+    {
+        if (string.IsNullOrWhiteSpace(dataJson))
+        {
+            return null;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(dataJson);
+            var root = document.RootElement;
+            if (root.ValueKind is JsonValueKind.Array)
+            {
+                if (root.GetArrayLength() == 0)
+                {
+                    return null;
+                }
+
+                root = root[0];
+            }
+
+            if (root.ValueKind is not JsonValueKind.Object)
+            {
+                return null;
+            }
+
+            if (mode == ChallengeMode.SpiralAbyss)
+            {
+                return NullIfBlank(GetString(root, "schedule_id"));
+            }
+
+            // 剧诗/危战：完整 data 节点可能再包一层 data[]
+            if (root.TryGetProperty("data", out var data) && data.ValueKind is JsonValueKind.Array)
+            {
+                if (data.GetArrayLength() == 0)
+                {
+                    return null;
+                }
+
+                root = data[0];
+            }
+
+            if (root.ValueKind is not JsonValueKind.Object)
+            {
+                return null;
+            }
+
+            if (root.TryGetProperty("schedule", out var schedule) && schedule.ValueKind is JsonValueKind.Object)
+            {
+                var id = NullIfBlank(GetString(schedule, "schedule_id"));
+                if (id is not null)
+                {
+                    return id;
+                }
+            }
+
+            return NullIfBlank(GetString(root, "schedule_id"));
+        }
+        catch (JsonException ex)
+        {
+            Debug.WriteLine($"[CycleChallengeService] 解析新鲜期次 ID 失败: {ex.Message}");
+            return null;
+        }
+    }
+
+    private static string? NullIfBlank(string? value) => string.IsNullOrWhiteSpace(value) ? null : value;
+
+    /// <summary>写缓存失败时，保证下拉列表包含本次新数据对应的期次（日期未知时留空）。</summary>
+    private static IReadOnlyList<ChallengePeriod> EnsureFreshPeriodPresent(
+        IReadOnlyList<ChallengePeriod> periods, SelectedGameRole role, ChallengeMode mode, string scheduleId)
+    {
+        if (string.IsNullOrWhiteSpace(scheduleId)
+            || periods.Any(p => string.Equals(p.ScheduleId, scheduleId, StringComparison.Ordinal)))
+        {
+            return periods;
+        }
+
+        var list = new List<ChallengePeriod>(periods.Count + 1)
+        {
+            new(role.Role.game_uid, mode, scheduleId, null, null, DateTimeOffset.UtcNow),
+        };
+        list.AddRange(periods);
+        return list;
     }
 
     /// <summary>
