@@ -8,6 +8,8 @@ namespace FufuLauncher.Contracts.Services
     public interface IUpdateService
     {
         Task<UpdateCheckResult> CheckUpdateAsync();
+
+        Task<string> GetUpdateAnnouncementUrlAsync();
     }
 
     public class UpdateCheckResult

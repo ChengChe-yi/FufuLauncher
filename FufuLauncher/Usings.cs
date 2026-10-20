@@ -4,3 +4,4 @@ Licensed under the MIT License.
 */
 
 global using WinUIEx;
+global using FufuLauncher.Constants;

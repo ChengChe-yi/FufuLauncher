@@ -1,110 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -395,6 +290,27 @@
   </data>
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>背景图片透明度</value>
+  </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>背景图像质量</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>调整背景图像的解码分辨率，降低可减少内存占用</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>超低</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>低</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>原图</value>
   </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>关闭后最小化至系统托盘</value>
@@ -867,6 +783,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>启用 CPU 占用异常警告</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>启用定时内存释放</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>关闭后将停止常规清理和游戏期间的动态内存释放</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>警告阈值 (%)</value>
   </data>
@@ -905,6 +827,15 @@
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>检查并获取最新版本。点击后将启动更新程序</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>更新公告</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>重新查看当前版本的更新公告</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>查看公告</value>
   </data>
   <data name="UseThirdPartyCDNTitle" xml:space="preserve">
     <value>使用第三方加速节点下载更新</value>
@@ -7008,6 +6939,7 @@ UIGF v4.x/3.0/2.x</value>
     <value>尚未部署信任包：请在 Assets\Trust 放置证书与清单文件，或点击「立即更新」从官方端点同步。</value>
   </data>
   <data name="ModTrust_StatusFormat" xml:space="preserve">
+    <value>当前状态：{0}</value>
     <value>同步端点：{1}</value>
   </data>
   <data name="ModTrust_InstalledUser" xml:space="preserve">
@@ -7071,6 +7003,10 @@ UIGF v4.x/3.0/2.x</value>
     <value>代码签名校验未通过</value>
   </data>
   <data name="ModTrust_BlockedMsg" xml:space="preserve">
+    <value>该文件未通过签名校验，已阻止加载：</value>
+    <value></value>
+    <value>{0}</value>
+    <value></value>
     <value>可在「设置 → 安全认证 → 代码签名信任」中查看详情。</value>
   </data>
   <data name="ModTrust_WarnTitle" xml:space="preserve">
@@ -7452,27 +7388,13 @@ UIGF v4.x/3.0/2.x</value>
     <value>以下配置项未经关闭警告确认，已自动恢复为开启状态：
 {0}</value>
   </data>
-  <data name="PluginStoreArchivePasswordTitle" xml:space="preserve">
-    <value>压缩包解压密码</value>
-  </data>
-  <data name="PluginStoreArchivePasswordPlaceholder" xml:space="preserve">
-    <value>请输入压缩包密码</value>
-  </data>
-  <data name="PluginStoreArchivePasswordPrompt" xml:space="preserve">
-    <value>“{0}”需要解压密码。</value>
-  </data>
-  <data name="PluginStoreArchivePasswordRetry" xml:space="preserve">
-    <value>“{0}”的密码不正确，或压缩包已损坏。请重新输入密码后重试解压。</value>
-  </data>
-  <data name="PluginStoreArchivePasswordExtract" xml:space="preserve">
-    <value>解压</value>
-  </data>
-  <data name="PluginStoreArchivePasswordCancel" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="PluginStoreArchivePasswordUnavailable" xml:space="preserve">
-    <value>压缩包需要密码，但无法打开密码输入窗口。</value>
-  </data>
+  <data name="PluginStoreArchivePasswordTitle" xml:space="preserve"><value>压缩包解压密码</value></data>
+  <data name="PluginStoreArchivePasswordPlaceholder" xml:space="preserve"><value>请输入压缩包密码</value></data>
+  <data name="PluginStoreArchivePasswordPrompt" xml:space="preserve"><value>“{0}”需要解压密码。</value></data>
+  <data name="PluginStoreArchivePasswordRetry" xml:space="preserve"><value>“{0}”的密码不正确，或压缩包已损坏。请重新输入密码后重试解压。</value></data>
+  <data name="PluginStoreArchivePasswordExtract" xml:space="preserve"><value>解压</value></data>
+  <data name="PluginStoreArchivePasswordCancel" xml:space="preserve"><value>取消</value></data>
+  <data name="PluginStoreArchivePasswordUnavailable" xml:space="preserve"><value>压缩包需要密码，但无法打开密码输入窗口。</value></data>
   <data name="SectionServiceStatus" xml:space="preserve">
     <value>服务状态</value>
   </data>

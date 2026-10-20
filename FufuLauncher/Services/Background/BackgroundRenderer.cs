@@ -86,6 +86,7 @@ namespace FufuLauncher.Services.Background
         Task CacheAllBackgroundsAsync(ServerType server);
         void ClearBackground();
         void ClearCustomBackground();
+        void ClearImageCaches();
     }
 
     public class BackgroundRenderer : IBackgroundRenderer
@@ -768,6 +769,15 @@ namespace FufuLauncher.Services.Background
             _customBackgroundPath = null;
             _cachedCustomBackground = null;
             ReleaseVideoCache();
+        }
+
+        public void ClearImageCaches()
+        {
+            _cachedBackground = null;
+            _currentBackgroundUrl = null;
+            _cachedCustomBackground = null;
+            _customBackgroundPath = null;
+            _cachedFallbackBackground = null;
         }
 
         private async Task DownloadToCache(string url, string defaultExtension)

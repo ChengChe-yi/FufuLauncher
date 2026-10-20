@@ -79,11 +79,11 @@ namespace FufuLauncher.Services;
             _headers = new Dictionary<string, string>
             {
                 ["Accept"] = "application/json, text/plain, */*",
-                ["Origin"] = "https://act.hoyolab.com",
+                ["Origin"] = ApiEndpoints.ActHoyolabBase,
                 ["x-rpc-app_version"] = "2.54.0",
                 ["x-rpc-client_type"] = "5",
                 ["x-rpc-language"] = "zh-cn",
-                ["Referer"] = "https://act.hoyolab.com/",
+                ["Referer"] = ApiEndpoints.ActHoyolabBase + "/",
                 ["Accept-Encoding"] = "gzip, deflate",
                 ["Accept-Language"] = "zh-CN,en-US;q=0.8",
                 ["Cookie"] = cookie,
@@ -142,7 +142,7 @@ namespace FufuLauncher.Services;
             try
             {
                 var query = $"game_biz={GameBiz}";
-                var url = $"https://api-account-os.hoyolab.com/binding/api/getUserGameRolesByCookieToken?{query}";
+                var url = $"{ApiEndpoints.HoyolabGameRolesByCookieTokenUrl}?{query}";
                 using var req = new HttpRequestMessage(HttpMethod.Get, url);
                 AddHeaders(req);
                 var resp = await _httpClient.SendAsync(req);

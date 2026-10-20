@@ -65,7 +65,7 @@ public class GenshinApiClient
         request.Headers.Add("x-rpc-client_type", "5");
         request.Headers.Add("x-rpc-device_id", _deviceId);
         request.Headers.Add("DS", CreateSecret2(url, isOs));
-        request.Headers.Add("Referer", isOs ? "https://act.hoyolab.com/" : "https://webstatic.mihoyo.com/");
+        request.Headers.Add("Referer", isOs ? ApiEndpoints.ActHoyolabBase + "/" : ApiEndpoints.WebstaticRefererUrl + "/");
         request.Headers.UserAgent.ParseAdd(isOs ? OsUserAgent : CnUserAgent);
         return request;
     }

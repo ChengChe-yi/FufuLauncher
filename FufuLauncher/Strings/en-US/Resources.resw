@@ -291,6 +291,27 @@
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Background Image Opacity</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Background Image Quality</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Adjust the decoded resolution of background images; lower settings reduce memory usage</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Ultra low</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>Minimize to Tray on Close</value>
   </data>
@@ -765,6 +786,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Enable Abnormal CPU Usage Warning</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Enable Scheduled Memory Release</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Turn off to stop regular cleanup and dynamic memory release during games</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Warning Threshold (%)</value>
   </data>
@@ -803,6 +830,15 @@
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Check for and download the latest version</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Update Announcement</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Review the current update announcement again</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>View</value>
   </data>
   <data name="UseThirdPartyCDNTitle" xml:space="preserve">
     <value>Use Third-Party CDN for Updates</value>

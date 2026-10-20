@@ -255,10 +255,17 @@ public sealed partial class MainWindow : WindowEx
 
         WeakReferenceMessenger.Default.Register<GameRunningStateChangedMessage>(this, (_, m) =>
         {
+            dispatcherQueue.TryEnqueue(() => ApplyGameMemoryStrategy(m.IsRunning));
+
             if (m.IsRunning) return;
 
             dispatcherQueue.TryEnqueue(async () => await CheckPeriodicAnnouncementAsync());
             dispatcherQueue.TryEnqueue(async () => await CheckPeriodicConstraintAsync());
+        });
+
+        WeakReferenceMessenger.Default.Register<MemoryReleaseEnabledChangedMessage>(this, (_, m) =>
+        {
+            dispatcherQueue.TryEnqueue(() => ApplyMemoryReleaseEnabled(m.IsEnabled));
         });
 
         WeakReferenceMessenger.Default.Register<OverlayStyleChangedMessage>(this, (_, m) =>
@@ -337,9 +344,10 @@ public sealed partial class MainWindow : WindowEx
         _memoryOptimizationTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
         _memoryOptimizationTimer.Tick += OnMemoryOptimizationTick!;
 
-        _periodicMemoryTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
-        _periodicMemoryTimer.Tick += (_, _) => FlushMemory();
+        _periodicMemoryTimer = new DispatcherTimer { Interval = NormalMemoryReleaseInterval };
+        _periodicMemoryTimer.Tick += (_, _) => FlushMemory(force: true);
         _periodicMemoryTimer.Start();
+        _ = LoadMemoryReleaseSettingAsync();
 
         AppWindow.Changed += AppWindow_Changed;
 

@@ -17,7 +17,7 @@ namespace FufuLauncher.Services.MiHoYo.DailyNote;
 
 public sealed class DailyNoteService
 {
-    private const string RecordApiBase = "https://api-takumi-record.mihoyo.com/game_record/app/genshin";
+    private const string RecordApiBase = ApiEndpoints.DailyNoteRecordApiBase;
 
     private const string IndexPath = "/api/index";
     private const string DailyNotePath = "/api/dailyNote";

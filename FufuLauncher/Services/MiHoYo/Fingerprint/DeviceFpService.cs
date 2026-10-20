@@ -15,7 +15,7 @@ namespace FufuLauncher.Services.MiHoYo.Fingerprint;
 
 public sealed class DeviceFpService
 {
-    private const string GetFpUrl = "https://public-data-api.mihoyo.com/device-fp/api/getFp";
+    private const string GetFpUrl = ApiEndpoints.DeviceFpUrl;
 
 
     public const string AppName = "bbs_cn";

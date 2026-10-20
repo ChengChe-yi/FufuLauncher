@@ -16,7 +16,7 @@ public sealed class TranslationService
     public static TranslationService Instance => _instance.Value;
 
     private readonly HttpClient _httpClient = new();
-    private const string ApiBaseUrl = "https://api.mymemory.translated.net/get";
+    private const string ApiBaseUrl = ApiEndpoints.MyMemoryTranslateUrl;
     private const int MaxCharsPerRequest = 500;
 
     private readonly ConcurrentDictionary<string, string> _cache = new();

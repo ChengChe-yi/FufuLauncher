@@ -26,7 +26,7 @@ public sealed partial class GachaAnalysisWindow
         contentPanel.Children.Add(new HyperlinkButton
         {
             Content = "UIGF-Org",
-            NavigateUri = new Uri("https://uigf.org/")
+            NavigateUri = new Uri(ApiEndpoints.UigfHomeUrl)
         });
 
         var badgePanel = new StackPanel

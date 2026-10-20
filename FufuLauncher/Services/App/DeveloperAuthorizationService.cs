@@ -11,7 +11,7 @@ namespace FufuLauncher.Services;
 
 public sealed class DeveloperAuthorizationService
 {
-    private const string VerifyHwidUrl = "https://dev.s1ky3.xyz/api/verify-hwid";
+    private const string VerifyHwidUrl = ApiEndpoints.DevVerifyHwidUrl;
 
     private bool _hasChecked;
     private bool _isAuthorized;

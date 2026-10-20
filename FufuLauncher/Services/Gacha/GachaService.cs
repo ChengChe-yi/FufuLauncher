@@ -46,8 +46,8 @@ public class GachaService
             Random.Shared.Next(100000, 200000).ToString(System.Globalization.CultureInfo.InvariantCulture)));
         request.Headers.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
         request.Headers.TryAddWithoutValidation("x-rpc-client_type", "5");
-        request.Headers.TryAddWithoutValidation("Referer", "https://act.mihoyo.com/");
-        request.Headers.TryAddWithoutValidation("Origin", "https://act.mihoyo.com");
+        request.Headers.TryAddWithoutValidation("Referer", ApiEndpoints.ActMihoyoBase + "/");
+        request.Headers.TryAddWithoutValidation("Origin", ApiEndpoints.ActMihoyoBase);
         request.Headers.TryAddWithoutValidation("User-Agent",
             "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1");
         using var response = await _httpClient.SendAsync(request);
@@ -92,7 +92,7 @@ public class GachaService
         request.Headers.TryAddWithoutValidation("x-rpc-app_version", AppVersion);
         request.Headers.TryAddWithoutValidation("x-rpc-client_type", "5");
         request.Headers.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
-        request.Headers.TryAddWithoutValidation("Referer", "https://app.mihoyo.com");
+        request.Headers.TryAddWithoutValidation("Referer", ApiEndpoints.AppMihoyoBase);
         request.Headers.TryAddWithoutValidation("User-Agent",
             $"Mozilla/5.0 (Windows NT 10.0; Win64; x64) miHoYoBBS/{AppVersion}");
 
@@ -119,7 +119,7 @@ public class GachaService
                 !sign.TryGetInt32(out var signType) || signType <= 0)
                 throw new GachaAuthKeyException("米游社认证接口未返回完整的祈愿认证信息。");
 
-            var url = "https://public-operation-hk4e.mihoyo.com/gacha_info/api/getGachaLog" +
+            var url = ApiEndpoints.GachaLogCnUrl +
                       $"?authkey={Uri.EscapeDataString(key.GetString()!)}&authkey_ver={authkeyVersion}" +
                       $"&sign_type={signType}&region={role.region}&lang=zh-cn";
             return GachaUrlHelper.Parse(url) ?? throw new GachaAuthKeyException("米游社返回的祈愿认证信息无效。");

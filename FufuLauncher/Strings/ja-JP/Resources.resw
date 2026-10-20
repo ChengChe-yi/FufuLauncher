@@ -445,6 +445,27 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>背景画像不透明度</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>背景画像の画質</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>背景画像のデコード解像度を調整します。低くするとメモリ使用量を抑えられます</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>最低</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>低</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>元の画像</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>閉じる時にトレイに最小化</value>
   </data>
@@ -835,6 +856,12 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>CPU使用率異常警告を有効化</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>定期的なメモリ解放を有効にする</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>オフにすると、通常のクリーンアップとゲーム中の動的メモリ解放が停止します</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>警告閾値（%）</value>
   </data>
@@ -873,6 +900,15 @@ Pull Requestを送信することは、コード開発能力を持つユーザ�
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>最新バージョンを確認してダウンロード</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>アップデートのお知らせ</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>現在のアップデートのお知らせをもう一度表示します</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>表示</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>私たちについて</value>

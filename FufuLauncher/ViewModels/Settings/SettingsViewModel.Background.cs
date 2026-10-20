@@ -19,6 +19,9 @@ public partial class SettingsViewModel
 {
     #region 背景设置
 
+    private int _backgroundQualityChangeVersion;
+    private bool _backgroundQualityLoaded;
+
     private async Task ResetBackgroundApiAsync()
     {
         CustomBackgroundApiUrl = string.Empty;
@@ -112,6 +115,9 @@ public partial class SettingsViewModel
         {
             BackgroundSlideshowInterval = 60;
         }
+
+        BackgroundQuality = await BackgroundImageQualitySettings.GetEffectiveQualityAsync();
+        _backgroundQualityLoaded = true;
     }
 
     partial void OnCustomBackgroundApiUrlChanged(string value)
@@ -143,6 +149,32 @@ public partial class SettingsViewModel
             ? GetDefaultBackgroundApiUrl(value)
             : CustomBackgroundApiUrl;
         _ = _localSettingsService.SaveSettingAsync(LocalSettingsService.BackgroundServerKey, (int)value);
+        WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
+    }
+
+    partial void OnBackgroundQualityChanged(BackgroundImageQuality value)
+    {
+        if (_isInitializing || !_backgroundQualityLoaded ||
+            !Enum.IsDefined(typeof(BackgroundImageQuality), value)) return;
+        _ = ApplyBackgroundQualityAsync(value);
+    }
+
+    private async Task ApplyBackgroundQualityAsync(BackgroundImageQuality value)
+    {
+        var version = ++_backgroundQualityChangeVersion;
+        try
+        {
+            await BackgroundImageQualitySettings.SetUserQualityAsync(value);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"保存背景图像质量失败: {ex.Message}");
+        }
+
+        if (version != _backgroundQualityChangeVersion)
+            return;
+
+        _backgroundRenderer.ClearImageCaches();
         WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
     }
 

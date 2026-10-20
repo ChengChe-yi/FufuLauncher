@@ -445,6 +445,27 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Opasitas Gambar Latar</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Kualitas Gambar Latar</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Sesuaikan resolusi dekode gambar latar; tingkat yang lebih rendah mengurangi penggunaan memori</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Sangat rendah</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Rendah</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Sedang</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>Tinggi</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Asli</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>Minimalkan ke Tray Saat Ditutup</value>
   </data>
@@ -835,6 +856,12 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Aktifkan Peringatan Penggunaan CPU Abnormal</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Aktifkan Pelepasan Memori Terjadwal</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Matikan untuk menghentikan pembersihan rutin dan pelepasan memori dinamis saat bermain game</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Ambang Peringatan (%)</value>
   </data>
@@ -873,6 +900,15 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Periksa dan unduh versi terbaru</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Pengumuman Pembaruan</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Lihat kembali pengumuman pembaruan saat ini</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>Lihat</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>Tentang Kami</value>

@@ -35,12 +35,16 @@ public sealed partial class UpdateNotificationWindow : WindowEx
     private readonly CancellationTokenSource _loadCancellation = new();
     private bool _initialHeightAdjustmentPending;
 
-    public UpdateNotificationWindow(string updateInfoUrl, bool isPreview = false)
+    public UpdateNotificationWindow(string updateInfoUrl, bool isPreview = false, bool showUpdateButton = true)
     {
         InitializeComponent();
 
         _isPreview = isPreview;
         _updateInfoUrl = updateInfoUrl;
+
+        if (!showUpdateButton)
+            UpdateFooter.Visibility = Visibility.Collapsed;
+
         RootGrid.RequestedTheme = App.GetService<IThemeSelectorService>().Theme;
 
         ExtendsContentIntoTitleBar = true;
@@ -49,6 +53,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
         TitleBarText.Text = _isPreview
             ? "UpdateNotification_PreviewTitle".GetLocalized()
             : "UpdateNotification_Title".GetLocalized();
+        Title = TitleBarText.Text;
 
         if (_isPreview)
         {

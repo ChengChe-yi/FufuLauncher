@@ -105,7 +105,7 @@ public sealed partial class LoginQrWindow
                 if (e.Response.StatusCode == 200)
                 {
                     var cookies =
-                        await PassportWebView.CoreWebView2.CookieManager.GetCookiesAsync("https://mihoyo.com");
+                        await PassportWebView.CoreWebView2.CookieManager.GetCookiesAsync(ApiEndpoints.MihoyoWebBase);
                     var cookieDict = new Dictionary<string, string>();
 
                     foreach (var cookie in cookies)

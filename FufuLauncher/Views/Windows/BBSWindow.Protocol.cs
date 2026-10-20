@@ -175,8 +175,8 @@ public sealed partial class BBSWindow
                 headers.SetHeader("DS", ds);
 
 
-                headers.SetHeader("Origin", "https://webstatic.mihoyo.com");
-                headers.SetHeader("Referer", "https://webstatic.mihoyo.com/");
+                headers.SetHeader("Origin", ApiEndpoints.WebstaticRefererUrl);
+                headers.SetHeader("Referer", ApiEndpoints.WebstaticRefererUrl + "/");
                 headers.SetHeader("Accept", "application/json, text/plain, */*");
                 headers.SetHeader("Accept-Language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
             }

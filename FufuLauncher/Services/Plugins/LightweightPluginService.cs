@@ -21,14 +21,12 @@ namespace FufuLauncher.Services
         public const string MainPluginFolderName = "FuFuPlugin";
         public const string MainPluginDllName = "FufuLauncher.UnlockerIsland.dll";
 
-        private const string ReleaseApiUrl =
-            "https://api.github.com/repos/FufuLauncher/YuanShen-UnlockerLite/releases/latest";
+        private const string ReleaseApiUrl = ApiEndpoints.UnlockerLiteReleaseApiUrl;
 
-        private const string ReleaseZipDirectUrl =
-            "https://github.com/FufuLauncher/YuanShen-UnlockerLite/releases/latest/download/YuanShen-UnlockerLite.zip";
+        private const string ReleaseZipDirectUrl = ApiEndpoints.UnlockerLiteReleaseZipUrl;
 
         private const string ZipAssetName = "YuanShen-UnlockerLite.zip";
-        private const string ProxyPrefix = "https://gh-proxy.com/";
+        private const string ProxyPrefix = ApiEndpoints.GhProxyBase + "/";
 
         private readonly ILocalSettingsService _localSettings;
         private readonly object _stateLock = new();

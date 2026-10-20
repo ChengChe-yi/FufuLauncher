@@ -1266,6 +1266,32 @@
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE91B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BackgroundQualityTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BackgroundQualityCaption}" />
+                                    </StackPanel>
+                                    <ComboBox Grid.Column="2"
+                                              Style="{StaticResource RowComboBoxStyle}"
+                                              SelectedIndex="{x:Bind ViewModel.BackgroundQuality, Mode=TwoWay, Converter={StaticResource EnumToIntConverter}}">
+                                        <ComboBoxItem Content="{helpers:Loc Key=BackgroundQualityUltraLow}" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=BackgroundQualityLow}" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=BackgroundQualityMedium}" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=BackgroundQualityHigh}" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=BackgroundQualityOriginal}" />
+                                    </ComboBox>
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE91B;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
                                                    Text="{helpers:Loc Key=BgImageOpacityTitle}" />
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
@@ -2571,6 +2597,25 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE950;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=MemoryReleaseTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=MemoryReleaseCaption}" />
+                                    </StackPanel>
+                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                  IsOn="{x:Bind ViewModel.IsMemoryReleaseEnabled, Mode=TwoWay}" />
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE72E;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}"
@@ -2797,6 +2842,27 @@
                                             Style="{StaticResource RowButtonStyle}"
                                             Content="{helpers:Loc Key=SectionUpdate}"
                                             Command="{x:Bind ViewModel.CheckUpdateCommand}" />
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE789;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=UpdateAnnouncementTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=UpdateAnnouncementCaption}" />
+                                    </StackPanel>
+                                    <Button Grid.Column="2"
+                                            Style="{StaticResource RowButtonStyle}"
+                                            Content="{helpers:Loc Key=UpdateAnnouncementViewButton}"
+                                            Click="OnOpenUpdateAnnouncementClick" />
                                 </Grid>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />

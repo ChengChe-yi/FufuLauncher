@@ -285,6 +285,27 @@
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>पृष्ठभूमि छवि अपारदर्शिता</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>पृष्ठभूमि छवि गुणवत्ता</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>पृष्ठभूमि छवियों का डिकोड रिज़ॉल्यूशन समायोजित करें; कम स्तर मेमोरी उपयोग घटाते हैं</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>बहुत कम</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>कम</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>मध्यम</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>उच्च</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>मूल</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>बंद करने पर ट्रे में न्यूनतम करें</value>
   </data>
@@ -747,6 +768,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>असामान्य CPU उपयोग चेतावनी सक्षम करें</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>निर्धारित मेमोरी रिलीज़ सक्षम करें</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>बंद करने पर नियमित सफ़ाई और गेम के दौरान गतिशील मेमोरी रिलीज़ बंद हो जाएगी</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>चेतावनी सीमा (%)</value>
   </data>
@@ -785,6 +812,15 @@
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>नवीनतम संस्करण की जाँच करें और डाउनलोड करें</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>अपडेट घोषणा</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>वर्तमान अपडेट घोषणा को फिर से देखें</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>देखें</value>
   </data>
   <data name="UseThirdPartyCDNTitle" xml:space="preserve">
     <value>अपडेट के लिए तृतीय-पक्ष CDN का उपयोग करें</value>

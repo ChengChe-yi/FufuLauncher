@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
+using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
@@ -31,7 +32,7 @@ public sealed partial class SettingsPage
 
         if (result == ContentDialogResult.Primary)
         {
-            _ = Windows.System.Launcher.LaunchUriAsync(new Uri("https://github.com/Marchen-orz/MiyoQian"));
+            _ = Windows.System.Launcher.LaunchUriAsync(new Uri(ApiEndpoints.MiyoQianUrl));
         }
     }
 

@@ -53,8 +53,7 @@ public sealed partial class PluginPage
 
     private async void OnGetPluginsClick(object sender, RoutedEventArgs e)
     {
-        string urlLatest =
-            "https://gh-proxy.com/https://github.com/CodeCubist/FufuLauncher--Plugins/blob/main/FuFuPlugin.zip";
+        string urlLatest = ApiEndpoints.PluginProxyUrl;
 
         var stackPanel = new StackPanel { Spacing = 10 };
 
@@ -197,7 +196,7 @@ public sealed partial class PluginPage
             return;
         }
 
-        var rawGithubUrl = proxyUrl.Replace("https://gh-proxy.com/", "");
+        var rawGithubUrl = proxyUrl.Replace(ApiEndpoints.GhProxyBase + "/", "");
 
         if (rawGithubUrl.Contains("github.com") && rawGithubUrl.Contains("/blob/") &&
             !rawGithubUrl.Contains("?raw=true"))

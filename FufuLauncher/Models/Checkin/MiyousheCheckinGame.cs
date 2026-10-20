@@ -3,6 +3,8 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
+using FufuLauncher.Constants;
+
 namespace FufuLauncher.Models;
 
 public sealed record MiyousheCheckinGame(
@@ -16,23 +18,23 @@ public sealed record MiyousheCheckinGame(
     public string SettingKey => $"GameCheckinEnabled_{GameBiz}";
 
 
-    private const string LunaApi = "https://api-takumi.mihoyo.com/event/luna";
+    private const string LunaApi = ApiEndpoints.LunaEventApiBase;
 
     public static IReadOnlyList<MiyousheCheckinGame> SupportedGames
     {
         get;
     } =
     [
-        new("hk4e_cn", "原神", "e202311201442471", LunaApi, "https://act.mihoyo.com/", "hk4e"),
-        new("hkrpg_cn", "崩坏：星穹铁道", "e202304121516551", LunaApi, "https://act.mihoyo.com/"),
-        new("nap_cn", "绝区零", "e202406242138391", "https://act-nap-api.mihoyo.com/event/luna/zzz",
-            "https://act.mihoyo.com/", "zzz"),
+        new("hk4e_cn", "原神", "e202311201442471", LunaApi, ApiEndpoints.ActMihoyoBase + "/", "hk4e"),
+        new("hkrpg_cn", "崩坏：星穹铁道", "e202304121516551", LunaApi, ApiEndpoints.ActMihoyoBase + "/"),
+        new("nap_cn", "绝区零", "e202406242138391", ApiEndpoints.ActNapApiBase + "/event/luna/zzz",
+            ApiEndpoints.ActMihoyoBase + "/", "zzz"),
         new("bh3_cn", "崩坏3", "e202306201626331", LunaApi,
-            "https://webstatic.mihoyo.com/bbs/event/signin/bh3/index.html?act_id=e202306201626331"),
+            ApiEndpoints.WebstaticSigninBh3Url),
         new("bh2_cn", "崩坏学园2", "e202203291431091", LunaApi,
-            "https://webstatic.mihoyo.com/bbs/event/signin/bh2/index.html?act_id=e202203291431091"),
+            ApiEndpoints.WebstaticSigninBh2Url),
         new("nxx_cn", "未定事件簿", "e202202251749321", LunaApi,
-            "https://webstatic.mihoyo.com/bbs/event/signin/nxx/index.html?act_id=e202202251749321")
+            ApiEndpoints.WebstaticSigninNxxUrl)
     ];
 
     public static bool IsLoginExpired(int retCode) => retCode is -100 or 10001;

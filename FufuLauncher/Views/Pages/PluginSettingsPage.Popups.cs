@@ -112,7 +112,7 @@ public sealed partial class PluginSettingsPage
 
             openLinkBtn.Click += async (s, args) =>
             {
-                await Launcher.LaunchUriAsync(new Uri("https://github.com/FufuLauncher/FufuLauncher/pulls"));
+                await Launcher.LaunchUriAsync(new Uri(ApiEndpoints.GithubPullsUrl));
             };
 
             contentStackPanel.Children.Add(textBlock);

@@ -37,7 +37,7 @@ public sealed class CommunityApiException(
 
 public sealed partial class MiyousheClient : IDisposable
 {
-    private const string BaseUrl = "https://bbs-api.miyoushe.com/";
+    private const string BaseUrl = ApiEndpoints.MiyousheBbsApiBase + "/";
     private const string Version = "2.115.0";
     private const string K2Salt = "09d39d16528ca0e4900a39ecc07d5062";
     private const string X4Salt = "xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs";
@@ -303,15 +303,15 @@ public sealed partial class MiyousheClient : IDisposable
                     ? ""
                     : "?" + string.Join("&", query.OrderBy(p => p.Key, StringComparer.Ordinal)
                         .Select(p => Uri.EscapeDataString(p.Key) + "=" + Uri.EscapeDataString(p.Value)))));
-            request.Headers.Referrer = new("https://bbs.mihoyo.com/");
+            request.Headers.Referrer = new(ApiEndpoints.BbsMihoyoBase + "/");
             request.Headers.TryAddWithoutValidation("User-Agent",
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) FufuLauncher/1.7");
             if (profile != Profile.Web)
             {
                 if (profile == Profile.WebSign)
                 {
-                    request.Headers.Referrer = new("https://www.miyoushe.com/");
-                    request.Headers.TryAddWithoutValidation("Origin", "https://www.miyoushe.com");
+                    request.Headers.Referrer = new(ApiEndpoints.MiyousheWebBase + "/");
+                    request.Headers.TryAddWithoutValidation("Origin", ApiEndpoints.MiyousheWebBase);
                     request.Headers.TryAddWithoutValidation("x-rpc-app_version", WebVersion);
                     request.Headers.TryAddWithoutValidation("x-rpc-client_type", "4");
                     request.Headers.TryAddWithoutValidation("DS", CreateDs(WebSalt, true, query, body ?? ""));

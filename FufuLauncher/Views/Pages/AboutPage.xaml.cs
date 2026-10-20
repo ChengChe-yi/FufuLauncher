@@ -75,8 +75,8 @@ public sealed partial class AboutPage : Page
         {
             string[] apiUrls = new[]
             {
-                "https://api.github.com/repos/FufuLauncher/FufuLauncher/contributors",
-                "https://api.github.com/repos/FufuLauncher/FufuLauncher.UnlockerIsland/contributors"
+                ApiEndpoints.FufuLauncherContributorsUrl,
+                ApiEndpoints.UnlockerIslandContributorsUrl
             };
 
             var allContributors = new Dictionary<string, ContributorItem>(StringComparer.OrdinalIgnoreCase);
@@ -147,8 +147,8 @@ public sealed partial class AboutPage : Page
             {
                 owner = new ContributorItem
                 {
-                    Name = "CodeCubist", Url = "https://github.com/CodeCubist",
-                    AvatarUrl = "https://avatars.githubusercontent.com/u/249788103?v=4", Contributions = 999
+                    Name = "CodeCubist", Url = ApiEndpoints.GithubWebBase + "/CodeCubist",
+                    AvatarUrl = ApiEndpoints.GithubAvatarsBase + "/u/249788103?v=4", Contributions = 999
                 };
             }
 
@@ -216,7 +216,7 @@ public sealed partial class AboutPage : Page
                         if (isBioLoaded) return;
                         try
                         {
-                            var userJson = await GetJsonFromUrl($"https://api.github.com/users/{contributor.Name}");
+                            var userJson = await GetJsonFromUrl($"{ApiEndpoints.GithubApiBase}/users/{contributor.Name}");
                             string bioStr = "AboutPage_NoBio".GetLocalized();
                             if (userJson.RootElement.TryGetProperty("bio", out JsonElement bioElement) &&
                                 bioElement.ValueKind != JsonValueKind.Null)

@@ -43,7 +43,7 @@ public sealed partial class BBSWindow
         var manager = BBSWebView.CoreWebView2.CookieManager;
         if (BBSWebView.Source == null || BBSWebView.Source.ToString() == "about:blank")
         {
-            var cookies = await manager.GetCookiesAsync("https://webstatic.mihoyo.com");
+            var cookies = await manager.GetCookiesAsync(ApiEndpoints.WebstaticRefererUrl);
             foreach (var c in cookies) manager.DeleteCookie(c);
         }
 

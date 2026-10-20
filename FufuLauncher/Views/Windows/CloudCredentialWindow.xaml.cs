@@ -49,7 +49,7 @@ public sealed partial class CloudCredentialWindow : Window
                 CoreWebView2WebResourceContext.All);
             CloudWebView.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
 
-            CloudWebView.CoreWebView2.Navigate("https://ys.mihoyo.com/cloud/#/");
+            CloudWebView.CoreWebView2.Navigate(ApiEndpoints.CloudGamePageUrl);
         }
         catch (Exception ex)
         {

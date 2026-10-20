@@ -1,110 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -117,6 +12,63 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Avatar_Batch_Fail_Title" xml:space="preserve">
+    <value>Batch-Speichern fehlgeschlagen</value>
+  </data>
+  <data name="Avatar_Batch_Success" xml:space="preserve">
+    <value>Alle Avatar-Größen wurden im Batch erzeugt und überschrieben</value>
+  </data>
+  <data name="Avatar_Clear_Fail_Title" xml:space="preserve">
+    <value>Löschen fehlgeschlagen</value>
+  </data>
+  <data name="Avatar_Clear_Success_Format" xml:space="preserve">
+    <value>Avatar der Größe {0}x{0} gelöscht</value>
+  </data>
+  <data name="Avatar_Crop_Success" xml:space="preserve">
+    <value>Avatar zugeschnitten und erfolgreich gespeichert</value>
+  </data>
+  <data name="Avatar_EditNotFound_Content" xml:space="preserve">
+    <value>Kein Avatar zum Bearbeiten gefunden</value>
+  </data>
+  <data name="Avatar_EditNotFound_Title" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="Avatar_ImportFail_Title" xml:space="preserve">
+    <value>Import fehlgeschlagen</value>
+  </data>
+  <data name="Avatar_LoadFail_Title" xml:space="preserve">
+    <value>Laden fehlgeschlagen</value>
+  </data>
+  <data name="Avatar_SaveFail_Title" xml:space="preserve">
+    <value>Speichern fehlgeschlagen</value>
+  </data>
+  <data name="Fps_CompatWarning_Content" xml:space="preserve">
+    <value>Wenn die KI-Frame-Generierung von NVIDIA-RTX-40er-Karten (oder neuer) aktiviert ist oder Framerate-Anzeigeprogramme wie RTSS oder MSI Afterburner verwendet werden, kann das Spiel einfrieren oder nicht mehr normal starten.</value>
+  </data>
+  <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
+    <value>Diese Warnung nicht mehr anzeigen</value>
+  </data>
+  <data name="Fps_CompatWarning_Title" xml:space="preserve">
+    <value>Kompatibilitätswarnung</value>
+  </data>
+  <data name="Fps_HashMismatch_Content" xml:space="preserve">
+    <value>Der Hash des FPS-Anzeige-Plugins stimmt nicht überein. Es könnte manipuliert oder beschädigt worden sein. Bitte installiere den Launcher neu.</value>
+  </data>
+  <data name="Fps_Missing_Content" xml:space="preserve">
+    <value>Die DLL-Datei des FPS-Anzeige-Plugins wurde nicht gefunden. Möglicherweise ist es nicht installiert, wurde versehentlich gelöscht oder von Antivirensoftware blockiert. Bitte verwenden Sie im Funktionsmenü „FPS-Anzeige-Plugin reparieren“ und versuchen Sie es erneut.</value>
+  </data>
+  <data name="Fps_Missing_Title" xml:space="preserve">
+    <value>FPS-Plugin fehlt</value>
+  </data>
+  <data name="Fps_Repair_Fail_Title" xml:space="preserve">
+    <value>Reparatur fehlgeschlagen</value>
+  </data>
+  <data name="Fps_Repair_Success" xml:space="preserve">
+    <value>Das FPS-Anzeige-Plugin wurde erfolgreich repariert und installiert</value>
+  </data>
+  <data name="Fps_Repair_Title" xml:space="preserve">
+    <value>FPS-Plugin wird repariert</value>
+  </data>
   <data name="LanguageChangedTitle" xml:space="preserve">
     <value>Sprache geändert</value>
   </data>
@@ -137,6 +89,109 @@
   </data>
   <data name="LanguageSelection_Selected" xml:space="preserve">
     <value>Ausgewählt</value>
+  </data>
+  <data name="PR_Description" xml:space="preserve">
+    <value>Dieses Projekt wird derzeit von einem einzelnen Entwickler (CodeCubist) gepflegt.
+Wir verfolgen eine Entwicklungsrichtung, die sich konsequent an den Problemen der Spieler orientiert, und treiben Updates offen, transparent und effizient voran.
+Das Einreichen von Pull Requests ist der wichtigste Weg für Nutzer mit Programmierkenntnissen, die Entwicklung voranzutreiben, Strukturen zu optimieren und die Wartungslast des Projekts zu teilen.
+Wenn du helfen kannst, besuche über die Schaltfläche unten das Code-Repository und reiche deinen Beitrag ein.</value>
+  </data>
+  <data name="PR_GitHubButton" xml:space="preserve">
+    <value>GitHub-Repository besuchen und Pull Request einreichen</value>
+  </data>
+  <data name="PR_Window_Title" xml:space="preserve">
+    <value>Pull Request</value>
+  </data>
+  <data name="Plugin_ArchWarning_Content" xml:space="preserve">
+    <value>Dein Computer basiert möglicherweise auf ARM-Architektur. Die Injektionsfunktion ist auf ARM-Computern nicht verfügbar. Möchtest du die Aktivierung trotzdem fortsetzen?</value>
+  </data>
+  <data name="Plugin_ArchWarning_Continue" xml:space="preserve">
+    <value>Weiter aktivieren</value>
+  </data>
+  <data name="Plugin_ArchWarning_Title" xml:space="preserve">
+    <value>Architektur-Kompatibilitätswarnung</value>
+  </data>
+  <data name="Plugin_Corrupted_Content" xml:space="preserve">
+    <value>Die Plugin-Dateien sind beschädigt.
+Dies liegt meist daran, dass das Plugin von der Antivirensoftware (z.B. Windows Defender) fälschlich blockiert oder beschädigt wurde.
+
+Empfehlungen:
+1. Füge das Softwareverzeichnis zur Whitelist der Antivirensoftware hinzu
+2. Lade das Plugin auf dieser Seite neu herunter und installiere es</value>
+  </data>
+  <data name="Plugin_Corrupted_Title" xml:space="preserve">
+    <value>Plugin möglicherweise beschädigt</value>
+  </data>
+  <data name="Plugin_Download_BackupLine" xml:space="preserve">
+    <value>Ersatzleitung</value>
+  </data>
+  <data name="Plugin_Download_Connecting" xml:space="preserve">
+    <value>Verbindungsaufbau...</value>
+  </data>
+  <data name="Plugin_Download_Extracting" xml:space="preserve">
+    <value>Wird entpackt und installiert...</value>
+  </data>
+  <data name="Plugin_Download_Fail_Content_Format" xml:space="preserve">
+    <value>Installation fehlgeschlagen: {0}</value>
+  </data>
+  <data name="Plugin_Download_Fallback" xml:space="preserve">
+    <value>Verbindung fehlgeschlagen, versuche Backup-Leitung...</value>
+  </data>
+  <data name="Plugin_Download_MainLine" xml:space="preserve">
+    <value>Hauptleitung</value>
+  </data>
+  <data name="Plugin_Download_Manual" xml:space="preserve">
+    <value>Manueller Download</value>
+  </data>
+  <data name="Plugin_Download_Progress_Format" xml:space="preserve">
+    <value>{0}-Leitung lädt herunter... {1}%</value>
+  </data>
+  <data name="Plugin_Download_Success" xml:space="preserve">
+    <value>Plugin installiert und aktualisiert</value>
+  </data>
+  <data name="Plugin_Download_Title" xml:space="preserve">
+    <value>Plugin wird abgerufen</value>
+  </data>
+  <data name="Plugin_FileNotFound" xml:space="preserve">
+    <value>Datei nicht gefunden. Bitte stelle sicher, dass die Launcher-Dateien vollständig sind.</value>
+  </data>
+  <data name="Plugin_MainMissing_Content" xml:space="preserve">
+    <value>Die DLL-Datei des Haupt-Plugins wurde nicht gefunden. Das Plugin ist möglicherweise nicht installiert, wurde versehentlich gelöscht oder von der Antivirensoftware blockiert. Bitte lade das Plugin erneut herunter oder füge das Launcher-Verzeichnis zur Antivirus-Whitelist hinzu und versuche es erneut.</value>
+  </data>
+  <data name="Plugin_MainMissing_Title" xml:space="preserve">
+    <value>Haupt-Plugin fehlt</value>
+  </data>
+  <data name="Preset_Create_Placeholder" xml:space="preserve">
+    <value>Neuen Vorgabenamen eingeben</value>
+  </data>
+  <data name="Preset_Create_Title" xml:space="preserve">
+    <value>Neue Vorgabe erstellen</value>
+  </data>
+  <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
+    <value>Löschen bestätigen</value>
+  </data>
+  <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
+    <value>Möchtest du die Vorgabe „{0}“ wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden!</value>
+  </data>
+  <data name="Preset_Locked_Content_Format" xml:space="preserve">
+    <value>Sperrgrund: {0}
+
+Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe auf den aktuellen Plugin-Hash aktualisiert, wodurch die Vorgabe wieder entsperrt wird. Fortfahren?</value>
+  </data>
+  <data name="Preset_Locked_Continue" xml:space="preserve">
+    <value>Fortfahren und entsperren</value>
+  </data>
+  <data name="Preset_Locked_Title" xml:space="preserve">
+    <value>Konfigurationsvorgabe gesperrt</value>
+  </data>
+  <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve">
+    <value>Zurücksetzen bestätigen</value>
+  </data>
+  <data name="Preset_ResetAll_Content" xml:space="preserve">
+    <value>Alle Vorgaben des aktuellen Plugins entfernen und die Standardwerte erneut herunterladen? Diese Aktion kann nicht rückgängig gemacht werden!</value>
+  </data>
+  <data name="Preset_ResetAll_Title" xml:space="preserve">
+    <value>Alle Vorgaben zurücksetzen</value>
   </data>
   <data name="RestartNowBtn" xml:space="preserve">
     <value>Jetzt neustarten</value>
@@ -239,12 +294,6 @@
   </data>
   <data name="StoragePath_RestartMessage" xml:space="preserve">
     <value>Der neue Speicherpfad wurde in die Konfiguration übernommen. Er wird erst nach einem Neustart vollständig wirksam; bis dahin verwenden einige Funktionen weiterhin den bisherigen Pfad. Jetzt neu starten?</value>
-  </data>
-  <data name="Restart_FailedTitle" xml:space="preserve">
-    <value>Automatischer Neustart nicht möglich</value>
-  </data>
-  <data name="Restart_FailedMessage" xml:space="preserve">
-    <value>Der automatische Neustart ist fehlgeschlagen. Deine Einstellungen wurden gespeichert; bitte starte die Anwendung manuell neu, damit die Änderungen wirksam werden.</value>
   </data>
   <data name="StoragePath_Error_Empty" xml:space="preserve">
     <value>Der Speicherpfad ist leer: {0} kann nicht erstellt werden, die Einstellung wurde nicht gespeichert. Wählen Sie einen Ordner, der auf einem lokalen Datenträger vorhanden ist.</value>
@@ -396,6 +445,27 @@
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Deckkraft des Hintergrundbildes</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Qualität des Hintergrundbilds</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Legt die Dekodierungsauflösung von Hintergrundbildern fest; niedrigere Stufen sparen Arbeitsspeicher</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Sehr niedrig</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Niedrig</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Mittel</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>Hoch</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>Beim Schließen in die Taskleiste minimieren</value>
   </data>
@@ -404,24 +474,6 @@
   </data>
   <data name="MinWindowSizeLimitTitle" xml:space="preserve">
     <value>Minimale Fenstergröße</value>
-  </data>
-  <data name="NotificationPositionTitle" xml:space="preserve">
-    <value>Position des Benachrichtigungs-Popups</value>
-  </data>
-  <data name="NotificationPositionCaption" xml:space="preserve">
-    <value>Position des Benachrichtigungs-Popups im Fenster festlegen</value>
-  </data>
-  <data name="PositionBottomRight" xml:space="preserve">
-    <value>Unten rechts</value>
-  </data>
-  <data name="PositionTopRight" xml:space="preserve">
-    <value>Oben rechts</value>
-  </data>
-  <data name="PositionTopLeft" xml:space="preserve">
-    <value>Oben links</value>
-  </data>
-  <data name="PositionBottomLeft" xml:space="preserve">
-    <value>Unten links</value>
   </data>
   <data name="GameNewsTextColorTitle" xml:space="preserve">
     <value>Textfarbe &amp; Deckkraft der Spielnews-Karte</value>
@@ -476,9 +528,6 @@
   </data>
   <data name="LangPt" xml:space="preserve">
     <value>Portugiesisch (Brasilien)</value>
-  </data>
-  <data name="LangHi" xml:space="preserve">
-    <value>Hindi (हिन्दी)</value>
   </data>
   <data name="LangDefault" xml:space="preserve">
     <value>System-Standardsprache verwenden</value>
@@ -576,57 +625,6 @@
   <data name="InjectionCaption" xml:space="preserve">
     <value>Die integrierte Injektion lädt Plugins über die Launcher-eigene Engine; die eigenständige Injektion verwendet ein separates Programm zum Starten des Spiels und Laden der Plugins – geeignet, wenn der integrierte Modus nicht kompatibel ist.</value>
   </data>
-  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
-    <value>Mit einem miHoYo-/HoyoLAB-Konto direkt im Spiel anmelden</value>
-  </data>
-  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
-    <value>Beim Start des Spiels wird automatisch das ausgewählte miHoYo- oder HoyoLAB-Konto verwendet, sodass keine erneute Eingabe von Benutzername und Passwort im Spiel erforderlich ist.</value>
-  </data>
-  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
-    <value>Kann nicht aktiviert werden</value>
-  </data>
-  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
-    <value>Bitte melden Sie sich zuerst in den Kontoeinstellungen bei einem miHoYo- oder HoyoLAB-Konto an.</value>
-  </data>
-  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
-    <value>Kontoanmeldung abgelaufen</value>
-  </data>
-  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
-    <value>Sie müssen sich mit dem aktuellen Konto erneut anmelden, um diese Funktion nutzen zu können.</value>
-  </data>
-  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
-    <value>Kein Spiel ausgewählt</value>
-  </data>
-  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
-    <value>Bitte wählen Sie zunächst auf der Startseite den Installationspfad des Spiels aus.</value>
-  </data>
-  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
-    <value>Aktiviert</value>
-  </data>
-  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
-    <value>Beim nächsten Spielstart wird automatisch das miHoYo-/HoyoLAB-Konto verwendet, sodass keine erneute Eingabe von Zugangsdaten erforderlich ist.</value>
-  </data>
-  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
-    <value>Kann nicht aktiviert werden</value>
-  </data>
-  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
-    <value>Dieses Konto kann diese Funktion vorübergehend nicht nutzen. Bitte überprüfen Sie den Anmeldestatus und versuchen Sie es erneut.</value>
-  </data>
-  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
-    <value>Vorübergehend nicht verfügbar</value>
-  </data>
-  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
-    <value>Netzwerk- oder Dienstfehler. Bitte versuchen Sie es später erneut.</value>
-  </data>
-  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
-    <value>Konto und Server stimmen nicht überein</value>
-  </data>
-  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
-    <value>Das aktuell ausgewählte HoyoLAB-Konto für internationale Server kann nicht zum Starten des chinesischen Spiels verwendet werden. Bitte wechseln Sie zu einem Konto der entsprechenden Region.</value>
-  </data>
-  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
-    <value>Das aktuell ausgewählte miHoYo-Konto für chinesische Server kann nicht zum Starten des internationalen Spiels verwendet werden. Bitte wechseln Sie zu einem Konto der entsprechenden Region.</value>
-  </data>
   <data name="RedeemReminderTitle" xml:space="preserve">
     <value>Code-Erinnerung</value>
   </data>
@@ -677,6 +675,9 @@
   </data>
   <data name="ServerGlobal" xml:space="preserve">
     <value>Globaler Server (Teyvat)</value>
+  </data>
+  <data name="OfficialBgApiTitle" xml:space="preserve">
+    <value>Offizielle Hintergrund-API</value>
   </data>
   <data name="OfficialBgApiCaption" xml:space="preserve">
     <value>Leer lassen, um die Standard-API des aktuellen Servers zu verwenden. Eine benutzerdefinierte API muss dieselbe Datenstruktur wie die offizielle getAllGameBasicInfo zurückgeben.</value>
@@ -792,18 +793,6 @@
   <data name="BatchCheckinCaption" xml:space="preserve">
     <value>Wenn aktiviert, wird der Check-in für alle ausgewählten Konten ausgeführt, andernfalls nur für das aktuelle Konto.</value>
   </data>
-  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
-    <value>Wird konfiguriert: {0} ({1})</value>
-  </data>
-  <data name="Checkin_SelectAccount" xml:space="preserve">
-    <value>Bitte wähle unten ein Konto aus, um dessen Check-in-Optionen zu konfigurieren</value>
-  </data>
-  <data name="Checkin_AccountListCaption" xml:space="preserve">
-    <value>Wähle die Konten für den Batch-Check-in aus, klicke auf ein Konto zum Bearbeiten der Optionen und ziehe es, um die Reihenfolge anzupassen</value>
-  </data>
-  <data name="Checkin_DragToReorder" xml:space="preserve">
-    <value>Ziehen, um die Check-in-Reihenfolge zu ändern</value>
-  </data>
   <data name="AccountListTitle" xml:space="preserve">
     <value>Kontoliste</value>
   </data>
@@ -867,6 +856,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>CPU-Überlastwarnung aktivieren</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Zeitgesteuerte Speicherfreigabe aktivieren</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Deaktiviert die regelmäßige Bereinigung und die dynamische Speicherfreigabe während Spielen</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Warnschwellenwert (%)</value>
   </data>
@@ -906,11 +901,14 @@
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Prüfe auf die neueste Version und lade sie herunter. Der Updater wird beim Klicken gestartet.</value>
   </data>
-  <data name="UseThirdPartyCDNTitle" xml:space="preserve">
-    <value>Updates über Drittanbieter-CDN herunterladen</value>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Update-Ankündigung</value>
   </data>
-  <data name="UseThirdPartyCDNCaption" xml:space="preserve">
-    <value>Beschleunigt den Download über Drittanbieter-CDN-Knoten. Deaktivieren, um direkt von GitHub herunterzuladen.</value>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Die aktuelle Update-Ankündigung erneut anzeigen</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>Anzeigen</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>Über uns</value>
@@ -1029,33 +1027,6 @@
   <data name="FpsPluginEnabledLabel" xml:space="preserve">
     <value>FPS-Plugin aktiviert</value>
   </data>
-  <data name="Fps_CompatWarning_Content" xml:space="preserve">
-    <value>Wenn die KI-Frame-Generierung von NVIDIA-RTX-40er-Karten (oder neuer) aktiviert ist oder Framerate-Anzeigeprogramme wie RTSS oder MSI Afterburner verwendet werden, kann das Spiel einfrieren oder nicht mehr normal starten.</value>
-  </data>
-  <data name="Fps_CompatWarning_DontShow" xml:space="preserve">
-    <value>Diese Warnung nicht mehr anzeigen</value>
-  </data>
-  <data name="Fps_CompatWarning_Title" xml:space="preserve">
-    <value>Kompatibilitätswarnung</value>
-  </data>
-  <data name="Fps_HashMismatch_Content" xml:space="preserve">
-    <value>Der Hash des FPS-Anzeige-Plugins stimmt nicht überein. Es könnte manipuliert oder beschädigt worden sein. Bitte installiere den Launcher neu.</value>
-  </data>
-  <data name="Fps_Missing_Content" xml:space="preserve">
-    <value>Die DLL-Datei des FPS-Anzeige-Plugins wurde nicht gefunden. Möglicherweise ist es nicht installiert, wurde versehentlich gelöscht oder von Antivirensoftware blockiert. Bitte verwenden Sie im Funktionsmenü „FPS-Anzeige-Plugin reparieren“ und versuchen Sie es erneut.</value>
-  </data>
-  <data name="Fps_Missing_Title" xml:space="preserve">
-    <value>FPS-Plugin fehlt</value>
-  </data>
-  <data name="Fps_Repair_Fail_Title" xml:space="preserve">
-    <value>Reparatur fehlgeschlagen</value>
-  </data>
-  <data name="Fps_Repair_Success" xml:space="preserve">
-    <value>Das FPS-Anzeige-Plugin wurde erfolgreich repariert und installiert</value>
-  </data>
-  <data name="Fps_Repair_Title" xml:space="preserve">
-    <value>FPS-Plugin wird repariert</value>
-  </data>
   <data name="AvatarPluginEnabledLabel" xml:space="preserve">
     <value>Avatar-Plugin aktiviert</value>
   </data>
@@ -1112,36 +1083,6 @@
   </data>
   <data name="AvatarFormatsNote" xml:space="preserve">
     <value>Unterstützte Formate: PNG, JPG, BMP, WEBP. Wird beim nächsten Spielstart wirksam.</value>
-  </data>
-  <data name="Avatar_Batch_Fail_Title" xml:space="preserve">
-    <value>Batch-Speichern fehlgeschlagen</value>
-  </data>
-  <data name="Avatar_Batch_Success" xml:space="preserve">
-    <value>Alle Avatar-Größen wurden im Batch erzeugt und überschrieben</value>
-  </data>
-  <data name="Avatar_Clear_Fail_Title" xml:space="preserve">
-    <value>Löschen fehlgeschlagen</value>
-  </data>
-  <data name="Avatar_Clear_Success_Format" xml:space="preserve">
-    <value>Avatar der Größe {0}x{0} gelöscht</value>
-  </data>
-  <data name="Avatar_Crop_Success" xml:space="preserve">
-    <value>Avatar zugeschnitten und erfolgreich gespeichert</value>
-  </data>
-  <data name="Avatar_EditNotFound_Content" xml:space="preserve">
-    <value>Kein Avatar zum Bearbeiten gefunden</value>
-  </data>
-  <data name="Avatar_EditNotFound_Title" xml:space="preserve">
-    <value>Hinweis</value>
-  </data>
-  <data name="Avatar_ImportFail_Title" xml:space="preserve">
-    <value>Import fehlgeschlagen</value>
-  </data>
-  <data name="Avatar_LoadFail_Title" xml:space="preserve">
-    <value>Laden fehlgeschlagen</value>
-  </data>
-  <data name="Avatar_SaveFail_Title" xml:space="preserve">
-    <value>Speichern fehlgeschlagen</value>
   </data>
   <data name="CropAvatarTitle" xml:space="preserve">
     <value>Avatar anpassen</value>
@@ -1262,65 +1203,6 @@
   </data>
   <data name="Plugin_DumpOffsets" xml:space="preserve">
     <value>DumpOffsets (DEV)</value>
-  </data>
-  <data name="Plugin_ArchWarning_Content" xml:space="preserve">
-    <value>Dein Computer basiert möglicherweise auf ARM-Architektur. Die Injektionsfunktion ist auf ARM-Computern nicht verfügbar. Möchtest du die Aktivierung trotzdem fortsetzen?</value>
-  </data>
-  <data name="Plugin_ArchWarning_Continue" xml:space="preserve">
-    <value>Weiter aktivieren</value>
-  </data>
-  <data name="Plugin_ArchWarning_Title" xml:space="preserve">
-    <value>Architektur-Kompatibilitätswarnung</value>
-  </data>
-  <data name="Plugin_Corrupted_Content" xml:space="preserve">
-    <value>Die Plugin-Dateien sind beschädigt.
-Dies liegt meist daran, dass das Plugin von der Antivirensoftware (z.B. Windows Defender) fälschlich blockiert oder beschädigt wurde.
-
-Empfehlungen:
-1. Füge das Softwareverzeichnis zur Whitelist der Antivirensoftware hinzu
-2. Lade das Plugin auf dieser Seite neu herunter und installiere es</value>
-  </data>
-  <data name="Plugin_Corrupted_Title" xml:space="preserve">
-    <value>Plugin möglicherweise beschädigt</value>
-  </data>
-  <data name="Plugin_Download_Connecting" xml:space="preserve">
-    <value>Verbindungsaufbau...</value>
-  </data>
-  <data name="Plugin_Download_Extracting" xml:space="preserve">
-    <value>Wird entpackt und installiert...</value>
-  </data>
-  <data name="Plugin_Download_Fail_Content_Format" xml:space="preserve">
-    <value>Installation fehlgeschlagen: {0}</value>
-  </data>
-  <data name="Plugin_Download_Fallback" xml:space="preserve">
-    <value>Verbindung fehlgeschlagen, versuche Backup-Leitung...</value>
-  </data>
-  <data name="Plugin_Download_MainLine" xml:space="preserve">
-    <value>Hauptleitung</value>
-  </data>
-  <data name="Plugin_Download_BackupLine" xml:space="preserve">
-    <value>Ersatzleitung</value>
-  </data>
-  <data name="Plugin_Download_Manual" xml:space="preserve">
-    <value>Manueller Download</value>
-  </data>
-  <data name="Plugin_Download_Progress_Format" xml:space="preserve">
-    <value>{0}-Leitung lädt herunter... {1}%</value>
-  </data>
-  <data name="Plugin_Download_Success" xml:space="preserve">
-    <value>Plugin installiert und aktualisiert</value>
-  </data>
-  <data name="Plugin_Download_Title" xml:space="preserve">
-    <value>Plugin wird abgerufen</value>
-  </data>
-  <data name="Plugin_FileNotFound" xml:space="preserve">
-    <value>Datei nicht gefunden. Bitte stelle sicher, dass die Launcher-Dateien vollständig sind.</value>
-  </data>
-  <data name="Plugin_MainMissing_Content" xml:space="preserve">
-    <value>Die DLL-Datei des Haupt-Plugins wurde nicht gefunden. Das Plugin ist möglicherweise nicht installiert, wurde versehentlich gelöscht oder von der Antivirensoftware blockiert. Bitte lade das Plugin erneut herunter oder füge das Launcher-Verzeichnis zur Antivirus-Whitelist hinzu und versuche es erneut.</value>
-  </data>
-  <data name="Plugin_MainMissing_Title" xml:space="preserve">
-    <value>Haupt-Plugin fehlt</value>
   </data>
   <data name="PageTitle_GameSettings" xml:space="preserve">
     <value>Spieleinstellungen</value>
@@ -1469,12 +1351,6 @@ Oder Startbefehl kopieren: Vollständigen Befehl für Steam oder Skripte abrufen
   </data>
   <data name="FileName_ShortcutName" xml:space="preserve">
     <value>Genshin Impact schnell starten.lnk</value>
-  </data>
-  <data name="Label_ShortcutName" xml:space="preserve">
-    <value>Name der Verknüpfung</value>
-  </data>
-  <data name="Placeholder_ShortcutName" xml:space="preserve">
-    <value>Benutzerdefinierter Name (ohne .lnk, leer lassen für Standard)</value>
   </data>
   <data name="Desc_ShortcutDescription" xml:space="preserve">
     <value>Genshin Impact über FufuLauncher mit Injektion starten</value>
@@ -2223,120 +2099,6 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="LoginQR_ClearHistory" xml:space="preserve">
     <value>Anmeldeverlauf löschen</value>
   </data>
-  <data name="LoginQR_ServerCn" xml:space="preserve">
-    <value>China-Server</value>
-  </data>
-  <data name="LoginQR_ServerOs" xml:space="preserve">
-    <value>Globaler Server</value>
-  </data>
-  <data name="LoginQR_MobileCaptcha" xml:space="preserve">
-    <value>Anmeldung per SMS-Code</value>
-  </data>
-  <data name="LoginQR_OverseaPassword" xml:space="preserve">
-    <value>Anmeldung mit Kontoname &amp; Passwort</value>
-  </data>
-  <data name="LoginQR_ThirdPartyLoginTitle" xml:space="preserve">
-    <value>Drittanbieter-Anmeldung</value>
-  </data>
-  <data name="LoginQR_ThirdPartyGoogle" xml:space="preserve">
-    <value>Mit Google anmelden</value>
-  </data>
-  <data name="LoginQR_ThirdPartyApple" xml:space="preserve">
-    <value>Mit Apple anmelden</value>
-  </data>
-  <data name="LoginQR_ThirdPartyFacebook" xml:space="preserve">
-    <value>Mit Facebook anmelden</value>
-  </data>
-  <data name="LoginQR_ThirdPartyTwitter" xml:space="preserve">
-    <value>Mit X (Twitter) anmelden</value>
-  </data>
-  <data name="LoginQR_OverseaRiskHint" xml:space="preserve">
-    <value>Hinweis: HoYoVerse erfordert möglicherweise eine Sicherheitsüberprüfung per E-Mail-Bestätigungscode.</value>
-  </data>
-  <data name="LoginQR_LoginButton" xml:space="preserve">
-    <value>Anmelden</value>
-  </data>
-  <data name="LoginQR_SendCaptcha" xml:space="preserve">
-    <value>Bestätigungscode senden</value>
-  </data>
-  <data name="LoginQR_MobileHeader" xml:space="preserve">
-    <value>Mobilfunknummer</value>
-  </data>
-  <data name="LoginQR_MobilePlaceholder" xml:space="preserve">
-    <value>11-stellige Mobilfunknummer eingeben</value>
-  </data>
-  <data name="LoginQR_CaptchaHeader" xml:space="preserve">
-    <value>Bestätigungscode</value>
-  </data>
-  <data name="LoginQR_CaptchaPlaceholder" xml:space="preserve">
-    <value>6-stelliger SMS-Code</value>
-  </data>
-  <data name="LoginQR_AccountHeader" xml:space="preserve">
-    <value>Konto</value>
-  </data>
-  <data name="LoginQR_AccountPlaceholder" xml:space="preserve">
-    <value>E-Mail oder Benutzername</value>
-  </data>
-  <data name="LoginQR_PasswordHeader" xml:space="preserve">
-    <value>Passwort</value>
-  </data>
-  <data name="LoginQR_PasswordPlaceholder" xml:space="preserve">
-    <value>Passwort eingeben</value>
-  </data>
-  <data name="LoginQR_OverseaVerifyTitle" xml:space="preserve">
-    <value>Sicherheitsüberprüfung</value>
-  </data>
-  <data name="LoginQR_EmailCaptchaHeader" xml:space="preserve">
-    <value>E-Mail-Bestätigungscode</value>
-  </data>
-  <data name="LoginQR_EmailCaptchaPlaceholder" xml:space="preserve">
-    <value>6-stelliger E-Mail-Code</value>
-  </data>
-  <data name="LoginQR_SendEmailCaptcha" xml:space="preserve">
-    <value>E-Mail-Code senden</value>
-  </data>
-  <data name="LoginQR_EmailCaptchaSent" xml:space="preserve">
-    <value>Der E-Mail-Bestätigungscode wurde gesendet. Bitte überprüfe deinen Posteingang.</value>
-  </data>
-  <data name="LoginQR_UnknownEmail" xml:space="preserve">
-    <value>Unbekannte E-Mail-Adresse</value>
-  </data>
-  <data name="Checkin_ResignTitle" xml:space="preserve">
-    <value>Check-in nachholen</value>
-  </data>
-  <data name="Checkin_ResignConfirmFormat" xml:space="preserve">
-    <value>In diesem Monat kann der Check-in noch {0}-mal nachgeholt werden. Verbleibende Nachholkarten: {1}. Jetzt nachholen?</value>
-  </data>
-  <data name="Checkin_ResignConfirmFormatCn" xml:space="preserve">
-    <value>In diesem Monat kann der Check-in noch {0}-mal nachgeholt werden (Kosten: {1} MiHoYo-Münzen). Jetzt nachholen?</value>
-  </data>
-  <data name="Checkin_ResignInsufficientCoinCn" xml:space="preserve">
-    <value>Nicht genügend MiHoYo-Münzen</value>
-  </data>
-  <data name="Checkin_ResignSuccess" xml:space="preserve">
-    <value>Check-in erfolgreich nachgeholt</value>
-  </data>
-  <data name="Checkin_ResignFailed" xml:space="preserve">
-    <value>Nachholen des Check-ins fehlgeschlagen [{0}] {1}</value>
-  </data>
-  <data name="Checkin_ResignLimitExceeded" xml:space="preserve">
-    <value>Maximale Anzahl an Nachholungen erreicht</value>
-  </data>
-  <data name="Checkin_ResignNotSigned" xml:space="preserve">
-    <value>Bitte führe zuerst den heutigen Check-in durch</value>
-  </data>
-  <data name="Checkin_ResignNoDate" xml:space="preserve">
-    <value>Kein ausstehendes Datum zum Nachholen vorhanden</value>
-  </data>
-  <data name="Checkin_ResignInsufficientCoin" xml:space="preserve">
-    <value>Nicht genügend Nachholkarten vorhanden</value>
-  </data>
-  <data name="Checkin_ResignQueryFailed" xml:space="preserve">
-    <value>Berechtigung zum Nachholen konnte nicht abgefragt werden: {0}</value>
-  </data>
-  <data name="Checkin_ResignUnsupported" xml:space="preserve">
-    <value>Nachträglicher Check-in wird auf diesem Server derzeit nicht unterstützt</value>
-  </data>
   <data name="Panel_Toolbox" xml:space="preserve">
     <value>Werkzeugkasten</value>
   </data>
@@ -2379,15 +2141,6 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="LaunchBtn_Terminating" xml:space="preserve">
     <value>Wird beendet...</value>
   </data>
-  <data name="LaunchBtn_Launching" xml:space="preserve">
-    <value>Start abbrechen</value>
-  </data>
-  <data name="LaunchCancelled_Title" xml:space="preserve">
-    <value>Start abgebrochen</value>
-  </data>
-  <data name="LaunchCancelled_Msg" xml:space="preserve">
-    <value>Der Spielstartvorgang wurde abgebrochen.</value>
-  </data>
   <data name="Checkin_Signed" xml:space="preserve">
     <value>Spiel-Check-in erledigt</value>
   </data>
@@ -2429,6 +2182,9 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   </data>
   <data name="HelpPage_SearchPlaceholder" xml:space="preserve">
     <value>Titel, Dateiname oder Inhalt suchen...</value>
+  </data>
+  <data name="AboutPage_GetBuildFromActions" xml:space="preserve">
+    <value>Build von GitHub Actions abrufen</value>
   </data>
   <data name="AboutPage_Contributors" xml:space="preserve">
     <value>Mitwirkende</value>
@@ -2523,158 +2279,11 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="PreDownload_Start" xml:space="preserve">
     <value>Vorab-Download starten</value>
   </data>
-  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
-    <value>Vorab-Download</value>
-  </data>
-  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
-    <value>Aktualisierungsressourcen im Voraus herunterladen</value>
-  </data>
-  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
-  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
-    <value>Aktualisierungsressourcen in das Spiel zusammenführen</value>
-  </data>
-  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
-    <value>Vorab-Download zusammenführen</value>
-  </data>
-  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
-    <value>Vorab heruntergeladene Ressourcen jetzt übernehmen (Entwickler)</value>
-  </data>
-  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
-    <value>Vorab heruntergeladen</value>
-  </data>
-  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
-    <value>Spiel-Update</value>
-  </data>
-  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
-    <value>Aktualisiert das Spiel auf die neueste Version. Bereits vorab heruntergeladene Ressourcen werden automatisch verwendet.</value>
-  </data>
-  <data name="GameUpdate_UpdateStart" xml:space="preserve">
-    <value>Update starten</value>
-  </data>
-  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
-    <value>Vorab-Download zusammenführen</value>
-  </data>
-  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
-    <value>Führt die vorab heruntergeladenen Ressourcen sofort mit dem Spiel zusammen; die Spielversion wird vorzeitig auf die Vorab-Download-Version aktualisiert. Nur für Entwickler verfügbar.</value>
-  </data>
-  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
-    <value>Zusammenführung starten</value>
-  </data>
-  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
-    <value>Das Spiel wurde auf die neueste Version aktualisiert.</value>
-  </data>
-  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
-    <value>Die Vorab-Download-Ressourcen wurden erfolgreich zusammengeführt.</value>
-  </data>
-  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
-    <value>Update fehlgeschlagen</value>
-  </data>
-  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
-    <value>Vorab-Download bestätigen</value>
-  </data>
-  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
-    <value>Update bestätigen</value>
-  </data>
-  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
-    <value>Zusammenführung des Vorab-Downloads bestätigen</value>
-  </data>
-  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
-    <value>Download-Größe: {0}
-Installationsgröße: {1}
-Zielversion: {2}
-
-Jetzt starten?</value>
-  </data>
-  <data name="GameUpdate_PlanSummary" xml:space="preserve">
-    <value>Plan: {0} herunterladen, Zielversion {1}</value>
-  </data>
-  <data name="GameUpdate_StageMerge" xml:space="preserve">
-    <value>Dateien werden zusammengeführt …</value>
-  </data>
-  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
-    <value>Patches werden angewendet …</value>
-  </data>
-  <data name="GameUpdate_MergingFile" xml:space="preserve">
-    <value>Zusammenführen {0}/{1}: {2}</value>
-  </data>
-  <data name="GameUpdate_SkipAsset" xml:space="preserve">
-    <value>Ressource übersprungen (wird später automatisch repariert): {0}</value>
-  </data>
-  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
-    <value>Vorab-Download abgeschlossen. Warte auf die offizielle Veröffentlichung.</value>
-  </data>
-  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
-    <value>Für die aktuelle Version ist kein Vorab-Download verfügbar.</value>
-  </data>
-  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
-    <value>Das Spiel ist bereits auf dem neuesten Stand.</value>
-  </data>
-  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
-    <value>Lokale Spielversion konnte nicht ermittelt werden. Bitte überprüfe config.ini.</value>
-  </data>
-  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
-    <value>Nicht genügend freier Speicherplatz: {0} erforderlich, {1} verfügbar.</value>
-  </data>
-  <data name="GameUpdate_DevOnly" xml:space="preserve">
-    <value>Diese Funktion ist nur für autorisierte Entwickler verfügbar.</value>
-  </data>
-  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
-    <value>Fehler beim Lesen des Patch-Headers: Die Patch-Datei ist beschädigt oder unvollständig.</value>
-  </data>
-  <data name="Patch_DiffNotSeekable" xml:space="preserve">
-    <value>Der Patch-Stream muss Direktzugriff (Seek) unterstützen.</value>
-  </data>
   <data name="PresetManager_Title" xml:space="preserve">
     <value>Vorgabenverwaltung</value>
   </data>
   <data name="PresetManager_SelectHint" xml:space="preserve">
     <value>Wähle die Vorgaben, die auf der Startseite angeheftet werden sollen (maximal 5).</value>
-  </data>
-  <data name="Preset_Create_Placeholder" xml:space="preserve">
-    <value>Neuen Vorgabenamen eingeben</value>
-  </data>
-  <data name="Preset_Create_Title" xml:space="preserve">
-    <value>Neue Vorgabe erstellen</value>
-  </data>
-  <data name="Preset_Delete_Confirm_Format" xml:space="preserve">
-    <value>Möchtest du die Vorgabe „{0}“ wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden!</value>
-  </data>
-  <data name="Preset_Delete_ConfirmBtn" xml:space="preserve">
-    <value>Löschen bestätigen</value>
-  </data>
-  <data name="Preset_Locked_Content_Format" xml:space="preserve">
-    <value>Sperrgrund: {0}
-
-Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe auf den aktuellen Plugin-Hash aktualisiert, wodurch die Vorgabe wieder entsperrt wird. Fortfahren?</value>
-  </data>
-  <data name="Preset_Locked_Continue" xml:space="preserve">
-    <value>Fortfahren und entsperren</value>
-  </data>
-  <data name="Preset_Locked_Title" xml:space="preserve">
-    <value>Konfigurationsvorgabe gesperrt</value>
-  </data>
-  <data name="Preset_ResetAll_ConfirmBtn" xml:space="preserve">
-    <value>Zurücksetzen bestätigen</value>
-  </data>
-  <data name="Preset_ResetAll_Content" xml:space="preserve">
-    <value>Alle Vorgaben des aktuellen Plugins entfernen und die Standardwerte erneut herunterladen? Diese Aktion kann nicht rückgängig gemacht werden!</value>
-  </data>
-  <data name="Preset_ResetAll_Title" xml:space="preserve">
-    <value>Alle Vorgaben zurücksetzen</value>
-  </data>
-  <data name="PR_Description" xml:space="preserve">
-    <value>Dieses Projekt wird derzeit von einem einzelnen Entwickler (CodeCubist) gepflegt.
-Wir verfolgen eine Entwicklungsrichtung, die sich konsequent an den Problemen der Spieler orientiert, und treiben Updates offen, transparent und effizient voran.
-Das Einreichen von Pull Requests ist der wichtigste Weg für Nutzer mit Programmierkenntnissen, die Entwicklung voranzutreiben, Strukturen zu optimieren und die Wartungslast des Projekts zu teilen.
-Wenn du helfen kannst, besuche über die Schaltfläche unten das Code-Repository und reiche deinen Beitrag ein.</value>
-  </data>
-  <data name="PR_GitHubButton" xml:space="preserve">
-    <value>GitHub-Repository besuchen und Pull Request einreichen</value>
-  </data>
-  <data name="PR_Window_Title" xml:space="preserve">
-    <value>Pull Request</value>
   </data>
   <data name="SecurityWeb_Title" xml:space="preserve">
     <value>Entwicklerlizenz-Authentifizierung</value>
@@ -2732,12 +2341,6 @@ Wenn du helfen kannst, besuche über die Schaltfläche unten das Code-Repository
   </data>
   <data name="DownloadWindow_ShowDetailLog" xml:space="preserve">
     <value>Detailprotokoll anzeigen</value>
-  </data>
-  <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
-    <value>Detailprotokoll ausblenden</value>
-  </data>
-  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
-    <value>Download-Geschwindigkeit</value>
   </data>
   <data name="DownloadWindow_Ready" xml:space="preserve">
     <value>Bereit</value>
@@ -3190,57 +2793,6 @@ Wenn du helfen kannst, besuche über die Schaltfläche unten das Code-Repository
   <data name="HDR_AutoAdjustTooltip" xml:space="preserve">
     <value>Automatisch aus den Monitordaten ableiten</value>
   </data>
-  <data name="HDR_ColorSpace" xml:space="preserve">
-    <value>Farbraum</value>
-  </data>
-  <data name="HDR_PeakLuminance" xml:space="preserve">
-    <value>Spitzenhelligkeit</value>
-  </data>
-  <data name="HDR_FullFrameLuminance" xml:space="preserve">
-    <value>Maximale Vollbildhelligkeit</value>
-  </data>
-  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
-    <value>SDR-Weißpunkt-Helligkeit</value>
-  </data>
-  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
-    <value>Passt die maximale Helligkeitsgrenze für Glanzlichter an (empfohlen: an den Monitor anpassen)</value>
-  </data>
-  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
-    <value>Passt die Referenz-Weißpunkt-Helligkeit für Spielweltszenen an</value>
-  </data>
-  <data name="HDR_UILuminance_Desc" xml:space="preserve">
-    <value>Passt die Helligkeit von UI-Elementen wie Minikarte, Lebensleiste und Text an</value>
-  </data>
-  <data name="HDR_Status_Enabled" xml:space="preserve">
-    <value>HDR aktiviert</value>
-  </data>
-  <data name="HDR_Status_NotEnabled" xml:space="preserve">
-    <value>HDR deaktiviert</value>
-  </data>
-  <data name="HDR_Status_NotSupported" xml:space="preserve">
-    <value>HDR nicht unterstützt</value>
-  </data>
-  <data name="HDR_Status_Unavailable" xml:space="preserve">
-    <value>HDR nicht verfügbar</value>
-  </data>
-  <data name="HDR_Status_Detecting" xml:space="preserve">
-    <value>HDR-Erkennung läuft …</value>
-  </data>
-  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
-    <value>SDR (Standard Dynamic Range)</value>
-  </data>
-  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
-    <value>WCG (Wide Color Gamut)</value>
-  </data>
-  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
-    <value>HDR (High Dynamic Range)</value>
-  </data>
-  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
-    <value>Unbekannt</value>
-  </data>
-  <data name="HDR_UnableToRead" xml:space="preserve">
-    <value>Nicht lesbar</value>
-  </data>
   <data name="InventoryWindow_Title" xml:space="preserve">
     <value>Inventar &amp; Zielplanung</value>
   </data>
@@ -3342,27 +2894,6 @@ Wenn du helfen kannst, besuche über die Schaltfläche unten das Code-Repository
   </data>
   <data name="AchievementWindow_UpdateData" xml:space="preserve">
     <value>Daten aktualisieren</value>
-  </data>
-  <data name="AchievementWindow_YaeRead" xml:space="preserve">
-    <value>Über Embedded Yae aus dem Spiel importieren</value>
-  </data>
-  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
-    <value>Startet das Spiel und importiert den Erfolgsfortschritt über die Embedded-Yae-Komponente</value>
-  </data>
-  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
-    <value>Spielinstallationsverzeichnis nicht gefunden. Bitte konfiguriere zuerst den Spielpfad in den Einstellungen.</value>
-  </data>
-  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
-    <value>Warte auf Spieldaten …</value>
-  </data>
-  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
-    <value>Keine Erfolgsdaten empfangen.</value>
-  </data>
-  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
-    <value>{0} Erfolge aus dem Spiel importiert, Fortschritt für {1} Erfolge synchronisiert.</value>
-  </data>
-  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
-    <value>Importieren der Erfolge aus dem Spiel fehlgeschlagen.</value>
   </data>
   <data name="AchievementWindow_Progress" xml:space="preserve">
     <value>Fortschritt:</value>
@@ -3622,33 +3153,6 @@ Wenn du helfen kannst, besuche über die Schaltfläche unten das Code-Repository
   <data name="GachaAnalysis_GetViaMiyoushe" xml:space="preserve">
     <value>Über MiHoYo-Konto abrufen</value>
   </data>
-  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
-    <value>Aus dem Spiel abrufen</value>
-  </data>
-  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
-    <value>Öffne den Gebetsverlauf im Spiel
-Bilibili-Server unterstützt, kein Miyoushe-Login erforderlich</value>
-  </data>
-  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
-    <value>Melde dich im gewünschten Spielkonto an, öffne den Gebetsverlauf und warte, bis die Daten vollständig geladen sind. Klicke anschließend auf „Starten“.
-
-Offizieller CN-Server (Celestia), Bilibili (Irminsul) und globale Server werden ohne Miyoushe-Anmeldung unterstützt. Bitte vergewissere dich, dass im Spiel das richtige Konto angemeldet ist.</value>
-  </data>
-  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
-    <value>Starten</value>
-  </data>
-  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
-    <value>Gebetsverlaufs-Link wird aus dem Spiel gelesen …</value>
-  </data>
-  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
-    <value>Bitte lege zuerst den korrekten Spielpfad im Launcher fest und öffne anschließend den Gebetsverlauf im Spiel.</value>
-  </data>
-  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
-    <value>Kein Gebetsverlaufs-Link gefunden. Bitte melde dich im Zielkonto an, öffne den Gebetsverlauf, warte auf das Laden und versuche es erneut.</value>
-  </data>
-  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
-    <value>Gebetsverlaufs-Link konnte nicht gelesen werden. Bitte öffne den Gebetsverlauf im Spiel erneut und wiederhole den Vorgang.</value>
-  </data>
   <data name="GachaAnalysis_GetViaUrl" xml:space="preserve">
     <value>Über URL abrufen</value>
   </data>
@@ -3809,21 +3313,6 @@ UIGF v4.x/3.0/2.x</value>
   <data name="HelpPage_NoResults" xml:space="preserve">
     <value>Keine passenden Dokumente gefunden</value>
   </data>
-  <data name="HelpPage_TranslateBtn" xml:space="preserve">
-    <value>Übersetzen</value>
-  </data>
-  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve">
-    <value>Originaltext anzeigen</value>
-  </data>
-  <data name="HelpPage_Translating" xml:space="preserve">
-    <value>Übersetzung läuft ({0}/{1})...</value>
-  </data>
-  <data name="HelpPage_TranslateFailed" xml:space="preserve">
-    <value>Übersetzung fehlgeschlagen</value>
-  </data>
-  <data name="HelpPage_TranslateComplete" xml:space="preserve">
-    <value>Übersetzung abgeschlossen</value>
-  </data>
   <data name="Success" xml:space="preserve">
     <value>Erfolg</value>
   </data>
@@ -3862,6 +3351,9 @@ UIGF v4.x/3.0/2.x</value>
   </data>
   <data name="DownloadWindow_Error" xml:space="preserve">
     <value>Fehler aufgetreten</value>
+  </data>
+  <data name="DownloadWindow_HideDetailLog" xml:space="preserve">
+    <value>Detailprotokoll ausblenden</value>
   </data>
   <data name="DownloadWindow_AllDone" xml:space="preserve">
     <value>Alle Dateien wurden heruntergeladen, überprüft und bereitgestellt.</value>
@@ -3908,11 +3400,38 @@ UIGF v4.x/3.0/2.x</value>
   <data name="AboutPage_ConfirmNav" xml:space="preserve">
     <value>Weiterleitung/Kopieren bestätigen</value>
   </data>
+  <data name="AboutPage_GitHubToken" xml:space="preserve">
+    <value>GitHub Token</value>
+  </data>
+  <data name="AboutPage_FetchSuccess" xml:space="preserve">
+    <value>Abruf erfolgreich! Download-Skript wurde erstellt.</value>
+  </data>
+  <data name="AboutPage_EnterToken" xml:space="preserve">
+    <value>Bitte Token eingeben!</value>
+  </data>
+  <data name="AboutPage_FetchFailedArtifact" xml:space="preserve">
+    <value>Abruf fehlgeschlagen (Artefakt nicht gefunden)</value>
+  </data>
+  <data name="AboutPage_FetchFailedRun" xml:space="preserve">
+    <value>Abruf fehlgeschlagen (Kein erfolgreicher Lauf gefunden)</value>
+  </data>
+  <data name="AboutPage_FetchFailedWorkflow" xml:space="preserve">
+    <value>Abruf fehlgeschlagen (Workflow nicht gefunden)</value>
+  </data>
+  <data name="AboutPage_Exception" xml:space="preserve">
+    <value>Fehler aufgetreten</value>
+  </data>
+  <data name="AboutPage_GitHubTokenPlaceholder" xml:space="preserve">
+    <value>Bitte gib deinen GitHub Token ein</value>
+  </data>
   <data name="AboutPage_SelectContact" xml:space="preserve">
     <value>Kontaktmöglichkeit auswählen</value>
   </data>
   <data name="AboutPage_DiscordCopied" xml:space="preserve">
     <value>Discord-ID kopiert!</value>
+  </data>
+  <data name="AboutPage_Loading" xml:space="preserve">
+    <value>Wird abgerufen...</value>
   </data>
   <data name="AchievementWindow_DefaultProfile" xml:space="preserve">
     <value>Standardprofil</value>
@@ -4309,18 +3828,6 @@ Gesuchte Datei:
   <data name="Checkin_AccountsFailed" xml:space="preserve">
     <value>{0} fehlgeschlagen</value>
   </data>
-  <data name="Checkin_UnsupportedGame" xml:space="preserve">
-    <value>Für dieses Spiel ist noch kein täglicher Belohnungs-Check-in konfiguriert</value>
-  </data>
-  <data name="Checkin_LoginExpired" xml:space="preserve">
-    <value>Anmeldedaten abgelaufen und automatische Aktualisierung fehlgeschlagen. Bitte melde dich erneut bei Miyoushe an.</value>
-  </data>
-  <data name="Checkin_GameCaptcha" xml:space="preserve">
-    <value>Sicherheitsüberprüfung erforderlich. Bitte schließe die Verifizierung auf der offiziellen Miyoushe-Seite ab.</value>
-  </data>
-  <data name="Checkin_SignNotConfirmed" xml:space="preserve">
-    <value>Check-in-Status noch nicht bestätigt. Bitte versuche es später erneut.</value>
-  </data>
   <data name="Checkin_GameCheckin" xml:space="preserve">
     <value>Spiel-Check-in</value>
   </data>
@@ -4503,9 +4010,6 @@ Gesuchte Datei:
   </data>
   <data name="Settings_ConfigSaveFailedMsg" xml:space="preserve">
     <value>Einstellungen konnten nicht in der Datenbank gespeichert werden: {0}</value>
-  </data>
-  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
-    <value>Datenbankpfad: {0}. Bitte prüfe, ob das Verzeichnis beschreibbar und der Datenträger verfügbar ist.</value>
   </data>
   <data name="Diagnostics_Connected" xml:space="preserve">
     <value>Verbunden</value>
@@ -4771,9 +4275,6 @@ Gesuchte Datei:
   <data name="Geetest_CaptchaTitle" xml:space="preserve">
     <value>Captcha-Überprüfung</value>
   </data>
-  <data name="Launcher_DllNotFound" xml:space="preserve">
-    <value>Launcher.dll fehlt. Die Injektionsfunktion ist nicht verfügbar. Bitte installiere den Launcher neu.</value>
-  </data>
   <data name="Launcher_DllNotLoaded" xml:space="preserve">
     <value>Launcher.dll konnte nicht geladen werden, da die C++-Laufzeitbibliothek fehlt oder die Kernbibliothek von der Antivirensoftware blockiert wurde. Start nicht möglich.</value>
   </data>
@@ -4839,299 +4340,6 @@ Rückmeldung: {0}</value>
     <value>Fehler beim Schreiben der Konfiguration
 Rückmeldung: {0}</value>
   </data>
-  <data name="PluginStoreTitle" xml:space="preserve">
-    <value>Plugin-Markt</value>
-  </data>
-  <data name="PluginStoreSearch" xml:space="preserve">
-    <value>Plugins suchen...</value>
-  </data>
-  <data name="PluginStoreInstall" xml:space="preserve">
-    <value>Installieren</value>
-  </data>
-  <data name="PluginStoreInstalled" xml:space="preserve">
-    <value>Installiert</value>
-  </data>
-  <data name="PluginStoreUpdate" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
-  <data name="PluginStoreUninstall" xml:space="preserve">
-    <value>Deinstallieren</value>
-  </data>
-  <data name="PluginStoreInstalling" xml:space="preserve">
-    <value>Installation läuft...</value>
-  </data>
-  <data name="PluginStoreRating" xml:space="preserve">
-    <value>Bewertung</value>
-  </data>
-  <data name="PluginStoreDownloads" xml:space="preserve">
-    <value>Downloads</value>
-  </data>
-  <data name="PluginStoreSize" xml:space="preserve">
-    <value>Größe</value>
-  </data>
-  <data name="PluginStoreVersion" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="PluginStoreNoResults" xml:space="preserve">
-    <value>Keine Plugins gefunden</value>
-  </data>
-  <data name="PluginStoreError" xml:space="preserve">
-    <value>Laden fehlgeschlagen</value>
-  </data>
-  <data name="PluginStoreLoading" xml:space="preserve">
-    <value>Wird geladen...</value>
-  </data>
-  <data name="PluginStoreRetry" xml:space="preserve">
-    <value>Erneut versuchen</value>
-  </data>
-  <data name="PluginStorePrevious" xml:space="preserve">
-    <value>Vorherige Seite</value>
-  </data>
-  <data name="PluginStoreNext" xml:space="preserve">
-    <value>Nächste Seite</value>
-  </data>
-  <data name="PluginStoreAll" xml:space="preserve">
-    <value>Alle</value>
-  </data>
-  <data name="PluginStoreSortPopular" xml:space="preserve">
-    <value>Beliebt</value>
-  </data>
-  <data name="PluginStoreSortNewest" xml:space="preserve">
-    <value>Neueste</value>
-  </data>
-  <data name="PluginStoreSortRating" xml:space="preserve">
-    <value>Beste Bewertung</value>
-  </data>
-  <data name="PluginStoreInstallSuccess" xml:space="preserve">
-    <value>Installiert: {0}</value>
-  </data>
-  <data name="PluginStoreInstallFailed" xml:space="preserve">
-    <value>Installation fehlgeschlagen: {0}</value>
-  </data>
-  <data name="PluginStoreUninstallSuccess" xml:space="preserve">
-    <value>Deinstalliert: {0}</value>
-  </data>
-  <data name="PluginStoreVerifying" xml:space="preserve">
-    <value>Überprüfung läuft...</value>
-  </data>
-  <data name="PluginStoreHashMismatch" xml:space="preserve">
-    <value>Integritätsprüfung der Datei fehlgeschlagen. Der Download ist möglicherweise beschädigt oder wurde verändert.</value>
-  </data>
-  <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
-    <value>Integritätsprüfung des Installationsskripts fehlgeschlagen</value>
-  </data>
-  <data name="PluginStoreSecurityBlocked" xml:space="preserve">
-    <value>Installation blockiert: {0}</value>
-  </data>
-  <data name="PluginStoreSecurityBlockedShort" xml:space="preserve">
-    <value>Sicherheitsblockierung</value>
-  </data>
-  <data name="PluginStorePathTraversal" xml:space="preserve">
-    <value>Sicherheit: Pfad-Traversal-Versuch blockiert</value>
-  </data>
-  <data name="PluginStoreHashVerified" xml:space="preserve">
-    <value>Integritätsprüfung erfolgreich</value>
-  </data>
-  <data name="PluginStoreDiscover" xml:space="preserve">
-    <value>Entdecken</value>
-  </data>
-  <data name="PluginStoreSearchPlaceholder" xml:space="preserve">
-    <value>Plugin-Name oder Stichwort suchen...</value>
-  </data>
-  <data name="PluginStoreRefresh" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
-  <data name="PluginStoreSyncing" xml:space="preserve">
-    <value>Plugin-Liste wird synchronisiert...</value>
-  </data>
-  <data name="PluginStoreDeveloper" xml:space="preserve">
-    <value>Bereitgestellt von</value>
-  </data>
-  <data name="PluginStoreDetails" xml:space="preserve">
-    <value>Funktionsdetails</value>
-  </data>
-  <data name="PluginStoreUpdateNow" xml:space="preserve">
-    <value>Jetzt aktualisieren</value>
-  </data>
-  <data name="PluginStoreInstallPlugin" xml:space="preserve">
-    <value>Dieses Plugin installieren</value>
-  </data>
-  <data name="PluginStoreCancel" xml:space="preserve">
-    <value>Abbrechen und zurück</value>
-  </data>
-  <data name="PluginStoreNoMatch" xml:space="preserve">
-    <value>Keine passenden Plugins gefunden</value>
-  </data>
-  <data name="PluginStoreNoAvailable" xml:space="preserve">
-    <value>Derzeit keine Plugins verfügbar</value>
-  </data>
-  <data name="PluginStoreTotalPlugins" xml:space="preserve">
-    <value>Insgesamt {0} Plugins</value>
-  </data>
-  <data name="PluginStoreConnectionFailed" xml:space="preserve">
-    <value>Verbindung fehlgeschlagen</value>
-  </data>
-  <data name="PluginStoreLoadFailed" xml:space="preserve">
-    <value>Plugin-Liste konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</value>
-  </data>
-  <data name="PluginStoreInstallComplete" xml:space="preserve">
-    <value>Installation abgeschlossen</value>
-  </data>
-  <data name="PluginStoreHashFailed" xml:space="preserve">
-    <value>Überprüfung fehlgeschlagen</value>
-  </data>
-  <data name="PluginStoreCancelled" xml:space="preserve">
-    <value>Abgebrochen</value>
-  </data>
-  <data name="PluginStoreInstallFailedShort" xml:space="preserve">
-    <value>Installation fehlgeschlagen</value>
-  </data>
-  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
-    <value>Plugindateien nach der Installation nicht gefunden; das Plugin wurde möglicherweise nicht installiert</value>
-  </data>
-  <data name="PluginStoreUninstalling" xml:space="preserve">
-    <value>Deinstallation läuft...</value>
-  </data>
-  <data name="PluginStoreUninstallComplete" xml:space="preserve">
-    <value>Deinstalliert</value>
-  </data>
-  <data name="PluginStoreUninstallFailed" xml:space="preserve">
-    <value>Deinstallation fehlgeschlagen</value>
-  </data>
-  <data name="PluginStoreServerUnreachable" xml:space="preserve">
-    <value>Plugin-Markt-Server nicht erreichbar. Bitte überprüfen Sie Ihre Netzwerkverbindung oder den Serverstatus.</value>
-  </data>
-  <data name="PluginStoreServerTimeout" xml:space="preserve">
-    <value>Zeitüberschreitung beim Verbinden mit dem Plugin-Markt. Bitte versuchen Sie es später erneut.</value>
-  </data>
-  <data name="PluginStoreLoadListFailed" xml:space="preserve">
-    <value>Plugin-Liste konnte nicht geladen werden: {0}</value>
-  </data>
-  <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
-    <value>Installationsskript kann nicht heruntergeladen werden. Server nicht verfügbar.</value>
-  </data>
-  <data name="PluginStoreDownloadLuaError" xml:space="preserve">
-    <value>Installationsskript-Download fehlgeschlagen: {0}</value>
-  </data>
-  <data name="PluginStoreDownloading" xml:space="preserve">
-    <value>Wird heruntergeladen {0}%</value>
-  </data>
-  <data name="PluginStoreDownloadFileFailed" xml:space="preserve">
-    <value>Plugin-Datei kann nicht heruntergeladen werden. Server nicht verfügbar.</value>
-  </data>
-  <data name="PluginStoreDownloadFileError" xml:space="preserve">
-    <value>Plugin-Datei-Download fehlgeschlagen: {0}</value>
-  </data>
-  <data name="PluginStoreDownloadCountWan" xml:space="preserve">
-    <value>{0:F1} Mio.</value>
-  </data>
-  <data name="PluginStoreDownloadCountK" xml:space="preserve">
-    <value>{0:F1}k</value>
-  </data>
-  <data name="PluginStoreScriptDownloading" xml:space="preserve">
-    <value>Installationsskript wird heruntergeladen...</value>
-  </data>
-  <data name="PluginStoreScriptScanning" xml:space="preserve">
-    <value>Scannen läuft...</value>
-  </data>
-  <data name="PluginStoreScriptExecuting" xml:space="preserve">
-    <value>Installationsskript wird ausgeführt...</value>
-  </data>
-  <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
-    <value>Lua-Skript hat die Sicherheitsüberprüfung nicht bestanden.</value>
-  </data>
-  <data name="PluginStoreLuaScriptError" xml:space="preserve">
-    <value>Lua-Skriptfehler: {0}</value>
-  </data>
-  <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
-    <value>Lua-Skript konnte nicht ausgeführt werden: {0}</value>
-  </data>
-  <data name="PluginStoreDialogClose" xml:space="preserve">
-    <value>Schließen</value>
-  </data>
-  <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
-    <value>Sicherheit: Bei der Operation {0} wurde ein leerer Pfad übergeben.</value>
-  </data>
-  <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
-    <value>Sicherheit: Ungültiger Pfad ({0}): {1}</value>
-  </data>
-  <data name="PluginStoreSecurityOutsideDir" xml:space="preserve">
-    <value>Sicherheit: Der Pfad muss innerhalb des Plugin-Verzeichnisses liegen ({0}).</value>
-  </data>
-  <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
-    <value>Das Skript enthält eine verbotene Operation ({0}).</value>
-  </data>
-  <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
-    <value>Pfad-Traversal-Versuch</value>
-  </data>
-  <data name="PluginStoreSecurityScriptTooLarge" xml:space="preserve">
-    <value>Skript zu groß</value>
-  </data>
-  <data name="PluginStoreUpload" xml:space="preserve">
-    <value>Plugin hochladen</value>
-  </data>
-  <data name="PluginStoreUploadTooltip" xml:space="preserve">
-    <value>Auf GitHub Ihr Plugin einreichen</value>
-  </data>
-  <data name="PluginStoreLuaTestButton" xml:space="preserve">
-    <value>Lua-Test</value>
-  </data>
-  <data name="PluginStoreLuaTestTitle" xml:space="preserve">
-    <value>Lua-Plugin-Installationsskript-Test</value>
-  </data>
-  <data name="PluginStoreLuaTestDescription" xml:space="preserve">
-    <value>Geben Sie unten das Lua-Plugin-Installationsskript ein und klicken Sie auf „Test ausführen“, um es zu überprüfen. Das Skript wird in einer Sandbox ausgeführt; alle Dateioperationen sind auf das Plugins-Verzeichnis beschränkt.</value>
-  </data>
-  <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
-    <value>-- Lua-Plugin-Installationsskript hier eingeben
--- Verfügbare APIs: install.download(), install.extract(), install.download_plugin(id) usw.
--- Weitere Informationen finden Sie im Lua-Plugin-Entwicklerleitfaden</value>
-  </data>
-  <data name="PluginStoreLuaTestRun" xml:space="preserve">
-    <value>Test ausführen</value>
-  </data>
-  <data name="PluginStoreLuaTestSecurityWarning" xml:space="preserve">
-    <value>Sicherheitswarnung</value>
-  </data>
-  <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
-    <value>Skript hat die Sicherheitsüberprüfung nicht bestanden: {0}
-
-Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
-  </data>
-  <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
-    <value>Lua-Skript wird ausgeführt...</value>
-  </data>
-  <data name="PluginStoreLuaTestSuccess" xml:space="preserve">
-    <value>Lua-Skript erfolgreich ausgeführt</value>
-  </data>
-  <data name="PluginStoreLuaTestFailed" xml:space="preserve">
-    <value>Lua-Skript konnte nicht ausgeführt werden</value>
-  </data>
-  <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
-    <value>Protokoll gespeichert unter:
-{0}</value>
-  </data>
-  <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
-    <value>Protokolldatei öffnen</value>
-  </data>
-  <data name="PluginStoreLuaTestClose" xml:space="preserve">
-    <value>Schließen</value>
-  </data>
-  <data name="PluginStoreCategoryUtility" xml:space="preserve">
-    <value>Dienstprogramme</value>
-  </data>
-  <data name="PluginStoreCategoryGameplay" xml:space="preserve">
-    <value>Gameplay</value>
-  </data>
-  <data name="PluginStoreCategoryVisuals" xml:space="preserve">
-    <value>Visuelle Anpassung</value>
-  </data>
-  <data name="DisableCaptchaPopup" xml:space="preserve">
-    <value>Captcha-Popup der Risikokontrolle deaktivieren</value>
-  </data>
-  <data name="DisableCaptchaPopupCaption" xml:space="preserve">
-    <value>Wenn aktiviert, wird das Captcha-Fenster der Konto-Risikokontrolle nicht mehr angezeigt. Das Überspringen der Verifizierung kann dazu führen, dass Funktionen wie die Notizen vorübergehend nicht verfügbar sind.</value>
-  </data>
   <data name="SectionWindowBehavior" xml:space="preserve">
     <value>Fenster &amp; Navigation</value>
   </data>
@@ -5149,6 +4357,18 @@ Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
   </data>
   <data name="SettingsSearchPlaceholder" xml:space="preserve">
     <value>Einstellungen suchen…</value>
+  </data>
+  <data name="DisableCaptchaPopup" xml:space="preserve">
+    <value>Captcha-Popup der Risikokontrolle deaktivieren</value>
+  </data>
+  <data name="DisableCaptchaPopupCaption" xml:space="preserve">
+    <value>Wenn aktiviert, wird das Captcha-Fenster der Konto-Risikokontrolle nicht mehr angezeigt. Das Überspringen der Verifizierung kann dazu führen, dass Funktionen wie die Notizen vorübergehend nicht verfügbar sind.</value>
+  </data>
+  <data name="UseThirdPartyCDNTitle" xml:space="preserve">
+    <value>Updates über Drittanbieter-CDN herunterladen</value>
+  </data>
+  <data name="UseThirdPartyCDNCaption" xml:space="preserve">
+    <value>Beschleunigt den Download über Drittanbieter-CDN-Knoten. Deaktivieren, um direkt von GitHub herunterzuladen.</value>
   </data>
   <data name="PluginStoreSubtitle" xml:space="preserve">
     <value>Community-Plugins entdecken und installieren, um den Launcher zu erweitern</value>
@@ -5732,44 +4952,415 @@ Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
   <data name="Backpack_ErrDllMissing" xml:space="preserve">
     <value>Das Backpack-Synchronisationsmodul modules/backpack.dll fehlt.</value>
   </data>
-  <data name="Checkin_PartialFailed" xml:space="preserve">
-    <value>Check-in teilweise fehlgeschlagen</value>
-  </data>
   <data name="Checkin_SignNow" xml:space="preserve">
     <value>Jetzt einchecken</value>
   </data>
   <data name="Checkin_LoadingStatus" xml:space="preserve">
     <value>Status wird geladen...</value>
   </data>
-  <data name="Checkin_Executing" xml:space="preserve">
-    <value>Check-in wird ausgeführt...</value>
-  </data>
   <data name="Checkin_NotLoggedIn" xml:space="preserve">
     <value>Nicht angemeldet</value>
-  </data>
-  <data name="Checkin_Complete" xml:space="preserve">
-    <value>Check-in abgeschlossen</value>
-  </data>
-  <data name="Checkin_CredentialFailed" xml:space="preserve">
-    <value>Anmeldedaten konnten nicht geladen werden</value>
-  </data>
-  <data name="Checkin_ExecuteFailed" xml:space="preserve">
-    <value>Ausführung fehlgeschlagen</value>
-  </data>
-  <data name="Checkin_CredentialUnavailable" xml:space="preserve">
-    <value>Anmeldedaten nicht verfügbar</value>
-  </data>
-  <data name="Checkin_LoadFailed" xml:space="preserve">
-    <value>Laden fehlgeschlagen</value>
   </data>
   <data name="Checkin_PleaseLogin" xml:space="preserve">
     <value>Bitte zuerst anmelden</value>
   </data>
+  <data name="Checkin_CredentialFailed" xml:space="preserve">
+    <value>Anmeldedaten konnten nicht geladen werden</value>
+  </data>
+  <data name="Checkin_CredentialUnavailable" xml:space="preserve">
+    <value>Anmeldedaten nicht verfügbar</value>
+  </data>
   <data name="Checkin_CheckingIn" xml:space="preserve">
     <value>Einchecken...</value>
   </data>
+  <data name="Checkin_Executing" xml:space="preserve">
+    <value>Check-in wird ausgeführt...</value>
+  </data>
+  <data name="Checkin_Complete" xml:space="preserve">
+    <value>Check-in abgeschlossen</value>
+  </data>
+  <data name="Checkin_PartialFailed" xml:space="preserve">
+    <value>Check-in teilweise fehlgeschlagen</value>
+  </data>
+  <data name="Checkin_LoadFailed" xml:space="preserve">
+    <value>Laden fehlgeschlagen</value>
+  </data>
+  <data name="Checkin_ExecuteFailed" xml:space="preserve">
+    <value>Ausführung fehlgeschlagen</value>
+  </data>
   <data name="Checkin_AccountLabel" xml:space="preserve">
     <value>Konto: {0}</value>
+  </data>
+  <data name="NotificationPositionTitle" xml:space="preserve">
+    <value>Position des Benachrichtigungs-Popups</value>
+  </data>
+  <data name="NotificationPositionCaption" xml:space="preserve">
+    <value>Position des Benachrichtigungs-Popups im Fenster festlegen</value>
+  </data>
+  <data name="PositionBottomRight" xml:space="preserve">
+    <value>Unten rechts</value>
+  </data>
+  <data name="PositionTopRight" xml:space="preserve">
+    <value>Oben rechts</value>
+  </data>
+  <data name="PositionTopLeft" xml:space="preserve">
+    <value>Oben links</value>
+  </data>
+  <data name="PositionBottomLeft" xml:space="preserve">
+    <value>Unten links</value>
+  </data>
+  <data name="UsingHoyolabAccountTitle" xml:space="preserve">
+    <value>Mit einem miHoYo-/HoyoLAB-Konto direkt im Spiel anmelden</value>
+  </data>
+  <data name="UsingHoyolabAccountCaption" xml:space="preserve">
+    <value>Beim Start des Spiels wird automatisch das ausgewählte miHoYo- oder HoyoLAB-Konto verwendet, sodass keine erneute Eingabe von Benutzername und Passwort im Spiel erforderlich ist.</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Title" xml:space="preserve">
+    <value>Kann nicht aktiviert werden</value>
+  </data>
+  <data name="HoyolabAccount_NoLoggedIn_Message" xml:space="preserve">
+    <value>Bitte melden Sie sich zuerst in den Kontoeinstellungen bei einem miHoYo- oder HoyoLAB-Konto an.</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Title" xml:space="preserve">
+    <value>Kontoanmeldung abgelaufen</value>
+  </data>
+  <data name="HoyolabAccount_LoginExpired_Message" xml:space="preserve">
+    <value>Sie müssen sich mit dem aktuellen Konto erneut anmelden, um diese Funktion nutzen zu können.</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Title" xml:space="preserve">
+    <value>Kein Spiel ausgewählt</value>
+  </data>
+  <data name="HoyolabAccount_NoGamePath_Message" xml:space="preserve">
+    <value>Bitte wählen Sie zunächst auf der Startseite den Installationspfad des Spiels aus.</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Title" xml:space="preserve">
+    <value>Aktiviert</value>
+  </data>
+  <data name="HoyolabAccount_Enabled_Message" xml:space="preserve">
+    <value>Beim nächsten Spielstart wird automatisch das miHoYo-/HoyoLAB-Konto verwendet, sodass keine erneute Eingabe von Zugangsdaten erforderlich ist.</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Title" xml:space="preserve">
+    <value>Kann nicht aktiviert werden</value>
+  </data>
+  <data name="HoyolabAccount_EnableFailed_Message" xml:space="preserve">
+    <value>Dieses Konto kann diese Funktion vorübergehend nicht nutzen. Bitte überprüfen Sie den Anmeldestatus und versuchen Sie es erneut.</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Title" xml:space="preserve">
+    <value>Vorübergehend nicht verfügbar</value>
+  </data>
+  <data name="HoyolabAccount_TempUnavailable_Message" xml:space="preserve">
+    <value>Netzwerk- oder Dienstfehler. Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_Title" xml:space="preserve">
+    <value>Konto und Server stimmen nicht überein</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_OverseaMsg" xml:space="preserve">
+    <value>Das aktuell ausgewählte HoyoLAB-Konto für internationale Server kann nicht zum Starten des chinesischen Spiels verwendet werden. Bitte wechseln Sie zu einem Konto der entsprechenden Region.</value>
+  </data>
+  <data name="HoyolabAccount_ServerMismatch_CnMsg" xml:space="preserve">
+    <value>Das aktuell ausgewählte miHoYo-Konto für chinesische Server kann nicht zum Starten des internationalen Spiels verwendet werden. Bitte wechseln Sie zu einem Konto der entsprechenden Region.</value>
+  </data>
+  <data name="HelpPage_TranslateBtn" xml:space="preserve">
+    <value>Übersetzen</value>
+  </data>
+  <data name="HelpPage_ShowOriginalBtn" xml:space="preserve">
+    <value>Originaltext anzeigen</value>
+  </data>
+  <data name="HelpPage_Translating" xml:space="preserve">
+    <value>Übersetzung läuft ({0}/{1})...</value>
+  </data>
+  <data name="HelpPage_TranslateFailed" xml:space="preserve">
+    <value>Übersetzung fehlgeschlagen</value>
+  </data>
+  <data name="HelpPage_TranslateComplete" xml:space="preserve">
+    <value>Übersetzung abgeschlossen</value>
+  </data>
+  <data name="PluginStoreTitle" xml:space="preserve">
+    <value>Plugin-Markt</value>
+  </data>
+  <data name="PluginStoreSearch" xml:space="preserve">
+    <value>Plugins suchen...</value>
+  </data>
+  <data name="PluginStoreInstall" xml:space="preserve">
+    <value>Installieren</value>
+  </data>
+  <data name="PluginStoreInstalled" xml:space="preserve">
+    <value>Installiert</value>
+  </data>
+  <data name="PluginStoreUpdate" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="PluginStoreUninstall" xml:space="preserve">
+    <value>Deinstallieren</value>
+  </data>
+  <data name="PluginStoreInstalling" xml:space="preserve">
+    <value>Installation läuft...</value>
+  </data>
+  <data name="PluginStoreRating" xml:space="preserve">
+    <value>Bewertung</value>
+  </data>
+  <data name="PluginStoreDownloads" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="PluginStoreSize" xml:space="preserve">
+    <value>Größe</value>
+  </data>
+  <data name="PluginStoreVersion" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="PluginStoreNoResults" xml:space="preserve">
+    <value>Keine Plugins gefunden</value>
+  </data>
+  <data name="PluginStoreError" xml:space="preserve">
+    <value>Laden fehlgeschlagen</value>
+  </data>
+  <data name="PluginStoreLoading" xml:space="preserve">
+    <value>Wird geladen...</value>
+  </data>
+  <data name="PluginStoreRetry" xml:space="preserve">
+    <value>Erneut versuchen</value>
+  </data>
+  <data name="PluginStorePrevious" xml:space="preserve">
+    <value>Vorherige Seite</value>
+  </data>
+  <data name="PluginStoreNext" xml:space="preserve">
+    <value>Nächste Seite</value>
+  </data>
+  <data name="PluginStoreAll" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="PluginStoreSortPopular" xml:space="preserve">
+    <value>Beliebt</value>
+  </data>
+  <data name="PluginStoreSortNewest" xml:space="preserve">
+    <value>Neueste</value>
+  </data>
+  <data name="PluginStoreSortRating" xml:space="preserve">
+    <value>Beste Bewertung</value>
+  </data>
+  <data name="PluginStoreInstallSuccess" xml:space="preserve">
+    <value>Installiert: {0}</value>
+  </data>
+  <data name="PluginStoreInstallFailed" xml:space="preserve">
+    <value>Installation fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginStoreUninstallSuccess" xml:space="preserve">
+    <value>Deinstalliert: {0}</value>
+  </data>
+  <data name="PluginStoreVerifying" xml:space="preserve">
+    <value>Überprüfung läuft...</value>
+  </data>
+  <data name="PluginStoreHashMismatch" xml:space="preserve">
+    <value>Integritätsprüfung der Datei fehlgeschlagen. Der Download ist möglicherweise beschädigt oder wurde verändert.</value>
+  </data>
+  <data name="PluginStoreLuaHashMismatch" xml:space="preserve">
+    <value>Integritätsprüfung des Installationsskripts fehlgeschlagen</value>
+  </data>
+  <data name="PluginStoreSecurityBlocked" xml:space="preserve">
+    <value>Installation blockiert: {0}</value>
+  </data>
+  <data name="PluginStoreSecurityBlockedShort" xml:space="preserve">
+    <value>Sicherheitsblockierung</value>
+  </data>
+  <data name="PluginStorePathTraversal" xml:space="preserve">
+    <value>Sicherheit: Pfad-Traversal-Versuch blockiert</value>
+  </data>
+  <data name="PluginStoreHashVerified" xml:space="preserve">
+    <value>Integritätsprüfung erfolgreich</value>
+  </data>
+  <data name="PluginStoreDiscover" xml:space="preserve">
+    <value>Entdecken</value>
+  </data>
+  <data name="PluginStoreSearchPlaceholder" xml:space="preserve">
+    <value>Plugin-Name oder Stichwort suchen...</value>
+  </data>
+  <data name="PluginStoreRefresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="PluginStoreSyncing" xml:space="preserve">
+    <value>Plugin-Liste wird synchronisiert...</value>
+  </data>
+  <data name="PluginStoreDeveloper" xml:space="preserve">
+    <value>Bereitgestellt von</value>
+  </data>
+  <data name="PluginStoreDetails" xml:space="preserve">
+    <value>Funktionsdetails</value>
+  </data>
+  <data name="PluginStoreUpdateNow" xml:space="preserve">
+    <value>Jetzt aktualisieren</value>
+  </data>
+  <data name="PluginStoreInstallPlugin" xml:space="preserve">
+    <value>Dieses Plugin installieren</value>
+  </data>
+  <data name="PluginStoreCancel" xml:space="preserve">
+    <value>Abbrechen und zurück</value>
+  </data>
+  <data name="PluginStoreNoMatch" xml:space="preserve">
+    <value>Keine passenden Plugins gefunden</value>
+  </data>
+  <data name="PluginStoreNoAvailable" xml:space="preserve">
+    <value>Derzeit keine Plugins verfügbar</value>
+  </data>
+  <data name="PluginStoreTotalPlugins" xml:space="preserve">
+    <value>Insgesamt {0} Plugins</value>
+  </data>
+  <data name="PluginStoreConnectionFailed" xml:space="preserve">
+    <value>Verbindung fehlgeschlagen</value>
+  </data>
+  <data name="PluginStoreLoadFailed" xml:space="preserve">
+    <value>Plugin-Liste konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="PluginStoreInstallComplete" xml:space="preserve">
+    <value>Installation abgeschlossen</value>
+  </data>
+  <data name="PluginStoreHashFailed" xml:space="preserve">
+    <value>Überprüfung fehlgeschlagen</value>
+  </data>
+  <data name="PluginStoreCancelled" xml:space="preserve">
+    <value>Abgebrochen</value>
+  </data>
+  <data name="PluginStoreInstallFailedShort" xml:space="preserve">
+    <value>Installation fehlgeschlagen</value>
+  </data>
+  <data name="PluginStoreInstallVerifyFailed" xml:space="preserve">
+    <value>Plugindateien nach der Installation nicht gefunden; das Plugin wurde möglicherweise nicht installiert</value>
+  </data>
+  <data name="PluginStoreUninstalling" xml:space="preserve">
+    <value>Deinstallation läuft...</value>
+  </data>
+  <data name="PluginStoreUninstallComplete" xml:space="preserve">
+    <value>Deinstalliert</value>
+  </data>
+  <data name="PluginStoreUninstallFailed" xml:space="preserve">
+    <value>Deinstallation fehlgeschlagen</value>
+  </data>
+  <data name="PluginStoreServerUnreachable" xml:space="preserve">
+    <value>Plugin-Markt-Server nicht erreichbar. Bitte überprüfen Sie Ihre Netzwerkverbindung oder den Serverstatus.</value>
+  </data>
+  <data name="PluginStoreServerTimeout" xml:space="preserve">
+    <value>Zeitüberschreitung beim Verbinden mit dem Plugin-Markt. Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="PluginStoreLoadListFailed" xml:space="preserve">
+    <value>Plugin-Liste konnte nicht geladen werden: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadLuaFailed" xml:space="preserve">
+    <value>Installationsskript kann nicht heruntergeladen werden. Server nicht verfügbar.</value>
+  </data>
+  <data name="PluginStoreDownloadLuaError" xml:space="preserve">
+    <value>Installationsskript-Download fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginStoreDownloading" xml:space="preserve">
+    <value>Wird heruntergeladen {0}%</value>
+  </data>
+  <data name="PluginStoreDownloadFileFailed" xml:space="preserve">
+    <value>Plugin-Datei kann nicht heruntergeladen werden. Server nicht verfügbar.</value>
+  </data>
+  <data name="PluginStoreDownloadFileError" xml:space="preserve">
+    <value>Plugin-Datei-Download fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginStoreDownloadCountWan" xml:space="preserve">
+    <value>{0:F1} Mio.</value>
+  </data>
+  <data name="PluginStoreDownloadCountK" xml:space="preserve">
+    <value>{0:F1}k</value>
+  </data>
+  <data name="PluginStoreScriptDownloading" xml:space="preserve">
+    <value>Installationsskript wird heruntergeladen...</value>
+  </data>
+  <data name="PluginStoreScriptScanning" xml:space="preserve">
+    <value>Scannen läuft...</value>
+  </data>
+  <data name="PluginStoreScriptExecuting" xml:space="preserve">
+    <value>Installationsskript wird ausgeführt...</value>
+  </data>
+  <data name="PluginStoreLuaSecurityFailed" xml:space="preserve">
+    <value>Lua-Skript hat die Sicherheitsüberprüfung nicht bestanden.</value>
+  </data>
+  <data name="PluginStoreLuaScriptError" xml:space="preserve">
+    <value>Lua-Skriptfehler: {0}</value>
+  </data>
+  <data name="PluginStoreLuaScriptFailed" xml:space="preserve">
+    <value>Lua-Skript konnte nicht ausgeführt werden: {0}</value>
+  </data>
+  <data name="PluginStoreDialogClose" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="PluginStoreSecurityEmptyPath" xml:space="preserve">
+    <value>Sicherheit: Bei der Operation {0} wurde ein leerer Pfad übergeben.</value>
+  </data>
+  <data name="PluginStoreSecurityInvalidPath" xml:space="preserve">
+    <value>Sicherheit: Ungültiger Pfad ({0}): {1}</value>
+  </data>
+  <data name="PluginStoreSecurityOutsideDir" xml:space="preserve">
+    <value>Sicherheit: Der Pfad muss innerhalb des Plugin-Verzeichnisses liegen ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityBannedOp" xml:space="preserve">
+    <value>Das Skript enthält eine verbotene Operation ({0}).</value>
+  </data>
+  <data name="PluginStoreSecurityPathTraversalShort" xml:space="preserve">
+    <value>Pfad-Traversal-Versuch</value>
+  </data>
+  <data name="PluginStoreSecurityScriptTooLarge" xml:space="preserve">
+    <value>Skript zu groß</value>
+  </data>
+  <data name="PluginStoreUpload" xml:space="preserve">
+    <value>Plugin hochladen</value>
+  </data>
+  <data name="PluginStoreUploadTooltip" xml:space="preserve">
+    <value>Auf GitHub Ihr Plugin einreichen</value>
+  </data>
+  <data name="PluginStoreLuaTestButton" xml:space="preserve">
+    <value>Lua-Test</value>
+  </data>
+  <data name="PluginStoreLuaTestTitle" xml:space="preserve">
+    <value>Lua-Plugin-Installationsskript-Test</value>
+  </data>
+  <data name="PluginStoreLuaTestDescription" xml:space="preserve">
+    <value>Geben Sie unten das Lua-Plugin-Installationsskript ein und klicken Sie auf „Test ausführen“, um es zu überprüfen. Das Skript wird in einer Sandbox ausgeführt; alle Dateioperationen sind auf das Plugins-Verzeichnis beschränkt.</value>
+  </data>
+  <data name="PluginStoreLuaTestInputHint" xml:space="preserve">
+    <value>-- Lua-Plugin-Installationsskript hier eingeben
+-- Verfügbare APIs: install.download(), install.extract(), install.download_plugin(id) usw.
+-- Weitere Informationen finden Sie im Lua-Plugin-Entwicklerleitfaden</value>
+  </data>
+  <data name="PluginStoreLuaTestRun" xml:space="preserve">
+    <value>Test ausführen</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityWarning" xml:space="preserve">
+    <value>Sicherheitswarnung</value>
+  </data>
+  <data name="PluginStoreLuaTestSecurityBlocked" xml:space="preserve">
+    <value>Skript hat die Sicherheitsüberprüfung nicht bestanden: {0}
+
+Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
+  </data>
+  <data name="PluginStoreLuaTestExecuting" xml:space="preserve">
+    <value>Lua-Skript wird ausgeführt...</value>
+  </data>
+  <data name="PluginStoreLuaTestSuccess" xml:space="preserve">
+    <value>Lua-Skript erfolgreich ausgeführt</value>
+  </data>
+  <data name="PluginStoreLuaTestFailed" xml:space="preserve">
+    <value>Lua-Skript konnte nicht ausgeführt werden</value>
+  </data>
+  <data name="PluginStoreLuaTestLogSaved" xml:space="preserve">
+    <value>Protokoll gespeichert unter:
+{0}</value>
+  </data>
+  <data name="PluginStoreLuaTestOpenLog" xml:space="preserve">
+    <value>Protokolldatei öffnen</value>
+  </data>
+  <data name="PluginStoreLuaTestClose" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="PluginStoreCategoryUtility" xml:space="preserve">
+    <value>Dienstprogramme</value>
+  </data>
+  <data name="PluginStoreCategoryGameplay" xml:space="preserve">
+    <value>Gameplay</value>
+  </data>
+  <data name="PluginStoreCategoryVisuals" xml:space="preserve">
+    <value>Visuelle Anpassung</value>
   </data>
   <data name="RemoveCloudCredentialTooltip" xml:space="preserve">
     <value>Cloud-Gaming-Anmeldedaten entfernen</value>
@@ -5779,36 +5370,6 @@ Möchten Sie es trotzdem ausführen? (Nicht empfohlen)</value>
   </data>
   <data name="RemoveCloudCredentialConfirmContent" xml:space="preserve">
     <value>Möchten Sie die Cloud-Gaming-Anmeldedaten für dieses Konto wirklich entfernen?</value>
-  </data>
-  <data name="AboutPage_GetBuildFromActions" xml:space="preserve">
-    <value>Build von GitHub Actions abrufen</value>
-  </data>
-  <data name="AboutPage_GitHubToken" xml:space="preserve">
-    <value>GitHub Token</value>
-  </data>
-  <data name="AboutPage_FetchSuccess" xml:space="preserve">
-    <value>Abruf erfolgreich! Download-Skript wurde erstellt.</value>
-  </data>
-  <data name="AboutPage_EnterToken" xml:space="preserve">
-    <value>Bitte Token eingeben!</value>
-  </data>
-  <data name="AboutPage_FetchFailedArtifact" xml:space="preserve">
-    <value>Abruf fehlgeschlagen (Artefakt nicht gefunden)</value>
-  </data>
-  <data name="AboutPage_FetchFailedRun" xml:space="preserve">
-    <value>Abruf fehlgeschlagen (Kein erfolgreicher Lauf gefunden)</value>
-  </data>
-  <data name="AboutPage_FetchFailedWorkflow" xml:space="preserve">
-    <value>Abruf fehlgeschlagen (Workflow nicht gefunden)</value>
-  </data>
-  <data name="AboutPage_Exception" xml:space="preserve">
-    <value>Fehler aufgetreten</value>
-  </data>
-  <data name="AboutPage_GitHubTokenPlaceholder" xml:space="preserve">
-    <value>Bitte gib deinen GitHub Token ein</value>
-  </data>
-  <data name="AboutPage_Loading" xml:space="preserve">
-    <value>Wird abgerufen...</value>
   </data>
   <data name="PluginMirrorAccelerationTitle" xml:space="preserve">
     <value>Mirror-Beschleunigung für den Plugin-Store</value>
@@ -5946,268 +5507,6 @@ Versuchen Sie einen anderen Knoten oder die direkte offizielle Quelle.</value>
   </data>
   <data name="DevVersionBadgeFormat" xml:space="preserve">
     <value>v{0} Dev</value>
-  </data>
-  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
-    <value>Zielserver</value>
-  </data>
-  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
-    <value>Aktueller Server: {0}</value>
-  </data>
-  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
-    <value>Aktueller Server konnte nicht erkannt werden. Bitte überprüfe das Spielverzeichnis.</value>
-  </data>
-  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
-    <value>Bitte wähle zuerst einen Zielserver aus</value>
-  </data>
-  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
-    <value>Abbrechen</value>
-  </data>
-  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
-    <value>Vorgang abgebrochen</value>
-  </data>
-  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
-    <value>Fertig</value>
-  </data>
-  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
-    <value>Erfolgreich gewechselt zu: {0}</value>
-  </data>
-  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
-    <value>Datenblock wird heruntergeladen {0}/{1} - {2}</value>
-  </data>
-  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
-    <value>Bereinigen der Plugin-Ordner fehlgeschlagen: {0}</value>
-  </data>
-  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
-    <value>Serverwechsel fehlgeschlagen</value>
-  </data>
-  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
-    <value>Wechsel fehlgeschlagen, Dateien werden möglicherweise verwendet.
-Fehlermeldung: {0}</value>
-  </data>
-  <data name="ServerBili" xml:space="preserve">
-    <value>Bilibili-Server (Bilibili)</value>
-  </data>
-  <data name="DownloadWindow_Server" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="Download_FileFailed" xml:space="preserve">
-    <value>{0} Datei(en) konnten nicht heruntergeladen werden. Bitte wiederhole den Vorgang oder wechsle den Server.</value>
-  </data>
-  <data name="PreDownload_Failed" xml:space="preserve">
-    <value>Vorab-Download fehlgeschlagen</value>
-  </data>
-  <data name="PreDownload_Success" xml:space="preserve">
-    <value>Vorab-Download-Dateien erfolgreich heruntergeladen und installiert.</value>
-  </data>
-  <data name="VerifyGame_Success" xml:space="preserve">
-    <value>Überprüfung der Spieldateien und Reparatur abgeschlossen</value>
-  </data>
-  <data name="VerifyGame_Failed" xml:space="preserve">
-    <value>Überprüfung fehlgeschlagen</value>
-  </data>
-  <data name="GameServer_StageFetchBranches" xml:space="preserve">
-    <value>Netzwerk-Branches werden abgerufen</value>
-  </data>
-  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
-    <value>Manifeste werden heruntergeladen und decodiert</value>
-  </data>
-  <data name="GameServer_StageDiff" xml:space="preserve">
-    <value>Daten werden verglichen</value>
-  </data>
-  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
-    <value>Benötigte Datenblöcke werden heruntergeladen</value>
-  </data>
-  <data name="GameServer_StageReplace" xml:space="preserve">
-    <value>Dateien werden ersetzt</value>
-  </data>
-  <data name="GameServer_ReplacingFile" xml:space="preserve">
-    <value>Datei wird ersetzt {0}/{1} - {2}</value>
-  </data>
-  <data name="GameServer_StageCleanup" xml:space="preserve">
-    <value>Temporäre Daten werden bereinigt</value>
-  </data>
-  <data name="GameServer_StageVerify" xml:space="preserve">
-    <value>Spieldatei-Integrität wird überprüft, dies kann etwas dauern</value>
-  </data>
-  <data name="GameServer_VerifyOk" xml:space="preserve">
-    <value>Dateiprüfung bestanden, Spieldaten sind intakt</value>
-  </data>
-  <data name="GameServer_VerifyProgress" xml:space="preserve">
-    <value>Wird überprüft: {0}/{1}</value>
-  </data>
-  <data name="GameServer_RepairFound" xml:space="preserve">
-    <value>{0} beschädigte oder fehlende Datei(en) gefunden, Reparatur läuft</value>
-  </data>
-  <data name="GameServer_RepairDone" xml:space="preserve">
-    <value>Beschädigte Dateien erfolgreich repariert</value>
-  </data>
-  <data name="GameServer_InstallingPredownload" xml:space="preserve">
-    <value>Vorab-Download-Dateien werden installiert</value>
-  </data>
-  <data name="GameServer_BranchDataNull" xml:space="preserve">
-    <value>Schnittstelle lieferte leere Daten, Branch-Informationen konnten nicht abgerufen werden</value>
-  </data>
-  <data name="GameServer_NoMainBranch" xml:space="preserve">
-    <value>Daten des Haupt-Branches (Main) konnten nicht abgerufen werden</value>
-  </data>
-  <data name="GameServer_NoPredownload" xml:space="preserve">
-    <value>Vorab-Download ist derzeit nicht verfügbar</value>
-  </data>
-  <data name="GameServer_NoPackageId" xml:space="preserve">
-    <value>Branch-Daten enthalten keine package_id</value>
-  </data>
-  <data name="GameServer_NoPassword" xml:space="preserve">
-    <value>Branch-Daten enthalten kein password</value>
-  </data>
-  <data name="GameServer_NoManifests" xml:space="preserve">
-    <value>Abrufen der Manifeste (manifests) fehlgeschlagen.</value>
-  </data>
-  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
-    <value>Manifest-Prüfsumme stimmt nicht überein: {0}</value>
-  </data>
-  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
-    <value>API-Anfrage fehlgeschlagen: {0}, Fehler: {1}</value>
-  </data>
-  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
-    <value>Datenblock {0} konnte nicht heruntergeladen werden oder hat die Prüfung nicht bestanden.</value>
-  </data>
-  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
-    <value>Datei-Prüfsumme stimmt nicht überein: {0}</value>
-  </data>
-  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
-    <value>Dateigröße stimmt nicht überein: {0}, tatsächlich {1} Bytes, erwartet {2} Bytes</value>
-  </data>
-  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
-    <value>Cache fehlt, Datei übersprungen: {0} (kann später durch Überprüfung repariert werden)</value>
-  </data>
-  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
-    <value>Zusammengesetzte Datei hat Prüfung nicht bestanden (lokale alte Datei möglicherweise beschädigt), übersprungen: {0} (kann später durch Überprüfung repariert werden)</value>
-  </data>
-  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
-    <value>Bereinigen temporärer Blöcke fehlgeschlagen: {0}</value>
-  </data>
-  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
-    <value>Alte SDK-Dateien werden bereinigt …</value>
-  </data>
-  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
-    <value>Kanal-SDK-Konfiguration wird abgerufen …</value>
-  </data>
-  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
-    <value>Abrufen der Kanal-SDK-Konfiguration fehlgeschlagen</value>
-  </data>
-  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
-    <value>Kanal-SDK wird heruntergeladen …</value>
-  </data>
-  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
-    <value>Kanal-SDK wird entpackt …</value>
-  </data>
-  <data name="GameServer_CleanedPlugins" xml:space="preserve">
-    <value>Plugins-Ordner wurde bereinigt</value>
-  </data>
-  <data name="GameServer_InsufficientPermission" xml:space="preserve">
-    <value>Unzureichende Berechtigungen im Spielverzeichnis, Datei konnte nicht geschrieben werden: {0}. Bitte als Administrator ausführen oder Verzeichnisberechtigungen prüfen.</value>
-  </data>
-  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
-    <value>Kanal-SDK-Dateien fehlen oder sind beschädigt, werden erneut heruntergeladen …</value>
-  </data>
-  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
-    <value>Veraltete Dateien werden verarbeitet …</value>
-  </data>
-  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
-    <value>Abrufen der Konfiguration für veraltete Dateien fehlgeschlagen: {0}</value>
-  </data>
-  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
-    <value>Offiziell</value>
-  </data>
-  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
-    <value>Bilibili</value>
-  </data>
-  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
-    <value>Global</value>
-  </data>
-  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
-    <value>Download-Geschwindigkeit</value>
-  </data>
-  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
-    <value>Verbleibende Blöcke: {0}</value>
-  </data>
-  <data name="SpeedGraph_NoData" xml:space="preserve">
-    <value>Keine Geschwindigkeitsdaten verfügbar</value>
-  </data>
-  <data name="SectionGameAnnouncement" xml:space="preserve">
-    <value>Spielankündigungen</value>
-  </data>
-  <data name="GameAnnouncementViewModeTitle" xml:space="preserve">
-    <value>Ankündigungs-Ansichtsmodus</value>
-  </data>
-  <data name="GameAnnouncementViewModeCaption" xml:space="preserve">
-    <value>Wähle, wie Spielankündigungen angezeigt werden sollen</value>
-  </data>
-  <data name="GameAnnouncementViewModeNew" xml:space="preserve">
-    <value>Neues Ankündigungszentrum</value>
-  </data>
-  <data name="GameAnnouncementViewModeClassic" xml:space="preserve">
-    <value>Klassische offizielle Webseite</value>
-  </data>
-  <data name="GameAnnouncement_Title" xml:space="preserve">
-    <value>Spielankündigungen</value>
-  </data>
-  <data name="GameAnnouncement_Loading" xml:space="preserve">
-    <value>Ankündigungen werden geladen …</value>
-  </data>
-  <data name="GameAnnouncement_LoadFailed" xml:space="preserve">
-    <value>Ankündigungen konnten nicht geladen werden. Bitte Netzwerkverbindung prüfen und erneut versuchen.</value>
-  </data>
-  <data name="GameAnnouncement_Retry" xml:space="preserve">
-    <value>Wiederholen</value>
-  </data>
-  <data name="GameAnnouncement_Empty" xml:space="preserve">
-    <value>Keine Ankündigungen vorhanden</value>
-  </data>
-  <data name="GameAnnouncement_SearchPlaceholder" xml:space="preserve">
-    <value>Ankündigungstitel suchen …</value>
-  </data>
-  <data name="GameAnnouncement_Refresh" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
-  <data name="GameAnnouncement_ClassicMode" xml:space="preserve">
-    <value>Klassische Webseite</value>
-  </data>
-  <data name="GameAnnouncement_Back" xml:space="preserve">
-    <value>Zurück</value>
-  </data>
-  <data name="GameAnnouncement_NoContent" xml:space="preserve">
-    <value>Diese Ankündigung hat keinen Inhalt</value>
-  </data>
-  <data name="GameAnnouncement_Region_CNGF01" xml:space="preserve">
-    <value>Celestia</value>
-  </data>
-  <data name="GameAnnouncement_Region_CNQD01" xml:space="preserve">
-    <value>Irminsul</value>
-  </data>
-  <data name="GameAnnouncement_Region_OSUSA" xml:space="preserve">
-    <value>Amerika</value>
-  </data>
-  <data name="GameAnnouncement_Region_OSEURO" xml:space="preserve">
-    <value>Europa</value>
-  </data>
-  <data name="GameAnnouncement_Region_OSASIA" xml:space="preserve">
-    <value>Asien</value>
-  </data>
-  <data name="GameAnnouncement_Region_OSCHT" xml:space="preserve">
-    <value>TW/HK/MO</value>
-  </data>
-  <data name="GameAnnouncement_TimeHoursBegin" xml:space="preserve">
-    <value>Beginnt in {0} Stunde(n)</value>
-  </data>
-  <data name="GameAnnouncement_TimeHoursEnd" xml:space="preserve">
-    <value>Endet in {0} Stunde(n)</value>
-  </data>
-  <data name="GameAnnouncement_TimeDaysBegin" xml:space="preserve">
-    <value>Beginnt in {0} Tag(en)</value>
-  </data>
-  <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
-    <value>Endet in {0} Tag(en)</value>
   </data>
   <data name="Preset_Rename" xml:space="preserve">
     <value>Umbenennen</value>
@@ -6640,9 +5939,6 @@ Click the button below to open your browser and download manually.</value>
   <data name="DailyNote_NoIdentityService" xml:space="preserve">
     <value>The account identity service is unavailable, so daily note data cannot be read.</value>
   </data>
-  <data name="OfficialBgApiTitle" xml:space="preserve">
-    <value>Offizielle Hintergrund-API</value>
-  </data>
   <data name="PluginStoreAccessDenied" xml:space="preserve">
     <value>Access denied.</value>
   </data>
@@ -6709,9 +6005,6 @@ Click the button below to open your browser and download manually.</value>
   <data name="DeviceInfo_Account" xml:space="preserve">
     <value>Konto</value>
   </data>
-  <data name="DeviceInfo_Device" xml:space="preserve">
-    <value>Gerät</value>
-  </data>
   <data name="DeviceInfo_FingerprintSection" xml:space="preserve">
     <value>Gerätefingerabdruck</value>
   </data>
@@ -6763,12 +6056,6 @@ Click the button below to open your browser and download manually.</value>
   <data name="DeviceInfo_DeviceIdRequired" xml:space="preserve">
     <value>device_id darf nicht leer sein</value>
   </data>
-  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
-    <value>seed_id muss eine gültige GUID sein</value>
-  </data>
-  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
-    <value>seed_time muss ein gültiger Unix-Zeitstempel in Millisekunden sein</value>
-  </data>
   <data name="DeviceInfo_ResetToDefaults" xml:space="preserve">
     <value>Zurücksetzen</value>
   </data>
@@ -6780,6 +6067,956 @@ Click the button below to open your browser and download manually.</value>
   </data>
   <data name="DeviceInfo_ResetFailed" xml:space="preserve">
     <value>Zurücksetzen fehlgeschlagen. Netzwerk prüfen und erneut versuchen.</value>
+  </data>
+  <data name="SectionStartup" xml:space="preserve">
+    <value>Autostart</value>
+  </data>
+  <data name="RunAtStartupTitle" xml:space="preserve">
+    <value>Beim Systemstart starten</value>
+  </data>
+  <data name="RunAtStartupCaption" xml:space="preserve">
+    <value>FufuLauncher automatisch starten, wenn Sie sich bei Windows anmelden</value>
+  </data>
+  <data name="RunAtStartupFailedTitle" xml:space="preserve">
+    <value>Autostart konnte nicht aktiviert werden</value>
+  </data>
+  <data name="RunAtStartupFailedMessage" xml:space="preserve">
+    <value>Der Autostart-Eintrag konnte nicht geschrieben werden. Prüfen Sie Systemberechtigungen und Sicherheitssoftware.</value>
+  </data>
+  <data name="PluginDllConflict_Title" xml:space="preserve">
+    <value>Plugin-DLL-Konflikt</value>
+  </data>
+  <data name="PluginDllConflict_Message" xml:space="preserve">
+    <value>Wir haben DLLs mit demselben Namen in mehreren Plugins gefunden, daher wurde die Injektion gestoppt. Andernfalls könnte eine veraltete Plugin-Version geladen werden und das Spiel oder die Plugins funktionieren möglicherweise nicht mehr richtig.</value>
+  </data>
+  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
+    <value>DLL-Name: {0}</value>
+  </data>
+  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
+    <value>Neueste</value>
+  </data>
+  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
+    <value>Veraltet</value>
+  </data>
+  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
+    <value>Datei anzeigen</value>
+  </data>
+  <data name="PluginDllConflict_Hint" xml:space="preserve">
+    <value>Behalten Sie nur das neueste Plugin und löschen oder benennen Sie die doppelten DLLs in den anderen Plugins um. Wenn Sie nicht sicher sind, welche Sie behalten sollen, löschen Sie alle Plugins und installieren Sie sie neu.</value>
+  </data>
+  <data name="PluginConflictCheckTitle" xml:space="preserve">
+    <value>Plugin-Konfliktprüfung</value>
+  </data>
+  <data name="PluginConflictCheckCaption" xml:space="preserve">
+    <value>Prüft vor der Injektion auf Plugin-DLLs mit demselben Namen und stoppt sie, damit Sie den Konflikt beheben können</value>
+  </data>
+  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
+    <value>Nur Hauptplugin</value>
+  </data>
+  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
+    <value>Prüft nur FufuLauncher.UnlockerIsland.dll; deaktivieren, um alle Plugin-DLLs zu prüfen</value>
+  </data>
+  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
+    <value>Löschen bestätigen</value>
+  </data>
+  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
+    <value>Die DLL und die config.ini im selben Ordner werden gelöscht. Dies kann nicht rückgängig gemacht werden. Fortfahren?</value>
+  </data>
+  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
+    <value>Löschen fehlgeschlagen: {0}</value>
+  </data>
+  <data name="PluginDllConflict_Resolved" xml:space="preserve">
+    <value>Der Konflikt mit gleichnamigen DLLs wurde behoben. Sie können das Spiel jetzt neu starten.</value>
+  </data>
+  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
+    <value>Änderungen werden automatisch gespeichert</value>
+  </data>
+  <data name="PluginConfigPage_Saving" xml:space="preserve">
+    <value>Wird gespeichert…</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
+    <value>Konfiguration konnte nicht gespeichert werden</value>
+  </data>
+  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
+    <value>Die Konfigurationsdatei konnte nicht geschrieben werden. Prüfen Sie die Dateiberechtigungen und versuchen Sie es erneut. Details: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
+    <value>Konfiguration konnte nicht geladen werden</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
+    <value>Die Plugin-Konfigurationsdatei konnte nicht gelesen werden. Details: {0}</value>
+  </data>
+  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
+    <value>Stellen Sie sicher, dass die Konfigurationsdatei vorhanden und lesbar ist, und laden Sie sie erneut.</value>
+  </data>
+  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
+    <value>Die Konfigurationsdatei ist nicht vorhanden: {0}</value>
+  </data>
+  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
+    <value>Keine konfigurierbaren Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
+    <value>Dieses Plugin bietet keine anpassbaren Einstellungen.</value>
+  </data>
+  <data name="PluginConfigPage_NoResults" xml:space="preserve">
+    <value>Keine passenden Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
+    <value>Versuchen Sie einen anderen Suchbegriff oder leeren Sie die Suche.</value>
+  </data>
+  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
+    <value>Suche leeren</value>
+  </data>
+  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
+    <value>{0} Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
+    <value>{0} / {1} Einstellungen</value>
+  </data>
+  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
+    <value>Konfigurationsdatei</value>
+  </data>
+  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
+    <value>Wert eingeben…</value>
+  </data>
+  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
+    <value>Kopfbereich einklappen</value>
+  </data>
+  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
+    <value>Kopfbereich ausklappen</value>
+  </data>
+  <data name="AchievementWindow_DataActions" xml:space="preserve">
+    <value>Datenaktionen</value>
+  </data>
+  <data name="AchievementWindow_DataTransfer" xml:space="preserve">
+    <value>Import und Export</value>
+  </data>
+  <data name="AchievementWindow_SaveManagement" xml:space="preserve">
+    <value>Spielstände und Datenbank</value>
+  </data>
+  <data name="ModTrust_LaunchVerificationTitle" xml:space="preserve">
+    <value>Plug-in-Signaturen beim Start prüfen</value>
+  </data>
+  <data name="ModTrust_LaunchVerificationCaption" xml:space="preserve">
+    <value>Standardmäßig deaktiviert. Bei Aktivierung gilt die nachfolgende Warn- oder Blockierregel.</value>
+  </data>
+  <data name="ModTrust_ModeOff" xml:space="preserve">
+    <value>Prüfung deaktiviert</value>
+  </data>
+  <data name="ModTrust_ModeCaption" xml:space="preserve">
+    <value>Aus überspringt die Signaturprüfung; Warnen prüft und meldet ohne zu blockieren; Streng blockiert Plug-ins mit ungültiger Signatur.</value>
+  </data>
+  <data name="SectionServiceStatus" xml:space="preserve">
+    <value>Dienststatus</value>
+  </data>
+  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
+    <value>Dienststatus</value>
+  </data>
+  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
+    <value>Verfügbarkeit</value>
+  </data>
+  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
+    <value>Verfügbarkeit aller Dienste anzeigen</value>
+  </data>
+  <data name="ServiceStatus_OpenButton" xml:space="preserve">
+    <value>Anzeigen</value>
+  </data>
+  <data name="ServiceStatus_AllOperational" xml:space="preserve">
+    <value>Alle Systeme betriebsbereit</value>
+  </data>
+  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
+    <value>Einige Dienste weisen Probleme auf</value>
+  </data>
+  <data name="ServiceStatus_Operational" xml:space="preserve">
+    <value>Betriebsbereit</value>
+  </data>
+  <data name="ServiceStatus_Degraded" xml:space="preserve">
+    <value>Beeinträchtigt</value>
+  </data>
+  <data name="ServiceStatus_Outage" xml:space="preserve">
+    <value>Ausfall</value>
+  </data>
+  <data name="ServiceStatus_Paused" xml:space="preserve">
+    <value>Pausiert</value>
+  </data>
+  <data name="ServiceStatus_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="ServiceStatus_Uptime90" xml:space="preserve">
+    <value>Verfügbarkeit (90 Tage)</value>
+  </data>
+  <data name="ServiceStatus_Updated" xml:space="preserve">
+    <value>Aktualisiert um {0}</value>
+  </data>
+  <data name="ServiceStatus_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="ServiceStatus_LoadMore" xml:space="preserve">
+    <value>Mehr laden</value>
+  </data>
+  <data name="ServiceStatus_Loading" xml:space="preserve">
+    <value>Dienststatus wird geladen</value>
+  </data>
+  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
+    <value>Dienststatus konnte nicht geladen werden</value>
+  </data>
+  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
+    <value>Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="ServiceStatus_Retry" xml:space="preserve">
+    <value>Erneut versuchen</value>
+  </data>
+  <data name="ServiceStatus_Services" xml:space="preserve">
+    <value>Dienste</value>
+  </data>
+  <data name="ServiceStatus_Last90Days" xml:space="preserve">
+    <value>Letzte 90 Tage</value>
+  </data>
+  <data name="ServiceStatus_Days90Short" xml:space="preserve">
+    <value>90 Tage</value>
+  </data>
+  <data name="ServiceStatus_LastIncident" xml:space="preserve">
+    <value>Letzter Ausfall {0}</value>
+  </data>
+  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
+    <value>Keine Ausfälle in 90 Tagen</value>
+  </data>
+  <data name="ServiceStatus_CountFormat" xml:space="preserve">
+    <value>{0} Dienste</value>
+  </data>
+  <data name="ServiceStatus_CountOperational" xml:space="preserve">
+    <value>Betriebsbereit {0}</value>
+  </data>
+  <data name="ServiceStatus_CountOutage" xml:space="preserve">
+    <value>Ausfälle {0}</value>
+  </data>
+  <data name="ServiceStatus_CountPaused" xml:space="preserve">
+    <value>Pausiert {0}</value>
+  </data>
+  <data name="ServiceStatus_NoData" xml:space="preserve">
+    <value>Keine Daten</value>
+  </data>
+  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
+    <value>Details anzeigen</value>
+  </data>
+  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
+    <value>Zurück zum Dienststatus</value>
+  </data>
+  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
+    <value>Dienstdetails konnten nicht geladen werden</value>
+  </data>
+  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
+    <value>Bitte versuchen Sie es später erneut.</value>
+  </data>
+  <data name="ServiceDetail_Loading" xml:space="preserve">
+    <value>Dienstdetails werden geladen</value>
+  </data>
+  <data name="ServiceDetail_Uptime" xml:space="preserve">
+    <value>Verfügbarkeit</value>
+  </data>
+  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
+    <value>Gesamtverfügbarkeit</value>
+  </data>
+  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
+    <value>Letzte 24 Stunden</value>
+  </data>
+  <data name="ServiceDetail_Last7Days" xml:space="preserve">
+    <value>Letzte 7 Tage</value>
+  </data>
+  <data name="ServiceDetail_Last30Days" xml:space="preserve">
+    <value>Letzte 30 Tage</value>
+  </data>
+  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
+    <value>Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_Last2Days" xml:space="preserve">
+    <value>Letzte 2 Tage</value>
+  </data>
+  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
+    <value>Durchschnittliche Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
+    <value>Maximale Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
+    <value>Minimale Antwortzeit</value>
+  </data>
+  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
+    <value>Prüfungen</value>
+  </data>
+  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
+    <value>Letzte Ereignisse</value>
+  </data>
+  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
+    <value>Mehr anzeigen</value>
+  </data>
+  <data name="ServiceDetail_NoEvents" xml:space="preserve">
+    <value>Keine aktuellen Ereignisse</value>
+  </data>
+  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
+    <value>Keine Antwortzeitdaten</value>
+  </data>
+  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
+    <value>Dauer: {0} s</value>
+  </data>
+  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
+    <value>Dauer: {0} min</value>
+  </data>
+  <data name="ServiceDetail_DurationHours" xml:space="preserve">
+    <value>Dauer: {0} h</value>
+  </data>
+  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
+    <value>Dauer: {0} h {1} min</value>
+  </data>
+  <data name="ServiceDetail_DurationDays" xml:space="preserve">
+    <value>Dauer: {0} T {1} h</value>
+  </data>
+  <data name="Restart_FailedTitle" xml:space="preserve">
+    <value>Automatischer Neustart nicht möglich</value>
+  </data>
+  <data name="Restart_FailedMessage" xml:space="preserve">
+    <value>Der automatische Neustart ist fehlgeschlagen. Deine Einstellungen wurden gespeichert; bitte starte die Anwendung manuell neu, damit die Änderungen wirksam werden.</value>
+  </data>
+  <data name="LangHi" xml:space="preserve">
+    <value>Hindi (हिन्दी)</value>
+  </data>
+  <data name="Checkin_ConfiguringAccount" xml:space="preserve">
+    <value>Wird konfiguriert: {0} ({1})</value>
+  </data>
+  <data name="Checkin_SelectAccount" xml:space="preserve">
+    <value>Bitte wähle unten ein Konto aus, um dessen Check-in-Optionen zu konfigurieren</value>
+  </data>
+  <data name="Checkin_AccountListCaption" xml:space="preserve">
+    <value>Wähle die Konten für den Batch-Check-in aus, klicke auf ein Konto zum Bearbeiten der Optionen und ziehe es, um die Reihenfolge anzupassen</value>
+  </data>
+  <data name="Checkin_DragToReorder" xml:space="preserve">
+    <value>Ziehen, um die Check-in-Reihenfolge zu ändern</value>
+  </data>
+  <data name="Label_ShortcutName" xml:space="preserve">
+    <value>Name der Verknüpfung</value>
+  </data>
+  <data name="Placeholder_ShortcutName" xml:space="preserve">
+    <value>Benutzerdefinierter Name (ohne .lnk, leer lassen für Standard)</value>
+  </data>
+  <data name="LoginQR_ServerCn" xml:space="preserve">
+    <value>China-Server</value>
+  </data>
+  <data name="LoginQR_ServerOs" xml:space="preserve">
+    <value>Globaler Server</value>
+  </data>
+  <data name="LoginQR_MobileCaptcha" xml:space="preserve">
+    <value>Anmeldung per SMS-Code</value>
+  </data>
+  <data name="LoginQR_OverseaPassword" xml:space="preserve">
+    <value>Anmeldung mit Kontoname &amp; Passwort</value>
+  </data>
+  <data name="LoginQR_ThirdPartyLoginTitle" xml:space="preserve">
+    <value>Drittanbieter-Anmeldung</value>
+  </data>
+  <data name="LoginQR_ThirdPartyGoogle" xml:space="preserve">
+    <value>Mit Google anmelden</value>
+  </data>
+  <data name="LoginQR_ThirdPartyApple" xml:space="preserve">
+    <value>Mit Apple anmelden</value>
+  </data>
+  <data name="LoginQR_ThirdPartyFacebook" xml:space="preserve">
+    <value>Mit Facebook anmelden</value>
+  </data>
+  <data name="LoginQR_ThirdPartyTwitter" xml:space="preserve">
+    <value>Mit X (Twitter) anmelden</value>
+  </data>
+  <data name="LoginQR_OverseaRiskHint" xml:space="preserve">
+    <value>Hinweis: HoYoVerse erfordert möglicherweise eine Sicherheitsüberprüfung per E-Mail-Bestätigungscode.</value>
+  </data>
+  <data name="LoginQR_LoginButton" xml:space="preserve">
+    <value>Anmelden</value>
+  </data>
+  <data name="LoginQR_SendCaptcha" xml:space="preserve">
+    <value>Bestätigungscode senden</value>
+  </data>
+  <data name="LoginQR_MobileHeader" xml:space="preserve">
+    <value>Mobilfunknummer</value>
+  </data>
+  <data name="LoginQR_MobilePlaceholder" xml:space="preserve">
+    <value>11-stellige Mobilfunknummer eingeben</value>
+  </data>
+  <data name="LoginQR_CaptchaHeader" xml:space="preserve">
+    <value>Bestätigungscode</value>
+  </data>
+  <data name="LoginQR_CaptchaPlaceholder" xml:space="preserve">
+    <value>6-stelliger SMS-Code</value>
+  </data>
+  <data name="LoginQR_AccountHeader" xml:space="preserve">
+    <value>Konto</value>
+  </data>
+  <data name="LoginQR_AccountPlaceholder" xml:space="preserve">
+    <value>E-Mail oder Benutzername</value>
+  </data>
+  <data name="LoginQR_PasswordHeader" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="LoginQR_PasswordPlaceholder" xml:space="preserve">
+    <value>Passwort eingeben</value>
+  </data>
+  <data name="LoginQR_OverseaVerifyTitle" xml:space="preserve">
+    <value>Sicherheitsüberprüfung</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaHeader" xml:space="preserve">
+    <value>E-Mail-Bestätigungscode</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaPlaceholder" xml:space="preserve">
+    <value>6-stelliger E-Mail-Code</value>
+  </data>
+  <data name="LoginQR_SendEmailCaptcha" xml:space="preserve">
+    <value>E-Mail-Code senden</value>
+  </data>
+  <data name="LoginQR_EmailCaptchaSent" xml:space="preserve">
+    <value>Der E-Mail-Bestätigungscode wurde gesendet. Bitte überprüfe deinen Posteingang.</value>
+  </data>
+  <data name="LoginQR_UnknownEmail" xml:space="preserve">
+    <value>Unbekannte E-Mail-Adresse</value>
+  </data>
+  <data name="Checkin_ResignTitle" xml:space="preserve">
+    <value>Check-in nachholen</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormat" xml:space="preserve">
+    <value>In diesem Monat kann der Check-in noch {0}-mal nachgeholt werden. Verbleibende Nachholkarten: {1}. Jetzt nachholen?</value>
+  </data>
+  <data name="Checkin_ResignConfirmFormatCn" xml:space="preserve">
+    <value>In diesem Monat kann der Check-in noch {0}-mal nachgeholt werden (Kosten: {1} MiHoYo-Münzen). Jetzt nachholen?</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoinCn" xml:space="preserve">
+    <value>Nicht genügend MiHoYo-Münzen</value>
+  </data>
+  <data name="Checkin_ResignSuccess" xml:space="preserve">
+    <value>Check-in erfolgreich nachgeholt</value>
+  </data>
+  <data name="Checkin_ResignFailed" xml:space="preserve">
+    <value>Nachholen des Check-ins fehlgeschlagen [{0}] {1}</value>
+  </data>
+  <data name="Checkin_ResignLimitExceeded" xml:space="preserve">
+    <value>Maximale Anzahl an Nachholungen erreicht</value>
+  </data>
+  <data name="Checkin_ResignNotSigned" xml:space="preserve">
+    <value>Bitte führe zuerst den heutigen Check-in durch</value>
+  </data>
+  <data name="Checkin_ResignNoDate" xml:space="preserve">
+    <value>Kein ausstehendes Datum zum Nachholen vorhanden</value>
+  </data>
+  <data name="Checkin_ResignInsufficientCoin" xml:space="preserve">
+    <value>Nicht genügend Nachholkarten vorhanden</value>
+  </data>
+  <data name="Checkin_ResignQueryFailed" xml:space="preserve">
+    <value>Berechtigung zum Nachholen konnte nicht abgefragt werden: {0}</value>
+  </data>
+  <data name="Checkin_ResignUnsupported" xml:space="preserve">
+    <value>Nachträglicher Check-in wird auf diesem Server derzeit nicht unterstützt</value>
+  </data>
+  <data name="LaunchBtn_Launching" xml:space="preserve">
+    <value>Start abbrechen</value>
+  </data>
+  <data name="LaunchCancelled_Title" xml:space="preserve">
+    <value>Start abgebrochen</value>
+  </data>
+  <data name="LaunchCancelled_Msg" xml:space="preserve">
+    <value>Der Spielstartvorgang wurde abgebrochen.</value>
+  </data>
+  <data name="GameUpdate_PredownloadTitle" xml:space="preserve">
+    <value>Vorab-Download</value>
+  </data>
+  <data name="GameUpdate_PredownloadCaption" xml:space="preserve">
+    <value>Aktualisierungsressourcen im Voraus herunterladen</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnTitle" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="GameUpdate_UpdateBtnCaption" xml:space="preserve">
+    <value>Aktualisierungsressourcen in das Spiel zusammenführen</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnTitle" xml:space="preserve">
+    <value>Vorab-Download zusammenführen</value>
+  </data>
+  <data name="GameUpdate_ApplyBtnCaption" xml:space="preserve">
+    <value>Vorab heruntergeladene Ressourcen jetzt übernehmen (Entwickler)</value>
+  </data>
+  <data name="GameUpdate_PredownloadFinishedBadge" xml:space="preserve">
+    <value>Vorab heruntergeladen</value>
+  </data>
+  <data name="GameUpdate_UpdateTitle" xml:space="preserve">
+    <value>Spiel-Update</value>
+  </data>
+  <data name="GameUpdate_UpdateDescription" xml:space="preserve">
+    <value>Aktualisiert das Spiel auf die neueste Version. Bereits vorab heruntergeladene Ressourcen werden automatisch verwendet.</value>
+  </data>
+  <data name="GameUpdate_UpdateStart" xml:space="preserve">
+    <value>Update starten</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadTitle" xml:space="preserve">
+    <value>Vorab-Download zusammenführen</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadDescription" xml:space="preserve">
+    <value>Führt die vorab heruntergeladenen Ressourcen sofort mit dem Spiel zusammen; die Spielversion wird vorzeitig auf die Vorab-Download-Version aktualisiert. Nur für Entwickler verfügbar.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadStart" xml:space="preserve">
+    <value>Zusammenführung starten</value>
+  </data>
+  <data name="GameUpdate_UpdateSuccess" xml:space="preserve">
+    <value>Das Spiel wurde auf die neueste Version aktualisiert.</value>
+  </data>
+  <data name="GameUpdate_ApplyPredownloadSuccess" xml:space="preserve">
+    <value>Die Vorab-Download-Ressourcen wurden erfolgreich zusammengeführt.</value>
+  </data>
+  <data name="GameUpdate_UpdateFailed" xml:space="preserve">
+    <value>Update fehlgeschlagen</value>
+  </data>
+  <data name="GameUpdate_ConfirmPredownloadTitle" xml:space="preserve">
+    <value>Vorab-Download bestätigen</value>
+  </data>
+  <data name="GameUpdate_ConfirmUpdateTitle" xml:space="preserve">
+    <value>Update bestätigen</value>
+  </data>
+  <data name="GameUpdate_ConfirmApplyPredownloadTitle" xml:space="preserve">
+    <value>Zusammenführung des Vorab-Downloads bestätigen</value>
+  </data>
+  <data name="GameUpdate_ConfirmMessage" xml:space="preserve">
+    <value>Download-Größe: {0}
+Installationsgröße: {1}
+Zielversion: {2}
+
+Jetzt starten?</value>
+  </data>
+  <data name="GameUpdate_PlanSummary" xml:space="preserve">
+    <value>Plan: {0} herunterladen, Zielversion {1}</value>
+  </data>
+  <data name="GameUpdate_StageMerge" xml:space="preserve">
+    <value>Dateien werden zusammengeführt …</value>
+  </data>
+  <data name="GameUpdate_StageApplyPatches" xml:space="preserve">
+    <value>Patches werden angewendet …</value>
+  </data>
+  <data name="GameUpdate_MergingFile" xml:space="preserve">
+    <value>Zusammenführen {0}/{1}: {2}</value>
+  </data>
+  <data name="GameUpdate_SkipAsset" xml:space="preserve">
+    <value>Ressource übersprungen (wird später automatisch repariert): {0}</value>
+  </data>
+  <data name="GameUpdate_PredownloadDone" xml:space="preserve">
+    <value>Vorab-Download abgeschlossen. Warte auf die offizielle Veröffentlichung.</value>
+  </data>
+  <data name="GameUpdate_NoPredownloadNeeded" xml:space="preserve">
+    <value>Für die aktuelle Version ist kein Vorab-Download verfügbar.</value>
+  </data>
+  <data name="GameUpdate_AlreadyLatest" xml:space="preserve">
+    <value>Das Spiel ist bereits auf dem neuesten Stand.</value>
+  </data>
+  <data name="GameUpdate_UnknownLocalVersion" xml:space="preserve">
+    <value>Lokale Spielversion konnte nicht ermittelt werden. Bitte überprüfe config.ini.</value>
+  </data>
+  <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
+    <value>Nicht genügend freier Speicherplatz: {0} erforderlich, {1} verfügbar.</value>
+  </data>
+  <data name="GameUpdate_DevOnly" xml:space="preserve">
+    <value>Diese Funktion ist nur für autorisierte Entwickler verfügbar.</value>
+  </data>
+  <data name="Patch_ReadHeaderFailed" xml:space="preserve">
+    <value>Fehler beim Lesen des Patch-Headers: Die Patch-Datei ist beschädigt oder unvollständig.</value>
+  </data>
+  <data name="Patch_DiffNotSeekable" xml:space="preserve">
+    <value>Der Patch-Stream muss Direktzugriff (Seek) unterstützen.</value>
+  </data>
+  <data name="DownloadWindow_DownloadSpeed" xml:space="preserve">
+    <value>Download-Geschwindigkeit</value>
+  </data>
+  <data name="HDR_ColorSpace" xml:space="preserve">
+    <value>Farbraum</value>
+  </data>
+  <data name="HDR_PeakLuminance" xml:space="preserve">
+    <value>Spitzenhelligkeit</value>
+  </data>
+  <data name="HDR_FullFrameLuminance" xml:space="preserve">
+    <value>Maximale Vollbildhelligkeit</value>
+  </data>
+  <data name="HDR_SdrWhiteLevel" xml:space="preserve">
+    <value>SDR-Weißpunkt-Helligkeit</value>
+  </data>
+  <data name="HDR_MaxLuminance_Desc" xml:space="preserve">
+    <value>Passt die maximale Helligkeitsgrenze für Glanzlichter an (empfohlen: an den Monitor anpassen)</value>
+  </data>
+  <data name="HDR_SceneLuminance_Desc" xml:space="preserve">
+    <value>Passt die Referenz-Weißpunkt-Helligkeit für Spielweltszenen an</value>
+  </data>
+  <data name="HDR_UILuminance_Desc" xml:space="preserve">
+    <value>Passt die Helligkeit von UI-Elementen wie Minikarte, Lebensleiste und Text an</value>
+  </data>
+  <data name="HDR_Status_Enabled" xml:space="preserve">
+    <value>HDR aktiviert</value>
+  </data>
+  <data name="HDR_Status_NotEnabled" xml:space="preserve">
+    <value>HDR deaktiviert</value>
+  </data>
+  <data name="HDR_Status_NotSupported" xml:space="preserve">
+    <value>HDR nicht unterstützt</value>
+  </data>
+  <data name="HDR_Status_Unavailable" xml:space="preserve">
+    <value>HDR nicht verfügbar</value>
+  </data>
+  <data name="HDR_Status_Detecting" xml:space="preserve">
+    <value>HDR-Erkennung läuft …</value>
+  </data>
+  <data name="HDR_ColorSpace_SDR" xml:space="preserve">
+    <value>SDR (Standard Dynamic Range)</value>
+  </data>
+  <data name="HDR_ColorSpace_WCG" xml:space="preserve">
+    <value>WCG (Wide Color Gamut)</value>
+  </data>
+  <data name="HDR_ColorSpace_HDR" xml:space="preserve">
+    <value>HDR (High Dynamic Range)</value>
+  </data>
+  <data name="HDR_ColorSpace_Unknown" xml:space="preserve">
+    <value>Unbekannt</value>
+  </data>
+  <data name="HDR_UnableToRead" xml:space="preserve">
+    <value>Nicht lesbar</value>
+  </data>
+  <data name="AchievementWindow_YaeRead" xml:space="preserve">
+    <value>Über Embedded Yae aus dem Spiel importieren</value>
+  </data>
+  <data name="AchievementWindow_YaeReadTooltip" xml:space="preserve">
+    <value>Startet das Spiel und importiert den Erfolgsfortschritt über die Embedded-Yae-Komponente</value>
+  </data>
+  <data name="AchievementWindow_YaeNoGamePath" xml:space="preserve">
+    <value>Spielinstallationsverzeichnis nicht gefunden. Bitte konfiguriere zuerst den Spielpfad in den Einstellungen.</value>
+  </data>
+  <data name="AchievementWindow_ReadingFromGame" xml:space="preserve">
+    <value>Warte auf Spieldaten …</value>
+  </data>
+  <data name="AchievementWindow_YaeEmptyResult" xml:space="preserve">
+    <value>Keine Erfolgsdaten empfangen.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadDone" xml:space="preserve">
+    <value>{0} Erfolge aus dem Spiel importiert, Fortschritt für {1} Erfolge synchronisiert.</value>
+  </data>
+  <data name="AchievementWindow_YaeReadFailed" xml:space="preserve">
+    <value>Importieren der Erfolge aus dem Spiel fehlgeschlagen.</value>
+  </data>
+  <data name="GachaAnalysis_GetViaGame" xml:space="preserve">
+    <value>Aus dem Spiel abrufen</value>
+  </data>
+  <data name="GachaAnalysis_GameDesc" xml:space="preserve">
+    <value>Öffne den Gebetsverlauf im Spiel
+Bilibili-Server unterstützt, kein Miyoushe-Login erforderlich</value>
+  </data>
+  <data name="GachaAnalysis_CacheInstructions" xml:space="preserve">
+    <value>Melde dich im gewünschten Spielkonto an, öffne den Gebetsverlauf und warte, bis die Daten vollständig geladen sind. Klicke anschließend auf „Starten“.
+
+Offizieller CN-Server (Celestia), Bilibili (Irminsul) und globale Server werden ohne Miyoushe-Anmeldung unterstützt. Bitte vergewissere dich, dass im Spiel das richtige Konto angemeldet ist.</value>
+  </data>
+  <data name="GachaAnalysis_CacheStart" xml:space="preserve">
+    <value>Starten</value>
+  </data>
+  <data name="GachaAnalysis_CacheReading" xml:space="preserve">
+    <value>Gebetsverlaufs-Link wird aus dem Spiel gelesen …</value>
+  </data>
+  <data name="GachaAnalysis_CacheMissingPath" xml:space="preserve">
+    <value>Bitte lege zuerst den korrekten Spielpfad im Launcher fest und öffne anschließend den Gebetsverlauf im Spiel.</value>
+  </data>
+  <data name="GachaAnalysis_CacheNoLink" xml:space="preserve">
+    <value>Kein Gebetsverlaufs-Link gefunden. Bitte melde dich im Zielkonto an, öffne den Gebetsverlauf, warte auf das Laden und versuche es erneut.</value>
+  </data>
+  <data name="GachaAnalysis_CacheReadFailed" xml:space="preserve">
+    <value>Gebetsverlaufs-Link konnte nicht gelesen werden. Bitte öffne den Gebetsverlauf im Spiel erneut und wiederhole den Vorgang.</value>
+  </data>
+  <data name="Checkin_UnsupportedGame" xml:space="preserve">
+    <value>Für dieses Spiel ist noch kein täglicher Belohnungs-Check-in konfiguriert</value>
+  </data>
+  <data name="Checkin_LoginExpired" xml:space="preserve">
+    <value>Anmeldedaten abgelaufen und automatische Aktualisierung fehlgeschlagen. Bitte melde dich erneut bei Miyoushe an.</value>
+  </data>
+  <data name="Checkin_GameCaptcha" xml:space="preserve">
+    <value>Sicherheitsüberprüfung erforderlich. Bitte schließe die Verifizierung auf der offiziellen Miyoushe-Seite ab.</value>
+  </data>
+  <data name="Checkin_SignNotConfirmed" xml:space="preserve">
+    <value>Check-in-Status noch nicht bestätigt. Bitte versuche es später erneut.</value>
+  </data>
+  <data name="Settings_ConfigSaveFailedPathHint" xml:space="preserve">
+    <value>Datenbankpfad: {0}. Bitte prüfe, ob das Verzeichnis beschreibbar und der Datenträger verfügbar ist.</value>
+  </data>
+  <data name="Launcher_DllNotFound" xml:space="preserve">
+    <value>Launcher.dll fehlt. Die Injektionsfunktion ist nicht verfügbar. Bitte installiere den Launcher neu.</value>
+  </data>
+  <data name="AdvancedServerSwitch_TargetServer" xml:space="preserve">
+    <value>Zielserver</value>
+  </data>
+  <data name="AdvancedServerSwitch_CurrentServer" xml:space="preserve">
+    <value>Aktueller Server: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_UnknownCurrent" xml:space="preserve">
+    <value>Aktueller Server konnte nicht erkannt werden. Bitte überprüfe das Spielverzeichnis.</value>
+  </data>
+  <data name="AdvancedServerSwitch_SelectTarget" xml:space="preserve">
+    <value>Bitte wähle zuerst einen Zielserver aus</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="AdvancedServerSwitch_Cancelled" xml:space="preserve">
+    <value>Vorgang abgebrochen</value>
+  </data>
+  <data name="AdvancedServerSwitch_Done" xml:space="preserve">
+    <value>Fertig</value>
+  </data>
+  <data name="AdvancedServerSwitch_DoneMsg" xml:space="preserve">
+    <value>Erfolgreich gewechselt zu: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_Progress" xml:space="preserve">
+    <value>Datenblock wird heruntergeladen {0}/{1} - {2}</value>
+  </data>
+  <data name="AdvancedServerSwitch_PluginCleanFailed" xml:space="preserve">
+    <value>Bereinigen der Plugin-Ordner fehlgeschlagen: {0}</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedTitle" xml:space="preserve">
+    <value>Serverwechsel fehlgeschlagen</value>
+  </data>
+  <data name="AdvancedServerSwitch_FailedMsg" xml:space="preserve">
+    <value>Wechsel fehlgeschlagen, Dateien werden möglicherweise verwendet.
+Fehlermeldung: {0}</value>
+  </data>
+  <data name="ServerBili" xml:space="preserve">
+    <value>Bilibili-Server (Bilibili)</value>
+  </data>
+  <data name="DownloadWindow_Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Download_FileFailed" xml:space="preserve">
+    <value>{0} Datei(en) konnten nicht heruntergeladen werden. Bitte wiederhole den Vorgang oder wechsle den Server.</value>
+  </data>
+  <data name="PreDownload_Failed" xml:space="preserve">
+    <value>Vorab-Download fehlgeschlagen</value>
+  </data>
+  <data name="PreDownload_Success" xml:space="preserve">
+    <value>Vorab-Download-Dateien erfolgreich heruntergeladen und installiert.</value>
+  </data>
+  <data name="VerifyGame_Success" xml:space="preserve">
+    <value>Überprüfung der Spieldateien und Reparatur abgeschlossen</value>
+  </data>
+  <data name="VerifyGame_Failed" xml:space="preserve">
+    <value>Überprüfung fehlgeschlagen</value>
+  </data>
+  <data name="GameServer_StageFetchBranches" xml:space="preserve">
+    <value>Netzwerk-Branches werden abgerufen</value>
+  </data>
+  <data name="GameServer_StageDecodeManifests" xml:space="preserve">
+    <value>Manifeste werden heruntergeladen und decodiert</value>
+  </data>
+  <data name="GameServer_StageDiff" xml:space="preserve">
+    <value>Daten werden verglichen</value>
+  </data>
+  <data name="GameServer_StageDownloadChunks" xml:space="preserve">
+    <value>Benötigte Datenblöcke werden heruntergeladen</value>
+  </data>
+  <data name="GameServer_StageReplace" xml:space="preserve">
+    <value>Dateien werden ersetzt</value>
+  </data>
+  <data name="GameServer_ReplacingFile" xml:space="preserve">
+    <value>Datei wird ersetzt {0}/{1} - {2}</value>
+  </data>
+  <data name="GameServer_StageCleanup" xml:space="preserve">
+    <value>Temporäre Daten werden bereinigt</value>
+  </data>
+  <data name="GameServer_StageVerify" xml:space="preserve">
+    <value>Spieldatei-Integrität wird überprüft, dies kann etwas dauern</value>
+  </data>
+  <data name="GameServer_VerifyOk" xml:space="preserve">
+    <value>Dateiprüfung bestanden, Spieldaten sind intakt</value>
+  </data>
+  <data name="GameServer_VerifyProgress" xml:space="preserve">
+    <value>Wird überprüft: {0}/{1}</value>
+  </data>
+  <data name="GameServer_RepairFound" xml:space="preserve">
+    <value>{0} beschädigte oder fehlende Datei(en) gefunden, Reparatur läuft</value>
+  </data>
+  <data name="GameServer_RepairDone" xml:space="preserve">
+    <value>Beschädigte Dateien erfolgreich repariert</value>
+  </data>
+  <data name="GameServer_InstallingPredownload" xml:space="preserve">
+    <value>Vorab-Download-Dateien werden installiert</value>
+  </data>
+  <data name="GameServer_BranchDataNull" xml:space="preserve">
+    <value>Schnittstelle lieferte leere Daten, Branch-Informationen konnten nicht abgerufen werden</value>
+  </data>
+  <data name="GameServer_NoMainBranch" xml:space="preserve">
+    <value>Daten des Haupt-Branches (Main) konnten nicht abgerufen werden</value>
+  </data>
+  <data name="GameServer_NoPredownload" xml:space="preserve">
+    <value>Vorab-Download ist derzeit nicht verfügbar</value>
+  </data>
+  <data name="GameServer_NoPackageId" xml:space="preserve">
+    <value>Branch-Daten enthalten keine package_id</value>
+  </data>
+  <data name="GameServer_NoPassword" xml:space="preserve">
+    <value>Branch-Daten enthalten kein password</value>
+  </data>
+  <data name="GameServer_NoManifests" xml:space="preserve">
+    <value>Abrufen der Manifeste (manifests) fehlgeschlagen.</value>
+  </data>
+  <data name="GameServer_ManifestChecksumMismatch" xml:space="preserve">
+    <value>Manifest-Prüfsumme stimmt nicht überein: {0}</value>
+  </data>
+  <data name="GameServer_ApiRequestFailed" xml:space="preserve">
+    <value>API-Anfrage fehlgeschlagen: {0}, Fehler: {1}</value>
+  </data>
+  <data name="GameServer_ChunkDownloadFailed" xml:space="preserve">
+    <value>Datenblock {0} konnte nicht heruntergeladen werden oder hat die Prüfung nicht bestanden.</value>
+  </data>
+  <data name="GameServer_FileChecksumMismatch" xml:space="preserve">
+    <value>Datei-Prüfsumme stimmt nicht überein: {0}</value>
+  </data>
+  <data name="GameServer_FileSizeMismatch" xml:space="preserve">
+    <value>Dateigröße stimmt nicht überein: {0}, tatsächlich {1} Bytes, erwartet {2} Bytes</value>
+  </data>
+  <data name="GameServer_SkipAssetNoCache" xml:space="preserve">
+    <value>Cache fehlt, Datei übersprungen: {0} (kann später durch Überprüfung repariert werden)</value>
+  </data>
+  <data name="GameServer_AssembleVerifyFailed" xml:space="preserve">
+    <value>Zusammengesetzte Datei hat Prüfung nicht bestanden (lokale alte Datei möglicherweise beschädigt), übersprungen: {0} (kann später durch Überprüfung repariert werden)</value>
+  </data>
+  <data name="GameServer_ChunkCleanupFailed" xml:space="preserve">
+    <value>Bereinigen temporärer Blöcke fehlgeschlagen: {0}</value>
+  </data>
+  <data name="GameServer_CleaningLegacySdk" xml:space="preserve">
+    <value>Alte SDK-Dateien werden bereinigt …</value>
+  </data>
+  <data name="GameServer_FetchingChannelSdk" xml:space="preserve">
+    <value>Kanal-SDK-Konfiguration wird abgerufen …</value>
+  </data>
+  <data name="GameServer_ChannelSdkConfigFailed" xml:space="preserve">
+    <value>Abrufen der Kanal-SDK-Konfiguration fehlgeschlagen</value>
+  </data>
+  <data name="GameServer_DownloadingChannelSdk" xml:space="preserve">
+    <value>Kanal-SDK wird heruntergeladen …</value>
+  </data>
+  <data name="GameServer_ExtractingChannelSdk" xml:space="preserve">
+    <value>Kanal-SDK wird entpackt …</value>
+  </data>
+  <data name="GameServer_CleanedPlugins" xml:space="preserve">
+    <value>Plugins-Ordner wurde bereinigt</value>
+  </data>
+  <data name="GameServer_InsufficientPermission" xml:space="preserve">
+    <value>Unzureichende Berechtigungen im Spielverzeichnis, Datei konnte nicht geschrieben werden: {0}. Bitte als Administrator ausführen oder Verzeichnisberechtigungen prüfen.</value>
+  </data>
+  <data name="GameServer_ChannelSdkConflict" xml:space="preserve">
+    <value>Kanal-SDK-Dateien fehlen oder sind beschädigt, werden erneut heruntergeladen …</value>
+  </data>
+  <data name="GameServer_ProcessingDeprecatedFiles" xml:space="preserve">
+    <value>Veraltete Dateien werden verarbeitet …</value>
+  </data>
+  <data name="GameServer_DeprecatedFileFetchFailed" xml:space="preserve">
+    <value>Abrufen der Konfiguration für veraltete Dateien fehlgeschlagen: {0}</value>
+  </data>
+  <data name="GameServer_SchemePrefixOfficial" xml:space="preserve">
+    <value>Offiziell</value>
+  </data>
+  <data name="GameServer_SchemePrefixBilibili" xml:space="preserve">
+    <value>Bilibili</value>
+  </data>
+  <data name="GameServer_SchemePrefixOversea" xml:space="preserve">
+    <value>Global</value>
+  </data>
+  <data name="AdvancedServerSwitch_DownloadSpeed" xml:space="preserve">
+    <value>Download-Geschwindigkeit</value>
+  </data>
+  <data name="AdvancedServerSwitch_RemainingChunks" xml:space="preserve">
+    <value>Verbleibende Blöcke: {0}</value>
+  </data>
+  <data name="SpeedGraph_NoData" xml:space="preserve">
+    <value>Keine Geschwindigkeitsdaten verfügbar</value>
+  </data>
+  <data name="SectionGameAnnouncement" xml:space="preserve">
+    <value>Spielankündigungen</value>
+  </data>
+  <data name="GameAnnouncementViewModeTitle" xml:space="preserve">
+    <value>Ankündigungs-Ansichtsmodus</value>
+  </data>
+  <data name="GameAnnouncementViewModeCaption" xml:space="preserve">
+    <value>Wähle, wie Spielankündigungen angezeigt werden sollen</value>
+  </data>
+  <data name="GameAnnouncementViewModeNew" xml:space="preserve">
+    <value>Neues Ankündigungszentrum</value>
+  </data>
+  <data name="GameAnnouncementViewModeClassic" xml:space="preserve">
+    <value>Klassische offizielle Webseite</value>
+  </data>
+  <data name="GameAnnouncement_Title" xml:space="preserve">
+    <value>Spielankündigungen</value>
+  </data>
+  <data name="GameAnnouncement_Loading" xml:space="preserve">
+    <value>Ankündigungen werden geladen …</value>
+  </data>
+  <data name="GameAnnouncement_LoadFailed" xml:space="preserve">
+    <value>Ankündigungen konnten nicht geladen werden. Bitte Netzwerkverbindung prüfen und erneut versuchen.</value>
+  </data>
+  <data name="GameAnnouncement_Retry" xml:space="preserve">
+    <value>Wiederholen</value>
+  </data>
+  <data name="GameAnnouncement_Empty" xml:space="preserve">
+    <value>Keine Ankündigungen vorhanden</value>
+  </data>
+  <data name="GameAnnouncement_SearchPlaceholder" xml:space="preserve">
+    <value>Ankündigungstitel suchen …</value>
+  </data>
+  <data name="GameAnnouncement_Refresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="GameAnnouncement_ClassicMode" xml:space="preserve">
+    <value>Klassische Webseite</value>
+  </data>
+  <data name="GameAnnouncement_Back" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="GameAnnouncement_NoContent" xml:space="preserve">
+    <value>Diese Ankündigung hat keinen Inhalt</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNGF01" xml:space="preserve">
+    <value>Celestia</value>
+  </data>
+  <data name="GameAnnouncement_Region_CNQD01" xml:space="preserve">
+    <value>Irminsul</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSUSA" xml:space="preserve">
+    <value>Amerika</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSEURO" xml:space="preserve">
+    <value>Europa</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSASIA" xml:space="preserve">
+    <value>Asien</value>
+  </data>
+  <data name="GameAnnouncement_Region_OSCHT" xml:space="preserve">
+    <value>TW/HK/MO</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursBegin" xml:space="preserve">
+    <value>Beginnt in {0} Stunde(n)</value>
+  </data>
+  <data name="GameAnnouncement_TimeHoursEnd" xml:space="preserve">
+    <value>Endet in {0} Stunde(n)</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysBegin" xml:space="preserve">
+    <value>Beginnt in {0} Tag(en)</value>
+  </data>
+  <data name="GameAnnouncement_TimeDaysEnd" xml:space="preserve">
+    <value>Endet in {0} Tag(en)</value>
+  </data>
+  <data name="DeviceInfo_Device" xml:space="preserve">
+    <value>Gerät</value>
+  </data>
+  <data name="DeviceInfo_SeedIdInvalid" xml:space="preserve">
+    <value>seed_id muss eine gültige GUID sein</value>
+  </data>
+  <data name="DeviceInfo_SeedTimeInvalid" xml:space="preserve">
+    <value>seed_time muss ein gültiger Unix-Zeitstempel in Millisekunden sein</value>
   </data>
   <data name="Miyoushe_Title" xml:space="preserve">
     <value>Miyoushe</value>
@@ -7016,7 +7253,7 @@ Click the button below to open your browser and download manually.</value>
     <value>Vertrauenspaket noch nicht bereitgestellt: Bitte platziere Zertifikats- und Manifestdateien unter Assets\Trust oder klicke auf „Jetzt aktualisieren“, um sie vom offiziellen Server zu synchronisieren.</value>
   </data>
   <data name="ModTrust_StatusFormat" xml:space="preserve">
-    <value>Aktueller Status: {1}</value>
+    <value>Aktueller Status: {0}</value>
   </data>
   <data name="ModTrust_InstalledUser" xml:space="preserve">
     <value>Installiert (aktueller Benutzer)</value>
@@ -7093,83 +7330,14 @@ Click the button below to open your browser and download manually.</value>
   <data name="ModTrust_MachineHint" xml:space="preserve">
     <value>Der Bereich „Aktueller Benutzer“ wird durch die geräteweite Installation bereitgestellt; Installation und Deinstallation bitte auf Geräteebene durchführen.</value>
   </data>
-  <data name="SectionStartup" xml:space="preserve">
-    <value>Autostart</value>
-  </data>
-  <data name="RunAtStartupTitle" xml:space="preserve">
-    <value>Beim Systemstart starten</value>
-  </data>
-  <data name="RunAtStartupCaption" xml:space="preserve">
-    <value>FufuLauncher automatisch starten, wenn Sie sich bei Windows anmelden</value>
-  </data>
-  <data name="RunAtStartupFailedTitle" xml:space="preserve">
-    <value>Autostart konnte nicht aktiviert werden</value>
-  </data>
-  <data name="RunAtStartupFailedMessage" xml:space="preserve">
-    <value>Der Autostart-Eintrag konnte nicht geschrieben werden. Prüfen Sie Systemberechtigungen und Sicherheitssoftware.</value>
-  </data>
-  <data name="PluginDllConflict_Title" xml:space="preserve">
-    <value>Plugin-DLL-Konflikt</value>
-  </data>
-  <data name="PluginDllConflict_Message" xml:space="preserve">
-    <value>Wir haben DLLs mit demselben Namen in mehreren Plugins gefunden, daher wurde die Injektion gestoppt. Andernfalls könnte eine veraltete Plugin-Version geladen werden und das Spiel oder die Plugins funktionieren möglicherweise nicht mehr richtig.</value>
-  </data>
-  <data name="PluginDllConflict_DllNameFormat" xml:space="preserve">
-    <value>DLL-Name: {0}</value>
-  </data>
-  <data name="PluginDllConflict_NewestBadge" xml:space="preserve">
-    <value>Neueste</value>
-  </data>
-  <data name="PluginDllConflict_OlderBadge" xml:space="preserve">
-    <value>Veraltet</value>
-  </data>
-  <data name="PluginDllConflict_LocateBtn" xml:space="preserve">
-    <value>Datei anzeigen</value>
-  </data>
-  <data name="PluginDllConflict_Hint" xml:space="preserve">
-    <value>Behalten Sie nur das neueste Plugin und löschen oder benennen Sie die doppelten DLLs in den anderen Plugins um. Wenn Sie nicht sicher sind, welche Sie behalten sollen, löschen Sie alle Plugins und installieren Sie sie neu.</value>
-  </data>
-  <data name="PluginConflictCheckTitle" xml:space="preserve">
-    <value>Plugin-Konfliktprüfung</value>
-  </data>
-  <data name="PluginConflictCheckCaption" xml:space="preserve">
-    <value>Prüft vor der Injektion auf Plugin-DLLs mit demselben Namen und stoppt sie, damit Sie den Konflikt beheben können</value>
-  </data>
-  <data name="PluginConflictMainOnlyTitle" xml:space="preserve">
-    <value>Nur Hauptplugin</value>
-  </data>
-  <data name="PluginConflictMainOnlyCaption" xml:space="preserve">
-    <value>Prüft nur FufuLauncher.UnlockerIsland.dll; deaktivieren, um alle Plugin-DLLs zu prüfen</value>
-  </data>
   <data name="ModTrust_ModeTitle" xml:space="preserve">
     <value>Verhalten bei ungültiger Signatur</value>
-  </data>
-  <data name="ModTrust_ModeCaption" xml:space="preserve">
-    <value>Aus überspringt die Signaturprüfung; Warnen prüft und meldet ohne zu blockieren; Streng blockiert Plug-ins mit ungültiger Signatur.</value>
-  </data>
-  <data name="ModTrust_ModeOff" xml:space="preserve">
-    <value>Prüfung deaktiviert</value>
   </data>
   <data name="ModTrust_ModeWarn" xml:space="preserve">
     <value>Nur warnen</value>
   </data>
   <data name="ModTrust_ModeEnforce" xml:space="preserve">
     <value>Blockieren</value>
-  </data>
-  <data name="PluginDllConflict_DeleteBtn" xml:space="preserve">
-    <value>Löschen</value>
-  </data>
-  <data name="PluginDllConflict_ConfirmDeleteBtn" xml:space="preserve">
-    <value>Löschen bestätigen</value>
-  </data>
-  <data name="PluginDllConflict_DeleteConfirm" xml:space="preserve">
-    <value>Die DLL und die config.ini im selben Ordner werden gelöscht. Dies kann nicht rückgängig gemacht werden. Fortfahren?</value>
-  </data>
-  <data name="PluginDllConflict_DeleteFailedFormat" xml:space="preserve">
-    <value>Löschen fehlgeschlagen: {0}</value>
-  </data>
-  <data name="PluginDllConflict_Resolved" xml:space="preserve">
-    <value>Der Konflikt mit gleichnamigen DLLs wurde behoben. Sie können das Spiel jetzt neu starten.</value>
   </data>
   <data name="BanCheck_KilledTitle" xml:space="preserve">
     <value>Zugriff verweigert</value>
@@ -7348,63 +7516,6 @@ Click the button below to open your browser and download manually.</value>
   <data name="MiyousheQr_SessionLimit" xml:space="preserve">
     <value>Das Limit für diese Dauerscan-Sitzung wurde erreicht. Bitte Scan neu starten.</value>
   </data>
-  <data name="PluginConfigPage_AutoSaveHint" xml:space="preserve">
-    <value>Änderungen werden automatisch gespeichert</value>
-  </data>
-  <data name="PluginConfigPage_Saving" xml:space="preserve">
-    <value>Wird gespeichert…</value>
-  </data>
-  <data name="PluginConfigPage_SaveFailed" xml:space="preserve">
-    <value>Konfiguration konnte nicht gespeichert werden</value>
-  </data>
-  <data name="PluginConfigPage_SaveFailedMessage" xml:space="preserve">
-    <value>Die Konfigurationsdatei konnte nicht geschrieben werden. Prüfen Sie die Dateiberechtigungen und versuchen Sie es erneut. Details: {0}</value>
-  </data>
-  <data name="PluginConfigPage_LoadFailed" xml:space="preserve">
-    <value>Konfiguration konnte nicht geladen werden</value>
-  </data>
-  <data name="PluginConfigPage_LoadFailedMessage" xml:space="preserve">
-    <value>Die Plugin-Konfigurationsdatei konnte nicht gelesen werden. Details: {0}</value>
-  </data>
-  <data name="PluginConfigPage_LoadFailedHint" xml:space="preserve">
-    <value>Stellen Sie sicher, dass die Konfigurationsdatei vorhanden und lesbar ist, und laden Sie sie erneut.</value>
-  </data>
-  <data name="PluginConfigPage_MissingFile" xml:space="preserve">
-    <value>Die Konfigurationsdatei ist nicht vorhanden: {0}</value>
-  </data>
-  <data name="PluginConfigPage_NoOptions" xml:space="preserve">
-    <value>Keine konfigurierbaren Einstellungen</value>
-  </data>
-  <data name="PluginConfigPage_NoOptionsHint" xml:space="preserve">
-    <value>Dieses Plugin bietet keine anpassbaren Einstellungen.</value>
-  </data>
-  <data name="PluginConfigPage_NoResults" xml:space="preserve">
-    <value>Keine passenden Einstellungen</value>
-  </data>
-  <data name="PluginConfigPage_NoResultsHint" xml:space="preserve">
-    <value>Versuchen Sie einen anderen Suchbegriff oder leeren Sie die Suche.</value>
-  </data>
-  <data name="PluginConfigPage_ClearSearch" xml:space="preserve">
-    <value>Suche leeren</value>
-  </data>
-  <data name="PluginConfigPage_OptionCount" xml:space="preserve">
-    <value>{0} Einstellungen</value>
-  </data>
-  <data name="PluginConfigPage_FilteredOptionCount" xml:space="preserve">
-    <value>{0} / {1} Einstellungen</value>
-  </data>
-  <data name="PluginConfigPage_ConfigFile" xml:space="preserve">
-    <value>Konfigurationsdatei</value>
-  </data>
-  <data name="PluginConfigPage_ValuePlaceholder" xml:space="preserve">
-    <value>Wert eingeben…</value>
-  </data>
-  <data name="PluginSettings_CollapseHeader" xml:space="preserve">
-    <value>Kopfbereich einklappen</value>
-  </data>
-  <data name="PluginSettings_ExpandHeader" xml:space="preserve">
-    <value>Kopfbereich ausklappen</value>
-  </data>
   <data name="Checkin_Game_hkrpg_cn" xml:space="preserve">
     <value>Honkai: Star Rail</value>
   </data>
@@ -7422,21 +7533,6 @@ Click the button below to open your browser and download manually.</value>
   </data>
   <data name="Checkin_RequestTooFrequent" xml:space="preserve">
     <value>Zu viele Anfragen. Bitte versuche es später erneut.</value>
-  </data>
-  <data name="AchievementWindow_DataActions" xml:space="preserve">
-    <value>Datenaktionen</value>
-  </data>
-  <data name="AchievementWindow_DataTransfer" xml:space="preserve">
-    <value>Import und Export</value>
-  </data>
-  <data name="AchievementWindow_SaveManagement" xml:space="preserve">
-    <value>Spielstände und Datenbank</value>
-  </data>
-  <data name="ModTrust_LaunchVerificationTitle" xml:space="preserve">
-    <value>Plug-in-Signaturen beim Start prüfen</value>
-  </data>
-  <data name="ModTrust_LaunchVerificationCaption" xml:space="preserve">
-    <value>Standardmäßig deaktiviert. Bei Aktivierung gilt die nachfolgende Warn- oder Blockierregel.</value>
   </data>
   <data name="Plugin_ResinRewardDisable_Title" xml:space="preserve">
     <value>Belohnungs-Abholmethode deaktivieren</value>
@@ -7459,171 +7555,6 @@ Click the button below to open your browser and download manually.</value>
   <data name="Plugin_SettingDisableRestore_Content" xml:space="preserve">
     <value>Folgende Einstellungen wurden ohne Bestätigung der Deaktivierungs-Warnung deaktiviert und daher automatisch wieder aktiviert:
 {0}</value>
-  </data>
-  <data name="SectionServiceStatus" xml:space="preserve">
-    <value>Dienststatus</value>
-  </data>
-  <data name="ServiceStatus_WindowTitle" xml:space="preserve">
-    <value>Dienststatus</value>
-  </data>
-  <data name="ServiceStatus_OpenTitle" xml:space="preserve">
-    <value>Verfügbarkeit</value>
-  </data>
-  <data name="ServiceStatus_OpenCaption" xml:space="preserve">
-    <value>Verfügbarkeit aller Dienste anzeigen</value>
-  </data>
-  <data name="ServiceStatus_OpenButton" xml:space="preserve">
-    <value>Anzeigen</value>
-  </data>
-  <data name="ServiceStatus_AllOperational" xml:space="preserve">
-    <value>Alle Systeme betriebsbereit</value>
-  </data>
-  <data name="ServiceStatus_SomeIssues" xml:space="preserve">
-    <value>Einige Dienste weisen Probleme auf</value>
-  </data>
-  <data name="ServiceStatus_Operational" xml:space="preserve">
-    <value>Betriebsbereit</value>
-  </data>
-  <data name="ServiceStatus_Degraded" xml:space="preserve">
-    <value>Beeinträchtigt</value>
-  </data>
-  <data name="ServiceStatus_Outage" xml:space="preserve">
-    <value>Ausfall</value>
-  </data>
-  <data name="ServiceStatus_Paused" xml:space="preserve">
-    <value>Pausiert</value>
-  </data>
-  <data name="ServiceStatus_Unknown" xml:space="preserve">
-    <value>Unbekannt</value>
-  </data>
-  <data name="ServiceStatus_Uptime90" xml:space="preserve">
-    <value>Verfügbarkeit (90 Tage)</value>
-  </data>
-  <data name="ServiceStatus_Updated" xml:space="preserve">
-    <value>Aktualisiert um {0}</value>
-  </data>
-  <data name="ServiceStatus_Refresh" xml:space="preserve">
-    <value>Aktualisieren</value>
-  </data>
-  <data name="ServiceStatus_LoadMore" xml:space="preserve">
-    <value>Mehr laden</value>
-  </data>
-  <data name="ServiceStatus_Loading" xml:space="preserve">
-    <value>Dienststatus wird geladen</value>
-  </data>
-  <data name="ServiceStatus_LoadFailed" xml:space="preserve">
-    <value>Dienststatus konnte nicht geladen werden</value>
-  </data>
-  <data name="ServiceStatus_ErrorHint" xml:space="preserve">
-    <value>Bitte versuchen Sie es später erneut.</value>
-  </data>
-  <data name="ServiceStatus_Retry" xml:space="preserve">
-    <value>Erneut versuchen</value>
-  </data>
-  <data name="ServiceStatus_Services" xml:space="preserve">
-    <value>Dienste</value>
-  </data>
-  <data name="ServiceStatus_Last90Days" xml:space="preserve">
-    <value>Letzte 90 Tage</value>
-  </data>
-  <data name="ServiceStatus_Days90Short" xml:space="preserve">
-    <value>90 Tage</value>
-  </data>
-  <data name="ServiceStatus_LastIncident" xml:space="preserve">
-    <value>Letzter Ausfall {0}</value>
-  </data>
-  <data name="ServiceStatus_NoIncidents" xml:space="preserve">
-    <value>Keine Ausfälle in 90 Tagen</value>
-  </data>
-  <data name="ServiceStatus_CountFormat" xml:space="preserve">
-    <value>{0} Dienste</value>
-  </data>
-  <data name="ServiceStatus_CountOperational" xml:space="preserve">
-    <value>Betriebsbereit {0}</value>
-  </data>
-  <data name="ServiceStatus_CountOutage" xml:space="preserve">
-    <value>Ausfälle {0}</value>
-  </data>
-  <data name="ServiceStatus_CountPaused" xml:space="preserve">
-    <value>Pausiert {0}</value>
-  </data>
-  <data name="ServiceStatus_NoData" xml:space="preserve">
-    <value>Keine Daten</value>
-  </data>
-  <data name="ServiceDetail_ViewDetails" xml:space="preserve">
-    <value>Details anzeigen</value>
-  </data>
-  <data name="ServiceDetail_BackToStatus" xml:space="preserve">
-    <value>Zurück zum Dienststatus</value>
-  </data>
-  <data name="ServiceDetail_LoadFailed" xml:space="preserve">
-    <value>Dienstdetails konnten nicht geladen werden</value>
-  </data>
-  <data name="ServiceDetail_ErrorHint" xml:space="preserve">
-    <value>Bitte versuchen Sie es später erneut.</value>
-  </data>
-  <data name="ServiceDetail_Loading" xml:space="preserve">
-    <value>Dienstdetails werden geladen</value>
-  </data>
-  <data name="ServiceDetail_Uptime" xml:space="preserve">
-    <value>Verfügbarkeit</value>
-  </data>
-  <data name="ServiceDetail_OverallUptime" xml:space="preserve">
-    <value>Gesamtverfügbarkeit</value>
-  </data>
-  <data name="ServiceDetail_Last24Hours" xml:space="preserve">
-    <value>Letzte 24 Stunden</value>
-  </data>
-  <data name="ServiceDetail_Last7Days" xml:space="preserve">
-    <value>Letzte 7 Tage</value>
-  </data>
-  <data name="ServiceDetail_Last30Days" xml:space="preserve">
-    <value>Letzte 30 Tage</value>
-  </data>
-  <data name="ServiceDetail_ResponseTime" xml:space="preserve">
-    <value>Antwortzeit</value>
-  </data>
-  <data name="ServiceDetail_Last2Days" xml:space="preserve">
-    <value>Letzte 2 Tage</value>
-  </data>
-  <data name="ServiceDetail_AverageResponseTime" xml:space="preserve">
-    <value>Durchschnittliche Antwortzeit</value>
-  </data>
-  <data name="ServiceDetail_MaxResponseTime" xml:space="preserve">
-    <value>Maximale Antwortzeit</value>
-  </data>
-  <data name="ServiceDetail_MinResponseTime" xml:space="preserve">
-    <value>Minimale Antwortzeit</value>
-  </data>
-  <data name="ServiceDetail_TotalChecks" xml:space="preserve">
-    <value>Prüfungen</value>
-  </data>
-  <data name="ServiceDetail_RecentEvents" xml:space="preserve">
-    <value>Letzte Ereignisse</value>
-  </data>
-  <data name="ServiceDetail_ShowMoreEvents" xml:space="preserve">
-    <value>Mehr anzeigen</value>
-  </data>
-  <data name="ServiceDetail_NoEvents" xml:space="preserve">
-    <value>Keine aktuellen Ereignisse</value>
-  </data>
-  <data name="ServiceDetail_NoResponseTime" xml:space="preserve">
-    <value>Keine Antwortzeitdaten</value>
-  </data>
-  <data name="ServiceDetail_DurationSeconds" xml:space="preserve">
-    <value>Dauer: {0} s</value>
-  </data>
-  <data name="ServiceDetail_DurationMinutes" xml:space="preserve">
-    <value>Dauer: {0} min</value>
-  </data>
-  <data name="ServiceDetail_DurationHours" xml:space="preserve">
-    <value>Dauer: {0} h</value>
-  </data>
-  <data name="ServiceDetail_DurationHoursMinutes" xml:space="preserve">
-    <value>Dauer: {0} h {1} min</value>
-  </data>
-  <data name="ServiceDetail_DurationDays" xml:space="preserve">
-    <value>Dauer: {0} T {1} h</value>
   </data>
   <data name="Gacha_Kpi_FourStarPulls" xml:space="preserve">
     <value>4-Sterne-Ziehungen</value>

@@ -209,10 +209,10 @@ public sealed class MiyousheGameCheckinService : IDisposable
             request.Headers.TryAddWithoutValidation("x-rpc-channel", "miyousheluodi");
             request.Headers.TryAddWithoutValidation("User-Agent", Tools.GetUserAgent(""));
             request.Headers.TryAddWithoutValidation("X-Requested-With", "com.mihoyo.hyperion");
-            request.Headers.Referrer = new Uri(game?.Referer ?? "https://act.mihoyo.com/");
+            request.Headers.Referrer = new Uri(game?.Referer ?? (ApiEndpoints.ActMihoyoBase + "/"));
             request.Headers.TryAddWithoutValidation("Origin", game?.Referer.StartsWith("https://webstatic.") == true
-                ? "https://webstatic.mihoyo.com"
-                : "https://act.mihoyo.com");
+                ? ApiEndpoints.WebstaticRefererUrl
+                : ApiEndpoints.ActMihoyoBase);
             if (game?.SignGame != null) request.Headers.TryAddWithoutValidation("x-rpc-signgame", game.SignGame);
             if (body != null) request.Content = new StringContent(body, Encoding.UTF8, "application/json");
 

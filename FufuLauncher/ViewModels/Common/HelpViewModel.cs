@@ -28,8 +28,8 @@ public partial class HelpViewModel : ObservableObject
     }
 
     private readonly HttpClient _httpClient = new();
-    private const string ConfigUrl = "https://fu1.fun/api/docs-config";
-    private const string ContentBaseUrl = "https://fu1.fun/api/docs/zh-CN";
+    private const string ConfigUrl = ApiEndpoints.DocsConfigUrl;
+    private const string ContentBaseUrl = ApiEndpoints.DocsContentBaseUrl;
 
     public ObservableCollection<DocCategory> AllCategories
     {

@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Collections.ObjectModel;
 using FufuLauncher.Contracts.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using FufuLauncher.Constants;
 using FufuLauncher.Data.Repositories;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
@@ -64,7 +65,7 @@ public partial class GachaAnalysisViewModel : ObservableObject
         {
             _httpClient.DefaultRequestHeaders.Add("User-Agent",
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
-            _httpClient.DefaultRequestHeaders.Add("Referer", "https://webstatic.mihoyo.com");
+            _httpClient.DefaultRequestHeaders.Add("Referer", ApiEndpoints.WebstaticRefererUrl);
         }
     }
 

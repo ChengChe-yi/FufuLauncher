@@ -59,7 +59,7 @@ public static partial class CommunityContent
             .Append("\"><div class=\"comment-author\">");
         bool canOpenProfile = CommunityUser.IsValidId(reply.AuthorId);
         if (canOpenProfile)
-            html.Append("<a class=\"comment-user\" href=\"https://www.miyoushe.com/ys/accountCenter/postList?id=")
+            html.Append("<a class=\"comment-user\" href=\"" + ApiEndpoints.MiyousheAccountCenterUrl)
                 .Append(Encode(reply.AuthorId)).Append("\">");
         else html.Append("<span class=\"comment-user\">");
         html.Append(

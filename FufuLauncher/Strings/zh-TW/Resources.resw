@@ -445,6 +445,27 @@
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>背景圖片不透明度</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>背景圖像品質</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>調整背景圖像的解碼解析度，降低可減少記憶體佔用</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>超低</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>低</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>原圖</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>關閉後最小化至系統匣</value>
   </data>
@@ -835,6 +856,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>啟用 CPU 使用率異常警告</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>啟用定時記憶體釋放</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>關閉後將停止常規清理和遊戲期間的動態記憶體釋放</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>警告閾值 (%)</value>
   </data>
@@ -873,6 +900,15 @@
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>檢查並取得最新版本。點擊後將啟動更新程式</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>更新公告</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>重新查看目前版本的更新公告</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>查看公告</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>關於我們</value>

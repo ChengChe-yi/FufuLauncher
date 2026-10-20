@@ -64,7 +64,7 @@ public sealed partial class OverseaOAuthWindow : Window
             settings.IsGeneralAutofillEnabled = false;
 
             var cookieManager = OAuthWebView.CoreWebView2.CookieManager;
-            var cookies = await cookieManager.GetCookiesAsync("https://account.hoyoverse.com");
+            var cookies = await cookieManager.GetCookiesAsync(ApiEndpoints.HoyoverseAccountBase);
             foreach (var cookie in cookies)
             {
                 cookieManager.DeleteCookie(cookie);

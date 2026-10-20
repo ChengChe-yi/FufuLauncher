@@ -194,10 +194,10 @@ public class TokenRefreshService : IDisposable
             request.Headers.TryAddWithoutValidation("Accept", "application/json, text/plain, */*");
             request.Headers.TryAddWithoutValidation("DS", GenerateWebDS());
             request.Headers.TryAddWithoutValidation("x-rpc-channel", "miyousheluodi");
-            request.Headers.TryAddWithoutValidation("Origin", "https://act.mihoyo.com");
+            request.Headers.TryAddWithoutValidation("Origin", ApiEndpoints.ActMihoyoBase);
             request.Headers.TryAddWithoutValidation("x-rpc-app_version", "2.93.1");
             request.Headers.TryAddWithoutValidation("x-rpc-client_type", "5");
-            request.Headers.TryAddWithoutValidation("Referer", "https://act.mihoyo.com/");
+            request.Headers.TryAddWithoutValidation("Referer", ApiEndpoints.ActMihoyoBase + "/");
             request.Headers.TryAddWithoutValidation("Cookie", cookie);
             request.Headers.TryAddWithoutValidation("x-rpc-device_id", _deviceId);
             request.Headers.TryAddWithoutValidation("User-Agent",

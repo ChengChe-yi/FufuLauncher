@@ -243,7 +243,7 @@ public static partial class CommunityContent
             var mention = insert.Get("mention");
             string uid = mention.Text("uid");
             if (uid.All(char.IsAsciiDigit) && uid.Length > 0)
-                body.Append("<a href=\"https://www.miyoushe.com/ys/accountCenter/postList?id=" + Encode(uid) + "\">@" +
+                body.Append("<a href=\"" + ApiEndpoints.MiyousheAccountCenterUrl + Encode(uid) + "\">@" +
                             Encode(mention.Text("nickname")) + "</a>");
         }
         else if (insert.Get("link_card").ValueKind == JsonValueKind.Object)

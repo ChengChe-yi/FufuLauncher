@@ -119,6 +119,6 @@ public static class UserAgents
     public const string HoyolabOversea313 =
         "Mozilla/5.0 (Linux; Android 13; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/118.0.0.0 Mobile Safari/537.36 miHoYoBBSOversea/3.13.0";
 
-    public const string WebstaticReferer = "https://webstatic.mihoyo.com";
-    public const string AppMihoyoReferer = "https://app.mihoyo.com";
+    public const string WebstaticReferer = ApiEndpoints.WebstaticRefererUrl;
+    public const string AppMihoyoReferer = ApiEndpoints.AppMihoyoBase;
 }

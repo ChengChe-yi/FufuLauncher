@@ -636,6 +636,27 @@
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Opacità Immagine di Sfondo</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Qualità dell'immagine di sfondo</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Regola la risoluzione di decodifica delle immagini di sfondo; i livelli bassi riducono l'uso di memoria</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Molto bassa</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Bassa</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>Alta</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Originale</value>
+  </data>
   <data name="BgOverlayOpacityTitle" xml:space="preserve">
     <value>Opacità Sovrapposizione Sfondo</value>
   </data>
@@ -1604,6 +1625,12 @@ Stack trace:
   </data>
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Abilita Avviso Uso Anomalo CPU</value>
+  </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Abilita rilascio pianificato della memoria</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Disattiva per interrompere la pulizia periodica e il rilascio dinamico durante i giochi</value>
   </data>
   <data name="EnableCustomBg" xml:space="preserve">
     <value>Abilita Sfondo Personalizzato</value>
@@ -4222,6 +4249,15 @@ Andare al sito Microsoft per scaricarla e installarla?</value>
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Verifica e scarica l'ultima versione</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Avviso di aggiornamento</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Visualizza di nuovo l'avviso di aggiornamento corrente</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>Visualizza</value>
   </data>
   <data name="VersionUpdateTitle" xml:space="preserve">
     <value>Aggiornamento Versione</value>

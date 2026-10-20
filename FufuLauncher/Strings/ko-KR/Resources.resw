@@ -445,6 +445,27 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>배경 이미지 불투명도</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>배경 이미지 품질</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>배경 이미지의 디코딩 해상도를 조정합니다. 낮은 단계는 메모리 사용량을 줄입니다</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>매우 낮음</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>낮음</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>보통</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>높음</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>원본</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>닫을 때 트레이로 최소화</value>
   </data>
@@ -835,6 +856,12 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>비정상 CPU 사용량 경고 사용</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>예약된 메모리 해제 사용</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>끄면 일반 정리 및 게임 중 동적 메모리 해제가 중지됩니다</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>경고 임계값 (%)</value>
   </data>
@@ -873,6 +900,15 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>최신 버전 확인 및 다운로드</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>업데이트 공지</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>현재 업데이트 공지를 다시 확인합니다</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>보기</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>소개</value>

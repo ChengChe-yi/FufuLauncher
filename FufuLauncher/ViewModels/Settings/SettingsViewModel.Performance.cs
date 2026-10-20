@@ -4,6 +4,8 @@ Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Messaging;
+using FufuLauncher.Messages;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
 
@@ -17,6 +19,13 @@ public partial class SettingsViewModel
     {
         if (_isInitializing) return;
         _ = _localSettingsService.SaveSettingAsync(ProcessCpuUsageMonitor.IsEnabledSettingKey, value);
+    }
+
+    partial void OnIsMemoryReleaseEnabledChanged(bool value)
+    {
+        if (_isInitializing) return;
+        _ = _localSettingsService.SaveSettingAsync(MemoryOptimizationService.IsEnabledSettingKey, value);
+        WeakReferenceMessenger.Default.Send(new MemoryReleaseEnabledChangedMessage(value));
     }
 
     partial void OnCpuUsageWarningThresholdChanged(double value)

@@ -445,6 +445,27 @@ Si continúas, se ignorará esta advertencia y el Hash de este ajuste se actuali
   <data name="BgImageOpacityTitle" xml:space="preserve">
     <value>Opacidad de la imagen de fondo</value>
   </data>
+  <data name="BackgroundQualityTitle" xml:space="preserve">
+    <value>Calidad de la imagen de fondo</value>
+  </data>
+  <data name="BackgroundQualityCaption" xml:space="preserve">
+    <value>Ajusta la resolución de decodificación de las imágenes de fondo; los niveles bajos reducen el uso de memoria</value>
+  </data>
+  <data name="BackgroundQualityUltraLow" xml:space="preserve">
+    <value>Muy baja</value>
+  </data>
+  <data name="BackgroundQualityLow" xml:space="preserve">
+    <value>Baja</value>
+  </data>
+  <data name="BackgroundQualityMedium" xml:space="preserve">
+    <value>Media</value>
+  </data>
+  <data name="BackgroundQualityHigh" xml:space="preserve">
+    <value>Alta</value>
+  </data>
+  <data name="BackgroundQualityOriginal" xml:space="preserve">
+    <value>Original</value>
+  </data>
   <data name="MinimizeToTrayTitle" xml:space="preserve">
     <value>Minimizar a la bandeja al cerrar</value>
   </data>
@@ -835,6 +856,12 @@ Si continúas, se ignorará esta advertencia y el Hash de este ajuste se actuali
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Activar aviso de uso anómalo de CPU</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Activar liberación de memoria programada</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Desactívalo para detener la limpieza periódica y la liberación dinámica durante los juegos</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Umbral de aviso (%)</value>
   </data>
@@ -873,6 +900,15 @@ Si continúas, se ignorará esta advertencia y el Hash de este ajuste se actuali
   </data>
   <data name="VersionUpdateCaption" xml:space="preserve">
     <value>Buscar y descargar la última versión</value>
+  </data>
+  <data name="UpdateAnnouncementTitle" xml:space="preserve">
+    <value>Anuncio de actualización</value>
+  </data>
+  <data name="UpdateAnnouncementCaption" xml:space="preserve">
+    <value>Volver a ver el anuncio de actualización actual</value>
+  </data>
+  <data name="UpdateAnnouncementViewButton" xml:space="preserve">
+    <value>Ver</value>
   </data>
   <data name="AboutUsBtn" xml:space="preserve">
     <value>Sobre nosotros</value>

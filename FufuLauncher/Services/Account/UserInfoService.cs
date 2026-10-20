@@ -50,8 +50,8 @@ public class UserInfoService : IUserInfoService
         request.Headers.TryAddWithoutValidation("DS", GenerateDS());
         request.Headers.TryAddWithoutValidation("x-rpc-device_id", Guid.NewGuid().ToString("N"));
         request.Headers.TryAddWithoutValidation("x-rpc-client_type", "5");
-        request.Headers.TryAddWithoutValidation("Referer", "https://act.mihoyo.com/");
-        request.Headers.TryAddWithoutValidation("Origin", "https://act.mihoyo.com");
+        request.Headers.TryAddWithoutValidation("Referer", ApiEndpoints.ActMihoyoBase + "/");
+        request.Headers.TryAddWithoutValidation("Origin", ApiEndpoints.ActMihoyoBase);
         request.Headers.TryAddWithoutValidation("User-Agent",
             "Mozilla/5.0 (Linux; Android 12; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/103.0.5060.129 Mobile Safari/537.36 miHoYoBBS/2.93.1");
     }
