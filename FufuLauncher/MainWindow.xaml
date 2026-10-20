@@ -216,7 +216,10 @@
                                     Tag="FufuLauncher.ViewModels.CycleChallengeViewModel"
                                     ToolTipService.ToolTip="{helpers:Loc Key=NavCycleChallenge}">
                     <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE81C;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
+                        <!--  奖杯图标（矢量，跟随主题前景色）  -->
+                        <PathIcon Width="24"
+                                  Height="24"
+                                  Data="M7,3 H17 V8 A5,5 0 0 1 7,8 Z M6.5,5 H4.5 A2.5,2.5 0 0 0 7,9.5 Z M17.5,5 H19.5 A2.5,2.5 0 0 1 17,9.5 Z M11,12.5 H13 V15.5 H11 Z M8.5,15.5 H15.5 L17,18.5 H7 Z" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
