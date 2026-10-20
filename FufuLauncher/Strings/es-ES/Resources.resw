@@ -856,6 +856,12 @@ Si continúas, se ignorará esta advertencia y el Hash de este ajuste se actuali
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Activar aviso de uso anómalo de CPU</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Activar liberación de memoria programada</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Desactívalo para detener la limpieza periódica y la liberación dinámica durante los juegos</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Umbral de aviso (%)</value>
   </data>

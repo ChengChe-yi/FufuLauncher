@@ -783,6 +783,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>启用 CPU 占用异常警告</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>启用定时内存释放</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>关闭后将停止常规清理和游戏期间的动态内存释放</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>警告阈值 (%)</value>
   </data>

@@ -856,6 +856,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Включить предупреждение ЦП</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Включить плановое освобождение памяти</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Отключите, чтобы остановить регулярную очистку и динамическое освобождение памяти во время игры</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Порог предупреждения (%)</value>
   </data>

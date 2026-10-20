@@ -287,6 +287,10 @@ public partial class SettingsViewModel
             ? Math.Clamp(Convert.ToDouble(cpuWarningThresholdJson), 5.0, 100.0)
             : ProcessCpuUsageMonitor.DefaultCpuThreshold;
 
+        var memoryReleaseEnabledJson =
+            await _localSettingsService.ReadSettingAsync(MemoryOptimizationService.IsEnabledSettingKey);
+        IsMemoryReleaseEnabled = memoryReleaseEnabledJson == null || Convert.ToBoolean(memoryReleaseEnabledJson);
+
         var priorityJson = await _localSettingsService.ReadSettingAsync("AppProcessPriority");
         AppProcessPriority = priorityJson != null
             ? (AppProcessPriority)Convert.ToInt32(priorityJson)

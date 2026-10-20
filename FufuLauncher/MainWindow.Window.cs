@@ -52,6 +52,8 @@ public sealed partial class MainWindow
     {
         _memoryOptimizationTimer?.Stop();
         _periodicMemoryTimer?.Stop();
+        _gameMemoryTelemetryTimer?.Stop();
+        _gameMemoryReleaseTimer?.Stop();
         _messageDismissTimer?.Stop();
         _announcementCheckTimer?.Stop();
         _slideshowTimer?.Stop();

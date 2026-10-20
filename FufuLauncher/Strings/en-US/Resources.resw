@@ -786,6 +786,12 @@
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Enable Abnormal CPU Usage Warning</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Enable Scheduled Memory Release</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Turn off to stop regular cleanup and dynamic memory release during games</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Warning Threshold (%)</value>
   </data>

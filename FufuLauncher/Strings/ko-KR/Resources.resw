@@ -856,6 +856,12 @@ Pull Request 제출은 코딩 능력이 있는 사용자가 개발 진행을 돕
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>비정상 CPU 사용량 경고 사용</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>예약된 메모리 해제 사용</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>끄면 일반 정리 및 게임 중 동적 메모리 해제가 중지됩니다</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>경고 임계값 (%)</value>
   </data>

@@ -856,6 +856,12 @@ Jika tetap melanjutkan, peringatan ini akan diabaikan dan Hash preset akan diper
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Aktifkan Peringatan Penggunaan CPU Abnormal</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Aktifkan Pelepasan Memori Terjadwal</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Matikan untuk menghentikan pembersihan rutin dan pelepasan memori dinamis saat bermain game</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Ambang Peringatan (%)</value>
   </data>

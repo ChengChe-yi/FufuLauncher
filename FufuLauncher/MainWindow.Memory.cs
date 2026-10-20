@@ -13,21 +13,25 @@ public sealed partial class MainWindow
 {
     #region Memory Management
 
-    private void FlushMemory()
+    private void FlushMemory(bool force = false)
     {
+        if (!_isMemoryReleaseEnabled)
+            return;
+
         try
         {
-            if (ContentFrame.BackStackDepth > 0)
-            {
-                ContentFrame.BackStack.Clear();
-            }
-
             var isMinimized = AppWindow.Presenter.Kind == AppWindowPresenterKind.Overlapped &&
                               ((OverlappedPresenter)AppWindow.Presenter).State == OverlappedPresenterState.Minimized;
 
             var isHidden = !Visible;
+            var shouldFlush = force || isMinimized || isHidden;
+            if (!shouldFlush)
+                return;
 
-            MemoryOptimizationService.FlushMemory(isMinimized || isHidden);
+            if ((isMinimized || isHidden) && ContentFrame.BackStackDepth > 0)
+                ContentFrame.BackStack.Clear();
+
+            MemoryOptimizationService.FlushMemory(true);
         }
         catch (Exception ex)
         {

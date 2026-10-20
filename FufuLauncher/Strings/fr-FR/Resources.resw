@@ -856,6 +856,12 @@ Si vous continuez, cet avertissement sera ignoré et le Hash de ce préréglage 
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Activer l'alerte d'utilisation anormale du CPU</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Activer la libération de mémoire planifiée</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Désactivez pour arrêter le nettoyage périodique et la libération dynamique pendant les jeux</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Seuil d'alerte (%)</value>
   </data>

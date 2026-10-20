@@ -856,6 +856,12 @@ Se continuar, este aviso será ignorado e o Hash desta predefinição será atua
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>Ativar aviso de uso anormal da CPU</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Ativar liberação de memória agendada</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Desative para parar a limpeza periódica e a liberação dinâmica durante jogos</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Limite de aviso (%)</value>
   </data>

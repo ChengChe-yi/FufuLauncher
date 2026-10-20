@@ -11,6 +11,8 @@ namespace FufuLauncher.Services
 {
     public static class MemoryOptimizationService
     {
+        public const string IsEnabledSettingKey = "IsMemoryReleaseEnabled";
+
         [DllImport("kernel32.dll")]
         private static extern bool SetProcessWorkingSetSize(IntPtr process, int minimumWorkingSetSize,
             int maximumWorkingSetSize);

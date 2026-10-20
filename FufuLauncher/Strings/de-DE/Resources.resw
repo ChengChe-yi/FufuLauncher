@@ -856,6 +856,12 @@ Wenn du fortfährst, wird diese Warnung ignoriert und der Hash dieser Vorgabe au
   <data name="EnableCpuWarning" xml:space="preserve">
     <value>CPU-Überlastwarnung aktivieren</value>
   </data>
+  <data name="MemoryReleaseTitle" xml:space="preserve">
+    <value>Zeitgesteuerte Speicherfreigabe aktivieren</value>
+  </data>
+  <data name="MemoryReleaseCaption" xml:space="preserve">
+    <value>Deaktiviert die regelmäßige Bereinigung und die dynamische Speicherfreigabe während Spielen</value>
+  </data>
   <data name="CpuWarningThreshold" xml:space="preserve">
     <value>Warnschwellenwert (%)</value>
   </data>

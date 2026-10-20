@@ -156,6 +156,7 @@ public partial class SettingsViewModel : ObservableRecipient
     [ObservableProperty] private string _launchButtonOverlayColor = "#0078D7";
     [ObservableProperty] private bool _isCpuUsageWarningEnabled = true;
     [ObservableProperty] private double _cpuUsageWarningThreshold = ProcessCpuUsageMonitor.DefaultCpuThreshold;
+    [ObservableProperty] private bool _isMemoryReleaseEnabled = true;
 
     [ObservableProperty] private bool _isScreenshotEnabled;
     [ObservableProperty] private string _screenshotHotkey = "F12";
