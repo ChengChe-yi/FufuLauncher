@@ -63,6 +63,13 @@ public partial class App
                 services.AddTransient<DataViewModel>();
                 services.AddTransient<DataPage>();
 
+                // 周期挑战（新增模块：独立数据库、API 客户端、页面与 VM）
+                services.AddSingleton<CycleChallengeRepository>();
+                services.AddSingleton<Services.CycleChallenge.GameRecordApiClient>();
+                services.AddSingleton<Services.CycleChallenge.CycleChallengeService>();
+                services.AddTransient<CycleChallengeViewModel>();
+                services.AddTransient<Views.CycleChallengePage>();
+
                 services.AddSingleton<LaunchConfigurationViewModel>();
                 services.AddTransient<SettingsViewModel>();
                 services.AddTransient<SettingsPage>();

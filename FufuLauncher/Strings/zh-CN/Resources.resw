@@ -8610,4 +8610,331 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>武器</value>
   </data>
+  <data name="NavCycleChallenge" xml:space="preserve">
+    <value>周期挑战</value>
+  </data>
+  <data name="CycleChallenge_Title" xml:space="preserve">
+    <value>周期挑战</value>
+  </data>
+  <data name="CycleChallenge_Subtitle" xml:space="preserve">
+    <value>深境螺旋 · 幻想真境剧诗 · 幽境危战</value>
+  </data>
+  <data name="CycleChallenge_Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="CycleChallenge_RefreshTooltip" xml:space="preserve">
+    <value>刷新当前周期的挑战数据</value>
+  </data>
+  <data name="CycleChallenge_DataStatusFresh" xml:space="preserve">
+    <value>数据已更新</value>
+  </data>
+  <data name="CycleChallenge_DataStatusCached" xml:space="preserve">
+    <value>显示缓存数据</value>
+  </data>
+  <data name="CycleChallenge_DataStatusOffline" xml:space="preserve">
+    <value>离线模式</value>
+  </data>
+  <data name="CycleChallenge_OfflineBanner" xml:space="preserve">
+    <value>当前处于离线状态，显示的是本地缓存数据</value>
+  </data>
+  <data name="CycleChallenge_LoadFailed" xml:space="preserve">
+    <value>数据加载失败</value>
+  </data>
+  <data name="CycleChallenge_Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="CycleChallenge_NoAccount" xml:space="preserve">
+    <value>尚未登录米游社账号</value>
+  </data>
+  <data name="CycleChallenge_GoLogin" xml:space="preserve">
+    <value>前往登录</value>
+  </data>
+  <data name="CycleChallenge_NoRole" xml:space="preserve">
+    <value>当前账号未绑定可用的原神角色</value>
+  </data>
+  <data name="CycleChallenge_RefreshRoles" xml:space="preserve">
+    <value>刷新角色列表</value>
+  </data>
+  <data name="CycleChallenge_NotParticipated" xml:space="preserve">
+    <value>本赛季未参与</value>
+  </data>
+  <data name="CycleChallenge_NotUnlocked" xml:space="preserve">
+    <value>尚未解锁该挑战</value>
+  </data>
+  <data name="CycleChallenge_InProgress" xml:space="preserve">
+    <value>进行中</value>
+  </data>
+  <data name="CycleChallenge_Settled" xml:space="preserve">
+    <value>已结算</value>
+  </data>
+  <data name="CycleChallenge_LoginExpired" xml:space="preserve">
+    <value>登录状态已过期，请重新登录</value>
+  </data>
+  <data name="CycleChallenge_RiskControl" xml:space="preserve">
+    <value>请求被风控拦截，请稍后再试</value>
+  </data>
+  <data name="CycleChallenge_RateLimited" xml:space="preserve">
+    <value>请求过于频繁，请稍后再试</value>
+  </data>
+  <data name="CycleChallenge_Unsupported" xml:space="preserve">
+    <value>暂不支持展示该挑战</value>
+  </data>
+  <data name="CycleChallenge_EmptyHint" xml:space="preserve">
+    <value>本期暂无挑战记录</value>
+  </data>
+  <data name="CycleChallenge_DataSourceNote" xml:space="preserve">
+    <value>数据来源：米游社游戏记录接口</value>
+  </data>
+  <data name="CycleChallenge_TabAbyss" xml:space="preserve">
+    <value>深境螺旋</value>
+  </data>
+  <data name="CycleChallenge_TabTheater" xml:space="preserve">
+    <value>幻想真境剧诗</value>
+  </data>
+  <data name="CycleChallenge_TabStygian" xml:space="preserve">
+    <value>幽境危战</value>
+  </data>
+  <data name="CycleChallenge_PeriodLabel" xml:space="preserve">
+    <value>期次</value>
+  </data>
+  <data name="CycleChallenge_PeriodCurrent" xml:space="preserve">
+    <value>本期</value>
+  </data>
+  <data name="CycleChallenge_PeriodLast" xml:space="preserve">
+    <value>上期</value>
+  </data>
+  <data name="CycleChallenge_NoCachedPeriod" xml:space="preserve">
+    <value>暂无历史期次缓存</value>
+  </data>
+  <data name="Abyss_TotalStar" xml:space="preserve">
+    <value>获得渊星</value>
+  </data>
+  <data name="Abyss_MaxFloor" xml:space="preserve">
+    <value>最深抵达</value>
+  </data>
+  <data name="Abyss_BattleTimes" xml:space="preserve">
+    <value>战斗次数</value>
+  </data>
+  <data name="Abyss_WinTimes" xml:space="preserve">
+    <value>胜利次数</value>
+  </data>
+  <data name="Abyss_StrongestHit" xml:space="preserve">
+    <value>最强一击</value>
+  </data>
+  <data name="Abyss_UpperHalf" xml:space="preserve">
+    <value>上半</value>
+  </data>
+  <data name="Abyss_LowerHalf" xml:space="preserve">
+    <value>下半</value>
+  </data>
+  <data name="Abyss_Floor" xml:space="preserve">
+    <value>层</value>
+  </data>
+  <data name="Abyss_SkippedFloor" xml:space="preserve">
+    <value>跳过的层</value>
+  </data>
+  <data name="Abyss_LeyLineDisorder" xml:space="preserve">
+    <value>地脉异常</value>
+  </data>
+  <data name="Abyss_RevealRank" xml:space="preserve">
+    <value>出战次数</value>
+  </data>
+  <data name="Abyss_DefeatRank" xml:space="preserve">
+    <value>最多击破</value>
+  </data>
+  <data name="Abyss_DamageRank" xml:space="preserve">
+    <value>最强一击</value>
+  </data>
+  <data name="Abyss_TakeDamageRank" xml:space="preserve">
+    <value>最多承伤</value>
+  </data>
+  <data name="Abyss_NormalSkillRank" xml:space="preserve">
+    <value>元素战技</value>
+  </data>
+  <data name="Abyss_EnergySkillRank" xml:space="preserve">
+    <value>元素爆发</value>
+  </data>
+  <data name="Abyss_Times" xml:space="preserve">
+    <value>次数</value>
+  </data>
+  <data name="Theater_Difficulty" xml:space="preserve">
+    <value>难度</value>
+  </data>
+  <data name="Theater_MaxRound" xml:space="preserve">
+    <value>最佳记录</value>
+  </data>
+  <data name="Theater_Medals" xml:space="preserve">
+    <value>挑战星章</value>
+  </data>
+  <data name="Theater_Coins" xml:space="preserve">
+    <value>幻剧之花</value>
+  </data>
+  <data name="Theater_AvatarBonus" xml:space="preserve">
+    <value>场外声援</value>
+  </data>
+  <data name="Theater_Rent" xml:space="preserve">
+    <value>助演次数</value>
+  </data>
+  <data name="Theater_Act" xml:space="preserve">
+    <value>幕</value>
+  </data>
+  <data name="Theater_BackupAvatars" xml:space="preserve">
+    <value>待命角色</value>
+  </data>
+  <data name="Theater_Enemies" xml:space="preserve">
+    <value>敌人</value>
+  </data>
+  <data name="Theater_MaxDefeat" xml:space="preserve">
+    <value>最多击败</value>
+  </data>
+  <data name="Theater_MaxDamage" xml:space="preserve">
+    <value>最高伤害</value>
+  </data>
+  <data name="Theater_MaxTakeDamage" xml:space="preserve">
+    <value>最多承伤</value>
+  </data>
+  <data name="Theater_ShortestClear" xml:space="preserve">
+    <value>最快演出</value>
+  </data>
+  <data name="Theater_TotalTime" xml:space="preserve">
+    <value>演出总时长</value>
+  </data>
+  <data name="Theater_ShowBattleStats" xml:space="preserve">
+    <value>查看战斗统计</value>
+  </data>
+  <data name="Stygian_Difficulty" xml:space="preserve">
+    <value>难度</value>
+  </data>
+  <data name="Stygian_BestTime" xml:space="preserve">
+    <value>最佳用时</value>
+  </data>
+  <data name="Stygian_Solo" xml:space="preserve">
+    <value>单人挑战</value>
+  </data>
+  <data name="Stygian_Coop" xml:space="preserve">
+    <value>联机挑战</value>
+  </data>
+  <data name="Stygian_Stage" xml:space="preserve">
+    <value>关卡</value>
+  </data>
+  <data name="Stygian_BestAvatar" xml:space="preserve">
+    <value>最佳角色</value>
+  </data>
+  <data name="Stygian_Team" xml:space="preserve">
+    <value>队伍</value>
+  </data>
+  <data name="Stygian_Monster" xml:space="preserve">
+    <value>敌人</value>
+  </data>
+  <data name="Stygian_Dps" xml:space="preserve">
+    <value>每秒伤害</value>
+  </data>
+  <data name="Stygian_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="Stygian_NoCoopData" xml:space="preserve">
+    <value>暂无多人挑战数据</value>
+  </data>
+  <data name="Stygian_ScheduleName" xml:space="preserve">
+    <value>期次</value>
+  </data>
+  <data name="Theater_Difficulty_1" xml:space="preserve">
+    <value>轻简模式</value>
+  </data>
+  <data name="Theater_Difficulty_2" xml:space="preserve">
+    <value>普通模式</value>
+  </data>
+  <data name="Theater_Difficulty_3" xml:space="preserve">
+    <value>困难模式</value>
+  </data>
+  <data name="Theater_Difficulty_4" xml:space="preserve">
+    <value>卓越模式</value>
+  </data>
+  <data name="Theater_Difficulty_5" xml:space="preserve">
+    <value>月谕模式</value>
+  </data>
+  <data name="Theater_Difficulty_Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Theater_AvatarTrial" xml:space="preserve">
+    <value>试用</value>
+  </data>
+  <data name="Theater_AvatarSupport" xml:space="preserve">
+    <value>助演</value>
+  </data>
+  <data name="Theater_NoDetail" xml:space="preserve">
+    <value>暂无演出数据</value>
+  </data>
+  <data name="Theater_BattleStats" xml:space="preserve">
+    <value>战斗统计</value>
+  </data>
+  <data name="Theater_Review" xml:space="preserve">
+    <value>演出回顾</value>
+  </data>
+  <data name="Stygian_Difficulty_1" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="Stygian_Difficulty_2" xml:space="preserve">
+    <value>进阶</value>
+  </data>
+  <data name="Stygian_Difficulty_3" xml:space="preserve">
+    <value>困难</value>
+  </data>
+  <data name="Stygian_Difficulty_4" xml:space="preserve">
+    <value>险恶</value>
+  </data>
+  <data name="Stygian_Difficulty_5" xml:space="preserve">
+    <value>无畏</value>
+  </data>
+  <data name="Stygian_Difficulty_6" xml:space="preserve">
+    <value>绝境</value>
+  </data>
+  <data name="Stygian_Difficulty_Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Stygian_ExtremeValue" xml:space="preserve">
+    <value>最高输出</value>
+  </data>
+  <data name="Stygian_UseTime" xml:space="preserve">
+    <value>战斗用时</value>
+  </data>
+  <data name="Stygian_BlingAvatars" xml:space="preserve">
+    <value>上榜角色</value>
+  </data>
+  <data name="Theater_RoundTitle" xml:space="preserve">
+    <value>第 {0} 幕</value>
+  </data>
+  <data name="Theater_TarotTitle" xml:space="preserve">
+    <value>圣牌 {0}</value>
+  </data>
+  <data name="Theater_TarotTitleShort" xml:space="preserve">
+    <value>圣牌</value>
+  </data>
+  <data name="Theater_UsedTime" xml:space="preserve">
+    <value>用时 {0}</value>
+  </data>
+  <data name="Theater_FinishAt" xml:space="preserve">
+    <value>完成 {0}</value>
+  </data>
+  <data name="Stygian_BestType_1" xml:space="preserve">
+    <value>最强一击</value>
+  </data>
+  <data name="Stygian_BestType_2" xml:space="preserve">
+    <value>最高总伤害</value>
+  </data>
+  <data name="Stygian_BestType_Other" xml:space="preserve">
+    <value>最佳输出</value>
+  </data>
+  <data name="Theater_SplendourBuffs" xml:space="preserve">
+    <value>辉彩祝福</value>
+  </data>
+  <data name="Theater_ChoiceCards" xml:space="preserve">
+    <value>神秘收获</value>
+  </data>
+  <data name="Theater_MaxRoundWithTarot" xml:space="preserve">
+    <value>第 {0} 幕 圣牌 {1}</value>
+  </data>
+  <data name="Abyss_BattleStats" xml:space="preserve">
+    <value>战斗统计</value>
+  </data>
 </root>

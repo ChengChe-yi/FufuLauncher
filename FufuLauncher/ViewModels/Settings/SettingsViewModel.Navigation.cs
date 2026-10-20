@@ -61,6 +61,11 @@ public partial class SettingsViewModel
             },
             new()
             {
+                ViewModelKey = "FufuLauncher.ViewModels.CycleChallengeViewModel",
+                DisplayNameKey = "NavCycleChallenge", IconGlyph = "\uE81C"
+            },
+            new()
+            {
                 ViewModelKey = "FufuLauncher.ViewModels.HelpViewModel", DisplayNameKey = "NavHelpDocs",
                 IconGlyph = "\uE82D"
             },

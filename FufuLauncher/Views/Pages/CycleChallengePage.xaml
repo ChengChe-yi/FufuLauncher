@@ -1,0 +1,155 @@
+<!--
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+-->
+
+<Page
+    x:Class="FufuLauncher.Views.CycleChallengePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cc="using:FufuLauncher.Views.Controls.CycleChallenge"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
+    xmlns:views="using:FufuLauncher.Views"
+    NavigationCacheMode="Disabled">
+
+    <Page.Resources>
+        <Style x:Key="CcCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="16" />
+        </Style>
+        <Style x:Key="CcChipStyle" TargetType="primitives:ToggleButton">
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Padding" Value="14,0" />
+            <Setter Property="CornerRadius" Value="16" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Padding="24,20,24,12" RowSpacing="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  标题与刷新  -->
+        <Grid Grid.Row="0" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Spacing="2">
+                <TextBlock FontSize="24" FontWeight="SemiBold" Text="{helpers:Loc Key=CycleChallenge_Title}" />
+                <TextBlock
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="{helpers:Loc Key=CycleChallenge_Subtitle}" />
+            </StackPanel>
+            <Button
+                Grid.Column="1"
+                VerticalAlignment="Top"
+                Command="{x:Bind ViewModel.RefreshCommand}"
+                ToolTipService.ToolTip="{helpers:Loc Key=CycleChallenge_RefreshTooltip}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon FontSize="14" Glyph="&#xE72C;" />
+                    <TextBlock Text="{helpers:Loc Key=CycleChallenge_Refresh}" />
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <!--  账号与角色  -->
+        <Border Grid.Row="1" Style="{StaticResource CcCardStyle}">
+            <StackPanel Orientation="Horizontal" Spacing="16">
+                <FontIcon VerticalAlignment="Center" FontSize="16" Glyph="&#xE77B;" />
+                <TextBlock VerticalAlignment="Center" Text="{x:Bind ViewModel.AccountText, Mode=OneWay}" />
+                <views:GameRoleSelector Scope="{x:Bind ViewModel.RoleSelection, Mode=OneWay}" />
+            </StackPanel>
+        </Border>
+
+        <!--  模式切换  -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="8">
+            <primitives:ToggleButton
+                x:Name="AbyssChip"
+                Click="OnAbyssChipClick"
+                IsChecked="True"
+                Style="{StaticResource CcChipStyle}"
+                Content="{helpers:Loc Key=CycleChallenge_TabAbyss}" />
+            <primitives:ToggleButton
+                x:Name="TheaterChip"
+                Click="OnTheaterChipClick"
+                Style="{StaticResource CcChipStyle}"
+                Content="{helpers:Loc Key=CycleChallenge_TabTheater}" />
+            <primitives:ToggleButton
+                x:Name="StygianChip"
+                Click="OnStygianChipClick"
+                Style="{StaticResource CcChipStyle}"
+                Content="{helpers:Loc Key=CycleChallenge_TabStygian}" />
+
+            <ComboBox
+                x:Name="PeriodBox"
+                MinWidth="260"
+                Margin="16,0,0,0"
+                VerticalAlignment="Center"
+                ItemsSource="{x:Bind ViewModel.Periods, Mode=OneWay}"
+                SelectedItem="{x:Bind ViewModel.SelectedPeriod, Mode=TwoWay}"
+                DisplayMemberPath="Display"
+                PlaceholderText="{helpers:Loc Key=CycleChallenge_PeriodLabel}" />
+            <TextBlock
+                VerticalAlignment="Center"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Text="{x:Bind ViewModel.StatusText, Mode=OneWay}" />
+        </StackPanel>
+
+        <!--  状态提示  -->
+        <StackPanel Grid.Row="3" Spacing="8">
+            <InfoBar
+                IsClosable="False"
+                IsOpen="{x:Bind ViewModel.HasError, Mode=OneWay}"
+                Message="{x:Bind ViewModel.ErrorMessage, Mode=OneWay}"
+                Severity="Error" />
+            <InfoBar
+                IsClosable="False"
+                IsOpen="{x:Bind ViewModel.IsOffline, Mode=OneWay}"
+                Message="{helpers:Loc Key=CycleChallenge_OfflineBanner}"
+                Severity="Warning" />
+            <ProgressRing
+                Width="28"
+                Height="28"
+                HorizontalAlignment="Center"
+                IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" />
+        </StackPanel>
+
+        <!--  内容区  -->
+        <Grid Grid.Row="4">
+            <ScrollViewer x:Name="AbyssHost" VerticalScrollBarVisibility="Auto">
+                <cc:SpiralAbyssPanel x:Name="AbyssPanel" />
+            </ScrollViewer>
+            <ScrollViewer
+                x:Name="TheaterHost"
+                VerticalScrollBarVisibility="Auto"
+                Visibility="Collapsed">
+                <cc:TheaterPanel x:Name="TheaterPanel" />
+            </ScrollViewer>
+            <ScrollViewer
+                x:Name="StygianHost"
+                VerticalScrollBarVisibility="Auto"
+                Visibility="Collapsed">
+                <cc:StygianPanel x:Name="StygianPanel" />
+            </ScrollViewer>
+            <TextBlock
+                x:Name="EmptyText"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Text="{helpers:Loc Key=CycleChallenge_EmptyHint}"
+                Visibility="Collapsed" />
+        </Grid>
+    </Grid>
+</Page>

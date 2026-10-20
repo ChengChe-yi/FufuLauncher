@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) FufuLauncher Dev Team. All rights reserved.
+Licensed under the MIT License.
+-->
+<UserControl
+    x:Class="FufuLauncher.Views.Controls.CycleChallenge.SpiralAbyssPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    xmlns:local="using:FufuLauncher.Views.Controls.CycleChallenge"
+    xmlns:models="using:FufuLauncher.Models.CycleChallenge"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch">
+
+    <UserControl.Resources>
+
+        <!-- 通用卡片 / 文本样式：颜色全部走主题资源，不硬编码亮暗色 -->
+        <Style x:Key="AbyssCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="14,12" />
+        </Style>
+
+        <Style x:Key="AbyssInnerCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorSecondaryBrush}" />
+            <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="10,9" />
+        </Style>
+
+        <Style x:Key="AbyssLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+        </Style>
+
+        <Style x:Key="AbyssCaptionStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Foreground" Value="{ThemeResource TextFillColorTertiaryBrush}" />
+        </Style>
+
+        <!-- KPI 卡片（标题 / 数值） -->
+        <DataTemplate x:Key="KpiCardTemplate" x:DataType="local:SpiralAbyssKpiCard">
+            <Border MinHeight="86" Style="{StaticResource AbyssCardStyle}">
+                <StackPanel VerticalAlignment="Center" Spacing="4">
+                    <TextBlock Style="{StaticResource AbyssLabelStyle}"
+                               Text="{x:Bind Title}"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                               Text="{x:Bind ValueText}"
+                               TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <!-- 战斗角色头像（每场 4 个） -->
+        <DataTemplate x:Key="BattleAvatarTemplate" x:DataType="models:SpiralAbyssAvatar">
+            <local:AvatarBadge Margin="0,0,6,0"
+                               AvatarId="{x:Bind AvatarId}"
+                               IconUrl="{x:Bind IconUrl}"
+                               Level="{x:Bind Level}"
+                               Rarity="{x:Bind Rarity}"
+                               ShowRarityRing="True"
+                               Size="38" />
+        </DataTemplate>
+
+        <!-- 一个「间」：间号 + 上半 / 下半并排 -->
+        <DataTemplate x:Key="LevelTemplate" x:DataType="models:SpiralAbyssLevel">
+            <Border Margin="0,0,0,8" Style="{StaticResource AbyssInnerCardStyle}">
+                <Grid ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 间号 + 本间星级 -->
+                    <StackPanel Grid.Column="0" MinWidth="34" VerticalAlignment="Center" Spacing="2">
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                   Text="{x:Bind IndexText}" />
+                        <TextBlock HorizontalAlignment="Center"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   FontSize="10"
+                                   Text="{x:Bind StarText}" />
+                    </StackPanel>
+
+                    <!-- 上半场 -->
+                    <StackPanel Grid.Column="1" Spacing="6" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <TextBlock FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                       Text="{helpers:Loc Key=Abyss_UpperHalf}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Style="{StaticResource AbyssCaptionStyle}"
+                                       Text="{x:Bind UpperTimeText}" />
+                        </StackPanel>
+                        <ItemsControl ItemTemplate="{StaticResource BattleAvatarTemplate}"
+                                      ItemsSource="{x:Bind UpperAvatars}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- 上/下半分隔线 -->
+                    <Rectangle Grid.Column="2"
+                               Width="1"
+                               Margin="0,2"
+                               Fill="{ThemeResource DividerStrokeColorDefaultBrush}" />
+
+                    <!-- 下半场 -->
+                    <StackPanel Grid.Column="3" Spacing="6" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Spacing="6">
+                            <TextBlock FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                       Text="{helpers:Loc Key=Abyss_LowerHalf}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Style="{StaticResource AbyssCaptionStyle}"
+                                       Text="{x:Bind LowerTimeText}" />
+                        </StackPanel>
+                        <ItemsControl ItemTemplate="{StaticResource BattleAvatarTemplate}"
+                                      ItemsSource="{x:Bind LowerAvatars}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <!-- 一层：层号 / 星级 / 地脉异常 / 逐间战斗 -->
+        <DataTemplate x:Key="FloorTemplate" x:DataType="models:SpiralAbyssFloor">
+            <Border Margin="0,0,0,10" Style="{StaticResource AbyssCardStyle}">
+                <StackPanel Spacing="10">
+
+                    <!-- 头部：第 N 层 + 星级 + 未解锁提示 -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                            <TextBlock VerticalAlignment="Center"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                       Text="{x:Bind IndexText}" />
+                            <TextBlock VerticalAlignment="Center"
+                                       Style="{StaticResource AbyssLabelStyle}"
+                                       Text="{helpers:Loc Key=Abyss_Floor}" />
+                            <local:RemoteImage Width="22" Height="22" Source="{x:Bind AbyssStar}"/>
+                            <TextBlock VerticalAlignment="Center"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       Text="{x:Bind StarText}" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Column="1"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource AbyssLabelStyle}"
+                                   Text="{helpers:Loc Key=CycleChallenge_NotUnlocked}"
+                                   Visibility="{x:Bind IsLocked, Converter={StaticResource BoolToVisibilityConverter}}" />
+                    </Grid>
+
+                    <!-- 地脉异常：上/下半成对形态（优先） -->
+                    <StackPanel Spacing="4" Visibility="{x:Bind ShowSplitLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource AbyssLabelStyle}"
+                                   Text="{helpers:Loc Key=Abyss_LeyLineDisorder}" />
+                        <StackPanel Spacing="2" Visibility="{x:Bind HasUpperLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <TextBlock FontSize="11"
+                                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                       Text="{helpers:Loc Key=Abyss_UpperHalf}" />
+                            <TextBlock FontSize="12"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       Text="{x:Bind UpperLeyLineText}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                        <StackPanel Spacing="2" Visibility="{x:Bind HasLowerLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <TextBlock FontSize="11"
+                                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                                       Text="{helpers:Loc Key=Abyss_LowerHalf}" />
+                            <TextBlock FontSize="12"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       Text="{x:Bind LowerLeyLineText}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- 地脉异常：通用形态（上/下皆空时回退） -->
+                    <StackPanel Spacing="4" Visibility="{x:Bind ShowCommonLeyLine, Converter={StaticResource BoolToVisibilityConverter}}">
+                        <TextBlock Style="{StaticResource AbyssLabelStyle}"
+                                   Text="{helpers:Loc Key=Abyss_LeyLineDisorder}" />
+                        <TextBlock FontSize="12"
+                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                   Text="{x:Bind LeyLineText}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <!-- 逐间战斗 -->
+                    <ItemsControl ItemTemplate="{StaticResource LevelTemplate}" ItemsSource="{x:Bind Levels}" />
+
+                    <!-- 层内无间数据时的占位 -->
+                    <TextBlock Style="{StaticResource AbyssCaptionStyle}"
+                               Text="--"
+                               Visibility="{x:Bind HasLevels, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <!-- 一个榜单中的角色（头像 + 数值，横向排列） -->
+        <DataTemplate x:Key="RankRowTemplate" x:DataType="models:SpiralAbyssRankRow">
+            <StackPanel Margin="0,0,14,0" Orientation="Horizontal" Spacing="6">
+                <local:AvatarBadge AvatarId="{x:Bind AvatarId}"
+                                   IconUrl="{x:Bind IconUrl}"
+                                   Rarity="{x:Bind Rarity}"
+                                   ShowRarityRing="True"
+                                   Size="32" />
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="12"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Text="{x:Bind ValueText}"
+                           TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+        </DataTemplate>
+
+        <!-- 战斗统计中的一行：项目名 + 该项目的角色头像/数值 -->
+        <DataTemplate x:Key="RankSectionRowTemplate" x:DataType="local:SpiralAbyssRankSectionView">
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock VerticalAlignment="Center"
+                           FontSize="12"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Text="{x:Bind Title}"
+                           TextTrimming="CharacterEllipsis" />
+                <ItemsControl Grid.Column="1"
+                              ItemTemplate="{StaticResource RankRowTemplate}"
+                              ItemsSource="{x:Bind Rows}"
+                              Visibility="{x:Bind HasRows, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <TextBlock Grid.Column="1"
+                           VerticalAlignment="Center"
+                           Style="{StaticResource AbyssCaptionStyle}"
+                           Text="--"
+                           Visibility="{x:Bind HasRows, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Inverse}" />
+            </Grid>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <!--
+            不自带 ScrollViewer：宿主页面（CycleChallengePage）已用 ScrollViewer 包裹本面板，
+            这里再嵌套一层会在 WinUI 里产生「双层滚动 / 滚轮被内层吞掉」的问题。
+        -->
+        <StackPanel Margin="0,0,6,0"
+                    HorizontalAlignment="Stretch"
+                    Spacing="14">
+
+            <!-- 跳层提示（is_just_skipped_floor / skipped_floor，均可能缺键） -->
+            <Border Style="{StaticResource AbyssInnerCardStyle}"
+                    Visibility="{x:Bind ShowSkippedFloor, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock VerticalAlignment="Center"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                               Text="{helpers:Loc Key=Abyss_SkippedFloor}" />
+                    <TextBlock VerticalAlignment="Center"
+                               FontSize="12"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               Text="{x:Bind SkippedFloorText}" />
+                </StackPanel>
+            </Border>
+
+            <!-- 正常内容 -->
+            <StackPanel Spacing="14" Visibility="{x:Bind ShowContent, Converter={StaticResource BoolToVisibilityConverter}}">
+
+                <!-- KPI 卡片行：总星 / 最深 / 战斗次数 / 胜次 / 最强一击 -->
+                <ItemsRepeater ItemTemplate="{StaticResource KpiCardTemplate}" ItemsSource="{x:Bind KpiCards}">
+                    <ItemsRepeater.Layout>
+                        <UniformGridLayout ItemsStretch="Fill"
+                                           MinColumnSpacing="10"
+                                           MinItemHeight="86"
+                                           MinItemWidth="168"
+                                           MinRowSpacing="10" />
+                    </ItemsRepeater.Layout>
+                </ItemsRepeater>
+
+                <!-- 战斗统计：六项（出战 / 击破 / 最强一击 / 承伤 / 战技 / 爆发）合并为一个区块（参考剧诗） -->
+                <Border Style="{StaticResource AbyssCardStyle}"
+                        Visibility="{x:Bind ShowRanks, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <StackPanel Spacing="10">
+                        <TextBlock FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                   Text="{helpers:Loc Key=Abyss_BattleStats}" />
+                        <ItemsControl ItemTemplate="{StaticResource RankSectionRowTemplate}"
+                                      ItemsSource="{x:Bind RankSections}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Spacing="10" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <!-- 逐层卡片（层数按响应原样渲染，不写死 12 层） -->
+                <ItemsControl ItemTemplate="{StaticResource FloorTemplate}" ItemsSource="{x:Bind Floors}" />
+            </StackPanel>
+
+            <!-- 空态：本期未参与（floors 为空 / 无 data） -->
+            <Border MinHeight="180"
+                    Style="{StaticResource AbyssCardStyle}"
+                    Visibility="{x:Bind ShowEmpty, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="6">
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="14"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               Text="{x:Bind EmptyText}" />
+                </StackPanel>
+            </Border>
+
+            <!-- 未解锁态：is_unlock = false -->
+            <Border MinHeight="180"
+                    Style="{StaticResource AbyssCardStyle}"
+                    Visibility="{x:Bind ShowLocked, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="6">
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="14"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                               Text="{x:Bind LockedText}" />
+                </StackPanel>
+            </Border>
+
+            <!-- 解析失败占位（Show 内部 try/catch，不崩溃） -->
+            <Border MinHeight="180"
+                    Style="{StaticResource AbyssCardStyle}"
+                    Visibility="{x:Bind ShowError, Converter={StaticResource BoolToVisibilityConverter}}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="6">
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="14"
+                               Foreground="{ThemeResource SystemFillColorCautionBrush}"
+                               Text="{x:Bind ErrorText}"
+                               TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
