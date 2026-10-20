@@ -154,8 +154,20 @@ public sealed class CycleChallengeService
             }
         }
 
-        var periods = _repository.GetPeriods(role.Role.game_uid, mode);
-        var latest = PickPreferredRecord(role.Role.game_uid, mode, periods);
+        IReadOnlyList<ChallengePeriod> periods = periodsBefore;
+        CycleChallengeRecordEntity? latest = null;
+        try
+        {
+            periods = _repository.GetPeriods(role.Role.game_uid, mode);
+            latest = PickPreferredRecord(role.Role.game_uid, mode, periods);
+        }
+        catch (Exception ex) when (saveFailed && freshPanelPayload is not null)
+        {
+            // API 已成功、只是缓存不可读：保留旧期次列表并让面板直接使用本次新数据
+            Debug.WriteLine($"[CycleChallengeService] 读取缓存失败: {ex.Message}");
+            periods = periodsBefore;
+            latest = null;
+        }
 
         // 写缓存失败但 API 成功：直接返回本次拉取的新数据，避免误报错误或展示旧缓存
         if (saveFailed && freshPanelPayload is not null)

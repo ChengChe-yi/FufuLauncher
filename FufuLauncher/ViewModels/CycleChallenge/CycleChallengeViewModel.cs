@@ -368,7 +368,8 @@ public sealed partial class CycleChallengeViewModel : ObservableObject
             return;
         }
 
-        var role = GameRoleSelection.Current(account);
+        // 使用页面作用域的角色选择，保证 Header 中 UID 与 ReloadAsync 实际加载的 UID 一致
+        var role = RoleSelection.Current(account);
         AccountText = role is null
             ? $"{account.Nickname}"
             : $"{account.Nickname}  ·  {role.game_uid}  {role.region_name}";

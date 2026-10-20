@@ -93,7 +93,8 @@ public sealed partial class CycleChallengePage : Page
         StygianChip.IsChecked = mode == ChallengeMode.Stygian;
 
         var payload = ViewModel.Payload;
-        var hasPayload = !string.IsNullOrEmpty(payload) && ViewModel.HasData && !ViewModel.HasError;
+        // 离线/刷新失败但仍有可用缓存时，HasError 为 true 仍应展示 Payload（错误通过 InfoBar 提示）
+        var hasPayload = !string.IsNullOrEmpty(payload) && ViewModel.HasData;
         EmptyText.Visibility = hasPayload ? Visibility.Collapsed : Visibility.Visible;
 
         if (!hasPayload)
