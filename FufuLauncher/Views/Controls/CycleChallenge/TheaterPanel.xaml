@@ -298,15 +298,21 @@ Licensed under the MIT License.
                 <StackPanel Spacing="10" ScrollViewer.VerticalScrollMode="Auto">
                     <TextBlock Style="{StaticResource SectionTitleStyle}"
                                Text="{helpers:Loc Key=Theater_BackupAvatars}" />
-                    <ItemsControl ItemsSource="{x:Bind Display.BackupAvatars, Mode=OneTime}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Horizontal" ItemWidth="60" ItemHeight="60" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
+                    <ItemsRepeater ItemsSource="{x:Bind Display.BackupAvatars, Mode=OneTime}">
+                        <ItemsRepeater.Layout>
+                            <UniformGridLayout
+                                MinColumnSpacing="0"
+                                MinItemHeight="60"
+                                MinItemWidth="60"
+                                MinRowSpacing="0" />
+                        </ItemsRepeater.Layout>
+                        <ItemsRepeater.ItemTemplate>
                             <DataTemplate x:DataType="models:TheaterAvatar">
-                                <StackPanel HorizontalAlignment="Center" Spacing="2">
+                                <StackPanel
+                                    Width="60"
+                                    Height="60"
+                                    HorizontalAlignment="Center"
+                                    Spacing="2">
                                     <cc:AvatarBadge
                                         AvatarId="{x:Bind AvatarId}"
                                         HorizontalAlignment="Center"
@@ -322,8 +328,8 @@ Licensed under the MIT License.
                                         Visibility="{x:Bind HasTypeText, Converter={StaticResource BoolToVisibilityConverter}}" />
                                 </StackPanel>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
                 </StackPanel>
             </Border>
 
@@ -333,13 +339,11 @@ Licensed under the MIT License.
                 <StackPanel Spacing="12">
                     <!--  演出回顾  -->
                     <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Theater_Review}" />
-                    <ItemsControl ItemsSource="{x:Bind Display.Rounds, Mode=OneTime}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Spacing="10" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
+                    <ItemsRepeater ItemsSource="{x:Bind Display.Rounds, Mode=OneTime}">
+                        <ItemsRepeater.Layout>
+                            <StackLayout Spacing="10" />
+                        </ItemsRepeater.Layout>
+                        <ItemsRepeater.ItemTemplate>
                             <DataTemplate x:DataType="models:TheaterRound">
                                 <Border Style="{StaticResource RoundCardStyle}">
                                     <StackPanel Spacing="10">
@@ -528,8 +532,8 @@ Licensed under the MIT License.
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
                 </StackPanel>
             </Border>
 

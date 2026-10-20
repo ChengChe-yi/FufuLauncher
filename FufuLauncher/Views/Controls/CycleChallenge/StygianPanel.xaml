@@ -193,13 +193,11 @@ Licensed under the MIT License.
             <StackPanel Spacing="8"
                         Visibility="{x:Bind Mode.HasChallenges, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Stygian_Stage}" />
-                <ItemsControl ItemsSource="{x:Bind Mode.Challenges, Mode=OneTime}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Spacing="12" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
+                <ItemsRepeater ItemsSource="{x:Bind Mode.Challenges, Mode=OneTime}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="12" />
+                    </ItemsRepeater.Layout>
+                    <ItemsRepeater.ItemTemplate>
                         <DataTemplate x:DataType="models:StygianChallenge">
                             <Border Style="{StaticResource StageCardStyle}">
                                 <StackPanel Spacing="10">
@@ -316,8 +314,8 @@ Licensed under the MIT License.
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
             </StackPanel>
 
             <!--  上榜角色（真实数据可能为空）  -->

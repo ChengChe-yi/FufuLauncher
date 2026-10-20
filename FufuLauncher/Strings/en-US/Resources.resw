@@ -8702,6 +8702,15 @@ Details: {0}</value>
   <data name="CycleChallenge_PeriodLabel" xml:space="preserve">
     <value>Schedule</value>
   </data>
+  <data name="CycleChallenge_PeriodListTitle" xml:space="preserve">
+    <value>Challenge Periods</value>
+  </data>
+  <data name="CycleChallenge_PeriodListDesc" xml:space="preserve">
+    <value>Select a period to view its challenge records</value>
+  </data>
+  <data name="CycleChallenge_Upcoming" xml:space="preserve">
+    <value>Upcoming</value>
+  </data>
   <data name="CycleChallenge_PeriodCurrent" xml:space="preserve">
     <value>Current</value>
   </data>

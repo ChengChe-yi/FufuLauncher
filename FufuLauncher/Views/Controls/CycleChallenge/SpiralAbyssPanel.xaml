@@ -313,7 +313,7 @@ Licensed under the MIT License.
                         <UniformGridLayout ItemsStretch="Fill"
                                            MinColumnSpacing="10"
                                            MinItemHeight="86"
-                                           MinItemWidth="168"
+                                           MinItemWidth="132"
                                            MinRowSpacing="10" />
                     </ItemsRepeater.Layout>
                 </ItemsRepeater>
@@ -338,7 +338,11 @@ Licensed under the MIT License.
                 </Border>
 
                 <!-- 逐层卡片（层数按响应原样渲染，不写死 12 层） -->
-                <ItemsControl ItemTemplate="{StaticResource FloorTemplate}" ItemsSource="{x:Bind Floors}" />
+                <ItemsRepeater ItemTemplate="{StaticResource FloorTemplate}" ItemsSource="{x:Bind Floors}">
+                    <ItemsRepeater.Layout>
+                        <StackLayout Spacing="0" />
+                    </ItemsRepeater.Layout>
+                </ItemsRepeater>
             </StackPanel>
 
             <!-- 空态：本期未参与（floors 为空 / 无 data） -->

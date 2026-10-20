@@ -129,7 +129,7 @@ public sealed class CycleChallengeRepository
         var rows = db.CycleChallengeRecords
             .AsNoTracking()
             .Where(x => x.Uid == uid && x.Mode == modeValue)
-            .Select(x => new { x.ScheduleId, x.StartUtc, x.EndUtc, x.FetchedAt })
+            .Select(x => new { x.ScheduleId, x.StartUtc, x.EndUtc, x.Summary, x.FetchedAt })
             .ToList();
 
         return rows
@@ -140,6 +140,7 @@ public sealed class CycleChallengeRepository
                 x.ScheduleId,
                 x.StartUtc,
                 x.EndUtc,
+                x.Summary,
                 DateTimeOffset.TryParse(x.FetchedAt, out var fetched) ? fetched : DateTimeOffset.MinValue))
             .ToList();
     }

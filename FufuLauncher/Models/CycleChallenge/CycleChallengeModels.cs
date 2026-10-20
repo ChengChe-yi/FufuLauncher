@@ -50,6 +50,7 @@ public sealed record ChallengePeriod(
     string ScheduleId,
     string? StartUtc,
     string? EndUtc,
+    string? Summary,
     DateTimeOffset FetchedAt);
 
 public sealed class ChallengeLoadResult
