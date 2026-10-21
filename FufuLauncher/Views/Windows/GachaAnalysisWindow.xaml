@@ -10,6 +10,7 @@
     xmlns:converters="using:FufuLauncher.Converters"
     xmlns:helpers="using:FufuLauncher.Helpers"
     xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
+    xmlns:controls="using:FufuLauncher.Controls"
     mc:Ignorable="d"
     Title="{helpers:Loc Key=GachaAnalysis_Title}">
 
@@ -20,6 +21,9 @@
     <Grid x:Name="RootGrid" Background="Transparent">
         <Grid.Resources>
             <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Styles/GachaItemCard.xaml" />
+                </ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary.ThemeDictionaries>
                     <ResourceDictionary x:Key="Light">
                         <AcrylicBrush x:Key="SafeGlassBrush" FallbackColor="#E5FFFFFF" TintColor="#FFFFFF"
@@ -66,7 +70,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Border Width="48" Height="48" CornerRadius="6" Background="{Binding RarityBackground}">
+                        <controls:ItemRarityBackground Width="48" Height="48" CornerRadius="6"
+                                                       Rarity="{x:Bind Rank, Mode=OneWay}">
                             <Grid>
                                 <Image Source="{Binding ImageUrl}" Stretch="UniformToFill"
                                        helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
@@ -74,7 +79,7 @@
                                        VerticalAlignment="Top" Margin="2"
                                        helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                             </Grid>
-                        </Border>
+                        </controls:ItemRarityBackground>
 
                         <Grid Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
                             <Grid.RowDefinitions>
@@ -135,55 +140,6 @@
                             </StackPanel>
                         </Grid>
                     </Border>
-                </DataTemplate>
-
-                <DataTemplate x:Key="GachaHistoryUpItemTemplate" x:DataType="models:GachaHistoryItemDisplayItem">
-                    <Grid Width="44" Height="44">
-                        <Border CornerRadius="6" Background="{x:Bind RarityBackground}">
-                            <Image Source="{x:Bind ImageUrl}" Stretch="UniformToFill"
-                                   helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
-                        </Border>
-                        <Border HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                CornerRadius="0,6,0,6"
-                                Padding="5,1"
-                                Background="#B3000000">
-                            <TextBlock Text="{x:Bind CountText}"
-                                       FontSize="10"
-                                       FontWeight="SemiBold"
-                                       Foreground="White" />
-                        </Border>
-                    </Grid>
-                </DataTemplate>
-
-                <DataTemplate x:Key="GachaHistoryObtainedItemTemplate" x:DataType="models:GachaHistoryItemDisplayItem">
-                    <Grid Width="88" Height="112">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="82" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Border CornerRadius="8" Background="{x:Bind RarityBackground}">
-                            <Image Source="{x:Bind ImageUrl}" Stretch="UniformToFill"
-                                   helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
-                        </Border>
-                        <Border HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                CornerRadius="0,8,0,8"
-                                Padding="6,2"
-                                Background="#B3000000">
-                            <TextBlock Text="{x:Bind CountText}"
-                                       FontSize="10"
-                                       FontWeight="SemiBold"
-                                       Foreground="White" />
-                        </Border>
-                        <TextBlock Grid.Row="1"
-                                   Margin="2,5,2,0"
-                                   Text="{x:Bind Name}"
-                                   FontSize="10"
-                                   TextAlignment="Center"
-                                   TextTrimming="CharacterEllipsis"
-                                   MaxLines="1" />
-                    </Grid>
                 </DataTemplate>
 
                 <DataTemplate x:Key="GachaBarTemplate" x:DataType="models:GachaChartPoint">
@@ -273,7 +229,9 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <Grid CornerRadius="14,14,0,0" Background="{Binding RarityBackground}">
+                                <controls:ItemRarityBackground CornerRadius="14,14,0,0"
+                                                               Rarity="{x:Bind Rank, Mode=OneWay}">
+                                <Grid>
                                     <Image Source="{Binding ImageUrl}" Stretch="UniformToFill"
                                            helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
                                     <Image Source="{Binding ElementUrl}" Width="22" Height="22"
@@ -298,6 +256,7 @@
                                         </StackPanel>
                                     </Border>
                                 </Grid>
+                                </controls:ItemRarityBackground>
 
                                 <StackPanel Grid.Row="1" Padding="8,6,8,8" Spacing="4">
                                     <TextBlock Text="{x:Bind Name}" FontWeight="SemiBold" FontSize="12.5"
@@ -1092,10 +1051,11 @@
                                             <GridView.ItemTemplate>
                                                 <DataTemplate x:DataType="models:ScrapedMetadata">
                                                     <Grid Width="90" Height="110" Margin="4" CornerRadius="6"
-                                                          Background="{Binding RarityBackground}"
                                                           BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                                           BorderThickness="1" Shadow="{StaticResource SharedShadow}"
                                                           Translation="0,0,8">
+                                                        <controls:ItemRarityBackground CornerRadius="6" Rarity="{Binding Rank}">
+                                                        <Grid>
                                                         <Image Source="{Binding ImgSrc}" Stretch="UniformToFill"
                                                                Margin="0,0,0,24"
                                                                helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
@@ -1110,6 +1070,8 @@
                                                                        VerticalAlignment="Center"
                                                                        TextTrimming="CharacterEllipsis" />
                                                         </Grid>
+                                                    </Grid>
+                                                        </controls:ItemRarityBackground>
                                                     </Grid>
                                                 </DataTemplate>
                                             </GridView.ItemTemplate>
@@ -1126,10 +1088,11 @@
                                             <GridView.ItemTemplate>
                                                 <DataTemplate x:DataType="models:ScrapedMetadata">
                                                     <Grid Width="90" Height="110" Margin="4" CornerRadius="6"
-                                                          Background="{Binding RarityBackground}"
                                                           BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                                                           BorderThickness="1" Shadow="{StaticResource SharedShadow}"
                                                           Translation="0,0,8">
+                                                        <controls:ItemRarityBackground CornerRadius="6" Rarity="{Binding Rank}">
+                                                        <Grid>
                                                         <Image Source="{Binding ImgSrc}" Stretch="UniformToFill"
                                                                Margin="0,0,0,24"
                                                                helpers:ImageFadeInHelper.IsFadeInEnabled="True" />
@@ -1140,6 +1103,8 @@
                                                                        VerticalAlignment="Center"
                                                                        TextTrimming="CharacterEllipsis" />
                                                         </Grid>
+                                                    </Grid>
+                                                        </controls:ItemRarityBackground>
                                                     </Grid>
                                                 </DataTemplate>
                                             </GridView.ItemTemplate>

@@ -3,8 +3,6 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
-using Microsoft.UI.Xaml.Media;
-
 namespace FufuLauncher.Models;
 
 public sealed class GachaHistoryItemDisplayItem
@@ -34,13 +32,6 @@ public sealed class GachaHistoryItemDisplayItem
     }
 
     public string CountText => PullCount.ToString();
-
-    public SolidColorBrush RarityBackground => Rank switch
-    {
-        5 => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 198, 160, 96)),
-        4 => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 149, 118, 193)),
-        _ => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 102, 168, 209))
-    };
 }
 
 public sealed class GachaHistoryPoolDisplayItem

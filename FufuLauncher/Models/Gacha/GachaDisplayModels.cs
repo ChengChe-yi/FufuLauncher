@@ -76,13 +76,6 @@ public partial class GachaDisplayItem : ObservableObject
         }
     }
 
-    public SolidColorBrush RarityBackground => Rank switch
-    {
-        5 => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 198, 160, 96)),
-        4 => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 149, 118, 193)),
-        _ => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 102, 168, 209))
-    };
-
     public SolidColorBrush RarityColorHex => Rank switch
     {
         5 => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 198, 160, 96)),
@@ -159,12 +152,6 @@ public class ScrapedMetadata
         set;
     }
 
-    public SolidColorBrush RarityBackground => Rank switch
-    {
-        "5" => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 198, 160, 96)),
-        "4" => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 149, 118, 193)),
-        _ => new SolidColorBrush(Windows.UI.Color.FromArgb(255, 102, 168, 209))
-    };
 }
 
 public class GachaKpiItem
