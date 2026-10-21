@@ -8,6 +8,7 @@ using Microsoft.Win32.SafeHandles;
 using FufuLauncher.Constants;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models.GameServer;
+using FufuLauncher.Protobuf;
 
 namespace FufuLauncher.Services.GameServer;
 
@@ -38,10 +39,9 @@ public sealed partial class GameUpdateService
         }
     }
 
-    private static void EnsureFreeSpace(GameUpdateContext context, long installTotalBytes)
+    private static void EnsureFreeSpace(GameUpdateContext context, long downloadBytes, long temporaryBytes = 0)
     {
-        long existingChunks = GetExistingChunksSize(context);
-        long required = installTotalBytes - existingChunks + TempFileMarginBytes;
+        long required = downloadBytes + temporaryBytes + TempFileMarginBytes;
         if (required <= 0)
         {
             return;
@@ -71,42 +71,87 @@ public sealed partial class GameUpdateService
         }
     }
 
-    private static long GetExistingChunksSize(GameUpdateContext context)
+    private static long GetPendingDownloadSize(GameUpdateContext context,
+        IEnumerable<KeyValuePair<string, long>> blocks)
     {
-        if (!Directory.Exists(context.ChunksDir))
-        {
-            return 0;
-        }
-
         long size = 0;
-        DateTime cutoffDate = DateTime.Now.AddDays(-5);
-
-        try
+        foreach (var block in blocks)
         {
-            foreach (string file in Directory.EnumerateFiles(context.ChunksDir, "*.*", SearchOption.AllDirectories))
+            try
             {
-                try
+                var info = new FileInfo(context.GetChunkFilePath(block.Key));
+                if (info.Exists && info.Length == block.Value)
                 {
-                    var fileInfo = new FileInfo(file);
-                    if (fileInfo.CreationTime <= cutoffDate)
-                    {
-                        TryDeleteFile(file);
-                        continue;
-                    }
-
-                    size += fileInfo.Length;
-                }
-                catch (UnauthorizedAccessException)
-                {
+                    continue;
                 }
             }
-        }
-        catch
-        {
-            return 0;
+            catch (IOException)
+            {
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
+
+            size += block.Value;
         }
 
         return size;
+    }
+
+    private static Dictionary<string, long> GetDownloadBlocks(List<SophonPatchAsset> patchAssets,
+        List<GameUpdateAssetOperation> operations)
+    {
+        return patchAssets.Count > 0
+            ? patchAssets.GroupBy(asset => asset.PatchInfo.Id, StringComparer.Ordinal)
+                .ToDictionary(group => group.Key, group => group.First().PatchInfo.PatchFileSize, StringComparer.Ordinal)
+            : operations.SelectMany(operation => operation.Chunks)
+                .GroupBy(chunk => chunk.AssetChunk.ChunkName, StringComparer.Ordinal)
+                .ToDictionary(group => group.Key, group => group.First().AssetChunk.ChunkSize, StringComparer.Ordinal);
+    }
+
+    // Keep the source intact until a complete, verified replacement is ready on the same volume.
+    private static string GetTemporaryAssetPath(string assetPath) => $"{assetPath}.{Guid.NewGuid():N}.tmp";
+
+    private static async Task<bool> CommitAssetAsync(GameUpdateContext context, string tempPath, string targetPath,
+        long expectedSize, string expectedHash)
+    {
+        context.Token.ThrowIfCancellationRequested();
+        if (new FileInfo(tempPath).Length != expectedSize ||
+            !expectedHash.Equals(await HashUtility.Md5FileAsync(tempPath, context.Token).ConfigureAwait(false),
+                StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        context.Token.ThrowIfCancellationRequested();
+        File.Move(tempPath, targetPath, overwrite: true);
+        return true;
+    }
+
+    private async Task<List<GameUpdateAssetOperation>> BuildUpdateOperationsAsync(GameUpdateContext context,
+        string localVersion, SophonManifestProto targetManifest, SophonBranchInfo targetInfo)
+    {
+        SophonManifestProto localManifest;
+        try
+        {
+            SophonBranchInfo localInfo = await _sophonBuildClient
+                .GetBranchInfoByTagAsync(context.Scheme, localVersion, context.Token).ConfigureAwait(false);
+            localManifest = await _sophonBuildClient.DownloadManifestAsync(localInfo, context.Token)
+                .ConfigureAwait(false);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (Exception ex)
+        {
+            context.Log(string.Format("GameUpdate_LocalManifestUnavailable".GetLocalized(), ex.Message));
+            List<AssetProperty> brokenAssets = await VerifyAssetsAsync(context, targetManifest).ConfigureAwait(false);
+            return brokenAssets.Select(asset =>
+                GameUpdateAssetOperation.Add(targetInfo.ChunkPrefix, targetInfo.ChunkSuffix, asset)).ToList();
+        }
+
+        return BuildDiffOperations(localManifest, targetManifest, targetInfo.ChunkPrefix, targetInfo.ChunkSuffix);
     }
 
     private static void WriteGameVersion(string gameDir, string tag)

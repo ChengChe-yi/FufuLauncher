@@ -2545,6 +2545,12 @@
   <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
     <value>磁盘空间不足：需要 {0}，可用 {1}。</value>
   </data>
+  <data name="GameUpdate_LocalManifestUnavailable" xml:space="preserve">
+    <value>旧版本清单不可用，将根据目标版本校验本地文件：{0}</value>
+  </data>
+  <data name="GameUpdate_RepairFailed" xml:space="preserve">
+    <value>修复后仍有 {0} 个文件未通过校验。未修改游戏版本号，已保留下载数据供重试。</value>
+  </data>
   <data name="GameUpdate_DevOnly" xml:space="preserve">
     <value>该功能仅对开发者认证用户开放。</value>
   </data>

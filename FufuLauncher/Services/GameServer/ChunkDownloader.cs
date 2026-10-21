@@ -33,6 +33,7 @@ public sealed class ChunkDownloader
         KeyedSemaphoreSlim chunkLocks,
         CancellationToken token = default, Action<long>? onBytesTransferred = null)
     {
+        Directory.CreateDirectory(chunksDir);
         string chunkPath = Path.Combine(chunksDir, name);
         string expectedHashPrefix = name.Split('_')[0];
 
@@ -40,7 +41,8 @@ public sealed class ChunkDownloader
         {
             if (File.Exists(chunkPath))
             {
-                if (await IsValidChunkAsync(chunkPath, expectedHashPrefix, token).ConfigureAwait(false))
+                if (new FileInfo(chunkPath).Length == expectedSize &&
+                    await IsValidChunkAsync(chunkPath, expectedHashPrefix, token).ConfigureAwait(false))
                 {
                     return chunkPath;
                 }
