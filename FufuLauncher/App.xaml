@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
                 <ResourceDictionary Source="/Styles/PluginSettings.xaml" />
                 <ResourceDictionary Source="/Controls/SpeedGraph/SpeedGraph.xaml" />
+                <ResourceDictionary Source="/Styles/ItemRarityBackground.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <FontFamily x:Key="AppGlobalFont">/Assets/zh-cn-l.ttf#SDK_SC_Web</FontFamily>
