@@ -115,56 +115,65 @@ public sealed partial class GameUpdateService
 
         Directory.CreateDirectory(targetDirectory);
 
-        int missingChunks = 0;
-        using (SafeFileHandle fileHandle = File.OpenHandle(targetPath, FileMode.Create, FileAccess.Write,
-                   FileShare.None, preallocationSize: asset.AssetSize))
+        string tempPath = GetTemporaryAssetPath(targetPath);
+        try
         {
-            await Parallel.ForEachAsync(asset.AssetChunks, context.ParallelOptions, async (chunk, token) =>
+            int missingChunks = 0;
+            using (SafeFileHandle fileHandle = File.OpenHandle(tempPath, FileMode.CreateNew, FileAccess.Write,
+                       FileShare.None, preallocationSize: asset.AssetSize))
             {
-                string chunkPath = context.GetChunkFilePath(chunk.ChunkName);
-                if (!File.Exists(chunkPath))
+                RandomAccess.SetLength(fileHandle, asset.AssetSize);
+                await Parallel.ForEachAsync(asset.AssetChunks, context.ParallelOptions, async (chunk, token) =>
                 {
-                    Interlocked.Increment(ref missingChunks);
-                    return;
-                }
-
-                using (await context.ChunkLocks.LockAsync(chunk.ChunkName, token).ConfigureAwait(false))
-                {
-                    byte[] buffer = new byte[ChunkDownloader.BufferSize];
-                    long offset = chunk.ChunkOnFileOffset;
-
-                    using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    string chunkPath = context.GetChunkFilePath(chunk.ChunkName);
+                    if (!File.Exists(chunkPath))
                     {
-                        using var decompressor = new DecompressionStream(chunkFile);
-                        while (true)
-                        {
-                            int read = await decompressor.ReadAsync(buffer, token).ConfigureAwait(false);
-                            if (read <= 0)
-                            {
-                                break;
-                            }
+                        Interlocked.Increment(ref missingChunks);
+                        return;
+                    }
 
-                            await RandomAccess.WriteAsync(fileHandle, buffer.AsMemory(0, read), offset, token)
-                                .ConfigureAwait(false);
-                            offset += read;
+                    using (await context.ChunkLocks.LockAsync(chunk.ChunkName, token).ConfigureAwait(false))
+                    {
+                        byte[] buffer = new byte[ChunkDownloader.BufferSize];
+                        long offset = chunk.ChunkOnFileOffset;
+
+                        using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        {
+                            using var decompressor = new DecompressionStream(chunkFile);
+                            while (true)
+                            {
+                                int read = await decompressor.ReadAsync(buffer, token).ConfigureAwait(false);
+                                if (read <= 0)
+                                {
+                                    break;
+                                }
+
+                                await RandomAccess.WriteAsync(fileHandle, buffer.AsMemory(0, read), offset, token)
+                                    .ConfigureAwait(false);
+                                offset += read;
+                            }
                         }
                     }
-                }
+                }).ConfigureAwait(false);
+            }
 
-                if (!context.DuplicatedChunkNames.ContainsKey(chunk.ChunkName))
-                {
-                    TryDeleteFile(chunkPath);
-                }
-            }).ConfigureAwait(false);
+            if (missingChunks > 0)
+            {
+                return false;
+            }
+
+            return await CommitAssetAsync(context, tempPath, targetPath, asset.AssetSize, asset.AssetHashMd5)
+                .ConfigureAwait(false);
         }
-
-        if (missingChunks > 0)
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ZstdException)
         {
-            TryDeleteFile(targetPath);
+            context.Log($"{asset.AssetName}: {ex.Message}");
             return false;
         }
-
-        return true;
+        finally
+        {
+            TryDeleteFile(tempPath);
+        }
     }
 
     private async Task<bool> MergeDiffAssetAsync(GameUpdateContext context, GameUpdateAssetOperation operation)
@@ -187,82 +196,90 @@ public sealed partial class GameUpdateService
 
         Directory.CreateDirectory(targetDirectory);
 
-        byte[] buffer = new byte[ChunkDownloader.BufferSize];
-        using (var targetFile = new FileStream(targetPath, FileMode.Create, FileAccess.Write, FileShare.None))
+        string tempPath = GetTemporaryAssetPath(targetPath);
+        try
         {
-            targetFile.SetLength(newAsset.AssetSize);
-
-            foreach (var chunk in newAsset.AssetChunks)
+            byte[] buffer = new byte[ChunkDownloader.BufferSize];
+            using (var targetFile = new FileStream(tempPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
             {
-                context.Token.ThrowIfCancellationRequested();
-                targetFile.Seek(chunk.ChunkOnFileOffset, SeekOrigin.Begin);
-                long remaining = chunk.ChunkSizeDecompressed;
+                targetFile.SetLength(newAsset.AssetSize);
 
-                var oldChunk = oldAsset.AssetChunks.FirstOrDefault(candidate =>
-                    (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(
-                        chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase));
-
-                if (oldChunk is not null)
+                foreach (var chunk in newAsset.AssetChunks)
                 {
-                    using (var localFile =
-                           new FileStream(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                    {
-                        localFile.Seek(oldChunk.ChunkOnFileOffset, SeekOrigin.Begin);
-                        while (remaining > 0)
-                        {
-                            int read = await localFile
-                                .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token)
-                                .ConfigureAwait(false);
-                            if (read <= 0)
-                            {
-                                break;
-                            }
+                    context.Token.ThrowIfCancellationRequested();
+                    targetFile.Seek(chunk.ChunkOnFileOffset, SeekOrigin.Begin);
+                    long remaining = chunk.ChunkSizeDecompressed;
 
-                            await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token).ConfigureAwait(false);
-                            remaining -= read;
-                        }
-                    }
-                }
-                else
-                {
-                    string chunkPath = context.GetChunkFilePath(chunk.ChunkName);
-                    if (!File.Exists(chunkPath))
-                    {
-                        TryDeleteFile(targetPath);
-                        return false;
-                    }
+                    var oldChunk = oldAsset.AssetChunks.FirstOrDefault(candidate =>
+                        (candidate.ChunkDecompressedHashMd5 ?? string.Empty).Equals(
+                            chunk.ChunkDecompressedHashMd5 ?? string.Empty, StringComparison.OrdinalIgnoreCase));
 
-                    using (await context.ChunkLocks.LockAsync(chunk.ChunkName, context.Token).ConfigureAwait(false))
+                    if (oldChunk is not null)
                     {
-                        using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read,
-                                   FileShare.ReadWrite))
+                        using (var localFile =
+                               new FileStream(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                         {
-                            using var decompressor = new DecompressionStream(chunkFile);
+                            localFile.Seek(oldChunk.ChunkOnFileOffset, SeekOrigin.Begin);
                             while (remaining > 0)
                             {
-                                int read = await decompressor
-                                    .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)),
-                                        context.Token).ConfigureAwait(false);
+                                int read = await localFile
+                                    .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)), context.Token)
+                                    .ConfigureAwait(false);
                                 if (read <= 0)
                                 {
-                                    break;
+                                    return false;
                                 }
 
-                                await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token)
-                                    .ConfigureAwait(false);
+                                await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token).ConfigureAwait(false);
                                 remaining -= read;
                             }
                         }
                     }
-
-                    if (!context.DuplicatedChunkNames.ContainsKey(chunk.ChunkName))
+                    else
                     {
-                        TryDeleteFile(chunkPath);
+                        string chunkPath = context.GetChunkFilePath(chunk.ChunkName);
+                        if (!File.Exists(chunkPath))
+                        {
+                            return false;
+                        }
+
+                        using (await context.ChunkLocks.LockAsync(chunk.ChunkName, context.Token).ConfigureAwait(false))
+                        {
+                            using (FileStream chunkFile = new(chunkPath, FileMode.Open, FileAccess.Read,
+                                       FileShare.ReadWrite))
+                            {
+                                using var decompressor = new DecompressionStream(chunkFile);
+                                while (remaining > 0)
+                                {
+                                    int read = await decompressor
+                                        .ReadAsync(buffer.AsMemory(0, (int)Math.Min(buffer.Length, remaining)),
+                                            context.Token).ConfigureAwait(false);
+                                    if (read <= 0)
+                                    {
+                                        return false;
+                                    }
+
+                                    await targetFile.WriteAsync(buffer.AsMemory(0, read), context.Token)
+                                        .ConfigureAwait(false);
+                                    remaining -= read;
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
 
-        return true;
+            return await CommitAssetAsync(context, tempPath, targetPath, newAsset.AssetSize, newAsset.AssetHashMd5)
+                .ConfigureAwait(false);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ZstdException)
+        {
+            context.Log($"{newAsset.AssetName}: {ex.Message}");
+            return false;
+        }
+        finally
+        {
+            TryDeleteFile(tempPath);
+        }
     }
 }

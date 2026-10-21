@@ -7,6 +7,7 @@ using FufuLauncher.Helpers;
 using FufuLauncher.Helpers.Patch;
 using FufuLauncher.Models.GameServer;
 using FufuLauncher.Protobuf;
+using ZstdSharp;
 
 namespace FufuLauncher.Services.GameServer;
 
@@ -40,6 +41,11 @@ public sealed partial class GameUpdateService
             return null;
         }
 
+        if (!string.Equals(response.Tag, payload.Tag, StringComparison.Ordinal))
+        {
+            return null;
+        }
+
         var manifests = new List<SophonDecodedPatchManifest>();
         long downloadTotalBytes = 0;
         long downloadFileCount = 0;
@@ -60,7 +66,7 @@ public sealed partial class GameUpdateService
             }
 
             string manifestUrl =
-                $"{item.ManifestDownload.UrlPrefix}/{item.Manifest.Id}?{item.ManifestDownload.UrlSuffix ?? string.Empty}";
+                $"{item.ManifestDownload.UrlPrefix}/{item.Manifest.Id}{item.ManifestDownload.UrlSuffix ?? string.Empty}";
             try
             {
                 PatchManifest data = await _sophonBuildClient
@@ -79,6 +85,8 @@ public sealed partial class GameUpdateService
             }
             catch
             {
+                // A partial patch build must not be reported as a complete predownload.
+                return null;
             }
         }
 
@@ -190,17 +198,11 @@ public sealed partial class GameUpdateService
 
         string assetPath = context.GetGameFilePath(fileData.FileName);
         if (File.Exists(assetPath)
+            && new FileInfo(assetPath).Length == fileData.FileSize
             && fileData.FileHash.Equals(await HashUtility.Md5FileAsync(assetPath, context.Token).ConfigureAwait(false),
                 StringComparison.OrdinalIgnoreCase))
         {
             return true;
-        }
-
-        await DownloadPatchAsync(context, asset).ConfigureAwait(false);
-        string patchFilePath = context.GetChunkFilePath(patchInfo.Id);
-        if (!File.Exists(patchFilePath))
-        {
-            return false;
         }
 
         string? assetDirectory = Path.GetDirectoryName(assetPath);
@@ -210,45 +212,74 @@ public sealed partial class GameUpdateService
         }
 
         Directory.CreateDirectory(assetDirectory);
+        string tempPath = GetTemporaryAssetPath(assetPath);
 
         try
         {
+            string? oldAssetPath = null;
+            if (!string.IsNullOrEmpty(patchInfo.OriginalFileName))
+            {
+                oldAssetPath = context.GetGameFilePath(patchInfo.OriginalFileName);
+                if (!File.Exists(oldAssetPath) || new FileInfo(oldAssetPath).Length != patchInfo.OriginalFileSize ||
+                    !patchInfo.OriginalFileHash.Equals(
+                        await HashUtility.Md5FileAsync(oldAssetPath, context.Token).ConfigureAwait(false),
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    return false;
+                }
+            }
+
+            await DownloadPatchAsync(context, asset).ConfigureAwait(false);
+            string patchFilePath = context.GetChunkFilePath(patchInfo.Id);
             using (FileStream patchStream = new(patchFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite,
                        ChunkDownloader.BufferSize, FileOptions.RandomAccess))
             {
-                if (string.IsNullOrEmpty(patchInfo.OriginalFileName))
-                {
-                    using (FileStream target = new(assetPath, FileMode.Create, FileAccess.Write, FileShare.None))
-                    {
-                        await CopyRangeAsync(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength, target,
-                            context.Token).ConfigureAwait(false);
-                    }
-
-                    return true;
-                }
-
-                string oldAssetPath = context.GetGameFilePath(fileData.FileName);
-                if (!File.Exists(oldAssetPath))
+                if (patchInfo.PatchStartOffset < 0 || patchInfo.PatchLength < 0 ||
+                    patchInfo.PatchStartOffset > patchStream.Length ||
+                    patchInfo.PatchLength > patchStream.Length - patchInfo.PatchStartOffset)
                 {
                     return false;
                 }
 
-                using (FileStream oldStream = new(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                using (Stream diffView =
-                       FufuPatch.CreateSubStream(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength))
-                using (FileStream target = new(assetPath, FileMode.Create, FileAccess.Write, FileShare.None))
+                if (oldAssetPath is null)
                 {
-                    return FufuPatch.MergeZstd(oldStream, diffView, target);
+                    using (FileStream target = new(tempPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+                    {
+                        await CopyRangeAsync(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength, target,
+                            context.Token).ConfigureAwait(false);
+                    }
+                }
+                else
+                {
+                    using (FileStream oldStream = new(oldAssetPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    using (Stream diffView =
+                           FufuPatch.CreateSubStream(patchStream, patchInfo.PatchStartOffset, patchInfo.PatchLength))
+                    using (FileStream target = new(tempPath, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+                    {
+                        if (!FufuPatch.MergeZstd(oldStream, diffView, target))
+                        {
+                            return false;
+                        }
+                    }
                 }
             }
+
+            return await CommitAssetAsync(context, tempPath, assetPath, fileData.FileSize, fileData.FileHash)
+                .ConfigureAwait(false);
         }
-        catch (IOException)
+        catch (OperationCanceledException)
         {
+            throw;
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException
+                                       or ZstdException)
+        {
+            context.Log($"{fileData.FileName}: {ex.Message}");
             return false;
         }
-        catch (UnauthorizedAccessException)
+        finally
         {
-            return false;
+            TryDeleteFile(tempPath);
         }
     }
 

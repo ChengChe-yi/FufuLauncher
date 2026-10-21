@@ -2440,6 +2440,12 @@ Go to the Microsoft website to download and install it?</value>
   <data name="GameUpdate_NoFreeSpace" xml:space="preserve">
     <value>Not enough free space: {0} required, {1} available.</value>
   </data>
+  <data name="GameUpdate_LocalManifestUnavailable" xml:space="preserve">
+    <value>The old version manifest is unavailable. Checking local files against the target version: {0}</value>
+  </data>
+  <data name="GameUpdate_RepairFailed" xml:space="preserve">
+    <value>Verification still failed for {0} files after repair. The game version was not changed; downloaded data has been kept for retry.</value>
+  </data>
   <data name="GameUpdate_DevOnly" xml:space="preserve">
     <value>This feature is only available to developer-authorized users.</value>
   </data>

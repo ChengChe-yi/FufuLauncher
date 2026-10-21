@@ -60,43 +60,24 @@ public sealed partial class GameUpdateService
             return GameUpdateResult.NothingToDo;
         }
 
-        SophonBranchInfo localInfo = await _sophonBuildClient
-            .GetBranchInfoByTagAsync(currentScheme, localVersion, token).ConfigureAwait(false);
         SophonBranchInfo preInfo =
             await _sophonBuildClient.GetBranchInfoAsync(currentScheme, true, token).ConfigureAwait(false);
 
         log("GameServer_StageDecodeManifests".GetLocalized());
-        SophonManifestProto localManifest =
-            await _sophonBuildClient.DownloadManifestAsync(localInfo, token).ConfigureAwait(false);
         SophonManifestProto preManifest =
             await _sophonBuildClient.DownloadManifestAsync(preInfo, token).ConfigureAwait(false);
 
         log("GameServer_StageDiff".GetLocalized());
-        List<GameUpdateAssetOperation> operations =
-            BuildDiffOperations(localManifest, preManifest, preInfo.ChunkPrefix, preInfo.ChunkSuffix);
-        List<GameUpdateAssetOperation> downloadOperations = operations
-            .Where(operation => operation.Kind != GameUpdateAssetOperationKind.Delete)
-            .ToList();
         SophonDecodedPatchBuild? patchBuild =
             await TryDecodePatchBuildAsync(currentScheme, preBranch, localVersion, token).ConfigureAwait(false);
         List<SophonPatchAsset> patchAssets = patchBuild is null ? [] : EnumeratePatchAssets(patchBuild);
+        List<GameUpdateAssetOperation> downloadOperations = patchAssets.Count > 0
+            ? []
+            : await BuildUpdateOperationsAsync(context, localVersion, preManifest, preInfo).ConfigureAwait(false);
 
-        long downloadTotalBytes;
-        int totalBlocks;
-        if (patchAssets.Count > 0)
-        {
-            downloadTotalBytes = patchAssets.Sum(asset => asset.PatchInfo.PatchFileSize);
-            totalBlocks = patchAssets.Select(asset => asset.PatchInfo.Id).Distinct(StringComparer.Ordinal).Count();
-        }
-        else
-        {
-            downloadTotalBytes =
-                downloadOperations.Sum(operation => operation.Chunks.Sum(chunk => chunk.AssetChunk.ChunkSize));
-            totalBlocks = downloadOperations.SelectMany(operation => operation.Chunks)
-                .Select(chunk => chunk.AssetChunk.ChunkName)
-                .Distinct(StringComparer.Ordinal)
-                .Count();
-        }
+        Dictionary<string, long> blocks = GetDownloadBlocks(patchAssets, downloadOperations);
+        long downloadTotalBytes = blocks.Values.Sum();
+        int totalBlocks = blocks.Count;
 
         if (totalBlocks == 0)
         {
@@ -104,7 +85,7 @@ public sealed partial class GameUpdateService
             return GameUpdateResult.NothingToDo;
         }
 
-        EnsureFreeSpace(context, downloadTotalBytes);
+        EnsureFreeSpace(context, GetPendingDownloadSize(context, blocks));
 
         var plan = new GameUpdatePlan(GameUpdateOperationKind.Predownload, preBranch.Tag, downloadTotalBytes,
             downloadTotalBytes, patchAssets.Count > 0);
@@ -118,7 +99,10 @@ public sealed partial class GameUpdateService
 
         Directory.CreateDirectory(context.ChunksDir);
 
-        PredownloadStatus status = new() { Tag = preBranch.Tag, Finished = false, TotalBlocks = totalBlocks };
+        PredownloadStatus status = new()
+        {
+            Tag = preBranch.Tag, Finished = false, TotalBlocks = totalBlocks, Blocks = blocks,
+        };
         await WritePredownloadStatusAsync(context, status, token).ConfigureAwait(false);
 
         if (patchAssets.Count > 0)
@@ -131,6 +115,7 @@ public sealed partial class GameUpdateService
                 "GameServer_StageDownloadChunks".GetLocalized()).ConfigureAwait(false);
         }
 
+        token.ThrowIfCancellationRequested();
         status.Finished = true;
         await WritePredownloadStatusAsync(context, status, token).ConfigureAwait(false);
         log("GameUpdate_PredownloadDone".GetLocalized());
@@ -164,33 +149,28 @@ public sealed partial class GameUpdateService
             return GameUpdateResult.NothingToDo;
         }
 
-        SophonBranchInfo localInfo = await _sophonBuildClient
-            .GetBranchInfoByTagAsync(currentScheme, localVersion, token).ConfigureAwait(false);
         SophonBranchInfo targetInfo = await _sophonBuildClient
             .GetBranchInfoAsync(currentScheme, usePredownloadAsTarget, token).ConfigureAwait(false);
 
         log("GameServer_StageDecodeManifests".GetLocalized());
-        SophonManifestProto localManifest =
-            await _sophonBuildClient.DownloadManifestAsync(localInfo, token).ConfigureAwait(false);
         SophonManifestProto targetManifest =
             await _sophonBuildClient.DownloadManifestAsync(targetInfo, token).ConfigureAwait(false);
 
         log("GameServer_StageDiff".GetLocalized());
-        List<GameUpdateAssetOperation> operations = BuildDiffOperations(localManifest, targetManifest,
-            targetInfo.ChunkPrefix, targetInfo.ChunkSuffix);
-
         SophonDecodedPatchBuild? patchBuild =
             await TryDecodePatchBuildAsync(currentScheme, targetBranch, localVersion, token).ConfigureAwait(false);
         List<SophonPatchAsset> patchAssets = patchBuild is null ? [] : EnumeratePatchAssets(patchBuild);
+        List<GameUpdateAssetOperation> operations = patchAssets.Count > 0
+            ? []
+            : await BuildUpdateOperationsAsync(context, localVersion, targetManifest, targetInfo).ConfigureAwait(false);
 
-        long downloadTotalBytes = patchAssets.Count > 0
-            ? patchAssets.Sum(asset => asset.PatchInfo.PatchFileSize)
-            : operations.Sum(operation => operation.Chunks.Sum(chunk => chunk.AssetChunk.ChunkSize));
-        long installTotalBytes = patchBuild?.UncompressedTotalBytes
-                                 ?? operations.Where(operation => operation.Kind != GameUpdateAssetOperationKind.Delete)
-                                     .Sum(operation => operation.NewAsset!.AssetSize);
-
-        EnsureFreeSpace(context, installTotalBytes);
+        Dictionary<string, long> blocks = GetDownloadBlocks(patchAssets, operations);
+        long downloadTotalBytes = blocks.Values.Sum();
+        long installTotalBytes = patchAssets.Count > 0
+            ? patchAssets.Sum(asset => asset.FileData.FileSize)
+            : operations.Where(operation => operation.Kind != GameUpdateAssetOperationKind.Delete)
+                .Sum(operation => operation.NewAsset!.AssetSize);
+        EnsureFreeSpace(context, GetPendingDownloadSize(context, blocks), installTotalBytes);
 
         var plan = new GameUpdatePlan(
             usePredownloadAsTarget ? GameUpdateOperationKind.ApplyPredownload : GameUpdateOperationKind.Update,
@@ -226,6 +206,13 @@ public sealed partial class GameUpdateService
                 .Select(asset => GameUpdateAssetOperation.Add(targetInfo.ChunkPrefix, targetInfo.ChunkSuffix, asset))
                 .ToList();
             await UpdateDiffAssetsAsync(context, repairOperations).ConfigureAwait(false);
+            brokenAssets = await VerifyAssetsAsync(context, targetManifest).ConfigureAwait(false);
+            if (brokenAssets.Count > 0)
+            {
+                log(string.Format("GameUpdate_RepairFailed".GetLocalized(), brokenAssets.Count));
+                return GameUpdateResult.Failed;
+            }
+
             log("GameServer_RepairDone".GetLocalized());
         }
         else
@@ -233,6 +220,7 @@ public sealed partial class GameUpdateService
             log("GameServer_VerifyOk".GetLocalized());
         }
 
+        token.ThrowIfCancellationRequested();
         WriteGameVersion(gameDir, targetBranch.Tag);
 
         log("GameServer_StageCleanup".GetLocalized());
@@ -267,9 +255,30 @@ public sealed partial class GameUpdateService
             return false;
         }
 
-        string chunksDir = Path.Combine(gameDir, ChunksDirectoryName);
-        int fileCount = Directory.Exists(chunksDir) ? Directory.GetFiles(chunksDir).Length : 0;
-        return fileCount - 1 == status.TotalBlocks;
+        try
+        {
+            string chunksDir = Path.Combine(gameDir, ChunksDirectoryName);
+            if (status.Blocks is not { Count: > 0 })
+            {
+                // Older status files lack block identities; keep their original completion check.
+                int fileCount = Directory.Exists(chunksDir) ? Directory.GetFiles(chunksDir).Length : 0;
+                return fileCount - 1 == status.TotalBlocks;
+            }
+
+            return status.Blocks.Count == status.TotalBlocks && status.Blocks.All(block =>
+            {
+                var file = new FileInfo(Path.Combine(chunksDir, block.Key));
+                return file.Exists && file.Length == block.Value;
+            });
+        }
+        catch (IOException)
+        {
+            return false;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return false;
+        }
     }
 
     #endregion
