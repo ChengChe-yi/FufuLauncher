@@ -363,6 +363,8 @@ public partial class OfficialBackgroundViewModel : ObservableObject
 
         try
         {
+            await _localSettingsService.SaveSettingAsync("IsRandomBackgroundEnabled", false);
+            RandomBackgroundService.ClearCache();
             await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundUrl", item.Url);
             await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", false);
 

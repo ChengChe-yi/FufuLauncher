@@ -8624,4 +8624,16 @@ Details: {0}</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>Figur wechseln</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>Zufälliges BlueArchive-Bild</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>Global zufällig (ca. 70 % Lobby, 30 % Story-CG)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>Erinnerungslobby</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>Story-CG</value>
+  </data>
 </root>

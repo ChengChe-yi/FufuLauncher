@@ -8620,4 +8620,16 @@ Bilibili 서버 지원, 미호요 커뮤니티 로그인 불필요</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>캐릭터 전환</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>랜덤 BlueArchive 이미지</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>전역 랜덤(약 70% 로비, 30% 스토리 CG)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>추억 로비</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>스토리 CG</value>
+  </data>
 </root>

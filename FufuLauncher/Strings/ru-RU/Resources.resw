@@ -8620,4 +8620,16 @@ Click the button below to open your browser and download manually.</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>Сменить персонажа</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>Случайное изображение BlueArchive</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>Глобальный случайный (≈70% лобби, 30% CG сюжета)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>Лобби воспоминаний</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>CG сюжета</value>
+  </data>
 </root>

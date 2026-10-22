@@ -8970,4 +8970,16 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>切换角色</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>随机 BlueArchive 图</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>全局随机（约70%是大厅、30%是剧情CG）</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>记忆大厅</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>剧情CG</value>
+  </data>
 </root>

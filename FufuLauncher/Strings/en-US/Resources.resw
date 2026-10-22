@@ -8975,4 +8975,16 @@ Details: {0}</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>Switch role</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>Random BlueArchive image</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>Global random (≈70% lobby, 30% story CG)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>Memory lobby</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>Story CG</value>
+  </data>
 </root>

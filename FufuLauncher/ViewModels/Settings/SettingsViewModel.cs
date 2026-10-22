@@ -70,6 +70,8 @@ public partial class SettingsViewModel : ObservableRecipient
     public bool IsPreviewBuild => AppVersionHelper.IsPreviewBuild;
     [ObservableProperty] private ServerType _selectedServer;
     [ObservableProperty] private bool _isBackgroundEnabled = true;
+    [ObservableProperty] private bool _isRandomBackgroundEnabled;
+    [ObservableProperty] private RandomBackgroundType _randomBackgroundType = RandomBackgroundType.All;
     [ObservableProperty] private AppLanguage _selectedLanguage;
     [ObservableProperty] private bool _minimizeToTray;
     [ObservableProperty] private bool _isStartupEnabled;
@@ -84,6 +86,21 @@ public partial class SettingsViewModel : ObservableRecipient
 
     [ObservableProperty] private string _appThemeColor = "";
     [ObservableProperty] private Windows.UI.Color _appThemeColorObj = Windows.UI.Color.FromArgb(255, 0, 120, 215);
+    private Windows.UI.Color _launchButtonOverlayColorObj = Windows.UI.Color.FromArgb(255, 0, 120, 215);
+
+    public Windows.UI.Color LaunchButtonOverlayColorObj
+    {
+        get => _launchButtonOverlayColorObj;
+        set
+        {
+            if (_launchButtonOverlayColorObj == value)
+                return;
+
+            _launchButtonOverlayColorObj = value;
+            OnPropertyChanged();
+            OnLaunchButtonOverlayColorObjChanged(value);
+        }
+    }
 
     [ObservableProperty] private double _panelBackgroundOpacity = 0.5;
     [ObservableProperty] private bool _isShortTermSupportEnabled;
@@ -293,6 +310,11 @@ public partial class SettingsViewModel : ObservableRecipient
         get;
     }
 
+    public IAsyncRelayCommand ResetAppThemeColorCommand
+    {
+        get;
+    }
+
     public IAsyncRelayCommand ResetCpuUsageWarningSettingsCommand
     {
         get;
@@ -351,6 +373,7 @@ public partial class SettingsViewModel : ObservableRecipient
         ResetCpuUsageWarningSettingsCommand = new AsyncRelayCommand(ResetCpuUsageWarningSettingsAsync);
 
         ResetLaunchButtonOverlayColorCommand = new AsyncRelayCommand(ResetLaunchButtonOverlayColorAsync);
+        ResetAppThemeColorCommand = new AsyncRelayCommand(ResetAppThemeColorAsync);
 
         WeakReferenceMessenger.Default.Register<CloudCredentialUpdatedMessage>(this, (r, m) =>
         {

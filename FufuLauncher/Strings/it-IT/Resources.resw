@@ -8630,4 +8630,16 @@ Dettagli: {0}</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>Cambia personaggio</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>Immagine BlueArchive casuale</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>Casuale globale (≈70% lobby, 30% CG storia)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>Lobby dei ricordi</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>CG storia</value>
+  </data>
 </root>

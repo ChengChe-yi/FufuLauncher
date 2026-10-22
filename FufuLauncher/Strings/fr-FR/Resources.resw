@@ -8623,4 +8623,16 @@ Détails : {0}</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>Changer de personnage</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>Image BlueArchive aléatoire</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>Aléatoire global (≈70 % hall, 30 % CG d'histoire)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>Hall des souvenirs</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>CG d'histoire</value>
+  </data>
 </root>

@@ -7,6 +7,7 @@
       xmlns:models="using:FufuLauncher.Models"
       xmlns:viewModels="using:FufuLauncher.ViewModels"
       xmlns:converters="using:FufuLauncher.Converters"
+      xmlns:controls="using:FufuLauncher.Controls"
       Background="Transparent"
       Loaded="Page_Loaded">
 
@@ -502,11 +503,17 @@
                                         <TextBlock Style="{StaticResource RowCaptionStyle}"
                                                    Text="{helpers:Loc Key=CustomThemeColorCaption}" />
                                     </StackPanel>
-                                    <TextBox Grid.Column="2"
-                                             Style="{StaticResource RowTextBoxStyle}"
-                                             Width="160"
-                                             PlaceholderText="#FFB6C1"
-                                             Text="{x:Bind ViewModel.AppThemeColor, Mode=TwoWay}" />
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
+                                                Margin="16,0,0,0" Spacing="8">
+                                        <controls:ColorPickerButton HorizontalAlignment="Right"
+                                                                    VerticalAlignment="Center"
+                                                                    Color="{x:Bind ViewModel.AppThemeColorObj, Mode=TwoWay}"
+                                                                    Header="{helpers:Loc Key=CustomThemeColorTitle}" />
+                                        <Button Style="{StaticResource PresetButtonStyle}"
+                                                VerticalAlignment="Center"
+                                                Content="{helpers:Loc Key=RestoreDefault}"
+                                                Command="{x:Bind ViewModel.ResetAppThemeColorCommand}" />
+                                    </StackPanel>
                                 </Grid>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />
@@ -526,11 +533,12 @@
                                     </StackPanel>
                                     <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}"
                                                 Margin="16,0,0,0" Spacing="8">
-                                        <TextBox Width="140"
-                                                 VerticalAlignment="Center"
-                                                 PlaceholderText="#0078D7"
-                                                 Text="{x:Bind ViewModel.LaunchButtonOverlayColor, Mode=TwoWay}" />
+                                        <controls:ColorPickerButton HorizontalAlignment="Right"
+                                                                    VerticalAlignment="Center"
+                                                                    Color="{x:Bind ViewModel.LaunchButtonOverlayColorObj, Mode=TwoWay}"
+                                                                    Header="{helpers:Loc Key=LaunchButtonBgColorTitle}" />
                                         <Button Style="{StaticResource PresetButtonStyle}"
+                                                VerticalAlignment="Center"
                                                 Content="{helpers:Loc Key=RestoreDefault}"
                                                 Command="{x:Bind ViewModel.ResetLaunchButtonOverlayColorCommand}" />
                                     </StackPanel>
@@ -1045,6 +1053,33 @@
                                             Content="{helpers:Loc Key=ClearCustomBg}"
                                             Command="{x:Bind ViewModel.ClearCustomBackgroundCommand}"
                                             Visibility="{x:Bind ViewModel.HasCustomBackground, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                </StackPanel>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B9;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BgSourceRandomBackground}" />
+                                    </StackPanel>
+                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
+                                                  IsOn="{x:Bind ViewModel.IsRandomBackgroundEnabled, Mode=TwoWay}" />
+                                </Grid>
+                                <StackPanel Style="{StaticResource RowSubPanelStyle}"
+                                            Visibility="{x:Bind ViewModel.IsRandomBackgroundEnabled, Mode=OneWay}">
+                                    <ComboBox HorizontalAlignment="Left"
+                                              MaxWidth="520"
+                                              SelectedIndex="{x:Bind ViewModel.RandomBackgroundType, Mode=TwoWay, Converter={StaticResource EnumToIntConverter}}">
+                                        <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeAll}" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeHome}" />
+                                        <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeCg}" />
+                                    </ComboBox>
                                 </StackPanel>
 
                                 <Rectangle Style="{StaticResource RowDividerStyle}" />

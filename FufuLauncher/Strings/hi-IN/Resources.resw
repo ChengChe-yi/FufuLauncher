@@ -8615,4 +8615,16 @@ Bilibili समर्थित; MiYouShe लॉगिन आवश्यक न�
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>पात्र बदलें</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>रैंडम BlueArchive छवि</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>ग्लोबल रैंडम (≈70% लॉबी, 30% स्टोरी CG)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>मेमोरी लॉबी</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>स्टोरी CG</value>
+  </data>
 </root>

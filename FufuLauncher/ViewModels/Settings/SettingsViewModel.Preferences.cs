@@ -23,6 +23,12 @@ public partial class SettingsViewModel
         var appThemeColorJson = await _localSettingsService.ReadSettingAsync("AppThemeColor");
         AppThemeColor = appThemeColorJson?.ToString() ?? string.Empty;
 
+        if (string.IsNullOrWhiteSpace(AppThemeColor))
+        {
+            _appThemeColorObj = GetSystemAccentColor();
+            OnPropertyChanged(nameof(AppThemeColorObj));
+        }
+
         var launchOverlayColorJson = await _localSettingsService.ReadSettingAsync("LaunchButtonOverlayColor");
         LaunchButtonOverlayColor = launchOverlayColorJson?.ToString() ?? "#0078D7";
     }

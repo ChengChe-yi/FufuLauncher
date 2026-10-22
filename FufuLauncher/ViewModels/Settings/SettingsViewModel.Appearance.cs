@@ -20,11 +20,56 @@ public partial class SettingsViewModel
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
     }
 
+    private async Task ResetAppThemeColorAsync()
+    {
+        var systemColor = GetSystemAccentColor();
+
+        AppThemeColor = string.Empty;
+
+        if (_appThemeColorObj != systemColor)
+        {
+            _appThemeColorObj = systemColor;
+            OnPropertyChanged(nameof(AppThemeColorObj));
+        }
+
+        ThemeHelper.ApplyThemeColor(ToHexColor(systemColor));
+        WeakReferenceMessenger.Default.Send(new AcrylicSettingChangedMessage(true));
+        await _localSettingsService.SaveSettingAsync("AppThemeColor", string.Empty);
+    }
+
+    private static Windows.UI.Color GetSystemAccentColor()
+    {
+        try
+        {
+            var uiSettings = new Windows.UI.ViewManagement.UISettings();
+            return uiSettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Accent);
+        }
+        catch
+        {
+            return Windows.UI.Color.FromArgb(255, 0, 120, 215);
+        }
+    }
+
     partial void OnLaunchButtonOverlayColorChanged(string value)
     {
+        if (TryParseColor(value, out var color) && _launchButtonOverlayColorObj != color)
+        {
+            _launchButtonOverlayColorObj = color;
+            OnPropertyChanged(nameof(LaunchButtonOverlayColorObj));
+        }
+
         if (_isInitializing) return;
         _localSettingsService.SaveSettingAsync("LaunchButtonOverlayColor", value);
         WeakReferenceMessenger.Default.Send(new FufuLauncher.Messages.TextStyleChangedMessage());
+    }
+
+    private void OnLaunchButtonOverlayColorObjChanged(Windows.UI.Color value)
+    {
+        string hex = ToHexColor(value);
+        if (LaunchButtonOverlayColor != hex)
+        {
+            LaunchButtonOverlayColor = hex;
+        }
     }
 
     partial void OnIsAcrylicOverlayEnabledChanged(bool value)
@@ -60,39 +105,10 @@ public partial class SettingsViewModel
         if (!_isInitializing)
             _localSettingsService.SaveSettingAsync("AppThemeColor", value);
 
-        try
+        if (TryParseColor(value, out var color) && _appThemeColorObj != color)
         {
-            if (!string.IsNullOrEmpty(value) && value.StartsWith("#") && (value.Length == 7 || value.Length == 9))
-            {
-                string hex = value.Replace("#", "");
-                byte a = 255;
-                byte r = 0;
-                byte g = 0;
-                byte b = 0;
-                if (hex.Length == 8)
-                {
-                    a = Convert.ToByte(hex.Substring(0, 2), 16);
-                    r = Convert.ToByte(hex.Substring(2, 2), 16);
-                    g = Convert.ToByte(hex.Substring(4, 2), 16);
-                    b = Convert.ToByte(hex.Substring(6, 2), 16);
-                }
-                else if (hex.Length == 6)
-                {
-                    r = Convert.ToByte(hex.Substring(0, 2), 16);
-                    g = Convert.ToByte(hex.Substring(2, 2), 16);
-                    b = Convert.ToByte(hex.Substring(4, 2), 16);
-                }
-
-                var color = Windows.UI.Color.FromArgb(a, r, g, b);
-                if (_appThemeColorObj != color)
-                {
-                    _appThemeColorObj = color;
-                    OnPropertyChanged(nameof(AppThemeColorObj));
-                }
-            }
-        }
-        catch
-        {
+            _appThemeColorObj = color;
+            OnPropertyChanged(nameof(AppThemeColorObj));
         }
 
         WeakReferenceMessenger.Default.Send(new AcrylicSettingChangedMessage(true));
@@ -101,7 +117,7 @@ public partial class SettingsViewModel
 
     partial void OnAppThemeColorObjChanged(Windows.UI.Color value)
     {
-        string hex = $"#{value.A:X2}{value.R:X2}{value.G:X2}{value.B:X2}";
+        string hex = ToHexColor(value);
         if (AppThemeColor != hex)
         {
             AppThemeColor = hex;
@@ -211,6 +227,47 @@ public partial class SettingsViewModel
 
         _ = _localSettingsService.SaveSettingAsync("ContentFrameBackgroundOpacity", clamped);
         WeakReferenceMessenger.Default.Send(new FrameBackgroundOpacityChangedMessage(clamped));
+    }
+
+    private static bool TryParseColor(string? value, out Windows.UI.Color color)
+    {
+        color = default;
+        if (string.IsNullOrWhiteSpace(value)) return false;
+
+        var hex = value.Trim();
+        if (hex.StartsWith("#")) hex = hex[1..];
+        if (hex.Length == 3)
+            hex = $"{hex[0]}{hex[0]}{hex[1]}{hex[1]}{hex[2]}{hex[2]}";
+        if (hex.Length != 6 && hex.Length != 8) return false;
+
+        try
+        {
+            var offset = 0;
+            byte a = 255;
+            if (hex.Length == 8)
+            {
+                a = Convert.ToByte(hex[..2], 16);
+                offset = 2;
+            }
+
+            color = Windows.UI.Color.FromArgb(
+                a,
+                Convert.ToByte(hex.Substring(offset, 2), 16),
+                Convert.ToByte(hex.Substring(offset + 2, 2), 16),
+                Convert.ToByte(hex.Substring(offset + 4, 2), 16));
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static string ToHexColor(Windows.UI.Color color)
+    {
+        return color.A == 255
+            ? $"#{color.R:X2}{color.G:X2}{color.B:X2}"
+            : $"#{color.A:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
     }
 
     #endregion

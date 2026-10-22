@@ -8620,4 +8620,16 @@ Detail: {0}</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>Ganti karakter</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>Gambar BlueArchive acak</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>Acak global (≈70% lobi, 30% CG cerita)</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>Lobi memori</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>CG cerita</value>
+  </data>
 </root>

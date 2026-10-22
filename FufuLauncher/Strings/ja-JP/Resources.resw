@@ -8624,4 +8624,16 @@ Bilibiliサーバー対応、MiYouSheログイン不要</value>
   <data name="Account_Flyout_SwitchRole" xml:space="preserve">
     <value>キャラクター切替</value>
   </data>
+  <data name="BgSourceRandomBackground" xml:space="preserve">
+    <value>ランダム BlueArchive 画像</value>
+  </data>
+  <data name="BgSourceRandomModeAll" xml:space="preserve">
+    <value>グローバルランダム（約70%ロビー、30%ストーリーCG）</value>
+  </data>
+  <data name="BgSourceRandomModeHome" xml:space="preserve">
+    <value>思い出ロビー</value>
+  </data>
+  <data name="BgSourceRandomModeCg" xml:space="preserve">
+    <value>ストーリーCG</value>
+  </data>
 </root>

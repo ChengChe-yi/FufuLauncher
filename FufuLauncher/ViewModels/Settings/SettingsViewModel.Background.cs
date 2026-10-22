@@ -116,6 +116,12 @@ public partial class SettingsViewModel
             BackgroundSlideshowInterval = 60;
         }
 
+        var randomBackgroundEnabledJson = await _localSettingsService.ReadSettingAsync("IsRandomBackgroundEnabled");
+        IsRandomBackgroundEnabled = randomBackgroundEnabledJson != null && Convert.ToBoolean(randomBackgroundEnabledJson);
+
+        var randomBackgroundTypeJson = await _localSettingsService.ReadSettingAsync("RandomBackgroundType");
+        RandomBackgroundType = RandomBackgroundService.ParseType(randomBackgroundTypeJson?.ToString());
+
         BackgroundQuality = await BackgroundImageQualitySettings.GetEffectiveQualityAsync();
         _backgroundQualityLoaded = true;
     }
@@ -181,7 +187,42 @@ public partial class SettingsViewModel
     partial void OnIsBackgroundSlideshowEnabledChanged(bool value)
     {
         if (_isInitializing) return;
+        if (value && IsRandomBackgroundEnabled)
+            IsRandomBackgroundEnabled = false;
+        if (value && !IsBackgroundEnabled)
+            IsBackgroundEnabled = true;
         _ = _localSettingsService.SaveSettingAsync("IsBackgroundSlideshowEnabled", value);
+        WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
+    }
+
+    partial void OnIsRandomBackgroundEnabledChanged(bool value)
+    {
+        if (_isInitializing) return;
+        _ = ApplyRandomBackgroundSettingAsync(value);
+    }
+
+    partial void OnRandomBackgroundTypeChanged(RandomBackgroundType value)
+    {
+        if (_isInitializing) return;
+        _ = _localSettingsService.SaveSettingAsync("RandomBackgroundType", value.ToString());
+        RandomBackgroundService.ClearCache();
+        WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
+    }
+
+    private async Task ApplyRandomBackgroundSettingAsync(bool value)
+    {
+        await _localSettingsService.SaveSettingAsync("IsRandomBackgroundEnabled", value);
+
+        if (value)
+        {
+            if (IsBackgroundEnabled) IsBackgroundEnabled = false;
+            if (IsBackgroundSlideshowEnabled) IsBackgroundSlideshowEnabled = false;
+        }
+        else
+        {
+            RandomBackgroundService.ClearCache();
+        }
+
         WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
     }
 
@@ -198,6 +239,8 @@ public partial class SettingsViewModel
         if (_isInitializing) return;
 
         Debug.WriteLine($"SettingsViewModel: 保存自定义背景开关 {value}");
+        if (value && IsRandomBackgroundEnabled)
+            IsRandomBackgroundEnabled = false;
         _ = _localSettingsService.SaveSettingAsync(LocalSettingsService.IsBackgroundEnabledKey, value);
 
         WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
@@ -225,6 +268,10 @@ public partial class SettingsViewModel
 
                 CustomBackgroundPath = path;
                 HasCustomBackground = true;
+                if (IsRandomBackgroundEnabled)
+                    IsRandomBackgroundEnabled = false;
+                if (!IsBackgroundEnabled)
+                    IsBackgroundEnabled = true;
                 await _localSettingsService.SaveSettingAsync("CustomBackgroundPath", path);
 
                 WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
