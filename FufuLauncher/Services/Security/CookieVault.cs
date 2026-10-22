@@ -26,7 +26,8 @@ internal static class CookieVault
     internal const string FormatName = "FufuLauncher.CookieVault";
     private const int FormatVersion = 1;
     private const string AlgorithmName = "AES-256-GCM";
-    private const string KeyProtectionName = "DPAPI+HWID";
+    private const string KeyProtectionName = "DPAPI";
+    private const string IntermediateKeyProtectionName = "DPAPI+HWID";
     private const string LegacyKeyProtectionName = "DPAPI-CurrentUser";
     private const int KeySize = 32;
     private const int KeyIdSize = 8;
@@ -134,6 +135,7 @@ internal static class CookieVault
             || envelope.Version != FormatVersion
             || !string.Equals(envelope.Algorithm, AlgorithmName, StringComparison.Ordinal)
             || (!string.Equals(envelope.KeyProtection, KeyProtectionName, StringComparison.Ordinal)
+                && !string.Equals(envelope.KeyProtection, IntermediateKeyProtectionName, StringComparison.Ordinal)
                 && !string.Equals(envelope.KeyProtection, LegacyKeyProtectionName, StringComparison.Ordinal)))
             throw new CookieVaultException(CookieVaultError.FileFormat, "Cookie 文件加密格式不受支持");
 
