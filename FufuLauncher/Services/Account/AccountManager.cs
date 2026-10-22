@@ -20,7 +20,7 @@ public partial class AccountManager
     private string CookiesDir => Path.Combine(DataDir, "cookies");
     private string AccountsFilePath => Path.Combine(DataDir, "accounts.json");
     private readonly SemaphoreSlim _lock = new(1, 1);
-    private const int CookieFileVersion = 1;
+    private const int CookieFileVersion = 2;
 
     private readonly ConcurrentDictionary<string, List<GameRoleInfo>> _sessionGameRoles = new();
     private AccountList _accountList;
@@ -105,15 +105,9 @@ public partial class AccountManager
         bool metadataChanged = false;
         foreach (var account in normalizedAccounts)
         {
-            if (account.CookieVersion <= 0)
-            {
-                bool migrated = await MigrateLegacyCookieFileAsync(account);
-                if (migrated)
-                {
-                    account.CookieVersion = CookieFileVersion;
-                    metadataChanged = true;
-                }
-            }
+            bool changed = await EnsureCookieFileEncryptedAsync(account);
+            if (changed)
+                metadataChanged = true;
 
             if (account.UpdatedAt == default)
             {
@@ -121,6 +115,8 @@ public partial class AccountManager
                 metadataChanged = true;
             }
         }
+
+        await EncryptOrphanCookieFilesAsync();
 
         if (normalizedAccounts.Count != _accountList.Accounts.Count || metadataChanged)
         {

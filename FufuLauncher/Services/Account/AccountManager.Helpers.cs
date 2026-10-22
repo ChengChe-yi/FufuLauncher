@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -69,6 +69,23 @@ public partial class AccountManager
     private static string DetermineServerTypeByFileName(string fileName)
     {
         return fileName.Contains(".lab", StringComparison.OrdinalIgnoreCase) ? "os" : "cn";
+    }
+
+    private string ResolveCookiePath(string cookieFilePath)
+    {
+        if (string.IsNullOrWhiteSpace(cookieFilePath))
+            throw new InvalidOperationException("Cookie 文件名为空");
+
+        string root = Path.GetFullPath(CookiesDir);
+        string path = Path.GetFullPath(Path.Combine(root, cookieFilePath));
+        string rootPrefix = root.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.Ordinal)
+            ? root
+            : root + Path.DirectorySeparatorChar;
+
+        if (!path.StartsWith(rootPrefix, StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("Cookie 文件路径超出数据目录");
+
+        return path;
     }
 
     #endregion

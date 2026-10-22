@@ -1,53 +1,181 @@
-/*
-Copyright (c) FufuLauncher Dev Team. All rights reserved.
-Licensed under the MIT License.
-*/
-
+using System.Diagnostics;
+using System.Security.Cryptography;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using FufuLauncher.Services.Security;
 
 namespace FufuLauncher.Services;
 
 public partial class AccountManager
 {
-    #region Cookie 文件读写
+    private static readonly JsonSerializerOptions CookieJsonOptions = new()
+    {
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    };
+
+    private sealed record CookieReadResult(Dictionary<string, string> Cookies, bool IsLegacyPlaintext);
 
     private async Task WriteCookieFileAsync(string path, Dictionary<string, string> cookies)
     {
         var file = new AccountCookieFile(cookies);
-        var json = JsonSerializer.Serialize(file,
-            new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
-        await File.WriteAllTextAsync(path, json);
+        var plaintext = JsonSerializer.SerializeToUtf8Bytes(file, CookieJsonOptions);
+        byte[] encrypted;
+        try
+        {
+            encrypted = CookieVault.Encrypt(DataDir, Path.GetFileName(path), plaintext);
+        }
+        finally
+        {
+            CryptographicOperations.ZeroMemory(plaintext);
+        }
+
+        try
+        {
+            await WriteBytesAtomicAsync(path, encrypted);
+        }
+        finally
+        {
+            CryptographicOperations.ZeroMemory(encrypted);
+        }
     }
 
-    private async Task<Dictionary<string, string>?> ReadCookieValuesAsync(string path)
+    private static async Task WriteBytesAtomicAsync(string path, byte[] bytes)
+    {
+        string? directory = Path.GetDirectoryName(path);
+        if (string.IsNullOrEmpty(directory))
+            throw new InvalidOperationException("Cookie 文件路径无效");
+
+        Directory.CreateDirectory(directory);
+        string temporaryPath = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
+        try
+        {
+            await using (var stream = new FileStream(
+                             temporaryPath,
+                             FileMode.CreateNew,
+                             FileAccess.Write,
+                             FileShare.None,
+                             4096,
+                             FileOptions.Asynchronous | FileOptions.WriteThrough))
+            {
+                await stream.WriteAsync(bytes);
+                await stream.FlushAsync();
+            }
+
+            File.Move(temporaryPath, path, overwrite: true);
+        }
+        finally
+        {
+            try
+            {
+                if (File.Exists(temporaryPath))
+                    File.Delete(temporaryPath);
+            }
+            catch
+            {
+            }
+        }
+    }
+
+    private async Task<CookieReadResult?> ReadCookieFileAsync(string path)
+    {
+        byte[] bytes;
+        try
+        {
+            bytes = await File.ReadAllBytesAsync(path);
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+        {
+            Debug.WriteLine($"[AccountManager] 读取 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+            RemoveUnreadableCookieFile(path);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[AccountManager] 读取 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+            return null;
+        }
+
+        try
+        {
+            if (CookieVault.IsEncryptedFile(bytes))
+            {
+                var plaintext = CookieVault.Decrypt(DataDir, Path.GetFileName(path), bytes);
+                try
+                {
+                    var file = JsonSerializer.Deserialize<AccountCookieFile>(plaintext, CookieJsonOptions)
+                               ?? throw new JsonException("Cookie 文件内容无效");
+                    return new CookieReadResult(file.Cookies ?? new Dictionary<string, string>(), false);
+                }
+                finally
+                {
+                    CryptographicOperations.ZeroMemory(plaintext);
+                }
+            }
+
+            var cookies = ParseLegacyCookieJson(bytes);
+            if (cookies == null)
+            {
+                RemoveUnreadableCookieFile(path);
+                return null;
+            }
+
+            return new CookieReadResult(cookies, true);
+        }
+        catch (Exception ex) when (ex is JsonException or CookieVaultException or CryptographicException or NotSupportedException)
+        {
+            Debug.WriteLine($"[AccountManager] Cookie 文件解析失败 {Path.GetFileName(path)}: {ex.Message}");
+            RemoveUnreadableCookieFile(path);
+            return null;
+        }
+    }
+
+    private static void RemoveUnreadableCookieFile(string path)
     {
         try
         {
-            var json = await File.ReadAllTextAsync(path);
-            using var doc = JsonDocument.Parse(json);
-            var root = doc.RootElement;
+            if (!File.Exists(path))
+                return;
+
+            File.Delete(path);
+            Debug.WriteLine($"[AccountManager] 已移除无法解密的 Cookie 文件: {Path.GetFileName(path)}");
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[AccountManager] 移除无法解密的 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+        }
+    }
+
+    private static Dictionary<string, string>? ParseLegacyCookieJson(byte[] bytes)
+    {
+        try
+        {
+            ReadOnlyMemory<byte> memory = bytes;
+            if (bytes.Length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF)
+                memory = memory[3..];
+
+            using var document = JsonDocument.Parse(memory);
+            var root = document.RootElement;
             if (root.ValueKind != JsonValueKind.Object)
-                return JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+                return JsonSerializer.Deserialize<Dictionary<string, string>>(memory.Span);
+
+            if (TryGetPropertyIgnoreCase(root, "format", out var formatProp)
+                && formatProp.ValueKind == JsonValueKind.String
+                && string.Equals(formatProp.GetString(), CookieVault.FormatName, StringComparison.Ordinal))
+                return null;
 
             if (TryGetPropertyIgnoreCase(root, "cookies", out var cookiesProp)
                 && cookiesProp.ValueKind == JsonValueKind.Object)
-            {
                 return ReadStringDictionary(cookiesProp);
-            }
 
             if (TryGetPropertyIgnoreCase(root, "values", out var valuesProp)
                 && valuesProp.ValueKind == JsonValueKind.Object)
-            {
                 return ReadStringDictionary(valuesProp);
-            }
 
-            return JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+            return JsonSerializer.Deserialize<Dictionary<string, string>>(memory.Span);
         }
-        catch (JsonException ex)
+        catch (JsonException)
         {
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] Cookie 文件解析失败: {ex.Message}");
             return null;
         }
     }
@@ -57,10 +185,66 @@ public partial class AccountManager
         var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
         if (entry == null) return null;
 
-        string path = Path.Combine(CookiesDir, entry.CookieFilePath);
+        string path;
+        try
+        {
+            path = ResolveCookiePath(entry.CookieFilePath);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[AccountManager] Cookie 文件路径无效 {accountId}: {ex.Message}");
+            return null;
+        }
+
         if (!File.Exists(path)) return null;
 
-        return await ReadCookieValuesAsync(path);
+        var result = await ReadCookieFileAsync(path);
+        if (result == null)
+        {
+            if (!File.Exists(path) && entry.CookieVersion != 0)
+            {
+                entry.CookieVersion = 0;
+                entry.UpdatedAt = DateTime.Now;
+            }
+            return null;
+        }
+
+        if (!result.IsLegacyPlaintext) return result.Cookies;
+
+        await _lock.WaitAsync();
+        try
+        {
+            var current = await ReadCookieFileAsync(path);
+            if (current == null)
+            {
+                if (!File.Exists(path) && entry.CookieVersion != 0)
+                {
+                    entry.CookieVersion = 0;
+                    entry.UpdatedAt = DateTime.Now;
+                }
+                return null;
+            }
+
+            if (!current.IsLegacyPlaintext) return current.Cookies;
+
+            try
+            {
+                await WriteCookieFileAsync(path, current.Cookies);
+                entry.CookieVersion = CookieFileVersion;
+                entry.UpdatedAt = DateTime.Now;
+                Debug.WriteLine($"[AccountManager] 已自动加密 Cookie 文件: {Path.GetFileName(path)}");
+                return current.Cookies;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[AccountManager] Cookie 文件自动加密失败 {Path.GetFileName(path)}: {ex.Message}");
+                return null;
+            }
+        }
+        finally
+        {
+            _lock.Release();
+        }
     }
 
     public async Task UpdateCookiesAsync(string accountId, Dictionary<string, string> newCookies)
@@ -71,7 +255,7 @@ public partial class AccountManager
             var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
             if (entry == null) return;
 
-            string cookiePath = Path.Combine(CookiesDir, entry.CookieFilePath);
+            string cookiePath = ResolveCookiePath(entry.CookieFilePath);
             await WriteCookieFileAsync(cookiePath, newCookies);
             entry.CookieVersion = CookieFileVersion;
             entry.UpdatedAt = DateTime.Now;
@@ -83,5 +267,18 @@ public partial class AccountManager
         }
     }
 
-    #endregion
+    private void TryDeleteCookieKeyIfUnused()
+    {
+        try
+        {
+            if (Directory.Exists(CookiesDir)
+                && Directory.EnumerateFiles(CookiesDir, "*.json", SearchOption.AllDirectories).Any())
+                return;
+            CookieVault.DeleteKey(DataDir);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[AccountManager] 清理 Cookie 加密密钥失败: {ex.Message}");
+        }
+    }
 }

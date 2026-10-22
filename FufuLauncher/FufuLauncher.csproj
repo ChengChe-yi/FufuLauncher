@@ -80,6 +80,7 @@
         <PackageReference Include="System.Drawing.Common" Version="9.0.17"/>
         <PackageReference Include="System.IO.Hashing" Version="9.0.11"/>
         <PackageReference Include="System.Management" Version="8.0.0"/>
+        <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0"/>
         <PackageReference Include="WinUIEx" Version="2.9.1"/>
         <PackageReference Include="Yae.Lib" Version="5.4.5">
             <PrivateAssets>all</PrivateAssets>

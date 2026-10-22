@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -23,7 +23,7 @@ public partial class AccountManager
             var existingEntry = _accountList.Accounts.FirstOrDefault(a => a.Id == id);
             if (existingEntry != null)
             {
-                string existingCookiePath = Path.Combine(CookiesDir, existingEntry.CookieFilePath);
+                string existingCookiePath = ResolveCookiePath(existingEntry.CookieFilePath);
                 await WriteCookieFileAsync(existingCookiePath, cookies);
                 existingEntry.LastLoginTime = DateTime.Now;
                 existingEntry.CookieVersion = CookieFileVersion;
@@ -35,7 +35,7 @@ public partial class AccountManager
             }
 
             string cookieFileName = $"{id}.json";
-            string cookiePath = Path.Combine(CookiesDir, cookieFileName);
+            string cookiePath = ResolveCookiePath(cookieFileName);
             await WriteCookieFileAsync(cookiePath, cookies);
 
             var entry = new AccountEntry
@@ -68,8 +68,19 @@ public partial class AccountManager
             var entry = _accountList.Accounts.FirstOrDefault(a => a.Id == accountId);
             if (entry == null) return;
 
-            string path = Path.Combine(CookiesDir, entry.CookieFilePath);
-            if (File.Exists(path)) File.Delete(path);
+            string path;
+            try
+            {
+                path = ResolveCookiePath(entry.CookieFilePath);
+            }
+            catch (Exception ex)
+            {
+                path = string.Empty;
+                System.Diagnostics.Debug.WriteLine(
+                    $"[AccountManager] Cookie 文件路径无效 {accountId}: {ex.Message}");
+            }
+
+            if (!string.IsNullOrEmpty(path) && File.Exists(path)) File.Delete(path);
 
             _accountList.Accounts.Remove(entry);
             _sessionGameRoles.TryRemove(accountId, out _);
@@ -80,6 +91,8 @@ public partial class AccountManager
                 var next = _accountList.Accounts.FirstOrDefault();
                 await SetActiveAccountIdAsync(next?.Id);
             }
+
+            TryDeleteCookieKeyIfUnused();
         }
         finally
         {

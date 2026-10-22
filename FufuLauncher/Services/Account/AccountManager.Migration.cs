@@ -1,11 +1,13 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
+using System.Security.Cryptography;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
+using FufuLauncher.Services.Security;
 using MihoyoBBS;
 
 namespace FufuLauncher.Services;
@@ -14,49 +16,142 @@ public partial class AccountManager
 {
     #region 旧账号数据迁移
 
-    private async Task<bool> MigrateLegacyCookieFileAsync(AccountEntry account)
+    private async Task<bool> EnsureCookieFileEncryptedAsync(AccountEntry account)
     {
         if (string.IsNullOrEmpty(account.CookieFilePath))
             return false;
 
-        string path = Path.Combine(CookiesDir, account.CookieFilePath);
+        string path;
+        try
+        {
+            path = ResolveCookiePath(account.CookieFilePath);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(
+                $"[AccountManager] Cookie 文件路径无效 {account.CookieFilePath}: {ex.Message}");
+            return false;
+        }
+
         if (!File.Exists(path))
             return false;
 
         try
         {
-            var json = await File.ReadAllTextAsync(path);
-            using var doc = JsonDocument.Parse(json);
-            var root = doc.RootElement;
-            if (root.ValueKind != JsonValueKind.Object)
-                return false;
-
-            if (TryGetPropertyIgnoreCase(root, "cookies", out var cookiesProp)
-                && cookiesProp.ValueKind == JsonValueKind.Object)
-                return false;
-
-            Dictionary<string, string> cookies;
-            if (TryGetPropertyIgnoreCase(root, "values", out var valuesProp)
-                && valuesProp.ValueKind == JsonValueKind.Object)
+            var bytes = await File.ReadAllBytesAsync(path);
+            if (CookieVault.IsEncryptedFile(bytes))
             {
-                cookies = ReadStringDictionary(valuesProp);
+                var read = await ReadCookieFileAsync(path);
+                if (read == null)
+                {
+                    if (account.CookieVersion == 0)
+                        return false;
+                    account.CookieVersion = 0;
+                    return true;
+                }
+
+                if (account.CookieVersion == CookieFileVersion)
+                    return false;
+
+                account.CookieVersion = CookieFileVersion;
+                return true;
             }
-            else
+
+            var cookies = ParseLegacyCookieJson(bytes);
+            if (cookies == null)
             {
-                cookies = JsonSerializer.Deserialize<Dictionary<string, string>>(json)
-                          ?? new Dictionary<string, string>();
+                RemoveUnreadableCookieFile(path);
+                if (account.CookieVersion == 0)
+                    return false;
+                account.CookieVersion = 0;
+                return true;
             }
 
             await WriteCookieFileAsync(path, cookies);
+            account.CookieVersion = CookieFileVersion;
             System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 已迁移遗留 Cookie 文件: {account.CookieFilePath}");
+                $"[AccountManager] 已自动加密旧 Cookie 文件: {account.CookieFilePath}");
             return true;
         }
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] Cookie 文件迁移失败 {account.CookieFilePath}: {ex.Message}");
+                $"[AccountManager] Cookie 文件自动加密失败 {account.CookieFilePath}: {ex.Message}");
             return false;
+        }
+    }
+
+    private async Task EncryptOrphanCookieFilesAsync()
+    {
+        if (!Directory.Exists(CookiesDir))
+            return;
+
+        foreach (var path in Directory.EnumerateFiles(CookiesDir, "*.json", SearchOption.AllDirectories))
+        {
+            try
+            {
+                var bytes = await File.ReadAllBytesAsync(path);
+                if (CookieVault.IsEncryptedFile(bytes))
+                {
+                    await ReadCookieFileAsync(path);
+                    continue;
+                }
+
+                var cookies = ParseLegacyCookieJson(bytes);
+                if (cookies == null)
+                {
+                    RemoveUnreadableCookieFile(path);
+                    continue;
+                }
+
+                await WriteCookieFileAsync(path, cookies);
+                System.Diagnostics.Debug.WriteLine(
+                    $"[AccountManager] 已自动加密旧 Cookie 文件: {Path.GetFileName(path)}");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"[AccountManager] 自动加密旧 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+            }
+        }
+    }
+
+    private static void DeleteLegacyFile(string path)
+    {
+        try
+        {
+            if (!File.Exists(path))
+                return;
+
+            try
+            {
+                using var stream = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.None);
+                var buffer = new byte[65536];
+                long remaining = stream.Length;
+                while (remaining > 0)
+                {
+                    int count = (int)Math.Min(buffer.Length, remaining);
+                    RandomNumberGenerator.Fill(buffer.AsSpan(0, count));
+                    stream.Write(buffer, 0, count);
+                    remaining -= count;
+                }
+
+                stream.Flush(true);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"[AccountManager] 覆盖旧配置失败 {Path.GetFileName(path)}: {ex.Message}");
+            }
+
+            File.Delete(path);
+            System.Diagnostics.Debug.WriteLine(
+                $"[AccountManager] 已清除已迁移的旧配置: {Path.GetFileName(path)}");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(
+                $"[AccountManager] 清除旧配置 {Path.GetFileName(path)} 失败: {ex.Message}");
         }
     }
 
@@ -145,7 +240,7 @@ public partial class AccountManager
                     }
 
                     string cookieFileName = $"{accountId}.json";
-                    string cookiePath = Path.Combine(CookiesDir, cookieFileName);
+                    string cookiePath = ResolveCookiePath(cookieFileName);
                     await WriteCookieFileAsync(cookiePath, cookieDict);
 
                     var entry = new AccountEntry
@@ -249,7 +344,7 @@ public partial class AccountManager
                                 string accountId = $"{serverType}_{stuid}";
 
                                 string cookieFileName = $"{accountId}.json";
-                                string cookiePath = Path.Combine(CookiesDir, cookieFileName);
+                                string cookiePath = ResolveCookiePath(cookieFileName);
                                 await WriteCookieFileAsync(cookiePath, cookieDict);
 
                                 var entry = new AccountEntry
@@ -309,17 +404,7 @@ public partial class AccountManager
 
             foreach (var file in migratedConfigFiles)
             {
-                try
-                {
-                    File.Delete(file);
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[AccountManager] 已清除已迁移的旧配置: {Path.GetFileName(file)}");
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[AccountManager] 清除旧配置 {file} 失败: {ex.Message}");
-                }
+                DeleteLegacyFile(file);
             }
 
             System.Diagnostics.Debug.WriteLine(
