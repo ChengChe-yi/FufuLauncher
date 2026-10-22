@@ -219,12 +219,11 @@ Licensed under the MIT License.
                             Orientation="Horizontal"
                             Spacing="8"
                             Visibility="{x:Bind Display.HasMaxDamage, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <cc:AvatarBadge
+                            <cc:AvatarCard
                                 AvatarId="{x:Bind Display.MaxDamageAvatarId, Mode=OneTime}"
+                                CardWidth="60"
                                 IconUrl="{x:Bind Display.MaxDamageIconUrl, Mode=OneTime}"
-                                Level="0"
-                                Rarity="{x:Bind Display.MaxDamageRarity, Mode=OneTime}"
-                                Size="32" />
+                                Rarity="{x:Bind Display.MaxDamageRarity, Mode=OneTime}" />
                             <TextBlock VerticalAlignment="Center"
                                        Text="{x:Bind Display.MaxDamageValueText, Mode=OneTime}" />
                         </StackPanel>
@@ -237,12 +236,11 @@ Licensed under the MIT License.
                             Orientation="Horizontal"
                             Spacing="8"
                             Visibility="{x:Bind Display.HasMaxDefeat, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <cc:AvatarBadge
+                            <cc:AvatarCard
                                 AvatarId="{x:Bind Display.MaxDefeatAvatarId, Mode=OneTime}"
+                                CardWidth="60"
                                 IconUrl="{x:Bind Display.MaxDefeatIconUrl, Mode=OneTime}"
-                                Level="0"
-                                Rarity="{x:Bind Display.MaxDefeatRarity, Mode=OneTime}"
-                                Size="32" />
+                                Rarity="{x:Bind Display.MaxDefeatRarity, Mode=OneTime}" />
                             <TextBlock VerticalAlignment="Center"
                                        Text="{x:Bind Display.MaxDefeatValueText, Mode=OneTime}" />
                         </StackPanel>
@@ -255,12 +253,11 @@ Licensed under the MIT License.
                             Orientation="Horizontal"
                             Spacing="8"
                             Visibility="{x:Bind Display.HasMaxTakeDamage, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
-                            <cc:AvatarBadge
+                            <cc:AvatarCard
                                 AvatarId="{x:Bind Display.MaxTakeDamageAvatarId, Mode=OneTime}"
+                                CardWidth="60"
                                 IconUrl="{x:Bind Display.MaxTakeDamageIconUrl, Mode=OneTime}"
-                                Level="0"
-                                Rarity="{x:Bind Display.MaxTakeDamageRarity, Mode=OneTime}"
-                                Size="32" />
+                                Rarity="{x:Bind Display.MaxTakeDamageRarity, Mode=OneTime}" />
                             <TextBlock VerticalAlignment="Center"
                                        Text="{x:Bind Display.MaxTakeDamageValueText, Mode=OneTime}" />
                         </StackPanel>
@@ -279,12 +276,11 @@ Licensed under the MIT License.
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate x:DataType="models:TheaterAvatarDamage">
-                                    <cc:AvatarBadge
+                                    <cc:AvatarCard
                                         AvatarId="{x:Bind AvatarId}"
+                                        CardWidth="60"
                                         IconUrl="{x:Bind IconUrl}"
-                                        Level="0"
-                                        Rarity="{x:Bind Rarity}"
-                                        Size="32" />
+                                        Rarity="{x:Bind Rarity}" />
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -301,32 +297,22 @@ Licensed under the MIT License.
                     <ItemsRepeater ItemsSource="{x:Bind Display.BackupAvatars, Mode=OneTime}">
                         <ItemsRepeater.Layout>
                             <UniformGridLayout
-                                MinColumnSpacing="0"
-                                MinItemHeight="60"
-                                MinItemWidth="60"
-                                MinRowSpacing="0" />
+                                MinColumnSpacing="8"
+                                MinItemHeight="98"
+                                MinItemWidth="74"
+                                MinRowSpacing="8" />
                         </ItemsRepeater.Layout>
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate x:DataType="models:TheaterAvatar">
-                                <StackPanel
-                                    Width="60"
-                                    Height="60"
+                                <cc:AvatarCard
+                                    AvatarId="{x:Bind AvatarId}"
+                                    Caption="{x:Bind TypeText}"
+                                    CardWidth="66"
+                                    CharacterName="{x:Bind DisplayName}"
                                     HorizontalAlignment="Center"
-                                    Spacing="2">
-                                    <cc:AvatarBadge
-                                        AvatarId="{x:Bind AvatarId}"
-                                        HorizontalAlignment="Center"
-                                        IconUrl="{x:Bind IconUrl}"
-                                        Level="{x:Bind Level}"
-                                        Rarity="{x:Bind Rarity}"
-                                        Size="44" />
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        Style="{StaticResource SecondaryCaptionStyle}"
-                                        FontSize="11"
-                                        Text="{x:Bind TypeText}"
-                                        Visibility="{x:Bind HasTypeText, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                </StackPanel>
+                                    IconUrl="{x:Bind IconUrl}"
+                                    Level="{x:Bind Level}"
+                                    Rarity="{x:Bind Rarity}" />
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
                     </ItemsRepeater>
@@ -420,21 +406,14 @@ Licensed under the MIT License.
                                             </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate x:DataType="models:TheaterAvatar">
-                                                    <StackPanel HorizontalAlignment="Center" Spacing="2">
-                                                        <cc:AvatarBadge
-                                                            AvatarId="{x:Bind AvatarId}"
-                                                            HorizontalAlignment="Center"
-                                                            IconUrl="{x:Bind IconUrl}"
-                                                            Level="{x:Bind Level}"
-                                                            Rarity="{x:Bind Rarity}"
-                                                            Size="48" />
-                                                        <TextBlock
-                                                            HorizontalAlignment="Center"
-                                                            Style="{StaticResource SecondaryCaptionStyle}"
-                                                            FontSize="11"
-                                                            Text="{x:Bind TypeText}"
-                                                            Visibility="{x:Bind HasTypeText, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                                    </StackPanel>
+                                                    <cc:AvatarCard
+                                                        AvatarId="{x:Bind AvatarId}"
+                                                        Caption="{x:Bind TypeText}"
+                                                        CardWidth="78"
+                                                        CharacterName="{x:Bind DisplayName}"
+                                                        IconUrl="{x:Bind IconUrl}"
+                                                        Level="{x:Bind Level}"
+                                                        Rarity="{x:Bind Rarity}" />
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>

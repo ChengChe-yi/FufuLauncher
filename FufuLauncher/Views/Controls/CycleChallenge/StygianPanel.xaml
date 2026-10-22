@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-Copyright (c) FufuLauncher Dev Team. All rights reserved.
-Licensed under the MIT License.
--->
 <UserControl
     x:Class="FufuLauncher.Views.Controls.CycleChallenge.StygianPanel"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -14,7 +9,6 @@ Licensed under the MIT License.
     xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives">
 
     <UserControl.Resources>
-        <!--  KPI 卡片  -->
         <Style x:Key="KpiCardStyle" TargetType="Border">
             <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
             <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -22,7 +16,6 @@ Licensed under the MIT License.
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="Padding" Value="12,10" />
         </Style>
-        <!--  区块卡片  -->
         <Style x:Key="SectionCardStyle" TargetType="Border">
             <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
             <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -30,7 +23,6 @@ Licensed under the MIT License.
             <Setter Property="CornerRadius" Value="8" />
             <Setter Property="Padding" Value="16" />
         </Style>
-        <!--  关卡卡片  -->
         <Style x:Key="StageCardStyle" TargetType="Border">
             <Setter Property="Background" Value="{ThemeResource LayerFillColorDefaultBrush}" />
             <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
@@ -38,7 +30,6 @@ Licensed under the MIT License.
             <Setter Property="CornerRadius" Value="6" />
             <Setter Property="Padding" Value="12" />
         </Style>
-        <!--  单人 / 联机切换按钮（DcChipStyle 风格，本地实现，不依赖页面资源）  -->
         <Style x:Key="ModeChipStyle" TargetType="primitives:ToggleButton">
             <Setter Property="MinWidth" Value="96" />
             <Setter Property="Height" Value="32" />
@@ -47,24 +38,20 @@ Licensed under the MIT License.
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
-        <!--  KPI 标题  -->
         <Style x:Key="KpiLabelStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
         </Style>
-        <!--  KPI 数值  -->
         <Style x:Key="KpiValueStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimaryBrush}" />
             <Setter Property="IsTextScaleFactorEnabled" Value="False" />
         </Style>
-        <!--  区块标题  -->
         <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
-        <!--  小号次要文本  -->
         <Style x:Key="SecondaryCaptionStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="12" />
             <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
@@ -72,8 +59,7 @@ Licensed under the MIT License.
     </UserControl.Resources>
 
     <StackPanel Padding="0,0,0,8" Spacing="12">
-
-        <!--  空态 / 未解锁 / 解析失败  -->
+        
         <StackPanel
             Padding="24"
             HorizontalAlignment="Center"
@@ -98,12 +84,10 @@ Licensed under the MIT License.
                 TextWrapping="Wrap"
                 Visibility="{x:Bind Display.HasStateDetail, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
         </StackPanel>
-
-        <!--  内容区  -->
+        
         <StackPanel Spacing="12"
                     Visibility="{x:Bind Display.ShowContent, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
-
-            <!--  赛季名 + 时间范围  -->
+            
             <StackPanel Spacing="2">
                 <StackPanel
                     Orientation="Horizontal"
@@ -120,8 +104,7 @@ Licensed under the MIT License.
                     Text="{x:Bind Display.PeriodText, Mode=OneTime}"
                     Visibility="{x:Bind Display.HasPeriod, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
             </StackPanel>
-
-            <!--  单人 / 联机切换  -->
+            
             <StackPanel Orientation="Horizontal" Spacing="8">
                 <primitives:ToggleButton
                     x:Name="SoloChip"
@@ -141,8 +124,7 @@ Licensed under the MIT License.
                     Text="{helpers:Loc Key=Stygian_NoCoopData}"
                     Visibility="{x:Bind ShowNoCoopHint, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
             </StackPanel>
-
-            <!--  KPI：难度 / 最佳用时 / 极数  -->
+            
             <Grid ColumnSpacing="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -181,15 +163,13 @@ Licensed under the MIT License.
                     </StackPanel>
                 </Border>
             </Grid>
-
-            <!--  当前模式无数据提示（联机为空时通常按钮已被禁用，这里仍做兜底）  -->
+            
             <TextBlock
                 HorizontalAlignment="Center"
                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                 Text="{x:Bind Mode.EmptyText, Mode=OneTime}"
                 Visibility="{x:Bind ShowModeEmpty, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-            <!--  关卡列表  -->
+            
             <StackPanel Spacing="8"
                         Visibility="{x:Bind Mode.HasChallenges, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Stygian_Stage}" />
@@ -201,8 +181,7 @@ Licensed under the MIT License.
                         <DataTemplate x:DataType="models:StygianChallenge">
                             <Border Style="{StaticResource StageCardStyle}">
                                 <StackPanel Spacing="10">
-
-                                    <!--  关卡头：怪物图标 / 名称 / 用时  -->
+                                    
                                     <Grid ColumnSpacing="12">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
@@ -227,7 +206,6 @@ Licensed under the MIT License.
                                             </StackPanel>
                                         </StackPanel>
                                         <StackPanel Grid.Column="2" VerticalAlignment="Center" Spacing="2">
-                                            <!--  用时  -->
                                             <TextBlock
                                                 HorizontalAlignment="Right"
                                                 Style="{StaticResource KpiLabelStyle}"
@@ -235,8 +213,7 @@ Licensed under the MIT License.
                                             <TextBlock HorizontalAlignment="Right" Text="{x:Bind TimeText}" />
                                         </StackPanel>
                                     </Grid>
-
-                                    <!--  怪物描述：富文本由 code-behind 解析为 Paragraph / Run 集合  -->
+                                    
                                     <RichTextBlock
                                         x:Name="MonsterDescriptionText"
                                         FontSize="12"
@@ -245,8 +222,7 @@ Licensed under the MIT License.
                                         Tag="{x:Bind Monster}"
                                         TextWrapping="Wrap"
                                         Visibility="{x:Bind Monster.HasDescriptions, Converter={StaticResource BoolToVisibilityConverter}}" />
-
-                                    <!--  队伍  -->
+                                    
                                     <StackPanel Spacing="6"
                                                 Visibility="{x:Bind HasTeam, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <TextBlock Style="{StaticResource KpiLabelStyle}"
@@ -259,26 +235,18 @@ Licensed under the MIT License.
                                             </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate x:DataType="models:StygianAvatar">
-                                                    <StackPanel HorizontalAlignment="Center" Spacing="2">
-                                                        <cc:AvatarBadge
-                                                            AvatarId="{x:Bind AvatarId}"
-                                                            HorizontalAlignment="Center"
-                                                            IconUrl="{x:Bind IconUrl}"
-                                                            Level="{x:Bind Level}"
-                                                            Rarity="{x:Bind Rarity}"
-                                                            Size="48" />
-                                                        <TextBlock
-                                                            HorizontalAlignment="Center"
-                                                            Style="{StaticResource SecondaryCaptionStyle}"
-                                                            FontSize="11"
-                                                            Text="{x:Bind DisplayName}" />
-                                                    </StackPanel>
+                                                    <cc:AvatarCard
+                                                        AvatarId="{x:Bind AvatarId}"
+                                                        CardWidth="78"
+                                                        CharacterName="{x:Bind DisplayName}"
+                                                        IconUrl="{x:Bind IconUrl}"
+                                                        Level="{x:Bind Level}"
+                                                        Rarity="{x:Bind Rarity}" />
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </StackPanel>
-
-                                    <!--  最佳输出（最强一击 / 最高总伤害）  -->
+                                    
                                     <StackPanel Spacing="6"
                                                 Visibility="{x:Bind HasBestAvatars, Converter={StaticResource BoolToVisibilityConverter}}">
                                         <TextBlock Style="{StaticResource KpiLabelStyle}"
@@ -292,13 +260,10 @@ Licensed under the MIT License.
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate x:DataType="models:StygianBestAvatar">
                                                     <StackPanel Orientation="Horizontal" Spacing="8">
-                                                        <!--  最佳输出角色：AvatarBadge 提供元数据名称 ToolTip；不显示等级/稀有度  -->
-                                                        <cc:AvatarBadge AvatarId="{x:Bind AvatarId}"
-                                                                        IconUrl="{x:Bind IconUrl}"
-                                                                        Level="0"
-                                                                        Rarity="0"
-                                                                        ShowRarityRing="False"
-                                                                        Size="36" />
+                                                        <cc:AvatarCard
+                                                            AvatarId="{x:Bind AvatarId}"
+                                                            CardWidth="60"
+                                                            IconUrl="{x:Bind IconUrl}" />
                                                         <StackPanel VerticalAlignment="Center" Spacing="2">
                                                             <TextBlock
                                                                 Style="{StaticResource SecondaryCaptionStyle}"
@@ -317,36 +282,30 @@ Licensed under the MIT License.
                     </ItemsRepeater.ItemTemplate>
                 </ItemsRepeater>
             </StackPanel>
-
-            <!--  上榜角色（真实数据可能为空）  -->
+            
             <Border Style="{StaticResource SectionCardStyle}"
                     Visibility="{x:Bind Display.HasBlings, Mode=OneTime, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Spacing="10">
-                    <!--  上榜角色  -->
                     <TextBlock Style="{StaticResource SectionTitleStyle}" Text="{helpers:Loc Key=Stygian_BlingAvatars}" />
                     <ItemsControl ItemsSource="{x:Bind Display.Blings, Mode=OneTime}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" Spacing="10" />
+                                <ItemsWrapGrid
+                                    ItemHeight="96"
+                                    ItemWidth="82"
+                                    Orientation="Horizontal" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate x:DataType="models:StygianBling">
-                                <StackPanel HorizontalAlignment="Center" Spacing="2">
-                                    <cc:AvatarBadge
-                                        AvatarId="{x:Bind AvatarId}"
-                                        HorizontalAlignment="Center"
-                                        IconUrl="{x:Bind IconUrl}"
-                                        Level="0"
-                                        Opacity="{x:Bind IconOpacity}"
-                                        Rarity="{x:Bind Rarity}"
-                                        Size="44" />
-                                    <TextBlock
-                                        HorizontalAlignment="Center"
-                                        Style="{StaticResource SecondaryCaptionStyle}"
-                                        FontSize="11"
-                                        Text="{x:Bind DisplayName}" />
-                                </StackPanel>
+                                <cc:AvatarCard
+                                    AvatarId="{x:Bind AvatarId}"
+                                    CardWidth="72"
+                                    CharacterName="{x:Bind DisplayName}"
+                                    HorizontalAlignment="Center"
+                                    IconUrl="{x:Bind IconUrl}"
+                                    Opacity="{x:Bind IconOpacity}"
+                                    Rarity="{x:Bind Rarity}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
