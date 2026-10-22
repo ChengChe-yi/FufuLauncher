@@ -7,6 +7,7 @@ using System.Collections.Concurrent;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
+using FufuLauncher.Services.Security;
 
 namespace FufuLauncher.Services;
 
@@ -47,6 +48,7 @@ public partial class AccountManager
 
     public async Task InitializeAsync()
     {
+        CookieVault.EnsureKeyProtectionUpgrade(DataDir);
         await LoadAccountListAsync();
 
         if (HasLegacyAccounts())

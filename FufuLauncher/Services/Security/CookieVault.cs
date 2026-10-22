@@ -1,4 +1,6 @@
+using System.Buffers.Binary;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -15,7 +17,8 @@ internal enum CookieVaultError
     KeyDecryptFailed,
     KeyMismatch,
     FileFormat,
-    FileDecryptFailed
+    FileDecryptFailed,
+    HwidUnavailable
 }
 
 internal static class CookieVault
@@ -23,16 +26,35 @@ internal static class CookieVault
     internal const string FormatName = "FufuLauncher.CookieVault";
     private const int FormatVersion = 1;
     private const string AlgorithmName = "AES-256-GCM";
-    private const string KeyProtectionName = "DPAPI-CurrentUser";
+    private const string KeyProtectionName = "DPAPI+HWID";
+    private const string LegacyKeyProtectionName = "DPAPI-CurrentUser";
     private const int KeySize = 32;
     private const int KeyIdSize = 8;
     private const int NonceSize = 12;
     private const int TagSize = 16;
-    private const byte KeyFileVersion = 1;
+    private const int LengthSize = 4;
+    private const byte KeyFileVersion = 2;
+    private const byte LegacyKeyFileVersion = 1;
+    private const byte KeyFlagDpapi = 1;
+    private const byte KeyFlagHwid = 2;
     private const int KeyHeaderSize = 4 + 1 + KeyIdSize;
+    private const int HwidIterations = 100_000;
     private static readonly byte[] KeyMagic = Encoding.UTF8.GetBytes("FLVK");
     private static readonly byte[] Entropy = Encoding.UTF8.GetBytes("FufuLauncher.CookieVault.DPAPI.v1");
+    private static readonly byte[] HwidSalt = Encoding.UTF8.GetBytes("FufuLauncher.CookieVault.HWID.v1");
     private static readonly object KeySync = new();
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool GetVolumeInformation(
+        string lpRootPathName,
+        IntPtr lpVolumeNameBuffer,
+        uint nVolumeNameSize,
+        out uint lpVolumeSerialNumber,
+        out uint lpMaximumComponentLength,
+        out uint lpFileSystemFlags,
+        IntPtr lpFileSystemNameBuffer,
+        uint nFileSystemNameSize);
 
     public static bool IsEncryptedFile(byte[] data)
     {
@@ -61,12 +83,12 @@ internal static class CookieVault
     {
         var key = GetOrCreateKey(dataDir);
         byte[]? associatedData = null;
+        var ciphertext = new byte[plaintext.Length];
         try
         {
             var nonce = RandomNumberGenerator.GetBytes(NonceSize);
-            var ciphertext = new byte[plaintext.Length];
             var tag = new byte[TagSize];
-            associatedData = BuildAssociatedData(fileName, key.KeyId, FormatVersion);
+            associatedData = BuildAssociatedData(fileName, key.KeyId, FormatVersion, KeyProtectionName);
 
             using (var aes = new AesGcm(key.KeyBytes, TagSize))
             {
@@ -85,15 +107,13 @@ internal static class CookieVault
                 Ciphertext = Convert.ToBase64String(ciphertext)
             };
 
-            var result = JsonSerializer.SerializeToUtf8Bytes(envelope);
-            CryptographicOperations.ZeroMemory(ciphertext);
-            return result;
+            return JsonSerializer.SerializeToUtf8Bytes(envelope);
         }
         finally
         {
-            CryptographicOperations.ZeroMemory(key.KeyBytes);
-            if (associatedData != null)
-                CryptographicOperations.ZeroMemory(associatedData);
+            Zero(ciphertext);
+            Zero(key.KeyBytes);
+            Zero(associatedData);
         }
     }
 
@@ -113,7 +133,8 @@ internal static class CookieVault
         if (!string.Equals(envelope.Format, FormatName, StringComparison.Ordinal)
             || envelope.Version != FormatVersion
             || !string.Equals(envelope.Algorithm, AlgorithmName, StringComparison.Ordinal)
-            || !string.Equals(envelope.KeyProtection, KeyProtectionName, StringComparison.Ordinal))
+            || (!string.Equals(envelope.KeyProtection, KeyProtectionName, StringComparison.Ordinal)
+                && !string.Equals(envelope.KeyProtection, LegacyKeyProtectionName, StringComparison.Ordinal)))
             throw new CookieVaultException(CookieVaultError.FileFormat, "Cookie 文件加密格式不受支持");
 
         if (string.IsNullOrEmpty(envelope.KeyId)
@@ -148,7 +169,7 @@ internal static class CookieVault
             if (!CryptographicOperations.FixedTimeEquals(key.KeyId, keyId))
                 throw new CookieVaultException(CookieVaultError.KeyMismatch, "Cookie 文件加密密钥不匹配");
 
-            associatedData = BuildAssociatedData(fileName, keyId, envelope.Version);
+            associatedData = BuildAssociatedData(fileName, keyId, envelope.Version, envelope.KeyProtection!);
             var plaintext = new byte[ciphertext.Length];
             try
             {
@@ -156,17 +177,16 @@ internal static class CookieVault
                 aes.Decrypt(nonce, ciphertext, tag, plaintext, associatedData);
                 return plaintext;
             }
-            catch (CryptographicException ex)
+            catch (Exception ex) when (ex is CryptographicException or ArgumentException)
             {
-                CryptographicOperations.ZeroMemory(plaintext);
+                Zero(plaintext);
                 throw new CookieVaultException(CookieVaultError.FileDecryptFailed, "Cookie 文件完整性校验失败", ex);
             }
         }
         finally
         {
-            CryptographicOperations.ZeroMemory(key.KeyBytes);
-            if (associatedData != null)
-                CryptographicOperations.ZeroMemory(associatedData);
+            Zero(key.KeyBytes);
+            Zero(associatedData);
         }
     }
 
@@ -194,7 +214,7 @@ internal static class CookieVault
                         }
                         finally
                         {
-                            CryptographicOperations.ZeroMemory(scrub);
+                            Zero(scrub);
                         }
                     }
                 }
@@ -214,6 +234,77 @@ internal static class CookieVault
             catch (Exception ex)
             {
                 Debug.WriteLine($"[CookieVault] 删除 Cookie 加密密钥失败: {ex.Message}");
+            }
+        }
+    }
+
+    public static void EnsureKeyProtectionUpgrade(string dataDir)
+    {
+        lock (KeySync)
+        {
+            try
+            {
+                string keyPath = GetKeyPath(dataDir);
+                if (!File.Exists(keyPath))
+                    return;
+
+                var fileBytes = File.ReadAllBytes(keyPath);
+                try
+                {
+                    var parsed = ParseKeyFile(fileBytes);
+                    try
+                    {
+                        if (parsed.Version == KeyFileVersion
+                            && parsed.HwidCipher != null
+                            && parsed.DpapiBlob == null)
+                        {
+                            Zero(UnwrapKeyData(parsed));
+                            return;
+                        }
+
+                        if (parsed.Version == KeyFileVersion
+                            && parsed.DpapiBlob != null
+                            && TryUnprotectDpapi(parsed.DpapiBlob, out var existingKey))
+                        {
+                            Zero(existingKey);
+                            return;
+                        }
+
+                        var keyBytes = UnwrapKeyData(parsed);
+                        if (keyBytes == null)
+                            return;
+
+                        try
+                        {
+                            var payload = BuildKeyFileV2(parsed.KeyId, keyBytes, parsed.Version == LegacyKeyFileVersion);
+                            try
+                            {
+                                WriteKeyFile(keyPath, payload, overwrite: true);
+                                Debug.WriteLine("[CookieVault] Cookie 加密密钥保护已升级");
+                            }
+                            finally
+                            {
+                                Zero(payload);
+                            }
+                        }
+                        finally
+                        {
+                            Zero(keyBytes);
+                        }
+                    }
+                    finally
+                    {
+                        parsed.Clear();
+                    }
+                }
+                finally
+                {
+                    Zero(fileBytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[CookieVault] Cookie 加密密钥保护升级失败: {ex.Message}");
             }
         }
     }
@@ -246,21 +337,14 @@ internal static class CookieVault
             throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥路径无效");
 
         byte[]? keyBytes = null;
-        byte[]? protectedKey = null;
         byte[]? payload = null;
         try
         {
             Directory.CreateDirectory(directory);
             keyBytes = RandomNumberGenerator.GetBytes(KeySize);
             var keyId = RandomNumberGenerator.GetBytes(KeyIdSize);
-            protectedKey = ProtectedData.Protect(keyBytes, Entropy, DataProtectionScope.CurrentUser);
-            payload = new byte[KeyHeaderSize + protectedKey.Length];
-            KeyMagic.CopyTo(payload, 0);
-            payload[KeyMagic.Length] = KeyFileVersion;
-            keyId.CopyTo(payload, KeyMagic.Length + 1);
-            protectedKey.CopyTo(payload, KeyHeaderSize);
-
-            WriteKeyFile(keyPath, payload);
+            payload = BuildKeyFileV2(keyId, keyBytes, allowDpapi: true);
+            WriteKeyFile(keyPath, payload, overwrite: false);
 
             var key = new CookieKey(keyBytes, keyId);
             keyBytes = null;
@@ -276,12 +360,8 @@ internal static class CookieVault
         }
         finally
         {
-            if (keyBytes != null)
-                CryptographicOperations.ZeroMemory(keyBytes);
-            if (protectedKey != null)
-                CryptographicOperations.ZeroMemory(protectedKey);
-            if (payload != null)
-                CryptographicOperations.ZeroMemory(payload);
+            Zero(keyBytes);
+            Zero(payload);
         }
     }
 
@@ -305,42 +385,326 @@ internal static class CookieVault
 
         try
         {
-            if (fileBytes.Length <= KeyHeaderSize
-                || !fileBytes.AsSpan(0, KeyMagic.Length).SequenceEqual(KeyMagic)
-                || fileBytes[KeyMagic.Length] != KeyFileVersion)
-                throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
-
-            int keyIdOffset = KeyMagic.Length + 1;
-            var keyId = fileBytes.AsSpan(keyIdOffset, KeyIdSize).ToArray();
-            var protectedKey = fileBytes.AsSpan(KeyHeaderSize).ToArray();
-
-            byte[] keyBytes;
+            var parsed = ParseKeyFile(fileBytes);
             try
             {
-                keyBytes = ProtectedData.Unprotect(protectedKey, Entropy, DataProtectionScope.CurrentUser);
-            }
-            catch (CryptographicException ex)
-            {
-                throw new CookieVaultException(CookieVaultError.KeyDecryptFailed,
-                    "Cookie 加密密钥无法由 Windows DPAPI 解密", ex);
+                var keyBytes = UnwrapKeyData(parsed);
+                if (keyBytes == null)
+                    throw new CookieVaultException(CookieVaultError.KeyDecryptFailed,
+                        "Cookie 加密密钥无法由 DPAPI 或 HWID 解密");
+                return new CookieKey(keyBytes, parsed.KeyId);
             }
             finally
             {
-                CryptographicOperations.ZeroMemory(protectedKey);
+                parsed.Clear();
             }
-
-            if (keyBytes.Length != KeySize)
-            {
-                CryptographicOperations.ZeroMemory(keyBytes);
-                throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥长度无效");
-            }
-
-            return new CookieKey(keyBytes, keyId);
         }
         finally
         {
-            CryptographicOperations.ZeroMemory(fileBytes);
+            Zero(fileBytes);
         }
+    }
+
+    private static ParsedKeyFile ParseKeyFile(byte[] fileBytes)
+    {
+        if (fileBytes.Length < KeyHeaderSize
+            || !fileBytes.AsSpan(0, KeyMagic.Length).SequenceEqual(KeyMagic))
+            throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+
+        byte version = fileBytes[KeyMagic.Length];
+        var keyId = fileBytes.AsSpan(KeyMagic.Length + 1, KeyIdSize).ToArray();
+
+        if (version == LegacyKeyFileVersion)
+        {
+            if (fileBytes.Length <= KeyHeaderSize)
+                throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+            return new ParsedKeyFile
+            {
+                Version = version,
+                KeyId = keyId,
+                DpapiBlob = fileBytes.AsSpan(KeyHeaderSize).ToArray()
+            };
+        }
+
+        if (version != KeyFileVersion || fileBytes.Length < KeyHeaderSize + 1)
+            throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+
+        int offset = KeyHeaderSize;
+        byte flags = fileBytes[offset++];
+        if ((flags & ~(KeyFlagDpapi | KeyFlagHwid)) != 0)
+            throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥保护标志无效");
+
+        var parsed = new ParsedKeyFile { Version = version, KeyId = keyId };
+        try
+        {
+            if ((flags & KeyFlagDpapi) != 0)
+            {
+                if (fileBytes.Length < offset + LengthSize)
+                    throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+                int length = BinaryPrimitives.ReadInt32LittleEndian(fileBytes.AsSpan(offset, LengthSize));
+                offset += LengthSize;
+                if (length <= 0 || length > fileBytes.Length - offset)
+                    throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+                parsed.DpapiBlob = fileBytes.AsSpan(offset, length).ToArray();
+                offset += length;
+            }
+
+            if ((flags & KeyFlagHwid) != 0)
+            {
+                if (fileBytes.Length < offset + NonceSize + TagSize + LengthSize)
+                    throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+                parsed.HwidNonce = fileBytes.AsSpan(offset, NonceSize).ToArray();
+                offset += NonceSize;
+                parsed.HwidTag = fileBytes.AsSpan(offset, TagSize).ToArray();
+                offset += TagSize;
+                int length = BinaryPrimitives.ReadInt32LittleEndian(fileBytes.AsSpan(offset, LengthSize));
+                offset += LengthSize;
+                if (length != KeySize || fileBytes.Length < offset + length)
+                    throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+                parsed.HwidCipher = fileBytes.AsSpan(offset, length).ToArray();
+                offset += length;
+            }
+
+            if (offset != fileBytes.Length
+                || (parsed.DpapiBlob == null && parsed.HwidCipher == null))
+                throw new CookieVaultException(CookieVaultError.KeyInvalid, "Cookie 加密密钥文件格式无效");
+
+            return parsed;
+        }
+        catch
+        {
+            parsed.Clear();
+            throw;
+        }
+    }
+
+    private static byte[]? UnwrapKeyData(ParsedKeyFile parsed)
+    {
+        if (parsed.DpapiBlob != null && TryUnprotectDpapi(parsed.DpapiBlob, out var dpapiKey))
+            return dpapiKey;
+
+        if (parsed.HwidNonce != null && parsed.HwidTag != null && parsed.HwidCipher != null)
+        {
+            try
+            {
+                return UnwrapHwid(parsed);
+            }
+            catch (Exception ex) when (ex is CryptographicException or CookieVaultException)
+            {
+                Debug.WriteLine($"[CookieVault] HWID 密钥解保护失败: {ex.Message}");
+            }
+        }
+
+        return null;
+    }
+
+    private static bool TryUnprotectDpapi(byte[] blob, out byte[] keyBytes)
+    {
+        try
+        {
+            var key = ProtectedData.Unprotect(blob, Entropy, DataProtectionScope.CurrentUser);
+            if (key.Length == KeySize)
+            {
+                keyBytes = key;
+                return true;
+            }
+
+            Zero(key);
+        }
+        catch (Exception ex) when (ex is CryptographicException or PlatformNotSupportedException or ArgumentException)
+        {
+            Debug.WriteLine($"[CookieVault] DPAPI 密钥解保护失败，尝试 HWID: {ex.Message}");
+        }
+
+        keyBytes = Array.Empty<byte>();
+        return false;
+    }
+
+    private static byte[] BuildKeyFileV2(byte[] keyId, byte[] keyBytes, bool allowDpapi)
+    {
+        byte[]? dpapiBlob = null;
+        byte[]? hwidNonce = null;
+        byte[]? hwidTag = null;
+        byte[]? hwidCipher = null;
+        try
+        {
+            if (allowDpapi)
+            {
+                try
+                {
+                    dpapiBlob = ProtectedData.Protect(keyBytes, Entropy, DataProtectionScope.CurrentUser);
+                }
+                catch (Exception ex) when (ex is CryptographicException or PlatformNotSupportedException)
+                {
+                    Debug.WriteLine($"[CookieVault] DPAPI 保护失败，启用 HWID 保护: {ex.Message}");
+                }
+            }
+
+            try
+            {
+                var wrapped = WrapHwid(keyId, keyBytes);
+                hwidNonce = wrapped.Nonce;
+                hwidTag = wrapped.Tag;
+                hwidCipher = wrapped.Ciphertext;
+            }
+            catch (Exception ex) when (ex is CookieVaultException or CryptographicException)
+            {
+                Debug.WriteLine($"[CookieVault] HWID 保护不可用: {ex.Message}");
+            }
+
+            byte flags = 0;
+            if (dpapiBlob != null)
+                flags |= KeyFlagDpapi;
+            if (hwidCipher != null)
+                flags |= KeyFlagHwid;
+            if (flags == 0)
+                throw new CookieVaultException(CookieVaultError.KeyInvalid,
+                    "DPAPI 与 HWID 均不可用，无法保护 Cookie 密钥");
+
+            int size = KeyHeaderSize + 1;
+            if (dpapiBlob != null)
+                size += LengthSize + dpapiBlob.Length;
+            if (hwidCipher != null)
+                size += NonceSize + TagSize + LengthSize + hwidCipher.Length;
+
+            var payload = new byte[size];
+            KeyMagic.CopyTo(payload, 0);
+            payload[KeyMagic.Length] = KeyFileVersion;
+            keyId.CopyTo(payload, KeyMagic.Length + 1);
+
+            int offset = KeyHeaderSize;
+            payload[offset++] = flags;
+
+            if (dpapiBlob != null)
+            {
+                BinaryPrimitives.WriteInt32LittleEndian(payload.AsSpan(offset, LengthSize), dpapiBlob.Length);
+                offset += LengthSize;
+                dpapiBlob.CopyTo(payload, offset);
+                offset += dpapiBlob.Length;
+            }
+
+            if (hwidCipher != null)
+            {
+                hwidNonce!.CopyTo(payload, offset);
+                offset += NonceSize;
+                hwidTag!.CopyTo(payload, offset);
+                offset += TagSize;
+                BinaryPrimitives.WriteInt32LittleEndian(payload.AsSpan(offset, LengthSize), hwidCipher.Length);
+                offset += LengthSize;
+                hwidCipher.CopyTo(payload, offset);
+            }
+
+            return payload;
+        }
+        finally
+        {
+            Zero(dpapiBlob);
+            Zero(hwidNonce);
+            Zero(hwidTag);
+            Zero(hwidCipher);
+        }
+    }
+
+    private static (byte[] Nonce, byte[] Tag, byte[] Ciphertext) WrapHwid(byte[] keyId, byte[] keyBytes)
+    {
+        var hwidKey = DeriveHwidKey(keyId);
+        var associatedData = BuildHwidAssociatedData(keyId);
+        var nonce = RandomNumberGenerator.GetBytes(NonceSize);
+        var tag = new byte[TagSize];
+        var ciphertext = new byte[keyBytes.Length];
+        try
+        {
+            using var aes = new AesGcm(hwidKey, TagSize);
+            aes.Encrypt(nonce, keyBytes, ciphertext, tag, associatedData);
+            return (nonce, tag, ciphertext);
+        }
+        catch
+        {
+            Zero(ciphertext);
+            throw;
+        }
+        finally
+        {
+            Zero(hwidKey);
+            Zero(associatedData);
+        }
+    }
+
+    private static byte[] UnwrapHwid(ParsedKeyFile parsed)
+    {
+        var hwidKey = DeriveHwidKey(parsed.KeyId);
+        var associatedData = BuildHwidAssociatedData(parsed.KeyId);
+        var plaintext = new byte[parsed.HwidCipher!.Length];
+        try
+        {
+            try
+            {
+                using var aes = new AesGcm(hwidKey, TagSize);
+                aes.Decrypt(parsed.HwidNonce!, parsed.HwidCipher, parsed.HwidTag!, plaintext, associatedData);
+            }
+            catch (Exception ex) when (ex is CryptographicException or ArgumentException)
+            {
+                Zero(plaintext);
+                throw new CookieVaultException(CookieVaultError.FileDecryptFailed, "HWID 密钥完整性校验失败", ex);
+            }
+
+            if (plaintext.Length != KeySize)
+            {
+                Zero(plaintext);
+                throw new CookieVaultException(CookieVaultError.KeyInvalid, "HWID 解保护的 Cookie 密钥长度无效");
+            }
+
+            return plaintext;
+        }
+        finally
+        {
+            Zero(hwidKey);
+            Zero(associatedData);
+        }
+    }
+
+    private static byte[] DeriveHwidKey(byte[] keyId)
+    {
+        if (!TryGetSystemVolumeSerial(out uint serial))
+            throw new CookieVaultException(CookieVaultError.HwidUnavailable, "无法读取 C 盘序列号");
+
+        var password = Encoding.UTF8.GetBytes($"FufuLauncher.HWID.v1|{serial:X8}");
+        var salt = new byte[HwidSalt.Length + keyId.Length];
+        HwidSalt.CopyTo(salt, 0);
+        keyId.CopyTo(salt, HwidSalt.Length);
+        try
+        {
+            using var derive = new Rfc2898DeriveBytes(password, salt, HwidIterations, HashAlgorithmName.SHA256);
+            return derive.GetBytes(KeySize);
+        }
+        finally
+        {
+            Zero(password);
+            Zero(salt);
+        }
+    }
+
+    private static bool TryGetSystemVolumeSerial(out uint serial)
+    {
+        if (GetVolumeInformation("C:\\", IntPtr.Zero, 0, out serial, out _, out _, IntPtr.Zero, 0))
+            return true;
+
+        string? systemRoot = Path.GetPathRoot(Environment.SystemDirectory);
+        if (!string.IsNullOrEmpty(systemRoot)
+            && !string.Equals(systemRoot, "C:\\", StringComparison.OrdinalIgnoreCase)
+            && GetVolumeInformation(systemRoot, IntPtr.Zero, 0, out serial, out _, out _, IntPtr.Zero, 0))
+            return true;
+
+        serial = 0;
+        return false;
+    }
+
+    private static byte[] BuildHwidAssociatedData(byte[] keyId)
+    {
+        return Encoding.UTF8.GetBytes(string.Join(",",
+            FormatName,
+            "HWID.v1",
+            Convert.ToBase64String(keyId)));
     }
 
     private static void QuarantineKeyFile(string keyPath)
@@ -368,7 +732,7 @@ internal static class CookieVault
         }
     }
 
-    private static void WriteKeyFile(string keyPath, byte[] payload)
+    private static void WriteKeyFile(string keyPath, byte[] payload, bool overwrite)
     {
         string tempPath = keyPath + "." + Guid.NewGuid().ToString("N") + ".tmp";
         try
@@ -385,7 +749,7 @@ internal static class CookieVault
                 stream.Flush(true);
             }
 
-            File.Move(tempPath, keyPath);
+            File.Move(tempPath, keyPath, overwrite);
         }
         finally
         {
@@ -400,13 +764,13 @@ internal static class CookieVault
         }
     }
 
-    private static byte[] BuildAssociatedData(string fileName, byte[] keyId, int version)
+    private static byte[] BuildAssociatedData(string fileName, byte[] keyId, int version, string keyProtection)
     {
         string value = string.Join(",",
             FormatName,
             version.ToString(),
             AlgorithmName,
-            KeyProtectionName,
+            keyProtection,
             Convert.ToBase64String(keyId),
             fileName);
         return Encoding.UTF8.GetBytes(value);
@@ -419,7 +783,35 @@ internal static class CookieVault
         return Path.Combine(dataDir, "secrets", "cookie.key");
     }
 
+    private static void Zero(byte[]? data)
+    {
+        if (data != null)
+            CryptographicOperations.ZeroMemory(data);
+    }
+
     private readonly record struct CookieKey(byte[] KeyBytes, byte[] KeyId);
+
+    private sealed class ParsedKeyFile
+    {
+        public byte Version { get; init; }
+        public byte[] KeyId { get; init; } = Array.Empty<byte>();
+        public byte[]? DpapiBlob { get; set; }
+        public byte[]? HwidNonce { get; set; }
+        public byte[]? HwidTag { get; set; }
+        public byte[]? HwidCipher { get; set; }
+
+        public void Clear()
+        {
+            if (DpapiBlob != null)
+                CryptographicOperations.ZeroMemory(DpapiBlob);
+            if (HwidNonce != null)
+                CryptographicOperations.ZeroMemory(HwidNonce);
+            if (HwidTag != null)
+                CryptographicOperations.ZeroMemory(HwidTag);
+            if (HwidCipher != null)
+                CryptographicOperations.ZeroMemory(HwidCipher);
+        }
+    }
 }
 
 internal sealed class CookieFileEnvelope
