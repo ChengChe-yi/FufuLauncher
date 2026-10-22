@@ -8606,4 +8606,22 @@ Detalhes: {0}</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>Arma</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>Conta</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>UID da comunidade</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>UID do jogo</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>Nível</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>Trocar conta</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>Trocar personagem</value>
+  </data>
 </root>

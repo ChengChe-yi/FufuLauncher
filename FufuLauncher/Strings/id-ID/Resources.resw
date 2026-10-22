@@ -8602,4 +8602,22 @@ Detail: {0}</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>Senjata</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>Akun</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>UID Komunitas</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>UID Game</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>Ganti akun</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>Ganti karakter</value>
+  </data>
 </root>

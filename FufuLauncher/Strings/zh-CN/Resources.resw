@@ -8952,4 +8952,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Abyss_BattleStats" xml:space="preserve">
     <value>战斗统计</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>账户</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>米游社 UID</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>游戏 UID</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>等级</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>切换账户</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>切换角色</value>
+  </data>
 </root>

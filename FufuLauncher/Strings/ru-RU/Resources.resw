@@ -8602,4 +8602,22 @@ Click the button below to open your browser and download manually.</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>Оружие</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>Аккаунт</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>UID сообщества</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>UID игры</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>Сменить аккаунт</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>Сменить персонажа</value>
+  </data>
 </root>

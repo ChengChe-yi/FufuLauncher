@@ -8602,4 +8602,22 @@ Bilibili 서버 지원, 미호요 커뮤니티 로그인 불필요</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>무기</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>커뮤니티 UID</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>게임 UID</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>레벨</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>계정 전환</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>캐릭터 전환</value>
+  </data>
 </root>

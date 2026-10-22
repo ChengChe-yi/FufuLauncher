@@ -226,6 +226,206 @@
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
+            <NavigationView.PaneFooter>
+                <Grid Padding="10,0,10,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="AccountNavButton"
+                            Width="40"
+                            Height="40"
+                            Padding="0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            CornerRadius="20"
+                            Click="AccountNavButton_Click"
+                            AutomationProperties.Name="{helpers:Loc Key=Account_MenuTitle}"
+                            ToolTipService.ToolTip="{helpers:Loc Key=Account_MenuTitle}">
+                        <Button.Flyout>
+                            <Flyout x:Name="AccountFlyout"
+                                    Placement="RightEdgeAlignedBottom"
+                                    ShouldConstrainToRootBounds="True">
+                                <Flyout.FlyoutPresenterStyle>
+                                    <Style TargetType="FlyoutPresenter">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                        <Setter Property="IsTabStop" Value="False" />
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="MinWidth" Value="0" />
+                                        <Setter Property="MaxWidth" Value="400" />
+                                        <Setter Property="Background" Value="{ThemeResource AcrylicInAppFillColorDefaultBrush}" />
+                                        <Setter Property="BorderBrush" Value="{ThemeResource CardStrokeColorDefaultBrush}" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="CornerRadius" Value="12" />
+                                    </Style>
+                                </Flyout.FlyoutPresenterStyle>
+                                <Border Width="300">
+                                    <Grid>
+                                        <StackPanel x:Name="AccountFlyoutProfilePanel"
+                                                    Padding="18,16,18,14"
+                                                    Spacing="14"
+                                                    Visibility="Collapsed">
+                                            <Grid ColumnSpacing="12">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <PersonPicture x:Name="AccountFlyoutAvatar"
+                                                               Width="52"
+                                                               Height="52" />
+                                                <TextBlock x:Name="AccountFlyoutNickname"
+                                                           Grid.Column="1"
+                                                           VerticalAlignment="Center"
+                                                           FontSize="16"
+                                                           FontWeight="SemiBold"
+                                                           MaxLines="1"
+                                                           TextTrimming="CharacterEllipsis" />
+                                            </Grid>
+
+                                            <StackPanel Spacing="8">
+                                                <Grid ColumnSpacing="12">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock FontSize="12"
+                                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                               Text="{helpers:Loc Key=Account_Flyout_CommunityUid}" />
+                                                    <TextBlock x:Name="AccountFlyoutCommunityUid"
+                                                               Grid.Column="1"
+                                                               FontSize="12"
+                                                               FontWeight="SemiBold"
+                                                               TextAlignment="Right"
+                                                               TextTrimming="CharacterEllipsis" />
+                                                </Grid>
+                                                <Grid ColumnSpacing="12">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock FontSize="12"
+                                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                               Text="{helpers:Loc Key=Account_Flyout_GameUid}" />
+                                                    <TextBlock x:Name="AccountFlyoutGameUid"
+                                                               Grid.Column="1"
+                                                               FontSize="12"
+                                                               FontWeight="SemiBold"
+                                                               TextAlignment="Right"
+                                                               TextTrimming="CharacterEllipsis" />
+                                                </Grid>
+                                                <Grid ColumnSpacing="12">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock FontSize="12"
+                                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                               Text="{helpers:Loc Key=ServerLabel}" />
+                                                    <TextBlock x:Name="AccountFlyoutServer"
+                                                               Grid.Column="1"
+                                                               FontSize="12"
+                                                               FontWeight="SemiBold"
+                                                               TextAlignment="Right"
+                                                               TextTrimming="CharacterEllipsis" />
+                                                </Grid>
+                                                <Grid ColumnSpacing="12">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock FontSize="12"
+                                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                               Text="{helpers:Loc Key=Account_Flyout_Level}" />
+                                                    <TextBlock x:Name="AccountFlyoutLevel"
+                                                               Grid.Column="1"
+                                                               FontSize="12"
+                                                               FontWeight="SemiBold"
+                                                               TextAlignment="Right"
+                                                               TextTrimming="CharacterEllipsis" />
+                                                </Grid>
+                                            </StackPanel>
+
+                                            <Grid ColumnSpacing="8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Button Grid.Column="0"
+                                                        Padding="8,7"
+                                                        HorizontalAlignment="Stretch"
+                                                        HorizontalContentAlignment="Center"
+                                                        Click="AccountSwitchButton_Click"
+                                                        ToolTipService.ToolTip="{helpers:Loc Key=Account_Flyout_SwitchAccount}">
+                                                    <TextBlock FontSize="12"
+                                                               Text="{helpers:Loc Key=Account_Flyout_SwitchAccount}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               TextWrapping="NoWrap" />
+                                                </Button>
+                                                <Button Grid.Column="1"
+                                                        Padding="8,7"
+                                                        HorizontalAlignment="Stretch"
+                                                        HorizontalContentAlignment="Center"
+                                                        Click="RoleSwitchButton_Click"
+                                                        ToolTipService.ToolTip="{helpers:Loc Key=Account_Flyout_SwitchRole}">
+                                                    <TextBlock FontSize="12"
+                                                               Text="{helpers:Loc Key=Account_Flyout_SwitchRole}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               TextWrapping="NoWrap" />
+                                                </Button>
+                                            </Grid>
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="AccountFlyoutGuestPanel"
+                                                    Padding="18,20,18,16"
+                                                    Spacing="12">
+                                            <FontIcon HorizontalAlignment="Center"
+                                                      FontSize="32"
+                                                      Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                      Glyph="&#xE77B;" />
+                                            <TextBlock HorizontalAlignment="Center"
+                                                       FontSize="14"
+                                                       FontWeight="SemiBold"
+                                                       Text="{helpers:Loc Key=Account_NotLoggedIn}" />
+                                            <Button HorizontalAlignment="Stretch"
+                                                    HorizontalContentAlignment="Center"
+                                                    Click="AccountFlyoutGoToAccount_Click"
+                                                    Content="{helpers:Loc Key=Account_Login}"
+                                                    Style="{StaticResource AccentButtonStyle}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </Flyout>
+                        </Button.Flyout>
+                        <Grid Width="32" Height="32" IsHitTestVisible="False">
+                            <PersonPicture x:Name="AccountNavAvatar"
+                                           Width="32"
+                                           Height="32"
+                                           Visibility="Collapsed" />
+                            <FontIcon x:Name="AccountNavPlaceholderIcon"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      FontFamily="{StaticResource ActionIconFont}"
+                                      FontSize="24"
+                                      Glyph="&#xE77B;" />
+                        </Grid>
+                    </Button>
+                    <TextBlock x:Name="AccountNavText"
+                               Grid.Column="1"
+                               Margin="8,0,0,0"
+                               VerticalAlignment="Center"
+                               FontSize="14"
+                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                               Text="{helpers:Loc Key=Account_MenuTitle}"
+                               TextTrimming="CharacterEllipsis"
+                               Visibility="Collapsed" />
+                </Grid>
+            </NavigationView.PaneFooter>
+
             <NavigationView.FooterMenuItems>
                 <NavigationViewItem Content="{helpers:Loc Key=NavSettings}"
                                     Tag="FufuLauncher.ViewModels.SettingsViewModel">

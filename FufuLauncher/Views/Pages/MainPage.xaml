@@ -756,6 +756,7 @@
                         <Grid
                             x:Name="DailyNoteCardGrid"
                             MinWidth="140"
+                            MaxWidth="140"
                             Padding="12"
                             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                             BorderThickness="1"

@@ -46,7 +46,7 @@ public class UpdateService : IUpdateService
     {
         try
         {
-            Debug.WriteLine($"[UpdateService] === 版本检查开始 ===");
+            Debug.WriteLine($"[UpdateService] 版本检查开始");
             Debug.WriteLine($"[UpdateService] 本地版本: {CurrentVersion}");
             Debug.WriteLine($"[UpdateService] 超时设置: {_httpClient.Timeout.TotalSeconds} 秒");
 

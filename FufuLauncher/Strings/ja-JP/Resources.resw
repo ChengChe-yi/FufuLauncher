@@ -8606,4 +8606,22 @@ Bilibiliサーバー対応、MiYouSheログイン不要</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>武器</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>アカウント</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>コミュニティ UID</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>ゲーム UID</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>レベル</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>アカウント切替</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>キャラクター切替</value>
+  </data>
 </root>

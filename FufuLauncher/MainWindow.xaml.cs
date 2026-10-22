@@ -30,6 +30,7 @@ public sealed partial class MainWindow : WindowEx
     private readonly IBackgroundRenderer _backgroundRenderer;
     private readonly IDevBuildDetectionService _devBuildDetectionService;
     private readonly ILocalSettingsService _localSettingsService;
+    private readonly AccountManager _accountManager;
     private MediaPlayer? _globalBackgroundPlayer;
     private IMediaPlaybackSource? _suspendedVideoSource;
     private TypedEventHandler<MediaPlayer, MediaPlayerFailedEventArgs>? _bgVideoFailedHandler;
@@ -195,6 +196,14 @@ public sealed partial class MainWindow : WindowEx
         _backgroundRenderer = App.GetService<IBackgroundRenderer>();
         _devBuildDetectionService = App.GetService<IDevBuildDetectionService>();
         _localSettingsService = App.GetService<ILocalSettingsService>();
+        _accountManager = App.GetService<AccountManager>();
+        AccountFlyout.Closed += (_, _) =>
+        {
+            var action = _accountFlyoutClosedAction;
+            _accountFlyoutClosedAction = null;
+            if (action != null)
+                dispatcherQueue.TryEnqueue(() => action());
+        };
 
         WeakReferenceMessenger.Default.Register<AgreementAcceptedMessage>(this, (_, _) =>
         {
@@ -339,6 +348,16 @@ public sealed partial class MainWindow : WindowEx
         WeakReferenceMessenger.Default.Register<BackgroundOverlayOpacityChangedMessage>(this, (_, m) =>
         {
             dispatcherQueue.TryEnqueue(() => ApplyOverlayOpacity(m.Value));
+        });
+
+        WeakReferenceMessenger.Default.Register<AccountChangedMessage>(this, (_, _) =>
+        {
+            dispatcherQueue.TryEnqueue(RefreshAccountMenu);
+        });
+
+        WeakReferenceMessenger.Default.Register<GameRoleChangedMessage>(this, (_, _) =>
+        {
+            dispatcherQueue.TryEnqueue(RefreshAccountMenu);
         });
 
         _memoryOptimizationTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };

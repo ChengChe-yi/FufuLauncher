@@ -8602,4 +8602,22 @@ UIGF v4.x/3.0/2.x</value>
   <data name="Gacha_ItemType_Weapon" xml:space="preserve">
     <value>武器</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>帳戶</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>米遊社 UID</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>遊戲 UID</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>等級</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>切換帳戶</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>切換角色</value>
+  </data>
 </root>

@@ -8957,4 +8957,22 @@ Details: {0}</value>
   <data name="Abyss_BattleStats" xml:space="preserve">
     <value>Battle Statistics</value>
   </data>
+  <data name="Account_MenuTitle" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Account_Flyout_CommunityUid" xml:space="preserve">
+    <value>Community UID</value>
+  </data>
+  <data name="Account_Flyout_GameUid" xml:space="preserve">
+    <value>Game UID</value>
+  </data>
+  <data name="Account_Flyout_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Account_Flyout_SwitchAccount" xml:space="preserve">
+    <value>Switch account</value>
+  </data>
+  <data name="Account_Flyout_SwitchRole" xml:space="preserve">
+    <value>Switch role</value>
+  </data>
 </root>

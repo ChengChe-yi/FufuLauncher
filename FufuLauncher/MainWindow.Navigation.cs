@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using System.Numerics;
+using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Helpers;
 using FufuLauncher.Messages;
@@ -13,13 +14,20 @@ using FufuLauncher.Services;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Hosting;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
+using Microsoft.UI.Xaml.Media.Imaging;
 
 namespace FufuLauncher;
 
 public sealed partial class MainWindow
 {
+    private Action? _accountFlyoutClosedAction;
+    private ImageSource? _accountFlyoutAvatarSource;
+    private string? _accountAvatarUrl;
+
     #region Navigation & Layout
 
     private async void NavigationView_Loaded(object sender, RoutedEventArgs e)
@@ -166,6 +174,7 @@ public sealed partial class MainWindow
     {
         AgreementFrame.Visibility = Visibility.Collapsed;
         NavigationView.Visibility = Visibility.Visible;
+        RefreshAccountMenu();
         NavigationView.SelectedItem = NavigationView.MenuItems[0];
 
         try
@@ -200,6 +209,8 @@ public sealed partial class MainWindow
 
     private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
+        RefreshAccountMenu();
+
         if (args.SelectedItem is NavigationViewItem selectedItem)
         {
             var viewModelTag = selectedItem.Tag?.ToString();
@@ -228,6 +239,9 @@ public sealed partial class MainWindow
 
     private void NavigationView_PaneOpened(NavigationView sender, object args)
     {
+        if (AccountNavText != null)
+            AccountNavText.Visibility = Visibility.Visible;
+
         if (_notificationPosition == NotificationPosition.TopLeft ||
             _notificationPosition == NotificationPosition.BottomLeft)
         {
@@ -237,11 +251,199 @@ public sealed partial class MainWindow
 
     private void NavigationView_PaneClosed(NavigationView sender, object args)
     {
+        if (AccountNavText != null)
+            AccountNavText.Visibility = Visibility.Collapsed;
+
         if (_notificationPosition == NotificationPosition.TopLeft ||
             _notificationPosition == NotificationPosition.BottomLeft)
         {
             ApplyNotificationPosition(_notificationPosition);
         }
+    }
+
+    private void AccountNavButton_Click(object sender, RoutedEventArgs e)
+    {
+        RefreshAccountMenu();
+    }
+
+    private void RefreshAccountMenu()
+    {
+        AccountNavText.Visibility = NavigationView.IsPaneOpen ? Visibility.Visible : Visibility.Collapsed;
+        var entry = _accountManager.GetActiveAccountEntry();
+        if (entry == null)
+        {
+            _accountFlyoutAvatarSource = null;
+            _accountAvatarUrl = null;
+            AccountNavAvatar.ProfilePicture = null;
+            AccountNavAvatar.Visibility = Visibility.Collapsed;
+            AccountNavPlaceholderIcon.Visibility = Visibility.Visible;
+            AccountNavText.Text = "Account_MenuTitle".GetLocalized();
+            AccountFlyoutProfilePanel.Visibility = Visibility.Collapsed;
+            AccountFlyoutGuestPanel.Visibility = Visibility.Visible;
+            return;
+        }
+
+        var role = GameRoleSelection.Current(entry);
+        var nickname = entry.Nickname;
+        if (string.IsNullOrWhiteSpace(nickname))
+            nickname = role?.nickname ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(nickname))
+            nickname = string.Format("Account_User_Format".GetLocalized(), entry.Stuid);
+
+        if (_accountFlyoutAvatarSource == null ||
+            !string.Equals(_accountAvatarUrl, entry.AvatarUrl, StringComparison.Ordinal))
+        {
+            _accountFlyoutAvatarSource = CreateAccountAvatarSource(entry.AvatarUrl);
+            _accountAvatarUrl = entry.AvatarUrl;
+        }
+
+        AccountNavAvatar.ProfilePicture = _accountFlyoutAvatarSource;
+        AccountNavAvatar.Visibility = Visibility.Visible;
+        AccountNavPlaceholderIcon.Visibility = Visibility.Collapsed;
+        AccountFlyoutAvatar.ProfilePicture = _accountFlyoutAvatarSource;
+        AccountNavText.Text = nickname;
+        AccountFlyoutNickname.Text = nickname;
+        AccountFlyoutCommunityUid.Text = FormatAccountValue(entry.Stuid);
+        AccountFlyoutGameUid.Text = FormatAccountValue(role?.game_uid ?? entry.GameUid);
+        var regionName = role?.region_name;
+        AccountFlyoutServer.Text = !string.IsNullOrWhiteSpace(regionName)
+            ? regionName
+            : (entry.ServerType == "os" || entry.Id.StartsWith("os_", StringComparison.Ordinal)
+                ? "Account_Server_Global".GetLocalized()
+                : "Account_Server_CN".GetLocalized());
+        AccountFlyoutLevel.Text = role != null && role.level > 0
+            ? role.level.ToString()
+            : "Common_None".GetLocalized();
+        AccountFlyoutProfilePanel.Visibility = Visibility.Visible;
+        AccountFlyoutGuestPanel.Visibility = Visibility.Collapsed;
+    }
+
+    private static string FormatAccountValue(string? value) =>
+        string.IsNullOrWhiteSpace(value) ? "Common_None".GetLocalized() : value;
+
+    private static BitmapImage CreateAccountAvatarSource(string? avatarUrl)
+    {
+        var fallback = new Uri("ms-appx:///Assets/DefaultAvatar.png");
+        var uri = !string.IsNullOrWhiteSpace(avatarUrl) &&
+                  Uri.TryCreate(avatarUrl, UriKind.Absolute, out var parsed)
+            ? parsed
+            : fallback;
+        var image = new BitmapImage(uri);
+        if (uri != fallback)
+        {
+            image.ImageFailed += (_, _) =>
+            {
+                if (image.UriSource != fallback)
+                    image.UriSource = fallback;
+            };
+        }
+
+        return image;
+    }
+
+    private void AccountSwitchButton_Click(object sender, RoutedEventArgs e)
+    {
+        _accountFlyoutClosedAction = ShowAccountSwitchFlyout;
+        AccountFlyout.Hide();
+    }
+
+    private void RoleSwitchButton_Click(object sender, RoutedEventArgs e)
+    {
+        _accountFlyoutClosedAction = ShowRoleSwitchFlyout;
+        AccountFlyout.Hide();
+    }
+
+    private void ShowAccountSwitchFlyout()
+    {
+        var flyout = new MenuFlyout
+        {
+            Placement = FlyoutPlacementMode.RightEdgeAlignedBottom
+        };
+        var activeId = _accountManager.ActiveAccountId;
+        foreach (var account in _accountManager.GetAllAccounts())
+        {
+            var nickname = string.IsNullOrWhiteSpace(account.Nickname) ? account.Stuid : account.Nickname;
+            var item = new RadioMenuFlyoutItem
+            {
+                Text = $"{nickname} · {account.Stuid}",
+                GroupName = "AccountSwitch",
+                IsChecked = account.Id == activeId
+            };
+            item.Click += async (_, _) => await SwitchAccountAsync(account);
+            flyout.Items.Add(item);
+        }
+
+        if (flyout.Items.Count == 0)
+            flyout.Items.Add(new MenuFlyoutItem { Text = "Account_NotLoggedIn".GetLocalized(), IsEnabled = false });
+
+        flyout.ShowAt(AccountNavButton);
+    }
+
+    private async Task SwitchAccountAsync(AccountEntry account)
+    {
+        if (account.Id == _accountManager.ActiveAccountId) return;
+        try
+        {
+            await _accountManager.SwitchAccountAsync(account.Id);
+            WeakReferenceMessenger.Default.Send(new AccountChangedMessage());
+            RefreshAccountMenu();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[AccountSwitch] {ex.Message}");
+        }
+    }
+
+    private void ShowRoleSwitchFlyout()
+    {
+        var flyout = new MenuFlyout
+        {
+            Placement = FlyoutPlacementMode.RightEdgeAlignedBottom
+        };
+        var entry = _accountManager.GetActiveAccountEntry();
+        var roles = entry == null
+            ? new List<GameRoleInfo>()
+            : GameRoleSelection.Filter(entry.GameRoles ?? [], entry.ServerType);
+        var current = entry == null ? null : GameRoleSelection.Current(entry);
+
+        foreach (var role in roles)
+        {
+            var label = string.IsNullOrWhiteSpace(role.nickname)
+                ? role.game_uid
+                : $"{role.nickname} · {role.region_name} · {role.game_uid}";
+            var item = new RadioMenuFlyoutItem
+            {
+                Text = label,
+                GroupName = "RoleSwitch",
+                IsChecked = current != null && role.game_uid == current.game_uid && role.region == current.region
+            };
+            item.Click += async (_, _) => await SwitchRoleAsync(entry!.Id, role);
+            flyout.Items.Add(item);
+        }
+
+        if (roles.Count == 0)
+            flyout.Items.Add(new MenuFlyoutItem { Text = "Account_NoCharacters".GetLocalized(), IsEnabled = false });
+
+        flyout.ShowAt(AccountNavButton);
+    }
+
+    private async Task SwitchRoleAsync(string accountId, GameRoleInfo role)
+    {
+        try
+        {
+            await App.GetService<GameRoleService>().SelectAsync(accountId, role);
+            RefreshAccountMenu();
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[RoleSwitch] {ex.Message}");
+        }
+    }
+
+    private async void AccountFlyoutGoToAccount_Click(object sender, RoutedEventArgs e)
+    {
+        AccountFlyout.Hide();
+        await NavigateToAccountPageAsync();
     }
 
     internal async void NavigateToPage(string viewModelTag, bool force = false)
