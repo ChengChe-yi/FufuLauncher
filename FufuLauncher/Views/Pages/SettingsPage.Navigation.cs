@@ -3,6 +3,7 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
+using FufuLauncher.Helpers;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -16,6 +17,7 @@ public sealed partial class SettingsPage
     private void SettingsNavigationView_SelectionChanged(NavigationView sender,
         NavigationViewSelectionChangedEventArgs args)
     {
+        PreviewTrace.Log("SettingsNav.SelectionChanged", $"tag={(args.SelectedItem as NavigationViewItem)?.Tag} navigating={_isNavigatingFromMenu}");
         if (_isNavigatingFromMenu) return;
 
         if (args.SelectedItem is NavigationViewItem selectedItem &&
@@ -38,16 +40,17 @@ public sealed partial class SettingsPage
             var element = FindName(tag) as FrameworkElement;
             if (element != null)
             {
+                var animateScroll = tag != SettingsSectionIds.ImageSource;
                 if (element.ActualHeight > 0)
                 {
-                    BringElementIntoView(element);
+                    BringElementIntoView(element, animateScroll);
                 }
                 else
                 {
                     RoutedEventHandler loadedHandler = null;
                     loadedHandler = (s, e) =>
                     {
-                        BringElementIntoView(element);
+                        BringElementIntoView(element, animateScroll);
                         element.Loaded -= loadedHandler;
                     };
                     element.Loaded += loadedHandler;
@@ -103,13 +106,14 @@ public sealed partial class SettingsPage
         }
     }
 
-    private void BringElementIntoView(FrameworkElement element)
+    private void BringElementIntoView(FrameworkElement element, bool animate = true)
     {
+        PreviewTrace.Log("SettingsNav.BringIntoView", $"element={element?.Name} animate={animate}");
         if (element == null) return;
 
         var bringIntoViewOptions = new BringIntoViewOptions
         {
-            AnimationDesired = true,
+            AnimationDesired = animate,
             VerticalAlignmentRatio = 0.0
         };
 
