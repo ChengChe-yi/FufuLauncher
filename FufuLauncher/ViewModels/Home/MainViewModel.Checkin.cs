@@ -24,6 +24,7 @@ public partial class MainViewModel
     [ObservableProperty] private bool _isCheckinButtonEnabled = true;
     [ObservableProperty] private string _checkinButtonText = "Checkin_SignNow".GetLocalized();
     [ObservableProperty] private string _checkinSummary = "";
+    [ObservableProperty] private bool _isCheckinLoaded;
 
     [ObservableProperty] private string _checkinStateGlyph = "\uE730";
     [ObservableProperty] private SolidColorBrush _checkinStateBrush = new(Microsoft.UI.Colors.Gray);
@@ -61,6 +62,7 @@ public partial class MainViewModel
     {
         if (_localSettingsService == null) return;
         var version = ++_checkinStatusVersion;
+        IsCheckinLoaded = false;
         CheckinStatusText = "Checkin_LoadingStatus".GetLocalized();
         CheckinSummary = "";
         CheckinStateGlyph = "\uE730";
@@ -83,6 +85,7 @@ public partial class MainViewModel
                 CheckinStatusText = "Checkin_NotLoggedIn".GetLocalized();
                 CheckinSummary = "Checkin_PleaseLogin".GetLocalized();
                 UpdateCheckinIconState("Fail");
+                IsCheckinLoaded = true;
                 return;
             }
 
@@ -93,6 +96,7 @@ public partial class MainViewModel
             CheckinStatusText = status;
             CheckinSummary = summary;
             UpdateCheckinIconState(status);
+            IsCheckinLoaded = true;
         }
         catch (Exception ex)
         {
@@ -100,6 +104,7 @@ public partial class MainViewModel
             CheckinStatusText = "Checkin_LoadFailed".GetLocalized();
             CheckinSummary = ex.Message;
             UpdateCheckinIconState("Fail");
+            IsCheckinLoaded = true;
         }
     }
 

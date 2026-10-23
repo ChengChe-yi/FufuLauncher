@@ -684,10 +684,27 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel
+                                <TextBlock
+                                    x:Name="CheckinEmptyText"
                                     Grid.Column="0"
                                     Margin="0,0,12,0"
                                     VerticalAlignment="Center"
+                                    FontSize="12"
+                                    Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                    IsHitTestVisible="False"
+                                    MaxLines="2"
+                                    Opacity="0.8"
+                                    Text="{Binding CheckinStatusText}"
+                                    TextTrimming="CharacterEllipsis"
+                                    TextWrapping="Wrap" />
+
+                                <StackPanel
+                                    x:Name="CheckinDataPanel"
+                                    Grid.Column="0"
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Center"
+                                    IsHitTestVisible="False"
+                                    Opacity="0"
                                     Spacing="2">
                                     <TextBlock
                                         FontSize="12"

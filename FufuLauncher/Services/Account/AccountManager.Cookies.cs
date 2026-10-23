@@ -14,7 +14,7 @@ public partial class AccountManager
         Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
     };
 
-    private sealed record CookieReadResult(Dictionary<string, string> Cookies, bool IsLegacyPlaintext);
+    private sealed record CookieReadResult(Dictionary<string, string> Cookies, bool NeedsRewrite);
 
     private async Task WriteCookieFileAsync(string path, Dictionary<string, string> cookies)
     {
@@ -105,7 +105,9 @@ public partial class AccountManager
                 {
                     var file = JsonSerializer.Deserialize<AccountCookieFile>(plaintext, CookieJsonOptions)
                                ?? throw new JsonException("Cookie 文件内容无效");
-                    return new CookieReadResult(file.Cookies ?? new Dictionary<string, string>(), false);
+                    return new CookieReadResult(file.Cookies ?? new Dictionary<string, string>(),
+                        CookieVault.IsLegacyJsonEnvelope(bytes)
+                        || CookieVault.IsLegacyBinaryEnvelope(bytes));
                 }
                 finally
                 {
@@ -209,7 +211,7 @@ public partial class AccountManager
             return null;
         }
 
-        if (!result.IsLegacyPlaintext) return result.Cookies;
+        if (!result.NeedsRewrite) return result.Cookies;
 
         await _lock.WaitAsync();
         try
@@ -225,14 +227,14 @@ public partial class AccountManager
                 return null;
             }
 
-            if (!current.IsLegacyPlaintext) return current.Cookies;
+            if (!current.NeedsRewrite) return current.Cookies;
 
             try
             {
                 await WriteCookieFileAsync(path, current.Cookies);
                 entry.CookieVersion = CookieFileVersion;
                 entry.UpdatedAt = DateTime.Now;
-                Debug.WriteLine($"[AccountManager] 已自动加密 Cookie 文件: {Path.GetFileName(path)}");
+                Debug.WriteLine($"[AccountManager] 已更新 Cookie 文件存储格式: {Path.GetFileName(path)}");
                 return current.Cookies;
             }
             catch (Exception ex)

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -73,6 +73,8 @@ public sealed partial class MainPage : Page
 
         SyncDailyNoteState();
 
+        SyncCheckinState();
+
         InitializeNewsSkeleton();
 
         if (!_isInitialized)
@@ -98,6 +100,10 @@ public sealed partial class MainPage : Page
         else if (e.PropertyName == nameof(MainViewModel.IsDailyNoteLoaded))
         {
             _ = DispatcherQueue.TryEnqueue(() => AnimateDailyNoteTransition(ViewModel.IsDailyNoteLoaded));
+        }
+        else if (e.PropertyName == nameof(MainViewModel.IsCheckinLoaded))
+        {
+            _ = DispatcherQueue.TryEnqueue(() => AnimateCheckinTransition(ViewModel.IsCheckinLoaded));
         }
         else if (e.PropertyName == nameof(MainViewModel.IsNewsLoaded))
         {

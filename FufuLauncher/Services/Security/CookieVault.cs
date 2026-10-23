@@ -39,8 +39,16 @@ internal static class CookieVault
     private const byte KeyFlagDpapi = 1;
     private const byte KeyFlagHwid = 2;
     private const int KeyHeaderSize = 4 + 1 + KeyIdSize;
+    private const string BinaryFormatName = "FufuLauncher.CookieVault.Binary";
+    private const int BinaryFormatVersion = 1;
+    private const int MachineMagicSize = 8;
+    private const int LegacyBinaryMagicSize = 4;
+    private const int BinaryHeaderSize = MachineMagicSize + 1 + KeyIdSize + NonceSize + TagSize;
+    private const int LegacyBinaryHeaderSize = LegacyBinaryMagicSize + 1 + KeyIdSize + NonceSize + TagSize;
     private const int HwidIterations = 100_000;
     private static readonly byte[] KeyMagic = Encoding.UTF8.GetBytes("FLVK");
+    private static readonly byte[] LegacyBinaryMagic = Encoding.UTF8.GetBytes("FLCK");
+    private static readonly Lazy<byte[]> MachineMagic = new(CreateMachineMagic);
     private static readonly byte[] Entropy = Encoding.UTF8.GetBytes("FufuLauncher.CookieVault.DPAPI.v1");
     private static readonly byte[] HwidSalt = Encoding.UTF8.GetBytes("FufuLauncher.CookieVault.HWID.v1");
     private static readonly object KeySync = new();
@@ -57,7 +65,10 @@ internal static class CookieVault
         IntPtr lpFileSystemNameBuffer,
         uint nFileSystemNameSize);
 
-    public static bool IsEncryptedFile(byte[] data)
+    public static bool IsEncryptedFile(byte[] data) =>
+        IsBinaryEnvelope(data) || IsLegacyJsonEnvelope(data);
+
+    internal static bool IsLegacyJsonEnvelope(byte[] data)
     {
         try
         {
@@ -80,6 +91,18 @@ internal static class CookieVault
         }
     }
 
+    private static bool IsBinaryEnvelope(byte[] data) =>
+        IsMachineBinaryEnvelope(data) || IsLegacyBinaryEnvelope(data);
+
+    private static bool IsMachineBinaryEnvelope(byte[] data) =>
+        data.Length > BinaryHeaderSize
+        && data.AsSpan(0, MachineMagicSize).SequenceEqual(MachineMagic.Value);
+
+    internal static bool IsLegacyBinaryEnvelope(byte[] data) =>
+        !IsMachineBinaryEnvelope(data)
+        && data.Length > LegacyBinaryHeaderSize
+        && data.AsSpan(0, LegacyBinaryMagicSize).SequenceEqual(LegacyBinaryMagic);
+
     public static byte[] Encrypt(string dataDir, string fileName, byte[] plaintext)
     {
         var key = GetOrCreateKey(dataDir);
@@ -89,26 +112,27 @@ internal static class CookieVault
         {
             var nonce = RandomNumberGenerator.GetBytes(NonceSize);
             var tag = new byte[TagSize];
-            associatedData = BuildAssociatedData(fileName, key.KeyId, FormatVersion, KeyProtectionName);
+            associatedData = BuildBinaryAssociatedData(fileName, key.KeyId);
 
             using (var aes = new AesGcm(key.KeyBytes, TagSize))
             {
                 aes.Encrypt(nonce, plaintext, ciphertext, tag, associatedData);
             }
 
-            var envelope = new CookieFileEnvelope
-            {
-                Format = FormatName,
-                Version = FormatVersion,
-                Algorithm = AlgorithmName,
-                KeyProtection = KeyProtectionName,
-                KeyId = Convert.ToBase64String(key.KeyId),
-                Nonce = Convert.ToBase64String(nonce),
-                Tag = Convert.ToBase64String(tag),
-                Ciphertext = Convert.ToBase64String(ciphertext)
-            };
+            var magic = MachineMagic.Value;
+            var payload = new byte[BinaryHeaderSize + ciphertext.Length];
+            magic.CopyTo(payload, 0);
+            payload[MachineMagicSize] = BinaryFormatVersion;
+            key.KeyId.CopyTo(payload, MachineMagicSize + 1);
 
-            return JsonSerializer.SerializeToUtf8Bytes(envelope);
+            int offset = MachineMagicSize + 1 + KeyIdSize;
+            nonce.CopyTo(payload, offset);
+            offset += NonceSize;
+            tag.CopyTo(payload, offset);
+            offset += TagSize;
+            ciphertext.CopyTo(payload, offset);
+
+            return payload;
         }
         finally
         {
@@ -120,6 +144,9 @@ internal static class CookieVault
 
     public static byte[] Decrypt(string dataDir, string fileName, byte[] fileBytes)
     {
+        if (IsBinaryEnvelope(fileBytes))
+            return DecryptBinary(dataDir, fileName, fileBytes);
+
         CookieFileEnvelope envelope;
         try
         {
@@ -172,6 +199,69 @@ internal static class CookieVault
                 throw new CookieVaultException(CookieVaultError.KeyMismatch, "Cookie 文件加密密钥不匹配");
 
             associatedData = BuildAssociatedData(fileName, keyId, envelope.Version, envelope.KeyProtection!);
+            var plaintext = new byte[ciphertext.Length];
+            try
+            {
+                using var aes = new AesGcm(key.KeyBytes, TagSize);
+                aes.Decrypt(nonce, ciphertext, tag, plaintext, associatedData);
+                return plaintext;
+            }
+            catch (Exception ex) when (ex is CryptographicException or ArgumentException)
+            {
+                Zero(plaintext);
+                throw new CookieVaultException(CookieVaultError.FileDecryptFailed, "Cookie 文件完整性校验失败", ex);
+            }
+        }
+        finally
+        {
+            Zero(key.KeyBytes);
+            Zero(associatedData);
+        }
+    }
+
+    private static byte[] DecryptBinary(string dataDir, string fileName, byte[] fileBytes)
+    {
+        int magicSize;
+        int headerSize;
+        if (IsMachineBinaryEnvelope(fileBytes))
+        {
+            magicSize = MachineMagicSize;
+            headerSize = BinaryHeaderSize;
+        }
+        else if (IsLegacyBinaryEnvelope(fileBytes))
+        {
+            magicSize = LegacyBinaryMagicSize;
+            headerSize = LegacyBinaryHeaderSize;
+        }
+        else
+        {
+            throw new CookieVaultException(CookieVaultError.FileFormat, "Cookie 二进制文件格式无效");
+        }
+
+        if (fileBytes.Length <= headerSize
+            || fileBytes[magicSize] != BinaryFormatVersion)
+            throw new CookieVaultException(CookieVaultError.FileFormat, "Cookie 二进制文件格式无效");
+
+        int keyIdOffset = magicSize + 1;
+        var keyId = fileBytes.AsSpan(keyIdOffset, KeyIdSize).ToArray();
+        int nonceOffset = keyIdOffset + KeyIdSize;
+        var nonce = fileBytes.AsSpan(nonceOffset, NonceSize).ToArray();
+        int tagOffset = nonceOffset + NonceSize;
+        var tag = fileBytes.AsSpan(tagOffset, TagSize).ToArray();
+        int cipherOffset = tagOffset + TagSize;
+        var ciphertext = fileBytes.AsSpan(cipherOffset).ToArray();
+
+        if (ciphertext.Length == 0)
+            throw new CookieVaultException(CookieVaultError.FileFormat, "Cookie 二进制文件格式无效");
+
+        var key = LoadKey(dataDir);
+        byte[]? associatedData = null;
+        try
+        {
+            if (!CryptographicOperations.FixedTimeEquals(key.KeyId, keyId))
+                throw new CookieVaultException(CookieVaultError.KeyMismatch, "Cookie 文件加密密钥不匹配");
+
+            associatedData = BuildBinaryAssociatedData(fileName, keyId);
             var plaintext = new byte[ciphertext.Length];
             try
             {
@@ -665,6 +755,30 @@ internal static class CookieVault
         }
     }
 
+    private static byte[] CreateMachineMagic()
+    {
+        string identity = TryGetSystemVolumeSerial(out uint serial)
+            ? serial.ToString("X8")
+            : Environment.MachineName;
+        var source = Encoding.UTF8.GetBytes($"FufuLauncher.CookieVault.Magic.v1|{identity}");
+        try
+        {
+            var hash = SHA256.HashData(source);
+            try
+            {
+                return hash.AsSpan(0, MachineMagicSize).ToArray();
+            }
+            finally
+            {
+                Zero(hash);
+            }
+        }
+        finally
+        {
+            Zero(source);
+        }
+    }
+
     private static byte[] DeriveHwidKey(byte[] keyId)
     {
         if (!TryGetSystemVolumeSerial(out uint serial))
@@ -764,6 +878,18 @@ internal static class CookieVault
             {
             }
         }
+    }
+
+    private static byte[] BuildBinaryAssociatedData(string fileName, byte[] keyId)
+    {
+        string value = string.Join(",",
+            BinaryFormatName,
+            BinaryFormatVersion.ToString(),
+            AlgorithmName,
+            KeyProtectionName,
+            Convert.ToBase64String(keyId),
+            fileName);
+        return Encoding.UTF8.GetBytes(value);
     }
 
     private static byte[] BuildAssociatedData(string fileName, byte[] keyId, int version, string keyProtection)

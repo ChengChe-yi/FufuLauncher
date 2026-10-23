@@ -50,6 +50,15 @@ public partial class AccountManager
                     return true;
                 }
 
+                if (read.NeedsRewrite)
+                {
+                    await WriteCookieFileAsync(path, read.Cookies);
+                    account.CookieVersion = CookieFileVersion;
+                    System.Diagnostics.Debug.WriteLine(
+                        $"[AccountManager] 已转换 Cookie 文件存储格式: {account.CookieFilePath}");
+                    return true;
+                }
+
                 if (account.CookieVersion == CookieFileVersion)
                     return false;
 
@@ -93,7 +102,14 @@ public partial class AccountManager
                 var bytes = await File.ReadAllBytesAsync(path);
                 if (CookieVault.IsEncryptedFile(bytes))
                 {
-                    await ReadCookieFileAsync(path);
+                    var read = await ReadCookieFileAsync(path);
+                    if (read?.NeedsRewrite == true)
+                    {
+                        await WriteCookieFileAsync(path, read.Cookies);
+                        System.Diagnostics.Debug.WriteLine(
+                            $"[AccountManager] 已转换 Cookie 文件存储格式: {Path.GetFileName(path)}");
+                    }
+
                     continue;
                 }
 
