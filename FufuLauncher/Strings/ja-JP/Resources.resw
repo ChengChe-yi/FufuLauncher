@@ -8678,8 +8678,17 @@ Bilibiliサーバー対応、MiYouSheログイン不要</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>起動時にBingの壁紙を変更</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>すべての年</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>公式</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing wallpapers follow the current UI language market. The arrow buttons switch between recent wallpapers.</value>
+    <value>Bing アーカイブから年を選択します。「公式」をオンにすると最新の公式壁紙のみを使用します。</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>No custom background image selected.</value>

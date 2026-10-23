@@ -8674,8 +8674,17 @@ Click the button below to open your browser and download manually.</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>Менять обои Bing при запуске</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>Все годы</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>Официально</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing wallpapers follow the current UI language market. The arrow buttons switch between recent wallpapers.</value>
+    <value>Выберите год в архиве Bing. Включите «Официально», чтобы использовать только последние официальные обои.</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>No custom background image selected.</value>

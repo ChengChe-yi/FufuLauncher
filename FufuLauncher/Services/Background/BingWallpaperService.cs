@@ -38,6 +38,7 @@ public sealed class BingWallpaperLoadResult
 public class BingWallpaperService
 {
     private const string ApiHost = "https://www.bing.com";
+    private const string HistoricalApiUrl = "https://bingw.jasonzeng.dev/?index=random&format=json";
     private const int ArchiveCount = 8;
     private const int MaxDownloadBytes = 30 * 1024 * 1024;
 
@@ -46,6 +47,7 @@ public class BingWallpaperService
     private static string CacheMetadataPath => Path.Combine(CacheDirectory, "next.json");
 
     private static readonly HttpClient HttpClient;
+    private static readonly JsonSerializerOptions JsonOptions = new() { PropertyNameCaseInsensitive = true };
     private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(30);
     private static readonly HashSet<string> SupportedMarkets = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -108,8 +110,17 @@ public class BingWallpaperService
         }
     }
 
-    public async Task<BingWallpaperItem?> GetRandomWallpaperAsync(string? excludedUrl = null)
+    public async Task<BingWallpaperItem?> GetRandomWallpaperAsync(
+        string? excludedUrl = null,
+        int year = 0,
+        bool officialOnly = false)
     {
+        if (!officialOnly)
+        {
+            var historical = await GetHistoricalRandomWallpaperAsync(year, excludedUrl);
+            if (historical != null) return historical;
+        }
+
         var wallpapers = await GetWallpapersAsync();
         if (wallpapers.Count == 0) return null;
 
@@ -154,22 +165,58 @@ public class BingWallpaperService
         }
     }
 
-    public async Task<BingWallpaperLoadResult?> FetchAndCacheAsync(string? excludedUrl = null)
+    public async Task<BingWallpaperLoadResult?> FetchAndCacheAsync(
+        string? excludedUrl = null,
+        int year = 0,
+        bool officialOnly = false)
     {
         try
         {
             var wallpapers = await GetWallpapersAsync();
-            if (wallpapers.Count == 0) return null;
+            var historicalItems = officialOnly
+                ? Array.Empty<BingWallpaperItem?>()
+                : await Task.WhenAll(Enumerable.Range(0, 2)
+                    .Select(_ => GetHistoricalRandomWallpaperAsync(year, excludedUrl)));
+            var historicalCandidates = historicalItems
+                .Where(item => item != null)
+                .Select(item => item!)
+                .ToList();
+
+            var allCandidates = wallpapers
+                .Concat(historicalCandidates)
+                .GroupBy(item => item.Url, StringComparer.OrdinalIgnoreCase)
+                .Select(group => group.First())
+                .ToList();
+
+            if (allCandidates.Count == 0) return null;
 
             var excluded = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             if (!string.IsNullOrWhiteSpace(excludedUrl)) excluded.Add(excludedUrl);
             TryAddCachedUrl(excluded);
 
-            var candidates = wallpapers.Where(item => !excluded.Contains(item.Url)).ToList();
-            if (candidates.Count == 0) candidates = wallpapers.ToList();
-            candidates = candidates.OrderBy(_ => Random.Shared.Next()).ToList();
+            var selected = new List<BingWallpaperItem>();
+            foreach (var item in historicalCandidates)
+            {
+                if (selected.Count >= 2) break;
+                if (excluded.Contains(item.Url)) continue;
+                if (selected.Any(existing =>
+                        string.Equals(existing.Url, item.Url, StringComparison.OrdinalIgnoreCase)))
+                    continue;
+                selected.Add(item);
+            }
 
-            var selected = candidates.Take(2).ToList();
+            foreach (var item in allCandidates.OrderBy(_ => Random.Shared.Next()))
+            {
+                if (selected.Count >= 2) break;
+                if (excluded.Contains(item.Url)) continue;
+                if (selected.Any(existing =>
+                        string.Equals(existing.Url, item.Url, StringComparison.OrdinalIgnoreCase)))
+                    continue;
+                selected.Add(item);
+            }
+
+            if (selected.Count == 0)
+                selected = allCandidates.OrderBy(_ => Random.Shared.Next()).Take(2).ToList();
             var downloads = await Task.WhenAll(selected.Select(async item =>
                 (Item: item, Bytes: await DownloadImageAsync(item.Url))));
 
@@ -286,14 +333,96 @@ public class BingWallpaperService
         }
     }
 
+    private static async Task<BingWallpaperItem?> GetHistoricalRandomWallpaperAsync(
+        int year,
+        string? excludedUrl)
+    {
+        for (var attempt = 0; attempt < 2; attempt++)
+        {
+            var requestUrl = BuildHistoricalApiUrl(year);
+            if (string.IsNullOrEmpty(requestUrl))
+                return null;
+
+            try
+            {
+                var json = await HttpClient.GetStringAsync(requestUrl);
+                var image = JsonSerializer.Deserialize<BingHistoricalImage>(json, JsonOptions);
+                if (image == null)
+                    return null;
+
+                var historicalUrl = image.Url;
+                if (string.IsNullOrWhiteSpace(historicalUrl))
+                    return null;
+
+                var fullUrl = historicalUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                    ? historicalUrl
+                    : historicalUrl.StartsWith("//", StringComparison.Ordinal)
+                        ? "https:" + historicalUrl
+                        : ApiHost + historicalUrl;
+
+                if (!string.IsNullOrWhiteSpace(excludedUrl) &&
+                    string.Equals(fullUrl, excludedUrl, StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                if (year > 0 &&
+                    !string.IsNullOrWhiteSpace(image.StartDate) &&
+                    !image.StartDate.StartsWith(year.ToString(System.Globalization.CultureInfo.InvariantCulture), StringComparison.Ordinal))
+                    continue;
+
+                var thumbnailUrl = fullUrl;
+                if (!string.IsNullOrWhiteSpace(image.UrlBase))
+                {
+                    var thumbnailBase = image.UrlBase.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                        ? image.UrlBase
+                        : ApiHost + image.UrlBase;
+                    thumbnailUrl = thumbnailBase + "_400x240.jpg";
+                }
+
+                return new BingWallpaperItem
+                {
+                    Url = fullUrl,
+                    ThumbnailUrl = thumbnailUrl,
+                    Copyright = image.Copyright?.Trim() ?? string.Empty,
+                    Title = image.Title?.Trim() ?? string.Empty,
+                    StartDate = image.StartDate ?? string.Empty,
+                    EndDate = string.Empty,
+                    Hash = image.UrlBase ?? string.Empty,
+                    Market = "en-US"
+                };
+            }
+            catch (Exception ex)
+            {
+                DebugLog.Info("BingWallpaperService", $"[BingWallpaper] Failed to load historical wallpaper: {ex.Message}");
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    private static string? BuildHistoricalApiUrl(int year)
+    {
+        if (year <= 0) return HistoricalApiUrl;
+        if (year < 2019 || year > DateTime.Today.Year) return null;
+
+        var today = DateTime.Today;
+        var start = new DateTime(year, 1, 1);
+        var earliest = new DateTime(2019, 3, 9);
+        if (start < earliest) start = earliest;
+
+        var end = year == today.Year ? today : new DateTime(year, 12, 31);
+        if (start > end) return null;
+
+        var date = start.AddDays(Random.Shared.Next((end - start).Days + 1));
+        var dateValue = date.ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+        return $"https://bingw.jasonzeng.dev/?date={dateValue}&format=json";
+    }
+
     private static async Task<IReadOnlyList<BingWallpaperItem>> DownloadWallpapersAsync(string market)
     {
         var url = $"{ApiHost}/HPImageArchive.aspx?format=js&idx=0&n={ArchiveCount}&mkt={Uri.EscapeDataString(market)}";
         var json = await HttpClient.GetStringAsync(url);
-        var response = JsonSerializer.Deserialize<BingArchiveResponse>(json, new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        });
+        var response = JsonSerializer.Deserialize<BingArchiveResponse>(json, JsonOptions);
 
         if (response?.Images is not { Count: > 0 })
             return Array.Empty<BingWallpaperItem>();
@@ -348,6 +477,15 @@ public class BingWallpaperService
     private sealed class BingArchiveResponse
     {
         public List<BingImage>? Images { get; set; }
+    }
+
+    private sealed class BingHistoricalImage
+    {
+        public string? StartDate { get; set; }
+        public string? Copyright { get; set; }
+        public string? Title { get; set; }
+        public string? UrlBase { get; set; }
+        public string? Url { get; set; }
     }
 
     private sealed class BingImage

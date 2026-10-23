@@ -8674,8 +8674,17 @@ Detail: {0}</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>Ganti wallpaper Bing saat mulai</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>Tahun</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>Semua tahun</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>Resmi</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing wallpapers follow the current UI language market. The arrow buttons switch between recent wallpapers.</value>
+    <value>Pilih tahun dari arsip Bing. Aktifkan Resmi untuk hanya memakai wallpaper resmi terbaru.</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>No custom background image selected.</value>

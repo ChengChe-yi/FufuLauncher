@@ -28,6 +28,7 @@
 
             <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <helpers:EnumToIntConverter x:Key="EnumToIntConverter" />
+            <helpers:BoolNegationConverter x:Key="BoolNegationConverter" />
 
             <Style x:Key="ImageSourceTabButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="34" />
@@ -381,8 +382,25 @@
                                     Visibility="{x:Bind ViewModel.IsBingSelected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
                             <TextBlock Text="{x:Bind ViewModel.BingCopyright, Mode=OneWay}"
                                        FontSize="12"
+                                       MaxLines="2"
+                                       TextTrimming="CharacterEllipsis"
                                        TextWrapping="Wrap"
                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <TextBlock Text="{helpers:Loc Key=ImageSource_BingYear}"
+                                           FontSize="12"
+                                           VerticalAlignment="Center"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                <ComboBox MinWidth="120"
+                                          ItemsSource="{x:Bind ViewModel.BingYearOptions}"
+                                          SelectedItem="{x:Bind ViewModel.SelectedBingYearOption, Mode=TwoWay}"
+                                          DisplayMemberPath="Label"
+                                          IsEnabled="{x:Bind ViewModel.IsBingOfficial, Mode=OneWay, Converter={StaticResource BoolNegationConverter}}" />
+                                <ToggleSwitch Header="{helpers:Loc Key=ImageSource_BingOfficial}"
+                                              OnContent=""
+                                              OffContent=""
+                                              IsOn="{x:Bind ViewModel.IsBingOfficial, Mode=TwoWay}" />
+                            </StackPanel>
                             <TextBlock Text="{helpers:Loc Key=ImageSource_BingHint}"
                                        FontSize="11"
                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"

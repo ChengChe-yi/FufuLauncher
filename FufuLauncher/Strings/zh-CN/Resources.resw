@@ -9024,8 +9024,17 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>启动时更换 Bing 壁纸</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>年份</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>全部年份</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>官方</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing 壁纸按当前界面语言市场加载，左右按钮可在近期壁纸中随机切换。</value>
+    <value>可选择年份从 Bing 归档中切换；开启“官方”后只使用最近的官方壁纸。</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>尚未选择自定义背景图片。</value>

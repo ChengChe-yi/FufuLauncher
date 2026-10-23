@@ -8674,8 +8674,17 @@ Bilibili 서버 지원, 미호요 커뮤니티 로그인 불필요</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>시작할 때 Bing 배경 화면 변경</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>연도</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>모든 연도</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>공식</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing wallpapers follow the current UI language market. The arrow buttons switch between recent wallpapers.</value>
+    <value>Bing 아카이브에서 연도를 선택하세요. 공식을 켜면 최신 공식 배경만 사용합니다.</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>No custom background image selected.</value>

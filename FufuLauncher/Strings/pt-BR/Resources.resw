@@ -8678,8 +8678,17 @@ Detalhes: {0}</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>Alterar o plano de fundo do Bing ao iniciar</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>Ano</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>Todos os anos</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>Oficial</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing wallpapers follow the current UI language market. The arrow buttons switch between recent wallpapers.</value>
+    <value>Escolha um ano do arquivo do Bing. Ative Oficial para usar apenas os papéis de parede oficiais recentes.</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>No custom background image selected.</value>

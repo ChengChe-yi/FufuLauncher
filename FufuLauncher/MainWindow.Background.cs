@@ -216,6 +216,13 @@ public sealed partial class MainWindow
             if (changeSetting != null)
                 changeOnStartup = Convert.ToBoolean(changeSetting);
 
+            var yearSetting = await _localSettingsService.ReadSettingAsync("BingWallpaperYear");
+            var bingYear = 0;
+            if (yearSetting != null)
+                int.TryParse(yearSetting.ToString(), out bingYear);
+            var officialSetting = await _localSettingsService.ReadSettingAsync("IsBingWallpaperOfficial");
+            var bingOfficial = officialSetting != null && Convert.ToBoolean(officialSetting);
+
             var shouldChange = isInitialBackgroundLoad && changeOnStartup;
             var appliedCached = false;
             var fetchAttempted = false;
@@ -232,7 +239,7 @@ public sealed partial class MainWindow
                     appliedCached = true;
                 }
 
-                var fetched = await _bingWallpaperService.FetchAndCacheAsync(savedUrl);
+                var fetched = await _bingWallpaperService.FetchAndCacheAsync(savedUrl, bingYear, bingOfficial);
                 fetchAttempted = true;
                 if (version != _backgroundLoadVersion || _isExit) return;
 
@@ -257,7 +264,7 @@ public sealed partial class MainWindow
 
             if (!fetchAttempted)
             {
-                var fetched = await _bingWallpaperService.FetchAndCacheAsync(null);
+                var fetched = await _bingWallpaperService.FetchAndCacheAsync(null, bingYear, bingOfficial);
                 if (version != _backgroundLoadVersion || _isExit) return;
                 if (fetched != null)
                 {

@@ -27,6 +27,8 @@ public enum ImageSourceTab
     Slideshow
 }
 
+public sealed record BingYearOption(int Year, string Label);
+
 public partial class ImageSourceViewModel : ObservableObject
 {
     private readonly ILocalSettingsService _localSettingsService;
@@ -57,6 +59,37 @@ public partial class ImageSourceViewModel : ObservableObject
     private string _statusText = string.Empty;
     [ObservableProperty] private string _bingCopyright = string.Empty;
     [ObservableProperty] private bool _bingChangeOnStartup = true;
+    private bool _isBingOfficial;
+    private BingYearOption? _selectedBingYearOption;
+
+    public IReadOnlyList<BingYearOption> BingYearOptions { get; }
+
+    public bool IsBingOfficial
+    {
+        get => _isBingOfficial;
+        set
+        {
+            if (_isBingOfficial == value) return;
+            OnPropertyChanging(nameof(IsBingOfficial));
+            _isBingOfficial = value;
+            OnPropertyChanged(nameof(IsBingOfficial));
+            OnIsBingOfficialChanged(value);
+        }
+    }
+
+    public BingYearOption? SelectedBingYearOption
+    {
+        get => _selectedBingYearOption;
+        set
+        {
+            if (Equals(_selectedBingYearOption, value)) return;
+            OnPropertyChanging(nameof(SelectedBingYearOption));
+            _selectedBingYearOption = value;
+            OnPropertyChanged(nameof(SelectedBingYearOption));
+            OnSelectedBingYearOptionChanged(value);
+        }
+    }
+
     [ObservableProperty] private string _customBackgroundApiUrl = string.Empty;
     [ObservableProperty] private string _currentBackgroundApiUrl = string.Empty;
     [ObservableProperty] private string _customPath = string.Empty;
@@ -139,6 +172,14 @@ public partial class ImageSourceViewModel : ObservableObject
         ClearSlideshowFolderCommand = new AsyncRelayCommand(ClearSlideshowFolderAsync);
         SaveBackgroundApiCommand = new AsyncRelayCommand(SaveBackgroundApiAsync);
         ResetBackgroundApiCommand = new AsyncRelayCommand(ResetBackgroundApiAsync);
+
+        var years = new List<BingYearOption>
+        {
+            new(0, "ImageSource_BingYearAll".GetLocalized())
+        };
+        for (var year = DateTime.Now.Year; year >= 2019; year--)
+            years.Add(new BingYearOption(year, year.ToString(System.Globalization.CultureInfo.InvariantCulture)));
+        BingYearOptions = years;
     }
 
     private sealed record ImageSourceSettingsSnapshot(
@@ -154,7 +195,9 @@ public partial class ImageSourceViewModel : ObservableObject
         bool IsPinned,
         bool IsBing,
         bool IsBackgroundEnabled,
-        bool IsSlideshow);
+        bool IsSlideshow,
+        int BingYear,
+        bool IsBingOfficial);
 
     public async Task InitializeAsync()
     {
@@ -179,6 +222,9 @@ public partial class ImageSourceViewModel : ObservableObject
             IsRandomBackgroundPinned = snapshot.IsPinned;
             BingCopyright = snapshot.BingCopyrightValue;
             BingChangeOnStartup = snapshot.BingChangeOnStartupValue;
+            SelectedBingYearOption = BingYearOptions.FirstOrDefault(option => option.Year == snapshot.BingYear)
+                                     ?? BingYearOptions[0];
+            IsBingOfficial = snapshot.IsBingOfficial;
 
             SelectedTab = snapshot.IsRandom
                 ? ImageSourceTab.RandomBlueArchive
@@ -223,6 +269,11 @@ public partial class ImageSourceViewModel : ObservableObject
         var bingCopyright =
             (await _localSettingsService.ReadSettingAsync("BingWallpaperCopyright"))?.ToString() ?? string.Empty;
         var bingChange = await ReadBoolSettingAsync("IsBingBackgroundChangeOnStartupEnabled", true);
+        var bingYearJson = await _localSettingsService.ReadSettingAsync("BingWallpaperYear");
+        var bingYear = 0;
+        if (bingYearJson != null)
+            int.TryParse(bingYearJson.ToString(), out bingYear);
+        var isBingOfficial = await ReadBoolSettingAsync("IsBingWallpaperOfficial");
         var isRandom = await ReadBoolSettingAsync("IsRandomBackgroundEnabled");
         var isPinned = await ReadBoolSettingAsync(RandomBackgroundService.PinnedSettingKey);
         var isBing = await ReadBoolSettingAsync("IsBingBackgroundEnabled");
@@ -243,8 +294,9 @@ public partial class ImageSourceViewModel : ObservableObject
             isPinned,
             isBing,
             isBackgroundEnabled,
-            isSlideshow);
-
+            isSlideshow,
+            bingYear,
+            isBingOfficial);
     }
 
     public async Task SelectTabAsync(ImageSourceTab tab, bool forceNewImage = false)
@@ -391,6 +443,57 @@ public partial class ImageSourceViewModel : ObservableObject
     {
         if (_isLoadingSettings) return;
         _ = _localSettingsService.SaveSettingAsync("IsBingBackgroundChangeOnStartupEnabled", value);
+    }
+
+    private void OnIsBingOfficialChanged(bool value)
+    {
+        if (_isLoadingSettings) return;
+        _ = HandleBingOfficialChangedAsync(value);
+    }
+
+    private void OnSelectedBingYearOptionChanged(BingYearOption? value)
+    {
+        if (_isLoadingSettings) return;
+        _ = HandleBingYearChangedAsync(value);
+    }
+
+    private async Task HandleBingOfficialChangedAsync(bool value)
+    {
+        try
+        {
+            await _localSettingsService.SaveSettingAsync("IsBingWallpaperOfficial", value);
+            if (SelectedTab == ImageSourceTab.Bing)
+                await ReloadBingImageAsync();
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("ImageSourceViewModel", $"Failed to change Bing official mode: {ex.Message}");
+            StatusText = ex.Message;
+        }
+    }
+
+    private async Task HandleBingYearChangedAsync(BingYearOption? option)
+    {
+        if (option == null) return;
+
+        try
+        {
+            await _localSettingsService.SaveSettingAsync("BingWallpaperYear", option.Year);
+            if (!IsBingOfficial && SelectedTab == ImageSourceTab.Bing)
+                await ReloadBingImageAsync();
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("ImageSourceViewModel", $"Failed to change Bing wallpaper year: {ex.Message}");
+            StatusText = ex.Message;
+        }
+    }
+
+    private async Task ReloadBingImageAsync()
+    {
+        var requestVersion = ++_requestVersion;
+        StartLoading(requestVersion);
+        await PickBingImageAsync(requestVersion);
     }
 
     partial void OnCustomPathChanged(string value)
@@ -745,7 +848,10 @@ public partial class ImageSourceViewModel : ObservableObject
         try
         {
             var currentUrl = (await _localSettingsService.ReadSettingAsync("BingWallpaperUrl"))?.ToString();
-            var wallpaper = await _bingWallpaperService.GetRandomWallpaperAsync(currentUrl);
+            var wallpaper = await _bingWallpaperService.GetRandomWallpaperAsync(
+                currentUrl,
+                SelectedBingYearOption?.Year ?? 0,
+                IsBingOfficial);
             if (requestVersion != _requestVersion || SelectedTab != ImageSourceTab.Bing) return;
 
             if (wallpaper == null)

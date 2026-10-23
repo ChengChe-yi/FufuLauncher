@@ -9029,8 +9029,17 @@ Details: {0}</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>Change Bing wallpaper on startup</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>All years</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>Official</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing wallpapers follow the current UI language market. The arrow buttons switch between recent wallpapers.</value>
+    <value>Choose a year from the Bing archive. Turn on Official to use only the latest official wallpapers.</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>No custom background image selected.</value>

@@ -8669,8 +8669,17 @@ Bilibili समर्थित; MiYouShe लॉगिन आवश्यक न�
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>स्टार्टअप पर Bing वॉलपेपर बदलें</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>वर्ष</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>सभी वर्ष</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>आधिकारिक</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing wallpapers follow the current UI language market. The arrow buttons switch between recent wallpapers.</value>
+    <value>Bing संग्रह से वर्ष चुनें। केवल नवीनतम आधिकारिक वॉलपेपर उपयोग करने के लिए आधिकारिक चालू करें।</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>No custom background image selected.</value>

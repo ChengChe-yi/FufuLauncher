@@ -8674,8 +8674,17 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
     <value>啟動時更換 Bing 桌布</value>
   </data>
+  <data name="ImageSource_BingYear" xml:space="preserve">
+    <value>年份</value>
+  </data>
+  <data name="ImageSource_BingYearAll" xml:space="preserve">
+    <value>全部年份</value>
+  </data>
+  <data name="ImageSource_BingOfficial" xml:space="preserve">
+    <value>官方</value>
+  </data>
   <data name="ImageSource_BingHint" xml:space="preserve">
-    <value>Bing 桌布依目前介面語言市場載入，左右按鈕可在近期桌布中隨機切換。</value>
+    <value>可選擇年份從 Bing 封存中切換；開啟「官方」後只使用最近的官方桌布。</value>
   </data>
   <data name="ImageSource_CustomEmpty" xml:space="preserve">
     <value>尚未選擇自訂背景圖片。</value>
