@@ -8708,4 +8708,13 @@ Detalles: {0}</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>Los valores más altos suavizan más los bordes.</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>Fijar la imagen actual en local</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>Guarda la imagen actual localmente y solo muestra esa imagen. No se descargan imágenes nuevas.</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>No hay ninguna imagen de fondo aleatoria actual para guardar.</value>
+  </data>
 </root>

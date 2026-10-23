@@ -8704,4 +8704,13 @@ UIGF v4.x/3.0/2.x</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>數值越高，邊緣越平滑。</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>固定使用本機圖片</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>將目前圖片儲存到本機，只顯示這張圖片；開啟後不再下載新圖片。</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>目前沒有可儲存的隨機背景圖片。</value>
+  </data>
 </root>

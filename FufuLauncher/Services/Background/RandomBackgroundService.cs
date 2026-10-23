@@ -14,7 +14,11 @@ public static class RandomBackgroundService
 {
     private const string Endpoint = "https://img.catcdn.cn/ba/";
     private const int MaxDownloadBytes = 20 * 1024 * 1024;
+    public const string PinnedSettingKey = "IsRandomBackgroundPinned";
     private static readonly HttpClient Client;
+    private static readonly object DisplayedImageLock = new();
+    private static byte[]? _lastDisplayedBytes;
+    private static string? _lastDisplayedPath;
     private static int _generation;
 
     static RandomBackgroundService()
@@ -26,6 +30,11 @@ public static class RandomBackgroundService
     }
 
     public static string CacheDirectory => Path.Combine(AppPaths.CacheDir, "RandomBackground");
+
+    public static string PinnedImagePath =>
+        Path.Combine(AppPaths.DataDir, "RandomBackgroundPinned", "pinned.img");
+
+    public static bool HasPinnedImage => File.Exists(PinnedImagePath);
 
     public static RandomBackgroundType ParseType(string? value) =>
         Enum.TryParse<RandomBackgroundType>(value, true, out var type) &&
@@ -59,6 +68,11 @@ public static class RandomBackgroundService
         try
         {
             var image = await BackgroundImageLoader.LoadFileAsync(path);
+            lock (DisplayedImageLock)
+            {
+                _lastDisplayedPath = path;
+                _lastDisplayedBytes = null;
+            }
             return new BackgroundRenderResult { ImageSource = image, IsVideo = false };
         }
         catch (Exception ex)
@@ -66,6 +80,70 @@ public static class RandomBackgroundService
             DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Failed to load cache: {ex.Message}");
             TryDelete(path);
             return null;
+        }
+    }
+
+    public static async Task<BackgroundRenderResult?> LoadPinnedAsync()
+    {
+        var path = PinnedImagePath;
+        if (!File.Exists(path)) return null;
+
+        try
+        {
+            var image = await BackgroundImageLoader.LoadFileAsync(path);
+            lock (DisplayedImageLock)
+            {
+                _lastDisplayedPath = path;
+                _lastDisplayedBytes = null;
+            }
+            return new BackgroundRenderResult { ImageSource = image, IsVideo = false };
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Failed to load pinned image: {ex.Message}");
+            return null;
+        }
+    }
+
+    public static async Task<bool> PinCurrentImageAsync()
+    {
+        byte[]? bytes;
+        string? sourcePath;
+        lock (DisplayedImageLock)
+        {
+            bytes = _lastDisplayedBytes;
+            sourcePath = _lastDisplayedPath;
+        }
+
+        if (bytes == null && (sourcePath == null || !File.Exists(sourcePath)))
+            return false;
+
+        var directory = Path.GetDirectoryName(PinnedImagePath);
+        if (string.IsNullOrEmpty(directory))
+            return false;
+
+        var temp = PinnedImagePath + ".tmp";
+        try
+        {
+            Directory.CreateDirectory(directory);
+            if (bytes != null)
+                await File.WriteAllBytesAsync(temp, bytes);
+            else
+                File.Copy(sourcePath!, temp, true);
+
+            File.Move(temp, PinnedImagePath, true);
+            lock (DisplayedImageLock)
+            {
+                _lastDisplayedPath = PinnedImagePath;
+                _lastDisplayedBytes = null;
+            }
+            return true;
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Failed to pin current image: {ex.Message}");
+            TryDelete(temp);
+            return false;
         }
     }
 
@@ -82,19 +160,28 @@ public static class RandomBackgroundService
             return null;
 
         var display = await CreateResultAsync(first);
+        byte[]? displayBytes;
         byte[]? cache;
         if (display != null)
         {
+            displayBytes = first;
             cache = second ?? first;
         }
         else
         {
             display = await CreateResultAsync(second);
+            displayBytes = second;
             cache = second;
         }
 
-        if (display == null || cache == null || cache.Length == 0)
+        if (display == null || displayBytes == null || cache == null || cache.Length == 0)
             return null;
+
+        lock (DisplayedImageLock)
+        {
+            _lastDisplayedBytes = displayBytes;
+            _lastDisplayedPath = null;
+        }
 
         await SaveNextCacheAsync(cache, type, generation);
         return display;

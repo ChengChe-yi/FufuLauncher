@@ -8704,4 +8704,13 @@ Bilibili 서버 지원, 미호요 커뮤니티 로그인 불필요</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>값이 높을수록 가장자리가 더 부드러워집니다.</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>현재 이미지를 로컬에 고정</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>현재 이미지를 로컬에 저장하고 해당 이미지만 표시합니다. 새 이미지는 다운로드되지 않습니다.</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>저장할 현재 임의 배경 이미지가 없습니다.</value>
+  </data>
 </root>

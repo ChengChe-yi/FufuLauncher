@@ -8708,4 +8708,13 @@ Bilibiliサーバー対応、MiYouSheログイン不要</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>値を大きくするほど輪郭が滑らかになります。</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>現在の画像をローカルに固定</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>現在の画像をローカルに保存し、その画像だけを表示します。新しい画像はダウンロードされません。</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>保存できる現在のランダム背景画像がありません。</value>
+  </data>
 </root>

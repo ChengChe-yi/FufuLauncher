@@ -9059,4 +9059,13 @@ Details: {0}</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>Higher values smooth the edges more.</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>Pin current image locally</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>Saves the current image locally and only shows that image. No new images are downloaded while enabled.</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>No current random background image is available to save.</value>
+  </data>
 </root>

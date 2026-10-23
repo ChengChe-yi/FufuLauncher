@@ -8704,4 +8704,13 @@ Detail: {0}</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>Nilai lebih tinggi membuat tepi lebih halus.</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>Sematkan gambar saat ini secara lokal</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>Menyimpan gambar saat ini secara lokal dan hanya menampilkan gambar tersebut. Tidak ada gambar baru yang diunduh.</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>Tidak ada gambar latar acak saat ini yang dapat disimpan.</value>
+  </data>
 </root>

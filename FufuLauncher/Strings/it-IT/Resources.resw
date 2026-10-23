@@ -8714,4 +8714,13 @@ Dettagli: {0}</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>Valori più alti rendono i bordi più uniformi.</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>Fissa l'immagine corrente in locale</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>Salva l'immagine corrente in locale e mostra solo quella. Non vengono scaricate nuove immagini.</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>Nessuna immagine di sfondo casuale corrente disponibile da salvare.</value>
+  </data>
 </root>

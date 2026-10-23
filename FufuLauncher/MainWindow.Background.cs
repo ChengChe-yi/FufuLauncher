@@ -354,6 +354,29 @@ public sealed partial class MainWindow
             _randomBackgroundQuality = quality;
         }
 
+        var pinnedJson = await _localSettingsService.ReadSettingAsync(RandomBackgroundService.PinnedSettingKey);
+        var isPinned = pinnedJson != null && Convert.ToBoolean(pinnedJson);
+        if (isPinned)
+        {
+            var pinned = await RandomBackgroundService.LoadPinnedAsync();
+            if (!IsRandomBackgroundLoadCurrent(loadId, type)) return;
+
+            if (pinned != null)
+            {
+                _randomBackgroundResult = pinned;
+                if (!ReferenceEquals(GlobalBackgroundImage.Source, pinned.ImageSource))
+                    await ApplyGlobalBackgroundAsync(pinned, _backgroundLoadVersion);
+            }
+            else if (GlobalBackgroundImage.Source == null && !_isVideoBackground)
+            {
+                var fallback = await _backgroundRenderer.GetFallbackBackgroundAsync();
+                if (fallback != null && IsRandomBackgroundLoadCurrent(loadId, type))
+                    await ApplyGlobalBackgroundAsync(fallback, _backgroundLoadVersion);
+            }
+
+            return;
+        }
+
         if (_randomBackgroundResult != null)
         {
             if (IsRandomBackgroundLoadCurrent(loadId, type) &&

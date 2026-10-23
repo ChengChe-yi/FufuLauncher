@@ -8699,4 +8699,13 @@ Bilibili समर्थित; MiYouShe लॉगिन आवश्यक न�
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>अधिक मान किनारों को अधिक चिकना करते हैं।</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>वर्तमान छवि को स्थानीय रूप से पिन करें</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>वर्तमान छवि को स्थानीय रूप से सहेजता है और केवल वही छवि दिखाता है। नई छवियाँ डाउनलोड नहीं होंगी।</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>सहेजने के लिए कोई वर्तमान रैंडम पृष्ठभूमि छवि उपलब्ध नहीं है।</value>
+  </data>
 </root>

@@ -298,7 +298,7 @@
                         </Button>
                     </Grid>
 
-                    <Grid Grid.Row="2" MinHeight="170">
+                    <Grid Grid.Row="2" MinHeight="190">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -363,6 +363,15 @@
                                 </ComboBox>
                             </StackPanel>
                             <TextBlock Text="{helpers:Loc Key=ImageSource_RandomHint}"
+                                       FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap" />
+
+                            <ToggleSwitch Header="{helpers:Loc Key=ImageSource_RandomPinLocal}"
+                                          OnContent=""
+                                          OffContent=""
+                                          IsOn="{x:Bind ViewModel.IsRandomBackgroundPinned, Mode=TwoWay}" />
+                            <TextBlock Text="{helpers:Loc Key=ImageSource_RandomPinLocalHint}"
                                        FontSize="11"
                                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                        TextWrapping="Wrap" />

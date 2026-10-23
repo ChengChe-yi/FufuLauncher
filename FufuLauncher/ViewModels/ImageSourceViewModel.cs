@@ -38,6 +38,7 @@ public partial class ImageSourceViewModel : ObservableObject
     private readonly SemaphoreSlim _sourceFlagsGate = new(1, 1);
     private bool _isLoadingSettings;
     private bool _isStepping;
+    private bool _isUpdatingRandomPin;
     private int _requestVersion;
 
     [ObservableProperty]
@@ -63,6 +64,20 @@ public partial class ImageSourceViewModel : ObservableObject
     [ObservableProperty] private int _slideshowInterval = 60;
     [ObservableProperty] private ServerType _selectedServer;
     [ObservableProperty] private RandomBackgroundType _randomType = RandomBackgroundType.All;
+    private bool _isRandomBackgroundPinned;
+
+    public bool IsRandomBackgroundPinned
+    {
+        get => _isRandomBackgroundPinned;
+        set
+        {
+            if (_isRandomBackgroundPinned == value) return;
+            OnPropertyChanging(nameof(IsRandomBackgroundPinned));
+            _isRandomBackgroundPinned = value;
+            OnPropertyChanged(nameof(IsRandomBackgroundPinned));
+            OnIsRandomBackgroundPinnedChanged(value);
+        }
+    }
     [ObservableProperty] private bool _hasCustomBackground;
     [ObservableProperty] private bool _hasSlideshowFolder;
     [ObservableProperty] private bool _isPreviewLoading;
@@ -136,6 +151,7 @@ public partial class ImageSourceViewModel : ObservableObject
         string BingCopyrightValue,
         bool BingChangeOnStartupValue,
         bool IsRandom,
+        bool IsPinned,
         bool IsBing,
         bool IsBackgroundEnabled,
         bool IsSlideshow);
@@ -160,6 +176,7 @@ public partial class ImageSourceViewModel : ObservableObject
             HasSlideshowFolder = !string.IsNullOrWhiteSpace(SlideshowFolder) && Directory.Exists(SlideshowFolder);
             SlideshowInterval = snapshot.SlideshowIntervalValue;
             RandomType = snapshot.RandomTypeValue;
+            IsRandomBackgroundPinned = snapshot.IsPinned;
             BingCopyright = snapshot.BingCopyrightValue;
             BingChangeOnStartup = snapshot.BingChangeOnStartupValue;
 
@@ -207,10 +224,12 @@ public partial class ImageSourceViewModel : ObservableObject
             (await _localSettingsService.ReadSettingAsync("BingWallpaperCopyright"))?.ToString() ?? string.Empty;
         var bingChange = await ReadBoolSettingAsync("IsBingBackgroundChangeOnStartupEnabled", true);
         var isRandom = await ReadBoolSettingAsync("IsRandomBackgroundEnabled");
+        var isPinned = await ReadBoolSettingAsync(RandomBackgroundService.PinnedSettingKey);
         var isBing = await ReadBoolSettingAsync("IsBingBackgroundEnabled");
         var isBackgroundEnabled = await ReadBoolSettingAsync(LocalSettingsService.IsBackgroundEnabledKey, true);
         var isSlideshow = await ReadBoolSettingAsync("IsBackgroundSlideshowEnabled");
 
+        DebugLog.Info("ImageSourceViewModel", "VM.Snapshot.End", $"{Environment.TickCount64 - started}ms");
         return new ImageSourceSettingsSnapshot(
             server,
             customApiUrl,
@@ -221,10 +240,11 @@ public partial class ImageSourceViewModel : ObservableObject
             bingCopyright,
             bingChange,
             isRandom,
+            isPinned,
             isBing,
             isBackgroundEnabled,
             isSlideshow);
-        DebugLog.Info("ImageSourceViewModel", "VM.Snapshot.End", $"{Environment.TickCount64 - started}ms");
+
     }
 
     public async Task SelectTabAsync(ImageSourceTab tab, bool forceNewImage = false)
@@ -403,6 +423,45 @@ public partial class ImageSourceViewModel : ObservableObject
     {
         if (_isLoadingSettings) return;
         _ = HandleRandomTypeChangedAsync(value);
+    }
+
+    private void OnIsRandomBackgroundPinnedChanged(bool value)
+    {
+        if (_isLoadingSettings || _isUpdatingRandomPin) return;
+        _ = HandleRandomPinnedChangedAsync(value);
+    }
+
+    private async Task HandleRandomPinnedChangedAsync(bool value)
+    {
+        try
+        {
+            if (value && !await RandomBackgroundService.PinCurrentImageAsync())
+            {
+                _isUpdatingRandomPin = true;
+                IsRandomBackgroundPinned = false;
+                _isUpdatingRandomPin = false;
+                StatusText = "ImageSource_RandomPinFailed".GetLocalized();
+                return;
+            }
+
+            await _localSettingsService.SaveSettingAsync(RandomBackgroundService.PinnedSettingKey, value);
+
+            if (value)
+                StatusText = string.Empty;
+
+            if (App.MainWindow is MainWindow mainWindow)
+                await mainWindow.ReloadRandomBackgroundAsync(true);
+            else
+                WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("ImageSourceViewModel", $"Failed to change random background pin state: {ex.Message}");
+            _isUpdatingRandomPin = true;
+            IsRandomBackgroundPinned = !value;
+            _isUpdatingRandomPin = false;
+            StatusText = "ImageSource_RandomPinFailed".GetLocalized();
+        }
     }
 
     partial void OnSlideshowIntervalChanged(int value)

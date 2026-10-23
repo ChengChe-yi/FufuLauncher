@@ -8704,4 +8704,13 @@ Click the button below to open your browser and download manually.</value>
   <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
     <value>Чем выше значение, тем сильнее сглаживаются края.</value>
   </data>
+  <data name="ImageSource_RandomPinLocal" xml:space="preserve">
+    <value>Закрепить текущее изображение локально</value>
+  </data>
+  <data name="ImageSource_RandomPinLocalHint" xml:space="preserve">
+    <value>Сохраняет текущее изображение локально и показывает только его. Новые изображения не загружаются.</value>
+  </data>
+  <data name="ImageSource_RandomPinFailed" xml:space="preserve">
+    <value>Нет текущего случайного фонового изображения для сохранения.</value>
+  </data>
 </root>
