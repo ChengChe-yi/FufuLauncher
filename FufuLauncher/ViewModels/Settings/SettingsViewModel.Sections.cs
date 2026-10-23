@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -16,6 +16,7 @@ public static class SettingsSectionIds
     public const string Widgets = "WidgetsItem";
     public const string Notes = "NotesItem";
     public const string HomeText = "HomeTextItem";
+    public const string ImageSource = "ImageSourceItem";
     public const string Background = "BackgroundItem";
     public const string WindowEffects = "WindowEffectsItem";
     public const string LaunchConfig = "LaunchConfigItem";
@@ -60,6 +61,7 @@ public partial class SettingsViewModel
         RegisterSection(SettingsSectionIds.Widgets, LoadWidgetsSectionAsync);
         RegisterSection(SettingsSectionIds.Notes, LoadNotesSectionAsync);
         RegisterSection(SettingsSectionIds.HomeText, LoadHomeTextSectionAsync);
+        RegisterSection(SettingsSectionIds.ImageSource, () => Task.CompletedTask);
         RegisterSection(SettingsSectionIds.Background, LoadBackgroundSectionAsync);
         RegisterSection(SettingsSectionIds.WindowEffects, LoadWindowEffectsSectionAsync);
         RegisterSection(SettingsSectionIds.LaunchConfig, LoadLaunchConfigSectionAsync);

@@ -290,9 +290,14 @@
                         <FontIcon Glyph="&#xE8D2;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="{helpers:Loc Key=SectionBackground}" Tag="BackgroundItem">
+                <NavigationViewItem Content="{helpers:Loc Key=ImageSource_Title}" Tag="ImageSourceItem">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE91B;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="{helpers:Loc Key=SectionBackground}" Tag="BackgroundItem">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE890;" FontFamily="{ThemeResource SymbolThemeFontFamily}" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem Content="{helpers:Loc Key=SectionWindowEffects}" Tag="WindowEffectsItem">
@@ -1008,6 +1013,12 @@
                         </Border>
                     </StackPanel>
 
+                    <StackPanel x:Name="ImageSourceItem" Style="{StaticResource SectionBlockStyle}">
+                        <TextBlock Text="{helpers:Loc Key=ImageSource_Title}"
+                                   Style="{StaticResource SectionHeaderStyle}" />
+                        <controls:ImageSourcePanel x:Name="ImageSourcePreviewPanel" />
+                    </StackPanel>
+
                     <StackPanel x:Name="BackgroundItem" Style="{StaticResource SectionBlockStyle}">
                         <TextBlock Text="{helpers:Loc Key=SectionBackground}"
                                    Style="{StaticResource SectionHeaderStyle}" />
@@ -1016,181 +1027,6 @@
                                 <ThemeShadow />
                             </Border.Shadow>
                             <StackPanel>
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE91B;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=EnableCustomBg}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.IsBackgroundEnabled, Mode=TwoWay}" />
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B7;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=BgSourceTitle}" />
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}">
-                                    <Button Style="{StaticResource SubPanelButtonStyle}"
-                                            Content="{helpers:Loc Key=SelectCustomBgImage}"
-                                            Command="{x:Bind ViewModel.SelectCustomBackgroundCommand}" />
-                                    <Button Style="{StaticResource DangerButtonStyle}"
-                                            Content="{helpers:Loc Key=ClearCustomBg}"
-                                            Command="{x:Bind ViewModel.ClearCustomBackgroundCommand}"
-                                            Visibility="{x:Bind ViewModel.HasCustomBackground, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8B9;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=BgSourceRandomBackground}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.IsRandomBackgroundEnabled, Mode=TwoWay}" />
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}"
-                                            Visibility="{x:Bind ViewModel.IsRandomBackgroundEnabled, Mode=OneWay}">
-                                    <ComboBox HorizontalAlignment="Left"
-                                              MaxWidth="520"
-                                              SelectedIndex="{x:Bind ViewModel.RandomBackgroundType, Mode=TwoWay, Converter={StaticResource EnumToIntConverter}}">
-                                        <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeAll}" />
-                                        <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeHome}" />
-                                        <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeCg}" />
-                                    </ComboBox>
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE786;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=BgSlideshowTitle}" />
-                                    </StackPanel>
-                                    <ToggleSwitch Grid.Column="2" Style="{StaticResource RowToggleStyle}"
-                                                  IsOn="{x:Bind ViewModel.IsBackgroundSlideshowEnabled, Mode=TwoWay}" />
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}"
-                                            Visibility="{x:Bind ViewModel.IsBackgroundSlideshowEnabled, Mode=OneWay}">
-                                    <Button Style="{StaticResource SubPanelButtonStyle}"
-                                            Content="{helpers:Loc Key=SelectSlideshowFolder}"
-                                            Command="{x:Bind ViewModel.SelectBackgroundSlideshowFolderCommand}" />
-                                    <TextBlock Style="{StaticResource PathTextStyle}"
-                                               Text="{x:Bind ViewModel.BackgroundSlideshowFolder, Mode=OneWay}"
-                                               Visibility="{x:Bind ViewModel.HasBackgroundSlideshowFolder, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <Button Style="{StaticResource DangerButtonStyle}"
-                                            Content="{helpers:Loc Key=ClearSlideshowFolder}"
-                                            Command="{x:Bind ViewModel.ClearBackgroundSlideshowFolderCommand}"
-                                            Visibility="{x:Bind ViewModel.HasBackgroundSlideshowFolder, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
-                                    <NumberBox Header="{helpers:Loc Key=SlideshowInterval}"
-                                               Value="{x:Bind ViewModel.BackgroundSlideshowInterval, Mode=TwoWay}"
-                                               Minimum="1"
-                                               Maximum="86400"
-                                               SpinButtonPlacementMode="Inline"
-                                               Width="200"
-                                               HorizontalAlignment="Left" />
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE774;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=OfficialBgServerTitle}" />
-                                    </StackPanel>
-                                    <ComboBox Grid.Column="2"
-                                              Style="{StaticResource RowComboBoxStyle}"
-                                              SelectedIndex="{x:Bind ViewModel.SelectedServer, Mode=TwoWay, Converter={StaticResource EnumToIntConverter}}">
-                                        <ComboBoxItem Content="{helpers:Loc Key=ServerCN}" />
-                                        <ComboBoxItem Content="{helpers:Loc Key=ServerGlobal}" />
-                                    </ComboBox>
-                                </Grid>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A5;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=OfficialBgApiTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=OfficialBgApiCaption}" />
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}">
-                                    <TextBox
-                                        Text="{x:Bind ViewModel.CustomBackgroundApiUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                        PlaceholderText="{helpers:Loc Key=OfficialBgApiPlaceholder}"
-                                        MaxWidth="640"
-                                        HorizontalAlignment="Left" />
-                                    <TextBlock Style="{StaticResource PathTextStyle}"
-                                               MaxWidth="640"
-                                               Text="{x:Bind ViewModel.CurrentBackgroundApiUrl, Mode=OneWay}" />
-                                    <Button Style="{StaticResource SubPanelButtonStyle}"
-                                            Content="{helpers:Loc Key=ResetBgApi}"
-                                            Command="{x:Bind ViewModel.ResetBackgroundApiCommand}" />
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
-
-                                <Grid Style="{StaticResource SettingsRowStyle}">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE896;" />
-                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
-                                        <TextBlock Style="{StaticResource RowTitleStyle}"
-                                                   Text="{helpers:Loc Key=FetchBgAssetsTitle}" />
-                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
-                                                   Text="{helpers:Loc Key=BrowseOfficialBgCaption}" />
-                                    </StackPanel>
-                                </Grid>
-                                <StackPanel Style="{StaticResource RowSubPanelStyle}" Orientation="Horizontal">
-                                    <Button Style="{StaticResource SubPanelButtonStyle}"
-                                            Content="{helpers:Loc Key=BrowseOfficialBg}"
-                                            Click="OnOpenOfficialBackgroundWindowClick" />
-                                </StackPanel>
-
-                                <Rectangle Style="{StaticResource RowDividerStyle}" />
 
                                 <Grid Style="{StaticResource SettingsRowStyle}">
                                     <Grid.ColumnDefinitions>

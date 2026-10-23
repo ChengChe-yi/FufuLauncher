@@ -283,7 +283,11 @@ namespace FufuLauncher.Services
             }
 
 
+            var readStarted = Environment.TickCount64;
             var (success, found, lazyValue) = await _repository.TryGetSettingAsync(key);
+            var readMs = Environment.TickCount64 - readStarted;
+            if (readMs >= 150)
+                PreviewTrace.Log("Settings.ReadSlow", $"{key} {readMs}ms success={success}");
 
 
             lock (_stateLock)
@@ -366,7 +370,11 @@ namespace FufuLauncher.Services
             await _writeGate.WaitAsync();
             try
             {
+                var writeStarted = Environment.TickCount64;
                 await _repository.UpsertSettingAsync(key, json);
+                var writeMs = Environment.TickCount64 - writeStarted;
+                if (writeMs >= 150)
+                    PreviewTrace.Log("Settings.WriteSlow", $"{key} {writeMs}ms");
 
                 lock (_stateLock)
                 {

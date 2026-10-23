@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -50,6 +50,7 @@ public partial class App
                 services.AddSingleton<IHoyoverseBackgroundService, HoyoverseBackgroundService>();
                 services.AddSingleton<IHoyoverseContentService, HoyoverseContentService>();
                 services.AddSingleton<IBackgroundRenderer, BackgroundRenderer>();
+                services.AddSingleton<BingWallpaperService>();
 
                 services.AddSingleton<IActivationService, ActivationService>();
                 services.AddSingleton<INavigationService, NavigationService>();
@@ -73,6 +74,7 @@ public partial class App
                 services.AddSingleton<LaunchConfigurationViewModel>();
                 services.AddTransient<SettingsViewModel>();
                 services.AddTransient<SettingsPage>();
+                services.AddTransient<ImageSourceViewModel>();
 
                 services.AddTransient<NullToVisibilityConverter>();
                 services.AddTransient<BoolToVisibilityConverter>();

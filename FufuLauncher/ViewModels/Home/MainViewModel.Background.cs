@@ -117,6 +117,9 @@ public partial class MainViewModel
         }
 
         await _localSettingsService.SaveSettingAsync("IsRandomBackgroundEnabled", false);
+        await _localSettingsService.SaveSettingAsync("IsBingBackgroundEnabled", false);
+        await _localSettingsService.SaveSettingAsync("IsBackgroundSlideshowEnabled", false);
+        await _localSettingsService.SaveSettingAsync(LocalSettingsService.IsBackgroundEnabledKey, false);
         RandomBackgroundService.ClearCache();
         await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundUrl", info.Url);
         await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", info.IsVideo);

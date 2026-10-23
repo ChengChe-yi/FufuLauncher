@@ -364,6 +364,9 @@ public partial class OfficialBackgroundViewModel : ObservableObject
         try
         {
             await _localSettingsService.SaveSettingAsync("IsRandomBackgroundEnabled", false);
+            await _localSettingsService.SaveSettingAsync("IsBingBackgroundEnabled", false);
+            await _localSettingsService.SaveSettingAsync("IsBackgroundSlideshowEnabled", false);
+            await _localSettingsService.SaveSettingAsync(LocalSettingsService.IsBackgroundEnabledKey, false);
             RandomBackgroundService.ClearCache();
             await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundUrl", item.Url);
             await _localSettingsService.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", false);

@@ -8632,4 +8632,64 @@ UIGF v4.x/3.0/2.x</value>
   <data name="BgSourceRandomModeCg" xml:space="preserve">
     <value>劇情 CG</value>
   </data>
+  <data name="NavImageSources" xml:space="preserve">
+    <value>圖像來源</value>
+  </data>
+  <data name="ImageSource_Title" xml:space="preserve">
+    <value>圖像來源</value>
+  </data>
+  <data name="ImageSource_Subtitle" xml:space="preserve">
+    <value>選擇圖像來源並預覽；此處顯示的圖片會同時套用為主背景。</value>
+  </data>
+  <data name="ImageSource_SourceOfficial" xml:space="preserve">
+    <value>官方背景</value>
+  </data>
+  <data name="ImageSource_SourceRandom" xml:space="preserve">
+    <value>隨機 BlueArchive</value>
+  </data>
+  <data name="ImageSource_SourceBing" xml:space="preserve">
+    <value>Bing 桌布</value>
+  </data>
+  <data name="ImageSource_SourceCustom" xml:space="preserve">
+    <value>自訂背景</value>
+  </data>
+  <data name="ImageSource_SourceSlideshow" xml:space="preserve">
+    <value>背景輪播</value>
+  </data>
+  <data name="ImageSource_Previous" xml:space="preserve">
+    <value>上一張</value>
+  </data>
+  <data name="ImageSource_Next" xml:space="preserve">
+    <value>下一張</value>
+  </data>
+  <data name="ImageSource_Refresh" xml:space="preserve">
+    <value>換一張</value>
+  </data>
+  <data name="ImageSource_RandomScope" xml:space="preserve">
+    <value>隨機範圍</value>
+  </data>
+  <data name="ImageSource_RandomHint" xml:space="preserve">
+    <value>左右按鈕會取得一張新的隨機 BlueArchive 圖片並套用為主背景。</value>
+  </data>
+  <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
+    <value>啟動時更換 Bing 桌布</value>
+  </data>
+  <data name="ImageSource_BingHint" xml:space="preserve">
+    <value>Bing 桌布依目前介面語言市場載入，左右按鈕可在近期桌布中隨機切換。</value>
+  </data>
+  <data name="ImageSource_CustomEmpty" xml:space="preserve">
+    <value>尚未選擇自訂背景圖片。</value>
+  </data>
+  <data name="ImageSource_SlideshowEmpty" xml:space="preserve">
+    <value>尚未選擇輪播圖片資料夾。</value>
+  </data>
+  <data name="ImageSource_BingEmpty" xml:space="preserve">
+    <value>Bing 桌布載入失敗，請稍後再試。</value>
+  </data>
+  <data name="ImageSource_InvalidApiUrl" xml:space="preserve">
+    <value>官方背景 API 位址無效，請填寫完整的 HTTP/HTTPS 位址。</value>
+  </data>
+  <data name="ImageSource_ApplyApi" xml:space="preserve">
+    <value>套用</value>
+  </data>
 </root>

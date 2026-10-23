@@ -1,0 +1,441 @@
+<UserControl
+    x:Class="FufuLauncher.Controls.ImageSourcePanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    Loaded="Panel_Loaded"
+    Unloaded="Panel_Unloaded">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <AcrylicBrush x:Key="ImageSourceCardBrush" TintColor="#FFFFFF" TintOpacity="0.6" FallbackColor="#E5FFFFFF" />
+                    <SolidColorBrush x:Key="ImageSourceOverlayButtonBrush" Color="#99FFFFFF" />
+                    <SolidColorBrush x:Key="ImageSourceRailBrush" Color="#08000000" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Default">
+                    <AcrylicBrush x:Key="ImageSourceCardBrush" TintColor="#000000" TintOpacity="0.15" FallbackColor="#CC000000" />
+                    <SolidColorBrush x:Key="ImageSourceOverlayButtonBrush" Color="#99000000" />
+                    <SolidColorBrush x:Key="ImageSourceRailBrush" Color="#14FFFFFF" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <AcrylicBrush x:Key="ImageSourceCardBrush" TintColor="#000000" TintOpacity="0.15" FallbackColor="#CC000000" />
+                    <SolidColorBrush x:Key="ImageSourceOverlayButtonBrush" Color="#99000000" />
+                    <SolidColorBrush x:Key="ImageSourceRailBrush" Color="#14FFFFFF" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <helpers:EnumToIntConverter x:Key="EnumToIntConverter" />
+
+            <Style x:Key="ImageSourceTabButtonStyle" TargetType="Button">
+                <Setter Property="Width" Value="34" />
+                <Setter Property="Height" Value="34" />
+                <Setter Property="MinWidth" Value="34" />
+                <Setter Property="MinHeight" Value="34" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ImageSourceArrowButtonStyle" TargetType="Button">
+                <Setter Property="Padding" Value="4,4" />
+                <Setter Property="Background" Value="{ThemeResource ImageSourceOverlayButtonBrush}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="ImageSourcePanelButtonStyle" TargetType="Button">
+                <Setter Property="MinHeight" Value="32" />
+                <Setter Property="Padding" Value="12,4" />
+                <Setter Property="CornerRadius" Value="8" />
+            </Style>
+
+            <Style x:Key="ImageSourcePanelCaptionStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                <Setter Property="TextWrapping" Value="NoWrap" />
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Border Background="{ThemeResource ImageSourceCardBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            CornerRadius="14"
+            Padding="24"
+            Translation="0,0,32">
+        <Border.Shadow>
+            <ThemeShadow />
+        </Border.Shadow>
+        <Grid ColumnSpacing="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="56" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0"
+                        VerticalAlignment="Top"
+                        Spacing="8">
+                <Border Background="{ThemeResource ImageSourceRailBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="10">
+                <Grid Width="34">
+                    <Border x:Name="TabSelectionIndicator"
+                            Width="34"
+                            Height="34"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Background="{ThemeResource AccentFillColorSecondaryBrush}"
+                            CornerRadius="10"
+                            Opacity="0.9">
+                        <Border.RenderTransform>
+                            <TranslateTransform x:Name="TabSelectionTransform" Y="0" />
+                        </Border.RenderTransform>
+                    </Border>
+
+                    <StackPanel x:Name="TabButtonPanel" Spacing="6">
+                        <Button x:Name="OfficialTabButton"
+                                Tag="Official"
+                                Click="OnTabClick"
+                                Style="{StaticResource ImageSourceTabButtonStyle}"
+                                AutomationProperties.Name="{helpers:Loc Key=ImageSource_SourceOfficial}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_SourceOfficial}">
+                            <Image Width="24" Height="24" Stretch="Uniform" Opacity="0.55" Source="ms-appx:///Assets/ImageSources/official.png" />
+                        </Button>
+                        <Button x:Name="RandomTabButton"
+                                Tag="RandomBlueArchive"
+                                Click="OnTabClick"
+                                Style="{StaticResource ImageSourceTabButtonStyle}"
+                                AutomationProperties.Name="{helpers:Loc Key=ImageSource_SourceRandom}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_SourceRandom}">
+                            <Image Width="24" Height="24" Stretch="Uniform" Opacity="0.55" Source="ms-appx:///Assets/ImageSources/bluearchive.png" />
+                        </Button>
+                        <Button x:Name="BingTabButton"
+                                Tag="Bing"
+                                Click="OnTabClick"
+                                Style="{StaticResource ImageSourceTabButtonStyle}"
+                                AutomationProperties.Name="{helpers:Loc Key=ImageSource_SourceBing}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_SourceBing}">
+                            <Image Width="24" Height="24" Stretch="Uniform" Opacity="0.55" Source="ms-appx:///Assets/ImageSources/bing.png" />
+                        </Button>
+                        <Button x:Name="CustomTabButton"
+                                Tag="Custom"
+                                Click="OnTabClick"
+                                Style="{StaticResource ImageSourceTabButtonStyle}"
+                                AutomationProperties.Name="{helpers:Loc Key=ImageSource_SourceCustom}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_SourceCustom}">
+                            <Image Width="24" Height="24" Stretch="Uniform" Opacity="0.55" Source="ms-appx:///Assets/ImageSources/custom.png" />
+                        </Button>
+                        <Button x:Name="SlideshowTabButton"
+                                Tag="Slideshow"
+                                Click="OnTabClick"
+                                Style="{StaticResource ImageSourceTabButtonStyle}"
+                                AutomationProperties.Name="{helpers:Loc Key=ImageSource_SourceSlideshow}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_SourceSlideshow}">
+                            <Image Width="24" Height="24" Stretch="Uniform" Opacity="0.55" Source="ms-appx:///Assets/ImageSources/slideshow.png" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                </Border>
+            </StackPanel>
+
+            <Grid Grid.Column="1" RowSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center" Spacing="3">
+                            <TextBlock Text="{x:Bind ViewModel.SourceTitle, Mode=OneWay}"
+                                       Style="{StaticResource BodyStrongTextBlockStyle}"
+                                       TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{x:Bind ViewModel.SourceCaption, Mode=OneWay}"
+                                       Style="{StaticResource ImageSourcePanelCaptionStyle}"
+                                       ToolTipService.ToolTip="{x:Bind ViewModel.SourceCaption, Mode=OneWay}" />
+                        </StackPanel>
+                        <Button Grid.Column="1"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                Click="OnNextClick"
+                                IsEnabled="{x:Bind ViewModel.CanStep, Mode=OneWay}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_Refresh}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon FontSize="14" Glyph="&#xE72C;" />
+                                <TextBlock Text="{helpers:Loc Key=ImageSource_Refresh}" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <Grid x:Name="PreviewHost"
+                          Grid.Row="1"
+                          Width="360"
+                          Height="203"
+                          Margin="0,8,0,12"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Background="Transparent"
+                          EffectiveViewportChanged="PreviewHost_EffectiveViewportChanged"
+                          PointerEntered="PreviewHost_PointerEntered"
+                          PointerExited="PreviewHost_PointerExited"
+                          SizeChanged="PreviewHost_SizeChanged">
+                        <Grid x:Name="PreviewViewport"
+                              Background="Transparent"
+                              PointerCanceled="PreviewViewport_PointerCanceled"
+                              PointerExited="PreviewViewport_PointerCanceled"
+                              PointerPressed="PreviewViewport_PointerPressed"
+                              PointerReleased="PreviewViewport_PointerReleased">
+                            <Grid x:Name="PreviewCurrentLayer" Opacity="1">
+                                <Grid.RenderTransform>
+                                    <TranslateTransform x:Name="PreviewCurrentTranslate" X="0" />
+                                </Grid.RenderTransform>
+                                <Border x:Name="PreviewCurrentImage"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        CornerRadius="12"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="PreviewCurrentScale" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+                                    <Border.Background>
+                                        <ImageBrush x:Name="PreviewCurrentBrush"
+                                                    Stretch="UniformToFill"
+                                                    />
+                                    </Border.Background>
+                                </Border>
+                                <Grid x:Name="PreviewCurrentPlaceholder"
+                                      Background="#20000000"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      IsHitTestVisible="False">
+                                    <Viewbox Width="32" Height="32"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center">
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                  Glyph="{x:Bind ViewModel.PreviewGlyph, Mode=OneWay}" />
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+
+                            <Grid x:Name="PreviewIncomingLayer" Opacity="0" IsHitTestVisible="False">
+                                <Grid.RenderTransform>
+                                    <TranslateTransform x:Name="PreviewIncomingTranslate" X="0" />
+                                </Grid.RenderTransform>
+                                <Border x:Name="PreviewIncomingImage"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        CornerRadius="12"
+                                        RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <ScaleTransform x:Name="PreviewIncomingScale" ScaleX="1" ScaleY="1" />
+                                    </Border.RenderTransform>
+                                    <Border.Background>
+                                        <ImageBrush x:Name="PreviewIncomingBrush"
+                                                    Stretch="UniformToFill"
+                                                    />
+                                    </Border.Background>
+                                </Border>
+                                <Grid x:Name="PreviewIncomingPlaceholder"
+                                      Background="#20000000"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      IsHitTestVisible="False">
+                                    <Viewbox Width="32" Height="32"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center">
+                                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                  Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                                  Glyph="{x:Bind ViewModel.PreviewGlyph, Mode=OneWay}" />
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                        <Button x:Name="PreviousImageButton"
+                                Margin="4,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource ImageSourceArrowButtonStyle}"
+                                Click="OnPreviousClick"
+                                IsEnabled="{x:Bind ViewModel.CanStep, Mode=OneWay}"
+                                IsHitTestVisible="False"
+                                Opacity="0"
+                                Visibility="{x:Bind ViewModel.CanStep, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_Previous}">
+                            <FontIcon FontSize="10" Glyph="&#xE76B;" />
+                        </Button>
+
+                        <Button x:Name="NextImageButton"
+                                Margin="0,0,4,0"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{StaticResource ImageSourceArrowButtonStyle}"
+                                Click="OnNextClick"
+                                IsEnabled="{x:Bind ViewModel.CanStep, Mode=OneWay}"
+                                IsHitTestVisible="False"
+                                Opacity="0"
+                                Visibility="{x:Bind ViewModel.CanStep, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                                ToolTipService.ToolTip="{helpers:Loc Key=ImageSource_Next}">
+                            <FontIcon FontSize="10" Glyph="&#xE76C;" />
+                        </Button>
+                    </Grid>
+
+                    <Grid Grid.Row="2" MinHeight="170">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                        <StackPanel Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsOfficialSelected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <TextBlock Text="{helpers:Loc Key=OfficialBgServerTitle}"
+                                           VerticalAlignment="Center"
+                                           FontSize="12"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                <ComboBox MinWidth="150"
+                                          SelectedIndex="{x:Bind ViewModel.SelectedServer, Mode=TwoWay, Converter={StaticResource EnumToIntConverter}}">
+                                    <ComboBoxItem Content="{helpers:Loc Key=ServerCN}" />
+                                    <ComboBoxItem Content="{helpers:Loc Key=ServerGlobal}" />
+                                </ComboBox>
+                                <Button Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                        Content="{helpers:Loc Key=BrowseOfficialBg}"
+                                        Click="OnOpenOfficialBackgroundWindowClick" />
+                            </StackPanel>
+
+                            <Expander Header="{helpers:Loc Key=OfficialBgApiTitle}" IsExpanded="False">
+                                <StackPanel Spacing="8" Padding="0,4,0,0">
+                                    <TextBox Text="{x:Bind ViewModel.CustomBackgroundApiUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             PlaceholderText="{helpers:Loc Key=OfficialBgApiPlaceholder}"
+                                             MinWidth="420"
+                                             HorizontalAlignment="Left" />
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Button Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                                Content="{helpers:Loc Key=ImageSource_ApplyApi}"
+                                                Command="{x:Bind ViewModel.SaveBackgroundApiCommand}" />
+                                        <Button Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                                Content="{helpers:Loc Key=ResetBgApi}"
+                                                Command="{x:Bind ViewModel.ResetBackgroundApiCommand}" />
+                                    </StackPanel>
+                                    <TextBlock Text="{x:Bind ViewModel.CurrentBackgroundApiUrl, Mode=OneWay}"
+                                               Style="{StaticResource ImageSourcePanelCaptionStyle}"
+                                               ToolTipService.ToolTip="{x:Bind ViewModel.CurrentBackgroundApiUrl, Mode=OneWay}" />
+                                    <TextBlock Text="{helpers:Loc Key=OfficialBgApiCaption}"
+                                               FontSize="11"
+                                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+
+                        <StackPanel Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsRandomSelected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                                <TextBlock Text="{helpers:Loc Key=ImageSource_RandomScope}"
+                                           VerticalAlignment="Center"
+                                           FontSize="12"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                                <ComboBox MinWidth="220"
+                                          SelectedIndex="{x:Bind ViewModel.RandomType, Mode=TwoWay, Converter={StaticResource EnumToIntConverter}}">
+                                    <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeAll}" />
+                                    <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeHome}" />
+                                    <ComboBoxItem Content="{helpers:Loc Key=BgSourceRandomModeCg}" />
+                                </ComboBox>
+                            </StackPanel>
+                            <TextBlock Text="{helpers:Loc Key=ImageSource_RandomHint}"
+                                       FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsBingSelected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <TextBlock Text="{x:Bind ViewModel.BingCopyright, Mode=OneWay}"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            <TextBlock Text="{helpers:Loc Key=ImageSource_BingHint}"
+                                       FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                       TextWrapping="Wrap" />
+                            <ToggleSwitch Header="{helpers:Loc Key=ImageSource_BingChangeOnStartup}"
+                                          OnContent=""
+                                          OffContent=""
+                                          IsOn="{x:Bind ViewModel.BingChangeOnStartup, Mode=TwoWay}" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsCustomSelected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                        Content="{helpers:Loc Key=SelectCustomBgImage}"
+                                        Command="{x:Bind ViewModel.SelectCustomBackgroundCommand}" />
+                                <Button Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                        Content="{helpers:Loc Key=ClearCustomBg}"
+                                        Command="{x:Bind ViewModel.ClearCustomBackgroundCommand}"
+                                        Visibility="{x:Bind ViewModel.HasCustomBackground, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            </StackPanel>
+                            <TextBlock Text="{x:Bind ViewModel.CustomPath, Mode=OneWay}"
+                                       Style="{StaticResource ImageSourcePanelCaptionStyle}"
+                                       ToolTipService.ToolTip="{x:Bind ViewModel.CustomPath, Mode=OneWay}" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="8"
+                                    Visibility="{x:Bind ViewModel.IsSlideshowSelected, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                        Content="{helpers:Loc Key=SelectSlideshowFolder}"
+                                        Command="{x:Bind ViewModel.SelectSlideshowFolderCommand}" />
+                                <Button Style="{StaticResource ImageSourcePanelButtonStyle}"
+                                        Content="{helpers:Loc Key=ClearSlideshowFolder}"
+                                        Command="{x:Bind ViewModel.ClearSlideshowFolderCommand}"
+                                        Visibility="{x:Bind ViewModel.HasSlideshowFolder, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                <NumberBox Width="180"
+                                           Header="{helpers:Loc Key=SlideshowInterval}"
+                                           Value="{x:Bind ViewModel.SlideshowInterval, Mode=TwoWay}"
+                                           Minimum="1"
+                                           Maximum="86400"
+                                           SpinButtonPlacementMode="Inline"
+                                           HorizontalAlignment="Left" />
+                            </StackPanel>
+                            <TextBlock Text="{x:Bind ViewModel.SlideshowFolder, Mode=OneWay}"
+                                       Style="{StaticResource ImageSourcePanelCaptionStyle}"
+                                       ToolTipService.ToolTip="{x:Bind ViewModel.SlideshowFolder, Mode=OneWay}" />
+                        </StackPanel>
+                        </Grid>
+
+                        <Border Grid.Row="1"
+                                Height="1"
+                                Margin="0,12,0,0"
+                                Background="{ThemeResource DividerStrokeColorDefaultBrush}" />
+                    </Grid>
+
+                    <InfoBar Grid.Row="3"
+                             IsOpen="{x:Bind ViewModel.HasStatus, Mode=OneWay}"
+                             IsClosable="False"
+                             Message="{x:Bind ViewModel.StatusText, Mode=OneWay}"
+                             Severity="Informational" />
+                </Grid>
+            </Grid>
+        </Border>
+</UserControl>

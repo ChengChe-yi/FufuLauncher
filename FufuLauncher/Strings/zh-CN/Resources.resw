@@ -8982,4 +8982,64 @@ UIGF v4.x/3.0/2.x</value>
   <data name="BgSourceRandomModeCg" xml:space="preserve">
     <value>剧情CG</value>
   </data>
+  <data name="NavImageSources" xml:space="preserve">
+    <value>图像源</value>
+  </data>
+  <data name="ImageSource_Title" xml:space="preserve">
+    <value>图像源</value>
+  </data>
+  <data name="ImageSource_Subtitle" xml:space="preserve">
+    <value>选择图像来源并预览；此处展示的图片会同时应用为主背景。</value>
+  </data>
+  <data name="ImageSource_SourceOfficial" xml:space="preserve">
+    <value>官方背景</value>
+  </data>
+  <data name="ImageSource_SourceRandom" xml:space="preserve">
+    <value>随机 BlueArchive</value>
+  </data>
+  <data name="ImageSource_SourceBing" xml:space="preserve">
+    <value>Bing 壁纸</value>
+  </data>
+  <data name="ImageSource_SourceCustom" xml:space="preserve">
+    <value>自定义背景</value>
+  </data>
+  <data name="ImageSource_SourceSlideshow" xml:space="preserve">
+    <value>背景轮播</value>
+  </data>
+  <data name="ImageSource_Previous" xml:space="preserve">
+    <value>上一张</value>
+  </data>
+  <data name="ImageSource_Next" xml:space="preserve">
+    <value>下一张</value>
+  </data>
+  <data name="ImageSource_Refresh" xml:space="preserve">
+    <value>换一张</value>
+  </data>
+  <data name="ImageSource_RandomScope" xml:space="preserve">
+    <value>随机范围</value>
+  </data>
+  <data name="ImageSource_RandomHint" xml:space="preserve">
+    <value>左右按钮会拉取一张新的随机 BlueArchive 图片并应用为主背景。</value>
+  </data>
+  <data name="ImageSource_BingChangeOnStartup" xml:space="preserve">
+    <value>启动时更换 Bing 壁纸</value>
+  </data>
+  <data name="ImageSource_BingHint" xml:space="preserve">
+    <value>Bing 壁纸按当前界面语言市场加载，左右按钮可在近期壁纸中随机切换。</value>
+  </data>
+  <data name="ImageSource_CustomEmpty" xml:space="preserve">
+    <value>尚未选择自定义背景图片。</value>
+  </data>
+  <data name="ImageSource_SlideshowEmpty" xml:space="preserve">
+    <value>尚未选择轮播图片文件夹。</value>
+  </data>
+  <data name="ImageSource_BingEmpty" xml:space="preserve">
+    <value>Bing 壁纸加载失败，请稍后重试。</value>
+  </data>
+  <data name="ImageSource_InvalidApiUrl" xml:space="preserve">
+    <value>官方背景 API 地址无效，请填写完整的 HTTP/HTTPS 地址。</value>
+  </data>
+  <data name="ImageSource_ApplyApi" xml:space="preserve">
+    <value>应用</value>
+  </data>
 </root>

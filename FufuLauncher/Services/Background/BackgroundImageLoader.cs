@@ -12,6 +12,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using FufuLauncher.Helpers;
 using FufuLauncher.Models;
 
 namespace FufuLauncher.Services.Background;
@@ -19,6 +20,35 @@ namespace FufuLauncher.Services.Background;
 internal static class BackgroundImageLoader
 {
     public static Task<ImageSource> LoadFileAsync(string path) => LoadAsync(() => File.OpenRead(path));
+
+    internal static ImageSource CreatePreviewThumbnail(ImageSource source, int maxEdge)
+    {
+        if (source is not WriteableBitmap bitmap) return source;
+
+        var width = bitmap.PixelWidth;
+        var height = bitmap.PixelHeight;
+        var longest = Math.Max(width, height);
+        if (width <= 0 || height <= 0 || longest <= maxEdge) return source;
+
+        var scale = maxEdge / (double)longest;
+        var targetWidth = Math.Max(1, (int)Math.Round(width * scale));
+        var targetHeight = Math.Max(1, (int)Math.Round(height * scale));
+
+        var pixels = new byte[checked(width * height * 4)];
+        using (var stream = bitmap.PixelBuffer.AsStream())
+            stream.ReadExactly(pixels);
+
+        using var image = Image.LoadPixelData<Bgra32>(pixels, width, height);
+        image.Mutate(context => context.Resize(targetWidth, targetHeight));
+        var thumbnailPixels = new byte[checked(targetWidth * targetHeight * 4)];
+        image.CopyPixelDataTo(thumbnailPixels);
+
+        var thumbnail = new WriteableBitmap(targetWidth, targetHeight);
+        using (var stream = thumbnail.PixelBuffer.AsStream())
+            stream.Write(thumbnailPixels, 0, thumbnailPixels.Length);
+        thumbnail.Invalidate();
+        return thumbnail;
+    }
 
     public static async Task<ImageSource> LoadFallbackAsync()
     {
@@ -37,6 +67,8 @@ internal static class BackgroundImageLoader
 
     private static async Task<ImageSource> LoadAsync(Func<Stream> openStream)
     {
+        var started = Environment.TickCount64;
+        PreviewTrace.Log("Loader.Start");
         var dispatcher = App.MainWindow?.DispatcherQueue ?? DispatcherQueue.GetForCurrentThread();
         if (dispatcher == null)
             throw new InvalidOperationException("背景图片加载需要主窗口的 UI 线程");
@@ -62,6 +94,7 @@ internal static class BackgroundImageLoader
                 pixels[i + 2] = (byte)((pixels[i + 2] * alpha + 127) / 255);
             }
 
+            PreviewTrace.Log("Loader.Decoded", $"{image.Width}x{image.Height} in {Environment.TickCount64 - started}ms");
             return (image.Width, image.Height, Pixels: pixels);
         }).ConfigureAwait(false);
 
@@ -69,12 +102,15 @@ internal static class BackgroundImageLoader
 
         void CreateBitmap()
         {
+            var bitmapStarted = Environment.TickCount64;
             try
             {
+                PreviewTrace.Log("Loader.Bitmap.Start", $"{decoded.Width}x{decoded.Height}");
                 var bitmap = new WriteableBitmap(decoded.Width, decoded.Height);
                 using var buffer = bitmap.PixelBuffer.AsStream();
                 buffer.Write(decoded.Pixels, 0, decoded.Pixels.Length);
                 bitmap.Invalidate();
+                PreviewTrace.Log("Loader.Bitmap.Done", $"{Environment.TickCount64 - bitmapStarted}ms");
                 completion.SetResult(bitmap);
             }
             catch (Exception ex)
@@ -88,7 +124,9 @@ internal static class BackgroundImageLoader
         else if (!dispatcher.TryEnqueue(CreateBitmap))
             completion.SetException(new InvalidOperationException("背景图片的 UI 调度队列已关闭"));
 
-        return await completion.Task.ConfigureAwait(false);
+        var result = await completion.Task.ConfigureAwait(false);
+        PreviewTrace.Log("Loader.End", $"{Environment.TickCount64 - started}ms");
+        return result;
     }
 
     private static void ApplyDisplayQuality(Image<Bgra32> image, BackgroundImageQuality quality)

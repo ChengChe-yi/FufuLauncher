@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -25,7 +26,7 @@ public sealed partial class SettingsPage : Page
     {
         SettingsSectionIds.Appearance, SettingsSectionIds.HomeCards, SettingsSectionIds.GameAnnouncement,
         SettingsSectionIds.Widgets, SettingsSectionIds.Notes, SettingsSectionIds.HomeText,
-        SettingsSectionIds.Background, SettingsSectionIds.WindowEffects,
+        SettingsSectionIds.ImageSource, SettingsSectionIds.Background, SettingsSectionIds.WindowEffects,
         SettingsSectionIds.LaunchConfig, SettingsSectionIds.Screenshots, SettingsSectionIds.Checkin,
         SettingsSectionIds.Language, SettingsSectionIds.WindowBehavior, SettingsSectionIds.Startup,
         SettingsSectionIds.StartupSound, SettingsSectionIds.AdvancedOptions, SettingsSectionIds.StoragePaths,
@@ -60,15 +61,19 @@ public sealed partial class SettingsPage : Page
     protected async override void OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
+        PreviewTrace.Log("SettingsPage.OnNavigatedTo.Start");
 
         if (ViewModel != null)
         {
             await ViewModel.ReloadSettingsAsync();
         }
+
+        PreviewTrace.Log("SettingsPage.OnNavigatedTo.End");
     }
 
     private void Page_Loaded(object sender, RoutedEventArgs e)
     {
+        PreviewTrace.Log("SettingsPage.PageLoaded");
         EntranceStoryboard.Begin();
         UpdateTemporaryDeveloperAuthUi();
 

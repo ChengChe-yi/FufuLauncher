@@ -30,6 +30,7 @@ public sealed partial class MainWindow : WindowEx
     private readonly IBackgroundRenderer _backgroundRenderer;
     private readonly IDevBuildDetectionService _devBuildDetectionService;
     private readonly ILocalSettingsService _localSettingsService;
+    private readonly BingWallpaperService _bingWallpaperService;
     private readonly AccountManager _accountManager;
     private MediaPlayer? _globalBackgroundPlayer;
     private IMediaPlaybackSource? _suspendedVideoSource;
@@ -196,6 +197,7 @@ public sealed partial class MainWindow : WindowEx
         _backgroundRenderer = App.GetService<IBackgroundRenderer>();
         _devBuildDetectionService = App.GetService<IDevBuildDetectionService>();
         _localSettingsService = App.GetService<ILocalSettingsService>();
+        _bingWallpaperService = App.GetService<BingWallpaperService>();
         _accountManager = App.GetService<AccountManager>();
         AccountFlyout.Closed += (_, _) =>
         {

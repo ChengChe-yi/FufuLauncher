@@ -30,6 +30,11 @@ public sealed partial class MainWindow
     private BackgroundImageQuality? _randomBackgroundQuality;
     private int _randomBackgroundReloadVersion;
 
+    public event Action<BackgroundRenderResult>? GlobalBackgroundApplied;
+    public event Action<ImageSource>? GlobalBackgroundImageAvailable;
+
+    public BackgroundRenderResult? CurrentGlobalBackground { get; private set; }
+
     private async Task LoadBackgroundImageOpacityAsync()
     {
         try
@@ -96,9 +101,13 @@ public sealed partial class MainWindow
         }
     }
 
+    private bool _isFirstBackgroundLoad = true;
+
     private async Task LoadGlobalBackgroundAsync()
     {
         var version = Interlocked.Increment(ref _backgroundLoadVersion);
+        var isInitialBackgroundLoad = _isFirstBackgroundLoad;
+        _isFirstBackgroundLoad = false;
         StopSlideshow();
         try
         {
@@ -112,12 +121,16 @@ public sealed partial class MainWindow
                 return;
             }
 
-            _randomBackgroundResult = null;
-            _randomBackgroundFetchStarted = false;
-            _randomBackgroundLoadType = null;
-            _randomBackgroundQuality = null;
-            _randomBackgroundReloadVersion++;
-            RandomBackgroundService.ClearCache();
+            var bingEnabledJson = await _localSettingsService.ReadSettingAsync("IsBingBackgroundEnabled");
+            var isBingEnabled = bingEnabledJson != null && Convert.ToBoolean(bingEnabledJson);
+            if (isBingEnabled)
+            {
+                ResetRandomBackgroundState();
+                await LoadBingBackgroundAsync(version, isInitialBackgroundLoad);
+                return;
+            }
+
+            ResetRandomBackgroundState();
 
             if (GlobalBackgroundImage.Source == null && !_isVideoBackground)
                 await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
@@ -181,6 +194,135 @@ public sealed partial class MainWindow
             StopSlideshow();
             await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
         }
+    }
+
+    private void ResetRandomBackgroundState()
+    {
+        _randomBackgroundResult = null;
+        _randomBackgroundFetchStarted = false;
+        _randomBackgroundLoadType = null;
+        _randomBackgroundQuality = null;
+        _randomBackgroundReloadVersion++;
+        RandomBackgroundService.ClearCache();
+    }
+
+    private async Task LoadBingBackgroundAsync(int version, bool isInitialBackgroundLoad)
+    {
+        try
+        {
+            var savedUrl = (await _localSettingsService.ReadSettingAsync("BingWallpaperUrl"))?.ToString();
+            var changeOnStartup = true;
+            var changeSetting = await _localSettingsService.ReadSettingAsync("IsBingBackgroundChangeOnStartupEnabled");
+            if (changeSetting != null)
+                changeOnStartup = Convert.ToBoolean(changeSetting);
+
+            var shouldChange = isInitialBackgroundLoad && changeOnStartup;
+            var appliedCached = false;
+            var fetchAttempted = false;
+
+            if (shouldChange)
+            {
+                var cached = await _bingWallpaperService.LoadCachedAsync();
+                if (version != _backgroundLoadVersion || _isExit) return;
+
+                if (cached != null)
+                {
+                    await SaveBingWallpaperSettingsAsync(cached.Wallpaper);
+                    await ApplyGlobalBackgroundAsync(cached.Result, version);
+                    appliedCached = true;
+                }
+
+                var fetched = await _bingWallpaperService.FetchAndCacheAsync(savedUrl);
+                fetchAttempted = true;
+                if (version != _backgroundLoadVersion || _isExit) return;
+
+                if (fetched != null)
+                {
+                    await SaveBingWallpaperSettingsAsync(fetched.Wallpaper);
+                    await ApplyGlobalBackgroundAsync(fetched.Result, version);
+                    return;
+                }
+
+                if (appliedCached) return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(savedUrl))
+            {
+                var savedResult = await _backgroundRenderer.GetSpecificOnlineBackgroundAsync(savedUrl, false);
+                if (version != _backgroundLoadVersion || _isExit) return;
+                savedResult ??= await _backgroundRenderer.GetFallbackBackgroundAsync();
+                await ApplyGlobalBackgroundAsync(savedResult, version);
+                return;
+            }
+
+            if (!fetchAttempted)
+            {
+                var fetched = await _bingWallpaperService.FetchAndCacheAsync(null);
+                if (version != _backgroundLoadVersion || _isExit) return;
+                if (fetched != null)
+                {
+                    await SaveBingWallpaperSettingsAsync(fetched.Wallpaper);
+                    await ApplyGlobalBackgroundAsync(fetched.Result, version);
+                    return;
+                }
+            }
+
+            await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"[BingWallpaper] 加载背景失败: {ex.Message}");
+            if (version == _backgroundLoadVersion && !_isExit)
+                await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
+        }
+    }
+
+    private async Task SaveBingWallpaperSettingsAsync(BingWallpaperItem wallpaper)
+    {
+        await _localSettingsService.SaveSettingAsync("BingWallpaperUrl", wallpaper.Url);
+        await _localSettingsService.SaveSettingAsync("BingWallpaperCopyright", wallpaper.Copyright);
+    }
+
+    public void CancelPendingBackgroundLoad()
+    {
+        Interlocked.Increment(ref _backgroundLoadVersion);
+        CancelRandomBackgroundLoad();
+        StopSlideshow();
+    }
+
+    private void CancelRandomBackgroundLoad()
+    {
+        _randomBackgroundResult = null;
+        _randomBackgroundFetchStarted = false;
+        _randomBackgroundLoadType = null;
+        _randomBackgroundQuality = null;
+        _randomBackgroundReloadVersion++;
+    }
+
+    public async Task ReloadRandomBackgroundAsync(bool forceNewImage)
+    {
+        if (_isExit) return;
+
+        if (forceNewImage)
+            ResetRandomBackgroundState();
+
+        await LoadGlobalBackgroundAsync();
+    }
+
+    public async Task<bool> StepSlideshowAsync(int direction)
+    {
+        if (_isExit || _slideshowImages.Count == 0) return false;
+
+        var count = _slideshowImages.Count;
+        _currentSlideshowIndex = (_currentSlideshowIndex - 1 + direction + count) % count;
+        return await ShowNextSlideshowImageAsync(_backgroundLoadVersion);
+    }
+
+    public void StopSlideshowBackground()
+    {
+        StopSlideshow();
+        _slideshowImages.Clear();
+        _currentSlideshowIndex = 0;
     }
 
     private async Task LoadRandomBackgroundAsync(RandomBackgroundType type)
@@ -367,6 +509,13 @@ public sealed partial class MainWindow
         _bgVideoFailedHandler = null;
     }
 
+    private static string DescribeBackgroundImage(ImageSource? source)
+    {
+        if (source is WriteableBitmap bitmap)
+            return $"{bitmap.PixelWidth}x{bitmap.PixelHeight}";
+        return source?.GetType().Name ?? "null";
+    }
+
     private async Task ApplyGlobalBackgroundAsync(BackgroundRenderResult? result, int? version = null,
         MediaSource? expectedVideoSource = null)
     {
@@ -376,10 +525,15 @@ public sealed partial class MainWindow
             return;
         }
 
+        var applyStarted = Environment.TickCount64;
+        PreviewTrace.Log("Bg.Apply.Start", $"version={version} video={result.IsVideo} fallback={result.IsFallback} image={DescribeBackgroundImage(result.ImageSource)}");
+
         double finalOpacity = 1.0;
         try
         {
+            PreviewTrace.Log("Bg.OpacityRead.Start");
             var valueObj = await _localSettingsService.ReadSettingAsync("GlobalBackgroundImageOpacity");
+            PreviewTrace.Log("Bg.OpacityRead.End", $"{Environment.TickCount64 - applyStarted}ms");
             if (valueObj != null && double.TryParse(valueObj.ToString(), out var parsed) && double.IsFinite(parsed))
             {
                 finalOpacity = Math.Clamp(parsed, 0.0, 1.0);
@@ -389,11 +543,14 @@ public sealed partial class MainWindow
         {
         }
 
+        PreviewTrace.Log("Bg.BeforeUI", $"{Environment.TickCount64 - applyStarted}ms");
         await RunOnUIThreadAsync(() =>
         {
+            PreviewTrace.Log("Bg.UILambda.Start");
             if (_isExit || (version.HasValue && version != _backgroundLoadVersion)) return;
             if (expectedVideoSource != null &&
                 !ReferenceEquals(_globalBackgroundPlayer?.Source, expectedVideoSource)) return;
+            CurrentGlobalBackground = result;
             StopBackgroundImageAnimation();
             _isFallbackBackground = result.IsFallback;
             if (result.IsVideo)
@@ -432,7 +589,15 @@ public sealed partial class MainWindow
                 DisposeGlobalBackgroundPlayer();
                 GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
 
+                PreviewTrace.Log("Bg.MainSourceSet.Start", DescribeBackgroundImage(result.ImageSource));
                 GlobalBackgroundImage.Source = result.ImageSource;
+                PreviewTrace.Log("Bg.MainSourceSet.Done");
+                if (result.ImageSource != null && !result.IsFallback)
+                {
+                    PreviewTrace.Log("Bg.ImageAvailable.Invoke");
+                    GlobalBackgroundImageAvailable?.Invoke(result.ImageSource);
+                    PreviewTrace.Log("Bg.ImageAvailable.Returned");
+                }
 
                 GlobalBackgroundImage.Opacity = finalOpacity;
                 GlobalBackgroundImage.Visibility = Visibility.Visible;
@@ -468,6 +633,13 @@ public sealed partial class MainWindow
 
             UpdateBackgroundOverlayTheme();
         });
+
+        PreviewTrace.Log("Bg.UICompleted", $"{Environment.TickCount64 - applyStarted}ms");
+        if (_isExit || (version.HasValue && version != _backgroundLoadVersion)) return;
+
+        CurrentGlobalBackground = result;
+        GlobalBackgroundApplied?.Invoke(result);
+        PreviewTrace.Log("Bg.Apply.End", $"{Environment.TickCount64 - applyStarted}ms");
     }
 
     private void OnGlobalBackgroundVideoFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
