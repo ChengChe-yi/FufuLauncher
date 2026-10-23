@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -18,12 +18,12 @@ namespace FufuLauncher.Helpers
                 if (!Directory.Exists(pluginsPath))
                 {
                     Directory.CreateDirectory(pluginsPath);
-                    Debug.WriteLine("已自动创建 Plugins 文件夹");
+                    DebugLog.Info("PluginFolderHelper", "Plugins folder created automatically");
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"创建 Plugins 文件夹失败: {ex.Message}");
+                DebugLog.Info("PluginFolderHelper", $"Failed to create Plugins folder: {ex.Message}");
             }
         }
     }

@@ -1,10 +1,11 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
 using FufuLauncher.Models;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -58,8 +59,8 @@ public partial class GachaAnalysisViewModel
             }
         }
 
-        Debug.WriteLine(
-            $"[Gacha] 通过缓存元数据补全记录：name→id 映射 {byName.Count} 条（补全 {filledItemId} 条）、id→name 映射 {byItemId.Count} 条（补全 {filledName} 条）");
+        DebugLog.Info("GachaAnalysisViewModel.Helpers",
+            $"[Gacha] Backfilled records from cached metadata: name→id mappings {byName.Count} (filled {filledItemId}), id→name mappings {byItemId.Count} (filled {filledName})");
 
         return changed;
     }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json.Nodes;
 using FufuLauncher.Constants;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -121,7 +122,7 @@ public sealed partial class LoginQrWindow
                 else
                 {
                     consecutiveErrors++;
-                    Debug.WriteLine($"轮询返回非预期码: {retcode}");
+                    DebugLog.Info("LoginQrWindow.AppQrLogin", $"Unexpected poll return code: {retcode}");
                 }
             }
             catch (OperationCanceledException)
@@ -133,7 +134,7 @@ public sealed partial class LoginQrWindow
             catch (Exception ex)
             {
                 consecutiveErrors++;
-                Debug.WriteLine($"轮询异常: {ex.Message}");
+                DebugLog.Info("LoginQrWindow.AppQrLogin", $"Polling exception: {ex.Message}");
             }
 
             if (consecutiveErrors >= MaxConsecutiveErrors)

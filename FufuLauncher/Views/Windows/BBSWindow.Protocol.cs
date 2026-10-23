@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using Microsoft.Web.WebView2.Core;
 using Windows.Storage.Streams;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -148,7 +149,7 @@ public sealed partial class BBSWindow
                 string fp = _activeDeviceFp;
                 if (string.IsNullOrEmpty(fp))
                 {
-                    System.Diagnostics.Debug.WriteLine("[BBSWindow] 警告：_activeDeviceFp 为空，使用临时随机值");
+                    DebugLog.Info("BBSWindow.Protocol", "[BBSWindow] Warning: _activeDeviceFp is empty, using a temporary random value");
                     fp = Convert.ToHexString(RandomNumberGenerator.GetBytes(7)).ToLowerInvariant();
                 }
 
@@ -192,7 +193,7 @@ public sealed partial class BBSWindow
         string fp = _activeDeviceFp;
         if (string.IsNullOrEmpty(fp))
         {
-            System.Diagnostics.Debug.WriteLine("[BBSWindow] GetHttpRequestHeader: _activeDeviceFp 为空，使用随机回退");
+            DebugLog.Info("BBSWindow.Protocol", "[BBSWindow] GetHttpRequestHeader: _activeDeviceFp is empty, using random fallback");
             fp = Convert.ToHexString(RandomNumberGenerator.GetBytes(7)).ToLowerInvariant();
         }
 
@@ -213,7 +214,7 @@ public sealed partial class BBSWindow
         string fp = _activeDeviceFp;
         if (string.IsNullOrEmpty(fp))
         {
-            System.Diagnostics.Debug.WriteLine("[BBSWindow] GetCookieInfoMinimal: _activeDeviceFp 为空，使用随机回退");
+            DebugLog.Info("BBSWindow.Protocol", "[BBSWindow] GetCookieInfoMinimal: _activeDeviceFp is empty, using random fallback");
             fp = Convert.ToHexString(RandomNumberGenerator.GetBytes(7)).ToLowerInvariant();
         }
 

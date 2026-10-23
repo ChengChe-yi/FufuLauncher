@@ -96,7 +96,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"清除 WebView2 缓存失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.WebView2", $"Failed to clear WebView2 cache: {ex.Message}");
         }
     }
 

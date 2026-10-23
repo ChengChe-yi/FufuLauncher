@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -75,8 +75,8 @@ public partial class GachaAnalysisViewModel
     {
         var uids = QueryKnownUidsFromDb();
         var current = _currentUid;
-        Debug.WriteLine(
-            $"[Gacha] RefreshKnownUids: 查询到 {uids.Count} 个 UID: [{string.Join(", ", uids)}], current={current}");
+        DebugLog.Info("GachaAnalysisViewModel.Persistence",
+            $"[Gacha] RefreshKnownUids: found {uids.Count} UIDs: [{string.Join(", ", uids)}], current={current}");
         App.MainWindow.DispatcherQueue.TryEnqueue(() =>
         {
             RefreshKnownUidsUI(uids);
@@ -139,12 +139,12 @@ public partial class GachaAnalysisViewModel
                 else _cachedStandardLogs.Add(item);
             }
 
-            Debug.WriteLine(
-                $"[Gacha] 加载完成 UID={uid}: 角色{_cachedCharacterLogs.Count} 武器{_cachedWeaponLogs.Count} 集录{_cachedChronicledLogs.Count} 新手{_cachedNoviceLogs.Count} 常驻{_cachedStandardLogs.Count}");
+            DebugLog.Info("GachaAnalysisViewModel.Persistence",
+                $"[Gacha] Load complete UID={uid}: character {_cachedCharacterLogs.Count}, weapon {_cachedWeaponLogs.Count}, chronicled {_cachedChronicledLogs.Count}, novice {_cachedNoviceLogs.Count}, standard {_cachedStandardLogs.Count}");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] 加载抽卡数据失败: {ex.Message}");
+            DebugLog.Info("GachaAnalysisViewModel.Persistence", $"[Gacha] Failed to load gacha data: {ex.Message}");
         }
     }
 
@@ -152,7 +152,7 @@ public partial class GachaAnalysisViewModel
     {
         if (string.IsNullOrEmpty(_currentUid))
         {
-            Debug.WriteLine("[Gacha] SaveGachaLogsToDb: _currentUid 为空，跳过保存");
+            DebugLog.Info("GachaAnalysisViewModel.Persistence", "[Gacha] SaveGachaLogsToDb: _currentUid is empty, skipping save");
             return;
         }
 
@@ -160,7 +160,7 @@ public partial class GachaAnalysisViewModel
         {
             var totalBefore = _cachedCharacterLogs.Count + _cachedWeaponLogs.Count + _cachedChronicledLogs.Count +
                               _cachedNoviceLogs.Count + _cachedStandardLogs.Count;
-            Debug.WriteLine($"[Gacha] SaveGachaLogsToDb: 开始保存 UID={_currentUid}, 共 {totalBefore} 条记录");
+            DebugLog.Info("GachaAnalysisViewModel.Persistence", $"[Gacha] SaveGachaLogsToDb: saving UID={_currentUid}, {totalBefore} records total");
 
             var allLogs = new List<GachaLogEntity>();
             AddLogItems(allLogs, _cachedCharacterLogs);
@@ -170,12 +170,12 @@ public partial class GachaAnalysisViewModel
             AddLogItems(allLogs, _cachedStandardLogs);
 
             _metadataRepo.ReplaceGachaLogs(_currentUid, allLogs);
-            Debug.WriteLine(
-                $"[Gacha] 保存完成 UID={_currentUid}: 角色{_cachedCharacterLogs.Count} 武器{_cachedWeaponLogs.Count} 集录{_cachedChronicledLogs.Count} 新手{_cachedNoviceLogs.Count} 常驻{_cachedStandardLogs.Count}");
+            DebugLog.Info("GachaAnalysisViewModel.Persistence",
+                $"[Gacha] Save complete UID={_currentUid}: character {_cachedCharacterLogs.Count}, weapon {_cachedWeaponLogs.Count}, chronicled {_cachedChronicledLogs.Count}, novice {_cachedNoviceLogs.Count}, standard {_cachedStandardLogs.Count}");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] 保存抽卡数据失败: {ex.Message}");
+            DebugLog.Info("GachaAnalysisViewModel.Persistence", $"[Gacha] Failed to save gacha data: {ex.Message}");
         }
     }
 

@@ -9,6 +9,7 @@ using FufuLauncher.Constants;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -63,7 +64,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"WebView2 Error: {ex.Message}");
+                DebugLog.Info("AnnouncementPage", $"WebView2 Error: {ex.Message}");
                 LoadingBar.Visibility = Visibility.Collapsed;
             }
         }
@@ -78,7 +79,7 @@ namespace FufuLauncher.Views
                     uriString.StartsWith("uniwebview://close/", StringComparison.OrdinalIgnoreCase) ||
                     uriString.StartsWith("uniwebview://close?", StringComparison.OrdinalIgnoreCase))
                 {
-                    System.Diagnostics.Debug.WriteLine("【捕获关闭指令】正在关闭窗口...");
+                    DebugLog.Info("AnnouncementPage", "[Close command captured] Closing window...");
 
                     DispatcherQueue.TryEnqueue(() =>
                     {
@@ -87,7 +88,7 @@ namespace FufuLauncher.Views
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine($"【拦截其他指令】{uriString}");
+                    DebugLog.Info("AnnouncementPage", $"[Other command intercepted] {uriString}");
                 }
 
                 return true;

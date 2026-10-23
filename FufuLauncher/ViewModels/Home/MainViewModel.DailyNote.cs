@@ -43,13 +43,13 @@ public partial class MainViewModel
         if (hideJson != null && Convert.ToBoolean(hideJson))
         {
             IsDailyNoteLoaded = false;
-            Debug.WriteLine("[DailyNote] 便签卡片已隐藏，跳过API请求");
+            DebugLog.Info("MainViewModel.DailyNote", "[DailyNote] Note card hidden, skipping API request");
             return;
         }
 
         if (!force && IsDailyNoteLoaded)
         {
-            Debug.WriteLine("[DailyNote] 已有数据，跳过本次请求");
+            DebugLog.Info("MainViewModel.DailyNote", "[DailyNote] Data already present, skipping request");
             return;
         }
 
@@ -65,7 +65,7 @@ public partial class MainViewModel
 
             if (dailyNoteData == null)
             {
-                Debug.WriteLine("[DailyNote] 登录过期且刷新失败，跳过便签更新");
+                DebugLog.Info("MainViewModel.DailyNote", "[DailyNote] Login expired and refresh failed, skipping note update");
                 return;
             }
 
@@ -86,11 +86,11 @@ public partial class MainViewModel
                 IsDailyNoteLoaded = true;
             });
 
-            Debug.WriteLine("[DailyNote] 便签数据加载成功");
+            DebugLog.Info("MainViewModel.DailyNote", "[DailyNote] Note data loaded");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DailyNote] 加载便签数据失败: {ex.Message}");
+            DebugLog.Info("MainViewModel.DailyNote", $"[DailyNote] Failed to load note data: {ex.Message}");
             await UpdateUI(() =>
             {
                 if (version == _dailyNoteVersion) DailyNoteStatus = ex.Message;

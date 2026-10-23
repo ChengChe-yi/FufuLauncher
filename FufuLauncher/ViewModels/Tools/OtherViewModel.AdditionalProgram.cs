@@ -73,7 +73,7 @@ public partial class OtherViewModel
         catch (Exception ex)
         {
             StatusMessage = string.Format("AdditionalProgram_ApplyFailed_Format".GetLocalized(), ex.Message);
-            Debug.WriteLine($"[ApplyProgramPathAsync] 失败: {ex.Message}");
+            DebugLog.Info("OtherViewModel.AdditionalProgram", $"[ApplyProgramPathAsync] Failed: {ex.Message}");
         }
     }
 
@@ -83,7 +83,7 @@ public partial class OtherViewModel
         {
             if (!_dispatcherQueue.HasThreadAccess)
             {
-                Debug.WriteLine("[错误] BrowseProgramAsync 不在UI线程上执行");
+                DebugLog.Info("OtherViewModel.AdditionalProgram", "[Error] BrowseProgramAsync not executing on UI thread");
                 return;
             }
 
@@ -100,7 +100,7 @@ public partial class OtherViewModel
             if (!string.IsNullOrEmpty(path))
             {
                 path = path.Trim('"');
-                Debug.WriteLine($"[OtherViewModel] 用户选择程序: '{path}'");
+                DebugLog.Info("OtherViewModel.AdditionalProgram", $"[OtherViewModel] User selected program: '{path}'");
 
                 if (File.Exists(path))
                 {
@@ -113,17 +113,17 @@ public partial class OtherViewModel
             }
             else
             {
-                Debug.WriteLine("[OtherViewModel] 用户取消了文件选择");
+                DebugLog.Info("OtherViewModel.AdditionalProgram", "[OtherViewModel] User cancelled file selection");
             }
         }
         catch (UnauthorizedAccessException)
         {
             await ShowErrorAsync("AdditionalProgram_PermissionOrOccupied".GetLocalized());
-            Debug.WriteLine("[严重错误] 管理员模式权限问题");
+            DebugLog.Info("OtherViewModel.AdditionalProgram", "[Critical] Admin mode permission issue");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"选择程序失败: {ex.Message}\n堆栈: {ex.StackTrace}");
+            DebugLog.Info("OtherViewModel.AdditionalProgram", $"Program selection failed: {ex.Message}\nStack trace: {ex.StackTrace}");
             await ShowErrorAsync(string.Format("AdditionalProgram_SelectFailed_Format".GetLocalized(), ex.Message));
         }
     }

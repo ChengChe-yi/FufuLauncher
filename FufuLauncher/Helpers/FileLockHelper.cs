@@ -24,7 +24,7 @@ public static class FileLockHelper
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[文件锁] 检测失败 {filePath}: {ex.Message}");
+            DebugLog.Info("FileLockHelper", $"[FileLock] Detection failed {filePath}: {ex.Message}");
             return false;
         }
     }
@@ -52,7 +52,7 @@ public static class FileLockHelper
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[文件锁] 目录检测失败 {directoryPath}: {ex.Message}");
+            DebugLog.Info("FileLockHelper", $"[FileLock] Directory detection failed {directoryPath}: {ex.Message}");
         }
 
         return null;

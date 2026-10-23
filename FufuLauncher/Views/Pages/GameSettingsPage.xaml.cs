@@ -64,7 +64,7 @@ public sealed partial class GameSettingsPage : Page
     private async void GameSettingsPage_Loaded(object sender, RoutedEventArgs e)
     {
         EntranceStoryboard.Begin();
-        Debug.WriteLine("[Debug] GameSettingsPage_Loaded 开始");
+        DebugLog.Info("GameSettingsPage", "[Debug] GameSettingsPage_Loaded started");
 
         try
         {
@@ -78,7 +78,7 @@ public sealed partial class GameSettingsPage : Page
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Debug] 读取帧数显示开关状态失败: {ex.Message}");
+            DebugLog.Info("GameSettingsPage", $"[Debug] Failed to read FPS display toggle: {ex.Message}");
         }
 
         try
@@ -86,25 +86,25 @@ public sealed partial class GameSettingsPage : Page
             var savedPathObj = await _localSettingsService.ReadSettingAsync("GameInstallationPath");
             var savedPath = savedPathObj as string;
 
-            Debug.WriteLine($"[Debug] 读取到的本地保存路径: '{savedPath}'");
-            Debug.WriteLine($"[Debug] IsNullOrWhiteSpace 判断结果: {string.IsNullOrWhiteSpace(savedPath)}");
+            DebugLog.Info("GameSettingsPage", $"[Debug] Saved local path: '{savedPath}'");
+            DebugLog.Info("GameSettingsPage", $"[Debug] IsNullOrWhiteSpace result: {string.IsNullOrWhiteSpace(savedPath)}");
 
             if (!string.IsNullOrWhiteSpace(savedPath))
             {
-                Debug.WriteLine("[Debug] 路径非空，跳过自动检测，直接加载已有路径。");
+                DebugLog.Info("GameSettingsPage", "[Debug] Path not empty, skipping auto-detect and loading existing path.");
                 savedPath = savedPath.Trim('"').Trim();
                 PathTextBox.Text = savedPath;
                 await LoadGameInfoAsync(savedPath);
             }
             else
             {
-                Debug.WriteLine("[Debug] 路径为空，准备调用 GamePathFinder.FindGamePath()...");
+                DebugLog.Info("GameSettingsPage", "[Debug] Path empty, calling GamePathFinder.FindGamePath()...");
                 var foundPath = await GamePathFinder.FindGamePathAsync();
-                Debug.WriteLine($"[Debug] GamePathFinder 返回的路径为: '{foundPath}'");
+                DebugLog.Info("GameSettingsPage", $"[Debug] GamePathFinder returned path: '{foundPath}'");
 
                 if (!string.IsNullOrEmpty(foundPath))
                 {
-                    Debug.WriteLine("[Debug] 进入 DispatcherQueue，准备调用 ShowAutoPathDialog");
+                    DebugLog.Info("GameSettingsPage", "[Debug] Entering DispatcherQueue to call ShowAutoPathDialog");
                     DispatcherQueue.TryEnqueue(async () =>
                     {
                         await ShowAutoPathDialog(foundPath);
@@ -112,7 +112,7 @@ public sealed partial class GameSettingsPage : Page
                 }
                 else
                 {
-                    Debug.WriteLine("[Debug] 未找到路径，跳过弹窗。");
+                    DebugLog.Info("GameSettingsPage", "[Debug] Path not found, skipping dialog.");
                 }
             }
 
@@ -120,11 +120,11 @@ public sealed partial class GameSettingsPage : Page
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Debug] BlankPage_Loaded 发生异常: {ex.Message}\n{ex.StackTrace}");
+            DebugLog.Info("GameSettingsPage", $"[Debug] BlankPage_Loaded error: {ex.Message}\n{ex.StackTrace}");
         }
 
         await LoadRedeemCodesAsync();
-        Debug.WriteLine("[Debug] BlankPage_Loaded 结束");
+        DebugLog.Info("GameSettingsPage", "[Debug] BlankPage_Loaded finished");
     }
 
     private async void FpsOverlayToggle_Toggled(object sender, RoutedEventArgs e)

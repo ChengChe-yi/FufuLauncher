@@ -235,11 +235,11 @@ namespace FufuLauncher.ViewModels
 
                 App.FirstRunSelectedLanguage = language;
 
-                Debug.WriteLine($"[LangSelect] Language confirmed: {language}, culture='{culture}'");
+                DebugLog.Info("LanguageSelectionViewModel", $"[LangSelect] Language confirmed: {language}, culture='{culture}'");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[LangSelect] Failed to apply language: {ex.Message}");
+                DebugLog.Info("LanguageSelectionViewModel", $"[LangSelect] Failed to apply language: {ex.Message}");
             }
         }
     }

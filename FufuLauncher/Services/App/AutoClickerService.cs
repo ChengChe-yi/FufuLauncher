@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using FufuLauncher.Contracts.Services;
 using Windows.System;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services
 {
@@ -170,13 +171,13 @@ namespace FufuLauncher.Services
             _settingsService = settingsService;
             _keyboardHookCallback = KeyboardHookCallback;
             _mouseHookCallback = MouseHookCallback;
-            Debug.WriteLine("[连点器服务] 初始化");
+            DebugLog.Info("AutoClickerService", "[AutoClickerService] Initializing");
         }
 
         public void Initialize()
         {
             LoadSettings();
-            Debug.WriteLine("[连点器服务] 配置加载完成");
+            DebugLog.Info("AutoClickerService", "[AutoClickerService] Config loaded");
         }
 
         private void LoadSettings()
@@ -240,11 +241,11 @@ namespace FufuLauncher.Services
                     Name = "AutoClickerHookThread"
                 };
                 _hookThread.Start();
-                Debug.WriteLine("[连点器] 钩子线程启动");
+                DebugLog.Info("AutoClickerService", "[AutoClicker] Hook thread started");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[连点器] Start 异常: {ex.Message}");
+                DebugLog.Info("AutoClickerService", $"[AutoClicker] Start error: {ex.Message}");
             }
         }
 
@@ -258,8 +259,8 @@ namespace FufuLauncher.Services
                 var moduleHandle = curModule != null ? GetModuleHandle(curModule.ModuleName) : IntPtr.Zero;
                 _keyboardHookId = SetWindowsHookEx(WH_KEYBOARD_LL, _keyboardHookCallback, moduleHandle, 0);
                 _mouseHookId = SetWindowsHookEx(WH_MOUSE_LL, _mouseHookCallback, moduleHandle, 0);
-                Debug.WriteLine(_keyboardHookId == IntPtr.Zero ? "[连点器] 键盘钩子安装失败" : "[连点器] 键盘钩子安装成功");
-                Debug.WriteLine(_mouseHookId == IntPtr.Zero ? "[连点器] 鼠标钩子安装失败" : "[连点器] 鼠标钩子安装成功");
+                DebugLog.Info("AutoClickerService", _keyboardHookId == IntPtr.Zero ? "[AutoClicker] Keyboard hook install failed" : "[AutoClicker] Keyboard hook installed");
+                DebugLog.Info("AutoClickerService", _mouseHookId == IntPtr.Zero ? "[AutoClicker] Mouse hook install failed" : "[AutoClicker] Mouse hook installed");
 
                 if (_keyboardHookId != IntPtr.Zero || _mouseHookId != IntPtr.Zero)
                 {
@@ -273,7 +274,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[连点器] HookThreadProc 异常: {ex.Message}");
+                DebugLog.Info("AutoClickerService", $"[AutoClicker] HookThreadProc error: {ex.Message}");
             }
             finally
             {
@@ -290,7 +291,7 @@ namespace FufuLauncher.Services
                 }
 
                 _nativeHookThreadId = 0;
-                Debug.WriteLine("[连点器] 钩子已卸载");
+                DebugLog.Info("AutoClickerService", "[AutoClicker] Hooks unloaded");
             }
         }
 
@@ -431,12 +432,12 @@ namespace FufuLauncher.Services
             }
 
             IsAutoClickingChanged?.Invoke(this, false);
-            Debug.WriteLine("[连点器] 停止");
+            DebugLog.Info("AutoClickerService", "[AutoClicker] Stopping");
         }
 
         private async Task ClickLoop(CancellationToken token)
         {
-            Debug.WriteLine("[连点器] 循环开始");
+            DebugLog.Info("AutoClickerService", "[AutoClicker] Loop started");
             ushort scanCode = (ushort)MapVirtualKey((uint)_clickKey, MAPVK_VK_TO_VSC);
 
             try
@@ -460,7 +461,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[连点器] 循环异常: {ex.Message}");
+                DebugLog.Info("AutoClickerService", $"[AutoClicker] Loop error: {ex.Message}");
             }
         }
 
@@ -505,7 +506,7 @@ namespace FufuLauncher.Services
         public void Dispose()
         {
             Stop();
-            Debug.WriteLine("[连点器服务] 已释放");
+            DebugLog.Info("AutoClickerService", "[AutoClickerService] Disposed");
         }
 
         #region P/Invoke

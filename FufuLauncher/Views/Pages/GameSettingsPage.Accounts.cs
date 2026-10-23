@@ -57,7 +57,7 @@ public sealed partial class GameSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[LoadAccountsAsync] 失败: {ex.Message}");
+            DebugLog.Info("GameSettingsPage.Accounts", $"[LoadAccountsAsync] Failed: {ex.Message}");
             DispatcherQueue.TryEnqueue(() => AccountsListView.ItemsSource = new List<GameAccountData>());
         }
     }
@@ -130,7 +130,7 @@ public sealed partial class GameSettingsPage
             await SaveAccountsToFileAsync(accounts);
             await LoadAccountsAsync();
 
-            Debug.WriteLine($"[AddAccount_Click] 成功保存账号: {accountName}");
+            DebugLog.Info("GameSettingsPage.Accounts", $"[AddAccount_Click] Account saved: {accountName}");
         }
         catch (Exception ex)
         {
@@ -172,7 +172,7 @@ public sealed partial class GameSettingsPage
             };
             await successDialog.ShowAsync();
 
-            Debug.WriteLine($"[SwitchAccount_Click] 账号切换成功: {account.Name}");
+            DebugLog.Info("GameSettingsPage.Accounts", $"[SwitchAccount_Click] Account switched: {account.Name}");
         }
         catch (Exception ex)
         {
@@ -250,7 +250,7 @@ public sealed partial class GameSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[SaveAccountsToFileAsync] 失败: {ex.Message}");
+            DebugLog.Info("GameSettingsPage.Accounts", $"[SaveAccountsToFileAsync] Failed: {ex.Message}");
         }
     }
 

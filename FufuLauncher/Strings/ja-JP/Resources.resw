@@ -8696,4 +8696,16 @@ Bilibiliサーバー対応、MiYouSheログイン不要</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>画像アンチエイリアス</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>メイン背景画像の輪郭を滑らかにします。既定ではオフです。</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>アンチエイリアス強度</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>値を大きくするほど輪郭が滑らかになります。</value>
+  </data>
 </root>

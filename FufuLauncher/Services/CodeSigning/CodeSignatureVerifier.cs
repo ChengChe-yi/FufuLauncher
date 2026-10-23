@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.CodeSigning;
 
@@ -125,7 +126,7 @@ public static class CodeSignatureVerifier
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[CodeSignatureVerifier] 读取签名证书失败 {filePath}: {ex.Message}");
+            DebugLog.Info("CodeSignatureVerifier", $"[CodeSignatureVerifier] Failed to read signing certificate {filePath}: {ex.Message}");
             return null;
         }
     }

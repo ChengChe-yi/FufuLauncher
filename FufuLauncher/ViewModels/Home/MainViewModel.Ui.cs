@@ -103,11 +103,11 @@ public partial class MainViewModel
             }
 
             PanelBackgroundBrush = new SolidColorBrush(baseColor) { Opacity = _panelOpacityValue };
-            Debug.WriteLine($"[MainViewModel] 背景已更新 - 主题: {currentTheme}, 透明度: {_panelOpacityValue}");
+            DebugLog.Info("MainViewModel.Ui", $"[MainViewModel] Background updated - theme: {currentTheme}, opacity: {_panelOpacityValue}");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MainViewModel] 更新背景失败: {ex.Message}");
+            DebugLog.Info("MainViewModel.Ui", $"[MainViewModel] Failed to update background: {ex.Message}");
         }
     }
 
@@ -213,7 +213,7 @@ public partial class MainViewModel
             PreferVideoBackground = false;
             await _localSettingsService.SaveSettingAsync("PreferVideoBackground", false);
             await _localSettingsService.SaveSettingAsync("UserPreferVideoBackground", false);
-            Debug.WriteLine("[MainViewModel] 关闭动态背景");
+            DebugLog.Info("MainViewModel.Ui", "[MainViewModel] Disabling animated background");
         }
 
         var panelOpacityJson = await _localSettingsService.ReadSettingAsync("PanelBackgroundOpacity");

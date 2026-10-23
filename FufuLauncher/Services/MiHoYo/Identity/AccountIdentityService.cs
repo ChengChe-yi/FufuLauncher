@@ -8,6 +8,7 @@ using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Services.Device;
 using FufuLauncher.Services.MiHoYo.Fingerprint;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.MiHoYo;
 
@@ -33,7 +34,7 @@ public sealed class AccountIdentityService
         if (cookies == null)
         {
             cookies = new Dictionary<string, string>();
-            Debug.WriteLine($"[AccountIdentity] 账号 {accountId} 未找到 cookies，返回空 ctx");
+            DebugLog.Info("AccountIdentityService", $"[AccountIdentity] No cookies found for account {accountId}, returning empty ctx");
         }
 
         var device = await _deviceFpService.GetOrRegisterAsync(token).ConfigureAwait(false);

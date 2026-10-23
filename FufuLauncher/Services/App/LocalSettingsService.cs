@@ -126,7 +126,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"LocalSettingsService: 后台全量加载异常 - {ex.Message}");
+                DebugLog.Info("LocalSettingsService", $"LocalSettingsService: background full load error - {ex.Message}");
             }
             finally
             {
@@ -144,7 +144,7 @@ namespace FufuLauncher.Services
 
         private async Task LoadAllCoreAsync()
         {
-            Debug.WriteLine("LocalSettingsService: 开始全量加载设置");
+            DebugLog.Info("LocalSettingsService", "LocalSettingsService: starting full settings load");
 
             try
             {
@@ -154,7 +154,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"LocalSettingsService: 创建配置目录失败 - {ex.Message}");
+                DebugLog.Info("LocalSettingsService", $"LocalSettingsService: failed to create config directory - {ex.Message}");
 
 
                 if (!_dirErrorNotified)
@@ -174,7 +174,7 @@ namespace FufuLauncher.Services
             var (success, all) = await _repository.TryGetAllSettingsAsync();
             if (!success)
             {
-                Debug.WriteLine("LocalSettingsService: 全量加载失败，继续使用懒加载");
+                DebugLog.Info("LocalSettingsService", "LocalSettingsService: full load failed, continuing with lazy load");
                 return;
             }
 
@@ -194,7 +194,7 @@ namespace FufuLauncher.Services
                         if (!string.Equals(existing, value, StringComparison.Ordinal))
                         {
                             kept++;
-                            SettingsLog.Write($"LocalSettingsService: '{key}' 内存值与快照不一致，保留内存值");
+                            SettingsLog.Write($"LocalSettingsService: in-memory value of '{key}' differs from snapshot, keeping in-memory value");
                         }
 
                         continue;
@@ -210,8 +210,8 @@ namespace FufuLauncher.Services
                 _lastLoadFailureUtc = null;
             }
 
-            Debug.WriteLine(
-                $"LocalSettingsService: 全量加载完成，共 {all.Count} 项（新增 {added}，保留内存值 {kept}，跳过已删除 {skippedRemoved}）");
+            DebugLog.Info("LocalSettingsService",
+                $"LocalSettingsService: full load complete, {all.Count} entries (added {added}, kept in-memory {kept}, skipped removed {skippedRemoved})");
         }
 
 
@@ -226,7 +226,7 @@ namespace FufuLauncher.Services
                     var (success, all) = await _repository.TryGetAllSettingsAsync();
                     if (!success)
                     {
-                        Debug.WriteLine("LocalSettingsService: 整表替换后重载失败，缓存保持原状");
+                        DebugLog.Info("LocalSettingsService", "LocalSettingsService: reload after full table replace failed, cache left unchanged");
                         return false;
                     }
 
@@ -242,7 +242,7 @@ namespace FufuLauncher.Services
                         _lastLoadFailureUtc = null;
                     }
 
-                    Debug.WriteLine($"LocalSettingsService: 缓存已按数据库重建，共 {all.Count} 项");
+                    DebugLog.Info("LocalSettingsService", $"LocalSettingsService: cache rebuilt from database, {all.Count} entries");
                     return true;
                 }
                 finally
@@ -272,13 +272,13 @@ namespace FufuLauncher.Services
 
             if (foundInCache)
             {
-                SettingsLog.Write($"LocalSettingsService: 读取 {key}");
+                SettingsLog.Write($"LocalSettingsService: read {key}");
                 return Deserialize(fromCache!);
             }
 
             if (knownAbsent)
             {
-                SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
+                SettingsLog.Write($"LocalSettingsService: '{key}' not found");
                 return null;
             }
 
@@ -287,36 +287,36 @@ namespace FufuLauncher.Services
             var (success, found, lazyValue) = await _repository.TryGetSettingAsync(key);
             var readMs = Environment.TickCount64 - readStarted;
             if (readMs >= 150)
-                PreviewTrace.Log("Settings.ReadSlow", $"{key} {readMs}ms success={success}");
+                DebugLog.Info("LocalSettingsService", "Settings.ReadSlow", $"{key} {readMs}ms success={success}");
 
 
             lock (_stateLock)
             {
                 if (_settings.TryGetValue(key, out var current))
                 {
-                    SettingsLog.Write($"LocalSettingsService: 懒加载 {key} 期间已有更新值，以缓存为准");
+                    SettingsLog.Write($"LocalSettingsService: value updated during lazy load of {key}, using cache");
                     return Deserialize(current);
                 }
 
                 if (_removedDuringLoad.ContainsKey(key) || _fullLoadCompleted)
                 {
-                    SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
+                    SettingsLog.Write($"LocalSettingsService: '{key}' not found");
                     return null;
                 }
 
                 if (success && found)
                 {
                     _settings[key] = lazyValue;
-                    SettingsLog.Write($"LocalSettingsService: 懒加载 {key}");
+                    SettingsLog.Write($"LocalSettingsService: lazy loading {key}");
                     return Deserialize(lazyValue);
                 }
 
                 if (success)
                     _missingDuringLoad.TryAdd(key, 0);
                 else
-                    Debug.WriteLine($"LocalSettingsService: 懒加载 '{key}' 查询失败");
+                    DebugLog.Info("LocalSettingsService", $"LocalSettingsService: lazy load query for '{key}' failed");
 
-                SettingsLog.Write($"LocalSettingsService: 读取 '{key}' 未找到");
+                SettingsLog.Write($"LocalSettingsService: '{key}' not found");
                 return null;
             }
         }
@@ -365,7 +365,7 @@ namespace FufuLauncher.Services
 
             var json = JsonSerializer.Serialize(value, _jsonOptions);
 
-            SettingsLog.Write($"LocalSettingsService: 保存{key}");
+            SettingsLog.Write($"LocalSettingsService: saving {key}");
 
             await _writeGate.WaitAsync();
             try
@@ -374,7 +374,7 @@ namespace FufuLauncher.Services
                 await _repository.UpsertSettingAsync(key, json);
                 var writeMs = Environment.TickCount64 - writeStarted;
                 if (writeMs >= 150)
-                    PreviewTrace.Log("Settings.WriteSlow", $"{key} {writeMs}ms");
+                    DebugLog.Info("LocalSettingsService", "Settings.WriteSlow", $"{key} {writeMs}ms");
 
                 lock (_stateLock)
                 {
@@ -387,7 +387,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"LocalSettingsService: 保存设置失败 - {ex.Message}");
+                DebugLog.Info("LocalSettingsService", $"LocalSettingsService: failed to save settings - {ex.Message}");
                 SentrySdk.CaptureException(ex, scope =>
                 {
                     scope.SetTag("source", "LocalSettingsService");
@@ -418,7 +418,7 @@ namespace FufuLauncher.Services
                 bool deleted = await _repository.DeleteSettingAsync(key);
                 if (!deleted)
                 {
-                    Debug.WriteLine($"LocalSettingsService: 删除 '{key}' 未生效，缓存保持不变");
+                    DebugLog.Info("LocalSettingsService", $"LocalSettingsService: delete of '{key}' had no effect, cache unchanged");
                     return;
                 }
 

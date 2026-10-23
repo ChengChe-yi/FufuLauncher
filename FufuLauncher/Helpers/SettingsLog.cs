@@ -33,6 +33,6 @@ public static class SettingsLog
     public static void Write(string message)
     {
         if (Verbose)
-            Debug.WriteLine(message);
+            DebugLog.Info("SettingsLog", message);
     }
 }

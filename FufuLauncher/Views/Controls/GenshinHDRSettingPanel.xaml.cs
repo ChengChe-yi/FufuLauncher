@@ -92,7 +92,7 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex);
+            DebugLog.Info("GenshinHDRSettingPanel", ex);
         }
         finally
         {
@@ -129,7 +129,7 @@ public sealed partial class GenshinHDRSettingPanel : UserControl
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex);
+            DebugLog.Info("GenshinHDRSettingPanel", ex);
         }
     }
 

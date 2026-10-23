@@ -15,6 +15,7 @@ using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
 using FufuLauncher.Services.MiHoYo.DailyNote;
 using Microsoft.UI.Dispatching;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels
 {
@@ -206,7 +207,7 @@ namespace FufuLauncher.ViewModels
 
         public async Task OnPageReturnedAsync()
         {
-            Debug.WriteLine("[MainViewModel] 页面已返回，正在刷新服务器配置...");
+            DebugLog.Info("MainViewModel", "[MainViewModel] Page returned, refreshing server config...");
 
             await RefreshSettingsAsync();
             await LoadUserPreferencesAsync();
@@ -223,7 +224,7 @@ namespace FufuLauncher.ViewModels
             _cachedProcessNames = null;
             var isInternationalObj = await _localSettingsService.ReadSettingAsync("IsInternationalAccount");
             _isInternationalAccount = isInternationalObj != null && isInternationalObj.ToString().ToLower() == "true";
-            Debug.WriteLine($"[MainViewModel] 配置刷新: {_isInternationalAccount}");
+            DebugLog.Info("MainViewModel", $"[MainViewModel] Config refresh: {_isInternationalAccount}");
         }
 
         public void Cleanup()

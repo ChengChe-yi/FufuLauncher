@@ -8,6 +8,7 @@ using System.Text;
 using FufuLauncher.Models;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -85,7 +86,7 @@ public partial class LuaPluginInstaller
             SpeedBytesPerSecond = speed,
             StatusText = status
         };
-        Debug.WriteLine(
+        DebugLog.Info("LuaPluginInstaller",
             $"[LuaInstaller] Progress {percent:F1}% ({FormatSize(bytesDownloaded)}/{FormatSize(totalBytes)} @ {FormatSpeed(speed)}): {status}");
         ProgressChanged?.Invoke(info);
     }
@@ -115,7 +116,7 @@ public partial class LuaPluginInstaller
 
     private void LogMessage(string message)
     {
-        Debug.WriteLine($"[LuaInstaller] {message}");
+        DebugLog.Info("LuaPluginInstaller", $"[LuaInstaller] {message}");
         LogReceived?.Invoke(message);
 
         lock (CollectedLogs)

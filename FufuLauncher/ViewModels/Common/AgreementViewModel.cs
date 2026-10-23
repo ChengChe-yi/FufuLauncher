@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -165,7 +165,7 @@ namespace FufuLauncher.ViewModels
             catch (Exception ex)
             {
                 PathError = string.Format("StoragePath_Error_SaveFailed".GetLocalized(), ex.Message);
-                Debug.WriteLine($"[Agreement] GoToTrustAsync 失败: {ex}");
+                DebugLog.Info("AgreementViewModel", $"[Agreement] GoToTrustAsync failed: {ex}");
             }
         }
 
@@ -186,14 +186,14 @@ namespace FufuLauncher.ViewModels
 
                 if (!AppRestartHelper.TryRestart())
                 {
-                    Debug.WriteLine("[Agreement] 重启失败，继续以当前进程运行");
+                    DebugLog.Info("AgreementViewModel", "[Agreement] Restart failed, continuing in current process");
                     WeakReferenceMessenger.Default.Send(new AgreementAcceptedMessage());
                 }
             }
             catch (Exception ex)
             {
                 PathError = string.Format("StoragePath_Error_SaveFailed".GetLocalized(), ex.Message);
-                Debug.WriteLine($"[Agreement] FinalizeAgreementAsync 失败: {ex}");
+                DebugLog.Info("AgreementViewModel", $"[Agreement] FinalizeAgreementAsync failed: {ex}");
             }
         }
 

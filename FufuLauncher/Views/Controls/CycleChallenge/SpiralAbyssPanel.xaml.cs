@@ -140,7 +140,7 @@ public sealed partial class SpiralAbyssPanel : UserControl
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[SpiralAbyssPanel] payload 解析失败: {ex}");
+            DebugLog.Info("SpiralAbyssPanel", $"[SpiralAbyssPanel] Failed to parse payload: {ex}");
             ApplyError();
         }
     }

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -64,12 +65,12 @@ public partial class GameLauncherService
             if (enabled != null && Convert.ToBoolean(enabled) && path != null)
             {
                 string programPath = path.ToString().Trim('"').Trim();
-                Debug.WriteLine($"[附加程序] 原始路径: '{path}'");
-                Debug.WriteLine($"[附加程序] 清理后路径: '{programPath}'");
+                DebugLog.Info("GameLauncherService.Integrations", $"[AdditionalProgram] Raw path: '{path}'");
+                DebugLog.Info("GameLauncherService.Integrations", $"[AdditionalProgram] Cleaned path: '{programPath}'");
 
                 if (!string.IsNullOrEmpty(programPath) && File.Exists(programPath))
                 {
-                    Debug.WriteLine($"[附加程序] 文件存在，准备启动: {programPath}");
+                    DebugLog.Info("GameLauncherService.Integrations", $"[AdditionalProgram] File exists, starting: {programPath}");
 
                     var startInfo = new ProcessStartInfo
                     {
@@ -80,21 +81,21 @@ public partial class GameLauncherService
                     };
 
                     Process.Start(startInfo);
-                    Debug.WriteLine("[附加程序] 启动成功");
+                    DebugLog.Info("GameLauncherService.Integrations", "[AdditionalProgram] Started successfully");
                 }
                 else
                 {
-                    Debug.WriteLine($"[附加程序] 文件不存在或路径无效: '{programPath}'");
+                    DebugLog.Info("GameLauncherService.Integrations", $"[AdditionalProgram] File not found or invalid path: '{programPath}'");
                 }
             }
             else
             {
-                Debug.WriteLine($"[附加程序] 未启用或路径为空: enabled={enabled}, path={path}");
+                DebugLog.Info("GameLauncherService.Integrations", $"[AdditionalProgram] Disabled or empty path: enabled={enabled}, path={path}");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[附加程序] 启动失败: {ex.Message}\n{ex.StackTrace}");
+            DebugLog.Info("GameLauncherService.Integrations", $"[AdditionalProgram] Start failed: {ex.Message}\n{ex.StackTrace}");
         }
     }
 
@@ -110,7 +111,7 @@ public partial class GameLauncherService
                     ? Math.Clamp(Convert.ToDouble(delaySetting), 0.0, 60.0)
                     : 0.0;
 
-                Debug.WriteLine($"[BetterGI] 配置已启用，将在 {delaySeconds:0.#} 秒后通过URL Scheme启动 bettergi://start");
+                DebugLog.Info("GameLauncherService.Integrations", $"[BetterGI] Config enabled, launching bettergi://start via URL scheme in {delaySeconds:0.#} seconds");
 
                 if (delaySeconds > 0)
                 {
@@ -120,14 +121,14 @@ public partial class GameLauncherService
                     }
                     catch (OperationCanceledException)
                     {
-                        Debug.WriteLine("[BetterGI] 启动流程已取消，跳过 BetterGI 启动");
+                        DebugLog.Info("GameLauncherService.Integrations", "[BetterGI] Launch canceled, skipping BetterGI start");
                         return;
                     }
                 }
 
                 if (cancellationToken.IsCancellationRequested)
                 {
-                    Debug.WriteLine("[BetterGI] 启动流程已取消，跳过 BetterGI 启动");
+                    DebugLog.Info("GameLauncherService.Integrations", "[BetterGI] Launch canceled, skipping BetterGI start");
                     return;
                 }
 
@@ -139,12 +140,12 @@ public partial class GameLauncherService
                 };
 
                 Process.Start(startInfo);
-                Debug.WriteLine("[BetterGI] 通过URL Scheme启动指令已发送成功");
+                DebugLog.Info("GameLauncherService.Integrations", "[BetterGI] URL scheme launch command sent");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BetterGI] 通过URL Scheme启动失败: {ex.Message}");
+            DebugLog.Info("GameLauncherService.Integrations", $"[BetterGI] URL scheme launch failed: {ex.Message}");
         }
     }
 
@@ -166,11 +167,11 @@ public partial class GameLauncherService
                     {
                         p.Kill();
                         await p.WaitForExitAsync();
-                        Debug.WriteLine("[BetterGI] 进程已终止");
+                        DebugLog.Info("GameLauncherService.Integrations", "[BetterGI] Process terminated");
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[BetterGI] 终止进程失败: {ex.Message}");
+                        DebugLog.Info("GameLauncherService.Integrations", $"[BetterGI] Failed to terminate process: {ex.Message}");
                     }
                 }
 
@@ -187,16 +188,16 @@ public partial class GameLauncherService
                     CreateNoWindow = true
                 };
                 Process.Start(startInfo);
-                Debug.WriteLine("[BetterGI] 发送 taskkill 指令");
+                DebugLog.Info("GameLauncherService.Integrations", "[BetterGI] Sending taskkill command");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[BetterGI] 使用 taskkill 终止失败: {ex.Message}");
+                DebugLog.Info("GameLauncherService.Integrations", $"[BetterGI] taskkill termination failed: {ex.Message}");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BetterGI] Stop 异常: {ex.Message}");
+            DebugLog.Info("GameLauncherService.Integrations", $"[BetterGI] Stop failed: {ex.Message}");
         }
     }
 }

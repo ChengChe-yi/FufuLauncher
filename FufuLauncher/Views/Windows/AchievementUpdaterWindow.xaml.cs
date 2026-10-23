@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Media;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using FufuLauncher.Constants;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -290,8 +291,8 @@ namespace FufuLauncher.Views
                     {
                         if (t.IsFaulted)
                         {
-                            System.Diagnostics.Debug.WriteLine(
-                                $"[AchievementUpdater] 异步合并异常: {t.Exception?.InnerException?.Message}");
+                            DebugLog.Info("AchievementUpdaterWindow",
+                                $"[AchievementUpdater] Async merge exception: {t.Exception?.InnerException?.Message}");
                         }
                     }, TaskScheduler.Default);
                 }
@@ -483,7 +484,7 @@ namespace FufuLauncher.Views
                 }
                 catch (Exception innerEx)
                 {
-                    System.Diagnostics.Debug.WriteLine($"[AchievementUpdater] 错误处理中再次异常: {innerEx.Message}");
+                    DebugLog.Info("AchievementUpdaterWindow", $"[AchievementUpdater] Exception while handling error: {innerEx.Message}");
                 }
             }
         }

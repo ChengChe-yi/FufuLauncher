@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -39,7 +39,7 @@ public class CloudGameCheckinService : ICloudGameCheckinService
 
         try
         {
-            Debug.WriteLine($"[云原神签到] 账号 {uid}: 正在签到");
+            DebugLog.Info("CloudGameCheckinService", $"[CloudGameCheckin] Account {uid}: check-in started");
 
             JsonElement data;
             try
@@ -107,13 +107,13 @@ public class CloudGameCheckinService : ICloudGameCheckinService
                 result.Details.Add(string.Format("CheckinCloud_PlayCardStatus".GetLocalized(), playCardMsg, coinNum));
             }
 
-            Debug.WriteLine($"[云原神签到] 账号 {uid}: {result.Message}");
+            DebugLog.Info("CloudGameCheckinService", $"[CloudGameCheckin] Account {uid}: {result.Message}");
         }
         catch (Exception ex)
         {
             result.Success = false;
             result.Message = string.Format("CheckinCloud_Exception".GetLocalized(), ex.Message);
-            Debug.WriteLine($"[云原神签到] 账号 {uid} 异常: {ex.Message}");
+            DebugLog.Info("CloudGameCheckinService", $"[CloudGameCheckin] Account {uid} error: {ex.Message}");
         }
 
         return result;

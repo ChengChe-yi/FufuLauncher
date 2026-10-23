@@ -130,7 +130,7 @@ public sealed partial class AchievementWindow
         catch (Exception ex)
         {
             ViewModel.StatusMessage = $"初始化失败: {ex.Message}";
-            Debug.WriteLine(ex);
+            DebugLog.Info("AchievementWindow.Data", ex);
         }
         finally
         {
@@ -182,7 +182,7 @@ public sealed partial class AchievementWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex);
+            DebugLog.Info("AchievementWindow.Data", ex);
         }
     }
 
@@ -221,7 +221,7 @@ public sealed partial class AchievementWindow
         catch (Exception ex)
         {
             ViewModel.StatusMessage = "AchievementWindow_SaveException".GetLocalized();
-            Debug.WriteLine(ex);
+            DebugLog.Info("AchievementWindow.Data", ex);
         }
     }
 

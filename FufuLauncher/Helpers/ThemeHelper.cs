@@ -48,7 +48,7 @@ namespace FufuLauncher.Helpers
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Failed to apply theme color: {ex.Message}");
+                DebugLog.Info("ThemeHelper", $"Failed to apply theme color: {ex.Message}");
             }
         }
 

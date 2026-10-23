@@ -69,8 +69,8 @@ public sealed partial class MobileCaptchaDialog : ContentDialog, IPassportMobile
             (string? rawAigis, PassportResponse<MobileCaptcha> response) =
                 await _passportClient.CreateLoginCaptchaAsync(mobile, aigis: null);
 
-            System.Diagnostics.Debug.WriteLine(
-                $"[MobileCaptcha] 发送验证码: retcode={response.RetCode}, aigis={(rawAigis is null ? "无" : "有")}");
+            DebugLog.Info("MobileCaptchaDialog",
+                $"[MobileCaptcha] Sending captcha: retcode={response.RetCode}, aigis={(rawAigis is null ? "none" : "present")}");
 
             if (await _geetestService.TryVerifyAigisSessionAsync(this, rawAigis, isOversea: false))
             {

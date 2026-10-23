@@ -9,6 +9,7 @@ using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
 using FufuLauncher.Services.Security;
 using MihoyoBBS;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -28,8 +29,8 @@ public partial class AccountManager
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] Cookie 文件路径无效 {account.CookieFilePath}: {ex.Message}");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Invalid cookie file path {account.CookieFilePath}: {ex.Message}");
             return false;
         }
 
@@ -54,8 +55,8 @@ public partial class AccountManager
                 {
                     await WriteCookieFileAsync(path, read.Cookies);
                     account.CookieVersion = CookieFileVersion;
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[AccountManager] 已转换 Cookie 文件存储格式: {account.CookieFilePath}");
+                    DebugLog.Info("AccountManager.Migration",
+                        $"[AccountManager] Converted cookie file storage format: {account.CookieFilePath}");
                     return true;
                 }
 
@@ -78,14 +79,14 @@ public partial class AccountManager
 
             await WriteCookieFileAsync(path, cookies);
             account.CookieVersion = CookieFileVersion;
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 已自动加密旧 Cookie 文件: {account.CookieFilePath}");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Auto-encrypted legacy cookie file: {account.CookieFilePath}");
             return true;
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] Cookie 文件自动加密失败 {account.CookieFilePath}: {ex.Message}");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Cookie file auto-encryption failed {account.CookieFilePath}: {ex.Message}");
             return false;
         }
     }
@@ -106,8 +107,8 @@ public partial class AccountManager
                     if (read?.NeedsRewrite == true)
                     {
                         await WriteCookieFileAsync(path, read.Cookies);
-                        System.Diagnostics.Debug.WriteLine(
-                            $"[AccountManager] 已转换 Cookie 文件存储格式: {Path.GetFileName(path)}");
+                        DebugLog.Info("AccountManager.Migration",
+                            $"[AccountManager] Converted cookie file storage format: {Path.GetFileName(path)}");
                     }
 
                     continue;
@@ -121,13 +122,13 @@ public partial class AccountManager
                 }
 
                 await WriteCookieFileAsync(path, cookies);
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] 已自动加密旧 Cookie 文件: {Path.GetFileName(path)}");
+                DebugLog.Info("AccountManager.Migration",
+                    $"[AccountManager] Auto-encrypted legacy cookie file: {Path.GetFileName(path)}");
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] 自动加密旧 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+                DebugLog.Info("AccountManager.Migration",
+                    $"[AccountManager] Failed to auto-encrypt legacy cookie file {Path.GetFileName(path)}: {ex.Message}");
             }
         }
     }
@@ -156,18 +157,18 @@ public partial class AccountManager
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] 覆盖旧配置失败 {Path.GetFileName(path)}: {ex.Message}");
+                DebugLog.Info("AccountManager.Migration",
+                    $"[AccountManager] Failed to overwrite legacy config {Path.GetFileName(path)}: {ex.Message}");
             }
 
             File.Delete(path);
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 已清除已迁移的旧配置: {Path.GetFileName(path)}");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Removed migrated legacy config: {Path.GetFileName(path)}");
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 清除旧配置 {Path.GetFileName(path)} 失败: {ex.Message}");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Failed to remove legacy config {Path.GetFileName(path)}: {ex.Message}");
         }
     }
 
@@ -185,7 +186,7 @@ public partial class AccountManager
 
     private async Task MigrateLegacyAccountsAsync()
     {
-        System.Diagnostics.Debug.WriteLine("[AccountManager] 开始迁移旧账号数据...");
+        DebugLog.Info("AccountManager.Migration", "[AccountManager] Starting legacy account data migration...");
 
         try
         {
@@ -249,7 +250,7 @@ public partial class AccountManager
 
                     if (_accountList.Accounts.Any(a => a.Id == accountId))
                     {
-                        System.Diagnostics.Debug.WriteLine($"[AccountManager] 账号 {accountId} 已存在，确认迁移完成");
+                        DebugLog.Info("AccountManager.Migration", $"[AccountManager] Account {accountId} already exists, migration confirmed");
                         processed.Add(stuid);
                         migratedConfigFiles.Add(configFile);
                         continue;
@@ -289,26 +290,26 @@ public partial class AccountManager
                         }
                         catch (Exception ex)
                         {
-                            System.Diagnostics.Debug.WriteLine(
-                                $"[AccountManager] 迁移云游戏凭证失败: {ex.Message}");
+                            DebugLog.Info("AccountManager.Migration",
+                                $"[AccountManager] Failed to migrate cloud game credentials: {ex.Message}");
                         }
                     }
 
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[AccountManager] 已迁移账号: {accountId} ({entry.Nickname}) [{serverType}]");
+                    DebugLog.Info("AccountManager.Migration",
+                        $"[AccountManager] Migrated account: {accountId} ({entry.Nickname}) [{serverType}]");
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[AccountManager] 迁移文件 {configFile} 失败: {ex.Message}");
+                    DebugLog.Info("AccountManager.Migration",
+                        $"[AccountManager] Failed to migrate file {configFile}: {ex.Message}");
                 }
             }
 
             if (migratedCount > 0)
             {
                 await SaveAccountListAsync();
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] 迁移完成，共迁移 {migratedCount} 个账号");
+                DebugLog.Info("AccountManager.Migration",
+                    $"[AccountManager] Migration complete, {migratedCount} account(s) migrated");
             }
 
             if (migratedCount > 0 || migratedConfigFiles.Count > 0)
@@ -393,29 +394,29 @@ public partial class AccountManager
                                     }
                                     catch (Exception ex)
                                     {
-                                        System.Diagnostics.Debug.WriteLine(
-                                            $"[AccountManager] 迁移云游戏凭证失败: {ex.Message}");
+                                        DebugLog.Info("AccountManager.Migration",
+                                            $"[AccountManager] Failed to migrate cloud game credentials: {ex.Message}");
                                     }
                                 }
 
-                                System.Diagnostics.Debug.WriteLine(
-                                    $"[AccountManager] 已从主配置迁移唯一账号: {accountId} ({entry.Nickname}) [{serverType}]");
+                                DebugLog.Info("AccountManager.Migration",
+                                    $"[AccountManager] Migrated single account from main config: {accountId} ({entry.Nickname}) [{serverType}]");
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        System.Diagnostics.Debug.WriteLine(
-                            $"[AccountManager] 从主配置迁移账号失败: {ex.Message}");
+                        DebugLog.Info("AccountManager.Migration",
+                            $"[AccountManager] Failed to migrate account from main config: {ex.Message}");
                     }
                 }
 
                 if (migratedCount == 0)
-                    System.Diagnostics.Debug.WriteLine("[AccountManager] 未找到需要迁移的账号");
+                    DebugLog.Info("AccountManager.Migration", "[AccountManager] No accounts found to migrate");
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("[AccountManager] 未找到需要迁移的账号");
+                DebugLog.Info("AccountManager.Migration", "[AccountManager] No accounts found to migrate");
             }
 
             foreach (var file in migratedConfigFiles)
@@ -423,12 +424,12 @@ public partial class AccountManager
                 DeleteLegacyFile(file);
             }
 
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 迁移流程结束，共迁移 {migratedCount} 个账号");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Migration finished, {migratedCount} account(s) migrated");
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[AccountManager] 迁移过程发生错误: {ex.Message}");
+            DebugLog.Info("AccountManager.Migration", $"[AccountManager] Error during migration: {ex.Message}");
         }
     }
 
@@ -469,19 +470,19 @@ public partial class AccountManager
             if (_accountList.Accounts.Any(a => a.Id == accountId))
             {
                 await SetActiveAccountIdAsync(accountId);
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] 已迁移活跃账号: {accountId}");
+                DebugLog.Info("AccountManager.Migration",
+                    $"[AccountManager] Migrated active account: {accountId}");
                 return mainConfigPath;
             }
 
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 旧活跃账号 {accountId} 不在迁移列表中，使用默认账号");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Legacy active account {accountId} not in migration list, using default account");
             return null;
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine(
-                $"[AccountManager] 迁移活跃账号失败: {ex.Message}");
+            DebugLog.Info("AccountManager.Migration",
+                $"[AccountManager] Failed to migrate active account: {ex.Message}");
             return null;
         }
     }

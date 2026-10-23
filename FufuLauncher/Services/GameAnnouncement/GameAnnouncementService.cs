@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Models.GameAnnouncement;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.GameAnnouncement
 {
@@ -79,7 +80,7 @@ namespace FufuLauncher.Services.GameAnnouncement
 
                 if (listResponse?.Retcode != 0 || listResponse.Data is null)
                 {
-                    Debug.WriteLine($"[GameAnnouncementService] 公告列表 API 返回错误代码 {listResponse?.Retcode}");
+                    DebugLog.Info("GameAnnouncementService", $"[GameAnnouncementService] Announcement list API returned error code {listResponse?.Retcode}");
                     return null;
                 }
 
@@ -118,7 +119,7 @@ namespace FufuLauncher.Services.GameAnnouncement
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[GameAnnouncementService] 获取公告失败: {ex.GetType().Name}: {ex.Message}");
+                DebugLog.Info("GameAnnouncementService", $"[GameAnnouncementService] Failed to fetch announcements: {ex.GetType().Name}: {ex.Message}");
                 return null;
             }
         }

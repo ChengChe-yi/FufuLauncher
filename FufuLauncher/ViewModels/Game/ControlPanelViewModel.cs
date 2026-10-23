@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Models;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -65,7 +66,7 @@ public partial class ControlPanelViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"保存游戏时间配置失败: {ex.Message}");
+            DebugLog.Info("ControlPanelViewModel", $"Failed to save game time config: {ex.Message}");
         }
     }
 
@@ -152,14 +153,14 @@ public partial class ControlPanelViewModel : ObservableObject
                         }
                         catch (Exception ex)
                         {
-                            Debug.WriteLine($"游戏监控内部调度异常: {ex.Message}");
+                            DebugLog.Info("ControlPanelViewModel", $"Game monitor inner dispatch exception: {ex.Message}");
                         }
                     });
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"游戏监控外层异常: {ex.Message}");
+                DebugLog.Info("ControlPanelViewModel", $"Game monitor outer exception: {ex.Message}");
             }
 
             await Task.Delay(20000, token);

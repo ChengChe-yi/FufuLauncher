@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.Security;
 
@@ -312,7 +313,7 @@ internal static class CookieVault
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[CookieVault] 覆盖 Cookie 加密密钥失败: {ex.Message}");
+                    DebugLog.Info("CookieVault", $"[CookieVault] Failed to overwrite Cookie encryption key: {ex.Message}");
                 }
 
                 File.Delete(keyPath);
@@ -325,7 +326,7 @@ internal static class CookieVault
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[CookieVault] 删除 Cookie 加密密钥失败: {ex.Message}");
+                DebugLog.Info("CookieVault", $"[CookieVault] Failed to delete Cookie encryption key: {ex.Message}");
             }
         }
     }
@@ -372,7 +373,7 @@ internal static class CookieVault
                             try
                             {
                                 WriteKeyFile(keyPath, payload, overwrite: true);
-                                Debug.WriteLine("[CookieVault] Cookie 加密密钥保护已升级");
+                                DebugLog.Info("CookieVault", "[CookieVault] Cookie encryption key protection upgraded");
                             }
                             finally
                             {
@@ -396,7 +397,7 @@ internal static class CookieVault
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[CookieVault] Cookie 加密密钥保护升级失败: {ex.Message}");
+                DebugLog.Info("CookieVault", $"[CookieVault] Failed to upgrade Cookie encryption key protection: {ex.Message}");
             }
         }
     }
@@ -583,7 +584,7 @@ internal static class CookieVault
             }
             catch (Exception ex) when (ex is CryptographicException or CookieVaultException)
             {
-                Debug.WriteLine($"[CookieVault] HWID 密钥解保护失败: {ex.Message}");
+                DebugLog.Info("CookieVault", $"[CookieVault] Failed to unprotect HWID key: {ex.Message}");
             }
         }
 
@@ -605,7 +606,7 @@ internal static class CookieVault
         }
         catch (Exception ex) when (ex is CryptographicException or PlatformNotSupportedException or ArgumentException)
         {
-            Debug.WriteLine($"[CookieVault] DPAPI 密钥解保护失败，尝试 HWID: {ex.Message}");
+            DebugLog.Info("CookieVault", $"[CookieVault] DPAPI key unprotect failed, trying HWID: {ex.Message}");
         }
 
         keyBytes = Array.Empty<byte>();
@@ -628,7 +629,7 @@ internal static class CookieVault
                 }
                 catch (Exception ex) when (ex is CryptographicException or PlatformNotSupportedException)
                 {
-                    Debug.WriteLine($"[CookieVault] DPAPI 保护失败，启用 HWID 保护: {ex.Message}");
+                    DebugLog.Info("CookieVault", $"[CookieVault] DPAPI protection failed, enabling HWID protection: {ex.Message}");
                 }
             }
 
@@ -641,7 +642,7 @@ internal static class CookieVault
             }
             catch (Exception ex) when (ex is CookieVaultException or CryptographicException)
             {
-                Debug.WriteLine($"[CookieVault] HWID 保护不可用: {ex.Message}");
+                DebugLog.Info("CookieVault", $"[CookieVault] HWID protection unavailable: {ex.Message}");
             }
 
             byte flags = 0;
@@ -832,11 +833,11 @@ internal static class CookieVault
 
             string quarantinePath = keyPath + ".invalid-" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
             File.Move(keyPath, quarantinePath);
-            Debug.WriteLine($"[CookieVault] 已隔离无法解密的 Cookie 加密密钥: {Path.GetFileName(quarantinePath)}");
+            DebugLog.Info("CookieVault", $"[CookieVault] Quarantined undecryptable Cookie encryption key: {Path.GetFileName(quarantinePath)}");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[CookieVault] 隔离无法解密的 Cookie 加密密钥失败: {ex.Message}");
+            DebugLog.Info("CookieVault", $"[CookieVault] Failed to quarantine undecryptable Cookie encryption key: {ex.Message}");
             try
             {
                 if (File.Exists(keyPath))

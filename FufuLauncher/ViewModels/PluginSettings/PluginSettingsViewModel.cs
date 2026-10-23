@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -142,12 +142,12 @@ public partial class PluginSettingsViewModel : ObservableObject
             }
             catch (Exception inner)
             {
-                System.Diagnostics.Debug.WriteLine($"目录创建失败: {inner.Message}");
+                DebugLog.Info("PluginSettingsViewModel", $"Directory creation failed: {inner.Message}");
             }
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"目录创建失败: {ex.Message}");
+            DebugLog.Info("PluginSettingsViewModel", $"Directory creation failed: {ex.Message}");
         }
 
         var localSettings = App.GetService<FufuLauncher.Contracts.Services.ILocalSettingsService>();
@@ -459,7 +459,7 @@ public partial class PluginSettingsViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[插件配置] 读取收藏项失败: {ex.Message}");
+            DebugLog.Info("PluginSettingsViewModel", $"[PluginConfig] Failed to read favorites: {ex.Message}");
         }
 
         return result;

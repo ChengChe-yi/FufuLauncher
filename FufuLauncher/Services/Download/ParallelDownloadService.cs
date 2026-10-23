@@ -105,7 +105,7 @@ public sealed class ParallelDownloadService
                 catch (DownloadFailedException ex)
                     when (ex.Reason == DownloadFailureReason.RangeNotSupported && opt.AllowRangeFallback)
                 {
-                    Debug.WriteLine("[ParallelDownload] 服务端忽略 Range，降级为单线程");
+                    DebugLog.Info("ParallelDownloadService", "[ParallelDownload] Server ignored Range, falling back to single thread");
                     TryDelete(resumeStatePath);
                     await DownloadSingleThreadAsync(client, url, workPath, totalSize, opt, progress, ct)
                         .ConfigureAwait(false);
@@ -113,8 +113,8 @@ public sealed class ParallelDownloadService
             }
             else
             {
-                Debug.WriteLine(
-                    $"[ParallelDownload] 单线程（支持分段={probe.SupportsRange}, 大小={totalSize}B）");
+                DebugLog.Info("ParallelDownloadService",
+                    $"[ParallelDownload] Single thread (range supported={probe.SupportsRange}, size={totalSize}B)");
                 await DownloadSingleThreadAsync(client, url, workPath, totalSize, opt, progress, ct)
                     .ConfigureAwait(false);
             }
@@ -137,8 +137,8 @@ public sealed class ParallelDownloadService
             TryDelete(resumeStatePath);
 
             stopwatch.Stop();
-            Debug.WriteLine(
-                $"[ParallelDownload] 完成 {Path.GetFileName(fullPath)} " +
+            DebugLog.Info("ParallelDownloadService",
+                $"[ParallelDownload] Completed {Path.GetFileName(fullPath)} " +
                 $"({actualLength / 1024.0 / 1024.0:F2} MB, {stopwatch.Elapsed.TotalSeconds:F1}s)");
 
             progress?.Report(new ParallelDownloadProgress
@@ -492,9 +492,9 @@ public sealed class ParallelDownloadService
         CancellationToken ct, string resumeStatePath)
     {
         var chunks = BuildChunks(totalSize, opt);
-        Debug.WriteLine(
-            $"[ParallelDownload] 并行 {chunks.Count} 小段 × {opt.MaxParallelSegments} 线程 " +
-            $"(总计 {totalSize / 1024.0 / 1024.0:F2}MB)");
+        DebugLog.Info("ParallelDownloadService",
+            $"[ParallelDownload] Parallel {chunks.Count} chunks × {opt.MaxParallelSegments} threads " +
+            $"(total {totalSize / 1024.0 / 1024.0:F2}MB)");
 
 
         var completed = opt.EnableResume
@@ -504,7 +504,7 @@ public sealed class ParallelDownloadService
 
         if (completed.Count > 0 && !IsWorkFileIntact(workPath, totalSize))
         {
-            Debug.WriteLine("[ParallelDownload] .part 文件缺失或长度不符，丢弃续传记录");
+            DebugLog.Info("ParallelDownloadService", "[ParallelDownload] .part file missing or wrong length, discarding resume state");
             completed.Clear();
             TryDelete(resumeStatePath);
         }
@@ -852,9 +852,9 @@ public sealed class ParallelDownloadService
                 double backoff = opt.RetryBaseDelay.TotalMilliseconds * Math.Pow(2, attempt);
                 var delay = TimeSpan.FromMilliseconds(
                     Math.Min(backoff, opt.RetryMaxDelay.TotalMilliseconds));
-                Debug.WriteLine(
-                    $"[ParallelDownload] 小段 [{start}-{end}] 第 {attempt + 1} 次失败，" +
-                    $"{delay.TotalSeconds:F1}s 后重试" +
+                DebugLog.Info("ParallelDownloadService",
+                    $"[ParallelDownload] Chunk [{start}-{end}] attempt {attempt + 1} failed, " +
+                    $"retrying in {delay.TotalSeconds:F1}s" +
                     (lastError != null ? $"（{lastError.Message}）" : ""));
                 await Task.Delay(delay, ct).ConfigureAwait(false);
             }
@@ -968,7 +968,7 @@ public sealed class ParallelDownloadService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ParallelDownload] 检查 .part 文件失败: {ex.Message}");
+            DebugLog.Info("ParallelDownloadService", $"[ParallelDownload] Failed to check .part file: {ex.Message}");
             return false;
         }
     }
@@ -996,7 +996,7 @@ public sealed class ParallelDownloadService
                 || state.TotalChunks != totalChunks
                 || !string.Equals(state.UrlHash, ComputeUrlHash(url), StringComparison.OrdinalIgnoreCase))
             {
-                Debug.WriteLine("[ParallelDownload] 续传记录与当前来源或参数不符，忽略");
+                DebugLog.Info("ParallelDownloadService", "[ParallelDownload] Resume state does not match current source or parameters, ignoring");
                 return new HashSet<int>();
             }
 
@@ -1004,7 +1004,7 @@ public sealed class ParallelDownloadService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ParallelDownload] 读取续传记录失败，忽略: {ex.Message}");
+            DebugLog.Info("ParallelDownloadService", $"[ParallelDownload] Failed to read resume state, ignoring: {ex.Message}");
             return new HashSet<int>();
         }
     }
@@ -1020,7 +1020,7 @@ public sealed class ParallelDownloadService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ParallelDownload] 写入续传记录失败: {ex.Message}");
+            DebugLog.Info("ParallelDownloadService", $"[ParallelDownload] Failed to write resume state: {ex.Message}");
         }
     }
 
@@ -1054,7 +1054,7 @@ public sealed class ParallelDownloadService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ParallelDownload] 删除失败 {path}: {ex.Message}");
+            DebugLog.Info("ParallelDownloadService", $"[ParallelDownload] Failed to delete {path}: {ex.Message}");
         }
     }
 }

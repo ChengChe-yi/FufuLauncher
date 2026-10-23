@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.CodeSigning;
 
@@ -39,7 +40,7 @@ public static class CodeSigningPolicy
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[CodeSigningPolicy] failed to read signer id: {ex.Message}");
+            DebugLog.Info("CodeSigningPolicy", $"[CodeSigningPolicy] failed to read signer id: {ex.Message}");
         }
 
         return null;
@@ -207,7 +208,7 @@ public static class WinTrustInterop
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[WinTrustInterop] 校验失败 {filePath}: {ex.Message}");
+            DebugLog.Info("CodeSigningPolicy", $"[WinTrustInterop] Verification failed {filePath}: {ex.Message}");
             return TRUST_E_NOSIGNATURE;
         }
         finally

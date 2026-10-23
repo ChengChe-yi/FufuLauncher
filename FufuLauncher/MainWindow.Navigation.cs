@@ -106,7 +106,7 @@ public sealed partial class MainWindow
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"启动时刷新 Token 失败: {ex.Message}");
+                    DebugLog.Info("MainWindow.Navigation", $"Failed to refresh token at startup: {ex.Message}");
                 }
             });
             _ = Task.Run(async () => await HashValidationService.ValidateFilesAsync());
@@ -185,7 +185,7 @@ public sealed partial class MainWindow
         }
         catch (InvalidCastException ex)
         {
-            Debug.WriteLine($"MainPage 导航类型转换异常: {ex.Message}");
+            DebugLog.Info("MainWindow.Navigation", $"MainPage navigation type cast exception: {ex.Message}");
         }
 
         SyncPageTheme();
@@ -458,7 +458,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AccountSwitch] {ex.Message}");
+            DebugLog.Info("MainWindow.Navigation", $"[AccountSwitch] {ex.Message}");
         }
     }
 
@@ -504,7 +504,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RoleSwitch] {ex.Message}");
+            DebugLog.Info("MainWindow.Navigation", $"[RoleSwitch] {ex.Message}");
         }
     }
 
@@ -563,7 +563,7 @@ public sealed partial class MainWindow
             }
             catch (InvalidCastException ex)
             {
-                Debug.WriteLine($"页面导航类型转换异常: {ex.Message}");
+                DebugLog.Info("MainWindow.Navigation", $"Page navigation type cast exception: {ex.Message}");
                 return;
             }
 
@@ -923,7 +923,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MainWindow] 遮罩动画异常: {ex.Message}");
+            DebugLog.Info("MainWindow.Navigation", $"[MainWindow] Overlay animation exception: {ex.Message}");
         }
     }
 

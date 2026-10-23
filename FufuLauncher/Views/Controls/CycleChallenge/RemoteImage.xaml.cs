@@ -8,6 +8,7 @@ using FufuLauncher.Services.CycleChallenge;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views.Controls.CycleChallenge;
 
@@ -116,7 +117,7 @@ public sealed partial class RemoteImage : UserControl
 
             if (!Uri.TryCreate(source, UriKind.Absolute, out Uri? remoteUri) || !IsHttpUri(remoteUri))
             {
-                Debug.WriteLine($"[RemoteImage] 不支持的图片来源: {source}");
+                DebugLog.Info("RemoteImage", $"[RemoteImage] Unsupported image source: {source}");
                 ShowPlaceholder();
                 return;
             }
@@ -139,7 +140,7 @@ public sealed partial class RemoteImage : UserControl
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImage] 加载失败 '{source}': {ex.Message}");
+            DebugLog.Info("RemoteImage", $"[RemoteImage] Load failed '{source}': {ex.Message}");
             if (version == _loadVersion)
             {
                 ShowPlaceholder();
@@ -168,7 +169,7 @@ public sealed partial class RemoteImage : UserControl
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImage] 创建 BitmapImage 失败 '{uri}': {ex.Message}");
+            DebugLog.Info("RemoteImage", $"[RemoteImage] Failed to create BitmapImage '{uri}': {ex.Message}");
             ShowPlaceholder();
         }
     }
@@ -180,7 +181,7 @@ public sealed partial class RemoteImage : UserControl
 
     private void OnImageFailed(object sender, ExceptionRoutedEventArgs e)
     {
-        Debug.WriteLine($"[RemoteImage] 图片解码失败: {e.ErrorMessage}");
+        DebugLog.Info("RemoteImage", $"[RemoteImage] Image decode failed: {e.ErrorMessage}");
         ShowPlaceholder();
 
 

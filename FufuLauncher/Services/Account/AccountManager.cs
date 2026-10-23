@@ -8,6 +8,7 @@ using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Models;
 using FufuLauncher.Services.Security;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -36,11 +37,11 @@ public partial class AccountManager
         }
         catch (UnauthorizedAccessException ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[AccountManager] 无法创建 cookies 目录: {ex.Message}");
+            DebugLog.Info("AccountManager", $"[AccountManager] Failed to create cookies directory: {ex.Message}");
         }
         catch (IOException ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[AccountManager] 创建 cookies 目录时发生IO异常: {ex.Message}");
+            DebugLog.Info("AccountManager", $"[AccountManager] IO error while creating cookies directory: {ex.Message}");
         }
 
         _accountList = new AccountList();
@@ -79,8 +80,8 @@ public partial class AccountManager
             }
             catch (JsonException ex)
             {
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] accounts.json 解析失败，将重置账号列表: {ex.Message}");
+                DebugLog.Info("AccountManager",
+                    $"[AccountManager] Failed to parse accounts.json, resetting account list: {ex.Message}");
                 try
                 {
                     var backupPath = AccountsFilePath + $".corrupt.{DateTime.Now:yyyyMMddHHmmss}.bak";

@@ -97,7 +97,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 读取模式设置失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to read mode setting: {ex.Message}");
             }
 
             lock (_stateLock)
@@ -117,7 +117,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 初始化失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to initialize: {ex.Message}");
                 lock (_stateLock)
                 {
                     _initialized = true;
@@ -147,7 +147,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 禁用主插件失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to disable main plugin: {ex.Message}");
             }
         }
 
@@ -166,7 +166,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 启用主插件失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to enable main plugin: {ex.Message}");
             }
 
             return false;
@@ -187,7 +187,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 启用轻量插件失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to enable lite plugin: {ex.Message}");
             }
 
             return false;
@@ -205,7 +205,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 禁用轻量插件失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to disable lite plugin: {ex.Message}");
             }
 
             return false;
@@ -222,7 +222,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 删除轻量插件目录失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to delete lite plugin directory: {ex.Message}");
             }
 
             if (Directory.Exists(LitePluginDir))
@@ -296,7 +296,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 启动清理轻量插件目录失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to clean lite plugin directory on startup: {ex.Message}");
             }
 
             if (Directory.Exists(LitePluginDir))
@@ -339,7 +339,7 @@ namespace FufuLauncher.Services
                         catch (Exception ex) when (!cancellationToken.IsCancellationRequested)
                         {
                             lastError = ex;
-                            Debug.WriteLine($"[轻量模式] 下载失败 {url}: {ex.Message}");
+                            DebugLog.Info("LightweightPluginService", $"[LightweightMode] Download failed {url}: {ex.Message}");
                         }
                     }
 
@@ -412,7 +412,7 @@ namespace FufuLauncher.Services
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[轻量模式] 清理临时文件失败: {ex.Message}");
+                    DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to clean temporary files: {ex.Message}");
                 }
             }
         }
@@ -468,7 +468,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[轻量模式] 解析最新 release 失败: {ex.Message}");
+                DebugLog.Info("LightweightPluginService", $"[LightweightMode] Failed to parse latest release: {ex.Message}");
             }
 
             return null;

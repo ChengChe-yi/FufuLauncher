@@ -35,7 +35,7 @@ public partial class GameLauncherService
         {
             if (cancellationToken.IsCancellationRequested)
             {
-                Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
+                DebugLog.Info("GameLauncherService.Processes", "[LaunchFlow] User cancelled while waiting for game process");
                 return 0;
             }
 
@@ -45,7 +45,7 @@ public partial class GameLauncherService
             }
             catch (OperationCanceledException)
             {
-                Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
+                DebugLog.Info("GameLauncherService.Processes", "[LaunchFlow] User cancelled while waiting for game process");
                 return 0;
             }
 
@@ -62,7 +62,7 @@ public partial class GameLauncherService
                     }
                     catch (OperationCanceledException)
                     {
-                        Trace.WriteLine("[启动流程] 等待游戏进程期间用户取消启动");
+                        DebugLog.Info("GameLauncherService.Processes", "[LaunchFlow] User cancelled while waiting for game process");
                         return 0;
                     }
 
@@ -71,7 +71,7 @@ public partial class GameLauncherService
             }
         }
 
-        Trace.WriteLine("[启动流程] 警告：等待游戏主程序超时 (1分钟)");
+        DebugLog.Info("GameLauncherService.Processes", "[LaunchFlow] Warning: timed out waiting for game executable (1 minute)");
         return 0;
     }
 
@@ -112,7 +112,7 @@ public partial class GameLauncherService
                     }
 
                     process.Kill();
-                    Debug.WriteLine($"[启动流程] 已终止游戏进程: {process.ProcessName} (PID:{process.Id})");
+                    DebugLog.Info("GameLauncherService.Processes", $"[LaunchFlow] Game process terminated: {process.ProcessName} (PID:{process.Id})");
                 }
                 catch
                 {
@@ -121,7 +121,7 @@ public partial class GameLauncherService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[启动流程] 清理游戏进程异常: {ex.Message}");
+            DebugLog.Info("GameLauncherService.Processes", $"[LaunchFlow] Failed to clean up game process: {ex.Message}");
         }
     }
 

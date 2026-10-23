@@ -178,7 +178,7 @@ public partial class GameLauncherService
                 var conflictResult = BlockInjectionForPluginDllConflicts(logBuilder);
                 if (conflictResult != null)
                 {
-                    Debug.WriteLine(conflictResult.DetailLog);
+                    DebugLog.Info("GameLauncherService.Launch", conflictResult.DetailLog);
                     return conflictResult;
                 }
             }
@@ -314,7 +314,7 @@ public partial class GameLauncherService
                                     ErrorMessage = blockedMessage,
                                     DetailLog = logBuilder.ToString()
                                 };
-                                Debug.WriteLine(blockedResult.DetailLog);
+                                DebugLog.Info("GameLauncherService.Launch", blockedResult.DetailLog);
                                 return blockedResult;
                             }
 
@@ -388,7 +388,7 @@ public partial class GameLauncherService
                             finally
                             {
                                 _registrySnapshot.RestoreSnapshot();
-                                Debug.WriteLine("[启动流程] 游戏退出，已恢复注册表快照");
+                                DebugLog.Info("GameLauncherService.Launch", "[LaunchFlow] Game exited, registry snapshot restored");
                             }
                         });
                     }
@@ -404,7 +404,7 @@ public partial class GameLauncherService
             }
 
             result.DetailLog = logBuilder.ToString();
-            Debug.WriteLine(result.DetailLog);
+            DebugLog.Info("GameLauncherService.Launch", result.DetailLog);
             return result;
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
@@ -421,7 +421,7 @@ public partial class GameLauncherService
         {
             result.ErrorMessage = string.Format("LaunchErr_FatalError".GetLocalized(), ex.Message);
             result.DetailLog = $"[启动流程] ?? 未处理异常: {ex}\n{ex.StackTrace}";
-            Debug.WriteLine(result.DetailLog);
+            DebugLog.Info("GameLauncherService.Launch", result.DetailLog);
             return result;
         }
     }
@@ -450,7 +450,7 @@ public partial class GameLauncherService
             ErrorMessage = string.Empty,
             DetailLog = logBuilder.ToString()
         };
-        Debug.WriteLine(result.DetailLog);
+        DebugLog.Info("GameLauncherService.Launch", result.DetailLog);
         return result;
     }
 }

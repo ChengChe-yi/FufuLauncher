@@ -4,6 +4,7 @@ using System.Net;
 using ColorCode.Styling;
 using Markdig;
 using Markdown.ColorCode;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.Help;
 
@@ -92,7 +93,7 @@ public static class HelpDocumentRenderer
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[HelpDocumentRenderer] 读取文档模板失败: {ex.Message}");
+            DebugLog.Info("HelpDocumentRenderer", $"[HelpDocumentRenderer] Failed to read document template: {ex.Message}");
             return FallbackTemplate;
         }
     }

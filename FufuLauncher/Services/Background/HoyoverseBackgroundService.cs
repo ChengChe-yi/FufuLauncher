@@ -104,7 +104,7 @@ namespace FufuLauncher.Services.Background
 
                 if (!string.IsNullOrEmpty(savedHash) && savedHash != currentHash)
                 {
-                    Debug.WriteLine("HoyoverseBackgroundService: 识别到 JSON 发生变更，清空原先的背景切换");
+                    DebugLog.Info("HoyoverseBackgroundService", "HoyoverseBackgroundService: JSON change detected, cleared previous background rotation");
                     await localSettings.SaveSettingAsync("SelectedOnlineBackgroundUrl", "");
                     await localSettings.SaveSettingAsync("SelectedOnlineBackgroundIsVideo", false);
                 }
@@ -163,7 +163,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"HoyoverseBackgroundService: 请求异常 - {ex.Message}");
+                DebugLog.Info("HoyoverseBackgroundService", $"HoyoverseBackgroundService: Request failed - {ex.Message}");
                 return null;
             }
         }
@@ -223,7 +223,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"获取可选背景异常: {ex.Message}");
+                DebugLog.Info("HoyoverseBackgroundService", $"Failed to get selectable backgrounds: {ex.Message}");
                 return new List<BackgroundUrlInfo>();
             }
         }
@@ -265,7 +265,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"HoyoverseBackgroundService: 请求最新背景异常 - {ex.Message}");
+                DebugLog.Info("HoyoverseBackgroundService", $"HoyoverseBackgroundService: Failed to request latest background - {ex.Message}");
                 return (null, null);
             }
         }

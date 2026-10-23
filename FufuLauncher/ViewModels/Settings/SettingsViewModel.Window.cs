@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -25,7 +25,7 @@ public partial class SettingsViewModel
 
     partial void OnCurrentWindowBackdropChanged(WindowBackdropType value)
     {
-        Debug.WriteLine($"[ViewModel] 属性已更新为: {value}");
+        DebugLog.Info("SettingsViewModel.Window", $"[ViewModel] Property updated to: {value}");
 
         if (!_isInitializing)
         {
@@ -45,7 +45,7 @@ public partial class SettingsViewModel
     partial void OnIsSaveWindowSizeEnabledChanged(bool value)
     {
         if (_isInitializing) return;
-        Debug.WriteLine($"SettingsViewModel: 保存窗口大小记忆设置 {value}");
+        DebugLog.Info("SettingsViewModel.Window", $"SettingsViewModel: saved window size memory setting {value}");
         _ = _localSettingsService.SaveSettingAsync("IsSaveWindowSizeEnabled", value);
     }
 
@@ -59,7 +59,7 @@ public partial class SettingsViewModel
     partial void OnMinimizeToTrayChanged(bool value)
     {
         if (_isInitializing) return;
-        Debug.WriteLine($"SettingsViewModel: 保存托盘设置 {value}");
+        DebugLog.Info("SettingsViewModel.Window", $"SettingsViewModel: saved tray setting {value}");
         _ = _localSettingsService.SaveSettingAsync("MinimizeToTray", value);
         WeakReferenceMessenger.Default.Send(new MinimizeToTrayChangedMessage(value));
     }

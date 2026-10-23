@@ -318,7 +318,7 @@ public static class TrustPackageLoader
                              string.Equals(pinnedRootThumbprintSha256, rootThumbprint,
                                  StringComparison.OrdinalIgnoreCase);
 
-            Debug.WriteLine($"[TrustPackage] verified {directory}, root {rootThumbprint}, pinned={matchesPin}");
+            DebugLog.Info("TrustPackage", $"[TrustPackage] verified {directory}, root {rootThumbprint}, pinned={matchesPin}");
 
             return new VerifiedTrustPackage
             {
@@ -354,7 +354,7 @@ public static class TrustPackageLoader
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TrustPackage] failed to read revocation list: {ex.Message}");
+            DebugLog.Info("TrustPackage", $"[TrustPackage] failed to read revocation list: {ex.Message}");
             return Array.Empty<string>();
         }
     }

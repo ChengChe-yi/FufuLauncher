@@ -69,14 +69,14 @@ public class ScreenshotService : IScreenshotService, IDisposable
         _gameWindowHandle = FindMainWindowByPid(gamePid);
         if (_gameWindowHandle == IntPtr.Zero)
         {
-            Debug.WriteLine("[截图服务] 未找到游戏窗口句柄，等待后重试...");
+            DebugLog.Info("ScreenshotService", "[Screenshot] Game window handle not found, retrying after wait...");
             await Task.Delay(3000);
             _gameWindowHandle = FindMainWindowByPid(gamePid);
         }
 
         if (_gameWindowHandle == IntPtr.Zero)
         {
-            Debug.WriteLine("[截图服务] 无法找到游戏窗口，截图服务启动中止");
+            DebugLog.Info("ScreenshotService", "[Screenshot] Game window not found, screenshot service startup aborted");
             return;
         }
 
@@ -88,7 +88,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
         _hookThread.Start();
 
         _isRunning = true;
-        Debug.WriteLine($"[截图服务] 已启动，监听快捷键，游戏PID: {gamePid}，窗口句柄: {_gameWindowHandle}");
+        DebugLog.Info("ScreenshotService", $"[Screenshot] Started, listening for hotkey, game PID: {gamePid}, window handle: {_gameWindowHandle}");
     }
 
     public Task StopAsync()
@@ -105,13 +105,13 @@ public class ScreenshotService : IScreenshotService, IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[截图服务] Stop 异常: {ex.Message}");
+            DebugLog.Info("ScreenshotService", $"[Screenshot] Stop error: {ex.Message}");
         }
 
         _isRunning = false;
         _gameWindowHandle = IntPtr.Zero;
         _gamePid = 0;
-        Debug.WriteLine("[截图服务] 已停止");
+        DebugLog.Info("ScreenshotService", "[Screenshot] Stopped");
         return Task.CompletedTask;
     }
 
@@ -178,9 +178,9 @@ public class ScreenshotService : IScreenshotService, IDisposable
             var moduleHandle = GetModuleHandle(curModule.ModuleName);
             _keyboardHookId = SetWindowsHookEx(WH_KEYBOARD_LL, _keyboardHookCallback, moduleHandle, 0);
 
-            Debug.WriteLine(_keyboardHookId == IntPtr.Zero
-                ? "[截图服务] 键盘钩子安装失败"
-                : "[截图服务] 键盘钩子安装成功");
+            DebugLog.Info("ScreenshotService", _keyboardHookId == IntPtr.Zero
+                ? "[Screenshot] Keyboard hook install failed"
+                : "[Screenshot] Keyboard hook installed");
 
             if (_keyboardHookId != IntPtr.Zero)
             {
@@ -193,12 +193,12 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
                 UnhookWindowsHookEx(_keyboardHookId);
                 _keyboardHookId = IntPtr.Zero;
-                Debug.WriteLine("[截图服务] 键盘钩子已卸载");
+                DebugLog.Info("ScreenshotService", "[Screenshot] Keyboard hook unloaded");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[截图服务] HookThreadProc 异常: {ex.Message}");
+            DebugLog.Info("ScreenshotService", $"[Screenshot] HookThreadProc error: {ex.Message}");
         }
     }
 
@@ -265,7 +265,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
                 _gameWindowHandle = FindMainWindowByPid(_gamePid);
                 if (_gameWindowHandle == IntPtr.Zero)
                 {
-                    Debug.WriteLine("[截图服务] 游戏窗口已不可用");
+                    DebugLog.Info("ScreenshotService", "[Screenshot] Game window is no longer available");
                     return;
                 }
             }
@@ -280,20 +280,20 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
             if (success)
             {
-                Debug.WriteLine($"[截图服务] 截图已保存: {filePath}");
+                DebugLog.Info("ScreenshotService", $"[Screenshot] Screenshot saved: {filePath}");
                 WeakReferenceMessenger.Default.Send(new ScreenshotTakenMessage(filePath, true));
                 _notificationService.Show("Screenshot_Saved".GetLocalized(), fileName, NotificationType.Success, 0);
             }
             else
             {
-                Debug.WriteLine("[截图服务] 截图失败");
+                DebugLog.Info("ScreenshotService", "[Screenshot] Screenshot failed");
                 WeakReferenceMessenger.Default.Send(new ScreenshotTakenMessage("", false,
                     "Screenshot_CaptureFailed".GetLocalized()));
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[截图服务] 截图异常: {ex.Message}");
+            DebugLog.Info("ScreenshotService", $"[Screenshot] Screenshot error: {ex.Message}");
             WeakReferenceMessenger.Default.Send(new ScreenshotTakenMessage("", false, ex.Message));
         }
         finally
@@ -317,14 +317,14 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
             if (captureItem == null)
             {
-                Debug.WriteLine("[截图服务] 无法创建 GraphicsCaptureItem");
+                DebugLog.Info("ScreenshotService", "[Screenshot] Failed to create GraphicsCaptureItem");
                 return false;
             }
 
             device = CreateDirect3DDevice();
             if (device == null)
             {
-                Debug.WriteLine("[截图服务] 无法创建 Direct3D 设备");
+                DebugLog.Info("ScreenshotService", "[Screenshot] Failed to create Direct3D device");
                 return false;
             }
 
@@ -360,7 +360,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
             if (completedTask != tcs.Task)
             {
-                Debug.WriteLine("[截图服务] 捕获超时");
+                DebugLog.Info("ScreenshotService", "[Screenshot] Capture timed out");
                 return false;
             }
 
@@ -372,7 +372,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[截图服务] CaptureWindowAsync 异常: {ex.Message}\n{ex.StackTrace}");
+            DebugLog.Info("ScreenshotService", $"[Screenshot] CaptureWindowAsync error: {ex.Message}\n{ex.StackTrace}");
             return false;
         }
         finally
@@ -450,7 +450,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[截图服务] SaveFrameToFileAsync 异常: {ex.Message}");
+            DebugLog.Info("ScreenshotService", $"[Screenshot] SaveFrameToFileAsync error: {ex.Message}");
             return false;
         }
     }
@@ -548,7 +548,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
             if (hr != 0 || d3dDevice == IntPtr.Zero)
             {
-                Debug.WriteLine($"[截图服务] D3D11CreateDevice HARDWARE 失败, HRESULT: 0x{hr:X8}");
+                DebugLog.Info("ScreenshotService", $"[Screenshot] D3D11CreateDevice HARDWARE failed, HRESULT: 0x{hr:X8}");
                 hr = D3D11CreateDevice(
                     IntPtr.Zero,
                     5,
@@ -563,7 +563,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
                 if (hr != 0 || d3dDevice == IntPtr.Zero)
                 {
-                    Debug.WriteLine($"[截图服务] D3D11CreateDevice WARP 也失败, HRESULT: 0x{hr:X8}");
+                    DebugLog.Info("ScreenshotService", $"[Screenshot] D3D11CreateDevice WARP also failed, HRESULT: 0x{hr:X8}");
                     return null;
                 }
             }
@@ -578,7 +578,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
             if (hr != 0 || dxgiDevice == IntPtr.Zero)
             {
-                Debug.WriteLine($"[截图服务] QueryInterface IDXGIDevice 失败, HRESULT: 0x{hr:X8}");
+                DebugLog.Info("ScreenshotService", $"[Screenshot] QueryInterface IDXGIDevice failed, HRESULT: 0x{hr:X8}");
                 return null;
             }
 
@@ -596,7 +596,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
             if (hr != 0 || inspectable == IntPtr.Zero)
             {
-                Debug.WriteLine($"[截图服务] CreateDirect3D11DeviceFromDXGIDevice 失败, HRESULT: 0x{hr:X8}");
+                DebugLog.Info("ScreenshotService", $"[Screenshot] CreateDirect3D11DeviceFromDXGIDevice failed, HRESULT: 0x{hr:X8}");
                 return null;
             }
 
@@ -606,14 +606,14 @@ public class ScreenshotService : IScreenshotService, IDisposable
 
             if (winrtDevice == null)
             {
-                Debug.WriteLine("[截图服务] MarshalIDirect3DDevice 返回 null");
+                DebugLog.Info("ScreenshotService", "[Screenshot] MarshalIDirect3DDevice returned null");
             }
 
             return winrtDevice;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[截图服务] CreateDirect3DDevice 异常: {ex.Message}\n{ex.StackTrace}");
+            DebugLog.Info("ScreenshotService", $"[Screenshot] CreateDirect3DDevice error: {ex.Message}\n{ex.StackTrace}");
             return null;
         }
     }
@@ -634,7 +634,7 @@ public class ScreenshotService : IScreenshotService, IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[截图服务] MarshalInterface 方式失败: {ex.Message}");
+            DebugLog.Info("ScreenshotService", $"[Screenshot] MarshalInterface approach failed: {ex.Message}");
         }
 
         return null;

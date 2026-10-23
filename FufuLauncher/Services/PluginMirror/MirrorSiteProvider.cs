@@ -103,18 +103,18 @@ public class MirrorSiteProvider
         {
             if (!File.Exists(ConfigPath))
             {
-                Debug.WriteLine($"[MirrorSiteProvider] mirrors.json not found: {ConfigPath}");
+                DebugLog.Info("MirrorSiteProvider", $"[MirrorSiteProvider] mirrors.json not found: {ConfigPath}");
                 return new MirrorSiteConfig();
             }
 
             var config = JsonSerializer.Deserialize<MirrorSiteConfig>(File.ReadAllText(ConfigPath), JsonOptions);
             config ??= new MirrorSiteConfig();
-            Debug.WriteLine($"[MirrorSiteProvider] Loaded {config.Mirrors.Count} mirror(s), probe: {config.ProbeUrl}");
+            DebugLog.Info("MirrorSiteProvider", $"[MirrorSiteProvider] Loaded {config.Mirrors.Count} mirror(s), probe: {config.ProbeUrl}");
             return config;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MirrorSiteProvider] Failed to load mirrors.json: {ex.Message}");
+            DebugLog.Info("MirrorSiteProvider", $"[MirrorSiteProvider] Failed to load mirrors.json: {ex.Message}");
             return new MirrorSiteConfig();
         }
     }
@@ -177,7 +177,7 @@ public class MirrorSiteProvider
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MirrorSiteProvider] Redirect probe failed for {url}: {ex.Message}");
+            DebugLog.Info("MirrorSiteProvider", $"[MirrorSiteProvider] Redirect probe failed for {url}: {ex.Message}");
             return null;
         }
     }

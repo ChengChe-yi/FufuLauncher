@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -99,7 +100,7 @@ public sealed partial class GameSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"保存备注失败: {ex.Message}");
+            DebugLog.Info("GameSettingsPage.AccountRename", $"Failed to save note: {ex.Message}");
         }
     }
 

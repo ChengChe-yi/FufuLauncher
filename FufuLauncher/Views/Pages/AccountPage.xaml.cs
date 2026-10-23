@@ -60,7 +60,7 @@ public sealed partial class AccountPage : Page
         DataContext = ViewModel;
         InitializeComponent();
         RegisterRippleHandlers();
-        Debug.WriteLine("AccountPage initialized");
+        DebugLog.Info("AccountPage", "AccountPage initialized");
     }
 
     #endregion
@@ -270,12 +270,12 @@ public sealed partial class AccountPage : Page
             if (result == ContentDialogResult.Primary)
             {
                 await ViewModel.DeleteAccountAsync(account);
-                Debug.WriteLine($"[Page] 账号 {account.Nickname} 删除完成");
+                DebugLog.Info("AccountPage", $"[Page] Account {account.Nickname} deleted");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"删除账号异常: {ex.Message}");
+            DebugLog.Info("AccountPage", $"Delete account failed: {ex.Message}");
         }
         finally
         {
@@ -329,7 +329,7 @@ public sealed partial class AccountPage : Page
             BtnCheckinText.Text = "Account_CheckinException".GetLocalized();
             _notificationService.Show("Account_CheckinException".GetLocalized(), ex.Message, NotificationType.Error,
                 3000);
-            Debug.WriteLine($"签到异常: {ex.Message}");
+            DebugLog.Info("AccountPage", $"Check-in failed: {ex.Message}");
         }
         finally
         {

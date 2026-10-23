@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -145,7 +145,7 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 : successAccounts > 0
                     ? string.Format("Checkin_PartialSuccess".GetLocalized(), successAccounts, failAccounts)
                     : string.Format("Checkin_AllFailed".GetLocalized(), failAccounts);
-        Debug.WriteLine($"[统一签到] {result.SummaryMessage}");
+        DebugLog.Info("UnifiedCheckinService", $"[UnifiedCheckin] {result.SummaryMessage}");
         return result;
     }
 
@@ -270,11 +270,11 @@ public class UnifiedCheckinService : IUnifiedCheckinService
             {
                 result.GameResult.Success = false;
                 result.GameResult.Message = string.Format("CheckinGame_Exception".GetLocalized(), ex.Message);
-                Debug.WriteLine($"[统一签到] 游戏签到异常: {ex.Message}");
+                DebugLog.Info("UnifiedCheckinService", $"[UnifiedCheckin] Game check-in error: {ex.Message}");
             }
 
             gameSw.Stop();
-            Debug.WriteLine($"[统一签到] 游戏签到耗时 {gameSw.ElapsedMilliseconds}ms");
+            DebugLog.Info("UnifiedCheckinService", $"[UnifiedCheckin] Game check-in took {gameSw.ElapsedMilliseconds}ms");
         }
 
 
@@ -345,11 +345,11 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 result.CommunityResult.FailCount++;
                 result.CommunityResult.Message = string.Format("CheckinCommunity_Exception".GetLocalized(), ex.Message);
                 AddAccountFailure(result, credentials, "Checkin_CommunityCheckin", ex.Message);
-                Debug.WriteLine($"[统一签到] 社区签到异常: {ex.Message}");
+                DebugLog.Info("UnifiedCheckinService", $"[UnifiedCheckin] Community check-in error: {ex.Message}");
             }
 
             communitySw.Stop();
-            Debug.WriteLine($"[统一签到] 社区签到耗时 {communitySw.ElapsedMilliseconds}ms");
+            DebugLog.Info("UnifiedCheckinService", $"[UnifiedCheckin] Community check-in took {communitySw.ElapsedMilliseconds}ms");
         }
 
 
@@ -426,11 +426,11 @@ public class UnifiedCheckinService : IUnifiedCheckinService
                 result.CloudGameResult.FailCount++;
                 result.CloudGameResult.Message = string.Format("CheckinCloud_Exception".GetLocalized(), ex.Message);
                 AddAccountFailure(result, credentials, "Checkin_CloudGameCheckin", ex.Message);
-                Debug.WriteLine($"[统一签到] 云原神签到异常: {ex.Message}");
+                DebugLog.Info("UnifiedCheckinService", $"[UnifiedCheckin] Cloud game check-in error: {ex.Message}");
             }
 
             cloudSw.Stop();
-            Debug.WriteLine($"[统一签到] 云游戏签到耗时 {cloudSw.ElapsedMilliseconds}ms");
+            DebugLog.Info("UnifiedCheckinService", $"[UnifiedCheckin] Cloud game check-in took {cloudSw.ElapsedMilliseconds}ms");
         }
 
         return result;

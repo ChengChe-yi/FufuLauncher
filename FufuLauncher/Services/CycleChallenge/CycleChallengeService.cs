@@ -100,7 +100,7 @@ public sealed class CycleChallengeService
                         catch (Exception ex)
                         {
                             // 写缓存失败不能让成功的 API 响应变成错误页
-                            Debug.WriteLine($"[CycleChallengeService] 深渊写入缓存失败: {ex.Message}");
+                            DebugLog.Info("CycleChallengeService", $"[CycleChallengeService] Failed to write Abyss cache: {ex.Message}");
                             saveFailed = true;
                             freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock: true);
                             freshScheduleId ??= TryGetFreshScheduleId(mode, response.DataJson);
@@ -126,7 +126,7 @@ public sealed class CycleChallengeService
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[CycleChallengeService] 剧诗写入缓存失败: {ex.Message}");
+                        DebugLog.Info("CycleChallengeService", $"[CycleChallengeService] Failed to write Theater cache: {ex.Message}");
                         saveFailed = true;
                         freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock);
                         freshScheduleId ??= TryGetFreshScheduleId(mode, response.DataJson);
@@ -152,7 +152,7 @@ public sealed class CycleChallengeService
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[CycleChallengeService] 危战写入缓存失败: {ex.Message}");
+                        DebugLog.Info("CycleChallengeService", $"[CycleChallengeService] Failed to write Stygian Onslaught cache: {ex.Message}");
                         saveFailed = true;
                         freshPanelPayload ??= BuildFreshPanelPayload(mode, response.DataJson, isUnlock);
                         freshScheduleId ??= TryGetFreshScheduleId(mode, response.DataJson);
@@ -187,7 +187,7 @@ public sealed class CycleChallengeService
         catch (Exception ex) when (saveFailed && freshPanelPayload is not null)
         {
             // API 已成功、只是缓存不可读：保留旧期次列表并让面板直接使用本次新数据
-            Debug.WriteLine($"[CycleChallengeService] 读取缓存失败: {ex.Message}");
+            DebugLog.Info("CycleChallengeService", $"[CycleChallengeService] Failed to read cache: {ex.Message}");
             periods = periodsBefore;
             latest = null;
         }
@@ -429,7 +429,7 @@ public sealed class CycleChallengeService
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[CycleChallengeService] 构造临时 payload 失败: {ex.Message}");
+            DebugLog.Info("CycleChallengeService", $"[CycleChallengeService] Failed to build temp payload: {ex.Message}");
             return null;
         }
     }
@@ -453,7 +453,7 @@ public sealed class CycleChallengeService
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[CycleChallengeService] 判断深渊 floors 失败: {ex.Message}");
+            DebugLog.Info("CycleChallengeService", $"[CycleChallengeService] Failed to determine Abyss floors: {ex.Message}");
             return false;
         }
     }
@@ -519,7 +519,7 @@ public sealed class CycleChallengeService
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[CycleChallengeService] 解析新鲜期次 ID 失败: {ex.Message}");
+            DebugLog.Info("CycleChallengeService", $"[CycleChallengeService] Failed to parse fresh period IDs: {ex.Message}");
             return null;
         }
     }

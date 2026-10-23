@@ -1160,6 +1160,53 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A9;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BackgroundAntialiasTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BackgroundAntialiasCaption}" />
+                                    </StackPanel>
+                                    <ToggleSwitch Grid.Column="2"
+                                                  IsOn="{x:Bind ViewModel.IsBackgroundImageAntialiasEnabled, Mode=TwoWay}"
+                                                  OnContent=""
+                                                  OffContent="" />
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE8A9;" />
+                                    <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
+                                        <TextBlock Style="{StaticResource RowTitleStyle}"
+                                                   Text="{helpers:Loc Key=BackgroundAntialiasStrengthTitle}" />
+                                        <TextBlock Style="{StaticResource RowCaptionStyle}"
+                                                   Text="{helpers:Loc Key=BackgroundAntialiasStrengthCaption}" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2" Style="{StaticResource RowSubRowStyle}" Margin="16,0,0,0">
+                                        <Slider x:Name="BackgroundAntialiasStrengthSlider"
+                                                Width="220" Minimum="0" Maximum="100" StepFrequency="1"
+                                                IsEnabled="{x:Bind ViewModel.IsBackgroundImageAntialiasEnabled, Mode=OneWay}"
+                                                Value="{x:Bind ViewModel.BackgroundImageAntialiasStrength, Mode=TwoWay}" />
+                                        <TextBlock VerticalAlignment="Center"
+                                                   MinWidth="44"
+                                                   Text="{Binding Value, ElementName=BackgroundAntialiasStrengthSlider, Converter={StaticResource StringFormatConverter}, ConverterParameter='{}{0:0}%'}" />
+                                    </StackPanel>
+                                </Grid>
+
+                                <Rectangle Style="{StaticResource RowDividerStyle}" />
+
+                                <Grid Style="{StaticResource SettingsRowStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
                                     <FontIcon Style="{StaticResource RowIconStyle}" Glyph="&#xE91B;" />
                                     <StackPanel Grid.Column="1" Style="{StaticResource RowTextStyle}">
                                         <TextBlock Style="{StaticResource RowTitleStyle}"

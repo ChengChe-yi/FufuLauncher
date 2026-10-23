@@ -27,7 +27,7 @@ public partial class AccountViewModel
             var activeId = _accountManager.ActiveAccountId;
             if (activeId == null)
             {
-                Debug.WriteLine("[LoadUserInfo] 无活跃账户");
+                DebugLog.Info("AccountViewModel.UserInfo", "[LoadUserInfo] No active account");
                 RunOnUIThread(() => StatusMessage = "Account_PleaseLogin".GetLocalized());
                 return false;
             }
@@ -36,7 +36,7 @@ public partial class AccountViewModel
             var entry = _accountManager.GetActiveAccountEntry();
             if (cookies == null || entry == null)
             {
-                Debug.WriteLine("[LoadUserInfo] 无法读取账户数据");
+                DebugLog.Info("AccountViewModel.UserInfo", "[LoadUserInfo] Failed to read account data");
                 RunOnUIThread(() => StatusMessage = "Account_PleaseLogin".GetLocalized());
                 return false;
             }
@@ -49,7 +49,7 @@ public partial class AccountViewModel
 
             string cookieString = string.Join("; ", cookies.Select(kv => $"{kv.Key}={kv.Value}"));
 
-            Debug.WriteLine($"[LoadUserInfo] 正在调用远程API... (账户: {entry.Id})");
+            DebugLog.Info("AccountViewModel.UserInfo", $"[LoadUserInfo] Calling remote API... (account: {entry.Id})");
 
             var rolesTask = _userInfoService.GetUserGameRolesAsync(cookieString);
             var userInfoTask = _userInfoService.GetUserFullInfoAsync(cookieString);
@@ -60,7 +60,7 @@ public partial class AccountViewModel
 
             if (myVersion != _loadVersion || _isDisposed || _accountManager.ActiveAccountId != activeId)
             {
-                Debug.WriteLine($"[LoadUserInfo][{entry.Id}] 结果已过期(v{myVersion}→{_loadVersion})，丢弃");
+                DebugLog.Info("AccountViewModel.UserInfo", $"[LoadUserInfo][{entry.Id}] Result stale (v{myVersion}→{_loadVersion}), discarded");
                 return false;
             }
 
@@ -111,12 +111,12 @@ public partial class AccountViewModel
                     ? "Account_LoggedIn".GetLocalized()
                     : "Account_LoggedInNoRole".GetLocalized();
             });
-            Debug.WriteLine($"[LoadUserInfo] 用户信息已更新，HasBoundRole={hasBoundRole}");
+            DebugLog.Info("AccountViewModel.UserInfo", $"[LoadUserInfo] User info updated, HasBoundRole={hasBoundRole}");
             return true;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[LoadUserInfo] 异常: {ex.Message}");
+            DebugLog.Info("AccountViewModel.UserInfo", $"[LoadUserInfo] Exception: {ex.Message}");
             RunOnUIThread(() =>
             {
                 StatusMessage = string.Format("Common_LoadFailed_Format".GetLocalized(), ex.Message);
@@ -130,7 +130,7 @@ public partial class AccountViewModel
         {
             IsLoadingUserInfo = false;
             IsBoundRoleLoading = false;
-            Debug.WriteLine("[LoadUserInfo] 加载结束");
+            DebugLog.Info("AccountViewModel.UserInfo", "[LoadUserInfo] Load finished");
         }
     }
 
@@ -180,7 +180,7 @@ public partial class AccountViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"ERROR: 打开原神数据窗口失败: {ex.Message}");
+            DebugLog.Info("AccountViewModel.UserInfo", $"ERROR: Failed to open Genshin data window: {ex.Message}");
             RunOnUIThread(() => StatusMessage = string.Format("Common_OpenFailed_Format".GetLocalized(), ex.Message));
         }
     }

@@ -116,7 +116,7 @@ public sealed partial class EasterEggPage : Page
 
                 _mediaFailedHandler = (_, args) =>
                 {
-                    System.Diagnostics.Debug.WriteLine($"视频播放失败: {args.ErrorMessage}");
+                    DebugLog.Info("EasterEggPage", $"Video playback failed: {args.ErrorMessage}");
                     DispatcherQueue.TryEnqueue(() => ShowVideoFallbackFrame(videoPath));
                 };
                 _videoPlayer.MediaFailed += _mediaFailedHandler;
@@ -136,7 +136,7 @@ public sealed partial class EasterEggPage : Page
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"媒体加载失败: {ex.Message}");
+            DebugLog.Info("EasterEggPage", $"Media load failed: {ex.Message}");
         }
     }
 
@@ -244,7 +244,7 @@ public sealed partial class EasterEggPage : Page
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"提取视频帧失败: {ex.Message}");
+            DebugLog.Info("EasterEggPage", $"Failed to extract video frame: {ex.Message}");
         }
     }
 
@@ -294,7 +294,7 @@ public sealed partial class EasterEggPage : Page
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Cleanup error: {ex.Message}");
+            DebugLog.Info("EasterEggPage", $"Cleanup error: {ex.Message}");
         }
     }
 }

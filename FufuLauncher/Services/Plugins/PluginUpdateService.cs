@@ -7,6 +7,7 @@ using System.IO.Compression;
 using System.Text;
 using FufuLauncher.Constants;
 using FufuLauncher.Contracts.Services;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services
 {
@@ -174,7 +175,7 @@ namespace FufuLauncher.Services
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"[插件更新] 清理临时文件失败: {ex.Message}");
+                    DebugLog.Info("PluginUpdateService", $"[PluginUpdate] Failed to clean temporary files: {ex.Message}");
                 }
             }
         }

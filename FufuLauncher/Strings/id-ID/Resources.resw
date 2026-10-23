@@ -8692,4 +8692,16 @@ Detail: {0}</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>Anti-aliasing gambar</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>Menghaluskan tepi gambar latar utama. Nonaktif secara default.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>Kekuatan anti-aliasing</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>Nilai lebih tinggi membuat tepi lebih halus.</value>
+  </data>
 </root>

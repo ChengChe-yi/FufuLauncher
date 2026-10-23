@@ -46,7 +46,7 @@ public partial class LuaPluginInstaller
             }
             catch (Exception ex)
             {
-                LogMessage($"gpu_matches 执行出错: {ex.Message}");
+                LogMessage($"gpu_matches failed: {ex.Message}");
                 return false;
             }
         });
@@ -82,7 +82,7 @@ public partial class LuaPluginInstaller
             }
             catch (Exception ex)
             {
-                LogMessage($"gpu_matches_any 执行出错: {ex.Message}");
+                LogMessage($"gpu_matches_any failed: {ex.Message}");
                 return false;
             }
         });

@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 
 using FufuLauncher.Services;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -22,7 +23,7 @@ public sealed partial class BBSWindow
             var identity = await _deviceFpService.GetOrRegisterAsync();
             _deviceId = identity.BbsDeviceId;
             _activeDeviceFp = identity.DeviceFp;
-            System.Diagnostics.Debug.WriteLine($"[BBSWindow] 设备身份已获取: device_fp={_activeDeviceFp}");
+            DebugLog.Info("BBSWindow.Cookies", $"[BBSWindow] Device identity acquired: device_fp={_activeDeviceFp}");
 
             if (!string.IsNullOrEmpty(_activeDeviceFp))
             {
@@ -31,13 +32,13 @@ public sealed partial class BBSWindow
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[BBSWindow] EnsureDeviceFpAsync 失败: {ex.Message}");
+            DebugLog.Info("BBSWindow.Cookies", $"[BBSWindow] EnsureDeviceFpAsync failed: {ex.Message}");
         }
     }
 
     private async Task LoadPageAsync(string url)
     {
-        System.Diagnostics.Debug.WriteLine($"[BBSWindow] LoadPageAsync called with URL: {url}");
+        DebugLog.Info("BBSWindow.Cookies", $"[BBSWindow] LoadPageAsync called with URL: {url}");
         await LoadActiveAccountCookiesAsync();
 
         var manager = BBSWebView.CoreWebView2.CookieManager;
@@ -53,7 +54,7 @@ public sealed partial class BBSWindow
             manager.AddOrUpdateCookie(cookie);
         }
 
-        System.Diagnostics.Debug.WriteLine($"[BBSWindow] Added {cookieDic.Count} cookies to WebView2");
+        DebugLog.Info("BBSWindow.Cookies", $"[BBSWindow] Added {cookieDic.Count} cookies to WebView2");
         BBSWebView.CoreWebView2.Navigate(url);
     }
 

@@ -143,7 +143,7 @@ public partial class ImageSourceViewModel : ObservableObject
     public async Task InitializeAsync()
     {
         var started = Environment.TickCount64;
-        PreviewTrace.Log("VM.Initialize.Start");
+        DebugLog.Info("ImageSourceViewModel", "VM.Initialize.Start");
         _isLoadingSettings = true;
         try
         {
@@ -186,13 +186,13 @@ public partial class ImageSourceViewModel : ObservableObject
         else if (SelectedTab == ImageSourceTab.Slideshow && !HasSlideshowFolder)
             ClearPreview("ImageSource_SlideshowEmpty");
 
-        PreviewTrace.Log("VM.Initialize.End", $"{Environment.TickCount64 - started}ms tab={SelectedTab}");
+        DebugLog.Info("ImageSourceViewModel", "VM.Initialize.End", $"{Environment.TickCount64 - started}ms tab={SelectedTab}");
     }
 
     private async Task<ImageSourceSettingsSnapshot> LoadSettingsSnapshotAsync()
     {
         var started = Environment.TickCount64;
-        PreviewTrace.Log("VM.Snapshot.Start");
+        DebugLog.Info("ImageSourceViewModel", "VM.Snapshot.Start");
         var serverJson = await _localSettingsService.ReadSettingAsync(LocalSettingsService.BackgroundServerKey);
         var server = serverJson != null ? (ServerType)Convert.ToInt32(serverJson) : ServerType.CN;
 
@@ -224,13 +224,13 @@ public partial class ImageSourceViewModel : ObservableObject
             isBing,
             isBackgroundEnabled,
             isSlideshow);
-        PreviewTrace.Log("VM.Snapshot.End", $"{Environment.TickCount64 - started}ms");
+        DebugLog.Info("ImageSourceViewModel", "VM.Snapshot.End", $"{Environment.TickCount64 - started}ms");
     }
 
     public async Task SelectTabAsync(ImageSourceTab tab, bool forceNewImage = false)
     {
         var started = Environment.TickCount64;
-        PreviewTrace.Log("SelectTab.Start", $"{tab} force={forceNewImage}");
+        DebugLog.Info("ImageSourceViewModel", "SelectTab.Start", $"{tab} force={forceNewImage}");
         var requestVersion = ++_requestVersion;
         if (App.MainWindow is MainWindow mainWindow)
             mainWindow.CancelPendingBackgroundLoad();
@@ -307,7 +307,7 @@ public partial class ImageSourceViewModel : ObservableObject
         {
             if (requestVersion == _requestVersion)
             {
-                Debug.WriteLine($"[ImageSource] 切换图像源失败: {ex.Message}");
+                DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to switch image source: {ex.Message}");
                 StatusText = ex.Message;
                 IsPreviewLoading = false;
             }
@@ -318,12 +318,12 @@ public partial class ImageSourceViewModel : ObservableObject
                 _isStepping = false;
         }
 
-        PreviewTrace.Log("SelectTab.End", $"{tab} in {Environment.TickCount64 - started}ms current={requestVersion == _requestVersion}");
+        DebugLog.Info("ImageSourceViewModel", "SelectTab.End", $"{tab} in {Environment.TickCount64 - started}ms current={requestVersion == _requestVersion}");
     }
 
     public void ApplyBackgroundResult(BackgroundRenderResult? result)
     {
-        PreviewTrace.Log("VM.ApplyBackgroundResult", $"source={(result?.ImageSource == null ? "null" : "set")} fallback={result?.IsFallback} tab={SelectedTab}");
+        DebugLog.Info("ImageSourceViewModel", "VM.ApplyBackgroundResult", $"source={(result?.ImageSource == null ? "null" : "set")} fallback={result?.IsFallback} tab={SelectedTab}");
         if (SelectedTab == ImageSourceTab.Custom && !HasCustomBackground) return;
         if (SelectedTab == ImageSourceTab.Slideshow && !HasSlideshowFolder) return;
 
@@ -433,7 +433,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 切换官方服务器失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to switch official server: {ex.Message}");
             StatusText = ex.Message;
         }
     }
@@ -454,7 +454,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 保存随机背景范围失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to save random background range: {ex.Message}");
             StatusText = ex.Message;
         }
     }
@@ -480,7 +480,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 保存轮播间隔失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to save carousel interval: {ex.Message}");
             StatusText = ex.Message;
         }
     }
@@ -515,7 +515,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 选择自定义背景失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to select custom background: {ex.Message}");
             StatusText = ex.Message;
             IsPreviewLoading = false;
         }
@@ -535,7 +535,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 清除自定义背景失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to clear custom background: {ex.Message}");
             StatusText = ex.Message;
         }
     }
@@ -564,7 +564,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 选择轮播文件夹失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to select carousel folder: {ex.Message}");
             StatusText = ex.Message;
             IsPreviewLoading = false;
         }
@@ -589,7 +589,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 清除轮播文件夹失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to clear carousel folder: {ex.Message}");
             StatusText = ex.Message;
         }
     }
@@ -626,7 +626,7 @@ public partial class ImageSourceViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ImageSource] 保存官方 API 失败: {ex.Message}");
+            DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to save official API: {ex.Message}");
             StatusText = ex.Message;
         }
     }
@@ -674,7 +674,7 @@ public partial class ImageSourceViewModel : ObservableObject
         {
             if (requestVersion == _requestVersion && SelectedTab == ImageSourceTab.Official)
             {
-                Debug.WriteLine($"[ImageSource] 获取官方背景失败: {ex.Message}");
+                DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to fetch official backgrounds: {ex.Message}");
                 StatusText = ex.Message;
                 IsPreviewLoading = false;
             }
@@ -707,7 +707,7 @@ public partial class ImageSourceViewModel : ObservableObject
         {
             if (requestVersion == _requestVersion && SelectedTab == ImageSourceTab.Bing)
             {
-                Debug.WriteLine($"[ImageSource] 获取 Bing 壁纸失败: {ex.Message}");
+                DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to fetch Bing wallpaper: {ex.Message}");
                 StatusText = ex.Message;
                 IsPreviewLoading = false;
             }
@@ -766,7 +766,7 @@ public partial class ImageSourceViewModel : ObservableObject
         {
             if (requestVersion == _requestVersion)
             {
-                Debug.WriteLine($"[ImageSource] 切换图片失败: {ex.Message}");
+                DebugLog.Info("ImageSourceViewModel", $"[ImageSource] Failed to switch image: {ex.Message}");
                 StatusText = ex.Message;
                 IsPreviewLoading = false;
             }
@@ -821,7 +821,7 @@ public partial class ImageSourceViewModel : ObservableObject
 
     private void ClearPreview(string statusKey)
     {
-        PreviewTrace.Log("VM.ClearPreview", statusKey);
+        DebugLog.Info("ImageSourceViewModel", "VM.ClearPreview", statusKey);
         PreviewImage = null;
         IsPreviewFallback = true;
         IsPreviewVideo = false;

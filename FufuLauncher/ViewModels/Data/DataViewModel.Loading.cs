@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using FufuLauncher.Models.DataCenter;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -81,7 +82,7 @@ public sealed partial class DataViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DataViewModel] 加载失败: {ex}");
+            DebugLog.Info("DataViewModel.Loading", $"[DataViewModel] Load failed: {ex}");
             HasError = _allCharacters.Count == 0 && OverviewKpis.Count == 0;
             ErrorMessage = L("DataPage_LoadFailedBody");
         }
@@ -116,7 +117,7 @@ public sealed partial class DataViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DataViewModel] 切换期数失败: {ex}");
+            DebugLog.Info("DataViewModel.Loading", $"[DataViewModel] Failed to switch phase: {ex}");
         }
         finally
         {
@@ -146,7 +147,7 @@ public sealed partial class DataViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DataViewModel] 切换配队筛选失败: {ex}");
+            DebugLog.Info("DataViewModel.Loading", $"[DataViewModel] Failed to switch team filter: {ex}");
         }
         finally
         {

@@ -123,7 +123,7 @@ public static class RemoteImageCache
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[RemoteImageCache] 等待下载任务失败 {uri}: {ex.Message}");
+                DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Failed to wait for download task {uri}: {ex.Message}");
                 return null;
             }
             finally
@@ -133,7 +133,7 @@ public static class RemoteImageCache
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImageCache] GetAsync 异常: {ex.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] GetAsync error: {ex.Message}");
             return null;
         }
     }
@@ -165,7 +165,7 @@ public static class RemoteImageCache
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImageCache] Invalidate 异常: {ex.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Invalidate error: {ex.Message}");
         }
     }
 
@@ -185,7 +185,7 @@ public static class RemoteImageCache
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImageCache] Cleanup 异常: {ex.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Cleanup error: {ex.Message}");
         }
     }
 
@@ -217,7 +217,7 @@ public static class RemoteImageCache
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImageCache] 移除单飞任务失败: {ex.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Failed to remove single-flight task: {ex.Message}");
         }
     }
 
@@ -265,8 +265,8 @@ public static class RemoteImageCache
                                                or UnauthorizedAccessException)
                 {
                     lastError = ex;
-                    Debug.WriteLine(
-                        $"[RemoteImageCache] 下载失败 ({attempt + 1}/{MaxRetryCount + 1}) {uri}: {ex.Message}");
+                    DebugLog.Info("RemoteImageCache",
+                        $"[RemoteImageCache] Download failed ({attempt + 1}/{MaxRetryCount + 1}) {uri}: {ex.Message}");
 
                     if (attempt < MaxRetryCount)
                     {
@@ -276,19 +276,19 @@ public static class RemoteImageCache
                         }
                         catch (Exception delayEx)
                         {
-                            Debug.WriteLine($"[RemoteImageCache] 重试等待异常: {delayEx.Message}");
+                            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Retry wait error: {delayEx.Message}");
                             break;
                         }
                     }
                 }
             }
 
-            Debug.WriteLine($"[RemoteImageCache] 放弃下载 {uri}: {lastError?.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Giving up download {uri}: {lastError?.Message}");
             return null;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImageCache] 下载流程异常 {uri}: {ex.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Download pipeline error {uri}: {ex.Message}");
             return null;
         }
     }
@@ -349,7 +349,7 @@ public static class RemoteImageCache
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RemoteImageCache] 检查缓存文件失败 {path}: {ex.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Failed to check cache file {path}: {ex.Message}");
             return false;
         }
     }
@@ -387,7 +387,7 @@ public static class RemoteImageCache
         catch (Exception ex)
         {
             // 文件可能正被 BitmapImage 占用，忽略即可
-            Debug.WriteLine($"[RemoteImageCache] 删除缓存文件失败 {path}: {ex.Message}");
+            DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Failed to delete cache file {path}: {ex.Message}");
         }
     }
 
@@ -440,7 +440,7 @@ public static class RemoteImageCache
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[RemoteImageCache] 清理文件失败 {file}: {ex.Message}");
+                DebugLog.Info("RemoteImageCache", $"[RemoteImageCache] Failed to clean file {file}: {ex.Message}");
             }
         }
 

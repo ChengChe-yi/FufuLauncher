@@ -40,7 +40,7 @@ public partial class OtherViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"显示管理员提示对话框失败: {ex.Message}");
+            DebugLog.Info("OtherViewModel.Dialogs", $"Failed to show admin prompt dialog: {ex.Message}");
             StatusMessage = "AutoClicker_MissingAdminError".GetLocalized();
         }
     }
@@ -63,7 +63,7 @@ public partial class OtherViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"显示错误对话框失败: {ex.Message}");
+            DebugLog.Info("OtherViewModel.Dialogs", $"Failed to show error dialog: {ex.Message}");
             StatusMessage = string.Format("Common_Error_Format".GetLocalized(), message);
         }
     }
@@ -90,7 +90,7 @@ public partial class OtherViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"显示延迟警告对话框失败: {ex.Message}");
+            DebugLog.Info("OtherViewModel.Dialogs", $"Failed to show delay warning dialog: {ex.Message}");
         }
 
         return result;

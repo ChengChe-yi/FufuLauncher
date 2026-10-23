@@ -193,8 +193,8 @@ public class GachaService
                     {
                         if (requireComplete && response?.Retcode == -100)
                             throw new GachaFetchException("祈愿链接已过期或无效，请在游戏中重新打开祈愿历史记录后再试。", -100);
-                        Debug.WriteLine(
-                            $"[Gacha] type={gachaType} page={page} 重试 {retry + 1}/{maxRetry}, retcode={response?.Retcode}, message={response?.Message}");
+                        DebugLog.Info("GachaService",
+                            $"[Gacha] type={gachaType} page={page} retry {retry + 1}/{maxRetry}, retcode={response?.Retcode}, message={response?.Message}");
                         if (retry < maxRetry - 1)
                         {
                             await Task.Delay(retryDelays[retry]);
@@ -204,7 +204,7 @@ public class GachaService
                         if (requireComplete)
                             throw new GachaFetchException($"祈愿记录获取失败（返回码 {response?.Retcode}），请稍后重试。",
                                 response?.Retcode);
-                        Debug.WriteLine($"[Gacha] type={gachaType} page={page} 重试耗尽，跳过");
+                        DebugLog.Info("GachaService", $"[Gacha] type={gachaType} page={page} retries exhausted, skipping");
                         break;
                     }
 
@@ -213,13 +213,13 @@ public class GachaService
 
                     if (response?.Data?.List == null || response.Data.List.Count == 0)
                     {
-                        Debug.WriteLine($"[Gacha] type={gachaType} page={page} 返回空列表，正常结束");
+                        DebugLog.Info("GachaService", $"[Gacha] type={gachaType} page={page} returned empty list, ending normally");
                         reachedEnd = true;
                         break;
                     }
 
-                    Debug.WriteLine(
-                        $"[Gacha] type={gachaType} page={page} 获取 {response.Data.List.Count} 条, end_id={response.Data.List.Last().Id}{(knownEndId > 0 ? $", 增量基线={knownEndId}" : "")}");
+                    DebugLog.Info("GachaService",
+                        $"[Gacha] type={gachaType} page={page} fetched {response.Data.List.Count} records, end_id={response.Data.List.Last().Id}{(knownEndId > 0 ? $", baseline={knownEndId}" : "")}");
 
                     if (knownEndId > 0)
                     {
@@ -242,7 +242,7 @@ public class GachaService
                         if (reachedBoundary)
                         {
                             reachedKnown = true;
-                            Debug.WriteLine($"[Gacha] type={gachaType} 增量更新到达已知记录边界，提前结束");
+                            DebugLog.Info("GachaService", $"[Gacha] type={gachaType} incremental update reached known record boundary, ending early");
                         }
                         else
                         {
@@ -269,8 +269,8 @@ public class GachaService
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(
-                        $"[Gacha] type={gachaType} page={page} 重试 {retry + 1}/{maxRetry}, 异常: {ex.GetType().Name}: {ex.Message}");
+                    DebugLog.Info("GachaService",
+                        $"[Gacha] type={gachaType} page={page} retry {retry + 1}/{maxRetry}, exception: {ex.GetType().Name}: {ex.Message}");
                     if (retry < maxRetry - 1)
                     {
                         await Task.Delay(retryDelays[retry]);
@@ -279,7 +279,7 @@ public class GachaService
 
                     if (requireComplete)
                         throw new GachaFetchException("祈愿记录请求失败，请检查网络后重试。", null);
-                    Debug.WriteLine($"[Gacha] type={gachaType} page={page} 重试耗尽，跳过");
+                    DebugLog.Info("GachaService", $"[Gacha] type={gachaType} page={page} retries exhausted, skipping");
                 }
             }
 

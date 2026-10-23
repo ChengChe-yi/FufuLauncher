@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using FufuLauncher.Constants;
 using Microsoft.Web.WebView2.Core;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -143,19 +144,19 @@ public sealed partial class LoginQrWindow
 
                         if (!enqueued)
                         {
-                            Debug.WriteLine("无法将保存操作调度到 UI 线程，可能窗口已关闭。");
+                            DebugLog.Info("LoginQrWindow.WebPassport", "Cannot dispatch save operation to UI thread, window may be closed.");
                         }
                     }
                     else if (hasLoginToken && !hasAccountId)
                     {
-                        Debug.WriteLine("WebView2 Cookie 缺少账户 ID (ltuid/stuid)，等待后续事件...");
+                        DebugLog.Info("LoginQrWindow.WebPassport", "WebView2 cookie missing account ID (ltuid/stuid), waiting for subsequent events...");
                     }
                 }
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"WebResourceResponseReceived 处理异常: {ex.Message}");
+            DebugLog.Info("LoginQrWindow.WebPassport", $"WebResourceResponseReceived handling exception: {ex.Message}");
         }
     }
 

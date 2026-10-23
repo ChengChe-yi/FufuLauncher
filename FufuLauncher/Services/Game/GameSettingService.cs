@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Text;
 using System.Text.Json.Nodes;
 using Microsoft.Win32;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -24,7 +25,7 @@ internal static class GameSettingService
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[GameSettingService] 设置HDR注册表失败: {ex.Message}");
+            DebugLog.Info("GameSettingService", $"[GameSettingService] Failed to set HDR registry value: {ex.Message}");
         }
     }
 

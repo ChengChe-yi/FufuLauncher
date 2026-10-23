@@ -18,7 +18,7 @@ public partial class PluginStoreViewModel
     {
         if (item == null || !item.IsInstallInProgress) return;
 
-        Debug.WriteLine($"[PluginStoreVM] User cancelled install for plugin: {item.Id}");
+        DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] User cancelled install for plugin: {item.Id}");
 
         _installCts?.Cancel();
 
@@ -90,7 +90,7 @@ public partial class PluginStoreViewModel
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[PluginStoreVM] Private access failed: {ex.Message}");
+                    DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Private access failed: {ex.Message}");
                     _installingPluginIds.Remove(item.Id);
                     item.State = StorePluginState.Available;
                     item.InstallProgress = 0;
@@ -104,7 +104,7 @@ public partial class PluginStoreViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreVM] Install error: {ex}");
+            DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Install error: {ex}");
             _installingPluginIds.Remove(item.Id);
             item.State = StorePluginState.Available;
             item.InstallProgress = 0;
@@ -155,7 +155,7 @@ public partial class PluginStoreViewModel
 
                 if (!IsPluginInstalledOnDisk(item.Id, out _))
                 {
-                    Debug.WriteLine(
+                    DebugLog.Info("PluginStoreViewModel.Install",
                         $"[PluginStoreVM] Install verification failed: plugin '{item.Id}' not found on disk after install script");
                     item.State = StorePluginState.Available;
                     item.InstallProgress = 0;
@@ -194,7 +194,7 @@ public partial class PluginStoreViewModel
             }
             catch (CaptchaRequiredException captchaEx)
             {
-                Debug.WriteLine($"[PluginStoreVM] Captcha required: {captchaEx.VerifyUrl}");
+                DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Captcha required: {captchaEx.VerifyUrl}");
                 item.InstallStatusText = "PluginStoreCaptchaRequired".GetLocalized();
 
                 var dlToken = await ShowGeetestCaptchaAsync(captchaEx.VerifyUrl);
@@ -206,11 +206,11 @@ public partial class PluginStoreViewModel
 
                 item.DlToken = dlToken;
                 attempt++;
-                Debug.WriteLine($"[PluginStoreVM] Got dl_token, retrying download (attempt {attempt})...");
+                DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Got dl_token, retrying download (attempt {attempt})...");
             }
             catch (PrivatePluginAccessException privEx)
             {
-                Debug.WriteLine($"[PluginStoreVM] Private access required: {privEx.Message}");
+                DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Private access required: {privEx.Message}");
                 item.InstallStatusText = "PluginStorePrivateAccessRequired".GetLocalized();
 
                 var accessKey = await ShowPrivateAccessDialogAsync(item);
@@ -234,7 +234,7 @@ public partial class PluginStoreViewModel
             }
             catch (HashMismatchException ex)
             {
-                Debug.WriteLine($"[PluginStoreVM] Hash mismatch: {ex.Message}");
+                DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Hash mismatch: {ex.Message}");
                 item.State = StorePluginState.Available;
                 item.InstallProgress = 0;
                 item.InstallStatusText = "PluginStoreHashFailed".GetLocalized();
@@ -244,7 +244,7 @@ public partial class PluginStoreViewModel
             }
             catch (SecurityViolationException ex)
             {
-                Debug.WriteLine($"[PluginStoreVM] Security violation: {ex.Message}");
+                DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Security violation: {ex.Message}");
                 item.State = StorePluginState.Available;
                 item.InstallProgress = 0;
                 item.InstallStatusText = "PluginStoreSecurityBlockedShort".GetLocalized();
@@ -263,7 +263,7 @@ public partial class PluginStoreViewModel
             catch (InvalidOperationException ex) when (ex.Message.Contains("download") ||
                                                        ex.Message.Contains("Download"))
             {
-                Debug.WriteLine($"[PluginStoreVM] Download error (may need captcha): {ex.Message}");
+                DebugLog.Info("PluginStoreViewModel.Install", $"[PluginStoreVM] Download error (may need captcha): {ex.Message}");
                 attempt++;
                 if (attempt >= maxCaptchaRetries) throw;
             }

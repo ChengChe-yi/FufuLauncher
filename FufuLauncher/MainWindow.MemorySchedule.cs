@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using FufuLauncher.Services;
 using Microsoft.UI.Xaml;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher;
 
@@ -48,7 +49,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"读取内存释放开关失败: {ex.Message}");
+            DebugLog.Info("MainWindow.MemorySchedule", $"Failed to read memory release switch: {ex.Message}");
         }
     }
 
@@ -62,7 +63,7 @@ public sealed partial class MainWindow
         {
             StopGameMemoryStrategy(restoreNormal: false);
             _periodicMemoryTimer?.Stop();
-            Debug.WriteLine("[MemorySchedule] 内存释放已全局关闭");
+            DebugLog.Info("MainWindow.MemorySchedule", "[MemorySchedule] Memory release globally disabled");
             return;
         }
 
@@ -71,7 +72,7 @@ public sealed partial class MainWindow
         else if (_periodicMemoryTimer != null && !_periodicMemoryTimer.IsEnabled)
             _periodicMemoryTimer.Start();
 
-        Debug.WriteLine("[MemorySchedule] 内存释放已开启");
+        DebugLog.Info("MainWindow.MemorySchedule", "[MemorySchedule] Memory release enabled");
     }
 
     private void StartGameMemoryStrategy()
@@ -92,7 +93,7 @@ public sealed partial class MainWindow
         _gameMemoryTelemetryTimer = new DispatcherTimer { Interval = GameMemoryTelemetryInterval };
         _gameMemoryTelemetryTimer.Tick += OnGameMemoryTelemetryTick;
         _gameMemoryTelemetryTimer.Start();
-        Debug.WriteLine("[MemorySchedule] 游戏启动，开始 5 分钟资源遥测");
+        DebugLog.Info("MainWindow.MemorySchedule", "[MemorySchedule] Game launched, starting 5-minute resource telemetry");
     }
 
     private void OnGameMemoryTelemetryTick(object? sender, object e)
@@ -128,9 +129,9 @@ public sealed partial class MainWindow
         _gameMemoryReleaseTimer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(minutes) };
         _gameMemoryReleaseTimer.Tick += OnGameMemoryReleaseTick;
         _gameMemoryReleaseTimer.Start();
-        Debug.WriteLine(
-            $"[MemorySchedule] 游戏遥测完成，平均 CPU {averageCpu:F1}%，平均内存 {averageMemory:F1}%，" +
-            $"释放间隔 {minutes:F1} 分钟");
+        DebugLog.Info("MainWindow.MemorySchedule",
+            $"[MemorySchedule] Game telemetry complete, avg CPU {averageCpu:F1}%, avg memory {averageMemory:F1}%, " +
+            $"release interval {minutes:F1} min");
     }
 
     private (double Cpu, double Memory) GetAverageGameMemorySamples()
@@ -154,7 +155,7 @@ public sealed partial class MainWindow
         if (!_isMemoryReleaseEnabled || !_isGameMemoryStrategyActive)
             return;
 
-        Debug.WriteLine("[MemorySchedule] 执行游戏期间内存释放");
+        DebugLog.Info("MainWindow.MemorySchedule", "[MemorySchedule] Releasing memory during game");
         FlushMemory(force: true);
     }
 
@@ -173,8 +174,8 @@ public sealed partial class MainWindow
             _periodicMemoryTimer != null && !_periodicMemoryTimer.IsEnabled)
             _periodicMemoryTimer.Start();
 
-        Debug.WriteLine(restoreNormal
-            ? "[MemorySchedule] 游戏结束，恢复常规内存释放"
-            : "[MemorySchedule] 游戏内存调度已停止");
+        DebugLog.Info("MainWindow.MemorySchedule", restoreNormal
+            ? "[MemorySchedule] Game ended, restoring normal memory release"
+            : "[MemorySchedule] Game memory scheduling stopped");
     }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -8,6 +8,7 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Windows.ApplicationModel;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -108,7 +109,7 @@ namespace FufuLauncher.Views
 
                 if (!File.Exists(fontPath))
                 {
-                    System.Diagnostics.Debug.WriteLine($"[错误] 未找到字体文件: {fontPath}");
+                    DebugLog.Info("AnnouncementWindow", $"[Error] Font file not found: {fontPath}");
                     return;
                 }
 
@@ -117,7 +118,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[致命] 服务器启动流程异常: {ex.Message}");
+                DebugLog.Info("AnnouncementWindow", $"[Fatal] Server startup flow exception: {ex.Message}");
             }
         }
     }
@@ -146,7 +147,7 @@ namespace FufuLauncher.Views
                 _listener.Start();
                 _isRunning = true;
 
-                System.Diagnostics.Debug.WriteLine($"字体服务已在 {ServerUrl} 启动");
+                DebugLog.Info("AnnouncementWindow", $"Font service started at {ServerUrl}");
 
                 while (_isRunning && _listener.IsListening)
                 {
@@ -171,7 +172,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"HTTP监听器启动失败: {ex.Message}");
+                DebugLog.Info("AnnouncementWindow", $"Failed to start HTTP listener: {ex.Message}");
                 _isRunning = false;
             }
         }

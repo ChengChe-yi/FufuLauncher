@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -16,6 +16,7 @@ using Microsoft.Web.WebView2.Core;
 using Windows.System;
 using Windows.UI;
 using FufuLauncher.Constants;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -98,7 +99,7 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Init failed: {ex.Message}");
+            DebugLog.Info("VideoResourcesWindow", $"Init failed: {ex.Message}");
         }
     }
 
@@ -173,7 +174,7 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[VideoResource] Load List Failed: {ex.Message}");
+            DebugLog.Info("VideoResourcesWindow", $"[VideoResource] Load List Failed: {ex.Message}");
         }
         finally
         {
@@ -222,7 +223,7 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Extract Video Failed: {ex.Message}");
+            DebugLog.Info("VideoResourcesWindow", $"Extract Video Failed: {ex.Message}");
             return null;
         }
     }
@@ -243,7 +244,7 @@ public sealed partial class VideoResourcesWindow : Window, INotifyPropertyChange
                 }
                 else
                 {
-                    Debug.WriteLine("播放失败：无法解析视频地址");
+                    DebugLog.Info("VideoResourcesWindow", "Playback failed: cannot parse video URL");
                 }
             }
             finally

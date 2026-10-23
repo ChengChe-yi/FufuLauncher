@@ -69,24 +69,24 @@ public sealed partial class ImageSourcePanel : UserControl
         InitializeComponent();
 
         PreviewCurrentBrush.ImageOpened += (_, _) =>
-            PreviewTrace.Log("Image.Opened", $"current {Describe(PreviewCurrentBrush.ImageSource)}");
+            DebugLog.Info("ImageSourcePanel", "Image.Opened", $"current {Describe(PreviewCurrentBrush.ImageSource)}");
         PreviewCurrentBrush.ImageFailed += (_, _) =>
         {
-            PreviewTrace.Log("Image.Failed", "current");
+            DebugLog.Info("ImageSourcePanel", "Image.Failed", "current");
             SetPreviewPlaceholder(PreviewCurrentImage, true);
         };
         PreviewIncomingBrush.ImageOpened += (_, _) =>
-            PreviewTrace.Log("Image.Opened", $"incoming {Describe(PreviewIncomingBrush.ImageSource)}");
+            DebugLog.Info("ImageSourcePanel", "Image.Opened", $"incoming {Describe(PreviewIncomingBrush.ImageSource)}");
         PreviewIncomingBrush.ImageFailed += (_, _) =>
         {
-            PreviewTrace.Log("Image.Failed", "incoming");
+            DebugLog.Info("ImageSourcePanel", "Image.Failed", "incoming");
             SetPreviewPlaceholder(PreviewIncomingImage, true);
         };
     }
 
     private void Panel_Loaded(object sender, RoutedEventArgs e)
     {
-        PreviewTrace.Log("Panel.Loaded", $"hasWindow={App.MainWindow is MainWindow} current={Describe(_mainWindow?.CurrentGlobalBackground?.ImageSource)}");
+        DebugLog.Info("ImageSourcePanel", "Panel.Loaded", $"hasWindow={App.MainWindow is MainWindow} current={Describe(_mainWindow?.CurrentGlobalBackground?.ImageSource)}");
 
         if (_mainWindow != null)
         {
@@ -109,7 +109,7 @@ public sealed partial class ImageSourcePanel : UserControl
         ViewModel.PropertyChanged += OnViewModelPropertyChanged;
 
         ShowPreview(_mainWindow?.CurrentGlobalBackground, forceEntrance: true);
-        PreviewTrace.Log("Panel.Loaded.AfterShowPreview", $"displayed={Describe(_displayedPreviewSource)}");
+        DebugLog.Info("ImageSourcePanel", "Panel.Loaded.AfterShowPreview", $"displayed={Describe(_displayedPreviewSource)}");
         UpdateTabSelection(ViewModel.SelectedTab, false);
 
         _previewSyncTimer ??= new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(250) };
@@ -134,7 +134,7 @@ public sealed partial class ImageSourcePanel : UserControl
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[ImageSource] 初始化失败: {ex.Message}");
+                    DebugLog.Info("ImageSourcePanel", $"[ImageSource] Initialization failed: {ex.Message}");
                 }
             });
         }
@@ -168,7 +168,7 @@ public sealed partial class ImageSourcePanel : UserControl
 
     private void Panel_Unloaded(object sender, RoutedEventArgs e)
     {
-        PreviewTrace.Log("Panel.Unloaded");
+        DebugLog.Info("ImageSourcePanel", "Panel.Unloaded");
         _isPreviewInViewport = false;
         _previewSyncTimer?.Stop();
         _uiHeartbeatTimer?.Stop();
@@ -189,7 +189,7 @@ public sealed partial class ImageSourcePanel : UserControl
     {
         var now = Environment.TickCount64;
         if (_lastUiHeartbeat > 0 && now - _lastUiHeartbeat > 800)
-            PreviewTrace.Log("UI.HeartbeatGap", $"{now - _lastUiHeartbeat}ms");
+            DebugLog.Info("ImageSourcePanel", "UI.HeartbeatGap", $"{now - _lastUiHeartbeat}ms");
         _lastUiHeartbeat = now;
     }
 
@@ -237,7 +237,7 @@ public sealed partial class ImageSourcePanel : UserControl
             return;
         }
 
-        PreviewTrace.Log("Panel.TabClick", tab.ToString());
+        DebugLog.Info("ImageSourcePanel", "Panel.TabClick", tab.ToString());
         UpdateTabSelection(tab, true);
         await ViewModel.SelectTabAsync(tab);
     }
@@ -267,7 +267,7 @@ public sealed partial class ImageSourcePanel : UserControl
 
     private void OnGlobalBackgroundImageAvailable(ImageSource source)
     {
-        PreviewTrace.Log("GlobalImageAvailable", Describe(source));
+        DebugLog.Info("ImageSourcePanel", "GlobalImageAvailable", Describe(source));
         if (!DispatcherQueue.HasThreadAccess)
         {
             DispatcherQueue.TryEnqueue(() => ShowImage(source));
@@ -315,13 +315,13 @@ public sealed partial class ImageSourcePanel : UserControl
             return;
         }
 
-        PreviewTrace.Log("ApplyResult", $"source={Describe(result.ImageSource)} fallback={result.IsFallback}");
+        DebugLog.Info("ImageSourcePanel", "ApplyResult", $"source={Describe(result.ImageSource)} fallback={result.IsFallback}");
         ShowImage(result.ImageSource, forceEntrance);
     }
 
     private void ShowFallback()
     {
-        PreviewTrace.Log("ShowFallback");
+        DebugLog.Info("ImageSourcePanel", "ShowFallback");
         _displayedPreviewSource = null;
         _displayedOriginalSource = null;
         _pendingPreviewSource = null;
@@ -353,7 +353,7 @@ public sealed partial class ImageSourcePanel : UserControl
 
     private void ShowImage(ImageSource source, bool forceEntrance = false)
     {
-        PreviewTrace.Log("ShowImage.Enter", $"source={Describe(source)} force={forceEntrance} transitioning={_isPreviewTransitioning} viewport={_isPreviewInViewport}");
+        DebugLog.Info("ImageSourcePanel", "ShowImage.Enter", $"source={Describe(source)} force={forceEntrance} transitioning={_isPreviewTransitioning} viewport={_isPreviewInViewport}");
 
         if (!forceEntrance &&
             ReferenceEquals(_displayedOriginalSource, source) &&
@@ -370,7 +370,7 @@ public sealed partial class ImageSourcePanel : UserControl
 
         var previewSource = CreatePreviewSource(source);
         _displayedOriginalSource = source;
-        PreviewTrace.Log("ShowImage.PreviewReady", $"preview={Describe(previewSource)}");
+        DebugLog.Info("ImageSourcePanel", "ShowImage.PreviewReady", $"preview={Describe(previewSource)}");
 
         if (_displayedPreviewSource == null || PreviewCurrentBrush.ImageSource == null ||
             forceEntrance || !_isPreviewInViewport)
@@ -385,16 +385,16 @@ public sealed partial class ImageSourcePanel : UserControl
     private static ImageSource CreatePreviewSource(ImageSource source)
     {
         var started = Environment.TickCount64;
-        PreviewTrace.Log("PreviewThumb.Start", $"source={Describe(source)}");
+        DebugLog.Info("ImageSourcePanel", "PreviewThumb.Start", $"source={Describe(source)}");
         try
         {
             var result = BackgroundImageLoader.CreatePreviewThumbnail(source, 640);
-            PreviewTrace.Log("PreviewThumb.Done", $"{Describe(result)} in {Environment.TickCount64 - started}ms");
+            DebugLog.Info("ImageSourcePanel", "PreviewThumb.Done", $"{Describe(result)} in {Environment.TickCount64 - started}ms");
             return result;
         }
         catch (Exception ex)
         {
-            PreviewTrace.Log("PreviewThumb.Failed", $"{Environment.TickCount64 - started}ms {ex.Message}");
+            DebugLog.Info("ImageSourcePanel", "PreviewThumb.Failed", $"{Environment.TickCount64 - started}ms {ex.Message}");
             return source;
         }
     }
@@ -408,7 +408,7 @@ public sealed partial class ImageSourcePanel : UserControl
 
     private void ShowInitialPreview(ImageSource source)
     {
-        PreviewTrace.Log("ShowInitialPreview", Describe(source));
+        DebugLog.Info("ImageSourcePanel", "ShowInitialPreview", Describe(source));
         _displayedPreviewSource = source;
         _pendingPreviewSource = null;
         ResetPreviewLayers();
@@ -416,7 +416,7 @@ public sealed partial class ImageSourcePanel : UserControl
         PreviewCurrentScale.ScaleX = PreviewInitialZoom;
         PreviewCurrentScale.ScaleY = PreviewInitialZoom;
         SetPreviewImage(PreviewCurrentImage, source);
-        PreviewTrace.Log("ShowInitialPreview.SourceAssigned", Describe(PreviewCurrentBrush.ImageSource));
+        DebugLog.Info("ImageSourcePanel", "ShowInitialPreview.SourceAssigned", Describe(PreviewCurrentBrush.ImageSource));
 
         _entryFadePending = true;
 
@@ -447,7 +447,7 @@ public sealed partial class ImageSourcePanel : UserControl
         PreviewCurrentScale.ScaleX = PreviewInitialZoom;
         PreviewCurrentScale.ScaleY = PreviewInitialZoom;
 
-        PreviewTrace.Log("Fade.Start", $"opacity={PreviewCurrentLayer.Opacity} scale={PreviewCurrentScale.ScaleX}");
+        DebugLog.Info("ImageSourcePanel", "Fade.Start", $"opacity={PreviewCurrentLayer.Opacity} scale={PreviewCurrentScale.ScaleX}");
         var storyboard = new Storyboard();
         var easing = new CubicEase { EasingMode = EasingMode.EaseOut };
         var duration = new Duration(TimeSpan.FromMilliseconds(PreviewInitialFadeMs));
@@ -464,9 +464,9 @@ public sealed partial class ImageSourcePanel : UserControl
         {
         }
         _initialFadeStoryboard = storyboard;
-        storyboard.Completed += (_, _) => PreviewTrace.Log("Fade.Completed");
+        storyboard.Completed += (_, _) => DebugLog.Info("ImageSourcePanel", "Fade.Completed");
         storyboard.Begin();
-        PreviewTrace.Log("Fade.BeginReturned");
+        DebugLog.Info("ImageSourcePanel", "Fade.BeginReturned");
     }
 
     private void PreviewHost_EffectiveViewportChanged(FrameworkElement sender, EffectiveViewportChangedEventArgs args)
@@ -474,7 +474,7 @@ public sealed partial class ImageSourcePanel : UserControl
         var wasVisible = _isPreviewInViewport;
         _isPreviewInViewport = args.EffectiveViewport.Width > 0 && args.EffectiveViewport.Height > 0;
         if (wasVisible != _isPreviewInViewport)
-            PreviewTrace.Log("Viewport.Changed", $"visible={_isPreviewInViewport}");
+            DebugLog.Info("ImageSourcePanel", "Viewport.Changed", $"visible={_isPreviewInViewport}");
         if (_isPreviewInViewport && _entryFadePending)
             TryStartEntryFade();
     }
@@ -539,7 +539,7 @@ public sealed partial class ImageSourcePanel : UserControl
         storyboard.Children.Add(CreateDoubleAnimation(PreviewIncomingScale, "ScaleX", 1, duration, easing));
         storyboard.Children.Add(CreateDoubleAnimation(PreviewIncomingScale, "ScaleY", 1, duration, easing));
 
-        PreviewTrace.Log("Transition.Start", $"source={Describe(source)} direction={direction}");
+        DebugLog.Info("ImageSourcePanel", "Transition.Start", $"source={Describe(source)} direction={direction}");
         _isPreviewTransitioning = true;
         var transitionId = ++_previewTransitionId;
         storyboard.Completed += (_, _) => CompletePreviewTransition(source, transitionId);
@@ -580,10 +580,10 @@ public sealed partial class ImageSourcePanel : UserControl
         }
         _previewTransitionStoryboard = null;
 
-        PreviewTrace.Log("Transition.Complete", $"source={Describe(source)} firstFrame={_previewFirstFrameSeen} currentLoaded={PreviewCurrentImage.IsLoaded} currentSize={PreviewCurrentImage.ActualWidth}x{PreviewCurrentImage.ActualHeight} currentSource={Describe(PreviewCurrentBrush.ImageSource)}");
+        DebugLog.Info("ImageSourcePanel", "Transition.Complete", $"source={Describe(source)} firstFrame={_previewFirstFrameSeen} currentLoaded={PreviewCurrentImage.IsLoaded} currentSize={PreviewCurrentImage.ActualWidth}x{PreviewCurrentImage.ActualHeight} currentSource={Describe(PreviewCurrentBrush.ImageSource)}");
         SwapPreviewLayers(source);
         MakeCurrentPreviewVisible();
-        PreviewTrace.Log("Transition.AfterSwap", $"firstFrame={_previewFirstFrameSeen} currentSource={Describe(PreviewCurrentBrush.ImageSource)} currentLoaded={PreviewCurrentImage.IsLoaded} layerOpacity={PreviewCurrentLayer.Opacity} layerVisibility={PreviewCurrentLayer.Visibility} imageOpacity={PreviewCurrentImage.Opacity} imageSize={PreviewCurrentImage.ActualWidth}x{PreviewCurrentImage.ActualHeight} hostSize={PreviewHost.ActualWidth}x{PreviewHost.ActualHeight} placeholder={PreviewCurrentPlaceholder.Visibility} scale={PreviewCurrentScale.ScaleX} translate={PreviewCurrentTranslate.X}");
+        DebugLog.Info("ImageSourcePanel", "Transition.AfterSwap", $"firstFrame={_previewFirstFrameSeen} currentSource={Describe(PreviewCurrentBrush.ImageSource)} currentLoaded={PreviewCurrentImage.IsLoaded} layerOpacity={PreviewCurrentLayer.Opacity} layerVisibility={PreviewCurrentLayer.Visibility} imageOpacity={PreviewCurrentImage.Opacity} imageSize={PreviewCurrentImage.ActualWidth}x{PreviewCurrentImage.ActualHeight} hostSize={PreviewHost.ActualWidth}x{PreviewHost.ActualHeight} placeholder={PreviewCurrentPlaceholder.Visibility} scale={PreviewCurrentScale.ScaleX} translate={PreviewCurrentTranslate.X}");
         _isPreviewTransitioning = false;
 
         if (_pendingPreviewSource != null && !ReferenceEquals(_pendingPreviewSource, _displayedOriginalSource))
@@ -632,25 +632,25 @@ public sealed partial class ImageSourcePanel : UserControl
         PreviewIncomingLayer.Opacity = 0;
         PreviewIncomingPlaceholder.Visibility = Visibility.Collapsed;
         ForcePreviewRender("MakeCurrentPreviewVisible");
-        PreviewTrace.Log("Preview.MakeVisible", $"layerOpacity={PreviewCurrentLayer.Opacity} imageOpacity={PreviewCurrentImage.Opacity} placeholder={PreviewCurrentPlaceholder.Visibility} host={PreviewHost.ActualWidth}x{PreviewHost.ActualHeight}");
+        DebugLog.Info("ImageSourcePanel", "Preview.MakeVisible", $"layerOpacity={PreviewCurrentLayer.Opacity} imageOpacity={PreviewCurrentImage.Opacity} placeholder={PreviewCurrentPlaceholder.Visibility} host={PreviewHost.ActualWidth}x{PreviewHost.ActualHeight}");
     }
 
     private void SetPreviewImage(Border imageControl, ImageSource? source)
     {
         var brush = ReferenceEquals(imageControl, PreviewCurrentImage) ? PreviewCurrentBrush : PreviewIncomingBrush;
-        PreviewTrace.Log("Image.SourceSet.Start", $"{imageControl.Name} {Describe(source)}");
+        DebugLog.Info("ImageSourcePanel", "Image.SourceSet.Start", $"{imageControl.Name} {Describe(source)}");
         brush.ImageSource = source;
         SetPreviewPlaceholder(imageControl, source == null);
 
         if (source == null)
         {
-            PreviewTrace.Log("Image.SourceSet.Done", $"{imageControl.Name} null");
+            DebugLog.Info("ImageSourcePanel", "Image.SourceSet.Done", $"{imageControl.Name} null");
             return;
         }
 
         HookFirstFrame(imageControl.Name);
         ForcePreviewRender(imageControl.Name);
-        PreviewTrace.Log("Image.SourceSet.Done", $"{imageControl.Name} {Describe(source)}");
+        DebugLog.Info("ImageSourcePanel", "Image.SourceSet.Done", $"{imageControl.Name} {Describe(source)}");
     }
 
     private void ForcePreviewRender(string reason)
@@ -662,11 +662,11 @@ public sealed partial class ImageSourcePanel : UserControl
             PreviewHost.InvalidateMeasure();
             PreviewHost.InvalidateArrange();
             PreviewHost.UpdateLayout();
-            PreviewTrace.Log("Preview.ForceRender", reason);
+            DebugLog.Info("ImageSourcePanel", "Preview.ForceRender", reason);
         }
         catch (Exception ex)
         {
-            PreviewTrace.Log("Preview.ForceRender.Failed", $"{reason} {ex.Message}");
+            DebugLog.Info("ImageSourcePanel", "Preview.ForceRender.Failed", $"{reason} {ex.Message}");
         }
     }
 
@@ -682,7 +682,7 @@ public sealed partial class ImageSourcePanel : UserControl
             CompositionTarget.Rendering -= OnFirstFrameRendering;
             _uiFrameHookAttached = false;
             _previewFirstFrameSeen = true;
-            PreviewTrace.Log("Preview.FirstFrame", $"{imageName} after {Environment.TickCount64 - _previewSourceSetTick}ms loaded={PreviewCurrentImage.IsLoaded} size={PreviewCurrentImage.ActualWidth}x{PreviewCurrentImage.ActualHeight}");
+            DebugLog.Info("ImageSourcePanel", "Preview.FirstFrame", $"{imageName} after {Environment.TickCount64 - _previewSourceSetTick}ms loaded={PreviewCurrentImage.IsLoaded} size={PreviewCurrentImage.ActualWidth}x{PreviewCurrentImage.ActualHeight}");
         }
     }
 

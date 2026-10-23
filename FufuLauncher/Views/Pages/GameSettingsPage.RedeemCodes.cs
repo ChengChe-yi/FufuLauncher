@@ -81,7 +81,7 @@ public sealed partial class GameSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RedeemCodes] 获取失败: {ex.Message}");
+            DebugLog.Info("GameSettingsPage.RedeemCodes", $"[RedeemCodes] Fetch failed: {ex.Message}");
             NoCodesText.Text = "Err_FetchFailedCheckNetwork".GetLocalized();
             NoCodesText.Visibility = Visibility.Visible;
         }

@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using FufuLauncher.Services.Security;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -86,13 +87,13 @@ public partial class AccountManager
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            Debug.WriteLine($"[AccountManager] 读取 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+            DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Failed to read cookie file {Path.GetFileName(path)}: {ex.Message}");
             RemoveUnreadableCookieFile(path);
             return null;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AccountManager] 读取 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+            DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Failed to read cookie file {Path.GetFileName(path)}: {ex.Message}");
             return null;
         }
 
@@ -126,7 +127,7 @@ public partial class AccountManager
         }
         catch (Exception ex) when (ex is JsonException or CookieVaultException or CryptographicException or NotSupportedException)
         {
-            Debug.WriteLine($"[AccountManager] Cookie 文件解析失败 {Path.GetFileName(path)}: {ex.Message}");
+            DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Failed to parse cookie file {Path.GetFileName(path)}: {ex.Message}");
             RemoveUnreadableCookieFile(path);
             return null;
         }
@@ -140,11 +141,11 @@ public partial class AccountManager
                 return;
 
             File.Delete(path);
-            Debug.WriteLine($"[AccountManager] 已移除无法解密的 Cookie 文件: {Path.GetFileName(path)}");
+            DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Removed undecryptable cookie file: {Path.GetFileName(path)}");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AccountManager] 移除无法解密的 Cookie 文件失败 {Path.GetFileName(path)}: {ex.Message}");
+            DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Failed to remove undecryptable cookie file {Path.GetFileName(path)}: {ex.Message}");
         }
     }
 
@@ -194,7 +195,7 @@ public partial class AccountManager
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AccountManager] Cookie 文件路径无效 {accountId}: {ex.Message}");
+            DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Invalid cookie file path {accountId}: {ex.Message}");
             return null;
         }
 
@@ -234,12 +235,12 @@ public partial class AccountManager
                 await WriteCookieFileAsync(path, current.Cookies);
                 entry.CookieVersion = CookieFileVersion;
                 entry.UpdatedAt = DateTime.Now;
-                Debug.WriteLine($"[AccountManager] 已更新 Cookie 文件存储格式: {Path.GetFileName(path)}");
+                DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Updated cookie file storage format: {Path.GetFileName(path)}");
                 return current.Cookies;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[AccountManager] Cookie 文件自动加密失败 {Path.GetFileName(path)}: {ex.Message}");
+                DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Cookie file auto-encryption failed {Path.GetFileName(path)}: {ex.Message}");
                 return null;
             }
         }
@@ -280,7 +281,7 @@ public partial class AccountManager
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AccountManager] 清理 Cookie 加密密钥失败: {ex.Message}");
+            DebugLog.Info("AccountManager.Cookies", $"[AccountManager] Failed to clean up cookie encryption key: {ex.Message}");
         }
     }
 }

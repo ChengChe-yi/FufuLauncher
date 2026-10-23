@@ -107,7 +107,7 @@ public sealed class ModTrustGate
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ModTrustGate] 读取策略文件失败: {ex.Message}");
+            DebugLog.Info("ModTrustGate", $"[ModTrustGate] Failed to read policy file: {ex.Message}");
         }
 
         return ModTrustEnforcement.Off;
@@ -134,12 +134,12 @@ public sealed class ModTrustGate
                 if (File.Exists(PolicyFilePath)) File.Replace(temporary, PolicyFilePath, null, true);
                 else File.Move(temporary, PolicyFilePath);
 
-                Debug.WriteLine($"[ModTrustGate] 信任策略已设置为 {mode}");
+                DebugLog.Info("ModTrustGate", $"[ModTrustGate] Trust policy set to {mode}");
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[ModTrustGate] 写入策略文件失败: {ex.Message}");
+                DebugLog.Info("ModTrustGate", $"[ModTrustGate] Failed to write policy file: {ex.Message}");
                 return false;
             }
         }
@@ -172,7 +172,7 @@ public sealed class ModTrustGate
 
         if (!allowed)
         {
-            Debug.WriteLine($"[ModTrustGate] 拒绝加载 {filePath}（{result.Status}）：{reason}");
+            DebugLog.Info("ModTrustGate", $"[ModTrustGate] Refused to load {filePath} ({result.Status}): {reason}");
         }
 
         return new ModTrustDecision { Allowed = allowed, Result = result, Mode = mode, Reason = reason };

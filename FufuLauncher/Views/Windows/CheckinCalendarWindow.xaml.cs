@@ -90,7 +90,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[CheckinCalendar] {ex.Message}");
+                DebugLog.Info("CheckinCalendarWindow", $"[CheckinCalendar] {ex.Message}");
             }
         }
 
@@ -152,7 +152,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"[CheckinCalendar] 补签异常: {ex.Message}");
+                DebugLog.Info("CheckinCalendarWindow", $"[CheckinCalendar] Make-up check-in exception: {ex.Message}");
             }
         }
 

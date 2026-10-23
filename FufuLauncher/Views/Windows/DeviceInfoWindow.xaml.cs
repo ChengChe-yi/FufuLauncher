@@ -75,7 +75,7 @@ public sealed partial class DeviceInfoWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DeviceInfoWindow] 窗口初始化失败: {ex.Message}");
+            DebugLog.Info("DeviceInfoWindow", $"[DeviceInfoWindow] Window initialization failed: {ex.Message}");
         }
     }
 
@@ -144,7 +144,7 @@ public sealed partial class DeviceInfoWindow : Window
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[DeviceInfoWindow] ext_fields 生成失败: {ex.Message}");
+            DebugLog.Info("DeviceInfoWindow", $"[DeviceInfoWindow] Failed to build ext_fields: {ex.Message}");
             SetStatus("DeviceInfo_InvalidJson".GetLocalized());
         }
 

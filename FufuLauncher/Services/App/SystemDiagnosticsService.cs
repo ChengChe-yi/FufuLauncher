@@ -100,7 +100,7 @@ public class SystemDiagnosticsService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Diagnostics] Network Error: {ex.Message}");
+            DebugLog.Info("SystemDiagnosticsService", $"[Diagnostics] Network Error: {ex.Message}");
         }
 
         return await Task.Run(() =>
@@ -207,7 +207,7 @@ public class SystemDiagnosticsService
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[Diagnostics] Error: {ex.Message}");
+                DebugLog.Info("SystemDiagnosticsService", $"[Diagnostics] Error: {ex.Message}");
                 info.Suggestion = "Diagnostics_PartialError".GetLocalized();
             }
 

@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Hosting;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -90,7 +91,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[GameAnnouncementBanner] 设置圆角裁剪失败: {ex.Message}");
+                DebugLog.Info("GameAnnouncementBanner", $"[GameAnnouncementBanner] Failed to apply rounded clip: {ex.Message}");
             }
         }
 
@@ -150,7 +151,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[GameAnnouncementBanner] 图片加载失败: {ex.Message}");
+                DebugLog.Info("GameAnnouncementBanner", $"[GameAnnouncementBanner] Image load failed: {ex.Message}");
                 if (version == _loadVersion)
                 {
                     ShowPlaceholder();

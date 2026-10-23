@@ -53,7 +53,7 @@ namespace FufuLauncher.Services
             if (mainWindow == null)
             {
                 errorMessage = "FilePicker_MainWindowNull".GetLocalized();
-                Debug.WriteLine($"[FilePickerService] {errorMessage}");
+                DebugLog.Info("IFilePickerService", $"[FilePickerService] {errorMessage}");
                 return false;
             }
 
@@ -61,7 +61,7 @@ namespace FufuLauncher.Services
             if (mainHwnd == IntPtr.Zero)
             {
                 errorMessage = "FilePicker_InvalidWindowHandle".GetLocalized();
-                Debug.WriteLine($"[FilePickerService] {errorMessage}");
+                DebugLog.Info("IFilePickerService", $"[FilePickerService] {errorMessage}");
                 return false;
             }
 
@@ -230,7 +230,7 @@ namespace FufuLauncher.Services
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[FilePickerService] WinForms 对话框失败: {ex}");
+                    DebugLog.Info("IFilePickerService", $"[FilePickerService] WinForms dialog failed: {ex}");
                     tcs.SetException(ex);
                 }
             });

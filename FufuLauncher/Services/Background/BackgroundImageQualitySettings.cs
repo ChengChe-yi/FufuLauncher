@@ -39,12 +39,12 @@ public static class BackgroundImageQualitySettings
                 _cachedQuality = totalMemoryGb > 0 && totalMemoryGb < 6
                     ? BackgroundImageQuality.UltraLow
                     : BackgroundImageQuality.High;
-                Debug.WriteLine($"[BackgroundImageQuality] 自动选择: {_cachedQuality.Value}，总内存: {totalMemoryGb} GB");
+                DebugLog.Info("BackgroundImageQualitySettings", $"[BackgroundImageQuality] Auto-selected: {_cachedQuality.Value}, total memory: {totalMemoryGb} GB");
                 return _cachedQuality.Value;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[BackgroundImageQuality] 读取设置失败，使用高画质: {ex.Message}");
+                DebugLog.Info("BackgroundImageQualitySettings", $"[BackgroundImageQuality] Failed to read settings, using high quality: {ex.Message}");
                 _cachedQuality = BackgroundImageQuality.High;
                 return _cachedQuality.Value;
             }

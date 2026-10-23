@@ -4,6 +4,7 @@ Licensed under the MIT License.
 */
 
 using FufuLauncher.Models;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -76,8 +77,8 @@ public partial class AccountManager
             catch (Exception ex)
             {
                 path = string.Empty;
-                System.Diagnostics.Debug.WriteLine(
-                    $"[AccountManager] Cookie 文件路径无效 {accountId}: {ex.Message}");
+                DebugLog.Info("AccountManager.Accounts",
+                    $"[AccountManager] Invalid cookie file path {accountId}: {ex.Message}");
             }
 
             if (!string.IsNullOrEmpty(path) && File.Exists(path)) File.Delete(path);

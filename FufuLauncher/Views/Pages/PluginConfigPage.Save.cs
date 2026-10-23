@@ -31,7 +31,7 @@ public sealed partial class PluginConfigPage
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[GamepadChoices] Device notifications unavailable: {ex.Message}");
+                DebugLog.Info("PluginConfigPage.Save", $"[GamepadChoices] Device notifications unavailable: {ex.Message}");
             }
         }
 
@@ -100,7 +100,7 @@ public sealed partial class PluginConfigPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConfig] Save failed: {ex}");
+            DebugLog.Info("PluginConfigPage.Save", $"[PluginConfig] Save failed: {ex}");
             if (_isActive && ReferenceEquals(_configuration, configuration))
             {
                 SetSaveStatus("PluginConfigPage_SaveFailed".GetLocalized(), "\uE783");

@@ -213,7 +213,7 @@ public class GenshinViewModel : INotifyPropertyChanged, IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Error: {ex.Message}");
+            DebugLog.Info("GenshinViewModel", $"Error: {ex.Message}");
             if (version == _loadVersion && !_disposed)
                 StatusMessage = string.Format("GenshinData_LoadFailed_Format".GetLocalized(), ex.Message);
         }

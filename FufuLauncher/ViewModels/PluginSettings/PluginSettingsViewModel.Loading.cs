@@ -282,7 +282,7 @@ public partial class PluginSettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginSettings] Progressive configuration load failed: {ex}");
+            DebugLog.Info("PluginSettingsViewModel.Loading", $"[PluginSettings] Progressive configuration load failed: {ex}");
             if (IsCurrentConfiguration(cancellation, token))
             {
                 Settings.Clear();

@@ -69,7 +69,7 @@ public partial class AccountViewModel
             var loginWindow = new LoginQrWindow();
             var (cookies, serverType) = await loginWindow.ShowAndWaitAsync();
 
-            Debug.WriteLine($"[LoginAsync] 登录成功，Cookie 数量: {cookies.Count}, 服务器: {serverType}");
+            DebugLog.Info("AccountViewModel.Operations", $"[LoginAsync] Login succeeded, cookies: {cookies.Count}, server: {serverType}");
 
             var entry = await _accountManager.AddAccountAsync(cookies, serverType,
                 nickname: "Account_AddAccount".GetLocalized());
@@ -86,7 +86,7 @@ public partial class AccountViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[LoginAsync] 异常: {ex.Message}");
+            DebugLog.Info("AccountViewModel.Operations", $"[LoginAsync] Exception: {ex.Message}");
             RunOnUIThread(() => StatusMessage = string.Format("Account_LoginError_Format".GetLocalized(), ex.Message));
         }
     }
@@ -163,7 +163,7 @@ public partial class AccountViewModel
             var loginWindow = new LoginQrWindow();
             var (cookies, serverType) = await loginWindow.ShowAndWaitAsync();
 
-            Debug.WriteLine($"[AddNewAccount] 登录成功，Cookie 数量: {cookies.Count}, 服务器: {serverType}");
+            DebugLog.Info("AccountViewModel.Operations", $"[AddNewAccount] Login succeeded, cookies: {cookies.Count}, server: {serverType}");
 
             var entry = await _accountManager.AddAccountAsync(cookies, serverType,
                 nickname: "Account_AddAccount".GetLocalized());

@@ -15,6 +15,7 @@ using FufuLauncher.Models;
 using FufuLauncher.Services;
 using FufuLauncher.Services.PluginMirror;
 using Microsoft.UI.Dispatching;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -268,7 +269,7 @@ public partial class PluginStoreViewModel : INotifyPropertyChanged
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreVM] Failed to load mirror acceleration setting: {ex.Message}");
+            DebugLog.Info("PluginStoreViewModel", $"[PluginStoreVM] Failed to load mirror acceleration setting: {ex.Message}");
         }
     }
 

@@ -24,7 +24,7 @@ public static class StartupManager
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[StartupManager] 读取开机自启注册表项失败: {ex.Message}");
+            DebugLog.Info("StartupManager", $"[StartupManager] Failed to read autostart registry entry: {ex.Message}");
             return false;
         }
     }
@@ -63,7 +63,7 @@ public static class StartupManager
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[StartupManager] 写入开机自启失败: {ex.Message}");
+            DebugLog.Info("StartupManager", $"[StartupManager] Failed to write autostart entry: {ex.Message}");
             errorMessage = ex.Message;
             return false;
         }
@@ -105,7 +105,7 @@ public static class StartupManager
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[StartupManager] 刷新开机自启路径失败: {ex.Message}");
+            DebugLog.Info("StartupManager", $"[StartupManager] Failed to refresh autostart path: {ex.Message}");
         }
     }
 
@@ -135,7 +135,7 @@ public static class StartupManager
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[StartupManager] 读取启动项审核状态失败: {ex.Message}");
+            DebugLog.Info("StartupManager", $"[StartupManager] Failed to read startup approval status: {ex.Message}");
             return false;
         }
     }
@@ -149,7 +149,7 @@ public static class StartupManager
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[StartupManager] 清除启动项禁用标记失败: {ex.Message}");
+            DebugLog.Info("StartupManager", $"[StartupManager] Failed to clear startup disabled flag: {ex.Message}");
         }
     }
 }

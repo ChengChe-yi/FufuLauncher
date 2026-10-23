@@ -40,7 +40,7 @@ public partial class PluginStoreViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreVM] Error loading categories: {ex.Message}");
+            DebugLog.Info("PluginStoreViewModel.Browsing", $"[PluginStoreVM] Error loading categories: {ex.Message}");
             if (Categories.Count == 0)
             {
                 Categories.Clear();
@@ -147,7 +147,7 @@ public partial class PluginStoreViewModel
         }
         catch (InvalidOperationException ex)
         {
-            Debug.WriteLine($"[PluginStoreVM] {ex.Message}");
+            DebugLog.Info("PluginStoreViewModel.Browsing", $"[PluginStoreVM] {ex.Message}");
             HasError = true;
             ErrorMessage = ex.Message;
             StatusMessage = "PluginStoreConnectionFailed".GetLocalized();
@@ -156,7 +156,7 @@ public partial class PluginStoreViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreVM] Error loading plugins: {ex}");
+            DebugLog.Info("PluginStoreViewModel.Browsing", $"[PluginStoreVM] Error loading plugins: {ex}");
             HasError = true;
             ErrorMessage = "PluginStoreLoadFailed".GetLocalized();
             StatusMessage = "PluginStoreError".GetLocalized();

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using FufuLauncher.Messages;
 using FufuLauncher.Services;
 using FufuLauncher.Services.Background;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -72,21 +73,21 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"设置进程优先级失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Performance", $"Failed to set process priority: {ex.Message}");
         }
     }
 
     partial void OnIsBetterGIIntegrationEnabledChanged(bool value)
     {
         if (_isInitializing) return;
-        Debug.WriteLine($"SettingsViewModel: BetterGI联动设置变更为 {value}");
+        DebugLog.Info("SettingsViewModel.Performance", $"SettingsViewModel: BetterGI integration setting changed to {value}");
         _ = _localSettingsService.SaveSettingAsync("IsBetterGIIntegrationEnabled", value);
     }
 
     partial void OnIsBetterGICloseOnExitEnabledChanged(bool value)
     {
         if (_isInitializing) return;
-        Debug.WriteLine($"SettingsViewModel: BetterGI 关闭随游戏退出设置变更为 {value}");
+        DebugLog.Info("SettingsViewModel.Performance", $"SettingsViewModel: BetterGI exit-with-game setting changed to {value}");
         _ = _localSettingsService.SaveSettingAsync("IsBetterGICloseOnExitEnabled", value);
     }
 

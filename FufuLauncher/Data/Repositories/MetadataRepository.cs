@@ -71,13 +71,13 @@ public class MetadataRepository
                     "CREATE TABLE IF NOT EXISTS __EFMigrationsHistory (MigrationId TEXT PRIMARY KEY, ProductVersion TEXT);");
                 context.Database.ExecuteSqlRaw(
                     "INSERT OR IGNORE INTO __EFMigrationsHistory VALUES ('20240716000000_InitialCreate', '8.0.28');");
-                Debug.WriteLine("MetadataRepository: 检测到现有数据库，已跳过迁移");
+                DebugLog.Info("MetadataRepository", "MetadataRepository: existing database detected, migration skipped");
             }
             else
             {
                 using var context = new MetadataDbContext(dbPath);
                 context.Database.EnsureCreated();
-                Debug.WriteLine("MetadataRepository: 已创建新数据库");
+                DebugLog.Info("MetadataRepository", "MetadataRepository: new database created");
             }
 
             EnsureGachaPoolMetadataSchema(dbPath);
@@ -93,7 +93,7 @@ public class MetadataRepository
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"MetadataRepository: 数据库迁移处理异常 - {ex.Message}");
+            DebugLog.Info("MetadataRepository", $"MetadataRepository: Database migration exception - {ex.Message}");
 
             try
             {
@@ -108,7 +108,7 @@ public class MetadataRepository
             }
             catch (Exception ex2)
             {
-                Debug.WriteLine($"MetadataRepository: 迁移历史回退创建失败 - {ex2.Message}");
+                DebugLog.Info("MetadataRepository", $"MetadataRepository: Failed to create migration history fallback - {ex2.Message}");
             }
         }
     }
@@ -176,7 +176,7 @@ public class MetadataRepository
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MetadataRepo] 加载元数据失败: {ex.Message}");
+            DebugLog.Info("MetadataRepository", $"[MetadataRepo] Failed to load metadata: {ex.Message}");
             return new List<MetadataEntity>();
         }
     }
@@ -233,7 +233,7 @@ public class MetadataRepository
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MetadataRepo] 加载抽卡日志失败: {ex.Message}");
+            DebugLog.Info("MetadataRepository", $"[MetadataRepo] Failed to load gacha logs: {ex.Message}");
             return new List<GachaLogEntity>();
         }
     }
@@ -305,7 +305,7 @@ public class MetadataRepository
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MetadataRepo] 加载卡池元数据失败: {ex.Message}");
+            DebugLog.Info("MetadataRepository", $"[MetadataRepo] Failed to load pool metadata: {ex.Message}");
             return new List<GachaPoolMetadataEntity>();
         }
     }

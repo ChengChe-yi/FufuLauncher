@@ -244,7 +244,7 @@ public class PluginViewModel : INotifyPropertyChanged
         catch (Exception ex)
         {
             StatusMessage = string.Format("Common_LoadFailed_Format".GetLocalized(), ex.Message);
-            Debug.WriteLine($"[PluginVM] Load Error: {ex}");
+            DebugLog.Info("PluginViewModel", $"[PluginVM] Load Error: {ex}");
         }
         finally
         {

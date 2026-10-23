@@ -29,7 +29,7 @@ public partial class LuaPluginInstaller
             cancellationToken.ThrowIfCancellationRequested();
 
             var safeDir = SanitizePath(dir, "write_config");
-            LogMessage($"写入配置: {safeDir}");
+            LogMessage($"Write config: {safeDir}");
 
             var configPath = Path.Combine(safeDir, "config.ini");
 
@@ -57,7 +57,7 @@ public partial class LuaPluginInstaller
             }
 
             File.WriteAllText(configPath, iniLines.ToString(), Encoding.UTF8);
-            LogMessage("配置写入完成");
+            LogMessage("Config write complete");
         });
 
         table["verify_file_hash"] = (Func<string, string, bool>)((path, expectedHash) =>
@@ -65,17 +65,17 @@ public partial class LuaPluginInstaller
             cancellationToken.ThrowIfCancellationRequested();
 
             var safePath = SanitizePath(path, "verify_file_hash");
-            LogMessage($"验证文件哈希: {safePath}");
+            LogMessage($"Verify file hash: {safePath}");
 
             try
             {
                 PluginVerifier.VerifyFileHash(safePath, expectedHash, Path.GetFileName(safePath));
-                LogMessage("文件哈希验证通过");
+                LogMessage("File hash verified");
                 return true;
             }
             catch (HashMismatchException ex)
             {
-                LogMessage($"文件哈希验证失败: {ex.Message}");
+                LogMessage($"File hash verification failed: {ex.Message}");
                 return false;
             }
         });

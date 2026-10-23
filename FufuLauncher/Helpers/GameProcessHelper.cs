@@ -37,7 +37,7 @@ public static class GameProcessHelper
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GameProcessHelper] 检查游戏进程失败: {ex.Message}");
+            DebugLog.Info("GameProcessHelper", $"[GameProcessHelper] Failed to check game process: {ex.Message}");
         }
 
         return false;

@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using Microsoft.UI.Dispatching;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -166,7 +167,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"SettingsViewModel: 分区 {sectionId} 加载异常 - {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Sections", $"SettingsViewModel: section {sectionId} load exception - {ex.Message}");
         }
         finally
         {
@@ -194,7 +195,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"SettingsViewModel: 分区 {sectionId} 加载失败 - {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Sections", $"SettingsViewModel: section {sectionId} load failed - {ex.Message}");
         }
         finally
         {
@@ -218,7 +219,7 @@ public partial class SettingsViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"SettingsViewModel: 分区 {sectionId} 界面刷新异常 - {ex.Message}");
+                DebugLog.Info("SettingsViewModel.Sections", $"SettingsViewModel: section {sectionId} UI refresh exception - {ex.Message}");
             }
         }
     }

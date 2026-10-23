@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using Microsoft.UI.Xaml;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -89,7 +90,7 @@ public sealed partial class DailyNoteWindow
         catch (Exception ex)
         {
             StatusText = "初始化异常";
-            Debug.WriteLine($"[DailyNote] Init Error: {ex}");
+            DebugLog.Info("DailyNoteWindow.Scraper", $"[DailyNote] Init Error: {ex}");
             IsLoadingMaterials = false;
             IsLoadingActivities = false;
         }
@@ -119,7 +120,7 @@ public sealed partial class DailyNoteWindow
             elapsed += 200;
         }
 
-        Debug.WriteLine($"[DailyNote] Timeout waiting for: {selector}");
+        DebugLog.Info("DailyNoteWindow.Scraper", $"[DailyNote] Timeout waiting for: {selector}");
         return false;
     }
 }

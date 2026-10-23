@@ -133,7 +133,7 @@ public static class PluginSignatureVerifier
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[签名校验] 扫描插件目录失败: {ex.Message}");
+            DebugLog.Info("PluginSignatureVerifier", $"[Signature] Failed to scan plugin directory: {ex.Message}");
         }
 
         return results
@@ -195,7 +195,7 @@ public static class PluginSignatureVerifier
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[签名校验] 枚举插件文件失败: {ex.Message}");
+            DebugLog.Info("PluginSignatureVerifier", $"[Signature] Failed to enumerate plugin files: {ex.Message}");
             return Array.Empty<string>();
         }
     }
@@ -218,7 +218,7 @@ public static class PluginSignatureVerifier
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[签名校验] 读取签名证书失败 {filePath}: {ex.Message}");
+            DebugLog.Info("PluginSignatureVerifier", $"[Signature] Failed to read signing certificate {filePath}: {ex.Message}");
             return null;
         }
     }
@@ -267,7 +267,7 @@ public static class PluginSignatureVerifier
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[签名校验] 校验信任状态失败 {filePath}: {ex.Message}");
+            DebugLog.Info("PluginSignatureVerifier", $"[Signature] Failed to verify trust status {filePath}: {ex.Message}");
             return TRUST_E_NOSIGNATURE;
         }
         finally
@@ -318,7 +318,7 @@ public static class PluginSignatureVerifier
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[签名校验] 读取签名算法失败: {ex.Message}");
+            DebugLog.Info("PluginSignatureVerifier", $"[Signature] Failed to read signature algorithm: {ex.Message}");
             return string.Empty;
         }
     }
@@ -331,7 +331,7 @@ public static class PluginSignatureVerifier
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[签名校验] 读取公钥信息失败: {ex.Message}");
+            DebugLog.Info("PluginSignatureVerifier", $"[Signature] Failed to read public key info: {ex.Message}");
             return string.Empty;
         }
     }

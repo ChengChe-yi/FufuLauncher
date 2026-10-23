@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Hosting;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -334,7 +335,7 @@ public sealed partial class MainPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MainPage] 设置轮播图圆角裁剪失败: {ex.Message}");
+            DebugLog.Info("MainPage.Banner", $"[MainPage] Failed to set banner rounded clip: {ex.Message}");
         }
     }
 

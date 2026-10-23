@@ -84,7 +84,7 @@ public partial class SettingsViewModel
         catch (Exception ex)
         {
             PathError = string.Format("StoragePath_Error_SaveFailed".GetLocalized(), ex.Message);
-            Debug.WriteLine($"更改存储路径失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.StoragePaths", $"Failed to change storage path: {ex.Message}");
         }
     }
 

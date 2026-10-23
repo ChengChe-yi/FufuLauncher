@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Net.Http.Headers;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.GameAnnouncement
 {
@@ -52,7 +53,7 @@ namespace FufuLauncher.Services.GameAnnouncement
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine($"[GameAnnouncementImageService] 图片下载失败 {url} -> {(int)response.StatusCode}");
+                    DebugLog.Info("GameAnnouncementImageService", $"[GameAnnouncementImageService] Image download failed {url} -> {(int)response.StatusCode}");
                     return null;
                 }
 
@@ -71,7 +72,7 @@ namespace FufuLauncher.Services.GameAnnouncement
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[GameAnnouncementImageService] 图片下载异常 {url}: {ex.Message}");
+                DebugLog.Info("GameAnnouncementImageService", $"[GameAnnouncementImageService] Image download error {url}: {ex.Message}");
                 return null;
             }
         }

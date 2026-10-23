@@ -113,7 +113,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Announcement] 定时检查公告失败: {ex.Message}");
+            DebugLog.Info("MainWindow.SystemMessages", $"[Announcement] Scheduled announcement check failed: {ex.Message}");
         }
     }
 
@@ -125,7 +125,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[策略约束] 定时检查失败: {ex.Message}");
+            DebugLog.Info("MainWindow.SystemMessages", $"[Constraint] Scheduled check failed: {ex.Message}");
         }
     }
 
@@ -186,7 +186,7 @@ public sealed partial class MainWindow
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"显示 VC 运行库警告弹窗失败: {ex.Message}");
+                DebugLog.Info("MainWindow.SystemMessages", $"Failed to show VC runtime warning dialog: {ex.Message}");
             }
         }
     }

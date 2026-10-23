@@ -8,6 +8,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Services;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.UID;
 
@@ -44,14 +45,14 @@ public class UidLookupService : IUidLookupService
             var userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             if (string.IsNullOrEmpty(userProfile))
             {
-                Debug.WriteLine("[UidLookupService] 无法获取用户目录");
+                DebugLog.Info("UidLookupService", "[UidLookupService] Failed to get user directory");
                 return result;
             }
 
             var beyondLocalDir = Path.Combine(userProfile, BeyondLocalRelativePath);
             if (!Directory.Exists(beyondLocalDir))
             {
-                Debug.WriteLine($"[UidLookupService] 目录不存在: {beyondLocalDir}");
+                DebugLog.Info("UidLookupService", $"[UidLookupService] Directory does not exist: {beyondLocalDir}");
                 return result;
             }
 
@@ -73,7 +74,7 @@ public class UidLookupService : IUidLookupService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[UidLookupService] 读取 UID 失败 - {ex.Message}");
+            DebugLog.Info("UidLookupService", $"[UidLookupService] Failed to read UID - {ex.Message}");
         }
 
         return result;
@@ -135,11 +136,11 @@ public class UidLookupService : IUidLookupService
 
             temporaryPath = null;
 
-            Debug.WriteLine($"[UidLookupService] 已写入 {entries.Count} 个 UID 到 {jsonPath}");
+            DebugLog.Info("UidLookupService", $"[UidLookupService] Wrote {entries.Count} UIDs to {jsonPath}");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[UidLookupService] 写入 uids.json 失败 - {ex.Message}");
+            DebugLog.Info("UidLookupService", $"[UidLookupService] Failed to write uids.json - {ex.Message}");
 
             if (temporaryPath != null)
             {

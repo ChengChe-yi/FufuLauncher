@@ -59,7 +59,7 @@ public sealed partial class PluginConfigPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConfig] Exit animation interrupted: {ex}");
+            DebugLog.Info("PluginConfigPage.Navigation", $"[PluginConfig] Exit animation interrupted: {ex}");
             return _isActive && IsLoaded;
         }
         finally
@@ -147,7 +147,7 @@ public sealed partial class PluginConfigPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConfig] Back navigation failed: {ex}");
+            DebugLog.Info("PluginConfigPage.Navigation", $"[PluginConfig] Back navigation failed: {ex}");
             if (IsCurrentPage(frame))
             {
                 ShowError("GameAnnouncement_Back".GetLocalized(), ex.Message, NavigateBackAsync);
@@ -184,7 +184,7 @@ public sealed partial class PluginConfigPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConfig] Open folder failed: {ex}");
+            DebugLog.Info("PluginConfigPage.Navigation", $"[PluginConfig] Open folder failed: {ex}");
             if (_isActive)
             {
                 ShowError("OpenFolderLabel".GetLocalized(), ex.Message, OpenPluginFolderAsync);

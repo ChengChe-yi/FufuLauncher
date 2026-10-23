@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -51,7 +51,7 @@ public class CommunityCheckinService : ICommunityCheckinService
             var stokenCookie = account.GetStokenCookie();
 
 
-            Debug.WriteLine($"[社区签到] 账号 {account.Nickname}({account.Uid}): 正在获取任务状态");
+            DebugLog.Info("CommunityCheckinService", $"[CommunityCheckin] Account {account.Nickname}({account.Uid}): fetching task status");
             var taskState = await GetTaskStateAsync(account.Cookie);
             if (taskState == null)
             {
@@ -65,7 +65,7 @@ public class CommunityCheckinService : ICommunityCheckinService
             int total = GetIntValue(taskState.Value, "total_points");
             var taskFlags = ParseTaskFlags(taskState.Value);
 
-            Debug.WriteLine($"[社区签到] 账号 {account.Uid}: 可获得 {canGet}，已获得 {received}，总计 {total}");
+            DebugLog.Info("CommunityCheckinService", $"[CommunityCheckin] Account {account.Uid}: available {canGet}, received {received}, total {total}");
 
             if (canGet == 0)
             {
@@ -169,7 +169,7 @@ public class CommunityCheckinService : ICommunityCheckinService
         {
             result.Success = false;
             result.Message = string.Format("CheckinCommunity_Exception".GetLocalized(), ex.Message);
-            Debug.WriteLine($"[社区签到] 账号 {account.Uid} 异常: {ex.Message}");
+            DebugLog.Info("CommunityCheckinService", $"[CommunityCheckin] Account {account.Uid} error: {ex.Message}");
         }
 
         return result;
@@ -253,7 +253,7 @@ public class CommunityCheckinService : ICommunityCheckinService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[社区签到] 获取任务状态失败: {ex.Message}");
+            DebugLog.Info("CommunityCheckinService", $"[CommunityCheckin] Failed to fetch task status: {ex.Message}");
         }
 
         return null;
@@ -406,7 +406,7 @@ public class CommunityCheckinService : ICommunityCheckinService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[社区签到] 获取帖子失败: {ex.Message}");
+            DebugLog.Info("CommunityCheckinService", $"[CommunityCheckin] Failed to fetch posts: {ex.Message}");
             return null;
         }
     }
@@ -537,7 +537,7 @@ public class CommunityCheckinService : ICommunityCheckinService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[社区签到] POST {url} 失败: {ex.Message}");
+            DebugLog.Info("CommunityCheckinService", $"[CommunityCheckin] POST {url} failed: {ex.Message}");
             return null;
         }
     }

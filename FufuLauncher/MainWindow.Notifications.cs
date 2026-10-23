@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -177,7 +177,7 @@ public sealed partial class MainWindow
         {
             _ = _localSettingsService.SaveSettingAsync("LastRedeemCodeReminderDate",
                 DateTime.Now.ToString("yyyy-MM-dd"));
-            Debug.WriteLine("[RedeemCodes] 已将关闭状态写入数据库");
+            DebugLog.Info("MainWindow.Notifications", "[RedeemCodes] Dismissed state written to database");
         }
 
         var slideOffset =
@@ -252,7 +252,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"一键清除通知异常: {ex.Message}");
+            DebugLog.Info("MainWindow.Notifications", $"Clear-all notifications exception: {ex.Message}");
         }
     }
 

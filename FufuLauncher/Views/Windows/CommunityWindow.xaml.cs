@@ -67,14 +67,14 @@ public sealed partial class CommunityWindow : Window
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"首次提示异常: {ex.Message}");
+            DebugLog.Info("CommunityWindow", $"First-visit prompt exception: {ex.Message}");
         }
 
         await CommunityWebView.EnsureCoreWebView2Async();
 
         if (CommunityWebView.CoreWebView2 == null)
         {
-            System.Diagnostics.Debug.WriteLine("CoreWebView2 初始化失败");
+            DebugLog.Info("CommunityWindow", "CoreWebView2 initialization failed");
             return;
         }
 
@@ -86,7 +86,7 @@ public sealed partial class CommunityWindow : Window
         }
         catch (InvalidCastException ex)
         {
-            System.Diagnostics.Debug.WriteLine($"ContextMenuRequested 事件不支持 (WebView2 版本过旧): {ex.Message}");
+            DebugLog.Info("CommunityWindow", $"ContextMenuRequested event unsupported (WebView2 version too old): {ex.Message}");
         }
 
         CommunityWebView.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
@@ -108,7 +108,7 @@ public sealed partial class CommunityWindow : Window
             {
                 if (Content?.XamlRoot == null)
                 {
-                    System.Diagnostics.Debug.WriteLine("XamlRoot 尚未就绪，跳过首次提示");
+                    DebugLog.Info("CommunityWindow", "XamlRoot not ready, skipping first-visit prompt");
                     return;
                 }
 
@@ -128,7 +128,7 @@ public sealed partial class CommunityWindow : Window
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"显示初次进入提示失败: {ex.Message}");
+            DebugLog.Info("CommunityWindow", $"Failed to show first-visit prompt: {ex.Message}");
         }
     }
 
@@ -195,7 +195,7 @@ public sealed partial class CommunityWindow : Window
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"WebMessage 处理异常: {ex.Message}");
+            DebugLog.Info("CommunityWindow", $"WebMessage handling exception: {ex.Message}");
         }
     }
 
@@ -222,7 +222,7 @@ public sealed partial class CommunityWindow : Window
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"提取用户数据失败: {ex.Message}");
+            DebugLog.Info("CommunityWindow", $"Failed to extract user data: {ex.Message}");
         }
 
         return (mid, uid, nickname);

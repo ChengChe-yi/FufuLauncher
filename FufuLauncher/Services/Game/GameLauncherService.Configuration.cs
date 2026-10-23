@@ -19,12 +19,12 @@ public partial class GameLauncherService
         {
             var savedPath = GetGamePath();
             bool exists = !string.IsNullOrEmpty(savedPath) && Directory.Exists(savedPath);
-            Trace.WriteLine($"[启动服务] 检查路径: '{savedPath}', 存在: {exists}, 长度: {savedPath?.Length}");
+            DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Checking path: '{savedPath}', exists: {exists}, length: {savedPath?.Length}");
             return exists;
         }
         catch (Exception ex)
         {
-            Trace.WriteLine($"[启动服务] 检查路径异常: {ex.Message}");
+            DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Path check failed: {ex.Message}");
             return false;
         }
     }
@@ -39,7 +39,7 @@ public partial class GameLauncherService
             path = path.Trim('"').Trim();
         }
 
-        Debug.WriteLine($"[启动服务] 读取路径: '{path}'");
+        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Read path: '{path}'");
         return path;
     }
 
@@ -51,14 +51,14 @@ public partial class GameLauncherService
         }
 
         await _localSettingsService.SaveSettingAsync(GamePathKey, path);
-        Trace.WriteLine($"[启动服务] 保存路径: '{path}'");
+        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Saved path: '{path}'");
     }
 
     public async Task<bool> GetUseInjectionAsync()
     {
         var obj = await _localSettingsService.ReadSettingAsync(UseInjectionKey);
         bool useInjection = obj != null && Convert.ToBoolean(obj);
-        Trace.WriteLine($"[启动服务] 读取注入选项: {useInjection}");
+        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Read injection option: {useInjection}");
         _lastUseInjection = useInjection;
         return useInjection;
     }
@@ -68,7 +68,7 @@ public partial class GameLauncherService
         if (useInjection == _lastUseInjection) return;
         _lastUseInjection = useInjection;
         await _localSettingsService.SaveSettingAsync(UseInjectionKey, useInjection);
-        Trace.WriteLine($"[启动服务] 保存注入选项: {useInjection}");
+        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Saved injection option: {useInjection}");
     }
 
     public async Task<string> GetCustomLaunchParametersAsync()
@@ -80,7 +80,7 @@ public partial class GameLauncherService
     public async Task SetCustomLaunchParametersAsync(string parameters)
     {
         await _localSettingsService.SaveSettingAsync(CustomLaunchParametersKey, parameters);
-        Trace.WriteLine($"[启动服务] 保存自定义参数: '{parameters}'");
+        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Saved custom parameters: '{parameters}'");
     }
 
     public async Task<bool> GetIsCustomLaunchParametersEnabledAsync()
@@ -92,7 +92,7 @@ public partial class GameLauncherService
     public async Task SetIsCustomLaunchParametersEnabledAsync(bool enabled)
     {
         await _localSettingsService.SaveSettingAsync(IsCustomLaunchParametersEnabledKey, enabled);
-        Trace.WriteLine($"[启动服务] 保存自定义参数启用状态: {enabled}");
+        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Saved custom parameter enabled state: {enabled}");
     }
 
     public async Task<bool> GetUsingHoyolabAccountAsync()
@@ -104,7 +104,7 @@ public partial class GameLauncherService
     public async Task SetUsingHoyolabAccountAsync(bool value)
     {
         await _localSettingsService.SaveSettingAsync(UsingHoyolabAccountKey, value);
-        Trace.WriteLine($"[启动服务] 保存米游社账户启动选项: {value}");
+        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Saved Miyoushe account launch option: {value}");
     }
 
     private async Task ApplyGenshinHDRConfigAsync(StringBuilder logBuilder)
@@ -146,21 +146,21 @@ public partial class GameLauncherService
                     {
                         if (args.Length > 0) args.Append(' ');
                         args.Append(customParams);
-                        Debug.WriteLine($"[启动服务] 使用自定义参数: '{customParams}'");
+                        DebugLog.Info("GameLauncherService.Configuration", $"[LaunchService] Using custom arguments: '{customParams}'");
                     }
                 }
             }
         }
         else
         {
-            Debug.WriteLine("[启动服务] 游戏启动参数未启用，跳过自定义参数");
+            DebugLog.Info("GameLauncherService.Configuration", "[LaunchService] Game launch arguments disabled, skipping custom arguments");
         }
 
         if (!string.IsNullOrEmpty(authTicket))
         {
             if (args.Length > 0) args.Append(' ');
             args.Append($"login_auth_ticket={authTicket}");
-            Debug.WriteLine("[启动服务] 已追加login_auth_ticket参数");
+            DebugLog.Info("GameLauncherService.Configuration", "[LaunchService] Appended login_auth_ticket argument");
         }
 
         return args;

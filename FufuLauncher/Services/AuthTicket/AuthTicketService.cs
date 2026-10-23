@@ -10,6 +10,7 @@ using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Services.MiHoYo.Passport;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.AuthTicket;
 
@@ -98,7 +99,7 @@ public sealed class AuthTicketService : IAuthTicketService
             var response = await httpClient.SendAsync(httpRequest);
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            Debug.WriteLine($"[AuthTicket] 响应: {responseBody}");
+            DebugLog.Info("AuthTicketService", $"[AuthTicket] Response: {responseBody}");
 
             if (!response.IsSuccessStatusCode)
             {
@@ -127,12 +128,12 @@ public sealed class AuthTicketService : IAuthTicketService
 
             result.Success = true;
             result.Ticket = apiResponse.Data.Ticket;
-            Debug.WriteLine($"[AuthTicket] 成功获取 ticket (长度: {result.Ticket.Length})");
+            DebugLog.Info("AuthTicketService", $"[AuthTicket] Got ticket (length: {result.Ticket.Length})");
             return result;
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AuthTicket] 异常: {ex.Message}");
+            DebugLog.Info("AuthTicketService", $"[AuthTicket] Exception: {ex.Message}");
             result.ErrorMessage = $"请求异常: {ex.Message}";
             return result;
         }

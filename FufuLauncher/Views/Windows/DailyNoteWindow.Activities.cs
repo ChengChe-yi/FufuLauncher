@@ -9,6 +9,7 @@ using FufuLauncher.Constants;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.Web.WebView2.Core;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -38,7 +39,7 @@ public sealed partial class DailyNoteWindow
 
             if (!await WaitForElementAsync(".hit-card-list"))
             {
-                Debug.WriteLine("[Activities] Wait Element Timeout");
+                DebugLog.Info("DailyNoteWindow.Activities", "[Activities] Wait Element Timeout");
                 return false;
             }
 
@@ -108,7 +109,7 @@ public sealed partial class DailyNoteWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Activity Fetch] {ex}");
+            DebugLog.Info("DailyNoteWindow.Activities", $"[Activity Fetch] {ex}");
             return false;
         }
     }

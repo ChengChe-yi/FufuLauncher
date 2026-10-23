@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Windows.System;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -53,17 +54,17 @@ namespace FufuLauncher.Views
                         ViewModel.IsRecordingStopKey)
                     {
                         content.KeyDown += GlobalKeyDown;
-                        Debug.WriteLine("[OtherPage] 按键录制配置开启，全局按键事件已注册到Window.Content");
+                        DebugLog.Info("OtherPage", "[OtherPage] Key recording enabled, global key events registered on Window.Content");
                     }
                     else
                     {
-                        Debug.WriteLine("[OtherPage] 按键录制配置关闭，全局按键事件已注销");
+                        DebugLog.Info("OtherPage", "[OtherPage] Key recording disabled, global key events unregistered");
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[OtherPage] 注册/注销按键事件失败: {ex.Message}");
+                DebugLog.Info("OtherPage", $"[OtherPage] Failed to register/unregister key events: {ex.Message}");
             }
         }
 
@@ -80,7 +81,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[OtherPage] 页面卸载清理按键事件失败: {ex.Message}");
+                DebugLog.Info("OtherPage", $"[OtherPage] Failed to clean up key events on page unload: {ex.Message}");
             }
         }
 
@@ -110,24 +111,24 @@ namespace FufuLauncher.Views
                 if (ViewModel.IsRecordingTriggerKey || ViewModel.IsRecordingClickKey || ViewModel.IsRecordingStopKey)
                 {
                     var key = args.Key;
-                    Debug.WriteLine($"[OtherPage] 捕获按键: {key}");
+                    DebugLog.Info("OtherPage", $"[OtherPage] Captured key: {key}");
 
                     if (key == VirtualKey.None) return;
 
                     if (ViewModel.IsRecordingTriggerKey)
                     {
                         ViewModel.UpdateKey("Trigger", key);
-                        Debug.WriteLine($"[OtherPage] 触发键设置完成: {key}");
+                        DebugLog.Info("OtherPage", $"[OtherPage] Trigger key set: {key}");
                     }
                     else if (ViewModel.IsRecordingClickKey)
                     {
                         ViewModel.UpdateKey("Click", key);
-                        Debug.WriteLine($"[OtherPage] 连点键设置完成: {key}");
+                        DebugLog.Info("OtherPage", $"[OtherPage] Rapid-click key set: {key}");
                     }
                     else if (ViewModel.IsRecordingStopKey)
                     {
                         ViewModel.UpdateKey("Stop", key);
-                        Debug.WriteLine($"[OtherPage] 停止快捷键设置完成: {key}");
+                        DebugLog.Info("OtherPage", $"[OtherPage] Stop hotkey set: {key}");
                     }
 
                     args.Handled = true;
@@ -135,7 +136,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[OtherPage] 按键处理异常: {ex.Message}");
+                DebugLog.Info("OtherPage", $"[OtherPage] Key handling error: {ex.Message}");
             }
         }
     }

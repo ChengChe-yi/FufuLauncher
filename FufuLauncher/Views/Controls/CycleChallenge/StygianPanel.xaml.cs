@@ -78,7 +78,7 @@ public sealed partial class StygianPanel : UserControl
         catch (Exception ex)
         {
             // 解析失败只降级为错误占位，不允许把异常抛到页面导航流程
-            Debug.WriteLine($"[StygianPanel] 解析 payload 失败: {ex}");
+            DebugLog.Info("StygianPanel", $"[StygianPanel] Failed to parse payload: {ex}");
             display = HardChallengeDisplay.CreateError(ex.Message);
         }
 
@@ -112,7 +112,7 @@ public sealed partial class StygianPanel : UserControl
         catch (Exception ex)
         {
             // 绑定刷新失败不能影响页面（极少数情况下控件尚未进入可视树）
-            Debug.WriteLine($"[StygianPanel] 刷新绑定失败: {ex.Message}");
+            DebugLog.Info("StygianPanel", $"[StygianPanel] Refresh binding failed: {ex.Message}");
         }
 
         // 程序化设置 IsChecked 不会再次触发 Click，仅用于同步视觉状态
@@ -160,7 +160,7 @@ public sealed partial class StygianPanel : UserControl
         catch (Exception ex)
         {
             // 富文本解析失败时退回纯文本，确保信息不丢失
-            Debug.WriteLine($"[StygianPanel] 怪物描述富文本解析失败: {ex.Message}");
+            DebugLog.Info("StygianPanel", $"[StygianPanel] Failed to parse monster description rich text: {ex.Message}");
             block.Blocks.Clear();
             var paragraph = new Paragraph();
             paragraph.Inlines.Add(new Run { Text = string.Join(Environment.NewLine, monster.Descriptions) });

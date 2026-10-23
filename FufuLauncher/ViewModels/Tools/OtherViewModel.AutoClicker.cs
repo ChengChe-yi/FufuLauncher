@@ -19,7 +19,7 @@ public partial class OtherViewModel
         IsRecordingTriggerKey = true;
         IsRecordingClickKey = false;
         IsRecordingStopKey = false;
-        Debug.WriteLine("[OtherViewModel] 开始录制触发键");
+        DebugLog.Info("OtherViewModel.AutoClicker", "[OtherViewModel] Start recording trigger key");
     }
 
     private void StartRecordingClickKey()
@@ -27,7 +27,7 @@ public partial class OtherViewModel
         IsRecordingClickKey = true;
         IsRecordingTriggerKey = false;
         IsRecordingStopKey = false;
-        Debug.WriteLine("[OtherViewModel] 开始录制连点键");
+        DebugLog.Info("OtherViewModel.AutoClicker", "[OtherViewModel] Start recording click key");
     }
 
     private void StartRecordingStopKey()
@@ -35,7 +35,7 @@ public partial class OtherViewModel
         IsRecordingStopKey = true;
         IsRecordingTriggerKey = false;
         IsRecordingClickKey = false;
-        Debug.WriteLine("[OtherViewModel] 开始录制停止快捷键");
+        DebugLog.Info("OtherViewModel.AutoClicker", "[OtherViewModel] Start recording stop hotkey");
     }
 
     partial void OnIsAutoClickerEnabledChanged(bool value)
@@ -52,14 +52,14 @@ public partial class OtherViewModel
                 return;
             }
 
-            Debug.WriteLine("[OtherViewModel] 拦截开启请求，弹出风险提示");
+            DebugLog.Info("OtherViewModel.AutoClicker", "[OtherViewModel] Enable request intercepted, showing risk warning");
             _ = HandleAutoClickerEnableRequestAsync();
         }
         else
         {
             _autoClickerService.IsEnabled = false;
             _ = SaveSettingsAsync();
-            Debug.WriteLine($"[OtherViewModel] 连点器启用状态切换: {value}");
+            DebugLog.Info("OtherViewModel.AutoClicker", $"[OtherViewModel] Auto-clicker enabled state changed: {value}");
         }
     }
 
@@ -97,14 +97,14 @@ public partial class OtherViewModel
 
         if (!confirmed)
         {
-            Debug.WriteLine("[OtherViewModel] 用户取消开启连点器");
+            DebugLog.Info("OtherViewModel.AutoClicker", "[OtherViewModel] User cancelled enabling auto-clicker");
             RevertAutoClickerToggle(false);
             return;
         }
 
         if (!IsAdministrator())
         {
-            Debug.WriteLine("[OtherViewModel] 尝试启用连点器，但没有管理员权限被拦截");
+            DebugLog.Info("OtherViewModel.AutoClicker", "[OtherViewModel] Attempt to enable auto-clicker blocked: no admin privileges");
             RevertAutoClickerToggle(false);
             _ = ShowAdminRequiredDialogAsync();
             return;
@@ -113,13 +113,13 @@ public partial class OtherViewModel
         _autoClickerService.Mode = GetCurrentMode();
         _autoClickerService.IsEnabled = true;
         _ = SaveSettingsAsync();
-        Debug.WriteLine("[OtherViewModel] 连点器启用状态切换: True");
+        DebugLog.Info("OtherViewModel.AutoClicker", "[OtherViewModel] Auto-clicker enabled state changed: True");
     }
 
     public void UpdateKey(string keyType, VirtualKey key)
     {
         var keyStr = key.ToString();
-        Debug.WriteLine($"[OtherViewModel] 更新按键 - 类型: {keyType}, 按键: {keyStr}");
+        DebugLog.Info("OtherViewModel.AutoClicker", $"[OtherViewModel] Key updated - type: {keyType}, key: {keyStr}");
 
         if (keyType == "Trigger")
         {

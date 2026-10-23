@@ -29,8 +29,8 @@ namespace FufuLauncher.Services
                          AppVersionHelper.IsNewerVersion(AppVersionHelper.NumericVersion, serverVersion);
             HasChecked = true;
 
-            Debug.WriteLine($"[DevBuildDetection] IsDevBuild={IsDevBuild}, " +
-                            $"本地版本={AppVersionHelper.NumericVersion}, 服务器版本={serverVersion}");
+            DebugLog.Info("DevBuildDetectionService", $"[DevBuildDetection] IsDevBuild={IsDevBuild}, " +
+                            $"Local version={AppVersionHelper.NumericVersion}, server version={serverVersion}");
             return Task.FromResult(IsDevBuild);
         }
     }

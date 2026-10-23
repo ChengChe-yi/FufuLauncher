@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Hosting;
 using Microsoft.Web.WebView2.Core;
 using Timer = System.Timers.Timer;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -35,7 +36,7 @@ namespace FufuLauncher.Views
             InitializeComponent();
             Loaded += (s, e) => EntranceStoryboard.Begin();
 
-            Debug.WriteLine("=== CalculatorPage 初始化 ===");
+            DebugLog.Info("CalculatorPage", "=== CalculatorPage initialization ===");
             _ = InitializeWebViewAsync();
         }
 
@@ -60,13 +61,13 @@ namespace FufuLauncher.Views
         {
             try
             {
-                Debug.WriteLine("开始初始化 WebView2...");
+                DebugLog.Info("CalculatorPage", "Initializing WebView2...");
                 ViewModel.IsLoading = true;
                 ViewModel.StatusMessage = "正在初始化 WebView2 运行时...";
 
                 await CalculatorWebView.EnsureCoreWebView2Async();
 
-                Debug.WriteLine("WebView2 初始化成功！");
+                DebugLog.Info("CalculatorPage", "WebView2 initialized successfully!");
 
                 CalculatorWebView.DefaultBackgroundColor = Windows.UI.Color.FromArgb(0, 0, 0, 0);
                 CalculatorWebView.CoreWebView2.Settings.AreDefaultContextMenusEnabled = false;
@@ -88,7 +89,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("WebView2 初始化失败: " + ex.Message);
+                DebugLog.Info("CalculatorPage", "WebView2 initialization failed: " + ex.Message);
                 ViewModel.StatusMessage = "组件初始化失败，请检查 Edge WebView2 Runtime";
                 ViewModel.IsLoading = false;
             }
@@ -108,7 +109,7 @@ namespace FufuLauncher.Views
         {
             try
             {
-                Debug.WriteLine("开始加载计算器页面...");
+                DebugLog.Info("CalculatorPage", "Loading calculator page...");
                 _isPageLoaded = false;
                 ViewModel.IsLoading = true;
                 ViewModel.StatusMessage = "正在同步养成数据...";
@@ -131,7 +132,7 @@ namespace FufuLauncher.Views
                         }
                     }
 
-                    Debug.WriteLine($"已注入 {cookieStr.Split(';').Length} 个 cookie");
+                    DebugLog.Info("CalculatorPage", $"Injected {cookieStr.Split(';').Length} cookies");
                 }
 
                 StartLoadingTimeout();
@@ -210,7 +211,7 @@ namespace FufuLauncher.Views
 
         private void OnDOMContentLoaded(CoreWebView2 sender, CoreWebView2DOMContentLoadedEventArgs args)
         {
-            Debug.WriteLine("DOM内容加载完成！");
+            DebugLog.Info("CalculatorPage", "DOM content loaded!");
             _isPageLoaded = true;
             DispatcherQueue.TryEnqueue(() =>
             {
@@ -243,7 +244,7 @@ namespace FufuLauncher.Views
 
                 if (!isAllowed)
                 {
-                    Debug.WriteLine("[阻止] 外部链接: " + uri.Host);
+                    DebugLog.Info("CalculatorPage", "[Blocked] External link: " + uri.Host);
                     args.Cancel = true;
                     DispatcherQueue.TryEnqueue(() =>
                     {

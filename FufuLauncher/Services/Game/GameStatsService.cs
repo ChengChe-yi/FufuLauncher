@@ -9,6 +9,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Models.DataCenter;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -109,7 +110,7 @@ public sealed class GameStatsService
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[GameStatsService] 解析失败 {url}: {ex.Message}");
+            DebugLog.Info("GameStatsService", $"[GameStatsService] Parse failed {url}: {ex.Message}");
             lock (_cache) _cache.Remove(url);
             return null;
         }
@@ -159,7 +160,7 @@ public sealed class GameStatsService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GameStatsService] 请求失败 {url}: {ex.Message}");
+            DebugLog.Info("GameStatsService", $"[GameStatsService] Request failed {url}: {ex.Message}");
 
             lock (_cache)
             {

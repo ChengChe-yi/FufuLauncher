@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using FufuLauncher.Constants;
 using Microsoft.Web.WebView2.Core;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -82,7 +83,7 @@ public sealed partial class BBSWindow
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"WebView Init Failed: {ex.Message}");
+            DebugLog.Info("BBSWindow.WebView", $"WebView Init Failed: {ex.Message}");
         }
     }
 

@@ -8,6 +8,7 @@ using FufuLauncher.Services;
 using FufuLauncher.Services.MiHoYo.Passport;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -56,12 +57,12 @@ public sealed partial class OverseaPasswordLoginDialog : ContentDialog, IPasspor
             (string? rawAigis, string? rawRisk, PassportResponse<LoginResult> response) =
                 await _passportClient.LoginByPasswordAsync(Account!, Password!, Aigis, Verify);
 
-            System.Diagnostics.Debug.WriteLine(
-                $"[OverseaPasswordLogin] 第 {attempt + 1} 次尝试: retcode={response.RetCode}, aigis={(rawAigis is null ? "无" : "有")}, risk={(rawRisk is null ? "无" : "有")}");
+            DebugLog.Info("OverseaPasswordLoginDialog",
+                $"[OverseaPasswordLogin] Attempt {attempt + 1}: retcode={response.RetCode}, aigis={(rawAigis is null ? "none" : "present")}, risk={(rawRisk is null ? "none" : "present")}");
 
             if (await _geetestService.TryVerifyAigisSessionAsync(this, rawAigis, isOversea: true))
             {
-                System.Diagnostics.Debug.WriteLine($"[OverseaPasswordLogin] 极验完成，携带 aigis 重试");
+                DebugLog.Info("OverseaPasswordLoginDialog", $"[OverseaPasswordLogin] Geetest completed, retrying with aigis");
                 continue;
             }
 
@@ -82,8 +83,8 @@ public sealed partial class OverseaPasswordLoginDialog : ContentDialog, IPasspor
 
             if (!string.IsNullOrEmpty(Aigis))
             {
-                System.Diagnostics.Debug.WriteLine(
-                    $"[OverseaPasswordLogin] aigis 被拒绝(retcode={response.RetCode})，清空后重新验证");
+                DebugLog.Info("OverseaPasswordLoginDialog",
+                    $"[OverseaPasswordLogin] aigis rejected (retcode={response.RetCode}), cleared and re-verifying");
                 Aigis = null;
                 continue;
             }

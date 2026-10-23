@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -17,7 +17,7 @@ public partial class GachaAnalysisViewModel
 
     public async Task LoadSavedGachaDataAsync()
     {
-        Debug.WriteLine("[Gacha] LoadSavedGachaDataAsync: 开始加载数据");
+        DebugLog.Info("GachaAnalysisViewModel.Loading", "[Gacha] LoadSavedGachaDataAsync: loading data");
         var (uids, metadataCount) = await Task.Run(() =>
         {
             InitializeDatabase();
@@ -44,12 +44,12 @@ public partial class GachaAnalysisViewModel
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[Gacha] JSON 迁移失败: {ex.Message}");
+                    DebugLog.Info("GachaAnalysisViewModel.Loading", $"[Gacha] JSON migration failed: {ex.Message}");
                 }
             }
 
             var uids = QueryKnownUidsFromDb();
-            Debug.WriteLine($"[Gacha] QueryKnownUids 返回 {uids.Count} 个 UID: [{string.Join(", ", uids)}]");
+            DebugLog.Info("GachaAnalysisViewModel.Loading", $"[Gacha] QueryKnownUids returned {uids.Count} UIDs: [{string.Join(", ", uids)}]");
 
             string lastUid = "";
             try
@@ -82,7 +82,7 @@ public partial class GachaAnalysisViewModel
             LoadGachaLogsFromDb(_currentUid);
         }
 
-        Debug.WriteLine($"[Gacha] 加载完成 - {uids.Count} UIDs, metadata {metadataCount} 条");
+        DebugLog.Info("GachaAnalysisViewModel.Loading", $"[Gacha] Load complete - {uids.Count} UIDs, metadata entries: {metadataCount}");
         if (uids.Count > 0 || account != null)
         {
             App.MainWindow.DispatcherQueue.TryEnqueue(() =>
@@ -134,15 +134,15 @@ public partial class GachaAnalysisViewModel
         }).ToList();
 
         _metadataRepo.InsertOrIgnoreGachaLogs(entities);
-        Debug.WriteLine($"[Gacha] 已从 JSON 迁移 {logs.Count} 条记录到数据库");
+        DebugLog.Info("GachaAnalysisViewModel.Loading", $"[Gacha] Migrated {logs.Count} records from JSON to database");
     }
 
     private void SaveGachaDataAsync()
     {
-        Debug.WriteLine($"[Gacha] SaveGachaDataAsync: 开始, _currentUid={_currentUid}");
+        DebugLog.Info("GachaAnalysisViewModel.Loading", $"[Gacha] SaveGachaDataAsync: start, _currentUid={_currentUid}");
         SaveGachaLogsToDb();
         RefreshKnownUids();
-        Debug.WriteLine("[Gacha] SaveGachaDataAsync: 完成");
+        DebugLog.Info("GachaAnalysisViewModel.Loading", "[Gacha] SaveGachaDataAsync: done");
 
         if (RequestMetadataScrapeAction == null)
             _ = FetchGachaPoolMetadataAsync();
@@ -228,7 +228,7 @@ public partial class GachaAnalysisViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[Gacha] 刷新抽卡分析 UI 失败: {ex.Message}");
+                DebugLog.Info("GachaAnalysisViewModel.Loading", $"[Gacha] Failed to refresh gacha analysis UI: {ex.Message}");
             }
         });
     }

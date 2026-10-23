@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -42,7 +43,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"选择截图文件夹失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Screenshots", $"Failed to select screenshot folder: {ex.Message}");
         }
     }
 

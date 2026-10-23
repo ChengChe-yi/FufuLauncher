@@ -28,7 +28,7 @@ public partial class PluginSettingsViewModel
 
         _isHwidAuthorized = authorizationService is not null && await authorizationService.IsAuthorizedAsync();
         _hasCheckedHwid = true;
-        System.Diagnostics.Debug.WriteLine($"[HWID_DEBUG] 授权结果: {_isHwidAuthorized}");
+        DebugLog.Info("PluginSettingsViewModel.Authorization", $"[HWID_DEBUG] Authorization result: {_isHwidAuthorized}");
         return _isHwidAuthorized;
     }
 

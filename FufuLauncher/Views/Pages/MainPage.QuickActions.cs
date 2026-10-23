@@ -47,12 +47,12 @@ public sealed partial class MainPage
             }
             else
             {
-                Debug.WriteLine("[Announcement] 手动获取公告失败：未获取到且无本地缓存");
+                DebugLog.Info("MainPage.QuickActions", "[Announcement] Manual fetch failed: nothing retrieved and no local cache");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Announcement] 手动触发公告异常: {ex.Message}");
+            DebugLog.Info("MainPage.QuickActions", $"[Announcement] Manual announcement trigger failed: {ex.Message}");
         }
     }
 
@@ -87,7 +87,7 @@ public sealed partial class MainPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"手动刷新异常: {ex.Message}");
+            DebugLog.Info("MainPage.QuickActions", $"Manual refresh failed: {ex.Message}");
         }
     }
 

@@ -23,7 +23,7 @@ public partial class PluginStoreViewModel
 
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
-            Debug.WriteLine("[PluginStoreVM] Cannot show captcha: MainWindow or DispatcherQueue is null");
+            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show captcha: MainWindow or DispatcherQueue is null");
             return null;
         }
 
@@ -93,7 +93,7 @@ public partial class PluginStoreViewModel
 
                 if (webView.CoreWebView2 is not { } coreWebView)
                 {
-                    Debug.WriteLine("[PluginStoreVM] CoreWebView2 is null after EnsureCoreWebView2Async");
+                    DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] CoreWebView2 is null after EnsureCoreWebView2Async");
                     tcs.TrySetResult(null);
                     captchaWindow.Close();
                     return;
@@ -108,7 +108,7 @@ public partial class PluginStoreViewModel
                 coreWebView.NavigationCompleted += async (s, e) =>
                 {
                     if (!e.IsSuccess) return;
-                    Debug.WriteLine($"[PluginStoreVM] Gate page loaded, starting poll for dl_token...");
+                    DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Gate page loaded, starting poll for dl_token...");
 
                     try
                     {
@@ -143,7 +143,7 @@ public partial class PluginStoreViewModel
                                     var token = dlToken.GetString();
                                     if (!string.IsNullOrWhiteSpace(token))
                                     {
-                                        Debug.WriteLine($"[PluginStoreVM] Got dl_token: {token[..12]}...");
+                                        DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Got dl_token: {token[..12]}...");
                                         pollCts.Cancel();
                                         tcs.TrySetResult(token);
                                         captchaWindow.DispatcherQueue.TryEnqueue(() => captchaWindow.Close());
@@ -167,13 +167,13 @@ public partial class PluginStoreViewModel
                     tcs.TrySetResult(null);
                 };
 
-                Debug.WriteLine($"[PluginStoreVM] Navigating to captcha gate: {verifyUrl}");
+                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Navigating to captcha gate: {verifyUrl}");
                 coreWebView.Navigate(verifyUrl);
                 captchaWindow.Activate();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginStoreVM] Error in captcha window: {ex}");
+                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Error in captcha window: {ex}");
                 tcs.TrySetResult(null);
                 pollCts?.Cancel();
 
@@ -193,7 +193,7 @@ public partial class PluginStoreViewModel
 
         if (!enqueued)
         {
-            Debug.WriteLine("[PluginStoreVM] Failed to enqueue captcha window to DispatcherQueue");
+            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Failed to enqueue captcha window to DispatcherQueue");
             return null;
         }
 
@@ -207,7 +207,7 @@ public partial class PluginStoreViewModel
 
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
-            Debug.WriteLine("[PluginStoreVM] Cannot show private access dialog: MainWindow or DispatcherQueue is null");
+            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show private access dialog: MainWindow or DispatcherQueue is null");
             return null;
         }
 
@@ -234,7 +234,7 @@ public partial class PluginStoreViewModel
 
                 if (App.MainWindow?.Content?.XamlRoot is not { } xamlRoot)
                 {
-                    Debug.WriteLine("[PluginStoreVM] Cannot show private access dialog: XamlRoot is null");
+                    DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show private access dialog: XamlRoot is null");
                     tcs.TrySetResult(null);
                     return;
                 }
@@ -261,14 +261,14 @@ public partial class PluginStoreViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginStoreVM] Error in private access dialog: {ex}");
+                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Error in private access dialog: {ex}");
                 tcs.TrySetResult(null);
             }
         });
 
         if (!enqueued)
         {
-            Debug.WriteLine("[PluginStoreVM] Failed to enqueue private access dialog to DispatcherQueue");
+            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Failed to enqueue private access dialog to DispatcherQueue");
             return null;
         }
 
@@ -279,7 +279,7 @@ public partial class PluginStoreViewModel
     {
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
-            Debug.WriteLine("[PluginStoreVM] Cannot show version warning: MainWindow or DispatcherQueue is null");
+            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show version warning: MainWindow or DispatcherQueue is null");
             return;
         }
 
@@ -289,7 +289,7 @@ public partial class PluginStoreViewModel
             {
                 if (App.MainWindow?.Content?.XamlRoot is not { } xamlRoot)
                 {
-                    Debug.WriteLine("[PluginStoreVM] Cannot show version warning: XamlRoot is null");
+                    DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show version warning: XamlRoot is null");
                     return;
                 }
 
@@ -306,7 +306,7 @@ public partial class PluginStoreViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginStoreVM] Error showing version warning: {ex}");
+                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Error showing version warning: {ex}");
             }
         });
     }

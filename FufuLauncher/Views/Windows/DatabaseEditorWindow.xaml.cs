@@ -11,6 +11,7 @@ using System.ComponentModel;
 using FufuLauncher.Contracts.Services;
 using FufuLauncher.Data.Repositories;
 using FufuLauncher.Data.Entities;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -80,7 +81,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"读取数据库失败: {ex.Message}");
+                DebugLog.Info("DatabaseEditorWindow", $"Failed to read database: {ex.Message}");
             }
         }
 

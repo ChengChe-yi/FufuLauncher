@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.Web.WebView2.Core;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -38,13 +39,13 @@ public sealed partial class DailyNoteWindow
 
             if (completedTask == delayTask)
             {
-                Debug.WriteLine("[DailyNote] Navigation Timeout");
+                DebugLog.Info("DailyNoteWindow.Materials", "[DailyNote] Navigation Timeout");
                 return false;
             }
 
             if (!await WaitForElementAsync(".channel__calendar"))
             {
-                Debug.WriteLine("[DailyNote] Wait Element Timeout");
+                DebugLog.Info("DailyNoteWindow.Materials", "[DailyNote] Wait Element Timeout");
                 return false;
             }
 
@@ -105,7 +106,7 @@ public sealed partial class DailyNoteWindow
                 var unescapedJson = JsonSerializer.Deserialize<string>(json);
                 if (unescapedJson != null && unescapedJson.Contains("\"error\":"))
                 {
-                    Debug.WriteLine($"[Script Error] {unescapedJson}");
+                    DebugLog.Info("DailyNoteWindow.Materials", $"[Script Error] {unescapedJson}");
                     return false;
                 }
 
@@ -154,7 +155,7 @@ public sealed partial class DailyNoteWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Material Fetch] {ex}");
+            DebugLog.Info("DailyNoteWindow.Materials", $"[Material Fetch] {ex}");
             return false;
         }
     }

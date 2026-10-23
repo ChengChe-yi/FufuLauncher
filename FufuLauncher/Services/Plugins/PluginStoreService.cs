@@ -123,7 +123,7 @@ public class PluginStoreService
             {
                 if (gateResponse.Data?.VerifyUrl != null)
                 {
-                    Debug.WriteLine(
+                    DebugLog.Info("PluginStoreService",
                         $"[PluginStoreService] Captcha gate detected for plugin {pluginId}: {gateResponse.Data.VerifyUrl}");
                     throw new CaptchaRequiredException(gateResponse.Data.VerifyUrl, pluginId);
                 }
@@ -184,7 +184,7 @@ public class PluginStoreService
 
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Fetching plugin list: {url}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Fetching plugin list: {url}");
             var response = await _httpClient.GetStringAsync(url);
             var result = DeserializeResponse<PluginListData>(response);
             var data = result?.Data ?? new PluginListData();
@@ -198,17 +198,17 @@ public class PluginStoreService
         }
         catch (HttpRequestException ex) when (ex.InnerException is System.Net.Sockets.SocketException)
         {
-            Debug.WriteLine($"[PluginStoreService] Server unreachable: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Server unreachable: {ex.Message}");
             throw new InvalidOperationException("PluginStoreServerUnreachable".GetLocalized(), ex);
         }
         catch (TaskCanceledException)
         {
-            Debug.WriteLine("[PluginStoreService] Request timed out");
+            DebugLog.Info("PluginStoreService", "[PluginStoreService] Request timed out");
             throw new InvalidOperationException("PluginStoreServerTimeout".GetLocalized());
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error fetching plugin list: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error fetching plugin list: {ex.Message}");
             throw new InvalidOperationException(string.Format("PluginStoreLoadListFailed".GetLocalized(), ex.Message),
                 ex);
         }
@@ -225,7 +225,7 @@ public class PluginStoreService
 
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Fetching plugin detail: {url}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Fetching plugin detail: {url}");
             var response = await _httpClient.GetStringAsync(url);
             var result = DeserializeResponse<PluginStoreItem>(response);
             var plugin = result?.Data;
@@ -234,17 +234,17 @@ public class PluginStoreService
         }
         catch (HttpRequestException ex) when (ex.InnerException is System.Net.Sockets.SocketException)
         {
-            Debug.WriteLine($"[PluginStoreService] Server unreachable: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Server unreachable: {ex.Message}");
             throw new InvalidOperationException("PluginStoreServerUnreachable".GetLocalized(), ex);
         }
         catch (TaskCanceledException)
         {
-            Debug.WriteLine("[PluginStoreService] Request timed out");
+            DebugLog.Info("PluginStoreService", "[PluginStoreService] Request timed out");
             throw new InvalidOperationException("PluginStoreServerTimeout".GetLocalized());
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error fetching plugin detail: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error fetching plugin detail: {ex.Message}");
             throw;
         }
     }
@@ -253,7 +253,7 @@ public class PluginStoreService
     {
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Fetching categories: {ApiEndpoints.PluginStoreCategoriesUrl}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Fetching categories: {ApiEndpoints.PluginStoreCategoriesUrl}");
             var url = ApiEndpoints.PluginStoreCategoriesUrl;
             var lang = GetCurrentLang();
             if (!string.IsNullOrEmpty(lang))
@@ -264,17 +264,17 @@ public class PluginStoreService
         }
         catch (HttpRequestException ex) when (ex.InnerException is System.Net.Sockets.SocketException)
         {
-            Debug.WriteLine($"[PluginStoreService] Server unreachable for categories, using defaults");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Server unreachable for categories, using defaults");
             return new List<PluginStoreCategory>();
         }
         catch (TaskCanceledException)
         {
-            Debug.WriteLine("[PluginStoreService] Categories request timed out, using defaults");
+            DebugLog.Info("PluginStoreService", "[PluginStoreService] Categories request timed out, using defaults");
             return new List<PluginStoreCategory>();
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error fetching categories: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error fetching categories: {ex.Message}");
             throw;
         }
     }
@@ -287,14 +287,14 @@ public class PluginStoreService
 
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Fetching plugin stats: {url}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Fetching plugin stats: {url}");
             var response = await _httpClient.GetStringAsync(url);
             var result = DeserializeResponse<PluginStatsData>(response);
             return result?.Data ?? new PluginStatsData();
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error fetching plugin stats: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error fetching plugin stats: {ex.Message}");
             return new PluginStatsData();
         }
     }
@@ -305,14 +305,14 @@ public class PluginStoreService
 
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Fetching leaderboard: {url}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Fetching leaderboard: {url}");
             var response = await _httpClient.GetStringAsync(url);
             var result = DeserializeResponse<LeaderboardData>(response);
             return result?.Data ?? new LeaderboardData();
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error fetching leaderboard: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error fetching leaderboard: {ex.Message}");
             return new LeaderboardData();
         }
     }
@@ -334,7 +334,7 @@ public class PluginStoreService
 
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Requesting download token for plugin {pluginId}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Requesting download token for plugin {pluginId}");
             var json = JsonSerializer.Serialize(body, JsonOptions);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(url, content);
@@ -343,7 +343,7 @@ public class PluginStoreService
             var result = DeserializeResponse<DownloadTokenResponse>(responseBody);
             if (result?.Retcode == 0 && result.Data != null)
             {
-                Debug.WriteLine($"[PluginStoreService] Download token obtained: {result.Data.DlToken[..8]}...");
+                DebugLog.Info("PluginStoreService", $"[PluginStoreService] Download token obtained: {result.Data.DlToken[..8]}...");
                 return result.Data;
             }
 
@@ -355,7 +355,7 @@ public class PluginStoreService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error getting download token: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error getting download token: {ex.Message}");
             throw new InvalidOperationException(string.Format("PluginStoreCaptchaFailed".GetLocalized(), ex.Message),
                 ex);
         }
@@ -372,7 +372,7 @@ public class PluginStoreService
 
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Requesting private access for plugin {pluginId}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Requesting private access for plugin {pluginId}");
             var json = JsonSerializer.Serialize(body, JsonOptions);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(url, content);
@@ -381,7 +381,7 @@ public class PluginStoreService
             var result = DeserializeResponse<PrivateAccessResponse>(responseBody);
             if (result?.Retcode == 0 && result.Data != null)
             {
-                Debug.WriteLine($"[PluginStoreService] Private access granted for plugin {pluginId}");
+                DebugLog.Info("PluginStoreService", $"[PluginStoreService] Private access granted for plugin {pluginId}");
                 if (result.Data.Plugin != null)
                     NormalizePluginUrls(result.Data.Plugin);
                 return result.Data;
@@ -391,7 +391,7 @@ public class PluginStoreService
         }
         catch (Exception ex) when (ex is not InvalidOperationException)
         {
-            Debug.WriteLine($"[PluginStoreService] Error getting private access: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error getting private access: {ex.Message}");
             throw new InvalidOperationException(
                 string.Format("PluginStorePrivateAccessDenied".GetLocalized(), ex.Message), ex);
         }
@@ -404,7 +404,7 @@ public class PluginStoreService
 
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Downloading Lua script: {url}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Downloading Lua script: {url}");
             using var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
             var body = await response.Content.ReadAsStringAsync();
 
@@ -412,7 +412,7 @@ public class PluginStoreService
 
             if (!string.IsNullOrWhiteSpace(expectedHash))
             {
-                Debug.WriteLine($"[PluginStoreService] Verifying Lua script hash...");
+                DebugLog.Info("PluginStoreService", $"[PluginStoreService] Verifying Lua script hash...");
                 PluginVerifier.VerifyLuaHash(body, expectedHash);
             }
 
@@ -436,7 +436,7 @@ public class PluginStoreService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error downloading Lua script: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error downloading Lua script: {ex.Message}");
             throw new InvalidOperationException(string.Format("PluginStoreDownloadLuaError".GetLocalized(), ex.Message),
                 ex);
         }
@@ -465,7 +465,7 @@ public class PluginStoreService
     {
         try
         {
-            Debug.WriteLine($"[PluginStoreService] Downloading file: {url} -> {destinationPath}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Downloading file: {url} -> {destinationPath}");
 
             using var response =
                 await _httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
@@ -541,10 +541,10 @@ public class PluginStoreService
                 sha256.TransformFinalBlock(Array.Empty<byte>(), 0, 0);
                 var actualHash = PluginVerifier.BytesToHex(sha256.Hash!);
 
-                Debug.WriteLine($"[PluginStoreService] Verifying downloaded file hash...");
+                DebugLog.Info("PluginStoreService", $"[PluginStoreService] Verifying downloaded file hash...");
                 if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
                 {
-                    Debug.WriteLine(
+                    DebugLog.Info("PluginStoreService",
                         $"[PluginStoreService] HASH MISMATCH: expected={expectedHash[..16]}... actual={actualHash[..16]}...");
 
                     await fileStream.DisposeAsync();
@@ -555,13 +555,13 @@ public class PluginStoreService
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[PluginStoreService] Failed to delete bad file: {ex.Message}");
+                        DebugLog.Info("PluginStoreService", $"[PluginStoreService] Failed to delete bad file: {ex.Message}");
                     }
 
                     throw new HashMismatchException("PluginStoreHashMismatch".GetLocalized());
                 }
 
-                Debug.WriteLine($"[PluginStoreService] Hash verified OK");
+                DebugLog.Info("PluginStoreService", $"[PluginStoreService] Hash verified OK");
             }
         }
         catch (CaptchaRequiredException)
@@ -578,26 +578,26 @@ public class PluginStoreService
         }
         catch (OperationCanceledException)
         {
-            Debug.WriteLine($"[PluginStoreService] Download cancelled, cleaning up partial file: {destinationPath}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Download cancelled, cleaning up partial file: {destinationPath}");
             try
             {
                 File.Delete(destinationPath);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginStoreService] Failed to delete partial file: {ex.Message}");
+                DebugLog.Info("PluginStoreService", $"[PluginStoreService] Failed to delete partial file: {ex.Message}");
             }
 
             throw;
         }
         catch (HttpRequestException ex) when (ex.InnerException is System.Net.Sockets.SocketException)
         {
-            Debug.WriteLine($"[PluginStoreService] Server unreachable during file download: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Server unreachable during file download: {ex.Message}");
             throw new InvalidOperationException("PluginStoreDownloadFileFailed".GetLocalized(), ex);
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreService] Error downloading file: {ex.Message}");
+            DebugLog.Info("PluginStoreService", $"[PluginStoreService] Error downloading file: {ex.Message}");
             throw new InvalidOperationException(
                 string.Format("PluginStoreDownloadFileError".GetLocalized(), ex.Message), ex);
         }

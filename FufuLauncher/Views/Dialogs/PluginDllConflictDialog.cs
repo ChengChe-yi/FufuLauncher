@@ -278,7 +278,7 @@ internal static class PluginDllConflictDialog
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginDllConflictDialog] 对话框显示失败: {ex.Message}");
+                DebugLog.Info("PluginDllConflictDialog", $"[PluginDllConflictDialog] Failed to show dialog: {ex.Message}");
                 return (false, ContentDialogResult.None);
             }
         }
@@ -292,7 +292,7 @@ internal static class PluginDllConflictDialog
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginDllConflictDialog] 定位文件失败: {ex.Message}");
+            DebugLog.Info("PluginDllConflictDialog", $"[PluginDllConflictDialog] Failed to locate file: {ex.Message}");
         }
     }
 
@@ -304,7 +304,7 @@ internal static class PluginDllConflictDialog
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginDllConflictDialog] 打开插件目录失败: {ex.Message}");
+            DebugLog.Info("PluginDllConflictDialog", $"[PluginDllConflictDialog] Failed to open plugin directory: {ex.Message}");
         }
     }
 
@@ -319,7 +319,7 @@ internal static class PluginDllConflictDialog
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginDllConflictDialog] 读取主题画刷失败: {ex.Message}");
+            DebugLog.Info("PluginDllConflictDialog", $"[PluginDllConflictDialog] Failed to read theme brushes: {ex.Message}");
         }
 
         return new SolidColorBrush(fallback);

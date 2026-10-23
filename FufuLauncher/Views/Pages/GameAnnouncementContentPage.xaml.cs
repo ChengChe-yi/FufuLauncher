@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.Web.WebView2.Core;
 using Windows.System;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -89,7 +90,7 @@ public sealed partial class GameAnnouncementContentPage : Page
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GameAnnouncementContentPage] WebView2初始化失败: {ex.Message}");
+            DebugLog.Info("GameAnnouncementContentPage", $"[GameAnnouncementContentPage] WebView2 initialization failed: {ex.Message}");
             LoadingBar.Visibility = Visibility.Collapsed;
         }
     }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -77,12 +77,12 @@ public partial class SettingsViewModel
             }
             else
             {
-                Debug.WriteLine("未找到 UpdateFufuLauncher.exe");
+                DebugLog.Info("SettingsViewModel.Updates", "UpdateFufuLauncher.exe not found");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"启动更新程序失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Updates", $"Failed to start updater: {ex.Message}");
         }
     }
 

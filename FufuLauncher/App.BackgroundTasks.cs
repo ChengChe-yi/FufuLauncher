@@ -34,7 +34,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[UidLookup] 写入失败: {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[UidLookup] Write failed: {ex.Message}");
             return Array.Empty<string>();
         }
     }
@@ -49,13 +49,13 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BanCheck] 检查失败，按放行处理 - {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[BanCheck] Check failed, allowing through - {ex.Message}");
             return false;
         }
 
         if (!result.ShouldTerminate) return false;
 
-        Debug.WriteLine($"[BanCheck] !!! TERMINATING - {result.Outcome} (UID: {result.Uid ?? "n/a"})");
+        DebugLog.Info("App.BackgroundTasks", $"[BanCheck] !!! TERMINATING - {result.Outcome} (UID: {result.Uid ?? "n/a"})");
 
         var message = string.Format(
             "BanCheck_KilledMessage".GetLocalized(),
@@ -96,14 +96,14 @@ public partial class App
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[BanCheck] 关闭主窗口失败 - {ex.Message}");
+                        DebugLog.Info("App.BackgroundTasks", $"[BanCheck] Failed to close main window - {ex.Message}");
                     }
                 });
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BanCheck] 调度关闭失败 - {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[BanCheck] Failed to schedule close - {ex.Message}");
         }
 
 
@@ -122,7 +122,7 @@ public partial class App
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
                 (uri.Scheme != Uri.UriSchemeHttps && uri.Scheme != Uri.UriSchemeHttp))
             {
-                Debug.WriteLine($"[BanCheck] 拒绝打开非 http(s) 申诉链接: {url}");
+                DebugLog.Info("App.BackgroundTasks", $"[BanCheck] Refused to open non-http(s) appeal link: {url}");
                 return;
             }
 
@@ -130,7 +130,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BanCheck] 打开申诉链接失败 - {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[BanCheck] Failed to open appeal link - {ex.Message}");
         }
     }
 
@@ -143,7 +143,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"启动语音播放失败: {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"Failed to play startup sound: {ex.Message}");
         }
     }
 
@@ -167,7 +167,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Announcement] 公告检查失败: {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[Announcement] Announcement check failed: {ex.Message}");
         }
     }
 
@@ -175,22 +175,22 @@ public partial class App
     {
         try
         {
-            Debug.WriteLine("[Background] 后台任务开始，等待主窗口渲染...");
+            DebugLog.Info("App.BackgroundTasks", "[Background] Background tasks started, waiting for main window render...");
             await Task.Delay(500);
 
-            Debug.WriteLine("[Background] 准备调度到UI线程...");
+            DebugLog.Info("App.BackgroundTasks", "[Background] Preparing to dispatch to UI thread...");
 
             await _mainDispatcherQueue.EnqueueAsync(async () =>
             {
-                Debug.WriteLine("[Background] 已在UI线程，执行更新检查...");
+                DebugLog.Info("App.BackgroundTasks", "[Background] Already on UI thread, running update check...");
                 await CheckAndShowUpdateWindowAsync();
             });
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Background] 后台更新检查失败: {ex.Message}");
-            Debug.WriteLine($"[Background] 异常类型: {ex.GetType().FullName}");
-            Debug.WriteLine($"[Background] 堆栈: {ex.StackTrace}");
+            DebugLog.Info("App.BackgroundTasks", $"[Background] Background update check failed: {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[Background] Exception type: {ex.GetType().FullName}");
+            DebugLog.Info("App.BackgroundTasks", $"[Background] Stack trace: {ex.StackTrace}");
         }
     }
 
@@ -232,7 +232,7 @@ public partial class App
                 Messages.NotificationType.Warning,
                 0);
 
-            Debug.WriteLine($"[AppPaths] 存储路径缺失: {string.Join(" | ", lines)}");
+            DebugLog.Info("App.BackgroundTasks", $"[AppPaths] Missing storage path: {string.Join(" | ", lines)}");
 
             await Task.Delay(1200);
 
@@ -243,7 +243,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AppPaths] 启动存储路径检查失败: {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[AppPaths] Startup storage path check failed: {ex.Message}");
         }
     }
 
@@ -264,7 +264,7 @@ public partial class App
             string path = soundPath.ToString();
             if (!File.Exists(path))
             {
-                Debug.WriteLine($"启动语音文件不存在: {path}");
+                DebugLog.Info("App.BackgroundTasks", $"Startup sound file not found: {path}");
                 return;
             }
 
@@ -308,13 +308,13 @@ public partial class App
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"启动语音播放异常: {ex.Message}");
+                    DebugLog.Info("App.BackgroundTasks", $"Startup sound playback exception: {ex.Message}");
                 }
             });
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"启动语音处理失败: {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"Startup sound processing failed: {ex.Message}");
         }
     }
 
@@ -338,8 +338,8 @@ public partial class App
 
             if (result.ShouldShowUpdate)
             {
-                Debug.WriteLine($"准备显示更新窗口，版本: {result.ServerVersion}，预览版: {result.IsPreview}");
-                Debug.WriteLine($"[App] 动态更新公告URL: {result.UpdateInfoUrl}");
+                DebugLog.Info("App.BackgroundTasks", $"Preparing to show update window, version: {result.ServerVersion}, preview: {result.IsPreview}");
+                DebugLog.Info("App.BackgroundTasks", $"[App] Dynamic update announcement URL: {result.UpdateInfoUrl}");
 
                 MainWindow.Activate();
 
@@ -352,8 +352,8 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"更新检查失败: {ex.Message}");
-            Debug.WriteLine($"[App] 异常详情: {ex.StackTrace}");
+            DebugLog.Info("App.BackgroundTasks", $"Update check failed: {ex.Message}");
+            DebugLog.Info("App.BackgroundTasks", $"[App] Exception details: {ex.StackTrace}");
         }
     }
 

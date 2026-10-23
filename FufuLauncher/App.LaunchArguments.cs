@@ -26,7 +26,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[App] 解析重定向启动参数失败: {ex.Message}");
+            DebugLog.Info("App.LaunchArguments", $"[App] Failed to parse redirect launch arguments: {ex.Message}");
         }
 
         return LaunchTriggerAction.None;
@@ -44,7 +44,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[App] 处理启动参数失败: {ex.Message}");
+            DebugLog.Info("App.LaunchArguments", $"[App] Failed to handle launch arguments: {ex.Message}");
         }
     }
 
@@ -84,7 +84,7 @@ public partial class App
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[App] 启动参数触发游戏操作失败: {ex.Message}");
+            DebugLog.Info("App.LaunchArguments", $"[App] Launch-argument triggered game operation failed: {ex.Message}");
         }
     }
 

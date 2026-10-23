@@ -78,7 +78,7 @@ public sealed partial class SettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ModTrust] 刷新信任状态失败: {ex}");
+            DebugLog.Info("SettingsPage.ModTrust", $"[ModTrust] Failed to refresh trust status: {ex}");
         }
     }
 
@@ -190,9 +190,9 @@ public sealed partial class SettingsPage
         var saved = ModTrustGate.TryWriteMode(mode);
         var current = ModTrustGate.ReadMode();
         SelectModTrustMode(current);
-        Debug.WriteLine(saved
-            ? $"[ModTrust] 信任策略模式已切换为 {current}"
-            : "[ModTrust] 保存信任策略失败，已恢复当前设置");
+        DebugLog.Info("SettingsPage.ModTrust", saved
+            ? $"[ModTrust] Trust policy mode switched to {current}"
+            : "[ModTrust] Failed to save trust policy, reverted current settings");
     }
 
     private void SelectModTrustMode(ModTrustEnforcement mode)
@@ -251,7 +251,7 @@ public sealed partial class SettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ModTrust] 同步信任包失败: {ex}");
+            DebugLog.Info("SettingsPage.ModTrust", $"[ModTrust] Failed to sync trust packages: {ex}");
             await ShowSafeDialogAsync(new ContentDialog
             {
                 Title = "ErrorTitle".GetLocalized(),

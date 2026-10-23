@@ -7,6 +7,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -193,7 +194,7 @@ public sealed class TranslationService
             var response = await _httpClient.GetAsync(url, ct);
             if (!response.IsSuccessStatusCode)
             {
-                Debug.WriteLine($"[Translation] API returned {response.StatusCode}");
+                DebugLog.Info("TranslationService", $"[Translation] API returned {response.StatusCode}");
                 return text;
             }
 
@@ -217,7 +218,7 @@ public sealed class TranslationService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Translation] Error: {ex.Message}");
+            DebugLog.Info("TranslationService", $"[Translation] Error: {ex.Message}");
             return text;
         }
     }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -53,7 +53,7 @@ public sealed partial class CloudCredentialWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"CloudCredentialWindow 初始化失败: {ex.Message}");
+            DebugLog.Info("CloudCredentialWindow", $"CloudCredentialWindow initialization failed: {ex.Message}");
         }
     }
 
@@ -83,7 +83,7 @@ public sealed partial class CloudCredentialWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"CloudCredentialWindow 抓取凭证失败: {ex.Message}");
+            DebugLog.Info("CloudCredentialWindow", $"CloudCredentialWindow failed to fetch credentials: {ex.Message}");
         }
     }
 

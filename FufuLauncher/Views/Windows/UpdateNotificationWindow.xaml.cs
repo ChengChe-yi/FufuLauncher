@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -137,7 +137,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[UpdateNotificationWindow] {ex.Message}");
+            DebugLog.Info("UpdateNotificationWindow", $"[UpdateNotificationWindow] {ex.Message}");
             LoadingRing.IsActive = false;
             LoadingRing.Visibility = Visibility.Collapsed;
             StatusText.Text = "GameAnnouncement_LoadFailed".GetLocalized();
@@ -453,7 +453,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
 
             if (!File.Exists(updaterPath))
             {
-                Debug.WriteLine("未找到 UpdateFufuLauncher.exe");
+                DebugLog.Info("UpdateNotificationWindow", "UpdateFufuLauncher.exe not found");
                 return false;
             }
 
@@ -469,7 +469,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[UpdateNotificationWindow] 读取CDN设置失败: {ex.Message}");
+                DebugLog.Info("UpdateNotificationWindow", $"[UpdateNotificationWindow] Failed to read CDN settings: {ex.Message}");
             }
 
             var startInfo = new ProcessStartInfo
@@ -485,7 +485,7 @@ public sealed partial class UpdateNotificationWindow : WindowEx
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"启动更新程序失败: {ex.Message}");
+            DebugLog.Info("UpdateNotificationWindow", $"Failed to start updater: {ex.Message}");
             return false;
         }
     }

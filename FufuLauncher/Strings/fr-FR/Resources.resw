@@ -8695,4 +8695,16 @@ Détails : {0}</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>Anticrénelage de l'image</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>Lisse les bords de l'image d'arrière-plan principale. Désactivé par défaut.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>Intensité de l'anticrénelage</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>Des valeurs plus élevées lissent davantage les bords.</value>
+  </data>
 </root>

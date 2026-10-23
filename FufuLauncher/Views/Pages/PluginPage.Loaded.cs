@@ -41,7 +41,7 @@ public sealed partial class PluginPage
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"读取或保存安全警告配置失败: {ex.Message}");
+            DebugLog.Info("PluginPage.Loaded", $"Failed to read or save safety warning config: {ex.Message}");
         }
     }
 

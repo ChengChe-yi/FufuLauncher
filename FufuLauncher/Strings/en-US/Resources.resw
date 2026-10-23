@@ -9047,4 +9047,16 @@ Details: {0}</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>Image anti-aliasing</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>Smooth the edges of the main background image. Off by default.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>Anti-aliasing strength</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>Higher values smooth the edges more.</value>
+  </data>
 </root>

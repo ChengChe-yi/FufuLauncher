@@ -87,7 +87,7 @@ public sealed partial class PluginSettingsPage
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"强制移除FPS插件文件失败: {ex.Message}");
+                    DebugLog.Info("PluginSettingsPage.FpsPlugin", $"Failed to force-remove FPS plugin files: {ex.Message}");
                 }
 
                 await PerformFpsPluginRepairAsync(showUI: false);
@@ -240,7 +240,7 @@ public sealed partial class PluginSettingsPage
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"FPS插件哈希校验异常: {ex.Message}");
+            DebugLog.Info("PluginSettingsPage.FpsPlugin", $"FPS plugin hash verification failed: {ex.Message}");
         }
     }
 }

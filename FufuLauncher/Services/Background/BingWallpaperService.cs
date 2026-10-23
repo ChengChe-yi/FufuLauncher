@@ -99,7 +99,7 @@ public class BingWallpaperService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BingWallpaper] 加载 Bing 壁纸失败: {ex.Message}");
+            DebugLog.Info("BingWallpaperService", $"[BingWallpaper] Failed to load Bing wallpaper: {ex.Message}");
         }
 
         lock (_cacheLock)
@@ -147,7 +147,7 @@ public class BingWallpaperService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BingWallpaper] 缓存加载失败: {ex.Message}");
+            DebugLog.Info("BingWallpaperService", $"[BingWallpaper] Failed to load cache: {ex.Message}");
             TryDelete(CacheImagePath);
             TryDelete(CacheMetadataPath);
             return null;
@@ -193,7 +193,7 @@ public class BingWallpaperService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BingWallpaper] 获取并缓存壁纸失败: {ex.Message}");
+            DebugLog.Info("BingWallpaperService", $"[BingWallpaper] Failed to fetch and cache wallpaper: {ex.Message}");
             return null;
         }
     }
@@ -231,7 +231,7 @@ public class BingWallpaperService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BingWallpaper] 图片下载失败: {ex.Message}");
+            DebugLog.Info("BingWallpaperService", $"[BingWallpaper] Image download failed: {ex.Message}");
             return null;
         }
     }
@@ -247,7 +247,7 @@ public class BingWallpaperService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BingWallpaper] 图片解码失败: {ex.Message}");
+            DebugLog.Info("BingWallpaperService", $"[BingWallpaper] Image decode failed: {ex.Message}");
             return null;
         }
         finally
@@ -271,7 +271,7 @@ public class BingWallpaperService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BingWallpaper] 缓存写入失败: {ex.Message}");
+            DebugLog.Info("BingWallpaperService", $"[BingWallpaper] Failed to write cache: {ex.Message}");
         }
     }
 

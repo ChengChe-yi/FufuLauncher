@@ -41,7 +41,7 @@ public static class PluginVerifier
     {
         if (string.IsNullOrWhiteSpace(expectedHash))
         {
-            Debug.WriteLine($"[PluginVerifier] No expected hash provided for {description}, skipping verification");
+            DebugLog.Info("PluginVerifier", $"[PluginVerifier] No expected hash provided for {description}, skipping verification");
             return;
         }
 
@@ -58,9 +58,9 @@ public static class PluginVerifier
 
         if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
         {
-            Debug.WriteLine($"[PluginVerifier] HASH MISMATCH for {description}:");
-            Debug.WriteLine($"  Expected: {expectedHash}");
-            Debug.WriteLine($"  Actual:   {actualHash}");
+            DebugLog.Info("PluginVerifier", $"[PluginVerifier] HASH MISMATCH for {description}:");
+            DebugLog.Info("PluginVerifier", $"  Expected: {expectedHash}");
+            DebugLog.Info("PluginVerifier", $"  Actual:   {actualHash}");
 
             try
             {
@@ -68,21 +68,21 @@ public static class PluginVerifier
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginVerifier] Failed to delete bad file: {ex.Message}");
+                DebugLog.Info("PluginVerifier", $"[PluginVerifier] Failed to delete bad file: {ex.Message}");
             }
 
             throw new HashMismatchException(
                 "PluginStoreHashMismatch".GetLocalized());
         }
 
-        Debug.WriteLine($"[PluginVerifier] Hash verified OK for {description}");
+        DebugLog.Info("PluginVerifier", $"[PluginVerifier] Hash verified OK for {description}");
     }
 
     public static void VerifyLuaHash(string luaScript, string expectedHash)
     {
         if (string.IsNullOrWhiteSpace(expectedHash))
         {
-            Debug.WriteLine("[PluginVerifier] No expected Lua hash provided, skipping verification");
+            DebugLog.Info("PluginVerifier", "[PluginVerifier] No expected Lua hash provided, skipping verification");
             return;
         }
 
@@ -90,14 +90,14 @@ public static class PluginVerifier
 
         if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
         {
-            Debug.WriteLine($"[PluginVerifier] LUA HASH MISMATCH:");
-            Debug.WriteLine($"  Expected: {expectedHash}");
-            Debug.WriteLine($"  Actual:   {actualHash}");
+            DebugLog.Info("PluginVerifier", $"[PluginVerifier] LUA HASH MISMATCH:");
+            DebugLog.Info("PluginVerifier", $"  Expected: {expectedHash}");
+            DebugLog.Info("PluginVerifier", $"  Actual:   {actualHash}");
 
             throw new HashMismatchException("PluginStoreLuaHashMismatch".GetLocalized());
         }
 
-        Debug.WriteLine("[PluginVerifier] Lua hash verified OK");
+        DebugLog.Info("PluginVerifier", "[PluginVerifier] Lua hash verified OK");
     }
 
     public static SecurityValidationResult ValidateLuaSecurity(string luaScript)
@@ -126,7 +126,7 @@ public static class PluginVerifier
         {
             if (lowerScript.Contains(pattern))
             {
-                Debug.WriteLine($"[PluginVerifier] SECURITY BLOCK: {description}");
+                DebugLog.Info("PluginVerifier", $"[PluginVerifier] SECURITY BLOCK: {description}");
                 return SecurityValidationResult.Fail(string.Format("PluginStoreSecurityBannedOp".GetLocalized(),
                     description));
             }
@@ -146,7 +146,7 @@ public static class PluginVerifier
 
             if (hasPathTraversal)
             {
-                Debug.WriteLine("[PluginVerifier] SECURITY BLOCK: Path traversal attempt detected");
+                DebugLog.Info("PluginVerifier", "[PluginVerifier] SECURITY BLOCK: Path traversal attempt detected");
                 return SecurityValidationResult.Fail("PluginStoreSecurityPathTraversalShort".GetLocalized());
             }
         }
@@ -167,24 +167,24 @@ public static class PluginVerifier
 
             if (url.StartsWith("http://") && !url.StartsWith("http://localhost"))
             {
-                Debug.WriteLine($"[PluginVerifier] WARNING: Non-HTTPS URL detected: {url}");
+                DebugLog.Info("PluginVerifier", $"[PluginVerifier] WARNING: Non-HTTPS URL detected: {url}");
             }
         }
 
         const int maxScriptLength = 100_000;
         if (luaScript.Length > maxScriptLength)
         {
-            Debug.WriteLine($"[PluginVerifier] SECURITY BLOCK: Script too large ({luaScript.Length} bytes)");
+            DebugLog.Info("PluginVerifier", $"[PluginVerifier] SECURITY BLOCK: Script too large ({luaScript.Length} bytes)");
             return SecurityValidationResult.Fail("PluginStoreSecurityScriptTooLarge".GetLocalized());
         }
 
         var base64Pattern = new System.Text.RegularExpressions.Regex(@"[A-Za-z0-9+/]{200,}={0,2}");
         if (base64Pattern.IsMatch(luaScript))
         {
-            Debug.WriteLine("[PluginVerifier] WARNING: Long base64-like string detected, possible obfuscation");
+            DebugLog.Info("PluginVerifier", "[PluginVerifier] WARNING: Long base64-like string detected, possible obfuscation");
         }
 
-        Debug.WriteLine("[PluginVerifier] Lua security scan PASSED");
+        DebugLog.Info("PluginVerifier", "[PluginVerifier] Lua security scan PASSED");
         return SecurityValidationResult.Pass();
     }
 

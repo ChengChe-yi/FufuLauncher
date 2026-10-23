@@ -72,12 +72,12 @@ public partial class AccountViewModel
     {
         try
         {
-            Debug.WriteLine("[LoadAccountInfo] 开始加载账户信息");
+            DebugLog.Info("AccountViewModel.Storage", "[LoadAccountInfo] Loading account info");
 
             var activeId = _accountManager.ActiveAccountId;
             if (activeId == null)
             {
-                Debug.WriteLine("[LoadAccountInfo] 无活跃账户");
+                DebugLog.Info("AccountViewModel.Storage", "[LoadAccountInfo] No active account");
                 IsBoundRoleLoading = false;
                 RunOnUIThread(() =>
                 {
@@ -93,7 +93,7 @@ public partial class AccountViewModel
             var entry = _accountManager.GetActiveAccountEntry();
             if (cookies == null || entry == null)
             {
-                Debug.WriteLine("[LoadAccountInfo] 无法加载活跃账户数据");
+                DebugLog.Info("AccountViewModel.Storage", "[LoadAccountInfo] Failed to load active account data");
                 IsBoundRoleLoading = false;
                 RunOnUIThread(() =>
                 {
@@ -121,13 +121,13 @@ public partial class AccountViewModel
                 StatusMessage = "Account_LoggedIn".GetLocalized();
             });
 
-            Debug.WriteLine($"[LoadAccountInfo] 已加载账户: {entry.Nickname} ({entry.Id})");
+            DebugLog.Info("AccountViewModel.Storage", $"[LoadAccountInfo] Loaded account: {entry.Nickname} ({entry.Id})");
 
             RefreshSavedAccountsList();
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[LoadAccountInfo] 异常: {ex.Message}");
+            DebugLog.Info("AccountViewModel.Storage", $"[LoadAccountInfo] Exception: {ex.Message}");
             RunOnUIThread(() =>
             {
                 IsBoundRoleLoading = false;

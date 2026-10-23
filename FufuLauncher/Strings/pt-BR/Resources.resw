@@ -8696,4 +8696,16 @@ Detalhes: {0}</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>Suavização de imagem</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>Suaviza as bordas da imagem de fundo principal. Desativado por padrão.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>Intensidade da suavização</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>Valores mais altos suavizam mais as bordas.</value>
+  </data>
 </root>

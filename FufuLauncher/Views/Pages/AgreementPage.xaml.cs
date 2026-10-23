@@ -8,6 +8,7 @@ using FufuLauncher.Services.CodeSigning;
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -57,7 +58,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[Agreement] 安装平台证书失败: {ex}");
+                DebugLog.Info("AgreementPage", $"[Agreement] Failed to install platform certificate: {ex}");
                 TrustStatusText.Text = $"安装失败：{ex.Message}";
                 return;
             }

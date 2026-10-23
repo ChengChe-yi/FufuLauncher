@@ -33,7 +33,7 @@ public static class ResourceExtensions
         lock (_lock)
         {
             _currentCulture = string.IsNullOrEmpty(culture) ? null : culture;
-            Debug.WriteLine($"[ResourceExt] SetLanguage: culture='{_currentCulture ?? "null"}'");
+            DebugLog.Info("ResourceExtensions", $"[ResourceExt] SetLanguage: culture='{_currentCulture ?? "null"}'");
         }
     }
 
@@ -47,7 +47,7 @@ public static class ResourceExtensions
             try
             {
                 var exeDir = AppContext.BaseDirectory;
-                Debug.WriteLine($"[ResourceExt] Loading resw from: {exeDir}");
+                DebugLog.Info("ResourceExtensions", $"[ResourceExt] Loading resw from: {exeDir}");
 
                 LoadResw(Path.Combine(exeDir, "Strings", "zh-CN", "Resources.resw"), "zh-CN");
                 LoadResw(Path.Combine(exeDir, "Strings", "en-US", "Resources.resw"), "en-US");
@@ -64,12 +64,12 @@ public static class ResourceExtensions
                 LoadResw(Path.Combine(exeDir, "Strings", "es-MX", "Resources.resw"), "es-MX");
                 LoadResw(Path.Combine(exeDir, "Strings", "hi-IN", "Resources.resw"), "hi-IN");
 
-                Debug.WriteLine(
+                DebugLog.Info("ResourceExtensions",
                     $"[ResourceExt] Loaded {_resources.Count} language(s): {string.Join(", ", _resources.Keys)}");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[ResourceExt] Failed to load resw files: {ex.Message}");
+                DebugLog.Info("ResourceExtensions", $"[ResourceExt] Failed to load resw files: {ex.Message}");
             }
             finally
             {
@@ -82,7 +82,7 @@ public static class ResourceExtensions
     {
         if (!File.Exists(path))
         {
-            Debug.WriteLine($"[ResourceExt] Resw not found: {path}");
+            DebugLog.Info("ResourceExtensions", $"[ResourceExt] Resw not found: {path}");
             return;
         }
 
@@ -101,11 +101,11 @@ public static class ResourceExtensions
             }
 
             _resources[culture] = dict;
-            Debug.WriteLine($"[ResourceExt] Loaded '{culture}': {dict.Count} strings");
+            DebugLog.Info("ResourceExtensions", $"[ResourceExt] Loaded '{culture}': {dict.Count} strings");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ResourceExt] Error loading '{path}': {ex.Message}");
+            DebugLog.Info("ResourceExtensions", $"[ResourceExt] Error loading '{path}': {ex.Message}");
         }
     }
 
@@ -150,7 +150,7 @@ public static class ResourceExtensions
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ResourceExt] GetLocalized error: key='{resourceKey}', err='{ex.Message}'");
+            DebugLog.Info("ResourceExtensions", $"[ResourceExt] GetLocalized error: key='{resourceKey}', err='{ex.Message}'");
             return resourceKey;
         }
     }

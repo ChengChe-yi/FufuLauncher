@@ -111,7 +111,7 @@ public partial class PluginSettingsViewModel
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[插件配置] 读取关闭警告确认记录失败: {ex.Message}");
+            DebugLog.Info("PluginSettingsViewModel.DisableWarning", $"[PluginConfig] Failed to read disable-warning confirmations: {ex.Message}");
         }
 
         return result;

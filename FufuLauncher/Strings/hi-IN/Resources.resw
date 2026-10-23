@@ -8687,4 +8687,16 @@ Bilibili समर्थित; MiYouShe लॉगिन आवश्यक न�
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>छवि एंटी-एलियासिंग</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>मुख्य पृष्ठभूमि छवि के किनारों को चिकना करता है। डिफ़ॉल्ट रूप से बंद।</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>एंटी-एलियासिंग तीव्रता</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>अधिक मान किनारों को अधिक चिकना करते हैं।</value>
+  </data>
 </root>

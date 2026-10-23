@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using FufuLauncher.Services;
 using Microsoft.UI.Windowing;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher;
 
@@ -35,7 +36,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"内存清理异常: {ex.Message}");
+            DebugLog.Info("MainWindow.Memory", $"Memory cleanup exception: {ex.Message}");
         }
     }
 
@@ -71,7 +72,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"挂起媒体播放时发生异常: {ex.Message}");
+            DebugLog.Info("MainWindow.Memory", $"Exception while suspending media playback: {ex.Message}");
         }
 
         _slideshowTimer?.Stop();
@@ -82,7 +83,7 @@ public sealed partial class MainWindow
         _announcementCheckTimer.Stop();
         FlushMemory();
 
-        Debug.WriteLine("应用挂起");
+        DebugLog.Info("MainWindow.Memory", "App suspended");
     }
 
     private void RestoreFromSuspension()
@@ -110,7 +111,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"恢复媒体播放时发生异常: {ex.Message}");
+            DebugLog.Info("MainWindow.Memory", $"Exception while resuming media playback: {ex.Message}");
         }
 
         _slideshowTimer?.Start();
@@ -125,7 +126,7 @@ public sealed partial class MainWindow
             _announcementCheckTimer.Start();
         }
 
-        Debug.WriteLine("应用已唤醒");
+        DebugLog.Info("MainWindow.Memory", "App resumed");
     }
 
     #endregion

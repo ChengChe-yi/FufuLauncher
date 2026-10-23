@@ -8692,4 +8692,16 @@ Bilibili 서버 지원, 미호요 커뮤니티 로그인 불필요</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>이미지 안티 앨리어싱</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>기본 배경 이미지의 가장자리를 부드럽게 합니다. 기본값은 꺼짐입니다.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>안티 앨리어싱 강도</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>값이 높을수록 가장자리가 더 부드러워집니다.</value>
+  </data>
 </root>

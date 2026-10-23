@@ -51,7 +51,7 @@ public static class PluginPresetStorage
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginPresets] Preset read failed: {file}: {ex}");
+                DebugLog.Info("PluginPresetStorage", $"[PluginPresets] Preset read failed: {file}: {ex}");
             }
         }
 
@@ -75,7 +75,7 @@ public static class PluginPresetStorage
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginPresets] Active state read failed: {file}: {ex}");
+                DebugLog.Info("PluginPresetStorage", $"[PluginPresets] Active state read failed: {file}: {ex}");
             }
         }
 

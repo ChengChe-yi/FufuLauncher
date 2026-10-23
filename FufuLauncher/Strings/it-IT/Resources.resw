@@ -8702,4 +8702,16 @@ Dettagli: {0}</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>Antialiasing immagine</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>Rende più uniformi i bordi dell'immagine di sfondo principale. Disattivato per impostazione predefinita.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>Intensità antialiasing</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>Valori più alti rendono i bordi più uniformi.</value>
+  </data>
 </root>

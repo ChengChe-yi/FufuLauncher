@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services
 {
@@ -36,7 +37,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"内存清理异常: {ex.Message}");
+                DebugLog.Info("MemoryOptimizationService", $"Memory cleanup error: {ex.Message}");
             }
         }
     }

@@ -90,7 +90,7 @@ public sealed partial class PluginMirrorDownloadWindow : Window
             _config = _mirrorProvider.LoadConfig();
             if (_config.Mirrors.Count == 0)
             {
-                Debug.WriteLine("[PluginMirrorWindow] No mirrors available");
+                DebugLog.Info("PluginMirrorDownloadWindow", "[PluginMirrorWindow] No mirrors available");
                 CompleteWithAbort();
                 return;
             }
@@ -120,7 +120,7 @@ public sealed partial class PluginMirrorDownloadWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginMirrorWindow] Speed test error: {ex}");
+            DebugLog.Info("PluginMirrorDownloadWindow", $"[PluginMirrorWindow] Speed test error: {ex}");
             if (_completed) return;
             CompleteWithAbort();
         }
@@ -366,7 +366,7 @@ public sealed partial class PluginMirrorDownloadWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginMirrorWindow] Dialog failed to show: {ex.Message}");
+            DebugLog.Info("PluginMirrorDownloadWindow", $"[PluginMirrorWindow] Dialog failed to show: {ex.Message}");
             return ContentDialogResult.None;
         }
     }

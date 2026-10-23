@@ -151,7 +151,7 @@ namespace FufuLauncher.ViewModels
                 if (!string.IsNullOrEmpty(savedPath))
                 {
                     savedPath = savedPath.Trim('"').Trim();
-                    Debug.WriteLine($"[游戏信息页] 初始化读取路径: '{savedPath}'");
+                    DebugLog.Info("GameSettingsViewModel", $"[GameInfoPage] Init read path: '{savedPath}'");
                     _lastLoadedPath = savedPath;
                     await LoadGameInfoAsync(savedPath);
                 }
@@ -160,7 +160,7 @@ namespace FufuLauncher.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"初始化失败: {ex.Message}");
+                DebugLog.Info("GameSettingsViewModel", $"Initialization failed: {ex.Message}");
             }
         }
 
@@ -170,7 +170,7 @@ namespace FufuLauncher.ViewModels
             {
                 if (!_dispatcherQueue.HasThreadAccess)
                 {
-                    Debug.WriteLine("[错误] 不在UI线程上执行");
+                    DebugLog.Info("GameSettingsViewModel", "[Error] Not executing on UI thread");
                     return;
                 }
 
@@ -186,25 +186,25 @@ namespace FufuLauncher.ViewModels
 
                     if (!string.IsNullOrEmpty(folder))
                     {
-                        Debug.WriteLine($"[游戏信息页] 用户选择程序文件: '{path}', 提取目录路径: '{folder}'");
+                        DebugLog.Info("GameSettingsViewModel", $"[GameInfoPage] User selected program file: '{path}', extracted directory: '{folder}'");
 
                         await LoadGameInfoAsync(folder);
                         await _localSettingsService.SaveSettingAsync(GamePathKey, folder);
                         _lastLoadedPath = folder;
 
                         WeakReferenceMessenger.Default.Send(new GamePathChangedMessage(folder));
-                        Debug.WriteLine("[游戏信息页] 已发送路径变更消息");
+                        DebugLog.Info("GameSettingsViewModel", "[GameInfoPage] Path change message sent");
                     }
                 }
             }
             catch (UnauthorizedAccessException)
             {
                 await ShowError("Blank_PermissionOrOccupied_GamePath".GetLocalized());
-                Debug.WriteLine("[严重错误] 管理员模式权限问题");
+                DebugLog.Info("GameSettingsViewModel", "[Critical] Admin mode permission issue");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"选择路径失败: {ex.Message}\n堆栈: {ex.StackTrace}");
+                DebugLog.Info("GameSettingsViewModel", $"Path selection failed: {ex.Message}\nStack trace: {ex.StackTrace}");
                 await ShowError(string.Format("Blank_SelectPathFailed_Format".GetLocalized(), ex.Message));
             }
         }
@@ -227,7 +227,7 @@ namespace FufuLauncher.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"显示错误对话框失败: {ex.Message}");
+                DebugLog.Info("GameSettingsViewModel", $"Failed to show error dialog: {ex.Message}");
             }
         }
 
@@ -238,12 +238,12 @@ namespace FufuLauncher.ViewModels
             IsLoading = true;
             try
             {
-                Debug.WriteLine($"[游戏信息页] 加载游戏信息: {path}");
+                DebugLog.Info("GameSettingsViewModel", $"[GameInfoPage] Loading game info: {path}");
                 CurrentGameConfig = await _gameConfigService.LoadGameConfigAsync(path);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"加载失败: {ex.Message}");
+                DebugLog.Info("GameSettingsViewModel", $"Load failed: {ex.Message}");
                 CurrentGameConfig = null;
             }
             finally
@@ -261,7 +261,7 @@ namespace FufuLauncher.ViewModels
                 CanAccessRegistry = await TestRegistryAccessAsync();
                 if (!CanAccessRegistry)
                 {
-                    Debug.WriteLine("无法访问注册表");
+                    DebugLog.Info("GameSettingsViewModel", "Cannot access registry");
                     return;
                 }
 
@@ -277,7 +277,7 @@ namespace FufuLauncher.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"加载账号失败: {ex.Message}");
+                DebugLog.Info("GameSettingsViewModel", $"Failed to load accounts: {ex.Message}");
                 CanAccessRegistry = false;
             }
         }
@@ -291,14 +291,14 @@ namespace FufuLauncher.ViewModels
                 var current = await GetCurrentAccountFromRegistryAsync();
                 if (current == null)
                 {
-                    Debug.WriteLine("注册表中没有找到当前账号信息");
+                    DebugLog.Info("GameSettingsViewModel", "Current account info not found in registry");
                     return;
                 }
 
                 var accounts = await ReadAccountsFromFileAsync();
                 if (accounts.Any(a => a.Mid == current.Mid))
                 {
-                    Debug.WriteLine("该账号已存在");
+                    DebugLog.Info("GameSettingsViewModel", "Account already exists");
                     return;
                 }
 
@@ -314,11 +314,11 @@ namespace FufuLauncher.ViewModels
                 await WriteAccountsToFileAsync(accounts);
 
                 Accounts.Add(newAccount);
-                Debug.WriteLine($"已添加账号: {newAccount.Name}");
+                DebugLog.Info("GameSettingsViewModel", $"Account added: {newAccount.Name}");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"添加账号失败: {ex.Message}");
+                DebugLog.Info("GameSettingsViewModel", $"Failed to add account: {ex.Message}");
             }
             finally
             {
@@ -337,11 +337,11 @@ namespace FufuLauncher.ViewModels
                 SelectedAccount = account;
                 await LoadAccountsAsync();
 
-                Debug.WriteLine($"已切换到账号: {account.Name}");
+                DebugLog.Info("GameSettingsViewModel", $"Switched to account: {account.Name}");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"切换账号失败: {ex.Message}");
+                DebugLog.Info("GameSettingsViewModel", $"Failed to switch account: {ex.Message}");
             }
             finally
             {
@@ -360,11 +360,11 @@ namespace FufuLauncher.ViewModels
                 await WriteAccountsToFileAsync(accounts);
 
                 Accounts.Remove(account);
-                Debug.WriteLine($"已删除账号: {account.Name}");
+                DebugLog.Info("GameSettingsViewModel", $"Account deleted: {account.Name}");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"删除账号失败: {ex.Message}");
+                DebugLog.Info("GameSettingsViewModel", $"Failed to delete account: {ex.Message}");
             }
         }
 
@@ -447,8 +447,8 @@ namespace FufuLauncher.ViewModels
                 }
                 catch (JsonException ex)
                 {
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[BlankViewModel] 游戏账号文件解析失败: {ex.Message}");
+                    DebugLog.Info("GameSettingsViewModel",
+                        $"[BlankViewModel] Failed to parse game account file: {ex.Message}");
                     return new List<GameAccount>();
                 }
             });

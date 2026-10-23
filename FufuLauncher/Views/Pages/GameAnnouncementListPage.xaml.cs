@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -36,7 +37,7 @@ public sealed partial class GameAnnouncementListPage : Page
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GameAnnouncementListPage] 初始化公告失败: {ex.Message}");
+            DebugLog.Info("GameAnnouncementListPage", $"[GameAnnouncementListPage] Failed to initialize announcements: {ex.Message}");
         }
     }
 

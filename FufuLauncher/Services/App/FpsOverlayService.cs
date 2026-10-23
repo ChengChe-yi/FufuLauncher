@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using Microsoft.Diagnostics.Tracing.Session;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services
 {
@@ -185,7 +186,7 @@ namespace FufuLauncher.Services
         private void Log(string message)
         {
             string formattedMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}] {message}";
-            Debug.WriteLine(formattedMessage);
+            DebugLog.Info("FpsOverlayService", formattedMessage);
             try
             {
                 File.AppendAllText(_logFilePath, formattedMessage + Environment.NewLine);

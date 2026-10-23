@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -33,7 +33,7 @@ public sealed partial class AchievementWindow
                         _ = HandleIncomingFile(context).ContinueWith(t =>
                         {
                             if (t.IsFaulted)
-                                Debug.WriteLine($"处理请求异常: {t.Exception?.InnerException?.Message}");
+                                DebugLog.Info("AchievementWindow.Import", $"Failed to handle request: {t.Exception?.InnerException?.Message}");
                         }, TaskContinuationOptions.OnlyOnFaulted);
                     }
                     catch
@@ -45,7 +45,7 @@ public sealed partial class AchievementWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine("端口开启失败: " + ex.Message);
+            DebugLog.Info("AchievementWindow.Import", "Failed to start port listener: " + ex.Message);
         }
     }
 
@@ -90,7 +90,7 @@ public sealed partial class AchievementWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine(ex);
+            DebugLog.Info("AchievementWindow.Import", ex);
             context.Response.StatusCode = 500;
         }
         finally

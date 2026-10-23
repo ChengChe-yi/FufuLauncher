@@ -20,7 +20,7 @@ public partial class LuaPluginInstaller
     {
         table["show_notification"] = (Action<string, string, string, int>)((title, message, typeStr, duration) =>
         {
-            LogMessage($"通知: [{typeStr}] {title} - {message}");
+            LogMessage($"Notification: [{typeStr}] {title} - {message}");
 
             var type = typeStr?.ToLowerInvariant() switch
             {
@@ -39,14 +39,14 @@ public partial class LuaPluginInstaller
             (Func<string, string, string, string, string, string>)((title, content, primaryText, secondaryText,
                 closeText) =>
             {
-                LogMessage($"弹窗: {title}");
+                LogMessage($"Dialog: {title}");
 
                 var dispatcher = UIDispatcher;
                 var xamlRoot = MainXamlRoot;
 
                 if (dispatcher == null)
                 {
-                    LogMessage("弹窗失败: UI 调度器未初始化");
+                    LogMessage("Dialog failed: UI dispatcher not initialized");
                     return "none";
                 }
 
@@ -78,7 +78,7 @@ public partial class LuaPluginInstaller
                     }
                     catch (Exception ex)
                     {
-                        Debug.WriteLine($"[LuaInstaller] Dialog error: {ex.Message}");
+                        DebugLog.Info("LuaPluginInstaller.Api.Ui", $"[LuaInstaller] Dialog error: {ex.Message}");
                         tcs.TrySetResult("error");
                     }
                 });
@@ -89,7 +89,7 @@ public partial class LuaPluginInstaller
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[LuaInstaller] Dialog wait error: {ex.Message}");
+                    DebugLog.Info("LuaPluginInstaller.Api.Ui", $"[LuaInstaller] Dialog wait error: {ex.Message}");
                     return "error";
                 }
             });

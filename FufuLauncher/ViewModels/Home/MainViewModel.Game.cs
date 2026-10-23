@@ -369,7 +369,7 @@ public partial class MainViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"关闭 BetterGI 时发生错误: {ex.Message}");
+                DebugLog.Info("MainViewModel.Game", $"Error while closing BetterGI: {ex.Message}");
             }
 
             await Task.Delay(1000);
@@ -403,7 +403,7 @@ public partial class MainViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"进程监控错误: {ex.Message}");
+                DebugLog.Info("MainViewModel.Game", $"Process monitor error: {ex.Message}");
             }
 
             int checkDelay = IsGameRunning ? 1000 : 1000;

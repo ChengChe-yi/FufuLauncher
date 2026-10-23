@@ -9,6 +9,7 @@ using System.Text.Json;
 using FufuLauncher.Constants;
 using FufuLauncher.Constants.MiHoYo;
 using FufuLauncher.Models.MiHoYo.Passport;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.MiHoYo.Passport;
 
@@ -44,8 +45,8 @@ public sealed class OverseaPassportClient
             await PassportHttpUtil.DeserializeAsync<LoginResult>(response, token).ConfigureAwait(false);
         string? rpcAigis = PassportHttpUtil.GetSingleHeader(response, AigisHeader);
         string? rpcVerify = PassportHttpUtil.GetSingleHeader(response, VerifyHeader);
-        Debug.WriteLine(
-            $"[OverseaPassport] LoginByPassword: HTTP={(int)response.StatusCode}, retcode={body.RetCode}, aigis={(rpcAigis is null ? "无" : Truncate(rpcAigis, 300))}, risk={(rpcVerify is null ? "无" : Truncate(rpcVerify, 300))}");
+        DebugLog.Info("OverseaPassportClient",
+            $"[OverseaPassport] LoginByPassword: HTTP={(int)response.StatusCode}, retcode={body.RetCode}, aigis={(rpcAigis is null ? "none" : Truncate(rpcAigis, 300))}, risk={(rpcVerify is null ? "none" : Truncate(rpcVerify, 300))}");
         return (rpcAigis, rpcVerify, body);
     }
 
@@ -61,8 +62,8 @@ public sealed class OverseaPassportClient
         PassportResponse<LoginResult> body =
             await PassportHttpUtil.DeserializeAsync<LoginResult>(response, token).ConfigureAwait(false);
         string? rpcVerify = PassportHttpUtil.GetSingleHeader(response, VerifyHeader);
-        Debug.WriteLine(
-            $"[OverseaPassport] LoginByThirdParty({thirdPartyToken.ThirdPartyType}): HTTP={(int)response.StatusCode}, retcode={body.RetCode}, risk={(rpcVerify is null ? "无" : Truncate(rpcVerify, 300))}");
+        DebugLog.Info("OverseaPassportClient",
+            $"[OverseaPassport] LoginByThirdParty({thirdPartyToken.ThirdPartyType}): HTTP={(int)response.StatusCode}, retcode={body.RetCode}, risk={(rpcVerify is null ? "none" : Truncate(rpcVerify, 300))}");
         return (rpcVerify, body);
     }
 
@@ -84,8 +85,8 @@ public sealed class OverseaPassportClient
         using HttpResponseMessage response = await _httpClient.SendAsync(request, token).ConfigureAwait(false);
         PassportResponse body = await PassportHttpUtil.DeserializeAsync(response, token).ConfigureAwait(false);
         string? rpcAigis = PassportHttpUtil.GetSingleHeader(response, AigisHeader);
-        Debug.WriteLine(
-            $"[OverseaPassport] CreateEmailCaptchaByActionTicket: HTTP={(int)response.StatusCode}, retcode={body.RetCode}, aigis={(rpcAigis is null ? "无" : Truncate(rpcAigis, 300))}");
+        DebugLog.Info("OverseaPassportClient",
+            $"[OverseaPassport] CreateEmailCaptchaByActionTicket: HTTP={(int)response.StatusCode}, retcode={body.RetCode}, aigis={(rpcAigis is null ? "none" : Truncate(rpcAigis, 300))}");
         return (rpcAigis, body);
     }
 

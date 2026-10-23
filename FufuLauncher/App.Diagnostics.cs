@@ -40,7 +40,7 @@ public partial class App
             || baseEx is ObjectDisposedException
             || baseEx is OperationCanceledException)
         {
-            Debug.WriteLine($"[UnobservedTask] 已忽略的后台异常: {baseEx.GetType().Name}: {baseEx.Message}");
+            DebugLog.Info("App.Diagnostics", $"[UnobservedTask] Ignored background exception: {baseEx.GetType().Name}: {baseEx.Message}");
             return;
         }
 
@@ -56,7 +56,7 @@ public partial class App
         if (e.Exception is InvalidCastException ||
             (e.Exception is COMException comEx && comEx.HResult == unchecked((int)0x80000019)))
         {
-            Debug.WriteLine($"已抑制非致命异常: {e.Exception.Message}");
+            DebugLog.Info("App.Diagnostics", $"Suppressed non-fatal exception: {e.Exception.Message}");
             return;
         }
 

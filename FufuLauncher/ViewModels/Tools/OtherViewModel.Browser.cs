@@ -31,12 +31,12 @@ public partial class OtherViewModel
                 });
             }
 
-            Debug.WriteLine("[OtherViewModel] 浏览器窗口已创建");
+            DebugLog.Info("OtherViewModel.Browser", "[OtherViewModel] Browser window created");
         }
         catch (Exception ex)
         {
             StatusMessage = string.Format("Other_OpenBrowserFailed_Format".GetLocalized(), ex.Message);
-            Debug.WriteLine($"[OtherViewModel] 打开浏览器失败: {ex.Message}");
+            DebugLog.Info("OtherViewModel.Browser", $"[OtherViewModel] Failed to open browser: {ex.Message}");
         }
     }
 

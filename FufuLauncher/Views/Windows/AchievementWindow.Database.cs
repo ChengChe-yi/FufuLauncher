@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -55,7 +55,7 @@ public sealed partial class AchievementWindow
         }
         catch (IOException ex)
         {
-            Debug.WriteLine($"[AchievementWindow] 读取成就文件失败 ({jsonPath}): {ex.Message}");
+            DebugLog.Info("AchievementWindow.Database", $"[AchievementWindow] Failed to read achievements file ({jsonPath}): {ex.Message}");
             return;
         }
 
@@ -66,7 +66,7 @@ public sealed partial class AchievementWindow
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[AchievementWindow] 成就 JSON 解析失败 ({jsonPath}): {ex.Message}");
+            DebugLog.Info("AchievementWindow.Database", $"[AchievementWindow] Failed to parse achievements JSON ({jsonPath}): {ex.Message}");
             return;
         }
 

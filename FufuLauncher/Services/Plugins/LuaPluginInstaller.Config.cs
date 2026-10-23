@@ -25,7 +25,7 @@ public partial class LuaPluginInstaller
 
             var content = $"[General]\nName = {Path.GetFileName(pluginDir)}\nFile = {resolvedDll}\n";
             File.WriteAllText(configPath, content, Encoding.UTF8);
-            LogMessage($"已创建 config.ini 并写入 File = {resolvedDll}");
+            LogMessage($"Created config.ini with File = {resolvedDll}");
             return;
         }
 
@@ -93,7 +93,7 @@ public partial class LuaPluginInstaller
         }
 
         File.WriteAllLines(configPath, lineList, Encoding.UTF8);
-        LogMessage($"已补全 config.ini File = {dllName}");
+        LogMessage($"Filled in config.ini File = {dllName}");
     }
 
     private static string? ResolveDllFileName(string pluginDir, string? dllFileName)

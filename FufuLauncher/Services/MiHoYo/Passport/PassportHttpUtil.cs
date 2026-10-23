@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using System.Text.Json;
 using FufuLauncher.Models.MiHoYo.Passport;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.MiHoYo.Passport;
 
@@ -29,7 +30,7 @@ internal static class PassportHttpUtil
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[Passport] 响应解析失败: {ex.Message}");
+            DebugLog.Info("PassportHttpUtil", $"[Passport] Failed to parse response: {ex.Message}");
             return CreateFailure<TData>($"响应解析失败: {ex.Message}");
         }
     }
@@ -43,7 +44,7 @@ internal static class PassportHttpUtil
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[Passport] 响应解析失败: {ex.Message}");
+            DebugLog.Info("PassportHttpUtil", $"[Passport] Failed to parse response: {ex.Message}");
             return CreateFailure($"响应解析失败: {ex.Message}");
         }
     }

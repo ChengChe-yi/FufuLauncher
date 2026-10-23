@@ -64,7 +64,7 @@ public class TokenRefreshService : IDisposable
 
             if (string.IsNullOrEmpty(stoken) || string.IsNullOrEmpty(mid))
             {
-                Debug.WriteLine("传入的Cookie中缺少stoken或mid，无法刷新");
+                DebugLog.Info("TokenRefreshService", "Provided cookies are missing stoken or mid, cannot refresh");
                 if (isManual) SendErrorNotification("Token_MissingStokenOrMid".GetLocalized());
                 return null;
             }
@@ -77,12 +77,12 @@ public class TokenRefreshService : IDisposable
                 bool? isValid = await CheckCookieValidAsync(cookieStr);
                 if (isValid != false)
                 {
-                    Debug.WriteLine(isValid == true ? "当前 Cookie 仍然有效，无需刷新" : "无法确认 Cookie 是否失效，保留当前凭证");
+                    DebugLog.Info("TokenRefreshService", isValid == true ? "Cookie still valid, no refresh needed" : "Cannot confirm cookie validity, keeping current credentials");
                     return null;
                 }
             }
 
-            Debug.WriteLine(isManual ? "用户手动触发Cookie刷新..." : "当前Cookie已失效，开始执行Cookie刷新...");
+            DebugLog.Info("TokenRefreshService", isManual ? "Manual cookie refresh triggered..." : "Cookie expired, starting refresh...");
 
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
                 "Token_RefreshTitle".GetLocalized(),
@@ -154,7 +154,7 @@ public class TokenRefreshService : IDisposable
                     refreshedCookies.Remove("ltuid");
                 }
 
-                Debug.WriteLine("Cookie刷新成功");
+                DebugLog.Info("TokenRefreshService", "Cookie refresh succeeded");
                 WeakReferenceMessenger.Default.Send(new NotificationMessage(
                     "Token_RefreshTitle".GetLocalized(),
                     isManual ? "Token_ManualRefreshDone".GetLocalized() : "Token_AutoRefreshDone".GetLocalized(),
@@ -169,7 +169,7 @@ public class TokenRefreshService : IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Cookie刷新异常: {ex.Message}");
+            DebugLog.Info("TokenRefreshService", $"Cookie refresh error: {ex.Message}");
             WeakReferenceMessenger.Default.Send(new NotificationMessage(
                 "Token_RefreshFailed".GetLocalized(),
                 string.Format("Token_RefreshException".GetLocalized(), ex.Message),
@@ -216,7 +216,7 @@ public class TokenRefreshService : IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"验证 Cookie 状态时发生异常: {ex.Message}");
+            DebugLog.Info("TokenRefreshService", $"Error while validating cookie status: {ex.Message}");
         }
 
         return null;

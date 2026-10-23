@@ -13,6 +13,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using FufuLauncher.Services;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -85,7 +86,7 @@ public sealed partial class BBSWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BBSWindow] 保存截图失败: {ex.Message}");
+            DebugLog.Info("BBSWindow.Screenshot", $"[BBSWindow] Failed to save screenshot: {ex.Message}");
         }
     }
 

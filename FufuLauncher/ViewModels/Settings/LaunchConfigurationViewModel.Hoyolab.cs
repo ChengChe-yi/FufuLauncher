@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -101,7 +101,7 @@ public partial class LaunchConfigurationViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[SettingsVM] 验证时异常: {ex.Message}");
+            DebugLog.Info("LaunchConfigurationViewModel.Hoyolab", $"[SettingsVM] Exception during validation: {ex.Message}");
             _dispatcherQueue.TryEnqueue(() =>
             {
                 IsUsingHoyolabAccount = false;

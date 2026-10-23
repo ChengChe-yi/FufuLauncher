@@ -22,7 +22,7 @@ public partial class LuaPluginInstaller
 
             if (!File.Exists(safeSource))
             {
-                LogMessage($"移动失败: 源文件不存在: {safeSource}");
+                LogMessage($"Move failed: source file not found: {safeSource}");
                 return;
             }
 
@@ -40,13 +40,13 @@ public partial class LuaPluginInstaller
                     Directory.CreateDirectory(parentDir);
             }
 
-            LogMessage($"移动文件: {safeSource} -> {finalDest}");
+            LogMessage($"Moving file: {safeSource} -> {finalDest}");
 
             if (File.Exists(finalDest))
                 File.Delete(finalDest);
 
             File.Move(safeSource, finalDest);
-            LogMessage("文件移动完成");
+            LogMessage("File move complete");
         });
 
         table["move_files"] = (Action<DynValue, string>)((sources, destDir) =>
@@ -59,7 +59,7 @@ public partial class LuaPluginInstaller
             if (!Directory.Exists(safeDestDir))
                 Directory.CreateDirectory(safeDestDir);
 
-            LogMessage($"批量移动 {sourceList.Count} 个文件到: {safeDestDir}");
+            LogMessage($"Batch moving {sourceList.Count} files to: {safeDestDir}");
 
             foreach (var src in sourceList)
             {
@@ -67,7 +67,7 @@ public partial class LuaPluginInstaller
 
                 if (!File.Exists(safeSrc))
                 {
-                    LogMessage($"  跳过不存在的文件: {safeSrc}");
+                    LogMessage($"  skipping missing file: {safeSrc}");
                     continue;
                 }
 
@@ -78,10 +78,10 @@ public partial class LuaPluginInstaller
                     File.Delete(destPath);
 
                 File.Move(safeSrc, destPath);
-                LogMessage($"  移动: {Path.GetFileName(safeSrc)}");
+                LogMessage($"  moved: {Path.GetFileName(safeSrc)}");
             }
 
-            LogMessage("批量移动完成");
+            LogMessage("Batch move complete");
         });
 
         table["copy_file"] = (Action<string, string>)((source, dest) =>
@@ -93,7 +93,7 @@ public partial class LuaPluginInstaller
 
             if (!File.Exists(safeSource))
             {
-                LogMessage($"复制失败: 源文件不存在: {safeSource}");
+                LogMessage($"Copy failed: source file not found: {safeSource}");
                 return;
             }
 
@@ -111,9 +111,9 @@ public partial class LuaPluginInstaller
                     Directory.CreateDirectory(parentDir);
             }
 
-            LogMessage($"复制文件: {safeSource} -> {finalDest}");
+            LogMessage($"Copying file: {safeSource} -> {finalDest}");
             File.Copy(safeSource, finalDest, true);
-            LogMessage("文件复制完成");
+            LogMessage("File copy complete");
         });
 
         table["copy_files"] = (Action<DynValue, string>)((sources, destDir) =>
@@ -126,7 +126,7 @@ public partial class LuaPluginInstaller
             if (!Directory.Exists(safeDestDir))
                 Directory.CreateDirectory(safeDestDir);
 
-            LogMessage($"批量复制 {sourceList.Count} 个文件到: {safeDestDir}");
+            LogMessage($"Batch copying {sourceList.Count} files to: {safeDestDir}");
 
             foreach (var src in sourceList)
             {
@@ -134,7 +134,7 @@ public partial class LuaPluginInstaller
 
                 if (!File.Exists(safeSrc))
                 {
-                    LogMessage($"  跳过不存在的文件: {safeSrc}");
+                    LogMessage($"  skipping missing file: {safeSrc}");
                     continue;
                 }
 
@@ -142,10 +142,10 @@ public partial class LuaPluginInstaller
                 destPath = SanitizePath(destPath, "copy_files dest");
 
                 File.Copy(safeSrc, destPath, true);
-                LogMessage($"  复制: {Path.GetFileName(safeSrc)}");
+                LogMessage($"  copied: {Path.GetFileName(safeSrc)}");
             }
 
-            LogMessage("批量复制完成");
+            LogMessage("Batch copy complete");
         });
 
         table["rename"] = (Action<string, string>)((oldPath, newName) =>
@@ -169,28 +169,28 @@ public partial class LuaPluginInstaller
 
             if (!isDirectory && !isFile)
             {
-                LogMessage($"重命名失败: 路径不存在: {safeOldPath}");
+                LogMessage($"Rename failed: path not found: {safeOldPath}");
                 return;
             }
 
             if (isDirectory)
             {
-                LogMessage($"重命名目录: {safeOldPath} -> {newPath}");
+                LogMessage($"Renaming directory: {safeOldPath} -> {newPath}");
                 if (Directory.Exists(newPath))
                 {
-                    LogMessage($"  目标目录已存在，尝试合并或覆盖...");
+                    LogMessage($"  target directory already exists, merging or overwriting...");
                 }
 
                 Directory.Move(safeOldPath, newPath);
-                LogMessage("目录重命名完成");
+                LogMessage("Directory rename complete");
             }
             else
             {
-                LogMessage($"重命名文件: {safeOldPath} -> {newPath}");
+                LogMessage($"Renaming file: {safeOldPath} -> {newPath}");
                 if (File.Exists(newPath))
                     File.Delete(newPath);
                 File.Move(safeOldPath, newPath);
-                LogMessage("文件重命名完成");
+                LogMessage("File rename complete");
             }
         });
     }

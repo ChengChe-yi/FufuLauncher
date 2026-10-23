@@ -85,7 +85,7 @@ public sealed partial class PluginSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginSettings] Loading indicator transition failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.Chrome", $"[PluginSettings] Loading indicator transition failed: {ex}");
         }
         finally
         {
@@ -134,7 +134,7 @@ public sealed partial class PluginSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginSettings] Header transition failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.Chrome", $"[PluginSettings] Header transition failed: {ex}");
         }
         finally
         {
@@ -170,7 +170,7 @@ public sealed partial class PluginSettingsPage
         catch (Exception ex)
         {
             _settingsHeaderPreference = null;
-            Debug.WriteLine($"[PluginSettings] Header preference load failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.Chrome", $"[PluginSettings] Header preference load failed: {ex}");
         }
     }
 
@@ -189,7 +189,7 @@ public sealed partial class PluginSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginSettings] Header preference save failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.Chrome", $"[PluginSettings] Header preference save failed: {ex}");
         }
     }
 
@@ -302,7 +302,7 @@ public sealed partial class PluginSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginSettings] Chrome animation reset failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.Chrome", $"[PluginSettings] Chrome animation reset failed: {ex}");
         }
     }
 }

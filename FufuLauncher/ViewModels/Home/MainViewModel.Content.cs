@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Models;
 using FufuLauncher.Services;
 using Microsoft.UI.Dispatching;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -113,7 +114,7 @@ public partial class MainViewModel
                             }
                             catch (Exception ex)
                             {
-                                Debug.WriteLine($"设置 Banner 选中项失败: {ex.Message}");
+                                DebugLog.Info("MainViewModel.Content", $"Failed to set Banner selection: {ex.Message}");
                             }
                         });
                     }
@@ -126,7 +127,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"内容加载失败: {ex.Message}");
+            DebugLog.Info("MainViewModel.Content", $"Content load failed: {ex.Message}");
             IsNewsLoaded = true;
         }
     }
@@ -151,7 +152,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"轮播图切换错误: {ex.Message}");
+            DebugLog.Info("MainViewModel.Content", $"Carousel switch error: {ex.Message}");
         }
     }
 

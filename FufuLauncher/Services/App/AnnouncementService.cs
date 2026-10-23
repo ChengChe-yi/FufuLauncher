@@ -41,7 +41,7 @@ public class AnnouncementService : IAnnouncementService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AnnouncementService] 获取当前公告URL异常: {ex.Message}");
+            DebugLog.Info("AnnouncementService", $"[AnnouncementService] Failed to get current announcement URL: {ex.Message}");
             return null;
         }
     }
@@ -93,7 +93,7 @@ public class AnnouncementService : IAnnouncementService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AnnouncementService] 检查公告更新逻辑异常: {ex.Message}");
+            DebugLog.Info("AnnouncementService", $"[AnnouncementService] Error in announcement update check: {ex.Message}");
             return null;
         }
         finally
@@ -119,7 +119,7 @@ public class AnnouncementService : IAnnouncementService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AnnouncementService] 游戏运行状态检查异常: {ex.Message}");
+            DebugLog.Info("AnnouncementService", $"[AnnouncementService] Error checking game running state: {ex.Message}");
             return false;
         }
     }

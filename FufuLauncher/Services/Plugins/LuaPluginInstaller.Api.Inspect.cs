@@ -19,7 +19,7 @@ public partial class LuaPluginInstaller
             cancellationToken.ThrowIfCancellationRequested();
 
             var safePath = SanitizePath(path, "get_file_info");
-            LogMessage($"查询文件信息: {safePath}");
+            LogMessage($"Get file info: {safePath}");
 
             var infoTable = new Table(script);
 
@@ -72,7 +72,7 @@ public partial class LuaPluginInstaller
             var safePath1 = SanitizePath(path1, "compare_files path1");
             var safePath2 = SanitizePath(path2, "compare_files path2");
 
-            LogMessage($"比较文件: {safePath1} <-> {safePath2}");
+            LogMessage($"Compare files: {safePath1} <-> {safePath2}");
 
             var result = new Table(script);
 
@@ -119,7 +119,7 @@ public partial class LuaPluginInstaller
             result["same_hash"] = DynValue.NewBoolean(sameHash);
             result["same"] = DynValue.NewBoolean(sameSize && sameHash);
 
-            LogMessage($"比较结果: same_size={sameSize}, same_hash={sameHash}");
+            LogMessage($"Compare result: same_size={sameSize}, same_hash={sameHash}");
             return DynValue.NewTable(result);
         });
 
@@ -133,11 +133,11 @@ public partial class LuaPluginInstaller
             var safePath = SanitizePath(path, "get_file_hash");
             var algo = string.IsNullOrWhiteSpace(algorithm) ? "sha256" : algorithm.ToLowerInvariant().Trim();
 
-            LogMessage($"计算文件哈希 [{algo}]: {safePath}");
+            LogMessage($"Compute file hash [{algo}]: {safePath}");
 
             if (!File.Exists(safePath))
             {
-                LogMessage($"文件不存在: {safePath}");
+                LogMessage($"File not found: {safePath}");
                 return "";
             }
 
@@ -159,7 +159,7 @@ public partial class LuaPluginInstaller
             }
 
             var hash = PluginVerifier.BytesToHex(hashBytes);
-            LogMessage($"哈希值: {hash}");
+            LogMessage($"Hash: {hash}");
             return hash;
         });
 
@@ -168,13 +168,13 @@ public partial class LuaPluginInstaller
             cancellationToken.ThrowIfCancellationRequested();
 
             var safeDir = SanitizePath(dir, "list_files");
-            LogMessage($"列出文件: {safeDir}" + (string.IsNullOrEmpty(pattern) ? "" : $" (模式: {pattern})"));
+            LogMessage($"List files: {safeDir}" + (string.IsNullOrEmpty(pattern) ? "" : $" (pattern: {pattern})"));
 
             var fileList = new Table(script);
 
             if (!Directory.Exists(safeDir))
             {
-                LogMessage($"目录不存在: {safeDir}");
+                LogMessage($"Directory not found: {safeDir}");
                 return DynValue.NewTable(fileList);
             }
 
@@ -192,7 +192,7 @@ public partial class LuaPluginInstaller
                 index++;
             }
 
-            LogMessage($"找到 {index - 1} 个文件");
+            LogMessage($"Found {index - 1} files");
             return DynValue.NewTable(fileList);
         });
 
@@ -202,7 +202,7 @@ public partial class LuaPluginInstaller
 
             var safePath = SanitizePath(path, "file_exists");
             var exists = File.Exists(safePath);
-            LogMessage($"文件存在检查: {safePath} = {exists}");
+            LogMessage($"Check file exists: {safePath} = {exists}");
             return exists;
         });
 
@@ -212,7 +212,7 @@ public partial class LuaPluginInstaller
 
             var safePath = SanitizePath(path, "dir_exists");
             var exists = Directory.Exists(safePath);
-            LogMessage($"目录存在检查: {safePath} = {exists}");
+            LogMessage($"Check directory exists: {safePath} = {exists}");
             return exists;
         });
     }

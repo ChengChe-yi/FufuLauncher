@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using FufuLauncher.Models;
 using Windows.Gaming.Input;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -34,7 +35,7 @@ public sealed class GamepadConnectionWatcher : IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GamepadChoices] XInput enumeration unavailable: {ex.Message}");
+            DebugLog.Info("GamepadConnectionWatcher", $"[GamepadChoices] XInput enumeration unavailable: {ex.Message}");
         }
 
         try
@@ -48,13 +49,13 @@ public sealed class GamepadConnectionWatcher : IDisposable
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[GamepadChoices] Device disappeared: {ex.Message}");
+                    DebugLog.Info("GamepadConnectionWatcher", $"[GamepadChoices] Device disappeared: {ex.Message}");
                 }
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GamepadChoices] HID enumeration unavailable: {ex.Message}");
+            DebugLog.Info("GamepadConnectionWatcher", $"[GamepadChoices] HID enumeration unavailable: {ex.Message}");
         }
 
         return families;

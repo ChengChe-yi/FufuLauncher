@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -142,7 +142,7 @@ public partial class GachaAnalysisViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] 导出失败: {ex}");
+            DebugLog.Info("GachaAnalysisViewModel.Uigf", $"[Gacha] Export failed: {ex}");
             CrawlerStatus = string.Format("Gacha_ExportFailed_Format".GetLocalized(), ex.Message);
             OnErrorAction?.Invoke(CrawlerStatus);
         }
@@ -321,7 +321,7 @@ public partial class GachaAnalysisViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] 导入失败: {ex}");
+            DebugLog.Info("GachaAnalysisViewModel.Uigf", $"[Gacha] Import failed: {ex}");
             CrawlerStatus = string.Format("Gacha_ImportFailed_Format".GetLocalized(), ex.GetType().Name, ex.Message);
             IsFetching = false;
             OnErrorAction?.Invoke(CrawlerStatus);

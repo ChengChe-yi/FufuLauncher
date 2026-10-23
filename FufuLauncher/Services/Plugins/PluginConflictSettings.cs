@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.Data.Sqlite;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services;
 
@@ -38,7 +39,7 @@ public static class PluginConflictSettings
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConflictSettings] 读取插件冲突检测设置失败: {ex.Message}");
+            DebugLog.Info("PluginConflictSettings", $"[PluginConflictSettings] Failed to read plugin conflict detection settings: {ex.Message}");
         }
 
         return new PluginConflictCheckOptions(checkEnabled, mainDllOnly);
@@ -63,7 +64,7 @@ public static class PluginConflictSettings
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConflictSettings] 读取设置 {key} 失败: {ex.Message}");
+            DebugLog.Info("PluginConflictSettings", $"[PluginConflictSettings] Failed to read setting {key}: {ex.Message}");
             return defaultValue;
         }
     }
@@ -89,7 +90,7 @@ public static class PluginConflictSettings
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConflictSettings] 读取自定义数据目录失败: {ex.Message}");
+            DebugLog.Info("PluginConflictSettings", $"[PluginConflictSettings] Failed to read custom data directory: {ex.Message}");
         }
 
         return Path.Combine(dataDir, "LocalSettings.db");

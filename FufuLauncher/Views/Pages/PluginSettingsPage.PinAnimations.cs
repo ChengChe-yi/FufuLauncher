@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Hosting;
 using Microsoft.UI.Xaml.Media;
 using Windows.Foundation;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -125,7 +126,7 @@ public sealed partial class PluginSettingsPage
                 commit();
             }
 
-            Debug.WriteLine($"[PluginSettings] Setting pin animation failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.PinAnimations", $"[PluginSettings] Setting pin animation failed: {ex}");
         }
         finally
         {
@@ -147,7 +148,7 @@ public sealed partial class PluginSettingsPage
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginSettings] Setting pin animation cleanup failed: {ex}");
+                DebugLog.Info("PluginSettingsPage.PinAnimations", $"[PluginSettings] Setting pin animation cleanup failed: {ex}");
             }
             finally
             {
@@ -178,7 +179,7 @@ public sealed partial class PluginSettingsPage
         catch (Exception ex)
         {
             _settingEntranceAnimationsEnabled = false;
-            Debug.WriteLine($"[PluginSettings] Setting pin container preparation failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.PinAnimations", $"[PluginSettings] Setting pin container preparation failed: {ex}");
         }
     }
 
@@ -272,7 +273,7 @@ public sealed partial class PluginSettingsPage
             }
             catch (TimeoutException)
             {
-                Debug.WriteLine("[PluginSettings] Settings animation completion timed out.");
+                DebugLog.Info("PluginSettingsPage.PinAnimations", "[PluginSettings] Settings animation completion timed out.");
             }
         }
         finally

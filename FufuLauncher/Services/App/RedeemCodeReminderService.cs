@@ -55,7 +55,7 @@ namespace FufuLauncher.Helpers
                 if (string.IsNullOrEmpty(lastFingerprint))
                 {
                     await _localSettingsService.SaveSettingAsync(FingerprintSettingKey, currentFingerprint);
-                    Debug.WriteLine("[RedeemCodes] 首次注册兑换码指纹，跳过通知");
+                    DebugLog.Info("RedeemCodeReminderService", "[RedeemCodes] Registered redeem code fingerprint for the first time, skipping notification");
                     return;
                 }
 
@@ -64,7 +64,7 @@ namespace FufuLauncher.Helpers
                 {
                     await NotifyNewCodesAsync(codesList, showNotificationAction);
                     await _localSettingsService.SaveSettingAsync(FingerprintSettingKey, currentFingerprint);
-                    Debug.WriteLine("[RedeemCodes] 兑换码有变更，已推送通知");
+                    DebugLog.Info("RedeemCodeReminderService", "[RedeemCodes] Redeem codes changed, notification pushed");
                     return;
                 }
 
@@ -73,7 +73,7 @@ namespace FufuLauncher.Helpers
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[RedeemCodes] 兑换码检查失败: {ex.Message}");
+                DebugLog.Info("RedeemCodeReminderService", $"[RedeemCodes] Redeem code check failed: {ex.Message}");
             }
         }
 

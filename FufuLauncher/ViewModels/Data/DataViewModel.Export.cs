@@ -44,7 +44,7 @@ public sealed partial class DataViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DataViewModel] PDF 导出失败: {ex}");
+            DebugLog.Info("DataViewModel.Export", $"[DataViewModel] PDF export failed: {ex}");
             StatusMessage = LF("DataPage_ExportFailed", ex.Message);
             _notificationService.Show(
                 L("DataPage_ExportFailedTitle"),

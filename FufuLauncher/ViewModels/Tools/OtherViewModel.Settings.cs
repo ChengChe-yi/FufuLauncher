@@ -18,7 +18,7 @@ public partial class OtherViewModel
     {
         try
         {
-            Debug.WriteLine("[OtherViewModel] 开始加载配置...");
+            DebugLog.Info("OtherViewModel.Settings", "[OtherViewModel] Loading config...");
 
             var enabled = _localSettingsService.ReadSettingAsync("AdditionalProgramEnabled").Result;
             var path = _localSettingsService.ReadSettingAsync("AdditionalProgramPath").Result;
@@ -31,8 +31,8 @@ public partial class OtherViewModel
             var stopKey = _localSettingsService.ReadSettingAsync("AutoClickerStopKey").Result;
             var mode = _localSettingsService.ReadSettingAsync("AutoClickerMode").Result;
 
-            Debug.WriteLine(
-                $"[OtherViewModel] 原始配置 - Enabled: {autoClickerEnabled}, TriggerKey: {triggerKey}, ClickKey: {clickKey}, StopKey: {stopKey}, Mode: {mode}");
+            DebugLog.Info("OtherViewModel.Settings",
+                $"[OtherViewModel] Raw config - Enabled: {autoClickerEnabled}, TriggerKey: {triggerKey}, ClickKey: {clickKey}, StopKey: {stopKey}, Mode: {mode}");
 
             _isInitializing = true;
             TriggerKey = triggerKey?.ToString()?.Trim('"') ?? "F";
@@ -52,13 +52,13 @@ public partial class OtherViewModel
             if (Enum.TryParse<VirtualKey>(TriggerKey, out var tk))
             {
                 _autoClickerService.TriggerKey = tk;
-                Debug.WriteLine($"[OtherViewModel] 触发键解析成功: {tk}");
+                DebugLog.Info("OtherViewModel.Settings", $"[OtherViewModel] Trigger key parsed: {tk}");
             }
 
             if (Enum.TryParse<VirtualKey>(ClickKey, out var ck))
             {
                 _autoClickerService.ClickKey = ck;
-                Debug.WriteLine($"[OtherViewModel] 连点键解析成功: {ck}");
+                DebugLog.Info("OtherViewModel.Settings", $"[OtherViewModel] Click key parsed: {ck}");
             }
 
             if (!string.IsNullOrWhiteSpace(StopKey) && Enum.TryParse<VirtualKey>(StopKey, out var sk))
@@ -87,13 +87,13 @@ public partial class OtherViewModel
                 _autoClickerService.IsEnabled = IsAutoClickerEnabled;
             }
 
-            Debug.WriteLine(
-                $"[OtherViewModel] 最终配置 - 启用: {IsAutoClickerEnabled}, 模式: {GetCurrentMode()}, 触发键: {TriggerKey}, 连点键: {ClickKey}, 停止键: {StopKey}");
+            DebugLog.Info("OtherViewModel.Settings",
+                $"[OtherViewModel] Final config - Enabled: {IsAutoClickerEnabled}, Mode: {GetCurrentMode()}, TriggerKey: {TriggerKey}, ClickKey: {ClickKey}, StopKey: {StopKey}");
         }
         catch (Exception ex)
         {
             _isInitializing = false;
-            Debug.WriteLine($"[OtherViewModel] 加载配置失败: {ex.Message}");
+            DebugLog.Info("OtherViewModel.Settings", $"[OtherViewModel] Failed to load config: {ex.Message}");
         }
     }
 
@@ -111,8 +111,8 @@ public partial class OtherViewModel
             await _localSettingsService.SaveSettingAsync("AutoClickerStopKey", StopKey);
             await _localSettingsService.SaveSettingAsync("AutoClickerMode", GetCurrentMode().ToString());
 
-            Debug.WriteLine(
-                $"[连点器] 配置保存成功 - 启用: {IsAutoClickerEnabled}, 模式: {GetCurrentMode()}, 触发键: {TriggerKey}, 连点键: {ClickKey}, 停止键: {StopKey}");
+            DebugLog.Info("OtherViewModel.Settings",
+                $"[AutoClicker] Config saved - Enabled: {IsAutoClickerEnabled}, Mode: {GetCurrentMode()}, TriggerKey: {TriggerKey}, ClickKey: {ClickKey}, StopKey: {StopKey}");
 
             _ = Task.Delay(2000).ContinueWith(_ =>
                 _dispatcherQueue?.TryEnqueue(() => StatusMessage = string.Empty));
@@ -121,7 +121,7 @@ public partial class OtherViewModel
         catch (Exception ex)
         {
             StatusMessage = string.Format("Common_SaveFailed_Format".GetLocalized(), ex.Message);
-            Debug.WriteLine($"[连点器] 配置保存失败: {ex.Message}");
+            DebugLog.Info("OtherViewModel.Settings", $"[AutoClicker] Failed to save config: {ex.Message}");
         }
     }
 

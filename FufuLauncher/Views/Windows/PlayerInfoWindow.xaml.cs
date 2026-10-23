@@ -15,6 +15,7 @@ using Windows.Storage.Streams;
 using Windows.UI;
 using FufuLauncher.Constants;
 using MihoyoBBS;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -170,7 +171,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Fetch failed: {ex.Message}");
+                DebugLog.Info("PlayerInfoWindow", $"Fetch failed: {ex.Message}");
             }
             finally
             {
@@ -251,7 +252,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Launch URL failed: {ex.Message}");
+                DebugLog.Info("PlayerInfoWindow", $"Launch URL failed: {ex.Message}");
             }
         }
 

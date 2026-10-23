@@ -19,7 +19,7 @@ public static class AppRestartHelper
             var exePath = Environment.ProcessPath;
             if (string.IsNullOrEmpty(exePath))
             {
-                Debug.WriteLine("重启应用失败: 无法获取当前进程路径");
+                DebugLog.Info("AppRestartHelper", "Restart failed: cannot get current process path");
                 return false;
             }
 
@@ -39,7 +39,7 @@ public static class AppRestartHelper
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"重启应用失败: {ex.Message}");
+            DebugLog.Info("AppRestartHelper", $"Restart failed: {ex.Message}");
             return false;
         }
     }

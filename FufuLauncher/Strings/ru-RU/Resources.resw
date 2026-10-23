@@ -8692,4 +8692,16 @@ Click the button below to open your browser and download manually.</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>Сглаживание изображения</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>Сглаживает края основного фонового изображения. По умолчанию выключено.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>Сила сглаживания</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>Чем выше значение, тем сильнее сглаживаются края.</value>
+  </data>
 </root>

@@ -123,7 +123,7 @@ public sealed partial class GameSettingsPage
                     await _localSettingsService.SaveSettingAsync("GameInstallationPath", path);
                     WeakReferenceMessenger.Default.Send(new GamePathChangedMessage(path));
 
-                    Debug.WriteLine($"[ProcessPathInput] 路径设置成功: {path}");
+                    DebugLog.Info("GameSettingsPage.GamePath", $"[ProcessPathInput] Path set: {path}");
                 }
                 else
                 {
@@ -154,7 +154,7 @@ public sealed partial class GameSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[ProcessPathInput] 处理失败: {ex.Message}");
+            DebugLog.Info("GameSettingsPage.GamePath", $"[ProcessPathInput] Processing failed: {ex.Message}");
             await ShowError(string.Format("Err_PathProcessingFailed_Format".GetLocalized(), ex.Message));
 
             PathTextBox.Text = string.Empty;
@@ -173,24 +173,24 @@ public sealed partial class GameSettingsPage
 
     private async Task ShowAutoPathDialog(string foundPath)
     {
-        Debug.WriteLine($"[Debug] ShowAutoPathDialog 开始");
-        Debug.WriteLine($"[Debug] 接收到的 foundPath: {foundPath}");
+        DebugLog.Info("GameSettingsPage.GamePath", $"[Debug] ShowAutoPathDialog started");
+        DebugLog.Info("GameSettingsPage.GamePath", $"[Debug] Received foundPath: {foundPath}");
 
         if (string.IsNullOrEmpty(foundPath))
         {
-            Debug.WriteLine("[Debug] foundPath 为空，已 return。");
+            DebugLog.Info("GameSettingsPage.GamePath", "[Debug] foundPath is empty, returning.");
             return;
         }
 
         if (XamlRoot == null)
         {
-            Debug.WriteLine("[Debug] 严重问题: XamlRoot 为 null！弹窗无法显示，已 return。");
+            DebugLog.Info("GameSettingsPage.GamePath", "[Debug] Critical: XamlRoot is null! Dialog cannot be shown, returning.");
             return;
         }
 
         try
         {
-            Debug.WriteLine("[Debug] 正在创建 ContentDialog...");
+            DebugLog.Info("GameSettingsPage.GamePath", "[Debug] Creating ContentDialog...");
             var dialog = new ContentDialog
             {
                 Title = "Title_AutoFoundGamePath".GetLocalized(),
@@ -201,13 +201,13 @@ public sealed partial class GameSettingsPage
                 XamlRoot = XamlRoot
             };
 
-            Debug.WriteLine("[Debug] 准备调用 dialog.ShowAsync()...");
+            DebugLog.Info("GameSettingsPage.GamePath", "[Debug] About to call dialog.ShowAsync()...");
             var result = await dialog.ShowAsync();
-            Debug.WriteLine($"[Debug] 弹窗被关闭，用户的选择是: {result}");
+            DebugLog.Info("GameSettingsPage.GamePath", $"[Debug] Dialog closed, user choice: {result}");
 
             if (result == ContentDialogResult.Primary)
             {
-                Debug.WriteLine("[Debug] 用户点击了“应用”，正在保存...");
+                DebugLog.Info("GameSettingsPage.GamePath", "[Debug] User clicked Apply, saving...");
                 PathTextBox.Text = foundPath;
                 await LoadGameInfoAsync(foundPath);
                 await _localSettingsService.SaveSettingAsync("GameInstallationPath", foundPath);
@@ -215,13 +215,13 @@ public sealed partial class GameSettingsPage
             }
             else
             {
-                Debug.WriteLine("[Debug] 用户点击了“手动选择”，调用 PickGameFolderAsync()");
+                DebugLog.Info("GameSettingsPage.GamePath", "[Debug] User clicked manual select, calling PickGameFolderAsync()");
                 await PickGameFolderAsync();
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Debug] ShowAutoPathDialog 发生异常 (可能是多次弹窗冲突): {ex.Message}\n{ex.StackTrace}");
+            DebugLog.Info("GameSettingsPage.GamePath", $"[Debug] ShowAutoPathDialog failed (possibly conflicting dialogs): {ex.Message}\n{ex.StackTrace}");
         }
     }
 
@@ -316,7 +316,7 @@ public sealed partial class GameSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[LoadGameInfoAsync] 异常: {ex.Message}");
+            DebugLog.Info("GameSettingsPage.GamePath", $"[LoadGameInfoAsync] Error: {ex.Message}");
             ShowEmptyState();
         }
         finally

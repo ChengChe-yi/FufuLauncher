@@ -83,8 +83,8 @@ public sealed class DailyNoteService
                 }
                 else
                 {
-                    Debug.WriteLine(
-                        $"[DailyNoteService] 验证后重试 retcode={challengeRetcode}，转 widget 兜底");
+                    DebugLog.Info("DailyNoteService",
+                        $"[DailyNoteService] Retried after verification retcode={challengeRetcode}, falling back to widget");
                 }
             }
 
@@ -118,26 +118,26 @@ public sealed class DailyNoteService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DailyNoteService] index 预热失败（忽略）: {ex.Message}");
+            DebugLog.Info("DailyNoteService", $"[DailyNoteService] index warmup failed (ignored): {ex.Message}");
         }
     }
 
     private async Task<string?> RetryWithRefreshedCookiesAsync(
         AccountManager accountManager, string activeId, string playerQuery, AccountContext ctx)
     {
-        Debug.WriteLine("[DailyNoteService] retcode10001");
+        DebugLog.Info("DailyNoteService", "[DailyNoteService] retcode10001");
 
         var currentCookies = await accountManager.LoadCookiesAsync(activeId);
         if (currentCookies is null || currentCookies.Count == 0)
         {
-            Debug.WriteLine("[DailyNoteService] 无法加载当前Cookie");
+            DebugLog.Info("DailyNoteService", "[DailyNoteService] Failed to load current Cookie");
             return null;
         }
 
         var refreshed = await new TokenRefreshService().RefreshCookieAsync(currentCookies);
         if (refreshed is null || refreshed.Count == 0)
         {
-            Debug.WriteLine("[DailyNoteService] Cookie刷新失败");
+            DebugLog.Info("DailyNoteService", "[DailyNoteService] Cookie refresh failed");
             return null;
         }
 
@@ -147,7 +147,7 @@ public sealed class DailyNoteService
         string json = await RequestAsync(
             $"{RecordApiBase}{DailyNotePath}?{playerQuery}", rebuilt, challenge: null);
         var (retcode, _) = ParseResponse(json);
-        Debug.WriteLine($"[DailyNoteService] Cookie刷新后重试retcode={retcode}");
+        DebugLog.Info("DailyNoteService", $"[DailyNoteService] Retried after Cookie refresh retcode={retcode}");
 
         return retcode == 10001 ? null : json;
     }
@@ -158,7 +158,7 @@ public sealed class DailyNoteService
         var captchaDisabledJson = await localSettingsService.ReadSettingAsync("IsCaptchaPopupDisabled");
         if (captchaDisabledJson != null && Convert.ToBoolean(captchaDisabledJson))
         {
-            Debug.WriteLine("[DailyNoteService] 风控验证码弹窗已被用户禁用，跳过验证");
+            DebugLog.Info("DailyNoteService", "[DailyNoteService] Risk-control captcha prompt disabled by user, skipping verification");
             return fallback;
         }
 

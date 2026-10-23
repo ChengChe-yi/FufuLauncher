@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Hosting;
 using Windows.UI.ViewManagement;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -106,7 +107,7 @@ public sealed partial class PluginSettingsPage
                 RestoreSettingTransitionVisual(container, visual);
             }
 
-            Debug.WriteLine($"[PluginSettings] Setting entrance animation failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.Animations", $"[PluginSettings] Setting entrance animation failed: {ex}");
         }
     }
 
@@ -153,7 +154,7 @@ public sealed partial class PluginSettingsPage
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginSettings] Animation preference read failed: {ex}");
+                DebugLog.Info("PluginSettingsPage.Animations", $"[PluginSettings] Animation preference read failed: {ex}");
             }
         }
 
@@ -223,7 +224,7 @@ public sealed partial class PluginSettingsPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginSettings] Setting transition reset failed: {ex}");
+            DebugLog.Info("PluginSettingsPage.Animations", $"[PluginSettings] Setting transition reset failed: {ex}");
         }
     }
 }

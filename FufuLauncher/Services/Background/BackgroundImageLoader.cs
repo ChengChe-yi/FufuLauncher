@@ -58,7 +58,7 @@ internal static class BackgroundImageLoader
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"BackgroundImageLoader: 默认背景文件不可用，使用内嵌背景: {ex.Message}");
+            DebugLog.Info("BackgroundImageLoader", $"BackgroundImageLoader: Default background file unavailable, using embedded background: {ex.Message}");
         }
 
         return await LoadAsync(() => typeof(BackgroundImageLoader).Assembly.GetManifestResourceStream(
@@ -68,19 +68,21 @@ internal static class BackgroundImageLoader
     private static async Task<ImageSource> LoadAsync(Func<Stream> openStream)
     {
         var started = Environment.TickCount64;
-        PreviewTrace.Log("Loader.Start");
+        DebugLog.Info("BackgroundImageLoader", "Loader.Start");
         var dispatcher = App.MainWindow?.DispatcherQueue ?? DispatcherQueue.GetForCurrentThread();
         if (dispatcher == null)
-            throw new InvalidOperationException("背景图片加载需要主窗口的 UI 线程");
+            throw new InvalidOperationException("Background image loading requires the main window UI thread");
 
 
         var decoded = await Task.Run(async () =>
         {
             var quality = await BackgroundImageQualitySettings.GetEffectiveQualityAsync().ConfigureAwait(false);
+            var antialias = await BackgroundImageAntialiasSettings.GetAsync().ConfigureAwait(false);
             using var stream = openStream();
             using var image = Image.Load<Bgra32>(new DecoderOptions { MaxFrames = 1 }, stream);
             image.Mutate(context => context.AutoOrient());
             ApplyDisplayQuality(image, quality);
+            ApplyAntialias(image, antialias);
             var pixels = new byte[checked(image.Width * image.Height * 4)];
             image.CopyPixelDataTo(pixels);
 
@@ -94,7 +96,7 @@ internal static class BackgroundImageLoader
                 pixels[i + 2] = (byte)((pixels[i + 2] * alpha + 127) / 255);
             }
 
-            PreviewTrace.Log("Loader.Decoded", $"{image.Width}x{image.Height} in {Environment.TickCount64 - started}ms");
+            DebugLog.Info("BackgroundImageLoader", "Loader.Decoded", $"{image.Width}x{image.Height} in {Environment.TickCount64 - started}ms");
             return (image.Width, image.Height, Pixels: pixels);
         }).ConfigureAwait(false);
 
@@ -105,12 +107,12 @@ internal static class BackgroundImageLoader
             var bitmapStarted = Environment.TickCount64;
             try
             {
-                PreviewTrace.Log("Loader.Bitmap.Start", $"{decoded.Width}x{decoded.Height}");
+                DebugLog.Info("BackgroundImageLoader", "Loader.Bitmap.Start", $"{decoded.Width}x{decoded.Height}");
                 var bitmap = new WriteableBitmap(decoded.Width, decoded.Height);
                 using var buffer = bitmap.PixelBuffer.AsStream();
                 buffer.Write(decoded.Pixels, 0, decoded.Pixels.Length);
                 bitmap.Invalidate();
-                PreviewTrace.Log("Loader.Bitmap.Done", $"{Environment.TickCount64 - bitmapStarted}ms");
+                DebugLog.Info("BackgroundImageLoader", "Loader.Bitmap.Done", $"{Environment.TickCount64 - bitmapStarted}ms");
                 completion.SetResult(bitmap);
             }
             catch (Exception ex)
@@ -122,11 +124,25 @@ internal static class BackgroundImageLoader
         if (dispatcher.HasThreadAccess)
             CreateBitmap();
         else if (!dispatcher.TryEnqueue(CreateBitmap))
-            completion.SetException(new InvalidOperationException("背景图片的 UI 调度队列已关闭"));
+            completion.SetException(new InvalidOperationException("Background image UI dispatcher queue is closed"));
 
         var result = await completion.Task.ConfigureAwait(false);
-        PreviewTrace.Log("Loader.End", $"{Environment.TickCount64 - started}ms");
+        DebugLog.Info("BackgroundImageLoader", "Loader.End", $"{Environment.TickCount64 - started}ms");
         return result;
+    }
+
+    private static void ApplyAntialias(Image<Bgra32> image, (bool Enabled, int Strength) settings)
+    {
+        if (!settings.Enabled || settings.Strength <= 0)
+            return;
+
+        var sigma = BackgroundImageAntialiasSettings.GetBlurSigma(settings.Strength);
+        if (sigma <= 0f)
+            return;
+
+        var started = Environment.TickCount64;
+        image.Mutate(context => context.GaussianBlur(sigma));
+        DebugLog.Info("BackgroundImageLoader", $"Applied antialias: strength={settings.Strength}, sigma={sigma:0.##}, {Environment.TickCount64 - started}ms");
     }
 
     private static void ApplyDisplayQuality(Image<Bgra32> image, BackgroundImageQuality quality)

@@ -189,7 +189,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"全局背景加载失败: {ex}");
+            DebugLog.Info("MainWindow.Background", $"Global background load failed: {ex}");
             if (version != _backgroundLoadVersion || _isExit) return;
             StopSlideshow();
             await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
@@ -271,7 +271,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BingWallpaper] 加载背景失败: {ex.Message}");
+            DebugLog.Info("MainWindow.Background", $"[BingWallpaper] Failed to load background: {ex.Message}");
             if (version == _backgroundLoadVersion && !_isExit)
                 await ApplyGlobalBackgroundAsync(await _backgroundRenderer.GetFallbackBackgroundAsync(), version);
         }
@@ -437,7 +437,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"启动轮播失败: {ex.Message}");
+            DebugLog.Info("MainWindow.Background", $"Failed to start slideshow: {ex.Message}");
             return false;
         }
     }
@@ -463,7 +463,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"轮播图片加载失败: {ex.Message}");
+            DebugLog.Info("MainWindow.Background", $"Failed to load slideshow image: {ex.Message}");
             return false;
         }
         finally
@@ -526,14 +526,14 @@ public sealed partial class MainWindow
         }
 
         var applyStarted = Environment.TickCount64;
-        PreviewTrace.Log("Bg.Apply.Start", $"version={version} video={result.IsVideo} fallback={result.IsFallback} image={DescribeBackgroundImage(result.ImageSource)}");
+        DebugLog.Info("MainWindow.Background", "Bg.Apply.Start", $"version={version} video={result.IsVideo} fallback={result.IsFallback} image={DescribeBackgroundImage(result.ImageSource)}");
 
         double finalOpacity = 1.0;
         try
         {
-            PreviewTrace.Log("Bg.OpacityRead.Start");
+            DebugLog.Info("MainWindow.Background", "Bg.OpacityRead.Start");
             var valueObj = await _localSettingsService.ReadSettingAsync("GlobalBackgroundImageOpacity");
-            PreviewTrace.Log("Bg.OpacityRead.End", $"{Environment.TickCount64 - applyStarted}ms");
+            DebugLog.Info("MainWindow.Background", "Bg.OpacityRead.End", $"{Environment.TickCount64 - applyStarted}ms");
             if (valueObj != null && double.TryParse(valueObj.ToString(), out var parsed) && double.IsFinite(parsed))
             {
                 finalOpacity = Math.Clamp(parsed, 0.0, 1.0);
@@ -543,10 +543,10 @@ public sealed partial class MainWindow
         {
         }
 
-        PreviewTrace.Log("Bg.BeforeUI", $"{Environment.TickCount64 - applyStarted}ms");
+        DebugLog.Info("MainWindow.Background", "Bg.BeforeUI", $"{Environment.TickCount64 - applyStarted}ms");
         await RunOnUIThreadAsync(() =>
         {
-            PreviewTrace.Log("Bg.UILambda.Start");
+            DebugLog.Info("MainWindow.Background", "Bg.UILambda.Start");
             if (_isExit || (version.HasValue && version != _backgroundLoadVersion)) return;
             if (expectedVideoSource != null &&
                 !ReferenceEquals(_globalBackgroundPlayer?.Source, expectedVideoSource)) return;
@@ -589,14 +589,14 @@ public sealed partial class MainWindow
                 DisposeGlobalBackgroundPlayer();
                 GlobalBackgroundVideo.Visibility = Visibility.Collapsed;
 
-                PreviewTrace.Log("Bg.MainSourceSet.Start", DescribeBackgroundImage(result.ImageSource));
+                DebugLog.Info("MainWindow.Background", "Bg.MainSourceSet.Start", DescribeBackgroundImage(result.ImageSource));
                 GlobalBackgroundImage.Source = result.ImageSource;
-                PreviewTrace.Log("Bg.MainSourceSet.Done");
+                DebugLog.Info("MainWindow.Background", "Bg.MainSourceSet.Done");
                 if (result.ImageSource != null && !result.IsFallback)
                 {
-                    PreviewTrace.Log("Bg.ImageAvailable.Invoke");
+                    DebugLog.Info("MainWindow.Background", "Bg.ImageAvailable.Invoke");
                     GlobalBackgroundImageAvailable?.Invoke(result.ImageSource);
-                    PreviewTrace.Log("Bg.ImageAvailable.Returned");
+                    DebugLog.Info("MainWindow.Background", "Bg.ImageAvailable.Returned");
                 }
 
                 GlobalBackgroundImage.Opacity = finalOpacity;
@@ -622,7 +622,7 @@ public sealed partial class MainWindow
                 catch (Exception ex)
                 {
                     StopBackgroundImageAnimation();
-                    Debug.WriteLine($"背景淡入动画不可用: {ex.Message}");
+                    DebugLog.Info("MainWindow.Background", $"Background fade-in animation unavailable: {ex.Message}");
                 }
 
                 if (wasVideoBackground)
@@ -634,17 +634,17 @@ public sealed partial class MainWindow
             UpdateBackgroundOverlayTheme();
         });
 
-        PreviewTrace.Log("Bg.UICompleted", $"{Environment.TickCount64 - applyStarted}ms");
+        DebugLog.Info("MainWindow.Background", "Bg.UICompleted", $"{Environment.TickCount64 - applyStarted}ms");
         if (_isExit || (version.HasValue && version != _backgroundLoadVersion)) return;
 
         CurrentGlobalBackground = result;
         GlobalBackgroundApplied?.Invoke(result);
-        PreviewTrace.Log("Bg.Apply.End", $"{Environment.TickCount64 - applyStarted}ms");
+        DebugLog.Info("MainWindow.Background", "Bg.Apply.End", $"{Environment.TickCount64 - applyStarted}ms");
     }
 
     private void OnGlobalBackgroundVideoFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
     {
-        Debug.WriteLine($"背景视频播放失败({args.Error}): {args.ErrorMessage}");
+        DebugLog.Info("MainWindow.Background", $"Background video playback failed({args.Error}): {args.ErrorMessage}");
 
         if (_isExit || !ReferenceEquals(sender, _globalBackgroundPlayer)) return;
 
@@ -660,7 +660,7 @@ public sealed partial class MainWindow
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"视频首帧回退异常: {ex.Message}");
+                DebugLog.Info("MainWindow.Background", $"Video first-frame fallback exception: {ex.Message}");
             }
             finally
             {
@@ -698,11 +698,11 @@ public sealed partial class MainWindow
 
             await ApplyGlobalBackgroundAsync(new BackgroundRenderResult { ImageSource = bitmap }, version,
                 failedSource);
-            Debug.WriteLine("视频播放失败，已截取第一帧作为静态背景");
+            DebugLog.Info("MainWindow.Background", "Video playback failed, captured first frame as static background");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"提取视频首帧失败: {ex.Message}");
+            DebugLog.Info("MainWindow.Background", $"Failed to extract video first frame: {ex.Message}");
             await ApplyFallbackBackgroundImageAsync(failedSource);
         }
     }
@@ -718,7 +718,7 @@ public sealed partial class MainWindow
 
     private async void OnGlobalBackgroundImageFailed(object sender, ExceptionRoutedEventArgs args)
     {
-        Debug.WriteLine($"全局背景显示失败: {args.ErrorMessage}");
+        DebugLog.Info("MainWindow.Background", $"Global background display failed: {args.ErrorMessage}");
         if (_isExit || _isFallbackBackground) return;
         _isFallbackBackground = true;
         var version = _backgroundLoadVersion;
@@ -731,7 +731,7 @@ public sealed partial class MainWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"全局背景显示回退失败: {ex}");
+            DebugLog.Info("MainWindow.Background", $"Global background display fallback failed: {ex}");
         }
     }
 

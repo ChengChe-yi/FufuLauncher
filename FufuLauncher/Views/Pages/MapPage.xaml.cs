@@ -11,6 +11,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.Graphics;
 using FufuLauncher.Constants;
 using WinRT.Interop;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views
 {
@@ -35,7 +36,7 @@ namespace FufuLauncher.Views
 
                 if (MapWebView.CoreWebView2 == null)
                 {
-                    System.Diagnostics.Debug.WriteLine("MapWebView.CoreWebView2 初始化失败");
+                    DebugLog.Info("MapPage", "MapWebView.CoreWebView2 initialization failed");
                     _mapInitialized = false;
                     return;
                 }
@@ -53,7 +54,7 @@ namespace FufuLauncher.Views
             catch (Exception ex)
             {
                 _mapInitialized = false;
-                System.Diagnostics.Debug.WriteLine($"MapPage 初始化失败: {ex.Message}");
+                DebugLog.Info("MapPage", $"MapPage initialization failed: {ex.Message}");
             }
         }
 
@@ -72,7 +73,7 @@ namespace FufuLauncher.Views
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"脚本注入失败: {ex.Message}");
+                    DebugLog.Info("MapPage", $"Script injection failed: {ex.Message}");
                 }
             }
         }
@@ -136,7 +137,7 @@ namespace FufuLauncher.Views
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"脚本注入失败: {ex.Message}");
+                    DebugLog.Info("MapPage", $"Script injection failed: {ex.Message}");
                 }
             }
         }
@@ -198,7 +199,7 @@ namespace FufuLauncher.Views
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"刷新地图失败: {ex.Message}");
+                DebugLog.Info("MapPage", $"Failed to refresh map: {ex.Message}");
             }
         }
 

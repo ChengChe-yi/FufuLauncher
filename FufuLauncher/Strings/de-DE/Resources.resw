@@ -8696,4 +8696,16 @@ Details: {0}</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>Bildkantenglättung</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>Glättet die Ränder des Haupt-Hintergrundbilds. Standardmäßig aus.</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>Kantenglättungsstärke</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>Höhere Werte glätten die Ränder stärker.</value>
+  </data>
 </root>

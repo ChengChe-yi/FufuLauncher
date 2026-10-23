@@ -101,7 +101,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"加载可选背景失败: {ex.Message}");
+            DebugLog.Info("MainViewModel.Background", $"Failed to load selectable backgrounds: {ex.Message}");
         }
     }
 
@@ -158,7 +158,7 @@ public partial class MainViewModel
                     PreferVideoBackground = false;
                     await _localSettingsService.SaveSettingAsync("PreferVideoBackground", false);
                     await _localSettingsService.SaveSettingAsync("UserPreferVideoBackground", false);
-                    Debug.WriteLine($"[MainViewModel] 版本更变 ({lastVersionStr} -> {currentVersion})，已将动态背景切换为静态背景");
+                    DebugLog.Info("MainViewModel.Background", $"[MainViewModel] Version changed ({lastVersionStr} -> {currentVersion}), switched animated background to static");
                 }
             }
 
@@ -166,7 +166,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[MainViewModel] 版本变更背景切换检查失败: {ex.Message}");
+            DebugLog.Info("MainViewModel.Background", $"[MainViewModel] Version-change background switch check failed: {ex.Message}");
         }
     }
 
@@ -211,7 +211,7 @@ public partial class MainViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"背景加载异常: {ex.Message}");
+            DebugLog.Info("MainViewModel.Background", $"Background load exception: {ex.Message}");
             var fallback = await _backgroundRenderer.GetFallbackBackgroundAsync();
             if (fallback != null)
                 await UpdateUI(() =>
@@ -266,7 +266,7 @@ public partial class MainViewModel
 
     private void BackgroundVideoPlayer_MediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
     {
-        Debug.WriteLine($"背景视频触发MediaFailed，错误类型: {args.Error}");
+        DebugLog.Info("MainViewModel.Background", $"Background video raised MediaFailed, error type: {args.Error}");
     }
 
     private void ToggleBackgroundType()

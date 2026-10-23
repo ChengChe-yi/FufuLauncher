@@ -154,7 +154,7 @@ internal static class TrustInstallFlow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TrustInstallFlow] 读取主题画刷失败: {ex.Message}");
+            DebugLog.Info("TrustInstallFlow", $"[TrustInstallFlow] Failed to read theme brushes: {ex.Message}");
             return null;
         }
     }
@@ -187,7 +187,7 @@ internal static class TrustInstallFlow
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[TrustInstallFlow] 对话框显示失败: {ex.Message}");
+                DebugLog.Info("TrustInstallFlow", $"[TrustInstallFlow] Failed to show dialog: {ex.Message}");
                 return ContentDialogResult.None;
             }
         }
@@ -245,7 +245,7 @@ internal static class TrustInstallFlow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TrustInstallFlow] 提权证书操作失败: {ex}");
+            DebugLog.Info("TrustInstallFlow", $"[TrustInstallFlow] Elevated certificate operation failed: {ex}");
             return new TrustOperationResult { Ok = false, Message = $"操作失败：{ex.Message}" };
         }
         finally
@@ -256,7 +256,7 @@ internal static class TrustInstallFlow
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[TrustInstallFlow] 清理结果文件失败: {ex.Message}");
+                DebugLog.Info("TrustInstallFlow", $"[TrustInstallFlow] Failed to clean up result file: {ex.Message}");
             }
         }
     }

@@ -36,7 +36,7 @@ public static class GameServerCacheMaintenance
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GameServerCacheMaintenance] 清理旧缓存失败 {root}: {ex.Message}");
+            DebugLog.Info("GameServerCacheMaintenance", $"[GameServerCacheMaintenance] Failed to clean old cache {root}: {ex.Message}");
         }
     }
 }

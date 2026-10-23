@@ -97,7 +97,7 @@ public sealed partial class AboutPage : Page
                             errorMessage = messageElement.GetString();
                         }
 
-                        Debug.WriteLine($"[LoadContributorsAsync] 获取贡献者失败 ({apiUrl}): {errorMessage}");
+                        DebugLog.Info("AboutPage", $"[LoadContributorsAsync] Failed to get contributors ({apiUrl}): {errorMessage}");
                         continue;
                     }
 
@@ -129,7 +129,7 @@ public sealed partial class AboutPage : Page
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[LoadContributorsAsync] 获取贡献者失败 ({apiUrl}): {ex.Message}");
+                    DebugLog.Info("AboutPage", $"[LoadContributorsAsync] Failed to get contributors ({apiUrl}): {ex.Message}");
                 }
             }
 
@@ -310,7 +310,7 @@ public sealed partial class AboutPage : Page
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[LoadContributorsAsync] 获取贡献者失败: {ex}");
+            DebugLog.Info("AboutPage", $"[LoadContributorsAsync] Failed to get contributors: {ex}");
             ContributorsLoadingRing.IsActive = false;
             ContributorsErrorPanel.Visibility = Visibility.Visible;
             ContributorsErrorText.Text = "获取贡献者失败，请检查网络连接或 API 状态";
@@ -387,7 +387,7 @@ public sealed partial class AboutPage : Page
     {
         var responseString = await httpClient.GetAsync(url);
         var responseContent = await responseString.Content.ReadAsStringAsync();
-        Debug.WriteLine("[GetBuildFromActions] 从<" + url + ">获取到: " + responseContent);
+        DebugLog.Info("AboutPage", "[GetBuildFromActions] Fetched from <" + url + ">: " + responseContent);
         return JsonDocument.Parse(responseContent);
     }
 }

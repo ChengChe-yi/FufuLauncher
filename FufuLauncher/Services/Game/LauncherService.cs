@@ -67,7 +67,7 @@ namespace FufuLauncher.Services
 
                 if (!File.Exists(absoluteDllPath))
                 {
-                    Debug.WriteLine($"找不到核心文件: {absoluteDllPath}");
+                    DebugLog.Info("LauncherService", $"Core file not found: {absoluteDllPath}");
                     IsLauncherDllLoaded = false;
                     DllLoadError = LauncherDllLoadError.FileNotFound;
                     return;
@@ -77,7 +77,7 @@ namespace FufuLauncher.Services
                 if (handle == IntPtr.Zero)
                 {
                     int errorCode = Marshal.GetLastWin32Error();
-                    Debug.WriteLine($"加载 {DllName} 失败。文件存在，但缺少依赖项或架构不匹配。Win32错误码: {errorCode}");
+                    DebugLog.Info("LauncherService", $"Failed to load {DllName}. File exists but dependencies are missing or architecture mismatched. Win32 error code: {errorCode}");
                     IsLauncherDllLoaded = false;
                     DllLoadError = LauncherDllLoadError.LoadFailed;
                     return;
@@ -88,7 +88,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"初始化 LauncherService 时发生异常: {ex.Message}");
+                DebugLog.Info("LauncherService", $"Exception while initializing LauncherService: {ex.Message}");
                 IsLauncherDllLoaded = false;
                 DllLoadError = LauncherDllLoadError.Exception;
             }

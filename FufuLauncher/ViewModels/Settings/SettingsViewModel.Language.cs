@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -20,14 +20,14 @@ public partial class SettingsViewModel
     {
         try
         {
-            Debug.WriteLine($"[SettingsVM] ApplyLanguageChangeAsync: language={language}, enumValue={(int)language}");
+            DebugLog.Info("SettingsViewModel.Language", $"[SettingsVM] ApplyLanguageChangeAsync: language={language}, enumValue={(int)language}");
 
             await _localSettingsService.SaveSettingAsync("AppLanguage", (int)language);
             var culture = LanguagePreferenceResolver.Resolve(
                 language,
                 Windows.System.UserProfile.GlobalizationPreferences.Languages);
 
-            Debug.WriteLine($"[SettingsVM] ApplyLanguageChangeAsync: culture='{culture}'");
+            DebugLog.Info("SettingsViewModel.Language", $"[SettingsVM] ApplyLanguageChangeAsync: culture='{culture}'");
             ResourceExtensions.SetLanguage(culture);
 
             if (language == AppLanguage.zhCN || language == AppLanguage.Default)
@@ -55,7 +55,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"应用语言失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Language", $"Failed to apply language: {ex.Message}");
         }
     }
 

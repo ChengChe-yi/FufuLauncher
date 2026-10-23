@@ -10,6 +10,7 @@ using FufuLauncher.Models.MiHoYo.Fingerprint;
 using FufuLauncher.Models.MiHoYo.Identity;
 using FufuLauncher.Services.Device;
 using FufuLauncher.Services.MiHoYo.Networking;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.MiHoYo.Fingerprint;
 
@@ -77,7 +78,7 @@ public sealed class DeviceFpService
             string? issued = await RegisterAsync(identity, token).ConfigureAwait(false);
             if (string.IsNullOrEmpty(issued))
             {
-                Debug.WriteLine("[DeviceFp] 注册未获得指纹，返回无指纹身份");
+                DebugLog.Info("DeviceFpService", "[DeviceFp] Registration returned no fingerprint, returning fingerprint-less identity");
                 return identity;
             }
 
@@ -86,11 +87,11 @@ public sealed class DeviceFpService
                 .ConfigureAwait(false);
             if (updated is null)
             {
-                Debug.WriteLine("[DeviceFp] 身份已重置，丢弃本次注册结果");
+                DebugLog.Info("DeviceFpService", "[DeviceFp] Identity reset, discarding this registration result");
                 return await GetIdentityAsync(token).ConfigureAwait(false);
             }
 
-            Debug.WriteLine($"[DeviceFp] 注册成功并已回填: {issued}");
+            DebugLog.Info("DeviceFpService", $"[DeviceFp] Registration succeeded and backfilled: {issued}");
             return updated;
         }
         finally
@@ -135,7 +136,7 @@ public sealed class DeviceFpService
 
             using var resp = await _httpClient.SendAsync(req, token).ConfigureAwait(false);
             string json = await resp.Content.ReadAsStringAsync(token).ConfigureAwait(false);
-            Debug.WriteLine($"[DeviceFp] getFp 状态码: {(int)resp.StatusCode}, 响应: {Truncate(json, 300)}");
+            DebugLog.Info("DeviceFpService", $"[DeviceFp] getFp status code: {(int)resp.StatusCode}, response: {Truncate(json, 300)}");
 
             return ParseFingerprint(json);
         }
@@ -145,7 +146,7 @@ public sealed class DeviceFpService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[DeviceFp] getFp 异常: {ex.Message}");
+            DebugLog.Info("DeviceFpService", $"[DeviceFp] getFp exception: {ex.Message}");
             return null;
         }
     }
@@ -160,7 +161,7 @@ public sealed class DeviceFpService
 
             if (root.TryGetProperty("retcode", out var rc) && rc.GetInt32() != 0)
             {
-                Debug.WriteLine($"[DeviceFp] getFp retcode={rc.GetInt32()}");
+                DebugLog.Info("DeviceFpService", $"[DeviceFp] getFp retcode={rc.GetInt32()}");
                 return null;
             }
 
@@ -171,12 +172,12 @@ public sealed class DeviceFpService
                 return string.IsNullOrEmpty(fp) ? null : fp;
             }
 
-            Debug.WriteLine("[DeviceFp] getFp 响应未包含 device_fp");
+            DebugLog.Info("DeviceFpService", "[DeviceFp] getFp response missing device_fp");
             return null;
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[DeviceFp] getFp 响应解析失败: {ex.Message}");
+            DebugLog.Info("DeviceFpService", $"[DeviceFp] Failed to parse getFp response: {ex.Message}");
             return null;
         }
     }

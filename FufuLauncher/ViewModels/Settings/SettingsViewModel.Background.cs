@@ -21,6 +21,37 @@ public partial class SettingsViewModel
 
     private int _backgroundQualityChangeVersion;
     private bool _backgroundQualityLoaded;
+    private bool _backgroundAntialiasLoaded;
+    private CancellationTokenSource? _antialiasSaveCts;
+    private CancellationTokenSource? _antialiasRefreshCts;
+    private bool _isBackgroundImageAntialiasEnabled;
+    private double _backgroundImageAntialiasStrength = BackgroundImageAntialiasSettings.DefaultStrength;
+
+    public bool IsBackgroundImageAntialiasEnabled
+    {
+        get => _isBackgroundImageAntialiasEnabled;
+        set
+        {
+            if (_isBackgroundImageAntialiasEnabled == value) return;
+            OnPropertyChanging(nameof(IsBackgroundImageAntialiasEnabled));
+            _isBackgroundImageAntialiasEnabled = value;
+            OnPropertyChanged(nameof(IsBackgroundImageAntialiasEnabled));
+            OnIsBackgroundImageAntialiasEnabledChanged(value);
+        }
+    }
+
+    public double BackgroundImageAntialiasStrength
+    {
+        get => _backgroundImageAntialiasStrength;
+        set
+        {
+            if (_backgroundImageAntialiasStrength == value) return;
+            OnPropertyChanging(nameof(BackgroundImageAntialiasStrength));
+            _backgroundImageAntialiasStrength = value;
+            OnPropertyChanged(nameof(BackgroundImageAntialiasStrength));
+            OnBackgroundImageAntialiasStrengthChanged(value);
+        }
+    }
 
     private async Task ResetBackgroundApiAsync()
     {
@@ -55,7 +86,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"清除自定义背景失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Background", $"Failed to clear custom background: {ex.Message}");
         }
     }
 
@@ -79,6 +110,8 @@ public partial class SettingsViewModel
 
     private async Task LoadCustomBackgroundSettingsAsync()
     {
+        _backgroundAntialiasLoaded = false;
+
         var path = await _localSettingsService.ReadSettingAsync("CustomBackgroundPath");
         if (path != null)
         {
@@ -124,6 +157,11 @@ public partial class SettingsViewModel
 
         BackgroundQuality = await BackgroundImageQualitySettings.GetEffectiveQualityAsync();
         _backgroundQualityLoaded = true;
+
+        var antialias = await BackgroundImageAntialiasSettings.GetAsync();
+        IsBackgroundImageAntialiasEnabled = antialias.Enabled;
+        BackgroundImageAntialiasStrength = antialias.Strength;
+        _backgroundAntialiasLoaded = true;
     }
 
     partial void OnCustomBackgroundApiUrlChanged(string value)
@@ -150,7 +188,7 @@ public partial class SettingsViewModel
     partial void OnSelectedServerChanged(ServerType value)
     {
         if (_isInitializing) return;
-        Debug.WriteLine($"SettingsViewModel: 保存服务器设置 {value}");
+        DebugLog.Info("SettingsViewModel.Background", $"SettingsViewModel: saved server setting {value}");
         CurrentBackgroundApiUrl = string.IsNullOrWhiteSpace(CustomBackgroundApiUrl)
             ? GetDefaultBackgroundApiUrl(value)
             : CustomBackgroundApiUrl;
@@ -174,11 +212,92 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"保存背景图像质量失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Background", $"Failed to save background image quality: {ex.Message}");
         }
 
         if (version != _backgroundQualityChangeVersion)
             return;
+
+        _backgroundRenderer.ClearImageCaches();
+        WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
+    }
+
+    private void OnIsBackgroundImageAntialiasEnabledChanged(bool value)
+    {
+        if (_isInitializing || !_backgroundAntialiasLoaded) return;
+        _ = SaveBackgroundAntialiasEnabledAsync(value);
+    }
+
+    private async Task SaveBackgroundAntialiasEnabledAsync(bool value)
+    {
+        try
+        {
+            await BackgroundImageAntialiasSettings.SetEnabledAsync(value);
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("SettingsViewModel.Background", $"Failed to save background antialias enabled state: {ex.Message}");
+        }
+
+        ScheduleBackgroundAntialiasRefresh();
+    }
+
+    private void OnBackgroundImageAntialiasStrengthChanged(double value)
+    {
+        if (_isInitializing || !_backgroundAntialiasLoaded) return;
+
+        _antialiasSaveCts?.Cancel();
+        var cts = new CancellationTokenSource();
+        _antialiasSaveCts = cts;
+        _ = SaveBackgroundAntialiasStrengthAsync((int)Math.Round(Math.Clamp(value, 0, 100)), cts.Token);
+    }
+
+    private async Task SaveBackgroundAntialiasStrengthAsync(int value, CancellationToken token)
+    {
+        try
+        {
+            await Task.Delay(200, token);
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+
+        if (token.IsCancellationRequested) return;
+
+        try
+        {
+            await BackgroundImageAntialiasSettings.SetStrengthAsync(value);
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("SettingsViewModel.Background", $"Failed to save background antialias strength: {ex.Message}");
+        }
+
+        if (IsBackgroundImageAntialiasEnabled)
+            ScheduleBackgroundAntialiasRefresh();
+    }
+
+    private void ScheduleBackgroundAntialiasRefresh()
+    {
+        _antialiasRefreshCts?.Cancel();
+        var cts = new CancellationTokenSource();
+        _antialiasRefreshCts = cts;
+        _ = RefreshBackgroundAntialiasAsync(cts.Token);
+    }
+
+    private async Task RefreshBackgroundAntialiasAsync(CancellationToken token)
+    {
+        try
+        {
+            await Task.Delay(250, token);
+        }
+        catch (OperationCanceledException)
+        {
+            return;
+        }
+
+        if (token.IsCancellationRequested) return;
 
         _backgroundRenderer.ClearImageCaches();
         WeakReferenceMessenger.Default.Send(new BackgroundRefreshMessage());
@@ -238,7 +357,7 @@ public partial class SettingsViewModel
     {
         if (_isInitializing) return;
 
-        Debug.WriteLine($"SettingsViewModel: 保存自定义背景开关 {value}");
+        DebugLog.Info("SettingsViewModel.Background", $"SettingsViewModel: saved custom background toggle {value}");
         if (value && IsRandomBackgroundEnabled)
             IsRandomBackgroundEnabled = false;
         _ = _localSettingsService.SaveSettingAsync(LocalSettingsService.IsBackgroundEnabledKey, value);
@@ -280,7 +399,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"选择自定义背景失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Background", $"Failed to select custom background: {ex.Message}");
         }
     }
 
@@ -300,7 +419,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"选择轮播图文件夹失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Background", $"Failed to select carousel folder: {ex.Message}");
         }
     }
 
@@ -316,7 +435,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"清除轮播图文件夹失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Background", $"Failed to clear carousel folder: {ex.Message}");
         }
     }
 

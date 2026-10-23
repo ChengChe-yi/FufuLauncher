@@ -15,6 +15,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Graphics.Imaging;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -102,7 +103,7 @@ public sealed partial class GachaAnalysisWindow
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] 复制图片失败: {ex}");
+            DebugLog.Info("GachaAnalysisWindow.Export", $"[Gacha] Failed to copy image: {ex}");
             ShowDialogMessage("复制失败", ex.Message);
         }
     }

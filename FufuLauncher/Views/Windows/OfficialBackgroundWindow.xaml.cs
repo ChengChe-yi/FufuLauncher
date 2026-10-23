@@ -89,7 +89,7 @@ public sealed partial class OfficialBackgroundWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[OfficialBgWindow] 窗口初始化失败: {ex.Message}");
+            DebugLog.Info("OfficialBackgroundWindow", $"[OfficialBgWindow] Window initialization failed: {ex.Message}");
         }
     }
 
@@ -124,7 +124,7 @@ public sealed partial class OfficialBackgroundWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[OfficialBgWindow] 主题应用失败: {ex.Message}");
+            DebugLog.Info("OfficialBackgroundWindow", $"[OfficialBgWindow] Failed to apply theme: {ex.Message}");
         }
     }
 
@@ -153,7 +153,7 @@ public sealed partial class OfficialBackgroundWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[OfficialBgWindow] 背景材质应用失败: {ex.Message}");
+            DebugLog.Info("OfficialBackgroundWindow", $"[OfficialBgWindow] Failed to apply background material: {ex.Message}");
         }
     }
 
@@ -170,7 +170,7 @@ public sealed partial class OfficialBackgroundWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[OfficialBgWindow] 预览播放器挂载失败: {ex.Message}");
+            DebugLog.Info("OfficialBackgroundWindow", $"[OfficialBgWindow] Failed to attach preview player: {ex.Message}");
         }
     }
 
@@ -222,7 +222,7 @@ public sealed partial class OfficialBackgroundWindow : Window
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[OfficialBgWindow] 卸载预览播放器失败: {ex.Message}");
+            DebugLog.Info("OfficialBackgroundWindow", $"[OfficialBgWindow] Failed to detach preview player: {ex.Message}");
         }
 
         ViewModel.Cleanup();

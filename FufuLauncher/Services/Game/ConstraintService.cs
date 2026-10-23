@@ -101,7 +101,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[策略约束] 读取限制状态失败: {ex.Message}");
+                DebugLog.Info("ConstraintService", $"[PolicyConstraint] Failed to read restriction state: {ex.Message}");
             }
 
             lock (_stateLock)
@@ -145,7 +145,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[策略约束] 状态刷新失败: {ex.Message}");
+                DebugLog.Info("ConstraintService", $"[PolicyConstraint] State refresh failed: {ex.Message}");
             }
             finally
             {
@@ -308,7 +308,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[策略约束] 读取历史模式失败: {ex.Message}");
+                DebugLog.Info("ConstraintService", $"[PolicyConstraint] Failed to read historical mode: {ex.Message}");
             }
 
             bool restoredStandardMode = false;
@@ -351,7 +351,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[策略约束] 自动部署轻量插件失败: {ex.Message}");
+                DebugLog.Info("ConstraintService", $"[PolicyConstraint] Failed to auto-deploy lightweight plugin: {ex.Message}");
             }
 
             LightweightPluginService.DisableMainPluginIfPresent();
@@ -394,7 +394,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[策略约束] 请求失败 {url}: {ex.Message}");
+                DebugLog.Info("ConstraintService", $"[PolicyConstraint] Request failed {url}: {ex.Message}");
                 return string.Empty;
             }
         }
@@ -423,7 +423,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[策略约束] 解析状态失败: {ex.Message}");
+                DebugLog.Info("ConstraintService", $"[PolicyConstraint] Failed to parse state: {ex.Message}");
                 return null;
             }
         }
@@ -449,7 +449,7 @@ namespace FufuLauncher.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[策略约束] 解析提示内容失败: {ex.Message}");
+                DebugLog.Info("ConstraintService", $"[PolicyConstraint] Failed to parse prompt content: {ex.Message}");
                 return string.Empty;
             }
         }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -144,7 +144,7 @@ namespace FufuLauncher
 
                     foreach (var quarantined in PluginInjectionGuard.QuarantineRootStrayFiles())
                     {
-                        Debug.WriteLine($"[Program] 已重命名插件根目录残留文件: {quarantined}");
+                        DebugLog.Info("Program", $"[Program] Renamed leftover files in plugin root: {quarantined}");
                     }
 
                     var conflicts = PluginInjectionGuard.FindDuplicateDllNames(PluginConflictSettings.Read());
@@ -191,7 +191,7 @@ namespace FufuLauncher
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[Program] 注入前信任校验异常（继续注入）：{ex.Message}");
+                    DebugLog.Info("Program", $"[Program] Pre-injection trust check exception (continuing injection): {ex.Message}");
                 }
 
                 var result = launcher.LaunchGameAndInject(gameExePath, dllPath, commandLineArgs, out var errorMessage,

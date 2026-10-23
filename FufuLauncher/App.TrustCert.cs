@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
 using FufuLauncher.Services.CodeSigning;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher;
 
@@ -142,7 +143,7 @@ public static class TrustCertCli
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TrustCli] failed to write diagnostics report: {ex.Message}");
+            DebugLog.Info("App.TrustCert", $"[TrustCli] failed to write diagnostics report: {ex.Message}");
         }
 
         WriteConsole(report);
@@ -166,7 +167,7 @@ public static class TrustCertCli
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TrustCli] 写入结果文件失败：{ex.Message}");
+            DebugLog.Info("App.TrustCert", $"[TrustCli] Failed to write result file: {ex.Message}");
         }
     }
 
@@ -174,7 +175,7 @@ public static class TrustCertCli
     {
         if (!AttachConsole(AttachParentProcess))
         {
-            Debug.WriteLine(message);
+            DebugLog.Info("App.TrustCert", "Trust command output written to console");
         }
 
         try
@@ -184,7 +185,7 @@ public static class TrustCertCli
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TrustCli] 控制台输出失败：{ex.Message}");
+            DebugLog.Info("App.TrustCert", $"[TrustCli] Console output failed: {ex.Message}");
         }
     }
 

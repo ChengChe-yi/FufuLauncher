@@ -61,19 +61,19 @@ public sealed partial class SettingsPage : Page
     protected async override void OnNavigatedTo(Microsoft.UI.Xaml.Navigation.NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        PreviewTrace.Log("SettingsPage.OnNavigatedTo.Start");
+        DebugLog.Info("SettingsPage", "SettingsPage.OnNavigatedTo.Start");
 
         if (ViewModel != null)
         {
             await ViewModel.ReloadSettingsAsync();
         }
 
-        PreviewTrace.Log("SettingsPage.OnNavigatedTo.End");
+        DebugLog.Info("SettingsPage", "SettingsPage.OnNavigatedTo.End");
     }
 
     private void Page_Loaded(object sender, RoutedEventArgs e)
     {
-        PreviewTrace.Log("SettingsPage.PageLoaded");
+        DebugLog.Info("SettingsPage", "SettingsPage.PageLoaded");
         EntranceStoryboard.Begin();
         UpdateTemporaryDeveloperAuthUi();
 
@@ -109,7 +109,7 @@ public sealed partial class SettingsPage : Page
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[SettingsPage] 分区 {sectionId} 界面刷新失败: {ex.Message}");
+            DebugLog.Info("SettingsPage", $"[SettingsPage] Failed to refresh section {sectionId}: {ex.Message}");
         }
     }
 

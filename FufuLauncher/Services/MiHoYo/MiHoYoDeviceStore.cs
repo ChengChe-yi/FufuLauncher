@@ -66,7 +66,7 @@ public sealed class MiHoYoDeviceStore
 
             var created = MiHoYoDeviceIdentity.CreateNew(initialDeviceId);
             await WriteCoreAsync(created, token).ConfigureAwait(false);
-            Debug.WriteLine($"[MiHoYoDevice] 已生成并持久化 device_id={created.DeviceId}");
+            DebugLog.Info("MiHoYoDeviceStore", $"[MiHoYoDevice] Generated and persisted device_id={created.DeviceId}");
             return created;
         }
         finally
@@ -87,8 +87,8 @@ public sealed class MiHoYoDeviceStore
                 || !current.IsUsable
                 || !string.Equals(current.DeviceId, expectedDeviceId, StringComparison.Ordinal))
             {
-                Debug.WriteLine(
-                    $"[MiHoYoDevice] 身份已变更（期望 {expectedDeviceId}），丢弃过期指纹");
+                DebugLog.Info("MiHoYoDeviceStore",
+                    $"[MiHoYoDevice] Identity changed (expected {expectedDeviceId}), discarding stale fingerprint");
                 return null;
             }
 
@@ -111,7 +111,7 @@ public sealed class MiHoYoDeviceStore
         {
             var created = MiHoYoDeviceIdentity.CreateNew(initialDeviceId);
             await WriteCoreAsync(created, token).ConfigureAwait(false);
-            Debug.WriteLine($"[MiHoYoDevice] 已重置并持久化 device_id={created.DeviceId}");
+            DebugLog.Info("MiHoYoDeviceStore", $"[MiHoYoDevice] Reset and persisted device_id={created.DeviceId}");
             return created;
         }
         finally
@@ -140,7 +140,7 @@ public sealed class MiHoYoDeviceStore
             var loaded = JsonSerializer.Deserialize<MiHoYoDeviceIdentity>(json, JsonOptions);
             if (loaded is null)
             {
-                Debug.WriteLine("[MiHoYoDevice] 文件内容为空，视为不可用");
+                DebugLog.Info("MiHoYoDeviceStore", "[MiHoYoDevice] File content is empty, treating as unavailable");
                 return null;
             }
 
@@ -149,7 +149,7 @@ public sealed class MiHoYoDeviceStore
         }
         catch (JsonException ex)
         {
-            Debug.WriteLine($"[MiHoYoDevice] 内容解析失败，视为不可用: {ex.Message}");
+            DebugLog.Info("MiHoYoDeviceStore", $"[MiHoYoDevice] Failed to parse content, treating as unavailable: {ex.Message}");
             return null;
         }
     }
@@ -188,7 +188,7 @@ public sealed class MiHoYoDeviceStore
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
         {
-            Debug.WriteLine($"[MiHoYoDevice] 清理临时文件失败 {path}: {ex.Message}");
+            DebugLog.Info("MiHoYoDeviceStore", $"[MiHoYoDevice] Failed to clean temp file {path}: {ex.Message}");
         }
     }
 }

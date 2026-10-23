@@ -87,18 +87,18 @@ public class AchievementRepository
                     "CREATE TABLE IF NOT EXISTS __EFMigrationsHistory (MigrationId TEXT PRIMARY KEY, ProductVersion TEXT);");
                 context.Database.ExecuteSqlRaw(
                     "INSERT OR IGNORE INTO __EFMigrationsHistory VALUES ('20240716000000_InitialCreate', '8.0.28');");
-                Debug.WriteLine("AchievementRepository: 检测到现有数据库，已跳过迁移");
+                DebugLog.Info("AchievementRepository", "AchievementRepository: existing database detected, migration skipped");
             }
             else
             {
                 using var context = new AchievementDbContext(dbPath);
                 context.Database.EnsureCreated();
-                Debug.WriteLine("AchievementRepository: 已创建新数据库");
+                DebugLog.Info("AchievementRepository", "AchievementRepository: new database created");
             }
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"AchievementRepository: 数据库迁移处理异常 - {ex.Message}");
+            DebugLog.Info("AchievementRepository", $"AchievementRepository: Database migration exception - {ex.Message}");
 
             try
             {
@@ -110,7 +110,7 @@ public class AchievementRepository
             }
             catch (Exception ex2)
             {
-                Debug.WriteLine($"AchievementRepository: 迁移历史回退创建失败 - {ex2.Message}");
+                DebugLog.Info("AchievementRepository", $"AchievementRepository: Failed to create migration history fallback - {ex2.Message}");
             }
         }
     }
@@ -125,7 +125,7 @@ public class AchievementRepository
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AchievementRepo] 加载分类失败: {ex.Message}");
+            DebugLog.Info("AchievementRepository", $"[AchievementRepo] Failed to load categories: {ex.Message}");
             return new List<AchievementCategoryEntity>();
         }
     }
@@ -169,7 +169,7 @@ public class AchievementRepository
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AchievementRepo] 加载成就失败: {ex.Message}");
+            DebugLog.Info("AchievementRepository", $"[AchievementRepo] Failed to load achievements: {ex.Message}");
             return new List<AchievementEntity>();
         }
     }

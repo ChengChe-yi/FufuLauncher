@@ -54,14 +54,14 @@ public sealed class GeetestService
             int retcode = doc.RootElement.TryGetProperty("retcode", out JsonElement rc) ? rc.GetInt32() : -1;
             if (retcode != 0 || !doc.RootElement.TryGetProperty("data", out JsonElement data))
             {
-                Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: createVerification 失败 retcode={retcode}");
+                DebugLog.Info("GeetestService", $"[GeetestService] TryVerifyForDailyNote: createVerification failed retcode={retcode}");
                 return null;
             }
 
             gt = data.TryGetProperty("gt", out JsonElement gtProp) ? gtProp.GetString() : null;
             challenge = data.TryGetProperty("challenge", out JsonElement chProp) ? chProp.GetString() : null;
-            Debug.WriteLine(
-                $"[GeetestService] TryVerifyForDailyNote: createVerification 成功 gt={gt}, challenge={challenge}");
+            DebugLog.Info("GeetestService",
+                $"[GeetestService] TryVerifyForDailyNote: createVerification succeeded gt={gt}, challenge={challenge}");
         }
 
         if (string.IsNullOrEmpty(gt) || string.IsNullOrEmpty(challenge))
@@ -70,12 +70,12 @@ public sealed class GeetestService
         GeetestResult result = await ShowGeetestWebViewAsync(gt, challenge, isOversea: false, showNotice: showNotice);
         if (result == null || string.IsNullOrEmpty(result.Validate))
         {
-            Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: 用户未完成验证 (result=null) 或 validate 为空");
+            DebugLog.Info("GeetestService", $"[GeetestService] TryVerifyForDailyNote: user did not complete verification (result=null) or validate is empty");
             return null;
         }
 
-        Debug.WriteLine(
-            $"[GeetestService] TryVerifyForDailyNote: 验证码完成 challenge={result.Challenge}, validate={result.Validate}");
+        DebugLog.Info("GeetestService",
+            $"[GeetestService] TryVerifyForDailyNote: captcha completed challenge={result.Challenge}, validate={result.Validate}");
 
         string verifyJson = await CallVerifyVerificationAsync(ctx, result.Challenge, result.Validate, path);
         using (JsonDocument doc = JsonDocument.Parse(verifyJson))
@@ -83,14 +83,14 @@ public sealed class GeetestService
             int retcode = doc.RootElement.TryGetProperty("retcode", out JsonElement rc) ? rc.GetInt32() : -1;
             if (retcode != 0 || !doc.RootElement.TryGetProperty("data", out JsonElement data))
             {
-                Debug.WriteLine($"[GeetestService] TryVerifyForDailyNote: verifyVerification 失败 retcode={retcode}");
+                DebugLog.Info("GeetestService", $"[GeetestService] TryVerifyForDailyNote: verifyVerification failed retcode={retcode}");
                 return null;
             }
 
             string finalChallenge =
                 data.TryGetProperty("challenge", out JsonElement chProp) ? chProp.GetString() : null;
-            Debug.WriteLine(
-                $"[GeetestService] TryVerifyForDailyNote: verifyVerification 成功 xrpc_challenge={finalChallenge}");
+            DebugLog.Info("GeetestService",
+                $"[GeetestService] TryVerifyForDailyNote: verifyVerification succeeded xrpc_challenge={finalChallenge}");
             return finalChallenge;
         }
     }
@@ -105,7 +105,7 @@ public sealed class GeetestService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GeetestService] 读取验证码弹窗说明设置失败，按默认显示: {ex.Message}");
+            DebugLog.Info("GeetestService", $"[GeetestService] Failed to read captcha dialog description setting, using default display: {ex.Message}");
             return true;
         }
     }
@@ -114,7 +114,7 @@ public sealed class GeetestService
     {
         string cookieStr = BbsRequestBuilder.BuildCookieString(ctx.Cookies, BbsRequestBuilder.CookieMode.Cookie);
         string ds = MiHoYoHeaderFactory.CalculateDs2(HeaderSalts.CnX4, "is_high=true", "");
-        Debug.WriteLine($"[GeetestService] CallCreateVerification: device_fp={ctx.Device.DeviceFp}");
+        DebugLog.Info("GeetestService", $"[GeetestService] CallCreateVerification: device_fp={ctx.Device.DeviceFp}");
 
         using HttpRequestMessage req = new(HttpMethod.Get, CreateVerificationUrl);
         req.Headers.Add("Cookie", cookieStr);
@@ -146,7 +146,7 @@ public sealed class GeetestService
         };
         string bodyJson = JsonSerializer.Serialize(body);
         string ds = MiHoYoHeaderFactory.CalculateDs2(HeaderSalts.CnX4, "", bodyJson);
-        Debug.WriteLine($"[GeetestService] CallVerifyVerification: device_fp={ctx.Device.DeviceFp}");
+        DebugLog.Info("GeetestService", $"[GeetestService] CallVerifyVerification: device_fp={ctx.Device.DeviceFp}");
 
         using HttpRequestMessage req = new(HttpMethod.Post, VerifyVerificationUrl);
         req.Content = new StringContent(bodyJson, Encoding.UTF8, "application/json");
@@ -175,7 +175,7 @@ public sealed class GeetestService
 
         if (App.MainWindow == null)
         {
-            Debug.WriteLine("[GeetestService] App.MainWindow 为 null，无法显示验证码窗口");
+            DebugLog.Info("GeetestService", "[GeetestService] App.MainWindow is null, cannot show captcha window");
             tcs.TrySetResult(null);
             return await tcs.Task;
         }
@@ -283,12 +283,12 @@ public sealed class GeetestService
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"[GeetestService] MoveInZOrderAtTop 失败: {ex.Message}");
+                    DebugLog.Info("GeetestService", $"[GeetestService] MoveInZOrderAtTop failed: {ex.Message}");
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[GeetestService] 验证码窗口创建失败: {ex.Message}");
+                DebugLog.Info("GeetestService", $"[GeetestService] Failed to create captcha window: {ex.Message}");
                 tcs.TrySetResult(null);
             }
         });
@@ -431,12 +431,12 @@ public sealed class GeetestService
             return false;
         }
 
-        Debug.WriteLine($"[GeetestService] TryVerifyAigisSession: rawSession={Truncate(rawSession, 500)}");
+        DebugLog.Info("GeetestService", $"[GeetestService] TryVerifyAigisSession: rawSession={Truncate(rawSession, 500)}");
 
         AigisSession? session = Deserialize<AigisSession>(rawSession);
         if (session is null || string.IsNullOrEmpty(session.SessionId))
         {
-            Debug.WriteLine("[GeetestService] TryVerifyAigisSession: Aigis 会话解析失败");
+            DebugLog.Info("GeetestService", "[GeetestService] TryVerifyAigisSession: Aigis session parse failed");
             return false;
         }
 
@@ -449,26 +449,26 @@ public sealed class GeetestService
         if (verification is null || string.IsNullOrEmpty(verification.Gt) ||
             string.IsNullOrEmpty(verification.Challenge))
         {
-            Debug.WriteLine(
-                $"[GeetestService] TryVerifyAigisSession: 极验参数解析失败 data={Truncate(session.Data.ToString(), 500)}");
+            DebugLog.Info("GeetestService",
+                $"[GeetestService] TryVerifyAigisSession: failed to parse Geetest params data={Truncate(session.Data.ToString(), 500)}");
             return false;
         }
 
-        Debug.WriteLine(
+        DebugLog.Info("GeetestService",
             $"[GeetestService] TryVerifyAigisSession: gt={Truncate(verification.Gt, 32)}, challenge={Truncate(verification.Challenge, 32)}, isOversea={isOversea}");
 
         GeetestResult? result = await ShowGeetestWebViewAsync(verification.Gt, verification.Challenge, isOversea);
 
         if (isOversea && (result is null || (result.Error == 1 && string.IsNullOrEmpty(result.Validate))))
         {
-            Debug.WriteLine("[GeetestService] TryVerifyAigisSession: api-na 加载失败，回退 api.geetest.com 重试");
+            DebugLog.Info("GeetestService", "[GeetestService] TryVerifyAigisSession: api-na load failed, falling back to api.geetest.com");
             result = await ShowGeetestWebViewAsync(verification.Gt, verification.Challenge, isOversea,
                 apiServerOverride: "api.geetest.com");
         }
 
         if (result is null || string.IsNullOrEmpty(result.Validate))
         {
-            Debug.WriteLine("[GeetestService] TryVerifyAigisSession: 极验未完成");
+            DebugLog.Info("GeetestService", "[GeetestService] TryVerifyAigisSession: Geetest not completed");
             return false;
         }
 

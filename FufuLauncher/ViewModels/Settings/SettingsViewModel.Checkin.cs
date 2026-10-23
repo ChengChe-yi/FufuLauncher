@@ -44,7 +44,7 @@ public partial class SettingsViewModel
     partial void OnIsAutoCheckinEnabledChanged(bool value)
     {
         if (_isInitializing) return;
-        Debug.WriteLine($"SettingsViewModel: 自动签到设置变更为 {value}");
+        DebugLog.Info("SettingsViewModel.Checkin", $"SettingsViewModel: auto check-in setting changed to {value}");
         _ = _localSettingsService.SaveSettingAsync("IsAutoCheckinEnabled", value);
     }
 
@@ -236,7 +236,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"LoadCheckinAccountsAsync 异常: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Checkin", $"LoadCheckinAccountsAsync exception: {ex.Message}");
         }
     }
 
@@ -255,7 +255,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"保存云游戏凭证失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Checkin", $"Failed to save cloud gaming credentials: {ex.Message}");
         }
     }
 
@@ -276,7 +276,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"移除云游戏凭证失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.Checkin", $"Failed to remove cloud gaming credentials: {ex.Message}");
         }
     }
 

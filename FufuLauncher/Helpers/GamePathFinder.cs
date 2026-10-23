@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -12,7 +12,7 @@ namespace FufuLauncher.Helpers
     {
         public static async Task<string?> FindGamePathAsync()
         {
-            Debug.WriteLine("[Debug] FindGamePath 开始");
+            DebugLog.Info("GamePathFinder", "[Debug] FindGamePath start");
             try
             {
                 var exeNames = await GameExeManager.GetExeNamesAsync();
@@ -22,7 +22,7 @@ namespace FufuLauncher.Helpers
                     if (key != null)
                     {
                         var value = key.GetValue("GameInstallPath")?.ToString();
-                        Debug.WriteLine($"[Debug] 成功读取注册表 GameInstallPath，值为: '{value}'");
+                        DebugLog.Info("GamePathFinder", $"[Debug] Read registry GameInstallPath, value: '{value}'");
 
                         if (!string.IsNullOrEmpty(value))
                         {
@@ -31,28 +31,28 @@ namespace FufuLauncher.Helpers
                                 var exePath = Path.Combine(value, exeName);
                                 if (File.Exists(exePath))
                                 {
-                                    Debug.WriteLine($"[Debug] 验证通过: 找到文件 {exePath}");
+                                    DebugLog.Info("GamePathFinder", $"[Debug] Validation passed: file found {exePath}");
                                     return Path.GetDirectoryName(exePath);
                                 }
 
                                 var subDirPath = Path.Combine(value, "Genshin Impact Game", exeName);
                                 if (File.Exists(subDirPath))
                                 {
-                                    Debug.WriteLine($"[Debug] 验证通过: 找到文件 {subDirPath}");
+                                    DebugLog.Info("GamePathFinder", $"[Debug] Validation passed: file found {subDirPath}");
                                     return Path.GetDirectoryName(subDirPath);
                                 }
                             }
 
-                            Debug.WriteLine("[Debug] 注册表路径存在，但该路径下没找到目标游戏主程序！");
+                            DebugLog.Info("GamePathFinder", "[Debug] Registry path exists but game executable not found there!");
                         }
                     }
                     else
                     {
-                        Debug.WriteLine("[Debug] 注册表项 hk4e_cn 不存在或为 null。");
+                        DebugLog.Info("GamePathFinder", "[Debug] Registry key hk4e_cn missing or null.");
                     }
                 }
 
-                Debug.WriteLine("[Debug] 准备检查常见默认路径...");
+                DebugLog.Info("GamePathFinder", "[Debug] Checking common default paths...");
                 string[] basePaths =
                 {
                     @"C:\Program Files\Genshin Impact\Genshin Impact Game",
@@ -70,7 +70,7 @@ namespace FufuLauncher.Helpers
                         var exePath = Path.Combine(basePath, exeName);
                         if (File.Exists(exePath))
                         {
-                            Debug.WriteLine($"[Debug] 在常见路径中找到游戏: {exePath}");
+                            DebugLog.Info("GamePathFinder", $"[Debug] Game found in common paths: {exePath}");
                             return Path.GetDirectoryName(exePath);
                         }
                     }
@@ -78,10 +78,10 @@ namespace FufuLauncher.Helpers
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[Debug] FindGamePath 发生异常: {ex.Message}");
+                DebugLog.Info("GamePathFinder", $"[Debug] FindGamePath exception: {ex.Message}");
             }
 
-            Debug.WriteLine("[Debug] FindGamePath 最终未找到任何路径，返回 null。");
+            DebugLog.Info("GamePathFinder", "[Debug] FindGamePath found no path, returning null.");
             return null;
         }
     }

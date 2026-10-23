@@ -19,21 +19,21 @@ public partial class LuaPluginInstaller
     {
         ClearCollectedLogs();
 
-        LogMessage("开始");
-        LogMessage($"脚本长度: {luaScript.Length} 字符");
-        LogMessage($"沙箱目录: {_pluginsDir}");
+        LogMessage("Start");
+        LogMessage($"Script length: {luaScript.Length} chars");
+        LogMessage($"Sandbox directory: {_pluginsDir}");
 
         ReportProgress(0, "正在执行脚本...");
 
         try
         {
             await ExecuteScriptAsync(luaScript, cancellationToken);
-            LogMessage("无异常");
+            LogMessage("No exception");
             ReportProgress(100, "执行完成");
         }
         catch (Exception ex)
         {
-            LogMessage($"脚本测试异常终止: {ex.Message}");
+            LogMessage($"Script test aborted: {ex.Message}");
             ReportProgress(100, "执行失败");
             throw;
         }
@@ -123,7 +123,7 @@ public partial class LuaPluginInstaller
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[LuaInstaller] Failed to clean temporary archive: {ex.Message}");
+                DebugLog.Info("LuaPluginInstaller.Pipeline", $"[LuaInstaller] Failed to clean temporary archive: {ex.Message}");
             }
         }
 
@@ -167,7 +167,7 @@ public partial class LuaPluginInstaller
             }
             catch (InterpreterException ex)
             {
-                Debug.WriteLine($"[LuaInstaller] Failed to inject Lua helpers: {ex.Message}");
+                DebugLog.Info("LuaPluginInstaller.Pipeline", $"[LuaInstaller] Failed to inject Lua helpers: {ex.Message}");
             }
 
             try
@@ -185,8 +185,8 @@ public partial class LuaPluginInstaller
                     cause = cause.InnerException;
                 if (cause is OperationCanceledException oce)
                 {
-                    Debug.WriteLine($"[LuaInstaller] Lua script cancelled");
-                    LogMessage("脚本执行被取消");
+                    DebugLog.Info("LuaPluginInstaller.Pipeline", $"[LuaInstaller] Lua script cancelled");
+                    LogMessage("Script execution cancelled");
                     throw oce;
                 }
 
@@ -194,8 +194,8 @@ public partial class LuaPluginInstaller
                     SecurityViolationException or PluginArchivePasswordException)
                     ExceptionDispatchInfo.Capture(cause).Throw();
 
-                Debug.WriteLine($"[LuaInstaller] Lua error: {ex.Message}");
-                LogMessage($"Lua脚本错误: {ex.Message}");
+                DebugLog.Info("LuaPluginInstaller.Pipeline", $"[LuaInstaller] Lua error: {ex.Message}");
+                LogMessage($"Lua script error: {ex.Message}");
                 throw new InvalidOperationException(
                     string.Format("PluginStoreLuaScriptFailed".GetLocalized(), ex.Message), ex);
             }

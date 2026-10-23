@@ -111,8 +111,8 @@ public sealed partial class OverseaEmailVerificationDialog : ContentDialog, IAig
                     await _passportClient.CreateEmailCaptchaByActionTicketAsync(_ticket, Aigis);
                 response = current;
 
-                System.Diagnostics.Debug.WriteLine(
-                    $"[OverseaEmailVerification] 发送邮箱验证码 第{attempt + 1}轮: retcode={current.RetCode}, aigis={(rawAigis is null ? "无" : "有")}");
+                DebugLog.Info("OverseaEmailVerificationDialog",
+                    $"[OverseaEmailVerification] Sending email captcha, attempt {attempt + 1}: retcode={current.RetCode}, aigis={(rawAigis is null ? "none" : "present")}");
 
                 if (current.IsSuccess)
                 {
@@ -136,8 +136,8 @@ public sealed partial class OverseaEmailVerificationDialog : ContentDialog, IAig
 
                 if (aigisWasUsed)
                 {
-                    System.Diagnostics.Debug.WriteLine(
-                        $"[OverseaEmailVerification] aigis 被拒绝(retcode={current.RetCode})，清空后重新发起");
+                    DebugLog.Info("OverseaEmailVerificationDialog",
+                        $"[OverseaEmailVerification] aigis rejected (retcode={current.RetCode}), cleared and retrying");
                     aigisWasUsed = false;
                     Aigis = null;
                     continue;

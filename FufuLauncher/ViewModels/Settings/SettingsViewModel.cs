@@ -403,7 +403,7 @@ public partial class SettingsViewModel : ObservableRecipient
                 int languageCode = Convert.ToInt32(param);
                 var language = (AppLanguage)languageCode;
 
-                Debug.WriteLine(
+                DebugLog.Info("SettingsViewModel",
                     $"[SettingsVM] SwitchLanguageCommand: param={param}, language={language}, current SelectedLanguage={SelectedLanguage}");
 
 
@@ -412,7 +412,7 @@ public partial class SettingsViewModel : ObservableRecipient
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"语言切换失败: {ex.Message}");
+                DebugLog.Info("SettingsViewModel", $"Language switch failed: {ex.Message}");
             }
         });
 

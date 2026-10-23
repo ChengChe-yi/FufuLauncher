@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -43,7 +43,7 @@ public class UserInfoService : IUserInfoService
         };
         var found = keys.Where(k => cookie.Contains(k + "=", StringComparison.OrdinalIgnoreCase)).ToArray();
         var missing = keys.Where(k => !found.Contains(k, StringComparer.OrdinalIgnoreCase)).ToArray();
-        System.Diagnostics.Debug.WriteLine(
+        DebugLog.Info("UserInfoService",
             $"[UserInfoService] Cookie length={cookie.Length}, found=[{string.Join(", ", found)}], missing=[{string.Join(", ", missing)}]");
 
         request.Headers.TryAddWithoutValidation("Cookie", cookie);
@@ -113,14 +113,14 @@ public class UserInfoService : IUserInfoService
             ApplyCommonHeaders(request, cookie);
             using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
-            System.Diagnostics.Debug.WriteLine(
+            DebugLog.Info("UserInfoService",
                 $"[UserInfoService] GameRoles HTTP {response.StatusCode} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
             return JsonSerializer.Deserialize<GameRolesResponse>(json,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "获取角色信息失败");
+            _logger.LogError(ex, "Failed to get role info");
             return new GameRolesResponse(-1, ex.Message, null);
         }
     }
@@ -146,7 +146,7 @@ public class UserInfoService : IUserInfoService
         }
         catch (Exception ex)
         {
-            _logger.LogWarning(ex, "国际服 binding 角色解析失败，回退 RoleResolver");
+            _logger.LogWarning(ex, "International binding role parse failed, falling back to RoleResolver");
             return null;
         }
     }
@@ -166,14 +166,14 @@ public class UserInfoService : IUserInfoService
 
             using var response = await _httpClient.SendAsync(request);
             var json = await response.Content.ReadAsStringAsync();
-            System.Diagnostics.Debug.WriteLine(
+            DebugLog.Info("UserInfoService",
                 $"[UserInfoService] UserFullInfo HTTP {response.StatusCode} | URL: {url} | Body({json?.Length ?? 0}): {(json?.Length > 300 ? json[..300] : json ?? "(null)")}");
             return JsonSerializer.Deserialize<UserFullInfoResponse>(json,
                 new JsonSerializerOptions { PropertyNameCaseInsensitive = true })!;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "获取用户信息失败");
+            _logger.LogError(ex, "Failed to get user info");
             return new UserFullInfoResponse(-1, ex.Message, null);
         }
     }

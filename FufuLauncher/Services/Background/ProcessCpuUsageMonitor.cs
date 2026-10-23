@@ -7,6 +7,7 @@ using System.Diagnostics;
 using FufuLauncher.Contracts.Services;
 using Microsoft.UI.Dispatching;
 using FufuLauncher.Views;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.Background;
 
@@ -85,7 +86,7 @@ public sealed class ProcessCpuUsageMonitor : IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[CpuUsageMonitor] 检测已停止: {ex.Message}");
+            DebugLog.Info("ProcessCpuUsageMonitor", $"[CpuUsageMonitor] Monitoring stopped: {ex.Message}");
         }
     }
 
@@ -102,7 +103,7 @@ public sealed class ProcessCpuUsageMonitor : IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[CpuUsageMonitor] 读取设置失败: {ex.Message}");
+            DebugLog.Info("ProcessCpuUsageMonitor", $"[CpuUsageMonitor] Failed to read settings: {ex.Message}");
             return (true, DefaultCpuThreshold);
         }
     }
@@ -130,7 +131,7 @@ public sealed class ProcessCpuUsageMonitor : IDisposable
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[CpuUsageMonitor] CPU采样失败: {ex.Message}");
+            DebugLog.Info("ProcessCpuUsageMonitor", $"[CpuUsageMonitor] CPU sampling failed: {ex.Message}");
             return 0;
         }
     }
@@ -156,7 +157,7 @@ public sealed class ProcessCpuUsageMonitor : IDisposable
             catch (Exception ex)
             {
                 _isAlertOpen = false;
-                Debug.WriteLine($"[CpuUsageMonitor] 显示提示窗口失败: {ex.Message}");
+                DebugLog.Info("ProcessCpuUsageMonitor", $"[CpuUsageMonitor] Failed to show notification window: {ex.Message}");
             }
         });
     }

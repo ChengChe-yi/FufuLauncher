@@ -198,7 +198,7 @@ public partial class GameAnnouncementViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GameAnnouncementViewModel] 加载公告失败: {ex.Message}");
+            DebugLog.Info("GameAnnouncementViewModel", $"[GameAnnouncementViewModel] Failed to load announcements: {ex.Message}");
             HasError = true;
         }
         finally
@@ -285,7 +285,7 @@ public partial class GameAnnouncementViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[GameAnnouncementViewModel] 读取公告服务器设置失败: {ex.Message}");
+            DebugLog.Info("GameAnnouncementViewModel", $"[GameAnnouncementViewModel] Failed to read announcement server settings: {ex.Message}");
             return AnnouncementRegion.CNGF01;
         }
     }

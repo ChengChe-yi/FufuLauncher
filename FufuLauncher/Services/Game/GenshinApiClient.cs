@@ -76,8 +76,8 @@ public class GenshinApiClient
         var response = await _httpClient.SendAsync(request, cancellationToken);
         var content = await response.Content.ReadAsStringAsync(cancellationToken);
 
-        Debug.WriteLine($"[API] Request: {request.RequestUri}");
-        Debug.WriteLine($"[API] Response: {content}");
+        DebugLog.Info("GenshinApiClient", $"[API] Request: {request.RequestUri}");
+        DebugLog.Info("GenshinApiClient", $"[API] Response: {content}");
 
         var options = new JsonSerializerOptions
         {

@@ -20,7 +20,7 @@ public partial class PluginStoreViewModel
 
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
-            Debug.WriteLine("[PluginStoreVM] Cannot add private plugin: MainWindow or DispatcherQueue is null");
+            DebugLog.Info("PluginStoreViewModel.PrivatePlugin", "[PluginStoreVM] Cannot add private plugin: MainWindow or DispatcherQueue is null");
             return;
         }
 
@@ -31,7 +31,7 @@ public partial class PluginStoreViewModel
             {
                 if (App.MainWindow?.Content?.XamlRoot is not { } xamlRoot)
                 {
-                    Debug.WriteLine("[PluginStoreVM] Cannot add private plugin: XamlRoot is null");
+                    DebugLog.Info("PluginStoreViewModel.PrivatePlugin", "[PluginStoreVM] Cannot add private plugin: XamlRoot is null");
                     tcs.TrySetResult();
                     return;
                 }
@@ -67,7 +67,7 @@ public partial class PluginStoreViewModel
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[PluginStoreVM] Error in private plugin dialog: {ex}");
+                DebugLog.Info("PluginStoreViewModel.PrivatePlugin", $"[PluginStoreVM] Error in private plugin dialog: {ex}");
             }
             finally
             {
@@ -103,7 +103,7 @@ public partial class PluginStoreViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginStoreVM] AddPrivatePlugin error: {ex.Message}");
+            DebugLog.Info("PluginStoreViewModel.PrivatePlugin", $"[PluginStoreVM] AddPrivatePlugin error: {ex.Message}");
             StatusMessage = string.Format("PluginStore_InstallPrivatePluginFailed_Format".GetLocalized(), ex.Message);
         }
         finally

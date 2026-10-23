@@ -8,6 +8,7 @@ using FufuLauncher.Models.CycleChallenge;
 using FufuLauncher.Models.CycleChallenge.Mapping;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views.Controls.CycleChallenge;
 
@@ -40,7 +41,7 @@ public sealed partial class TheaterPanel : UserControl
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TheaterPanel] 解析 payload 失败: {ex}");
+            DebugLog.Info("TheaterPanel", $"[TheaterPanel] Failed to parse payload: {ex}");
             display = RoleCombatDisplay.CreateError(ex.Message);
         }
 
@@ -58,7 +59,7 @@ public sealed partial class TheaterPanel : UserControl
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[TheaterPanel] 刷新绑定失败: {ex.Message}");
+            DebugLog.Info("TheaterPanel", $"[TheaterPanel] Refresh binding failed: {ex.Message}");
         }
     }
 

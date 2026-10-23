@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -51,7 +51,7 @@ public partial class GachaAnalysisViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] API 元数据获取失败: {ex.Message}");
+            DebugLog.Info("GachaAnalysisViewModel.Metadata", $"[Gacha] Failed to fetch metadata from API: {ex.Message}");
             UpdateMetadata(null, deferRefresh: true);
         }
         finally
@@ -82,7 +82,7 @@ public partial class GachaAnalysisViewModel
             }
             else
             {
-                Debug.WriteLine($"[Gacha] {typeName}元数据获取失败，已重试 {maxAttempts} 次仍为空");
+                DebugLog.Info("GachaAnalysisViewModel.Metadata", $"[Gacha] {typeName} metadata fetch failed, still empty after {maxAttempts} attempts");
             }
         }
 
@@ -145,7 +145,7 @@ public partial class GachaAnalysisViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] 获取 {type} 列表失败: {ex.Message}");
+            DebugLog.Info("GachaAnalysisViewModel.Metadata", $"[Gacha] Failed to fetch {type} list: {ex.Message}");
         }
 
         return list;

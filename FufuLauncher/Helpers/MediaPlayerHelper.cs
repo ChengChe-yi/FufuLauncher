@@ -32,7 +32,7 @@ public static class MediaPlayerHelper
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Failed to disable media command manager: {ex.Message}");
+            DebugLog.Info("MediaPlayerHelper", $"Failed to disable media command manager: {ex.Message}");
         }
     }
 }

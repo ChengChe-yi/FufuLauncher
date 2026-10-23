@@ -159,7 +159,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: GetBackgroundAsync 异常 - {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: GetBackgroundAsync failed - {ex.Message}");
                 return await GetFallbackBackgroundAsync();
             }
         }
@@ -222,7 +222,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 缓存文件加载失败({cachedFilePath}): {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to load cached file ({cachedFilePath}): {ex.Message}");
                 try
                 {
                     File.Delete(cachedFilePath);
@@ -255,7 +255,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 内存视频缓存加载失败({url}): {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to load in-memory video cache ({url}): {ex.Message}");
                 ReleaseVideoCache();
                 return null;
             }
@@ -279,7 +279,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 视频载入内存失败({filePath}): {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to load video into memory ({filePath}): {ex.Message}");
                 ReleaseVideoCache();
                 return null;
             }
@@ -296,7 +296,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 从内存创建视频源失败: {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to create video source from memory: {ex.Message}");
                 return null;
             }
         }
@@ -375,7 +375,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 请求背景 API 失败 - {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Background API request failed - {ex.Message}");
                 return null;
             }
         }
@@ -433,7 +433,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 处理背景 API 响应异常 - {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to process background API response - {ex.Message}");
             }
 
             QueueBackgroundPreload(response);
@@ -451,7 +451,7 @@ namespace FufuLauncher.Services.Background
             var isVideo = isVideoObj != null && Convert.ToBoolean(isVideoObj);
             if (isVideo && !AllowVideoBackground)
             {
-                Debug.WriteLine("BackgroundRenderer: 非开发版，忽略已选中的视频背景");
+                DebugLog.Info("BackgroundRenderer", "BackgroundRenderer: Non-dev build, ignoring selected video background");
                 return null;
             }
 
@@ -539,7 +539,7 @@ namespace FufuLauncher.Services.Background
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"BackgroundRenderer: 后台刷新异常 - {ex.Message}");
+                    DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Background refresh failed - {ex.Message}");
                 }
             });
         }
@@ -632,7 +632,7 @@ namespace FufuLauncher.Services.Background
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"BackgroundRenderer: 预缓存失败({url}): {ex.Message}");
+                    DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Precache failed ({url}): {ex.Message}");
                 }
             }
         }
@@ -683,7 +683,7 @@ namespace FufuLauncher.Services.Background
         {
             if (isVideo && !AllowVideoBackground)
             {
-                Debug.WriteLine("BackgroundRenderer: 非开发版，拒绝加载指定视频背景");
+                DebugLog.Info("BackgroundRenderer", "BackgroundRenderer: Non-dev build, refusing to load specified video background");
                 return null;
             }
 
@@ -699,7 +699,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 指定背景加载失败 - {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to load specified background - {ex.Message}");
                 return null;
             }
         }
@@ -719,7 +719,7 @@ namespace FufuLauncher.Services.Background
 
                 if (isVideo && !AllowVideoBackground)
                 {
-                    Debug.WriteLine($"BackgroundRenderer: 非开发版，禁止使用视频自定义背景: {filePath}");
+                    DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Non-dev build, custom video background not allowed: {filePath}");
                     return null;
                 }
 
@@ -741,7 +741,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 自定义背景加载失败 - {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Custom background load failed - {ex.Message}");
                 return null;
             }
         }
@@ -756,7 +756,7 @@ namespace FufuLauncher.Services.Background
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"BackgroundRenderer: 预加载失败({url}): {ex.Message}");
+                    DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Preload failed ({url}): {ex.Message}");
                 }
             }
         }
@@ -775,7 +775,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: CacheAllBackgroundsAsync 异常 - {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: CacheAllBackgroundsAsync failed - {ex.Message}");
             }
         }
 
@@ -834,7 +834,7 @@ namespace FufuLauncher.Services.Background
                                   (urlExt == null && VideoExtensions.Contains(defaultExtension));
             if (isVideoDownload && !AllowVideoBackground)
             {
-                Debug.WriteLine($"BackgroundRenderer: 非开发版，跳过视频背景下载: {url}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Non-dev build, skipping video background download: {url}");
                 return;
             }
 
@@ -884,7 +884,7 @@ namespace FufuLauncher.Services.Background
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine($"BackgroundRenderer: 临时缓存清理失败: {ex.Message}");
+                    DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to clean temporary cache: {ex.Message}");
                 }
             }
         }
@@ -918,7 +918,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 背景 API 缓存写入失败: {ex.Message}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Failed to write background API cache: {ex.Message}");
             }
         }
 
@@ -974,7 +974,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"BackgroundRenderer: 默认背景加载失败 - {ex}");
+                DebugLog.Info("BackgroundRenderer", $"BackgroundRenderer: Default background load failed - {ex}");
                 return null;
             }
         }

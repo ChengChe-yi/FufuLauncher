@@ -63,7 +63,7 @@ public static class RandomBackgroundService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RandomBackground] 缓存加载失败: {ex.Message}");
+            DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Failed to load cache: {ex.Message}");
             TryDelete(path);
             return null;
         }
@@ -120,7 +120,7 @@ public static class RandomBackgroundService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RandomBackground] 图片下载失败: {ex.Message}");
+            DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Image download failed: {ex.Message}");
             return null;
         }
     }
@@ -140,7 +140,7 @@ public static class RandomBackgroundService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RandomBackground] 图片解码失败: {ex.Message}");
+            DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Image decode failed: {ex.Message}");
             return null;
         }
         finally
@@ -172,7 +172,7 @@ public static class RandomBackgroundService
         catch (Exception ex)
         {
             if (generation == Volatile.Read(ref _generation))
-                Debug.WriteLine($"[RandomBackground] 缓存写入失败: {ex.Message}");
+                DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Failed to write cache: {ex.Message}");
         }
     }
 
@@ -186,7 +186,7 @@ public static class RandomBackgroundService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RandomBackground] 缓存清理失败: {ex.Message}");
+            DebugLog.Info("RandomBackgroundService", $"[RandomBackground] Failed to clean cache: {ex.Message}");
         }
     }
 

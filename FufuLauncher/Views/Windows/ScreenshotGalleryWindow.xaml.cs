@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -16,6 +16,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Media.Imaging;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -324,7 +325,7 @@ public sealed partial class ScreenshotGalleryWindow : Window
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"剪贴板操作失败: {ex.Message}");
+            DebugLog.Info("ScreenshotGalleryWindow", $"Clipboard operation failed: {ex.Message}");
         }
     }
 
@@ -357,13 +358,13 @@ public sealed partial class ScreenshotGalleryWindow : Window
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine($"删除文件失败: {ex.Message}");
+                    DebugLog.Info("ScreenshotGalleryWindow", $"Failed to delete file: {ex.Message}");
                 }
             }
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"弹窗显示失败: {ex.Message}");
+            DebugLog.Info("ScreenshotGalleryWindow", $"Failed to show dialog: {ex.Message}");
         }
     }
 
@@ -429,7 +430,7 @@ public sealed partial class ScreenshotGalleryWindow : Window
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"系统应用打开失败: {ex.Message}");
+                DebugLog.Info("ScreenshotGalleryWindow", $"Failed to open with system app: {ex.Message}");
             }
         }
     }
@@ -459,7 +460,7 @@ public sealed partial class ScreenshotGalleryWindow : Window
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"系统文件夹打开失败: {ex.Message}");
+                DebugLog.Info("ScreenshotGalleryWindow", $"Failed to open system folder: {ex.Message}");
             }
         }
     }

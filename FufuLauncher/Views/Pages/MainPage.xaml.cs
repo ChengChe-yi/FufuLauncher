@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -123,11 +124,11 @@ public sealed partial class MainPage : Page
             {
                 var uri = new Uri(url);
                 await Windows.System.Launcher.LaunchUriAsync(uri);
-                Debug.WriteLine($"打开链接: {url}");
+                DebugLog.Info("MainPage", $"Opening link: {url}");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"打开链接失败: {ex.Message}");
+                DebugLog.Info("MainPage", $"Failed to open link: {ex.Message}");
             }
         }
     }

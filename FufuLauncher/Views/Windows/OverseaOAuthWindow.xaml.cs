@@ -8,6 +8,7 @@ using FufuLauncher.Services.MiHoYo.Passport;
 using Microsoft.UI.Xaml;
 using Microsoft.Web.WebView2.Core;
 using Windows.Graphics;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -79,7 +80,7 @@ public sealed partial class OverseaOAuthWindow : Window
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[OverseaOAuthWindow] OAuth 初始化失败: {ex.Message}");
+            DebugLog.Info("OverseaOAuthWindow", $"[OverseaOAuthWindow] OAuth initialization failed: {ex.Message}");
             _resultTcs.TrySetResult(null);
             DispatcherQueue.TryEnqueue(Close);
         }
@@ -116,7 +117,7 @@ public sealed partial class OverseaOAuthWindow : Window
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"[OverseaOAuthWindow] 关闭清理异常: {ex.Message}");
+            DebugLog.Info("OverseaOAuthWindow", $"[OverseaOAuthWindow] Cleanup on close exception: {ex.Message}");
         }
     }
 }

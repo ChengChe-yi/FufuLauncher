@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using Microsoft.Win32;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Services.AuthTicket;
 
@@ -28,11 +29,11 @@ public sealed class GameRegistrySnapshot
         try
         {
             _snapshot = Registry.GetValue(_keyName, _valueName, null) as byte[];
-            Debug.WriteLine($"[RegistrySnapshot] 已保存快照: {_keyName}\\{_valueName} (长度: {_snapshot?.Length ?? 0})");
+            DebugLog.Info("GameRegistrySnapshot", $"[RegistrySnapshot] Saved snapshot: {_keyName}\\{_valueName} (length: {_snapshot?.Length ?? 0})");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RegistrySnapshot] 保存快照失败: {ex.Message}");
+            DebugLog.Info("GameRegistrySnapshot", $"[RegistrySnapshot] Failed to save snapshot: {ex.Message}");
             _snapshot = null;
         }
     }
@@ -41,24 +42,24 @@ public sealed class GameRegistrySnapshot
     {
         if (_keyName == null || _valueName == null)
         {
-            Debug.WriteLine("[RegistrySnapshot] 无快照可恢复（未调用 TakeSnapshot）");
+            DebugLog.Info("GameRegistrySnapshot", "[RegistrySnapshot] No snapshot to restore (TakeSnapshot not called)");
             return;
         }
 
         if (_snapshot == null || _snapshot.Length == 0)
         {
-            Debug.WriteLine("[RegistrySnapshot] 快照为空，跳过恢复");
+            DebugLog.Info("GameRegistrySnapshot", "[RegistrySnapshot] Snapshot empty, skipping restore");
             return;
         }
 
         try
         {
             Registry.SetValue(_keyName, _valueName, _snapshot, RegistryValueKind.Binary);
-            Debug.WriteLine($"[RegistrySnapshot] 已恢复快照: {_keyName}\\{_valueName}");
+            DebugLog.Info("GameRegistrySnapshot", $"[RegistrySnapshot] Restored snapshot: {_keyName}\\{_valueName}");
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[RegistrySnapshot] 恢复快照失败: {ex.Message}");
+            DebugLog.Info("GameRegistrySnapshot", $"[RegistrySnapshot] Failed to restore snapshot: {ex.Message}");
         }
         finally
         {

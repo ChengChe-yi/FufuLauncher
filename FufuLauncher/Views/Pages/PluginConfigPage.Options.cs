@@ -99,7 +99,7 @@ public sealed partial class PluginConfigPage
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginConfig] Load failed: {ex}");
+            DebugLog.Info("PluginConfigPage.Options", $"[PluginConfig] Load failed: {ex}");
             if (!cancellation.IsCancellationRequested && _isActive)
             {
                 ShowError("PluginConfigPage_LoadFailed".GetLocalized(),

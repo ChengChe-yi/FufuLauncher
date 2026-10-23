@@ -5,6 +5,7 @@ Licensed under the MIT License.
 
 using System.Diagnostics;
 using Microsoft.Win32;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -18,7 +19,7 @@ public static class AnnouncementLauncher
         if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
             (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
         {
-            Debug.WriteLine($"[Announcement] 已忽略非 http(s) 公告链接: {url}");
+            DebugLog.Info("AnnouncementLauncher", $"[Announcement] Ignored non-http(s) announcement link: {url}");
             return false;
         }
 
@@ -41,7 +42,7 @@ public static class AnnouncementLauncher
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Announcement] 调用 Edge 打开公告失败: {ex.Message}");
+            DebugLog.Info("AnnouncementLauncher", $"[Announcement] Failed to open announcement via Edge: {ex.Message}");
             return false;
         }
     }
@@ -54,7 +55,7 @@ public static class AnnouncementLauncher
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Announcement] 打开公告链接失败: {ex.Message}");
+            DebugLog.Info("AnnouncementLauncher", $"[Announcement] Failed to open announcement link: {ex.Message}");
             return false;
         }
     }

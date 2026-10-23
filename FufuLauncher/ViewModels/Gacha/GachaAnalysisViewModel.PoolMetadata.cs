@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -29,7 +29,7 @@ public partial class GachaAnalysisViewModel
         {
             if (_savedMetadata.Count == 0)
             {
-                Debug.WriteLine("[Gacha] 跳过卡池元数据拉取：物品元数据尚未就绪");
+                DebugLog.Info("GachaAnalysisViewModel.PoolMetadata", "[Gacha] Skipping pool metadata fetch: item metadata not ready");
                 return;
             }
 
@@ -37,7 +37,7 @@ public partial class GachaAnalysisViewModel
 
             _charNameToIdMap = BuildNameToIdMap("char");
             _weaponNameToIdMap = BuildNameToIdMap("weapon");
-            Debug.WriteLine($"[Gacha] 卡池数据 name→id 映射：角色 {_charNameToIdMap.Count} 个、武器 {_weaponNameToIdMap.Count} 个");
+            DebugLog.Info("GachaAnalysisViewModel.PoolMetadata", $"[Gacha] Pool name→id mappings: characters {_charNameToIdMap.Count}, weapons {_weaponNameToIdMap.Count}");
 
             var response = await _httpClient.GetStringAsync(ApiEndpoints.WishHistoryUrl);
             var data = JsonSerializer.Deserialize<WishHistoryResponse>(response);
@@ -53,7 +53,7 @@ public partial class GachaAnalysisViewModel
                 var entries = group.Take(2).ToList();
                 if (group.Count() > 2)
                 {
-                    Debug.WriteLine($"[Gacha] 同期角色卡池超过两个，已忽略额外条目：{group.Key.Version} {group.Key.Time}");
+                    DebugLog.Info("GachaAnalysisViewModel.PoolMetadata", $"[Gacha] More than two character pools in same period, ignored extra entries: {group.Key.Version} {group.Key.Time}");
                 }
 
                 foreach (var item in entries)
@@ -137,7 +137,7 @@ public partial class GachaAnalysisViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[Gacha] 获取卡池元数据失败: {ex.Message}");
+            DebugLog.Info("GachaAnalysisViewModel.PoolMetadata", $"[Gacha] Failed to fetch pool metadata: {ex.Message}");
         }
         finally
         {

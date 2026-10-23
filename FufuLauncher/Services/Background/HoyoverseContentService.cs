@@ -27,7 +27,7 @@ namespace FufuLauncher.Services.Background
         {
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
-            Debug.WriteLine("HoyoverseContentService: HttpClient 初始化完成");
+            DebugLog.Info("HoyoverseContentService", "HoyoverseContentService: HttpClient initialized");
         }
 
         private static string GetApiLanguage()
@@ -41,7 +41,7 @@ namespace FufuLauncher.Services.Background
         {
             try
             {
-                Debug.WriteLine($"HoyoverseContentService: 开始请求 {server} 公告内容");
+                DebugLog.Info("HoyoverseContentService", $"HoyoverseContentService: Requesting announcement content for {server}");
 
                 var apiUrl = server switch
                 {
@@ -52,7 +52,7 @@ namespace FufuLauncher.Services.Background
                 };
 
                 var response = await _httpClient.GetStringAsync(apiUrl);
-                Debug.WriteLine($"HoyoverseContentService: 响应长度 {response.Length}");
+                DebugLog.Info("HoyoverseContentService", $"HoyoverseContentService: Response length {response.Length}");
 
                 var options = new JsonSerializerOptions
                 {
@@ -64,7 +64,7 @@ namespace FufuLauncher.Services.Background
 
                 if (result?.Retcode != 0)
                 {
-                    Debug.WriteLine($"HoyoverseContentService: API 错误代码 {result?.Retcode}");
+                    DebugLog.Info("HoyoverseContentService", $"HoyoverseContentService: API error code {result?.Retcode}");
                     return null;
                 }
 
@@ -72,7 +72,7 @@ namespace FufuLauncher.Services.Background
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"HoyoverseContentService: 请求异常 - {ex.GetType().Name}: {ex.Message}");
+                DebugLog.Info("HoyoverseContentService", $"HoyoverseContentService: Request failed - {ex.GetType().Name}: {ex.Message}");
                 return null;
             }
         }

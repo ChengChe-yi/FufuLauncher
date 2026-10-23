@@ -46,19 +46,19 @@ public class UpdateService : IUpdateService
     {
         try
         {
-            Debug.WriteLine($"[UpdateService] 版本检查开始");
-            Debug.WriteLine($"[UpdateService] 本地版本: {CurrentVersion}");
-            Debug.WriteLine($"[UpdateService] 超时设置: {_httpClient.Timeout.TotalSeconds} 秒");
+            DebugLog.Info("UpdateService", $"[UpdateService] Version check started");
+            DebugLog.Info("UpdateService", $"[UpdateService] Local version: {CurrentVersion}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Timeout: {_httpClient.Timeout.TotalSeconds}s");
 
             if (!await IsServerReachableAsync())
             {
-                Debug.WriteLine("[UpdateService] 服务器暂时不可达，跳过版本检查");
+                DebugLog.Info("UpdateService", "[UpdateService] Server temporarily unreachable, skipping version check");
                 return new UpdateCheckResult { ShouldShowUpdate = false };
             }
 
             var json = await GetWithRetryAsync(ApiEndpoints.UpdateJsonUrl, ApiEndpoints.UpdateJsonFallbackUrl,
                 maxRetries: 3);
-            Debug.WriteLine($"[UpdateService] 服务器响应: {json}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Server response: {json}");
 
             var updateInfo = JsonSerializer.Deserialize<UpdateInfo>(json);
             var serverVersion = updateInfo?.Version ?? CurrentVersion;
@@ -68,23 +68,23 @@ public class UpdateService : IUpdateService
                 ? ApiEndpoints.UpdatePreHtmlUrl
                 : updateInfo!.PreReleaseUpdateInfoUrl;
 
-            Debug.WriteLine($"[UpdateService] 解析后的服务器版本: {serverVersion}");
-            Debug.WriteLine($"[UpdateService] 解析后的预览版版本: '{previewVersion}'");
-            Debug.WriteLine($"[UpdateService] 更新公告URL: {updateInfoUrl}");
-            Debug.WriteLine($"[UpdateService] 预览版更新公告URL: {previewUpdateInfoUrl}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Parsed server version: {serverVersion}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Parsed preview version: '{previewVersion}'");
+            DebugLog.Info("UpdateService", $"[UpdateService] Update announcement URL: {updateInfoUrl}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Preview update announcement URL: {previewUpdateInfoUrl}");
 
             var isDevBuild = await _devBuildDetectionService.DetectAsync(serverVersion);
-            Debug.WriteLine($"[UpdateService] 是否开发版: {isDevBuild}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Is dev build: {isDevBuild}");
 
             var lastVersionObj =
                 await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedVersionKey);
             var lastVersion = lastVersionObj?.ToString() ?? string.Empty;
 
-            Debug.WriteLine($"[UpdateService] 上次记录版本: '{lastVersion}'");
+            DebugLog.Info("UpdateService", $"[UpdateService] Last recorded version: '{lastVersion}'");
 
             if (AppVersionHelper.IsNewerVersion(serverVersion, CurrentVersion) && serverVersion != lastVersion)
             {
-                Debug.WriteLine($"[UpdateService] 发现新版本，准备显示更新窗口");
+                DebugLog.Info("UpdateService", $"[UpdateService] New version found, showing update window");
                 await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedVersionKey,
                     serverVersion);
 
@@ -110,11 +110,11 @@ public class UpdateService : IUpdateService
                     await _localSettingsService.ReadSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey);
                 var lastPreviewVersion = lastPreviewVersionObj?.ToString() ?? string.Empty;
 
-                Debug.WriteLine($"[UpdateService] 上次记录预览版版本: '{lastPreviewVersion}'");
+                DebugLog.Info("UpdateService", $"[UpdateService] Last recorded preview version: '{lastPreviewVersion}'");
 
                 if (previewVersion != lastPreviewVersion)
                 {
-                    Debug.WriteLine($"[UpdateService] 发现新预览版，准备显示更新窗口");
+                    DebugLog.Info("UpdateService", $"[UpdateService] New preview version found, showing update window");
                     await _localSettingsService.SaveSettingAsync(LocalSettingsService.LastAnnouncedPreviewVersionKey,
                         previewVersion);
 
@@ -128,16 +128,16 @@ public class UpdateService : IUpdateService
                     };
                 }
 
-                Debug.WriteLine($"[UpdateService] 已显示过此预览版，跳过重复提示");
+                DebugLog.Info("UpdateService", $"[UpdateService] Preview version already shown, skipping duplicate prompt");
             }
 
-            Debug.WriteLine($"[UpdateService] 无可用更新，跳过");
+            DebugLog.Info("UpdateService", $"[UpdateService] No update available, skipping");
             return new UpdateCheckResult { ShouldShowUpdate = false, IsDevBuild = isDevBuild };
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[UpdateService] 检查失败: {ex.GetType().Name} - {ex.Message}");
-            Debug.WriteLine($"[UpdateService] 堆栈: {ex.StackTrace}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Check failed: {ex.GetType().Name} - {ex.Message}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Stack trace: {ex.StackTrace}");
             return new UpdateCheckResult { ShouldShowUpdate = false };
         }
     }
@@ -164,7 +164,7 @@ public class UpdateService : IUpdateService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[UpdateService] 获取更新公告地址失败: {ex.GetType().Name} - {ex.Message}");
+            DebugLog.Info("UpdateService", $"[UpdateService] Failed to get update announcement URL: {ex.GetType().Name} - {ex.Message}");
         }
 
         return string.Empty;
@@ -209,17 +209,17 @@ public class UpdateService : IUpdateService
         {
             try
             {
-                Debug.WriteLine($"[UpdateService] 请求尝试 {i + 1}/{maxRetries}: {url}");
+                DebugLog.Info("UpdateService", $"[UpdateService] Request attempt {i + 1}/{maxRetries}: {url}");
                 return await _httpClient.GetStringAsync(url);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[UpdateService] 尝试 {i + 1} 失败: {ex.Message}");
+                DebugLog.Info("UpdateService", $"[UpdateService] Attempt {i + 1} failed: {ex.Message}");
                 lastException = ex;
 
                 if (i == 0 && fallbackUrl != null)
                 {
-                    Debug.WriteLine($"[UpdateService] 切换到备用地址: {fallbackUrl}");
+                    DebugLog.Info("UpdateService", $"[UpdateService] Switching to fallback URL: {fallbackUrl}");
                     url = fallbackUrl;
                     fallbackUrl = null;
                     continue;

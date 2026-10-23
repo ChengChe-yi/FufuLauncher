@@ -80,22 +80,22 @@ public sealed class BanCheckService
             var localUids = knownUids ?? await _uidLookup.LoadAndWriteUidsAsync().ConfigureAwait(false);
             if (localUids.Count == 0)
             {
-                Debug.WriteLine("[BanCheck] 本机没有可用 UID，跳过封禁检查");
+                DebugLog.Info("BanCheckService", "[BanCheck] No local UID available, skipping ban check");
                 return new BanCheckResult { Outcome = BanCheckOutcome.Passed };
             }
 
-            Debug.WriteLine($"[BanCheck] 正在比对 {localUids.Count} 个本机 UID");
+            DebugLog.Info("BanCheckService", $"[BanCheck] Comparing {localUids.Count} local UIDs");
 
             var payload = await FetchAsync(cancellationToken).ConfigureAwait(false);
             if (payload == null)
             {
-                Debug.WriteLine("[BanCheck] 服务端不可达或返回无效，按放行处理");
+                DebugLog.Info("BanCheckService", "[BanCheck] Server unreachable or returned invalid data, allowing");
                 return new BanCheckResult { Outcome = BanCheckOutcome.Passed };
             }
 
             if (payload.Status == false)
             {
-                Debug.WriteLine("[BanCheck] 服务端已撤销访问");
+                DebugLog.Info("BanCheckService", "[BanCheck] Access revoked by server");
                 return new BanCheckResult
                 {
                     Outcome = BanCheckOutcome.Revoked,
@@ -107,7 +107,7 @@ public sealed class BanCheckService
             var matched = FindBlockedUid(localUids, payload.BannedUids);
             if (matched != null)
             {
-                Debug.WriteLine($"[BanCheck] UID {matched} 命中封禁名单");
+                DebugLog.Info("BanCheckService", $"[BanCheck] UID {matched} found in ban list");
                 return new BanCheckResult
                 {
                     Outcome = BanCheckOutcome.Banned,
@@ -117,12 +117,12 @@ public sealed class BanCheckService
                 };
             }
 
-            Debug.WriteLine("[BanCheck] 检查通过");
+            DebugLog.Info("BanCheckService", "[BanCheck] Check passed");
             return new BanCheckResult { Outcome = BanCheckOutcome.Passed };
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BanCheck] 检查异常，按放行处理 - {ex.Message}");
+            DebugLog.Info("BanCheckService", $"[BanCheck] Check error, allowing - {ex.Message}");
             return new BanCheckResult { Outcome = BanCheckOutcome.Passed };
         }
     }
@@ -166,7 +166,7 @@ public sealed class BanCheckService
         using var response = await Http.SendAsync(request, cancellationToken).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
-            Debug.WriteLine($"[BanCheck] HTTP {(int)response.StatusCode}");
+            DebugLog.Info("BanCheckService", $"[BanCheck] HTTP {(int)response.StatusCode}");
             return null;
         }
 
@@ -192,13 +192,13 @@ public sealed class BanCheckService
             }
             else
             {
-                Debug.WriteLine("[BanCheck] 响应缺少 Status 字段");
+                DebugLog.Info("BanCheckService", "[BanCheck] Response missing Status field");
                 return null;
             }
 
             if (status == null)
             {
-                Debug.WriteLine("[BanCheck] Status 字段无法识别，按放行处理");
+                DebugLog.Info("BanCheckService", "[BanCheck] Unrecognized Status field, allowing");
                 return null;
             }
 
@@ -235,7 +235,7 @@ public sealed class BanCheckService
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[BanCheck] 解析响应失败 - {ex.Message}");
+            DebugLog.Info("BanCheckService", $"[BanCheck] Failed to parse response - {ex.Message}");
             return null;
         }
     }

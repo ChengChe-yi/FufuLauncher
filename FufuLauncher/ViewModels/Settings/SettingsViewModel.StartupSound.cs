@@ -1,9 +1,10 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
 using System.Diagnostics;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.ViewModels;
 
@@ -26,7 +27,7 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"选择启动语音失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.StartupSound", $"Failed to select startup sound: {ex.Message}");
         }
     }
 
@@ -40,14 +41,14 @@ public partial class SettingsViewModel
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"清除启动语音失败: {ex.Message}");
+            DebugLog.Info("SettingsViewModel.StartupSound", $"Failed to clear startup sound: {ex.Message}");
         }
     }
 
     partial void OnIsStartupSoundEnabledChanged(bool value)
     {
         if (_isInitializing) return;
-        Debug.WriteLine($"SettingsViewModel: 保存启动语音开关 {value}");
+        DebugLog.Info("SettingsViewModel.StartupSound", $"SettingsViewModel: saved startup sound toggle {value}");
         _ = _localSettingsService.SaveSettingAsync("IsStartupSoundEnabled", value);
     }
 

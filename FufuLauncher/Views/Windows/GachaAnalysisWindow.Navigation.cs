@@ -6,6 +6,7 @@ Licensed under the MIT License.
 using FufuLauncher.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using FufuLauncher.Helpers;
 
 namespace FufuLauncher.Views;
 
@@ -133,7 +134,7 @@ public sealed partial class GachaAnalysisWindow
         if (ViewModel.IsUpdatingRoleList || sender is not ComboBox combo) return;
         if (combo.SelectedItem is not string selected) return;
 
-        System.Diagnostics.Debug.WriteLine(
+        DebugLog.Info("GachaAnalysisWindow.Navigation",
             $"[Gacha] OnUidComboBoxSelectionChanged: selected={selected}, ViewModel.SelectedUid={ViewModel.SelectedUid}");
 
         if (selected == GachaAnalysisViewModel.AddNewUserItem)

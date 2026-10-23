@@ -9042,4 +9042,16 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ImageSource_ApplyApi" xml:space="preserve">
     <value>应用</value>
   </data>
+  <data name="BackgroundAntialiasTitle" xml:space="preserve">
+    <value>图像抗锯齿</value>
+  </data>
+  <data name="BackgroundAntialiasCaption" xml:space="preserve">
+    <value>平滑主背景图像边缘；默认关闭。</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthTitle" xml:space="preserve">
+    <value>抗锯齿强度</value>
+  </data>
+  <data name="BackgroundAntialiasStrengthCaption" xml:space="preserve">
+    <value>数值越高，边缘越平滑。</value>
+  </data>
 </root>

@@ -216,7 +216,7 @@ public sealed partial class PluginSettingsPage : Page
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[PluginSettings] 跳转签名安装失败: {ex.Message}");
+            DebugLog.Info("PluginSettingsPage", $"[PluginSettings] Failed to navigate to signature install: {ex.Message}");
         }
     }
 

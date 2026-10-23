@@ -77,13 +77,13 @@ public static class AppPaths
         if (!Directory.Exists(_dataDir) && !string.Equals(_dataDir, defaultData, StringComparison.OrdinalIgnoreCase))
         {
             MissingDataDir = _dataDir;
-            Debug.WriteLine($"[AppPaths] 数据目录不存在: {_dataDir}");
+            DebugLog.Info("AppPaths", $"[AppPaths] Data directory missing: {_dataDir}");
         }
 
         if (!Directory.Exists(_cacheDir) && !string.Equals(_cacheDir, defaultCache, StringComparison.OrdinalIgnoreCase))
         {
             MissingCacheDir = _cacheDir;
-            Debug.WriteLine($"[AppPaths] 缓存目录不存在: {_cacheDir}");
+            DebugLog.Info("AppPaths", $"[AppPaths] Cache directory missing: {_cacheDir}");
         }
 
         ValidateOrFallbackDataDir();
@@ -102,7 +102,7 @@ public static class AppPaths
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[AppPaths] paths.json 创建失败: {ex.Message}");
+                DebugLog.Info("AppPaths", $"[AppPaths] Failed to create paths.json: {ex.Message}");
             }
 
             return;
@@ -148,7 +148,7 @@ public static class AppPaths
             if (!ArePathsOverlapping(oldDataDir, newDataDir))
                 dataMovedOk = MoveDirectoryContents(oldDataDir, newDataDir);
             else
-                Debug.WriteLine($"[AppPaths] 跳过数据迁移: 源目录与目标目录存在包含关系 {oldDataDir} <-> {newDataDir}");
+                DebugLog.Info("AppPaths", $"[AppPaths] Skipping data migration: source and target directories overlap {oldDataDir} <-> {newDataDir}");
         }
 
         if (!string.Equals(oldCacheDir, newCacheDir, StringComparison.OrdinalIgnoreCase))
@@ -156,7 +156,7 @@ public static class AppPaths
             if (!ArePathsOverlapping(oldCacheDir, newCacheDir))
                 cacheMovedOk = MoveDirectoryContents(oldCacheDir, newCacheDir);
             else
-                Debug.WriteLine($"[AppPaths] 跳过缓存迁移: 源目录与目标目录存在包含关系 {oldCacheDir} <-> {newCacheDir}");
+                DebugLog.Info("AppPaths", $"[AppPaths] Skipping cache migration: source and target directories overlap {oldCacheDir} <-> {newCacheDir}");
         }
 
         _dataDir = newDataDir;
@@ -304,7 +304,7 @@ public static class AppPaths
 
             if (IsSubdirectoryOf(destDir, sourceDir))
             {
-                Debug.WriteLine($"[AppPaths] 中止迁移: 目标目录是源目录的子目录 {sourceDir} -> {destDir}");
+                DebugLog.Info("AppPaths", $"[AppPaths] Aborting migration: target is a subdirectory of source {sourceDir} -> {destDir}");
                 return false;
             }
 
@@ -328,7 +328,7 @@ public static class AppPaths
                 catch (Exception ex)
                 {
                     allSuccess = false;
-                    Debug.WriteLine($"[AppPaths] 迁移文件失败 {file}: {ex.Message}");
+                    DebugLog.Info("AppPaths", $"[AppPaths] Failed to migrate file {file}: {ex.Message}");
                 }
             }
 
@@ -360,7 +360,7 @@ public static class AppPaths
         catch (Exception ex)
         {
             allSuccess = false;
-            Debug.WriteLine($"[AppPaths] 迁移目录失败 {sourceDir} -> {destDir}: {ex.Message}");
+            DebugLog.Info("AppPaths", $"[AppPaths] Failed to migrate directory {sourceDir} -> {destDir}: {ex.Message}");
         }
 
         return allSuccess;
@@ -381,7 +381,7 @@ public static class AppPaths
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AppPaths] 读取自定义路径失败: {ex.Message}");
+            DebugLog.Info("AppPaths", $"[AppPaths] Failed to read custom paths: {ex.Message}");
         }
     }
 
@@ -404,7 +404,7 @@ public static class AppPaths
         catch (Exception ex)
         {
             var defaultData = Path.Combine(RootDir, "Data");
-            Debug.WriteLine($"[AppPaths] 数据目录不可用，已回退到默认目录: {_dataDir} -> {defaultData} ({ex.Message})");
+            DebugLog.Info("AppPaths", $"[AppPaths] Data directory unavailable, fell back to default: {_dataDir} -> {defaultData} ({ex.Message})");
             MissingDataDir = _dataDir;
             _dataDir = defaultData;
 
@@ -414,7 +414,7 @@ public static class AppPaths
             }
             catch (Exception fallbackEx)
             {
-                Debug.WriteLine($"[AppPaths] 默认数据目录创建失败: {fallbackEx.Message}");
+                DebugLog.Info("AppPaths", $"[AppPaths] Failed to create default data directory: {fallbackEx.Message}");
             }
         }
     }
@@ -437,7 +437,7 @@ public static class AppPaths
         catch (Exception ex)
         {
             var defaultCache = Path.Combine(RootDir, "Cache");
-            Debug.WriteLine($"[AppPaths] 缓存目录不可用，已回退到默认目录: {_cacheDir} -> {defaultCache} ({ex.Message})");
+            DebugLog.Info("AppPaths", $"[AppPaths] Cache directory unavailable, fell back to default: {_cacheDir} -> {defaultCache} ({ex.Message})");
             MissingCacheDir = _cacheDir;
             _cacheDir = defaultCache;
 
@@ -447,7 +447,7 @@ public static class AppPaths
             }
             catch (Exception fallbackEx)
             {
-                Debug.WriteLine($"[AppPaths] 默认缓存目录创建失败: {fallbackEx.Message}");
+                DebugLog.Info("AppPaths", $"[AppPaths] Failed to create default cache directory: {fallbackEx.Message}");
             }
         }
     }
@@ -490,7 +490,7 @@ public static class AppPaths
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AppPaths] 迁移通配文件失败: {ex.Message}");
+            DebugLog.Info("AppPaths", $"[AppPaths] Failed to migrate wildcard files: {ex.Message}");
         }
     }
 
@@ -507,7 +507,7 @@ public static class AppPaths
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"[AppPaths] 迁移失败 {source}: {ex.Message}");
+            DebugLog.Info("AppPaths", $"[AppPaths] Migration failed {source}: {ex.Message}");
         }
     }
 }

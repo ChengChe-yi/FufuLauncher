@@ -374,7 +374,7 @@ public partial class GachaViewModel : ObservableRecipient
             var config = new GachaConfig { Url = url };
             var json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
             await File.WriteAllTextAsync(_configPath, json);
-            Debug.WriteLine($"配置已保存到: {_configPath}");
+            DebugLog.Info("GachaViewModel", $"Config saved to: {_configPath}");
         }
         catch (Exception ex)
         {
