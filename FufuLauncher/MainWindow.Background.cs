@@ -27,6 +27,8 @@ public sealed partial class MainWindow
     private BackgroundRenderResult? _randomBackgroundResult;
     private bool _randomBackgroundFetchStarted;
     private RandomBackgroundType? _randomBackgroundLoadType;
+    private BackgroundImageQuality? _randomBackgroundQuality;
+    private int _randomBackgroundReloadVersion;
 
     private async Task LoadBackgroundImageOpacityAsync()
     {
@@ -106,13 +108,15 @@ public sealed partial class MainWindow
             {
                 var randomTypeJson = await _localSettingsService.ReadSettingAsync("RandomBackgroundType");
                 var randomType = RandomBackgroundService.ParseType(randomTypeJson?.ToString());
-                await LoadRandomBackgroundAsync(version, randomType);
+                await LoadRandomBackgroundAsync(randomType);
                 return;
             }
 
             _randomBackgroundResult = null;
             _randomBackgroundFetchStarted = false;
             _randomBackgroundLoadType = null;
+            _randomBackgroundQuality = null;
+            _randomBackgroundReloadVersion++;
             RandomBackgroundService.ClearCache();
 
             if (GlobalBackgroundImage.Source == null && !_isVideoBackground)
@@ -179,20 +183,40 @@ public sealed partial class MainWindow
         }
     }
 
-    private async Task LoadRandomBackgroundAsync(int version, RandomBackgroundType type)
+    private async Task LoadRandomBackgroundAsync(RandomBackgroundType type)
     {
         if (_randomBackgroundLoadType != type)
         {
             _randomBackgroundLoadType = type;
             _randomBackgroundResult = null;
             _randomBackgroundFetchStarted = false;
+            _randomBackgroundQuality = null;
+            _randomBackgroundReloadVersion++;
+        }
+
+        var loadId = _randomBackgroundReloadVersion;
+        var quality = await BackgroundImageQualitySettings.GetEffectiveQualityAsync();
+        if (!IsRandomBackgroundLoadCurrent(loadId, type)) return;
+
+        var qualityChanged = _randomBackgroundQuality.HasValue && _randomBackgroundQuality.Value != quality;
+        if (qualityChanged)
+        {
+            _randomBackgroundResult = null;
+            _randomBackgroundFetchStarted = false;
+            _randomBackgroundQuality = quality;
+            _randomBackgroundReloadVersion++;
+            loadId = _randomBackgroundReloadVersion;
+        }
+        else
+        {
+            _randomBackgroundQuality = quality;
         }
 
         if (_randomBackgroundResult != null)
         {
-            if (version == _backgroundLoadVersion && !_isExit &&
+            if (IsRandomBackgroundLoadCurrent(loadId, type) &&
                 !ReferenceEquals(GlobalBackgroundImage.Source, _randomBackgroundResult.ImageSource))
-                await ApplyGlobalBackgroundAsync(_randomBackgroundResult, version);
+                await ApplyGlobalBackgroundAsync(_randomBackgroundResult, _backgroundLoadVersion);
             return;
         }
 
@@ -200,22 +224,24 @@ public sealed partial class MainWindow
         _randomBackgroundFetchStarted = true;
 
         var cached = await RandomBackgroundService.LoadCachedAsync(type);
+        if (!IsRandomBackgroundLoadCurrent(loadId, type)) return;
         if (cached != null)
         {
-            if (_randomBackgroundLoadType == type && !_isExit)
-                await ApplyGlobalBackgroundAsync(cached, _backgroundLoadVersion);
+            _randomBackgroundResult = cached;
+            await ApplyGlobalBackgroundAsync(cached, _backgroundLoadVersion);
+            if (qualityChanged) return;
         }
         else if (GlobalBackgroundImage.Source == null && !_isVideoBackground)
         {
             var fallback = await _backgroundRenderer.GetFallbackBackgroundAsync();
-            if (fallback != null && _randomBackgroundLoadType == type && !_isExit)
+            if (fallback != null && IsRandomBackgroundLoadCurrent(loadId, type))
                 await ApplyGlobalBackgroundAsync(fallback, _backgroundLoadVersion);
         }
 
-        if (_randomBackgroundLoadType != type || _isExit) return;
+        if (!IsRandomBackgroundLoadCurrent(loadId, type)) return;
 
         var fetched = await RandomBackgroundService.FetchAndCacheAsync(type);
-        if (fetched == null || _isExit || _randomBackgroundLoadType != type) return;
+        if (fetched == null || !IsRandomBackgroundLoadCurrent(loadId, type)) return;
 
         var enabledJson = await _localSettingsService.ReadSettingAsync("IsRandomBackgroundEnabled");
         if (enabledJson == null || !Convert.ToBoolean(enabledJson)) return;
@@ -223,9 +249,14 @@ public sealed partial class MainWindow
         var typeJson = await _localSettingsService.ReadSettingAsync("RandomBackgroundType");
         if (RandomBackgroundService.ParseType(typeJson?.ToString()) != type) return;
 
+        if (!IsRandomBackgroundLoadCurrent(loadId, type)) return;
+
         _randomBackgroundResult = fetched;
         await ApplyGlobalBackgroundAsync(fetched, _backgroundLoadVersion);
     }
+
+    private bool IsRandomBackgroundLoadCurrent(int loadId, RandomBackgroundType type) =>
+        loadId == _randomBackgroundReloadVersion && _randomBackgroundLoadType == type && !_isExit;
 
     private void StopSlideshow()
     {
