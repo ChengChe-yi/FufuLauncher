@@ -97,7 +97,7 @@ public static class ResourceExtensions
                 var key = data.Attribute("name")?.Value;
                 var value = data.Element("value")?.Value;
                 if (!string.IsNullOrEmpty(key) && value != null)
-                    dict[key] = value;
+                    dict[key] = value.Replace("\\n", "\n");
             }
 
             _resources[culture] = dict;
