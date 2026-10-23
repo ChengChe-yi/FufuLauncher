@@ -269,6 +269,7 @@ public sealed partial class DataViewModel
                 Position = position,
                 Name = pair.Key,
                 Icon = icons.GetValueOrDefault(pair.Key),
+                Star = 4,
                 CountText = LF("DataPage_WishUpTimes", pair.Value),
                 Ratio = maxCompanion > 0 ? pair.Value * 100d / maxCompanion : 0
             });

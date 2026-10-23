@@ -29,6 +29,7 @@ public sealed partial class DataPage : Page
 
     private bool _isSubscribed;
     private bool _hasShownInitialSkeleton;
+    private Window? _hostWindow;
 
     public DataPage()
     {
@@ -54,6 +55,7 @@ public sealed partial class DataPage : Page
     protected override async void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
+        _hostWindow = e.Parameter as Window ?? App.MainWindow;
         await ViewModel.InitializeAsync();
     }
 
@@ -131,7 +133,7 @@ public sealed partial class DataPage : Page
 
     private async void OnExportPdfClick(object sender, RoutedEventArgs e)
     {
-        await ViewModel.ExportPdfAsync(App.MainWindow);
+        await ViewModel.ExportPdfAsync(_hostWindow);
     }
 
     private async void OnRefreshClick(object sender, RoutedEventArgs e)

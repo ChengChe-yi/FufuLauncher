@@ -205,13 +205,6 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
 
-                <NavigationViewItem Content="{helpers:Loc Key=NavDataCenter}"
-                                    Tag="FufuLauncher.ViewModels.DataViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE9D9;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-
                 <NavigationViewItem Content="{helpers:Loc Key=NavHelpDocs}" Tag="FufuLauncher.ViewModels.HelpViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE82D;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />

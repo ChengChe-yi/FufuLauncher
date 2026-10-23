@@ -27,6 +27,7 @@ public sealed partial class MainWindow
     private Action? _accountFlyoutClosedAction;
     private ImageSource? _accountFlyoutAvatarSource;
     private string? _accountAvatarUrl;
+    private bool _navAvatarPending;
 
     #region Navigation & Layout
 
@@ -274,9 +275,12 @@ public sealed partial class MainWindow
         {
             _accountFlyoutAvatarSource = null;
             _accountAvatarUrl = null;
+            _navAvatarPending = false;
             AccountNavAvatar.ProfilePicture = null;
             AccountNavAvatar.Visibility = Visibility.Collapsed;
+            AccountNavAvatar.Opacity = 0.0;
             AccountNavPlaceholderIcon.Visibility = Visibility.Visible;
+            AccountNavPlaceholderIcon.Opacity = 1.0;
             AccountNavText.Text = "Account_MenuTitle".GetLocalized();
             AccountFlyoutProfilePanel.Visibility = Visibility.Collapsed;
             AccountFlyoutGuestPanel.Visibility = Visibility.Visible;
@@ -290,16 +294,15 @@ public sealed partial class MainWindow
         if (string.IsNullOrWhiteSpace(nickname))
             nickname = string.Format("Account_User_Format".GetLocalized(), entry.Stuid);
 
-        if (_accountFlyoutAvatarSource == null ||
-            !string.Equals(_accountAvatarUrl, entry.AvatarUrl, StringComparison.Ordinal))
+        var isNewAvatar = _accountFlyoutAvatarSource == null ||
+                          !string.Equals(_accountAvatarUrl, entry.AvatarUrl, StringComparison.Ordinal);
+        if (isNewAvatar)
         {
             _accountFlyoutAvatarSource = CreateAccountAvatarSource(entry.AvatarUrl);
             _accountAvatarUrl = entry.AvatarUrl;
         }
 
-        AccountNavAvatar.ProfilePicture = _accountFlyoutAvatarSource;
-        AccountNavAvatar.Visibility = Visibility.Visible;
-        AccountNavPlaceholderIcon.Visibility = Visibility.Collapsed;
+        ShowNavAvatar(_accountFlyoutAvatarSource, isNewAvatar);
         AccountFlyoutAvatar.ProfilePicture = _accountFlyoutAvatarSource;
         AccountNavText.Text = nickname;
         AccountFlyoutNickname.Text = nickname;
@@ -339,6 +342,71 @@ public sealed partial class MainWindow
         }
 
         return image;
+    }
+
+    private void ShowNavAvatar(ImageSource? source, bool animate)
+    {
+        AccountNavAvatar.ProfilePicture = source;
+
+        if (!animate || source is not BitmapImage bitmap)
+        {
+            if (_navAvatarPending) return;
+            AccountNavAvatar.Opacity = 1.0;
+            AccountNavAvatar.Visibility = Visibility.Visible;
+            AccountNavPlaceholderIcon.Visibility = Visibility.Collapsed;
+            AccountNavPlaceholderIcon.Opacity = 1.0;
+            return;
+        }
+
+        AccountNavAvatar.Visibility = Visibility.Visible;
+        AccountNavAvatar.Opacity = 0.0;
+        AccountNavPlaceholderIcon.Visibility = Visibility.Visible;
+        AccountNavPlaceholderIcon.Opacity = 1.0;
+        _navAvatarPending = true;
+
+        void OnImageOpened(object sender, RoutedEventArgs e)
+        {
+            bitmap.ImageOpened -= OnImageOpened;
+            if (!ReferenceEquals(AccountNavAvatar.ProfilePicture, source)) return;
+            _navAvatarPending = false;
+            AnimateNavAvatarReveal();
+        }
+
+        bitmap.ImageOpened += OnImageOpened;
+    }
+
+    private void AnimateNavAvatarReveal()
+    {
+        var storyboard = new Storyboard();
+        var duration = new Duration(TimeSpan.FromMilliseconds(300));
+        var easing = new CubicEase { EasingMode = EasingMode.EaseInOut };
+
+        storyboard.Children.Add(CreateOpacityAnimation(AccountNavAvatar, 1.0, duration, easing));
+        storyboard.Children.Add(CreateOpacityAnimation(AccountNavPlaceholderIcon, 0.0, duration, easing));
+
+        storyboard.Completed += (_, _) =>
+        {
+            AccountNavPlaceholderIcon.Visibility = Visibility.Collapsed;
+            AccountNavPlaceholderIcon.Opacity = 1.0;
+        };
+
+        storyboard.Begin();
+    }
+
+    private static DoubleAnimation CreateOpacityAnimation(DependencyObject target, double to, Duration duration,
+        EasingFunctionBase easing)
+    {
+        var animation = new DoubleAnimation
+        {
+            To = to,
+            Duration = duration,
+            EasingFunction = easing,
+            EnableDependentAnimation = true
+        };
+
+        Storyboard.SetTarget(animation, target);
+        Storyboard.SetTargetProperty(animation, "Opacity");
+        return animation;
     }
 
     private void AccountSwitchButton_Click(object sender, RoutedEventArgs e)
@@ -471,7 +539,6 @@ public sealed partial class MainWindow
                 typeof(Views.ControlPanelPage),
             "FufuLauncher.ViewModels.PluginViewModel" => typeof(Views.PluginPage),
             "FufuLauncher.ViewModels.PluginStoreViewModel" => typeof(Views.PluginStorePage),
-            "FufuLauncher.ViewModels.DataViewModel" => typeof(Views.DataPage),
             "FufuLauncher.ViewModels.PluginSettingsViewModel" => typeof(Views.PluginSettingsPage),
             "FufuLauncher.ViewModels.HelpViewModel" => typeof(Views.HelpPage),
             _ => null
@@ -725,7 +792,7 @@ public sealed partial class MainWindow
         {
             "MainViewModel", "PluginSettingsViewModel", "ControlPanelViewModel", "ControlPanelModel",
             "GameSettingsViewModel", "BlankViewModel", "AccountViewModel", "OtherViewModel",
-            "PluginViewModel", "DataViewModel", "HelpViewModel",
+            "PluginViewModel", "HelpViewModel",
             "CalculatorViewModel", "SettingsViewModel"
         };
 

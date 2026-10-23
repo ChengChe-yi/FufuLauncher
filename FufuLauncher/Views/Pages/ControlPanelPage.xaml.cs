@@ -39,6 +39,12 @@ public sealed partial class ControlPanelPage : Page
         window.Activate();
     }
 
+    private void OnOpenDataCenterClick(object sender, RoutedEventArgs e)
+    {
+        var window = new DataCenterWindow();
+        window.Activate();
+    }
+
     private void OnOpenCycleChallengeClick(object sender, RoutedEventArgs e)
     {
         var window = new CycleChallengeWindow();

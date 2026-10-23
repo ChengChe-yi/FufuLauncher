@@ -190,6 +190,7 @@ public sealed partial class DataViewModel
                 Position = position,
                 Name = card.Name,
                 Icon = card.Avatar,
+                Star = card.Star,
                 CountText = card.AbyssRateText,
                 DetailText = L("DataPage_OwnRate") + " " + card.OwnRateText,
                 Ratio = maxValue > 0 ? card.SortValue * 100d / maxValue : 0

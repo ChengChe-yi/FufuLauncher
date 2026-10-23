@@ -1,4 +1,4 @@
-﻿<Page
+<Page
     x:Class="FufuLauncher.Views.DataPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:FufuLauncher.ViewModels"
     xmlns:views="using:FufuLauncher.Views"
+    xmlns:cc="using:FufuLauncher.Views.Controls.CycleChallenge"
     xmlns:helpers="using:FufuLauncher.Helpers"
     xmlns:primitives="using:Microsoft.UI.Xaml.Controls.Primitives"
     mc:Ignorable="d"
@@ -449,11 +450,9 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <Border Width="34" Height="34" CornerRadius="17" BorderThickness="0">
-                        <Border.Background>
-                            <ImageBrush ImageSource="{x:Bind Avatar}" Stretch="UniformToFill" />
-                        </Border.Background>
-                    </Border>
+                    <cc:AvatarCard CardWidth="46"
+                                   IconUrl="{x:Bind Avatar}"
+                                   Rarity="{x:Bind Star}" />
 
                     <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="1">
                         <TextBlock Text="{x:Bind Name}" Style="{StaticResource DcValueStyle}" />
@@ -491,12 +490,11 @@
                     <TextBlock Text="{x:Bind PositionText}" Style="{StaticResource DcLabelStyle}"
                                VerticalAlignment="Center" TextAlignment="Center" />
 
-                    <Border Grid.Column="1" Width="30" Height="30" CornerRadius="15"
-                            Visibility="{x:Bind HasIcon, Converter={StaticResource BoolToVis}}">
-                        <Border.Background>
-                            <ImageBrush ImageSource="{x:Bind Icon}" Stretch="UniformToFill" />
-                        </Border.Background>
-                    </Border>
+                    <cc:AvatarCard Grid.Column="1"
+                                   Visibility="{x:Bind HasIcon, Converter={StaticResource BoolToVis}}"
+                                   CardWidth="46"
+                                   IconUrl="{x:Bind Icon}"
+                                   Rarity="{x:Bind Star}" />
 
                     <StackPanel Grid.Column="2" VerticalAlignment="Center" Spacing="3">
                         <TextBlock Text="{x:Bind Name}" Style="{StaticResource DcValueStyle}" />
@@ -531,12 +529,10 @@
                     <TextBlock Text="{x:Bind PositionText}" Style="{StaticResource DcLabelStyle}"
                                VerticalAlignment="Center" TextAlignment="Center" />
 
-                    <Border Grid.Column="1" Width="34" Height="34" CornerRadius="17" BorderThickness="2"
-                            BorderBrush="{x:Bind StarTag, Converter={StaticResource TagBrush}}">
-                        <Border.Background>
-                            <ImageBrush ImageSource="{x:Bind Avatar}" Stretch="UniformToFill" />
-                        </Border.Background>
-                    </Border>
+                    <cc:AvatarCard Grid.Column="1"
+                                   CardWidth="46"
+                                   IconUrl="{x:Bind Avatar}"
+                                   Rarity="{x:Bind Star}" />
 
                     <Grid Grid.Column="2" VerticalAlignment="Center">
                         <Grid.RowDefinitions>
@@ -595,24 +591,11 @@
             </DataTemplate>
 
             <DataTemplate x:Key="TierMemberTemplate" x:DataType="vm:DcTierMember">
-                <StackPanel Width="88" Height="104" Spacing="4"
-                            ToolTipService.ToolTip="{x:Bind DetailText}">
-                    <Border Width="52" Height="52" CornerRadius="26" BorderThickness="2"
-                            HorizontalAlignment="Center"
-                            BorderBrush="{x:Bind StarTag, Converter={StaticResource TagBrush}}">
-                        <Border.Background>
-                            <ImageBrush ImageSource="{x:Bind Avatar}" Stretch="UniformToFill" />
-                        </Border.Background>
-                    </Border>
-                    <TextBlock Text="{x:Bind Name}" FontSize="11" HorizontalAlignment="Center"
-                               TextTrimming="CharacterEllipsis" MaxLines="1"
-                               FontFamily="{StaticResource AppGlobalFont}"
-                               Foreground="{ThemeResource SafeTextBrush}" />
-                    <TextBlock Text="{x:Bind UseRateText}" FontSize="11" FontWeight="SemiBold"
-                               HorizontalAlignment="Center"
-                               FontFamily="{StaticResource AppGlobalFont}"
-                               Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
-                </StackPanel>
+                <cc:AvatarCard CardWidth="66"
+                               IconUrl="{x:Bind Avatar}"
+                               CharacterName="{x:Bind Name}"
+                               Caption="{x:Bind UseRateText}"
+                               Rarity="{x:Bind Star}" />
             </DataTemplate>
 
             <DataTemplate x:Key="TierGroupTemplate" x:DataType="vm:DcTierGroup">
@@ -670,19 +653,10 @@
             </DataTemplate>
 
             <DataTemplate x:Key="TeamMemberTemplate" x:DataType="vm:DcTeamMember">
-                <StackPanel Width="62" Spacing="4" ToolTipService.ToolTip="{x:Bind Name}">
-                    <Border Width="46" Height="46" CornerRadius="23" BorderThickness="2"
-                            HorizontalAlignment="Center"
-                            BorderBrush="{x:Bind StarTag, Converter={StaticResource TagBrush}}">
-                        <Border.Background>
-                            <ImageBrush ImageSource="{x:Bind Avatar}" Stretch="UniformToFill" />
-                        </Border.Background>
-                    </Border>
-                    <TextBlock Text="{x:Bind Name}" FontSize="10" HorizontalAlignment="Center"
-                               TextTrimming="CharacterEllipsis" MaxLines="1"
-                               FontFamily="{StaticResource AppGlobalFont}"
-                               Foreground="{ThemeResource SafeSecondaryTextBrush}" />
-                </StackPanel>
+                <cc:AvatarCard CardWidth="58"
+                               IconUrl="{x:Bind Avatar}"
+                               CharacterName="{x:Bind Name}"
+                               Rarity="{x:Bind Star}" />
             </DataTemplate>
 
             <DataTemplate x:Key="TeamCardTemplate" x:DataType="vm:DcTeamCard">
@@ -759,19 +733,10 @@
             </DataTemplate>
 
             <DataTemplate x:Key="NamedIconTemplate" x:DataType="vm:DcNamedIcon">
-                <StackPanel Width="58" Spacing="3" ToolTipService.ToolTip="{x:Bind Name}">
-                    <Border Width="40" Height="40" CornerRadius="20" BorderThickness="2"
-                            HorizontalAlignment="Center"
-                            BorderBrush="{x:Bind StarTag, Converter={StaticResource TagBrush}}">
-                        <Border.Background>
-                            <ImageBrush ImageSource="{x:Bind Icon}" Stretch="UniformToFill" />
-                        </Border.Background>
-                    </Border>
-                    <TextBlock Text="{x:Bind Name}" FontSize="10" HorizontalAlignment="Center"
-                               TextTrimming="CharacterEllipsis" MaxLines="1"
-                               FontFamily="{StaticResource AppGlobalFont}"
-                               Foreground="{ThemeResource SafeSecondaryTextBrush}" />
-                </StackPanel>
+                <cc:AvatarCard CardWidth="54"
+                               IconUrl="{x:Bind Icon}"
+                               CharacterName="{x:Bind Name}"
+                               Rarity="{x:Bind Star}" />
             </DataTemplate>
 
             <DataTemplate x:Key="VersionChipTemplate" x:DataType="vm:DcNamedIcon">
@@ -876,12 +841,9 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Width="46" Height="46" CornerRadius="10" BorderThickness="2"
-                                    BorderBrush="{x:Bind StarTag, Converter={StaticResource TagBrush}}">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{x:Bind Avatar}" Stretch="UniformToFill" />
-                                </Border.Background>
-                            </Border>
+                            <cc:AvatarCard CardWidth="52"
+                                           IconUrl="{x:Bind Avatar}"
+                                           Rarity="{x:Bind Star}" />
 
                             <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
                                 <TextBlock Text="{x:Bind Name}" FontSize="15" FontWeight="SemiBold"
@@ -966,13 +928,10 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Width="54" Height="54" CornerRadius="27" BorderThickness="2"
-                                    VerticalAlignment="Top"
-                                    BorderBrush="{x:Bind StarTag, Converter={StaticResource TagBrush}}">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{x:Bind Avatar}" Stretch="UniformToFill" />
-                                </Border.Background>
-                            </Border>
+                            <cc:AvatarCard CardWidth="60"
+                                           VerticalAlignment="Top"
+                                           IconUrl="{x:Bind Avatar}"
+                                           Rarity="{x:Bind Star}" />
 
                             <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
                                 <TextBlock Text="{x:Bind Name}" FontSize="16" FontWeight="Bold"
@@ -1322,12 +1281,9 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
 
-                            <Border Width="72" Height="72" CornerRadius="36" BorderThickness="2"
-                                    BorderBrush="{x:Bind StarTag, Converter={StaticResource TagBrush}}">
-                                <Border.Background>
-                                    <ImageBrush ImageSource="{x:Bind Avatar}" Stretch="UniformToFill" />
-                                </Border.Background>
-                            </Border>
+                            <cc:AvatarCard CardWidth="76"
+                                           IconUrl="{x:Bind Avatar}"
+                                           Rarity="{x:Bind Star}" />
 
                             <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="4">
                                 <TextBlock Text="{x:Bind Name}" FontSize="22" FontWeight="Bold"

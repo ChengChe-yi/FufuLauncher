@@ -57,11 +57,6 @@ public partial class SettingsViewModel
             },
             new()
             {
-                ViewModelKey = "FufuLauncher.ViewModels.DataViewModel", DisplayNameKey = "NavDataCenter",
-                IconGlyph = "\uE9D9"
-            },
-            new()
-            {
                 ViewModelKey = "FufuLauncher.ViewModels.HelpViewModel", DisplayNameKey = "NavHelpDocs",
                 IconGlyph = "\uE82D"
             },

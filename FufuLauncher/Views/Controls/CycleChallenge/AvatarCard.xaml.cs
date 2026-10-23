@@ -223,6 +223,7 @@ public sealed partial class AvatarCard : UserControl
         string caption = Caption?.Trim() ?? string.Empty;
         CaptionText.Text = caption;
         CaptionText.Visibility = caption.Length > 0 ? Visibility.Visible : Visibility.Collapsed;
+        InfoPanel.Visibility = name.Length > 0 || caption.Length > 0 ? Visibility.Visible : Visibility.Collapsed;
 
         UpdateToolTip(name);
     }

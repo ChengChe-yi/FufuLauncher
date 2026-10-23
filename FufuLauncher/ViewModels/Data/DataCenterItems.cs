@@ -651,6 +651,12 @@ public sealed class DcCountRow
         init;
     }
 
+    public int Star
+    {
+        get;
+        init;
+    } = 5;
+
     public string CountText
     {
         get;
@@ -917,6 +923,8 @@ public sealed class DcCharacterDetail
         get;
         set;
     } = "star5";
+
+    public int Star => string.Equals(StarTag, "star5", StringComparison.Ordinal) ? 5 : 4;
 
     public string TierText
     {

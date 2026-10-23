@@ -198,12 +198,16 @@
                                 Text="{helpers:Loc Key=Panel_DataAnalysisDesc}" />
                         </StackPanel>
 
-                        <Grid ColumnSpacing="12">
+                        <Grid ColumnSpacing="12" RowSpacing="12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
                             <Button Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}"
                                     Click="OnOpenGachaAnalysisClick">
@@ -275,6 +279,32 @@
                                                    Text="{helpers:Loc Key=CycleChallenge_Title}" />
                                         <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
                                                    Text="{helpers:Loc Key=CycleChallenge_Subtitle}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+
+                            <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource ToolCardButtonStyle}"
+                                    Click="OnOpenDataCenterClick">
+                                <Grid ColumnSpacing="14">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="48" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Border Width="48" Height="48" Background="{ThemeResource PanelCardBrush}"
+                                            CornerRadius="10">
+                                        <FontIcon
+                                            Glyph="&#xE9D9;"
+                                            FontSize="22"
+                                            Foreground="{ThemeResource PanelTextBrush}"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                    </Border>
+                                    <StackPanel Grid.Column="1" Spacing="4" VerticalAlignment="Center">
+                                        <TextBlock FontSize="17" FontWeight="SemiBold"
+                                                   Foreground="{ThemeResource PanelTextBrush}"
+                                                   Text="{helpers:Loc Key=DataPage_Title}" />
+                                        <TextBlock FontSize="13" Foreground="{ThemeResource PanelSecondaryTextBrush}"
+                                                   Text="{helpers:Loc Key=DataPage_Subtitle}" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </Grid>
                             </Button>
