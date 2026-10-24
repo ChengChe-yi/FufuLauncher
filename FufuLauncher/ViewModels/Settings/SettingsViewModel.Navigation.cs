@@ -62,11 +62,6 @@ public partial class SettingsViewModel
             },
             new()
             {
-                ViewModelKey = "FufuLauncher.ViewModels.CalculatorViewModel", DisplayNameKey = "NavCalculator",
-                IconGlyph = "\uE1D0"
-            },
-            new()
-            {
                 ViewModelKey = "FufuLauncher.ViewModels.SettingsViewModel", DisplayNameKey = "NavSettings",
                 IconGlyph = "\uE713", IsForceVisible = true
             },

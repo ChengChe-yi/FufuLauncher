@@ -1,0 +1,63 @@
+<Window
+    x:Class="FufuLauncher.Views.CalculatorWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:FufuLauncher.Helpers"
+    mc:Ignorable="d"
+    Title="{helpers:Loc Key=NavCalculator}">
+
+    <Grid x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="AppTitleBar"
+              Grid.Row="0"
+              Height="44"
+              Padding="12,0,0,0"
+              Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="0,0,0,1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="138" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <TextBlock Text="{helpers:Loc Key=NavCalculator}"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           FontWeight="SemiBold" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                <Button x:Name="RefreshButton"
+                        Content="{helpers:Loc Key=MapPage_Refresh}"
+                        FontSize="12"
+                        Height="32"
+                        Click="RefreshButton_Click" />
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <WebView2 x:Name="CalculatorWebView"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      DefaultBackgroundColor="Transparent" />
+
+            <ProgressBar x:Name="LoadingBar"
+                         IsIndeterminate="True"
+                         VerticalAlignment="Top"
+                         Height="3"
+                         Background="Transparent"
+                         Foreground="{ThemeResource SystemAccentColor}"
+                         Visibility="Collapsed" />
+        </Grid>
+    </Grid>
+</Window>

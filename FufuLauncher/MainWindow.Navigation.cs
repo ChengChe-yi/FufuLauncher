@@ -534,7 +534,6 @@ public sealed partial class MainWindow
             "FufuLauncher.ViewModels.SettingsViewModel" => typeof(Views.SettingsPage),
             "FufuLauncher.ViewModels.AccountViewModel" => typeof(Views.AccountPage),
             "FufuLauncher.ViewModels.OtherViewModel" => typeof(Views.OtherPage),
-            "FufuLauncher.ViewModels.CalculatorViewModel" => typeof(Views.CalculatorPage),
             "FufuLauncher.ViewModels.ControlPanelViewModel" or "FufuLauncher.ViewModels.ControlPanelModel" =>
                 typeof(Views.ControlPanelPage),
             "FufuLauncher.ViewModels.PluginViewModel" => typeof(Views.PluginPage),
@@ -793,7 +792,7 @@ public sealed partial class MainWindow
             "MainViewModel", "PluginSettingsViewModel", "ControlPanelViewModel", "ControlPanelModel",
             "GameSettingsViewModel", "BlankViewModel", "AccountViewModel", "OtherViewModel",
             "PluginViewModel", "HelpViewModel",
-            "CalculatorViewModel", "SettingsViewModel"
+            "SettingsViewModel"
         };
 
         foreach (var key in allKeys)

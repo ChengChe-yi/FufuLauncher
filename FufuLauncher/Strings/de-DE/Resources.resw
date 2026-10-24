@@ -1739,6 +1739,9 @@ Jetzt zur Microsoft-Website gehen und herunterladen?</value>
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Kampfstatistiken</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>Aufbau-Rechner: Berechne die Materialien, die für die Entwicklung von Charakteren und Waffen benötigt werden</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Widget hinzufügen</value>
   </data>

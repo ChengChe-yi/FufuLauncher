@@ -45,6 +45,12 @@ public sealed partial class ControlPanelPage : Page
         window.Activate();
     }
 
+    private void OnOpenCalculatorClick(object sender, RoutedEventArgs e)
+    {
+        var window = new CalculatorWindow();
+        window.Activate();
+    }
+
     private void OnOpenCycleChallengeClick(object sender, RoutedEventArgs e)
     {
         var window = new CycleChallengeWindow();

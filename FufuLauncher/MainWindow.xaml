@@ -204,13 +204,6 @@
                         <FontIcon Glyph="&#xE82D;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-
-                <NavigationViewItem Content="{helpers:Loc Key=NavCalculator}"
-                                    Tag="FufuLauncher.ViewModels.CalculatorViewModel">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE1D0;" FontFamily="{StaticResource ActionIconFont}" FontSize="24" />
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
             </NavigationView.MenuItems>
 
             <NavigationView.PaneFooter>

@@ -1687,6 +1687,9 @@ Go to the Microsoft website to download and install it?</value>
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Battle Chronicle</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>Calculator: Calculate the materials needed for character and weapon progression</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Add Widget</value>
   </data>

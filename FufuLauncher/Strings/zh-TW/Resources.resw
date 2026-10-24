@@ -1739,6 +1739,9 @@
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>戰績資訊</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>養成計算：計算角色與武器養成所需的材料</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>加入小工具</value>
   </data>

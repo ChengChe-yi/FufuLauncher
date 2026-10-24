@@ -1739,6 +1739,9 @@ MicrosoftのWebサイトからダウンロードしてインストールしま�
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>戦績</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>計算機：キャラクターと武器の育成に必要な素材を計算</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>ウィジェット追加</value>
   </data>

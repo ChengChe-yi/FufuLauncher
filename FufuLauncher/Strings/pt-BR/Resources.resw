@@ -1739,6 +1739,9 @@ Ir para o site da Microsoft para baixar e instalar?</value>
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Crônicas de batalha</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>Calculadora: Calcule os materiais necessários para desenvolver personagens e armas</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Adicionar widget</value>
   </data>

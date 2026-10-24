@@ -2563,6 +2563,9 @@ CaptureApp
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Cronache di Battaglia</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>Calcolatore: Calcola i materiali necessari per sviluppare personaggi e armi</value>
+  </data>
   <data name="Home_WidgetGacha" xml:space="preserve">
     <value>Analisi Cronologia Desideri</value>
   </data>

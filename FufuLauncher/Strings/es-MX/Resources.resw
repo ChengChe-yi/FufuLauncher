@@ -1739,6 +1739,9 @@ Por favor, confirma que seleccionaste el directorio de instalación que contiene
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Crónica de batalla</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>Calculadora: Calcula los materiales necesarios para desarrollar personajes y armas</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Añadir widget</value>
   </data>

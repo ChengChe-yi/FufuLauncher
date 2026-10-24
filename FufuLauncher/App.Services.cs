@@ -140,8 +140,6 @@ public partial class App
                 services.AddTransient<GenshinDataWindow>();
                 services.AddSingleton<IFilePickerService, FilePickerService>();
                 services.AddSingleton<INotificationService, NotificationService>();
-                services.AddTransient<CalculatorViewModel>();
-                services.AddTransient<CalculatorPage>();
                 services.AddTransient<PluginViewModel>();
                 services.AddTransient<PluginPage>();
                 services.AddTransient<GachaViewModel>();

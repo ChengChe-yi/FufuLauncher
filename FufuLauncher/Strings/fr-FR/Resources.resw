@@ -1739,6 +1739,9 @@ Voulez-vous accéder au site officiel de Microsoft pour la télécharger et l'in
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Données de combat</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>Calculateur d'amélioration : Calculez les matériaux nécessaires à l'amélioration des personnages et des armes</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Ajouter un widget</value>
   </data>

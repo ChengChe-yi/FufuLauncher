@@ -1739,6 +1739,9 @@ Microsoft 웹사이트로 이동하여 다운로드 및 설치하시겠습니까
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>전투 기록</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>계산기: 캐릭터와 무기 육성에 필요한 재료를 계산</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>위젯 추가</value>
   </data>

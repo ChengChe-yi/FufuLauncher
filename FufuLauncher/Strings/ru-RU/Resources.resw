@@ -1739,6 +1739,9 @@
   <data name="Home_WidgetBBS" xml:space="preserve">
     <value>Хроника</value>
   </data>
+  <data name="Home_CalculatorTooltip" xml:space="preserve">
+    <value>Калькулятор: Рассчитайте материалы, необходимые для развития персонажей и оружия</value>
+  </data>
   <data name="Home_AddWidget" xml:space="preserve">
     <value>Добавить виджет</value>
   </data>
