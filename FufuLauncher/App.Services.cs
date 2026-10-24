@@ -155,6 +155,10 @@ public partial class App
                 services.AddSingleton<LightweightPluginService>();
                 services.AddSingleton<ConstraintService>();
                 services.AddSingleton<LuaPluginInstaller>();
+                services.AddSingleton<GameSessionService>();
+                services.AddSingleton<Services.Mcp.McpInstallJobService>();
+                services.AddSingleton<Services.Mcp.McpToolInvoker>();
+                services.AddSingleton<Services.Mcp.McpHostService>();
                 services.AddSingleton<Services.PluginMirror.MirrorSiteProvider>();
                 services.AddSingleton<Services.PluginMirror.PluginMirrorDownloadService>();
                 services.AddSingleton<PluginStoreViewModel>();

@@ -8729,4 +8729,319 @@ Bilibiliサーバー対応、MiYouSheログイン不要</value>
   <data name="ImageSource_RandomPinFailed" xml:space="preserve">
     <value>保存できる現在のランダム背景画像がありません。</value>
   </data>
+  <data name="SectionMcp" xml:space="preserve">
+    <value>オープンインターフェース</value>
+  </data>
+  <data name="Mcp_RowTitle" xml:space="preserve">
+    <value>MCP インターフェース</value>
+  </data>
+  <data name="Mcp_RowCaption" xml:space="preserve">
+    <value>LAN 自動化インターフェース（既定はオフ）。</value>
+  </data>
+  <data name="Mcp_OpenButton" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Mcp_WindowTitle" xml:space="preserve">
+    <value>MCP インターフェース</value>
+  </data>
+  <data name="Mcp_ServiceSection" xml:space="preserve">
+    <value>サービス</value>
+  </data>
+  <data name="Mcp_EnableTitle" xml:space="preserve">
+    <value>MCP サービスを有効にする</value>
+  </data>
+  <data name="Mcp_EnableCaption" xml:space="preserve">
+    <value>有効にすると、LAN 内の端末からランチャーに接続できます。</value>
+  </data>
+  <data name="Mcp_SecurityTitle" xml:space="preserve">
+    <value>信頼できるネットワークのみ</value>
+  </data>
+  <data name="Mcp_SecurityMessage" xml:space="preserve">
+    <value>信頼できるネットワークでのみ有効にし、アクセス制御を設定してください。</value>
+  </data>
+  <data name="Mcp_ErrorTitle" xml:space="preserve">
+    <value>サービスの起動に失敗しました</value>
+  </data>
+  <data name="Mcp_ServiceStatusSection" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="Mcp_StatusTitle" xml:space="preserve">
+    <value>接続アドレス</value>
+  </data>
+  <data name="Mcp_StatusRunning" xml:space="preserve">
+    <value>サービス実行中 · ポート {0}</value>
+  </data>
+  <data name="Mcp_StatusEnabledNotRunning" xml:space="preserve">
+    <value>有効ですがサービスが起動していません</value>
+  </data>
+  <data name="Mcp_StatusStopped" xml:space="preserve">
+    <value>サービスは停止しています</value>
+  </data>
+  <data name="Mcp_EndpointPending" xml:space="preserve">
+    <value>有効時は http://&lt;LAN IP&gt;:{0}/mcp でアクセスできます</value>
+  </data>
+  <data name="Mcp_PortTitle" xml:space="preserve">
+    <value>ポート</value>
+  </data>
+  <data name="Mcp_PortCaption" xml:space="preserve">
+    <value>範囲は 1024〜65535。変更するとサービスが再起動します。</value>
+  </data>
+  <data name="Mcp_TokenTitle" xml:space="preserve">
+    <value>アクセストークン</value>
+  </data>
+  <data name="Mcp_TokenCaption" xml:space="preserve">
+    <value>接続側は Authorization: Bearer にこのトークンを付与します。</value>
+  </data>
+  <data name="Mcp_Copy" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="Mcp_Regenerate" xml:space="preserve">
+    <value>再生成</value>
+  </data>
+  <data name="Mcp_ToolsSection" xml:space="preserve">
+    <value>利用可能なツール</value>
+  </data>
+  <data name="Mcp_ToolsCaption" xml:space="preserve">
+    <value>無効なツールは呼び出せません。</value>
+  </data>
+  <data name="Mcp_CategoryPlugins" xml:space="preserve">
+    <value>プラグイン</value>
+  </data>
+  <data name="Mcp_CategoryGame" xml:space="preserve">
+    <value>ゲーム</value>
+  </data>
+  <data name="Mcp_CategoryInterface" xml:space="preserve">
+    <value>インターフェース</value>
+  </data>
+  <data name="Mcp_CategorySystem" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="McpTool_ListPlugins" xml:space="preserve">
+    <value>インストール済みプラグイン一覧</value>
+  </data>
+  <data name="McpTool_ListPluginsCaption" xml:space="preserve">
+    <value>公式・サードパーティプラグインの状態と設定パスを表示します。</value>
+  </data>
+  <data name="McpTool_SetPluginEnabled" xml:space="preserve">
+    <value>プラグインの有効／無効</value>
+  </data>
+  <data name="McpTool_SetPluginEnabledCaption" xml:space="preserve">
+    <value>フォルダー名・表示名・ファイル名で公式／サードパーティプラグインを切り替えます。</value>
+  </data>
+  <data name="McpTool_GetPluginConfig" xml:space="preserve">
+    <value>プラグイン設定の読み取り</value>
+  </data>
+  <data name="McpTool_GetPluginConfigCaption" xml:space="preserve">
+    <value>設定可能な項目と現在値を構造化して返します。</value>
+  </data>
+  <data name="McpTool_SetPluginConfig" xml:space="preserve">
+    <value>プラグイン設定の変更</value>
+  </data>
+  <data name="McpTool_SetPluginConfigCaption" xml:space="preserve">
+    <value>既存の項目のみ変更します。ファイルを直接編集することはできません。</value>
+  </data>
+  <data name="McpTool_SearchPluginStore" xml:space="preserve">
+    <value>プラグインストアを検索</value>
+  </data>
+  <data name="McpTool_SearchPluginStoreCaption" xml:space="preserve">
+    <value>キーワードまたはカテゴリでストア内のプラグインを検索します。</value>
+  </data>
+  <data name="McpTool_InstallPlugin" xml:space="preserve">
+    <value>プラグインをインストール</value>
+  </data>
+  <data name="McpTool_InstallPluginCaption" xml:space="preserve">
+    <value>ストア、ローカルファイル、URL からインストール。進行状況の確認とキャンセルが可能です。</value>
+  </data>
+  <data name="McpTool_GetGameStatus" xml:space="preserve">
+    <value>ゲーム状態</value>
+  </data>
+  <data name="McpTool_GetGameStatusCaption" xml:space="preserve">
+    <value>ゲームパス、実行状態、サーバー、バージョンを返します。</value>
+  </data>
+  <data name="McpTool_StartGame" xml:space="preserve">
+    <value>ゲームを起動</value>
+  </data>
+  <data name="McpTool_StartGameCaption" xml:space="preserve">
+    <value>現在の起動設定でゲームを起動します。</value>
+  </data>
+  <data name="McpTool_StopGame" xml:space="preserve">
+    <value>ゲームを終了</value>
+  </data>
+  <data name="McpTool_StopGameCaption" xml:space="preserve">
+    <value>実行中のゲームプロセスを終了します。</value>
+  </data>
+  <data name="McpTool_ListServers" xml:space="preserve">
+    <value>サーバー一覧</value>
+  </data>
+  <data name="McpTool_ListServersCaption" xml:space="preserve">
+    <value>利用可能なサーバー方式と現在の方式を表示します。</value>
+  </data>
+  <data name="McpTool_SwitchServer" xml:space="preserve">
+    <value>サーバーを切り替え</value>
+  </data>
+  <data name="McpTool_SwitchServerCaption" xml:space="preserve">
+    <value>選択した方式でチャンネル設定を書き換えます。</value>
+  </data>
+  <data name="McpTool_OpenPage" xml:space="preserve">
+    <value>ページを開く</value>
+  </data>
+  <data name="McpTool_OpenPageCaption" xml:space="preserve">
+    <value>メインウィンドウを指定ページへ移動します。</value>
+  </data>
+  <data name="McpTool_OpenToolWindow" xml:space="preserve">
+    <value>ツールウィンドウを開く</value>
+  </data>
+  <data name="McpTool_OpenToolWindowCaption" xml:space="preserve">
+    <value>ガチャ分析・データセンター・電卓などのツールを開きます。</value>
+  </data>
+  <data name="McpTool_SetWindowState" xml:space="preserve">
+    <value>ウィンドウ状態</value>
+  </data>
+  <data name="McpTool_SetWindowStateCaption" xml:space="preserve">
+    <value>ランチャーウィンドウを最大化・最小化・復元します。</value>
+  </data>
+  <data name="McpTool_ReadCrashLog" xml:space="preserve">
+    <value>クラッシュログを読む</value>
+  </data>
+  <data name="McpTool_ReadCrashLogCaption" xml:space="preserve">
+    <value>CrashLog.txt の末尾を表示します。</value>
+  </data>
+  <data name="McpTool_CheckUpdate" xml:space="preserve">
+    <value>アップデートを確認</value>
+  </data>
+  <data name="McpTool_CheckUpdateCaption" xml:space="preserve">
+    <value>更新サーバーへの問い合わせのみ行い、更新プログラムは起動しません。</value>
+  </data>
+  <data name="Mcp_AccessSection" xml:space="preserve">
+    <value>アクセス制御</value>
+  </data>
+  <data name="Mcp_AuthTitle" xml:space="preserve">
+    <value>認証を有効にする</value>
+  </data>
+  <data name="Mcp_AuthCaption" xml:space="preserve">
+    <value>オフにするとトークンを検証しません。</value>
+  </data>
+  <data name="Mcp_AuthOffWarning" xml:space="preserve">
+    <value>認証がオフです：このアドレスに到達できる端末はランチャーを操作できます。</value>
+  </data>
+  <data name="Mcp_TokenModeTitle" xml:space="preserve">
+    <value>トークン方式</value>
+  </data>
+  <data name="Mcp_TokenModeAuto" xml:space="preserve">
+    <value>自動生成</value>
+  </data>
+  <data name="Mcp_TokenModeCustom" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="Mcp_CustomTokenTitle" xml:space="preserve">
+    <value>カスタムトークン</value>
+  </data>
+  <data name="Mcp_CustomTokenCaption" xml:space="preserve">
+    <value>16〜128 文字。使用可能な文字は英数字と - _ .</value>
+  </data>
+  <data name="Mcp_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Mcp_TokenInvalid" xml:space="preserve">
+    <value>無効なトークンです：16〜128 文字の英数字または - _ .</value>
+  </data>
+  <data name="Mcp_IpFilterTitle" xml:space="preserve">
+    <value>IP フィルターを有効にする</value>
+  </data>
+  <data name="Mcp_IpFilterCaption" xml:space="preserve">
+    <value>この端末は常に許可されます。</value>
+  </data>
+  <data name="Mcp_IpModeTitle" xml:space="preserve">
+    <value>リストモード</value>
+  </data>
+  <data name="Mcp_IpModeAllow" xml:space="preserve">
+    <value>許可リスト</value>
+  </data>
+  <data name="Mcp_IpModeDeny" xml:space="preserve">
+    <value>拒否リスト</value>
+  </data>
+  <data name="Mcp_IpRulesTitle" xml:space="preserve">
+    <value>IP リスト</value>
+  </data>
+  <data name="Mcp_IpRulesCaption" xml:space="preserve">
+    <value>1 行に 1 つの IP またはサブネット（例：192.168.1.10、192.168.1.0/24）。</value>
+  </data>
+  <data name="Mcp_IpRulesInvalid" xml:space="preserve">
+    <value>無効な項目：{0}</value>
+  </data>
+  <data name="Mcp_IpRulesEmpty" xml:space="preserve">
+    <value>許可リストは空にできません。</value>
+  </data>
+  <data name="Mcp_AuditSection" xml:space="preserve">
+    <value>監査ログ</value>
+  </data>
+  <data name="Mcp_AuditToggleTitle" xml:space="preserve">
+    <value>監査ログを記録</value>
+  </data>
+  <data name="Mcp_AuditCaption" xml:space="preserve">
+    <value>今回の実行分のみ記録します。</value>
+  </data>
+  <data name="Mcp_AuditClear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="Mcp_AuditEmpty" xml:space="preserve">
+    <value>記録はありません</value>
+  </data>
+  <data name="Mcp_AuditConnections" xml:space="preserve">
+    <value>接続</value>
+  </data>
+  <data name="Mcp_AuditCalls" xml:space="preserve">
+    <value>ツール呼び出し</value>
+  </data>
+  <data name="Mcp_AuditFailures" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Mcp_AuditResultSuccess" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Mcp_AuditResultFailure" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Mcp_AuditEventConnect" xml:space="preserve">
+    <value>接続しました</value>
+  </data>
+  <data name="Mcp_AuditEventAuthFailed" xml:space="preserve">
+    <value>認証に失敗</value>
+  </data>
+  <data name="Mcp_AuditEventIpBlocked" xml:space="preserve">
+    <value>IP が拒否されました</value>
+  </data>
+  <data name="Mcp_PortInvalid" xml:space="preserve">
+    <value>ポートは {0}〜{1} の範囲で指定してください。</value>
+  </data>
+  <data name="Mcp_AuditWindowTitle" xml:space="preserve">
+    <value>監査ログ</value>
+  </data>
+  <data name="Mcp_AuditOpenButton" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="Mcp_AuditSummaryFormat" xml:space="preserve">
+    <value>接続 {0} · 呼び出し {1} · 失敗 {2}</value>
+  </data>
+  <data name="Mcp_AuditArchivedCount" xml:space="preserve">
+    <value>{0} 件をアーカイブ済み</value>
+  </data>
+  <data name="Mcp_AuditOpenFolder" xml:space="preserve">
+    <value>アーカイブフォルダーを開く</value>
+  </data>
+  <data name="Mcp_AuditArchiveHint" xml:space="preserve">
+    <value>{0} 件を超えるとテキストファイルへ自動アーカイブします。</value>
+  </data>
+  <data name="McpTool_GetInstallStatus" xml:space="preserve">
+    <value>インストール状況</value>
+  </data>
+  <data name="McpTool_GetInstallStatusCaption" xml:space="preserve">
+    <value>インストールツールで開始した処理の進捗と状態を確認します。</value>
+  </data>
+  <data name="McpTool_CancelInstall" xml:space="preserve">
+    <value>インストールをキャンセル</value>
+  </data>
+  <data name="McpTool_CancelInstallCaption" xml:space="preserve">
+    <value>実行中または検証待ちのインストールを取り消し、検証ウィンドウを閉じます。</value>
+  </data>
 </root>

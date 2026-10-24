@@ -9075,4 +9075,319 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ImageSource_RandomPinFailed" xml:space="preserve">
     <value>当前没有可保存的随机背景图片。</value>
   </data>
+  <data name="SectionMcp" xml:space="preserve">
+    <value>开放接口</value>
+  </data>
+  <data name="Mcp_RowTitle" xml:space="preserve">
+    <value>MCP 开放接口</value>
+  </data>
+  <data name="Mcp_RowCaption" xml:space="preserve">
+    <value>局域网自动化接口，默认关闭。</value>
+  </data>
+  <data name="Mcp_OpenButton" xml:space="preserve">
+    <value>配置</value>
+  </data>
+  <data name="Mcp_WindowTitle" xml:space="preserve">
+    <value>MCP 开放接口</value>
+  </data>
+  <data name="Mcp_ServiceSection" xml:space="preserve">
+    <value>服务</value>
+  </data>
+  <data name="Mcp_EnableTitle" xml:space="preserve">
+    <value>启用 MCP 服务</value>
+  </data>
+  <data name="Mcp_EnableCaption" xml:space="preserve">
+    <value>开启后局域网内的设备可连接本启动器。</value>
+  </data>
+  <data name="Mcp_SecurityTitle" xml:space="preserve">
+    <value>仅限可信网络</value>
+  </data>
+  <data name="Mcp_SecurityMessage" xml:space="preserve">
+    <value>请在可信网络中开启，并设置访问控制。</value>
+  </data>
+  <data name="Mcp_ErrorTitle" xml:space="preserve">
+    <value>服务启动失败</value>
+  </data>
+  <data name="Mcp_ServiceStatusSection" xml:space="preserve">
+    <value>运行状态</value>
+  </data>
+  <data name="Mcp_StatusTitle" xml:space="preserve">
+    <value>连接地址</value>
+  </data>
+  <data name="Mcp_StatusRunning" xml:space="preserve">
+    <value>服务运行中 · 端口 {0}</value>
+  </data>
+  <data name="Mcp_StatusEnabledNotRunning" xml:space="preserve">
+    <value>已启用，但服务未能启动</value>
+  </data>
+  <data name="Mcp_StatusStopped" xml:space="preserve">
+    <value>服务已停止</value>
+  </data>
+  <data name="Mcp_EndpointPending" xml:space="preserve">
+    <value>启用后通过 http://&lt;局域网 IP&gt;:{0}/mcp 访问</value>
+  </data>
+  <data name="Mcp_PortTitle" xml:space="preserve">
+    <value>监听端口</value>
+  </data>
+  <data name="Mcp_PortCaption" xml:space="preserve">
+    <value>范围 1024 至 65535，修改后服务会重启。</value>
+  </data>
+  <data name="Mcp_TokenTitle" xml:space="preserve">
+    <value>访问令牌</value>
+  </data>
+  <data name="Mcp_TokenCaption" xml:space="preserve">
+    <value>连接端需在 Authorization: Bearer 中携带此令牌。</value>
+  </data>
+  <data name="Mcp_Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="Mcp_Regenerate" xml:space="preserve">
+    <value>重新生成</value>
+  </data>
+  <data name="Mcp_ToolsSection" xml:space="preserve">
+    <value>可用工具</value>
+  </data>
+  <data name="Mcp_ToolsCaption" xml:space="preserve">
+    <value>关闭的工具不会被调用。</value>
+  </data>
+  <data name="Mcp_CategoryPlugins" xml:space="preserve">
+    <value>插件</value>
+  </data>
+  <data name="Mcp_CategoryGame" xml:space="preserve">
+    <value>游戏</value>
+  </data>
+  <data name="Mcp_CategoryInterface" xml:space="preserve">
+    <value>界面</value>
+  </data>
+  <data name="Mcp_CategorySystem" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="McpTool_ListPlugins" xml:space="preserve">
+    <value>列出已安装插件</value>
+  </data>
+  <data name="McpTool_ListPluginsCaption" xml:space="preserve">
+    <value>读取官方与第三方插件列表、启用状态和配置路径。</value>
+  </data>
+  <data name="McpTool_SetPluginEnabled" xml:space="preserve">
+    <value>启用或禁用插件</value>
+  </data>
+  <data name="McpTool_SetPluginEnabledCaption" xml:space="preserve">
+    <value>按文件夹、名称或文件名切换官方与第三方插件的启用状态。</value>
+  </data>
+  <data name="McpTool_GetPluginConfig" xml:space="preserve">
+    <value>读取插件配置</value>
+  </data>
+  <data name="McpTool_GetPluginConfigCaption" xml:space="preserve">
+    <value>以结构化选项形式返回插件的可配置项与当前值。</value>
+  </data>
+  <data name="McpTool_SetPluginConfig" xml:space="preserve">
+    <value>修改插件配置</value>
+  </data>
+  <data name="McpTool_SetPluginConfigCaption" xml:space="preserve">
+    <value>只修改配置文件中已存在的选项值，不支持直接编辑文件。</value>
+  </data>
+  <data name="McpTool_SearchPluginStore" xml:space="preserve">
+    <value>搜索插件商城</value>
+  </data>
+  <data name="McpTool_SearchPluginStoreCaption" xml:space="preserve">
+    <value>按关键词或分类查询插件商城中的插件。</value>
+  </data>
+  <data name="McpTool_InstallPlugin" xml:space="preserve">
+    <value>安装插件</value>
+  </data>
+  <data name="McpTool_InstallPluginCaption" xml:space="preserve">
+    <value>从插件商城、本地文件或下载地址安装插件，可查询进度并取消。</value>
+  </data>
+  <data name="McpTool_GetGameStatus" xml:space="preserve">
+    <value>查询游戏状态</value>
+  </data>
+  <data name="McpTool_GetGameStatusCaption" xml:space="preserve">
+    <value>返回游戏路径、运行状态、当前服务器与版本。</value>
+  </data>
+  <data name="McpTool_StartGame" xml:space="preserve">
+    <value>启动游戏</value>
+  </data>
+  <data name="McpTool_StartGameCaption" xml:space="preserve">
+    <value>使用当前启动配置启动游戏。</value>
+  </data>
+  <data name="McpTool_StopGame" xml:space="preserve">
+    <value>结束游戏</value>
+  </data>
+  <data name="McpTool_StopGameCaption" xml:space="preserve">
+    <value>结束正在运行的游戏进程。</value>
+  </data>
+  <data name="McpTool_ListServers" xml:space="preserve">
+    <value>列出服务器</value>
+  </data>
+  <data name="McpTool_ListServersCaption" xml:space="preserve">
+    <value>列出可用服务器方案与当前方案。</value>
+  </data>
+  <data name="McpTool_SwitchServer" xml:space="preserve">
+    <value>切换服务器</value>
+  </data>
+  <data name="McpTool_SwitchServerCaption" xml:space="preserve">
+    <value>按选定的服务器方案重写游戏配置中的渠道信息。</value>
+  </data>
+  <data name="McpTool_OpenPage" xml:space="preserve">
+    <value>打开页面</value>
+  </data>
+  <data name="McpTool_OpenPageCaption" xml:space="preserve">
+    <value>将主窗口切换到指定页面。</value>
+  </data>
+  <data name="McpTool_OpenToolWindow" xml:space="preserve">
+    <value>打开工具窗口</value>
+  </data>
+  <data name="McpTool_OpenToolWindowCaption" xml:space="preserve">
+    <value>打开工具箱中的抽卡分析、数据中心、计算器等工具。</value>
+  </data>
+  <data name="McpTool_SetWindowState" xml:space="preserve">
+    <value>窗口状态</value>
+  </data>
+  <data name="McpTool_SetWindowStateCaption" xml:space="preserve">
+    <value>最大化、最小化或还原启动器主窗口。</value>
+  </data>
+  <data name="McpTool_ReadCrashLog" xml:space="preserve">
+    <value>读取崩溃日志</value>
+  </data>
+  <data name="McpTool_ReadCrashLogCaption" xml:space="preserve">
+    <value>查看 CrashLog.txt 的末尾内容。</value>
+  </data>
+  <data name="McpTool_CheckUpdate" xml:space="preserve">
+    <value>检查更新</value>
+  </data>
+  <data name="McpTool_CheckUpdateCaption" xml:space="preserve">
+    <value>仅查询更新服务器，不会启动更新程序。</value>
+  </data>
+  <data name="Mcp_AccessSection" xml:space="preserve">
+    <value>访问控制</value>
+  </data>
+  <data name="Mcp_AuthTitle" xml:space="preserve">
+    <value>启用鉴权</value>
+  </data>
+  <data name="Mcp_AuthCaption" xml:space="preserve">
+    <value>关闭后不再校验令牌。</value>
+  </data>
+  <data name="Mcp_AuthOffWarning" xml:space="preserve">
+    <value>已关闭鉴权：能访问该地址的设备都可以操作本启动器。</value>
+  </data>
+  <data name="Mcp_TokenModeTitle" xml:space="preserve">
+    <value>令牌方式</value>
+  </data>
+  <data name="Mcp_TokenModeAuto" xml:space="preserve">
+    <value>自动生成</value>
+  </data>
+  <data name="Mcp_TokenModeCustom" xml:space="preserve">
+    <value>自定义</value>
+  </data>
+  <data name="Mcp_CustomTokenTitle" xml:space="preserve">
+    <value>自定义令牌</value>
+  </data>
+  <data name="Mcp_CustomTokenCaption" xml:space="preserve">
+    <value>16–128 位，仅限字母、数字与 - _ .</value>
+  </data>
+  <data name="Mcp_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Mcp_TokenInvalid" xml:space="preserve">
+    <value>令牌无效：需 16–128 位字母、数字或 - _ .</value>
+  </data>
+  <data name="Mcp_IpFilterTitle" xml:space="preserve">
+    <value>启用 IP 过滤</value>
+  </data>
+  <data name="Mcp_IpFilterCaption" xml:space="preserve">
+    <value>本机地址始终允许访问。</value>
+  </data>
+  <data name="Mcp_IpModeTitle" xml:space="preserve">
+    <value>名单模式</value>
+  </data>
+  <data name="Mcp_IpModeAllow" xml:space="preserve">
+    <value>允许名单</value>
+  </data>
+  <data name="Mcp_IpModeDeny" xml:space="preserve">
+    <value>拒绝名单</value>
+  </data>
+  <data name="Mcp_IpRulesTitle" xml:space="preserve">
+    <value>IP 名单</value>
+  </data>
+  <data name="Mcp_IpRulesCaption" xml:space="preserve">
+    <value>每行一个 IP 或网段，例如 192.168.1.10、192.168.1.0/24。</value>
+  </data>
+  <data name="Mcp_IpRulesInvalid" xml:space="preserve">
+    <value>以下条目无效：{0}</value>
+  </data>
+  <data name="Mcp_IpRulesEmpty" xml:space="preserve">
+    <value>允许名单不能为空。</value>
+  </data>
+  <data name="Mcp_AuditSection" xml:space="preserve">
+    <value>审计日志</value>
+  </data>
+  <data name="Mcp_AuditToggleTitle" xml:space="preserve">
+    <value>记录审计日志</value>
+  </data>
+  <data name="Mcp_AuditCaption" xml:space="preserve">
+    <value>仅记录本次运行。</value>
+  </data>
+  <data name="Mcp_AuditClear" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="Mcp_AuditEmpty" xml:space="preserve">
+    <value>暂无记录</value>
+  </data>
+  <data name="Mcp_AuditConnections" xml:space="preserve">
+    <value>连接</value>
+  </data>
+  <data name="Mcp_AuditCalls" xml:space="preserve">
+    <value>工具调用</value>
+  </data>
+  <data name="Mcp_AuditFailures" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Mcp_AuditResultSuccess" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Mcp_AuditResultFailure" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Mcp_AuditEventConnect" xml:space="preserve">
+    <value>连接成功</value>
+  </data>
+  <data name="Mcp_AuditEventAuthFailed" xml:space="preserve">
+    <value>鉴权失败</value>
+  </data>
+  <data name="Mcp_AuditEventIpBlocked" xml:space="preserve">
+    <value>IP 被拒绝</value>
+  </data>
+  <data name="Mcp_PortInvalid" xml:space="preserve">
+    <value>端口必须介于 {0} 与 {1} 之间。</value>
+  </data>
+  <data name="Mcp_AuditWindowTitle" xml:space="preserve">
+    <value>审计日志</value>
+  </data>
+  <data name="Mcp_AuditOpenButton" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="Mcp_AuditSummaryFormat" xml:space="preserve">
+    <value>连接 {0} · 调用 {1} · 失败 {2}</value>
+  </data>
+  <data name="Mcp_AuditArchivedCount" xml:space="preserve">
+    <value>已归档 {0} 条</value>
+  </data>
+  <data name="Mcp_AuditOpenFolder" xml:space="preserve">
+    <value>打开归档目录</value>
+  </data>
+  <data name="Mcp_AuditArchiveHint" xml:space="preserve">
+    <value>超过 {0} 条时自动归档为文本文件。</value>
+  </data>
+  <data name="McpTool_GetInstallStatus" xml:space="preserve">
+    <value>查询安装进度</value>
+  </data>
+  <data name="McpTool_GetInstallStatusCaption" xml:space="preserve">
+    <value>查看由安装工具启动的任务进度与当前状态。</value>
+  </data>
+  <data name="McpTool_CancelInstall" xml:space="preserve">
+    <value>取消安装</value>
+  </data>
+  <data name="McpTool_CancelInstallCaption" xml:space="preserve">
+    <value>取消正在运行或等待验证的安装任务，并关闭验证窗口。</value>
+  </data>
 </root>

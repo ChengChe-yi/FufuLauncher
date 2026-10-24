@@ -97,8 +97,8 @@ public partial class GameLauncherService
         }
     }
 
-    private async Task<bool> LaunchViaElevatedProcessAsync(string gameExePath, string dllPath, int configMask,
-        string arguments, StringBuilder log, CancellationToken cancellationToken)
+    private async Task<(bool Started, string? Failure)> LaunchViaElevatedProcessAsync(string gameExePath,
+        string dllPath, int configMask, string arguments, StringBuilder log, CancellationToken cancellationToken)
     {
         try
         {
@@ -106,7 +106,7 @@ public partial class GameLauncherService
             if (string.IsNullOrEmpty(currentExe))
             {
                 log.AppendLine("[启动流程] ? 无法定位启动器可执行文件");
-                return false;
+                return (false, null);
             }
 
             var psi = new ProcessStartInfo
@@ -120,11 +120,13 @@ public partial class GameLauncherService
 
             log.AppendLine("[启动流程] 以管理员权限启动注入进程...");
 
+            ElevatedInjectionResultFile.Clear();
+
             using var process = Process.Start(psi);
             if (process == null)
             {
                 log.AppendLine("[启动流程] ? 管理员注入进程启动失败");
-                return false;
+                return (false, null);
             }
 
             try
@@ -146,22 +148,33 @@ public partial class GameLauncherService
                     log.AppendLine($"[启动流程] 终止管理员注入进程失败: {killEx.Message}");
                 }
 
-                return false;
+                return (false, null);
             }
 
             log.AppendLine($"[启动流程] 管理员注入进程退出，代码: {process.ExitCode}");
 
-            return process.ExitCode == 0;
+            if (process.ExitCode == 0)
+            {
+                return (true, null);
+            }
+
+            var failureMessage = ElevatedInjectionResultFile.Consume();
+            if (!string.IsNullOrWhiteSpace(failureMessage))
+            {
+                log.AppendLine($"[启动流程] 注入失败提示: {failureMessage}");
+            }
+
+            return (false, failureMessage);
         }
         catch (Win32Exception ex) when (ex.NativeErrorCode == 1223)
         {
             log.AppendLine("[启动流程] 管理员授权被用户取消");
-            return false;
+            return (false, null);
         }
         catch (Exception ex)
         {
             log.AppendLine($"[启动流程] ? 管理员注入进程异常: {ex.Message}");
-            return false;
+            return (false, null);
         }
     }
 }

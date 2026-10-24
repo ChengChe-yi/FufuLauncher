@@ -3,10 +3,9 @@ Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
 
-using System.Diagnostics;
-using System.Text.Json;
 using FufuLauncher.Helpers;
 using FufuLauncher.Models;
+using FufuLauncher.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
@@ -16,198 +15,55 @@ public partial class PluginStoreViewModel
 {
     #region Shared UI Dialogs
 
-    private static async Task<string?> ShowGeetestCaptchaAsync(string verifyUrl)
+    private static Task<string?> ShowGeetestCaptchaAsync(string verifyUrl) =>
+        PluginCaptchaDialog.ShowAsync(verifyUrl);
+
+    private static async Task ShowMinVersionWarningAsync(PluginStoreItem item)
     {
-        var tcs = new TaskCompletionSource<string?>();
-
-
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
-            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show captcha: MainWindow or DispatcherQueue is null");
-            return null;
+            DebugLog.Info("PluginStoreViewModel.Dialogs",
+                "[PluginStoreVM] Cannot show version warning: MainWindow or DispatcherQueue is null");
+            return;
         }
 
-        var enqueued = dispatcherQueue.TryEnqueue(async () =>
+        dispatcherQueue.TryEnqueue(async () =>
         {
-            Window? captchaWindow = null;
-            CancellationTokenSource? pollCts = null;
             try
             {
-                captchaWindow = new Window();
-                captchaWindow.SystemBackdrop = new Microsoft.UI.Xaml.Media.MicaBackdrop();
-                captchaWindow.Title = "PluginStore_CaptchaTitle".GetLocalized();
-
-                var rootGrid = new Grid();
-                rootGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(32) });
-                rootGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-
-                var titleBar = new Grid { Height = 32 };
-                titleBar.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-                titleBar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-
-                var titleText = new TextBlock
+                if (App.MainWindow?.Content?.XamlRoot is not { } xamlRoot)
                 {
-                    Text = "PluginStore_DownloadVerification".GetLocalized(),
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Margin = new Thickness(16, 0, 0, 0)
-                };
-                Grid.SetColumn(titleText, 1);
-                titleBar.Children.Add(titleText);
-
-                Grid.SetRow(titleBar, 0);
-                rootGrid.Children.Add(titleBar);
-
-                var webView = new WebView2
-                {
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch
-                };
-                Grid.SetRow(webView, 1);
-                rootGrid.Children.Add(webView);
-
-                captchaWindow.Content = rootGrid;
-
-
-                if (captchaWindow.AppWindow is { } appWindow)
-                {
-                    appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
-                    appWindow.TitleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
-                    appWindow.TitleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
-                    appWindow.Resize(new Windows.Graphics.SizeInt32(1280, 720));
-
-
-                    if (App.MainWindow?.AppWindow is { } mainAppWindow)
-                    {
-                        var mainPos = mainAppWindow.Position;
-                        var mainSize = mainAppWindow.Size;
-                        appWindow.Move(new Windows.Graphics.PointInt32(
-                            mainPos.X + (mainSize.Width - 1280) / 2,
-                            mainPos.Y + (mainSize.Height - 720) / 2));
-                    }
-                }
-
-                captchaWindow.SetTitleBar(titleBar);
-
-                await webView.EnsureCoreWebView2Async();
-
-
-                if (webView.CoreWebView2 is not { } coreWebView)
-                {
-                    DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] CoreWebView2 is null after EnsureCoreWebView2Async");
-                    tcs.TrySetResult(null);
-                    captchaWindow.Close();
+                    DebugLog.Info("PluginStoreViewModel.Dialogs",
+                        "[PluginStoreVM] Cannot show version warning: XamlRoot is null");
                     return;
                 }
 
-                coreWebView.Settings.AreDefaultContextMenusEnabled = false;
-                coreWebView.Settings.IsStatusBarEnabled = false;
-
-                pollCts = new CancellationTokenSource();
-                var pollToken = pollCts.Token;
-
-                coreWebView.NavigationCompleted += async (s, e) =>
+                var dialog = new ContentDialog
                 {
-                    if (!e.IsSuccess) return;
-                    DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Gate page loaded, starting poll for dl_token...");
-
-                    try
-                    {
-                        for (var i = 0; i < 120 && !pollToken.IsCancellationRequested; i++)
-                        {
-                            await Task.Delay(500, pollToken);
-
-                            string raw;
-                            try
-                            {
-                                raw = await webView.CoreWebView2.ExecuteScriptAsync("document.body.textContent");
-                            }
-                            catch
-                            {
-                                continue;
-                            }
-
-                            if (string.IsNullOrWhiteSpace(raw)) continue;
-
-                            var unescaped = raw.Trim('"').Replace("\\\"", "\"").Replace("\\\\", "\\");
-
-                            if (!unescaped.StartsWith("{")) continue;
-
-                            try
-                            {
-                                using var doc = JsonDocument.Parse(unescaped);
-                                var root = doc.RootElement;
-                                if (root.TryGetProperty("retcode", out var rc) && rc.GetInt32() == 0 &&
-                                    root.TryGetProperty("data", out var data) &&
-                                    data.TryGetProperty("dl_token", out var dlToken))
-                                {
-                                    var token = dlToken.GetString();
-                                    if (!string.IsNullOrWhiteSpace(token))
-                                    {
-                                        DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Got dl_token: {token[..12]}...");
-                                        pollCts.Cancel();
-                                        tcs.TrySetResult(token);
-                                        captchaWindow.DispatcherQueue.TryEnqueue(() => captchaWindow.Close());
-                                        return;
-                                    }
-                                }
-                            }
-                            catch (JsonException)
-                            {
-                            }
-                        }
-                    }
-                    catch (TaskCanceledException)
-                    {
-                    }
+                    Title = "PluginStore_VersionTooLowTitle".GetLocalized(),
+                    Content = string.Format("PluginStore_VersionTooLowMessage_Format".GetLocalized(), item.Name,
+                        item.MinAppVersion, CurrentAppVersion),
+                    CloseButtonText = "Common_GotIt".GetLocalized(),
+                    DefaultButton = ContentDialogButton.Close,
+                    XamlRoot = xamlRoot
                 };
-
-                captchaWindow.Closed += (_, _) =>
-                {
-                    pollCts?.Cancel();
-                    tcs.TrySetResult(null);
-                };
-
-                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Navigating to captcha gate: {verifyUrl}");
-                coreWebView.Navigate(verifyUrl);
-                captchaWindow.Activate();
+                await dialog.ShowAsync();
             }
             catch (Exception ex)
             {
-                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Error in captcha window: {ex}");
-                tcs.TrySetResult(null);
-                pollCts?.Cancel();
-
-                if (captchaWindow is not null)
-                {
-                    try
-                    {
-                        captchaWindow.DispatcherQueue.TryEnqueue(() => captchaWindow.Close());
-                    }
-                    catch
-                    {
-                        /* ignore cleanup failures */
-                    }
-                }
+                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Error showing version warning: {ex}");
             }
         });
-
-        if (!enqueued)
-        {
-            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Failed to enqueue captcha window to DispatcherQueue");
-            return null;
-        }
-
-        return await tcs.Task;
     }
 
     private static async Task<string?> ShowPrivateAccessDialogAsync(PluginStoreItem item)
     {
         var tcs = new TaskCompletionSource<string?>();
 
-
         if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
         {
-            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show private access dialog: MainWindow or DispatcherQueue is null");
+            DebugLog.Info("PluginStoreViewModel.Dialogs",
+                "[PluginStoreVM] Cannot show private access dialog: MainWindow or DispatcherQueue is null");
             return null;
         }
 
@@ -231,10 +87,10 @@ public partial class PluginStoreViewModel
                 });
                 stackPanel.Children.Add(inputBox);
 
-
                 if (App.MainWindow?.Content?.XamlRoot is not { } xamlRoot)
                 {
-                    DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show private access dialog: XamlRoot is null");
+                    DebugLog.Info("PluginStoreViewModel.Dialogs",
+                        "[PluginStoreVM] Cannot show private access dialog: XamlRoot is null");
                     tcs.TrySetResult(null);
                     return;
                 }
@@ -268,47 +124,12 @@ public partial class PluginStoreViewModel
 
         if (!enqueued)
         {
-            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Failed to enqueue private access dialog to DispatcherQueue");
+            DebugLog.Info("PluginStoreViewModel.Dialogs",
+                "[PluginStoreVM] Failed to enqueue private access dialog to DispatcherQueue");
             return null;
         }
 
         return await tcs.Task;
-    }
-
-    private static async Task ShowMinVersionWarningAsync(PluginStoreItem item)
-    {
-        if (App.MainWindow?.DispatcherQueue is not { } dispatcherQueue)
-        {
-            DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show version warning: MainWindow or DispatcherQueue is null");
-            return;
-        }
-
-        dispatcherQueue.TryEnqueue(async () =>
-        {
-            try
-            {
-                if (App.MainWindow?.Content?.XamlRoot is not { } xamlRoot)
-                {
-                    DebugLog.Info("PluginStoreViewModel.Dialogs", "[PluginStoreVM] Cannot show version warning: XamlRoot is null");
-                    return;
-                }
-
-                var dialog = new ContentDialog
-                {
-                    Title = "PluginStore_VersionTooLowTitle".GetLocalized(),
-                    Content = string.Format("PluginStore_VersionTooLowMessage_Format".GetLocalized(), item.Name,
-                        item.MinAppVersion, CurrentAppVersion),
-                    CloseButtonText = "Common_GotIt".GetLocalized(),
-                    DefaultButton = ContentDialogButton.Close,
-                    XamlRoot = xamlRoot
-                };
-                await dialog.ShowAsync();
-            }
-            catch (Exception ex)
-            {
-                DebugLog.Info("PluginStoreViewModel.Dialogs", $"[PluginStoreVM] Error showing version warning: {ex}");
-            }
-        });
     }
 
     #endregion

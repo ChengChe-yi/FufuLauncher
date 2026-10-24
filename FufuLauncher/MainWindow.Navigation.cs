@@ -818,6 +818,8 @@ public sealed partial class MainWindow
         return _navItemVisibility.TryGetValue(viewModelKey, out var visible) ? visible : true;
     }
 
+    internal bool CanNavigateToPage(string viewModelKey) => IsNavItemVisible(viewModelKey);
+
     private void ApplyNavItemVisibility(NavItemConfig config)
     {
         _navItemVisibility[config.ViewModelKey] = config.IsUserVisible;

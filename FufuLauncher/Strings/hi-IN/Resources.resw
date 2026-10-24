@@ -8720,4 +8720,319 @@ Bilibili समर्थित; MiYouShe लॉगिन आवश्यक न�
   <data name="ImageSource_RandomPinFailed" xml:space="preserve">
     <value>सहेजने के लिए कोई वर्तमान रैंडम पृष्ठभूमि छवि उपलब्ध नहीं है।</value>
   </data>
+  <data name="SectionMcp" xml:space="preserve">
+    <value>खुला इंटरफ़ेस</value>
+  </data>
+  <data name="Mcp_RowTitle" xml:space="preserve">
+    <value>MCP इंटरफ़ेस</value>
+  </data>
+  <data name="Mcp_RowCaption" xml:space="preserve">
+    <value>LAN ऑटोमेशन इंटरफ़ेस, डिफ़ॉल्ट रूप से बंद।</value>
+  </data>
+  <data name="Mcp_OpenButton" xml:space="preserve">
+    <value>कॉन्फ़िगर करें</value>
+  </data>
+  <data name="Mcp_WindowTitle" xml:space="preserve">
+    <value>MCP इंटरफ़ेस</value>
+  </data>
+  <data name="Mcp_ServiceSection" xml:space="preserve">
+    <value>सेवा</value>
+  </data>
+  <data name="Mcp_EnableTitle" xml:space="preserve">
+    <value>MCP सेवा सक्षम करें</value>
+  </data>
+  <data name="Mcp_EnableCaption" xml:space="preserve">
+    <value>इसे सक्षम करने पर LAN डिवाइस लॉन्चर से जुड़ सकते हैं।</value>
+  </data>
+  <data name="Mcp_SecurityTitle" xml:space="preserve">
+    <value>केवल विश्वसनीय नेटवर्क</value>
+  </data>
+  <data name="Mcp_SecurityMessage" xml:space="preserve">
+    <value>इसे केवल विश्वसनीय नेटवर्क में सक्षम करें और एक्सेस नियंत्रण सेट करें।</value>
+  </data>
+  <data name="Mcp_ErrorTitle" xml:space="preserve">
+    <value>सेवा शुरू नहीं हो सकी</value>
+  </data>
+  <data name="Mcp_ServiceStatusSection" xml:space="preserve">
+    <value>स्थिति</value>
+  </data>
+  <data name="Mcp_StatusTitle" xml:space="preserve">
+    <value>कनेक्शन पता</value>
+  </data>
+  <data name="Mcp_StatusRunning" xml:space="preserve">
+    <value>सेवा चल रही है · पोर्ट {0}</value>
+  </data>
+  <data name="Mcp_StatusEnabledNotRunning" xml:space="preserve">
+    <value>सक्षम है, लेकिन सेवा नहीं चल रही</value>
+  </data>
+  <data name="Mcp_StatusStopped" xml:space="preserve">
+    <value>सेवा बंद है</value>
+  </data>
+  <data name="Mcp_EndpointPending" xml:space="preserve">
+    <value>सक्षम होने पर http://&lt;LAN IP&gt;:{0}/mcp पर उपलब्ध</value>
+  </data>
+  <data name="Mcp_PortTitle" xml:space="preserve">
+    <value>पोर्ट</value>
+  </data>
+  <data name="Mcp_PortCaption" xml:space="preserve">
+    <value>सीमा 1024 से 65535। बदलाव के बाद सेवा फिर से शुरू होती है।</value>
+  </data>
+  <data name="Mcp_TokenTitle" xml:space="preserve">
+    <value>एक्सेस टोकन</value>
+  </data>
+  <data name="Mcp_TokenCaption" xml:space="preserve">
+    <value>कनेक्ट करने वाले क्लाइंट को यह टोकन Authorization: Bearer में भेजना होगा।</value>
+  </data>
+  <data name="Mcp_Copy" xml:space="preserve">
+    <value>कॉपी करें</value>
+  </data>
+  <data name="Mcp_Regenerate" xml:space="preserve">
+    <value>फिर से बनाएँ</value>
+  </data>
+  <data name="Mcp_ToolsSection" xml:space="preserve">
+    <value>उपलब्ध टूल</value>
+  </data>
+  <data name="Mcp_ToolsCaption" xml:space="preserve">
+    <value>बंद किए गए टूल को कॉल नहीं किया जा सकता।</value>
+  </data>
+  <data name="Mcp_CategoryPlugins" xml:space="preserve">
+    <value>प्लगइन</value>
+  </data>
+  <data name="Mcp_CategoryGame" xml:space="preserve">
+    <value>गेम</value>
+  </data>
+  <data name="Mcp_CategoryInterface" xml:space="preserve">
+    <value>इंटरफ़ेस</value>
+  </data>
+  <data name="Mcp_CategorySystem" xml:space="preserve">
+    <value>सिस्टम</value>
+  </data>
+  <data name="McpTool_ListPlugins" xml:space="preserve">
+    <value>इंस्टॉल किए गए प्लगइन सूचीबद्ध करें</value>
+  </data>
+  <data name="McpTool_ListPluginsCaption" xml:space="preserve">
+    <value>आधिकारिक और तीसरे पक्ष के प्लगइन उनकी स्थिति और कॉन्फ़िग पथ के साथ दिखाता है।</value>
+  </data>
+  <data name="McpTool_SetPluginEnabled" xml:space="preserve">
+    <value>प्लगइन सक्षम या अक्षम करें</value>
+  </data>
+  <data name="McpTool_SetPluginEnabledCaption" xml:space="preserve">
+    <value>फ़ोल्डर, नाम या फ़ाइल नाम से आधिकारिक और तीसरे पक्ष के प्लगइन बदलें।</value>
+  </data>
+  <data name="McpTool_GetPluginConfig" xml:space="preserve">
+    <value>प्लगइन कॉन्फ़िग पढ़ें</value>
+  </data>
+  <data name="McpTool_GetPluginConfigCaption" xml:space="preserve">
+    <value>कॉन्फ़िगर करने योग्य विकल्प और मौजूदा मान संरचित रूप में दिखाता है।</value>
+  </data>
+  <data name="McpTool_SetPluginConfig" xml:space="preserve">
+    <value>प्लगइन कॉन्फ़िग बदलें</value>
+  </data>
+  <data name="McpTool_SetPluginConfigCaption" xml:space="preserve">
+    <value>केवल मौजूदा विकल्प बदलें; फ़ाइल सीधे संपादित नहीं की जाती।</value>
+  </data>
+  <data name="McpTool_SearchPluginStore" xml:space="preserve">
+    <value>प्लगइन स्टोर खोजें</value>
+  </data>
+  <data name="McpTool_SearchPluginStoreCaption" xml:space="preserve">
+    <value>कीवर्ड या श्रेणी से स्टोर प्लगइन खोजें।</value>
+  </data>
+  <data name="McpTool_InstallPlugin" xml:space="preserve">
+    <value>प्लगइन इंस्टॉल करें</value>
+  </data>
+  <data name="McpTool_InstallPluginCaption" xml:space="preserve">
+    <value>स्टोर, स्थानीय फ़ाइल या URL से इंस्टॉल करें; प्रगति देखी और रद्द की जा सकती है।</value>
+  </data>
+  <data name="McpTool_GetGameStatus" xml:space="preserve">
+    <value>गेम स्थिति</value>
+  </data>
+  <data name="McpTool_GetGameStatusCaption" xml:space="preserve">
+    <value>गेम पथ, चलने की स्थिति, सर्वर और संस्करण।</value>
+  </data>
+  <data name="McpTool_StartGame" xml:space="preserve">
+    <value>गेम शुरू करें</value>
+  </data>
+  <data name="McpTool_StartGameCaption" xml:space="preserve">
+    <value>वर्तमान लॉन्च कॉन्फ़िग से गेम शुरू करें।</value>
+  </data>
+  <data name="McpTool_StopGame" xml:space="preserve">
+    <value>गेम बंद करें</value>
+  </data>
+  <data name="McpTool_StopGameCaption" xml:space="preserve">
+    <value>चल रही गेम प्रक्रिया समाप्त करें।</value>
+  </data>
+  <data name="McpTool_ListServers" xml:space="preserve">
+    <value>सर्वर सूची</value>
+  </data>
+  <data name="McpTool_ListServersCaption" xml:space="preserve">
+    <value>उपलब्ध सर्वर स्कीम और सक्रिय स्कीम दिखाएँ।</value>
+  </data>
+  <data name="McpTool_SwitchServer" xml:space="preserve">
+    <value>सर्वर बदलें</value>
+  </data>
+  <data name="McpTool_SwitchServerCaption" xml:space="preserve">
+    <value>चुनी गई स्कीम के लिए चैनल सेटिंग फिर से लिखें।</value>
+  </data>
+  <data name="McpTool_OpenPage" xml:space="preserve">
+    <value>पेज खोलें</value>
+  </data>
+  <data name="McpTool_OpenPageCaption" xml:space="preserve">
+    <value>मुख्य विंडो को किसी पेज पर ले जाएँ।</value>
+  </data>
+  <data name="McpTool_OpenToolWindow" xml:space="preserve">
+    <value>टूल विंडो खोलें</value>
+  </data>
+  <data name="McpTool_OpenToolWindowCaption" xml:space="preserve">
+    <value>गाचा विश्लेषण, डेटा सेंटर, कैलकुलेटर जैसे टूल खोलें।</value>
+  </data>
+  <data name="McpTool_SetWindowState" xml:space="preserve">
+    <value>विंडो स्थिति</value>
+  </data>
+  <data name="McpTool_SetWindowStateCaption" xml:space="preserve">
+    <value>लॉन्चर विंडो को अधिकतम, न्यूनतम या पुनर्स्थापित करें।</value>
+  </data>
+  <data name="McpTool_ReadCrashLog" xml:space="preserve">
+    <value>क्रैश लॉग पढ़ें</value>
+  </data>
+  <data name="McpTool_ReadCrashLogCaption" xml:space="preserve">
+    <value>CrashLog.txt का अंतिम भाग दिखाएँ।</value>
+  </data>
+  <data name="McpTool_CheckUpdate" xml:space="preserve">
+    <value>अपडेट जाँचें</value>
+  </data>
+  <data name="McpTool_CheckUpdateCaption" xml:space="preserve">
+    <value>केवल सर्वर से जाँच करता है; अपडेटर कभी नहीं चलाया जाता।</value>
+  </data>
+  <data name="Mcp_AccessSection" xml:space="preserve">
+    <value>एक्सेस नियंत्रण</value>
+  </data>
+  <data name="Mcp_AuthTitle" xml:space="preserve">
+    <value>प्रमाणीकरण आवश्यक करें</value>
+  </data>
+  <data name="Mcp_AuthCaption" xml:space="preserve">
+    <value>बंद होने पर टोकन जाँचे नहीं जाते।</value>
+  </data>
+  <data name="Mcp_AuthOffWarning" xml:space="preserve">
+    <value>प्रमाणीकरण बंद है: जो भी डिवाइस इस पते तक पहुँच सकता है, वह लॉन्चर चला सकता है।</value>
+  </data>
+  <data name="Mcp_TokenModeTitle" xml:space="preserve">
+    <value>टोकन मोड</value>
+  </data>
+  <data name="Mcp_TokenModeAuto" xml:space="preserve">
+    <value>स्वतः बनाया गया</value>
+  </data>
+  <data name="Mcp_TokenModeCustom" xml:space="preserve">
+    <value>कस्टम</value>
+  </data>
+  <data name="Mcp_CustomTokenTitle" xml:space="preserve">
+    <value>कस्टम टोकन</value>
+  </data>
+  <data name="Mcp_CustomTokenCaption" xml:space="preserve">
+    <value>16–128 अक्षर: अक्षर, अंक और - _ .</value>
+  </data>
+  <data name="Mcp_Save" xml:space="preserve">
+    <value>सहेजें</value>
+  </data>
+  <data name="Mcp_TokenInvalid" xml:space="preserve">
+    <value>अमान्य टोकन: 16–128 अक्षर, अंक या - _ .</value>
+  </data>
+  <data name="Mcp_IpFilterTitle" xml:space="preserve">
+    <value>IP फ़िल्टर सक्षम करें</value>
+  </data>
+  <data name="Mcp_IpFilterCaption" xml:space="preserve">
+    <value>यह कंप्यूटर सदैव अनुमत है।</value>
+  </data>
+  <data name="Mcp_IpModeTitle" xml:space="preserve">
+    <value>सूची मोड</value>
+  </data>
+  <data name="Mcp_IpModeAllow" xml:space="preserve">
+    <value>अनुमति सूची</value>
+  </data>
+  <data name="Mcp_IpModeDeny" xml:space="preserve">
+    <value>निषेध सूची</value>
+  </data>
+  <data name="Mcp_IpRulesTitle" xml:space="preserve">
+    <value>IP सूची</value>
+  </data>
+  <data name="Mcp_IpRulesCaption" xml:space="preserve">
+    <value>प्रति पंक्ति एक IP या सबनेट, जैसे 192.168.1.10 या 192.168.1.0/24।</value>
+  </data>
+  <data name="Mcp_IpRulesInvalid" xml:space="preserve">
+    <value>अमान्य प्रविष्टियाँ: {0}</value>
+  </data>
+  <data name="Mcp_IpRulesEmpty" xml:space="preserve">
+    <value>अनुमति सूची खाली नहीं हो सकती।</value>
+  </data>
+  <data name="Mcp_AuditSection" xml:space="preserve">
+    <value>ऑडिट लॉग</value>
+  </data>
+  <data name="Mcp_AuditToggleTitle" xml:space="preserve">
+    <value>ऑडिट लॉग रिकॉर्ड करें</value>
+  </data>
+  <data name="Mcp_AuditCaption" xml:space="preserve">
+    <value>केवल इस सत्र के लिए।</value>
+  </data>
+  <data name="Mcp_AuditClear" xml:space="preserve">
+    <value>साफ़ करें</value>
+  </data>
+  <data name="Mcp_AuditEmpty" xml:space="preserve">
+    <value>अभी कोई रिकॉर्ड नहीं</value>
+  </data>
+  <data name="Mcp_AuditConnections" xml:space="preserve">
+    <value>कनेक्शन</value>
+  </data>
+  <data name="Mcp_AuditCalls" xml:space="preserve">
+    <value>टूल कॉल</value>
+  </data>
+  <data name="Mcp_AuditFailures" xml:space="preserve">
+    <value>विफलता</value>
+  </data>
+  <data name="Mcp_AuditResultSuccess" xml:space="preserve">
+    <value>सफल</value>
+  </data>
+  <data name="Mcp_AuditResultFailure" xml:space="preserve">
+    <value>विफल</value>
+  </data>
+  <data name="Mcp_AuditEventConnect" xml:space="preserve">
+    <value>जुड़ा</value>
+  </data>
+  <data name="Mcp_AuditEventAuthFailed" xml:space="preserve">
+    <value>प्रमाणीकरण विफल</value>
+  </data>
+  <data name="Mcp_AuditEventIpBlocked" xml:space="preserve">
+    <value>IP अवरुद्ध</value>
+  </data>
+  <data name="Mcp_PortInvalid" xml:space="preserve">
+    <value>पोर्ट {0} और {1} के बीच होना चाहिए।</value>
+  </data>
+  <data name="Mcp_AuditWindowTitle" xml:space="preserve">
+    <value>ऑडिट लॉग</value>
+  </data>
+  <data name="Mcp_AuditOpenButton" xml:space="preserve">
+    <value>देखें</value>
+  </data>
+  <data name="Mcp_AuditSummaryFormat" xml:space="preserve">
+    <value>{0} कनेक्शन · {1} कॉल · {2} विफल</value>
+  </data>
+  <data name="Mcp_AuditArchivedCount" xml:space="preserve">
+    <value>{0} प्रविष्टियाँ संग्रहीत</value>
+  </data>
+  <data name="Mcp_AuditOpenFolder" xml:space="preserve">
+    <value>संग्रह फ़ोल्डर खोलें</value>
+  </data>
+  <data name="Mcp_AuditArchiveHint" xml:space="preserve">
+    <value>{0} से अधिक प्रविष्टियाँ स्वतः टेक्स्ट फ़ाइल में संग्रहीत होती हैं।</value>
+  </data>
+  <data name="McpTool_GetInstallStatus" xml:space="preserve">
+    <value>इंस्टॉल स्थिति</value>
+  </data>
+  <data name="McpTool_GetInstallStatusCaption" xml:space="preserve">
+    <value>इंस्टॉल टूल से शुरू किए गए कार्य की प्रगति और स्थिति देखें।</value>
+  </data>
+  <data name="McpTool_CancelInstall" xml:space="preserve">
+    <value>इंस्टॉल रद्द करें</value>
+  </data>
+  <data name="McpTool_CancelInstallCaption" xml:space="preserve">
+    <value>चल रहा या सत्यापन की प्रतीक्षा कर रहा इंस्टॉल रद्द करें और सत्यापन विंडो बंद करें।</value>
+  </data>
 </root>

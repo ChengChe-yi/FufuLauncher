@@ -32,6 +32,7 @@ public static class SettingsSectionIds
     public const string Updates = "UpdateItem";
     public const string About = "AboutItem";
     public const string SecurityAuth = "SecurityAuthItem";
+    public const string Mcp = "McpItem";
 }
 
 public partial class SettingsViewModel
@@ -77,6 +78,7 @@ public partial class SettingsViewModel
         RegisterSection(SettingsSectionIds.Updates, LoadUpdateSectionAsync);
         RegisterSection(SettingsSectionIds.About, LoadAboutSectionAsync);
         RegisterSection(SettingsSectionIds.SecurityAuth, LoadSecurityAuthSectionAsync);
+        RegisterSection(SettingsSectionIds.Mcp, () => Task.CompletedTask);
     }
 
     private void RegisterSection(string sectionId, Func<Task> loader)

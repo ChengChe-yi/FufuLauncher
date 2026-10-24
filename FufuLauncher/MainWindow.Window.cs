@@ -88,6 +88,15 @@ public sealed partial class MainWindow
     {
         try
         {
+            await App.GetService<FufuLauncher.Services.Mcp.McpHostService>().StopAsync();
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("MainWindow.Window", $"[MainWindow] Failed to stop MCP service: {ex.Message}");
+        }
+
+        try
+        {
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(3));
             await SaveWindowSizeAsync().WaitAsync(cts.Token);
         }

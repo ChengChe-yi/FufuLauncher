@@ -310,66 +310,13 @@ public partial class MainViewModel
 
         try
         {
-            var savedPathObj = await _localSettingsService.ReadSettingAsync("GameInstallationPath");
-            var gamePath = savedPathObj?.ToString()?.Trim('"')?.Trim();
+            var stopped = await _gameSessionService.StopGameAsync();
 
-            var exeNames = await Helpers.GameExeManager.GetExeNamesAsync();
-            var processNames = exeNames.Select(Path.GetFileNameWithoutExtension).ToList();
-
-            var processes = new List<Process>();
-            foreach (var name in processNames)
-            {
-                processes.AddRange(Process.GetProcessesByName(name));
-            }
-
-            if (processes.Count == 0)
+            if (stopped == 0)
             {
                 await SetGameRunningStateAsync(false);
                 UpdateLaunchButtonState();
                 return;
-            }
-
-            foreach (var process in processes)
-            {
-                try
-                {
-                    if (process.HasExited) continue;
-
-                    if (!string.IsNullOrEmpty(gamePath))
-                    {
-                        try
-                        {
-                            var processPath = process.MainModule?.FileName;
-                            if (!string.IsNullOrEmpty(processPath) &&
-                                !processPath.StartsWith(gamePath, StringComparison.OrdinalIgnoreCase))
-                            {
-                                continue;
-                            }
-                        }
-                        catch (Win32Exception)
-                        {
-                        }
-                        catch (InvalidOperationException)
-                        {
-                            continue;
-                        }
-                    }
-
-                    process.Kill();
-                    await process.WaitForExitAsync();
-                }
-                catch
-                {
-                }
-            }
-
-            try
-            {
-                await _gameLauncherService.StopBetterGIAsync();
-            }
-            catch (Exception ex)
-            {
-                DebugLog.Info("MainViewModel.Game", $"Error while closing BetterGI: {ex.Message}");
             }
 
             await Task.Delay(1000);

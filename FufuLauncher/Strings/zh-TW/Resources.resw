@@ -8725,4 +8725,319 @@ UIGF v4.x/3.0/2.x</value>
   <data name="ImageSource_RandomPinFailed" xml:space="preserve">
     <value>目前沒有可儲存的隨機背景圖片。</value>
   </data>
+  <data name="SectionMcp" xml:space="preserve">
+    <value>開放介面</value>
+  </data>
+  <data name="Mcp_RowTitle" xml:space="preserve">
+    <value>MCP 開放介面</value>
+  </data>
+  <data name="Mcp_RowCaption" xml:space="preserve">
+    <value>區域網路自動化介面，預設關閉。</value>
+  </data>
+  <data name="Mcp_OpenButton" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Mcp_WindowTitle" xml:space="preserve">
+    <value>MCP 開放介面</value>
+  </data>
+  <data name="Mcp_ServiceSection" xml:space="preserve">
+    <value>服務</value>
+  </data>
+  <data name="Mcp_EnableTitle" xml:space="preserve">
+    <value>啟用 MCP 服務</value>
+  </data>
+  <data name="Mcp_EnableCaption" xml:space="preserve">
+    <value>啟用後區域網路內的裝置可連線本啟動器。</value>
+  </data>
+  <data name="Mcp_SecurityTitle" xml:space="preserve">
+    <value>僅限可信任網路</value>
+  </data>
+  <data name="Mcp_SecurityMessage" xml:space="preserve">
+    <value>請在可信任網路中啟用，並設定存取控制。</value>
+  </data>
+  <data name="Mcp_ErrorTitle" xml:space="preserve">
+    <value>服務啟動失敗</value>
+  </data>
+  <data name="Mcp_ServiceStatusSection" xml:space="preserve">
+    <value>執行狀態</value>
+  </data>
+  <data name="Mcp_StatusTitle" xml:space="preserve">
+    <value>連線位址</value>
+  </data>
+  <data name="Mcp_StatusRunning" xml:space="preserve">
+    <value>服務執行中 · 連接埠 {0}</value>
+  </data>
+  <data name="Mcp_StatusEnabledNotRunning" xml:space="preserve">
+    <value>已啟用，但服務未能啟動</value>
+  </data>
+  <data name="Mcp_StatusStopped" xml:space="preserve">
+    <value>服務已停止</value>
+  </data>
+  <data name="Mcp_EndpointPending" xml:space="preserve">
+    <value>啟用後透過 http://&lt;區域網路 IP&gt;:{0}/mcp 存取</value>
+  </data>
+  <data name="Mcp_PortTitle" xml:space="preserve">
+    <value>監聽連接埠</value>
+  </data>
+  <data name="Mcp_PortCaption" xml:space="preserve">
+    <value>範圍 1024 至 65535，修改後服務會重新啟動。</value>
+  </data>
+  <data name="Mcp_TokenTitle" xml:space="preserve">
+    <value>存取權杖</value>
+  </data>
+  <data name="Mcp_TokenCaption" xml:space="preserve">
+    <value>連線端需在 Authorization: Bearer 中攜帶此權杖。</value>
+  </data>
+  <data name="Mcp_Copy" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="Mcp_Regenerate" xml:space="preserve">
+    <value>重新產生</value>
+  </data>
+  <data name="Mcp_ToolsSection" xml:space="preserve">
+    <value>可用工具</value>
+  </data>
+  <data name="Mcp_ToolsCaption" xml:space="preserve">
+    <value>關閉的工具不會被呼叫。</value>
+  </data>
+  <data name="Mcp_CategoryPlugins" xml:space="preserve">
+    <value>外掛</value>
+  </data>
+  <data name="Mcp_CategoryGame" xml:space="preserve">
+    <value>遊戲</value>
+  </data>
+  <data name="Mcp_CategoryInterface" xml:space="preserve">
+    <value>介面</value>
+  </data>
+  <data name="Mcp_CategorySystem" xml:space="preserve">
+    <value>系統</value>
+  </data>
+  <data name="McpTool_ListPlugins" xml:space="preserve">
+    <value>列出已安裝外掛</value>
+  </data>
+  <data name="McpTool_ListPluginsCaption" xml:space="preserve">
+    <value>讀取官方與第三方外掛清單、啟用狀態與設定路徑。</value>
+  </data>
+  <data name="McpTool_SetPluginEnabled" xml:space="preserve">
+    <value>啟用或停用外掛</value>
+  </data>
+  <data name="McpTool_SetPluginEnabledCaption" xml:space="preserve">
+    <value>依資料夾、名稱或檔名切換官方與第三方外掛的啟用狀態。</value>
+  </data>
+  <data name="McpTool_GetPluginConfig" xml:space="preserve">
+    <value>讀取外掛設定</value>
+  </data>
+  <data name="McpTool_GetPluginConfigCaption" xml:space="preserve">
+    <value>以結構化選項形式回傳外掛的可設定項與目前值。</value>
+  </data>
+  <data name="McpTool_SetPluginConfig" xml:space="preserve">
+    <value>修改外掛設定</value>
+  </data>
+  <data name="McpTool_SetPluginConfigCaption" xml:space="preserve">
+    <value>只修改設定檔中既有的選項值，不支援直接編輯檔案。</value>
+  </data>
+  <data name="McpTool_SearchPluginStore" xml:space="preserve">
+    <value>搜尋外掛商城</value>
+  </data>
+  <data name="McpTool_SearchPluginStoreCaption" xml:space="preserve">
+    <value>依關鍵字或分類查詢外掛商城中的外掛。</value>
+  </data>
+  <data name="McpTool_InstallPlugin" xml:space="preserve">
+    <value>安裝外掛</value>
+  </data>
+  <data name="McpTool_InstallPluginCaption" xml:space="preserve">
+    <value>從外掛商城、本機檔案或下載網址安裝外掛，可查詢進度並取消。</value>
+  </data>
+  <data name="McpTool_GetGameStatus" xml:space="preserve">
+    <value>查詢遊戲狀態</value>
+  </data>
+  <data name="McpTool_GetGameStatusCaption" xml:space="preserve">
+    <value>回傳遊戲路徑、執行狀態、目前伺服器與版本。</value>
+  </data>
+  <data name="McpTool_StartGame" xml:space="preserve">
+    <value>啟動遊戲</value>
+  </data>
+  <data name="McpTool_StartGameCaption" xml:space="preserve">
+    <value>使用目前啟動設定啟動遊戲。</value>
+  </data>
+  <data name="McpTool_StopGame" xml:space="preserve">
+    <value>結束遊戲</value>
+  </data>
+  <data name="McpTool_StopGameCaption" xml:space="preserve">
+    <value>結束執行中的遊戲處理程序。</value>
+  </data>
+  <data name="McpTool_ListServers" xml:space="preserve">
+    <value>列出伺服器</value>
+  </data>
+  <data name="McpTool_ListServersCaption" xml:space="preserve">
+    <value>列出可用伺服器方案與目前方案。</value>
+  </data>
+  <data name="McpTool_SwitchServer" xml:space="preserve">
+    <value>切換伺服器</value>
+  </data>
+  <data name="McpTool_SwitchServerCaption" xml:space="preserve">
+    <value>依選定的伺服器方案重寫遊戲設定中的頻道資訊。</value>
+  </data>
+  <data name="McpTool_OpenPage" xml:space="preserve">
+    <value>開啟頁面</value>
+  </data>
+  <data name="McpTool_OpenPageCaption" xml:space="preserve">
+    <value>將主視窗切換至指定頁面。</value>
+  </data>
+  <data name="McpTool_OpenToolWindow" xml:space="preserve">
+    <value>開啟工具視窗</value>
+  </data>
+  <data name="McpTool_OpenToolWindowCaption" xml:space="preserve">
+    <value>開啟工具箱中的抽卡分析、資料中心、計算機等工具。</value>
+  </data>
+  <data name="McpTool_SetWindowState" xml:space="preserve">
+    <value>視窗狀態</value>
+  </data>
+  <data name="McpTool_SetWindowStateCaption" xml:space="preserve">
+    <value>最大化、最小化或還原啟動器主視窗。</value>
+  </data>
+  <data name="McpTool_ReadCrashLog" xml:space="preserve">
+    <value>讀取當機日誌</value>
+  </data>
+  <data name="McpTool_ReadCrashLogCaption" xml:space="preserve">
+    <value>檢視 CrashLog.txt 的末尾內容。</value>
+  </data>
+  <data name="McpTool_CheckUpdate" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="McpTool_CheckUpdateCaption" xml:space="preserve">
+    <value>僅查詢更新伺服器，不會啟動更新程式。</value>
+  </data>
+  <data name="Mcp_AccessSection" xml:space="preserve">
+    <value>存取控制</value>
+  </data>
+  <data name="Mcp_AuthTitle" xml:space="preserve">
+    <value>啟用驗證</value>
+  </data>
+  <data name="Mcp_AuthCaption" xml:space="preserve">
+    <value>關閉後不再驗證權杖。</value>
+  </data>
+  <data name="Mcp_AuthOffWarning" xml:space="preserve">
+    <value>已關閉驗證：能存取此位址的裝置都可以操作本啟動器。</value>
+  </data>
+  <data name="Mcp_TokenModeTitle" xml:space="preserve">
+    <value>權杖方式</value>
+  </data>
+  <data name="Mcp_TokenModeAuto" xml:space="preserve">
+    <value>自動產生</value>
+  </data>
+  <data name="Mcp_TokenModeCustom" xml:space="preserve">
+    <value>自訂</value>
+  </data>
+  <data name="Mcp_CustomTokenTitle" xml:space="preserve">
+    <value>自訂權杖</value>
+  </data>
+  <data name="Mcp_CustomTokenCaption" xml:space="preserve">
+    <value>16–128 位，僅限字母、數字與 - _ .</value>
+  </data>
+  <data name="Mcp_Save" xml:space="preserve">
+    <value>儲存</value>
+  </data>
+  <data name="Mcp_TokenInvalid" xml:space="preserve">
+    <value>權杖無效：需 16–128 位字母、數字或 - _ .</value>
+  </data>
+  <data name="Mcp_IpFilterTitle" xml:space="preserve">
+    <value>啟用 IP 過濾</value>
+  </data>
+  <data name="Mcp_IpFilterCaption" xml:space="preserve">
+    <value>本機位址始終允許存取。</value>
+  </data>
+  <data name="Mcp_IpModeTitle" xml:space="preserve">
+    <value>名單模式</value>
+  </data>
+  <data name="Mcp_IpModeAllow" xml:space="preserve">
+    <value>允許名單</value>
+  </data>
+  <data name="Mcp_IpModeDeny" xml:space="preserve">
+    <value>拒絕名單</value>
+  </data>
+  <data name="Mcp_IpRulesTitle" xml:space="preserve">
+    <value>IP 名單</value>
+  </data>
+  <data name="Mcp_IpRulesCaption" xml:space="preserve">
+    <value>每行一個 IP 或網段，例如 192.168.1.10、192.168.1.0/24。</value>
+  </data>
+  <data name="Mcp_IpRulesInvalid" xml:space="preserve">
+    <value>以下項目無效：{0}</value>
+  </data>
+  <data name="Mcp_IpRulesEmpty" xml:space="preserve">
+    <value>允許名單不能為空。</value>
+  </data>
+  <data name="Mcp_AuditSection" xml:space="preserve">
+    <value>稽核日誌</value>
+  </data>
+  <data name="Mcp_AuditToggleTitle" xml:space="preserve">
+    <value>記錄稽核日誌</value>
+  </data>
+  <data name="Mcp_AuditCaption" xml:space="preserve">
+    <value>僅記錄本次執行。</value>
+  </data>
+  <data name="Mcp_AuditClear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Mcp_AuditEmpty" xml:space="preserve">
+    <value>尚無記錄</value>
+  </data>
+  <data name="Mcp_AuditConnections" xml:space="preserve">
+    <value>連線</value>
+  </data>
+  <data name="Mcp_AuditCalls" xml:space="preserve">
+    <value>工具呼叫</value>
+  </data>
+  <data name="Mcp_AuditFailures" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Mcp_AuditResultSuccess" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Mcp_AuditResultFailure" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Mcp_AuditEventConnect" xml:space="preserve">
+    <value>已連線</value>
+  </data>
+  <data name="Mcp_AuditEventAuthFailed" xml:space="preserve">
+    <value>驗證失敗</value>
+  </data>
+  <data name="Mcp_AuditEventIpBlocked" xml:space="preserve">
+    <value>IP 被拒絕</value>
+  </data>
+  <data name="Mcp_PortInvalid" xml:space="preserve">
+    <value>連接埠必須介於 {0} 與 {1} 之間。</value>
+  </data>
+  <data name="Mcp_AuditWindowTitle" xml:space="preserve">
+    <value>稽核日誌</value>
+  </data>
+  <data name="Mcp_AuditOpenButton" xml:space="preserve">
+    <value>檢視</value>
+  </data>
+  <data name="Mcp_AuditSummaryFormat" xml:space="preserve">
+    <value>連線 {0} · 呼叫 {1} · 失敗 {2}</value>
+  </data>
+  <data name="Mcp_AuditArchivedCount" xml:space="preserve">
+    <value>已封存 {0} 筆</value>
+  </data>
+  <data name="Mcp_AuditOpenFolder" xml:space="preserve">
+    <value>開啟封存資料夾</value>
+  </data>
+  <data name="Mcp_AuditArchiveHint" xml:space="preserve">
+    <value>超過 {0} 筆時自動封存為文字檔。</value>
+  </data>
+  <data name="McpTool_GetInstallStatus" xml:space="preserve">
+    <value>查詢安裝進度</value>
+  </data>
+  <data name="McpTool_GetInstallStatusCaption" xml:space="preserve">
+    <value>檢視由安裝工具啟動的工作進度與目前狀態。</value>
+  </data>
+  <data name="McpTool_CancelInstall" xml:space="preserve">
+    <value>取消安裝</value>
+  </data>
+  <data name="McpTool_CancelInstallCaption" xml:space="preserve">
+    <value>取消執行中或等待驗證的安裝工作，並關閉驗證視窗。</value>
+  </data>
 </root>

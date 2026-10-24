@@ -30,7 +30,8 @@ public sealed partial class SettingsPage : Page
         SettingsSectionIds.LaunchConfig, SettingsSectionIds.Screenshots, SettingsSectionIds.Checkin,
         SettingsSectionIds.Language, SettingsSectionIds.WindowBehavior, SettingsSectionIds.Startup,
         SettingsSectionIds.StartupSound, SettingsSectionIds.AdvancedOptions, SettingsSectionIds.StoragePaths,
-        SettingsSectionIds.Updates, SettingsSectionIds.About, SettingsSectionIds.SecurityAuth
+        SettingsSectionIds.Updates, SettingsSectionIds.About, SettingsSectionIds.SecurityAuth,
+        SettingsSectionIds.Mcp
     };
 
     private readonly List<SettingsSearchResult> _searchIndex = new();

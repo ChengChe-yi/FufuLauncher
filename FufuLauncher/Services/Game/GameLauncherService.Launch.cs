@@ -333,8 +333,13 @@ public partial class GameLauncherService
                         }
 
                         logBuilder.AppendLine($"[启动流程] 准备注入 DLL: {targetDllPath}");
-                        gameStarted = await LaunchViaElevatedProcessAsync(gameExePath, targetDllPath, configMask,
-                            arguments, logBuilder, cancellationToken);
+                        var elevatedResult = await LaunchViaElevatedProcessAsync(gameExePath, targetDllPath,
+                            configMask, arguments, logBuilder, cancellationToken);
+                        gameStarted = elevatedResult.Started;
+                        if (!gameStarted && !string.IsNullOrWhiteSpace(elevatedResult.Failure))
+                        {
+                            result.ErrorMessage = elevatedResult.Failure!;
+                        }
                     }
                     else
                     {

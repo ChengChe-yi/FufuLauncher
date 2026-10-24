@@ -8735,4 +8735,319 @@ Dettagli: {0}</value>
   <data name="ImageSource_RandomPinFailed" xml:space="preserve">
     <value>Nessuna immagine di sfondo casuale corrente disponibile da salvare.</value>
   </data>
+  <data name="SectionMcp" xml:space="preserve">
+    <value>Interfaccia aperta</value>
+  </data>
+  <data name="Mcp_RowTitle" xml:space="preserve">
+    <value>Interfaccia MCP</value>
+  </data>
+  <data name="Mcp_RowCaption" xml:space="preserve">
+    <value>Endpoint di automazione LAN, disattivato per impostazione predefinita.</value>
+  </data>
+  <data name="Mcp_OpenButton" xml:space="preserve">
+    <value>Configura</value>
+  </data>
+  <data name="Mcp_WindowTitle" xml:space="preserve">
+    <value>Interfaccia MCP</value>
+  </data>
+  <data name="Mcp_ServiceSection" xml:space="preserve">
+    <value>Servizio</value>
+  </data>
+  <data name="Mcp_EnableTitle" xml:space="preserve">
+    <value>Abilita il servizio MCP</value>
+  </data>
+  <data name="Mcp_EnableCaption" xml:space="preserve">
+    <value>I dispositivi sulla LAN possono connettersi al launcher.</value>
+  </data>
+  <data name="Mcp_SecurityTitle" xml:space="preserve">
+    <value>Solo reti affidabili</value>
+  </data>
+  <data name="Mcp_SecurityMessage" xml:space="preserve">
+    <value>Abilitalo solo su una rete affidabile e configura il controllo degli accessi.</value>
+  </data>
+  <data name="Mcp_ErrorTitle" xml:space="preserve">
+    <value>Impossibile avviare il servizio</value>
+  </data>
+  <data name="Mcp_ServiceStatusSection" xml:space="preserve">
+    <value>Stato</value>
+  </data>
+  <data name="Mcp_StatusTitle" xml:space="preserve">
+    <value>Indirizzo di connessione</value>
+  </data>
+  <data name="Mcp_StatusRunning" xml:space="preserve">
+    <value>Servizio attivo · porta {0}</value>
+  </data>
+  <data name="Mcp_StatusEnabledNotRunning" xml:space="preserve">
+    <value>Abilitato, ma il servizio non è in esecuzione</value>
+  </data>
+  <data name="Mcp_StatusStopped" xml:space="preserve">
+    <value>Servizio arrestato</value>
+  </data>
+  <data name="Mcp_EndpointPending" xml:space="preserve">
+    <value>Disponibile su http://&lt;IP LAN&gt;:{0}/mcp</value>
+  </data>
+  <data name="Mcp_PortTitle" xml:space="preserve">
+    <value>Porta</value>
+  </data>
+  <data name="Mcp_PortCaption" xml:space="preserve">
+    <value>Intervallo 1024-65535. Il servizio si riavvia dopo la modifica.</value>
+  </data>
+  <data name="Mcp_TokenTitle" xml:space="preserve">
+    <value>Token di accesso</value>
+  </data>
+  <data name="Mcp_TokenCaption" xml:space="preserve">
+    <value>I client devono inviare questo token in Authorization: Bearer.</value>
+  </data>
+  <data name="Mcp_Copy" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="Mcp_Regenerate" xml:space="preserve">
+    <value>Rigenera</value>
+  </data>
+  <data name="Mcp_ToolsSection" xml:space="preserve">
+    <value>Strumenti</value>
+  </data>
+  <data name="Mcp_ToolsCaption" xml:space="preserve">
+    <value>Gli strumenti disattivati non possono essere chiamati.</value>
+  </data>
+  <data name="Mcp_CategoryPlugins" xml:space="preserve">
+    <value>Plugin</value>
+  </data>
+  <data name="Mcp_CategoryGame" xml:space="preserve">
+    <value>Gioco</value>
+  </data>
+  <data name="Mcp_CategoryInterface" xml:space="preserve">
+    <value>Interfaccia</value>
+  </data>
+  <data name="Mcp_CategorySystem" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+  <data name="McpTool_ListPlugins" xml:space="preserve">
+    <value>Elenca i plugin installati</value>
+  </data>
+  <data name="McpTool_ListPluginsCaption" xml:space="preserve">
+    <value>Mostra plugin ufficiali e di terze parti con stato e percorso di configurazione.</value>
+  </data>
+  <data name="McpTool_SetPluginEnabled" xml:space="preserve">
+    <value>Abilita o disabilita un plugin</value>
+  </data>
+  <data name="McpTool_SetPluginEnabledCaption" xml:space="preserve">
+    <value>Attiva/disattiva plugin ufficiali e di terze parti per cartella, nome o file.</value>
+  </data>
+  <data name="McpTool_GetPluginConfig" xml:space="preserve">
+    <value>Leggi la configurazione del plugin</value>
+  </data>
+  <data name="McpTool_GetPluginConfigCaption" xml:space="preserve">
+    <value>Mostra le opzioni configurabili e i valori correnti.</value>
+  </data>
+  <data name="McpTool_SetPluginConfig" xml:space="preserve">
+    <value>Modifica la configurazione del plugin</value>
+  </data>
+  <data name="McpTool_SetPluginConfigCaption" xml:space="preserve">
+    <value>Modifica solo le opzioni esistenti; il file non viene mai modificato direttamente.</value>
+  </data>
+  <data name="McpTool_SearchPluginStore" xml:space="preserve">
+    <value>Cerca nel negozio di plugin</value>
+  </data>
+  <data name="McpTool_SearchPluginStoreCaption" xml:space="preserve">
+    <value>Cerca plugin per parola chiave o categoria.</value>
+  </data>
+  <data name="McpTool_InstallPlugin" xml:space="preserve">
+    <value>Installa un plugin</value>
+  </data>
+  <data name="McpTool_InstallPluginCaption" xml:space="preserve">
+    <value>Installa dal negozio, da un file locale o da un URL; puoi controllare l'avanzamento e annullare.</value>
+  </data>
+  <data name="McpTool_GetGameStatus" xml:space="preserve">
+    <value>Stato del gioco</value>
+  </data>
+  <data name="McpTool_GetGameStatusCaption" xml:space="preserve">
+    <value>Percorso del gioco, stato di esecuzione, server e versione.</value>
+  </data>
+  <data name="McpTool_StartGame" xml:space="preserve">
+    <value>Avvia il gioco</value>
+  </data>
+  <data name="McpTool_StartGameCaption" xml:space="preserve">
+    <value>Avvia il gioco con la configurazione di avvio corrente.</value>
+  </data>
+  <data name="McpTool_StopGame" xml:space="preserve">
+    <value>Termina il gioco</value>
+  </data>
+  <data name="McpTool_StopGameCaption" xml:space="preserve">
+    <value>Termina il processo del gioco in esecuzione.</value>
+  </data>
+  <data name="McpTool_ListServers" xml:space="preserve">
+    <value>Elenca i server</value>
+  </data>
+  <data name="McpTool_ListServersCaption" xml:space="preserve">
+    <value>Mostra gli schemi server disponibili e quello attivo.</value>
+  </data>
+  <data name="McpTool_SwitchServer" xml:space="preserve">
+    <value>Cambia server</value>
+  </data>
+  <data name="McpTool_SwitchServerCaption" xml:space="preserve">
+    <value>Riscrive le impostazioni di canale per lo schema scelto.</value>
+  </data>
+  <data name="McpTool_OpenPage" xml:space="preserve">
+    <value>Apri pagina</value>
+  </data>
+  <data name="McpTool_OpenPageCaption" xml:space="preserve">
+    <value>Naviga a una pagina della finestra principale.</value>
+  </data>
+  <data name="McpTool_OpenToolWindow" xml:space="preserve">
+    <value>Apri finestra strumento</value>
+  </data>
+  <data name="McpTool_OpenToolWindowCaption" xml:space="preserve">
+    <value>Apre strumenti come analisi gacha, centro dati o calcolatrice.</value>
+  </data>
+  <data name="McpTool_SetWindowState" xml:space="preserve">
+    <value>Stato della finestra</value>
+  </data>
+  <data name="McpTool_SetWindowStateCaption" xml:space="preserve">
+    <value>Ingrandisce, riduce o ripristina la finestra del launcher.</value>
+  </data>
+  <data name="McpTool_ReadCrashLog" xml:space="preserve">
+    <value>Leggi il registro dei crash</value>
+  </data>
+  <data name="McpTool_ReadCrashLogCaption" xml:space="preserve">
+    <value>Mostra la parte finale di CrashLog.txt.</value>
+  </data>
+  <data name="McpTool_CheckUpdate" xml:space="preserve">
+    <value>Controlla aggiornamenti</value>
+  </data>
+  <data name="McpTool_CheckUpdateCaption" xml:space="preserve">
+    <value>Interroga solo il server; il programma di aggiornamento non viene mai avviato.</value>
+  </data>
+  <data name="Mcp_AccessSection" xml:space="preserve">
+    <value>Controllo degli accessi</value>
+  </data>
+  <data name="Mcp_AuthTitle" xml:space="preserve">
+    <value>Richiedi autenticazione</value>
+  </data>
+  <data name="Mcp_AuthCaption" xml:space="preserve">
+    <value>Se disattivata, i token non vengono verificati.</value>
+  </data>
+  <data name="Mcp_AuthOffWarning" xml:space="preserve">
+    <value>Autenticazione disattivata: qualsiasi dispositivo che raggiunge questo indirizzo può gestire il launcher.</value>
+  </data>
+  <data name="Mcp_TokenModeTitle" xml:space="preserve">
+    <value>Modalità token</value>
+  </data>
+  <data name="Mcp_TokenModeAuto" xml:space="preserve">
+    <value>Generato automaticamente</value>
+  </data>
+  <data name="Mcp_TokenModeCustom" xml:space="preserve">
+    <value>Personalizzato</value>
+  </data>
+  <data name="Mcp_CustomTokenTitle" xml:space="preserve">
+    <value>Token personalizzato</value>
+  </data>
+  <data name="Mcp_CustomTokenCaption" xml:space="preserve">
+    <value>16-128 caratteri: lettere, cifre e - _ .</value>
+  </data>
+  <data name="Mcp_Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="Mcp_TokenInvalid" xml:space="preserve">
+    <value>Token non valido: usa 16-128 lettere, cifre o - _ .</value>
+  </data>
+  <data name="Mcp_IpFilterTitle" xml:space="preserve">
+    <value>Abilita filtro IP</value>
+  </data>
+  <data name="Mcp_IpFilterCaption" xml:space="preserve">
+    <value>Questo computer è sempre consentito.</value>
+  </data>
+  <data name="Mcp_IpModeTitle" xml:space="preserve">
+    <value>Modalità elenco</value>
+  </data>
+  <data name="Mcp_IpModeAllow" xml:space="preserve">
+    <value>Lista consentita</value>
+  </data>
+  <data name="Mcp_IpModeDeny" xml:space="preserve">
+    <value>Lista bloccata</value>
+  </data>
+  <data name="Mcp_IpRulesTitle" xml:space="preserve">
+    <value>Elenco IP</value>
+  </data>
+  <data name="Mcp_IpRulesCaption" xml:space="preserve">
+    <value>Un IP o una sottorete per riga, ad esempio 192.168.1.10 o 192.168.1.0/24.</value>
+  </data>
+  <data name="Mcp_IpRulesInvalid" xml:space="preserve">
+    <value>Voci non valide: {0}</value>
+  </data>
+  <data name="Mcp_IpRulesEmpty" xml:space="preserve">
+    <value>La lista consentita non può essere vuota.</value>
+  </data>
+  <data name="Mcp_AuditSection" xml:space="preserve">
+    <value>Registro di audit</value>
+  </data>
+  <data name="Mcp_AuditToggleTitle" xml:space="preserve">
+    <value>Registra il registro di audit</value>
+  </data>
+  <data name="Mcp_AuditCaption" xml:space="preserve">
+    <value>Solo questa sessione.</value>
+  </data>
+  <data name="Mcp_AuditClear" xml:space="preserve">
+    <value>Svuota</value>
+  </data>
+  <data name="Mcp_AuditEmpty" xml:space="preserve">
+    <value>Nessun record</value>
+  </data>
+  <data name="Mcp_AuditConnections" xml:space="preserve">
+    <value>Connessioni</value>
+  </data>
+  <data name="Mcp_AuditCalls" xml:space="preserve">
+    <value>Chiamate agli strumenti</value>
+  </data>
+  <data name="Mcp_AuditFailures" xml:space="preserve">
+    <value>Errori</value>
+  </data>
+  <data name="Mcp_AuditResultSuccess" xml:space="preserve">
+    <value>Riuscito</value>
+  </data>
+  <data name="Mcp_AuditResultFailure" xml:space="preserve">
+    <value>Non riuscito</value>
+  </data>
+  <data name="Mcp_AuditEventConnect" xml:space="preserve">
+    <value>Connesso</value>
+  </data>
+  <data name="Mcp_AuditEventAuthFailed" xml:space="preserve">
+    <value>Autenticazione non riuscita</value>
+  </data>
+  <data name="Mcp_AuditEventIpBlocked" xml:space="preserve">
+    <value>IP bloccato</value>
+  </data>
+  <data name="Mcp_PortInvalid" xml:space="preserve">
+    <value>La porta deve essere compresa tra {0} e {1}.</value>
+  </data>
+  <data name="Mcp_AuditWindowTitle" xml:space="preserve">
+    <value>Registro di audit</value>
+  </data>
+  <data name="Mcp_AuditOpenButton" xml:space="preserve">
+    <value>Visualizza</value>
+  </data>
+  <data name="Mcp_AuditSummaryFormat" xml:space="preserve">
+    <value>{0} connessioni · {1} chiamate · {2} errori</value>
+  </data>
+  <data name="Mcp_AuditArchivedCount" xml:space="preserve">
+    <value>{0} voci archiviate</value>
+  </data>
+  <data name="Mcp_AuditOpenFolder" xml:space="preserve">
+    <value>Apri cartella archivio</value>
+  </data>
+  <data name="Mcp_AuditArchiveHint" xml:space="preserve">
+    <value>Oltre {0} voci vengono archiviate automaticamente in un file di testo.</value>
+  </data>
+  <data name="McpTool_GetInstallStatus" xml:space="preserve">
+    <value>Stato installazione</value>
+  </data>
+  <data name="McpTool_GetInstallStatusCaption" xml:space="preserve">
+    <value>Controlla l'avanzamento di un'installazione avviata da install_plugin.</value>
+  </data>
+  <data name="McpTool_CancelInstall" xml:space="preserve">
+    <value>Annulla installazione</value>
+  </data>
+  <data name="McpTool_CancelInstallCaption" xml:space="preserve">
+    <value>Annulla un'installazione in corso o in attesa e chiude la finestra di verifica.</value>
+  </data>
 </root>

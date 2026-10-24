@@ -8725,4 +8725,319 @@ Detail: {0}</value>
   <data name="ImageSource_RandomPinFailed" xml:space="preserve">
     <value>Tidak ada gambar latar acak saat ini yang dapat disimpan.</value>
   </data>
+  <data name="SectionMcp" xml:space="preserve">
+    <value>Antarmuka terbuka</value>
+  </data>
+  <data name="Mcp_RowTitle" xml:space="preserve">
+    <value>Antarmuka MCP</value>
+  </data>
+  <data name="Mcp_RowCaption" xml:space="preserve">
+    <value>Endpoint otomatisasi LAN, nonaktif secara bawaan.</value>
+  </data>
+  <data name="Mcp_OpenButton" xml:space="preserve">
+    <value>Konfigurasi</value>
+  </data>
+  <data name="Mcp_WindowTitle" xml:space="preserve">
+    <value>Antarmuka MCP</value>
+  </data>
+  <data name="Mcp_ServiceSection" xml:space="preserve">
+    <value>Layanan</value>
+  </data>
+  <data name="Mcp_EnableTitle" xml:space="preserve">
+    <value>Aktifkan layanan MCP</value>
+  </data>
+  <data name="Mcp_EnableCaption" xml:space="preserve">
+    <value>Perangkat di LAN dapat terhubung ke launcher saat diaktifkan.</value>
+  </data>
+  <data name="Mcp_SecurityTitle" xml:space="preserve">
+    <value>Hanya jaringan tepercaya</value>
+  </data>
+  <data name="Mcp_SecurityMessage" xml:space="preserve">
+    <value>Aktifkan hanya di jaringan tepercaya dan atur kontrol akses.</value>
+  </data>
+  <data name="Mcp_ErrorTitle" xml:space="preserve">
+    <value>Layanan gagal dimulai</value>
+  </data>
+  <data name="Mcp_ServiceStatusSection" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Mcp_StatusTitle" xml:space="preserve">
+    <value>Alamat koneksi</value>
+  </data>
+  <data name="Mcp_StatusRunning" xml:space="preserve">
+    <value>Layanan berjalan · port {0}</value>
+  </data>
+  <data name="Mcp_StatusEnabledNotRunning" xml:space="preserve">
+    <value>Diaktifkan, tetapi layanan tidak berjalan</value>
+  </data>
+  <data name="Mcp_StatusStopped" xml:space="preserve">
+    <value>Layanan dihentikan</value>
+  </data>
+  <data name="Mcp_EndpointPending" xml:space="preserve">
+    <value>Tersedia di http://&lt;IP LAN&gt;:{0}/mcp</value>
+  </data>
+  <data name="Mcp_PortTitle" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Mcp_PortCaption" xml:space="preserve">
+    <value>Rentang 1024 hingga 65535. Layanan akan dimulai ulang setelah diubah.</value>
+  </data>
+  <data name="Mcp_TokenTitle" xml:space="preserve">
+    <value>Token akses</value>
+  </data>
+  <data name="Mcp_TokenCaption" xml:space="preserve">
+    <value>Klien harus mengirim token ini di Authorization: Bearer.</value>
+  </data>
+  <data name="Mcp_Copy" xml:space="preserve">
+    <value>Salin</value>
+  </data>
+  <data name="Mcp_Regenerate" xml:space="preserve">
+    <value>Buat ulang</value>
+  </data>
+  <data name="Mcp_ToolsSection" xml:space="preserve">
+    <value>Alat</value>
+  </data>
+  <data name="Mcp_ToolsCaption" xml:space="preserve">
+    <value>Alat yang dinonaktifkan tidak dapat dipanggil.</value>
+  </data>
+  <data name="Mcp_CategoryPlugins" xml:space="preserve">
+    <value>Plugin</value>
+  </data>
+  <data name="Mcp_CategoryGame" xml:space="preserve">
+    <value>Game</value>
+  </data>
+  <data name="Mcp_CategoryInterface" xml:space="preserve">
+    <value>Antarmuka</value>
+  </data>
+  <data name="Mcp_CategorySystem" xml:space="preserve">
+    <value>Sistem</value>
+  </data>
+  <data name="McpTool_ListPlugins" xml:space="preserve">
+    <value>Daftar plugin terpasang</value>
+  </data>
+  <data name="McpTool_ListPluginsCaption" xml:space="preserve">
+    <value>Menampilkan plugin resmi dan pihak ketiga beserta status dan jalur konfigurasi.</value>
+  </data>
+  <data name="McpTool_SetPluginEnabled" xml:space="preserve">
+    <value>Aktifkan atau nonaktifkan plugin</value>
+  </data>
+  <data name="McpTool_SetPluginEnabledCaption" xml:space="preserve">
+    <value>Mengalihkan plugin resmi dan pihak ketiga berdasarkan folder, nama, atau berkas.</value>
+  </data>
+  <data name="McpTool_GetPluginConfig" xml:space="preserve">
+    <value>Baca konfigurasi plugin</value>
+  </data>
+  <data name="McpTool_GetPluginConfigCaption" xml:space="preserve">
+    <value>Menampilkan opsi yang dapat dikonfigurasi dan nilai saat ini.</value>
+  </data>
+  <data name="McpTool_SetPluginConfig" xml:space="preserve">
+    <value>Ubah konfigurasi plugin</value>
+  </data>
+  <data name="McpTool_SetPluginConfigCaption" xml:space="preserve">
+    <value>Hanya mengubah opsi yang sudah ada; berkas tidak pernah diedit langsung.</value>
+  </data>
+  <data name="McpTool_SearchPluginStore" xml:space="preserve">
+    <value>Cari di toko plugin</value>
+  </data>
+  <data name="McpTool_SearchPluginStoreCaption" xml:space="preserve">
+    <value>Mencari plugin berdasarkan kata kunci atau kategori.</value>
+  </data>
+  <data name="McpTool_InstallPlugin" xml:space="preserve">
+    <value>Pasang plugin</value>
+  </data>
+  <data name="McpTool_InstallPluginCaption" xml:space="preserve">
+    <value>Pasang dari toko, berkas lokal, atau URL; progres dapat diperiksa dan dibatalkan.</value>
+  </data>
+  <data name="McpTool_GetGameStatus" xml:space="preserve">
+    <value>Status game</value>
+  </data>
+  <data name="McpTool_GetGameStatusCaption" xml:space="preserve">
+    <value>Jalur game, status berjalan, server, dan versi.</value>
+  </data>
+  <data name="McpTool_StartGame" xml:space="preserve">
+    <value>Mulai game</value>
+  </data>
+  <data name="McpTool_StartGameCaption" xml:space="preserve">
+    <value>Menjalankan game dengan konfigurasi peluncuran saat ini.</value>
+  </data>
+  <data name="McpTool_StopGame" xml:space="preserve">
+    <value>Hentikan game</value>
+  </data>
+  <data name="McpTool_StopGameCaption" xml:space="preserve">
+    <value>Menghentikan proses game yang sedang berjalan.</value>
+  </data>
+  <data name="McpTool_ListServers" xml:space="preserve">
+    <value>Daftar server</value>
+  </data>
+  <data name="McpTool_ListServersCaption" xml:space="preserve">
+    <value>Menampilkan skema server yang tersedia dan yang aktif.</value>
+  </data>
+  <data name="McpTool_SwitchServer" xml:space="preserve">
+    <value>Ganti server</value>
+  </data>
+  <data name="McpTool_SwitchServerCaption" xml:space="preserve">
+    <value>Menulis ulang pengaturan kanal untuk skema yang dipilih.</value>
+  </data>
+  <data name="McpTool_OpenPage" xml:space="preserve">
+    <value>Buka halaman</value>
+  </data>
+  <data name="McpTool_OpenPageCaption" xml:space="preserve">
+    <value>Berpindah ke halaman di jendela utama.</value>
+  </data>
+  <data name="McpTool_OpenToolWindow" xml:space="preserve">
+    <value>Buka jendela alat</value>
+  </data>
+  <data name="McpTool_OpenToolWindowCaption" xml:space="preserve">
+    <value>Membuka alat seperti analisis gacha, pusat data, atau kalkulator.</value>
+  </data>
+  <data name="McpTool_SetWindowState" xml:space="preserve">
+    <value>Status jendela</value>
+  </data>
+  <data name="McpTool_SetWindowStateCaption" xml:space="preserve">
+    <value>Memaksimalkan, meminimalkan, atau memulihkan jendela launcher.</value>
+  </data>
+  <data name="McpTool_ReadCrashLog" xml:space="preserve">
+    <value>Baca log crash</value>
+  </data>
+  <data name="McpTool_ReadCrashLogCaption" xml:space="preserve">
+    <value>Menampilkan bagian akhir CrashLog.txt.</value>
+  </data>
+  <data name="McpTool_CheckUpdate" xml:space="preserve">
+    <value>Periksa pembaruan</value>
+  </data>
+  <data name="McpTool_CheckUpdateCaption" xml:space="preserve">
+    <value>Hanya memeriksa server; program pembaruan tidak pernah dijalankan.</value>
+  </data>
+  <data name="Mcp_AccessSection" xml:space="preserve">
+    <value>Kontrol akses</value>
+  </data>
+  <data name="Mcp_AuthTitle" xml:space="preserve">
+    <value>Wajibkan autentikasi</value>
+  </data>
+  <data name="Mcp_AuthCaption" xml:space="preserve">
+    <value>Jika nonaktif, token tidak diperiksa.</value>
+  </data>
+  <data name="Mcp_AuthOffWarning" xml:space="preserve">
+    <value>Autentikasi nonaktif: perangkat yang dapat menjangkau alamat ini dapat mengoperasikan launcher.</value>
+  </data>
+  <data name="Mcp_TokenModeTitle" xml:space="preserve">
+    <value>Mode token</value>
+  </data>
+  <data name="Mcp_TokenModeAuto" xml:space="preserve">
+    <value>Dibuat otomatis</value>
+  </data>
+  <data name="Mcp_TokenModeCustom" xml:space="preserve">
+    <value>Khusus</value>
+  </data>
+  <data name="Mcp_CustomTokenTitle" xml:space="preserve">
+    <value>Token khusus</value>
+  </data>
+  <data name="Mcp_CustomTokenCaption" xml:space="preserve">
+    <value>16-128 karakter: huruf, angka, dan - _ .</value>
+  </data>
+  <data name="Mcp_Save" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="Mcp_TokenInvalid" xml:space="preserve">
+    <value>Token tidak valid: gunakan 16-128 huruf, angka, atau - _ .</value>
+  </data>
+  <data name="Mcp_IpFilterTitle" xml:space="preserve">
+    <value>Aktifkan filter IP</value>
+  </data>
+  <data name="Mcp_IpFilterCaption" xml:space="preserve">
+    <value>Komputer ini selalu diizinkan.</value>
+  </data>
+  <data name="Mcp_IpModeTitle" xml:space="preserve">
+    <value>Mode daftar</value>
+  </data>
+  <data name="Mcp_IpModeAllow" xml:space="preserve">
+    <value>Daftar izin</value>
+  </data>
+  <data name="Mcp_IpModeDeny" xml:space="preserve">
+    <value>Daftar blokir</value>
+  </data>
+  <data name="Mcp_IpRulesTitle" xml:space="preserve">
+    <value>Daftar IP</value>
+  </data>
+  <data name="Mcp_IpRulesCaption" xml:space="preserve">
+    <value>Satu IP atau subnet per baris, misalnya 192.168.1.10 atau 192.168.1.0/24.</value>
+  </data>
+  <data name="Mcp_IpRulesInvalid" xml:space="preserve">
+    <value>Entri tidak valid: {0}</value>
+  </data>
+  <data name="Mcp_IpRulesEmpty" xml:space="preserve">
+    <value>Daftar izin tidak boleh kosong.</value>
+  </data>
+  <data name="Mcp_AuditSection" xml:space="preserve">
+    <value>Log audit</value>
+  </data>
+  <data name="Mcp_AuditToggleTitle" xml:space="preserve">
+    <value>Catat log audit</value>
+  </data>
+  <data name="Mcp_AuditCaption" xml:space="preserve">
+    <value>Hanya sesi ini.</value>
+  </data>
+  <data name="Mcp_AuditClear" xml:space="preserve">
+    <value>Bersihkan</value>
+  </data>
+  <data name="Mcp_AuditEmpty" xml:space="preserve">
+    <value>Belum ada catatan</value>
+  </data>
+  <data name="Mcp_AuditConnections" xml:space="preserve">
+    <value>Koneksi</value>
+  </data>
+  <data name="Mcp_AuditCalls" xml:space="preserve">
+    <value>Panggilan alat</value>
+  </data>
+  <data name="Mcp_AuditFailures" xml:space="preserve">
+    <value>Gagal</value>
+  </data>
+  <data name="Mcp_AuditResultSuccess" xml:space="preserve">
+    <value>Berhasil</value>
+  </data>
+  <data name="Mcp_AuditResultFailure" xml:space="preserve">
+    <value>Gagal</value>
+  </data>
+  <data name="Mcp_AuditEventConnect" xml:space="preserve">
+    <value>Terhubung</value>
+  </data>
+  <data name="Mcp_AuditEventAuthFailed" xml:space="preserve">
+    <value>Autentikasi gagal</value>
+  </data>
+  <data name="Mcp_AuditEventIpBlocked" xml:space="preserve">
+    <value>IP diblokir</value>
+  </data>
+  <data name="Mcp_PortInvalid" xml:space="preserve">
+    <value>Port harus antara {0} dan {1}.</value>
+  </data>
+  <data name="Mcp_AuditWindowTitle" xml:space="preserve">
+    <value>Log audit</value>
+  </data>
+  <data name="Mcp_AuditOpenButton" xml:space="preserve">
+    <value>Lihat</value>
+  </data>
+  <data name="Mcp_AuditSummaryFormat" xml:space="preserve">
+    <value>{0} koneksi · {1} panggilan · {2} gagal</value>
+  </data>
+  <data name="Mcp_AuditArchivedCount" xml:space="preserve">
+    <value>{0} entri diarsipkan</value>
+  </data>
+  <data name="Mcp_AuditOpenFolder" xml:space="preserve">
+    <value>Buka folder arsip</value>
+  </data>
+  <data name="Mcp_AuditArchiveHint" xml:space="preserve">
+    <value>Lebih dari {0} entri diarsipkan otomatis ke berkas teks.</value>
+  </data>
+  <data name="McpTool_GetInstallStatus" xml:space="preserve">
+    <value>Status pemasangan</value>
+  </data>
+  <data name="McpTool_GetInstallStatusCaption" xml:space="preserve">
+    <value>Periksa kemajuan pemasangan yang dimulai oleh install_plugin.</value>
+  </data>
+  <data name="McpTool_CancelInstall" xml:space="preserve">
+    <value>Batalkan pemasangan</value>
+  </data>
+  <data name="McpTool_CancelInstallCaption" xml:space="preserve">
+    <value>Batalkan pemasangan yang berjalan atau menunggu dan tutup jendela verifikasi.</value>
+  </data>
 </root>

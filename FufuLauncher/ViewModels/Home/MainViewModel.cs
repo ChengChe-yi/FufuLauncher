@@ -32,6 +32,7 @@ namespace FufuLauncher.ViewModels
         private readonly IGameLauncherService _gameLauncherService;
         private readonly INotificationService _notificationService;
         private readonly DailyNoteCardService _dailyNoteCardService;
+        private readonly GameSessionService _gameSessionService;
         private readonly DispatcherQueue _dispatcherQueue;
 
         #endregion
@@ -50,7 +51,8 @@ namespace FufuLauncher.ViewModels
             ILauncherService launcherService,
             INavigationService navigationService,
             INotificationService notificationService,
-            DailyNoteCardService dailyNoteCardService)
+            DailyNoteCardService dailyNoteCardService,
+            GameSessionService gameSessionService)
         {
             _contentService = contentService;
             _backgroundRenderer = backgroundRenderer;
@@ -61,6 +63,7 @@ namespace FufuLauncher.ViewModels
             _gameLauncherService = gameLauncherService;
             _notificationService = notificationService;
             _dailyNoteCardService = dailyNoteCardService;
+            _gameSessionService = gameSessionService;
             _dispatcherQueue = App.MainWindow.DispatcherQueue;
 
             WeakReferenceMessenger.Default.Register<FufuLauncher.Messages.TextStyleChangedMessage>(this, async (r, m) =>

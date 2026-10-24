@@ -73,6 +73,16 @@ public partial class App
             await activationService.ActivateAsync(args);
 
             DebugLog.Info("App.Startup", "App main window activated");
+
+            try
+            {
+                var mcpHost = GetService<FufuLauncher.Services.Mcp.McpHostService>();
+                _ = mcpHost.StartIfEnabledAsync();
+            }
+            catch (Exception ex)
+            {
+                DebugLog.Info("App.Startup", $"[App] MCP service start skipped: {ex.Message}");
+            }
             var shouldRunBackgroundTasks = !AppPaths.IsFirstRun &&
                                            !(MainWindow is MainWindow mw && mw.IsAgreementShowing);
             if (shouldRunBackgroundTasks)

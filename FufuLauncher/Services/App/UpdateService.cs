@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -50,18 +50,14 @@ public class UpdateService : IUpdateService
             DebugLog.Info("UpdateService", $"[UpdateService] Local version: {CurrentVersion}");
             DebugLog.Info("UpdateService", $"[UpdateService] Timeout: {_httpClient.Timeout.TotalSeconds}s");
 
-            if (!await IsServerReachableAsync())
+            var updateInfo = await FetchManifestAsync();
+            if (updateInfo == null)
             {
                 DebugLog.Info("UpdateService", "[UpdateService] Server temporarily unreachable, skipping version check");
                 return new UpdateCheckResult { ShouldShowUpdate = false };
             }
 
-            var json = await GetWithRetryAsync(ApiEndpoints.UpdateJsonUrl, ApiEndpoints.UpdateJsonFallbackUrl,
-                maxRetries: 3);
-            DebugLog.Info("UpdateService", $"[UpdateService] Server response: {json}");
-
-            var updateInfo = JsonSerializer.Deserialize<UpdateInfo>(json);
-            var serverVersion = updateInfo?.Version ?? CurrentVersion;
+            var serverVersion = updateInfo.Version ?? CurrentVersion;
             var updateInfoUrl = updateInfo?.UpdateInfoUrl ?? ApiEndpoints.UpdateHtmlUrl;
             var previewVersion = updateInfo?.PreReleaseVersion ?? string.Empty;
             var previewUpdateInfoUrl = string.IsNullOrEmpty(updateInfo?.PreReleaseUpdateInfoUrl)
@@ -140,6 +136,75 @@ public class UpdateService : IUpdateService
             DebugLog.Info("UpdateService", $"[UpdateService] Stack trace: {ex.StackTrace}");
             return new UpdateCheckResult { ShouldShowUpdate = false };
         }
+    }
+
+    public async Task<UpdateProbeResult> ProbeUpdateAsync(CancellationToken cancellationToken = default)
+    {
+        var currentVersion = AppVersionHelper.NumericVersion;
+        var result = new UpdateProbeResult
+        {
+            CurrentVersion = currentVersion,
+            IsPreviewBuild = AppVersionHelper.IsPreviewBuild,
+            UpdateInfoUrl = ApiEndpoints.UpdateHtmlUrl,
+            PreviewUpdateInfoUrl = ApiEndpoints.UpdatePreHtmlUrl
+        };
+
+        try
+        {
+            var updateInfo = await FetchManifestAsync().WaitAsync(TimeSpan.FromSeconds(40), cancellationToken);
+            if (updateInfo == null)
+            {
+                result.Message = "暂时无法连接更新服务器，未执行更新检查。";
+                return result;
+            }
+
+            result.Succeeded = true;
+            result.ServerVersion = updateInfo.Version ?? string.Empty;
+            result.PreviewVersion = updateInfo.PreReleaseVersion ?? string.Empty;
+            if (!string.IsNullOrWhiteSpace(updateInfo.UpdateInfoUrl))
+            {
+                result.UpdateInfoUrl = updateInfo.UpdateInfoUrl;
+            }
+
+            if (!string.IsNullOrWhiteSpace(updateInfo.PreReleaseUpdateInfoUrl))
+            {
+                result.PreviewUpdateInfoUrl = updateInfo.PreReleaseUpdateInfoUrl;
+            }
+
+            result.IsDevBuild = await _devBuildDetectionService.DetectAsync(result.ServerVersion);
+            result.HasUpdate = AppVersionHelper.IsNewerVersion(result.ServerVersion, currentVersion);
+            result.HasPreviewUpdate = AppVersionHelper.IsNewerVersion(result.PreviewVersion, currentVersion);
+            result.Message = result.HasUpdate ? "发现启动器新版本。" : "当前启动器已是最新版本。";
+
+            DebugLog.Info("UpdateService",
+                $"[UpdateService] Probe: current={currentVersion}, server={result.ServerVersion}, preview={result.PreviewVersion}, hasUpdate={result.HasUpdate}");
+        }
+        catch (OperationCanceledException)
+        {
+            result.Message = "检查更新已取消或超时。";
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("UpdateService", $"[UpdateService] Probe failed: {ex.GetType().Name} - {ex.Message}");
+            result.Message = $"检查更新失败：{ex.Message}";
+        }
+
+        return result;
+    }
+
+    private async Task<UpdateInfo?> FetchManifestAsync()
+    {
+        if (!await IsServerReachableAsync())
+        {
+            DebugLog.Info("UpdateService", "[UpdateService] Server temporarily unreachable, skipping version check");
+            return null;
+        }
+
+        var json = await GetWithRetryAsync(ApiEndpoints.UpdateJsonUrl, ApiEndpoints.UpdateJsonFallbackUrl,
+            maxRetries: 3);
+        DebugLog.Info("UpdateService", $"[UpdateService] Server response: {json}");
+
+        return JsonSerializer.Deserialize<UpdateInfo>(json);
     }
 
     public async Task<string> GetUpdateAnnouncementUrlAsync()

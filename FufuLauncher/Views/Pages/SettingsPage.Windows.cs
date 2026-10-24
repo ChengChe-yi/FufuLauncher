@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) FufuLauncher Dev Team. All rights reserved.
 Licensed under the MIT License.
 */
@@ -225,6 +225,11 @@ public sealed partial class SettingsPage
     private void OnOpenServiceStatusWindowClick(object sender, RoutedEventArgs e)
     {
         ServiceStatusWindow.ShowOrActivate();
+    }
+
+    private void OnOpenMcpWindowClick(object sender, RoutedEventArgs e)
+    {
+        McpWindow.ShowOrActivate();
     }
 
     #endregion

@@ -8725,4 +8725,319 @@ Click the button below to open your browser and download manually.</value>
   <data name="ImageSource_RandomPinFailed" xml:space="preserve">
     <value>Нет текущего случайного фонового изображения для сохранения.</value>
   </data>
+  <data name="SectionMcp" xml:space="preserve">
+    <value>Открытый интерфейс</value>
+  </data>
+  <data name="Mcp_RowTitle" xml:space="preserve">
+    <value>Интерфейс MCP</value>
+  </data>
+  <data name="Mcp_RowCaption" xml:space="preserve">
+    <value>Интерфейс автоматизации в локальной сети, по умолчанию выключен.</value>
+  </data>
+  <data name="Mcp_OpenButton" xml:space="preserve">
+    <value>Настроить</value>
+  </data>
+  <data name="Mcp_WindowTitle" xml:space="preserve">
+    <value>Интерфейс MCP</value>
+  </data>
+  <data name="Mcp_ServiceSection" xml:space="preserve">
+    <value>Служба</value>
+  </data>
+  <data name="Mcp_EnableTitle" xml:space="preserve">
+    <value>Включить службу MCP</value>
+  </data>
+  <data name="Mcp_EnableCaption" xml:space="preserve">
+    <value>Устройства в локальной сети смогут подключаться к лаунчеру.</value>
+  </data>
+  <data name="Mcp_SecurityTitle" xml:space="preserve">
+    <value>Только доверенные сети</value>
+  </data>
+  <data name="Mcp_SecurityMessage" xml:space="preserve">
+    <value>Включайте только в доверенной сети и настройте контроль доступа.</value>
+  </data>
+  <data name="Mcp_ErrorTitle" xml:space="preserve">
+    <value>Не удалось запустить службу</value>
+  </data>
+  <data name="Mcp_ServiceStatusSection" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="Mcp_StatusTitle" xml:space="preserve">
+    <value>Адрес подключения</value>
+  </data>
+  <data name="Mcp_StatusRunning" xml:space="preserve">
+    <value>Служба работает · порт {0}</value>
+  </data>
+  <data name="Mcp_StatusEnabledNotRunning" xml:space="preserve">
+    <value>Включено, но служба не запущена</value>
+  </data>
+  <data name="Mcp_StatusStopped" xml:space="preserve">
+    <value>Служба остановлена</value>
+  </data>
+  <data name="Mcp_EndpointPending" xml:space="preserve">
+    <value>Доступно по адресу http://&lt;IP в сети&gt;:{0}/mcp</value>
+  </data>
+  <data name="Mcp_PortTitle" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="Mcp_PortCaption" xml:space="preserve">
+    <value>Диапазон 1024–65535. После изменения служба перезапускается.</value>
+  </data>
+  <data name="Mcp_TokenTitle" xml:space="preserve">
+    <value>Токен доступа</value>
+  </data>
+  <data name="Mcp_TokenCaption" xml:space="preserve">
+    <value>Клиенты должны передавать этот токен в Authorization: Bearer.</value>
+  </data>
+  <data name="Mcp_Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="Mcp_Regenerate" xml:space="preserve">
+    <value>Создать заново</value>
+  </data>
+  <data name="Mcp_ToolsSection" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="Mcp_ToolsCaption" xml:space="preserve">
+    <value>Отключённые инструменты недоступны для вызова.</value>
+  </data>
+  <data name="Mcp_CategoryPlugins" xml:space="preserve">
+    <value>Плагины</value>
+  </data>
+  <data name="Mcp_CategoryGame" xml:space="preserve">
+    <value>Игра</value>
+  </data>
+  <data name="Mcp_CategoryInterface" xml:space="preserve">
+    <value>Интерфейс</value>
+  </data>
+  <data name="Mcp_CategorySystem" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="McpTool_ListPlugins" xml:space="preserve">
+    <value>Список установленных плагинов</value>
+  </data>
+  <data name="McpTool_ListPluginsCaption" xml:space="preserve">
+    <value>Показывает официальные и сторонние плагины с состоянием и путём конфигурации.</value>
+  </data>
+  <data name="McpTool_SetPluginEnabled" xml:space="preserve">
+    <value>Включить или отключить плагин</value>
+  </data>
+  <data name="McpTool_SetPluginEnabledCaption" xml:space="preserve">
+    <value>Переключает официальные и сторонние плагины по папке, имени или файлу.</value>
+  </data>
+  <data name="McpTool_GetPluginConfig" xml:space="preserve">
+    <value>Чтение конфигурации плагина</value>
+  </data>
+  <data name="McpTool_GetPluginConfigCaption" xml:space="preserve">
+    <value>Показывает параметры и текущие значения в структурированном виде.</value>
+  </data>
+  <data name="McpTool_SetPluginConfig" xml:space="preserve">
+    <value>Изменение конфигурации плагина</value>
+  </data>
+  <data name="McpTool_SetPluginConfigCaption" xml:space="preserve">
+    <value>Меняются только существующие параметры; файл напрямую не редактируется.</value>
+  </data>
+  <data name="McpTool_SearchPluginStore" xml:space="preserve">
+    <value>Поиск в магазине плагинов</value>
+  </data>
+  <data name="McpTool_SearchPluginStoreCaption" xml:space="preserve">
+    <value>Ищет плагины по ключевому слову или категории.</value>
+  </data>
+  <data name="McpTool_InstallPlugin" xml:space="preserve">
+    <value>Установить плагин</value>
+  </data>
+  <data name="McpTool_InstallPluginCaption" xml:space="preserve">
+    <value>Установка из магазина, локального файла или по ссылке; прогресс можно проверить и отменить.</value>
+  </data>
+  <data name="McpTool_GetGameStatus" xml:space="preserve">
+    <value>Состояние игры</value>
+  </data>
+  <data name="McpTool_GetGameStatusCaption" xml:space="preserve">
+    <value>Путь к игре, состояние запуска, сервер и версия.</value>
+  </data>
+  <data name="McpTool_StartGame" xml:space="preserve">
+    <value>Запустить игру</value>
+  </data>
+  <data name="McpTool_StartGameCaption" xml:space="preserve">
+    <value>Запускает игру с текущими параметрами запуска.</value>
+  </data>
+  <data name="McpTool_StopGame" xml:space="preserve">
+    <value>Завершить игру</value>
+  </data>
+  <data name="McpTool_StopGameCaption" xml:space="preserve">
+    <value>Завершает процесс запущенной игры.</value>
+  </data>
+  <data name="McpTool_ListServers" xml:space="preserve">
+    <value>Список серверов</value>
+  </data>
+  <data name="McpTool_ListServersCaption" xml:space="preserve">
+    <value>Показывает доступные схемы серверов и активную.</value>
+  </data>
+  <data name="McpTool_SwitchServer" xml:space="preserve">
+    <value>Смена сервера</value>
+  </data>
+  <data name="McpTool_SwitchServerCaption" xml:space="preserve">
+    <value>Перезаписывает настройки канала для выбранной схемы.</value>
+  </data>
+  <data name="McpTool_OpenPage" xml:space="preserve">
+    <value>Открыть страницу</value>
+  </data>
+  <data name="McpTool_OpenPageCaption" xml:space="preserve">
+    <value>Переходит к странице главного окна.</value>
+  </data>
+  <data name="McpTool_OpenToolWindow" xml:space="preserve">
+    <value>Открыть окно инструмента</value>
+  </data>
+  <data name="McpTool_OpenToolWindowCaption" xml:space="preserve">
+    <value>Открывает инструменты: анализ гачи, центр данных, калькулятор.</value>
+  </data>
+  <data name="McpTool_SetWindowState" xml:space="preserve">
+    <value>Состояние окна</value>
+  </data>
+  <data name="McpTool_SetWindowStateCaption" xml:space="preserve">
+    <value>Разворачивает, сворачивает или восстанавливает окно лаунчера.</value>
+  </data>
+  <data name="McpTool_ReadCrashLog" xml:space="preserve">
+    <value>Чтение журнала сбоев</value>
+  </data>
+  <data name="McpTool_ReadCrashLogCaption" xml:space="preserve">
+    <value>Показывает конец файла CrashLog.txt.</value>
+  </data>
+  <data name="McpTool_CheckUpdate" xml:space="preserve">
+    <value>Проверить обновления</value>
+  </data>
+  <data name="McpTool_CheckUpdateCaption" xml:space="preserve">
+    <value>Только запрашивает сервер; программа обновления не запускается.</value>
+  </data>
+  <data name="Mcp_AccessSection" xml:space="preserve">
+    <value>Контроль доступа</value>
+  </data>
+  <data name="Mcp_AuthTitle" xml:space="preserve">
+    <value>Требовать аутентификацию</value>
+  </data>
+  <data name="Mcp_AuthCaption" xml:space="preserve">
+    <value>Если выключено, токены не проверяются.</value>
+  </data>
+  <data name="Mcp_AuthOffWarning" xml:space="preserve">
+    <value>Аутентификация выключена: любое устройство с доступом к этому адресу может управлять лаунчером.</value>
+  </data>
+  <data name="Mcp_TokenModeTitle" xml:space="preserve">
+    <value>Режим токена</value>
+  </data>
+  <data name="Mcp_TokenModeAuto" xml:space="preserve">
+    <value>Автоматически</value>
+  </data>
+  <data name="Mcp_TokenModeCustom" xml:space="preserve">
+    <value>Свой токен</value>
+  </data>
+  <data name="Mcp_CustomTokenTitle" xml:space="preserve">
+    <value>Свой токен</value>
+  </data>
+  <data name="Mcp_CustomTokenCaption" xml:space="preserve">
+    <value>16–128 символов: буквы, цифры и - _ .</value>
+  </data>
+  <data name="Mcp_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Mcp_TokenInvalid" xml:space="preserve">
+    <value>Неверный токен: 16–128 букв, цифр или - _ .</value>
+  </data>
+  <data name="Mcp_IpFilterTitle" xml:space="preserve">
+    <value>Включить фильтр IP</value>
+  </data>
+  <data name="Mcp_IpFilterCaption" xml:space="preserve">
+    <value>Этот компьютер разрешён всегда.</value>
+  </data>
+  <data name="Mcp_IpModeTitle" xml:space="preserve">
+    <value>Режим списка</value>
+  </data>
+  <data name="Mcp_IpModeAllow" xml:space="preserve">
+    <value>Белый список</value>
+  </data>
+  <data name="Mcp_IpModeDeny" xml:space="preserve">
+    <value>Чёрный список</value>
+  </data>
+  <data name="Mcp_IpRulesTitle" xml:space="preserve">
+    <value>Список IP</value>
+  </data>
+  <data name="Mcp_IpRulesCaption" xml:space="preserve">
+    <value>По одному IP или подсети в строке, например 192.168.1.10 или 192.168.1.0/24.</value>
+  </data>
+  <data name="Mcp_IpRulesInvalid" xml:space="preserve">
+    <value>Неверные записи: {0}</value>
+  </data>
+  <data name="Mcp_IpRulesEmpty" xml:space="preserve">
+    <value>Белый список не может быть пустым.</value>
+  </data>
+  <data name="Mcp_AuditSection" xml:space="preserve">
+    <value>Журнал аудита</value>
+  </data>
+  <data name="Mcp_AuditToggleTitle" xml:space="preserve">
+    <value>Вести журнал аудита</value>
+  </data>
+  <data name="Mcp_AuditCaption" xml:space="preserve">
+    <value>Только текущий сеанс.</value>
+  </data>
+  <data name="Mcp_AuditClear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Mcp_AuditEmpty" xml:space="preserve">
+    <value>Записей нет</value>
+  </data>
+  <data name="Mcp_AuditConnections" xml:space="preserve">
+    <value>Подключения</value>
+  </data>
+  <data name="Mcp_AuditCalls" xml:space="preserve">
+    <value>Вызовы инструментов</value>
+  </data>
+  <data name="Mcp_AuditFailures" xml:space="preserve">
+    <value>Ошибки</value>
+  </data>
+  <data name="Mcp_AuditResultSuccess" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
+  <data name="Mcp_AuditResultFailure" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Mcp_AuditEventConnect" xml:space="preserve">
+    <value>Подключено</value>
+  </data>
+  <data name="Mcp_AuditEventAuthFailed" xml:space="preserve">
+    <value>Ошибка аутентификации</value>
+  </data>
+  <data name="Mcp_AuditEventIpBlocked" xml:space="preserve">
+    <value>IP заблокирован</value>
+  </data>
+  <data name="Mcp_PortInvalid" xml:space="preserve">
+    <value>Порт должен быть от {0} до {1}.</value>
+  </data>
+  <data name="Mcp_AuditWindowTitle" xml:space="preserve">
+    <value>Журнал аудита</value>
+  </data>
+  <data name="Mcp_AuditOpenButton" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="Mcp_AuditSummaryFormat" xml:space="preserve">
+    <value>Подключения: {0} · Вызовы: {1} · Ошибки: {2}</value>
+  </data>
+  <data name="Mcp_AuditArchivedCount" xml:space="preserve">
+    <value>Архивировано записей: {0}</value>
+  </data>
+  <data name="Mcp_AuditOpenFolder" xml:space="preserve">
+    <value>Открыть папку архива</value>
+  </data>
+  <data name="Mcp_AuditArchiveHint" xml:space="preserve">
+    <value>При превышении {0} записей архив автоматически сохраняется в текстовый файл.</value>
+  </data>
+  <data name="McpTool_GetInstallStatus" xml:space="preserve">
+    <value>Состояние установки</value>
+  </data>
+  <data name="McpTool_GetInstallStatusCaption" xml:space="preserve">
+    <value>Проверить ход установки, запущенной через install_plugin.</value>
+  </data>
+  <data name="McpTool_CancelInstall" xml:space="preserve">
+    <value>Отменить установку</value>
+  </data>
+  <data name="McpTool_CancelInstallCaption" xml:space="preserve">
+    <value>Отменить текущую или ожидающую установку и закрыть окно подтверждения.</value>
+  </data>
 </root>

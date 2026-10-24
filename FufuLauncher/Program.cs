@@ -198,17 +198,19 @@ namespace FufuLauncher
                     out var pid);
                 if (result != 0)
                 {
-                    MessageBox(IntPtr.Zero,
-                        string.Format("Program_InjectionFailed".GetLocalized(), errorMessage, result),
-                        "Program_ErrorTitle".GetLocalized(), 0x10);
+                    var failureMessage =
+                        string.Format("Program_InjectionFailed".GetLocalized(), errorMessage, result);
+                    ElevatedInjectionResultFile.Write(failureMessage);
+                    MessageBox(IntPtr.Zero, failureMessage, "Program_ErrorTitle".GetLocalized(), 0x10);
                 }
 
                 exitCode = result == 0 ? 0 : 1;
             }
             catch (Exception ex)
             {
-                MessageBox(IntPtr.Zero, string.Format("Program_InjectionException".GetLocalized(), ex.Message),
-                    "Program_ErrorTitle".GetLocalized(), 0x10);
+                var exceptionMessage = string.Format("Program_InjectionException".GetLocalized(), ex.Message);
+                ElevatedInjectionResultFile.Write(exceptionMessage);
+                MessageBox(IntPtr.Zero, exceptionMessage, "Program_ErrorTitle".GetLocalized(), 0x10);
             }
             finally
             {
