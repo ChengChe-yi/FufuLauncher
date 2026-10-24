@@ -31,7 +31,9 @@ public static class AppPaths
     public static string GachaDataFile => Path.Combine(DataDir, "gacha_data.json");
     public static string MetadataDb => Path.Combine(DataDir, "metadata.db");
 
-    public static string FufuConfigFile => Path.Combine(DataDir, "FufuConfig.cfg");
+    public static string GamePlayTimeFile => Path.Combine(DataDir, "game_play_time.json");
+
+    public static string LegacyFufuConfigFile => Path.Combine(DataDir, "FufuConfig.cfg");
 
 
     public static string InventoryCacheFile => Path.Combine(DataDir, "inventory_cache.json");
@@ -464,7 +466,10 @@ public static class AppPaths
         {
             MoveFileIfExists(Path.Combine(docsFufu, "gacha_data.json"), GachaDataFile);
             MoveFileIfExists(Path.Combine(docsFufu, "metadata.db"), MetadataDb);
-            MoveFileIfExists(Path.Combine(docsFufu, "FufuConfig.cfg"), FufuConfigFile);
+            if (!File.Exists(GamePlayTimeFile))
+            {
+                MoveFileIfExists(Path.Combine(docsFufu, "FufuConfig.cfg"), LegacyFufuConfigFile);
+            }
         }
 
         string exeDir = AppContext.BaseDirectory;

@@ -4,30 +4,45 @@ Licensed under the MIT License.
 */
 
 using System.Diagnostics;
-using System.Text.Json;
+using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FufuLauncher.Models;
 using FufuLauncher.Helpers;
+using FufuLauncher.Services;
 
 namespace FufuLauncher.ViewModels;
 
 public partial class ControlPanelViewModel : ObservableObject
 {
-    private readonly string _configPath;
+    private readonly GamePlayTimeStore _playTimeStore;
     private CancellationTokenSource _cancellationTokenSource;
-    private readonly Dictionary<string, long> _playTimeData;
 
     [ObservableProperty] private WeeklyPlayTimeStats _weeklyStats = new();
     [ObservableProperty] private bool _isGameRunning;
 
-    public ControlPanelViewModel()
+    public ControlPanelViewModel(GamePlayTimeStore playTimeStore)
     {
-        _configPath = Helpers.AppPaths.FufuConfigFile;
+        _playTimeStore = playTimeStore;
         _cancellationTokenSource = new CancellationTokenSource();
-        _playTimeData = new Dictionary<string, long>();
 
-        LoadConfig();
-        _ = StartGameMonitoringLoopAsync(_cancellationTokenSource.Token);
+        _ = InitializeAsync(_cancellationTokenSource.Token);
+    }
+
+    private async Task InitializeAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await _playTimeStore.LoadAsync(cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            DebugLog.Info("ControlPanelViewModel", $"Failed to load game play time: {ex.Message}");
+        }
+
+        if (cancellationToken.IsCancellationRequested) return;
+
+        CalculateMonthlyStats();
+        await StartGameMonitoringLoopAsync(cancellationToken);
     }
 
     public void Cleanup()
@@ -44,53 +59,19 @@ public partial class ControlPanelViewModel : ObservableObject
 
     public void UpdateAndSavePlayTime(int secondsToAdd)
     {
-        var dateKey = DateTime.Now.ToString("yyyy-MM-dd");
-
-        if (_playTimeData.ContainsKey(dateKey)) _playTimeData[dateKey] += secondsToAdd;
-        else _playTimeData[dateKey] = secondsToAdd;
-
-        _ = SaveConfigAsync();
+        _playTimeStore.AddPlayTime(DateTime.Now, secondsToAdd);
+        _ = SavePlayTimeAsync();
     }
 
-    private async Task SaveConfigAsync()
+    private async Task SavePlayTimeAsync()
     {
         try
         {
-            var config = new ControlPanelConfig
-            {
-                GamePlayTimeData = _playTimeData,
-                LastPlayDate = DateTime.Now.ToString("yyyy-MM-dd")
-            };
-            var json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
-            await File.WriteAllTextAsync(_configPath, json);
+            await _playTimeStore.SaveAsync();
         }
         catch (Exception ex)
         {
-            DebugLog.Info("ControlPanelViewModel", $"Failed to save game time config: {ex.Message}");
-        }
-    }
-
-    private async void LoadConfig()
-    {
-        try
-        {
-            if (File.Exists(_configPath))
-            {
-                var json = await File.ReadAllTextAsync(_configPath);
-                var config = JsonSerializer.Deserialize<ControlPanelConfig>(json);
-                if (config != null)
-                {
-                    if (config.GamePlayTimeData != null)
-                    {
-                        foreach (var kvp in config.GamePlayTimeData) _playTimeData[kvp.Key] = kvp.Value;
-                    }
-
-                    CalculateMonthlyStats();
-                }
-            }
-        }
-        catch
-        {
+            DebugLog.Info("ControlPanelViewModel", $"Failed to save game play time: {ex.Message}");
         }
     }
 
@@ -98,14 +79,15 @@ public partial class ControlPanelViewModel : ObservableObject
     {
         var stats = new WeeklyPlayTimeStats();
         var today = DateTime.Now.Date;
+        var playTimeData = _playTimeStore.GetDailyPlayTimeSnapshot();
         double totalSeconds = 0;
 
         for (int i = 0; i < 30; i++)
         {
             var date = today.AddDays(-i);
-            var dateKey = date.ToString("yyyy-MM-dd");
+            var dateKey = date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-            if (_playTimeData.TryGetValue(dateKey, out var seconds) && seconds > 0)
+            if (playTimeData.TryGetValue(dateKey, out var seconds) && seconds > 0)
             {
                 stats.DailyRecords.Add(new GamePlayTimeRecord { Date = date, PlayTimeSeconds = seconds });
                 totalSeconds += seconds;
@@ -114,7 +96,10 @@ public partial class ControlPanelViewModel : ObservableObject
 
         stats.TotalHours = totalSeconds / 3600.0;
         stats.AverageHours = stats.DailyRecords.Count > 0 ? stats.TotalHours / stats.DailyRecords.Count : 0;
-        App.MainWindow.DispatcherQueue.TryEnqueue(() => WeeklyStats = stats);
+        if (App.MainWindow?.DispatcherQueue is { } dispatcherQueue)
+        {
+            dispatcherQueue.TryEnqueue(() => WeeklyStats = stats);
+        }
     }
 
     private async Task StartGameMonitoringLoopAsync(CancellationToken token)
@@ -163,7 +148,14 @@ public partial class ControlPanelViewModel : ObservableObject
                 DebugLog.Info("ControlPanelViewModel", $"Game monitor outer exception: {ex.Message}");
             }
 
-            await Task.Delay(20000, token);
+            try
+            {
+                await Task.Delay(20000, token);
+            }
+            catch (OperationCanceledException)
+            {
+                return;
+            }
         }
     }
 
@@ -224,20 +216,5 @@ public partial class ControlPanelViewModel : ObservableObject
             get;
             set;
         }
-    }
-}
-
-public class ControlPanelConfig
-{
-    public Dictionary<string, long> GamePlayTimeData
-    {
-        get;
-        set;
-    }
-
-    public string LastPlayDate
-    {
-        get;
-        set;
     }
 }

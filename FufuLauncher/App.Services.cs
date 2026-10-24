@@ -108,6 +108,7 @@ public partial class App
                 services.AddTransient<AgreementPage>();
                 services.AddSingleton<IDevBuildDetectionService, DevBuildDetectionService>();
                 services.AddSingleton<IUpdateService, UpdateService>();
+                services.AddSingleton<GamePlayTimeStore>();
                 services.AddSingleton<ControlPanelViewModel>();
                 services.AddTransient<ControlPanelPage>();
                 services.AddSingleton<IUserInfoService, UserInfoService>();
